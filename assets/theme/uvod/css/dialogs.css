@@ -1,0 +1,121 @@
+.popup{
+    background-color: #fff;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 0 25px 5px #999;
+    color: #111;
+    display: none;
+    min-width: 450px;
+    padding: 25px;
+}
+
+.button.b-close, .button.bClose {
+    border-radius: 7px 7px 7px 7px;
+    box-shadow: none;
+    font: bold 131% sans-serif;
+    padding: 0 6px 2px;
+    position: absolute;
+    right: -7px;
+    top: -7px;
+    background-color: #73bdee;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.popup_content{
+    width: 100%;
+    margin: 30px 0px 0px 0px;
+}
+
+.col_izq, .col_der{
+    float: left;
+    width: 49%;
+
+}
+
+.col_izq{
+    border-right: 1px solid #ccc;
+    
+    margin-right: 1%;
+}
+
+.popup_form{
+    width: 100%;
+    text-align: center;
+}
+.popup_input{
+    height: 25px;
+    width: 75%;
+    margin: 0px auto;
+}
+
+.popup_label{
+    font-family: "PT Sans", "Lato", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: #bbb;
+    width: 100%;
+    text-align: left;
+    margin-top: 20px;
+    margin-left: 16%;
+}
+
+.popup_title{
+    width: 100%;
+    text-align: center;
+    font-family: "PT Sans", "Lato", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+}
+
+.dialog_button {
+    background-color:#73bdee;
+    -webkit-border-top-left-radius:10px;
+    -moz-border-radius-topleft:10px;
+    border-top-left-radius:10px;
+    -webkit-border-top-right-radius:10px;
+    -moz-border-radius-topright:10px;
+    border-top-right-radius:10px;
+    -webkit-border-bottom-right-radius:10px;
+    -moz-border-radius-bottomright:10px;
+    border-bottom-right-radius:10px;
+    -webkit-border-bottom-left-radius:10px;
+    -moz-border-radius-bottomleft:10px;
+    border-bottom-left-radius:10px;
+    text-indent:0;
+    border:1px solid #73bdee;
+    display:inline-block;
+    color:#ffffff;
+    font-family:Trebuchet MS;
+    font-size:18px;
+    font-weight:normal;
+    font-style:normal;
+    height:50px;
+    line-height:45px;
+    width:174px;
+    text-decoration:none;
+    text-align:center;
+    margin: 30px auto;
+    margin-bottom: 10px;
+    cursor: pointer;
+}.dialog_button:hover {
+    background-color:#5e98bf;
+}
+
+.question{
+   width: 79px;
+    height: 40px;
+    line-height: 1;
+    margin-left: 22px;
+}
+
+#popup_error{
+    display: none;
+    color: red;
+    width: 83%;
+    text-align: center;
+    font-size: 10px;
+    margin: 0 auto;
+}
+
