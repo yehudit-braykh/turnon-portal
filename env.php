@@ -1,7 +1,5 @@
 <?php
 
-echo 'Heroku Environment!';
-
 // ENV FILE for UVOD-PORTAL
 define('ENVIRONMENT', getenv('UVOD_ENVIRONMENT'));
 define('UVOD_CONFIG', getenv('UVOD_CONFIG'));
