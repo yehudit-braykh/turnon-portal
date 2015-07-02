@@ -22,11 +22,7 @@ class Search extends UVod_Controller {
         $kword = str_replace(')','%29',$kword);
         $items = $this->search_model->search_vod($kword);
 
-        if ($this->config->item('create_items_on_view') !== FALSE) {
-            $data['search_result_items'] = $items;
-        } else {
-            $data['search_result_items'] = $this->create_items($items);
-        }
+        $data['search_result_items'] = $this->create_items($items);
 
         $search_result_size = 0;
         if ($items && $items->content && sizeof($items->content->entries)) {
@@ -46,7 +42,7 @@ class Search extends UVod_Controller {
 
         $ret = "";
 
-        if ($items && $items->content) {
+        if ($items->content) {
             for ($i = 0; $i <= sizeof($items->content->entries) - 1; $i++) {
 
                 $cover_asset_type = "Poster V";
@@ -81,7 +77,7 @@ class Search extends UVod_Controller {
                 $aired_date_div = "";
                 $ret .= '<div class="col4 no_spacer img_hover_box" style="width:' . $cover_width . '">
                                 <a href="' . base_url() . 'index.php/vod_item/detail/id/' . $item_id . '" class="cover" style="width:' . $cover_width . ';height:' . $cover_height . ';">';
-                if ($mediatype != "tv_show" && $this->config->item('theme') !== 'orbita' && $this->config->item('theme') !== 'htv') {
+                if ($mediatype != "tv_show" && $this->config->item('theme') !== 'orbita') {
                     $aired_date_div = '<div>' . parseDate(getEntryProperty($items->content->entries[$i], 'aired_date')) . '</div>';
                     $ret.= '<div class="ribbon_content '. $commerce_class . '" style="width:' . $cover_width . ';height:' . $cover_height . ';"></div>';
                 }

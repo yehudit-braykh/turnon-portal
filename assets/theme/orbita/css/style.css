@@ -1679,7 +1679,7 @@ select:focus, select:active {
 .vod_aired_date{
     float: left;
     font-size: 17px;
-    font-weight: bold;
+    /*font-weight: bold;*/
     color: #aaa;
     margin: -2px 0px 15px 0px;
 }
@@ -2357,11 +2357,7 @@ select:focus, select:active {
 }
 
 .top_sub_menu a {
-    color: #F7ED00;
-}
-
-.top_sub_menu_selected a{
-    color: #fff!important;
+    color: #ffffff;
 }
 
 /*----------------------------
@@ -2446,7 +2442,7 @@ select:focus, select:active {
         margin: 0px 10px 0px 10px;
         width: auto;
     }
-    
+
     .top_sub_menu {
         display: none;
     }

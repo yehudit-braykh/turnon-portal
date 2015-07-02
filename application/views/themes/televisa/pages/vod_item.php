@@ -1,55 +1,10 @@
-​<script type="text/javascript" src="<?php echo common_asset_url(); ?>js/jwplayer/jwplayer.js" ></script>
-<script>jwplayer.key = "BFr/jM6cxDTO5jdihqzp0fQ3Advd0Q8Fp6FUqw==";</script>
+<script type="text/javascript" src="<?php echo common_asset_url(); ?>pdk/tpPdk.js"></script>
 <script type="text/javascript">
 
     $(function () {
 
 <?php echo 'base_url = "' . base_url() . '";'; ?>
 <?php echo 'media_type="' . $item_media_type . '";'; ?>
-
-
-    // setup JWPLAYER
-    jwplayer("jw_live_player").setup({
-
-        androidhls: true,
-        autostart: true,
-        aspectratio: "16:9",
-        width: "100%",
-        sources: [
-          <?php 
-          for($i=0;$i<sizeof($renditions);$i++){
-              if($i===0){
-                   echo '{file:"'.$renditions[$i]->file.'",label:"'.$renditions[$i]->label.'","default": "true"}';
-              }else{
-                   echo ',{file:"'.$renditions[$i]->file.'",label:"'.$renditions[$i]->label.'"}';
-              }
-          }
-          ?>
-          ],
-          events: {
-                onPlay: function(e) {
-                    handleOnMediaStart();
-                },
-                onComplete: function(e){
-                    handleOnMediaEnd();
-                }
-            }
-
-    <?php                                                              
-    if($adPolicyId !=''){
-    ?>
-
-    ,advertising: {
-            client: 'vast',
-            'skipoffset': 5,
-            tag: base_url + 'index.php/vod/get_advertisement_xml?policy_id=' + <?php echo $adPolicyId;?>
-        }
-    <?php 
-    }
-    ?>
-                            });
-
-
 
         if (media_type == 'tv_show') {
             $('#tab-container').easytabs('select', '#tab1');
@@ -176,9 +131,12 @@
                                                     switch (data) {
                                                         case 'enabled':
                                                             $('#vod_item_player_container').css({display: "block"});
-                                                            TweenMax.to("#vod_item_player_container", 1, {height: "auto", ease: Quart.easeInOut, onComplete: function () {
+                                                            TweenMax.to("#vod_item_player_container", 1, {height: 525, ease: Quart.easeInOut, onComplete: function () {
                                                                     $('#vod_item_player_close').css({display: "block"});
                                                                     $('#vod_item_video_separator').css({display: "block"});
+
+                                                                    $pdk.controller.setReleaseURL('<?php echo $item_release_url; ?>');
+
                                                                     $('#back_button_container').css({display: "none"});
                                                                     return false;
                                                                 }});
@@ -200,6 +158,9 @@
                                             TweenMax.to("#vod_item_player_container", 1, {height: 525, ease: Quart.easeInOut, onComplete: function () {
                                                     $('#vod_item_player_close').css({display: "block"});
                                                     $('#vod_item_video_separator').css({display: "block"});
+
+                                                    $pdk.controller.setReleaseURL('<?php echo $item_trailer_release_url; ?>');
+
                                                     $('#back_button_container').css({display: "none"});
                                                     return false;
                                                 }});
@@ -248,7 +209,7 @@
         <div class="content_centered">
             <div class="content_resize">
                 <div id="vod_item_player_container">
-                    <div id="jw_live_player">Loading the player...</div>
+                    <div id="tdp_player" class="tpPlayer" tp:overlayImageUrl="<?php echo asset_url(); ?>/images/overlay.png" tp:layoutUrl="<?php echo asset_url(); ?>pdk/data/metaLayout.xml"></div>
                 </div>
                 <div id="vod_item_player_close"><a href="#" onclick="button_close_clickHandler()">Close</a></div>
                 <div id="vod_item_video_separator" class="separator"></div>

@@ -251,7 +251,7 @@ for ($i = 0; $i < sizeof($vod_categories); $i++) {
                                                         <div id="logo_left"></div>
 
                                                         <div class="top_sub_menu">
-                                                            <div <?php if($sub_section1 === DEFAULT_SECTION1 || $sub_section1 === DEFAULT_SECTION2){echo 'class="top_sub_menu_selected"';}?>><a href="<?php echo base_url(); ?>">Home</a></div>
+                                                            <div class="top_sub_menu_selected"><a href="<?php echo base_url(); ?>">Home</a></div>
 
                                                             <?php
                                                                 for($i=0;$i<sizeof($vod_categories);$i++) { 
