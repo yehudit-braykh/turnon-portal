@@ -1080,14 +1080,14 @@ img{}
 #vod_item_player_container {
     background: #000;
     width: 100%;
-    height: auto;
-    display: block;
+    height: 0px;
+    display: none;
     overflow: hidden;
     padding: 20px 0px 20px 0px;
 }
 
 #vod_item_video_separator {
-    display: block;
+    display: none;
 }
 
 #tdp_player {
@@ -1107,7 +1107,7 @@ img{}
 #vod_item_player_close {
     float: right;
     padding-right: 6px;	
-    display: block;
+    display: none;
 }
 
 #vod_item_player_close a {
@@ -1122,7 +1122,6 @@ img{}
 #back_button_container {
     float: right;
     padding-right: 6px;	
-    display: none;
 }
 
 #back_button_container a {
@@ -2247,55 +2246,4 @@ select:focus, select:active {
 #btn_save_billing{
     display: none;
     margin-left: 10px;
-}
-
-/*----------------------------
-  Mobile and smartphones
------------------------------*/
-
-
-@media only screen and (max-width: 959px) {
-
-    .content_centered { 
-        width: 100%; 
-        margin: 0 auto;
-        min-height: 1000px;
-    }
-    
-    .content_resize { 
-        margin: 0px 10px 0px 10px;
-        width: auto;
-    }
-    
-    .header_sep {
-        display: none;
-    }
-    
-    .top_menu  {
-        display: none;
-    }
-
-    .top_sub_menu {
-        display: none;
-    }
-
-    .search {
-        display: none;
-    }
-
-    .header_menu_bg {
-        width: 100%;
-    }
-
-}
-
-/*----------------------------
-  Tablets portrait
------------------------------*/
-@media only screen and (min-width: 768px) and (max-width: 959px) {
-
-    .search {
-        display: none;
-    }
-
 }

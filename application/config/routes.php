@@ -40,7 +40,6 @@
 
 $route['default_controller'] = 'vod/section/featured';
 //$route['(:any)'] = 'pages/view/$1';
-$route['account/register'] = 'account/register_ssl';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

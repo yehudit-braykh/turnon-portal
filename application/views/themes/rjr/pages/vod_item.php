@@ -1,4 +1,5 @@
-<script src="//jwpsrv.com/library/KdH5zknzEeS1zyIACy4B0g.js"></script>
+​<script type="text/javascript" src="<?php echo common_asset_url(); ?>js/jwplayer/jwplayer.js" ></script>
+<script>jwplayer.key = "BFr/jM6cxDTO5jdihqzp0fQ3Advd0Q8Fp6FUqw==";</script>
 
 <script type="text/javascript">
 
@@ -96,12 +97,12 @@
                                             });
 
                                             $(document).on('submit', '#register_form', function () {
-                                                window.location = base_url + 'index.php/account/register_ssl';
+                                                window.location = base_url + 'index.php/account/register';
                                                 return false;
                                             });
 
                                             $(document).on('submit', '#suscriber_form', function () {
-                                                window.location = base_url + 'index.php/account/subscription_ssl';
+                                                window.location = base_url + 'index.php/account/subscription';
                                                 return false;
                                             });
 
