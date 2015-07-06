@@ -2,6 +2,6 @@
 
 	require_once("env.php");
 
-	echo "Service Name: " . UVOD_SERVER;
+	echo "Showing the Name of the server: " . UVOD_SERVER;
 
 ?>
