@@ -5,6 +5,11 @@
 
         $('#btn_subscribe').on('click', function (event) {
             $(this).hide();
+            if (!($("#accept_terms_and_conditions").prop("checked"))) {
+                $("#info").html("* You must accept terms and conditions before click subscribe button" );
+                $('#btn_subscribe').show();
+                return false;
+            } 
             $('#subscription_preloader').show();
             $('#subscription_preloader').html('Subscribing...');
 
@@ -179,8 +184,12 @@
                     </li>
                     <li> 
                         <div class="form_notes">Select the expiration year.</div>
-                    </li>                
+                    </li>
+                    <li id= "terms_and_conditions" style="margin-top: 10px">
+                        <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
+                        <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_and_conditions'; ?>" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
                     <li> 
+                    <li>
                         <p id="info" class="form_info">&nbsp;</p>
                     </li>
                     <li class="buttons">

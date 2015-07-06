@@ -10,6 +10,11 @@
         
         $('#btn_next').on('click', function (event) {
             $(this).hide();
+            if (!($("#accept_terms_and_conditions").prop("checked"))) {
+                $("#info").html("* You must accept terms and conditions before click next button" );
+                $('#btn_next').show();
+                return false;
+            }    
             $('#btn_skip').hide();
             $('#registration_preloader').html('Sending data...');
             $('#registration_preloader').show();
@@ -180,7 +185,10 @@
                     </li>
                     <li> 
                         <div class="form_notes">Select the expiration year.</div>
-                    </li>                
+                    </li>   
+                    <li id= "terms_and_conditions" style="margin-top: 10px">
+                        <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
+                        <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_and_conditions'; ?>" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
                     <li> 
                         <p id="info" class="form_info">&nbsp;</p>
                     </li>
