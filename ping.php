@@ -2,6 +2,6 @@
 
 	require_once("env.php");
 
-	echo "Server Name: " . UVOD_SERVER;
+	echo "Service Name: " . UVOD_SERVER;
 
 ?>
