@@ -427,9 +427,24 @@ class Account extends UVod_Controller {
         $pi_number = $_POST['pi_number'];
 
         $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $city, $postal_code, $country, $pi_month, $pi_year, $pi_type, $pi_number);
+        $this->subscription_complete_mail($first_name,$last_name);
         echo json_encode($ret);
     }
-
+    
+    public function subscription_complete_mail($name, $surname) {
+        
+        $email_data = array();
+        $email_data['name'] = $name;
+        $email_data['surname'] = $surname;
+        $message = $this->load->view(views_url() . 'templates/email_subscription_complete', $email_data, TRUE);
+        if ($this->account_model->send_single_email($_SESSION['user_data']->email, $message, 'Subscription Notification Mail', 'NO_RESPONSE@1spot.com', "1Spot Media Portal")) {
+            return true;
+        } else {
+            error_log("Email wasn't sended");
+            return false;
+        }
+    }
+    
     public function cancel_subscription() {
 
         $id = $_POST['contract_id'];
