@@ -2,6 +2,15 @@
 
 	require_once("env.php");
 
-	echo "This is the Service Name: " . UVOD_SERVER;
-
+        echo 'UVOD_CONFIG: ' . UVOD_CONFIG;
+        echo "<br>";
+        echo 'UVOD_ENVIRONMENT: ' . UVOD_ENVIRONMENT;        
+        echo "<br>";
+        echo 'UVOD_API_USER: ' . UVOD_API_USER;
+        echo "<br>";
+        echo 'UVOD_API_PASSWORD: ' . UVOD_API_PASSWORD;
+        echo "<br>";
+        echo 'UVOD_API_ENDPOINT: ' . UVOD_API_ENDPOINT;
+        echo "<br>";
+        echo 'UVOD_THEME: ' . UVOD_THEME;
 ?>
