@@ -33,7 +33,7 @@
             });
         
 
-<?php //echo 'var epg=' . json_encode(json_decode($epg)->content->entries) . ';'; ?>
+<?php error_log('main test');//echo 'var epg=' . json_encode(json_decode($epg)->content->entries) . ';'; ?>
 
         var interval;
 
