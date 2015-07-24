@@ -27,7 +27,7 @@
             var valid_cardholder_name = /^[A-Za-z\s]+$/.test(cardholder_name);
             if (!valid_cardholder_name) {
                 show_info();
-                $("#info").html("* Cardholder name only accepts letters and spaces" );
+                $("#info").html("* Name on card only accepts letters and spaces" );
                 $('#btn_next').show();
                 return false;
             }
@@ -36,7 +36,7 @@
             var valid_card_number = /^[0-9]+$/.test(card_number);
             if (!valid_card_number) {
                 show_info();
-                $("#info").html("* Cardnumber only accepts numbers" );
+                $("#info").html("* Card number only accepts numbers" );
                 $('#btn_next').show();
                 return false;
             }
@@ -223,7 +223,7 @@
                     </li>   
                     <li id= "terms_and_conditions" style="margin-top: 10px">
                         <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
-                        <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_and_conditions'; ?>" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
+                        <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_and_conditions'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
                     <li> 
                         <p id="info" class="form_info">&nbsp;</p>
                     </li>
