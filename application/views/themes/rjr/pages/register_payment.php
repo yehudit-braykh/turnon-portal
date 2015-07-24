@@ -14,7 +14,32 @@
                 $("#info").html("* You must accept terms and conditions before click next button" );
                 $('#btn_next').show();
                 return false;
-            }    
+            }  
+            
+            var cardholder_name = $("#cardholder_name").val();
+            var valid_cardholder_name = /^[A-Za-z\s]+$/.test(cardholder_name);
+            if (!valid_cardholder_name) {
+                $("#info").html("* Cardholder name only accepts letters and spaces" );
+                $('#btn_next').show();
+                return false;
+            }
+            
+            var card_number = $("#card_number").val();
+            var valid_card_number = /^[0-9]+$/.test(card_number);
+            if (!valid_card_number) {
+                $("#info").html("* Cardnumber only accepts numbers" );
+                $('#btn_next').show();
+                return false;
+            }
+            
+            var security_code = $("#security_code").val();
+            var valid_security_code = /^[0-9]+$/.test(security_code);
+            if (!valid_security_code) {
+                $("#info").html("* Security code only accepts numbers" );
+                $('#btn_next').show();
+                return false;
+            }
+            
             $('#btn_skip').hide();
             $('#registration_preloader').html('Sending data...');
             $('#registration_preloader').show();

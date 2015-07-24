@@ -147,7 +147,9 @@ class Account extends UVod_Controller {
             $pi_number = $_POST['pi_number'];
 
             $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $city, $postal_code, $country, $pi_month, $pi_year, $pi_type, $pi_number);
-
+            
+            error_log('Email subscription from my registration');
+            $this->subscription_complete_mail($first_name,$last_name);
             echo json_encode($ret);
         }else{
             echo json_encode(array('message'=>'Internal Error. Please finish the registration process, then get the subscription in My Account section.'));
@@ -427,7 +429,10 @@ class Account extends UVod_Controller {
         $pi_number = $_POST['pi_number'];
 
         $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $city, $postal_code, $country, $pi_month, $pi_year, $pi_type, $pi_number);
+        
+        error_log('Email subscription from my account');
         $this->subscription_complete_mail($first_name,$last_name);
+
         echo json_encode($ret);
     }
     
@@ -438,6 +443,7 @@ class Account extends UVod_Controller {
         $email_data['surname'] = $surname;
         $message = $this->load->view(views_url() . 'templates/email_subscription_complete', $email_data, TRUE);
         if ($this->account_model->send_single_email($_SESSION['user_data']->email, $message, 'Subscription Notification Mail', 'NO_RESPONSE@1spot.com', "1Spot Media Portal")) {
+            error_log("Email sended");
             return true;
         } else {
             error_log("Email wasn't sended");
@@ -493,6 +499,18 @@ class Account extends UVod_Controller {
         } else {
             echo json_encode(array('status' => 'error'));
         }
+    }
+    
+    public function resend_registration_email () {
+        
+       $ret = $this->registration_mail($_SESSION['registration_data']->first_name,$_SESSION['registration_data']->last_name);             
+       if ($ret == true) {
+           error_log('Registration email resended');
+       } 
+       else {
+           error_log('Resend registration email failed');
+       }
+       json_encode($ret); 
     }
 
 }

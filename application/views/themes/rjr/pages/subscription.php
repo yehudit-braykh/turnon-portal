@@ -1,8 +1,7 @@
 <script type="text/javascript">
 
     $(function () {
-
-
+        
         $('#btn_subscribe').on('click', function (event) {
             $(this).hide();
             if (!($("#accept_terms_and_conditions").prop("checked"))) {
@@ -10,6 +9,31 @@
                 $('#btn_subscribe').show();
                 return false;
             } 
+            
+            var cardholder_name = $("#cardholder_name").val();
+            var valid_cardholder_name = /^[A-Za-z\s]+$/.test(cardholder_name);
+            if (!valid_cardholder_name) {
+                $("#info").html("* Cardholder name only accepts letters and spaces" );
+                $('#btn_subscribe').show();
+                return false;
+            }
+            
+            var card_number = $("#card_number").val();
+            var valid_card_number = /^[0-9]+$/.test(card_number);
+            if (!valid_card_number) {
+                $("#info").html("* Cardnumber only accepts numbers" );
+                $('#btn_subscribe').show();
+                return false;
+            }
+            
+            var security_code = $("#security_code").val();
+            var valid_security_code = /^[0-9]+$/.test(security_code);
+            if (!valid_security_code) {
+                $("#info").html("* Security code only accepts numbers" );
+                $('#btn_subscribe').show();
+                return false;
+            }
+            
             $('#subscription_preloader').show();
             $('#subscription_preloader').html('Subscribing...');
 
@@ -187,7 +211,7 @@
                     </li>
                     <li id= "terms_and_conditions" style="margin-top: 10px">
                         <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
-                        <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_and_conditions'; ?>" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
+                        <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_and_conditions'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
                     <li> 
                     <li>
                         <p id="info" class="form_info">&nbsp;</p>
