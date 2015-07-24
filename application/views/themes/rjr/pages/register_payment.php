@@ -8,9 +8,16 @@
             window.location.href = "<?php echo base_url(); ?>index.php/account/register_complete";
         });
         
+        function show_info () {
+            TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
+                            TweenLite.to("#info", 1, {delay: 6, alpha: 0});
+                        }});
+        }
+        
         $('#btn_next').on('click', function (event) {
             $(this).hide();
             if (!($("#accept_terms_and_conditions").prop("checked"))) {
+                show_info();
                 $("#info").html("* You must accept terms and conditions before click next button" );
                 $('#btn_next').show();
                 return false;
@@ -19,6 +26,7 @@
             var cardholder_name = $("#cardholder_name").val();
             var valid_cardholder_name = /^[A-Za-z\s]+$/.test(cardholder_name);
             if (!valid_cardholder_name) {
+                show_info();
                 $("#info").html("* Cardholder name only accepts letters and spaces" );
                 $('#btn_next').show();
                 return false;
@@ -27,6 +35,7 @@
             var card_number = $("#card_number").val();
             var valid_card_number = /^[0-9]+$/.test(card_number);
             if (!valid_card_number) {
+                show_info();
                 $("#info").html("* Cardnumber only accepts numbers" );
                 $('#btn_next').show();
                 return false;
@@ -35,6 +44,7 @@
             var security_code = $("#security_code").val();
             var valid_security_code = /^[0-9]+$/.test(security_code);
             if (!valid_security_code) {
+                show_info();
                 $("#info").html("* Security code only accepts numbers" );
                 $('#btn_next').show();
                 return false;
