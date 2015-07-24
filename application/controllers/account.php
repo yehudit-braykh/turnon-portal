@@ -134,13 +134,13 @@ class Account extends UVod_Controller {
                 $nonce = $_POST['nonce'];
             } else {
                 $nonce = '';
-            }
+            }        
             $first_name = $_SESSION['registration_data']->first_name;
             $last_name = $_SESSION['registration_data']->last_name;
             $email = $_SESSION['registration_data']->email;
             $city = $_SESSION['registration_data']->city;
             $postal_code = $_SESSION['registration_data']->postal_code;
-            $country = $_SESSION['registration_data']->country;
+            $country = $_SESSION['registration_data']->country;      
             $pi_month = $_POST['pi_month'];
             $pi_year = $_POST['pi_year'];
             $pi_type = $_POST['pi_type'];
@@ -148,8 +148,11 @@ class Account extends UVod_Controller {
 
             $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $city, $postal_code, $country, $pi_month, $pi_year, $pi_type, $pi_number);
             
-            error_log('Email subscription from my registration');
-            $this->subscription_complete_mail($first_name,$last_name);
+            if (isset($ret->error)&& $ret->error == false) {
+                error_log('Email subscription from my registration');
+                $this->subscription_complete_mail($first_name,$last_name,$email);
+            }
+            
             echo json_encode($ret);
         }else{
             echo json_encode(array('message'=>'Internal Error. Please finish the registration process, then get the subscription in My Account section.'));
@@ -430,24 +433,25 @@ class Account extends UVod_Controller {
 
         $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $city, $postal_code, $country, $pi_month, $pi_year, $pi_type, $pi_number);
         
-        error_log('Email subscription from my account');
-        $this->subscription_complete_mail($first_name,$last_name);
+        if (isset($ret->error)&& $ret->error == false) {
+            error_log('Email subscription from my account');
+            $this->subscription_complete_mail($first_name,$last_name,$email);
+        }
 
         echo json_encode($ret);
     }
     
-    public function subscription_complete_mail($name, $surname) {
+    public function subscription_complete_mail($name, $surname,$email) {
         
         $email_data = array();
         $email_data['name'] = $name;
         $email_data['surname'] = $surname;
         $message = $this->load->view(views_url() . 'templates/email_subscription_complete', $email_data, TRUE);
-        if ($this->account_model->send_single_email($_SESSION['user_data']->email, $message, 'Subscription Notification Mail', 'NO_RESPONSE@1spot.com', "1Spot Media Portal")) {
-            error_log("Email sended");
-            return true;
+        $send_email_result = $this->account_model->send_single_email($email, $message, 'Subscription Notification Mail', 'NO_RESPONSE@1spot.com', "1Spot Media Portal");
+        if ($send_email_result == 1) {
+            error_log('Email was sended');
         } else {
-            error_log("Email wasn't sended");
-            return false;
+            error_log('Email was not sended');
         }
     }
     
