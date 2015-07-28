@@ -505,11 +505,11 @@ class Account extends UVod_Controller {
     }
 
     public function send_activation_email_login() {
-
+        error_log('email es ' . $email = $_POST['email']);
         if (isset($_POST['email'])) {
             $email = $_POST['email'];
             $ret = $this->account_model->get_profile_by_email($email);
-            
+            error_log('ret es ' . json_encode($ret));
             if (isset($ret) && $ret->error == false) {
            
                 $result = $this->send_activation_mail($ret->content[0]->{'pluserprofile$firstName'}, $ret->content[0]->{'pluserprofile$lastName'}, $ret->content[0]->{'pluserprofile$email'}, $ret->content[0]->{'pluserprofile$publicDataMap'}->hash);
