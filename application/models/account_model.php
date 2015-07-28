@@ -105,7 +105,7 @@ class Account_model extends CI_Model {
 
             $message->track_opens = true;
             $mandrill->messages->send($message);
-
+            
             return true;
         } catch (Exception $e) {
             error_log($e->getMessage());
@@ -164,6 +164,10 @@ class Account_model extends CI_Model {
         }
         
         return $ret;
+    }
+    
+    public function get_profile_by_email($email) {
+        return apiPost("user/get_profile_by_email", array('email' => $email));
     }
 }
 

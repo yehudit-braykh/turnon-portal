@@ -118,6 +118,7 @@ class Account extends UVod_Controller {
                     $_SESSION['registration_data']->city = $_POST['city'];
                     $_SESSION['registration_data']->country = $_POST['country'];
                     $_SESSION['registration_data']->postal_code = $_POST['postal_code'];
+                    $_SESSION['registration_data']->hash = $GLOBALS['hash'];
                 }
             }
         }
@@ -134,28 +135,28 @@ class Account extends UVod_Controller {
                 $nonce = $_POST['nonce'];
             } else {
                 $nonce = '';
-            }        
+            }
             $first_name = $_SESSION['registration_data']->first_name;
             $last_name = $_SESSION['registration_data']->last_name;
             $email = $_SESSION['registration_data']->email;
             $city = $_SESSION['registration_data']->city;
             $postal_code = $_SESSION['registration_data']->postal_code;
-            $country = $_SESSION['registration_data']->country;      
+            $country = $_SESSION['registration_data']->country;
             $pi_month = $_POST['pi_month'];
             $pi_year = $_POST['pi_year'];
             $pi_type = $_POST['pi_type'];
             $pi_number = $_POST['pi_number'];
 
             $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $city, $postal_code, $country, $pi_month, $pi_year, $pi_type, $pi_number);
-            
-            if (isset($ret->error)&& $ret->error == false) {
+
+            if (isset($ret->error) && $ret->error == false) {
                 error_log('Email subscription from my registration');
-                $this->subscription_complete_mail($first_name,$last_name,$email);
+                $this->subscription_complete_mail($first_name, $last_name, $email);
             }
-            
+
             echo json_encode($ret);
-        }else{
-            echo json_encode(array('message'=>'Internal Error. Please finish the registration process, then get the subscription in My Account section.'));
+        } else {
+            echo json_encode(array('message' => 'Internal Error. Please finish the registration process, then get the subscription in My Account section.'));
         }
     }
 
@@ -373,16 +374,14 @@ class Account extends UVod_Controller {
         echo json_encode($ret);
     }
 
-    public function registration_mail($name, $surname) {
-        $hash = $GLOBALS['hash'];
-        $_SESSION['registration_data']->hash = $hash;
+    public function send_activation_mail($name, $surname, $email, $hash) {
         $email_data = array();
         $email_data['name'] = $name;
         $email_data['surname'] = $surname;
-        $email_data['activate_url'] = base_url() . 'index.php/account/activate_account?hash=' . $hash . "&email=" . $_SESSION['registration_data']->email;
+        $email_data['activate_url'] = base_url() . 'index.php/account/activate_account?hash=' . $hash . "&email=" . $email;
         $message = $this->load->view(views_url() . 'templates/email_activate_account', $email_data, TRUE);
 
-        if ($this->account_model->send_single_email($_SESSION['registration_data']->email, $message, "Activate your account", "NO_RESPONSE@1spot.com", "1Spot Service")) {
+        if ($this->account_model->send_single_email($email, $message, "Activate your account", "NO_RESPONSE@1spot.com", "1Spot Service")) {
             return true;
         } else {
             return false;
@@ -432,17 +431,17 @@ class Account extends UVod_Controller {
         $pi_number = $_POST['pi_number'];
 
         $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $city, $postal_code, $country, $pi_month, $pi_year, $pi_type, $pi_number);
-        
-        if (isset($ret->error)&& $ret->error == false) {
+
+        if (isset($ret->error) && $ret->error == false) {
             error_log('Email subscription from my account');
-            $this->subscription_complete_mail($first_name,$last_name,$email);
+            $this->subscription_complete_mail($first_name, $last_name, $email);
         }
 
         echo json_encode($ret);
     }
-    
-    public function subscription_complete_mail($name, $surname,$email) {
-        
+
+    public function subscription_complete_mail($name, $surname, $email) {
+
         $email_data = array();
         $email_data['name'] = $name;
         $email_data['surname'] = $surname;
@@ -454,7 +453,7 @@ class Account extends UVod_Controller {
             error_log('Email was not sended');
         }
     }
-    
+
     public function cancel_subscription() {
 
         $id = $_POST['contract_id'];
@@ -504,17 +503,43 @@ class Account extends UVod_Controller {
             echo json_encode(array('status' => 'error'));
         }
     }
-    
-    public function resend_registration_email () {
-        
-       $ret = $this->registration_mail($_SESSION['registration_data']->first_name,$_SESSION['registration_data']->last_name);             
-       if ($ret == true) {
-           error_log('Registration email resended');
-       } 
-       else {
-           error_log('Resend registration email failed');
-       }
-       json_encode($ret); 
+
+    public function send_activation_email_login() {
+
+        if (isset($_POST['email'])) {
+            $email = $_POST['email'];
+            $ret = $this->account_model->get_profile_by_email($email);
+            
+            if (isset($ret) && $ret->error == false) {
+           
+                $result = $this->send_activation_mail($ret->content[0]->{'pluserprofile$firstName'}, $ret->content[0]->{'pluserprofile$lastName'}, $ret->content[0]->{'pluserprofile$email'}, $ret->content[0]->{'pluserprofile$publicDataMap'}->hash);
+                
+                if ($result == true) {
+                    $return = array('status' => 'ok', 'message' => 'Activation email sended');
+                } else {
+                    $return = array('status' => 'error', 'message' => 'Send Activation email failure');
+                }
+            }
+        }
+        echo json_encode($return);
     }
+
+    public function send_activation_email_register() {
+
+        if (isset($_SESSION['registration_data'])) {
+
+            $result = $this->send_activation_mail($_SESSION['registration_data']->first_name, $_SESSION['registration_data']->last_name,$_SESSION['registration_data']->email,$_SESSION['registration_data']->hash);
+            
+            if ($result == true) {
+                $return = array('status' => 'ok', 'message' => 'Activation email sended');
+            } else {
+                $return = array('status' => 'error', 'message' => 'Send Activation email failure');
+            }
+        } else {
+            $return = array('status' => 'session_error');
+        }
+        echo json_encode($return);
+    }
+
 
 }
