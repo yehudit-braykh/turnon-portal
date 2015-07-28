@@ -104,7 +104,7 @@ class Account extends UVod_Controller {
             if (!$register->error) {
 
                 // logs current user to get security token
-                $this->registration_mail($_POST['first_name'], $_POST['last_name']);
+                
                 $current_user = $this->account_model->simple_login($_SESSION['registration_data']->email, $_SESSION['registration_data']->password);
                 $ret = $current_user;
 
@@ -119,6 +119,8 @@ class Account extends UVod_Controller {
                     $_SESSION['registration_data']->country = $_POST['country'];
                     $_SESSION['registration_data']->postal_code = $_POST['postal_code'];
                     $_SESSION['registration_data']->hash = $GLOBALS['hash'];
+                    
+                    $this->send_activation_mail($_POST['first_name'], $_POST['last_name'],$_SESSION['registration_data']->email,$_SESSION['registration_data']->hash);
                 }
             }
         }
