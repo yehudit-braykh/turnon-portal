@@ -10,7 +10,6 @@ class Account extends UVod_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('account_model');
-        $this->load->model('social_media_model');
         $this->load->helper('pdk');
     }
 
@@ -105,7 +104,7 @@ class Account extends UVod_Controller {
             if (!$register->error) {
 
                 // logs current user to get security token
-                $this->registration_mail($_POST['first_name'], $_POST['last_name']);
+                
                 $current_user = $this->account_model->simple_login($_SESSION['registration_data']->email, $_SESSION['registration_data']->password);
                 $ret = $current_user;
 
@@ -119,6 +118,9 @@ class Account extends UVod_Controller {
                     $_SESSION['registration_data']->city = $_POST['city'];
                     $_SESSION['registration_data']->country = $_POST['country'];
                     $_SESSION['registration_data']->postal_code = $_POST['postal_code'];
+                    $_SESSION['registration_data']->hash = $GLOBALS['hash'];
+                    
+                    $this->send_activation_mail($_POST['first_name'], $_POST['last_name'],$_SESSION['registration_data']->email,$_SESSION['registration_data']->hash);
                 }
             }
         }
@@ -374,16 +376,14 @@ class Account extends UVod_Controller {
         echo json_encode($ret);
     }
 
-    public function registration_mail($name, $surname) {
-        $hash = $GLOBALS['hash'];
-        $_SESSION['registration_data']->hash = $hash;
+    public function send_activation_mail($name, $surname, $email, $hash) {
         $email_data = array();
         $email_data['name'] = $name;
         $email_data['surname'] = $surname;
-        $email_data['activate_url'] = base_url() . 'index.php/account/activate_account?hash=' . $hash . "&email=" . $_SESSION['registration_data']->email;
+        $email_data['activate_url'] = base_url() . 'index.php/account/activate_account?hash=' . $hash . "&email=" . $email;
         $message = $this->load->view(views_url() . 'templates/email_activate_account', $email_data, TRUE);
 
-        if ($this->account_model->send_single_email($_SESSION['registration_data']->email, $message, "Activate your account", "NO_RESPONSE@1spot.com", "1Spot Service")) {
+        if ($this->account_model->send_single_email($email, $message, "Activate your account", "NO_RESPONSE@1spot.com", "1Spot Service")) {
             return true;
         } else {
             return false;
@@ -506,33 +506,42 @@ class Account extends UVod_Controller {
         }
     }
 
-    public function resend_registration_email() {
+    public function send_activation_email_login() {
 
-        $ret = $this->registration_mail($_SESSION['registration_data']->first_name, $_SESSION['registration_data']->last_name);
-        if ($ret == true) {
-            error_log('Registration email resended');
-        } else {
-            error_log('Resend registration email failed');
-        }
-        json_encode($ret);
-    }
+        if (isset($_POST['email'])) {
+            $email = $_POST['email'];
+            $ret = $this->account_model->get_profile_by_email($email);
 
-    public function register_by_facebook() {
-
-        $ret = new stdClass();
-        $ret->message = "ok";
-
-        $profile = $this->social_media_model->get_fb_profile();
-
-        if ($profile->status === 'ok') {
-
-            $profile_obj = json_decode($profile->content);
-            if($this->account_model->exists_user_email($profile_obj->email)){
-                $ret->message = "This user already exists.";
-            }else{
+            if (isset($ret) && $ret->error == false) {
+           
+                $result = $this->send_activation_mail($ret->content[0]->{'pluserprofile$firstName'}, $ret->content[0]->{'pluserprofile$lastName'}, $ret->content[0]->{'pluserprofile$email'}, $ret->content[0]->{'pluserprofile$publicDataMap'}->hash);
                 
+                if ($result == true) {
+                    $return = array('status' => 'ok', 'message' => 'The activation email was sent to ' . $email);
+                } else {
+                    $return = array('status' => 'error', 'message' => 'Send Activation email failure');
+                }
             }
         }
+        echo json_encode($return);
     }
+
+    public function send_activation_email_register() {
+
+        if (isset($_SESSION['registration_data'])) {
+
+            $result = $this->send_activation_mail($_SESSION['registration_data']->first_name, $_SESSION['registration_data']->last_name,$_SESSION['registration_data']->email,$_SESSION['registration_data']->hash);
+            
+            if ($result == true) {
+                $return = array('status' => 'ok', 'message' => 'The activation email was sent to ' . $_SESSION['registration_data']->email );
+            } else {
+                $return = array('status' => 'error', 'message' => 'Send Activation email failure');
+            }
+        } else {
+            $return = array('status' => 'session_error');
+        }
+        echo json_encode($return);
+    }
+
 
 }

@@ -2086,7 +2086,7 @@ select:focus, select:active {
     height: 38px;
 }
 
-#login_preloader, #subscription_preloader, #forgot_preloader, #registration_preloader{
+#login_preloader, #subscription_preloader, #forgot_preloader, #registration_preloader, #send_activation_email_preloader{
     width: 16px;
     height: 16px;
     background-image: url(../preloader/images/preloader-gallery.gif);
@@ -2099,6 +2099,11 @@ select:focus, select:active {
     font-weight: normal;
     color:rgb(127,0,191) !important;
 }
+
+#send_activation_email_preloader {
+    width: 200px;
+}
+
 
 #forgot_preloader, #registration_preloader{
     width: 100px;

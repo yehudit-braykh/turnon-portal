@@ -17,9 +17,13 @@
             TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {}});
         }
         
-        $('#send_activation_email_login').hide();
-        
+        $('#send_activation_email_login_button').hide();
         $('#send_activation_email_login_button').click (function () {
+            
+            event.preventDefault();
+            $(this).hide();
+            $('#send_activation_email_preloader').show();
+            $('#send_activation_email_preloader').html('Sending activation email...');
             
             $.ajax ({
                 url: '<?php echo base_url(); ?>index.php/account/send_activation_email_login',
@@ -30,9 +34,12 @@
                 
                 if (data.status == 'ok') {
                     
-                    $('#send_activation_email_login').hide();
+                    $('#send_activation_email_preloader').hide();
+                    $('#send_activation_email_login_button').hide();
                     show_info(data);
                 } else {
+                    $('#send_activation_email_preloader').hide();
+                    $('#send_activation_email_login_button').show();
                     show_info(data);     
                 }
             });
@@ -58,7 +65,7 @@
                 else if (data.message == 'Your account is not active yet. Check your email for the activation link.') {
                     $('#login_preloader').hide();
                     $('#btn_login').show();
-                    $('#send_activation_email_login').show();
+                    $('#send_activation_email_login_button').show();
                     show_info (data);
                 }
                 else {
@@ -95,10 +102,10 @@
                 <li> 
                     <span id="info" class="form_info"></span>
                 </li>
-                <li>
-                    <div id="send_activation_email_login" class="send_activation_email">
-                        <p><a id="send_activation_email_login_button" class="send_activation_email_button">Resend Email</a></p>
-                    </div>
+                <li class="buttons">
+                    <input type='image' id="send_activation_email_login_button" class="send" src="<?php echo asset_url(); ?>images/button_resend_activation_email.png"/>
+                    <div id="send_activation_email_preloader"></div>
+                    <div class="clr"></div>
                 </li>    
                 <li>
                     <label for="email">Email</label>
