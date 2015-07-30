@@ -2087,8 +2087,21 @@ select:focus, select:active {
 }
 
 #login_preloader, #subscription_preloader, #forgot_preloader, #registration_preloader{
-    width: 16px;
-    height: 16px;
+    width: 40px;
+    height: 30px;
+    background-image: url(../preloader/images/preloader-gallery.gif);
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    padding-left: 20px;
+    display: none;
+    font-family: "PT Sans", "Lato", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    color:rgb(127,0,191) !important;
+}
+
+#send_activation_email_preloader{
+    height: 30px;
     background-image: url(../preloader/images/preloader-gallery.gif);
     background-size: 16px 16px;
     background-repeat: no-repeat;

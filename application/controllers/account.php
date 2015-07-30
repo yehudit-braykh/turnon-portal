@@ -507,17 +507,17 @@ class Account extends UVod_Controller {
     }
 
     public function send_activation_email_login() {
-        error_log('email es ' . $email = $_POST['email']);
+
         if (isset($_POST['email'])) {
             $email = $_POST['email'];
             $ret = $this->account_model->get_profile_by_email($email);
-            error_log('ret es ' . json_encode($ret));
+
             if (isset($ret) && $ret->error == false) {
            
                 $result = $this->send_activation_mail($ret->content[0]->{'pluserprofile$firstName'}, $ret->content[0]->{'pluserprofile$lastName'}, $ret->content[0]->{'pluserprofile$email'}, $ret->content[0]->{'pluserprofile$publicDataMap'}->hash);
                 
                 if ($result == true) {
-                    $return = array('status' => 'ok', 'message' => 'Activation email sended');
+                    $return = array('status' => 'ok', 'message' => 'The activation email was sent to ' . $email);
                 } else {
                     $return = array('status' => 'error', 'message' => 'Send Activation email failure');
                 }
@@ -533,7 +533,7 @@ class Account extends UVod_Controller {
             $result = $this->send_activation_mail($_SESSION['registration_data']->first_name, $_SESSION['registration_data']->last_name,$_SESSION['registration_data']->email,$_SESSION['registration_data']->hash);
             
             if ($result == true) {
-                $return = array('status' => 'ok', 'message' => 'Activation email sended');
+                $return = array('status' => 'ok', 'message' => 'The activation email was sent to ' . $_SESSION['registration_data']->email );
             } else {
                 $return = array('status' => 'error', 'message' => 'Send Activation email failure');
             }
