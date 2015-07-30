@@ -10,6 +10,7 @@ class Account extends UVod_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('account_model');
+        $this->load->model('social_media_model');
         $this->load->helper('pdk');
     }
 
@@ -134,28 +135,28 @@ class Account extends UVod_Controller {
                 $nonce = $_POST['nonce'];
             } else {
                 $nonce = '';
-            }        
+            }
             $first_name = $_SESSION['registration_data']->first_name;
             $last_name = $_SESSION['registration_data']->last_name;
             $email = $_SESSION['registration_data']->email;
             $city = $_SESSION['registration_data']->city;
             $postal_code = $_SESSION['registration_data']->postal_code;
-            $country = $_SESSION['registration_data']->country;      
+            $country = $_SESSION['registration_data']->country;
             $pi_month = $_POST['pi_month'];
             $pi_year = $_POST['pi_year'];
             $pi_type = $_POST['pi_type'];
             $pi_number = $_POST['pi_number'];
 
             $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $city, $postal_code, $country, $pi_month, $pi_year, $pi_type, $pi_number);
-            
-            if (isset($ret->error)&& $ret->error == false) {
+
+            if (isset($ret->error) && $ret->error == false) {
                 error_log('Email subscription from my registration');
-                $this->subscription_complete_mail($first_name,$last_name,$email);
+                $this->subscription_complete_mail($first_name, $last_name, $email);
             }
-            
+
             echo json_encode($ret);
-        }else{
-            echo json_encode(array('message'=>'Internal Error. Please finish the registration process, then get the subscription in My Account section.'));
+        } else {
+            echo json_encode(array('message' => 'Internal Error. Please finish the registration process, then get the subscription in My Account section.'));
         }
     }
 
@@ -432,17 +433,17 @@ class Account extends UVod_Controller {
         $pi_number = $_POST['pi_number'];
 
         $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $city, $postal_code, $country, $pi_month, $pi_year, $pi_type, $pi_number);
-        
-        if (isset($ret->error)&& $ret->error == false) {
+
+        if (isset($ret->error) && $ret->error == false) {
             error_log('Email subscription from my account');
-            $this->subscription_complete_mail($first_name,$last_name,$email);
+            $this->subscription_complete_mail($first_name, $last_name, $email);
         }
 
         echo json_encode($ret);
     }
-    
-    public function subscription_complete_mail($name, $surname,$email) {
-        
+
+    public function subscription_complete_mail($name, $surname, $email) {
+
         $email_data = array();
         $email_data['name'] = $name;
         $email_data['surname'] = $surname;
@@ -454,7 +455,7 @@ class Account extends UVod_Controller {
             error_log('Email was not sended');
         }
     }
-    
+
     public function cancel_subscription() {
 
         $id = $_POST['contract_id'];
@@ -504,17 +505,34 @@ class Account extends UVod_Controller {
             echo json_encode(array('status' => 'error'));
         }
     }
-    
-    public function resend_registration_email () {
-        
-       $ret = $this->registration_mail($_SESSION['registration_data']->first_name,$_SESSION['registration_data']->last_name);             
-       if ($ret == true) {
-           error_log('Registration email resended');
-       } 
-       else {
-           error_log('Resend registration email failed');
-       }
-       json_encode($ret); 
+
+    public function resend_registration_email() {
+
+        $ret = $this->registration_mail($_SESSION['registration_data']->first_name, $_SESSION['registration_data']->last_name);
+        if ($ret == true) {
+            error_log('Registration email resended');
+        } else {
+            error_log('Resend registration email failed');
+        }
+        json_encode($ret);
+    }
+
+    public function register_by_facebook() {
+
+        $ret = new stdClass();
+        $ret->message = "ok";
+
+        $profile = $this->social_media_model->get_fb_profile();
+
+        if ($profile->status === 'ok') {
+
+            $profile_obj = json_decode($profile->content);
+            if($this->account_model->exists_user_email($profile_obj->email)){
+                $ret->message = "This user already exists.";
+            }else{
+                
+            }
+        }
     }
 
 }
