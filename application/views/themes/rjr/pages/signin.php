@@ -10,6 +10,34 @@
             $('#search').remove();
             $('#header_sep').remove();
         }
+        
+        function show_info (data) {
+            
+            $("#info").html("* " + data.message);
+            TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {}});
+        }
+        
+        $('#send_activation_email_login').hide();
+        
+        $('#send_activation_email_login_button').click (function () {
+            
+            $.ajax ({
+                url: '<?php echo base_url(); ?>index.php/account/send_activation_email_login',
+                type: 'POST',
+                dataType: 'json',
+                data:'email=' + $('#email').val()
+            }).done (function (data) {
+                
+                if (data.status == 'ok') {
+                    
+                    $('#send_activation_email_login').hide();
+                    show_info(data);
+                } else {
+                    show_info(data);     
+                }
+            });
+            
+        });
 
         $('#btn_login').on('click', function (event) {
 
@@ -26,15 +54,17 @@
             }).done(function (data) {
                 if (data.message == 'ok') {
                     window.location.href = '<?php echo base_url(); ?>';
-                } else {
+                }
+                else if (data.message == 'Your account is not active yet. Check your email for the activation link.') {
                     $('#login_preloader').hide();
                     $('#btn_login').show();
-                    $("#info").html("* " + data.message);
-                    TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-
-                        }});
-                    
-
+                    $('#send_activation_email_login').show();
+                    show_info (data);
+                }
+                else {
+                    $('#login_preloader').hide();
+                    $('#btn_login').show();
+                    show_info(data)              
                 }
             });
 
@@ -65,6 +95,11 @@
                 <li> 
                     <span id="info" class="form_info"></span>
                 </li>
+                <li>
+                    <div id="send_activation_email_login" class="send_activation_email">
+                        <p><a id="send_activation_email_login_button" class="send_activation_email_button">Resend Email</a></p>
+                    </div>
+                </li>    
                 <li>
                     <label for="email">Email</label>
                     <input id="email" name="email" class="text"/>

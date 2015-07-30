@@ -2482,6 +2482,31 @@ select:focus, select:active {
     width: 200px;
 }
 
+.send_activation_email {
+    width: 145px;
+    margin: 10px auto;
+}
+
+.send_activation_email a {
+    text-decoration: none;
+}
+
+.send_activation_email_button {
+    
+    background: rgb(127,0,191) !important;
+    color: #fff !important;
+    border: 1px solid #eee !important;
+    border-radius: 20px !important;
+    box-shadow: 5px 5px 5px #eee !important;
+    padding: 8px 10px;
+}
+
+.send_activation_email_button:active {
+    vertical-align: top;
+    padding: 6px 8px;
+}
+
+
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
     /* IE10+ CSS styles go here */
     select {

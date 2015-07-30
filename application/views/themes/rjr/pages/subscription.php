@@ -21,7 +21,7 @@
             var valid_cardholder_name = /^[A-Za-z\s]+$/.test(cardholder_name);
             if (!valid_cardholder_name) {
                 show_info();
-                $("#info").html("* Cardholder name only accepts letters and spaces" );
+                $("#info").html("* Name on card only accepts letters and spaces" );
                 $('#btn_subscribe').show();
                 return false;
             }
@@ -30,7 +30,7 @@
             var valid_card_number = /^[0-9]+$/.test(card_number);
             if (!valid_card_number) {
                 show_info();
-                $("#info").html("* Cardnumber only accepts numbers" );
+                $("#info").html("* Card number only accepts numbers" );
                 $('#btn_subscribe').show();
                 return false;
             }
