@@ -12,7 +12,9 @@
               'http://cdn-static.liverail.com/js/LiveRail.AdManager.JWPlayer-6.8.1.plugin.js' : {
                    'LR_PUBLISHER_ID': '81603',
                    'LR_ADMAP': 'in::0',
-                   'LR_AUTOPLAY': '1'
+                   'LR_AUTOPLAY': '1',
+                   'LR_LAYOUT_SKIN_ID': '2',
+                   'LR_LAYOUT_SKIN_MESSAGE': 'Publicidad. Su video comenzara en {COUNTDOWN} segundos.'                   
                }
             },
             file: stream_url,
