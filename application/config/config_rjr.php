@@ -32,10 +32,3 @@ $config['category3'] = 'Coming Soon';
 
 $config['timezone'] = 'America/Jamaica';
 
-$config['facebook']['api_id'] = '1623813711226372';
-$config['facebook']['app_secret'] = '86d226fc4bb64eef3ddab3a69bf523f8';
-$config['facebook']['redirect_url'] = 'http://localhost/uvod-portal/';
-$config['facebook']['permissions'] = array(
-  'email',
-  'public_profile'
-);

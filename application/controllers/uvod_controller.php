@@ -1,6 +1,7 @@
 <?php
 
-if (!defined('BASEPATH')) exit('No direct script access allowed');
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 
 define('APP_TARGET', 'portal');
 
@@ -36,6 +37,7 @@ class UVod_Controller extends CI_Controller {
         $this->load->helper('util');
         $this->load->model('config_model');
         $this->load->model('account_model');
+        $this->load->model('social_media_model');
 
         $this->config->load('config_' . UVOD_CONFIG, FALSE, TRUE);
 
@@ -76,18 +78,15 @@ class UVod_Controller extends CI_Controller {
 
     public function check_valid_session($data) {
 
-                $id = $this->account_model->get_self_id($data->token);
+        $id = $this->account_model->get_self_id($data->token);
+        //CHECK IF FACEBOOK SESSION IS ACTIVE
+       $fb_session_status = $this->social_media_model->get_fb_profile();
 
-                if (isset($id->error) && $id->error) {
-                    
-                    $_SESSION['user_data'] = null;
-                    unset($_SESSION['user_data']);
-                    
-                } else {
-                    
-                }
-           
-        
+        if (isset($id->error) && $id->error || $fb_session_status->status === 'error') {
+
+            $_SESSION['user_data'] = null;
+            unset($_SESSION['user_data']);
+        }
     }
 
 }

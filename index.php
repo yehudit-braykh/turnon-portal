@@ -16,6 +16,7 @@
 
 if (defined('ENVIRONMENT'))
 {
+  
 	switch (ENVIRONMENT)
 	{
 		case 'development':
