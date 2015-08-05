@@ -1,7 +1,7 @@
 <?php
 
 // ENV FILE for UVOD-PORTAL
-define('UVOD_ENVIRONMENT', getenv('UVOD_ENVIRONMENT'));
+define('ENVIRONMENT', getenv('UVOD_ENVIRONMENT'));
 define('UVOD_CONFIG', getenv('UVOD_CONFIG'));
 define('UVOD_API_USER', getenv('UVOD_API_USER'));
 define('UVOD_API_PASSWORD', getenv('UVOD_API_PASSWORD'));
