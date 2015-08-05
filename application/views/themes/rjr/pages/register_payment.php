@@ -56,7 +56,7 @@
             pi_number = $('#card_number').val();
             pi_type = GetCardType($('#card_number').val());
             $.ajax({
-                url: "<?php echo base_url(); ?>index.php/account/register_step3_ssl",
+                url: "<?php echo base_url(); ?>index.php/account/register_step2_ssl",
                 type: 'POST',
                 dataType: 'json',
                 data: {

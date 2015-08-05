@@ -2100,6 +2100,22 @@ select:focus, select:active {
     color:rgb(127,0,191) !important;
 }
 
+#fb_registration_preloader{
+    width: 92px;
+    height: 16px;
+    background-image: url(../preloader/images/preloader-gallery.gif);
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    padding-left: 20px;
+    display: none;
+    font-family: "PT Sans", "Lato", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    color: rgb(127,0,191) !important;
+    margin: 150px auto;
+
+}
+
 #send_activation_email_preloader {
     width: 200px;
 }
@@ -2109,7 +2125,7 @@ select:focus, select:active {
     width: 100px;
 }
 
-#info{
+#info, #fb_info{
     max-width: 450px;
 }
 
@@ -2177,19 +2193,19 @@ select:focus, select:active {
 }
 
 #signup_fb_btn{
-    margin: 100px auto;
-    width: 247px;
-    height: 39px;
-    background-image: url(../images/fb_singup_button.png );
+    margin: 145px auto 40px;
+    width: 300px;
+    height: 45px;
+    background-image: url(../images/button-register-with-facebook.png );
     background-color: transparent;
     background-repeat: no-repeat;
     border: 0px;
     cursor: pointer;
-    
+
 }
-#signup_fb_btn:hover{
-    background-image: url(../images/fb_singup_button_hover.png );
-}
+
+
+
 
 /* form login */
 
@@ -2199,17 +2215,17 @@ select:focus, select:active {
 
 #loginform ol { margin:0; padding:0; list-style:none; }
 
-#loginform li { margin:0; padding:0; background:none; border:none; display:block; clear:both; }
+#loginform li { margin-bottom: 15px; padding:0; background:none; border:none; display:block; clear:both; }
 
 #loginform li.buttons { margin:5px 0 5px 0; clear:both; }
 
-#loginform label { margin:0; width:60px; padding:6px 0; text-transform:none; float:left; font-weight:normal; color:#000; }
+#loginform label { margin:0; width:60px; padding:6px 0; text-transform:none; font-weight:normal; color:#000; }
 
 #loginform label .ness { color:#000; }
 
 #loginform label span { color:#000; }
 
-#loginform input.text { width:72%; border:1px solid #999; margin:5px 0; padding:5px 2px; height:16px; background:#fff; float:left; font-size:12px; color:#000; }
+#loginform input.text { width:98%; border:1px solid #999;  height:30px; background:#fff; font-size:12px; color:#000; }
 
 #loginform textarea { width:75%; border:1px solid #999; margin:4px 0; padding:5px 2px; background:#fff; float:left; font-size:12px; color:#000; }
 
@@ -2217,6 +2233,35 @@ select:focus, select:active {
 
 .logout_button_container {
     float: right;
+}
+
+#btn_login{
+    width: 100%;
+    height: 40px;
+    border: 0px;
+    background-color: rgb(127,0,191);
+    color: #fff;
+    font-size: 14px;
+    
+}
+
+#sigin_fb_btn{
+    width: 300px;
+    height: 45px;
+    background-image: url(../images/button-login-with-facebook.png );
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: 0px;
+    cursor: pointer;
+
+}
+
+.or_separator{
+    width: 100%;
+    text-align: center;
+    color: #bbb!important;
+    font-size: 14px;
+    margin: 5px 0px;
 }
 
 
@@ -2497,7 +2542,7 @@ select:focus, select:active {
 }
 
 .send_activation_email_button {
-    
+
     background: rgb(127,0,191) !important;
     color: #fff !important;
     border: 1px solid #eee !important;
@@ -2553,9 +2598,7 @@ select:focus, select:active {
         width: 100% !important;
     }
 
-    #loginform {
-        width: 265px !important;
-    }  
+     
 
 }
 

@@ -10,6 +10,7 @@ class Account extends UVod_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('account_model');
+        $this->load->model('social_media_model');
         $this->load->helper('pdk');
     }
 
@@ -70,42 +71,34 @@ class Account extends UVod_Controller {
         } elseif ($this->account_model->exists_user_email($_POST['email'])) {
             $ret->message = "The selected email already exists.";
         }
+        if (!isset($_POST['full_name']) || strlen($_POST['full_name']) < 3) {
+            $ret->message = "You need to specify your full name.";
+        }
 
         // saves registration information in session
         if ($ret->message == "ok") {
             $_SESSION['registration_data'] = new stdClass();
             $_SESSION['registration_data']->email = $_POST['email'];
             $_SESSION['registration_data']->password = $_POST['password'];
-        }
 
-        echo json_encode($ret);
-    }
-
-    public function register_step2_ssl() {
-        $ret = new stdClass();
-        $ret->message = "ok";
-
-        if (!isset($_POST['first_name']) || strlen($_POST['first_name']) < 3) {
-            $ret->message = "You need to specify your first name.";
-        } elseif (!isset($_POST['last_name']) || strlen($_POST['last_name']) < 3) {
-            $ret->message = "You need to specify your last name.";
-        } elseif (!isset($_POST['country']) || $_POST['country'] == "") {
-            $ret->message = "You need to specify your country of residence.";
-        }
-
-        // register user
-        if ($ret->message == "ok") {
+            $full_name = explode(' ', $_POST['full_name']);
+            $first_name = $full_name[0];
+            if (isset($full_name[1])) {
+                $last_name = $full_name[1];
+            } else {
+                $last_name = '';
+            }
 
             $GLOBALS['hash'] = rand(10000, getrandmax());
 
-            $register = $this->account_model->register($_SESSION['registration_data']->email, $_SESSION['registration_data']->password, $_POST['first_name'], $_POST['last_name'], $_POST['city'], $_POST['country'], $_POST['postal_code'], $GLOBALS['hash']);
+            $register = $this->account_model->register($_POST['email'], $_POST['password'], $first_name, $last_name, $_POST['country'], $GLOBALS['hash']);
             $ret = $register;
 
             if (!$register->error) {
 
                 // logs current user to get security token
-                
-                $current_user = $this->account_model->simple_login($_SESSION['registration_data']->email, $_SESSION['registration_data']->password);
+
+                $current_user = $this->account_model->simple_login($_POST['email'], $_POST['password']);
                 $ret = $current_user;
 
                 if (!$current_user->error) {
@@ -113,22 +106,22 @@ class Account extends UVod_Controller {
                     $_SESSION['registration_data']->user_id = $current_user->content->id;
                     $_SESSION['registration_data']->user_token = $current_user->content->token;
                     $_SESSION['registration_data']->profile_id = $register->content->id;
-                    $_SESSION['registration_data']->first_name = $_POST['first_name'];
-                    $_SESSION['registration_data']->last_name = $_POST['last_name'];
-                    $_SESSION['registration_data']->city = $_POST['city'];
+                    $_SESSION['registration_data']->first_name = $first_name;
+                    $_SESSION['registration_data']->last_name = $last_name;
                     $_SESSION['registration_data']->country = $_POST['country'];
-                    $_SESSION['registration_data']->postal_code = $_POST['postal_code'];
                     $_SESSION['registration_data']->hash = $GLOBALS['hash'];
-                    
-                    $this->send_activation_mail($_POST['first_name'], $_POST['last_name'],$_SESSION['registration_data']->email,$_SESSION['registration_data']->hash);
+                    $_SESSION['registration_data']->method = 'email';
+
+                    $this->send_activation_mail($first_name, $last_name, $_POST['email'], $_SESSION['registration_data']->hash);
                 }
             }
         }
 
+
         echo json_encode($ret);
     }
 
-    public function register_step3_ssl() {
+    public function register_step2_ssl() {
 
         if (isset($_SESSION['registration_data'])) {
             $token = $_SESSION['registration_data']->user_token;
@@ -141,15 +134,13 @@ class Account extends UVod_Controller {
             $first_name = $_SESSION['registration_data']->first_name;
             $last_name = $_SESSION['registration_data']->last_name;
             $email = $_SESSION['registration_data']->email;
-            $city = $_SESSION['registration_data']->city;
-            $postal_code = $_SESSION['registration_data']->postal_code;
             $country = $_SESSION['registration_data']->country;
             $pi_month = $_POST['pi_month'];
             $pi_year = $_POST['pi_year'];
             $pi_type = $_POST['pi_type'];
             $pi_number = $_POST['pi_number'];
 
-            $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $city, $postal_code, $country, $pi_month, $pi_year, $pi_type, $pi_number);
+            $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number);
 
             if (isset($ret->error) && $ret->error == false) {
                 error_log('Email subscription from my registration');
@@ -162,23 +153,9 @@ class Account extends UVod_Controller {
         }
     }
 
-    public function register_info_ssl() {
-        $data = array();
-
-        $this->parser->parse(views_url() . 'templates/header', $data);
-        $this->parser->parse(views_url() . 'pages/register_info', $data);
-        $this->parser->parse(views_url() . 'templates/footer', $data);
-    }
-
     public function register_payment_ssl() {
-        $data = array();
 
-//        Braintree_Configuration::environment($this->config->item('braintree_environment'));
-//        Braintree_Configuration::merchantId($this->config->item('braintree_merchantId'));
-//        Braintree_Configuration::publicKey($this->config->item('braintree_publicKey'));
-//        Braintree_Configuration::privateKey($this->config->item('braintree_privateKey'));
-//
-//        $data['clientToken'] = Braintree_ClientToken::generate();
+        $data = array();
 
         $subscription = $this->account_model->get_subscriptions();
 
@@ -513,9 +490,9 @@ class Account extends UVod_Controller {
             $ret = $this->account_model->get_profile_by_email($email);
 
             if (isset($ret) && $ret->error == false) {
-           
+
                 $result = $this->send_activation_mail($ret->content[0]->{'pluserprofile$firstName'}, $ret->content[0]->{'pluserprofile$lastName'}, $ret->content[0]->{'pluserprofile$email'}, $ret->content[0]->{'pluserprofile$publicDataMap'}->hash);
-                
+
                 if ($result == true) {
                     $return = array('status' => 'ok', 'message' => 'The activation email was sent to ' . $email);
                 } else {
@@ -530,10 +507,10 @@ class Account extends UVod_Controller {
 
         if (isset($_SESSION['registration_data'])) {
 
-            $result = $this->send_activation_mail($_SESSION['registration_data']->first_name, $_SESSION['registration_data']->last_name,$_SESSION['registration_data']->email,$_SESSION['registration_data']->hash);
-            
+            $result = $this->send_activation_mail($_SESSION['registration_data']->first_name, $_SESSION['registration_data']->last_name, $_SESSION['registration_data']->email, $_SESSION['registration_data']->hash);
+
             if ($result == true) {
-                $return = array('status' => 'ok', 'message' => 'The activation email was sent to ' . $_SESSION['registration_data']->email );
+                $return = array('status' => 'ok', 'message' => 'The activation email was sent to ' . $_SESSION['registration_data']->email);
             } else {
                 $return = array('status' => 'error', 'message' => 'Send Activation email failure');
             }
@@ -543,5 +520,86 @@ class Account extends UVod_Controller {
         echo json_encode($return);
     }
 
+    public function register_by_facebook() {
+
+        $ret = new stdClass();
+        $ret->message = "";
+
+        $profile = $this->social_media_model->get_fb_profile();
+
+        if ($profile->status === 'ok') {
+
+            if ($this->account_model->exists_user_email($profile->content->email)) {
+                $ret->message = "This user already exists.";
+                $ret->status = "error";
+            } else {
+                $email = $profile->content->email;
+                $name_array = explode(' ', $profile->content->name);
+                if (isset($name_array[1])) {
+                    $last_name = $name_array[1];
+                } else {
+                    $last_name = '';
+                }
+
+                $fb_id = $profile->content->id;
+                $country = $_POST['country'];
+                $register = $this->account_model->register($email, $fb_id, $name_array[0], $last_name, $country, NULL, $fb_id);
+
+                if (isset($register->error) && $register->error) {
+                    $ret->message = $register->message;
+                    $ret->status = "error";
+                } else {
+
+                    $ret->status = "ok";
+
+                    $current_user = $this->account_model->simple_login($email, $fb_id);
+
+                    if (!$current_user->error) {
+
+                        $_SESSION['registration_data'] = new stdClass();
+                        $_SESSION['registration_data']->user_id = $current_user->content->id;
+                        $_SESSION['registration_data']->user_token = $current_user->content->token;
+                        $_SESSION['registration_data']->profile_id = $register->content->id;
+                        $_SESSION['registration_data']->email = $email;
+                        $_SESSION['registration_data']->first_name = $name_array[0];
+                        $_SESSION['registration_data']->last_name = $last_name;
+                        $_SESSION['registration_data']->country = $country;
+                        $_SESSION['registration_data']->method = 'fb';
+                    }
+                }
+            }
+        } else {
+            $ret->message = $profile->msg;
+            $ret->status = "error";
+        }
+        echo json_encode($ret);
+    }
+
+    public function login_by_facebook() {
+
+        $ret = new stdClass();
+        $ret->message = "";
+
+        $profile = $this->social_media_model->get_fb_profile();
+error_log('profile: '.json_encode($profile));
+        if ($profile->status === 'ok') {
+            $email = $profile->content->email;
+            $password = $profile->content->id;
+
+            $login = $this->account_model->login($email, $password);
+
+             if (isset($login) && !$login->error) {
+                $_SESSION['user_data'] = $login->content;
+                 $ret->status = "ok";
+             }else{
+                  $ret->status = "error";
+                   $ret->message = $login->message;
+             }
+        } else {
+            $ret->message = $profile->msg;
+            $ret->status = "error";
+        }
+        echo json_encode($ret);
+    }
 
 }

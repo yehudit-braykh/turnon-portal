@@ -2,8 +2,20 @@
 <script>
 
     _gaq.push(['_trackEvent', 'Registration', 'Login Information']);
+    country_code = '';
 
     $(document).ready(function () {
+
+
+        $.getJSON("http://www.geoplugin.net/json.gp?jsoncallback=?", {
+        }).done(function (result) {
+            country_code = result['geoplugin_countryCode'];
+
+        }).error(function (result) {
+            country_code = 'US';
+        });
+
+
         $('#signup_fb_btn').on('click', function () {
             logInWithFacebook();
         });
@@ -40,11 +52,11 @@
             url: "<?php echo base_url(); ?>index.php/account/register_step1_ssl",
             type: 'POST',
             dataType: 'json',
-            data: $('#registerform').serialize()
+            data: $('#registerform').serialize() + '&country=' + country_code
         }).done(function (data) {
 
             if (data.message == 'ok') {
-                window.location.href = "<?php echo base_url(); ?>index.php/account/register_info_ssl";
+                window.location.href = "<?php echo base_url(); ?>index.php/account/register_payment_ssl";
 
             } else {
                 $('#registration_preloader').hide();
@@ -84,16 +96,40 @@
     function statusChangeCallback(response) {
 
         if (response.status === 'connected') {
+            $('#fb_registration_preloader').html('Sending data...');
+            $('#fb_registration_preloader').css('display', 'block');
+            TweenLite.fromTo("#signup_fb_btn", 1, {alpha: 1}, {alpha: 0, onComplete: function () {
+
+                }});
+
 
             $.ajax({
                 url: "<?php echo base_url(); ?>index.php/account/register_by_facebook",
                 type: 'POST',
                 dataType: 'json',
+                data: 'country=' + country_code,
             }).done(function (data) {
-                console.log('login: ', data);
+
+                if (data.status == 'ok') {
+                    window.location.href = "<?php echo base_url(); ?>index.php/account/register_payment_ssl";
+
+                } else {
+
+                    $('#fb_registration_preloader').css('display', 'none');
+                    TweenLite.fromTo("#signup_fb_btn", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
+
+
+                        }});
+
+                    $("#fb_info").html("* " + data.message);
+                    TweenLite.fromTo("#fb_info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
+
+                        }});
+
+                }
             });
         } else if (response.status === 'not_authorized') {
-            // The person is logged into Facebook, but not your app.
+            logInWithFacebook();
 
         } else {
 
@@ -124,7 +160,7 @@
                 <ol>
                     <li>
                         <label for="first_name">Full Name*</label>
-                        <input id="first_name" name="full_name" class="text"/>
+                        <input id="full_name" name="full_name" class="text"/>
                     </li>
                     <li>
                         <label for="email">Email*</label>
@@ -152,7 +188,10 @@
                 </ol>
             </form>
             <div id="fb_container">
+                <div id="fb_registration_preloader"></div>
                 <button id="signup_fb_btn"></button>
+
+                <p id="fb_info" class="form_info">&nbsp;</p>
             </div>
             <!--            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
                         </fb:login-button>-->

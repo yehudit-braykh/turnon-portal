@@ -17,9 +17,9 @@ class Social_Media_model extends CI_Model {
             $access_token = $this->facebook->get_access_token();
             $profile = $this->facebook->get_user_profile($access_token);
             $return->status ='ok';
-            $return->content = $profile;
+            $return->content = json_decode($profile);
         } catch (Exception $e) {
-            $return->status ='ok';
+            $return->status ='error';
             $return->msg = $e;
            
         }
