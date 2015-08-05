@@ -202,7 +202,6 @@ class Vod extends UVod_Controller {
         if (isset($_GET['policy_id'])) {
 
             $policy = $this->vod_model->get_policies_by_id($_GET['policy_id']);
-            //error_log('policy: ' . json_encode($policy));
 
             $new_XML = new SimpleXMLElement("<VAST></VAST>");
             $new_XML->addAttribute('version', '2.0');
@@ -247,5 +246,4 @@ class Vod extends UVod_Controller {
             echo $new_XML->asXML();
         }
     }
-
 }

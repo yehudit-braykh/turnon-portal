@@ -174,7 +174,7 @@ class Vod_item extends UVod_Controller {
         $trailer_release_url = getEntryReleaseUrl($item, "Trailer");
         $data['item_trailer_release_url'] = $trailer_release_url;
 
-        if ($this->config->item('theme') == 'orbita') {
+        if ($this->config->item('theme') == 'orbita' || $this->config->item('theme') == 'htv') {
             $data['items_category_1'] = $this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, RECOMMENDED);
         }
 
