@@ -54,7 +54,6 @@ if (isset($clientToken)) {
                         dataType: 'json',
                         data: {nonce: nonce}
                     }).done(function (data) {
-                        console.log(data);
                         if (data && data.error == false) {
                             TweenLite.fromTo("#billing_info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
                                     TweenLite.to("#billing_info", 1, {delay: 8, alpha: 0});

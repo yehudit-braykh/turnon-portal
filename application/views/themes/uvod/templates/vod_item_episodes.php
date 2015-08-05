@@ -3,7 +3,6 @@
         window.location.href = '<?php echo base_url(); ?>index.php/vod_item/detail/id/' + id;
     }
     <?php echo 'var datas = '.  json_encode($item_episodes).';';?>
-    console.log(datas);
 </script>
 
     

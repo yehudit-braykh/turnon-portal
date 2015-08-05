@@ -83,7 +83,6 @@ class Account_model extends CI_Model {
             $mandrill->messages->send($message);
 
             $response = apiPost("user/save_password", array("password" => $new_password['password'], "user_id" => $users->content->entries[0]->id));
-            error_log('forgot: '.json_encode($response));
             return true;
         }
         return false;
@@ -107,7 +106,6 @@ class Account_model extends CI_Model {
             
             return true;
         } catch (Exception $e) {
-            error_log($e->getMessage());
             return false;
         }
     }

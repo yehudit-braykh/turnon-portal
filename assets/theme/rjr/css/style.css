@@ -2100,7 +2100,7 @@ select:focus, select:active {
     color:rgb(127,0,191) !important;
 }
 
-#fb_registration_preloader{
+#fb_registration_preloader, #fb_signin_preloader{
     width: 92px;
     height: 16px;
     background-image: url(../preloader/images/preloader-gallery.gif);
@@ -2112,8 +2112,16 @@ select:focus, select:active {
     font-size: 14px;
     font-weight: normal;
     color: rgb(127,0,191) !important;
-    margin: 150px auto;
 
+
+}
+
+#fb_registration_preloader{
+       margin: 150px auto; 
+}
+
+#fb_signin_preloader{
+    margin: 30px auto;
 }
 
 #send_activation_email_preloader {
@@ -2245,7 +2253,7 @@ select:focus, select:active {
     
 }
 
-#sigin_fb_btn{
+#signin_fb_btn{
     width: 300px;
     height: 45px;
     background-image: url(../images/button-login-with-facebook.png );

@@ -1,12 +1,10 @@
-
+<div id="fb-root"></div>
 <script>
 
     _gaq.push(['_trackEvent', 'Registration', 'Login Information']);
     country_code = '';
 
     $(document).ready(function () {
-
-        console.log('document ready!');
 
         $.getJSON("http://www.geoplugin.net/json.gp?jsoncallback=?", {
         }).done(function (result) {
@@ -18,12 +16,12 @@
 
 
         $('#signup_fb_btn').on('click', function () {
-            logInWithFacebook();
+            registerWithFacebook();
         });
     });
 
     window.fbAsyncInit = function () {
-        console.log('fbAsyncInit!');
+
         FB.init({
             appId: '1623813711226372',
             cookie: true, // This is important, it's not enabled by default
@@ -32,7 +30,6 @@
     };
 
     (function (d, s, id) {
-        console.log('function d!');
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) {
             return;
@@ -42,6 +39,7 @@
         js.src = "//connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
+
 
 //HANDLERS
     $('#btn_sing_up').on('click', function (event) {
@@ -73,15 +71,14 @@
         });
     });
 
-    function logInWithFacebook() {
-        console.log('loginwithfacebook!');
+    function registerWithFacebook() {
 
         FB.login(function (response) {
             if (response.authResponse) {
 
                 checkLoginState()
             } else {
-                alert('User cancelled login or did not fully authorize.');
+               show_info('You must accept the permissions to register with Facebook');
             }
         },
                 {
@@ -91,14 +88,12 @@
     }
 
     function checkLoginState() {
-        console.log('checkloginstate!');
         FB.getLoginStatus(function (response) {
             statusChangeCallback(response);
         });
     }
 
     function statusChangeCallback(response) {
-        console.log('statusChangeCallback!');
 
         if (response.status === 'connected') {
             $('#fb_registration_preloader').html('Sending data...');
@@ -134,11 +129,16 @@
                 }
             });
         } else if (response.status === 'not_authorized') {
-            logInWithFacebook();
+            registerWithFacebook();
 
         } else {
 
         }
+    }
+
+    function show_info(data) {
+        $("#fb_info").html("* " + data);
+        TweenLite.fromTo("#fb_info", 1, {alpha: 0}, {alpha: 1});
     }
 </script>
 </div>

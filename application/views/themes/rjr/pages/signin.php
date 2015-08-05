@@ -1,10 +1,7 @@
-
+ <div id="fb-root"></div>
 <script>
 
     $(document).ready(function () {
-        //FB LOGIN
-
-        console.log('document ready!');
 
         var width = $(window).width();
         if (width >= 320 && width < 768) {
@@ -14,10 +11,9 @@
             $('#header_sep').remove();
         }
 
-        $('#sigin_fb_btn').on('click', function (event) {
+        $('#signin_fb_btn').on('click', function (event) {
             event.preventDefault();
-            //checkLoginState();
-            sigInWithFacebook();
+            signInWithFacebook();
         });
 
         $('#send_activation_email_login_button').hide();
@@ -29,7 +25,7 @@
             $('#send_activation_email_preloader').html('Sending activation email...');
 
             $.ajax({
-                url: '<?php echo base_url();?>index.php/account/send_activation_email_login',
+                url: '<?php echo base_url(); ?>index.php/account/send_activation_email_login',
                 type: 'POST',
                 dataType: 'json',
                 data: 'email=' + $('#email').val()
@@ -65,13 +61,13 @@
             $('#login_preloader').html('Login...');
 
             $.ajax({
-                url: '<?php echo base_url();  ?>index.php/account/login',
+                url: '<?php echo base_url(); ?>index.php/account/login',
                 type: 'POST',
                 dataType: 'json',
                 data: $('#loginform').serialize()
             }).done(function (data) {
                 if (data.message == 'ok') {
-                    window.location.href = '<?php echo base_url();?>';
+                    window.location.href = '<?php echo base_url(); ?>';
                 }
                 else if (data.message == 'Your account is not active yet. Check your email for the activation link.') {
                     $('#login_preloader').hide();
@@ -91,7 +87,6 @@
     });
 
     window.fbAsyncInit = function () {
-        console.log('fbAsyncInit!');
         FB.init({
             appId: '1623813711226372',
             cookie: true, // This is important, it's not enabled by default
@@ -100,7 +95,6 @@
     };
 
     (function (d, s, id) {
-        console.log('function d!');        
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) {
             return;
@@ -111,38 +105,34 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 
-    function sigInWithFacebook() {
-        console.log('sigInWithFacebook!');
+    function signInWithFacebook() {
 
         FB.login(function (response) {
-            console.log('login response: ', response);
+
             if (response.authResponse) {
+                TweenLite.fromTo("#info", 1, {alpha: 1}, {alpha: 0});
                 checkLoginState();
             } else {
-                alert('User cancelled login or did not fully authorize.');
+                show_info('You must accept the permissions to Login with Facebook');
             }
         },
-        {
-            scope: 'email,public_profile'
-        });
+                {
+                    scope: 'email,public_profile'
+                });
         return false;
     }
 
     function checkLoginState() {
-        console.log('checkLoginState!');
         FB.getLoginStatus(function (response) {
-            console.log('checking response: ', response);
             statusChangeCallback(response);
         });
     }
 
     function statusChangeCallback(response) {
 
-        console.log('statusChangeCallback!');
-
         if (response.status === 'connected') {
-            $('#fb_registration_preloader').html('Sending data...');
-            $('#fb_registration_preloader').css('display', 'block');
+            $('#fb_signin_preloader').html('Sending data...');
+            $('#fb_signin_preloader').css('display', 'block');
             TweenLite.fromTo("#signup_fb_btn", 1, {alpha: 1}, {alpha: 0});
 
             $.ajax({
@@ -150,18 +140,16 @@
                 type: 'POST',
                 dataType: 'json'
             }).done(function (data) {
-                console.log('login php: ', data);
                 if (data.status == 'ok') {
-                    console.log('ok el login php');
                     window.location.href = "<?php echo base_url(); ?>";
                 } else {
-                    $('#fb_registration_preloader').hide();
+                    $('#fb_signin_preloader').hide();
                     show_info(data.message);
 
                 }
             });
         } else {
-            sigInWithFacebook();
+            signInWithFacebook();
         }
     }
 
@@ -218,8 +206,8 @@
 
                     <div class="or_separator">OR</div>
 
-                    <button id="sigin_fb_btn"></button>
-                    <div id="fb_registration_preloader"></div>
+                    <button id="signin_fb_btn"></button>
+                    <div id="fb_signin_preloader"></div>
 
                 </li>
 

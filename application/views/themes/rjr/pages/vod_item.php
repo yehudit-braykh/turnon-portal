@@ -194,7 +194,7 @@
                                                                 setInterval(function () {
                 
                                                                         $.ajax({
-                                                                            url: base_url + 'index.php/account/relogin',
+                                                                            url: base_url + 'index.php/account/check_status',
                                                                             type: 'POST',
                                                                             dataType: 'json',
                                                                             success: function (data) {

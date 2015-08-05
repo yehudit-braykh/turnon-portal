@@ -143,7 +143,6 @@ class Account extends UVod_Controller {
             $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number);
 
             if (isset($ret->error) && $ret->error == false) {
-                error_log('Email subscription from my registration');
                 $this->subscription_complete_mail($first_name, $last_name, $email);
             }
 
@@ -412,7 +411,6 @@ class Account extends UVod_Controller {
         $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $city, $postal_code, $country, $pi_month, $pi_year, $pi_type, $pi_number);
 
         if (isset($ret->error) && $ret->error == false) {
-            error_log('Email subscription from my account');
             $this->subscription_complete_mail($first_name, $last_name, $email);
         }
 
@@ -426,11 +424,7 @@ class Account extends UVod_Controller {
         $email_data['surname'] = $surname;
         $message = $this->load->view(views_url() . 'templates/email_subscription_complete', $email_data, TRUE);
         $send_email_result = $this->account_model->send_single_email($email, $message, 'Subscription Notification Mail', 'NO_RESPONSE@1spot.com', "1Spot Media Portal");
-        if ($send_email_result == 1) {
-            error_log('Email was sended');
-        } else {
-            error_log('Email was not sended');
-        }
+    
     }
 
     public function cancel_subscription() {
@@ -463,23 +457,22 @@ class Account extends UVod_Controller {
         echo json_encode($ret);
     }
 
-    public function relogin() {
+    public function check_status() {
 
         if (isset($_SESSION['user_data'])) {
 
             $id = $this->account_model->get_self_id($_SESSION['user_data']->token);
+            //CHECK IF FACEBOOK SESSION IS ACTIVE
+            $fb_session_status = $this->social_media_model->get_fb_profile();
 
-            if (isset($id->error) && $id->error) {
+            if (isset($id->error) && $id->error || $fb_session_status->status === 'error') {
 
                 $_SESSION['user_data'] = null;
                 unset($_SESSION['user_data']);
                 echo json_encode(array('status' => 'error'));
-            } else {
-
-                echo json_encode(array('status' => 'ok'));
             }
         } else {
-            echo json_encode(array('status' => 'error'));
+            echo json_encode(array('status' => 'ok'));
         }
     }
 
@@ -530,7 +523,7 @@ class Account extends UVod_Controller {
         if ($profile->status === 'ok') {
 
             if ($this->account_model->exists_user_email($profile->content->email)) {
-                $ret->message = "This user already exists.";
+                $ret->message = "Your Facebook's email already exists<br> in our system.";
                 $ret->status = "error";
             } else {
                 $email = $profile->content->email;
@@ -581,20 +574,20 @@ class Account extends UVod_Controller {
         $ret->message = "";
 
         $profile = $this->social_media_model->get_fb_profile();
-error_log('profile: '.json_encode($profile));
+
         if ($profile->status === 'ok') {
             $email = $profile->content->email;
             $password = $profile->content->id;
 
             $login = $this->account_model->login($email, $password);
 
-             if (isset($login) && !$login->error) {
+            if (isset($login) && !$login->error) {
                 $_SESSION['user_data'] = $login->content;
-                 $ret->status = "ok";
-             }else{
-                  $ret->status = "error";
-                   $ret->message = $login->message;
-             }
+                $ret->status = "ok";
+            } else {
+                $ret->status = "error";
+                $ret->message = $login->message;
+            }
         } else {
             $ret->message = $profile->msg;
             $ret->status = "error";

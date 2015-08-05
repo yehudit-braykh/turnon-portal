@@ -58,7 +58,6 @@
 
                 if ($today == $currentDate) {
                     $title_arr = explode('|', $epg->content->entries[$i]->{'pllisting$program'}->{'pl$title'});
-                    error_log(print_r($title_arr,TRUE));
 
                     if ($country == 'Jamaica') {
                        

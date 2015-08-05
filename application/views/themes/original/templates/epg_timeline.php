@@ -35,10 +35,9 @@
 <?php
 $i = 0;
 
-//echo 'epgs='.json_encode($epg->content->entries);
 ?>
 
-    //console.log(epgs);
+
 <?php
 if (isset($epg->content->entries)) {
     foreach ($epg->content->entries as $value) {
@@ -62,7 +61,7 @@ if (isset($epg->content->entries)) {
     }
 }
 ?>
-//console.log(epg_array);
+
     var test_channels = new Object();
     test_channels.entries = new Array();
 

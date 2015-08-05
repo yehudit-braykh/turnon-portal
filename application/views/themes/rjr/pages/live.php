@@ -280,7 +280,6 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
 
         $.getJSON("http://www.geoplugin.net/json.gp?jsoncallback=?", {
         }).done(function (result) {
-            console.log('country:',result);
             count = result['geoplugin_countryName'];
             country_var = count;
             callback(count);
@@ -372,7 +371,7 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
     setInterval(function () {
 
         $.ajax({
-            url: base_url + 'index.php/account/relogin',
+            url: base_url + 'index.php/account/check_status',
             type: 'POST',
             dataType: 'json',
             success: function (data) {

@@ -33,8 +33,6 @@
             });
         
 
-<?php error_log('main test');//echo 'var epg=' . json_encode(json_decode($epg)->content->entries) . ';'; ?>
-
         var interval;
 
         setTimeout(set_interval, 3000);

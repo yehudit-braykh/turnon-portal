@@ -13,7 +13,6 @@
                 dataType: 'json',
                 data: $('#loginform').serialize()
             }).done(function (data) {
-                console.log('forgot: ', data);
                 if (data.message == 'ok') {
                     window.location.href = "<?php echo base_url(); ?>index.php/account/forgot_complete";
                 } else {

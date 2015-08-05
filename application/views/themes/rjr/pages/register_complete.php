@@ -80,7 +80,7 @@
         ?>
         <div class="now_page_resize">
 
-            <div class="form_subtitle">Thanks for registering with us.</div>
+            <div class="form_title">Thanks for registering with us.</div>
 
         </div>
         <?php
