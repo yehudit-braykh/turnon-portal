@@ -1,21 +1,24 @@
-<div id="fb-root"></div>
+
 <script>
 
     $(document).ready(function () {
         //FB LOGIN
 
-        $('#sigin_fb_btn').on('click', function () {
-            checkLoginState();
-        });
+        console.log('document ready!');
 
         var width = $(window).width();
-        //var height = $(window).height();
         if (width >= 320 && width < 768) {
             $('#top_menu_about').remove();
             $('#top_menu_support').remove();
             $('#search').remove();
             $('#header_sep').remove();
         }
+
+        $('#sigin_fb_btn').on('click', function (event) {
+            event.preventDefault();
+            //checkLoginState();
+            sigInWithFacebook();
+        });
 
         $('#send_activation_email_login_button').hide();
         $('#send_activation_email_login_button').click(function () {
@@ -46,8 +49,6 @@
 
         });
 
-        
-
         $('.text').on('click', function () {
             if ($("#info").text() != '') {
                 TweenLite.fromTo("#info", 1, {alpha: 1}, {alpha: 0, onComplete: function () {
@@ -56,107 +57,94 @@
             }
         });
 
+        $('#btn_login').on('click', function (event) {
 
+            event.preventDefault();
+            $(this).hide();
+            $('#login_preloader').show();
+            $('#login_preloader').html('Login...');
 
- $('#btn_login').on('click', function (event) {
+            $.ajax({
+                url: '<?php echo base_url();  ?>index.php/account/login',
+                type: 'POST',
+                dataType: 'json',
+                data: $('#loginform').serialize()
+            }).done(function (data) {
+                if (data.message == 'ok') {
+                    window.location.href = '<?php echo base_url();?>';
+                }
+                else if (data.message == 'Your account is not active yet. Check your email for the activation link.') {
+                    $('#login_preloader').hide();
+                    $('#btn_login').show();
+                    $('#send_activation_email_login_button').show();
+                    show_info(data.message);
+                }
+                else {
+                    $('#login_preloader').hide();
+                    $('#btn_login').show();
+                    show_info(data.message)
+                }
+            });
 
-        event.preventDefault();
-        $(this).hide();
-        $('#login_preloader').show();
-        $('#login_preloader').html('Login...');
-
-        $.ajax({
-            url: '<?php echo base_url();  ?>index.php/account/login',
-            type: 'POST',
-            dataType: 'json',
-            data: $('#loginform').serialize()
-        }).done(function (data) {
-            if (data.message == 'ok') {
-                window.location.href = '<?php echo base_url();?>';
-            }
-            else if (data.message == 'Your account is not active yet. Check your email for the activation link.') {
-                $('#login_preloader').hide();
-                $('#btn_login').show();
-                $('#send_activation_email_login_button').show();
-                show_info(data.message);
-            }
-            else {
-                $('#login_preloader').hide();
-                $('#btn_login').show();
-                show_info(data.message)
-            }
         });
 
     });
-
-
-    });
-
 
     window.fbAsyncInit = function () {
+        console.log('fbAsyncInit!');
         FB.init({
             appId: '1623813711226372',
-            cookie: true, // enable cookies to allow the server to access  // the session
-            version: 'v2.2',
-             xfbml: true
+            cookie: true, // This is important, it's not enabled by default
+            version: 'v2.2'
         });
-
-//        FB.getLoginStatus(function (response) {
-//            // statusChangeCallback(response);
-//            console.log('initial_status: ', response);
-//        });
-
     };
 
-
-    (function (d) {
-        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+    (function (d, s, id) {
+        console.log('function d!');        
+        var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) {
             return;
         }
-        js = d.createElement('script');
+        js = d.createElement(s);
         js.id = id;
-        js.async = true;
-        js.src = "//connect.facebook.net/en_US/all.js";
-        ref.parentNode.insertBefore(js, ref);
-    }(document));
-
-
-
-
-
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 
     function sigInWithFacebook() {
-        FB.login(function (response) {
-            consoloe.log('login response: ', response);
-            if (response.authResponse) {
+        console.log('sigInWithFacebook!');
 
+        FB.login(function (response) {
+            console.log('login response: ', response);
+            if (response.authResponse) {
                 checkLoginState();
             } else {
                 alert('User cancelled login or did not fully authorize.');
             }
         },
-                {
-                    scope: 'email,public_profile'
-                });
+        {
+            scope: 'email,public_profile'
+        });
         return false;
     }
-    ;
 
     function checkLoginState() {
-        console.log('llego al checking');
+        console.log('checkLoginState!');
         FB.getLoginStatus(function (response) {
             console.log('checking response: ', response);
             statusChangeCallback(response);
         });
     }
 
-
     function statusChangeCallback(response) {
 
-        console.log('status:', response);
+        console.log('statusChangeCallback!');
+
         if (response.status === 'connected') {
-           // $('#fb_registration_preloader').show();
+            $('#fb_registration_preloader').html('Sending data...');
+            $('#fb_registration_preloader').css('display', 'block');
+            TweenLite.fromTo("#signup_fb_btn", 1, {alpha: 1}, {alpha: 0});
+
             $.ajax({
                 url: "<?php echo base_url(); ?>index.php/account/login_by_facebook",
                 type: 'POST',
@@ -177,20 +165,12 @@
         }
     }
 
-
-
-
     function show_info(data) {
-
         $("#info").html("* " + data);
-        TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-            }});
+        TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1});
     }
-
-
-
-
 </script>
+
 </div>
 </div>
 <div class="header_resize2">

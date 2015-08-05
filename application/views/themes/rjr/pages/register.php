@@ -6,6 +6,7 @@
 
     $(document).ready(function () {
 
+        console.log('document ready!');
 
         $.getJSON("http://www.geoplugin.net/json.gp?jsoncallback=?", {
         }).done(function (result) {
@@ -22,6 +23,7 @@
     });
 
     window.fbAsyncInit = function () {
+        console.log('fbAsyncInit!');
         FB.init({
             appId: '1623813711226372',
             cookie: true, // This is important, it's not enabled by default
@@ -30,6 +32,7 @@
     };
 
     (function (d, s, id) {
+        console.log('function d!');
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) {
             return;
@@ -71,6 +74,8 @@
     });
 
     function logInWithFacebook() {
+        console.log('loginwithfacebook!');
+
         FB.login(function (response) {
             if (response.authResponse) {
 
@@ -84,16 +89,16 @@
                 });
         return false;
     }
-    ;
 
     function checkLoginState() {
+        console.log('checkloginstate!');
         FB.getLoginStatus(function (response) {
             statusChangeCallback(response);
         });
     }
 
-
     function statusChangeCallback(response) {
+        console.log('statusChangeCallback!');
 
         if (response.status === 'connected') {
             $('#fb_registration_preloader').html('Sending data...');
@@ -135,13 +140,6 @@
 
         }
     }
-
-
-
-
-
-
-
 </script>
 </div>
 </div>
