@@ -88,7 +88,7 @@
 
     window.fbAsyncInit = function () {
         FB.init({
-            appId: '1623813711226372',
+            appId: '<?php echo FACEBOOK_APP_ID; ?>',
             cookie: true, // This is important, it's not enabled by default
             version: 'v2.2'
         });
