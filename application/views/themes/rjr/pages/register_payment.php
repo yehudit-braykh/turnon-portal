@@ -8,20 +8,55 @@
             window.location.href = "<?php echo base_url(); ?>index.php/account/register_complete";
         });
         
+        function show_info () {
+            TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
+                            TweenLite.to("#info", 1, {delay: 6, alpha: 0});
+                        }});
+        }
+        
         $('#btn_next').on('click', function (event) {
             $(this).hide();
             if (!($("#accept_terms_and_conditions").prop("checked"))) {
+                show_info();
                 $("#info").html("* You must accept terms and conditions before click next button" );
                 $('#btn_next').show();
                 return false;
-            }    
+            }  
+            
+            var cardholder_name = $("#cardholder_name").val();
+            var valid_cardholder_name = /^[A-Za-z\s]+$/.test(cardholder_name);
+            if (!valid_cardholder_name) {
+                show_info();
+                $("#info").html("* Name on card only accepts letters and spaces" );
+                $('#btn_next').show();
+                return false;
+            }
+            
+            var card_number = $("#card_number").val();
+            var valid_card_number = /^[0-9]+$/.test(card_number);
+            if (!valid_card_number) {
+                show_info();
+                $("#info").html("* Card number only accepts numbers" );
+                $('#btn_next').show();
+                return false;
+            }
+            
+            var security_code = $("#security_code").val();
+            var valid_security_code = /^[0-9]+$/.test(security_code);
+            if (!valid_security_code) {
+                show_info();
+                $("#info").html("* Security code only accepts numbers" );
+                $('#btn_next').show();
+                return false;
+            }
+            
             $('#btn_skip').hide();
             $('#registration_preloader').html('Sending data...');
             $('#registration_preloader').show();
             pi_number = $('#card_number').val();
             pi_type = GetCardType($('#card_number').val());
             $.ajax({
-                url: "<?php echo base_url(); ?>index.php/account/register_step3_ssl",
+                url: "<?php echo base_url(); ?>index.php/account/register_step2_ssl",
                 type: 'POST',
                 dataType: 'json',
                 data: {
@@ -188,7 +223,7 @@
                     </li>   
                     <li id= "terms_and_conditions" style="margin-top: 10px">
                         <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
-                        <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_and_conditions'; ?>" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
+                        <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_and_conditions'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
                     <li> 
                         <p id="info" class="form_info">&nbsp;</p>
                     </li>

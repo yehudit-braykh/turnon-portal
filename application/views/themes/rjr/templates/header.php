@@ -57,6 +57,7 @@
                             $(function () {
 
                                 var tz = jstz.determine();
+                             
                                 timezone_offset = tz.name();
 
                                 $('#logo_left').on('click', function (event) {

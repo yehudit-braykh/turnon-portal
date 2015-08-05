@@ -20,15 +20,14 @@ class Account_model extends CI_Model {
         return apiPost("user/logout", array("id" => $id));
     }
 
-    public function register($email, $password, $first_name, $last_name, $city, $country, $postal_code, $hash = NULL) {
+    public function register($email, $password, $first_name, $last_name, $country, $hash = NULL, $fb_id = NULL) {
 
         return apiPost("user/register", array("email" => $email,
             "password" => $password,
             "first_name" => $first_name,
             "last_name" => $last_name,
-            "city" => $city,
             "country" => $country,
-            "postal_code" => $postal_code,
+            "fb_id" => $fb_id,
             "hash" => $hash));
     }
 
@@ -105,7 +104,7 @@ class Account_model extends CI_Model {
 
             $message->track_opens = true;
             $mandrill->messages->send($message);
-
+            
             return true;
         } catch (Exception $e) {
             error_log($e->getMessage());
@@ -122,10 +121,10 @@ class Account_model extends CI_Model {
         return apiPost("user/activate_account", array("hash" => $hash, "email" => $email));
     }
 
-    public function subscription_checkout($token, $nonce, $first_name, $last_name, $email, $city, $postal_code, $country, $pi_month, $pi_year, $pi_type, $pi_number) {
+    public function subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number) {
 
         return apiPost("commerce/subscription_checkout", array('token' => $token, 'nonce' => $nonce, 'first_name' => $first_name, 'last_name' => $last_name,
-            'email' => $email, 'city' => $city, 'postal_code' => $postal_code, 'country' => $country, 'pi_month' => $pi_month, 'pi_year' => $pi_year, 'pi_type' => $pi_type, 'pi_number' => $pi_number));
+            'email' => $email, 'country' => $country, 'pi_month' => $pi_month, 'pi_year' => $pi_year, 'pi_type' => $pi_type, 'pi_number' => $pi_number));
     }
 
     public function get_contract($id) {
@@ -164,6 +163,10 @@ class Account_model extends CI_Model {
         }
         
         return $ret;
+    }
+    
+    public function get_profile_by_email($email) {
+        return apiPost("user/get_profile_by_email", array('email' => $email));
     }
 }
 

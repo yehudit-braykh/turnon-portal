@@ -358,7 +358,7 @@ h2.h2_act_href a.ico_4:hover{background:url(../images/ico_a-04.png) no-repeat le
 }
 
 .item_img{
-/*    margin: 4px!important;*/
+    /*    margin: 4px!important;*/
 }
 
 .commerce_free{
@@ -2086,7 +2086,7 @@ select:focus, select:active {
     height: 38px;
 }
 
-#login_preloader, #subscription_preloader, #forgot_preloader, #registration_preloader{
+#login_preloader, #subscription_preloader, #forgot_preloader, #registration_preloader, #send_activation_email_preloader{
     width: 16px;
     height: 16px;
     background-image: url(../preloader/images/preloader-gallery.gif);
@@ -2100,11 +2100,32 @@ select:focus, select:active {
     color:rgb(127,0,191) !important;
 }
 
+#fb_registration_preloader{
+    width: 92px;
+    height: 16px;
+    background-image: url(../preloader/images/preloader-gallery.gif);
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    padding-left: 20px;
+    display: none;
+    font-family: "PT Sans", "Lato", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    color: rgb(127,0,191) !important;
+    margin: 150px auto;
+
+}
+
+#send_activation_email_preloader {
+    width: 200px;
+}
+
+
 #forgot_preloader, #registration_preloader{
     width: 100px;
 }
 
-#info{
+#info, #fb_info{
     max-width: 450px;
 }
 
@@ -2149,6 +2170,43 @@ select:focus, select:active {
 
 .registration_container form li.buttons input, .registration_container_payment form li.buttons input { padding:0 0 3px 0; margin:10px 0 0 0px; border:0; color:#FFF; float:left; }
 
+.common_btn{
+    width: 65px;
+    height: 38px;
+    padding: 0 0 3px 0;
+    margin: 10px 0 0 0px;
+    border: 0;
+    color: #FFF!important;
+    float: left;
+    background-color: #7f00bf;
+    cursor: pointer;
+}
+
+#fb_container{
+    float: left;
+    width: 40%;
+    height: 340px;
+    border-left: 1px solid #ccc;
+    margin-left: 30px;
+    text-align: center;
+
+}
+
+#signup_fb_btn{
+    margin: 145px auto 40px;
+    width: 300px;
+    height: 45px;
+    background-image: url(../images/button-register-with-facebook.png );
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: 0px;
+    cursor: pointer;
+
+}
+
+
+
+
 /* form login */
 
 #loginform { margin:0; padding:5px 0; }
@@ -2157,17 +2215,17 @@ select:focus, select:active {
 
 #loginform ol { margin:0; padding:0; list-style:none; }
 
-#loginform li { margin:0; padding:0; background:none; border:none; display:block; clear:both; }
+#loginform li { margin-bottom: 15px; padding:0; background:none; border:none; display:block; clear:both; }
 
 #loginform li.buttons { margin:5px 0 5px 0; clear:both; }
 
-#loginform label { margin:0; width:60px; padding:6px 0; text-transform:none; float:left; font-weight:normal; color:#000; }
+#loginform label { margin:0; width:60px; padding:6px 0; text-transform:none; font-weight:normal; color:#000; }
 
 #loginform label .ness { color:#000; }
 
 #loginform label span { color:#000; }
 
-#loginform input.text { width:72%; border:1px solid #999; margin:5px 0; padding:5px 2px; height:16px; background:#fff; float:left; font-size:12px; color:#000; }
+#loginform input.text { width:98%; border:1px solid #999;  height:30px; background:#fff; font-size:12px; color:#000; }
 
 #loginform textarea { width:75%; border:1px solid #999; margin:4px 0; padding:5px 2px; background:#fff; float:left; font-size:12px; color:#000; }
 
@@ -2175,6 +2233,35 @@ select:focus, select:active {
 
 .logout_button_container {
     float: right;
+}
+
+#btn_login{
+    width: 100%;
+    height: 40px;
+    border: 0px;
+    background-color: rgb(127,0,191);
+    color: #fff;
+    font-size: 14px;
+    
+}
+
+#sigin_fb_btn{
+    width: 300px;
+    height: 45px;
+    background-image: url(../images/button-login-with-facebook.png );
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: 0px;
+    cursor: pointer;
+
+}
+
+.or_separator{
+    width: 100%;
+    text-align: center;
+    color: #bbb!important;
+    font-size: 14px;
+    margin: 5px 0px;
 }
 
 
@@ -2441,39 +2528,64 @@ select:focus, select:active {
 }
 
 .remark_terms_and_conditions {
-      border: red solid 1px;
-      width: 200px;
+    border: red solid 1px;
+    width: 200px;
 }
+
+.send_activation_email {
+    width: 145px;
+    margin: 10px auto;
+}
+
+.send_activation_email a {
+    text-decoration: none;
+}
+
+.send_activation_email_button {
+
+    background: rgb(127,0,191) !important;
+    color: #fff !important;
+    border: 1px solid #eee !important;
+    border-radius: 20px !important;
+    box-shadow: 5px 5px 5px #eee !important;
+    padding: 8px 10px;
+}
+
+.send_activation_email_button:active {
+    vertical-align: top;
+    padding: 6px 8px;
+}
+
 
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-/* IE10+ CSS styles go here */
-select {
-  background: none!important;
-  background-color: #ddd!important;
-  background-repeat: no-repeat;
-  background-position: right 10px top 10px;
-  background-size: 16px 16px;
-  color: white;
-  padding: 10px 10px 10px 10px!important;
-  width: 110px!important;
-  font-family: arial,tahoma;
-  font-size: 12px;
-  color: #fff;
-  text-align: center;
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -webkit-appearance: none;
-  border: 0;
-  outline: 0;
-  -webkit-transition: 0.3s ease all;
-  -moz-transition: 0.3s ease all;
-  -ms-transition: 0.3s ease all;
-  -o-transition: 0.3s ease all;
-  transition: 0.3s ease all;
-  -moz-appearance: none;
-}
+    /* IE10+ CSS styles go here */
+    select {
+        background: none!important;
+        background-color: #ddd!important;
+        background-repeat: no-repeat;
+        background-position: right 10px top 10px;
+        background-size: 16px 16px;
+        color: white;
+        padding: 10px 10px 10px 10px!important;
+        width: 110px!important;
+        font-family: arial,tahoma;
+        font-size: 12px;
+        color: #fff;
+        text-align: center;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -webkit-appearance: none;
+        border: 0;
+        outline: 0;
+        -webkit-transition: 0.3s ease all;
+        -moz-transition: 0.3s ease all;
+        -ms-transition: 0.3s ease all;
+        -o-transition: 0.3s ease all;
+        transition: 0.3s ease all;
+        -moz-appearance: none;
+    }
 
-#country {width:250px!important;}
+    #country {width:250px!important;}
 }
 
 @media (min-width: 320px) {
@@ -2486,9 +2598,7 @@ select {
         width: 100% !important;
     }
 
-    #loginform {
-        width: 265px !important;
-    }  
+     
 
 }
 
@@ -2498,7 +2608,7 @@ select {
                                 width: 100%;
                                 margin: 0 auto;
                             }
-                            
+
                             .account_content {
                                 width: 100%;
                                 margin-top: 30px;
@@ -2600,20 +2710,20 @@ select {
                                 height:250px;
                                 margin: 0 auto;
                             }
-                            
+
                             .footer {
                                 display: none;
                             }
-                            
+
                             .tab-container .panel-container {
                                 padding:0px;
                             }
-                            
+
                             .tab {
                                 border: 1px solid;
                                 width: 156px;
                             }
-                            
+
                             .tab a {
                                 font-size: 11px;
                                 line-height: 2em;
@@ -2622,24 +2732,24 @@ select {
                                 outline: none;
                                 color: #ccc;
                             }
-                            
+
                             #vod_item_sub_menu3 {
                                 padding: 3px 15px 3px 10px;
                             }
-                            
+
                             .subscriber_button {
                                 float: none;
                                 margin-left: auto;
                                 margin-right: auto;
                                 margin-top: 30px;
                             }
-                            
+
                             .pricing_content .registration_pricing {
                                 position: initial;
                                 float: none; 
                                 margin-right: 0px; 
                             }
-                                
+
 }    
 
 @media (min-width:360px) and (max-width:375px) { // Samsung Galaxy S3, S4
@@ -2648,11 +2758,11 @@ select {
                                                      width: 100%;
                                                      margin: 0 auto;
                                                  }
-                                                 
+
                                                  .account_content {
-                                                    width: 100%;
-                                                    margin-top: 30px;
-                                                }
+                                                     width: 100%;
+                                                     margin-top: 30px;
+                                                 }
 
                                                  .registration_content {
                                                      width: 100%;
@@ -2749,37 +2859,37 @@ select {
                                                      height:250px;
                                                      margin: 0 auto;
                                                  }
-                                                 
+
                                                  .footer {
                                                      display:none;
                                                  }
-                                                 
+
                                                  .tab {
-                                                    border: 1px solid;
-                                                    width: 156px;
-                                                }
+                                                     border: 1px solid;
+                                                     width: 156px;
+                                                 }
 
-                                                .tab a {
-                                                    font-size: 11px;
-                                                    line-height: 2em;
-                                                    display: block;
-                                                    padding: 3px 15px 3px 10px;
-                                                    outline: none;
-                                                    color: #ccc;
-                                                }
+                                                 .tab a {
+                                                     font-size: 11px;
+                                                     line-height: 2em;
+                                                     display: block;
+                                                     padding: 3px 15px 3px 10px;
+                                                     outline: none;
+                                                     color: #ccc;
+                                                 }
 
-                                                .subscriber_button {
-                                                    float: none;
-                                                    margin-left: auto;
-                                                    margin-right: auto;
-                                                    margin-top: 30px;
-                                                }
+                                                 .subscriber_button {
+                                                     float: none;
+                                                     margin-left: auto;
+                                                     margin-right: auto;
+                                                     margin-top: 30px;
+                                                 }
 
-                                                .pricing_content .registration_pricing {
-                                                    position: initial;
-                                                    float: none; 
-                                                    margin-right: 0px; 
-                                                }
+                                                 .pricing_content .registration_pricing {
+                                                     position: initial;
+                                                     float: none; 
+                                                     margin-right: 0px; 
+                                                 }
 
 }
 
@@ -2789,11 +2899,11 @@ select {
                                                      width: 100%;
                                                      margin: 0 auto;
                                                  }
-                                                 
+
                                                  .account_content {
-                                                    width: 100%;
-                                                    margin-top: 30px;
-                                                }
+                                                     width: 100%;
+                                                     margin-top: 30px;
+                                                 }
 
                                                  .registration_content {
                                                      width: 100%;
@@ -2890,45 +3000,45 @@ select {
                                                      height:250px;
                                                      margin: 0 auto;
                                                  }
-                                                 
+
                                                  .footer {
                                                      display:none;
                                                  }
-                                                 
+
                                                  .tab-container .panel-container {
-                                                    padding:0px;
+                                                     padding:0px;
                                                  }
-                            
-                                                .tab {
-                                                    border: 1px solid;
-                                                    width: 156px;
-                                                }
 
-                                                .tab a {
-                                                    font-size: 11px;
-                                                    line-height: 2em;
-                                                    display: block;
-                                                    padding: 3px 15px 3px 10px;
-                                                    outline: none;
-                                                    color: #ccc;
-                                                }
+                                                 .tab {
+                                                     border: 1px solid;
+                                                     width: 156px;
+                                                 }
 
-                                                #vod_item_sub_menu3 {
-                                                    padding: 3px 15px 3px 10px;
-                                                }
+                                                 .tab a {
+                                                     font-size: 11px;
+                                                     line-height: 2em;
+                                                     display: block;
+                                                     padding: 3px 15px 3px 10px;
+                                                     outline: none;
+                                                     color: #ccc;
+                                                 }
 
-                                                .subscriber_button {
-                                                    float: none;
-                                                    margin-left: auto;
-                                                    margin-right: auto;
-                                                    margin-top: 30px;
-                                                }
+                                                 #vod_item_sub_menu3 {
+                                                     padding: 3px 15px 3px 10px;
+                                                 }
 
-                                                .pricing_content .registration_pricing {
-                                                    position: initial;
-                                                    float: none; 
-                                                    margin-right: 0px; 
-                                                }
+                                                 .subscriber_button {
+                                                     float: none;
+                                                     margin-left: auto;
+                                                     margin-right: auto;
+                                                     margin-top: 30px;
+                                                 }
+
+                                                 .pricing_content .registration_pricing {
+                                                     position: initial;
+                                                     float: none; 
+                                                     margin-right: 0px; 
+                                                 }
 
 }
 
@@ -2938,11 +3048,11 @@ select {
                                                      width: 100%;
                                                      margin: 0 auto;
                                                  }
-                                                 
+
                                                  .account_content {
-                                                    width: 100%;
-                                                    margin-top: 30px;
-                                                }
+                                                     width: 100%;
+                                                     margin-top: 30px;
+                                                 }
 
                                                  .registration_content {
                                                      width: 100%;
@@ -3047,37 +3157,37 @@ select {
                                                  .registration_container_payment form input.text {
                                                      width: 270px;
                                                  }
-                                                 
+
                                                  .footer {
                                                      display:none;
                                                  }
-                                                 
-                                                 .tab {
-                                                    border: 1px solid;
-                                                    width: 156px;
-                                                }
-                                                
-                                                .tab a {
-                                                    font-size: 11px;
-                                                    line-height: 2em;
-                                                    display: block;
-                                                    padding: 3px 15px 3px 10px;
-                                                    outline: none;
-                                                    color: #ccc;
-                                                }
-                                                
-                                                 .subscriber_button {
-                                                    float: none;
-                                                    margin-left: auto;
-                                                    margin-right: auto;
-                                                    margin-top: 30px;
-                                                }
 
-                                                .pricing_content .registration_pricing {
-                                                    position: initial;
-                                                    float: none; 
-                                                    margin-right: 0px; 
-                                                }
+                                                 .tab {
+                                                     border: 1px solid;
+                                                     width: 156px;
+                                                 }
+
+                                                 .tab a {
+                                                     font-size: 11px;
+                                                     line-height: 2em;
+                                                     display: block;
+                                                     padding: 3px 15px 3px 10px;
+                                                     outline: none;
+                                                     color: #ccc;
+                                                 }
+
+                                                 .subscriber_button {
+                                                     float: none;
+                                                     margin-left: auto;
+                                                     margin-right: auto;
+                                                     margin-top: 30px;
+                                                 }
+
+                                                 .pricing_content .registration_pricing {
+                                                     position: initial;
+                                                     float: none; 
+                                                     margin-right: 0px; 
+                                                 }
 
 }
 
@@ -3087,11 +3197,11 @@ select {
                                                      width: 100%;
                                                      margin: 0 auto;
                                                  }
-                                                 
+
                                                  .account_content {
-                                                    width: 100%;
-                                                    margin-top: 30px;
-                                                }
+                                                     width: 100%;
+                                                     margin-top: 30px;
+                                                 }
 
                                                  .registration_content {
                                                      width: 100%;
@@ -3200,34 +3310,34 @@ select {
                                                  .footer {
                                                      display: none;
                                                  }  
-                                                 
+
                                                  .tab {
-                                                    border: 1px solid;
-                                                    width: 230px;
-                                                }
-                                                 
-                                                .tab a {
-                                                    font-size: 13px;
-                                                    line-height: 2em;
-                                                    display: block;
-                                                    padding: 3px 15px 3px 10px;
-                                                    outline: none;
-                                                    color: #ccc;
-                                                }
-                                                
-                                                .subscriber_button {
-                                                    float: none;
-                                                    margin-left: auto;
-                                                    margin-right: auto;
-                                                    margin-top: 30px;
-                                                }
-                                                
-                                                .pricing_content .registration_pricing {
-                                                    position: initial;
-                                                    float: none; 
-                                                    margin-right: 0px; 
-                                                }
-                                                 
+                                                     border: 1px solid;
+                                                     width: 230px;
+                                                 }
+
+                                                 .tab a {
+                                                     font-size: 13px;
+                                                     line-height: 2em;
+                                                     display: block;
+                                                     padding: 3px 15px 3px 10px;
+                                                     outline: none;
+                                                     color: #ccc;
+                                                 }
+
+                                                 .subscriber_button {
+                                                     float: none;
+                                                     margin-left: auto;
+                                                     margin-right: auto;
+                                                     margin-top: 30px;
+                                                 }
+
+                                                 .pricing_content .registration_pricing {
+                                                     position: initial;
+                                                     float: none; 
+                                                     margin-right: 0px; 
+                                                 }
+
 
 }
 
@@ -3237,10 +3347,10 @@ select {
                                                      width: 100%;
                                                      margin: 0 auto;
                                                  }
-                                                 
+
                                                  .account_content {
-                                                    width: 100%;
-                                                    margin-top: 30px;
+                                                     width: 100%;
+                                                     margin-top: 30px;
                                                  }
 
                                                  .registration_content {
@@ -3347,41 +3457,41 @@ select {
                                                  .footer {
                                                      display: none;
                                                  }
-                                                 
+
                                                  .tab-container .panel-container {
                                                      padding:0px;
-                                                  }
-                            
-                                                .tab {
-                                                    border: 1px solid;
-                                                    width: 125px;
-                                                }
+                                                 }
 
-                                                .tab a {
-                                                    font-size: 11px;
-                                                    line-height: 2em;
-                                                    display: block;
-                                                    padding: 3px 5px 3px 5px;
-                                                    outline: none;
-                                                    color: #ccc;
-                                                }
+                                                 .tab {
+                                                     border: 1px solid;
+                                                     width: 125px;
+                                                 }
 
-                                                #vod_item_sub_menu3 {
-                                                    padding: 3px 15px 3px 10px;
-                                                }
+                                                 .tab a {
+                                                     font-size: 11px;
+                                                     line-height: 2em;
+                                                     display: block;
+                                                     padding: 3px 5px 3px 5px;
+                                                     outline: none;
+                                                     color: #ccc;
+                                                 }
 
-                                                .subscriber_button {
-                                                    float: none;
-                                                    margin-left: auto;
-                                                    margin-right: auto;
-                                                    margin-top: 30px;
-                                                }
+                                                 #vod_item_sub_menu3 {
+                                                     padding: 3px 15px 3px 10px;
+                                                 }
 
-                                                .pricing_content .registration_pricing {
-                                                    position: initial;
-                                                    float: none; 
-                                                    margin-right: 0px; 
-                                                }
+                                                 .subscriber_button {
+                                                     float: none;
+                                                     margin-left: auto;
+                                                     margin-right: auto;
+                                                     margin-top: 30px;
+                                                 }
+
+                                                 .pricing_content .registration_pricing {
+                                                     position: initial;
+                                                     float: none; 
+                                                     margin-right: 0px; 
+                                                 }
 
 }
 
@@ -3391,10 +3501,10 @@ select {
                                                      width: 100%;
                                                      margin: 0 auto;
                                                  }
-                                                 
+
                                                  .account_content {
-                                                    width: 100%;
-                                                    margin-top: 30px;
+                                                     width: 100%;
+                                                     margin-top: 30px;
                                                  }
 
                                                  .registration_content {
@@ -3500,33 +3610,33 @@ select {
                                                  .footer {
                                                      display: none;
                                                  }  
-                                                 
+
                                                  .tab {
-                                                    border: 1px solid;
-                                                    width: 130px;
-                                                }
-                                                
-                                                .tab a {
-                                                    font-size: 11px;
-                                                    line-height: 2em;
-                                                    display: block;
-                                                    padding: 3px 15px 3px 10px;
-                                                    outline: none;
-                                                    color: #ccc;
-                                                }
-                                                
-                                                .subscriber_button {
-                                                    float: none;
-                                                    margin-left: auto;
-                                                    margin-right: auto;
-                                                    margin-top: 30px;
-                                                }
-                            
-                                                .pricing_content .registration_pricing {
-                                                    position: initial;
-                                                    float: none; 
-                                                    margin-right: 0px; 
-                                                }
+                                                     border: 1px solid;
+                                                     width: 130px;
+                                                 }
+
+                                                 .tab a {
+                                                     font-size: 11px;
+                                                     line-height: 2em;
+                                                     display: block;
+                                                     padding: 3px 15px 3px 10px;
+                                                     outline: none;
+                                                     color: #ccc;
+                                                 }
+
+                                                 .subscriber_button {
+                                                     float: none;
+                                                     margin-left: auto;
+                                                     margin-right: auto;
+                                                     margin-top: 30px;
+                                                 }
+
+                                                 .pricing_content .registration_pricing {
+                                                     position: initial;
+                                                     float: none; 
+                                                     margin-right: 0px; 
+                                                 }
 
 }
 
@@ -3537,11 +3647,11 @@ select {
                                                      width: 100%;
                                                      margin: 0 auto;
                                                  }
-                                                 
+
                                                  .account_content {
-                                                    width: 100%;
-                                                    margin-top: 30px;
-                                                }
+                                                     width: 100%;
+                                                     margin-top: 30px;
+                                                 }
 
                                                  .registration_content {
                                                      width: 100%;
@@ -3646,33 +3756,33 @@ select {
                                                  .footer {
                                                      display: none;
                                                  }
-                                                 
-                                                 .tab {
-                                                    border: 1px solid;
-                                                    width: 130px;
-                                                }
-                                                 
-                                                 .tab a {
-                                                    font-size: 11px;
-                                                    line-height: 2em;
-                                                    display: block;
-                                                    padding: 3px 15px 3px 10px;
-                                                    outline: none;
-                                                    color: #ccc;
-                                                }    
-                                                    
-                                                 .subscriber_button {
-                                                    float: none;
-                                                    margin-left: auto;
-                                                    margin-right: auto;
-                                                    margin-top: 30px;
-                                                }
 
-                                                .pricing_content .registration_pricing {
-                                                    position: initial;
-                                                    float: none; 
-                                                    margin-right: 0px; 
-                                                }
+                                                 .tab {
+                                                     border: 1px solid;
+                                                     width: 130px;
+                                                 }
+
+                                                 .tab a {
+                                                     font-size: 11px;
+                                                     line-height: 2em;
+                                                     display: block;
+                                                     padding: 3px 15px 3px 10px;
+                                                     outline: none;
+                                                     color: #ccc;
+                                                 }    
+
+                                                 .subscriber_button {
+                                                     float: none;
+                                                     margin-left: auto;
+                                                     margin-right: auto;
+                                                     margin-top: 30px;
+                                                 }
+
+                                                 .pricing_content .registration_pricing {
+                                                     position: initial;
+                                                     float: none; 
+                                                     margin-right: 0px; 
+                                                 }
 
 }
 
@@ -3682,11 +3792,11 @@ select {
                                                      width: 100%;
                                                      margin: 0 auto;
                                                  }
-                                                 
+
                                                  .account_content {
-                                                    width: 100%;
-                                                    margin-top: 30px;
-                                                }
+                                                     width: 100%;
+                                                     margin-top: 30px;
+                                                 }
 
                                                  .registration_content {
                                                      width: 100%;
@@ -3791,19 +3901,19 @@ select {
                                                  .footer {
                                                      display: none;
                                                  }
-                                                 
+
                                                  .subscriber_button {
-                                                    float: none;
-                                                    margin-left: auto;
-                                                    margin-right: auto;
-                                                    margin-top: 30px;
-                                                }
-                            
-                                                .pricing_content .registration_pricing {
-                                                    position: initial;
-                                                    float: none; 
-                                                    margin-right: 0px; 
-                                                }
+                                                     float: none;
+                                                     margin-left: auto;
+                                                     margin-right: auto;
+                                                     margin-top: 30px;
+                                                 }
+
+                                                 .pricing_content .registration_pricing {
+                                                     position: initial;
+                                                     float: none; 
+                                                     margin-right: 0px; 
+                                                 }
 
 }
 
@@ -3813,11 +3923,11 @@ select {
                                                      width: 100%;
                                                      margin: 0 auto;
                                                  }
-                                                 
+
                                                  .account_content {
-                                                    width: 100%;
-                                                    margin-top: 30px;
-                                                }
+                                                     width: 100%;
+                                                     margin-top: 30px;
+                                                 }
 
                                                  .registration_content {
                                                      width: 100%;
@@ -3922,19 +4032,19 @@ select {
                                                  .footer {
                                                      display: none;
                                                  } 
-                                                 
-                                                 .subscriber_button {
-                                                    float: none;
-                                                    margin-left: auto;
-                                                    margin-right: auto;
-                                                    margin-top: 30px;
-                                                }
 
-                                                .pricing_content .registration_pricing {
-                                                    position: initial;
-                                                    float: none; 
-                                                    margin-right: 0px; 
-                                                }
+                                                 .subscriber_button {
+                                                     float: none;
+                                                     margin-left: auto;
+                                                     margin-right: auto;
+                                                     margin-top: 30px;
+                                                 }
+
+                                                 .pricing_content .registration_pricing {
+                                                     position: initial;
+                                                     float: none; 
+                                                     margin-right: 0px; 
+                                                 }
 
 }
 
@@ -3944,11 +4054,11 @@ select {
                                                      width: 100%;
                                                      margin: 0 auto;
                                                  }
-                                                 
+
                                                  .account_content {
-                                                    width: 100%;
-                                                    margin-top: 30px;
-                                                }
+                                                     width: 100%;
+                                                     margin-top: 30px;
+                                                 }
 
                                                  .registration_content {
                                                      width: 100%;
@@ -4053,19 +4163,19 @@ select {
                                                  .footer {
                                                      display: none;
                                                  } 
-                                                 
-                                                 .subscriber_button {
-                                                    float: none;
-                                                    margin-left: auto;
-                                                    margin-right: auto;
-                                                    margin-top: 30px;
-                                                }
 
-                                                .pricing_content .registration_pricing {
-                                                    position: initial;
-                                                    float: none; 
-                                                    margin-right: 0px; 
-                                                }
+                                                 .subscriber_button {
+                                                     float: none;
+                                                     margin-left: auto;
+                                                     margin-right: auto;
+                                                     margin-top: 30px;
+                                                 }
+
+                                                 .pricing_content .registration_pricing {
+                                                     position: initial;
+                                                     float: none; 
+                                                     margin-right: 0px; 
+                                                 }
 
 }
 
@@ -4107,15 +4217,15 @@ select {
                                                       min-height: 600px;
                                                   }
 
-                                                .registration_subtitle_payment {
+                                                  .registration_subtitle_payment {
                                                       margin: 0px 0px 0px 300px;
-                                                }
+                                                  }
 
-                                                .registration_container_payment {
-                                                    width: 100%;
-                                                    overflow: hidden;
-                                                    min-height: 600px;
-                                                }
+                                                  .registration_container_payment {
+                                                      width: 100%;
+                                                      overflow: hidden;
+                                                      min-height: 600px;
+                                                  }
 
                                                   .registration_pricing {
                                                       position: absolute;
@@ -4312,9 +4422,9 @@ select {
 }
 
 @media (max-width:413px) {
-    
+
     .my_account {
-	margin-top: 9px;
+        margin-top: 9px;
     }
 
 }
