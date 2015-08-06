@@ -6,29 +6,20 @@
 <!-- DC Camera Slider JS -->
 <script type="text/javascript" src="<?php echo asset_url(); ?>camera/js/jquery.easing.1.3.js"></script>
 <script type="text/javascript" src="<?php echo asset_url(); ?>camera/js/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="<?php echo common_asset_url(); ?>pdk/tpPdk.js"></script>
-<script type='text/javascript' src="<?php echo common_asset_url(); ?>js/wurfl.js"></script>
-​<script type="text/javascript" src="<?php echo common_asset_url(); ?>js/jwplayer/jwplayer.js" ></script>
-<script>jwplayer.key="BFr/jM6cxDTO5jdihqzp0fQ3Advd0Q8Fp6FUqw==";</script>
+<script src="//jwpsrv.com/library/KdH5zknzEeS1zyIACy4B0g.js"></script>
+
 <script>
 
     $(document).ready(function () {
 
-        if (WURFL.is_mobile == WURFL.is_mobile) {
-            var stream_url = "http://190.90.7.126:1935/live/hogartv.stream/playlist.m3u8";
-            jwplayer("jw_live_player").setup({
-                file: stream_url,
-                image: '<?php echo asset_url(); ?>images/Continue_EN_VIVO.jpg',
-                width: '100%',
-                androidhls: true,
-                autostart: true,
-                aspectratio: "4:3"
-            });
-
-        } else {
-            var stream_url = "http://link.theplatform.com/s/7yj-KC/b7K_0IEwCItr";
-            $pdk.controller.setReleaseURL(stream_url);
-        }
+        var stream_url = "http://190.90.7.126:1935/live/hogartv.stream/playlist.m3u8";
+        jwplayer("jw_live_player").setup({
+            file: stream_url,
+            image: '<?php echo asset_url(); ?>images/Continue_EN_VIVO.jpg',
+            width: '100%',
+            androidhls: true,
+            aspectratio: "4:3"
+        });
     });   
 
 </script>

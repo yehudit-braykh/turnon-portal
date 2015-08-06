@@ -1,37 +1,32 @@
 <?php setlocale(LC_ALL,"es_ES"); ?>
 
-<script type="text/javascript" src="<?php echo common_asset_url(); ?>pdk/tpPdk.js"></script>
-<script type='text/javascript' src="<?php echo common_asset_url(); ?>js/wurfl.js"></script>
-​<script type="text/javascript" src="<?php echo common_asset_url(); ?>js/jwplayer/jwplayer.js" ></script>
-<script>jwplayer.key="BFr/jM6cxDTO5jdihqzp0fQ3Advd0Q8Fp6FUqw==";</script>
+<script src="//jwpsrv.com/library/KdH5zknzEeS1zyIACy4B0g.js"></script>
 
 <script>
     $(document).ready(function () {
 
-        if (WURFL.is_mobile == WURFL.is_mobile) {
-            var stream_url = "<?php echo $download_url; ?>";
-            //$("#html5_video_player").find("#html5_video_player_source").attr("src", stream_url);
-            //var stream_url = "http://link.theplatform.com/s/7yj-KC/XVliUuEGsIcp";
-            //$pdk.controller.setReleaseURL(stream_url);
-            jwplayer("jw_live_player").setup({
-                file: stream_url,
-                image: '<?php echo asset_url(); ?>images/elecciones_2015_bg.jpg',
-                width: '100%',
-                autostart: true,
-                androidhls: true,
-                aspectratio: "16:9",
-                logo: {
-                    file: 'http://web01.univtec.com/resources/htv/hogartv_watermark.png',
-                    link: 'http://example.com'
-                }
-            });
+        var stream_url = "<?php echo $download_url; ?>";
 
-        } else {
-            var stream_url = "<?php echo $item_release_url; ?>";
-            $pdk.controller.setReleaseURL(stream_url);
-        }
-    });   
-
+        jwplayer("jw_live_player").setup({
+            plugins: {
+              'http://cdn-static.liverail.com/js/LiveRail.AdManager.JWPlayer-6.8.1.plugin.js' : {
+                   'LR_PUBLISHER_ID': '81603',
+                   'LR_ADMAP': 'in::0',
+                   'LR_AUTOPLAY': '1',
+                   'LR_LAYOUT_SKIN_ID': '2',
+                   'LR_LAYOUT_SKIN_MESSAGE': 'Publicidad. Su video comenzara en {COUNTDOWN} segundos.'                   
+               }
+            },
+            file: stream_url,
+            width: '100%',
+            aspectratio: "16:9",
+            autostart: true,
+            androidhls: true,
+            logo: {
+                file: 'http://web01.univtec.com/resources/htv/hogartv_watermark.png'
+            }
+        });
+    });
 </script>
 
 </div>
@@ -73,7 +68,7 @@
                 </div>
                     <div class="right_bar_box_content_bg">
                         <div class="right_bar_box_content">
-                        <?php create_items($items_category_1, "right"); ?>
+                        <?php if ($items_category_1) create_items($items_category_1, "right"); ?>
                     </div>
                 </div>
             </div>
@@ -83,7 +78,7 @@
                 <div class="box_title_bar gray">Relacionados</div>
                 <div class="center_box_content_bg">
                     <div class="center_box_content">
-                        <?php create_items($item_related_items, "center"); ?>
+                        <?php if ($item_related_items) create_items($item_related_items, "center"); ?>
                     </div>
                 </div>                    
             </div>

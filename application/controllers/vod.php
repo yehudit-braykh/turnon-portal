@@ -246,5 +246,4 @@ class Vod extends UVod_Controller {
             echo $new_XML->asXML();
         }
     }
-
 }
