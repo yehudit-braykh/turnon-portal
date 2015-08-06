@@ -216,13 +216,6 @@ class Account extends UVod_Controller {
                         $data['card_number'] = $customer_data->content->card_number;
                         $data['card_expiration_month'] = $customer_data->content->expiration_month;
                         $data['card_expiration_year'] = $customer_data->content->expiration_year;
-
-//                        Braintree_Configuration::environment($this->config->item('braintree_environment'));
-//                        Braintree_Configuration::merchantId($this->config->item('braintree_merchantId'));
-//                        Braintree_Configuration::publicKey($this->config->item('braintree_publicKey'));
-//                        Braintree_Configuration::privateKey($this->config->item('braintree_privateKey'));
-//
-//                        $data['clientToken'] = Braintree_ClientToken::generate();
                     }
                 }
             }
@@ -364,6 +357,20 @@ class Account extends UVod_Controller {
         }
     }
 
+    public function send_welcome_mail($name, $surname, $email) {
+        $email_data = array();
+        $email_data['name'] = $name;
+        $email_data['surname'] = $surname;
+
+        $message = $this->load->view(views_url() . 'templates/email_welcome', $email_data, TRUE);
+
+        if ($this->account_model->send_single_email($email, $message, "Welcome to 1SpotMedia!", "NO_RESPONSE@1spot.com", "1Spot Service")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function activate_account() {
         $data = array();
         $done = $this->account_model->activate_account($_GET['hash'], $_GET['email']);
@@ -422,7 +429,6 @@ class Account extends UVod_Controller {
         $email_data['surname'] = $surname;
         $message = $this->load->view(views_url() . 'templates/email_subscription_complete', $email_data, TRUE);
         $send_email_result = $this->account_model->send_single_email($email, $message, 'Subscription Notification Mail', 'NO_RESPONSE@1spot.com', "1Spot Media Portal");
-    
     }
 
     public function cancel_subscription() {
@@ -516,23 +522,32 @@ class Account extends UVod_Controller {
         $ret = new stdClass();
         $ret->message = "";
 
-        $profile = $this->social_media_model->get_fb_profile();
+        $fb_profile = $this->social_media_model->get_fb_profile();
 
-        if ($profile->status === 'ok') {
+        if ($fb_profile->status === 'ok') {
+            $fb_email = $fb_profile->content->email;
+            if ($this->account_model->exists_user_email($fb_email)) {
 
-            if ($this->account_model->exists_user_email($profile->content->email)) {
-                $ret->message = "Your Facebook's email already exists<br> in our system.";
                 $ret->status = "error";
+                $profile = $this->account_model->get_profile_by_email($fb_email);
+
+                if (isset($profile->error) && $profile->error === false) {
+                    if (isset($profile->content[0]->{'pluserprofile$publicDataMap'}->fb_id)) {
+                        $ret->message = "This Facebook account is already registered in 1spotmedia.";
+                    } else {
+                        $ret->message = "The email $fb_email is already registered with email and password,<br> you cannot register with your Facebook account.<br> Login using your credentials.";
+                    }
+                }
             } else {
-                $email = $profile->content->email;
-                $name_array = explode(' ', $profile->content->name);
+                $email = $fb_profile->content->email;
+                $name_array = explode(' ', $fb_profile->content->name);
                 if (isset($name_array[1])) {
                     $last_name = $name_array[1];
                 } else {
                     $last_name = '';
                 }
 
-                $fb_id = $profile->content->id;
+                $fb_id = $fb_profile->content->id;
                 $country = $_POST['country'];
                 $register = $this->account_model->register($email, $fb_id, $name_array[0], $last_name, $country, NULL, $fb_id);
 
@@ -556,6 +571,8 @@ class Account extends UVod_Controller {
                         $_SESSION['registration_data']->last_name = $last_name;
                         $_SESSION['registration_data']->country = $country;
                         $_SESSION['registration_data']->method = 'fb';
+
+                        $this->send_welcome_mail($name_array[0], $last_name, $email);
                     }
                 }
             }
@@ -584,7 +601,17 @@ class Account extends UVod_Controller {
                 $ret->status = "ok";
             } else {
                 $ret->status = "error";
-                $ret->message = $login->message;
+                $profile = $this->account_model->get_profile_by_email($email);
+                error_log('profile: ' . json_encode($profile));
+                if (isset($profile->error) && !$profile->error) {
+                    if (!isset($profile->content[0]->{'pluserprofile$publicDataMap'}->fb_id)) {
+
+                        $ret->message = "The email $email is already registered with email and password.<br> Login using your credentials.";
+                    }
+                } else {
+                    $ret->message = "You Facebook account is not registered in 1SpotMedia. Register Now with your Facebook account <a class='register_link' href='" . base_url() . 'index.php/account/register_ssl' . "'>here</a>! ";
+                    $ret->status = "error";
+                }
             }
         } else {
             $ret->message = $profile->msg;

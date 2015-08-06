@@ -155,7 +155,7 @@ class Account_model extends CI_Model {
         $ret = false;
         
         $resp = apiCall("user/get_single_user", array('email' => $email));
-        
+  
         if ($resp && isset($resp->content) && isset($resp->content->entries) && sizeof($resp->content->entries) > 0) {
             $ret = true;
         }

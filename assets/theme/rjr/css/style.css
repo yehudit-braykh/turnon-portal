@@ -2137,6 +2137,15 @@ select:focus, select:active {
     max-width: 450px;
 }
 
+.register_link{
+    color:rgb(127,0,191);
+
+}
+
+#send_activation_email_login_button{
+    display: none;
+}
+
 .form_info {
     font-family: "PT Sans", "Lato", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
     font-size: 14px;

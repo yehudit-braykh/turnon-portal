@@ -49,7 +49,7 @@
 </div>
 
 <!-- content -->
-<div class="content_centered">
+<div class="content_centered" style="height: 400px;">
     <?php
     if (isset($_SESSION['registration_data']->method) && $_SESSION['registration_data']->method == 'email') {
         ?>  
@@ -71,17 +71,17 @@
                 <div id="send_activation_email_preloader"></div>
                 <div class="clr"></div>
             </li>
-            <!--    <div class="form_buttons_centered">
-                  <input type="image" name="imageField" id="imageField" src="<?php //echo asset_url();   ?>images/button_login.png" class="send" onclick="window.location.href='<?php echo base_url(); ?>index.php/account/signin' " />
-                </div>-->
         </div>
         <?php
     } else {
         ?>
         <div class="now_page_resize">
 
-            <div class="form_title">Thanks for registering with us.</div>
-
+            <div class="form_title">The registration process is complete.</div>
+             <div class="clr"></div>
+             <div class="form_title_hint">Login with your facebook account <br class="rwd-break"> clicking <a href="<?php echo base_url().'index.php/account/signin';?>">here</a> and start enjoying 1spotmedia services!" </div>
+            <div class="clr"></div>
+            <br>
         </div>
         <?php
     }

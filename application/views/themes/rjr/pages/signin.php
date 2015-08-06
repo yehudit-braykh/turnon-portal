@@ -1,4 +1,4 @@
- <div id="fb-root"></div>
+<div id="fb-root"></div>
 <script>
 
     $(document).ready(function () {
@@ -16,7 +16,6 @@
             signInWithFacebook();
         });
 
-        $('#send_activation_email_login_button').hide();
         $('#send_activation_email_login_button').click(function () {
 
             event.preventDefault();
@@ -131,6 +130,7 @@
     function statusChangeCallback(response) {
 
         if (response.status === 'connected') {
+            $('#send_activation_email_login_button').hide();
             $('#fb_signin_preloader').html('Sending data...');
             $('#fb_signin_preloader').css('display', 'block');
             TweenLite.fromTo("#signup_fb_btn", 1, {alpha: 1}, {alpha: 0});
