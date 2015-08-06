@@ -82,7 +82,7 @@ class UVod_Controller extends CI_Controller {
         //CHECK IF FACEBOOK SESSION IS ACTIVE
        $fb_session_status = $this->social_media_model->get_fb_profile();
 
-        if (isset($id->error) && $id->error || $fb_session_status->status === 'error') {
+        if (isset($id->error) && $id->error ) {
 
             $_SESSION['user_data'] = null;
             unset($_SESSION['user_data']);
