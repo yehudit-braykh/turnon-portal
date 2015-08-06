@@ -66,8 +66,6 @@ class Account extends UVod_Controller {
             $ret->message = "You must specify a password.";
         } elseif (strlen($_POST['password']) < 8 || strlen($_POST['password']) > 16) {
             $ret->message = "Password must have between 8 and 16 chars lenght.";
-        } elseif ($_POST['password'] != $_POST['confirm']) {
-            $ret->message = "Passwords do not match.";
         } elseif ($this->account_model->exists_user_email($_POST['email'])) {
             $ret->message = "The selected email already exists.";
         }

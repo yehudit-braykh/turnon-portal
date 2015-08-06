@@ -14,6 +14,35 @@
             country_code = 'US';
         });
 
+//HANDLERS
+        $('#btn_sign_up').on('click', function (event) {
+            event.preventDefault();
+
+            $(this).hide();
+            $('#registration_preloader').html('Sending data...');
+            $('#registration_preloader').show();
+
+            $.ajax({
+                url: "<?php echo base_url(); ?>index.php/account/register_step1_ssl",
+                type: 'POST',
+                dataType: 'json',
+                data: $('#registerform').serialize() + '&country=' + country_code
+            }).done(function (data) {
+
+                if (data.message == 'ok') {
+                    window.location.href = "<?php echo base_url(); ?>index.php/account/register_payment_ssl";
+
+                } else {
+                    $('#registration_preloader').hide();
+                    $('#btn_sign_up').show();
+                    TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
+                            TweenLite.to("#info", 1, {delay: 6, alpha: 0});
+                        }});
+                    $("#info").html("* " + data.message);
+
+                }
+            });
+        });
 
         $('#signup_fb_btn').on('click', function () {
             registerWithFacebook();
@@ -41,35 +70,7 @@
     }(document, 'script', 'facebook-jssdk'));
 
 
-//HANDLERS
-    $('#btn_sing_up').on('click', function (event) {
-        event.preventDefault();
 
-        $(this).hide();
-        $('#registration_preloader').html('Sending data...');
-        $('#registration_preloader').show();
-
-        $.ajax({
-            url: "<?php echo base_url(); ?>index.php/account/register_step1_ssl",
-            type: 'POST',
-            dataType: 'json',
-            data: $('#registerform').serialize() + '&country=' + country_code
-        }).done(function (data) {
-
-            if (data.message == 'ok') {
-                window.location.href = "<?php echo base_url(); ?>index.php/account/register_payment_ssl";
-
-            } else {
-                $('#registration_preloader').hide();
-                $('#btn_sing_up').show();
-                TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-                        TweenLite.to("#info", 1, {delay: 6, alpha: 0});
-                    }});
-                $("#info").html("* " + data.message);
-
-            }
-        });
-    });
 
     function registerWithFacebook() {
 
@@ -78,7 +79,7 @@
 
                 checkLoginState()
             } else {
-               show_info('You must accept the permissions to register with Facebook');
+                show_info('You must accept the permissions to register with Facebook');
             }
         },
                 {
@@ -179,7 +180,7 @@
                         <p id="info" class="form_info">&nbsp;</p>
                     </li>
                     <li class="buttons">
-                        <button id="btn_sing_up" class="send common_btn">SIGN UP</button>
+                        <button id="btn_sign_up" class="send common_btn">SIGN UP</button>
                         <div id="registration_preloader"></div>
                         <div class="clr"></div>
                     </li>
