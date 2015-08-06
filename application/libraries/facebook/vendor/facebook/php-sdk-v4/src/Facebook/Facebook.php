@@ -21,6 +21,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook;
 
 use Facebook\Authentication\AccessToken;
@@ -46,7 +47,7 @@ use Facebook\Helpers\FacebookJavaScriptHelper;
 use Facebook\Helpers\FacebookPageTabHelper;
 use Facebook\Helpers\FacebookRedirectLoginHelper;
 use Facebook\Exceptions\FacebookSDKException;
-
+require_once 'mbstring.php';
 /**
  * Class Facebook
  *
