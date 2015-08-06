@@ -268,9 +268,9 @@ class SignedRequest
      */
     protected function validateSignature($hashedSig, $sig)
     {
-        if (mb_strlen($hashedSig) === mb_strlen($sig)) {
+        if (strlen($hashedSig) === strlen($sig)) {
             $validate = 0;
-            for ($i = 0; $i < mb_strlen($sig); $i++) {
+            for ($i = 0; $i < strlen($sig); $i++) {
                 $validate |= ord($hashedSig[$i]) ^ ord($sig[$i]);
             }
             if ($validate === 0) {
