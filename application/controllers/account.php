@@ -547,16 +547,24 @@ class Account extends UVod_Controller {
                 }
             } else {
                 $email = $fb_profile->content->email;
-                $name_array = explode(' ', $fb_profile->content->name);
-                if (isset($name_array[1])) {
-                    $last_name = $name_array[1];
+                $full_name= explode(' ', $fb_profile->content->name);
+                $sizeof_name = sizeof($full_name);
+                $first_name = $full_name[0];
+                if ($sizeof_name == 1) {
+                    $last_name = '';
                 } else {
                     $last_name = '';
+                    for ($i = 1; $i < ($sizeof_name); $i++) {
+                        if ($i > 0) {
+                            $last_name .= ' ';
+                        }
+                        $last_name .= $full_name[$i];
+                    }
                 }
 
                 $fb_id = $fb_profile->content->id;
                 $country = $_POST['country'];
-                $register = $this->account_model->register($email, $fb_id, $name_array[0], $last_name, $country, NULL, $fb_id);
+                $register = $this->account_model->register($email, $fb_id, $first_name, $last_name, $country, NULL, $fb_id);
 
                 if (isset($register->error) && $register->error) {
                     $ret->message = $register->message;
@@ -574,12 +582,12 @@ class Account extends UVod_Controller {
                         $_SESSION['registration_data']->user_token = $current_user->content->token;
                         $_SESSION['registration_data']->profile_id = $register->content->id;
                         $_SESSION['registration_data']->email = $email;
-                        $_SESSION['registration_data']->first_name = $name_array[0];
+                        $_SESSION['registration_data']->first_name = $first_name;
                         $_SESSION['registration_data']->last_name = $last_name;
                         $_SESSION['registration_data']->country = $country;
                         $_SESSION['registration_data']->method = 'fb';
 
-                        $this->send_welcome_mail($name_array[0], $last_name, $email);
+                        $this->send_welcome_mail($first_name, $last_name, $email);
                     }
                 }
             }
