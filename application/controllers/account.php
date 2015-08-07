@@ -80,11 +80,18 @@ class Account extends UVod_Controller {
             $_SESSION['registration_data']->password = $_POST['password'];
 
             $full_name = explode(' ', $_POST['full_name']);
+            $sizeof_name = sizeof($full_name);
             $first_name = $full_name[0];
-            if (isset($full_name[1])) {
-                $last_name = $full_name[1];
+            if ($sizeof_name == 1) {
+                $last_name = '';
             } else {
                 $last_name = '';
+                for ($i = 1; $i < ($sizeof_name); $i++) {
+                    if ($i > 0) {
+                        $last_name .= ' ';
+                    }
+                    $last_name .= $full_name[$i];
+                }
             }
 
             $GLOBALS['hash'] = rand(10000, getrandmax());
@@ -598,18 +605,20 @@ class Account extends UVod_Controller {
 
             if (isset($login) && !$login->error) {
                 $_SESSION['user_data'] = $login->content;
+                $_SESSION['user_data']->fb_id = $profile->content->id;
+                ;
                 $ret->status = "ok";
             } else {
                 $ret->status = "error";
                 $profile = $this->account_model->get_profile_by_email($email);
-                error_log('profile: ' . json_encode($profile));
+
                 if (isset($profile->error) && !$profile->error) {
                     if (!isset($profile->content[0]->{'pluserprofile$publicDataMap'}->fb_id)) {
 
                         $ret->message = "The email $email is already registered with email and password.<br> Login using your credentials.";
                     }
                 } else {
-                    $ret->message = "You Facebook account is not registered in 1SpotMedia. Register Now with your Facebook account <a class='register_link' href='" . base_url() . 'index.php/account/register_ssl' . "'>here</a>! ";
+                    $ret->message = "You Facebook account is not registered in 1SpotMedia. <a class='register_link' href='" . base_url() . 'index.php/account/register_ssl' . "'>Register Now</a> with your Facebook account! ";
                     $ret->status = "error";
                 }
             }

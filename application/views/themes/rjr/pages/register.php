@@ -180,7 +180,7 @@
                         <p id="info" class="form_info">&nbsp;</p>
                     </li>
                     <li class="buttons">
-                        <button id="btn_sign_up" class="send common_btn">SIGN UP</button>
+                        <button id="btn_sign_up" class="send common_btn">REGISTER</button>
                         <div id="registration_preloader"></div>
                         <div class="clr"></div>
                     </li>

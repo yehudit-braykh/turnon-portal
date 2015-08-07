@@ -78,15 +78,26 @@ class UVod_Controller extends CI_Controller {
 
     public function check_valid_session($data) {
 
-        $id = $this->account_model->get_self_id($data->token);
-        //CHECK IF FACEBOOK SESSION IS ACTIVE
-       $fb_session_status = $this->social_media_model->get_fb_profile();
+        $status = true;
 
-        if (isset($id->error) && $id->error ) {
+        if (isset($_SESSION['user_data']->fb_id)) {
+            //CHECK IF FACEBOOK SESSION IS ACTIVE
+            $fb_session_status = $this->social_media_model->get_fb_profile();
+            if ($fb_session_status->status !== 'ok') {
+                $status = false;
+            }
+        }
+        if ($status) {
+            $id = $this->account_model->get_self_id($data->token);
+            if (isset($id->error) && $id->error) {
 
+                $_SESSION['user_data'] = null;
+                unset($_SESSION['user_data']);
+            }
+        } else {
             $_SESSION['user_data'] = null;
             unset($_SESSION['user_data']);
         }
     }
-
 }
+    
