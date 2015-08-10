@@ -470,21 +470,33 @@ class Account extends UVod_Controller {
 
     public function check_status() {
 
-        if (isset($_SESSION['user_data'])) {
+        $status = true;
 
-            $id = $this->account_model->get_self_id($_SESSION['user_data']->token);
+        if (isset($_SESSION['user_data']->fb_id)) {
             //CHECK IF FACEBOOK SESSION IS ACTIVE
             $fb_session_status = $this->social_media_model->get_fb_profile();
-
-            if (isset($id->error) && $id->error || $fb_session_status->status === 'error') {
-
-                $_SESSION['user_data'] = null;
-                unset($_SESSION['user_data']);
-                echo json_encode(array('status' => 'error'));
+            if ($fb_session_status->status !== 'ok') {
+                $status = false;
             }
-        } else {
-            echo json_encode(array('status' => 'ok'));
         }
+        if ($status) {
+
+            if (isset($_SESSION['user_data'])) {
+                $id = $this->account_model->get_self_id($_SESSION['user_data']->token);
+                if (isset($id->error) && $id->error) {
+                    $status = false;
+                }
+            } 
+        } 
+
+        if ($status) {
+            echo json_encode(array('status' => 'ok'));
+        } else {
+            $_SESSION['user_data'] = null;
+            unset($_SESSION['user_data']);
+            echo json_encode(array('status' => 'error'));
+        }
+
     }
 
     public function send_activation_email_login() {
@@ -547,7 +559,7 @@ class Account extends UVod_Controller {
                 }
             } else {
                 $email = $fb_profile->content->email;
-                $full_name= explode(' ', $fb_profile->content->name);
+                $full_name = explode(' ', $fb_profile->content->name);
                 $sizeof_name = sizeof($full_name);
                 $first_name = $full_name[0];
                 if ($sizeof_name == 1) {
