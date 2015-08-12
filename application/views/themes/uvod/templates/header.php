@@ -16,9 +16,10 @@
                         <link rel="stylesheet" type="text/css" href="<?php echo common_asset_url(); ?>preloader/css/preloader.css" rel="stylesheet" />
                         <link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"/>
                         <link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/dialogs.css" />
-
+                        <link href="<?php echo asset_url(); ?>css/bootstrap.css" rel="stylesheet"/>
                         <!-- Javascript files -->
                         <script type="text/javascript" src="<?php echo common_asset_url(); ?>js/jquery.min.js"></script>
+                        <script type="text/javascript" src="<?php echo common_asset_url(); ?>js/bootstrap.min.js"></script>
 
                         <script type="text/javascript" src="<?php echo common_asset_url(); ?>js/scripts.js"></script>
                         <script type="text/javascript" src="<?php echo common_asset_url(); ?>js/menusm.js"></script>
@@ -56,11 +57,11 @@
 
                         <script>
                             $(function () {
-                                
-                                 var tz = jstz.determine(); 
-                                timezone_offset = tz.name(); 
 
-                                $('#logo_left').on('click', function (event) {
+                                var tz = jstz.determine();
+                                timezone_offset = tz.name();
+
+                                $('#brand_logo').on('click', function (event) {
                                     window.location.href = '<?php echo base_url(); ?>';
                                 });
                                 $('#top_menu_vod').on('click', function (event) {
@@ -138,13 +139,13 @@ for ($i = 0; $i < sizeof($vod_categories); $i++) {
                         <style>
 
                             <?php if ($this->config->item('logo_file') !== FALSE) { ?>
-                                #logo_left { 
-                                    width:<?php echo $this->config->item('logo_width'); ?>;
-                                    height:<?php echo $this->config->item('logo_height'); ?>; 
-                                    top:<?php echo $this->config->item('logo_top'); ?>;
-                                    background: url(<?php echo asset_url(); ?>images/<?php echo $this->config->item('logo_file'); ?>) no-repeat center center;
-                                    position: absolute;
-                                }
+                                /*                                #logo_left { 
+                                                                    width:<?php echo $this->config->item('logo_width'); ?>;
+                                                                    height:<?php echo $this->config->item('logo_height'); ?>; 
+                                                                    top:<?php echo $this->config->item('logo_top'); ?>;
+                                                                    background: url(<?php echo asset_url(); ?>images/<?php echo $this->config->item('logo_file'); ?>) no-repeat center center;
+                                                                    position: absolute;
+                                                                }*/
                             <?php } ?>
 
                             <?php if ($this->config->item('logo_bottom_file') !== FALSE) { ?>
@@ -214,55 +215,101 @@ for ($i = 0; $i < sizeof($vod_categories); $i++) {
                         <body>
                             <div class="index_page">
                                 <div class="body_pattern">
-                                    <div class="container">
-                                        <div class="main">
-                                            <div class="header">
-                                                <div id="header_bar_bg">
-                                                    <div id="header_bar">
+                                    <!--<div class="container">-->
+                                    <div class="main">
+                                        <!--                                                                        <div class="header">
+                                                                                                                    <div id="header_bar_bg">
+                                                                                                                        <div id="header_bar">
+                                                                    
+                                                                                                                            <div id="header_bar_tweet">
+                                                                    
+                                                                                                                            </div>
+                                                                                                                            <div id="header_bar_posted">
+                                                                    
+                                                                                                                            </div>
+                                                                                                                            <div id="header_bar_icons">
+                                                                    
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>-->
+                                        <!--                                                <div id="header_menu_bg">
+                                                                                            <div id="header_menu">
+                                                                                                <div id="logo_left"></div>
+                                                                                                <div class="top_menu">
+                                        <?php
+                                        // menu highlight config
+                                        $highlight_color = 'rgb(255,0,0)';
+                                        if ($this->config->item('menu_highlight_color') !== FALSE) {
+                                            $highlight_color = $this->config->item('menu_highlight_color');
+                                        }
+                                        ?>
+                                                                                                    <div id="top_menu_vod"     <?php // echo ($section == "vod" ? 'style="color:' . $highlight_color . ';"' : "");    ?>>Video on Demand</div>
+                                                                                                    <div id="top_menu_live"    <?php // echo ($section == "live" ? 'style="color:' . $highlight_color . ';"' : "");    ?>>LIVE</div>
+                                                                                                    <div id="top_menu_about"   <?php // echo ($section == "about" ? 'style="color:' . $highlight_color . ';"' : "");    ?> style="visibility:hidden;">ABOUT US</div>
+                                                                                                    <div id="top_menu_support" <?php // echo ($section == "support" ? 'style="color:' . $highlight_color . ';"' : "");    ?> style="visibility:hidden;">SUPPORT</div>
+                                                                                                    <div class="search">
+                                                                                                        <input id="button_search" src="<?php echo asset_url(); ?>images/search_btn.png" class="button_search" type="image" />
+                                                                                                        <span>
+                                                                                                            <input name="editbox_search" class="editbox_search" id="editbox_search" maxlength="80" value="Search..."  onblur="if (this.value == '')
+                                                                                                                        this.value = 'Search...';" onfocus="if (this.value == 'Search...')
+                                                                                                                                    this.value = '';" type="text" />
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                    <div id="top_menu_account" <?php // echo ($section == "account" ? 'style="color:' . $highlight_color . ';"' : "");    ?>>
+                                        <?php
+//                                                                if (!isset($_SESSION['uvod_user_data']) || !isset($_SESSION['uvod_user_data']->token)) {
+//                                                                    echo "<div style='padding-top:12px;'>SIGN IN</div>";
+//                                                                } else {
+//                                                                    $logout = base_url() . 'index.php/account/logout';
+//                                                                    echo "<div class='account_name'><div class='user_name'>" . $_SESSION['uvod_user_data']->firstName . "</div><div class='user-icon'></div></div><div class='link_logout'><div class='lock-icon'></div><a href='" . $logout . "'>Logout</a></div><div class='my_account'>My Account | </div>";
+//                                                                }
+                                        ?>                
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="header_sep"></div>-->
 
-                                                        <div id="header_bar_tweet">
-
-                                                        </div>
-                                                        <div id="header_bar_posted">
-
-                                                        </div>
-                                                        <div id="header_bar_icons">
-
-                                                        </div>
-                                                    </div>
+                                        <nav class="navbar navbar-default navbar-fixed-top">
+                                            <div class="container">
+                                                <div class="navbar-header">
+                                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                                        <span class="sr-only">Toggle navigation</span>
+                                                        <span class="icon-bar"></span>
+                                                        <span class="icon-bar"></span>
+                                                        <span class="icon-bar"></span>
+                                                    </button>
+                                                    <a class="navbar-brand" id="brand_logo" href="#"></a>
                                                 </div>
-                                                <div id="header_menu_bg">
-                                                    <div id="header_menu">
-                                                        <div id="logo_left"></div>
-                                                        <div class="top_menu">
-                                                            <?php
-                                                            // menu highlight config
-                                                            $highlight_color = 'rgb(255,0,0)';
-                                                            if ($this->config->item('menu_highlight_color') !== FALSE) {
-                                                                $highlight_color = $this->config->item('menu_highlight_color');
-                                                            }
-                                                            ?>
-                                                            <div id="top_menu_vod"     <?php echo ($section == "vod" ? 'style="color:' . $highlight_color . ';"' : ""); ?>>Video on Demand</div>
-                                                            <div id="top_menu_live"    <?php echo ($section == "live" ? 'style="color:' . $highlight_color . ';"' : ""); ?>>LIVE</div>
-                                                            <div id="top_menu_about"   <?php echo ($section == "about" ? 'style="color:' . $highlight_color . ';"' : ""); ?> style="visibility:hidden;">ABOUT US</div>
-                                                            <div id="top_menu_support" <?php echo ($section == "support" ? 'style="color:' . $highlight_color . ';"' : ""); ?> style="visibility:hidden;">SUPPORT</div>
-                                                            <div class="search">
-                                                                <input id="button_search" src="<?php echo asset_url(); ?>images/search_btn.png" class="button_search" type="image" />
-                                                                <span>
-                                                                    <input name="editbox_search" class="editbox_search" id="editbox_search" maxlength="80" value="Search..."  onblur="if (this.value == '')
-                                                                                this.value = 'Search...';" onfocus="if (this.value == 'Search...')
-                                                                                            this.value = '';" type="text" />
-                                                                </span>
-                                                            </div>
-                                                            <div id="top_menu_account" <?php echo ($section == "account" ? 'style="color:' . $highlight_color . ';"' : ""); ?>>
-                                                                <?php
-                                                                if (!isset($_SESSION['uvod_user_data']) || !isset($_SESSION['uvod_user_data']->token)) {
-                                                                    echo "<div style='padding-top:12px;'>SIGN IN</div>";
-                                                                } else {
-                                                                    $logout = base_url() . 'index.php/account/logout';
-                                                                    echo "<div class='account_name'><div class='user_name'>" . $_SESSION['uvod_user_data']->firstName . "</div><div class='user-icon'></div></div><div class='link_logout'><div class='lock-icon'></div><a href='" . $logout . "'>Logout</a></div><div class='my_account'>My Account | </div>";
-                                                                }
-                                                                ?>                
-                                                            </div>
-                                                        </div>
-                                                        <div class="header_sep"></div>
+                                                <div id="navbar" class="navbar-collapse collapse">
+                                                    <ul class="nav navbar-nav">
+                                                        <li><a href="#">HOME</a></li>
+                                                        <li class="dropdown">
+                                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Video on Demand <span class="caret"></span></a>
+                                                            <ul class="dropdown-menu">
+                                                                <?php $this->load->view(views_url() . 'templates/sub_menu1'); ?>
+                                                                <!--                                                    <li><a href="#">Action</a></li>
+                                                                                                                    <li><a href="#">Another action</a></li>
+                                                                                                                    <li><a href="#">Something else here</a></li>
+                                                                                                                    <li role="separator" class="divider"></li>
+                                                                                                                    <li class="dropdown-header">Nav header</li>
+                                                                                                                    <li><a href="#">Separated link</a></li>
+                                                                                                                    <li><a href="#">One more separated link</a></li>-->
+                                                            </ul>
+                                                        </li>
+                                                        <li><a href="#">LIVE CHANNELS</a></li>
+                                                        <li><a href="#">EVENTS</a></li>
+                                                        <li><a href="#about">ABOUT US</a></li>
+                                                        <li><a href="#contact">SUPPORT</a></li>
+
+                                                    </ul>
+
+                                                    <ul class="nav navbar-nav navbar-right">
+
+                                                        <li><button id="btn_login"type="button" class="btn btn-default">LOGIN / REGISTER</button></li>
+
+                                                    </ul>
+                                                    <form class="navbar-form navbar-right">
+                                                        <input type="text" class="form-control" placeholder="Search...">
+                                                    </form>
+                                                </div><!--/.nav-collapse -->
+                                            </div>
+                                        </nav>

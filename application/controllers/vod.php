@@ -29,19 +29,19 @@ class Vod extends UVod_Controller {
             $data['items_category_2'] = $this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, NEW_RELEASES);
             $data['items_category_3'] = $this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, COMING_SOON);
             $this->load->view(views_url() . 'templates/header', $data);
-            $this->load->view(views_url() . 'templates/sub_menu1', $data);
-            $this->load->view(views_url() . 'templates/sub_menu2', $data);
+//            $this->load->view(views_url() . 'templates/sub_menu1', $data);
+//            $this->load->view(views_url() . 'templates/sub_menu2', $data);
             $this->load->view(views_url() . 'pages/vod', $data);
             $this->load->view(views_url() . 'templates/footer', $data);
-
+//
         } else {
 
             $data['items_category_1'] = $this->create_items($this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, RECOMMENDED), MAX_PAGE_ITEMS);
             $data['items_category_2'] = $this->create_items($this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, NEW_RELEASES), MAX_PAGE_ITEMS);
             $data['items_category_3'] = $this->create_items($this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, COMING_SOON), MAX_PAGE_ITEMS);            
             $this->parser->parse(views_url() . 'templates/header', $data);
-            $this->parser->parse(views_url() . 'templates/sub_menu1', $data);
-            $this->parser->parse(views_url() . 'templates/sub_menu2', $data);
+//            $this->parser->parse(views_url() . 'templates/sub_menu1', $data);
+//            $this->parser->parse(views_url() . 'templates/sub_menu2', $data);
             $this->parser->parse(views_url() . 'pages/vod', $data);
             $this->parser->parse(views_url() . 'templates/footer', $data);
         }

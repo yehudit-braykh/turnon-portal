@@ -87,15 +87,15 @@
 
     });
 </script>
-
+<!--
 </div>
 </div>
-<div class="header_resize2">
-    <div class="clr"></div>
+--><div class="header_resize2">
+    <div class="clr"></div><!--
 <?php if (isset($slider)) { ?>
 
-        <!-- Slider Start -->
-        <div style="width:100%; margin:0 auto; position:relative;">
+         Slider Start 
+-->        <div style="width:100%; margin:0 auto; position:relative;">
             <div class="camera_wrap camera_azure_skin" id="camera_wrap_1"> 
 
                 <?php
@@ -116,18 +116,18 @@
             </div>
         </div>
         <div class="clr"></div>
-        <!-- Slider End -->
+         <!--Slider End 
 
 <?php } ?>
-</div>
+--></div>
 <div class="clr"></div>
 </div>
 <div id="epg_preview_bg">
     
-</div>
-<div class="clr"></div>
+</div><!--
+--><div class="clr"></div>
 <div class="resize"> 
-    <!-- content -->
+     <!--content--> 
     <div class="content_centered" id="gallery">
         <div class="content_resize"> 
             <?php
