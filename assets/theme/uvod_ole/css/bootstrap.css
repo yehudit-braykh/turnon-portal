@@ -1110,8 +1110,8 @@ a {
 }
 a:hover,
 a:focus {
-  color: #23527c;
-  text-decoration: underline;
+  color: #b9b9b9;
+  text-decoration: none;
 }
 a:focus {
   outline: thin dotted;
@@ -3071,13 +3071,13 @@ background-color: #212121;
 }
 .btn-default:focus,
 .btn-default.focus {
-  color: #333;
-  background-color: #e6e6e6;
+  color: #FFF;
+  background-color: rgba(255,255,255,0.1);
   border-color: #8c8c8c;
 }
 .btn-default:hover {
-  color: #333;
-  background-color: #e6e6e6;
+  color: #FFF;
+  background-color: rgba(255,255,255,0.1);
   border-color: #adadad;
 }
 .btn-default:active,
@@ -3096,8 +3096,8 @@ background-color: #212121;
 .btn-default:active.focus,
 .btn-default.active.focus,
 .open > .dropdown-toggle.btn-default.focus {
-  color: #333;
-  background-color: #d4d4d4;
+  color: #FFF;
+  background-color: rgba(255,255,255,0.1);
   border-color: #8c8c8c;
 }
 .btn-default:active,
@@ -5016,7 +5016,7 @@ a.badge:focus {
 .jumbotron {
   padding-top: 30px;
   padding-bottom: 30px;
-  margin-bottom: 30px;
+  /*margin-bottom: 30px;*/
   color: inherit;
 }
 .jumbotron h1,

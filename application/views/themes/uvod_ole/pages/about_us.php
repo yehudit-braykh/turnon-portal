@@ -1,7 +1,7 @@
 </div>
 </div>
 
-<div class="content_centered">
+<div class="container">
 
 <div class="about">
 

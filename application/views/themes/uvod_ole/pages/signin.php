@@ -2,7 +2,7 @@
 <div class="container">
 
     <div class="jumbotron">
-        <div class="form_title">LOG IN</div>
+        <div class="form_title">Please Log In</div>
 
         <form method="post" id="loginform" style="width:300px;display:block;margin-left:auto;margin-right:auto;">
             <ol>
@@ -15,41 +15,42 @@
                     <div class="clr"></div>
                 </li>    
                 <li>
-                    <label for="email">Email</label><br>
-                    <input id="email" name="email" class="text"/>
+                    <input id="email" name="email" placeholder="Email address" class="text"/>
                 </li>
                 <li>
-                    <label for="password">Password</label><br>
-                    <input id="password" name="password" class="text" type="password" />
+                    <input id="password" name="password" placeholder="Password" class="text" type="password" />
 
                     <span style="float: right;">
-                        Forgot your <a href="<?php echo base_url(); ?>index.php/account/forgot" style="color:rgb(127,0,191);">password</a>?
+                        <a href="<?php echo base_url(); ?>index.php/account/forgot" style="color:#b9b9b9;">Forgot your password?</a>
                     </span>
 
                 </li>
                 <li>
                     <input id="remember_credentials" name="remember_credentials" type="checkbox">
-                    <label for="remember_credentials" style="width: 200px;">Remember Email and password</label>
+                    <label for="remember_credentials" style="width: 200px;">Remember me</label>
 
                 </li>
                 <li class="buttons">
-                    <button type="submit" id="btn_login" class="send">LOGIN</button>
+                    <button type="submit" id="btn_login" class="send">LOG IN</button>
                     <div id="login_preloader"></div>
                     <div class="clr"></div>
                 </li>
 
                 <li>
 
-                    <div class="or_separator">OR</div>
+                    <div class="or_separator">or</div>
 
                     <button id="signin_fb_btn"></button>
                     <div id="fb_signin_preloader"></div>
 
                 </li>
+                <li><hr id="line"></li>
 
                 <li>
-                    <span style="padding-left:40px;">
-                        Not registered yet?  <a href="<?php echo base_url(); ?>index.php/account/register_ssl" style="color:rgb(127,0,191);">Create your account</a>
+                    <span>
+                        <button id="btn_create" type="button" class="btn btn-default">Create new account</button>
+
+                         <!--<a id="btn_create" href="<?php echo base_url(); ?>index.php/account/register_ssl" style="color:#FFF;">Create your account</a>-->
                     </span>
                 </li>
 
@@ -145,6 +146,11 @@
         });
 
     });
+
+$('#btn_create').on('click',function(event){
+    event.preventDefault();
+    window.location.href = '<?php echo base_url(); ?>index.php/account/register_ssl';
+})
 
     window.fbAsyncInit = function () {
         FB.init({
