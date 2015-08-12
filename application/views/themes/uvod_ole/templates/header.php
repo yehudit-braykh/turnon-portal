@@ -65,7 +65,11 @@
                                     window.location.href = '<?php echo base_url(); ?>';
                                 });
                                
-                                $('#top_menu_account').on('click', function (event) {
+                                $('.my_account').on('click', function (event) {
+                                    window.location.href = '<?php echo base_url(); ?>index.php/account/my_account';
+                                });
+                                
+                                $('.user_name').on('click', function (event) {
                                     window.location.href = '<?php echo base_url(); ?>index.php/account/my_account';
                                 });
                                 
@@ -208,7 +212,7 @@
                                             <?php
                                             } else {
                                                 $logout = base_url() . 'index.php/account/logout';
-                                                echo "<div class='account_name'><div class='user_name'>" . $_SESSION['uvod_user_data']->firstName . "</div><div class='user-icon'></div></div><div class='link_logout'><div class='lock-icon'></div><a href='" . $logout . "'>Logout</a></div><div class='my_account'>My Account | </div>";
+                                                echo "<div><div class='account_name'><div class='user_name'>" . $_SESSION['uvod_user_data']->firstName . "</div><div class='user-icon'></div></div><div class='link_logout'><div class='lock-icon'></div><a href='" . $logout . "'>Logout</a></div><div class='my_account'>My Account | </div></div>";
      
                                             }
                                             ?>

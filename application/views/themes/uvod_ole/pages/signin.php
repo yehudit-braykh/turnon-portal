@@ -31,7 +31,7 @@
 
                 </li>
                 <li class="buttons">
-                    <button type="submit" id="btn_login" class="send">LOG IN</button>
+                    <button type="submit" id="btn_sign_in" class="send">LOG IN</button>
                     <div id="login_preloader"></div>
                     <div class="clr"></div>
                 </li>
@@ -114,7 +114,7 @@
             }
         });
 
-        $('#btn_login').on('click', function (event) {
+        $('#btn_sign_in').on('click', function (event) {
 
             event.preventDefault();
             $(this).hide();
@@ -132,13 +132,13 @@
                 }
                 else if (data.message == 'Your account is not active yet. Check your email for the activation link.') {
                     $('#login_preloader').hide();
-                    $('#btn_login').show();
+                    $('#btn_sign_in').show();
                     $('#send_activation_email_login_button').show();
                     show_info(data.message);
                 }
                 else {
                     $('#login_preloader').hide();
-                    $('#btn_login').show();
+                    $('#btn_sign_in').show();
                     show_info(data.message)
                 }
             });

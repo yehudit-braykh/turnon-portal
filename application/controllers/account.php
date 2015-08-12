@@ -468,8 +468,6 @@ class Account extends UVod_Controller {
         echo json_encode($ret);
     }
 
-    
-
     public function send_activation_email_login() {
 
         if (isset($_POST['email'])) {
@@ -506,27 +504,41 @@ class Account extends UVod_Controller {
         }
         echo json_encode($return);
     }
-    
-    
+
+    public function buy_events() {
+
+        $data = array();
+        $orders = $this->event_model->get_orders($_SESSION['uvod_user_data']->id);
+        if (isset($orders->content->entries) && sizeof($orders->content->entries) > 0) {
+            $data['subscription_data'] = $orders->content->entries;
+        }
+
+        $data['events'] = $this->event_model->get_events();
+
+        $this->parser->parse(views_url() . 'templates/header', $data);
+        $this->parser->parse(views_url() . 'pages/buy_events', $data);
+        $this->parser->parse(views_url() . 'templates/footer', $data);
+    }
+
     public function check_status() {
 
         $status = true;
-        
+
 //        if(isset(   $_SESSION['copy_data'] )){
 //            error_log('esta seteada la copy: '.json_encode($_SESSION));
 //        }else{
 //            error_log('no esta seteada la copy');
 //        }
-     // error_log('la session: '.json_encode($_SESSION['uvod_user_data']));
+        // error_log('la session: '.json_encode($_SESSION['uvod_user_data']));
         if (isset($_SESSION['uvod_user_data']->fb_id)) {
-      
+
             //CHECK IF FACEBOOK SESSION IS ACTIVE
             $fb_session_status = $this->social_media_model->get_fb_profile();
-            error_log('fb session: '.json_encode($fb_session_status));
+            error_log('fb session: ' . json_encode($fb_session_status));
             if ($fb_session_status->status !== 'ok') {
                 $status = false;
             }
-        }else{
+        } else {
             error_log('no esta seteado');
         }
         if ($status) {
@@ -537,8 +549,8 @@ class Account extends UVod_Controller {
                 if (isset($id->error) && $id->error) {
                     $status = false;
                 }
-            } 
-        } 
+            }
+        }
 
         if ($status) {
             echo json_encode(array('status' => 'ok'));
@@ -547,7 +559,6 @@ class Account extends UVod_Controller {
             unset($_SESSION['uvod_user_data']);
             echo json_encode(array('status' => 'error'));
         }
-
     }
 
     public function register_by_facebook() {
@@ -636,12 +647,12 @@ class Account extends UVod_Controller {
             $password = $profile->content->id;
 
             $login = $this->account_model->login($email, $password);
-            error_log('login: '.json_encode($login));
+            error_log('login: ' . json_encode($login));
             if (isset($login) && !$login->error) {
                 error_log('entro a guardar la session');
                 $_SESSION['uvod_user_data'] = $login->content;
                 $_SESSION['uvod_user_data']->fb_id = $profile->content->id;
-               // $_SESSION['copy_data'] = $_SESSION['uvod_user_data'];
+                // $_SESSION['copy_data'] = $_SESSION['uvod_user_data'];
                 $ret->status = "ok";
             } else {
                 $ret->status = "error";
