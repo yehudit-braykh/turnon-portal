@@ -1,7 +1,7 @@
 
 <?php if (isset($slider)) { ?>
 
-    Slider Start 
+    <!--Slider Start--> 
     <div style="width:100%; margin:0 auto; position:relative;">
         <div class="camera_wrap camera_azure_skin" id="camera_wrap_1"> 
 
@@ -81,7 +81,7 @@
             <div class="clr"></div>
         </div>
         <!-- /content -->
-    </div>s
+    </div>
 
 </div>
 

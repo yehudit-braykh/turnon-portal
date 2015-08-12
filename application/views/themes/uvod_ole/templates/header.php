@@ -203,15 +203,13 @@
                                             <?php
                                             if (!isset($_SESSION['uvod_user_data']) || !isset($_SESSION['uvod_user_data']->token)) {
                                                 ?>
-                                                }
+                                                
                                                 <li><button id="btn_login"type="button" class="btn btn-default">LOGIN / REGISTER</button></li>
                                             <?php
                                             } else {
                                                 $logout = base_url() . 'index.php/account/logout';
                                                 echo "<div class='account_name'><div class='user_name'>" . $_SESSION['uvod_user_data']->firstName . "</div><div class='user-icon'></div></div><div class='link_logout'><div class='lock-icon'></div><a href='" . $logout . "'>Logout</a></div><div class='my_account'>My Account | </div>";
-                                                ?>
-
-                                                <?php
+     
                                             }
                                             ?>
                                         </ul>
