@@ -18,6 +18,7 @@ class Vod extends UVod_Controller {
         $data['category1'] = $this->config->item('category1');
         $data['category2'] = $this->config->item('category2');
         $data['category3'] = $this->config->item('category3');
+        $data['section'] = "featured";
 
         // get slider
         $data['slider'] = $this->vod_model->get_slider(APP_TARGET, $sub_section);

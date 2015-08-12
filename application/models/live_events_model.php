@@ -15,6 +15,11 @@ class Live_events_model extends CI_Model {
 	{
 		return apiCall("event/get_event_products",array('products_id'=>$ids));
 	}
+        
+	public function get_event_data()
+	{
+		return apiCall("event/get_event_data",array());
+	}
 
 
 }

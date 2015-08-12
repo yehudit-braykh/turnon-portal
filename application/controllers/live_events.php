@@ -86,18 +86,20 @@ class Live_events extends UVod_Controller {
             $data['event_time'] = ($event->{'pl1$event_date'} - (time() * 1000)) / 1000;
             $data['event_datetime'] = $event->{'pl1$event_date'};
             $data['event_stream_url'] = getEntryFileUrl($event, "HLS Stream");
-
         }
 
         $this->load->view(views_url() . 'pages/mobile_event', $data);
-
     }
 
     public function main($id = null) {
 
-error_log('entra a LIVE EVENTS: '.date('H:i',time()));
-        $media_ids = array();
-        // checks if user is logged in
+        error_log('entra a LIVE EVENTS: ' . date('H:i', time()));
+
+        $events = $this->live_events_model->get_event_data();
+        error_log('events: ' . json_encode($events));
+
+
+//      checks if user is logged in
         if (isset($_SESSION['user_data']) && isset($_SESSION['user_data']->id)) {
 
             $orders = $this->event_model->get_orders($_SESSION['user_data']->id);
@@ -135,42 +137,92 @@ error_log('entra a LIVE EVENTS: '.date('H:i',time()));
         }
 
 
-        $data = array();
-
-        $next_event = $this->live_events_model->get_next_event();
-        $flag = 0;
-
-        // check if there is a next event
-        if ($next_event->content->entryCount) {
-            //if (isset($next_event->content->entries[0]->{'pl1$event_is_over'}) && !$next_event->content->entries[0]->{'pl1$event_is_over'}) {
-            for ($i = 0; $i < sizeof($next_event->content->entries); $i++) {
-                if (in_array($next_event->content->entries[$i]->id, $media_ids)) {
-                    $event = $next_event->content->entries[$i];
-                    $flag = 1;
-                    break;
-                }
-            }
-
-            if ($flag === 0) {
-                $event = $next_event->content->entries[0];
-                $data['event_already_purchased'] = false;
-            } else {
-                $data['event_already_purchased'] = true;
-                $data['items_category_1'] = $this->create_items($this->vod_model->get_items_by_genre(VOD_ALL, 'champs_2015_exclusive', ''), MAX_PAGE_ITEMS);
-            }
-
-            $data['event_id'] = $event->id;
-            $data['event_title'] = $event->title;
-            $data['event_image'] = getEntryThumbnail($event, "Poster Live Event");
-            $data['event_time'] = ($event->{'pl1$event_date'} - (time() * 1000)) / 1000;
-            $data['event_datetime'] = $event->{'pl1$event_date'};
-            $data['event_stream_url'] = getEntryFileUrl($event, "HLS Stream");
-
+        if (in_array($events->content[0]->id, $media_ids)) {
+            $events->content[0]->already_purchased = true;
+        } else {
+            $events->content[0]->already_purchased = false;
         }
+
+        $data['section'] = "events";
+        $data['events'] = $events;
 
         $this->load->view(views_url() . 'templates/header', $data);
         $this->load->view(views_url() . 'pages/live_events', $data);
         $this->load->view(views_url() . 'templates/footer', $data);
+    }
+
+    public function get_event() {
+        //        $media_ids = array();
+//        // checks if user is logged in
+//        if (isset($_SESSION['user_data']) && isset($_SESSION['user_data']->id)) {
+//
+//            $orders = $this->event_model->get_orders($_SESSION['user_data']->id);
+//            $data['orders'] = $orders;
+//
+//            if (isset($orders) && sizeof($orders->content->entries) > 0) {
+//
+//                for ($h = 0; $h < sizeof($orders->content->entries); $h++) {
+//
+//                    $id_arr = explode('/', $orders->content->entries[$h]->{'plorderitem$productId'});
+//                    $product_id = $id_arr[sizeof($id_arr) - 1];
+//                    if ($h == 0) {
+//                        $product_ids = $product_id;
+//                    } else {
+//                        $product_ids .= '|' . $product_id;
+//                    }
+//                }
+//
+//                $products = $this->live_events_model->get_event_products($product_ids);
+//
+//                if (isset($products->content->entries) && sizeof($products->content->entries) > 0) {
+//
+//                    for ($i = 0; $i < sizeof($products->content->entries); $i++) {
+//
+//                        $events_ids = $products->content->entries[$i]->{'plproduct$scopeIds'};
+//
+//                        for ($j = 0; $j < sizeof($events_ids); $j++) {
+//                            if (!in_array($events_ids[$j], $media_ids)) {
+//                                $media_ids[] = $events_ids[$j];
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//
+//
+//        $data = array();
+//
+//        $next_event = $this->live_events_model->get_next_event();
+//        $flag = 0;
+//
+//        // check if there is a next event
+//        if ($next_event->content->entryCount) {
+//            //if (isset($next_event->content->entries[0]->{'pl1$event_is_over'}) && !$next_event->content->entries[0]->{'pl1$event_is_over'}) {
+//            for ($i = 0; $i < sizeof($next_event->content->entries); $i++) {
+//                if (in_array($next_event->content->entries[$i]->id, $media_ids)) {
+//                    $event = $next_event->content->entries[$i];
+//                    $flag = 1;
+//                    break;
+//                }
+//            }
+//
+//            if ($flag === 0) {
+//                $event = $next_event->content->entries[0];
+//                $data['event_already_purchased'] = false;
+//            } else {
+//                $data['event_already_purchased'] = true;
+//                $data['items_category_1'] = $this->create_items($this->vod_model->get_items_by_genre(VOD_ALL, 'champs_2015_exclusive', ''), MAX_PAGE_ITEMS);
+//            }
+//
+//            $data['event_id'] = $event->id;
+//            $data['event_title'] = $event->title;
+//            $data['event_image'] = getEntryThumbnail($event, "Poster Live Event");
+//            $data['event_time'] = ($event->{'pl1$event_date'} - (time() * 1000)) / 1000;
+//            $data['event_datetime'] = $event->{'pl1$event_date'};
+//            $data['event_stream_url'] = getEntryFileUrl($event, "HLS Stream");
+//
+//        }
     }
 
     private function create_items($items, $max = 0) {

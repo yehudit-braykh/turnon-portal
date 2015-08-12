@@ -27,9 +27,8 @@
 
 <?php } ?>
 
-<div class="clr"></div>
 
-<div id="epg_preview_bg"></div>
+<!--<div id="epg_preview_bg"></div>-->
 <div class="clr"></div>
 
 
