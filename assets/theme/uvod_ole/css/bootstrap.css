@@ -4,6 +4,13 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+@font-face {
+  font-family: 'Lato';
+
+  src: url('../fonts/Lato-Regular.ttf');
+
+}
+
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
@@ -1082,11 +1089,12 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
-  color: #333;
-  background-color: #fff;
+  color: #FFF;
+  background-color: #2d2d2d;
+  padding-top: 80px;
 }
 input,
 button,
@@ -4028,6 +4036,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav > li {
   position: relative;
   display: block;
+  margin-top: 15px;
 }
 .nav > li > a {
   position: relative;
@@ -4214,7 +4223,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar {
   position: relative;
-  min-height: 50px;
+  min-height: 80px;
   margin-bottom: 20px;
   border: 1px solid transparent;
 }
@@ -4410,7 +4419,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
   .navbar-nav > li > a {
     padding-top: 15px;
-    padding-bottom: 15px;
+    padding-bottom: 24px;
   }
 }
 .navbar-form {
@@ -4543,7 +4552,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-default {
   background-color: #212121;
-  border-color: #e7e7e7;
 }
 .navbar-default .navbar-brand {
   color: #777;
@@ -4561,14 +4569,14 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-  color: #333;
+  color: #b9b9b9;
   background-color: transparent;
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
-  color: #555;
-  border-bottom: 5px solid violet;
+  color: #b9b9b9;
+  border-bottom: 5px solid #0099cc;
 }
 .navbar-default .navbar-nav > .disabled > a,
 .navbar-default .navbar-nav > .disabled > a:hover,
@@ -4594,7 +4602,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
   color: #555;
-  border-bottom: 5px solid violet;
+  border-bottom: 5px solid #0099cc;
 
 }
 @media (max-width: 767px) {
@@ -5010,7 +5018,6 @@ a.badge:focus {
   padding-bottom: 30px;
   margin-bottom: 30px;
   color: inherit;
-  background-color: #eee;
 }
 .jumbotron h1,
 .jumbotron .h1 {

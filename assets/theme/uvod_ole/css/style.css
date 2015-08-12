@@ -35,6 +35,11 @@ body { width:100%; font:normal 12px/2em "Web-FuturaMT-Bold", Arial, Helvetica, s
 img { border:none; }
 
 @font-face {
+  font-family: 'Lato';
+  src: url('../fonts/Lato-Regular.ttf');
+}
+
+@font-face {
     font-family: 'Web-FuturaMT';
     src: url('../fonts/futuraMT.ttf');
 }
@@ -2270,6 +2275,8 @@ position: absolute;
     height: 68px; 
     background: url(../images/uvod_logo.png) no-repeat center center;
     background-size: 100% 100%;
+    margin-top: 6px;
+    margin-right: 35px;
 
 }
 
