@@ -127,12 +127,12 @@ class Vod extends UVod_Controller {
 
         if ($this->config->item('create_items_on_view') !== FALSE) {
             $this->load->view(views_url() . 'templates/header', $data);
-            $this->load->view(views_url() . 'templates/sub_menu1', $data);
+      
             $this->load->view(views_url() . 'pages/vod_list', $data);
             $this->load->view(views_url() . 'templates/footer', $data);
         } else {
             $this->parser->parse(views_url() . 'templates/header', $data);
-            $this->parser->parse(views_url() . 'templates/sub_menu1', $data);
+    
             $this->parser->parse(views_url() . 'pages/vod_list', $data);
             $this->parser->parse(views_url() . 'templates/footer', $data);
         }
