@@ -1,3 +1,91 @@
+
+<?php if (isset($slider)) { ?>
+
+    Slider Start 
+    <div style="width:100%; margin:0 auto; position:relative;">
+        <div class="camera_wrap camera_azure_skin" id="camera_wrap_1"> 
+
+            <?php
+            for ($i = 0; $i < sizeof($slider); $i++) {
+
+                $item_id_arr = explode("/", $slider[$i]->id);
+                $item_id = $item_id_arr[sizeof($item_id_arr) - 1];
+                $item_url = base_url() . 'index.php/vod_item/detail/id/' . $item_id;
+                ?>
+
+                <div  data-src="<?php echo $slider[$i]->image_url; ?>" item-url="<?php echo $item_url; ?>">>
+
+                    <div class="camera_caption" item-url="<?php echo $item_url; ?>"> </div>
+
+                </div>
+
+            <?php } ?>
+        </div>
+    </div>
+    <div class="clr"></div>
+    <!--Slider End  -->
+
+<?php } ?>
+
+<div class="clr"></div>
+
+<div id="epg_preview_bg"></div>
+<div class="clr"></div>
+
+
+<div class="container">
+    <div class="jumbotron">
+
+        <div class="content_centered" id="gallery">
+            <div class="content_resize"> 
+                <?php
+                $show_genres_filter = 'yes';
+                if ($this->config->item('show_genres_filter') !== FALSE)
+                    $show_genres_filter = $this->config->item('show_genres_filter');
+                if ($show_genres_filter == 'yes') {
+                    ?>
+
+                    <br>
+                    <div class="content_full_size">
+                        <div class="category-title"><?php echo $category1; ?></div>
+                        <div class="category_items_container">{items_category_1}</div>
+                        <div class="clr"></div>
+                    </div>
+                    <div class="content_full_size">
+                        <div class="category-title"><?php echo $category2; ?></div>
+                        <div class="category_items_container">{items_category_2}</div>
+                        <div class="clr"></div>
+                    </div>
+                    <div class="content_full_size">
+                        <div class="category-title"><?php echo $category3; ?></div>
+                        <div class="category_items_container">{items_category_3}</div>
+                        <div class="clr"></div>
+                    </div>
+
+                <?php } ?>
+
+                <?php
+                if ($show_genres_filter == 'no') {
+                    ?>
+
+                    <div class="content_full_size">
+                        <br>
+                        <?php echo $items_category_1; ?>
+                        <div class="clr"></div>
+                    </div>
+
+                <?php } ?>
+
+                <div class="clr"></div>
+            </div>
+            <div class="clr"></div>
+        </div>
+        <!-- /content -->
+    </div>s
+
+</div>
+
+
 <!-- DC Camera Slider CSS -->
 <link rel="stylesheet" id="camera-css"  href="<?php echo asset_url(); ?>camera/css/camera.css" type="text/css" media="all">
 
@@ -14,23 +102,23 @@
             loader: 'none',
             time: 1500
         });
-        
-         $.ajax({
-                url: "<?php echo base_url() . 'index.php/live/epg_home_timeline'; ?>",
-                type: "POST",
-                data: "timezone=" + timezone_offset,
-                beforeSend: function () {
-                    $('#epg_preview_bg').html('');
-                    $('#epg_preview_bg').append("<div id='#epg_home_scroller'></div>");
-                    $('#epg_home_scroller').html('<div id="loadingIcon"></div>');
-                    $('#loadingIcon').css('margin-top', "0px");
-                },
-                success: function (data) {
-                    $('#epg_preview_bg').html(data);
-                    
-                }
-            });
-        
+
+        $.ajax({
+            url: "<?php echo base_url() . 'index.php/live/epg_home_timeline'; ?>",
+            type: "POST",
+            data: "timezone=" + timezone_offset,
+            beforeSend: function () {
+                $('#epg_preview_bg').html('');
+                $('#epg_preview_bg').append("<div id='#epg_home_scroller'></div>");
+                $('#epg_home_scroller').html('<div id="loadingIcon"></div>');
+                $('#loadingIcon').css('margin-top', "0px");
+            },
+            success: function (data) {
+                $('#epg_preview_bg').html(data);
+
+            }
+        });
+
 
 <?php
 //if (isset($epg)) {
@@ -38,7 +126,7 @@
 //}
 ?>
 
-         var interval;
+        var interval;
 
         setTimeout(set_interval, 3000);
 
@@ -73,8 +161,8 @@
 
         $(document).on('click', '.cameraContent', function () {
             if ($(this).children('.camera_caption').attr('target') && $(this).children('.camera_caption').attr('target') == '_blank') {
-            url = $(this).children('.camera_caption').attr('item-url');    
-            var prefix = 'http://';
+                url = $(this).children('.camera_caption').attr('item-url');
+                var prefix = 'http://';
                 if (url.substr(0, prefix.length) !== prefix)
                 {
                     url = prefix + url;
@@ -87,89 +175,3 @@
 
     });
 </script>
-<!--
-</div>
-</div>
---><div class="header_resize2">
-    <div class="clr"></div><!--
-<?php if (isset($slider)) { ?>
-
-         Slider Start 
--->        <div style="width:100%; margin:0 auto; position:relative;">
-            <div class="camera_wrap camera_azure_skin" id="camera_wrap_1"> 
-
-                <?php
-                for ($i = 0; $i < sizeof($slider); $i++) {
-
-                    $item_id_arr = explode("/", $slider[$i]->id);
-                    $item_id = $item_id_arr[sizeof($item_id_arr) - 1];
-                    $item_url = base_url() . 'index.php/vod_item/detail/id/' . $item_id;
-                    ?>
-
-                    <div  data-src="<?php echo $slider[$i]->image_url; ?>" item-url="<?php echo $item_url; ?>">>
-
-                        <div class="camera_caption" item-url="<?php echo $item_url; ?>"> </div>
-
-                    </div>
-
-    <?php } ?>
-            </div>
-        </div>
-        <div class="clr"></div>
-         <!--Slider End 
-
-<?php } ?>
---></div>
-<div class="clr"></div>
-</div>
-<div id="epg_preview_bg">
-    
-</div><!--
---><div class="clr"></div>
-<div class="resize"> 
-     <!--content--> 
-    <div class="content_centered" id="gallery">
-        <div class="content_resize"> 
-            <?php
-            $show_genres_filter = 'yes';
-            if ($this->config->item('show_genres_filter') !== FALSE)
-                $show_genres_filter = $this->config->item('show_genres_filter');
-            if ($show_genres_filter == 'yes') {
-                ?>
-
-                <br>
-                <div class="content_full_size">
-                    <div class="category-title"><?php echo $category1; ?></div>
-                    <div class="category_items_container">{items_category_1}</div>
-                    <div class="clr"></div>
-                </div>
-                <div class="content_full_size">
-                    <div class="category-title"><?php echo $category2; ?></div>
-                    <div class="category_items_container">{items_category_2}</div>
-                    <div class="clr"></div>
-                </div>
-                <div class="content_full_size">
-                    <div class="category-title"><?php echo $category3; ?></div>
-                    <div class="category_items_container">{items_category_3}</div>
-                    <div class="clr"></div>
-                </div>
-
-            <?php } ?>
-
-            <?php
-            if ($show_genres_filter == 'no') {
-                ?>
-
-                <div class="content_full_size">
-                    <br>
-    <?php echo $items_category_1; ?>
-                    <div class="clr"></div>
-                </div>
-
-<?php } ?>
-
-            <div class="clr"></div>
-        </div>
-        <div class="clr"></div>
-    </div>
-    <!-- /content -->
