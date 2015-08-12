@@ -1,4 +1,65 @@
-<div id="fb-root"></div>
+
+<div class="container">
+
+    <div class="jumbotron">
+        <div class="form_title">LOG IN</div>
+
+        <form method="post" id="loginform" style="width:300px;display:block;margin-left:auto;margin-right:auto;">
+            <ol>
+                <li> 
+                    <span id="info" class="form_info"></span>
+                </li>
+                <li class="buttons">
+                    <input type='image' id="send_activation_email_login_button" class="send" src="<?php echo asset_url(); ?>images/button_resend_activation_email.png"/>
+                    <div id="send_activation_email_preloader"></div>
+                    <div class="clr"></div>
+                </li>    
+                <li>
+                    <label for="email">Email</label><br>
+                    <input id="email" name="email" class="text"/>
+                </li>
+                <li>
+                    <label for="password">Password</label><br>
+                    <input id="password" name="password" class="text" type="password" />
+
+                    <span style="float: right;">
+                        Forgot your <a href="<?php echo base_url(); ?>index.php/account/forgot" style="color:rgb(127,0,191);">password</a>?
+                    </span>
+
+                </li>
+                <li>
+                    <input id="remember_credentials" name="remember_credentials" type="checkbox">
+                    <label for="remember_credentials" style="width: 200px;">Remember Email and password</label>
+
+                </li>
+                <li class="buttons">
+                    <button type="submit" id="btn_login" class="send">LOGIN</button>
+                    <div id="login_preloader"></div>
+                    <div class="clr"></div>
+                </li>
+
+                <li>
+
+                    <div class="or_separator">OR</div>
+
+                    <button id="signin_fb_btn"></button>
+                    <div id="fb_signin_preloader"></div>
+
+                </li>
+
+                <li>
+                    <span style="padding-left:40px;">
+                        Not registered yet?  <a href="<?php echo base_url(); ?>index.php/account/register_ssl" style="color:rgb(127,0,191);">Create your account</a>
+                    </span>
+                </li>
+
+            </ol>
+        </form>
+    </div>
+    <div id="fb-root"></div>
+</div>
+<!-- end container-->
+
 <script>
 
     $(document).ready(function () {
@@ -158,69 +219,3 @@
         TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1});
     }
 </script>
-
-</div>
-</div>
-<div class="header_resize2">
-    <div class="now_page_resize">
-        <div class="form_title">LOG IN</div>
-        <div class="clr"></div>
-    </div>
-    <div class="clr"></div>
-    <div style="width:100%;height:600px;margin: 0 auto;">
-        <form method="post" id="loginform" style="width:300px;display:block;margin-left:auto;margin-right:auto;">
-            <ol>
-                <li> 
-                    <span id="info" class="form_info"></span>
-                </li>
-                <li class="buttons">
-                    <input type='image' id="send_activation_email_login_button" class="send" src="<?php echo asset_url(); ?>images/button_resend_activation_email.png"/>
-                    <div id="send_activation_email_preloader"></div>
-                    <div class="clr"></div>
-                </li>    
-                <li>
-                    <label for="email">Email</label><br>
-                    <input id="email" name="email" class="text"/>
-                </li>
-                <li>
-                    <label for="password">Password</label><br>
-                    <input id="password" name="password" class="text" type="password" />
-
-                    <span style="float: right;">
-                        Forgot your <a href="<?php echo base_url(); ?>index.php/account/forgot" style="color:rgb(127,0,191);">password</a>?
-                    </span>
-
-                </li>
-                <li>
-                    <input id="remember_credentials" name="remember_credentials" type="checkbox">
-                    <label for="remember_credentials" style="width: 200px;">Remember Email and password</label>
-
-                </li>
-                <li class="buttons">
-                    <button type="submit" id="btn_login" class="send">LOGIN</button>
-                    <div id="login_preloader"></div>
-                    <div class="clr"></div>
-                </li>
-
-                <li>
-
-                    <div class="or_separator">OR</div>
-
-                    <button id="signin_fb_btn"></button>
-                    <div id="fb_signin_preloader"></div>
-
-                </li>
-
-                <li>
-                    <span style="padding-left:40px;">
-                        Not registered yet?  <a href="<?php echo base_url(); ?>index.php/account/register_ssl" style="color:rgb(127,0,191);">Create your account</a>
-                    </span>
-                </li>
-
-            </ol>
-        </form>
-
-    </div>
-    <div class="clr"></div>
-</div>
-<!-- /content -->

@@ -70,6 +70,7 @@
                                 });
                                 
                                 $('#btn_login').on('click', function (event) {
+                                    event.preventDefault();
                                     window.location.href = '<?php echo base_url(); ?>index.php/account/signin';
                                 });
                                 $('#editbox_search').keypress(function (e) {
@@ -184,7 +185,7 @@
                                     </div>
                                     <div id="navbar" class="navbar-collapse collapse">
                                         <ul class="nav navbar-nav">
-                                            <li><a href="#">HOME</a></li>
+                                            <li <?php echo ($section == "featured" ? "class='active'" : ""); ?>><a href="<?php echo base_url(); ?>">HOME</a></li>
 <!--                                            <li class="dropdown">
                                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Video on Demand <span class="caret"></span></a>
                                                 <ul class="dropdown-menu">
@@ -214,15 +215,13 @@
                                             }
                                             ?>
                                         </ul>
-                                        <form class="navbar-form navbar-right">
-                                            <input type="text" class="form-control" placeholder="Search...">
-                                        </form>
+                                        
                                     </div><!--/.nav-collapse -->
                                 </div>
                             </nav>
-                            <div class="index_page">
-                                <div class="body_pattern">
-                                    <!--<div class="container">-->
-                                    <div class="main">
+                          
+<!--                                <div class="body_pattern">
+                                    <div class="container">
+                                    <div class="main">-->
 
 
