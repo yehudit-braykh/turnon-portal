@@ -44,7 +44,6 @@
                 if ($show_genres_filter == 'yes') {
                     ?>
 
-                    <br>
                     <div class="content_full_size">
                         <div class="category-title"><?php echo $category1; ?></div>
                         <div class="category_items_container">{items_category_1}</div>
