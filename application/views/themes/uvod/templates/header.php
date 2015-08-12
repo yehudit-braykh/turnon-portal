@@ -194,8 +194,8 @@
                                             </li>-->
                                             <!--<li <?php echo ($section == "live" ? "class='active'" : ""); ?>><a href="<?php echo base_url(); ?>index.php/live/main">LIVE CHANNELS</a></li>-->
                                             <li><a href="#">EVENTS</a></li>
-                                            <li <?php echo ($section == "about" ? "class='active'" : ""); ?>><a href="#about">ABOUT US</a></li>
-                                            <li <?php echo ($section == "support" ? "class='active'" : ""); ?>><a href="#contact">SUPPORT</a></li>
+                                            <li <?php echo ($section == "about" ? "class='active'" : ""); ?>><a href="<?php echo base_url() . 'index.php/static_content/about_us'; ?>">ABOUT US</a></li>
+                                            <li <?php echo ($section == "support" ? "class='active'" : ""); ?>><a href="<?php echo base_url() . 'index.php/static_content/faqs'; ?>">SUPPORT</a></li>
 
                                         </ul>
 

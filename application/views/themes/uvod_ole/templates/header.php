@@ -64,14 +64,13 @@
                                 $('#brand_logo').on('click', function (event) {
                                     window.location.href = '<?php echo base_url(); ?>';
                                 });
-                                $('#top_menu_vod').on('click', function (event) {
-                                    window.location.href = '<?php echo base_url(); ?>';
-                                });
-                                $('#top_menu_live').on('click', function (event) {
-                                    window.location.href = '<?php echo base_url(); ?>index.php/live/main';
-                                });
+                               
                                 $('#top_menu_account').on('click', function (event) {
                                     window.location.href = '<?php echo base_url(); ?>index.php/account/my_account';
+                                });
+                                
+                                $('#btn_login').on('click', function (event) {
+                                    window.location.href = '<?php echo base_url(); ?>index.php/account/signin';
                                 });
                                 $('#editbox_search').keypress(function (e) {
                                     if (e.which == 13) {
@@ -193,9 +192,9 @@
                                                 </ul>
                                             </li>-->
                                             <!--<li <?php echo ($section == "live" ? "class='active'" : ""); ?>><a href="<?php echo base_url(); ?>index.php/live/main">LIVE CHANNELS</a></li>-->
-                                            <li><a href="#">EVENTS</a></li>
-                                            <li <?php echo ($section == "about" ? "class='active'" : ""); ?>><a href="#about">ABOUT US</a></li>
-                                            <li <?php echo ($section == "support" ? "class='active'" : ""); ?>><a href="#contact">SUPPORT</a></li>
+                                            <li <?php echo ($section == "events" ? "class='active'" : ""); ?>><a href="<?php echo base_url(); ?>index.php/live_events/main">EVENTS</a></li>
+                                            <li <?php echo ($section == "about_us" ? "class='active'" : ""); ?>><a href="<?php echo base_url() . 'index.php/static_content/about_us'; ?>">ABOUT US</a></li>
+                                            <li <?php echo ($section == "faqs" ? "class='active'" : ""); ?>><a href="<?php echo base_url() . 'index.php/static_content/faqs'; ?>">SUPPORT</a></li>
 
                                         </ul>
 
