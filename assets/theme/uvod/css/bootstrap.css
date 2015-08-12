@@ -4,6 +4,13 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+@font-face {
+  font-family: 'Lato';
+
+  src: url('../fonts/Lato-Regular.ttf');
+
+}
+
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
