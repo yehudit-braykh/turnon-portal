@@ -129,9 +129,9 @@ class Live extends UVod_Controller {
     public function check_commerce_status() {
 
 
-        if (isset($_SESSION['user_data']->token) && $_SESSION['user_data']->token != '') {
+        if (isset($_SESSION['uvod_user_data']->token) && $_SESSION['uvod_user_data']->token != '') {
 
-            $subscription = $this->account_model->get_contract($_SESSION['user_data']->id);
+            $subscription = $this->account_model->get_contract($_SESSION['uvod_user_data']->id);
             if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
 
                 $return = 'enabled';

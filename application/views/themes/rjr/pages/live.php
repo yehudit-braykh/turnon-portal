@@ -182,7 +182,7 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
             $.ajax({
                 url: "<?php echo base_url() . 'index.php/live/epg_timeline'; ?>",
                 type: "POST",
-                data: "channel=" + chann + '&timezone=' + timezone_offset + '&country='+country,
+                data: "channel=" + chann + '&timezone=' + timezone_offset + '&country=' + country,
                 beforeSend: function () {
                     $('#epg_container').html('');
                     $('#epg_container').append("<div id='epg_scroller'></div>");
@@ -338,8 +338,13 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
 
     });
 
+    $(document).on('click','#signin_fb_btn', function (event) {
+        event.preventDefault();
+        signInWithFacebook();
+    });
+
     $(document).on('submit', '#register_form', function () {
-        window.location = base_url + 'index.php/account/register';
+        window.location = base_url + 'index.php/account/register_ssl';
         return false;
     });
 
@@ -382,6 +387,74 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
         })
     }, 120000);
 
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '<?php echo FACEBOOK_APP_ID; ?>',
+            cookie: true, // This is important, it's not enabled by default
+            version: 'v2.2'
+        });
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    function signInWithFacebook() {
+
+        FB.login(function (response) {
+
+            if (response.authResponse) {
+                TweenLite.fromTo("#info", 1, {alpha: 1}, {alpha: 0});
+                checkLoginState();
+            } else {
+                show_info('You must accept the permissions to Login with Facebook');
+            }
+        },
+                {
+                    scope: 'email,public_profile'
+                });
+        return false;
+    }
+
+    function checkLoginState() {
+        FB.getLoginStatus(function (response) {
+            statusChangeCallback(response);
+        });
+    }
+
+    function statusChangeCallback(response) {
+
+        if (response.status === 'connected') {
+            $('#send_activation_email_login_button').hide();
+            $('#fb_signin_preloader').html('Sending data...');
+            $('#fb_signin_preloader').css('display', 'block');
+            TweenLite.fromTo("#signup_fb_btn", 1, {alpha: 1}, {alpha: 0});
+
+            $.ajax({
+                url: "<?php echo base_url(); ?>index.php/account/login_by_facebook",
+                type: 'POST',
+                dataType: 'json'
+            }).done(function (data) {
+                if (data.status == 'ok') {
+                   location.reload();
+                } else {
+                    $('#fb_signin_preloader').hide();
+                    show_info(data.message);
+
+                }
+            });
+        } else {
+            signInWithFacebook();
+        }
+    }
+
 
 </script>
 </div>
@@ -401,15 +474,15 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
                 <div id="channels_button_up"></div>
                 <div class="live_channels_container">
                     <div id="live_channels_scroller">
-<?php
-if ($channels && isset($channels->entries)) {
-    for ($i = 0; $i < sizeof($channels->entries); $i++) {
-        $channel_image = "";
-        if (isset($channels->entries[$i]->media)) {
+                        <?php
+                        if ($channels && isset($channels->entries)) {
+                            for ($i = 0; $i < sizeof($channels->entries); $i++) {
+                                $channel_image = "";
+                                if (isset($channels->entries[$i]->media)) {
 
-            $channel_image = getEntryThumbnail($channels->entries[$i]->media, "Channel Logo Small");
-        }
-        ?>
+                                    $channel_image = getEntryThumbnail($channels->entries[$i]->media, "Channel Logo Small");
+                                }
+                                ?>
                                 <div class="live_channel_container" station="<?php echo $channels->entries[$i]->id; ?>" id="channel_<?php echo $i; ?>" <?php echo 'style="background: url(' . $channel_image . ') center center no-repeat; background-size: 126px 68px;' . ($i == 0 ? 'box-shadow: 2px 0px 20px rgba(0,0,255,0.8); border: 1px solid rgba(0,0,255,0.8);"' : '"'); ?>></div>
                                 <?php
                             }
@@ -483,6 +556,9 @@ if ($channels && isset($channels->entries)) {
 
                 <button class="dialog_button" id="singin_button">Sign In</button>
                 <div id="popup_error_outside"></div>
+
+                <button id="signin_fb_btn" style="margin: 10px 0px 15px;"></button>
+                <div id="fb_signin_preloader"></div>
 
             </form>
 

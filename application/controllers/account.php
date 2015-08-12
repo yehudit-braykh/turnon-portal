@@ -201,13 +201,13 @@ class Account extends UVod_Controller {
 
     public function my_account() {
 
-        if (!isset($_SESSION['user_data']) || !isset($_SESSION['user_data']->token)) {
+        if (!isset($_SESSION['uvod_user_data']) || !isset($_SESSION['uvod_user_data']->token)) {
             redirect(base_url() . 'index.php/account/signin');
         }
 
         $data = array();
-        $user_profile = $this->account_model->get_profile($_SESSION['user_data']->token);
-        $subscription = $this->account_model->get_contract($_SESSION['user_data']->id);
+        $user_profile = $this->account_model->get_profile($_SESSION['uvod_user_data']->token);
+        $subscription = $this->account_model->get_contract($_SESSION['uvod_user_data']->id);
 
         if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
             $data['subscription_data'] = $subscription->content->entries;
@@ -215,7 +215,7 @@ class Account extends UVod_Controller {
             if ($user_profile && $user_profile->content) {
                 if (isset($user_profile->content[0]->{'pluserprofile$publicDataMap'}->{'customer_id'})) {
                     $customer_id = $user_profile->content[0]->{'pluserprofile$publicDataMap'}->{'customer_id'};
-                    $_SESSION['user_data']->braintree_id = $customer_id;
+                    $_SESSION['uvod_user_data']->braintree_id = $customer_id;
                     $customer_data = $this->account_model->get_billing_information($customer_id);
 
                     if (isset($customer_data) && $customer_data->error == false) {
@@ -260,20 +260,20 @@ class Account extends UVod_Controller {
 
     public function my_account_save() {
 
-        $save_profile = $this->account_model->save_profile($_SESSION['user_data']->token, $_SESSION['user_data']->id, $_POST['first_name'], $_POST['last_name'], $_POST['city'], $_POST['country'], $_POST['postal_code']);
+        $save_profile = $this->account_model->save_profile($_SESSION['uvod_user_data']->token, $_SESSION['uvod_user_data']->id, $_POST['first_name'], $_POST['last_name'], $_POST['city'], $_POST['country'], $_POST['postal_code']);
         echo json_encode($save_profile);
     }
 
     public function logout() {
 
-        if (isset($_SESSION['user_data'])) {
+        if (isset($_SESSION['uvod_user_data'])) {
 
-            $logout = $this->account_model->logout($_SESSION['user_data']->id);
+            $logout = $this->account_model->logout($_SESSION['uvod_user_data']->id);
 
             if (isset($logout->error) && !$logout->error) {
 
-                $_SESSION['user_data'] = null;
-                unset($_SESSION['user_data']);
+                $_SESSION['uvod_user_data'] = null;
+                unset($_SESSION['uvod_user_data']);
             }
         }
 
@@ -287,7 +287,7 @@ class Account extends UVod_Controller {
             $login = $this->account_model->login($_POST['email'], $_POST['password']);
 
             if (isset($login) && !$login->error) {
-                $_SESSION['user_data'] = $login->content;
+                $_SESSION['uvod_user_data'] = $login->content;
 
                 if (isset($_POST['remember_credentials'])) {
 
@@ -344,7 +344,7 @@ class Account extends UVod_Controller {
         }
         // saves registration information in session
         if ($ret->message == "ok") {
-            $ret = $this->account_model->change_password($_SESSION['user_data']->username, $_POST['current_password'], $_POST['new_password']);
+            $ret = $this->account_model->change_password($_SESSION['uvod_user_data']->username, $_POST['current_password'], $_POST['new_password']);
         }
 
         echo json_encode($ret);
@@ -397,8 +397,8 @@ class Account extends UVod_Controller {
 
     public function subscribe_ssl() {
 
-        if (isset($_SESSION['user_data'])) {
-            $token = $_SESSION['user_data']->token;
+        if (isset($_SESSION['uvod_user_data'])) {
+            $token = $_SESSION['uvod_user_data']->token;
         } else if (isset($_SESSION['registration_data']->user_token)) {
             $token = $_SESSION['registration_data']->user_token;
         }
@@ -409,12 +409,12 @@ class Account extends UVod_Controller {
             $nonce = '';
         }
 
-        $first_name = $_SESSION['user_data']->firstName;
-        $last_name = $_SESSION['user_data']->lastName;
-        $email = $_SESSION['user_data']->email;
+        $first_name = $_SESSION['uvod_user_data']->firstName;
+        $last_name = $_SESSION['uvod_user_data']->lastName;
+        $email = $_SESSION['uvod_user_data']->email;
         $city = '';
         $postal_code = '';
-        $country = $_SESSION['user_data']->countryCode;
+        $country = $_SESSION['uvod_user_data']->countryCode;
         $pi_month = $_POST['pi_month'];
         $pi_year = $_POST['pi_year'];
         $pi_type = $_POST['pi_type'];
@@ -461,43 +461,14 @@ class Account extends UVod_Controller {
 
     public function update_billing_information() {
 
-        $customer_id = $_SESSION['user_data']->braintree_id;
+        $customer_id = $_SESSION['uvod_user_data']->braintree_id;
         $nonce = $_POST['nonce'];
         $ret = $this->account_model->update_billing_information($customer_id, $nonce);
 
         echo json_encode($ret);
     }
 
-    public function check_status() {
-
-        $status = true;
-
-        if (isset($_SESSION['user_data']->fb_id)) {
-            //CHECK IF FACEBOOK SESSION IS ACTIVE
-            $fb_session_status = $this->social_media_model->get_fb_profile();
-            if ($fb_session_status->status !== 'ok') {
-                $status = false;
-            }
-        }
-        if ($status) {
-
-            if (isset($_SESSION['user_data'])) {
-                $id = $this->account_model->get_self_id($_SESSION['user_data']->token);
-                if (isset($id->error) && $id->error) {
-                    $status = false;
-                }
-            } 
-        } 
-
-        if ($status) {
-            echo json_encode(array('status' => 'ok'));
-        } else {
-            $_SESSION['user_data'] = null;
-            unset($_SESSION['user_data']);
-            echo json_encode(array('status' => 'error'));
-        }
-
-    }
+    
 
     public function send_activation_email_login() {
 
@@ -534,6 +505,49 @@ class Account extends UVod_Controller {
             $return = array('status' => 'session_error');
         }
         echo json_encode($return);
+    }
+    
+    
+    public function check_status() {
+
+        $status = true;
+        
+//        if(isset(   $_SESSION['copy_data'] )){
+//            error_log('esta seteada la copy: '.json_encode($_SESSION));
+//        }else{
+//            error_log('no esta seteada la copy');
+//        }
+     // error_log('la session: '.json_encode($_SESSION['uvod_user_data']));
+        if (isset($_SESSION['uvod_user_data']->fb_id)) {
+      
+            //CHECK IF FACEBOOK SESSION IS ACTIVE
+            $fb_session_status = $this->social_media_model->get_fb_profile();
+            error_log('fb session: '.json_encode($fb_session_status));
+            if ($fb_session_status->status !== 'ok') {
+                $status = false;
+            }
+        }else{
+            error_log('no esta seteado');
+        }
+        if ($status) {
+
+            if (isset($_SESSION['uvod_user_data'])) {
+                error_log('esta seteado el user data');
+                $id = $this->account_model->get_self_id($_SESSION['uvod_user_data']->token);
+                if (isset($id->error) && $id->error) {
+                    $status = false;
+                }
+            } 
+        } 
+
+        if ($status) {
+            echo json_encode(array('status' => 'ok'));
+        } else {
+            $_SESSION['uvod_user_data'] = null;
+            unset($_SESSION['uvod_user_data']);
+            echo json_encode(array('status' => 'error'));
+        }
+
     }
 
     public function register_by_facebook() {
@@ -622,11 +636,12 @@ class Account extends UVod_Controller {
             $password = $profile->content->id;
 
             $login = $this->account_model->login($email, $password);
-
+            error_log('login: '.json_encode($login));
             if (isset($login) && !$login->error) {
-                $_SESSION['user_data'] = $login->content;
-                $_SESSION['user_data']->fb_id = $profile->content->id;
-                ;
+                error_log('entro a guardar la session');
+                $_SESSION['uvod_user_data'] = $login->content;
+                $_SESSION['uvod_user_data']->fb_id = $profile->content->id;
+               // $_SESSION['copy_data'] = $_SESSION['uvod_user_data'];
                 $ret->status = "ok";
             } else {
                 $ret->status = "error";

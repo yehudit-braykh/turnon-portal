@@ -256,11 +256,11 @@ for ($i = 0; $i < sizeof($vod_categories); $i++) {
                                                             </div>
                                                             <div id="top_menu_account" <?php echo ($section == "account" ? 'style="color:' . $highlight_color . ';"' : ""); ?>>
                                                                 <?php
-                                                                if (!isset($_SESSION['user_data']) || !isset($_SESSION['user_data']->token)) {
+                                                                if (!isset($_SESSION['uvod_user_data']) || !isset($_SESSION['uvod_user_data']->token)) {
                                                                     echo "<div style='padding-top:12px;'>SIGN IN</div>";
                                                                 } else {
                                                                     $logout = base_url() . 'index.php/account/logout';
-                                                                    echo "<div class='account_name'><div class='user_name'>" . $_SESSION['user_data']->firstName . "</div><div class='user-icon'></div></div><div class='link_logout'><div class='lock-icon'></div><a href='" . $logout . "'>Logout</a></div><div class='my_account'>My Account | </div>";
+                                                                    echo "<div class='account_name'><div class='user_name'>" . $_SESSION['uvod_user_data']->firstName . "</div><div class='user-icon'></div></div><div class='link_logout'><div class='lock-icon'></div><a href='" . $logout . "'>Logout</a></div><div class='my_account'>My Account | </div>";
                                                                 }
                                                                 ?>                
                                                             </div>

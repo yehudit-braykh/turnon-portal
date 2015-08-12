@@ -71,8 +71,8 @@ class UVod_Controller extends CI_Controller {
 
         $this->load->vars($data);
 
-        if (isset($_SESSION['user_data']) && sizeof($_SESSION['user_data']) > 0) {
-            $this->check_valid_session($_SESSION['user_data']);
+        if (isset($_SESSION['uvod_user_data']) && sizeof($_SESSION['uvod_user_data']) > 0) {
+            $this->check_valid_session($_SESSION['uvod_user_data']);
         }
     }
 
@@ -80,7 +80,7 @@ class UVod_Controller extends CI_Controller {
 
         $status = true;
 
-        if (isset($_SESSION['user_data']->fb_id)) {
+        if (isset($_SESSION['uvod_user_data']->fb_id)) {
             //CHECK IF FACEBOOK SESSION IS ACTIVE
             $fb_session_status = $this->social_media_model->get_fb_profile();
             if ($fb_session_status->status !== 'ok') {
@@ -91,12 +91,12 @@ class UVod_Controller extends CI_Controller {
             $id = $this->account_model->get_self_id($data->token);
             if (isset($id->error) && $id->error) {
 
-                $_SESSION['user_data'] = null;
-                unset($_SESSION['user_data']);
+                $_SESSION['uvod_user_data'] = null;
+                unset($_SESSION['uvod_user_data']);
             }
         } else {
-            $_SESSION['user_data'] = null;
-            unset($_SESSION['user_data']);
+            $_SESSION['uvod_user_data'] = null;
+            unset($_SESSION['uvod_user_data']);
         }
     }
 }

@@ -161,7 +161,7 @@
                 <div id="top_menu_live"    <?php echo ($section == "live" ? 'style="color:'.$highlight_color.';"' : ""); ?>>LIVE TV</div>
                 <div id="top_menu_account" <?php echo ($section == "account" ? 'style="color:'.$highlight_color.';"' : ""); ?>>
                   <?php
-                    if (!isset($_SESSION['user_data']) || !isset($_SESSION['user_data']->token) ) {
+                    if (!isset($_SESSION['uvod_user_data']) || !isset($_SESSION['uvod_user_data']->token) ) {
                       echo "SIGN IN";
                     } else {
                       echo "ACCOUNT";  
