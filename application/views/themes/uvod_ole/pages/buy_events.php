@@ -1,9 +1,13 @@
-<div class="container">
-    <div class="jumbotron">
-        <div class="registration_container" style="padding-left:20px;">
+<link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/temp.css" />
 
-            <table id="products_table" style="height: 500px;">                       
+<div class="container">
+
+       
+
+        <table id="products_table" class="col-md-12" style="height: 500px;">                       
+                <tr><td colspan="3"><h3>Buy Tickets</h3></td></tr>
                 <?php
+                
                 for ($i = 0; $i < sizeof($events->content); $i++) {
                     if (isset($subscription_data) && sizeof($subscription_data) > 0) {
                         for ($h = 0; $h < sizeof($subscription_data); $h++) {
@@ -20,7 +24,7 @@
                     }
                     ?>
                     <tr id="<?php echo $events->content[$i]->id ?>" class="product_id">
-                        <td class="product_image">
+                        <td class="product_image col-md-4">
                             <img src="<?php echo $events->content[$i]->image; ?>">
                         </td>
                         <td class="product_content">
@@ -38,11 +42,10 @@
                     <?php
                 }
                 ?>
-                <tr style="height: 100%;"><td></td><td></td><td></td></tr>
+               
             </table>
 
-        </div>
-    </div>
+
 </div>
 
 
@@ -160,12 +163,12 @@
             $('#product_id_form').val($(this).parents('td').parents('.product_id').attr('id'));
             $('#popup_buy_product').bPopup();
             $.ajax({
-                url: "<?php echo base_url(); ?>index.php/account/check_session_status",
+                url: "<?php echo base_url(); ?>index.php/account/check_status",
                 type: 'POST',
                 dataType: 'json',
             }).done(function (data) {
 
-                if (data.status === 'logout') {
+                if (data.status === 'error') {
                     window.location.href = '<?php echo base_url(); ?>index.php/account/signin';
                 } else {
                     $('#check_session_preloader').hide();
@@ -218,7 +221,7 @@
                 TweenLite.to("#buy_event_info", 1, {delay: 6, alpha: 0});
                 pi_type = GetCardType($('#card_number').val());
                 $.ajax({
-                    url: "<?php echo base_url(); ?>index.php/event/subscribe",
+                    url: "<?php echo base_url(); ?>index.php/live_events/subscribe",
                     type: 'POST',
                     dataType: 'json',
                     data: {

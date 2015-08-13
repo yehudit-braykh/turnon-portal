@@ -1,18 +1,83 @@
-           <link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/temp.css" />
-
+<link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/temp.css" />
 <?php
 if (isset($events->content) && sizeof($events->content) > 0) {
     $data = $events->content[0];
+    $event_time = ($data->event_date - (time() * 1000)) / 1000;
     ?>
-    <div class="jumbotron">
+    <script>
+
+        $(document).ready(function () {
+            var clock = $('#countdown').FlipClock(<?php echo $event_time; ?>, {
+                clockFace: 'DailyCounter',
+                countdown: true
+            });
+
+            $("#btn_buy_tickets").click(function () {
+                $('#popup_login').bPopup();
+            });
+
+        });
+
+    </script>
+
+
+
+    <div class="container">
         <div id="event-left-column" class="col-md-4">
-            <div class="event-detail-img"></div>
+
+            <div class="event-detail-img">
+                <?php if ($data->live_now) {
+                    ?>
+                    <div class="col-md-12" id="live_now_advise">LIVE NOW</div>
+                    <?php
+                }
+                ?>
+                <img src="<?php echo $data->image; ?>">
+            </div>
         </div>
         <div id="event-right-column" class="col-md-8">
-            <div class="event-detail-title"></div>
-            <div class="event-detail-subtitle"></div>
-            <div class="event-detail-description"></div>
-            <div class="event-detail-result"></div>
+            <?php if (!$data->live_now) {
+                ?>
+                <div class="live_events_begins">BEGINNING IN</div>
+                <div class="live_events_countdown">
+                    <div id="countdown"></div>
+                </div>
+            <?php }
+            ?>
+
+            <div class="event-detail-title">
+                <span><?php echo $data->name; ?></span>
+            </div>
+            <div class="event-detail-subtitle">
+                <span><?php echo date('M,d H:i', ($data->event_date / 1000)) . 'hs. - $' . $data->price; ?></span>
+            </div>
+            <div class="event-detail-description">
+                <span><?php echo $data->description; ?></span>
+            </div>
+            <div class="event-detail-result">
+                <?php
+                if (isset($data->already_purchased) && $data->already_purchased) {
+                    if ($data->live_now) {
+                        ?>
+                        <span class='already_purchased_msg'>YOUR TICKET IS READY</span>
+                        <br>
+                        <a href="#" onclick="button_play_clickHandler()" class="btn btn-primary btn-lg active" role="button">Watch now!</a>
+                        <?php
+                    } else {
+                        ?>
+                        <span class='already_purchased_msg'>ALREADY PURCHASED!</span>
+                        <br>
+                        <span class='already_purchased_sub_msg'>Your ticket is ready</span>
+                        <?php
+                    }
+                } else {
+                    ?>
+                    <a href="<?php echo base_url(); ?>index.php/live_events/buy_events" class="btn btn-primary btn-lg active" role="button">Buy your ticket now</a>
+                    <?php
+                }
+                ?>
+
+            </div>
         </div>
     </div>
     <?php

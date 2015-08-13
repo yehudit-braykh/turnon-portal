@@ -505,20 +505,7 @@ class Account extends UVod_Controller {
         echo json_encode($return);
     }
 
-    public function buy_events() {
 
-        $data = array();
-        $orders = $this->event_model->get_orders($_SESSION['uvod_user_data']->id);
-        if (isset($orders->content->entries) && sizeof($orders->content->entries) > 0) {
-            $data['subscription_data'] = $orders->content->entries;
-        }
-
-        $data['events'] = $this->event_model->get_events();
-
-        $this->parser->parse(views_url() . 'templates/header', $data);
-        $this->parser->parse(views_url() . 'pages/buy_events', $data);
-        $this->parser->parse(views_url() . 'templates/footer', $data);
-    }
 
     public function check_status() {
 
