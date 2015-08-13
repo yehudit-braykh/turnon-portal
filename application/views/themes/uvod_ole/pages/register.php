@@ -1,7 +1,7 @@
 <div id="fb-root"></div>
 <script>
 
-    _gaq.push(['_trackEvent', 'Registration', 'Login Information']);
+    //_gaq.push(['_trackEvent', 'Registration', 'Login Information']);
     country_code = '';
 
     $(document).ready(function () {
@@ -42,6 +42,7 @@
 
                 }
             });
+
         });
 
         $('#signup_fb_btn').on('click', function () {
@@ -148,35 +149,36 @@
 <div class="container">
    <div class="jumbotron">
 
-        <div class="registration_title">REGISTER</div>
-        <div class="registration_subtitle">Enter your login information</div>
+        <div class="registration_title">Create your account</div>
 
         <div class="registration_container">
 
             <form method="post" id="registerform">
                 <ol>
-                    <li>
-                        <label for="first_name">Full Name*</label>
-                        <input id="full_name" name="full_name" class="text"/>
-                    </li>
-                    <li>
-                        <label for="email">Email*</label>
-                        <input id="email" name="email" class="text" />
-                    </li>
                     <li> 
-                        <div class="form_notes">You will use this email address to login.</div>
-                    </li>
-                    <li>
-                        <label for="password">Password*</label>
-                        <input id="password" name="password" class="text" type="password" />
-                    </li>
-                    <li> 
-                        <div class="form_notes">Password should have <br class="rwd-break"> between 8 and 16 characters.</div>
+                        <div id="info" class="form_info">&nbsp;</div>
                     </li>
 
-                    <li> 
-                        <p id="info" class="form_info">&nbsp;</p>
+                    <li>
+
+                        <input id="full_name" name="full_name" placeholder="Full Name" class="text"/>
                     </li>
+                    <li>
+                        
+                        <input id="email" name="email" placeholder="Email address" class="text" />
+                    </li>
+                    <li> 
+                        
+                    </li>
+                    <li>
+                        
+                        <input id="password" name="password" placeholder="Password" class="text" type="password" />
+                    </li>
+                    <li> 
+                        
+                    </li>
+
+                
                     <li class="buttons">
                         <button id="btn_sign_up" class="send common_btn">REGISTER</button>
                         <div id="registration_preloader"></div>
@@ -185,6 +187,7 @@
                 </ol>
             </form>
             <div id="fb_container">
+                
                 <div id="fb_registration_preloader"></div>
                 <button id="signup_fb_btn"></button>
 

@@ -78,21 +78,20 @@
     });
 </script>
 
-</div>
-</div>
 
 <!-- content -->
-<div class="content_centered">
-    <div class="registration_content">
+<div class="container">
+<div class="jumbotron">
+   
 
-        <div class="registration_title">WANT TO BECOME A SUSCRIBER?</div>
-        <div class="registration_subtitle">Enter your payment information</div>
+        <div class="buytickets_title">Become a subscriber</div>
+        
 
         <div class="registration_container">
 
-            <div class="registration_cvv_info">
-                <img style="width:175px;height:116px;" src="<?php echo asset_url(); ?>images/cvvnumber.png" />
-            </div>
+            
+
+
 
             <div class="registration_pricing">
                 <div class="dc_pricingtable04">
@@ -127,30 +126,27 @@
             </div>
 
             <form method="post" id="registerform">
+
+                <div class="registration_cvv_info">
+                <img style="width:175px;height:116px;" src="<?php echo asset_url(); ?>images/cvvnumber.png" />
+            </div>
                 <ol>
                     <li>
-                        <label for="cardholder_name">Name on Card*</label>
-                        <input id="cardholder_name" class="text" />
+                        
+                        <input id="cardholder_name" placeholder="Name on card" class="text" />
                     </li>
-                    <li> 
-                        <div class="form_notes">Enter your name exactly as it appears on your credit card.</div>
-                    </li>        
+                         
                     <li>
-                        <label for="card_number">Card Number*</label>
-                        <input id="card_number" class="text" style="width:150px;" />
+                        
+                        <input id="card_number" placeholder="Credit card number" class="text" />
                     </li>
-                    <li> 
-                        <div class="form_notes">Enter your credit card number without spaces.</div>
-                    </li>        
+                          
                     <li>
-                        <label for="security_code">Security Code*</label>
-                        <input id="security_code" class="text" type="password" style="width:70px;" />
+                        <input id="security_code" placeholder="Security code" class="text" type="password" />
                     </li>
-                    <li> 
-                        <div class="form_notes">Enter CVV code.</div>
-                    </li>        
+                          
                     <li>
-                        <label for="expiration_month">Month*</label>
+                        <label for="expiration_month">Month:</label>
                         <span class='css-select-moz'>
                             <select id="expiration_month" class="text" style="width:70px;">
                                 <option id="01">01</option>
@@ -168,11 +164,9 @@
                             </select>
                         </span>
                     </li>
-                    <li> 
-                        <div class="form_notes">Select the expiration month.</div>
-                    </li>        
+                         
                     <li>
-                        <label for="expiration_year">Year*</label>
+                        <label id="expiration_year" for="expiration_year">Year:</label>
                         <span class='css-select-moz'>
                             <select id="expiration_year" class="text" style="width:70px;">
                                 <option id="2014">2014</option>
@@ -190,20 +184,26 @@
                             </select>
                         </span>
                     </li>
-                    <li> 
-                        <div class="form_notes">Select the expiration year.</div>
-                    </li>                
+                                  
                     <li> 
                         <p id="info" class="form_info">&nbsp;</p>
                     </li>
                     <li class="buttons">
-                        <input type="image" id="btn_next" src="<?php echo asset_url(); ?>images/button_next.png" class="send" />
-                        <input type="image" id="btn_skip" src="<?php echo asset_url(); ?>images/button_skip.png" class="send" style="margin-left:10px;" />
+                        <button type="submit" id="btn_next" class="send">CONFIRM PAYMENT</button>
+                    </li>
+                    <li>
+                        <hr id="line_payment">
+                    </li>
+                    <li class="buttons">
+
+                        <button id="btn_skip" type="button" class="btn btn-default">Skip and continue registration</button>
+
                         <div class="clr"></div>
                     </li>
                 </ol>
             </form>              
-        </div>
+   
+    </div>
     </div>
 </div>
 <!-- /content -->
