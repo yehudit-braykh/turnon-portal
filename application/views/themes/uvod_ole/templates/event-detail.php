@@ -25,6 +25,7 @@ if (isset($events->content) && sizeof($events->content) > 0) {
                     $('#player_close').css({display: "block"});
                     $('.carousel-container').css({display: "none"});
                     $('.event-detail-result').css({display: "none"});
+                    $('.footer').css({display: "none"});
     <?php
     if (isset($events->content) && sizeof($events->content) > 0) {
         $data = $events->content[0];
@@ -55,6 +56,7 @@ if (isset($events->content) && sizeof($events->content) > 0) {
                     $('#player_close').css({display: "none"});
                     $('.carousel-container').css({display: "block"});
                     $('.event-detail-result').css({display: "block"});
+                    $('.footer').css({display: "block"});
 
 
                 }});
