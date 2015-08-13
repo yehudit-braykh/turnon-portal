@@ -505,8 +505,6 @@ class Account extends UVod_Controller {
         echo json_encode($return);
     }
 
-
-
     public function check_status() {
 
         $status = true;
@@ -612,6 +610,9 @@ class Account extends UVod_Controller {
                         $_SESSION['registration_data']->method = 'fb';
 
                         $this->send_welcome_mail($first_name, $last_name, $email);
+                    } else {
+                        $ret->message = $current_user->message;
+                        $ret->status = "error";
                     }
                 }
             }
@@ -649,7 +650,7 @@ class Account extends UVod_Controller {
                     if (!isset($profile->content[0]->{'pluserprofile$publicDataMap'}->fb_id)) {
 
                         $ret->message = "The email $email is already registered with email and password.<br> Login using your credentials.";
-                    }else{
+                    } else {
                         $ret->message = $login->message;
                     }
                 } else {
