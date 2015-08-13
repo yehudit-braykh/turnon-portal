@@ -212,7 +212,7 @@
                                             <?php
                                             } else {
                                                 $logout = base_url() . 'index.php/account/logout';
-                                                echo "<div><div class='account_name'><div class='user_name'>" . $_SESSION['uvod_user_data']->firstName . "</div><div class='user-icon'></div></div>";
+                                                echo "<div><div class='account_name'><div class='user_name'>" . $_SESSION['uvod_user_data']->firstName . "</div><div class='user-icon'></div></div><div class='link_logout'><div class='lock-icon'></div><a href='" . $logout . "'>Logout</a></div></div>";
      
                                             }
                                             ?>

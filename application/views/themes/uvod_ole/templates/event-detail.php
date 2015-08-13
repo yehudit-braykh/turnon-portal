@@ -49,7 +49,7 @@ if (isset($events->content) && sizeof($events->content) > 0) {
                 <span><?php echo $data->name; ?></span>
             </div>
             <div class="event-detail-subtitle">
-                <span><?php echo date('M,d H:i', ($data->event_date / 1000)) . 'hs. - $' . $data->price; ?></span>
+                <span><?php echo date('M,d  H:i', ($data->event_date / 1000)) . ' hs. - $' . $data->price; ?></span>
             </div>
             <div class="event-detail-description">
                 <span><?php echo $data->description; ?></span>
