@@ -192,7 +192,7 @@
                     <div id="fb_registration_preloader"></div>
                     <button id="signup_fb_btn"></button>
 
-                    <p id="fb_info" class="form_info">&nbsp;</p>
+                    <div id="fb_info" class="form_info">&nbsp;</div>
                 </div>
             </form>
 

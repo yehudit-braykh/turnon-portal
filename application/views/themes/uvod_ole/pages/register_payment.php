@@ -1,53 +1,53 @@
 <script type="text/javascript">
-$(function () {
+    $(function () {
 
         $('#btn_skip').on('click', function (event) {
             event.preventDefault();
             window.location.href = "<?php echo base_url(); ?>index.php/account/register_complete";
         });
-        
-        function show_info () {
+
+        function show_info() {
             TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-                            TweenLite.to("#info", 1, {delay: 6, alpha: 0});
-                        }});
+                    TweenLite.to("#info", 1, {delay: 6, alpha: 0});
+                }});
         }
-        
+
         $('#btn_next').on('click', function (event) {
             $(this).hide();
             if (!($("#accept_terms_and_conditions").prop("checked"))) {
                 show_info();
-                $("#info").html("* You must accept terms and conditions before click next button" );
+                $("#info").html("* You must accept terms and conditions before click next button");
                 $('#btn_next').show();
                 return false;
-            }  
-            
+            }
+
             var cardholder_name = $("#cardholder_name").val();
             var valid_cardholder_name = /^[A-Za-z\s]+$/.test(cardholder_name);
             if (!valid_cardholder_name) {
                 show_info();
-                $("#info").html("* Name on card only accepts letters and spaces" );
+                $("#info").html("* Name on card only accepts letters and spaces");
                 $('#btn_next').show();
                 return false;
             }
-            
+
             var card_number = $("#card_number").val();
             var valid_card_number = /^[0-9]+$/.test(card_number);
             if (!valid_card_number) {
                 show_info();
-                $("#info").html("* Card number only accepts numbers" );
+                $("#info").html("* Card number only accepts numbers");
                 $('#btn_next').show();
                 return false;
             }
-            
+
             var security_code = $("#security_code").val();
             var valid_security_code = /^[0-9]+$/.test(security_code);
             if (!valid_security_code) {
                 show_info();
-                $("#info").html("* Security code only accepts numbers" );
+                $("#info").html("* Security code only accepts numbers");
                 $('#btn_next').show();
                 return false;
             }
-            
+
             $('#btn_skip').hide();
             $('#registration_preloader').html('Sending data...');
             $('#registration_preloader').show();
@@ -101,7 +101,7 @@ $(function () {
 
 
     });
-  
+
 </script>
 
 
@@ -166,7 +166,7 @@ $(function () {
                     </li>
 
                     <li>
-                        <label for="expiration_month">Month:</label>
+                        <label for="expiration_month">Month*</label>
                         <span class='css-select-moz'>
                             <select id="expiration_month" class="text" style="width:70px;">
                                 <option id="01">01</option>
@@ -186,7 +186,7 @@ $(function () {
                     </li>
 
                     <li>
-                        <label id="expiration_year" for="expiration_year">Year:</label>
+                        <label for="expiration_year">Year*</label>
                         <span class='css-select-moz'>
                             <select id="expiration_year" class="text" style="width:70px;">
                                 <option id="2014">2014</option>
@@ -208,6 +208,10 @@ $(function () {
                     <li> 
                         <p id="info" class="form_info">&nbsp;</p>
                     </li>
+                    <li id= "terms_and_conditions" style="margin-top: 10px">
+                        <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
+                        <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_and_conditions'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
+                    <li>
                     <li class="buttons">
                         <button type="submit" id="btn_next" class="send">CONFIRM PAYMENT</button>
                     </li>
@@ -217,7 +221,7 @@ $(function () {
                     <li class="buttons">
 
                         <button id="btn_skip" type="button" class="btn btn-default">Skip and continue registration</button>
-
+                        <div id="registration_preloader"></div>
                         <div class="clr"></div>
                     </li>
                 </ol>
