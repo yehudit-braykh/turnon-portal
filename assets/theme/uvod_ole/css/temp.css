@@ -36,7 +36,7 @@
 }
 
 #live_now_advise{
-background-color: #fff;
+    background-color: #fff;
     border: 2px solid #fd7d10;
     font-family: 'Lato';
     text-align: center;
@@ -85,21 +85,23 @@ background-color: #fff;
 
 .buy_button, .watch_now_btn{
     width: 100px;
-    height: 25px;
     background-color:#fd7d10;
     color: #fff;
     text-align: center;
+    font-family: 'Lato';
     cursor: pointer;
-    padding-top: 5px;
     border-radius: 6px;
     margin: 0px auto;
 }
 
 .watch_now_btn{
-    padding-top: 7px;
-    font-size: 12px;
+    margin-top: 10px;
 }
 
+
+.product_conditions{
+    text-align: center;
+}
 
 
 #finish_buy_btn{
@@ -133,12 +135,13 @@ td.product_content{
 }
 .product_image img{
     width: 150px;
+    margin-left: 90px;
 }
 
 .product_price{
     width: 100%;
     text-align: center;
-    font-family: "Liberation sans", Arial, Helvetica, sans-serif;
+    font-family: "Lato","Liberation sans", Arial, Helvetica, sans-serif;
     font-weight: bold;
     font-size: 32px;
     margin:-10px 0px 10px 0px;
@@ -153,7 +156,7 @@ td.product_content{
 }
 
 .already_purchased{
-    color: #188432;
+    color: #fff;
     font-size: 11px;
     text-align: center;
     line-height: 1.5;
@@ -191,7 +194,6 @@ td.product_content{
     height: 0px;
     display: none;
     overflow: hidden;
-    padding: 20px 0px 20px 0px;
     width: 960px;
     margin: 0px auto;
 }
@@ -205,4 +207,31 @@ td.product_content{
 #player_close a {
     color: #626262;
     font-size: 14px;
+}
+
+#player-window{
+    margin-bottom: 50px;
+    width: 100%;
+    background-color: #000;
+}
+
+#event-template{
+    margin-top: 30px;
+}
+
+#event-loading{
+    height: 350px;
+    color: #fff;
+    font-family: 'Lato';
+    font-size: 32px;
+    text-align: center;
+    padding-top: 150px;
+}
+
+#event-confirm-section{
+    height: 380px;
+    background-color: #333333;
+    text-align: center;
+    color: #fff;
+    border-radius: 4px;
 }
