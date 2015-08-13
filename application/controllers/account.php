@@ -649,6 +649,8 @@ class Account extends UVod_Controller {
                     if (!isset($profile->content[0]->{'pluserprofile$publicDataMap'}->fb_id)) {
 
                         $ret->message = "The email $email is already registered with email and password.<br> Login using your credentials.";
+                    }else{
+                        $ret->message = $login->message;
                     }
                 } else {
                     $ret->message = "You Facebook account is not registered in 1SpotMedia. <a class='register_link' href='" . base_url() . 'index.php/account/register_ssl' . "'>Register Now</a> with your Facebook account! ";
