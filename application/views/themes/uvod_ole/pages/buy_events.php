@@ -65,26 +65,23 @@
                         <label for="cardholder_name">Name on Card*</label>
                         <input id="cardholder_name" class="buy_event_fields text" />
                         <div class="buy_msg_error">* This field is required</div>
+                         <div class="form_notes">Enter your name exactly as it appears on your credit card.</div>
                     </li>
-                    <li> 
-                        <div class="form_notes">Enter your name exactly as it appears on your credit card.</div>
-                    </li>        
+                      
                     <li>
                         <label for="card_number">Card Number*</label>
                         <input id="card_number" class="buy_event_fields text" type="text" style="width:150px;" />
                         <div class="buy_msg_error">* This field is required</div>
-                    </li>
-                    <li> 
                         <div class="form_notes">Enter your credit card number without spaces.</div>
-                    </li>        
+                    </li>
+                        
                     <li>
                         <label for="security_code">Security Code*</label>
                         <input id="security_code" class="buy_event_fields text" type="password" style="width:70px;" />
                         <div class="buy_msg_error">* This field is required</div>
+                         <div class="form_notes">Enter CVV code.</div>
                     </li>
-                    <li> 
-                        <div class="form_notes">Enter CVV code.</div>
-                    </li>        
+                   
                     <li>
                         <label for="expiration_month">Month*</label>
 
@@ -104,10 +101,9 @@
                             <option id="01">12</option>
                         </select>
                         <div class="buy_msg_error">* This field is required</div>
+                          <div class="form_notes">Select the expiration month.</div>
                     </li>
-                    <li> 
-                        <div class="form_notes">Select the expiration month.</div>
-                    </li>        
+                         
                     <li>
                         <label for="expiration_year">Year*</label>
                         <select id="expiration_year" class="buy_event_select text" style="width:100px;">
@@ -126,10 +122,9 @@
                             <option id="2025">2026</option>
                         </select>
                         <div class="buy_msg_error">* This field is required</div>
+                            <div class="form_notes">Select the expiration year.</div>
                     </li>
-                    <li> 
-                        <div class="form_notes">Select the expiration year.</div>
-                    </li>                
+                          
                     <li> 
                         <p id="buy_event_info" class="form_info">&nbsp;</p>
                     </li>
