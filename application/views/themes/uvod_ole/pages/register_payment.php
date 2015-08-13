@@ -1,7 +1,6 @@
 <script type="text/javascript">
 $(function () {
 
-        _gaq.push(['_trackEvent', 'Registration', 'Payment Information']);
         $('#btn_skip').on('click', function (event) {
             event.preventDefault();
             window.location.href = "<?php echo base_url(); ?>index.php/account/register_complete";
