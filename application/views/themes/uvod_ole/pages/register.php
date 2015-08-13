@@ -45,7 +45,8 @@
 
         });
 
-        $('#signup_fb_btn').on('click', function () {
+        $('#signup_fb_btn').on('click', function (event) {
+            event.preventDefault();
             registerWithFacebook();
         });
     });
@@ -147,7 +148,7 @@
 
 <!-- content -->
 <div class="container">
-   <div class="jumbotron">
+    <div class="jumbotron">
 
         <div class="create_title">Create your account</div>
 
@@ -164,21 +165,21 @@
                         <input id="full_name" name="full_name" placeholder="Full Name" class="text"/>
                     </li>
                     <li>
-                        
+
                         <input id="email" name="email" placeholder="Email address" class="text" />
                     </li>
                     <li> 
-                        
+
                     </li>
                     <li>
-                        
+
                         <input id="password" name="password" placeholder="Password" class="text" type="password" />
                     </li>
                     <li> 
-                        
+
                     </li>
 
-                
+
                     <li class="buttons">
                         <button id="btn_sign_up" class="send common_btn">REGISTER</button>
                         <div id="registration_preloader"></div>
@@ -186,13 +187,13 @@
                     </li>
                 </ol>
                 <div class="or_separator">or</div>
-            <div id="fb_container">
+                <div id="fb_container">
 
-                <div id="fb_registration_preloader"></div>
-                <button id="signup_fb_btn"></button>
+                    <div id="fb_registration_preloader"></div>
+                    <button id="signup_fb_btn"></button>
 
-                <p id="fb_info" class="form_info">&nbsp;</p>
-            </div>
+                    <p id="fb_info" class="form_info">&nbsp;</p>
+                </div>
             </form>
 
             <!--            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
