@@ -107,7 +107,7 @@ if (isset($clientToken)) {
         });
 
         $('.subscriber_button').on('click', function () {
-            window.location = '<?php echo base_url(); ?>index.php/account/subscription';
+            window.location = '<?php echo base_url(); ?>index.php/account/subscription_ssl';
         });
 
         $('#btn_cancel').on('click', function () {
