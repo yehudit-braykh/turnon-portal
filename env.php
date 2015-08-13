@@ -8,6 +8,6 @@ define('UVOD_API_PASSWORD', getenv('UVOD_API_PASSWORD'));
 define('UVOD_API_ENDPOINT', getenv('UVOD_API_ENDPOINT'));
 define('UVOD_THEME', getenv('UVOD_THEME'));
 define('FACEBOOK_APP_ID', getenv('FACEBOOK_APP_ID'));
-define('FACEBOOK_APP_SECRET', getenv('FACEBOOK_APP_ID'));
+define('FACEBOOK_APP_SECRET', getenv('FACEBOOK_APP_ID')); 
 //end
 ?>
