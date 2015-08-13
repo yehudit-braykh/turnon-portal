@@ -20,6 +20,7 @@ class Social_Media_model extends CI_Model {
                error_log('access token:'.  json_encode($profile));
             $return->status ='ok';
             $return->content = json_decode($profile);
+            $return->msg = json_decode($profile);
         } catch (Exception $e) {
             error_log('excepcion: '.json_encode($e->getMessage()));
             $return->status ='error';

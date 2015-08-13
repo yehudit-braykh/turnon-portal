@@ -1,4 +1,4 @@
-<?php date_default_timezone_set('Jamaica'); ?>
+
 <!--<script type="text/javascript" src="<?php //echo common_asset_url();                ?>pdk/tpPdk.js"></script>-->
 <script type="text/javascript" src="<?php echo common_asset_url(); ?>js/flipclock/flipclock.min.js"></script>
 <link rel="stylesheet" href="<?php echo common_asset_url(); ?>js/flipclock/flipclock.css">

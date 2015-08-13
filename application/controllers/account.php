@@ -656,6 +656,7 @@ class Account extends UVod_Controller {
                 }
             }
         } else {
+            error_log('no se puede obtener el profile de fb');
             $ret->message = $profile->msg;
             $ret->status = "error";
         }
