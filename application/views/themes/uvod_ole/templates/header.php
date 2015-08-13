@@ -87,12 +87,12 @@
                                 });
 
                                 $('.account_name').on('mouseover', function () {
-                                    $('.user-icon').css('background-image', 'url(<?php echo asset_url(); ?>images/user_icon_over.png)');
+                                    $('.user-icon').css('background-image', 'url(<?php echo asset_url(); ?>images/user_icon.png)');
 
                                 });
 
                                 $('.link_logout').on('mouseover', function () {
-                                    $('.lock-icon').css('background-image', 'url(<?php echo asset_url(); ?>images/lock_icon_over.png)');
+                                    $('.lock-icon').css('background-image', 'url(<?php echo asset_url(); ?>images/lock_icon.png)');
                                 });
 
                                 $('.account_name').on('mouseleave', function () {
@@ -208,11 +208,11 @@
                                             if (!isset($_SESSION['uvod_user_data']) || !isset($_SESSION['uvod_user_data']->token)) {
                                                 ?>
                                                 
-                                                <li><button id="btn_login"type="button" class="btn btn-default">LOGIN / REGISTER</button></li>
+                                                <li><button id="btn_login"type="button" class="btn btn-default">LOG IN / REGISTER</button></li>
                                             <?php
                                             } else {
                                                 $logout = base_url() . 'index.php/account/logout';
-                                                echo "<div><div class='account_name'><div class='user_name'>" . $_SESSION['uvod_user_data']->firstName . "</div><div class='user-icon'></div></div><div class='link_logout'><div class='lock-icon'></div><a href='" . $logout . "'>Logout</a></div></div>";
+                                                echo "<div id='username'><div class='account_name'><div class='user_name'>" . $_SESSION['uvod_user_data']->firstName . "</div><div class='user-icon'></div></div><div class='link_logout'><div class='lock-icon'></div><a href='" . $logout . "'>Log Out</a></div></div>";
      
                                             }
                                             ?>

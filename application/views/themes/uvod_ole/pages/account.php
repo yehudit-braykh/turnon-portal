@@ -150,16 +150,18 @@ if (isset($clientToken)) {
 <!-- content -->
 <div class="account_content content_centered">
     <div class="logout_button_container">
-        <input type="image" id="btn_logout" src="<?php echo asset_url(); ?>images/button_logout.png" class="send" style="margin-left:10px;" />
+
+        <button type="submit" id="btn_logout" class="send">LOG OUT</button>
+
     </div>
-    <div class="registration_title">My Account</div>
+    <div class="myaccount_title">My Account</div>
     <br>
     <div class="registration_container">    
         <div id="tab-container" class="tab-container">
             <ul class='etabs'>
                 <li class='tab'><a href="#tab1" id="vod_item_sub_menu1">My Information</a></li>
                 <li class='tab'><a href="#tab2" id="vod_item_sub_menu2">Subscription</a></li>
-                <li class='tab'><a href="#tab3" id="vod_item_sub_menu3">Billing Information</a></li>
+                
                 <li class='tab'><a href="#tab4" id="vod_item_sub_menu4">Change password</a></li>
             </ul>
             <div class='panel-container'>
@@ -181,9 +183,9 @@ if (isset($clientToken)) {
                                     <input id="city" name="city" class="text" value="<?php echo $user_city; ?>" />
                                 </li>
                                 <li>
-                                    <label for="country" style="width: 100%">Country*</label>
+                                    <label for="country">Country*</label>
                            
-                                        <select id="country" name="country" class="text" style="width:238px;">
+                                        <select id="country" name="country" class="text" style="width:238px; margin-bottom: 20px;">
                                             <option value="default" disabled="disabled" selected="selected">Select your country</option>
                                             <?php
                                             echo html_combo_country($user_country);
@@ -293,124 +295,7 @@ if (isset($clientToken)) {
                     </div>
                 </div>
 
-                <div id="tab3">
-
-                    <div class="registration_container" style="padding-left:20px;min-height:500px;">
-                        <form method="post" id="registerform2">
-                            <ol>
-                                <li>
-                                    <label for="cardholder_name">Name on Card*</label>
-                                    <input id="cardholder_name" class="text billing_data" disabled="disabled" value="<?php
-                                    if (isset($card_name)) {
-                                        echo $card_name;
-                                    }
-                                    ?>" />
-                                </li>
-                                <li>
-                                    <label for="card_number">Card Number*</label>
-                                    <input id="card_number" class="text billing_data" disabled="disabled" style="width:150px;" value="<?php
-                                    if (isset($card_number)) {
-                                        echo $card_number;
-                                    }
-                                    ?>" />
-                                </li>
-                                <li>
-                                    <label for="security_code">Security Code*</label>
-                                    <input id="security_code" class="text billing_data" type="password" disabled="disabled" style="width:70px;" value="<?php
-                                    if (isset($card_number)) {
-                                        echo '***';
-                                    }
-                                    ?>" />
-                                </li>
-                                <li>
-                                    <label for="expiration_month" style="width: 100%">Month*</label>
-                                   
-                                        <select id="expiration_month" class="text billing_data" disabled="disabled" style="width:70px;">
-                                            <?php
-                                            if (isset($card_expiration_month)) {
-                                                for ($i = 1; $i <= 12; $i++) {
-                                                    if ($i == $card_expiration_month) {
-                                                        if ($i < 10) {
-                                                            echo '<option id="0' . $i . '" selected="selected">0' . $i . '</option>';
-                                                        } else {
-                                                            echo '<option id="' . $i . '" selected="selected">' . $i . '</option>';
-                                                        }
-                                                    } else {
-                                                        if ($i < 10) {
-                                                            echo '<option id="0' . $i . '">0' . $i . '</option>';
-                                                        } else {
-                                                            echo '<option id="' . $i . '">' . $i . '</option>';
-                                                        }
-                                                    }
-                                                }
-                                            } else {
-                                                ?>
-                                                <option id="01">01</option>
-                                                <option id="02">02</option>
-                                                <option id="03">03</option>
-                                                <option id="04">04</option>
-                                                <option id="05">05</option>
-                                                <option id="06">06</option>
-                                                <option id="07">07</option>
-                                                <option id="08">08</option>
-                                                <option id="09">09</option>
-                                                <option id="10">10</option>
-                                                <option id="11">11</option>
-                                                <option id="12">12</option>
-                                                <?php
-                                            }
-                                            ?>
-                                        </select>
-                                  
-                                </li>
-                                <li>
-                                    <label for="expiration_year" style="width: 100%">Year*</label>
-                               
-                                        <select id="expiration_year" class="text billing_data" disabled="disabled" style="width:90px;">
-                                            <?php
-                                            if (isset($card_expiration_year)) {
-                                                for ($i = 2014; $i <= 2025; $i++) {
-                                                    if ($i == $card_expiration_year) {
-
-                                                        echo '<option id="' . $i . '" selected="selected">' . $i . '</option>';
-                                                    } else {
-
-                                                        echo '<option id="' . $i . '">' . $i . '</option>';
-                                                    }
-                                                }
-                                            } else {
-                                                ?>
-                                                <option id="2014">2014</option>
-                                                <option id="2015">2015</option>
-                                                <option id="2016">2016</option>
-                                                <option id="2017">2017</option>
-                                                <option id="2018">2018</option>
-                                                <option id="2019">2019</option>
-                                                <option id="2020">2020</option>
-                                                <option id="2021">2021</option>
-                                                <option id="2022">2022</option>
-                                                <option id="2023">2023</option>
-                                                <option id="2024">2024</option>
-                                                <option id="2025">2025</option>
-                                                <?php
-                                            }
-                                            ?>
-                                        </select>
-                                
-                                </li>
-                                <li> 
-                                    <span id="billing_info" class="form_info">&nbsp;</span>
-                                </li>
-                                <li class="buttons">
-
-                                    <input type="image" id="btn_change_billing" src="<?php echo asset_url(); ?>images/button_modify.png"/>
-                                    <input type="image" id="btn_save_billing" src="<?php echo asset_url(); ?>images/button_save.png" class="send"/>
-                                    <div class="clr"></div>
-                                </li>
-                            </ol>
-                        </form>              
-                    </div>
-                </div>
+               
 
                 <!-- TAB 4: Change Password -->
                 <div id="tab4">
@@ -422,23 +307,17 @@ if (isset($clientToken)) {
                                     <label for="current_password">Current Password*</label>
                                     <input id="current_password" name="current_password" class="text" type="password" />
                                 </li>
-                                <li> 
-                                    <div class="form_notes">Enter your current password.</div>
-                                </li>                        
+                                                      
                                 <li>
                                     <label for="new_password">New Password*</label>
                                     <input id="new_password" name="new_password" class="text" type="password" />
                                 </li>
-                                <li> 
-                                    <div class="form_notes">New password should have between 8 and 16 characters.</div>
-                                </li>                
+                                               
                                 <li>
                                     <label for="confirm_password">Confirm Password*</label>
                                     <input id="confirm_password" name="confirm_password" class="text" type="password" />
                                 </li>
-                                <li> 
-                                    <div class="form_notes">Re-enter your new password for confirmation.</div>
-                                </li>                
+                                               
                                 <li> 
                                     <span id="infopass" class="form_info">&nbsp;</span>
                                 </li>

@@ -359,7 +359,7 @@ h2.h2_act_href a.ico_4:hover{background:url(../images/ico_a-04.png) no-repeat le
 .img_hover_box a.pic:hover img.h { visibility:visible; }
 
 .title_content {
-    height: 15px;
+    height: 45px;
     overflow: hidden;
 }
 
@@ -371,7 +371,7 @@ h2.h2_act_href a.ico_4:hover{background:url(../images/ico_a-04.png) no-repeat le
 }
 
 .ribbon_content:hover{
-    background-image: url(../images/play_mask.png);
+    background-image: url(../images/play_mask_H.png);
 }
 .item_img{
     margin: 4px!important;
@@ -1545,8 +1545,14 @@ select:focus, select:active {
     padding: 12px 0px 0px 0px;
     cursor: pointer;
 }
+
+#username{
+    width: 300px;
+    margin-top: 32px;
+}
+
 .account_name {
-    font-size: 10px;
+    font-size: 14px;
     color: #fff;
     line-height: 1.2em;
     cursor: pointer;
@@ -1565,12 +1571,17 @@ select:focus, select:active {
 .user_name{
     float: right;
 }
-.link_logout{
+.link_logout a{
     font-size: 10px;
     color: #fff;
     line-height: 1.2em;
-    cursor: default;
+    cursor: pointer;
     float: right;
+    margin-top: -1px;
+    background-color: #666;
+    padding: 2px 5px;
+    margin-right: 10px;
+    border-radius: 3px;
 }
 
 .user-icon, .lock-icon{
@@ -1584,7 +1595,7 @@ select:focus, select:active {
 .user-icon{
     background-image: url(../images/user_icon.png);
     background-size: 100% auto;
-    margin: -1px 3px;
+    margin: 3px 7px 0px 15px;
     float: right;
 }
 
@@ -1593,7 +1604,7 @@ select:focus, select:active {
     background-size: auto 100%;
     margin: 0px 0px 0px 3px;
     float: left;
-
+    display: none;
 }
 
 .account_name:hover {
@@ -1703,7 +1714,7 @@ select:focus, select:active {
     padding: 10px 0px 15px 0px;
     float: left;
     line-height: 30px;
-    width: 630px;
+    width: 600px;
 }
 
 .vod_aired_date{
@@ -1724,6 +1735,7 @@ select:focus, select:active {
 .vod_pic_container{
     float: left;
     width: 330px;
+    margin-right: 30px;
 }
 
 .vod_pic {
@@ -1737,7 +1749,7 @@ select:focus, select:active {
     width: 250px;
     height: 45px;
     float: left;
-    margin-top: 10px;
+    margin-top: 25px;
 
 
 }
@@ -1745,7 +1757,7 @@ select:focus, select:active {
 #vod_tab_info {
     margin: 5px 0px 0px 0px; 
     float: left;
-    width: 630px;
+    width: 600px;
 }
 
 .vod_play_trailer,
@@ -1755,7 +1767,7 @@ select:focus, select:active {
     float: left;
     width: 100px;
     height: 42px;
-    margin: 10px 10px 0px 0px;
+    margin: 15px 12px 0px 0px;
     cursor: pointer;
 }
 
@@ -1840,7 +1852,7 @@ select:focus, select:active {
 .vod_related_title {
     font-weight: bold;
     font-size: 14px;
-    color: #FFF;
+    color: #aaa;
     padding: 10px 0px 15px 0px;
 }
 
@@ -1921,7 +1933,8 @@ select:focus, select:active {
 
 /*desde aca*/
 
-.form_title, .location_title, .registration_title, .buytickets_title, .complete_title {
+.form_title, .location_title, .registration_title, .buytickets_title, 
+.complete_title, .myaccount_title {
     width: 100%;
     text-align: center;
     font-family: "Lato", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
@@ -1947,6 +1960,10 @@ select:focus, select:active {
     font-size: 24px;
     text-transform: uppercase;
     margin-top: 20px;
+}
+
+.myaccount_title {
+    margin-left: -317px;
 }
 
 .form_title_hint{
@@ -2001,6 +2018,15 @@ select:focus, select:active {
     width:803px;  
     margin-top: 30px; 
 }
+
+.account_content.content_centered label{
+    color: #777;
+}
+
+#tab2 label{
+    margin-top: 10px;
+}
+
 .registration_content { 
 
     width: 100%;
@@ -2043,11 +2069,16 @@ select:focus, select:active {
     margin: auto;
 }
 
-#registerform{
+#registerform, #changepasswordform, #cancelform{
     float:none;
     width: 320px;
     margin:auto;
     border: 0px;
+    margin-top: 20px;
+}
+
+#cancelform{
+    width: 380px;
 }
 
 .registration_cvv_info {
@@ -2096,7 +2127,7 @@ select:focus, select:active {
 #login_preloader, #subscription_preloader, #forgot_preloader, #registration_preloader, #send_activation_email_preloader{
     width: 16px;
     height: 16px;
-    background-image: url(../preloader/images/preloader-gallery.gif);
+    background-image: url(../preloader/images/preloader-section.gif);
     background-size: 16px 16px;
     background-repeat: no-repeat;
     padding-left: 20px;
@@ -2104,7 +2135,7 @@ select:focus, select:active {
     font-family: "Lato", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
     font-size: 14px;
     font-weight: normal;
-    color:rgb(127,0,191) !important;
+    color:#0383ee!important;
 }
 
 #fb_registration_preloader, #fb_signin_preloader{
@@ -2272,7 +2303,7 @@ select:focus, select:active {
     float: right;
 }
 
-#btn_sign_in, #btn_sign_up, #btn_next, #send_activation_email_register_button {
+#btn_sign_in, #btn_sign_up, #btn_next, #send_activation_email_register_button, #btn_logout {
     width: 100%;
     height: 40px;
     border: 0px;
@@ -2285,6 +2316,10 @@ select:focus, select:active {
 #btn_sign_up {
     width: 300px;
     margin-top: 5px;
+}
+
+#btn_logout {
+    width: 180px;
 }
 
 #btn_next {
@@ -2357,7 +2392,7 @@ select:focus, select:active {
 .tab.active { background: #f2f2f2; padding-top: 1px; position: relative; top: 1px; border-color: rgba(100,100,100,0.5); }
 .tab a.active { font-weight: bold; color: #1e1e1e;}
 .tab-container .panel-container { background: #f2f2f2; color: #6a6a6a; border: solid 1px rgba(100,100,100,0.5); padding: 10px 20px 25px 20px; -moz-border-radius: 0 4px 4px 4px; -webkit-border-radius: 0 4px 4px 4px; }
-.panel-container { margin-bottom: 10px; }
+.panel-container { margin-bottom: 40px; }
 
 /* Styles from Dropdown genre and dates */
 .category_filter_container {
@@ -2485,12 +2520,12 @@ position: absolute;
 }
 
 .vod_related_separator {
-    margin: 30px 0px 5px 0px;
+    margin: 40px 0px 20px 0px;
     width: 960px;
     border: 0;
     height: 0;
-    /*border-top: 2px solid rgba(0, 0, 0, 0.1);*/
-    border-bottom: 2px solid #FFF;
+    border-top: 1px solid rgba(255,255,255,0.5);
+    
 }
 
 #btn_save_billing{

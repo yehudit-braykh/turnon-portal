@@ -1,4 +1,6 @@
-<script type="text/javascript" src="<?php echo common_asset_url(); ?>pdk/tpPdk.js"></script>
+​<script type="text/javascript" src="<?php echo common_asset_url(); ?>js/jwplayer/jwplayer.js" ></script>
+<script>jwplayer.key = "BFr/jM6cxDTO5jdihqzp0fQ3Advd0Q8Fp6FUqw==";</script>
+
 <script type="text/javascript">
 
     $(function () {
@@ -6,8 +8,17 @@
 <?php echo 'base_url = "' . base_url() . '";'; ?>
 <?php echo 'media_type="' . $item_media_type . '";'; ?>
 
+ 
         if (media_type == 'tv_show') {
             $('#tab-container').easytabs('select', '#tab1');
+        }
+        
+        var width = $(window).width();
+
+        if (width >= 960) {
+   
+            $(".content_centered").css("width","960px")
+
         }
 
         $('#vod_item_sub_menu1').on('click', function (event) {
@@ -134,12 +145,66 @@
                                                             TweenMax.to("#vod_item_player_container", 1, {height: 525, ease: Quart.easeInOut, onComplete: function () {
                                                                     $('#vod_item_player_close').css({display: "block"});
                                                                     $('#vod_item_video_separator').css({display: "block"});
+                                                                        
+                                                                                    // change channel
+                                                                                    jwplayer("jw_live_player").setup({
+                                                                                       
+                                                                                        primary: 'flash',
+                                                                                        androidhls: true,
+                                                                                        autostart: true,
+                                                                                        aspectratio: "16:9",
+                                                                                        width: "100%",
+                                                                                        sources: [
+                                                                                          <?php 
+                                                                                          for($i=0;$i<sizeof($renditions);$i++){
+                                                                                              if($i===0){
+                                                                                                   echo '{file:"'.$renditions[$i]->file.'",label:"'.$renditions[$i]->label.'","default": "true"}';
+                                                                                              }else{
+                                                                                                   echo ',{file:"'.$renditions[$i]->file.'",label:"'.$renditions[$i]->label.'"}';
+                                                                                              }
+                                                                                          }
+                                                                                          ?>
+                                                                                          ],
+                                                                                          events: {
+                                                                                                onPlay: function(e) {
+                                                                                                    handleOnMediaStart();
+                                                                                                },
+                                                                                                onComplete: function(e){
+                                                                                                    handleOnMediaEnd();
+                                                                                                }
+                                                                                            }
 
-                                                                    $pdk.controller.setReleaseURL('<?php echo $item_release_url; ?>');
-
+                                                                                    <?php                                                              
+                                                                            if($adPolicyId !=''){
+                                                                            ?>
+                                                                                  
+                                                                                    ,advertising: {
+                                                                                            client: 'vast',
+                                                                                            'skipoffset': 5,
+                                                                                            tag: base_url + 'index.php/vod/get_advertisement_xml?policy_id=' + <?php echo $adPolicyId;?>
+                                                                                        }
+                                                                                <?php 
+                                                                                }
+                                                                                ?>
+                                                                                                            });
                                                                     $('#back_button_container').css({display: "none"});
                                                                     return false;
                                                                 }});
+                                                                
+                                                                setInterval(function () {
+                
+                                                                        $.ajax({
+                                                                            url: base_url + 'index.php/account/check_status',
+                                                                            type: 'POST',
+                                                                            dataType: 'json',
+                                                                            success: function (data) {
+                                                                                if(data.status == 'error'){
+                                                                                     window.location = base_url;
+                                                                                }
+                                                                            }
+                                                                        })
+                                                                    }, 120000);
+                                                                
                                                             break;
                                                         case 'login':
                                                             $('#popup_login').bPopup();
@@ -158,9 +223,21 @@
                                             TweenMax.to("#vod_item_player_container", 1, {height: 525, ease: Quart.easeInOut, onComplete: function () {
                                                     $('#vod_item_player_close').css({display: "block"});
                                                     $('#vod_item_video_separator').css({display: "block"});
-
-                                                    $pdk.controller.setReleaseURL('<?php echo $item_trailer_release_url; ?>');
-
+                                                    <?php
+                                                    if(isset($item_trailer_release_url) && $item_trailer_release_url !=''){
+                                                        ?>
+                                                    
+                                                    jwplayer("jw_live_player").setup({
+                                                                    file: "<?php echo $item_trailer_release_url; ?>",
+                                                                    primary: 'flash',
+                                                                    androidhls: true,
+                                                                    autostart: true,
+                                                                    aspectratio: "16:9",
+                                                                    width: "100%"
+                                                    });
+                                                    <?php
+                                                    }
+                                                    ?>
                                                     $('#back_button_container').css({display: "none"});
                                                     return false;
                                                 }});
@@ -197,7 +274,17 @@
                                             $('#vod_item_sub_menu_container2').load('<?php echo base_url(); ?>index.php/vod_item/seasons/id/<?php echo $item_id; ?>');
                                                     set_item_sub_menu_selection('#vod_item_sub_menu2');
                                                     return false;
+                                        }
+                                                
+                                                function handleOnMediaStart(){
+                                                 
+                                                     _gaq.push(['_trackEvent', 'Videos', 'Play', "<?php echo str_replace('"', '', $item_id).'-'.str_replace('"', '',$item_title); ?>"]);
                                                 }
+                                                
+                                                function handleOnMediaEnd(){
+                                                     _gaq.push(['_trackEvent', 'Videos', 'End', "<?php echo str_replace('"', '',$item_id).'-'.str_replace('"', '',$item_title); ?>"]);
+                                                }
+                                                
 </script>
 
 </div>
@@ -209,7 +296,8 @@
         <div class="content_centered">
             <div class="content_resize">
                 <div id="vod_item_player_container">
-                    <div id="tdp_player" class="tpPlayer" tp:overlayImageUrl="<?php echo asset_url(); ?>/images/overlay.png" tp:layoutUrl="<?php echo asset_url(); ?>pdk/data/metaLayout.xml"></div>
+                    
+                    <div id="jw_live_player">Loading the player...</div>
                 </div>
                 <div id="vod_item_player_close"><a href="#" onclick="button_close_clickHandler()">Close</a></div>
                 <div id="vod_item_video_separator" class="separator"></div>
@@ -217,7 +305,7 @@
             <div class="content_resize">
 
                 <div class="vod_pic_container" >
-                    <div class="vod_pic">
+                    <div class="vod_pic">  
                         <?php
                         $cover_info_width = "214px";
                         if ($this->config->item('cover_info_width') !== FALSE)
@@ -230,8 +318,9 @@
                             ?>
                             <img class="pic_show_episode" style="height:<?php echo $cover_info_height; ?>;width:<?php echo $cover_info_width; ?>;cursor:pointer;" src="<?php echo $item_cover; ?>"/>
                             <?php
-                        } else if ($item_media_type == 'episode' || $item_media_type == 'movie') {
+                        } else if ($item_media_type == 'episode' || $item_media_type == 'clip') {                            
                             ?>
+                            <div class="ribbon_content <?php echo $item_commerce; ?>"></div>  
                             <img style="height:<?php echo $cover_info_height; ?>;width:<?php echo $cover_info_width; ?>;cursor:pointer;" src="<?php echo $item_cover; ?>" onclick="button_play_clickHandler()"/>
                             <?php
                         }
@@ -274,7 +363,7 @@
                     <div class="vod_info_title"><?php echo $item_title; ?></div>
                     <?php
                 }
-                if (isset($aired_date) && $aired_date !== '') {
+                if (isset($aired_date) && $aired_date !== '' && $item_media_type != 'tv_show') {
                     
                     ?>
                     <div class="vod_aired_date"><?php echo date('F d, Y', $aired_date); ?></div>

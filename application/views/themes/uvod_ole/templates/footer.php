@@ -4,8 +4,8 @@
         <!-- footer -->
         <div class="footer">
           <div class="footer_resize">
-            <div class="footer_left"><a href="<?php echo base_url(); ?>">Home</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<?php echo base_url(); ?>">Video on Demand</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<?php echo base_url(); ?>index.php/live/main">LIVE</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<?php echo base_url(); ?>">About Us</a></div>
-            <div class="footer_right"><a href="<?php echo base_url(); ?>">Terms of Use</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<?php echo base_url(); ?>">Privacy Policy</a>&nbsp;&nbsp;|&nbsp;&nbsp;&copy; 2014 UVOD</div>
+            <div class="footer_left"><a href="<?php echo base_url(); ?>">Home</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<?php echo base_url(); ?>index.php/live_events/main">Events</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<?php echo base_url(); ?>">About Us</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<?php echo base_url(); ?>">Support</a></div>
+            <div class="footer_right"><a href="<?php echo base_url(); ?>">Terms of Use</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<?php echo base_url(); ?>">Privacy Policy</a>&nbsp;&nbsp;|&nbsp;&nbsp;&copy; 2015 UVOD</div>
           </div>
         </div>
         <!-- /footer --> 
