@@ -149,7 +149,7 @@
 <div class="container">
    <div class="jumbotron">
 
-        <div class="registration_title">Create your account</div>
+        <div class="create_title">Create your account</div>
 
         <div class="registration_container">
 
@@ -185,14 +185,16 @@
                         <div class="clr"></div>
                     </li>
                 </ol>
-            </form>
+                <div class="or_separator">or</div>
             <div id="fb_container">
-                
+
                 <div id="fb_registration_preloader"></div>
                 <button id="signup_fb_btn"></button>
 
                 <p id="fb_info" class="form_info">&nbsp;</p>
             </div>
+            </form>
+
             <!--            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
                         </fb:login-button>-->
 

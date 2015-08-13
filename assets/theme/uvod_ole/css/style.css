@@ -368,10 +368,14 @@ h2.h2_act_href a.ico_4:hover{background:url(../images/ico_a-04.png) no-repeat le
     height: 100%;
     position: absolute;
     z-index: 999;
+
 }
 
 .ribbon_content:hover{
     background-image: url(../images/play_mask_H.png);
+    background-size: 100% 100%;
+    cursor: pointer;
+
 }
 .item_img{
     margin: 4px!important;
@@ -1124,12 +1128,12 @@ img{}
 }
 
 #vod_item_player_close a {
-    color: #626262;
+    color: #777;
     font-size: 14px;
 }
 
 #vod_item_player_close a:hover {
-    color: #e93232;
+    color: #aaa;
 }
 
 #back_button_container {
@@ -1934,7 +1938,7 @@ select:focus, select:active {
 /*desde aca*/
 
 .form_title, .location_title, .registration_title, .buytickets_title, 
-.complete_title, .myaccount_title {
+.complete_title, .myaccount_title, .create_title {
     width: 100%;
     text-align: center;
     font-family: "Lato", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
@@ -1943,6 +1947,10 @@ select:focus, select:active {
     color:rgba(255,255,255,0.7);
     line-height: 1.4;
     margin-left: -60px;
+}
+
+.create_title {
+    margin-left: -17px;
 }
 
 .registration_title {
@@ -2074,7 +2082,6 @@ select:focus, select:active {
     width: 320px;
     margin:auto;
     border: 0px;
-    margin-top: 20px;
 }
 
 #cancelform{
@@ -2125,7 +2132,7 @@ select:focus, select:active {
 }
 
 #login_preloader, #subscription_preloader, #forgot_preloader, #registration_preloader, #send_activation_email_preloader{
-    width: 16px;
+    width: 300px;
     height: 16px;
     background-image: url(../preloader/images/preloader-section.gif);
     background-size: 16px 16px;
@@ -2139,9 +2146,9 @@ select:focus, select:active {
 }
 
 #fb_registration_preloader, #fb_signin_preloader{
-    width: 92px;
+    width: 300px;
     height: 16px;
-    background-image: url(../preloader/images/preloader-gallery.gif);
+    background-image: url(../preloader/images/preloader-section.gif);
     background-size: 16px 16px;
     background-repeat: no-repeat;
     padding-left: 20px;
@@ -2149,9 +2156,7 @@ select:focus, select:active {
     font-family: "Lato", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
     font-size: 14px;
     font-weight: normal;
-    color: rgb(127,0,191) !important;
-
-
+    color:#0383ee!important;
 }
 
 #fb_registration_preloader{
@@ -2261,7 +2266,7 @@ select:focus, select:active {
 }
 
 #signup_fb_btn{
-    margin: 85px 0px 20px 50px;
+    margin-top: 5px;
     width: 300px;
     height: 45px;
     background-image: url(../images/button-register-with-facebook.png );

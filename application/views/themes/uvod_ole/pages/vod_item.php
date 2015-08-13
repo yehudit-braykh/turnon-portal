@@ -5,6 +5,7 @@
 
     $(function () {
 
+
 <?php echo 'base_url = "' . base_url() . '";'; ?>
 <?php echo 'media_type="' . $item_media_type . '";'; ?>
 
@@ -142,7 +143,7 @@
                                                     switch (data) {
                                                         case 'enabled':
                                                             $('#vod_item_player_container').css({display: "block"});
-                                                            TweenMax.to("#vod_item_player_container", 1, {height: 525, ease: Quart.easeInOut, onComplete: function () {
+                                                            TweenMax.to("#vod_item_player_container", 1, {height: 557, ease: Quart.easeInOut, onComplete: function () {
                                                                     $('#vod_item_player_close').css({display: "block"});
                                                                     $('#vod_item_video_separator').css({display: "block"});
                                                                         
@@ -284,6 +285,8 @@
                                                 function handleOnMediaEnd(){
                                                      _gaq.push(['_trackEvent', 'Videos', 'End', "<?php echo str_replace('"', '',$item_id).'-'.str_replace('"', '',$item_title); ?>"]);
                                                 }
+
+
                                                 
 </script>
 
@@ -300,7 +303,6 @@
                     <div id="jw_live_player">Loading the player...</div>
                 </div>
                 <div id="vod_item_player_close"><a href="#" onclick="button_close_clickHandler()">Close</a></div>
-                <div id="vod_item_video_separator" class="separator"></div>
             </div>
             <div class="content_resize">
 
@@ -320,8 +322,8 @@
                             <?php
                         } else if ($item_media_type == 'episode' || $item_media_type == 'clip') {                            
                             ?>
-                            <div class="ribbon_content <?php echo $item_commerce; ?>"></div>  
-                            <img style="height:<?php echo $cover_info_height; ?>;width:<?php echo $cover_info_width; ?>;cursor:pointer;" src="<?php echo $item_cover; ?>" onclick="button_play_clickHandler()"/>
+                            <div class="ribbon_content <?php echo $item_commerce; ?>" onclick="button_play_clickHandler()"></div>  
+                            <img style="height:<?php echo $cover_info_height; ?>;width:<?php echo $cover_info_width; ?>;cursor:pointer;" src="<?php echo $item_cover; ?>" />
                             <?php
                         }
                         ?>
