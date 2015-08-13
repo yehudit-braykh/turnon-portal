@@ -1,6 +1,5 @@
 
 <?php
-error_log('event detail');
 if (isset($events->content) && sizeof($events->content) > 0) {
     $data = $events->content[0];
     $event_time = ($data->event_date - (time() * 1000)) / 1000;

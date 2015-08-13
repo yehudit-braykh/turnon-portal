@@ -4,50 +4,83 @@
 
     $(function () {
 
-
-
+function show_info () {
+            TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
+                            TweenLite.to("#info", 1, {delay: 6, alpha: 0});
+                        }});
+        }
+        
         $('#btn_next').on('click', function (event) {
-
-
-            client.tokenizeCard({
-                cardholderName: $('#cardholder_name').val(),
-                number: $('#card_number').val(),
-                cvv: $('#security_code').val(),
-                expirationMonth: $('#expiration_month').val(),
-                expirationYear: $('#expiration_year').val()},
-            function (err, nonce) {
-
-                pi_number = $('#card_number').val().substring($('#card_number').val().length - 4);
-                pi_type = GetCardType($('#card_number').val());
-
-                $.ajax({
-                    url: "<?php echo base_url(); ?>index.php/account/register_step3",
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {nonce: nonce,
-                        pi_month: $('#expiration_month').val(),
-                        pi_year: $('#expiration_year').val(),
-                        pi_type: pi_type,
-                        pi_number: pi_number}
-                }).done(function (data) {
-
-                    if (data && data.message == 'ok') {
-
-                        window.location.href = "<?php echo base_url(); ?>index.php/account/register_complete";
-
-                    } else {
-
-                        TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-                                TweenLite.to("#info", 1, {delay: 6, alpha: 0});
-                            }});
-                        $("#info").html("* " + data.message);
-
-                    }
-                });
+            $(this).hide();
+            if (!($("#accept_terms_and_conditions").prop("checked"))) {
+                show_info();
+                $("#info").html("* You must accept terms and conditions before click next button" );
+                $('#btn_next').show();
+                return false;
+            }  
+            
+            var cardholder_name = $("#cardholder_name").val();
+            var valid_cardholder_name = /^[A-Za-z\s]+$/.test(cardholder_name);
+            if (!valid_cardholder_name) {
+                show_info();
+                $("#info").html("* Name on card only accepts letters and spaces" );
+                $('#btn_next').show();
+                return false;
             }
-            );
+            
+            var card_number = $("#card_number").val();
+            var valid_card_number = /^[0-9]+$/.test(card_number);
+            if (!valid_card_number) {
+                show_info();
+                $("#info").html("* Card number only accepts numbers" );
+                $('#btn_next').show();
+                return false;
+            }
+            
+            var security_code = $("#security_code").val();
+            var valid_security_code = /^[0-9]+$/.test(security_code);
+            if (!valid_security_code) {
+                show_info();
+                $("#info").html("* Security code only accepts numbers" );
+                $('#btn_next').show();
+                return false;
+            }
+            
+            $('#btn_skip').hide();
+            $('#registration_preloader').html('Sending data...');
+            $('#registration_preloader').show();
+            pi_number = $('#card_number').val();
+            pi_type = GetCardType($('#card_number').val());
+            $.ajax({
+                url: "<?php echo base_url(); ?>index.php/live_events/subscribe",
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    pi_month: $('#expiration_month').val(),
+                    pi_year: $('#expiration_year').val(),
+                    pi_type: pi_type,
+                    pi_number: pi_number}
+            }).done(function (data) {
+
+                if (data && data.status == 'ok') {
+
+                    window.location.href = "<?php echo base_url(); ?>index.php/live_events/event_buy_complete";
+                } else {
+
+                    $('#registration_preloader').hide();
+         
+                    $('#btn_next').show();
+                    TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
+                            TweenLite.to("#info", 1, {delay: 6, alpha: 0});
+                        }});
+                    $("#info").html("* " + data.message);
+                }
+            });
+
             return false;
         });
+
+       
 
         function GetCardType(number)
         {
@@ -86,7 +119,7 @@
             <?php
             if (isset($_SESSION['event_price'])) {
                 ?>
-                <h2><?php echo $_SESSION['event_name'] ?></h2>
+                <h3><?php echo $_SESSION['event_name'] ?></h3>
                 <?php
             }
             ?>
@@ -94,7 +127,7 @@
             <?php
             if (isset($_SESSION['event_price'])) {
                 ?>
-                <h2>$ <?php echo $_SESSION['event_price']; ?></h2>
+                <h1 style="text-align: center">$ <?php echo $_SESSION['event_price']; ?></h1>
                 <?php
             } else {
                 echo 'no esta seteada';
@@ -120,8 +153,8 @@
                         <input id="security_code" placeholder="Security code" class="text" type="password" />
                     </li>
 
-                    <li>
-                        <label for="expiration_month">Month:</label>
+                     <li>
+                        <label for="expiration_month">Month*</label>
                         <span class='css-select-moz'>
                             <select id="expiration_month" class="text" style="width:70px;">
                                 <option id="01">01</option>
@@ -139,9 +172,8 @@
                             </select>
                         </span>
                     </li>
-
                     <li>
-                        <label id="expiration_year" for="expiration_year">Year:</label>
+                        <label for="expiration_year">Year*</label>
                         <span class='css-select-moz'>
                             <select id="expiration_year" class="text" style="width:70px;">
                                 <option id="2014">2014</option>
@@ -163,11 +195,19 @@
                     <li> 
                         <p id="info" class="form_info">&nbsp;</p>
                     </li>
+                    <li id= "terms_and_conditions" style="margin-top: 10px">
+                        <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
+                        <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_and_conditions'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
+                    <li> 
                     <li class="buttons">
                         <button type="submit" id="btn_next" class="send">CONFIRM PAYMENT</button>
                     </li>
                     <li>
+                         <div id="registration_preloader"></div>
+                    </li>
+                    <li>
                         <hr id="line_payment">
+                         
                     </li>
 
                 </ol>

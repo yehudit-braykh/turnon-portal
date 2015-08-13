@@ -11,11 +11,13 @@ class Social_Media_model extends CI_Model {
     }
 
     public function get_fb_profile() {
-
+        error_log('social media model');
         $return = new stdClass;
         try {
             $access_token = $this->facebook->get_access_token();
+             error_log('access token:'.$access_token);
             $profile = $this->facebook->get_user_profile($access_token);
+               error_log('access token:'.  json_encode($profile));
             $return->status ='ok';
             $return->content = json_decode($profile);
         } catch (Exception $e) {
