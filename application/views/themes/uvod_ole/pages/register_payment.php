@@ -81,18 +81,12 @@
 
 <!-- content -->
 <div class="container">
-<div class="jumbotron">
-   
+    <div class="jumbotron">
 
         <div class="buytickets_title">Become a subscriber</div>
-        
+
 
         <div class="registration_container">
-
-            
-
-
-
             <div class="registration_pricing">
                 <div class="dc_pricingtable04">
                     <ul class="price-box" style="width:100%;">
@@ -128,23 +122,23 @@
             <form method="post" id="registerform">
 
                 <div class="registration_cvv_info">
-                <img style="width:175px;height:116px;" src="<?php echo asset_url(); ?>images/cvvnumber.png" />
-            </div>
+                    <img style="width:175px;height:116px;" src="<?php echo asset_url(); ?>images/cvvnumber.png" />
+                </div>
                 <ol>
                     <li>
-                        
+
                         <input id="cardholder_name" placeholder="Name on card" class="text" />
                     </li>
-                         
+
                     <li>
-                        
+
                         <input id="card_number" placeholder="Credit card number" class="text" />
                     </li>
-                          
+
                     <li>
                         <input id="security_code" placeholder="Security code" class="text" type="password" />
                     </li>
-                          
+
                     <li>
                         <label for="expiration_month">Month:</label>
                         <span class='css-select-moz'>
@@ -164,7 +158,7 @@
                             </select>
                         </span>
                     </li>
-                         
+
                     <li>
                         <label id="expiration_year" for="expiration_year">Year:</label>
                         <span class='css-select-moz'>
@@ -184,7 +178,7 @@
                             </select>
                         </span>
                     </li>
-                                  
+
                     <li> 
                         <p id="info" class="form_info">&nbsp;</p>
                     </li>
@@ -202,8 +196,8 @@
                     </li>
                 </ol>
             </form>              
-   
-    </div>
+
+        </div>
     </div>
 </div>
 <!-- /content -->

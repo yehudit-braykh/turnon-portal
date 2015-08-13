@@ -181,16 +181,16 @@ class Vod extends UVod_Controller {
                 
                 if ($mediatype != "tv_show" && $this->config->item('theme') !== 'orbita') {
                     $aired_date_div = '<div>' . parseDate(getEntryProperty($items->content->entries[$i], 'aired_date')) . '</div>';
-                    $ret.= '<div class="ribbon_content '. $commerce_class . '" style="width:' . $cover_width . ';height:' . $cover_height . ';"></div>';
+                    $ret.= '<div class="ribbon_content '. $commerce_class . '" style="width:' . $cover_width . ';height:' . $cover_height . ';margin:5px"></div>';
                 }
 
                 $ret.= '<img class="item_img" src="' . $cover_url . '" />
-                        <div class="h" style="width:' . $cover_h_width . ';height:' . $cover_h_height . ';">
+                                                     
+                               </a>
+                           <div class="h" style="width:' . $cover_h_width . ';height:' . $cover_h_height . ';margin:5px 0px 0px 5px;">
                         <div class="title_content">' . getEntryProperty($items->content->entries[$i], 'title') . '</div>' .
                         $aired_date_div .
-                        '</div>                                        
-                               </a>
-                                
+                        '</div>                
 		        </div>';
             }
         }

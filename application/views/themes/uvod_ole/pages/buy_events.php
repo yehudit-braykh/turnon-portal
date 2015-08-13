@@ -2,48 +2,47 @@
 
 <div class="container">
 
-       
 
-        <table id="products_table" class="col-md-12" style="height: 500px;">                       
-                <tr><td colspan="3"><h3>Buy Tickets</h3></td></tr>
-                <?php
-                
-                for ($i = 0; $i < sizeof($events->content); $i++) {
-                    if (isset($subscription_data) && sizeof($subscription_data) > 0) {
-                        for ($h = 0; $h < sizeof($subscription_data); $h++) {
-                            if ($events->content[$i]->id === $subscription_data[$h]->{'plorderitem$productId'}) {
 
-                                $buy_column = '<td class="already_purchased"><div>ALREADY<br/>PURCHASED</div><a href="' . base_url() . 'index.php/live_events/main"><div class="watch_now_btn">WATCH NOW!</div></a></td>';
-                                break;
-                            } else {
-                                $buy_column = '<td class="product_conditions"><div class="product_price">$' . $events->content[$i]->price . '</div><div class="buy_button">BUY NOW!</div></td>';
-                            }
-                        }
+    <table id="products_table" class="col-md-12" style="height: 500px;">                       
+        <tr><td colspan="3"><h3>Buy Tickets</h3></td></tr>
+        <?php
+        for ($i = 0; $i < sizeof($events->content); $i++) {
+            if (isset($subscription_data) && sizeof($subscription_data) > 0) {
+                for ($h = 0; $h < sizeof($subscription_data); $h++) {
+                    if ($events->content[$i]->id === $subscription_data[$h]->{'plorderitem$productId'}) {
+
+                        $buy_column = '<td class="already_purchased"><div>ALREADY<br/>PURCHASED</div><a href="' . base_url() . 'index.php/live_events/main"><button type="button" class="btn btn-default btn-sm watch_now_btn">WATCH NOW!</button></a></td>';
+                        break;
                     } else {
-                        $buy_column = '<td class="product_conditions"><div class="product_price">$' . $events->content[$i]->price . '</div><div class="buy_button">BUY NOW!</div></td>';
+                        $buy_column = '<td class="product_conditions"><div class="product_price">$' . $events->content[$i]->price . '</div><button type="button" class="btn btn-default btn-sm buy_button">BUY NOW!</button></td>';
                     }
-                    ?>
-                    <tr id="<?php echo $events->content[$i]->id ?>" class="product_id">
-                        <td class="product_image col-md-4">
-                            <img src="<?php echo $events->content[$i]->image; ?>">
-                        </td>
-                        <td class="product_content">
-                            <div class="product_title">
-                                <?php echo $events->content[$i]->name; ?>
-                            </div>
-                            <div class="product_description">
-                                <?php echo $events->content[$i]->description; ?>
-                            </div>
-                        </td>
-                        <?php
-                        echo $buy_column;
-                        ?>
-                    </tr>
-                    <?php
                 }
+            } else {
+                $buy_column = '<td class="product_conditions"><div class="product_price">$' . $events->content[$i]->price . '</div><button type="button" class="btn btn-default btn-sm buy_button">BUY NOW!</button></td>';
+            }
+            ?>
+            <tr id="<?php echo $events->content[$i]->id ?>" class="product_id">
+                <td class="product_image col-md-4">
+                    <img src="<?php echo $events->content[$i]->image; ?>">
+                </td>
+                <td class="product_content">
+                    <div class="product_title">
+                        <?php echo $events->content[$i]->name; ?>
+                    </div>
+                    <div class="product_description">
+                        <?php echo $events->content[$i]->description; ?>
+                    </div>
+                </td>
+                <?php
+                echo $buy_column;
                 ?>
-               
-            </table>
+            </tr>
+            <?php
+        }
+        ?>
+
+    </table>
 
 
 </div>
@@ -65,23 +64,23 @@
                         <label for="cardholder_name">Name on Card*</label>
                         <input id="cardholder_name" class="buy_event_fields text" />
                         <div class="buy_msg_error">* This field is required</div>
-                         <div class="form_notes">Enter your name exactly as it appears on your credit card.</div>
+                        <div class="form_notes">Enter your name exactly as it appears on your credit card.</div>
                     </li>
-                      
+
                     <li>
                         <label for="card_number">Card Number*</label>
                         <input id="card_number" class="buy_event_fields text" type="text" style="width:150px;" />
                         <div class="buy_msg_error">* This field is required</div>
                         <div class="form_notes">Enter your credit card number without spaces.</div>
                     </li>
-                        
+
                     <li>
                         <label for="security_code">Security Code*</label>
                         <input id="security_code" class="buy_event_fields text" type="password" style="width:70px;" />
                         <div class="buy_msg_error">* This field is required</div>
-                         <div class="form_notes">Enter CVV code.</div>
+                        <div class="form_notes">Enter CVV code.</div>
                     </li>
-                   
+
                     <li>
                         <label for="expiration_month">Month*</label>
 
@@ -101,9 +100,9 @@
                             <option id="01">12</option>
                         </select>
                         <div class="buy_msg_error">* This field is required</div>
-                          <div class="form_notes">Select the expiration month.</div>
+                        <div class="form_notes">Select the expiration month.</div>
                     </li>
-                         
+
                     <li>
                         <label for="expiration_year">Year*</label>
                         <select id="expiration_year" class="buy_event_select text" style="width:100px;">
@@ -122,9 +121,9 @@
                             <option id="2025">2026</option>
                         </select>
                         <div class="buy_msg_error">* This field is required</div>
-                            <div class="form_notes">Select the expiration year.</div>
+                        <div class="form_notes">Select the expiration year.</div>
                     </li>
-                          
+
                     <li> 
                         <p id="buy_event_info" class="form_info">&nbsp;</p>
                     </li>
@@ -152,23 +151,19 @@
     $(document).ready(function () {
 
         $(document).on('click', '.buy_button', function () {
-            $('#buy_form_container').hide();
-            $('#check_session_preloader').show();
-            $('#event_title_popup').html($(this).parents('td').siblings('.product_content').children('.product_title').text());
-            $('#product_id_form').val($(this).parents('td').parents('.product_id').attr('id'));
-            $('#popup_buy_product').bPopup();
+
             $.ajax({
-                url: "<?php echo base_url(); ?>index.php/account/check_status",
+                url: "<?php echo base_url(); ?>index.php/live_events/checkout_event",
                 type: 'POST',
                 dataType: 'json',
+                data: 'product_id=' + $(this).parents('td').parents('.product_id').attr('id')
             }).done(function (data) {
 
-                if (data.status === 'error') {
-                    window.location.href = '<?php echo base_url(); ?>index.php/account/signin';
+                if (data.status === 'ok') {
+                    window.location.href = '<?php echo base_url(); ?>index.php/live_events/event_payment';
                 } else {
-                    $('#check_session_preloader').hide();
-                    $('#buy_form_container').show()
 
+                    window.location.href = '<?php echo base_url(); ?>index.php/account/signin';
 
                 }
             });
