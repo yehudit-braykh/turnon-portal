@@ -9,7 +9,6 @@ class Live_events extends UVod_Controller {
         parent::__construct();
         $this->load->model('live_events_model');
         $this->load->model('account_model');
-        $this->load->model('event_model');
         $this->load->model('vod_model');
         $this->load->model('vod_item_model');
         $this->load->helper('pdk');
@@ -19,9 +18,9 @@ class Live_events extends UVod_Controller {
 
         $media_ids = array();
         // checks if user is logged in
-        if (isset($_SESSION['user_data']) && isset($_SESSION['user_data']->id)) {
+        if (isset($_SESSION['uvod_user_data']) && isset($_SESSION['uvod_user_data']->id)) {
 
-            $orders = $this->event_model->get_orders($_SESSION['user_data']->id);
+            $orders = $this->live_events_model->get_orders($_SESSION['uvod_user_data']->id);
             $data['orders'] = $orders;
 
             if (isset($orders) && sizeof($orders->content->entries) > 0) {
@@ -93,16 +92,16 @@ class Live_events extends UVod_Controller {
 
     public function main($id = null) {
 
-        error_log('entra a LIVE EVENTS: ' . date('H:i', time()));
-$media_ids = array();
-        $events = $this->live_events_model->get_event_data();
-        error_log('events: ' . json_encode($events));
+      //  error_log('entra a LIVE EVENTS: ' . date('H:i', time()));
+        $media_ids = array();
+        $events = $this->live_events_model->list_simple_events();
+        //error_log('events: ' . json_encode($events));
 
 
 //      checks if user is logged in
         if (isset($_SESSION['uvod_user_data']) && isset($_SESSION['uvod_user_data']->id)) {
 
-            $orders = $this->event_model->get_orders($_SESSION['uvod_user_data']->id);
+            $orders = $this->live_events_model->get_orders($_SESSION['uvod_user_data']->id);
             $data['orders'] = $orders;
 
             if (isset($orders) && sizeof($orders->content->entries) > 0) {
@@ -132,18 +131,20 @@ $media_ids = array();
                             }
                         }
                     }
+
+                    error_log('id: ' . $events->content[0]->media->id . ' array: ' . json_encode($media_ids));
+                    if (in_array($events->content[0]->media->id, $media_ids)) {
+                        $events->content[0]->already_purchased = true;
+                        error_log('comprado');
+                    } else {
+                        error_log('NO comprado');
+                        $events->content[0]->already_purchased = false;
+                    }
                 }
             }
         }
 
-        error_log('id: '.$events->content[0]->media->id.' array: '.  json_encode($media_ids));
-        if (in_array($events->content[0]->media->id, $media_ids)) {
-            $events->content[0]->already_purchased = true;
-            error_log('comprado');
-        } else {
-              error_log('NO comprado');
-            $events->content[0]->already_purchased = false;
-        }
+
 
         $data['section'] = "events";
         $data['events'] = $events;
@@ -156,9 +157,9 @@ $media_ids = array();
     public function get_event() {
         //        $media_ids = array();
 //        // checks if user is logged in
-//        if (isset($_SESSION['user_data']) && isset($_SESSION['user_data']->id)) {
+//        if (isset($_SESSION['uvod_user_data']) && isset($_SESSION['uvod_user_data']->id)) {
 //
-//            $orders = $this->event_model->get_orders($_SESSION['user_data']->id);
+//            $orders = $this->live_events_model->get_orders($_SESSION['uvod_user_data']->id);
 //            $data['orders'] = $orders;
 //
 //            if (isset($orders) && sizeof($orders->content->entries) > 0) {
@@ -284,6 +285,61 @@ $media_ids = array();
         }
 
         return $ret;
+    }
+
+    public function buy_events() {
+
+        $data = array();
+        if (isset($_SESSION['uvod_user_data']->id)) {
+            $orders = $this->live_events_model->get_orders($_SESSION['uvod_user_data']->id);
+            if (isset($orders->content->entries) && sizeof($orders->content->entries) > 0) {
+                $data['subscription_data'] = $orders->content->entries;
+            }
+
+            $data['events'] = $this->live_events_model->get_events();
+
+            $this->load->view(views_url() . 'templates/header', $data);
+            $this->load->view(views_url() . 'pages/buy_events', $data);
+            $this->load->view(views_url() . 'templates/footer', $data);
+        } else {
+            $this->load->view(views_url() . 'templates/header', $data);
+            $this->load->view(views_url() . 'pages/signin', $data);
+            $this->load->view(views_url() . 'templates/footer', $data);
+        }
+    }
+
+    public function subscribe() {
+
+        if (isset($_SESSION['uvod_user_data']->token)) {
+            $token = $_SESSION['uvod_user_data']->token;
+            if (isset($_POST['nonce'])) {
+                $nonce = $_POST['nonce'];
+            } else {
+                $nonce = '';
+            }
+            $first_name = $_SESSION['uvod_user_data']->firstName;
+            $last_name = $_SESSION['uvod_user_data']->lastName;
+            if ($_SESSION['uvod_user_data']->email !== '') {
+                $email = $_SESSION['uvod_user_data']->email;
+            } else {
+                $email = $_SESSION['uvod_user_data']->username;
+            }
+            $city = '';
+            $postal_code = '';
+            $country = $_SESSION['uvod_user_data']->countryCode;
+            $pi_month = $_POST['pi_month'];
+            $pi_year = $_POST['pi_year'];
+            $pi_type = $_POST['pi_type'];
+            $pi_number = $_POST['pi_number'];
+            $product_id = $_POST['product_id'];
+            $pi_security_code = $_POST['pi_security_code'];
+
+            $ret = $this->live_events_model->subscription_checkout($product_id, $token, $nonce, $first_name, $last_name, $email, $city, $postal_code, $country, $pi_month, $pi_year, $pi_type, $pi_number, $pi_security_code);
+
+            echo json_encode($ret);
+        } else {
+            echo json_encode(array('error' => true, 'message' => 'logout'));
+        }
     }
 
 }
