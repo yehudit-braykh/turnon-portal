@@ -253,7 +253,7 @@ if (isset($clientToken)) {
                         } else {
                             ?>
 
-                            <div class="registration_title">WANT TO BECOME A SUSCRIBER?</div>
+                            <div class="subscribe_title">WANT TO BECOME A SUSCRIBER?</div>
                             <div class="subscriber_button"></div>
                             <div class="pricing_content">
                                 <div class="registration_pricing">
