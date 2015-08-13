@@ -59,6 +59,7 @@ function show_info () {
                     pi_month: $('#expiration_month').val(),
                     pi_year: $('#expiration_year').val(),
                     pi_type: pi_type,
+                    pi_security_code: $('#security_code').val(),
                     pi_number: pi_number}
             }).done(function (data) {
 

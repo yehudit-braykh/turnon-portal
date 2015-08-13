@@ -21,7 +21,7 @@ if (isset($events->content) && sizeof($events->content) > 0) {
         function button_play_clickHandler() {
 
             $('#player_container').css({display: "block"});
-            TweenMax.to("#player_container", 1, {height: 525, ease: Quart.easeInOut, onComplete: function () {
+            TweenMax.to("#player_container", 1, {height: 540, ease: Quart.easeInOut, onComplete: function () {
                     $('#player_close').css({display: "block"});
                     $('.carousel-container').css({display: "none"});
                     $('.event-detail-result').css({display: "none"});
