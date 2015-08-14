@@ -176,8 +176,6 @@ class Account extends UVod_Controller {
 
     public function register_complete() {
         $data = array();
-        $logout = $this->account_model->logout($_SESSION['registration_data']->user_id);
-
         $this->parser->parse(views_url() . 'templates/header', $data);
         $this->parser->parse(views_url() . 'pages/register_complete', $data);
         $this->parser->parse(views_url() . 'templates/footer', $data);
