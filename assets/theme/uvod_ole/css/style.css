@@ -2345,7 +2345,7 @@ select:focus, select:active {
 }
 
 #btn_sign_in, #btn_sign_up, #btn_next, #send_activation_email_register_button, 
-#btn_logout, #btn_subscribe {
+#btn_logout, #btn_subscribe, #btn_redirect_login {
     width: 100%;
     height: 40px;
     border: 0px;
@@ -2368,11 +2368,21 @@ select:focus, select:active {
     width: 320px;
 }
 
-#send_activation_email_register_button{
+.complete_btn{
+    width: 200px;
+    margin: auto;
+}
+
+#send_activation_email_register_button, #btn_redirect_login{
     font-size: 18px;
     height: 30px;
     width: 320px;
     margin: auto;
+}
+
+#btn_redirect_login{
+    width: 200px;
+    margin-top: 5px;
 }
 
 #signin_fb_btn{

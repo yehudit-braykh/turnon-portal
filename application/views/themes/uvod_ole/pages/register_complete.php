@@ -80,10 +80,12 @@
         ?>
         <div class="now_page_resize">
 
-            <div class="form_title">The registration process is complete.</div>
-             <div class="clr"></div>
-             <div class="form_title_hint">Login with your facebook account <br class="rwd-break"> clicking <a href="<?php echo base_url().'index.php/account/signin';?>">here</a> and start enjoying 1spotmedia services!" </div>
-            <div class="clr"></div>
+            <div class="complete_title">The registration process is complete.</div>
+
+             <div class="form_subtitle">Login with your facebook account and start enjoying our services!" </div>
+
+             <div class="complete_btn"> <button type="submit" id="btn_redirect_login" class="send">LOG IN</button></div>
+
             <br>
         </div>
         <?php
