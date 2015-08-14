@@ -2,19 +2,55 @@
 
     $(function () {
 
+function show_info() {
+            TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
+                    TweenLite.to("#info", 1, {delay: 6, alpha: 0});
+                }});
+        }
 
         $('#btn_subscribe').on('click', function (event) {
 
 
-            var client = new braintree.api.Client({clientToken: '<?php echo $clientToken; ?>'});
+            $(this).hide();
+            if (!($("#accept_terms_and_conditions").prop("checked"))) {
+                show_info();
+                $("#info").html("* You must accept terms and conditions before click next button");
+                $('#btn_subscribe').show();
+                return false;
+            }
 
-            client.tokenizeCard({
-                cardholderName: $('#cardholder_name').val(),
-                number: $('#card_number').val(),
-                cvv: $('#security_code').val(),
-                expirationMonth: $('#expiration_month').val(),
-                expirationYear: $('#expiration_year').val()},
-            function (err, nonce) {
+            var cardholder_name = $("#cardholder_name").val();
+            var valid_cardholder_name = /^[A-Za-z\s]+$/.test(cardholder_name);
+            if (!valid_cardholder_name) {
+                show_info();
+                $("#info").html("* Name on card only accepts letters and spaces");
+                $('#btn_subscribe').show();
+                return false;
+            }
+
+            var card_number = $("#card_number").val();
+            var valid_card_number = /^[0-9]+$/.test(card_number);
+            if (!valid_card_number) {
+                show_info();
+                $("#info").html("* Card number only accepts numbers");
+                $('#btn_subscribe').show();
+                return false;
+            }
+
+            var security_code = $("#security_code").val();
+            var valid_security_code = /^[0-9]+$/.test(security_code);
+            if (!valid_security_code) {
+                show_info();
+                $("#info").html("* Security code only accepts numbers");
+                $('#btn_subscribe').show();
+                return false;
+            }
+
+            $('#btn_skip').hide();
+            $('#registration_preloader').html('Sending data...');
+            $('#registration_preloader').show();
+
+           
 
                 pi_number = $('#card_number').val().substring($('#card_number').val().length - 4);
                 pi_type = GetCardType($('#card_number').val());
@@ -25,7 +61,7 @@
                     dataType: 'json',
                     data: {nonce: nonce,
                         pi_month: $('#expiration_month').val(),
-                        pi_year: $('#expiration_year').val(),
+                        pi_year: ('#expiration_month').val() + '/' + $('#expiration_year').val(),
                         pi_type: pi_type,
                         pi_number: pi_number}
                 }).done(function (data) {
@@ -43,9 +79,9 @@
 
                     }
                 });
-            }
-            );
-            return false;
+            
+        
+       return false;
         });
 
         function GetCardType(number)
@@ -79,9 +115,9 @@
 
 <!-- content -->
 <div class="content_centered">
-    <div class="registration_content">
+    <div class="jumbotron">
 
-        <div class="registration_title">WANT TO BECOME A SUSCRIBER?</div>
+        <div class="subscription_title">Become a subscriber</div>
 
 
         <div class="registration_container">
@@ -122,12 +158,13 @@
                 </div>
             </div>
 
-            <form method="post" id="registerform">
+            <form  id="registerform">
                 <ol>
                     <?php $this->load->view(views_url() . 'templates/payment_form'); ?>
                     <li class="buttons">
-                        <input type="image" id="btn_subscribe" src="<?php echo asset_url(); ?>images/button_subscribe.png" class="send" />
 
+                        <button id="btn_subscribe" type="button" class="send">CONFIRM PAYMENT</button>
+ <div id="registration_preloader"></div>
                         <div class="clr"></div>
                     </li>
                 </ol>
