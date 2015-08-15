@@ -1,6 +1,4 @@
-          <div class="clr"></div>
-        </div>
-        <div class="clr"></div>
+
         <!-- footer -->
         <div class="footer">
           <div class="footer_resize">
@@ -9,10 +7,7 @@
           </div>
         </div>
         <!-- /footer --> 
-      </div>
-    </div>
-  </div>
-</div>
+
 <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
 <script type="text/javascript" src="<?php echo common_asset_url();?>js/jquery.bpopup.min.js"></script>
 </body>

@@ -15,6 +15,7 @@ class Vod extends UVod_Controller {
     public function featured($sub_section = COMING_SOON) {
 
         // default categories
+        $data = array();
         $data['category1'] = $this->config->item('category1');
         $data['category2'] = $this->config->item('category2');
         $data['category3'] = $this->config->item('category3');
@@ -29,24 +30,21 @@ class Vod extends UVod_Controller {
             $data['items_category_1'] = $this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, RECOMMENDED);
             $data['items_category_2'] = $this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, NEW_RELEASES);
             $data['items_category_3'] = $this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, COMING_SOON);
+
             $this->load->view(views_url() . 'templates/header', $data);
-//            $this->load->view(views_url() . 'templates/sub_menu1', $data);
-//            $this->load->view(views_url() . 'templates/sub_menu2', $data);
             $this->load->view(views_url() . 'pages/vod', $data);
             $this->load->view(views_url() . 'templates/footer', $data);
-//
         } else {
-
-            $data['items_category_1'] = $this->create_items($this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, RECOMMENDED), MAX_PAGE_ITEMS);
-            $data['items_category_2'] = $this->create_items($this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, NEW_RELEASES), MAX_PAGE_ITEMS);
-            $data['items_category_3'] = $this->create_items($this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, COMING_SOON), MAX_PAGE_ITEMS);            
-            $this->parser->parse(views_url() . 'templates/header', $data);
-//            $this->parser->parse(views_url() . 'templates/sub_menu1', $data);
-//            $this->parser->parse(views_url() . 'templates/sub_menu2', $data);
-            $this->parser->parse(views_url() . 'pages/vod', $data);
-            $this->parser->parse(views_url() . 'templates/footer', $data);
+       
+            $items = $this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, RECOMMENDED . '|' . NEW_RELEASES . '|' . COMING_SOON);
+            
+            $categories = array($data['category1']['value'], $data['category2']['value'], $data['category3']['value']);
+            $data['items'] = $this->get_items_by_value('pl1$featured_category', $categories, $items->content->entries);
+          
+            $this->load->view(views_url() . 'templates/header', $data);
+            $this->load->view(views_url() . 'pages/vod', $data);
+            $this->load->view(views_url() . 'templates/footer', $data);
         }
-
     }
 
     public function section($category, $genre = "", $end_date = "") {
@@ -128,12 +126,12 @@ class Vod extends UVod_Controller {
 
         if ($this->config->item('create_items_on_view') !== FALSE) {
             $this->load->view(views_url() . 'templates/header', $data);
-      
+
             $this->load->view(views_url() . 'pages/vod_list', $data);
             $this->load->view(views_url() . 'templates/footer', $data);
         } else {
             $this->parser->parse(views_url() . 'templates/header', $data);
-    
+
             $this->parser->parse(views_url() . 'pages/vod_list', $data);
             $this->parser->parse(views_url() . 'templates/footer', $data);
         }
@@ -173,15 +171,15 @@ class Vod extends UVod_Controller {
                 $item_id_arr = explode("/", $items->content->entries[$i]->id);
                 $item_id = $item_id_arr[sizeof($item_id_arr) - 1];
                 $commerce_class = getEntryProperty($items->content->entries[$i], 'commerce');
-                
+
                 $mediatype = getEntryProperty($items->content->entries[$i], 'media_type');
                 $aired_date_div = "";
                 $ret .= '<div class="col4 no_spacer img_hover_box" style="width:' . $cover_width . '">
                                 <a href="' . base_url() . 'index.php/vod_item/detail/id/' . $item_id . '" class="cover" style="width:' . $cover_width . ';height:' . $cover_height . ';">';
-                
+
                 if ($mediatype != "tv_show" && $this->config->item('theme') !== 'orbita') {
                     $aired_date_div = '<div>' . parseDate(getEntryProperty($items->content->entries[$i], 'aired_date')) . '</div>';
-                    $ret.= '<div class="ribbon_content '. $commerce_class . '" style="width:' . $cover_width . ';height:' . $cover_height . ';margin:5px"></div>';
+                    $ret.= '<div class="ribbon_content ' . $commerce_class . '" style="width:' . $cover_width . ';height:' . $cover_height . ';margin:5px"></div>';
                 }
 
                 $ret.= '<img class="item_img" src="' . $cover_url . '" />
@@ -197,7 +195,47 @@ class Vod extends UVod_Controller {
 
         return $ret;
     }
-    
+
+    private function get_items_by_value($category, $values, $items) {
+        $return = array();
+        for ($i = 0; $i < sizeof($items); $i++) {
+            for ($h = 0; $h < sizeof($values); $h++) {
+                if (in_array($values[$h], $items[$i]->{$category})) {
+                    if (array_key_exists($values[$h], $return)) {
+                        $data = $this->get_item_data($items[$i]);
+                        $return[$values[$h]][] = $data;
+                    } else {
+                        $return[$values[$h]] = array();
+                        $data = $this->get_item_data($items[$i]);
+                        $return[$values[$h]][] = $data;
+                    }
+                }
+            }
+        }
+
+        return $return;
+    }
+
+    private function get_item_data($item) {
+        $data = new stdClass();
+
+        $data->id = getEntryId($item);
+        $data->title = $item->title;
+
+        $cover_asset_type = "Poster V";
+        if ($this->config->item('cover_asset_type') !== FALSE) {
+            $cover_asset_type = $this->config->item('cover_asset_type');
+        }
+
+        $cover_url = getEntryThumbnail($item, $cover_asset_type);
+        if (!$cover_url) {
+            $cover_url = getEntryThumbnail($item, "Mezzanine " . $cover_asset_type);
+        }
+        $data->img_url = $cover_url;
+        
+        return $data;
+    }
+
     public function get_advertisement_xml() {
         header('Content-Type: application/xml; charset=utf-8');
         if (isset($_GET['policy_id'])) {
@@ -243,8 +281,9 @@ class Vod extends UVod_Controller {
                 $new_media_file->addAttribute('width', '720');
                 $new_media_file->addAttribute('height', '480');
             }
-     
+
             echo $new_XML->asXML();
         }
     }
+
 }

@@ -1,5 +1,3 @@
-<link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/temp.css" />
-
 <div class="container">
 
 

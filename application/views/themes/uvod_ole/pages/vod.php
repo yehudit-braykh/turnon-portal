@@ -28,58 +28,48 @@
 <?php } ?>
 
 
-<!--<div id="epg_preview_bg"></div>-->
+<div id="epg_preview_bg"></div>
 <div class="clr"></div>
 
+<div id="sliders-content">
 
-<div class="container">
-    <div class="jumbotron">
+            <?php
+            $show_genres_filter = 'yes';
+            if ($this->config->item('show_genres_filter') !== FALSE)
+                $show_genres_filter = $this->config->item('show_genres_filter');
+            if ($show_genres_filter == 'yes') {
+                ?>
 
-        <div class="content_centered" id="gallery">
-            <div class="content_resize"> 
-                <?php
-                $show_genres_filter = 'yes';
-                if ($this->config->item('show_genres_filter') !== FALSE)
-                    $show_genres_filter = $this->config->item('show_genres_filter');
-                if ($show_genres_filter == 'yes') {
-                    ?>
+                <div class="content_full_size">
+                    <div class="category-title"><?php echo $category1['label']; ?></div>
+                      <?php $this->load->view(views_url().'/templates/category_slider',array('category' => $category1['value'])); ?>
+                    <div class="clr"></div>
+                </div>
+                <div class="content_full_size">
+                    <div class="category-title"><?php echo $category2['label']; ?></div>
+                    <?php $this->load->view(views_url().'/templates/category_slider',array('category' => $category2['value'])); ?>
+                    <div class="clr"></div>
+                </div>
+                <div class="content_full_size">
+                    <div class="category-title"><?php echo $category3['label']; ?></div>
+                      <?php $this->load->view(views_url().'/templates/category_slider',array('category' => $category3['value'])); ?>
+                    <div class="clr"></div>
+                </div>
 
-                    <div class="content_full_size">
-                        <div class="category-title"><?php echo $category1; ?></div>
-                        <div class="category_items_container">{items_category_1}</div>
-                        <div class="clr"></div>
-                    </div>
-                    <div class="content_full_size">
-                        <div class="category-title"><?php echo $category2; ?></div>
-                        <div class="category_items_container">{items_category_2}</div>
-                        <div class="clr"></div>
-                    </div>
-                    <div class="content_full_size">
-                        <div class="category-title"><?php echo $category3; ?></div>
-                        <div class="category_items_container">{items_category_3}</div>
-                        <div class="clr"></div>
-                    </div>
+            <?php } ?>
 
-                <?php } ?>
+            <?php
+            if ($show_genres_filter == 'no') {
+                ?>
 
-                <?php
-                if ($show_genres_filter == 'no') {
-                    ?>
+                <div class="content_full_size">
+                    <br>
+                    <?php echo $items_category_1; ?>
+                    <div class="clr"></div>
+                </div>
 
-                    <div class="content_full_size">
-                        <br>
-                        <?php echo $items_category_1; ?>
-                        <div class="clr"></div>
-                    </div>
+            <?php } ?>
 
-                <?php } ?>
-
-                <div class="clr"></div>
-            </div>
-            <div class="clr"></div>
-        </div>
-        <!-- /content -->
-    </div>
 
 </div>
 
@@ -94,6 +84,7 @@
 
 <!-- DC Camera Slider Settings -->
 <script type="text/javascript">
+    
     jQuery(function () {
         jQuery('#camera_wrap_1').camera({
             thumbnails: false,
@@ -116,6 +107,7 @@
 
             }
         });
+        
 
 
 <?php

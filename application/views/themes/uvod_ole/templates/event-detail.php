@@ -29,7 +29,7 @@ if (isset($events->content) && sizeof($events->content) > 0) {
     <?php
     if (isset($events->content) && sizeof($events->content) > 0) {
         $data = $events->content[0];
-        if ($data->live_now && $data->already_purchased) {
+        if ($data->live_now && isset($data->already_purchased) && $data->already_purchased) {
             ?>
                             stream_url = "<?php echo $data->streaming_url; ?>";
                             jwplayer("jw_live_player").setup({
@@ -82,8 +82,8 @@ if (isset($events->content) && sizeof($events->content) > 0) {
     ?>
 
     <div id="event-item-detail">
-        <div class="container">
-            <div id="event-left-column" class="col-md-4">
+      
+            <div id="event-left-column" class="col-lg-4">
 
                 <div class="event-detail-img">
                     <?php if ($data->live_now) {
@@ -95,7 +95,7 @@ if (isset($events->content) && sizeof($events->content) > 0) {
                     <img src="<?php echo $data->image; ?>">
                 </div>
             </div>
-            <div id="event-right-column" class="col-md-8">
+            <div id="event-right-column" class="col-lg-8">
                 <?php if (!$data->live_now) {
                     ?>
                     <div class="live_events_begins">BEGINNING IN</div>
@@ -140,7 +140,7 @@ if (isset($events->content) && sizeof($events->content) > 0) {
                 </div>
             </div>
         </div>
-    </div>
+
     <?php
 }
 ?>

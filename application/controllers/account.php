@@ -175,6 +175,9 @@ class Account extends UVod_Controller {
     }
 
     public function register_complete() {
+        if (isset($_SESSION['registration_data']->user_id)) {
+            $logout = $this->account_model->logout($_SESSION['registration_data']->user_id);
+        }
         $data = array();
         $this->parser->parse(views_url() . 'templates/header', $data);
         $this->parser->parse(views_url() . 'pages/register_complete', $data);
@@ -183,7 +186,9 @@ class Account extends UVod_Controller {
 
     public function register_subscription_complete() {
         $data = array();
-        $logout = $this->account_model->logout($_SESSION['registration_data']->user_id);
+        if (isset($_SESSION['registration_data']->user_id)) {
+            $logout = $this->account_model->logout($_SESSION['registration_data']->user_id);
+        }
 
         $this->parser->parse(views_url() . 'templates/header', $data);
         $this->parser->parse(views_url() . 'pages/register_subscription_complete', $data);
