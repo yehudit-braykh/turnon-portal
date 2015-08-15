@@ -1,4 +1,9 @@
-
+<script type="text/javascript" src="<?php echo common_asset_url(); ?>js/flipclock/flipclock.min.js"></script>
+<link rel="stylesheet" href="<?php echo common_asset_url(); ?>js/flipclock/flipclock.css">
+<link rel="stylesheet" href="<?php echo asset_url(); ?>css/my_carousel.css">
+<script type='text/javascript' src="<?php echo common_asset_url(); ?>js/wurfl.js"></script>
+​<script type="text/javascript" src="<?php echo common_asset_url(); ?>js/jwplayer/jwplayer.js" ></script>
+<script>jwplayer.key = "BFr/jM6cxDTO5jdihqzp0fQ3Advd0Q8Fp6FUqw==";</script>
 
 <script type="text/javascript">
 
@@ -88,7 +93,3 @@
 ?>
 
 
-<script type="text/javascript" src="<?php echo common_asset_url(); ?>js/flipclock/flipclock.min.js"></script>
-<link rel="stylesheet" href="<?php echo common_asset_url(); ?>js/flipclock/flipclock.css">
-<link rel="stylesheet" href="<?php echo asset_url(); ?>css/my_carousel.css">
-<script type='text/javascript' src="<?php echo common_asset_url(); ?>js/wurfl.js"></script>
