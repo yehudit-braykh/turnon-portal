@@ -221,9 +221,9 @@
                                                                 <div class='user-icon'></div>
 
                                                             </div>
-                                                            <!--                                                        <div class='link_logout'><div class='lock-icon'></div>-->
-                                                            <a href="<?php echo base_url() . 'index.php/account/logout'; ?>">Log Out</a>
-                                                            <!--</div>-->
+                                                            <div class='link_logout'><div class='lock-icon'></div>
+                                                                <a href="<?php echo base_url() . 'index.php/account/logout'; ?>">Log Out</a>
+                                                            </div>
                                                         </div>
                                                         <?php
                                                     }
