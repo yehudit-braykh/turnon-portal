@@ -64,7 +64,7 @@
                     pi_number: pi_number}
             }).done(function (data) {
 
-                if (data && data.message == 'ok') {
+                if (data && data.status == 'ok') {
 
                     window.location.href = "<?php echo base_url(); ?>index.php/account/register_subscription_complete";
                 } else {

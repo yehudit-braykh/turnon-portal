@@ -149,11 +149,12 @@ class Account extends UVod_Controller {
 
             if (isset($ret->error) && $ret->error == false) {
                 $this->subscription_complete_mail($first_name, $last_name, $email);
+                echo json_encode(array('status' => 'ok'));
+            } else {
+                echo json_encode(array('status' => 'error', 'message' => $ret->error,));
             }
-
-            echo json_encode($ret);
         } else {
-            echo json_encode(array('message' => 'Internal Error. Please finish the registration process, then get the subscription in My Account section.'));
+            echo json_encode(array('status' => 'error', 'message' => 'Internal Error. Please finish the registration process, then get the subscription in My Account section.'));
         }
     }
 
@@ -427,9 +428,10 @@ class Account extends UVod_Controller {
 
         if (isset($ret->error) && $ret->error == false) {
             $this->subscription_complete_mail($first_name, $last_name, $email);
+            echo json_encode(array('status' => 'ok'));
+        } else {
+            echo json_encode(array('status' => 'error', 'message' => $ret->error,));
         }
-
-        echo json_encode($ret);
     }
 
     public function subscription_complete_mail($name, $surname, $email) {

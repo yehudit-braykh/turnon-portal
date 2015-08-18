@@ -56,7 +56,7 @@ function show_info() {
                 pi_type = GetCardType($('#card_number').val());
 
                 $.ajax({
-                    url: "<?php echo base_url(); ?>index.php/account/subscribe",
+                    url: "<?php echo base_url(); ?>index.php/account/subscribe_ssl",
                     type: 'POST',
                     dataType: 'json',
                     data: {nonce: nonce,
@@ -66,7 +66,7 @@ function show_info() {
                         pi_number: pi_number}
                 }).done(function (data) {
 
-                    if (data && data.message == 'ok') {
+                    if (data && data.status == 'ok') {
 
                         window.location.href = "<?php echo base_url(); ?>index.php/account/subscription_finished";
 
