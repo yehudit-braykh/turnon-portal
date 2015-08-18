@@ -146,12 +146,12 @@ class Account extends UVod_Controller {
             $pi_number = $_POST['pi_number'];
 
             $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number);
-
+error_log('ret: '.json_encode($ret));
             if (isset($ret->error) && $ret->error == false) {
                 $this->subscription_complete_mail($first_name, $last_name, $email);
                 echo json_encode(array('status' => 'ok'));
             } else {
-                echo json_encode(array('status' => 'error', 'message' => $ret->error,));
+                echo json_encode(array('status' => 'error', 'message' => $ret->message,));
             }
         } else {
             echo json_encode(array('status' => 'error', 'message' => 'Internal Error. Please finish the registration process, then get the subscription in My Account section.'));
@@ -430,7 +430,7 @@ class Account extends UVod_Controller {
             $this->subscription_complete_mail($first_name, $last_name, $email);
             echo json_encode(array('status' => 'ok'));
         } else {
-            echo json_encode(array('status' => 'error', 'message' => $ret->error,));
+            echo json_encode(array('status' => 'error', 'message' => $ret->message,));
         }
     }
 
