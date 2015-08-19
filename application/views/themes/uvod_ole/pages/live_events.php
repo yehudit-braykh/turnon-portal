@@ -46,12 +46,12 @@
 </script>
 
 
-<div class="container">
+
 
     <div id="event-template">
         <?php $this->load->view(views_url() . 'templates/event-detail'); ?>
     </div>
-</div>
+<div class="uvod-container">
 
 <div class="carousel-container">
 
@@ -86,7 +86,7 @@
             </ul>
         </div>
     </div>
-
+</div>
 
     <?php
 }

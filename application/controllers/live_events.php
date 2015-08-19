@@ -142,7 +142,7 @@ class Live_events extends UVod_Controller {
             }
         }
 
-
+        error_log('events: '.json_encode($events));
 
         $data['section'] = "events";
         $data['events'] = $events;
