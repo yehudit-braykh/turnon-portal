@@ -114,18 +114,15 @@ function show_info() {
 </div>
 
 <!-- content -->
-<div class="content_centered">
-    <div class="jumbotron">
+<div class="container">
+    <div class="uvod_container">
 
-        <div class="subscription_title">Become a subscriber</div>
-
+        <div class="buytickets_title">Become a subscriber</div>
 
         <div class="registration_container">
-
             <div class="registration_cvv_info">
                 <img style="width:175px;height:116px;" src="<?php echo asset_url(); ?>images/cvvnumber.png" />
             </div>
-
             <div class="registration_pricing">
                 <div class="dc_pricingtable04">
                     <ul class="price-box" style="width:100%;">
@@ -162,9 +159,8 @@ function show_info() {
                 <ol>
                     <?php $this->load->view(views_url() . 'templates/payment_form'); ?>
                     <li class="buttons">
-
                         <button id="btn_subscribe" type="button" class="send">CONFIRM PAYMENT</button>
- <div id="registration_preloader"></div>
+                        <div id="registration_preloader"></div>
                         <div class="clr"></div>
                     </li>
                 </ol>

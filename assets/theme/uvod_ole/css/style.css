@@ -31,10 +31,11 @@ ul,
 li { list-style:none; }
 
 html{
-    height: 100%;
+    min-height: 100%;
+    position: relative;
 }
 
-body { width:100%; font:normal 12px/2em "Lato", "Web-FuturaMT-Bold", Arial, Helvetica, sans-serif; letter-spacing: 1px;}
+body { width:100%; font:normal 12px/2em "Lato", "Web-FuturaMT-Bold", Arial, Helvetica, sans-serif; letter-spacing: 1px;margin-bottom: 50px;padding-top:80px;}
 
 img { border:none; }
 
@@ -65,6 +66,15 @@ img { border:none; }
 @font-face {
     font-family: 'Web-FuturaMT-Bold';
     src: url('../fonts/futuraMTBold.ttf');
+}
+
+.uvod_container{
+   padding: 50px 60px 100px 60px;
+}
+
+.uvod_container h1 {
+    margin-top: 0px;
+    color: rgba(255,255,255,0.7);
 }
 
 .clr { clear:both; padding:0; margin:0; width:100%; font-size:0; line-height:0; }
@@ -255,7 +265,7 @@ h3 span a:hover { text-decoration:none; color:#fff; }
 
 .now_page { padding:10px 0 10px; margin:10px auto 00px; width:100%; border-top:1px solid #4a4a4a; }
 
-.now_page_resize {   padding:30px 0 0; width:100%; text-align:left; }
+.now_page_resize { width:100%; text-align:left; }
 
 /*.index_page .now_page {border-top:none; margin-top:00px;padding-top:00px}
 
@@ -1749,7 +1759,7 @@ select:focus, select:active {
 
 /* footer */
 
-.footer { width:100%; background: #212121; height: 50px; position: relative; bottom: 0px; clear: both}
+.footer { width:100%; background: #212121; height: 50px; position: absolute; bottom: 0px;}
 .footer_resize { width:960px; margin: 0 auto; color:#fff; font-size:12px; padding: 15px 0px 0px 0px; }
 .footer_resize a {color: #fff;}
 .footer_left { float: left; padding: 0px 0px 0px 0px; }
@@ -2013,7 +2023,6 @@ select:focus, select:active {
     color: #0383ee;
     font-size: 24px;
     text-transform: uppercase;
-    margin-top: 20px;
 }
 
 .myaccount_title {
@@ -2288,10 +2297,10 @@ select:focus, select:active {
 
 #terms_and_conditions{
     text-align: left;
-    margin: 5px 0px 5px 5px;
+    margin: 5px 0px 10px 5px;
 }
 
-#accept_terms_and_conditions{
+#accept_terms_and_conditions, #remember_credentials{
     margin-right: 5px;
 }
 
@@ -2324,7 +2333,7 @@ select:focus, select:active {
     margin-right: 150px;
 }
 
-.registration_container form select, .registration_container_payment form select { width:250px; float:left; font-size:12px; color:#000; clear: both; }
+.registration_container form select, .registration_container_payment form select { width:250px; float:left; font-size:12px; color:#444; clear: both; background-color: #FFF; }
 
 .registration_container form textarea, .registration_container_payment form textarea { width:75%; border:1px solid #999; margin:4px 0; padding:5px 2px; background:#fff; float:left; font-size:12px; color:#000; clear: both; }
 
@@ -2442,7 +2451,7 @@ select:focus, select:active {
 }
 
 .or_separator{
-    width: 100%;
+    width: 300px;
     text-align: center;
     color: #bbb!important;
     font-size: 16px;

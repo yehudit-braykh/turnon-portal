@@ -107,10 +107,9 @@
 
 <!-- content -->
 <div class="container">
-    <div class="jumbotron">
+    <div class="uvod_container">
 
         <div class="buytickets_title">Become a subscriber</div>
-
 
         <div class="registration_container">
             <div class="registration_pricing">
@@ -119,6 +118,7 @@
                         <li class="pricing-header glass_blue">
                             <ul>
                                 <li class="title">Monthly Subscription</li>
+
                                 <?php
                                 if (isset($subscription_amount)) {
                                     $arr = explode('.', $subscription_amount);
@@ -129,6 +129,7 @@
                                     }
                                 }
                                 ?>
+
                                 <li class="price"><span class="currency">$</span><span class="big"><?php echo $arr[0]; ?></span><span class="small"><?php echo $cents; ?></span></li>
                                 <li class="month-label">Per Month</li>
                             </ul>
@@ -151,6 +152,7 @@
                     <img style="width:175px;height:116px;" src="<?php echo asset_url(); ?>images/cvvnumber.png" />
                 </div>
                 <ol>
+
                    <?php $this->load->view(views_url().'templates/payment_form');?>
                  
                     <li class="buttons">
@@ -160,7 +162,6 @@
                         <hr id="line_payment">
                     </li>
                     <li class="buttons">
-
                         <button id="btn_skip" type="button" class="btn btn-default">Skip and continue registration</button>
                         <div id="registration_preloader"></div>
                         <div class="clr"></div>

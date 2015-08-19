@@ -148,7 +148,7 @@
 
 <!-- content -->
 <div class="container">
-    <div class="jumbotron">
+    <div class="uvod_container">
 
         <div class="create_title">Create your account</div>
 
