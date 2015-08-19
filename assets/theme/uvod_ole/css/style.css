@@ -69,7 +69,12 @@ img { border:none; }
 }
 
 .uvod_container{
-   padding-top: 80px;
+   padding: 50px 60px 100px 60px;
+}
+
+.uvod_container h1 {
+    margin-top: 0px;
+    color: rgba(255,255,255,0.7);
 }
 
 .clr { clear:both; padding:0; margin:0; width:100%; font-size:0; line-height:0; }
@@ -260,7 +265,7 @@ h3 span a:hover { text-decoration:none; color:#fff; }
 
 .now_page { padding:10px 0 10px; margin:10px auto 00px; width:100%; border-top:1px solid #4a4a4a; }
 
-.now_page_resize {   padding:30px 0 0; width:100%; text-align:left; }
+.now_page_resize { width:100%; text-align:left; }
 
 /*.index_page .now_page {border-top:none; margin-top:00px;padding-top:00px}
 
@@ -2018,7 +2023,6 @@ select:focus, select:active {
     color: #0383ee;
     font-size: 24px;
     text-transform: uppercase;
-    margin-top: 20px;
 }
 
 .myaccount_title {
@@ -2293,10 +2297,10 @@ select:focus, select:active {
 
 #terms_and_conditions{
     text-align: left;
-    margin: 5px 0px 5px 5px;
+    margin: 5px 0px 10px 5px;
 }
 
-#accept_terms_and_conditions{
+#accept_terms_and_conditions, #remember_credentials{
     margin-right: 5px;
 }
 
@@ -2329,7 +2333,7 @@ select:focus, select:active {
     margin-right: 150px;
 }
 
-.registration_container form select, .registration_container_payment form select { width:250px; float:left; font-size:12px; color:#000; clear: both; }
+.registration_container form select, .registration_container_payment form select { width:250px; float:left; font-size:12px; color:#444; clear: both; background-color: #FFF; }
 
 .registration_container form textarea, .registration_container_payment form textarea { width:75%; border:1px solid #999; margin:4px 0; padding:5px 2px; background:#fff; float:left; font-size:12px; color:#000; clear: both; }
 

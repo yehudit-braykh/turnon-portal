@@ -1,7 +1,7 @@
 
 <div class="container">
 
-    <div class="jumbotron">
+    <div class="uvod_container">
         <div class="form_title">Please Log In</div>
 
         <form method="post" id="loginform" style="width:300px;display:block;margin-left:auto;margin-right:auto;">
