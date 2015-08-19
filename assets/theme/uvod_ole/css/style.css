@@ -31,10 +31,11 @@ ul,
 li { list-style:none; }
 
 html{
-    height: 100%;
+    min-height: 100%;
+    position: relative;
 }
 
-body { width:100%; font:normal 12px/2em "Lato", "Web-FuturaMT-Bold", Arial, Helvetica, sans-serif; letter-spacing: 1px;}
+body { width:100%; font:normal 12px/2em "Lato", "Web-FuturaMT-Bold", Arial, Helvetica, sans-serif; letter-spacing: 1px;margin-bottom: 50px;padding-top:80px;}
 
 img { border:none; }
 
@@ -65,6 +66,10 @@ img { border:none; }
 @font-face {
     font-family: 'Web-FuturaMT-Bold';
     src: url('../fonts/futuraMTBold.ttf');
+}
+
+.uvod_container{
+   padding-top: 80px;
 }
 
 .clr { clear:both; padding:0; margin:0; width:100%; font-size:0; line-height:0; }
@@ -1749,7 +1754,7 @@ select:focus, select:active {
 
 /* footer */
 
-.footer { width:100%; background: #212121; height: 50px; position: relative; bottom: 0px; clear: both}
+.footer { width:100%; background: #212121; height: 50px; position: absolute; bottom: 0px;}
 .footer_resize { width:960px; margin: 0 auto; color:#fff; font-size:12px; padding: 15px 0px 0px 0px; }
 .footer_resize a {color: #fff;}
 .footer_left { float: left; padding: 0px 0px 0px 0px; }
@@ -2442,7 +2447,7 @@ select:focus, select:active {
 }
 
 .or_separator{
-    width: 100%;
+    width: 300px;
     text-align: center;
     color: #bbb!important;
     font-size: 16px;

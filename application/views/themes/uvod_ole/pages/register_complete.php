@@ -82,7 +82,7 @@
 
             <div class="complete_title">The registration process is complete.</div>
 
-             <div class="form_subtitle">Login with your facebook account and start enjoying our services!" </div>
+             <div class="form_subtitle">Login with your facebook account and start enjoying our services!</div>
 
              <div class="complete_btn"> <button type="submit" id="btn_redirect_login" class="send">LOG IN</button></div>
 
