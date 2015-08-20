@@ -60,7 +60,7 @@ class Account_model extends CI_Model {
         $profile = apiCall("user/get_single_profile", array("email" => $email));
 
 
-        if (isset($users->message) && ($users->message == "ok")) {
+        if (isset($users->content->entryCount) && (intval($users->content->entryCount) > 0)) {
             $mandrill = new Mandrill('lwISZr2Z9D-IoPggcDSaOQ');
             $new_password = array();
             $new_password['password'] = rand(10000000, getrandmax());
