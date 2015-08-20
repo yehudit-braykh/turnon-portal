@@ -24,34 +24,36 @@
     });
   });
 </script>
-          </div>
-          </div>
-          <div class="header_resize2">
-            <div class="now_page_resize">
-              <div class="form_title">FORGOT YOUR PASSWORD</div>
-              <div class="form_subtitle">Enter your information to recover your password</div>
-              <div class="clr"></div>
-            </div>
 
-            <div class="clr"></div>
-            <div style="width:100%;height:600px;margin: 0 auto;">
-              <form  method="post" id="loginform" style="width:350px;display:block;margin-left:auto;margin-right:auto;">
+<!-- content -->
+
+          </div>
+          </div>
+          
+          <div class="container">
+            <div class="uvod_container">
+            
+              <div class="forgot_title">Forgot password</div>
+              <div class="clr"></div>
+
+              <form  method="post" id="loginform">
+
                 <ol>
                   <li>
-                    <label for="email">Email*</label>
-                    <input id="email" name="email" class="text" />
+                    <input id="email" name="email" placeholder="Enter your Email to recover your password" class="text" />
                   </li>
-
                   <li class="buttons">
-                    <input type="image" name="imageField" id="imageField" src="<?php echo asset_url(); ?>images/button_send.png" class="send" />
+                    <button type="submit" name="imageField" id="imageField" class="send">SEND</button>
                     <div class="clr"></div>
+                    <span id="info" class="form_info">&nbsp;</span>
                   </li>
-				  <li> 
-					<span id="info" class="form_info">&nbsp;</span>
-				  </li>
                 </ol>
+
               </form>              
+                
+              <div class="clr"></div>
+
             </div>
-            <div class="clr"></div>
           </div>
-          <!-- /content -->
+
+<!-- /content -->

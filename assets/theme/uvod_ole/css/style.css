@@ -400,7 +400,7 @@ h2.h2_act_href a.ico_4:hover{background:url(../images/ico_a-04.png) no-repeat le
     width: 100%;
     height: 100%;
     position: absolute;
-    z-index: 999;
+    z-index: 1;
     margin:5px
 
 }
@@ -1994,7 +1994,7 @@ select:focus, select:active {
 
 .form_title, .location_title, .registration_title, .buytickets_title, 
 .complete_title, .myaccount_title, .create_title, .subscribe_title,
-.subscription_title {
+.subscription_title, .forgot_title {
     width: 100%;
     text-align: center;
     font-family: "Lato", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
@@ -2025,6 +2025,10 @@ select:focus, select:active {
     text-transform: uppercase;
 }
 
+.complete_title.error{
+    color: #d52927;
+}
+
 .myaccount_title {
     margin-left: -317px;
 }
@@ -2037,6 +2041,10 @@ select:focus, select:active {
 
 .subscription_title {
     margin: 0px 0px 16px -19px;
+}
+
+.forgot_title {
+    margin-left: -33px;
 }
 
 .form_title_hint{
@@ -2372,7 +2380,12 @@ select:focus, select:active {
 
 /* form login */
 
-#loginform { margin:0; padding:1px 0; }
+#loginform { 
+    width: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 #loginform * { color:#FFF; margin-top: 5px; }
 
@@ -2399,7 +2412,7 @@ select:focus, select:active {
 }
 
 #btn_sign_in, #btn_sign_up, #btn_next, #send_activation_email_register_button, 
-#btn_logout, #btn_subscribe, #btn_redirect_login {
+#btn_logout, #btn_subscribe, #btn_redirect_login, #imageField {
     width: 100%;
     height: 40px;
     border: 0px;
@@ -2409,9 +2422,13 @@ select:focus, select:active {
     border-radius: 5px;
 }
 
-#btn_sign_up, #btn_subscribe {
+#btn_sign_up {
     width: 300px;
     margin-top: 5px;
+}
+
+#btn_subscribe {
+    width: 300px;
 }
 
 #btn_logout {

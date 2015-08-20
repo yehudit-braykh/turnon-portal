@@ -7,13 +7,11 @@
     </p>
     <p style="font-size:18px;">
         <?php echo $password; ?>
-      
     </p>
-    
     <br>
     <p>
         Thank you,<br> 
-        The 1spotmedia.com Team<br> 
+        The UVOD Team<br> 
         <br>
 
         <span style="font-size: 12px">Please do not reply to this message; it was sent from an unmonitored email address.</span><br> 

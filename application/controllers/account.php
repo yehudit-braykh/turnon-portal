@@ -386,10 +386,12 @@ error_log('ret: '.json_encode($ret));
         $data = array();
         $done = $this->account_model->activate_account($_GET['hash'], $_GET['email']);
         if ($done) {
+            $data['status'] = "ok";
             $data['message1'] = "ACCOUNT ACTIVE!";
             $data['message2'] = "Your account was activated successfully.";
             $data['message3'] = "Now you can proceed with the login.";
         } else {
+            $data['status'] = "error";
             $data['message1'] = "ERROR";
             $data['message2'] = "The activation process found an error.";
             $data['message3'] = "Please try again later.";

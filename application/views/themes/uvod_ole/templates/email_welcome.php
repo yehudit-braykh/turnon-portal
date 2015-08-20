@@ -3,18 +3,16 @@
     <h4>Dear <?php echo $name . ' ' . $surname; ?></h4>
 
     <p>
-        Thank you for registering with 1spotmedia.com.
+        Thank you for registering with us.
     </p>
-   
     <p>
-        If you are a Subscriber you will have access to content anywhere, anytime from TVJ, JNN, RETV, FAME, HITZ and RJR94FM - including live TV and Radio programming, on-demand 
-        clips of your favorite shows, and exclusive interviews.<br>
-        We are always working to improve the features, functionality and design to better serve your needs. We hope you enjoy the 1spotmedia.com experience.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br>
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     </p>
     <br>
     <p>
         Thank you,<br> 
-        The 1spotmedia.com Team<br> 
+        The UVOD Team<br> 
         <br>
 
         <span style="font-size: 12px">Please do not reply to this message; it was sent from an unmonitored email address.</span><br> 

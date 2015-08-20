@@ -65,7 +65,7 @@
         <li> 
             <span id="info" class="form_info" style="width:265px;display:block;margin-left:auto;margin-right:auto;"></span>
         </li>
-        <li class="buttons" style="width: 320px;margin: 5px auto;">
+        <li class="form_buttons_centered">
 
 
             <button type="submit" id="send_activation_email_register_button" class="send">RESEND ACTIVATION EMAIL</button>
