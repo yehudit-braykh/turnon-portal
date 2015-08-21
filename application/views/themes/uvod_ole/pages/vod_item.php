@@ -290,13 +290,12 @@
                                                 
 </script>
 
-</div>
-</div>
-<div class="header_resize2">
 
-    <div class="resize"> 
+
+
+
         <!-- content -->
-        <div class="content_centered">
+        <div class="container">
             <div class="content_resize">
                 <div id="vod_item_player_container">
                     
@@ -419,7 +418,7 @@
                 <?php echo $item_related_items; ?>
             </div>
         </div>
-    </div>
+
     <!-- /content -->
 
     <div class="popup" id="popup_login">

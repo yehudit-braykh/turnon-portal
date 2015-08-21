@@ -1767,13 +1767,11 @@ select:focus, select:active {
     font-weight:bold;
     color:#FFF;
     padding: 10px 0px 15px 0px;
-    float: left;
     line-height: 30px;
     width: 600px;
 }
 
 .vod_aired_date{
-    float: left;
     font-size: 18px;
     font-weight: bold;
     color: #aaa;
@@ -1900,6 +1898,7 @@ select:focus, select:active {
 .separator { width:97%; margin-left: 20px; height:1px; background:#cccccc; }
 
 .vod_related_container {
+    height: 265px;
     margin: 0px 0px 0px 0px;
     padding: 0px;
 }
