@@ -17,7 +17,7 @@
                         <link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"/>
                         <link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/dialogs.css" />
                         <link href="<?php echo asset_url(); ?>css/bootstrap.css" rel="stylesheet"/>
-                        <link rel="stylesheet" href="<?php echo asset_url(); ?>css/home_slider.css">
+
                             <!-- Javascript files -->
     <!--                        <script type="text/javascript" src="<?php echo common_asset_url(); ?>js/jquery.min.js"></script>-->
                             <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
