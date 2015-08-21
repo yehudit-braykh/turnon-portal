@@ -2,9 +2,9 @@
 <div class="container">
 
     <div class="uvod_container">
-        <div class="form_title">Please Log In</div>
-
-        <form  id="loginform" style="width:300px;display:block;margin-left:auto;margin-right:auto;">
+        
+        <form  id="loginform">
+            <div class="form_title">Please Log In</div>
             <ol>
                 <li> 
                     <span id="info" class="form_info"></span>

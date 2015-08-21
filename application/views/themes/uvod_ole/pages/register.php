@@ -149,15 +149,12 @@
 <!-- content -->
 <div class="container">
     <div class="uvod_container">
-
-        <div class="create_title">Create your account</div>
-
-        <div class="registration_container">
-
-            <form method="post" id="registerform">
+        
+            <form method="post" id="loginform">
+                <div class="form_title">Create your account</div>
                 <ol>
                     <li> 
-                        <div id="info" class="form_info">&nbsp;</div>
+                        <div id="info" class="form_info"></div>
                     </li>
 
                     <li>
@@ -168,15 +165,10 @@
 
                         <input id="email" name="email" placeholder="Email address" class="text" />
                     </li>
-                    <li> 
 
-                    </li>
                     <li>
 
                         <input id="password" name="password" placeholder="Password" class="text" type="password" />
-                    </li>
-                    <li> 
-
                     </li>
 
 
@@ -184,7 +176,7 @@
                         <button id="btn_sign_up" class="send common_btn">REGISTER</button>
                         <div id="registration_preloader"></div>
                         <div class="clr"></div>
-                    </li>
+                    </li>                    
                 </ol>
                 <div class="or_separator">or</div>
                 <div id="fb_container">
@@ -192,14 +184,14 @@
                     <div id="fb_registration_preloader"></div>
                     <button id="signup_fb_btn"></button>
 
-                    <div id="fb_info" class="form_info">&nbsp;</div>
+                    <div id="fb_info" class="form_info"></div>
                 </div>
             </form>
 
             <!--            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
                         </fb:login-button>-->
 
-        </div>
+        
     </div>
 </div>
 <!-- /content -->

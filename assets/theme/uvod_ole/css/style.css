@@ -35,7 +35,7 @@ html{
     position: relative;
 }
 
-body { width:100%; font:normal 12px/2em "Roboto", "Web-FuturaMT-Bold", Arial, Helvetica, sans-serif; letter-spacing: 1px;margin-bottom: 50px;padding-top:80px;}
+body { width:100%; font:normal 12px/2em "Roboto-light", "Web-FuturaMT-Bold", Arial, Helvetica, sans-serif; letter-spacing: 1px;margin-bottom: 50px;padding-top:80px;}
 
 img { border:none; }
 
@@ -51,7 +51,7 @@ img { border:none; }
 
 @font-face {
     font-family: 'Roboto';
-    src: url('../fonts/Roboto-Light.ttf');
+    src: url('../fonts/Roboto-Regular.ttf');
 }
 
 @font-face {
@@ -299,7 +299,7 @@ h3 span a:hover { text-decoration:none; color:#fff; }
 
 #slider { padding:0; margin:00px auto 00px; }
 
-#slider h1 { font: bold italic 30px "Liberation Sans", Arial, Helvetica, sans-serif; color:#fff; padding:0; margin:0; }
+#slider h1 { font: bold italic 30px "Roboto-light", Arial, Helvetica, sans-serif; color:#fff; padding:0; margin:0; }
 
 #slider .flash_slider { width:100%; height:470px; margin:0 auto; overflow:hidden; }
 
@@ -380,7 +380,11 @@ h2.h2_act_href a.ico_4:hover{background:url(../images/ico_a-04.png) no-repeat le
 .col4.last { margin-right:0; }
 
 
-
+#editbox_search {
+    background-color: #666;
+    border: 0px;
+    color:#bbb;
+}
 
 
 .img_hover_box a.pic { display: block; position: relative; color: #4f4f4f; }
@@ -1988,40 +1992,29 @@ select:focus, select:active {
 
 /*desde aca*/
 
-.form_title, .location_title, .registration_title, .buytickets_title, 
-.complete_title, .myaccount_title, .create_title, .subscribe_title,
-.subscription_title, .forgot_title {
+.form_title, .location_title, .registration_title, 
+.complete_title, .myaccount_title, .subscribe_title,
+.subscription_title {
     width: 100%;
-    text-align: center;
-    font-family: "Roboto", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+    font-family: "Roboto-light", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
     font-size: 30px;
     font-weight: normal;
     color:rgba(255,255,255,0.7);
     line-height: 1.4;
-    margin-left: -60px;
 }
 
 .popup-title{
     color: #0383ee;
     width: 100%;
     text-align: center;
-    font-family: "Roboto";
+    font-family: "Roboto-light";
     font-size: 30px;
     font-weight: normal;
     line-height: 1.4;
 }
 
-.create_title {
-    margin-left: -17px;
-}
-
 .registration_title {
     margin-left: -207px;
-}
-
-.buytickets_title{
-    margin-left: -18px;
-    margin-bottom: 10px;
 }
 
 .complete_title{
@@ -2049,14 +2042,10 @@ select:focus, select:active {
     margin: 0px 0px 16px -19px;
 }
 
-.forgot_title {
-    margin-left: -33px;
-}
-
 .form_title_hint{
     width: 100%;
     text-align: center;
-    font-family: "Lato", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+    font-family: "Roboto-light", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
     font-size: 16px;
     font-weight: normal;
     color: rgba(255,255,255,0.5);
@@ -2071,7 +2060,7 @@ select:focus, select:active {
 .form_subtitle {
     width: 100%;
     text-align: center;
-    font-family: "Lato", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+    font-family: "Roboto-light", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
     font-size: 22px;
     font-weight: normal;
     color: rgba(255,255,255,1);
@@ -2090,7 +2079,7 @@ select:focus, select:active {
 
 }
 .vod_list_header_title {
-    font-family: "Lato", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+    font-family: "Roboto-light", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
     font-size: 54px;
     font-weight: bold;
     color: #fff;
@@ -2127,14 +2116,14 @@ select:focus, select:active {
     text-transform: none;
     font-size: 14px;
     text-align: left;    
-    font-family: "Lato", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+    font-family: "Roboto-light", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
     margin: 0px 0px 0px 0px;
 }
 
 .registration_title_payment {
     color: #7f00bf; 
     text-align: left; 
-    font-family: "Lato", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+    font-family: "Roboto-light", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
     margin: 10px 0px 0px 0px;
     font-size: 30px;
     font-weight: normal;
@@ -2147,7 +2136,7 @@ select:focus, select:active {
     text-transform: none;
     font-size: 14px;
     text-align: left;    
-    font-family: "Lato", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+    font-family: "Roboto-light", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
     margin: 0px 0px 0px 0px;
 }
 .registration_container, .registration_container_payment { 
@@ -2218,7 +2207,7 @@ select:focus, select:active {
     background-repeat: no-repeat;
     padding-left: 20px;
     display: none;
-    font-family: "Lato", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+    font-family: "Roboto-light", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
     font-size: 14px;
     font-weight: normal;
     color:#0383ee!important;
@@ -2232,7 +2221,7 @@ select:focus, select:active {
     background-repeat: no-repeat;
     padding-left: 20px;
     display: none;
-    font-family: "Lato", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+    font-family: "Roboto-light", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
     font-size: 14px;
     font-weight: normal;
     color:#0383ee!important;
@@ -2272,7 +2261,7 @@ select:focus, select:active {
 }
 
 .form_info {
-    font-family: "Lato", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+    font-family: "Roboto-light", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
     font-size: 14px;
     font-weight: normal;
     color:#0383ee !important;
@@ -2280,7 +2269,7 @@ select:focus, select:active {
 }
 
 .form_notes {
-    font-family: "Lato", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+    font-family: "Roboto-light", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
     font-size: 14px;
     font-weight: normal;
     color:#7d7d7d !important;
@@ -2288,7 +2277,7 @@ select:focus, select:active {
     width: 100%;
 }
 
-.registration_container form *, .registration_container_payment form * { color:#FFF; }
+/*.registration_container form *, .registration_container_payment form * { color:#FFF; }*/
 
 .registration_container form ol, .registration_container_payment form ol { margin:0; padding:0; list-style:none; }
 
@@ -2365,10 +2354,6 @@ select:focus, select:active {
     cursor: pointer;
 }*/
 
-#fb_container{
-    float: left;
-}
-
 #signup_fb_btn{
     margin-top: 5px;
     width: 300px;
@@ -2393,7 +2378,7 @@ select:focus, select:active {
     margin-right: auto;
 }
 
-#loginform * { color:#FFF; margin-top: 5px; }
+/*#loginform * { color:#FFF; margin-top: 5px; }*/
 
 #loginform ol { margin:0; padding:0; list-style:none; }
 
@@ -2504,7 +2489,8 @@ select:focus, select:active {
     font-size: 20px;
     text-transform: none;
     letter-spacing: 1px;
-    background-color: #2d2d2d
+    background-color: #2d2d2d;
+    padding-top: 4px;
 }
 
 #btn_skip{
@@ -2786,7 +2772,7 @@ select:focus, select:active {
 
 #live_now_advise{
     background-color: #fd7d10;
-    font-family: 'Lato';
+    font-family: 'Roboto-light';
     text-align: center;
     height: 36px;
     color: #fff;
@@ -2836,7 +2822,7 @@ select:focus, select:active {
     background-color:#fd7d10;
     color: #fff;
     text-align: center;
-    font-family: 'Lato';
+    font-family: 'Roboto-light';
     cursor: pointer;
     border-radius: 6px;
     margin: 0px auto;
@@ -2889,7 +2875,7 @@ td.product_content{
 .product_price{
     width: 100%;
     text-align: center;
-    font-family: "Lato","Liberation sans", Arial, Helvetica, sans-serif;
+    font-family: "Roboto-light","Liberation sans", Arial, Helvetica, sans-serif;
     font-weight: bold;
     font-size: 32px;
     margin:-10px 0px 10px 0px;
@@ -2971,7 +2957,7 @@ td.product_content{
 #event-loading{
     height: 350px;
     color: #fff;
-    font-family: 'Lato';
+    font-family: 'Roboto-light';
     font-size: 32px;
     text-align: center;
     padding-top: 150px;

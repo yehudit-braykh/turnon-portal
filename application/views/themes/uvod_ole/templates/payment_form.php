@@ -1,3 +1,7 @@
+<li> 
+    <p id="info" class="form_info"></p>
+</li>
+
 <li>
     <input id="cardholder_name" placeholder="Name on card" class="text" />
 </li>
@@ -50,10 +54,6 @@
 
     </div>
     <div id="label_select"><label for="expiration_month">Month*</label><label for="expiration_year">Year*</label></div>
-</li>
-
-<li> 
-    <p id="info" class="form_info">&nbsp;</p>
 </li>
 
 <li id= "terms_and_conditions">

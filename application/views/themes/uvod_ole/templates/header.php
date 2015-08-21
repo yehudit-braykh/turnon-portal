@@ -191,7 +191,7 @@
                                         <ul class="nav navbar-nav">
                                             <li <?php echo ($section == "featured" ? "class='active'" : ""); ?>><a href="<?php echo base_url(); ?>">HOME</a></li>
                                             <li class="dropdown">
-                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Video on Demand <span class="caret"></span></a>
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">VIDEO ON DEMAND <span class="caret"></span></a>
                                                 <ul class="dropdown-menu">
                                                     <?php $this->load->view(views_url() . 'templates/sub_menu1'); ?>
                                                 </ul>
@@ -209,7 +209,7 @@
                                             <?php
                                             if (!isset($_SESSION['uvod_user_data']) || !isset($_SESSION['uvod_user_data']->token)) {
                                                 ?>
-                                                <li><a href="<?php echo base_url(); ?>index.php/account/signin">LogIn / Register</a></li>
+                                                <li><a href="<?php echo base_url(); ?>index.php/account/signin">LOG IN</a></li>
 
                                                 <?php
                                             } else {

@@ -109,7 +109,7 @@
 <div class="container">
     <div class="uvod_container">
 
-        <div class="buytickets_title">Become a subscriber</div>
+        
 
         <div class="registration_container">
             <div class="registration_pricing">
@@ -147,10 +147,12 @@
             </div>
 
             <form method="post" id="registerform">
+                <div class="form_title">Become a subscriber</div>
 
                 <div class="registration_cvv_info">
                     <img style="width:175px;height:116px;" src="<?php echo asset_url(); ?>images/cvvnumber.png" />
                 </div>
+                
                 <ol>
 
                    <?php $this->load->view(views_url().'templates/payment_form');?>

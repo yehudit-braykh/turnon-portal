@@ -33,12 +33,15 @@
           <div class="container">
             <div class="uvod_container">
             
-              <div class="forgot_title">Forgot password</div>
               <div class="clr"></div>
 
               <form  method="post" id="loginform">
-
+                <div class="form_title">Forgot password</div>
                 <ol>
+
+                  <li>
+                     <div id="info" class="form_info"></div>
+                  </li>
                   <li>
                     <input id="email" name="email" placeholder="Enter your Email to recover your password" class="text" />
                   </li>
