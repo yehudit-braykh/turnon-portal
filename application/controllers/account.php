@@ -146,7 +146,7 @@ class Account extends UVod_Controller {
             $pi_number = $_POST['pi_number'];
 
             $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number);
-error_log('ret: '.json_encode($ret));
+
             if (isset($ret->error) && $ret->error == false) {
                 $this->subscription_complete_mail($first_name, $last_name, $email);
                 echo json_encode(array('status' => 'ok'));
@@ -516,27 +516,19 @@ error_log('ret: '.json_encode($ret));
 
         $status = true;
 
-//        if(isset(   $_SESSION['copy_data'] )){
-//            error_log('esta seteada la copy: '.json_encode($_SESSION));
-//        }else{
-//            error_log('no esta seteada la copy');
-//        }
-        // error_log('la session: '.json_encode($_SESSION['uvod_user_data']));
         if (isset($_SESSION['uvod_user_data']->fb_id)) {
 
             //CHECK IF FACEBOOK SESSION IS ACTIVE
             $fb_session_status = $this->social_media_model->get_fb_profile();
-            error_log('fb session: ' . json_encode($fb_session_status));
+
             if ($fb_session_status->status !== 'ok') {
                 $status = false;
             }
-        } else {
-            error_log('no esta seteado');
-        }
+        } 
         if ($status) {
 
             if (isset($_SESSION['uvod_user_data'])) {
-                error_log('esta seteado el user data');
+               
                 $id = $this->account_model->get_self_id($_SESSION['uvod_user_data']->token);
                 if (isset($id->error) && $id->error) {
                     $status = false;
@@ -642,9 +634,9 @@ error_log('ret: '.json_encode($ret));
             $password = $profile->content->id;
 
             $login = $this->account_model->login($email, $password);
-            error_log('login: ' . json_encode($login));
+        
             if (isset($login) && !$login->error) {
-                error_log('entro a guardar la session');
+         
                 $_SESSION['uvod_user_data'] = $login->content;
                 $_SESSION['uvod_user_data']->fb_id = $profile->content->id;
                 // $_SESSION['copy_data'] = $_SESSION['uvod_user_data'];
@@ -666,7 +658,7 @@ error_log('ret: '.json_encode($ret));
                 }
             }
         } else {
-            error_log('no se puede obtener el profile de fb');
+
             $ret->message = $profile->msg;
             $ret->status = "error";
         }

@@ -7,9 +7,9 @@
 
 }
 
-.slider-title{
+.slider-title h3{
     margin: 0px 70px;
-    font-family: 'Roboto';
+    font-family: 'Roboto'!important;
 }
 
 .event_item_overlay_date{

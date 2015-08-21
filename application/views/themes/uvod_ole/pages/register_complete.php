@@ -2,8 +2,6 @@
 
     $(function () {
 
-        _gaq.push(['_trackEvent', 'Registration', 'Register complete']);
-
         function show_info(data) {
 
             $("#info").html("* " + data.message);
@@ -42,6 +40,10 @@
 
         });
 
+        $('#btn_redirect_login').on('click', function () {
+            window.location.href = '<?php echo base_url(); ?>' + 'index.php/account/signin';
+        })
+
     });
 </script>
 </div>
@@ -52,38 +54,38 @@
 <div class="container">
     <div class="uvod_container">
 
-    <?php
-    if (isset($_SESSION['registration_data']->method) && $_SESSION['registration_data']->method == 'email') {
-        ?>  
-        
-        <div class="complete_title">Please check your email for an activation link <br class="rwd-break"> to complete your registration</div>
-        <div class="clr"></div>
-        <div class="form_title_hint">(The activation email may take up to 1 hour to arrive) </div>
-        <div class="clr"></div>
-       
-        <div class="form_subtitle">You has not received the activation email?</div>
-        <li> 
-            <span id="info" class="form_info" style="width:265px;display:block;margin-left:auto;margin-right:auto;"></span>
-        </li>
-        <li class="form_buttons_centered">
-
-
-            <button type="submit" id="send_activation_email_register_button" class="send">RESEND ACTIVATION EMAIL</button>
-
-            <div id="send_activation_email_preloader"></div>
-            <div class="clr"></div>
-        </li>
-        
         <?php
-    } else {
-        ?>
+        if (isset($_SESSION['registration_data']->method) && $_SESSION['registration_data']->method == 'email') {
+            ?>  
+
+            <div class="complete_title">Please check your email for an activation link <br class="rwd-break"> to complete your registration</div>
+            <div class="clr"></div>
+            <div class="form_title_hint">(The activation email may take up to 1 hour to arrive) </div>
+            <div class="clr"></div>
+
+            <div class="form_subtitle">You has not received the activation email?</div>
+            <li> 
+                <span id="info" class="form_info" style="width:265px;display:block;margin-left:auto;margin-right:auto;"></span>
+            </li>
+            <li class="form_buttons_centered">
+
+
+                <button type="submit" id="send_activation_email_register_button" class="send">RESEND ACTIVATION EMAIL</button>
+
+                <div id="send_activation_email_preloader"></div>
+                <div class="clr"></div>
+            </li>
+
+            <?php
+        } else {
+            ?>
             <div class="complete_title">The registration process is complete.</div>
             <div class="form_subtitle">Login with your facebook account and start enjoying our services!</div>
             <div class="complete_btn"> <button type="submit" id="btn_redirect_login" class="send">LOG IN</button></div>
 
-        <?php
-    }
-    ?>
+            <?php
+        }
+        ?>
 
     </div>
 </div>

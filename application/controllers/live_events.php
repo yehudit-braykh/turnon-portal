@@ -92,10 +92,10 @@ class Live_events extends UVod_Controller {
 
     public function main($id = null) {
 
-        //  error_log('entra a LIVE EVENTS: ' . date('H:i', time()));
+
         $media_ids = array();
         $events = $this->live_events_model->list_simple_events();
-        //error_log('events: ' . json_encode($events));
+
 //      checks if user is logged in
         if (isset($_SESSION['uvod_user_data']) && isset($_SESSION['uvod_user_data']->id)) {
 
@@ -139,8 +139,6 @@ class Live_events extends UVod_Controller {
                 }
             }
         }
-
-        error_log('events: '.json_encode($events));
 
         $data['section'] = "events";
         $data['events'] = $events;
@@ -202,9 +200,9 @@ class Live_events extends UVod_Controller {
                     if (sizeof($media_ids) > 0) {
                         if (in_array($events->content[$h]->media->id, $media_ids)) {
                             $events->content[$h]->already_purchased = true;
-                            error_log('comprado');
+              
                         } else {
-                            error_log('NO comprado');
+                  
                             $events->content[$h]->already_purchased = false;
                         }
                     }
@@ -360,7 +358,7 @@ class Live_events extends UVod_Controller {
             $pi_security_code = $_POST['pi_security_code'];
 
             $ret = $this->live_events_model->subscription_checkout($product_id, $token, $nonce, $first_name, $last_name, $email, $city, $postal_code, $country, $pi_month, $pi_year, $pi_type, $pi_number, $pi_security_code);
-error_log('el ret: '.json_encode($ret));
+
             if(isset($ret->error) && $ret->error){
                 echo json_encode(array('status'=>'error', 'msg'=>$ret->message));
             }else{
