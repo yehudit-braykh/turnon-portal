@@ -35,7 +35,7 @@ html{
     position: relative;
 }
 
-body { width:100%; font:normal 12px/2em "Lato", "Web-FuturaMT-Bold", Arial, Helvetica, sans-serif; letter-spacing: 1px;margin-bottom: 50px;padding-top:80px;}
+body { width:100%; font:normal 12px/2em "Roboto", "Web-FuturaMT-Bold", Arial, Helvetica, sans-serif; letter-spacing: 1px;margin-bottom: 50px;padding-top:80px;}
 
 img { border:none; }
 
@@ -51,7 +51,7 @@ img { border:none; }
 
 @font-face {
     font-family: 'Roboto';
-    src: url('../fonts/Roboto-Regular.ttf');
+    src: url('../fonts/Roboto-Light.ttf');
 }
 
 @font-face {
@@ -1058,10 +1058,7 @@ img{}
     font-size: 16px;
 }
 
-#sliders-content{
-    width: 100%;
-    margin-top: 65px;
-}
+
 
 #player_close_button a {
     color: #ffffff;
@@ -1997,12 +1994,22 @@ select:focus, select:active {
 .subscription_title, .forgot_title {
     width: 100%;
     text-align: center;
-    font-family: "Lato", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+    font-family: "Roboto", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
     font-size: 30px;
     font-weight: normal;
     color:rgba(255,255,255,0.7);
     line-height: 1.4;
     margin-left: -60px;
+}
+
+.popup-title{
+    color: #0383ee;
+    width: 100%;
+    text-align: center;
+    font-family: "Roboto";
+    font-size: 30px;
+    font-weight: normal;
+    line-height: 1.4;
 }
 
 .create_title {
@@ -2489,6 +2496,7 @@ select:focus, select:active {
 
 #btn_create, #btn_change, #btn_skip {
     color: #FFF;
+    font-family: 'Roboto';
     border-radius: 5px;
     width: 100%;
     height: 40px;
@@ -2745,17 +2753,16 @@ select:focus, select:active {
 }
 
 .event-detail-img{
-    width: 325px;
     height: 218px;
 }
 
 .event-detail-img img{
-    width: 325px;
+    width: 100%;
 
 }
 
 #event-left-column{
-    height: 430px;
+    height: 380px;
 }
 
 .event-detail-title{
@@ -2779,12 +2786,11 @@ select:focus, select:active {
 }
 
 #live_now_advise{
-    background-color: #fff;
-    border: 2px solid #fd7d10;
+    background-color: #fd7d10;
     font-family: 'Lato';
     text-align: center;
     height: 36px;
-    color: #fd7d10;
+    color: #fff;
     padding-top: 4px;
     font-size: 18px;
     margin-bottom: 20px;

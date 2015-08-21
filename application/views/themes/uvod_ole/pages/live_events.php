@@ -1,5 +1,6 @@
 <script type="text/javascript" src="<?php echo common_asset_url(); ?>js/flipclock/flipclock.min.js"></script>
 <link rel="stylesheet" href="<?php echo common_asset_url(); ?>js/flipclock/flipclock.css">
+<link rel="stylesheet" href="<?php echo asset_url(); ?>css/events_slider.css">
 <link rel="stylesheet" href="<?php echo asset_url(); ?>css/my_carousel.css">
 <script type='text/javascript' src="<?php echo common_asset_url(); ?>js/wurfl.js"></script>
 ​<script type="text/javascript" src="<?php echo common_asset_url(); ?>js/jwplayer/jwplayer.js" ></script>
@@ -13,8 +14,10 @@
     $(window).load(function () {
         $('#events_slider').flexslider({
             animation: "slide",
-            itemWidth: 210,
-            slideshow: false
+            itemWidth: 240,
+            slideshow: false,
+            animationLoop: false,
+            controlNav: false,
         });
 
     });
@@ -46,19 +49,20 @@
 </script>
 
 
-
+<div class="container">
 
     <div id="event-template">
         <?php $this->load->view(views_url() . 'templates/event-detail'); ?>
     </div>
-<div class="uvod-container">
 
-<div class="carousel-container">
+</div>
+       
+<div class="carousel-container col-lg-12">
 
     <?php
     if (isset($events->content) && sizeof($events->content) > 0) {
         ?>
-        <!--<div class="col-md-12"><h3>Scheduled Events</h3></div>-->
+    <div class="slider-title"><h3>Scheduled Events</h3></div>
         <!--<div class="col-md-6">-->
         <div id="events_slider" class="flexslider">
             <ul class="slides">
@@ -67,26 +71,50 @@
                 $data = $events->content;
                 for ($i = 0; $i < sizeof($data); $i++) {
                     if ($data[$i]->live_now) {
-                        $event_item_overlay = '<span class="item-carousel-subtitle">LIVE NOW</span>';
+                        $event_item_overlay = '<span class="item-carousel-subtitle"> LIVE NOW!</span>';
+                        ?>
+                        <?php
                     } else {
-                        $event_item_overlay = '<span class="item-carousel-date">' . date('d-m H:i', ($data[$i]->event_date / 1000)) . ' hs</span>';
+                        //$event_item_overlay = '<span class="item-carousel-date">' . date('d-m H:i', ($data[$i]->event_date / 1000)) . ' hs</span>';
                     }
-                    ?>
-                    <li class="carousel-item" product-id='<?php echo $data[$i]->id; ?>'>
 
-                        <img src="<?php echo $data[$i]->image; ?>" />
-                        <span class="item-carousel-title"><?php echo $data[$i]->name; ?></span><br>
-                        <?php echo $event_item_overlay; ?>
-                    </li>
+                    if ($i == 0) {
+                        ?>
+                        <li class="carousel-item" product-id='<?php echo $data[$i]->id; ?>'>
+                            <div class="slider-first-element">
+                                <img src="<?php echo $data[$i]->image; ?>" />
+                                <div class="slider-caption">
+                                    <div class="first-item-carousel-title"><span><?php echo $data[$i]->name; ?></span></div><br>
+                                    <div class="first-item-carousel-date">
+                                        <span><?php echo date('d-m H:i', ($data[$i]->event_date / 1000)); ?> hs</span>
+                                        <?php echo $event_item_overlay; ?>
+                                    </div>
+                                </div>
 
 
-                    <?php
+                            </div>
+                        </li>
+                        <?php
+                    } else {
+                        ?>
+                        <li class="carousel-item" product-id='<?php echo $data[$i]->id; ?>'>
+                            <div class="slide-img-content">
+                                <img src="<?php echo $data[$i]->image; ?>" />
+                            </div>
+                            <span class="item-carousel-title"><?php echo $data[$i]->name; ?></span><br>
+                            <span class="item-carousel-date"><?php echo date('d-m H:i', ($data[$i]->event_date / 1000)); ?> hs</span>
+                            <p class="item-description"><?php echo $data[$i]->description;?></p>
+                        </li>
+
+
+                        <?php
+                    }
                 }
                 ?>
             </ul>
         </div>
     </div>
-</div>
+    </div>
 
     <?php
 }

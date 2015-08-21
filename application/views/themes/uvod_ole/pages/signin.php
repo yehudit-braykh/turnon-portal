@@ -4,13 +4,13 @@
     <div class="uvod_container">
         <div class="form_title">Please Log In</div>
 
-        <form method="post" id="loginform" style="width:300px;display:block;margin-left:auto;margin-right:auto;">
+        <form  id="loginform" style="width:300px;display:block;margin-left:auto;margin-right:auto;">
             <ol>
                 <li> 
                     <span id="info" class="form_info"></span>
                 </li>
                 <li class="buttons">
-                    <input type='image' id="send_activation_email_login_button" class="send" src="<?php echo asset_url(); ?>images/button_resend_activation_email.png"/>
+                    <input type='image' id="send_activation_email_login_button" src="<?php echo asset_url(); ?>images/button_resend_activation_email.png"/>
                     <div id="send_activation_email_preloader"></div>
                     <div class="clr"></div>
                 </li>    
@@ -31,7 +31,7 @@
 
                 </li>
                 <li class="buttons">
-                    <button type="submit" id="btn_sign_in" class="send">LOG IN</button>
+                    <button id="btn_sign_in" class="send">LOG IN</button>
                     <div id="login_preloader"></div>
                     <div class="clr"></div>
                 </li>
@@ -78,7 +78,7 @@
             signInWithFacebook();
         });
 
-        $('#send_activation_email_login_button').click(function () {
+        $('#send_activation_email_login_button').click(function (event) {
 
             event.preventDefault();
             $(this).hide();
@@ -114,8 +114,8 @@
             }
         });
 
-        $('#btn_sign_in').on('click', function (event) {
 
+        $('#btn_sign_in').on('click', function (event) {
             event.preventDefault();
             $(this).hide();
             $('#login_preloader').show();
@@ -144,13 +144,15 @@
             });
 
         });
+      
 
     });
 
-$('#btn_create').on('click',function(event){
-    event.preventDefault();
-    window.location.href = '<?php echo base_url(); ?>index.php/account/register_ssl';
-})
+
+    $('#btn_create').on('click', function (event) {
+        event.preventDefault();
+        window.location.href = '<?php echo base_url(); ?>index.php/account/register_ssl';
+    })
 
     window.fbAsyncInit = function () {
         FB.init({

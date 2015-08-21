@@ -39,8 +39,13 @@
             animation: "slide",
             itemWidth: 360,
             slideshow: false,
-            reverse: false
+            animationLoop: false,
+            controlNav: false,
+           
         });
 
     });
+
+
+
 </script>

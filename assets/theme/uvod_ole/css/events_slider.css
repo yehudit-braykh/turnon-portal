@@ -50,9 +50,11 @@
 .flexslider .slides > li {
     display: none;
     -webkit-backface-visibility: hidden;
-    width: 170px!important;
-    margin-right: 45px;
+    width: 220px!important;
+    height: 250px!important;
+    margin-right: 30px;
     cursor: pointer;
+    background-color: #434343;
 }
 
 .home_carousel .slides > li {
@@ -80,15 +82,30 @@ html[xmlns] .flexslider .slides {
 * html .flexslider .slides {
     height: 1%;
 }
+
+.flexslider .slides > li:first-child {
+    width: 390px!important;
+    overflow: hidden;
+}
+
+.flexslider .slides > li:first-child img{
+    height: auto!important;
+    width: 390px!important; 
+    margin: 0px!important
+}
+
 .no-js .flexslider .slides > li:first-child {
     display: block;
+}
+
+.flex-disabled{
+    display: none!important;
 }
 /* ====================================================================================================================
  * DEFAULT THEME
  * ====================================================================================================================*/
 .flexslider {
-    margin: 0 0 60px;
-
+    margin-top: 20px;
     position: relative;
     zoom: 1;
     -webkit-border-radius: 4px;
@@ -103,7 +120,7 @@ html[xmlns] .flexslider .slides {
     zoom: 1;
 }
 .flexslider .slides img {
-    height: 165px;
+    width: 220px;
 }
 
 .home_carousel .slides img {

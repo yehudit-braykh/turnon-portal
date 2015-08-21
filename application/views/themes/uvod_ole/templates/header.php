@@ -17,7 +17,7 @@
                         <link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"/>
                         <link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/dialogs.css" />
                         <link href="<?php echo asset_url(); ?>css/bootstrap.css" rel="stylesheet"/>
-                        <link rel="stylesheet" href="<?php echo asset_url(); ?>css/flexslider.css">
+                        <link rel="stylesheet" href="<?php echo asset_url(); ?>css/home_slider.css">
                             <!-- Javascript files -->
     <!--                        <script type="text/javascript" src="<?php echo common_asset_url(); ?>js/jquery.min.js"></script>-->
                             <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
@@ -69,23 +69,18 @@
                                         window.location.href = '<?php echo base_url(); ?>';
                                     });
 
-                                    $('.my_account').on('click', function (event) {
-                                        window.location.href = '<?php echo base_url(); ?>index.php/account/my_account';
-                                    });
-
-                                    $('.user_name').on('click', function (event) {
-                                        window.location.href = '<?php echo base_url(); ?>index.php/account/my_account';
-                                    });
-
-                                    $('#btn_login').on('click', function (event) {
-                                        event.preventDefault();
-                                        window.location.href = '<?php echo base_url(); ?>index.php/account/signin';
-                                    });
                                     $('#editbox_search').keypress(function (e) {
                                         if (e.which == 13) {
                                             search();
                                         }
                                     });
+                                    
+                                    $('.navbar-form').on('submit',function(event){
+                                        event.preventDefault();
+                                          search();
+                                    })
+                                    
+                                    
                                     $('#button_search').on('click', function (event) {
                                         search();
                                     });
@@ -181,57 +176,59 @@
                             </head>
                             <body>
                                 <nav class="navbar navbar-default navbar-fixed-top">
-                                    <div class="container">
-                                        <div class="navbar-header">
+                                    <!--<div class="container">-->
+                                    <div class="navbar-header">
 
-                                            <a class="navbar-brand" id="brand_logo" href="#"></a>
-                                        </div>
-                                        <div id="navbar" class="navbar-collapse collapse">
-                                            <ul class="nav navbar-nav">
-                                                <li <?php echo ($section == "featured" ? "class='active'" : ""); ?>><a href="<?php echo base_url(); ?>">HOME</a></li>
+                                        <a class="navbar-brand" id="brand_logo" href="#"></a>
+                                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                            <span class="sr-only">Toggle navigation</span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                        </button>
+                                    </div>
+                                    <div id="navbar" class="navbar-collapse collapse">
+                                        <ul class="nav navbar-nav">
+                                            <li <?php echo ($section == "featured" ? "class='active'" : ""); ?>><a href="<?php echo base_url(); ?>">HOME</a></li>
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Video on Demand <span class="caret"></span></a>
+                                                <ul class="dropdown-menu">
+                                                    <?php $this->load->view(views_url() . 'templates/sub_menu1'); ?>
+                                                </ul>
+                                            </li>
+                                            <!--<li <?php echo ($section == "live" ? "class='active'" : ""); ?>><a href="<?php echo base_url(); ?>index.php/live/main">LIVE CHANNELS</a></li>-->
+                                            <li <?php echo ($section == "events" ? "class='active'" : ""); ?>><a href="<?php echo base_url(); ?>index.php/live_events/main">EVENTS</a></li>
+                                            <li <?php echo ($section == "live" ? "class='active'" : ""); ?>><a href="<?php echo base_url(); ?>index.php/live/main">LIVE CHANNELS</a></li>
+
+
+                                        </ul>
+
+
+                                        <ul class="nav navbar-nav navbar-right">
+
+                                            <?php
+                                            if (!isset($_SESSION['uvod_user_data']) || !isset($_SESSION['uvod_user_data']->token)) {
+                                                ?>
+                                                <li><a href="<?php echo base_url(); ?>index.php/account/signin">LogIn / Register</a></li>
+
+                                                <?php
+                                            } else {
+                                                ?>
+
                                                 <li class="dropdown">
-                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Video on Demand <span class="caret"></span></a>
+                                                    <a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['uvod_user_data']->firstName; ?> <span class="caret"></span></a>
                                                     <ul class="dropdown-menu">
-                                                        <?php $this->load->view(views_url() . 'templates/sub_menu1'); ?>
+                                                        <li><a href="<?php echo base_url(); ?>index.php/account/my_account">My Account</a></li>
+                                                        <li><a href="<?php echo base_url() . 'index.php/account/logout'; ?>">Log Out</a></li>
                                                     </ul>
                                                 </li>
-                                                <!--<li <?php echo ($section == "live" ? "class='active'" : ""); ?>><a href="<?php echo base_url(); ?>index.php/live/main">LIVE CHANNELS</a></li>-->
-                                                <li <?php echo ($section == "events" ? "class='active'" : ""); ?>><a href="<?php echo base_url(); ?>index.php/live_events/main">EVENTS</a></li>
-                                                <li <?php echo ($section == "about_us" ? "class='active'" : ""); ?>><a href="<?php echo base_url() . 'index.php/static_content/about_us'; ?>">ABOUT US</a></li>
-                                                <li <?php echo ($section == "faqs" ? "class='active'" : ""); ?>><a href="<?php echo base_url() . 'index.php/static_content/faqs'; ?>">SUPPORT</a></li>
-
-                                            </ul>
-
-                                            <ul class="nav navbar-nav navbar-right">
                                                 <?php
-                                                if (!isset($_SESSION['uvod_user_data']) || !isset($_SESSION['uvod_user_data']->token)) {
-                                                    ?>
-
-                                                    <li>
-                                                        <button id="btn_login"type="button" class="btn btn-default">LOG IN / REGISTER</button>
-                                                    </li>
-                                                    <?php
-                                                } else {
-                                                    ?>
-
-                                                    <li>
-                                                        <div id='username'><div class='account_name'>
-                                                                <div class='user_name'><?php echo $_SESSION['uvod_user_data']->firstName; ?>  
-                                                                </div>
-                                                                <div class='user-icon'></div>
-
-                                                            </div>
-                                                            <div class='link_logout'><div class='lock-icon'></div>
-                                                                <a href="<?php echo base_url() . 'index.php/account/logout'; ?>">Log Out</a>
-                                                            </div>
-                                                        </div>
-                                                        <?php
-                                                    }
-                                                    ?>
-                                                </li>
-                                            </ul>
-
-                                        </div><!--/.nav-collapse -->
+                                            }
+                                            ?>
+                                        </ul>
+                                        <form class="navbar-form navbar-right">
+                                            <input id="editbox_search" type="text" class="form-control" placeholder="Search..."/>
+                                        </form>
                                     </div>
                                 </nav>
 

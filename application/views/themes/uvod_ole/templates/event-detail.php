@@ -83,9 +83,9 @@ if (isset($events->content) && sizeof($events->content) > 0) {
 
     <div id="event-item-detail">
       
-            <div id="event-left-column" class="col-lg-4">
+            <div id="event-left-column" class="col-lg-5">
 
-                <div class="event-detail-img">
+                <div class="event-detail-img col-lg-12">
                     <?php if ($data->live_now) {
                         ?>
                         <div class="col-md-12" id="live_now_advise">LIVE NOW</div>
@@ -95,7 +95,7 @@ if (isset($events->content) && sizeof($events->content) > 0) {
                     <img src="<?php echo $data->image; ?>">
                 </div>
             </div>
-            <div id="event-right-column" class="col-lg-8">
+            <div id="event-right-column" class="col-lg-7">
                 <?php if (!$data->live_now) {
                     ?>
                     <div class="live_events_begins">BEGINNING IN</div>

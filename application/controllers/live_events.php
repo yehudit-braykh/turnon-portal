@@ -130,12 +130,10 @@ class Live_events extends UVod_Controller {
                         }
                     }
 
-                    error_log('id: ' . $events->content[0]->media->id . ' array: ' . json_encode($media_ids));
+                   
                     if (in_array($events->content[0]->media->id, $media_ids)) {
-                        $events->content[0]->already_purchased = true;
-                        error_log('comprado');
+                        $events->content[0]->already_purchased = true;  
                     } else {
-                        error_log('NO comprado');
                         $events->content[0]->already_purchased = false;
                     }
                 }

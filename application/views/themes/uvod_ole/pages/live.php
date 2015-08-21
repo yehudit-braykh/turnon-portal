@@ -506,7 +506,7 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
 
 <div class="popup" id="popup_login">
     <span class="button b-close"><span>X</span></span>`
-    <div class="form_title">BECOME A MEMBER TO WATCH LIVE SIGNALS...</div>
+    <div class="popup-title">BECOME A MEMBER TO WATCH LIVE SIGNALS...</div>
     <div class="popup_content">
         <div class="col_izq">
             <div class="popup_title">Sign In</div>
@@ -539,7 +539,7 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
 
 <div class="popup" id="popup_login_outside">
     <span class="button b-close"><span>X</span></span>
-    <div class="form_title">BECOME A SUBSCRIBER TO WATCH LIVE SIGNALS...</div>
+    <div class="popup-title">BECOME A SUBSCRIBER TO WATCH LIVE SIGNALS...</div>
     <div class="popup_content">
         <div class="col_izq">
             <div class="popup_title">Sign In</div>
