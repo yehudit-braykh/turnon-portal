@@ -157,15 +157,9 @@ if (isset($clientToken)) {
     <div class="myaccount_title">My Account</div>
     <br>
     <div class="registration_container">    
-        <div id="tab-container" class="tab-container">
-            <ul class='etabs'>
-                <li class='tab'><a href="#tab1" id="vod_item_sub_menu1">My Information</a></li>
-                <li class='tab'><a href="#tab2" id="vod_item_sub_menu2">Subscription</a></li>
-                
-                <li class='tab'><a href="#tab4" id="vod_item_sub_menu4">Change password</a></li>
-            </ul>
+        
             <div class='panel-container'>
-                <div id="tab1">
+    
 
                     <div class="registration_container" style="padding-left:20px;">
                         <form id="registerform" method="post">
@@ -206,8 +200,8 @@ if (isset($clientToken)) {
                             </ol>
                         </form>  
                     </div>
-                </div>
-                <div id="tab2">
+            
+          
                     <div class="registration_container" style="padding-left:20px;">
 
 
@@ -293,12 +287,7 @@ if (isset($clientToken)) {
                         ?>
 
                     </div>
-                </div>
-
                
-
-                <!-- TAB 4: Change Password -->
-                <div id="tab4">
 
                     <div class="registration_container" style="padding-left:20px;">
                         <form id="changepasswordform" method="post">
@@ -327,9 +316,9 @@ if (isset($clientToken)) {
                             </ol>
                         </form>  
                     </div>
-                </div>
+             
             </div>
-        </div>
+    
     </div>
     <!-- /content -->
 
