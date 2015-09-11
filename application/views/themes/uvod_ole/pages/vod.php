@@ -44,7 +44,7 @@
                 <?php $this->load->view(views_url() . '/templates/category_slider', array('category' => $category1['value'])); ?>
                 <div class="clr"></div>
             </div>
-            <!--<div class="content_full_size">
+            <div class="content_full_size">
                 <div class="category-title"><?php echo $category2['label']; ?></div>
                 <?php $this->load->view(views_url() . '/templates/category_slider', array('category' => $category2['value'])); ?>
                 <div class="clr"></div>
@@ -53,7 +53,7 @@
                 <div class="category-title"><?php echo $category3['label']; ?></div>
                 <?php $this->load->view(views_url() . '/templates/category_slider', array('category' => $category3['value'])); ?>
                 <div class="clr"></div>
-            </div>-->
+            </div>
 
         <?php } ?>
 
