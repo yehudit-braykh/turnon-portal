@@ -418,7 +418,6 @@ h2.h2_act_href a.ico_4:hover{background:url(../images/ico_a-04.png) no-repeat le
 
 }
 .item_img{
-    margin: 4px!important;
     opacity: 1; visibility: visible;
 }
 
@@ -844,7 +843,7 @@ a.more { color:#8b8b8e; font-weight: normal; text-decoration: none; }
 
 
 .img_hover_box{
-    width:270px;
+    width:280px;
 }
 
 .h{
@@ -995,8 +994,8 @@ img{}
 /* CUSTOM */
 
 .cover{
-    width: 325px;
-    height: 183px;
+    width: 280px;
+    height: 156px;
 }
 
 .cover img {

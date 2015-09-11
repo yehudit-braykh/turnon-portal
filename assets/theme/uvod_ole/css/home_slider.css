@@ -58,8 +58,8 @@
 .home_carousel .slides > li {
     display: none;
     -webkit-backface-visibility: hidden;
-    width: 270px!important;
-    margin-right: 20px;
+    width: 280px!important;
+    margin-right: 16px;
     cursor: pointer;
     overflow: hidden;
 }
@@ -108,7 +108,8 @@ html[xmlns] .flexslider .slides {
 }
 
 .home_carousel .slides img {
-    height: 149px;
+    height: auto;
+    width: 100%;
 }
 .flex-viewport {
     max-height: 2000px;

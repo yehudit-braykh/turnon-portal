@@ -37,7 +37,7 @@
     $(window).load(function () {
         $('#slider_<?php echo $category; ?>').flexslider({
             animation: "slide",
-            itemWidth: 285,
+            itemWidth: 295,
             slideshow: false,
             animationLoop: false,
             controlNav: false,
