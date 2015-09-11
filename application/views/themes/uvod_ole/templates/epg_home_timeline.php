@@ -1,5 +1,8 @@
 
 <div id="epg_preview_container">
+
+    <div class="epg_title">LIVE CHANNELS</div>
+
     <?php
     if (isset($epg)) {
         
@@ -35,5 +38,6 @@
         }
     }
     ?>
+
 </div>
 

@@ -45,7 +45,7 @@
  * ====================================================================================================================*/
 .flexslider {
     margin: 0;
-    padding: 0 65px 0 65px;
+    padding: 0 40px 0 40px;
 }
 .flexslider .slides > li {
     display: none;
@@ -58,10 +58,12 @@
 .home_carousel .slides > li {
     display: none;
     -webkit-backface-visibility: hidden;
-    width: 325px!important;
-    margin-right: 45px;
+    width: 270px!important;
+    margin-right: 20px;
     cursor: pointer;
+    overflow: hidden;
 }
+
 .flexslider .slides img {
 
     display: block;
@@ -106,7 +108,7 @@ html[xmlns] .flexslider .slides {
 }
 
 .home_carousel .slides img {
-    height: 183px;
+    height: 149px;
 }
 .flex-viewport {
     max-height: 2000px;
@@ -138,7 +140,7 @@ html[xmlns] .flexslider .slides {
     opacity: 0;
     cursor: pointer;
     color: rgba(0, 0, 0, 0.8);
-    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
+    /*text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);*/
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     -ms-transition: all 0.3s ease-in-out;
@@ -155,7 +157,7 @@ html[xmlns] .flexslider .slides {
     font-size: 40px;
     display: inline-block;
     content: '\f001';
-    color: rgba(0, 0, 0, 0.8);
+    color: rgba(255,255,255,0.2);
 
 }
 .flex-direction-nav a.flex-next:before {
@@ -281,8 +283,8 @@ html[xmlns] .flexslider .slides {
     display: block; /* I added this line */
 }
 
-.flex-direction-nav .flex-next { right: 0 !important; margin-right: 20px; opacity: 1 !important; height: 50px}
-.flex-direction-nav .flex-prev { left: 0 !important; opacity: 1 !important; margin-left: 20px; height: 50px;}
+.flex-direction-nav .flex-next { right: 0 !important; margin-right: -5px; opacity: 1 !important; height: 50px}
+.flex-direction-nav .flex-prev { left: 0 !important; opacity: 1 !important; margin-left: -5px; height: 50px;}
 
 a.flex-prev:focus, a.flex-next:focus {
     outline: none!important;

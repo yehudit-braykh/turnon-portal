@@ -108,10 +108,7 @@
 <!-- content -->
 <div class="container">
     <div class="uvod_container">
-
-        
-
-        <div class="registration_container">
+ 
             <div class="registration_pricing">
                 <div class="dc_pricingtable04">
                     <ul class="price-box" style="width:100%;">
@@ -146,32 +143,33 @@
                 </div>
             </div>
 
-            <form method="post" id="registerform">
+            <form method="post" id="loginform">
                 <div class="form_title">Become a subscriber</div>
 
                 <div class="registration_cvv_info">
                     <img style="width:175px;height:116px;" src="<?php echo asset_url(); ?>images/cvvnumber.png" />
                 </div>
-                
-                <ol>
 
+                <ol>
                    <?php $this->load->view(views_url().'templates/payment_form');?>
-                 
+                   
                     <li class="buttons">
                         <button type="submit" id="btn_next" class="send">CONFIRM PAYMENT</button>
                     </li>
+
                     <li>
                         <hr id="line_payment">
                     </li>
+
                     <li class="buttons">
                         <button id="btn_skip" type="button" class="btn btn-default">Skip and continue registration</button>
                         <div id="registration_preloader"></div>
                         <div class="clr"></div>
                     </li>
                 </ol>
-            </form>              
 
-        </div>
+            </form> 
+        
     </div>
 </div>
 <!-- /content -->

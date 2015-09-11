@@ -30,49 +30,46 @@
 
 <div id="epg_preview_bg"></div>
 <div class="clr"></div>
+<div class="container-fluid standard_cont">
 
-<div id="sliders-content">
+        <?php
+        $show_genres_filter = 'yes';
+        if ($this->config->item('show_genres_filter') !== FALSE)
+            $show_genres_filter = $this->config->item('show_genres_filter');
+        if ($show_genres_filter == 'yes') {
+            ?>
 
-    <?php
-    $show_genres_filter = 'yes';
-    if ($this->config->item('show_genres_filter') !== FALSE)
-        $show_genres_filter = $this->config->item('show_genres_filter');
-    if ($show_genres_filter == 'yes') {
-        ?>
+            <div class="content_full_size">
+                <div class="category-title"><?php echo $category1['label']; ?></div>
+                <?php $this->load->view(views_url() . '/templates/category_slider', array('category' => $category1['value'])); ?>
+                <div class="clr"></div>
+            </div>
+            <!--<div class="content_full_size">
+                <div class="category-title"><?php echo $category2['label']; ?></div>
+                <?php $this->load->view(views_url() . '/templates/category_slider', array('category' => $category2['value'])); ?>
+                <div class="clr"></div>
+            </div>
+            <div class="content_full_size">
+                <div class="category-title"><?php echo $category3['label']; ?></div>
+                <?php $this->load->view(views_url() . '/templates/category_slider', array('category' => $category3['value'])); ?>
+                <div class="clr"></div>
+            </div>-->
 
-        <div class="content_full_size">
-            <div class="category-title"><?php echo $category1['label']; ?></div>
-            <?php $this->load->view(views_url() . '/templates/category_slider', array('category' => $category1['value'])); ?>
-            <div class="clr"></div>
-        </div>
-        <div class="content_full_size">
-            <div class="category-title"><?php echo $category2['label']; ?></div>
-            <?php $this->load->view(views_url() . '/templates/category_slider', array('category' => $category2['value'])); ?>
-            <div class="clr"></div>
-        </div>
-        <div class="content_full_size">
-            <div class="category-title"><?php echo $category3['label']; ?></div>
-            <?php $this->load->view(views_url() . '/templates/category_slider', array('category' => $category3['value'])); ?>
-            <div class="clr"></div>
-        </div>
+        <?php } ?>
 
-    <?php } ?>
+        <?php
+        if ($show_genres_filter == 'no') {
+            ?>
 
-    <?php
-    if ($show_genres_filter == 'no') {
-        ?>
+            <div class="content_full_size">
+                <br>
+                <?php echo $items_category_1; ?>
+                <div class="clr"></div>
+            </div>
 
-        <div class="content_full_size">
-            <br>
-            <?php echo $items_category_1; ?>
-            <div class="clr"></div>
-        </div>
-
-    <?php } ?>
-
-
+        <?php } ?>
+    
 </div>
-
 
 <!-- DC Camera Slider CSS -->
 <link rel="stylesheet" id="camera-css"  href="<?php echo asset_url(); ?>camera/css/camera.css" type="text/css" media="all">
