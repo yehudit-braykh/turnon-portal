@@ -233,9 +233,11 @@ class Vod extends UVod_Controller {
         }
         $data->img_url = $cover_url;
 
-        $aired_date = date('d-m-Y', intval(getEntryProperty($item, 'aired_date')));
+        $aired_date = getEntryProperty($item, 'aired_date');
         if ($aired_date !== '') {
             $data->aired_date = date('F d, Y', $aired_date);
+        }else{
+            $data->aired_date = '';
         }
 
         return $data;
