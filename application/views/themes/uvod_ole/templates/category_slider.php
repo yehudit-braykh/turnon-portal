@@ -18,6 +18,9 @@
                             <div class="title_content">
                                 <?php echo $items[$category][$i]->title ?>
                             </div>
+                            <div class="subtitle_content">
+                                  <?php echo $items[$category][$i]->aired_date; ?>
+                            </div>
                             <div>
 
                             </div>
