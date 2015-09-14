@@ -35,12 +35,12 @@ class Vod extends UVod_Controller {
             $this->load->view(views_url() . 'pages/vod', $data);
             $this->load->view(views_url() . 'templates/footer', $data);
         } else {
-       
+
             $items = $this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, RECOMMENDED . '|' . NEW_RELEASES . '|' . COMING_SOON);
-            
+
             $categories = array($data['category1']['value'], $data['category2']['value'], $data['category3']['value']);
             $data['items'] = $this->get_items_by_value('pl1$featured_category', $categories, $items->content->entries);
-          
+
             $this->load->view(views_url() . 'templates/header', $data);
             $this->load->view(views_url() . 'pages/vod', $data);
             $this->load->view(views_url() . 'templates/footer', $data);
@@ -232,9 +232,12 @@ class Vod extends UVod_Controller {
             $cover_url = getEntryThumbnail($item, "Mezzanine " . $cover_asset_type);
         }
         $data->img_url = $cover_url;
-        
-        $data->aired_date = date('d-m-Y',intval(getEntryProperty($item, 'aired_date')));
-        
+
+        $aired_date = date('d-m-Y', intval(getEntryProperty($item, 'aired_date')));
+        if ($aired_date !== '') {
+            $data->aired_date = date('d-m-Y', intval($aired_date));
+        }
+
         return $data;
     }
 
