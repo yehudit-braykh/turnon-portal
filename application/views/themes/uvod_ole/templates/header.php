@@ -52,9 +52,7 @@
                             <script type="text/javascript" src="<?php echo common_asset_url(); ?>js/jquery.hashchange.min.js" charset="utf-8"></script>
                             <script type="text/javascript" src="<?php echo common_asset_url(); ?>js/jquery.easytabs.min.js" charset="utf-8"></script>
 
-                            <!-- Config User Interface Box Import -->
-                            <script type="text/javascript" src="<?php echo common_asset_url(); ?>js/head_html_block.js"></script>
-
+                           
                             <!-- Styled Combos -->
                             <script type='text/javascript' src="<?php echo common_asset_url(); ?>js/select.js"></script>
 
