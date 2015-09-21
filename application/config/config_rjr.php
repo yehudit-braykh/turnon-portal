@@ -26,9 +26,9 @@ $config['button_play_width'] = '320px';
 $config['button_play_image'] = 'rjr-btn_play_bg.png';
 $config['button_play_padding_left'] = '150px';
 
-$config['category1'] = 'Recommended';
-$config['category2'] = 'New Releases';
-$config['category3'] = 'Coming Soon';
+$config['category1'] = array('lablel'=>'Recommended','value'=>'recommended');
+$config['category2'] = array('lablel'=>'New Releases','value'=>'new_releases');
+$config['category3'] = array('lablel'=>'Coming Soon','value'=>'coming_soon');
 
 $config['timezone'] = 'America/Jamaica';
 

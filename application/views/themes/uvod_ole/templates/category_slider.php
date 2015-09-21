@@ -18,13 +18,15 @@
                             <div class="title_content">
                                 <?php echo $items[$category][$i]->title ?>
                             </div>
-                            <div class="subtitle_content">
-                                  <?php echo $items[$category][$i]->aired_date; ?>
-                            </div>
-                            <div>
-
-                            </div>
-
+                            <?php
+                            if ($items[$category][$i]->aired_date !== ''){
+                                ?>
+                                <div class="subtitle_content">
+                                    <?php echo $items[$category][$i]->aired_date; ?>
+                                </div>
+                                <?php
+                            }
+                            ?>
                         </div>                
                     </div>
                 </li>
@@ -44,7 +46,6 @@
             slideshow: false,
             animationLoop: false,
             controlNav: false,
-           
         });
 
     });

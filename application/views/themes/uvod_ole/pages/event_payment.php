@@ -111,7 +111,7 @@ function show_info () {
 
 
 <!-- content -->
-<div class="container">
+<div class="container standard_cont">
     <div class="jumbotron">
 
         <div class="buytickets_title">Buy Ticket</div>
