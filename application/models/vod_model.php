@@ -37,7 +37,23 @@ class Vod_model extends CI_Model {
 
         return apiCall("vod/list_items_api", $parameters);
     }
+    
+    public function get_items_by_vod_category($category) {
+        $parameters = array();
+       
+        if ($category)
+            $parameters["category"] = $category;
+       
+        $parameters["media_type"] = 'clip|tv_show';
 
+        return apiCall("vod/get_media_by_vod_category", $parameters);
+    }
+    
+    public function set_vod_category($json) {
+
+        return apiPost("vod/set_vod_category", array('json' => $json));
+    }
+    
     public function get_slider($target, $section) {
 
         $parameters = array("target" => $target, "section" => $section);
