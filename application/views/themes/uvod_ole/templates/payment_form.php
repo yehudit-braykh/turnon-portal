@@ -3,11 +3,11 @@
 </li>
 
 <li>
-    <input id="cardholder_name" placeholder="Name on card" class="text" />
+    <input id="cardholder_name" name="name_on_card" placeholder="Name on card" class="text" type="text"/>
 </li>
 
 <li>
-    <input id="card_number" placeholder="Credit card number" class="text" />
+    <input id="card_number" name="number" placeholder="Credit card number" class="text" type="text"/>
 </li>
 
 <li>

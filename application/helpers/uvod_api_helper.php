@@ -45,7 +45,7 @@ function apiPost($method, $parameters=null) {
 
 	$buffer = curl_exec($curl_handle);  
 	curl_close($curl_handle);
-//   error_log('--------- buffer: method: '.$url.' return: '.$buffer);
+   error_log('--------- buffer: method: '.$url.' return: '.$buffer);
 	// checks if API has a PHP error
 	if (strpos($buffer, "<div")) {
 		throw new Exception("API RETURN ERROR: " . $buffer);

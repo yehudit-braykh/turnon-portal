@@ -40,6 +40,8 @@ class Account extends UVod_Controller {
         if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
             $amount = $subscription->content->entries[0]->{'plsubscription$billingSchedule'}[0]->{'plsubscription$amounts'}->USD;
         }
+
+
         $data['subscription_amount'] = $amount;
 
         $this->parser->parse(views_url() . 'templates/header', $data);
@@ -144,8 +146,9 @@ class Account extends UVod_Controller {
             $pi_year = $_POST['pi_year'];
             $pi_type = $_POST['pi_type'];
             $pi_number = $_POST['pi_number'];
+            $subscription_id = $_POST['subscription_id'];
 
-            $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number);
+            $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $subscription_id);
 
             if (isset($ret->error) && $ret->error == false) {
                 $this->subscription_complete_mail($first_name, $last_name, $email);
@@ -163,12 +166,10 @@ class Account extends UVod_Controller {
         $data = array();
 
         $subscription = $this->account_model->get_subscriptions();
-
-        $amount = '';
+        error_log('subscription: '.json_encode($subscription));
         if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
-            $amount = $subscription->content->entries[0]->{'plsubscription$billingSchedule'}[0]->{'plsubscription$amounts'}->USD;
+            $data['subscriptions'] = $subscription->content->entries;
         }
-        $data['subscription_amount'] = $amount;
 
         $this->parser->parse(views_url() . 'templates/header', $data);
         $this->parser->parse(views_url() . 'pages/register_payment', $data);
@@ -524,11 +525,11 @@ class Account extends UVod_Controller {
             if ($fb_session_status->status !== 'ok') {
                 $status = false;
             }
-        } 
+        }
         if ($status) {
 
             if (isset($_SESSION['uvod_user_data'])) {
-               
+
                 $id = $this->account_model->get_self_id($_SESSION['uvod_user_data']->token);
                 if (isset($id->error) && $id->error) {
                     $status = false;
@@ -634,9 +635,9 @@ class Account extends UVod_Controller {
             $password = $profile->content->id;
 
             $login = $this->account_model->login($email, $password);
-        
+
             if (isset($login) && !$login->error) {
-         
+
                 $_SESSION['uvod_user_data'] = $login->content;
                 $_SESSION['uvod_user_data']->fb_id = $profile->content->id;
                 // $_SESSION['copy_data'] = $_SESSION['uvod_user_data'];

@@ -1,7 +1,5 @@
 
-<div class="container">
-
-    <div class="uvod_container">
+<div class="container-fluid form_cont">
         
         <form  id="loginform">
             <div class="form_title">Please Log In</div>
@@ -56,7 +54,7 @@
 
             </ol>
         </form>
-    </div>
+
     <div id="fb-root"></div>
 </div>
 <!-- end container-->
