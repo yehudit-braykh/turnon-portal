@@ -3453,6 +3453,12 @@ td.product_content{
     color: rgba(255,255,255,0.6);
 }
 
+.title_content {
+    height: 20px;
+    overflow: hidden;
+}
+
+
 
 
 
