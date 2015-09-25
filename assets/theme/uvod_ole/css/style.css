@@ -3430,6 +3430,33 @@ td.product_content{
 }
 
 
+.home_cont {
+    padding-top: 4vw;
+    padding-bottom: 200px;
+}
+
+.home_carousel {
+    height: 240px;
+}
+
+.epg_title {
+    position: absolute;
+    width: 160px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    padding-top: 27px;
+    padding-left: 20px;
+}
+
+.subtitle_content {
+    overflow: hidden;
+    color: rgba(255,255,255,0.6);
+}
+
+.title_content {
+    height: 20px;
+    overflow: hidden;
+}
 
 
 
