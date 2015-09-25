@@ -81,19 +81,33 @@ if (isset($events->content) && sizeof($events->content) > 0) {
     }
     ?>
 
-    <div id="event-item-detail">
+    <div class="content_info">
+
+
+        <div class="col-sm-5" style="background-color:#F00; height:20px;">
+
+            <?php if ($data->live_now) {
+                ?>
+                <div class="col-md-12" id="advise_live_now  ">LIVE NOW</div>
+                <?php
+            }
+            ?>
+            <img src="<?php echo $data->image; ?>" style="width:100%;">
+
+        </div>
+
+        <div class="col-sm-7" style="background-color:#F0F; height:20px;">
+
+
+        </div>
+
+
+
+
       
             <div id="event-left-column" class="col-lg-5">
 
-                <div class="event-detail-img col-lg-12">
-                    <?php if ($data->live_now) {
-                        ?>
-                        <div class="col-md-12" id="live_now_advise">LIVE NOW</div>
-                        <?php
-                    }
-                    ?>
-                    <img src="<?php echo $data->image; ?>">
-                </div>
+                
             </div>
             <div id="event-right-column" class="col-lg-7">
                 <?php if (!$data->live_now) {

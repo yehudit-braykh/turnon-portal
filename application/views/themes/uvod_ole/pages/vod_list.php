@@ -24,6 +24,10 @@
             $('#end_date_datepicker').focus();
         });
 
+        $(document).on('click', '.button_search_date', function() {
+            $(this).children('input').focus();
+        });
+
         $(document).on('change', '#end_date_datepicker', function() {
             if ($('#start_date_datepicker').val() != '') {
 
@@ -52,19 +56,21 @@
 
 </script>
 
-<div class="header_resize2">
 
-    <div class="resize"> 
-        <!-- content -->
-        <div class="content" id="gallery">
-            <div class="content_resize">
-                <div class="vod_list_header" >
-                    <div class="content_centered">
-                        <div class="vod_list_header_title"><?php echo $category; ?></div>
-                    </div>
-                </div>
-                <div class="content_centered">
-                    <div class="category_filter_container">
+<!-- content -->
+
+        <div class="container-fluid header_vodlist">
+            <h2 class="vod_list_header_title"><?php echo $category; ?></h2>
+        </div>  
+
+        <div class="container-fluid standard_cont">
+
+            <div class="col-sm-12">
+
+            <div class="col1-vodlist">
+
+                <div class="category_filter_container">
+                    <h5>Filter:</h5>
 
                         <?php
                         $filter = '';
@@ -95,21 +101,30 @@
 
                         <?php } else if ($show_filter == 'yes' && $filter == 'aired_date') { ?>
   
-                            <div style="width:100%; height: 40px;">
-                                <input class="sort_datepicker" type="text" id="start_date_datepicker" placeholder="START DATE" ><div id="dropdown_btn_start" class="dropdown_btn"></div>
-                                <input class="sort_datepicker" type="text" id="end_date_datepicker" placeholder="END DATE" disabled="disabled"><div id="dropdown_btn_end" class="dropdown_btn"></div>
-                                <div id="clear_btn"></div>
+                            <div>
+                                
+                                <div class="button_search_date">
+                                    <input class="sort_datepicker" type="text" id="start_date_datepicker" placeholder="Start date" >
+                                    <span class="caret" id="dropdown_btn_start"></span>
+                                </div>
+                                <div class="button_search_date">
+                                    <input class="sort_datepicker" type="text" id="end_date_datepicker" placeholder="End date" disabled="disabled">
+                                    <span class="caret" id="dropdown_btn_end"></span>
+                                </div>
+                                <button id="clear_btn" type="submit" class="btn btn-default btn-xs">reset search</button>
                             </div>
 
                         <?php } ?> 
 
                     </div>
 
-                    <div class="category_items_container" style="min-height: 600px;">{items_category_1}</div>
-                    <div class="clr"></div>
                 </div>
-                <div class="clr"></div>
+                <div class="col2-vodlist">
+                    <div class="category_items_container">{items_category_1}</div>
+                </div>
+
             </div>
-            <div class="clr"></div>
+
         </div>
-        <!-- /content -->
+
+<!-- /content -->

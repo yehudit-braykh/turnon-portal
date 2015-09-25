@@ -26,7 +26,7 @@
                 url: "<?php echo base_url(); ?>index.php/account/register_step1_ssl",
                 type: 'POST',
                 dataType: 'json',
-                data: $('#registerform').serialize() + '&country=' + country_code
+                data: $('#loginform').serialize() + '&country=' + country_code
             }).done(function (data) {
 
                 if (data.message == 'ok') {
@@ -147,8 +147,7 @@
 
 
 <!-- content -->
-<div class="container">
-    <div class="uvod_container">
+<div class="container-fluid form_cont">
         
             <form method="post" id="loginform">
                 <div class="form_title">Create your account</div>
@@ -191,7 +190,5 @@
             <!--            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
                         </fb:login-button>-->
 
-        
-    </div>
 </div>
 <!-- /content -->

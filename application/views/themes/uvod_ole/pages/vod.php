@@ -30,7 +30,7 @@
 
 <div id="epg_preview_bg"></div>
 <div class="clr"></div>
-<div class="container-fluid standard_cont">
+<div class="container-fluid home_cont">
 
         <?php
         $show_genres_filter = 'yes';

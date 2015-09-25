@@ -18,8 +18,8 @@
             <div class="col-sm-3 footer_left">
                 <h5><a href="<?php echo base_url() . 'index.php/static_content/faqs'; ?>">FAQs</a></h5>
                 <h5><a href="<?php echo base_url() . 'index.php/static_content/about_us'; ?>">About Us</a></h5>
-                <h5><a href="<?php echo base_url(); ?>">Terms and Conditions</a></h5>
-                <h5><a href="<?php echo base_url(); ?>">Privacy Policy</a></h5>
+                <h5><a href="<?php echo base_url() . 'index.php/static_content/terms_conditions'; ?>">Terms and Conditions</a></h5>
+                <h5><a href="<?php echo base_url() . 'index.php/static_content/privacy_policy'; ?>">Privacy Policy</a></h5>
             </div>
 
             <div class="col-sm-9 footer_left_mbl">
