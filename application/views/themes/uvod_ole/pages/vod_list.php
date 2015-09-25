@@ -4,31 +4,27 @@
 
 
 <script>
-   
+
 
     function dropdown_click_callback(control_id, value) {
         window.location.href = '<?php echo base_url(); ?>index.php/vod/section/<?php echo $sub_section1; ?>/' + $('#' + control_id).val();
     }
 
-    $(document).ready(function() {
+    $(document).ready(function () {
 
         $("#start_date_datepicker").datepicker();
         $("#start_date_datepicker").datepicker("option", "dateFormat", "yy-mm-dd");
         $("#end_date_datepicker").datepicker();
         $("#end_date_datepicker").datepicker("option", "dateFormat", "yy-mm-dd");
 
-        $(document).on('click', '#dropdown_btn_start', function() {
+        $(document).on('click', '#dropdown_btn_start', function () {
             $('#start_date_datepicker').focus();
         });
-        $(document).on('click', '#dropdown_btn_end', function() {
+        $(document).on('click', '#dropdown_btn_end', function () {
             $('#end_date_datepicker').focus();
         });
 
-        $(document).on('click', '.button_search_date', function() {
-            $(this).children('input').focus();
-        });
-
-        $(document).on('change', '#end_date_datepicker', function() {
+        $(document).on('change', '#end_date_datepicker', function () {
             if ($('#start_date_datepicker').val() != '') {
 
                 startDate_tmp = $('#start_date_datepicker').val();
@@ -38,39 +34,33 @@
             }
         });
 
-        $(document).on('change', '#start_date_datepicker', function() {
+        $(document).on('change', '#start_date_datepicker', function () {
             $('#end_date_datepicker').removeAttr('disabled');
 
         });
 
-        $(document).on('blur', '#start_date_datepicker', function() {
+        $(document).on('blur', '#start_date_datepicker', function () {
             if ($(this).val() == '') {
                 $('#end_date_datepicker').attr('disabled', 'disabled');
             }
         });
-        
-        $(document).on('click','#clear_btn',function(){
-             window.location.href = '<?php echo base_url(); ?>index.php/vod/section/<?php echo $sub_section1; ?>';
-        });
-    });
+
+        $(document).on('click', '#clear_btn', function () {
+            window.location.href = '<?php echo base_url(); ?>index.php/vod/section/<?php echo $sub_section1; ?>';
+                    });
+                });
 
 </script>
 
+<div class="header_resize2">
 
-<!-- content -->
-
-        <div class="container-fluid header_vodlist">
-            <h2 class="vod_list_header_title"><?php echo $category; ?></h2>
-        </div>  
-
-        <div class="container-fluid standard_cont">
-
-            <div class="col-sm-12">
-
-            <div class="col1-vodlist">
-
-                <div class="category_filter_container">
-                    <h5>Filter:</h5>
+    <div class="resize"> 
+        <!-- content -->
+        <div class="content" id="gallery">
+            <div class="content_resize">
+                
+                <div class="container-fluid">
+                    <div class="category_filter_container">
 
                         <?php
                         $filter = '';
@@ -91,7 +81,6 @@
                             <!-- Genre Filter -->
                             <select id="category_filter" class="turnintodropdown">
                                 <option value="<?php echo $selected_category_id; ?>"><?php echo $selected_category_text; ?></option>
-                                
                                 <?php for ($i = 0; $i < sizeof($genres); $i++) { ?>
                                     <option value="<?php echo $genres[$i]->id; ?>" >
                                         <?php echo $genres[$i]->description; ?>
@@ -100,31 +89,22 @@
                             </select>
 
                         <?php } else if ($show_filter == 'yes' && $filter == 'aired_date') { ?>
-  
-                            <div>
-                                
-                                <div class="button_search_date">
-                                    <input class="sort_datepicker" type="text" id="start_date_datepicker" placeholder="Start date" >
-                                    <span class="caret" id="dropdown_btn_start"></span>
-                                </div>
-                                <div class="button_search_date">
-                                    <input class="sort_datepicker" type="text" id="end_date_datepicker" placeholder="End date" disabled="disabled">
-                                    <span class="caret" id="dropdown_btn_end"></span>
-                                </div>
-                                <button id="clear_btn" type="submit" class="btn btn-default btn-xs">reset search</button>
+
+                            <div style="width:100%; height: 40px;">
+                                <input class="sort_datepicker" type="text" id="start_date_datepicker" placeholder="START DATE" ><div id="dropdown_btn_start" class="dropdown_btn"></div>
+                                <input class="sort_datepicker" type="text" id="end_date_datepicker" placeholder="END DATE" disabled="disabled"><div id="dropdown_btn_end" class="dropdown_btn"></div>
+                                <div id="clear_btn"></div>
                             </div>
 
                         <?php } ?> 
 
                     </div>
 
+                    <div class="category_items_container" style="min-height: 600px;">{items_category_1}</div>
+                    <div class="clr"></div>
                 </div>
-                <div class="col2-vodlist">
-                    <div class="category_items_container">{items_category_1}</div>
-                </div>
-
+                <div class="clr"></div>
             </div>
-
+            <div class="clr"></div>
         </div>
-
-<!-- /content -->
+        <!-- /content -->
