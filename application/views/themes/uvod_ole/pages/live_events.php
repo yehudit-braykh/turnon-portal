@@ -75,7 +75,7 @@
                         ?>
                         <?php
                     } else {
-                        //$event_item_overlay = '<span class="item-carousel-date">' . date('d-m H:i', ($data[$i]->event_date / 1000)) . ' hs</span>';
+                        $event_item_overlay = '<span class="item-carousel-date">' . date('d-m H:i', ($data[$i]->event_date / 1000)) . ' hs</span>';
                     }
 
                     if ($i == 0) {
