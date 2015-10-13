@@ -46,6 +46,24 @@ class Vod extends UVod_Controller {
             $this->load->view(views_url() . 'templates/footer', $data);
         }
     }
+    
+     public function reset_vod_category($category,$new_category) {
+
+        if ($category == '') return;
+        $items = $this->vod_model->get_items_by_vod_category($category);
+        $data = array();
+        
+        for ($i = 0; $i < sizeof($items->content->entries); $i++) {
+            
+            $data[$i] = json_encode($items->content->entries[$i]);
+        }
+        
+        $result = implode(',',$data);
+        $json = str_replace($category,$new_category,$result);
+        $ret = $this->vod_model->set_vod_category($json);
+        error_log('ret es' . json_encode($ret));
+        echo 'ok';
+    }
 
     public function section($category, $genre = "", $end_date = "") {
 
@@ -66,7 +84,7 @@ class Vod extends UVod_Controller {
                 }
             }
         }
-
+        
         // all others categorie filtered by genre
         switch ($filter) {
             case 'genre': {
@@ -99,14 +117,13 @@ class Vod extends UVod_Controller {
                     break;
                 }
             case 'aired_date': {
-
                     if ($genre == 'all') {
                         $genre = '';
                     }
                     $months = $this->vod_model->get_dates();
                     $data['months'] = $months;
                     $data['selected_category_id'] = $genre;
-
+                    
                     if ($this->config->item('create_items_on_view') !== FALSE) {
                         $data['items_category_1'] = $this->vod_model->get_items_by_aired_date($genre, $end_date, $category);
                     } else {

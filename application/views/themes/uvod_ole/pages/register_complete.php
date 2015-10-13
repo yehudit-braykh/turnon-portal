@@ -51,8 +51,7 @@
 </div>
 
 <!-- content -->
-<div class="container">
-    <div class="uvod_container">
+<div class="container-fluid form_cont"> 
 
         <?php
         if (isset($_SESSION['registration_data']->method) && $_SESSION['registration_data']->method == 'email') {
@@ -68,10 +67,7 @@
                 <span id="info" class="form_info" style="width:265px;display:block;margin-left:auto;margin-right:auto;"></span>
             </li>
             <li class="form_buttons_centered">
-
-
-                <button type="submit" id="send_activation_email_register_button" class="send">RESEND ACTIVATION EMAIL</button>
-
+                <button type="submit" id="send_activation_email_register_button" class="btn btn-primary btn-md">RESEND ACTIVATION EMAIL</button>
                 <div id="send_activation_email_preloader"></div>
                 <div class="clr"></div>
             </li>
@@ -81,12 +77,13 @@
             ?>
             <div class="complete_title">The registration process is complete.</div>
             <div class="form_subtitle">Login with your facebook account and start enjoying our services!</div>
-            <div class="complete_btn"> <button type="submit" id="btn_redirect_login" class="send">LOG IN</button></div>
+            <div class="form_buttons_centered">
+                <button type="submit" id="btn_redirect_login" class="send btn btn-primary btn-md">LOG IN</button>
+            </div>
 
             <?php
         }
         ?>
 
-    </div>
 </div>
 <!-- /content -->

@@ -2,7 +2,9 @@
 </div>
 <div class="header_resize2">
 <div class="resize"> 
-  <!-- content -->
+
+<!-- content -->
+
   <div class="content" style="padding-top:20px;">
     <div class="content_resize"> 
       <div class="content_centered" style="min-height: 400px;">
@@ -15,4 +17,5 @@
     </div>
   </div>
 </div>
+
 <!-- /content -->

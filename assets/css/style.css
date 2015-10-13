@@ -88,9 +88,6 @@ body { background:url(../images/body_bg.png) repeat top left; }
 .body_pattern { background:url(../images/bg_20_sm.jpg) repeat top left;}
 
 
-
-
-
 .main { margin:0 auto; padding:0; width:100%; position:relative; }
 
 #page { background: none repeat scroll 0 0 rgba(0, 0, 0, 0.4); overflow: hidden; position: relative; width: 100%; }

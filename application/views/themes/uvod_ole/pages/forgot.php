@@ -30,8 +30,7 @@
           </div>
           </div>
           
-          <div class="container">
-            <div class="uvod_container">
+          <div class="container-fluid form_cont">
             
               <div class="clr"></div>
 
@@ -56,7 +55,6 @@
                 
               <div class="clr"></div>
 
-            </div>
           </div>
 
 <!-- /content -->

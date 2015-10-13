@@ -54,6 +54,7 @@ function show_info() {
 
                 pi_number = $('#card_number').val().substring($('#card_number').val().length - 4);
                 pi_type = GetCardType($('#card_number').val());
+                nonce = '';
 
                 $.ajax({
                     url: "<?php echo base_url(); ?>index.php/account/subscribe_ssl",
@@ -61,7 +62,7 @@ function show_info() {
                     dataType: 'json',
                     data: {nonce: nonce,
                         pi_month: $('#expiration_month').val(),
-                        pi_year: ('#expiration_month').val() + '/' + $('#expiration_year').val(),
+                        pi_year: $('#expiration_month').val() + '/' + $('#expiration_year').val(),
                         pi_type: pi_type,
                         pi_number: pi_number}
                 }).done(function (data) {
@@ -114,8 +115,7 @@ function show_info() {
 </div>
 
 <!-- content -->
-<div class="container">
-    <div class="uvod_container">
+<div class="container-fluid form_cont">
         
             <div class="registration_cvv_info">
                 <img style="width:175px;height:116px;" src="<?php echo asset_url(); ?>images/cvvnumber.png" />
@@ -167,7 +167,6 @@ function show_info() {
                 </ol>
 
             </form>              
-        
-    </div>
+
 </div>
 <!-- /content -->

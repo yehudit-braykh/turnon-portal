@@ -24,8 +24,8 @@
 
   <?php if ($item_runtime) { ?>
   <div class="vod_info_credits_details">
-    <div class="vod_info_credit_item_title">Duration: &nbsp;</div>
-    <h5 class="vod_info_credit_item_value"><p><?php echo $item_runtime; ?>min</p></h5>
+    <h5 class="vod_info_credit_item_title">Duration: &nbsp;</h5>
+    <h5 class="vod_info_credit_item_value"><p><?php echo $item_runtime; ?></p></h5>
   </div>
   <div class="clr"></div>
   <?php } ?>
@@ -38,7 +38,7 @@
 
   <?php if ($item_director) { ?>
   <div class="vod_info_credits_details">
-    <div class="vod_info_credit_item_title">Director: &nbsp;</div>
+    <h5 class="vod_info_credit_item_title">Director: &nbsp;</h5>
     <h5 class="vod_info_credit_item_value"><p><?php echo $item_director; ?></p></h5>
   </div>
   <div class="clr"></div>
@@ -46,7 +46,7 @@
 
   <?php if ($item_writer) { ?>
   <div class="vod_info_credits_details">
-    <div class="vod_info_credit_item_title">Writer: &nbsp;</div>
+    <h5 class="vod_info_credit_item_title">Writer: &nbsp;</h5>
     <h5 class="vod_info_credit_item_value"><p><?php echo $item_writer; ?></p></h5>
   </div>
   <div class="clr"></div>
@@ -54,7 +54,7 @@
 
   <?php if ($item_actors) { ?>
   <div class="vod_info_credits_details">
-    <div class="vod_info_credit_item_title">Actors: &nbsp;</div>
+    <h5 class="vod_info_credit_item_title">Actors: &nbsp;</h5>
     <h5 class="vod_info_credit_item_value"><p><?php echo $item_actors; ?></p></h5>
   </div>
   <?php } ?>
@@ -69,7 +69,7 @@
   
   <?php if ($item_genre) { ?>
   <div class="vod_info_credits_details">
-    <div class="vod_info_credit_item_title">Genres: &nbsp;</div>
+    <h5 class="vod_info_credit_item_title">Genres: &nbsp;</h5>
     <h5 class="vod_info_credit_item_value"><p><?php echo $item_genre; ?></p></h5>
   </div>
   <div class="clr"></div>
