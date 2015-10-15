@@ -2070,9 +2070,10 @@ select:focus, select:active {
 }
 .registration_pricing {
     width: 200px;
-    float: left;
     margin-right: 20px;
     cursor: pointer;
+    position: absolute;
+    left: 400px;
 }
 
 .pricing_content .registration_pricing{
