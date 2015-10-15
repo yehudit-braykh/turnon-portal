@@ -150,7 +150,7 @@
 
                 <br>
                 <?php
-                if (isset($items[$category1['label']]) && sizeof($items[$category1['label']]) > 0) {
+                if (isset($items[$category1['value']]) && sizeof($items[$category1['value']]) > 0) {
                     ?>
                     <div class="content_full_size">
                         <div class="category-title"><?php echo $category1['label']; ?></div>
@@ -160,7 +160,8 @@
 
                     <?php
                 }
-                if (isset($items[$category2['label']]) && sizeof($items[$category2['label']]) > 0) {
+//            error_log('CATEGORY: '.json_encode($items[$category2['label']]));
+                if (isset($items[$category2['value']]) && sizeof($items[$category2['value']]) > 0) {
                     ?>
                     <div class="content_full_size">
                         <div class="category-title"><?php echo $category2['label']; ?></div>
@@ -169,7 +170,7 @@
                     </div>
                     <?php
                 }
-                if (isset($items[$category3['label']]) && sizeof($items[$category3['label']]) > 0) {
+                if (isset($items[$category3['value']]) && sizeof($items[$category3['value']]) > 0) {
                     ?>
                     <div class="content_full_size">
                         <div class="category-title"><?php echo $category3['label']; ?></div>

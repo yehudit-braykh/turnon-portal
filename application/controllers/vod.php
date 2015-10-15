@@ -37,7 +37,7 @@ class Vod extends UVod_Controller {
         } else {
 
             $items = $this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, RECOMMENDED . '|' . NEW_RELEASES . '|' . COMING_SOON);
-
+            
             $categories = array($data['category1']['value'], $data['category2']['value'], $data['category3']['value']);
             $data['items'] = $this->get_items_by_value('pl1$featured_category', $categories, $items->content->entries);
 
@@ -46,20 +46,21 @@ class Vod extends UVod_Controller {
             $this->load->view(views_url() . 'templates/footer', $data);
         }
     }
-    
-     public function reset_vod_category($category,$new_category) {
 
-        if ($category == '') return;
+    public function reset_vod_category($category, $new_category) {
+
+        if ($category == '')
+            return;
         $items = $this->vod_model->get_items_by_vod_category($category);
         $data = array();
-        
+
         for ($i = 0; $i < sizeof($items->content->entries); $i++) {
-            
+
             $data[$i] = json_encode($items->content->entries[$i]);
         }
-        
-        $result = implode(',',$data);
-        $json = str_replace($category,$new_category,$result);
+
+        $result = implode(',', $data);
+        $json = str_replace($category, $new_category, $result);
         $ret = $this->vod_model->set_vod_category($json);
         error_log('ret es' . json_encode($ret));
         echo 'ok';
@@ -84,7 +85,7 @@ class Vod extends UVod_Controller {
                 }
             }
         }
-        
+
         // all others categorie filtered by genre
         switch ($filter) {
             case 'genre': {
@@ -123,7 +124,7 @@ class Vod extends UVod_Controller {
                     $months = $this->vod_model->get_dates();
                     $data['months'] = $months;
                     $data['selected_category_id'] = $genre;
-                    
+
                     if ($this->config->item('create_items_on_view') !== FALSE) {
                         $data['items_category_1'] = $this->vod_model->get_items_by_aired_date($genre, $end_date, $category);
                     } else {
@@ -250,13 +251,22 @@ class Vod extends UVod_Controller {
         }
         $data->img_url = $cover_url;
 
-        $aired_date = getEntryProperty($item, 'aired_date');
-        if ($aired_date !== '') {
-            $data->aired_date = date('F d, Y', $aired_date);
-        }else{
+
+        $mediatype = getEntryProperty($item, 'media_type');
+        if ($mediatype != "tv_show" && $this->config->item('theme') !== 'orbita') {
+
+            $data->commerce_class = getEntryProperty($item, 'commerce');
+
+            $aired_date = getEntryProperty($item, 'aired_date');
+            if ($aired_date !== '') {
+                $data->aired_date = date('F d, Y', $aired_date);
+            } else {
+                $data->aired_date = '';
+            }
+        } else {
+            $data->commerce_class = '';
             $data->aired_date = '';
         }
-
         return $data;
     }
 
