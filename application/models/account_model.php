@@ -135,9 +135,9 @@ class Account_model extends CI_Model {
         return apiPost("commerce/cancel_subscription", array('id' => $id));
     }
 
-    public function get_subscriptions() {
+    public function get_subscriptions($id = null) {
 
-        return apiPost("commerce/get_subscriptions");
+        return apiPost("commerce/get_subscriptions",array('id'=>$id));
     }
 
     public function get_billing_information($id) {

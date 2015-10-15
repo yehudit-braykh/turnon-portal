@@ -14,24 +14,24 @@
             loader: 'none',
             time: 1500
         });
-        
-        
+
+
         $.ajax({
-                url: "<?php echo base_url() . 'index.php/live/epg_home_timeline'; ?>",
-                type: "POST",
-                data: "timezone=" + timezone_offset,
-                beforeSend: function () {
-                    $('#epg_preview_bg').html('');
-                    $('#epg_preview_bg').append("<div id='#epg_home_scroller'></div>");
-                    $('#epg_home_scroller').html('<div id="loadingIcon"></div>');
-                    $('#loadingIcon').css('margin-top', "0px");
-                },
-                success: function (data) {
-                    $('#epg_preview_bg').html(data);
-                    
-                }
-            });
-        
+            url: "<?php echo base_url() . 'index.php/live/epg_home_timeline'; ?>",
+            type: "POST",
+            data: "timezone=" + timezone_offset,
+            beforeSend: function () {
+                $('#epg_preview_bg').html('');
+                $('#epg_preview_bg').append("<div id='#epg_home_scroller'></div>");
+                $('#epg_home_scroller').html('<div id="loadingIcon"></div>');
+                $('#loadingIcon').css('margin-top', "0px");
+            },
+            success: function (data) {
+                $('#epg_preview_bg').html(data);
+
+            }
+        });
+
 
         var interval;
 
@@ -68,8 +68,8 @@
 
         $(document).on('click', '.cameraContent', function () {
             if ($(this).children('.camera_caption').attr('target') && $(this).children('.camera_caption').attr('target') == '_blank') {
-            url = $(this).children('.camera_caption').attr('item-url');    
-            var prefix = 'http://';
+                url = $(this).children('.camera_caption').attr('item-url');
+                var prefix = 'http://';
                 if (url.substr(0, prefix.length) !== prefix)
                 {
                     url = prefix + url;
@@ -79,10 +79,10 @@
                 window.location = $(this).children('.camera_caption').attr('item-url');
             }
         })
-        
+
         var width = $(window).width();
         if (width >= 960) {
-            $(".content_centered").css("width","960px")
+            $(".content_centered").css("width", "960px")
         }
 
     });
@@ -100,7 +100,7 @@
 
                 <?php
                 for ($i = 0; $i < sizeof($slider); $i++) {
-                  
+
                     if (isset($slider[$i]->link)) {
                         $item_url = $slider[$i]->link;
                     } else {
@@ -150,22 +150,28 @@
 
                 <br>
                 <div class="content_full_size">
-                    <div class="category-title"><?php echo $category1; ?></div>
-                    <div class="category_items_container">{items_category_1}</div>
+                    <div class="category-title"><?php echo $category1['label']; ?></div>
+                    <?php $this->load->view(views_url() . '/templates/home_category', array('category' => $category1['value'])); ?>
                     <div class="clr"></div>
                 </div>
                 <div class="content_full_size">
-                    <div class="category-title"><?php echo $category2; ?></div>
-                    <div class="category_items_container">{items_category_2}</div>
+                    <div class="category-title"><?php echo $category2['label']; ?></div>
+                    <?php $this->load->view(views_url() . '/templates/home_category', array('category' => $category2['value'])); ?>
                     <div class="clr"></div>
                 </div>
-                <div class="content_full_size">
-                    <div class="category-title"><?php echo $category3; ?></div>
-                    <div class="category_items_container">{items_category_3}</div>
-                    <div class="clr"></div>
-                </div>
+                <?php
+                if (isset($items[$category3['label']]) && sizeof($items[$category3['label']]) > 0) {
+                    ?>
+                    <div class="content_full_size">
+                        <div class="category-title"><?php echo $category3['label']; ?></div>
+                        <?php $this->load->view(views_url() . '/templates/home_category', array('category' => $category3['value'])); ?>
+                        <div class="clr"></div>
+                    </div>
 
-            <?php } ?>
+                    <?php
+                }
+            }
+            ?>
 
             <?php
             if ($show_genres_filter == 'no') {
@@ -173,11 +179,11 @@
 
                 <div class="content_full_size">
                     <br>
-                    <?php echo $items_category_1; ?>
+    <?php echo $items_category_1; ?>
                     <div class="clr"></div>
                 </div>
 
-            <?php } ?>
+<?php } ?>
 
             <div class="clr"></div>
         </div>

@@ -33,6 +33,9 @@ class Account extends UVod_Controller {
 
     public function subscription_ssl() {
 
+        if (!isset($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+            $ret->message = "The email entered is invalid.";
+        }
         $data = array();
 
         $subscription = $this->account_model->get_subscriptions();
@@ -75,7 +78,7 @@ class Account extends UVod_Controller {
             $ret->message = "You need to specify your full name.";
         }
 
-        // saves registration information in session
+// saves registration information in session
         if ($ret->message == "ok") {
             $_SESSION['registration_data'] = new stdClass();
             $_SESSION['registration_data']->email = $_POST['email'];
@@ -103,7 +106,7 @@ class Account extends UVod_Controller {
 
             if (!$register->error) {
 
-                // logs current user to get security token
+// logs current user to get security token
 
                 $current_user = $this->account_model->simple_login($_POST['email'], $_POST['password']);
                 $ret = $current_user;
@@ -164,11 +167,16 @@ class Account extends UVod_Controller {
     public function register_payment_ssl() {
 
         $data = array();
-
         $subscription = $this->account_model->get_subscriptions();
-        error_log('subscription: '.json_encode($subscription));
         if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
             $data['subscriptions'] = $subscription->content->entries;
+
+            usort($data['subscriptions'], function($a, $b) {
+                if (intval($a->{'plsubscription$subscriptionLength'}) == intval($b->{'plsubscription$subscriptionLength'})) {
+                    return 0;
+                }
+                return (intval($a->{'plsubscription$subscriptionLength'}) < intval($b->{'plsubscription$subscriptionLength'})) ? -1 : 1;
+            });
         }
 
         $this->parser->parse(views_url() . 'templates/header', $data);
@@ -236,9 +244,15 @@ class Account extends UVod_Controller {
             $amount = '';
             $subscription = $this->account_model->get_subscriptions();
             if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
-                $amount = $subscription->content->entries[0]->{'plsubscription$billingSchedule'}[0]->{'plsubscription$amounts'}->USD;
+                $data['subscriptions'] = $subscription->content->entries;
+
+                usort($data['subscriptions'], function($a, $b) {
+                    if (intval($a->{'plsubscription$subscriptionLength'}) == intval($b->{'plsubscription$subscriptionLength'})) {
+                        return 0;
+                    }
+                    return (intval($a->{'plsubscription$subscriptionLength'}) < intval($b->{'plsubscription$subscriptionLength'})) ? -1 : 1;
+                });
             }
-            $data['subscription_amount'] = $amount;
         }
 
         if ($user_profile && $user_profile->content) {
@@ -324,7 +338,7 @@ class Account extends UVod_Controller {
             $ret->message = "There is no user registered with that email.";
         }
 
-        // saves registration information in session
+// saves registration information in session
         if ($ret->message == "ok") {
             $_SESSION['registration_data'] = new stdClass();
             $_SESSION['registration_data']->email = $_POST['email'];
@@ -347,7 +361,7 @@ class Account extends UVod_Controller {
         } elseif ($_POST['new_password'] != $_POST['confirm_password']) {
             $ret->message = "Passwords do not match.";
         }
-        // saves registration information in session
+// saves registration information in session
         if ($ret->message == "ok") {
             $ret = $this->account_model->change_password($_SESSION['uvod_user_data']->username, $_POST['current_password'], $_POST['new_password']);
         }
@@ -519,7 +533,7 @@ class Account extends UVod_Controller {
 
         if (isset($_SESSION['uvod_user_data']->fb_id)) {
 
-            //CHECK IF FACEBOOK SESSION IS ACTIVE
+//CHECK IF FACEBOOK SESSION IS ACTIVE
             $fb_session_status = $this->social_media_model->get_fb_profile();
 
             if ($fb_session_status->status !== 'ok') {
@@ -640,7 +654,7 @@ class Account extends UVod_Controller {
 
                 $_SESSION['uvod_user_data'] = $login->content;
                 $_SESSION['uvod_user_data']->fb_id = $profile->content->id;
-                // $_SESSION['copy_data'] = $_SESSION['uvod_user_data'];
+// $_SESSION['copy_data'] = $_SESSION['uvod_user_data'];
                 $ret->status = "ok";
             } else {
                 $ret->status = "error";

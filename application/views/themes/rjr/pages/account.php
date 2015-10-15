@@ -138,6 +138,20 @@ if (isset($clientToken)) {
             return false;
         });
 
+        $('.registration_pricing').on('click', function () {
+console.log($(this).attr('id'));
+$(this).css('opacity','1');
+            subscription_id = $(this).attr('id');
+            $('.registration_pricing').removeClass('selected_pricing');
+            $(this).addClass('selected_pricing');
+            $(".registration_pricing:not(.selected_pricing)").animate({opacity: 0.3}, 'slow',function(){
+//                $('.selected_pricing').animate({opacity: 1}, 'slow');
+            })
+//            $('.selected_pricing').siblings('.registration_pricing').animate({opacity: 0.3}, 'slow', function () {
+//                
+//            })
+            
+        });
     });
 
 
@@ -182,14 +196,14 @@ if (isset($clientToken)) {
                                 </li>
                                 <li>
                                     <label for="country" style="width: 100%">Country*</label>
-                           
-                                        <select id="country" name="country" class="text" style="width:238px;">
-                                            <option value="default" disabled="disabled" selected="selected">Select your country</option>
-                                            <?php
-                                            echo html_combo_country($user_country);
-                                            ?>
-                                        </select>
-                            
+
+                                    <select id="country" name="country" class="text" style="width:238px;">
+                                        <option value="default" disabled="disabled" selected="selected">Select your country</option>
+                                        <?php
+                                        echo html_combo_country($user_country);
+                                        ?>
+                                    </select>
+
                                 </li>
                                 <li>
                                     <label for="postal_code">Postal Code</label>
@@ -205,7 +219,7 @@ if (isset($clientToken)) {
                         </form>  
                     </div>
                 </div>
-                <div id="tab2">
+                <div id="tab2" style="padding-left:20px">
                     <div class="registration_container">
 
 
@@ -252,44 +266,53 @@ if (isset($clientToken)) {
                             ?>
 
                             <div class="registration_title_payment">WANT TO BECOME <br class="rwd-break"> A SUSCRIBER?</div>
-                            <div class="subscriber_button"></div>
-                            <div class="pricing_content">
-                                <div class="registration_pricing">
-                                    <div class="dc_pricingtable04">
-                                        <ul class="price-box" style="width:100%;">
-                                            <li class="pricing-header glass_blue">
-                                                <ul>
-                                                    <li class="title">Monthly Subscription</li>
-                                                    <?php
-                                                    if (isset($subscription_amount)) {
-                                                        $arr = explode('.', $subscription_amount);
-                                                        if (sizeof($arr) == 1) {
-                                                            $cents = '.00';
-                                                        } else {
-                                                            $cents = '.' . $arr[1];
-                                                        }
-                                                    }
-                                                    ?>
-                                                    <li class="price"><span class="currency">$</span><span class="big"><?php echo $arr[0]; ?></span><span class="small"><?php echo $cents; ?></span></li>
-                                                    <li class="month-label">Per Month</li>
-                                                </ul>
-                                            </li>
-                                            <li class="pricing-content">
-                                                <ul>
-                                                    <li><strong>+300</strong> VOD Clips</li>
-                                                    <li><strong>5</strong> Live Channels</li>
-                                                </ul>
-                                            </li>
-                                            <li class="pricing-footer"><strong>Unlimited access to our VOD Catalog.</strong></li>
-                                        </ul>
-                                        <div class="dc_clear"></div>
-                                    </div>
-                                </div>
-                            </div>
+
+
                             <?php
+                            if (sizeof($subscriptions) > 0) {
+                                for ($i = 0; $i < sizeof($subscriptions); $i++) {
+                                    $subscription_id = getEntryId($subscriptions[$i]);
+                                    $subscription_amount = $subscriptions[$i]->{'plsubscription$billingSchedule'}[0]->{'plsubscription$amounts'}->USD;
+                                    $arr = explode('.', $subscription_amount);
+                                    if (sizeof($arr) == 1) {
+                                        $cents = '.00';
+                                    } else {
+                                        $cents = '.' . $arr[1];
+                                    }
+
+                                    if (intval($subscriptions[$i]->{'plsubscription$subscriptionLength'} > 1)) {
+                                        $months_txt = 'Each ' . $subscriptions[$i]->{'plsubscription$subscriptionLength'} . ' Months';
+                                    } else {
+                                        $months_txt = 'Per Month';
+                                    }
+                                    ?>
+                                    <div class="registration_pricing" id="<?php echo $subscription_id; ?>">
+                                        <div class="dc_pricingtable04">
+                                            <ul class="price-box" style="width:100%;">
+                                                <li class="pricing-header glass_blue">
+                                                    <ul>
+                                                        <li class="title"><?php echo $subscriptions[$i]->title ?></li>
+                                                        <li class="price"><span class="currency">$</span><span class="big"><?php echo $arr[0]; ?></span><span class="small"><?php echo $cents; ?></span></li>
+                                                        <li class="month-label"><?php echo $months_txt; ?></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="pricing-content">
+                                                    <ul>
+                                                        <li><strong>+300</strong> VOD Clips</li>
+                                                        <li><strong>5</strong> Live Channels</li>
+                                                    </ul>
+                                                </li>
+                                                <li class="pricing-footer"><strong>Unlimited access to our VOD Catalog.</strong></li>
+                                            </ul>
+                                            <div class="dc_clear"></div>
+                                        </div>
+                                    </div>
+                                    <?php
+                                }
+                            }
                         }
                         ?>
-
+                        <div class="subscriber_button"></div>
                     </div>
                 </div>
 
@@ -324,79 +347,79 @@ if (isset($clientToken)) {
                                 </li>
                                 <li>
                                     <label for="expiration_month" style="width: 100%">Month*</label>
-                                   
-                                        <select id="expiration_month" class="text billing_data" disabled="disabled" style="width:70px;">
-                                            <?php
-                                            if (isset($card_expiration_month)) {
-                                                for ($i = 1; $i <= 12; $i++) {
-                                                    if ($i == $card_expiration_month) {
-                                                        if ($i < 10) {
-                                                            echo '<option id="0' . $i . '" selected="selected">0' . $i . '</option>';
-                                                        } else {
-                                                            echo '<option id="' . $i . '" selected="selected">' . $i . '</option>';
-                                                        }
-                                                    } else {
-                                                        if ($i < 10) {
-                                                            echo '<option id="0' . $i . '">0' . $i . '</option>';
-                                                        } else {
-                                                            echo '<option id="' . $i . '">' . $i . '</option>';
-                                                        }
-                                                    }
-                                                }
-                                            } else {
-                                                ?>
-                                                <option id="01">01</option>
-                                                <option id="02">02</option>
-                                                <option id="03">03</option>
-                                                <option id="04">04</option>
-                                                <option id="05">05</option>
-                                                <option id="06">06</option>
-                                                <option id="07">07</option>
-                                                <option id="08">08</option>
-                                                <option id="09">09</option>
-                                                <option id="10">10</option>
-                                                <option id="11">11</option>
-                                                <option id="12">12</option>
-                                                <?php
-                                            }
-                                            ?>
-                                        </select>
-                                  
-                                </li>
-                                <li>
-                                    <label for="expiration_year" style="width: 100%">Year*</label>
-                               
-                                        <select id="expiration_year" class="text billing_data" disabled="disabled" style="width:90px;">
-                                            <?php
-                                            if (isset($card_expiration_year)) {
-                                                for ($i = 2014; $i <= 2025; $i++) {
-                                                    if ($i == $card_expiration_year) {
 
+                                    <select id="expiration_month" class="text billing_data" disabled="disabled" style="width:70px;">
+                                        <?php
+                                        if (isset($card_expiration_month)) {
+                                            for ($i = 1; $i <= 12; $i++) {
+                                                if ($i == $card_expiration_month) {
+                                                    if ($i < 10) {
+                                                        echo '<option id="0' . $i . '" selected="selected">0' . $i . '</option>';
+                                                    } else {
                                                         echo '<option id="' . $i . '" selected="selected">' . $i . '</option>';
+                                                    }
+                                                } else {
+                                                    if ($i < 10) {
+                                                        echo '<option id="0' . $i . '">0' . $i . '</option>';
                                                     } else {
-
                                                         echo '<option id="' . $i . '">' . $i . '</option>';
                                                     }
                                                 }
-                                            } else {
-                                                ?>
-                                                <option id="2014">2014</option>
-                                                <option id="2015">2015</option>
-                                                <option id="2016">2016</option>
-                                                <option id="2017">2017</option>
-                                                <option id="2018">2018</option>
-                                                <option id="2019">2019</option>
-                                                <option id="2020">2020</option>
-                                                <option id="2021">2021</option>
-                                                <option id="2022">2022</option>
-                                                <option id="2023">2023</option>
-                                                <option id="2024">2024</option>
-                                                <option id="2025">2025</option>
-                                                <?php
                                             }
+                                        } else {
                                             ?>
-                                        </select>
-                                
+                                            <option id="01">01</option>
+                                            <option id="02">02</option>
+                                            <option id="03">03</option>
+                                            <option id="04">04</option>
+                                            <option id="05">05</option>
+                                            <option id="06">06</option>
+                                            <option id="07">07</option>
+                                            <option id="08">08</option>
+                                            <option id="09">09</option>
+                                            <option id="10">10</option>
+                                            <option id="11">11</option>
+                                            <option id="12">12</option>
+                                            <?php
+                                        }
+                                        ?>
+                                    </select>
+
+                                </li>
+                                <li>
+                                    <label for="expiration_year" style="width: 100%">Year*</label>
+
+                                    <select id="expiration_year" class="text billing_data" disabled="disabled" style="width:90px;">
+                                        <?php
+                                        if (isset($card_expiration_year)) {
+                                            for ($i = 2014; $i <= 2025; $i++) {
+                                                if ($i == $card_expiration_year) {
+
+                                                    echo '<option id="' . $i . '" selected="selected">' . $i . '</option>';
+                                                } else {
+
+                                                    echo '<option id="' . $i . '">' . $i . '</option>';
+                                                }
+                                            }
+                                        } else {
+                                            ?>
+                                            <option id="2014">2014</option>
+                                            <option id="2015">2015</option>
+                                            <option id="2016">2016</option>
+                                            <option id="2017">2017</option>
+                                            <option id="2018">2018</option>
+                                            <option id="2019">2019</option>
+                                            <option id="2020">2020</option>
+                                            <option id="2021">2021</option>
+                                            <option id="2022">2022</option>
+                                            <option id="2023">2023</option>
+                                            <option id="2024">2024</option>
+                                            <option id="2025">2025</option>
+                                            <?php
+                                        }
+                                        ?>
+                                    </select>
+
                                 </li>
                                 <li> 
                                     <span id="billing_info" class="form_info">&nbsp;</span>
