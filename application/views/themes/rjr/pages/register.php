@@ -186,15 +186,12 @@
                     </li>
                 </ol>
             </form>
-            <div id="fb_container">
+<!--            <div id="fb_container">
                 <div id="fb_registration_preloader"></div>
                 <button id="signup_fb_btn"></button>
 
                 <p id="fb_info" class="form_info">&nbsp;</p>
-            </div>
-            <!--            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-                        </fb:login-button>-->
-
+            </div>-->
         </div>
     </div>
 </div>
