@@ -29,3 +29,5 @@ $config['button_play_padding_left'] = '150px';
 $config['category1'] = array('lablel'=>'Recommended','value'=>'recommended');
 $config['category2'] = array('lablel'=>'New Releases','value'=>'new_releases');
 $config['category3'] = array('lablel'=>'Coming Soon','value'=>'coming_soon');
+
+$config['load_submenu'] = false;

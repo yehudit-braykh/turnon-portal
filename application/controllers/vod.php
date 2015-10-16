@@ -30,8 +30,11 @@ class Vod extends UVod_Controller {
             $data['items_category_1'] = $this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, RECOMMENDED);
             $data['items_category_2'] = $this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, NEW_RELEASES);
             $data['items_category_3'] = $this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, COMING_SOON);
-
+            
             $this->load->view(views_url() . 'templates/header', $data);
+            if ($this->config->item('load_submenu') != false) {
+                $this->load->view(views_url() . 'templates/sub_menu1', $data);
+            }
             $this->load->view(views_url() . 'pages/vod', $data);
             $this->load->view(views_url() . 'templates/footer', $data);
         } else {
@@ -40,8 +43,11 @@ class Vod extends UVod_Controller {
             
             $categories = array($data['category1']['value'], $data['category2']['value'], $data['category3']['value']);
             $data['items'] = $this->get_items_by_value('pl1$featured_category', $categories, $items->content->entries);
-
+            
             $this->load->view(views_url() . 'templates/header', $data);
+                        if ($this->config->item('load_submenu') != false) {
+                $this->load->view(views_url() . 'templates/sub_menu1', $data);
+            }
             $this->load->view(views_url() . 'pages/vod', $data);
             $this->load->view(views_url() . 'templates/footer', $data);
         }

@@ -30,5 +30,7 @@ $config['category1'] = array('label'=>'Recommended','value'=>'recommended');
 $config['category2'] = array('label'=>'New Releases','value'=>'new_releases');
 $config['category3'] = array('label'=>'Coming Soon','value'=>'coming_soon');
 
+$config['load_submenu'] = true;
+
 $config['timezone'] = 'America/Jamaica';
 

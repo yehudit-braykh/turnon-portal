@@ -32,3 +32,5 @@ $config['category3'] = array('label'=>'Coming Soon','value'=>'coming_soon');
 
 $config['timezone'] = 'America/Jamaica';
 
+$config['load_submenu'] = false;
+
