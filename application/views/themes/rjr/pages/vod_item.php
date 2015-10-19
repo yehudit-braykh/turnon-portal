@@ -97,7 +97,7 @@
                                             });
 
                                             $(document).on('submit', '#register_form', function () {
-                                                window.location = base_url + 'index.php/account/register_ssl--';
+                                                window.location = base_url + 'index.php/account/register_ssl';
                                                 return false;
                                             });
 

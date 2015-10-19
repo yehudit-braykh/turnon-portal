@@ -18,6 +18,9 @@ class Account extends UVod_Controller {
         $data = array();
 
         $this->parser->parse(views_url() . 'templates/header', $data);
+        if ($this->config->item('load_submenu') != false) {
+            $this->parser->parse(views_url() . 'templates/sub_menu1', $data);
+        }
         $this->parser->parse(views_url() . 'pages/forgot', $data);
         $this->parser->parse(views_url() . 'templates/footer', $data);
     }
@@ -27,6 +30,9 @@ class Account extends UVod_Controller {
         $data = array();
 
         $this->parser->parse(views_url() . 'templates/header', $data);
+        if ($this->config->item('load_submenu') != false) {
+            $this->parser->parse(views_url() . 'templates/sub_menu1', $data);
+        }
         $this->parser->parse(views_url() . 'pages/forgot_complete', $data);
         $this->parser->parse(views_url() . 'templates/footer', $data);
     }
@@ -43,6 +49,9 @@ class Account extends UVod_Controller {
         $data['subscription_amount'] = $amount;
 
         $this->parser->parse(views_url() . 'templates/header', $data);
+        if ($this->config->item('load_submenu') != false) {
+            $this->parser->parse(views_url() . 'templates/sub_menu1', $data);
+        }
         $this->parser->parse(views_url() . 'pages/subscription', $data);
         $this->parser->parse(views_url() . 'templates/footer', $data);
     }
@@ -51,6 +60,9 @@ class Account extends UVod_Controller {
         $data = array();
 
         $this->parser->parse(views_url() . 'templates/header', $data);
+        if ($this->config->item('load_submenu') != false) {
+            $this->parser->parse(views_url() . 'templates/sub_menu1', $data);
+        }
         $this->parser->parse(views_url() . 'pages/register', $data);
         $this->parser->parse(views_url() . 'templates/footer', $data);
     }
@@ -171,6 +183,9 @@ class Account extends UVod_Controller {
         $data['subscription_amount'] = $amount;
 
         $this->parser->parse(views_url() . 'templates/header', $data);
+        if ($this->config->item('load_submenu') != false) {
+            $this->parser->parse(views_url() . 'templates/sub_menu1', $data);
+        }
         $this->parser->parse(views_url() . 'pages/register_payment', $data);
         $this->parser->parse(views_url() . 'templates/footer', $data);
     }
@@ -181,6 +196,9 @@ class Account extends UVod_Controller {
         }
         $data = array();
         $this->parser->parse(views_url() . 'templates/header', $data);
+        if ($this->config->item('load_submenu') != false) {
+            $this->parser->parse(views_url() . 'templates/sub_menu1', $data);
+        }
         $this->parser->parse(views_url() . 'pages/register_complete', $data);
         $this->parser->parse(views_url() . 'templates/footer', $data);
     }
@@ -192,6 +210,9 @@ class Account extends UVod_Controller {
         }
 
         $this->parser->parse(views_url() . 'templates/header', $data);
+        if ($this->config->item('load_submenu') != false) {
+            $this->parser->parse(views_url() . 'templates/sub_menu1', $data);
+        }
         $this->parser->parse(views_url() . 'pages/register_subscription_complete', $data);
         $this->parser->parse(views_url() . 'templates/footer', $data);
     }
@@ -199,6 +220,9 @@ class Account extends UVod_Controller {
     public function signin() {
         $data = array();
         $this->parser->parse(views_url() . 'templates/header', $data);
+        if ($this->config->item('load_submenu') != false) {
+            $this->parser->parse(views_url() . 'templates/sub_menu1', $data);
+        }
         $this->parser->parse(views_url() . 'pages/signin', $data);
         $this->parser->parse(views_url() . 'templates/footer', $data);
     }
@@ -256,8 +280,11 @@ class Account extends UVod_Controller {
             $data['user_country'] = "";
             $data['user_postal_code'] = "";
         }
-
+        
         $this->parser->parse(views_url() . 'templates/header', $data);
+        if ($this->config->item('load_submenu') != false) {
+                $this->parser->parse(views_url() . 'templates/sub_menu1', $data);
+        }
         $this->parser->parse(views_url() . 'pages/account', $data);
         $this->parser->parse(views_url() . 'templates/footer', $data);
     }
@@ -397,6 +424,9 @@ class Account extends UVod_Controller {
             $data['message3'] = "Please try again later.";
         }
         $this->load->view(views_url() . 'templates/header', $data);
+        if ($this->config->item('load_submenu') != false) {
+            $this->parser->parse(views_url() . 'templates/sub_menu1', $data);
+        }
         $this->load->view(views_url() . 'pages/account_active', $data);
         $this->load->view(views_url() . 'templates/footer', $data);
     }
@@ -455,6 +485,9 @@ class Account extends UVod_Controller {
     public function subscription_cancelled() {
         $data = array();
         $this->parser->parse(views_url() . 'templates/header', $data);
+        if ($this->config->item('load_submenu') != false) {
+            $this->parser->parse(views_url() . 'templates/sub_menu1', $data);
+        }
         $this->parser->parse(views_url() . 'pages/subscription_cancelled', $data);
         $this->parser->parse(views_url() . 'templates/footer', $data);
     }
@@ -462,6 +495,9 @@ class Account extends UVod_Controller {
     public function subscription_finished() {
         $data = array();
         $this->parser->parse(views_url() . 'templates/header', $data);
+        if ($this->config->item('load_submenu') != false) {
+            $this->parser->parse(views_url() . 'templates/sub_menu1', $data);
+        }
         $this->parser->parse(views_url() . 'pages/subscription_finished', $data);
         $this->parser->parse(views_url() . 'templates/footer', $data);
     }
