@@ -13,15 +13,34 @@
         }).error(function (result) {
             country_code = 'US';
         });
+        
+        function show_info () {
+            TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
+                            TweenLite.to("#info", 1, {delay: 6, alpha: 0});
+                        }});
+        }
 
 //HANDLERS
         $('#btn_sign_up').on('click', function (event) {
+            
             event.preventDefault();
+            $(this).hide();
+            var user_name =  $('#full_name').val();
+            var full_name = user_name.split(" ");
+            $('#info').css("text-align","start");
+            
+            if (full_name.length == 1) { // fullname only contains first name
+                show_info();
+                $("#info").html("* You must specify first & last name" );
+                $('#btn_sign_up').show();
+                return false;
+            }  
 
             $(this).hide();
             $('#registration_preloader').html('Sending data...');
             $('#registration_preloader').show();
-
+            
+              
             $.ajax({
                 url: "<?php echo base_url(); ?>index.php/account/register_step1_ssl",
                 type: 'POST',
