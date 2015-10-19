@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:tp="http://player.theplatform.com/" xml:lang="en" lang="en">
     <head>
-        <title>UVOD Portal</title>
+        <title>Stream Cuba Concert Series</title>
         <meta name="description" content="Challenging the future of TV">
             <meta name="keywords" content="website, business, store" />
             <meta name="robots" content="index, follow" />
@@ -199,13 +199,17 @@
 
         <ul class="nav navbar-nav">
 
-            <li <?php echo ($section == "featured" ? "class='active'" : ""); ?>><a href="<?php echo base_url(); ?>">HOME</a></li>
+            <li <?php echo ($section == "featured" ? "class='active'" : ""); ?>><a href="<?php echo base_url(); ?>">Home</a></li>
 
-            <li <?php echo ($section == "tickets" ? "class='active'" : ""); ?>><a href="<?php echo base_url(); ?>index.php/live_events/main">TICKETS</a></li>
+            <li <?php echo ($section == "watch-live" ? "class='active'" : ""); ?>><a href="<?php echo base_url(); ?>index.php/live_events/main">Watch Live</a></li>
 
-            <li <?php echo ($section == "merchandise" ? "class='active'" : ""); ?>><a href="<?php echo base_url(); ?>">MERCHANDISE</a></li>
+            <li <?php echo ($section == "merchandise" ? "class='active'" : ""); ?>><a href="<?php echo base_url(); ?>">Merchandise</a></li>
 
             <li <?php echo ($section == "vip" ? "class='active'" : ""); ?>><a href="<?php echo base_url(); ?>">VIP Experience</a></li>
+
+            <li <?php echo ($section == "book-travel" ? "class='active'" : ""); ?>><a href="<?php echo base_url(); ?>">Book Travel</a></li>
+
+            <li <?php echo ($section == "shows-calendar" ? "class='active'" : ""); ?>><a href="<?php echo base_url(); ?>">Shows Calendar</a></li>
 
         </ul>
 

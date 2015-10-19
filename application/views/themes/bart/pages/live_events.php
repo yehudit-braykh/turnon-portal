@@ -149,7 +149,7 @@ function setup_player(){
                                     <div class="first-item-carousel-title"><span><?php echo $data[$i]->name; ?></span></div><br>
                                     <div class="first-item-carousel-date">
                                         <?php echo $event_item_overlay; ?>
-                                        <span><?php echo date('d-m H:i', ($data[$i]->event_date / 1000)); ?> hs</span>
+                                        <span><?php echo date('d-m, H:i', ($data[$i]->event_date / 1000)); ?> hs</span>
                                     </div>
                                 </div>
 
@@ -164,7 +164,7 @@ function setup_player(){
                                 <img src="<?php echo $data[$i]->image; ?>" />
                             </div>
                             <span class="item-carousel-title"><?php echo $data[$i]->name; ?></span><br>
-                            <span class="item-carousel-date"><?php echo date('d-m H:i', ($data[$i]->event_date / 1000)); ?> hs</span>
+                            <span class="item-carousel-date"><?php echo date('d-m, H:i', ($data[$i]->event_date / 1000)); ?> hs</span>
                             <p class="item-description"><?php echo $data[$i]->description;?></p>
                         </li>
 
