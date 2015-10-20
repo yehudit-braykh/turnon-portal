@@ -53,7 +53,7 @@ if (isset($events->content) && sizeof($events->content) > 0) {
                 ?>
 
                 <h2 class="event-detail-title"><?php echo $data->name; ?><br>
-                    <small><?php echo date('M, d  H:i', ($data->event_date / 1000)) . ' hs. - $' . $data->price; ?></small>
+                    <small><?php echo date('M, d  - H:i', ($data->event_date / 1000)) . ' hs. - $' . $data->price; ?></small>
                 </h2>
 
                 <h5 class="vod_info_credit_item_value"><?php echo $data->description; ?></h5>

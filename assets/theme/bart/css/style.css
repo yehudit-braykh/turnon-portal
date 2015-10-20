@@ -2949,14 +2949,14 @@ td.product_content{
 
 #brand_logo {
     width: 15vw;
-    min-width: 115px;
+    min-width: 165px;
     max-width: 144px;
-    height: 68px;
+    height: 74px;
     background-image: url(../images/logo_header_CUBA.png);
     background-repeat: no-repeat;
-    background-size: contain;
+    /*background-size: contain;*/
     background-position: center;
-    margin: 6px 20px 0px 0px;
+    margin: 2px 40px 0px 0px;
 }
 
 #btn-login {
