@@ -2049,6 +2049,20 @@ select:focus, select:active {
 }
 .registration_container{ 
     width: 960px;
+
+}
+
+#tab2 .registration_container{
+    height: 620px;
+}
+
+#subscription_form{
+    margin: 0;
+    padding: 6px 0;
+    text-transform: none;
+    float: left;
+    font-weight: normal;
+    color: #000;
 }
 
 .registration_container_payment{
@@ -2082,14 +2096,6 @@ select:focus, select:active {
     margin-right: 100px;
 }
 
-.subscriber_button{
-    width: 195px;
-    height: 62px;
-    background-image: url(../images/button_subscribe_now.png);
-    background-repeat: no-repeat;
-    margin: 563px auto 30px;
-    cursor: pointer;
-}
 
 #btn_subscribe{
     width: 112px;
@@ -2197,7 +2203,7 @@ select:focus, select:active {
 
 .registration_container form li.buttons input, .registration_container_payment form li.buttons input { padding:0 0 3px 0; margin:10px 0 0 0px; border:0; color:#FFF; float:left; }
 
-.other-op-btn{
+.other-op-btn, .subscriber_button{
     height: 35px;
     width: 110px;
     padding:0 0 3px 0; 
@@ -2776,12 +2782,6 @@ select:focus, select:active {
                                 padding: 3px 15px 3px 10px;
                             }
 
-                            .subscriber_button {
-                                float: none;
-                                margin-left: auto;
-                                margin-right: auto;
-                                margin-top: 30px;
-                            }
 
                             .pricing_content .registration_pricing {
                                 position: initial;
@@ -2915,13 +2915,6 @@ select:focus, select:active {
                                                      padding: 3px 15px 3px 10px;
                                                      outline: none;
                                                      color: #ccc;
-                                                 }
-
-                                                 .subscriber_button {
-                                                     float: none;
-                                                     margin-left: auto;
-                                                     margin-right: auto;
-                                                     margin-top: 30px;
                                                  }
 
                                                  .pricing_content .registration_pricing {
@@ -3066,12 +3059,6 @@ select:focus, select:active {
                                                      padding: 3px 15px 3px 10px;
                                                  }
 
-                                                 .subscriber_button {
-                                                     float: none;
-                                                     margin-left: auto;
-                                                     margin-right: auto;
-                                                     margin-top: 30px;
-                                                 }
 
                                                  .pricing_content .registration_pricing {
                                                      position: initial;
@@ -3215,12 +3202,6 @@ select:focus, select:active {
                                                      color: #ccc;
                                                  }
 
-                                                 .subscriber_button {
-                                                     float: none;
-                                                     margin-left: auto;
-                                                     margin-right: auto;
-                                                     margin-top: 30px;
-                                                 }
 
                                                  .pricing_content .registration_pricing {
                                                      position: initial;
@@ -3364,12 +3345,7 @@ select:focus, select:active {
                                                      color: #ccc;
                                                  }
 
-                                                 .subscriber_button {
-                                                     float: none;
-                                                     margin-left: auto;
-                                                     margin-right: auto;
-                                                     margin-top: 30px;
-                                                 }
+
 
                                                  .pricing_content .registration_pricing {
                                                      position: initial;
@@ -3519,12 +3495,6 @@ select:focus, select:active {
                                                      padding: 3px 15px 3px 10px;
                                                  }
 
-                                                 .subscriber_button {
-                                                     float: none;
-                                                     margin-left: auto;
-                                                     margin-right: auto;
-                                                     margin-top: 30px;
-                                                 }
 
                                                  .pricing_content .registration_pricing {
                                                      position: initial;
@@ -3664,12 +3634,6 @@ select:focus, select:active {
                                                      color: #ccc;
                                                  }
 
-                                                 .subscriber_button {
-                                                     float: none;
-                                                     margin-left: auto;
-                                                     margin-right: auto;
-                                                     margin-top: 30px;
-                                                 }
 
                                                  .pricing_content .registration_pricing {
                                                      position: initial;
@@ -3810,12 +3774,7 @@ select:focus, select:active {
                                                      color: #ccc;
                                                  }    
 
-                                                 .subscriber_button {
-                                                     float: none;
-                                                     margin-left: auto;
-                                                     margin-right: auto;
-                                                     margin-top: 30px;
-                                                 }
+  
 
                                                  .pricing_content .registration_pricing {
                                                      position: initial;
@@ -3939,13 +3898,6 @@ select:focus, select:active {
 
                                                  .footer {
                                                      display: none;
-                                                 }
-
-                                                 .subscriber_button {
-                                                     float: none;
-                                                     margin-left: auto;
-                                                     margin-right: auto;
-                                                     margin-top: 30px;
                                                  }
 
                                                  .pricing_content .registration_pricing {
@@ -4072,13 +4024,6 @@ select:focus, select:active {
                                                      display: none;
                                                  } 
 
-                                                 .subscriber_button {
-                                                     float: none;
-                                                     margin-left: auto;
-                                                     margin-right: auto;
-                                                     margin-top: 30px;
-                                                 }
-
                                                  .pricing_content .registration_pricing {
                                                      position: initial;
                                                      float: none; 
@@ -4203,12 +4148,6 @@ select:focus, select:active {
                                                      display: none;
                                                  } 
 
-                                                 .subscriber_button {
-                                                     float: none;
-                                                     margin-left: auto;
-                                                     margin-right: auto;
-                                                     margin-top: 30px;
-                                                 }
 
                                                  .pricing_content .registration_pricing {
                                                      position: initial;

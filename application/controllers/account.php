@@ -36,20 +36,24 @@ class Account extends UVod_Controller {
         if (!isset($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
             $ret->message = "The email entered is invalid.";
         }
-        $data = array();
+        if (isset($_POST['sub_id'])) {
 
-        $subscription = $this->account_model->get_subscriptions();
-        $amount = '';
-        if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
-            $amount = $subscription->content->entries[0]->{'plsubscription$billingSchedule'}[0]->{'plsubscription$amounts'}->USD;
+            $subscription_id = $_POST['sub_id'];
+            $data = array();
+
+            $subscription = $this->account_model->get_subscriptions($subscription_id);
+            $amount = '';
+            if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
+                $amount = $subscription->content->entries[0]->{'plsubscription$billingSchedule'}[0]->{'plsubscription$amounts'}->USD;
+            }
+
+
+            $data['subscription_amount'] = $amount;
+
+            $this->parser->parse(views_url() . 'templates/header', $data);
+            $this->parser->parse(views_url() . 'pages/subscription', $data);
+            $this->parser->parse(views_url() . 'templates/footer', $data);
         }
-
-
-        $data['subscription_amount'] = $amount;
-
-        $this->parser->parse(views_url() . 'templates/header', $data);
-        $this->parser->parse(views_url() . 'pages/subscription', $data);
-        $this->parser->parse(views_url() . 'templates/footer', $data);
     }
 
     public function register_ssl() {
@@ -440,8 +444,9 @@ class Account extends UVod_Controller {
         $pi_year = $_POST['pi_year'];
         $pi_type = $_POST['pi_type'];
         $pi_number = $_POST['pi_number'];
-
-        $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $city, $postal_code, $country, $pi_month, $pi_year, $pi_type, $pi_number);
+        $subscription_id = $_POST['subscription_id'];
+        error_log($first_name. ' last name:'.$last_name. ' email:'.$email. ' city:'.$city. ' postal code:'.$postal_code. ' country:'.$country. ' month:'.$pi_month. ' year:'.$pi_year. ' type:'.$pi_type. ' nmb:'.$pi_number. ' id:'.$subscription_id);
+        $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $subscription_id);
 
         if (isset($ret->error) && $ret->error == false) {
             $this->subscription_complete_mail($first_name, $last_name, $email);

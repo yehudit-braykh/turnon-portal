@@ -106,9 +106,6 @@ if (isset($clientToken)) {
 
         });
 
-        $('.subscriber_button').on('click', function () {
-            window.location = '<?php echo base_url(); ?>index.php/account/subscription_ssl';
-        });
 
         $('#btn_cancel').on('click', function () {
 
@@ -139,23 +136,114 @@ if (isset($clientToken)) {
         });
 
         $('.registration_pricing').on('click', function () {
-console.log($(this).attr('id'));
-$(this).css('opacity','1');
+            $(this).css('pointer-events', 'none');
             subscription_id = $(this).attr('id');
-            $('.registration_pricing').removeClass('selected_pricing');
             $(this).addClass('selected_pricing');
-            $(".registration_pricing:not(.selected_pricing)").animate({opacity: 0.3}, 'slow',function(){
-//                $('.selected_pricing').animate({opacity: 1}, 'slow');
-            })
-//            $('.selected_pricing').siblings('.registration_pricing').animate({opacity: 0.3}, 'slow', function () {
-//                
-//            })
-            
+            $(this).siblings('.registration_pricing').animate({opacity: 0}, 'slow', function () {
+                $('.selected_pricing').siblings('.registration_pricing').hide();
+                $('#subscription_form').show('600');
+            });
         });
+
+        $('.other-op-btn').on('click', function (event) {
+            event.preventDefault()
+            $('#subscription_form').hide();
+            $('.selected_pricing').siblings('.registration_pricing').show();
+            $('.selected_pricing').siblings('.registration_pricing').animate({opacity: 1}, 'slow', function () {
+                $('.selected_pricing').css('pointer-events', 'auto');
+                $('.selected_pricing').removeClass('selected_pricing');
+            });
+        })
+
+        $('.subscriber_button').on('click', function (event) {
+            $(this).hide();
+            if (!($("#accept_terms_and_conditions").prop("checked"))) {
+                show_info();
+                $("#info").html("* You must accept terms and conditions before click next button");
+                $('.subscriber_button').show();
+                return false;
+            }
+
+            var cardholder_name = $("#cardholder_name").val();
+            var valid_cardholder_name = /^[A-Za-z\s]+$/.test(cardholder_name);
+            if (!valid_cardholder_name) {
+                show_info();
+                $("#info").html("* Name on card only accepts letters and spaces");
+                $('.subscriber_button').show();
+                return false;
+            }
+
+            var card_number = $("#card_number").val();
+            var valid_card_number = /^[0-9]+$/.test(card_number);
+            if (!valid_card_number) {
+                show_info();
+                $("#info").html("* Card number only accepts numbers");
+                $('.subscriber_button#btn_next').show();
+                return false;
+            }
+
+            var security_code = $("#security_code").val();
+            var valid_security_code = /^[0-9]+$/.test(security_code);
+            if (!valid_security_code) {
+                show_info();
+                $("#info").html("* Security code only accepts numbers");
+                $('.subscriber_button').show();
+                return false;
+            }
+
+            $('.other-op-btn').hide();
+            $('#registration_preloader').html('Sending data...');
+            $('#registration_preloader').show();
+            pi_number = $('#card_number').val();
+            pi_type = GetCardType($('#card_number').val());
+            $.ajax({
+                url: "<?php echo base_url(); ?>index.php/account/subscribe_ssl",
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    pi_month: $('#expiration_month').val(),
+                    pi_year: $('#expiration_month').val() + '/' + $('#expiration_year').val(),
+                    pi_type: pi_type,
+                    pi_number: pi_number,
+                    subscription_id: subscription_id}
+            }).done(function (data) {
+
+                if (data && data.status == 'ok') {
+
+                    window.location.href = "<?php echo base_url(); ?>index.php/account/subscription_finished";
+                } else {
+
+                    $('#registration_preloader').hide();
+                    $('.subscriber_button').show();
+                    $('.other-op-btn').show();
+                    TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
+                            TweenLite.to("#info", 1, {delay: 6, alpha: 0});
+                        }});
+                    $("#info").html("* " + data.message);
+                }
+            });
+
+            return false;
+        });
+
+        function GetCardType(number)
+        {
+            var re = new RegExp("^4");
+            if (number.match(re) != null)
+                return "Visa";
+            re = new RegExp("^(34|37)");
+            if (number.match(re) != null)
+                return "American Express";
+            re = new RegExp("^5[1-5]");
+            if (number.match(re) != null)
+                return "MasterCard";
+            re = new RegExp("^6011");
+            if (number.match(re) != null)
+                return "Discover";
+            return "";
+        }
+
     });
-
-
-
 </script>
 
 </div>
@@ -307,12 +395,97 @@ $(this).css('opacity','1');
                                             <div class="dc_clear"></div>
                                         </div>
                                     </div>
+
+
+
+
+
                                     <?php
                                 }
                             }
                         }
                         ?>
-                        <div class="subscriber_button"></div>
+                        <form method="post" id="subscription_form" style="display: none;">
+                            <ol>
+                                <li>
+                                    <label for="cardholder_name">Name on Card*</label>
+                                    <input id="cardholder_name" class="text" />
+                                </li>
+                                <li> 
+                                    <div class="form_notes">Enter your name exactly as it appears <br class="rwd-break"> on your credit card.</div>
+                                </li>        
+                                <li>
+                                    <label for="card_number">Card Number*</label>
+                                    <input id="card_number" class="text" style="width:150px;" />
+                                </li>
+                                <li> 
+                                    <div class="form_notes">Enter your credit card number without spaces.</div>
+                                </li>        
+                                <li>
+                                    <label for="security_code">Security Code*</label>
+                                    <input id="security_code" class="text" type="password" style="width:70px;" />
+                                </li>
+                                <li> 
+                                    <div class="form_notes">Enter CVV code.</div>
+                                </li>        
+                                <li>
+                                    <label for="expiration_month">Month*</label>
+                                    <span class='css-select-moz'>
+                                        <select id="expiration_month" class="text" style="width:70px;">
+                                            <option id="01">01</option>
+                                            <option id="01">02</option>
+                                            <option id="01">03</option>
+                                            <option id="01">04</option>
+                                            <option id="01">05</option>
+                                            <option id="01">06</option>
+                                            <option id="01">07</option>
+                                            <option id="01">08</option>
+                                            <option id="01">09</option>
+                                            <option id="01">10</option>
+                                            <option id="01">11</option>
+                                            <option id="01">12</option>
+                                        </select>
+                                    </span>
+                                </li>
+                                <li> 
+                                    <div class="form_notes">Select the expiration month.</div>
+                                </li>        
+                                <li>
+                                    <label for="expiration_year">Year*</label>
+                                    <span class='css-select-moz'>
+                                        <select id="expiration_year" class="text" style="width:70px;">
+                                            <option id="2014">2014</option>
+                                            <option id="2015">2015</option>
+                                            <option id="2016">2016</option>
+                                            <option id="2017">2017</option>
+                                            <option id="2018">2018</option>
+                                            <option id="2019">2019</option>
+                                            <option id="2020">2020</option>
+                                            <option id="2021">2021</option>
+                                            <option id="2022">2022</option>
+                                            <option id="2023">2023</option>
+                                            <option id="2024">2024</option>
+                                            <option id="2025">2025</option>
+                                        </select>
+                                    </span>
+                                </li>
+                                <li> 
+                                    <div class="form_notes">Select the expiration year.</div>
+                                </li>   
+                                <li id= "terms_and_conditions" style="margin-top: 10px">
+                                    <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
+                                    <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_and_conditions'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
+                                <li> 
+                                    <p id="info" class="form_info">&nbsp;</p>
+                                </li>
+                                <li class="buttons">
+                                    <button class="other-op-btn">Select other Plan</button>
+                                    <button class="subscriber_button">Subscribe</button>
+                                    <div id="registration_preloader"></div>
+                                    <div class="clr"></div>
+                                </li>
+                            </ol>
+                        </form>   
                     </div>
                 </div>
 
