@@ -8,50 +8,50 @@
         <div class="col-sm-12 title_event_separator"></div>
 
 
-<!--bucle-->
+        <!--bucle-->
 
         <?php
-            for ($i = 0; $i < sizeof($events->content); $i++) {
-                if (isset($subscription_data) && sizeof($subscription_data) > 0) {
-                    for ($h = 0; $h < sizeof($subscription_data); $h++) {
-                        if ($events->content[$i]->id === $subscription_data[$h]->{'plorderitem$productId'}) {
+        for ($i = 0; $i < sizeof($events->content); $i++) {
+            if (isset($subscription_data) && sizeof($subscription_data) > 0) {
+                for ($h = 0; $h < sizeof($subscription_data); $h++) {
+                    if ($events->content[$i]->id === $subscription_data[$h]->{'plorderitem$productId'}) {
 
-                            $buy_column = '<div class="col-sm-2 already_purchased"><div>ALREADY<br/>PURCHASED</div><a href="' . base_url() . 'index.php/live_events/main"></div><div class="col-sm-2 col_button"><button type="button" class="btn btn-default btn-sm watch_now_btn">WATCH NOW!</button></a></div>';
-                            break;
-                        } else {
-                            $buy_column = '<div class="col-sm-2 product_conditions"><div class="product_price">$' . $events->content[$i]->price . '</div></div><div class="col-sm-2 col_button"><button type="button" class="btn btn-default btn-sm buy_button">BUY NOW!</button></div>';
-                        }
+                        $buy_column = '<div class="col-sm-2 already_purchased"><div>ALREADY<br/>PURCHASED</div><a href="' . base_url() . 'index.php/live_events/main"></div><div class="col-sm-2 col_button"><button type="button" class="btn btn-default btn-sm watch_now_btn">WATCH NOW!</button></a></div>';
+                        break;
+                    } else {
+                        $buy_column = '<div class="col-sm-2 product_conditions"><div class="product_price">$' . $events->content[$i]->price . '</div></div><div class="col-sm-2 col_button"><button type="button" class="btn btn-default btn-sm buy_button">BUY NOW!</button></div>';
                     }
-                } else {
-                    $buy_column = '<div class="col-sm-2"><div class="product_price">$' . $events->content[$i]->price . '</div></div><div class="col-sm-2 col_button"><button type="button" class="btn btn-default btn-sm buy_button">BUY NOW!</button></div>';
                 }
-                ?>
-
-                <div class="col-sm-12 product_id" id="<?php echo $events->content[$i]->id ?>">
-
-                    <div class="col-sm-2 product_image">
-                        <img src="<?php echo $events->content[$i]->image; ?>">
-                    </div>
-
-                    <div class="col-sm-6 product_content">
-                        <div class="product_title">
-                            <?php echo $events->content[$i]->name; ?>
-                        </div>
-                        <div class="product_description">
-                            <!--<?php echo $events->content[$i]->description; ?>-->Day 1, September 29, 10:00 pm
-                        </div>
-                    </div>
-
-                    <?php
-                    echo $buy_column;
-                    ?>
-
-                </div>
-                <?php
+            } else {
+                $buy_column = '<div class="col-sm-2"><div class="product_price">$' . $events->content[$i]->price . '</div></div><div class="col-sm-2 col_button"><button type="button" class="btn btn-default btn-sm buy_button">BUY NOW!</button></div>';
             }
             ?>
 
-<!--end bucle-->
+            <div class="col-sm-12 product_id" id="<?php echo $events->content[$i]->id ?>">
+
+                <div class="col-sm-2 product_image">
+                    <img src="<?php echo $events->content[$i]->image; ?>">
+                </div>
+
+                <div class="col-sm-6 product_content">
+                    <div class="product_title">
+                        <?php echo $events->content[$i]->name; ?>
+                    </div>
+                    <div class="product_description">
+                        <!--<?php echo $events->content[$i]->description; ?>-->Day 1, September 29, 10:00 pm
+                    </div>
+                </div>
+
+                <?php
+                echo $buy_column;
+                ?>
+
+            </div>
+            <?php
+        }
+        ?>
+
+        <!--end bucle-->
 
     </div>
 
@@ -84,5 +84,6 @@
                 }
             });
         });
+    })
 
 </script>
