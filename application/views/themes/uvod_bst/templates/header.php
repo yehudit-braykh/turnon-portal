@@ -239,17 +239,12 @@
                 <li><button id="btn-login" type="submit" class="btn btn-default btn-sm">LOG IN</button></li>
                 <?php
             } else {
+                 $first_letter = substr($_SESSION['uvod_user_data']->firstName, 0, 1);
+                                    $second_letter = substr($_SESSION['uvod_user_data']->lastName, 0, 1);
                 ?>
 
                 <li class="dropdown">
-
-
-                    <a id="square_a" href="#" class="dropdown-toggle square_profile_header" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MS<span class="caret"></span></a>
-
-
-                    <!--<a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['uvod_user_data']->firstName; ?> <span class="caret"></span></a>-->
-
-
+                    <a id="square_a" href="#" class="dropdown-toggle square_profile_header" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo strtoupper($first_letter . $second_letter); ?><span class="caret"></span></a>
                     <ul class="dropdown-menu">
 
                         <li id="sub_m"><a href="<?php echo base_url(); ?>index.php/account/my_account">My Account</a></li>
