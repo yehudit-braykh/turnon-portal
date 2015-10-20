@@ -95,7 +95,7 @@ $(function () {
     });
 
     $(document).on('submit', '#suscriber_form', function () {
-        window.location = base_url + 'index.php/account/subscription';
+        window.location = base_url + 'index.php/account/subscription_ssl';
         return false;
     });
 
