@@ -6,27 +6,37 @@
         <div class="camera_wrap camera_azure_skin" id="camera_wrap_1"> 
 
             <?php
-            for ($i = 0; $i < sizeof($slider); $i++) {
+                for ($i = 0; $i < sizeof($slider); $i++) {
 
-                $item_id_arr = explode("/", $slider[$i]->id);
-                $item_id = $item_id_arr[sizeof($item_id_arr) - 1];
-                $item_url = base_url() . 'index.php/vod_item/detail/id/' . $item_id;
-                ?>
+                    if (isset($slider[$i]->link)) {
+                        $item_url = $slider[$i]->link;
+                    } else {
+                        $item_id_arr = explode("/", $slider[$i]->id);
+                        $item_id = $item_id_arr[sizeof($item_id_arr) - 1];
+                        $item_url = base_url() . 'index.php/vod_item/detail/id/' . $item_id;
+                    }
+                    ?>
 
-                <div  data-src="<?php echo $slider[$i]->image_url; ?>" item-url="<?php echo $item_url; ?>">>
+                    <div  data-src="<?php echo $slider[$i]->image_url; ?>" item-url="<?php echo $item_url; ?>">>
+                        <?php
+                        if (isset($slider[$i]->target) && $slider[$i]->target != 'none') {
+                            ?>
+                            <div class="camera_caption" target="<?php echo $slider[$i]->target; ?>" item-url="<?php echo $item_url; ?>"> </div>
+                            <?php
+                        } else {
+                            ?>
+                            <div class="camera_caption" item-url="<?php echo $item_url; ?>"> </div>
+                            <?php
+                        }
+                        ?>
+                    </div>
 
-                    <div class="camera_caption" item-url="<?php echo $item_url; ?>"> </div>
-
-                </div>
-
-            <?php } ?>
+                <?php } ?>
+            </div>
         </div>
-    </div>
-    <div class="clr"></div>
-    <!--Slider End  -->
-
+        <div class="clr"></div>
+        <!-- Slider End -->
 <?php } ?>
-
 
 <!--<div id="epg_preview_bg"></div>-->
 <div class="clr"></div>
