@@ -373,7 +373,7 @@ h2.h2_act_href a.ico_4:hover{background:url(../images/ico_a-04.png) no-repeat le
 
 .cols4.abc .col4{ margin:0 3% 0 0;}
 
-.col4.no_spacer { margin:0 20px 20px 0; }
+.col4.no_spacer { margin:0 25px 20px 20px; }
 
 .col4.first {  }
 
@@ -1019,7 +1019,19 @@ img{}
 
 .img_hover_box a.cover img { }
 
-.img_hover_box a.cover div.h { line-height: 17px; padding-left: 5px; padding-top: 3px; font-size: 12px; font-weight: bold; color: #fff; position: absolute; bottom: 0; left: 4px; background-color: rgba(0,0,0,0.8); }
+.img_hover_box a.cover div.h { 
+    line-height: 17px;
+    padding-left: 8px;
+    padding-top: 3px;
+    font-size: 12px;
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.8);
+    margin: 0;
+    width: 225px!important;
+    padding-bottom: 40px;
+}
 
 .img_hover_box a.cover:hover div.h { visibility:visible; }
 
@@ -2818,6 +2830,7 @@ td.product_content{
 .vod_related_container {
     height: 375px; 
     background-color: #424242;
+    padding-left: 90px!important;
 }
 
 .vod_related_container h4 {
