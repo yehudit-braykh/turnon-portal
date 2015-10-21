@@ -3,7 +3,7 @@
     $(function () {
 
         _gaq.push(['_trackEvent', 'Registration', 'Payment Information']);
-        $('#btn_skip').on('click', function (event) {
+        $('.btn-skip').on('click', function (event) {
             event.preventDefault();
             window.location.href = "<?php echo base_url(); ?>index.php/account/register_complete";
         });
@@ -107,17 +107,19 @@
             $(this).css('pointer-events', 'none');
             subscription_id = $(this).attr('id');
             $(this).addClass('selected_pricing');
+            $('.main-skip').hide();
             $(this).siblings('.registration_pricing').animate({opacity: 0}, 'slow', function () {
                 $('.selected_pricing').siblings('.registration_pricing').hide();
                 $('#registerform').show('600');
             });
 
-            
+
         })
 
         $('.other-op-btn').on('click', function (event) {
             event.preventDefault()
             $('#registerform').hide();
+            $('.main-skip').show();
             $('.selected_pricing').siblings('.registration_pricing').show();
             $('.selected_pricing').siblings('.registration_pricing').animate({opacity: 1}, 'slow', function () {
                 $('.selected_pricing').css('pointer-events', 'auto');
@@ -185,8 +187,14 @@
                             <div class="dc_clear"></div>
                         </div>
                     </div>
+
                     <?php
                 }
+                ?>
+                <div style="width:100%;text-align: center">
+                    <button class="btn-skip main-skip">SKIP AND CONTINUE REGISTRATION</button>
+                </div>
+                <?php
             }
             ?>
             <form method="post" id="registerform" style="display: none;">
@@ -265,7 +273,7 @@
                     <li class="buttons">
                         <button class="other-op-btn">Select other Plan</button>
                         <input type="image" id="btn_next" src="<?php echo asset_url(); ?>images/button_next.png" class="send" />
-                        <input type="image" id="btn_skip" src="<?php echo asset_url(); ?>images/button_skip_2.png" class="send" style="margin-left:10px;" />
+                        <input type="image" id="btn_skip" class="btn-skip" src="<?php echo asset_url(); ?>images/button_skip_2.png" class="send" style="margin-left:10px;" />
                         <div id="registration_preloader"></div>
                         <div class="clr"></div>
                     </li>

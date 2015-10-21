@@ -2070,7 +2070,7 @@ select:focus, select:active {
 
 .registration_container_payment{
     width: 960px;
-    height: 560px;
+    height: 590px;
     overflow: hidden;
 }
 
@@ -2218,6 +2218,19 @@ select:focus, select:active {
     text-transform: uppercase;
     cursor: pointer; 
 }
+
+.btn-skip{
+    height: 35px;
+    width: 140px;
+    padding:0 0 3px 0; 
+    margin:40px; 
+    border:0; 
+    color:#FFF!important; 
+    background-color: #6B00B1;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
 .common_btn{
     width: 65px;
     height: 38px;
