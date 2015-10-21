@@ -29,3 +29,5 @@ $config['button_play_padding_left'] = '150px';
 $config['category1'] = '&Uacute;ltimos Videos';
 $config['category2'] = 'Más Noticias de México';
 $config['category3'] = 'Más Noticias de Estados Unidos';
+
+$config['load_submenu'] = false;

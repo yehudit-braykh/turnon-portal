@@ -97,12 +97,12 @@
                                             });
 
                                             $(document).on('submit', '#register_form', function () {
-                                                window.location = base_url + 'index.php/account/register';
+                                                window.location = base_url + 'index.php/account/register_ssl';
                                                 return false;
                                             });
 
                                             $(document).on('submit', '#suscriber_form', function () {
-                                                window.location = base_url + 'index.php/account/subscription';
+                                                window.location = base_url + 'index.php/account/subscription_ssl';
                                                 return false;
                                             });
 
@@ -154,6 +154,9 @@
                                                                                         autostart: true,
                                                                                         aspectratio: "16:9",
                                                                                         width: "100%",
+                                                                                        <?php 
+                                                                                        if(sizeof($renditions) > 0){
+                                                                                        ?>
                                                                                         sources: [
                                                                                           <?php 
                                                                                           for($i=0;$i<sizeof($renditions);$i++){
@@ -163,8 +166,14 @@
                                                                                                    echo ',{file:"'.$renditions[$i]->file.'",label:"'.$renditions[$i]->label.'"}';
                                                                                               }
                                                                                           }
+                                                                                      
                                                                                           ?>
                                                                                           ],
+                                                                                          <?php
+                                                                                        }else{
+                                                                                            echo 'file:"'.$hls_streaming.'",';
+                                                                                        }
+                                                                                          ?>
                                                                                           events: {
                                                                                                 onPlay: function(e) {
                                                                                                     handleOnMediaStart();
@@ -172,19 +181,20 @@
                                                                                                 onComplete: function(e){
                                                                                                     handleOnMediaEnd();
                                                                                                 }
-                                                                                            }
+                                                                                            },
+                                                                                            advertising: {client: 'googima',tag:'http://ad4.liverail.com/?LR_PUBLISHER_ID=151407&LR_SCHEMA=vast2-vpaid'},
 
                                                                                     <?php                                                              
-                                                                            if($adPolicyId !=''){
+//                                                                            if($adPolicyId !=''){
                                                                             ?>
                                                                                   
-                                                                                    ,advertising: {
-                                                                                            client: 'vast',
-                                                                                            'skipoffset': 5,
-                                                                                            tag: base_url + 'index.php/vod/get_advertisement_xml?policy_id=' + <?php echo $adPolicyId;?>
-                                                                                        }
-                                                                                <?php 
-                                                                                }
+//                                                                                    ,advertising: {
+//                                                                                            client: 'vast',
+//                                                                                            'skipoffset': 5,
+//                                                                                            tag: base_url + 'index.php/vod/get_advertisement_xml?policy_id=' + //<?php // echo $adPolicyId;?>
+//                                                                                        }
+                                                                               <?php 
+//                                                                                }
                                                                                 ?>
                                                                                                             });
                                                                     $('#back_button_container').css({display: "none"});

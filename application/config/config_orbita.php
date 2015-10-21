@@ -31,3 +31,5 @@ $config['button_play_padding_left'] = '150px';
 $config['category1'] = 'Último Momento';
 $config['category2'] = 'Lo más visto';
 $config['category3'] = 'Destacados';
+
+$config['load_submenu'] = false;

@@ -25,23 +25,30 @@ class Vod extends UVod_Controller {
         $data['slider'] = $this->vod_model->get_slider(APP_TARGET, $sub_section);
 
         // genres filter
+
         if ($this->config->item('create_items_on_view') !== FALSE) {
 
             $data['items_category_1'] = $this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, RECOMMENDED);
             $data['items_category_2'] = $this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, NEW_RELEASES);
             $data['items_category_3'] = $this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, COMING_SOON);
-
+            
             $this->load->view(views_url() . 'templates/header', $data);
+            if ($this->config->item('load_submenu') != false) {
+                $this->load->view(views_url() . 'templates/sub_menu1', $data);
+            }
             $this->load->view(views_url() . 'pages/vod', $data);
             $this->load->view(views_url() . 'templates/footer', $data);
         } else {
 
             $items = $this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, RECOMMENDED . '|' . NEW_RELEASES . '|' . COMING_SOON);
-
+            
             $categories = array($data['category1']['value'], $data['category2']['value'], $data['category3']['value']);
             $data['items'] = $this->get_items_by_value('pl1$featured_category', $categories, $items->content->entries);
-
+            
             $this->load->view(views_url() . 'templates/header', $data);
+            if ($this->config->item('load_submenu') != false) {
+                $this->load->view(views_url() . 'templates/sub_menu1', $data);
+            }
             $this->load->view(views_url() . 'pages/vod', $data);
             $this->load->view(views_url() . 'templates/footer', $data);
         }
@@ -144,15 +151,19 @@ class Vod extends UVod_Controller {
 
         if ($this->config->item('create_items_on_view') !== FALSE) {
             $this->load->view(views_url() . 'templates/header', $data);
-
+            if ($this->config->item('load_submenu') != false) {
+                $this->load->view(views_url() . 'templates/sub_menu1', $data);
+            }
             $this->load->view(views_url() . 'pages/vod_list', $data);
             $this->load->view(views_url() . 'templates/footer', $data);
         } else {
             $this->parser->parse(views_url() . 'templates/header', $data);
-
+            if ($this->config->item('load_submenu') != false) {
+                $this->load->view(views_url() . 'templates/sub_menu1', $data);
+            }
             $this->parser->parse(views_url() . 'pages/vod_list', $data);
             $this->parser->parse(views_url() . 'templates/footer', $data);
-        }
+        }        
     }
 
     private function create_items($items, $max = 0) {

@@ -130,9 +130,9 @@ class Live_events extends UVod_Controller {
                         }
                     }
 
-                   
+
                     if (in_array($events->content[0]->media->id, $media_ids)) {
-                        $events->content[0]->already_purchased = true;  
+                        $events->content[0]->already_purchased = true;
                     } else {
                         $events->content[0]->already_purchased = false;
                     }
@@ -200,9 +200,8 @@ class Live_events extends UVod_Controller {
                     if (sizeof($media_ids) > 0) {
                         if (in_array($events->content[$h]->media->id, $media_ids)) {
                             $events->content[$h]->already_purchased = true;
-              
                         } else {
-                  
+
                             $events->content[$h]->already_purchased = false;
                         }
                     }
@@ -301,23 +300,21 @@ class Live_events extends UVod_Controller {
 
     public function checkout_event() {
 
-        if (isset($_SESSION['uvod_user_data']->id)) {
-            if ($_POST['product_id']) {
+        if (isset($_SESSION['uvod_user_data']->id) && $_POST['product_id']) {
 
-                $data = array();
-                $product_id = $_POST['product_id'];
-                $events = $this->live_events_model->get_events();
-
-                for ($h = 0; $h < sizeof($events->content); $h++) {
-                    if ($events->content[$h]->id === $product_id) {
-                        $_SESSION['event_price'] = $events->content[$h]->price;
-                        $_SESSION['event_name'] = $events->content[$h]->name;
-                        $_SESSION['product_id'] = $product_id;
-                    }
+            $data = array();
+            $product_id = $_POST['product_id'];
+            $events = $this->live_events_model->get_events();
+            
+            for ($h = 0; $h < sizeof($events->content); $h++) {
+                if ($events->content[$h]->id === $product_id) {
+                    $_SESSION['event_price'] = $events->content[$h]->price;
+                    $_SESSION['event_name'] = $events->content[$h]->name;
+                    $_SESSION['product_id'] = $product_id;
                 }
-
-                echo json_encode(array('status' => 'ok'));
             }
+
+            echo json_encode(array('status' => 'ok'));
         } else {
 
             echo json_encode(array('status' => 'error'));
@@ -359,19 +356,18 @@ class Live_events extends UVod_Controller {
 
             $ret = $this->live_events_model->subscription_checkout($product_id, $token, $nonce, $first_name, $last_name, $email, $city, $postal_code, $country, $pi_month, $pi_year, $pi_type, $pi_number, $pi_security_code);
 
-            if(isset($ret->error) && $ret->error){
-                echo json_encode(array('status'=>'error', 'msg'=>$ret->message));
-            }else{
-                echo json_encode(array('status'=>'ok', 'msg'=>''));
+            if (isset($ret->error) && $ret->error) {
+                echo json_encode(array('status' => 'error', 'msg' => $ret->message));
+            } else {
+                echo json_encode(array('status' => 'ok', 'msg' => ''));
             }
-          
         } else {
             echo json_encode(array('status' => 'error', 'message' => 'logout'));
         }
     }
-    
-    public function event_buy_complete(){
-         $data = array();
+
+    public function event_buy_complete() {
+        $data = array();
         $this->load->view(views_url() . 'templates/header', $data);
         $this->load->view(views_url() . 'pages/event_buy_complete', $data);
         $this->load->view(views_url() . 'templates/footer', $data);
