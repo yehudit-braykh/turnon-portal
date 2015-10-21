@@ -2052,6 +2052,9 @@ select:focus, select:active {
 
 }
 
+#tab1 .registration_container{
+    height: 430px;
+}
 #tab2 .registration_container{
     height: 620px;
 }
