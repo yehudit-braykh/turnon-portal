@@ -30,7 +30,7 @@ $config['category1'] = array('label'=>'Message from Artist','value'=>'recommende
 $config['category2'] = array('label'=>'Backstage','value'=>'new_releases');
 $config['category3'] = array('label'=>'Coming Soon','value'=>'coming_soon');
 
-$config['timezone'] = 'America/Jamaica';
+$config['timezone'] = 'America/Jamaica'; 
 
 $config['load_submenu'] = false;
 
