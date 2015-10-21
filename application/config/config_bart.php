@@ -34,3 +34,5 @@ $config['timezone'] = 'America/Jamaica';
 
 $config['load_submenu'] = false;
 
+$config['subscription_enabled'] = false;
+
