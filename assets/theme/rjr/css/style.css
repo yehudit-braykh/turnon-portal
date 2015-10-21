@@ -2047,8 +2047,9 @@ select:focus, select:active {
     font-family: "PT Sans", "Lato", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
     margin: 0px 0px 0px 0px;
 }
-.registration_container{ 
-    width: 960px;
+.registration_container, .registration_container_payment { 
+    width: 800px;
+    overflow: hidden;
 }
 
 .registration_container_payment{
@@ -2083,12 +2084,13 @@ select:focus, select:active {
     margin-right: 100px;
 }
 
-.subscriber_button{
+.subscriber_button {
     width: 195px;
     height: 62px;
     background-image: url(../images/button_subscribe_now.png);
     background-repeat: no-repeat;
-    margin: 563px auto 30px;
+    float: left;
+    margin: 130px 0px 0px 130px;
     cursor: pointer;
 }
 

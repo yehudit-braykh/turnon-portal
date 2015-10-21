@@ -19,11 +19,11 @@
                         $buy_column = '<div class="col-sm-2 already_purchased"><div>ALREADY<br/>PURCHASED</div><a href="' . base_url() . 'index.php/live_events/main"></div><div class="col-sm-2 col_button"><button type="button" class="btn btn-default btn-sm watch_now_btn">WATCH NOW!</button></a></div>';
                         break;
                     } else {
-                        $buy_column = '<div class="col-sm-2 product_conditions"><div class="product_price">$' . $events->content[$i]->price . '</div></div><div class="col-sm-2 col_button"><button type="button" class="btn btn-default btn-sm buy_button">BUY NOW!</button></div>';
+                        $buy_column = '<div class="col-sm-2 product_conditions"><div class="product_price">$ ' . $events->content[$i]->price . '</div></div><div class="col-sm-2 col_button"><button type="button" class="btn btn-default btn-sm buy_button">BUY NOW!</button></div>';
                     }
                 }
             } else {
-                $buy_column = '<div class="col-sm-2"><div class="product_price">$' . $events->content[$i]->price . '</div></div><div class="col-sm-2 col_button"><button type="button" class="btn btn-default btn-sm buy_button">BUY NOW!</button></div>';
+                $buy_column = '<div class="col-sm-2"><div class="product_price">$ ' . $events->content[$i]->price . '</div></div><div class="col-sm-2 col_button"><button type="button" class="btn btn-default btn-sm buy_button">BUY NOW!</button></div>';
             }
             ?>
 
@@ -38,7 +38,7 @@
                         <?php echo $events->content[$i]->name; ?>
                     </div>
                     <div class="product_description">
-                        <!--<?php echo $events->content[$i]->description; ?>-->Day 1, September 29, 10:00 pm
+                        <?php echo date('F d, H:i',$events->content[$i]->event_date/1000).' hs.'; ?>
                     </div>
                 </div>
 
@@ -72,7 +72,7 @@
                 url: "<?php echo base_url(); ?>index.php/live_events/checkout_event",
                 type: 'POST',
                 dataType: 'json',
-                data: 'product_id=' + $(this).parents('td').parents('.product_id').attr('id')
+                data: 'product_id=' + $(this).parents('.product_id').attr('id')
             }).done(function (data) {
 
                 if (data.status === 'ok') {

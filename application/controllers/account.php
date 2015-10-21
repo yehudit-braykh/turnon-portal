@@ -11,6 +11,7 @@ class Account extends UVod_Controller {
         parent::__construct();
         $this->load->model('account_model');
         $this->load->model('social_media_model');
+        $this->load->model('live_events_model');
         $this->load->helper('pdk');
     }
 
@@ -244,14 +245,14 @@ class Account extends UVod_Controller {
                 if (isset($user_profile->content[0]->{'pluserprofile$publicDataMap'}->{'customer_id'})) {
                     $customer_id = $user_profile->content[0]->{'pluserprofile$publicDataMap'}->{'customer_id'};
                     $_SESSION['uvod_user_data']->braintree_id = $customer_id;
-                    $customer_data = $this->account_model->get_billing_information($customer_id);
-
-                    if (isset($customer_data) && $customer_data->error == false) {
-                        $data['card_name'] = $customer_data->content->card_name;
-                        $data['card_number'] = $customer_data->content->card_number;
-                        $data['card_expiration_month'] = $customer_data->content->expiration_month;
-                        $data['card_expiration_year'] = $customer_data->content->expiration_year;
-                    }
+//                    $customer_data = $this->account_model->get_billing_information($customer_id);
+//
+//                    if (isset($customer_data) && $customer_data->error == false) {
+//                        $data['card_name'] = $customer_data->content->card_name;
+//                        $data['card_number'] = $customer_data->content->card_number;
+//                        $data['card_expiration_month'] = $customer_data->content->expiration_month;
+//                        $data['card_expiration_year'] = $customer_data->content->expiration_year;
+//                    }
                 }
             }
         } else {
@@ -265,6 +266,7 @@ class Account extends UVod_Controller {
         }
 
         if ($user_profile && $user_profile->content) {
+            $data['user_email'] = $user_profile->content[0]->{'pluserprofile$email'};
             $data['user_first_name'] = $user_profile->content[0]->{'pluserprofile$firstName'};
             $data['user_last_name'] = $user_profile->content[0]->{'pluserprofile$lastName'};
             $data['user_city'] = "";
@@ -280,13 +282,52 @@ class Account extends UVod_Controller {
             $data['user_country'] = "";
             $data['user_postal_code'] = "";
         }
-        
+
+        $data['events'] = $this->get_events($_SESSION['uvod_user_data']->id);
+
+
         $this->parser->parse(views_url() . 'templates/header', $data);
         if ($this->config->item('load_submenu') != false) {
-                $this->parser->parse(views_url() . 'templates/sub_menu1', $data);
+            $this->parser->parse(views_url() . 'templates/sub_menu1', $data);
         }
         $this->parser->parse(views_url() . 'pages/account', $data);
         $this->parser->parse(views_url() . 'templates/footer', $data);
+    }
+
+    public function get_events($user_id) {
+
+
+        $data = array();
+        $events = $this->live_events_model->list_simple_events();
+        error_log('EVENTS: ' . json_encode($events));
+//      checks if user is logged in
+        if (isset($_SESSION['uvod_user_data']) && isset($user_id)) {
+
+            $orders = $this->live_events_model->get_orders($user_id);
+//            error_log('ORDERS: '.  json_encode($orders));
+            if (isset($orders) && sizeof($orders->content->entries) > 0 &&
+                    isset($events->content) && sizeof($events->content) > 0) {
+
+                for ($h = 0; $h < sizeof($orders->content->entries); $h++) {
+                    for ($i = 0; $i < sizeof($events->content); $i++) {
+                        if ($orders->content->entries[$h]->{'plorderitem$productId'} === $events->content[$i]->id) {
+                            $data[$h]['title'] = $events->content[$i]->name;
+                            $data[$h]['event_date'] = $events->content[$i]->event_date;
+
+                            $event_date = $events->content[$i]->event_date / 1000;
+                            $today = time();
+                            if ($event_date > $today) {
+                                $data[$h]['available'] = true;
+                            } else {
+                                $data[$h]['available'] = false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return $data;
     }
 
     public function my_account_save() {
@@ -560,11 +601,11 @@ class Account extends UVod_Controller {
             if ($fb_session_status->status !== 'ok') {
                 $status = false;
             }
-        } 
+        }
         if ($status) {
 
             if (isset($_SESSION['uvod_user_data'])) {
-               
+
                 $id = $this->account_model->get_self_id($_SESSION['uvod_user_data']->token);
                 if (isset($id->error) && $id->error) {
                     $status = false;
@@ -670,9 +711,9 @@ class Account extends UVod_Controller {
             $password = $profile->content->id;
 
             $login = $this->account_model->login($email, $password);
-        
+
             if (isset($login) && !$login->error) {
-         
+
                 $_SESSION['uvod_user_data'] = $login->content;
                 $_SESSION['uvod_user_data']->fb_id = $profile->content->id;
                 // $_SESSION['copy_data'] = $_SESSION['uvod_user_data'];

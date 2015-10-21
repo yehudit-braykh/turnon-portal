@@ -156,165 +156,109 @@ if (isset($clientToken)) {
 
         <div class="information_profile_content">
 
-                <div class="logout_button_container">
-                    <button type="submit" class="btn btn-primary btn-md" class="send">LOG OUT</button>
-                </div>
+            <div class="logout_button_container">
+                <button type="submit" class="btn btn-primary btn-md" class="send">LOG OUT</button>
+            </div>
 
-                <div class="form_title">My Account</div>
+            <div class="form_title">My Account</div>
 
-                <div class="profile_container">
+            <div class="profile_container">
 
-                    <div class="profile_left">
-
-                        <h4 class="square_profile">MS</h4>
-
-                    </div>
-
-                    <div class="profile_right">
-                        <h4><?php echo $user_first_name." ".$user_last_name; ?></h4>
-                        <h5 class="form_opacity_font">mariosabio@gmail.com</h5>
-
-                        <button type="submit" id="btn_change_password" class="btn btn-default btn-md" class="send">Change password</button>
-                    </div>
+                <div class="profile_left">
+                    <?php
+                    $first_letter = substr($user_first_name, 0, 1);
+                    $second_letter = substr($user_last_name, 0, 1);
+                    ?>
+                    <h4 class="square_profile"><?php echo strtoupper($first_letter . $second_letter); ?></h4>
 
                 </div>
 
+                <div class="profile_right">
+                    <h4><?php echo $user_first_name . " " . $user_last_name; ?></h4>
+                    <h5 class="form_opacity_font"><?php echo $user_email; ?></h5>
 
-                <div class="dc_clear"></div>
+                    <button type="submit" id="btn_change_password" class="btn btn-default btn-md" class="send">Change password</button>
+                </div>
 
+            </div>
+            <div class="dc_clear"></div>
         </div>
 
-
-        
-
         <?php
-            if (isset($subscription_data) && $subscription_data != "") {
-        ?>
-
-                <form method="post" id="cancelform">
-                    <ol>
-                        <li>
-                            <label for="contract_status">Status</label>
-                            <input id="contract_status" class="text" style="width:150px;" value="<?php
-                            if ($subscription_data[0]->{'plcontract$active'}) {
-                                echo 'Active';
-                            } else {
-                                echo 'Inactive';
-                            }
-                            ?>"/>
-                        </li>
-
-                        <li>
-                            <label for="contact_start_date">Subscribed since</label>
-                            <input id="contact_start_date" class="text" style="width:150px;" value="<?php echo date('Y-m-d', $subscription_data[0]->{'plcontract$contractStartDate'} / 1000); ?>" />
-                        </li>
-                        <li>
-                            <label for="contact_end_date">Subscription due date</label>
-                            <input id="contact_end_date" class="text" style="width:150px;" value="<?php echo date('Y-m-d', $subscription_data[0]->{'plcontract$contractEndDate'} / 1000); ?>" />
-                        </li>
-
-                        <li> 
-                            <p id="info" style="color:#fff;text-align:center;margin-left:120px;">&nbsp;</p>
-                        </li>
-                        <li class="buttons">
-                            <input id="contract_id" type="hidden" class="text" style="width:150px;" value="<?php echo $subscription_data[0]->id; ?>" />
-                            <input type="image" id="btn_cancel" src="<?php echo asset_url(); ?>images/button_cancel_subscription.png" class="send" />
-
-                        </li>
-                    </ol>
-                </form>  
-
-                <?php
+        if (isset($subscription_data) && $subscription_data != "") {
+            if ($subscription_data[0]->{'plcontract$active'}) {
+                $subscription_status = 'Active';
             } else {
-                ?>
-
-
-                <div class="information_button_content">
-                    <button type="submit" class="subscriber_button btn btn-default btn-lg" class="send">Subscribe now</button>
-                </div>
-
-                <!--<div class="pricing_content">
-                    <div class="registration_pricing">
-                        <div class="dc_pricingtable04">
-                            <ul class="price-box" style="width:100%;">
-                                <li class="pricing-header glass_blue">
-                                    <ul>
-                                        <li class="title">Monthly Subscription</li>
-                                        <?php
-                                        if (isset($subscription_amount)) {
-                                            $arr = explode('.', $subscription_amount);
-                                            if (sizeof($arr) == 1) {
-                                                $cents = '.00';
-                                            } else {
-                                                $cents = '.' . $arr[1];
-                                            }
-                                        }
-                                        ?>
-                                        <li class="price"><span class="currency">$</span><span class="big"><?php echo $arr[0]; ?></span><span class="small"><?php echo $cents; ?></span></li>
-                                        <li class="month-label">Per Month</li>
-                                    </ul>
-                                </li>
-                                <li class="pricing-content">
-                                    <ul>
-                                        <li><strong>+300</strong> VOD Clips</li>
-                                        <li><strong>5</strong> Live Channels</li>
-                                    </ul>
-                                </li>
-                                <li class="pricing-footer"><strong>Unlimited access to our VOD Catalog.</strong></li>
-                            </ul>
-                            <div class="dc_clear"></div>
-                        </div>
-                    </div>
-                </div>-->
-
-            <?php
+                $subscription_status = 'Inactive';
             }
             ?>
 
-        
+            <div class="information_content" style="background-color: rgba(255,255,255,0.1);">
 
-        <div class="information_content" style="background-color: rgba(255,255,255,0.1);">
+                <h5>Subscription:</h5>
 
-            <h5>Subscription:</h5>
+                <p><span>Status: </span><?php echo $subscription_status; ?></p>
+                <p><span>Subscribed since: </span><?php echo date('Y-m-d', $subscription_data[0]->{'plcontract$contractStartDate'} / 1000); ?></p>
+                <p><span>Subscription due date: </span><?php echo date('Y-m-d', $subscription_data[0]->{'plcontract$contractEndDate'} / 1000); ?></p>
 
-            <p><span>Status: </span>active</p>
-            <p><span>Subscribed since: </span>aaaa-mm-dd</p>
-            <p><span>Subscription due date: </span>aaaa-mm-dd</p>
+                <button type="submit" class="btn btn-default btn-md">Cancel subscription</button>
 
-            <button type="submit" class="btn btn-default btn-md">Cancel subscription</button>
-  
-            <div class="dc_clear"></div>
+                <div class="dc_clear"></div>
 
-        </div>
+            </div>
 
-        <div class="information_content" style="background-color: rgba(255,255,255,0.1);">
+            <!--        <div class="information_content" style="background-color: rgba(255,255,255,0.1);">
 
-            <h5>Billing information:</h5>
+                <h5>Billing information:</h5>
 
-            <p><span>Name on card: </span>Nnnnnn N Nnnnn</p>
-            <p><span>Credit card number: </span>9999XXXX9999</p>
-            <p><span>Expiration: </span>aaaa-mm</p>
+                <p><span>Name on card: </span>Nnnnnn N Nnnnn</p>
+                <p><span>Credit card number: </span>9999XXXX9999</p>
+                <p><span>Expiration: </span>aaaa-mm</p>
 
-            <button type="submit" class="btn btn-default btn-md">Modify</button>
-  
-            <div class="dc_clear"></div>
+                <button type="submit" class="btn btn-default btn-md">Modify</button>
 
-        </div>
+                <div class="dc_clear"></div>
 
-        <div class="information_content" style="background-color: rgba(255,255,255,0.1);">
+            </div>-->
 
-            <h5>Purchased events:</h5>
+            <?php
+        } else {
+            ?>
 
-            <p>dd-mm-aaaa - Lorem ipsum #1</p>
-            <p>dd-mm-aaaa - Lorem ipsum #2</p>
-            <p><span>dd-mm-aaaa - Lorem ipsum #3</span></p>
-            <p><span>dd-mm-aaaa - Lorem ipsum #4</span></p>
-            <p><span>dd-mm-aaaa - Lorem ipsum #5</span></p>
-            
-            <div class="dc_clear"></div>
 
-        </div>
+            <div class="information_button_content">
+                <button type="submit" class="subscriber_button btn btn-default btn-lg" class="send">Subscribe now</button>
+            </div>
 
+            <?php
+        }
+        if (isset($events) && sizeof($events) > 0) {
+            ?>
+
+            <div class="information_content" style="background-color: rgba(255,255,255,0.1);">
+
+                <h5>Purchased events:</h5>
+                <?php
+                for($i=0;$i < sizeof($events);$i++){
+                    if($events[$i]['available']){
+                        echo '<p>'.date('d-m-Y',$events[$i]['event_date']/1000).' - '.$events[$i]['title'].'</p>';
+                    }else{
+                          echo '<p><span>'.date('d-m-Y',$events[$i]['event_date']/1000).' - '.$events[$i]['title'].'</span></p>';
+                    }
+                }
+                ?>
+<!--                <p>dd-mm-aaaa - Lorem ipsum #1</p>
+                <p>dd-mm-aaaa - Lorem ipsum #2</p>
+                <p><span>dd-mm-aaaa - Lorem ipsum #3</span></p>
+                <p><span>dd-mm-aaaa - Lorem ipsum #4</span></p>
+                <p><span>dd-mm-aaaa - Lorem ipsum #5</span></p>-->
+
+                <div class="dc_clear"></div>
+
+            </div>
+            <?php
+        }
+        ?>
 
     </div>
 
@@ -328,42 +272,42 @@ if (isset($clientToken)) {
 
 
 
-    
-    
-    
 
-                    
-               
 
-                    <!--<div class="registration_container" style="padding-left:20px;">
-                        <form id="changepasswordform" method="post">
-                            <ol>
-                                <li>
-                                    <label for="current_password">Current Password*</label>
-                                    <input id="current_password" name="current_password" class="text" type="password" />
-                                </li>
-                                                      
-                                <li>
-                                    <label for="new_password">New Password*</label>
-                                    <input id="new_password" name="new_password" class="text" type="password" />
-                                </li>
-                                               
-                                <li>
-                                    <label for="confirm_password">Confirm Password*</label>
-                                    <input id="confirm_password" name="confirm_password" class="text" type="password" />
-                                </li>
-                                               
-                                <li> 
-                                    <span id="infopass" class="form_info">&nbsp;</span>
-                                </li>
-                                <li class="buttons">
-                                    <input type="image" id="btn_change_password" src="<?php echo asset_url(); ?>images/button_submit.png" class="send" />
-                                </li>
-                            </ol>
-                        </form>  
-                    </div>-->
-             
-            
+
+
+
+
+
+    <!--<div class="registration_container" style="padding-left:20px;">
+        <form id="changepasswordform" method="post">
+            <ol>
+                <li>
+                    <label for="current_password">Current Password*</label>
+                    <input id="current_password" name="current_password" class="text" type="password" />
+                </li>
+                                      
+                <li>
+                    <label for="new_password">New Password*</label>
+                    <input id="new_password" name="new_password" class="text" type="password" />
+                </li>
+                               
+                <li>
+                    <label for="confirm_password">Confirm Password*</label>
+                    <input id="confirm_password" name="confirm_password" class="text" type="password" />
+                </li>
+                               
+                <li> 
+                    <span id="infopass" class="form_info">&nbsp;</span>
+                </li>
+                <li class="buttons">
+                    <input type="image" id="btn_change_password" src="<?php echo asset_url(); ?>images/button_submit.png" class="send" />
+                </li>
+            </ol>
+        </form>  
+    </div>-->
+
+
     <!-- /content -->
 
     <div class="popup" id="popup_cancel">
