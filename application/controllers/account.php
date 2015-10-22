@@ -33,27 +33,23 @@ class Account extends UVod_Controller {
 
     public function subscription_ssl() {
 
-        if (!isset($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-            $ret->message = "The email entered is invalid.";
+        $data = array();
+
+        $subscription = $this->account_model->get_subscriptions();
+        if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
+            $data['subscriptions'] = $subscription->content->entries;
+
+            usort($data['subscriptions'], function($a, $b) {
+                if (intval($a->{'plsubscription$subscriptionLength'}) == intval($b->{'plsubscription$subscriptionLength'})) {
+                    return 0;
+                }
+                return (intval($a->{'plsubscription$subscriptionLength'}) < intval($b->{'plsubscription$subscriptionLength'})) ? -1 : 1;
+            });
         }
-        if (isset($_POST['sub_id'])) {
 
-            $subscription_id = $_POST['sub_id'];
-            $data = array();
-
-            $subscription = $this->account_model->get_subscriptions($subscription_id);
-            $amount = '';
-            if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
-                $amount = $subscription->content->entries[0]->{'plsubscription$billingSchedule'}[0]->{'plsubscription$amounts'}->USD;
-            }
-
-
-            $data['subscription_amount'] = $amount;
-
-            $this->parser->parse(views_url() . 'templates/header', $data);
-            $this->parser->parse(views_url() . 'pages/subscription', $data);
-            $this->parser->parse(views_url() . 'templates/footer', $data);
-        }
+        $this->parser->parse(views_url() . 'templates/header', $data);
+        $this->parser->parse(views_url() . 'pages/subscription', $data);
+        $this->parser->parse(views_url() . 'templates/footer', $data);
     }
 
     public function register_ssl() {
@@ -260,6 +256,7 @@ class Account extends UVod_Controller {
         }
 
         if ($user_profile && $user_profile->content) {
+            $data['user_email'] = $user_profile->content[0]->{'pluserprofile$email'};
             $data['user_first_name'] = $user_profile->content[0]->{'pluserprofile$firstName'};
             $data['user_last_name'] = $user_profile->content[0]->{'pluserprofile$lastName'};
             $data['user_city'] = "";
@@ -269,6 +266,7 @@ class Account extends UVod_Controller {
             $data['user_country'] = $user_profile->content[0]->{'pluserprofile$countryCode'};
             $data['user_postal_code'] = $user_profile->content[0]->{'pluserprofile$postalCode'};
         } else {
+            $data['user_email'] = "";
             $data['user_first_name'] = "";
             $data['user_last_name'] = "";
             $data['user_city'] = "";
@@ -434,25 +432,26 @@ class Account extends UVod_Controller {
             $nonce = '';
         }
 
+        $user_id = $_SESSION['uvod_user_data']->id;
         $first_name = $_SESSION['uvod_user_data']->firstName;
         $last_name = $_SESSION['uvod_user_data']->lastName;
         $email = $_SESSION['uvod_user_data']->email;
-        $city = '';
-        $postal_code = '';
         $country = $_SESSION['uvod_user_data']->countryCode;
         $pi_month = $_POST['pi_month'];
         $pi_year = $_POST['pi_year'];
         $pi_type = $_POST['pi_type'];
         $pi_number = $_POST['pi_number'];
         $subscription_id = $_POST['subscription_id'];
-        error_log($first_name. ' last name:'.$last_name. ' email:'.$email. ' city:'.$city. ' postal code:'.$postal_code. ' country:'.$country. ' month:'.$pi_month. ' year:'.$pi_year. ' type:'.$pi_type. ' nmb:'.$pi_number. ' id:'.$subscription_id);
-        $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $subscription_id);
+        $auto_renew = $_POST['auto_renew'];
+
+        $ret = $this->account_model->subscription_checkout($token, $user_id, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $subscription_id, $auto_renew);
 
         if (isset($ret->error) && $ret->error == false) {
             $this->subscription_complete_mail($first_name, $last_name, $email);
             echo json_encode(array('status' => 'ok'));
         } else {
-            echo json_encode(array('status' => 'error', 'message' => $ret->message,));
+
+            echo json_encode(array('status' => 'error', 'message' => $ret->message));
         }
     }
 
