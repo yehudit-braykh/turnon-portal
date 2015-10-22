@@ -1,60 +1,60 @@
 
 <div class="container-fluid form_cont">
         
-    <form  id="loginform">
-        <div class="form_title">Please Log In</div>
-        <ol>
-            <li> 
-                <span id="info" class="form_info"></span>
-            </li>
-            <li class="buttons">
-                <input type='image' id="send_activation_email_login_button" src="<?php echo asset_url(); ?>images/button_resend_activation_email.png"/>
-                <div id="send_activation_email_preloader"></div>
-                <div class="clr"></div>
-            </li>    
-            <li>
-                <input id="email" name="email" placeholder="Email address" class="text"/>
-            </li>
-            <li>
-                <input id="password" name="password" placeholder="Password" class="text" type="password" />
+        <form  id="loginform">
+            <div class="form_title">Please Log In</div>
+            <ol>
+                <li> 
+                    <span id="info" class="form_info"></span>
+                </li>
+                <li class="buttons">
+                    <input type='image' id="send_activation_email_login_button" src="<?php echo asset_url(); ?>images/button_resend_activation_email.png"/>
+                    <div id="send_activation_email_preloader"></div>
+                    <div class="clr"></div>
+                </li>    
+                <li>
+                    <input id="email" name="email" placeholder="Email address" class="text"/>
+                </li>
+                <li>
+                    <input id="password" name="password" placeholder="Password" class="text" type="password" />
 
-                <span style="float: right;">
-                    <a href="<?php echo base_url(); ?>index.php/account/forgot" style="color:#b9b9b9;">Forgot your password?</a>
-                </span>
+                    <span style="float: right;">
+                        <a href="<?php echo base_url(); ?>index.php/account/forgot" style="color:#b9b9b9;">Forgot your password?</a>
+                    </span>
 
-            </li>
-            <li>
-                <input id="remember_credentials" name="remember_credentials" type="checkbox">
-                <label for="remember_credentials" style="width: 200px;">Remember me</label>
+                </li>
+                <li>
+                    <input id="remember_credentials" name="remember_credentials" type="checkbox">
+                    <label for="remember_credentials" style="width: 200px;">Remember me</label>
 
-            </li>
-            <li class="buttons">
-                <button id="btn_sign_in" class="send">LOG IN</button>
-                <div id="login_preloader"></div>
-                <div class="clr"></div>
-            </li>
+                </li>
+                <li class="buttons">
+                    <button id="btn_sign_in" class="send">LOG IN</button>
+                    <div id="login_preloader"></div>
+                    <div class="clr"></div>
+                </li>
 
-            <li>
+                <li>
 
-                <div class="or_separator">or</div>
+                    <div class="or_separator">or</div>
 
-                <button id="signin_fb_btn"></button>
-                <div id="fb_signin_preloader"></div>
+                    <button id="signin_fb_btn"></button>
+                    <div id="fb_signin_preloader"></div>
 
-            </li>
-            <li><hr id="line"></li>
+                </li>
+                <li><hr id="line"></li>
 
-            <li>
-                <span>
-                    <button id="btn_create" type="button" class="btn btn-default">Create new account</button>
+                <li>
+                    <span>
+                        <button id="btn_create" type="button" class="btn btn-default">Create new account</button>
 
-                     <!--<a id="btn_create" href="<?php echo base_url(); ?>index.php/account/register_ssl" style="color:#FFF;">Create your account</a>-->
-                </span>
-            </li>
+                         <!--<a id="btn_create" href="<?php echo base_url(); ?>index.php/account/register_ssl" style="color:#FFF;">Create your account</a>-->
+                    </span>
+                </li>
 
-        </ol>
-    </form>
-    
+            </ol>
+        </form>
+
     <div id="fb-root"></div>
 </div>
 <!-- end container-->

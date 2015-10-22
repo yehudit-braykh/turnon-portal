@@ -11,7 +11,6 @@ class Account extends UVod_Controller {
         parent::__construct();
         $this->load->model('account_model');
         $this->load->model('social_media_model');
-        $this->load->model('live_events_model');
         $this->load->helper('pdk');
     }
 
@@ -19,9 +18,6 @@ class Account extends UVod_Controller {
         $data = array();
 
         $this->parser->parse(views_url() . 'templates/header', $data);
-        if ($this->config->item('load_submenu') != false) {
-            $this->parser->parse(views_url() . 'templates/sub_menu1', $data);
-        }
         $this->parser->parse(views_url() . 'pages/forgot', $data);
         $this->parser->parse(views_url() . 'templates/footer', $data);
     }
@@ -31,39 +27,39 @@ class Account extends UVod_Controller {
         $data = array();
 
         $this->parser->parse(views_url() . 'templates/header', $data);
-        if ($this->config->item('load_submenu') != false) {
-            $this->parser->parse(views_url() . 'templates/sub_menu1', $data);
-        }
         $this->parser->parse(views_url() . 'pages/forgot_complete', $data);
         $this->parser->parse(views_url() . 'templates/footer', $data);
     }
 
     public function subscription_ssl() {
 
-        $data = array();
-
-        $subscription = $this->account_model->get_subscriptions();
-        $amount = '';
-        if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
-            $amount = $subscription->content->entries[0]->{'plsubscription$billingSchedule'}[0]->{'plsubscription$amounts'}->USD;
+        if (!isset($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+            $ret->message = "The email entered is invalid.";
         }
-        $data['subscription_amount'] = $amount;
+        if (isset($_POST['sub_id'])) {
 
-        $this->parser->parse(views_url() . 'templates/header', $data);
-        if ($this->config->item('load_submenu') != false) {
-            $this->parser->parse(views_url() . 'templates/sub_menu1', $data);
+            $subscription_id = $_POST['sub_id'];
+            $data = array();
+
+            $subscription = $this->account_model->get_subscriptions($subscription_id);
+            $amount = '';
+            if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
+                $amount = $subscription->content->entries[0]->{'plsubscription$billingSchedule'}[0]->{'plsubscription$amounts'}->USD;
+            }
+
+
+            $data['subscription_amount'] = $amount;
+
+            $this->parser->parse(views_url() . 'templates/header', $data);
+            $this->parser->parse(views_url() . 'pages/subscription', $data);
+            $this->parser->parse(views_url() . 'templates/footer', $data);
         }
-        $this->parser->parse(views_url() . 'pages/subscription', $data);
-        $this->parser->parse(views_url() . 'templates/footer', $data);
     }
 
     public function register_ssl() {
         $data = array();
 
         $this->parser->parse(views_url() . 'templates/header', $data);
-        if ($this->config->item('load_submenu') != false) {
-            $this->parser->parse(views_url() . 'templates/sub_menu1', $data);
-        }
         $this->parser->parse(views_url() . 'pages/register', $data);
         $this->parser->parse(views_url() . 'templates/footer', $data);
     }
@@ -86,7 +82,7 @@ class Account extends UVod_Controller {
             $ret->message = "You need to specify your full name.";
         }
 
-        // saves registration information in session
+// saves registration information in session
         if ($ret->message == "ok") {
             $_SESSION['registration_data'] = new stdClass();
             $_SESSION['registration_data']->email = $_POST['email'];
@@ -114,7 +110,7 @@ class Account extends UVod_Controller {
 
             if (!$register->error) {
 
-                // logs current user to get security token
+// logs current user to get security token
 
                 $current_user = $this->account_model->simple_login($_POST['email'], $_POST['password']);
                 $ret = $current_user;
@@ -157,8 +153,9 @@ class Account extends UVod_Controller {
             $pi_year = $_POST['pi_year'];
             $pi_type = $_POST['pi_type'];
             $pi_number = $_POST['pi_number'];
+            $subscription_id = $_POST['subscription_id'];
 
-            $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number);
+            $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $subscription_id);
 
             if (isset($ret->error) && $ret->error == false) {
                 $this->subscription_complete_mail($first_name, $last_name, $email);
@@ -174,19 +171,19 @@ class Account extends UVod_Controller {
     public function register_payment_ssl() {
 
         $data = array();
-
         $subscription = $this->account_model->get_subscriptions();
-
-        $amount = '';
         if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
-            $amount = $subscription->content->entries[0]->{'plsubscription$billingSchedule'}[0]->{'plsubscription$amounts'}->USD;
+            $data['subscriptions'] = $subscription->content->entries;
+
+            usort($data['subscriptions'], function($a, $b) {
+                if (intval($a->{'plsubscription$subscriptionLength'}) == intval($b->{'plsubscription$subscriptionLength'})) {
+                    return 0;
+                }
+                return (intval($a->{'plsubscription$subscriptionLength'}) < intval($b->{'plsubscription$subscriptionLength'})) ? -1 : 1;
+            });
         }
-        $data['subscription_amount'] = $amount;
 
         $this->parser->parse(views_url() . 'templates/header', $data);
-        if ($this->config->item('load_submenu') != false) {
-            $this->parser->parse(views_url() . 'templates/sub_menu1', $data);
-        }
         $this->parser->parse(views_url() . 'pages/register_payment', $data);
         $this->parser->parse(views_url() . 'templates/footer', $data);
     }
@@ -197,9 +194,6 @@ class Account extends UVod_Controller {
         }
         $data = array();
         $this->parser->parse(views_url() . 'templates/header', $data);
-        if ($this->config->item('load_submenu') != false) {
-            $this->parser->parse(views_url() . 'templates/sub_menu1', $data);
-        }
         $this->parser->parse(views_url() . 'pages/register_complete', $data);
         $this->parser->parse(views_url() . 'templates/footer', $data);
     }
@@ -211,9 +205,6 @@ class Account extends UVod_Controller {
         }
 
         $this->parser->parse(views_url() . 'templates/header', $data);
-        if ($this->config->item('load_submenu') != false) {
-            $this->parser->parse(views_url() . 'templates/sub_menu1', $data);
-        }
         $this->parser->parse(views_url() . 'pages/register_subscription_complete', $data);
         $this->parser->parse(views_url() . 'templates/footer', $data);
     }
@@ -221,9 +212,6 @@ class Account extends UVod_Controller {
     public function signin() {
         $data = array();
         $this->parser->parse(views_url() . 'templates/header', $data);
-        if ($this->config->item('load_submenu') != false) {
-            $this->parser->parse(views_url() . 'templates/sub_menu1', $data);
-        }
         $this->parser->parse(views_url() . 'pages/signin', $data);
         $this->parser->parse(views_url() . 'templates/footer', $data);
     }
@@ -245,14 +233,14 @@ class Account extends UVod_Controller {
                 if (isset($user_profile->content[0]->{'pluserprofile$publicDataMap'}->{'customer_id'})) {
                     $customer_id = $user_profile->content[0]->{'pluserprofile$publicDataMap'}->{'customer_id'};
                     $_SESSION['uvod_user_data']->braintree_id = $customer_id;
-//                    $customer_data = $this->account_model->get_billing_information($customer_id);
-//
-//                    if (isset($customer_data) && $customer_data->error == false) {
-//                        $data['card_name'] = $customer_data->content->card_name;
-//                        $data['card_number'] = $customer_data->content->card_number;
-//                        $data['card_expiration_month'] = $customer_data->content->expiration_month;
-//                        $data['card_expiration_year'] = $customer_data->content->expiration_year;
-//                    }
+                    $customer_data = $this->account_model->get_billing_information($customer_id);
+
+                    if (isset($customer_data) && $customer_data->error == false) {
+                        $data['card_name'] = $customer_data->content->card_name;
+                        $data['card_number'] = $customer_data->content->card_number;
+                        $data['card_expiration_month'] = $customer_data->content->expiration_month;
+                        $data['card_expiration_year'] = $customer_data->content->expiration_year;
+                    }
                 }
             }
         } else {
@@ -260,13 +248,18 @@ class Account extends UVod_Controller {
             $amount = '';
             $subscription = $this->account_model->get_subscriptions();
             if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
-                $amount = $subscription->content->entries[0]->{'plsubscription$billingSchedule'}[0]->{'plsubscription$amounts'}->USD;
+                $data['subscriptions'] = $subscription->content->entries;
+
+                usort($data['subscriptions'], function($a, $b) {
+                    if (intval($a->{'plsubscription$subscriptionLength'}) == intval($b->{'plsubscription$subscriptionLength'})) {
+                        return 0;
+                    }
+                    return (intval($a->{'plsubscription$subscriptionLength'}) < intval($b->{'plsubscription$subscriptionLength'})) ? -1 : 1;
+                });
             }
-            $data['subscription_amount'] = $amount;
         }
 
         if ($user_profile && $user_profile->content) {
-            $data['user_email'] = $user_profile->content[0]->{'pluserprofile$email'};
             $data['user_first_name'] = $user_profile->content[0]->{'pluserprofile$firstName'};
             $data['user_last_name'] = $user_profile->content[0]->{'pluserprofile$lastName'};
             $data['user_city'] = "";
@@ -283,51 +276,9 @@ class Account extends UVod_Controller {
             $data['user_postal_code'] = "";
         }
 
-        $data['events'] = $this->get_events($_SESSION['uvod_user_data']->id);
-
-
         $this->parser->parse(views_url() . 'templates/header', $data);
-        if ($this->config->item('load_submenu') != false) {
-            $this->parser->parse(views_url() . 'templates/sub_menu1', $data);
-        }
         $this->parser->parse(views_url() . 'pages/account', $data);
         $this->parser->parse(views_url() . 'templates/footer', $data);
-    }
-
-    public function get_events($user_id) {
-
-
-        $data = array();
-        $events = $this->live_events_model->list_simple_events();
-        error_log('EVENTS: ' . json_encode($events));
-//      checks if user is logged in
-        if (isset($_SESSION['uvod_user_data']) && isset($user_id)) {
-
-            $orders = $this->live_events_model->get_orders($user_id);
-//            error_log('ORDERS: '.  json_encode($orders));
-            if (isset($orders) && sizeof($orders->content->entries) > 0 &&
-                    isset($events->content) && sizeof($events->content) > 0) {
-
-                for ($h = 0; $h < sizeof($orders->content->entries); $h++) {
-                    for ($i = 0; $i < sizeof($events->content); $i++) {
-                        if ($orders->content->entries[$h]->{'plorderitem$productId'} === $events->content[$i]->id) {
-                            $data[$h]['title'] = $events->content[$i]->name;
-                            $data[$h]['event_date'] = $events->content[$i]->event_date;
-
-                            $event_date = $events->content[$i]->event_date / 1000;
-                            $today = time();
-                            if ($event_date > $today) {
-                                $data[$h]['available'] = true;
-                            } else {
-                                $data[$h]['available'] = false;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        return $data;
     }
 
     public function my_account_save() {
@@ -391,7 +342,7 @@ class Account extends UVod_Controller {
             $ret->message = "There is no user registered with that email.";
         }
 
-        // saves registration information in session
+// saves registration information in session
         if ($ret->message == "ok") {
             $_SESSION['registration_data'] = new stdClass();
             $_SESSION['registration_data']->email = $_POST['email'];
@@ -414,7 +365,7 @@ class Account extends UVod_Controller {
         } elseif ($_POST['new_password'] != $_POST['confirm_password']) {
             $ret->message = "Passwords do not match.";
         }
-        // saves registration information in session
+// saves registration information in session
         if ($ret->message == "ok") {
             $ret = $this->account_model->change_password($_SESSION['uvod_user_data']->username, $_POST['current_password'], $_POST['new_password']);
         }
@@ -465,9 +416,6 @@ class Account extends UVod_Controller {
             $data['message3'] = "Please try again later.";
         }
         $this->load->view(views_url() . 'templates/header', $data);
-        if ($this->config->item('load_submenu') != false) {
-            $this->parser->parse(views_url() . 'templates/sub_menu1', $data);
-        }
         $this->load->view(views_url() . 'pages/account_active', $data);
         $this->load->view(views_url() . 'templates/footer', $data);
     }
@@ -496,8 +444,9 @@ class Account extends UVod_Controller {
         $pi_year = $_POST['pi_year'];
         $pi_type = $_POST['pi_type'];
         $pi_number = $_POST['pi_number'];
-
-        $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $city, $postal_code, $country, $pi_month, $pi_year, $pi_type, $pi_number);
+        $subscription_id = $_POST['subscription_id'];
+        error_log($first_name. ' last name:'.$last_name. ' email:'.$email. ' city:'.$city. ' postal code:'.$postal_code. ' country:'.$country. ' month:'.$pi_month. ' year:'.$pi_year. ' type:'.$pi_type. ' nmb:'.$pi_number. ' id:'.$subscription_id);
+        $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $subscription_id);
 
         if (isset($ret->error) && $ret->error == false) {
             $this->subscription_complete_mail($first_name, $last_name, $email);
@@ -526,9 +475,6 @@ class Account extends UVod_Controller {
     public function subscription_cancelled() {
         $data = array();
         $this->parser->parse(views_url() . 'templates/header', $data);
-        if ($this->config->item('load_submenu') != false) {
-            $this->parser->parse(views_url() . 'templates/sub_menu1', $data);
-        }
         $this->parser->parse(views_url() . 'pages/subscription_cancelled', $data);
         $this->parser->parse(views_url() . 'templates/footer', $data);
     }
@@ -536,9 +482,6 @@ class Account extends UVod_Controller {
     public function subscription_finished() {
         $data = array();
         $this->parser->parse(views_url() . 'templates/header', $data);
-        if ($this->config->item('load_submenu') != false) {
-            $this->parser->parse(views_url() . 'templates/sub_menu1', $data);
-        }
         $this->parser->parse(views_url() . 'pages/subscription_finished', $data);
         $this->parser->parse(views_url() . 'templates/footer', $data);
     }
@@ -595,7 +538,7 @@ class Account extends UVod_Controller {
 
         if (isset($_SESSION['uvod_user_data']->fb_id)) {
 
-            //CHECK IF FACEBOOK SESSION IS ACTIVE
+//CHECK IF FACEBOOK SESSION IS ACTIVE
             $fb_session_status = $this->social_media_model->get_fb_profile();
 
             if ($fb_session_status->status !== 'ok') {
@@ -716,7 +659,7 @@ class Account extends UVod_Controller {
 
                 $_SESSION['uvod_user_data'] = $login->content;
                 $_SESSION['uvod_user_data']->fb_id = $profile->content->id;
-                // $_SESSION['copy_data'] = $_SESSION['uvod_user_data'];
+// $_SESSION['copy_data'] = $_SESSION['uvod_user_data'];
                 $ret->status = "ok";
             } else {
                 $ret->status = "error";

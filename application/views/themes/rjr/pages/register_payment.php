@@ -3,54 +3,55 @@
     $(function () {
 
         _gaq.push(['_trackEvent', 'Registration', 'Payment Information']);
-        $('#btn_skip').on('click', function (event) {
+        $('.btn-skip').on('click', function (event) {
             event.preventDefault();
             window.location.href = "<?php echo base_url(); ?>index.php/account/register_complete";
         });
-        
-        function show_info () {
+
+        function show_info() {
             TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-                            TweenLite.to("#info", 1, {delay: 6, alpha: 0});
-                        }});
+                    TweenLite.to("#info", 1, {delay: 6, alpha: 0});
+                }});
         }
-        
+
         $('#btn_next').on('click', function (event) {
             $(this).hide();
             if (!($("#accept_terms_and_conditions").prop("checked"))) {
                 show_info();
-                $("#info").html("* You must accept terms and conditions before click next button" );
+                $("#info").html("* You must accept terms and conditions before click next button");
                 $('#btn_next').show();
                 return false;
-            }  
-            
+            }
+
             var cardholder_name = $("#cardholder_name").val();
             var valid_cardholder_name = /^[A-Za-z\s]+$/.test(cardholder_name);
             if (!valid_cardholder_name) {
                 show_info();
-                $("#info").html("* Name on card only accepts letters and spaces" );
+                $("#info").html("* Name on card only accepts letters and spaces");
                 $('#btn_next').show();
                 return false;
             }
-            
+
             var card_number = $("#card_number").val();
             var valid_card_number = /^[0-9]+$/.test(card_number);
             if (!valid_card_number) {
                 show_info();
-                $("#info").html("* Card number only accepts numbers" );
+                $("#info").html("* Card number only accepts numbers");
                 $('#btn_next').show();
                 return false;
             }
-            
+
             var security_code = $("#security_code").val();
             var valid_security_code = /^[0-9]+$/.test(security_code);
             if (!valid_security_code) {
                 show_info();
-                $("#info").html("* Security code only accepts numbers" );
+                $("#info").html("* Security code only accepts numbers");
                 $('#btn_next').show();
                 return false;
             }
-            
+
             $('#btn_skip').hide();
+            $('.other-op-btn').hide();
             $('#registration_preloader').html('Sending data...');
             $('#registration_preloader').show();
             pi_number = $('#card_number').val();
@@ -63,10 +64,11 @@
                     pi_month: $('#expiration_month').val(),
                     pi_year: $('#expiration_month').val() + '/' + $('#expiration_year').val(),
                     pi_type: pi_type,
-                    pi_number: pi_number}
+                    pi_number: pi_number,
+                    subscription_id: subscription_id}
             }).done(function (data) {
 
-                if (data && data.message == 'ok') {
+                if (data && data.status == 'ok') {
 
                     window.location.href = "<?php echo base_url(); ?>index.php/account/register_subscription_complete";
                 } else {
@@ -74,6 +76,7 @@
                     $('#registration_preloader').hide();
                     $('#btn_skip').show();
                     $('#btn_next').show();
+                    $('.other-op-btn').show();
                     TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
                             TweenLite.to("#info", 1, {delay: 6, alpha: 0});
                         }});
@@ -100,7 +103,30 @@
             return "";
         }
 
+        $('.registration_pricing').on('click', function () {
+            $(this).css('pointer-events', 'none');
+            subscription_id = $(this).attr('id');
+            $(this).addClass('selected_pricing');
+            $('.main-skip').hide();
+            $(this).siblings('.registration_pricing').animate({opacity: 0}, 'slow', function () {
+                $('.selected_pricing').siblings('.registration_pricing').hide();
+                $('#registerform').show('600');
+            });
 
+
+        })
+
+        $('.other-op-btn').on('click', function (event) {
+            event.preventDefault()
+            $('#registerform').hide();
+            $('.main-skip').show();
+            $('.selected_pricing').siblings('.registration_pricing').show();
+            $('.selected_pricing').siblings('.registration_pricing').animate({opacity: 1}, 'slow', function () {
+                $('.selected_pricing').css('pointer-events', 'auto');
+                $('.selected_pricing').removeClass('selected_pricing');
+            });
+
+        })
 
     });
 </script>
@@ -111,50 +137,67 @@
 
 <!-- content -->
 <div class="content_centered">
-    <div class="registration_content">
+    <div class="payment_content">
 
         <div class="registration_title_payment">WANT TO BECOME <br class="rwd-break"> A SUSCRIBER?</div>
         <div class="registration_subtitle_payment">Enter your payment information</div>
 
         <div class="registration_container_payment">
 
-            <div class="registration_cvv_info">
+            <div class="registration_cvv_info" style="display: none;">
                 <img style="width:175px;height:116px;" src="<?php echo asset_url(); ?>images/cvvnumber.png" />
             </div>
 
-            <div class="registration_pricing">
-                <div class="dc_pricingtable04">
-                    <ul class="price-box" style="width:100%;">
-                        <li class="pricing-header glass_blue">
-                            <ul>
-                                <li class="title">Monthly Subscription</li>
-                                <?php
-                                if (isset($subscription_amount)) {
-                                    $arr = explode('.', $subscription_amount);
-                                    if (sizeof($arr) == 1) {
-                                        $cents = '.00';
-                                    } else {
-                                        $cents = '.' . $arr[1];
-                                    }
-                                }
-                                ?>
-                                <li class="price"><span class="currency">$</span><span class="big"><?php echo $arr[0]; ?></span><span class="small"><?php echo $cents; ?></span></li>
-                                <li class="month-label">Per Month</li>
-                            </ul>
-                        </li>
-                        <li class="pricing-content">
-                            <ul>
-                                <li><strong>+300</strong> VOD Clips</li>
-                                <li><strong>5</strong> Live Channels</li>
-                            </ul>
-                        </li>
-                        <li class="pricing-footer"><strong>Unlimited access to our VOD Catalog.</strong></li>
-                    </ul>
-                    <div class="dc_clear"></div>
-                </div>
-            </div>
+            <?php
+            if (sizeof($subscriptions) > 0) {
+                for ($i = 0; $i < sizeof($subscriptions); $i++) {
+                    $subscription_id = getEntryId($subscriptions[$i]);
+                    $subscription_amount = $subscriptions[$i]->{'plsubscription$billingSchedule'}[0]->{'plsubscription$amounts'}->USD;
+                    $arr = explode('.', $subscription_amount);
+                    if (sizeof($arr) == 1) {
+                        $cents = '.00';
+                    } else {
+                        $cents = '.' . $arr[1];
+                    }
 
-            <form method="post" id="registerform">
+                    if (intval($subscriptions[$i]->{'plsubscription$subscriptionLength'} > 1)) {
+                        $months_txt = 'Each ' . $subscriptions[$i]->{'plsubscription$subscriptionLength'} . ' Months';
+                    } else {
+                        $months_txt = 'Per Month';
+                    }
+                    ?>
+                    <div class="registration_pricing" id="<?php echo $subscription_id; ?>">
+                        <div class="dc_pricingtable04">
+                            <ul class="price-box" style="width:100%;">
+                                <li class="pricing-header glass_blue">
+                                    <ul>
+                                        <li class="title"><?php echo $subscriptions[$i]->title ?></li>
+                                        <li class="price"><span class="currency">$</span><span class="big"><?php echo $arr[0]; ?></span><span class="small"><?php echo $cents; ?></span></li>
+                                        <li class="month-label"><?php echo $months_txt; ?></li>
+                                    </ul>
+                                </li>
+                                <li class="pricing-content">
+                                    <ul>
+                                        <li><strong>+300</strong> VOD Clips</li>
+                                        <li><strong>5</strong> Live Channels</li>
+                                    </ul>
+                                </li>
+                                <li class="pricing-footer"><strong>Unlimited access to our VOD Catalog.</strong></li>
+                            </ul>
+                            <div class="dc_clear"></div>
+                        </div>
+                    </div>
+
+                    <?php
+                }
+                ?>
+                <div style="width:100%;text-align: center">
+                    <button class="btn-skip main-skip">SKIP AND CONTINUE REGISTRATION</button>
+                </div>
+                <?php
+            }
+            ?>
+            <form method="post" id="registerform" style="display: none;">
                 <ol>
                     <li>
                         <label for="cardholder_name">Name on Card*</label>
@@ -228,8 +271,9 @@
                         <p id="info" class="form_info">&nbsp;</p>
                     </li>
                     <li class="buttons">
+                        <button class="other-op-btn">Select other Plan</button>
                         <input type="image" id="btn_next" src="<?php echo asset_url(); ?>images/button_next.png" class="send" />
-                        <input type="image" id="btn_skip" src="<?php echo asset_url(); ?>images/button_skip_2.png" class="send" style="margin-left:10px;" />
+                        <input type="image" id="btn_skip" class="btn-skip" src="<?php echo asset_url(); ?>images/button_skip_2.png" class="send" style="margin-left:10px;" />
                         <div id="registration_preloader"></div>
                         <div class="clr"></div>
                     </li>
