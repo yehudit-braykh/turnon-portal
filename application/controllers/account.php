@@ -351,6 +351,7 @@ class Account extends UVod_Controller {
     }
 
     public function change_password() {
+        $data = array();
         $this->load->view(views_url() . 'templates/header', $data);
         $this->load->view(views_url() . 'pages/change_password', $data);
         $this->load->view(views_url() . 'templates/footer', $data);
