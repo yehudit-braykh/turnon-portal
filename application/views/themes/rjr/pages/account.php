@@ -179,6 +179,7 @@ if (isset($clientToken)) {
             $('#registration_preloader').show();
             pi_number = $('#card_number').val();
             pi_type = GetCardType($('#card_number').val());
+            auto_renew = $("#auto-renew").is(":checked");
             $.ajax({
                 url: "<?php echo base_url(); ?>index.php/account/subscribe_ssl",
                 type: 'POST',
@@ -423,7 +424,10 @@ if (isset($clientToken)) {
                                 </li>
                                 <li> 
                                     <div class="form_notes">Select the expiration year.</div>
-                                </li>   
+                                </li>
+                                <li class="buttons">
+                                    <input id="auto-renew"type="checkbox" checked="checked"/><label class="chbx-lbl">Auto-renew</label>
+                                </li>
                                 <li id= "terms_and_conditions" style="margin-top: 10px">
                                     <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
                                     <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_and_conditions'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>

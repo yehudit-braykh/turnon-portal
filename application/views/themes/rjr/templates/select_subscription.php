@@ -1,7 +1,6 @@
 <script>
     $(document).ready(function () {
         $('.registration_pricing').on('click', function () {
-            auto_renew = $(this).find(".auto-renew").is(":checked");
             subscription_id = $(this).attr('id');
             $(this).addClass('selected_pricing');
             $('.main-skip').hide();
@@ -54,7 +53,7 @@ for ($i = 0; $i < sizeof($subscriptions); $i++) {
                         <li class="title"><?php echo $subscriptions[$i]->title ?></li>
                         <li class="price"><span class="currency">$</span><span class="big"><?php echo $arr[0]; ?></span><span class="small"><?php echo $cents; ?></span></li>
                         <li class="month-label"><?php echo $months_txt; ?></li>
-                        <li><input class="auto-renew"type="checkbox" id="<?php echo 'chbx-' . $i ?>" checked="checked"/>Auto-renew</li>
+                        
                     </ul>
                 </li>
                 <li class="pricing-content">
