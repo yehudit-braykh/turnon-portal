@@ -16,7 +16,7 @@
 
                 if (data.message == "ok") {
 
-                    $("#info").html("Information saved succesfully.");
+                    $("#info").html("Information saved successfully.");
                 } else {
 
                     $("#info").html("* " + data.message);
@@ -120,7 +120,7 @@ if (isset($clientToken)) {
                 }
             }).done(function (data) {
                 $('#save_subs_preloader').hide();
-                $('#save-subs-info').html('The data was saved sucsessfully');
+                $('#save-subs-info').html('The data was saved successfully');
                 TweenLite.fromTo("#save-subs-info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
                         TweenLite.to("#save-subs-info", 1, {delay: 8, alpha: 0});
                     }});
