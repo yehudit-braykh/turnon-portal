@@ -56,6 +56,7 @@
             $('#registration_preloader').show();
             pi_number = $('#card_number').val();
             pi_type = GetCardType($('#card_number').val());
+            console.log('AUTO RENEW: '+auto_renew);
             $.ajax({
                 url: "<?php echo base_url(); ?>index.php/account/register_step2_ssl",
                 type: 'POST',
@@ -65,7 +66,8 @@
                     pi_year: $('#expiration_month').val() + '/' + $('#expiration_year').val(),
                     pi_type: pi_type,
                     pi_number: pi_number,
-                    subscription_id: subscription_id}
+                    subscription_id: subscription_id,
+                    auto_renew: auto_renew}
             }).done(function (data) {
 
                 if (data && data.status == 'ok') {
@@ -102,32 +104,6 @@
                 return "Discover";
             return "";
         }
-
-        $('.registration_pricing').on('click', function () {
-            $(this).css('pointer-events', 'none');
-            subscription_id = $(this).attr('id');
-            $(this).addClass('selected_pricing');
-            $('.main-skip').hide();
-            $(this).siblings('.registration_pricing').animate({opacity: 0}, 'slow', function () {
-                $('.selected_pricing').siblings('.registration_pricing').hide();
-                $('#registerform').show('600');
-            });
-
-
-        })
-
-        $('.other-op-btn').on('click', function (event) {
-            event.preventDefault()
-            $('#registerform').hide();
-            $('.main-skip').show();
-            $('.selected_pricing').siblings('.registration_pricing').show();
-            $('.selected_pricing').siblings('.registration_pricing').animate({opacity: 1}, 'slow', function () {
-                $('.selected_pricing').css('pointer-events', 'auto');
-                $('.selected_pricing').removeClass('selected_pricing');
-            });
-
-        })
-
     });
 </script>
 
@@ -150,46 +126,7 @@
 
             <?php
             if (sizeof($subscriptions) > 0) {
-                for ($i = 0; $i < sizeof($subscriptions); $i++) {
-                    $subscription_id = getEntryId($subscriptions[$i]);
-                    $subscription_amount = $subscriptions[$i]->{'plsubscription$billingSchedule'}[0]->{'plsubscription$amounts'}->USD;
-                    $arr = explode('.', $subscription_amount);
-                    if (sizeof($arr) == 1) {
-                        $cents = '.00';
-                    } else {
-                        $cents = '.' . $arr[1];
-                    }
-
-                    if (intval($subscriptions[$i]->{'plsubscription$subscriptionLength'} > 1)) {
-                        $months_txt = 'Each ' . $subscriptions[$i]->{'plsubscription$subscriptionLength'} . ' Months';
-                    } else {
-                        $months_txt = 'Per Month';
-                    }
-                    ?>
-                    <div class="registration_pricing" id="<?php echo $subscription_id; ?>">
-                        <div class="dc_pricingtable04">
-                            <ul class="price-box" style="width:100%;">
-                                <li class="pricing-header glass_blue">
-                                    <ul>
-                                        <li class="title"><?php echo $subscriptions[$i]->title ?></li>
-                                        <li class="price"><span class="currency">$</span><span class="big"><?php echo $arr[0]; ?></span><span class="small"><?php echo $cents; ?></span></li>
-                                        <li class="month-label"><?php echo $months_txt; ?></li>
-                                    </ul>
-                                </li>
-                                <li class="pricing-content">
-                                    <ul>
-                                        <li><strong>+300</strong> VOD Clips</li>
-                                        <li><strong>5</strong> Live Channels</li>
-                                    </ul>
-                                </li>
-                                <li class="pricing-footer"><strong>Unlimited access to our VOD Catalog.</strong></li>
-                            </ul>
-                            <div class="dc_clear"></div>
-                        </div>
-                    </div>
-
-                    <?php
-                }
+                $this->load->view(views_url() . 'templates/select_subscription');
                 ?>
                 <div style="width:100%;text-align: center">
                     <button class="btn-skip main-skip">SKIP AND CONTINUE REGISTRATION</button>
@@ -197,7 +134,7 @@
                 <?php
             }
             ?>
-            <form method="post" id="registerform" style="display: none;">
+            <form method="post" id="subscribe-form" style="display: none;">
                 <ol>
                     <li>
                         <label for="cardholder_name">Name on Card*</label>
@@ -246,7 +183,6 @@
                         <label for="expiration_year">Year*</label>
                         <span class='css-select-moz'>
                             <select id="expiration_year" class="text" style="width:70px;">
-                                <option id="2014">2014</option>
                                 <option id="2015">2015</option>
                                 <option id="2016">2016</option>
                                 <option id="2017">2017</option>
