@@ -119,10 +119,11 @@ class Account_model extends CI_Model {
         return apiPost("user/activate_account", array("hash" => $hash, "email" => $email));
     }
 
-    public function subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $subscription_id) {
+    public function subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $subscription_id, $auto_renew) {
 
-        return apiPost("commerce/subscription_checkout", array('token' => $token, 'nonce' => $nonce, 'first_name' => $first_name, 'last_name' => $last_name,
-            'email' => $email, 'country' => $country, 'pi_month' => $pi_month, 'pi_year' => $pi_year, 'pi_type' => $pi_type, 'pi_number' => $pi_number, 'subscription_id' => $subscription_id));
+        return apiPost("commerce/subscription_checkout", array('token' => $token,'nonce' => $nonce, 'first_name' => $first_name, 'last_name' => $last_name,
+            'email' => $email, 'country' => $country, 'pi_month' => $pi_month, 'pi_year' => $pi_year, 'pi_type' => $pi_type, 'pi_number' => $pi_number, 
+            'subscription_id' => $subscription_id, 'auto_renew' => $auto_renew));
     }
 
     public function get_contract($id) {
@@ -133,6 +134,11 @@ class Account_model extends CI_Model {
     public function cancel_subscription($id) {
 
         return apiPost("commerce/cancel_subscription", array('id' => $id));
+    }
+    
+    public function update_subscription($id, $auto_renew) {
+
+        return apiPost("commerce/update_contract", array('id' => $id, 'auto_renew' => $auto_renew));
     }
 
     public function get_subscriptions($id = null) {

@@ -141,7 +141,7 @@ class Account extends UVod_Controller {
             } else {
                 $nonce = '';
             }
-            $user_id = $_SESSION['registration_data']->user_id;
+
             $first_name = $_SESSION['registration_data']->first_name;
             $last_name = $_SESSION['registration_data']->last_name;
             $email = $_SESSION['registration_data']->email;
@@ -153,7 +153,7 @@ class Account extends UVod_Controller {
             $subscription_id = $_POST['subscription_id'];
             $auto_renew = $_POST['auto_renew'];
 
-            $ret = $this->account_model->subscription_checkout($token, $user_id, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $subscription_id, $auto_renew);
+            $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $subscription_id, $auto_renew);
 
             if (isset($ret->error) && $ret->error == false) {
                 $this->subscription_complete_mail($first_name, $last_name, $email);
@@ -448,7 +448,6 @@ class Account extends UVod_Controller {
             $nonce = '';
         }
 
-        $user_id = $_SESSION['uvod_user_data']->id;
         $first_name = $_SESSION['uvod_user_data']->firstName;
         $last_name = $_SESSION['uvod_user_data']->lastName;
         $email = $_SESSION['uvod_user_data']->email;
@@ -460,7 +459,7 @@ class Account extends UVod_Controller {
         $subscription_id = $_POST['subscription_id'];
         $auto_renew = $_POST['auto_renew'];
 
-        $ret = $this->account_model->subscription_checkout($token, $user_id, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $subscription_id, $auto_renew);
+        $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $subscription_id, $auto_renew);
 
         if (isset($ret->error) && $ret->error == false) {
             $this->subscription_complete_mail($first_name, $last_name, $email);
@@ -484,6 +483,14 @@ class Account extends UVod_Controller {
 
         $id = $_POST['contract_id'];
         $ret = $this->account_model->cancel_subscription($id);
+        echo json_encode($ret);
+    }
+    
+    public function update_subscription() {
+
+        $id = $_POST['contract_id'];
+        $auto_renew = $_POST['auto_renew'];
+        $ret = $this->account_model->update_subscription($id, $auto_renew);
         echo json_encode($ret);
     }
 

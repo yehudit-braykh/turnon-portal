@@ -69,7 +69,6 @@ class Vod extends UVod_Controller {
         $result = implode(',', $data);
         $json = str_replace($category, $new_category, $result);
         $ret = $this->vod_model->set_vod_category($json);
-        error_log('ret es' . json_encode($ret));
         echo 'ok';
     }
 
