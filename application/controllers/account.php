@@ -380,6 +380,13 @@ class Account extends UVod_Controller {
         echo json_encode($ret);
     }
 
+    public function change_password_completed() {
+        $data = array();
+        $this->load->view(views_url() . 'templates/header', $data);
+        $this->load->view(views_url() . 'pages/password_changed', $data);
+        $this->load->view(views_url() . 'templates/footer', $data);
+    }
+
     public function send_activation_mail($name, $surname, $email, $hash) {
         $email_data = array();
         $email_data['name'] = $name;
