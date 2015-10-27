@@ -41,7 +41,7 @@ if (isset($events->content) && sizeof($events->content) > 0) {
 
         <div class="col-sm-7 info_events">
 
-            <div class="col-sm-12">
+            <div class="col-sm-12" id="col_info_sm">
 
                 <?php if (!$data->live_now) {
                     ?>

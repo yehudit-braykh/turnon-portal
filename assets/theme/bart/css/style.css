@@ -3922,6 +3922,10 @@ td.product_content{
         margin-left: 0px;
     }
 
+    #col_info_sm {
+        padding: 0px!important;
+    }
+
 
 }
 
