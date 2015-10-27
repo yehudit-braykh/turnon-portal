@@ -3606,6 +3606,16 @@ td.product_content{
         float:right; 
         z-index:100000;
     }
+
+    .navbar-nav > li > .dropdown-menu {
+        position: static!important;
+    }
+
+    .dropdown-menu {
+        background-color: transparent!important;
+    }
+
+
 }
 
 
@@ -3890,6 +3900,26 @@ td.product_content{
 
     .text3_box {
         padding-top: 10px;
+    }
+
+    .flexslider {
+        padding: 0px!important;
+    }
+
+    .flex-direction-nav a:before {
+        color: rgba(255,255,255,0.4)!important;
+    }
+
+    .flex-direction-nav .flex-next {
+        background: none!important;
+    }
+
+    .flex-direction-nav .flex-prev {
+        background: none!important;
+    }
+
+    .col4.no_spacer {
+        margin-left: 0px;
     }
 
 
