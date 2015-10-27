@@ -68,7 +68,8 @@
                     pi_type: pi_type,
                     pi_number: pi_number,
                     subscription_id: subscription_id,
-                    auto_renew: auto_renew}
+                    auto_renew: auto_renew,
+                    security_code: $('#security_code').val()}
             }).done(function (data) {
 
                 if (data && data.status == 'ok') {
