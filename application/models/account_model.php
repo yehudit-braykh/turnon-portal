@@ -119,11 +119,11 @@ class Account_model extends CI_Model {
         return apiPost("user/activate_account", array("hash" => $hash, "email" => $email));
     }
 
-    public function subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $subscription_id, $auto_renew) {
+    public function subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $pi_security_code, $subscription_id, $auto_renew) {
 
         return apiPost("commerce/subscription_checkout", array('token' => $token,'nonce' => $nonce, 'first_name' => $first_name, 'last_name' => $last_name,
             'email' => $email, 'country' => $country, 'pi_month' => $pi_month, 'pi_year' => $pi_year, 'pi_type' => $pi_type, 'pi_number' => $pi_number, 
-            'subscription_id' => $subscription_id, 'auto_renew' => $auto_renew));
+            'pi_security_code' => $pi_security_code,'subscription_id' => $subscription_id, 'auto_renew' => $auto_renew));
     }
 
     public function get_contract($id) {
