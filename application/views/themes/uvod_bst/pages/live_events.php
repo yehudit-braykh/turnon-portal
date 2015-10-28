@@ -32,7 +32,6 @@
                 type: 'POST',
                 data: 'product_id=' + product_id,
                 beforeSend: function () {
-                    $('#event-template').css('height', '450px');
                     $('#event-template').html('<div id="event-loading" class="col-md-12">Loading....</div>');
 
                 },
