@@ -457,11 +457,12 @@ class Account extends UVod_Controller {
         $pi_year = $_POST['pi_year'];
         $pi_type = $_POST['pi_type'];
         $pi_number = $_POST['pi_number'];
+        $pi_security_code = $_POST['security_code'];
         $subscription_id = $_POST['subscription_id'];
         $auto_renew = $_POST['auto_renew'];
-
-        $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $subscription_id, $auto_renew);
-
+       
+        $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $pi_security_code, $subscription_id, $auto_renew);
+        error_log('RETURN: '.json_encode($ret));
         if (isset($ret->error) && $ret->error == false) {
             $this->subscription_complete_mail($first_name, $last_name, $email);
             echo json_encode(array('status' => 'ok'));
