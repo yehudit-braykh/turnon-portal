@@ -14,14 +14,14 @@
             $(this).hide();
             TweenLite.fromTo($(this).parents('.plan').siblings(), 0, {alpha: 1}, {alpha: 0, onComplete: function () {
                     $('.selected_pricing').siblings().hide();
-                    $('#subscribe-form').show('600');
+                    $('#subscription_form').show('600');
                 }});
 
         });
 
         $('.other-op-btn').on('click', function (event) {
             event.preventDefault();
-            $('#subscribe-form').hide();
+            $('#subscription_form').hide();
             $('.selected_pricing').siblings('.plan').show();
             TweenLite.fromTo($('.selected_pricing').siblings('.plan'), 0, {alpha: 0}, {alpha: 1, onComplete: function () {
                     $('.plan.selected_pricing').find('.dc_pricing_button').show();
