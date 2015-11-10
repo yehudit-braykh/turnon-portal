@@ -1,8 +1,14 @@
+
 <script type="text/javascript">
 
     $(function () {
 
         $('#tab-container').easytabs();
+
+        $('.plan').hover(function () {
+            $('.plan').removeClass('most-popular');
+            $(this).addClass('most-popular');
+        })
 
         $('#btn_save').on('click', function (event) {
 
@@ -135,31 +141,38 @@ if (isset($clientToken)) {
             return false;
         });
 
-        $('.registration_pricing').on('click', function () {
-            $(this).css('pointer-events', 'none');
-            subscription_id = $(this).attr('id');
-            $(this).addClass('selected_pricing');
-            $(this).siblings('.registration_pricing').animate({opacity: 0}, 'slow', function () {
-                $('.selected_pricing').siblings('.registration_pricing').hide();
-                $('#subscription_form').show('600');
-            });
+        $('.dc_pricing_button').on('click', function (event) {
+            event.preventDefault();
+            subscription_id = $(this).parents('.plan').attr('id');
+            $(this).parents('.plan').addClass('selected_pricing');
+            $(this).hide();
+            TweenLite.fromTo($(this).parents('.plan').siblings(), 0, {alpha: 1}, {alpha: 0, onComplete: function () {
+                    $('.selected_pricing').siblings().hide();
+                    $('#subscription_form').show('600');
+                }});
+
         });
 
         $('.other-op-btn').on('click', function (event) {
-            event.preventDefault()
+            event.preventDefault();
             $('#subscription_form').hide();
-            $('.selected_pricing').siblings('.registration_pricing').show();
-            $('.selected_pricing').siblings('.registration_pricing').animate({opacity: 1}, 'slow', function () {
-                $('.selected_pricing').css('pointer-events', 'auto');
-                $('.selected_pricing').removeClass('selected_pricing');
-            });
+            $('.selected_pricing').siblings('.plan').show();
+            TweenLite.fromTo($('.selected_pricing').siblings('.plan'), 0, {alpha: 0}, {alpha: 1, onComplete: function () {
+                    $('.plan.selected_pricing').find('.dc_pricing_button').show();
+                    $('.plan.selected_pricing').removeClass('most-popular');
+                    $('.plan.selected_pricing').removeClass('selected_pricing');
+                    
+                }});
+
         })
 
         $('.subscriber_button').on('click', function (event) {
+            event.preventDefault()
             $(this).hide();
             if (!($("#accept_terms_and_conditions").prop("checked"))) {
+                console.log('no esta check')
                 show_info();
-                $("#info").html("* You must accept terms and conditions before click next button");
+                $(".form_info").html("* You must accept terms and conditions before click next button");
                 $('.subscriber_button').show();
                 return false;
             }
@@ -168,7 +181,7 @@ if (isset($clientToken)) {
             var valid_cardholder_name = /^[A-Za-z\s]+$/.test(cardholder_name);
             if (!valid_cardholder_name) {
                 show_info();
-                $("#info").html("* Name on card only accepts letters and spaces");
+                $(".form_info").html("* Name on card only accepts letters and spaces");
                 $('.subscriber_button').show();
                 return false;
             }
@@ -177,7 +190,7 @@ if (isset($clientToken)) {
             var valid_card_number = /^[0-9]+$/.test(card_number);
             if (!valid_card_number) {
                 show_info();
-                $("#info").html("* Card number only accepts numbers");
+                $(".form_info").html("* Card number only accepts numbers");
                 $('.subscriber_button#btn_next').show();
                 return false;
             }
@@ -186,7 +199,7 @@ if (isset($clientToken)) {
             var valid_security_code = /^[0-9]+$/.test(security_code);
             if (!valid_security_code) {
                 show_info();
-                $("#info").html("* Security code only accepts numbers");
+                $(".form_info").html("* Security code only accepts numbers");
                 $('.subscriber_button').show();
                 return false;
             }
@@ -216,15 +229,21 @@ if (isset($clientToken)) {
                     $('#registration_preloader').hide();
                     $('.subscriber_button').show();
                     $('.other-op-btn').show();
-                    TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-                            TweenLite.to("#info", 1, {delay: 6, alpha: 0});
+                    TweenLite.fromTo(".form_info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
+                            TweenLite.to(".form_info", 1, {delay: 6, alpha: 0});
                         }});
-                    $("#info").html("* " + data.message);
+                    $(".form_info").html("* " + data.message);
                 }
             });
 
             return false;
         });
+
+        function show_info() {
+            TweenLite.fromTo(".form_info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
+                    TweenLite.to(".form_info", 1, {delay: 6, alpha: 0});
+                }});
+        }
 
         function GetCardType(number)
         {
@@ -355,54 +374,48 @@ if (isset($clientToken)) {
 
                             <div class="registration_title_payment">WANT TO BECOME <br class="rwd-break"> A SUSCRIBER?</div>
 
+                            <div id="dc_pricingtable01">
+                                <?php
+                                if (sizeof($subscriptions) > 0) {
+                                    for ($i = 0; $i < sizeof($subscriptions); $i++) {
+                                        $subscription_id = getEntryId($subscriptions[$i]);
+                                        $subscription_amount = $subscriptions[$i]->{'plsubscription$billingSchedule'}[0]->{'plsubscription$amounts'}->USD;
+                                        $arr = explode('.', $subscription_amount);
+                                        if (sizeof($arr) == 1) {
+                                            $cents = '.00';
+                                        } else {
+                                            $cents = '.' . $arr[1];
+                                        }
+
+                                        if (intval($subscriptions[$i]->{'plsubscription$subscriptionLength'} > 1)) {
+                                            $months_txt = 'Each ' . $subscriptions[$i]->{'plsubscription$subscriptionLength'} . ' Months';
+                                        } else {
+                                            $months_txt = 'Per Month';
+                                        }
+                                        ?>
+
+
+                                        <!-- Column 1 -->
+                                        <div class="plan" id="<?php echo $subscription_id; ?>">
+                                            <h3><?php echo $subscriptions[$i]->title ?><span><?php echo '$'.$arr[0]; ?><?php echo $cents; ?></span></h3>
+                                            <ul>
+                                                <br />
+                                                <li><?php echo $months_txt; ?></li>
+                                                <li><b>+300</b> VOD Clips</li>
+                                                <li><b>5</b> Live Channels</li>
+                                                <li><b>Unlimited access to our VOD Catalog.</b></li>
+
+                                                <br /><a href="#" class="dc_pricing_button blue">Buy Now</a><!-- additional options: small, rounded, large, light_blue, blue, green, red, orange, yellow, pink, purple, grey, black -->
+                                            </ul>
+                                        </div>
+
+                                        <?php
+                                    }
+                                }
+                                ?>
+                            </div>
 
                             <?php
-                            if (sizeof($subscriptions) > 0) {
-                                for ($i = 0; $i < sizeof($subscriptions); $i++) {
-                                    $subscription_id = getEntryId($subscriptions[$i]);
-                                    $subscription_amount = $subscriptions[$i]->{'plsubscription$billingSchedule'}[0]->{'plsubscription$amounts'}->USD;
-                                    $arr = explode('.', $subscription_amount);
-                                    if (sizeof($arr) == 1) {
-                                        $cents = '.00';
-                                    } else {
-                                        $cents = '.' . $arr[1];
-                                    }
-
-                                    if (intval($subscriptions[$i]->{'plsubscription$subscriptionLength'} > 1)) {
-                                        $months_txt = 'Each ' . $subscriptions[$i]->{'plsubscription$subscriptionLength'} . ' Months';
-                                    } else {
-                                        $months_txt = 'Per Month';
-                                    }
-                                    ?>
-                                    <div class="registration_pricing" id="<?php echo $subscription_id; ?>">
-                                        <div class="dc_pricingtable04">
-                                            <ul class="price-box" style="width:100%;">
-                                                <li class="pricing-header glass_blue">
-                                                    <ul>
-                                                        <li class="title"><?php echo $subscriptions[$i]->title ?></li>
-                                                        <li class="price"><span class="currency">$</span><span class="big"><?php echo $arr[0]; ?></span><span class="small"><?php echo $cents; ?></span></li>
-                                                        <li class="month-label"><?php echo $months_txt; ?></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="pricing-content">
-                                                    <ul>
-                                                        <li><strong>+300</strong> VOD Clips</li>
-                                                        <li><strong>5</strong> Live Channels</li>
-                                                    </ul>
-                                                </li>
-                                                <li class="pricing-footer"><strong>Unlimited access to our VOD Catalog.</strong></li>
-                                            </ul>
-                                            <div class="dc_clear"></div>
-                                        </div>
-                                    </div>
-
-
-
-
-
-                                    <?php
-                                }
-                            }
                         }
                         ?>
                         <form method="post" id="subscription_form" style="display: none;">

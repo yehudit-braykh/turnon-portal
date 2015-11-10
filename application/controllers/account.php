@@ -448,7 +448,9 @@ class Account extends UVod_Controller {
         error_log($first_name. ' last name:'.$last_name. ' email:'.$email. ' city:'.$city. ' postal code:'.$postal_code. ' country:'.$country. ' month:'.$pi_month. ' year:'.$pi_year. ' type:'.$pi_type. ' nmb:'.$pi_number. ' id:'.$subscription_id);
         $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $subscription_id);
 
+        
         if (isset($ret->error) && $ret->error == false) {
+            error_log('first name: '.$first_name.' last name: '.$last_name. ' email: '.$email);
             $this->subscription_complete_mail($first_name, $last_name, $email);
             echo json_encode(array('status' => 'ok'));
         } else {
@@ -463,6 +465,7 @@ class Account extends UVod_Controller {
         $email_data['surname'] = $surname;
         $message = $this->load->view(views_url() . 'templates/email_subscription_complete', $email_data, TRUE);
         $send_email_result = $this->account_model->send_single_email($email, $message, 'Subscription Notification Mail', 'NO_RESPONSE@1spot.com', "1Spot Media Portal");
+        error_log('EMAIL RESULT :'.json_encode($send_email_result));
     }
 
     public function cancel_subscription() {
