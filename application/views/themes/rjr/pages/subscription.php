@@ -60,6 +60,7 @@
                     pi_year: $('#expiration_month').val() + '/' + $('#expiration_year').val(),
                     pi_type: pi_type,
                     pi_number: pi_number,
+                    security_code: security_code,
                     subscription_id: subscription_id,
                     auto_renew:auto_renew}
             }).done(function (data) {

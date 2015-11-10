@@ -3,7 +3,7 @@
     $(function () {
 
         _gaq.push(['_trackEvent', 'Registration', 'Payment Information']);
-        $('.btn-skip').on('click', function (event) {
+        $('.skip-payment').on('click', function (event) {
             event.preventDefault();
             window.location.href = "<?php echo base_url(); ?>index.php/account/register_complete";
         });
@@ -69,7 +69,7 @@
                     pi_number: pi_number,
                     subscription_id: subscription_id,
                     auto_renew: auto_renew,
-                    security_code: $('#security_code').val()}
+                    security_code: security_code}
             }).done(function (data) {
 
                 if (data && data.status == 'ok') {
@@ -128,7 +128,7 @@
             $this->load->view(views_url() . 'templates/select_subscription');
             ?>
             <div style="width:100%;text-align: center">
-                <button class="btn-skip main-skip">SKIP AND CONTINUE REGISTRATION</button>
+                <button id="main-skip" class="skip-payment">SKIP AND CONTINUE REGISTRATION</button>
             </div>
             <?php
         }
@@ -183,7 +183,6 @@
                     <label for="expiration_year">Year*</label>
                     <span class='css-select-moz'>
                         <select id="expiration_year" class="text" style="width:70px;">
-                            <option id="2014">2014</option>
                             <option id="2015">2015</option>
                             <option id="2016">2016</option>
                             <option id="2017">2017</option>
@@ -200,7 +199,10 @@
                 </li>
                 <li> 
                     <div class="form_notes">Select the expiration year.</div>
-                </li>   
+                </li>
+                <li class="buttons">
+                    <input id="auto-renew"type="checkbox" checked="checked"/><label class="chbx-lbl">Auto-renew</label>
+                </li>
                 <li id= "terms_and_conditions" style="margin-top: 10px">
                     <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
                     <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_and_conditions'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
@@ -209,7 +211,7 @@
                 </li>
                 <li class="buttons">
                     <button class="other-op-btn">Select other Plan</button>
-                    <button id="btn_skip" class="btn-skip">SKIP AND CONTINUE REGISTRATION</button>
+                    <button id="btn_skip" class="skip-payment">SKIP AND CONTINUE REGISTRATION</button>
                     <button id="btn_next">NEXT</button>
                     <div id="registration_preloader"></div>
                     <div class="clr"></div>

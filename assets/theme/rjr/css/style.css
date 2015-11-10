@@ -2224,7 +2224,7 @@ select:focus, select:active {
 
 .registration_container form li.buttons input, .payment_content form li.buttons input { padding:0 0 3px 0; margin:10px 0 0 0px; border:0; color:#FFF; float:left; }
 
-.other-op-btn, .subscriber_button, #btn_next, .btn-skip{
+.other-op-btn, .subscriber_button, #btn_next, #btn_skip{
     height: 35px;
     padding:0 0 3px 0; 
     border:0; 
@@ -2244,13 +2244,21 @@ select:focus, select:active {
     width: 80px;
 }
 
-.btn-skip{
+#btn_skip{
     width: 140px;
 }
 
-.main-skip{
+#main-skip{
+    width: 140px;
     margin: 30px auto!important;
-    float: none;
+    height: 35px;
+    padding:0 0 3px 0; 
+    border:0; 
+    color:#FFF!important; 
+    background-color: #6B00B1;
+    text-transform: uppercase;
+    cursor: pointer;
+
 }
 
 .common_btn{
@@ -3294,6 +3302,12 @@ select:focus, select:active {
 
     #tab2 .registration_container{
         height: auto;
+    }
+
+    .other-op-btn, .subscriber_button, #btn_next, #btn_skip{
+        float: none;
+        display: list-item;
+        margin-top: 20px;
     }
 
 }

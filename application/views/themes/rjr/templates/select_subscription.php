@@ -8,7 +8,7 @@
 
         $('.dc_pricing_button').on('click', function (event) {
             event.preventDefault();
-            $('.main-skip').hide();
+            $('#main-skip').hide();
             subscription_id = $(this).parents('.plan').attr('id');
             $(this).parents('.plan').addClass('selected_pricing');
             $(this).hide();
@@ -27,7 +27,7 @@
                     $('.plan.selected_pricing').find('.dc_pricing_button').show();
                     $('.plan.selected_pricing').removeClass('most-popular');
                     $('.plan.selected_pricing').removeClass('selected_pricing');
-                    $('.main-skip').show();
+                    $('#main-skip').show();
 
                 }});
 

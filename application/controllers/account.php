@@ -134,6 +134,26 @@ class Account extends UVod_Controller {
 
         echo json_encode($ret);
     }
+    
+     public function register_payment_ssl() {
+
+        $data = array();
+        $subscription = $this->account_model->get_subscriptions();
+        if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
+            $data['subscriptions'] = $subscription->content->entries;
+
+            usort($data['subscriptions'], function($a, $b) {
+                if (intval($a->{'plsubscription$subscriptionLength'}) == intval($b->{'plsubscription$subscriptionLength'})) {
+                    return 0;
+                }
+                return (intval($a->{'plsubscription$subscriptionLength'}) < intval($b->{'plsubscription$subscriptionLength'})) ? -1 : 1;
+            });
+        }
+
+        $this->parser->parse(views_url() . 'templates/header', $data);
+        $this->parser->parse(views_url() . 'pages/register_payment', $data);
+        $this->parser->parse(views_url() . 'templates/footer', $data);
+    }
 
     public function register_step2_ssl() {
 
@@ -153,10 +173,12 @@ class Account extends UVod_Controller {
             $pi_year = $_POST['pi_year'];
             $pi_type = $_POST['pi_type'];
             $pi_number = $_POST['pi_number'];
+            $pi_security_code = $_POST['security_code'];
             $subscription_id = $_POST['subscription_id'];
+            $auto_renew = $_POST['auto_renew'];
 
-            $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $subscription_id);
-
+            $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $pi_security_code, $subscription_id, $auto_renew);
+            error_log('CHECKOUT: '.json_encode($ret));
             if (isset($ret->error) && $ret->error == false) {
                 $this->subscription_complete_mail($first_name, $last_name, $email);
                 echo json_encode(array('status' => 'ok'));
@@ -168,25 +190,7 @@ class Account extends UVod_Controller {
         }
     }
 
-    public function register_payment_ssl() {
-
-        $data = array();
-        $subscription = $this->account_model->get_subscriptions();
-        if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
-            $data['subscriptions'] = $subscription->content->entries;
-
-            usort($data['subscriptions'], function($a, $b) {
-                if (intval($a->{'plsubscription$subscriptionLength'}) == intval($b->{'plsubscription$subscriptionLength'})) {
-                    return 0;
-                }
-                return (intval($a->{'plsubscription$subscriptionLength'}) < intval($b->{'plsubscription$subscriptionLength'})) ? -1 : 1;
-            });
-        }
-
-        $this->parser->parse(views_url() . 'templates/header', $data);
-        $this->parser->parse(views_url() . 'pages/register_payment', $data);
-        $this->parser->parse(views_url() . 'templates/footer', $data);
-    }
+   
 
     public function register_complete() {
         if (isset($_SESSION['registration_data']->user_id)) {

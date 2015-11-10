@@ -161,7 +161,7 @@ if (isset($clientToken)) {
                     $('.plan.selected_pricing').find('.dc_pricing_button').show();
                     $('.plan.selected_pricing').removeClass('most-popular');
                     $('.plan.selected_pricing').removeClass('selected_pricing');
-                    
+
                 }});
 
         })
@@ -395,7 +395,7 @@ if (isset($clientToken)) {
                                         ?>
 
                                         <div class="plan" id="<?php echo $subscription_id; ?>">
-                                            <h3><?php echo $subscriptions[$i]->title ?><span><?php echo '$'.$arr[0]; ?><?php echo $cents; ?></span></h3>
+                                            <h3><?php echo $subscriptions[$i]->title ?><span><?php echo '$' . $arr[0]; ?><?php echo $cents; ?></span></h3>
                                             <ul>
                                                 <br />
                                                 <li><?php echo $months_txt; ?></li>
@@ -465,7 +465,6 @@ if (isset($clientToken)) {
                                     <label for="expiration_year">Year*</label>
                                     <span class='css-select-moz'>
                                         <select id="expiration_year" class="text" style="width:70px;">
-                                            <option id="2014">2014</option>
                                             <option id="2015">2015</option>
                                             <option id="2016">2016</option>
                                             <option id="2017">2017</option>
@@ -482,7 +481,10 @@ if (isset($clientToken)) {
                                 </li>
                                 <li> 
                                     <div class="form_notes">Select the expiration year.</div>
-                                </li>   
+                                </li>
+                                <li class="buttons">
+                                    <input id="auto-renew"type="checkbox" checked="checked"/><label class="chbx-lbl">Auto-renew</label>
+                                </li>
                                 <li id= "terms_and_conditions" style="margin-top: 10px">
                                     <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
                                     <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_and_conditions'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
@@ -587,7 +589,6 @@ if (isset($clientToken)) {
                                             }
                                         } else {
                                             ?>
-                                            <option id="2014">2014</option>
                                             <option id="2015">2015</option>
                                             <option id="2016">2016</option>
                                             <option id="2017">2017</option>
