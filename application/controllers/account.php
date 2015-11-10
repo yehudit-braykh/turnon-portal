@@ -465,7 +465,7 @@ class Account extends UVod_Controller {
         $email_data['surname'] = $surname;
         $message = $this->load->view(views_url() . 'templates/email_subscription_complete', $email_data, TRUE);
         $send_email_result = $this->account_model->send_single_email($email, $message, 'Subscription Notification Mail', 'NO_RESPONSE@1spot.com', "1Spot Media Portal");
-        error_log('EMAIL RESULT :'.json_encode($send_email_result));
+
     }
 
     public function cancel_subscription() {

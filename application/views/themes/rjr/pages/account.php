@@ -394,8 +394,6 @@ if (isset($clientToken)) {
                                         }
                                         ?>
 
-
-                                        <!-- Column 1 -->
                                         <div class="plan" id="<?php echo $subscription_id; ?>">
                                             <h3><?php echo $subscriptions[$i]->title ?><span><?php echo '$'.$arr[0]; ?><?php echo $cents; ?></span></h3>
                                             <ul>

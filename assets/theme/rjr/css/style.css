@@ -2060,7 +2060,18 @@ select:focus, select:active {
 }
 
 #subscription_form{
-    margin: -60px 0px 0px 30px;
+    width: 600px;
+    margin: -30px 0px 0px 30px;
+    padding: 6px 0;
+    text-transform: none;
+    float: left;
+    font-weight: normal;
+    color: #000;
+}
+
+#subscribe-form{
+    width: 600px;
+    margin: -30px 0px 0px 30px;
     padding: 6px 0;
     text-transform: none;
     float: left;
