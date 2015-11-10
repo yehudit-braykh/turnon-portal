@@ -1,54 +1,55 @@
 <script type="text/javascript">
 
     $(function () {
-        
-        function show_info () {
+
+        function show_info() {
             TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-                            TweenLite.to("#info", 1, {delay: 6, alpha: 0});
-                        }});
+                    TweenLite.to("#info", 1, {delay: 6, alpha: 0});
+                }});
         }
-        
+
         $('#btn_subscribe').on('click', function (event) {
             $(this).hide();
             if (!($("#accept_terms_and_conditions").prop("checked"))) {
                 show_info();
-                $("#info").html("* You must accept terms and conditions before click subscribe button" );
+                $("#info").html("* You must accept terms and conditions before click subscribe button");
                 $('#btn_subscribe').show();
                 return false;
-            } 
-            
+            }
+
             var cardholder_name = $("#cardholder_name").val();
             var valid_cardholder_name = /^[A-Za-z\s]+$/.test(cardholder_name);
             if (!valid_cardholder_name) {
                 show_info();
-                $("#info").html("* Name on card only accepts letters and spaces" );
+                $("#info").html("* Name on card only accepts letters and spaces");
                 $('#btn_subscribe').show();
                 return false;
             }
-            
+
             var card_number = $("#card_number").val();
             var valid_card_number = /^[0-9]+$/.test(card_number);
             if (!valid_card_number) {
                 show_info();
-                $("#info").html("* Card number only accepts numbers" );
+                $("#info").html("* Card number only accepts numbers");
                 $('#btn_subscribe').show();
                 return false;
             }
-            
+
             var security_code = $("#security_code").val();
             var valid_security_code = /^[0-9]+$/.test(security_code);
             if (!valid_security_code) {
                 show_info();
-                $("#info").html("* Security code only accepts numbers" );
+                $("#info").html("* Security code only accepts numbers");
                 $('#btn_subscribe').show();
                 return false;
             }
-            
+
             $('#subscription_preloader').show();
             $('#subscription_preloader').html('Subscribing...');
 
             pi_number = $('#card_number').val();
             pi_type = GetCardType($('#card_number').val());
+            auto_renew = $("#auto-renew").is(":checked");
 
             $.ajax({
                 url: "<?php echo base_url(); ?>index.php/account/subscribe_ssl",
@@ -56,12 +57,14 @@
                 dataType: 'json',
                 data: {
                     pi_month: $('#expiration_month').val(),
-                    pi_year: $('#expiration_month').val()+'/'+$('#expiration_year').val(),
+                    pi_year: $('#expiration_month').val() + '/' + $('#expiration_year').val(),
                     pi_type: pi_type,
-                    pi_number: pi_number}
+                    pi_number: pi_number,
+                    subscription_id: subscription_id,
+                    auto_renew:auto_renew}
             }).done(function (data) {
 
-                if (data && data.message == 'ok') {
+                if (data && data.status == 'ok') {
 
                     window.location.href = "<?php echo base_url(); ?>index.php/account/subscription_finished";
 
@@ -101,8 +104,7 @@
             return "";
         }
 
-
-
+       
     });
 </script>
 
@@ -118,43 +120,14 @@
 
         <div class="registration_container_payment">
 
-            <div class="registration_cvv_info">
-                <img style="width:175px;height:116px;" src="<?php echo asset_url(); ?>images/cvvnumber.png" />
-            </div>
-
-            <div class="registration_pricing">
-                <div class="dc_pricingtable04">
-                    <ul class="price-box" style="width:100%;">
-                        <li class="pricing-header glass_blue">
-                            <ul>
-                                <li class="title">Monthly Subscription</li>
-                                <?php
-                                if (isset($subscription_amount)) {
-                                    $arr = explode('.', $subscription_amount);
-                                    if (sizeof($arr) == 1) {
-                                        $cents = '.00';
-                                    } else {
-                                        $cents = '.' . $arr[1];
-                                    }
-                                }
-                                ?>
-                                <li class="price"><span class="currency">$</span><span class="big"><?php echo $arr[0]; ?></span><span class="small"><?php echo $cents; ?></span></li>
-                                <li class="month-label">Per Month</li>
-                            </ul>
-                        </li>
-                        <li class="pricing-content">
-                            <ul>
-                                <li><strong>+300</strong> VOD Clips</li>
-                                <li><strong>5</strong> Live Channels</li>
-                            </ul>
-                        </li>
-                        <li class="pricing-footer"><strong>Unlimited access to our VOD Catalog.</strong></li>
-                    </ul>
-                    <div class="dc_clear"></div>
-                </div>
-            </div>
-
-            <form method="post" id="subscribeform">
+          
+            <?php
+            if (sizeof($subscriptions) > 0) {
+                $this->load->view(views_url() . 'templates/select_subscription');
+                
+            }
+            ?>
+            <form method="post" id="subscribe-form" style="display: none;">
                 <ol>
                     <li>
                         <label for="cardholder_name">Name on Card*</label>
@@ -202,7 +175,6 @@
                     <li>
                         <label for="expiration_year">Year*</label>
                         <select id="expiration_year" class="text" style="width:70px;">
-                            <option id="2014">2014</option>
                             <option id="2015">2015</option>
                             <option id="2016">2016</option>
                             <option id="2017">2017</option>
@@ -219,14 +191,19 @@
                     <li> 
                         <div class="form_notes">Select the expiration year.</div>
                     </li>
+                    <li class="buttons">
+                        <input id="auto-renew"type="checkbox" checked="checked"/><label class="chbx-lbl">Auto-renew</label>
+                    </li>
                     <li id= "terms_and_conditions" style="margin-top: 10px">
                         <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
-                        <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_and_conditions'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
+                        <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_and_conditions'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div>
+                    </li>
                     <li> 
                     <li>
                         <p id="info" class="form_info">&nbsp;</p>
                     </li>
                     <li class="buttons">
+                        <button class="other-op-btn">Select other Plan</button>
                         <input type="image" id="btn_subscribe" src="<?php echo asset_url(); ?>images/button_subscribe.png" class="send" />
                         <div id="subscription_preloader"></div>
                         <div class="clr"></div>

@@ -1986,7 +1986,7 @@ select:focus, select:active {
     margin: auto;
 }
 
-#registerform, #changepasswordform, #cancelform{
+#registerform, #cancelform{
     float:none;
     width: 320px;
     margin:auto;
@@ -2235,8 +2235,8 @@ select:focus, select:active {
 
 /*#send_activation_email_register_button, #btn_redirect_login*/
 #btn_sign_in, #btn_sign_up, #btn_next, 
-#btn_logout, #btn_subscribe, #imageField 
- {
+#btn_logout, #btn_subscribe, #imageField,
+#change_password {
     width: 100%;
     height: 40px;
     border: 0px;
@@ -2246,7 +2246,7 @@ select:focus, select:active {
     border-radius: 5px;
 }
 
-#btn_sign_up {
+#btn_sign_up, #change_password {
     width: 300px;
     margin-top: 5px;
 }
@@ -2930,6 +2930,10 @@ td.product_content{
 .form_cont h1 {
     font-size: 30px;
     text-transform: none;
+}
+
+#current_password {
+    margin-bottom: 10px;
 }
 
 

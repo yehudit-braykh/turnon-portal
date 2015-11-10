@@ -203,9 +203,9 @@
 
                                 <li <?php echo ($section == "watch-live" ? "class='active'" : ""); ?>><a href="<?php echo base_url(); ?>index.php/live_events/main">Watch Live</a></li>
 
-                                <li <?php echo ($section == "merchandise" ? "class='active'" : ""); ?>><a href="<?php echo base_url(); ?>">Merchandise</a></li>
+                                <li <?php echo ($section == "merchandise" ? "class='active'" : ""); ?>><a href="http://click.icptrack.com/icp/relay.php?r=2695401&msgid=455836&act=44OO&c=185129&destination=http%3A%2F%2Fwww.thefest.com%2F%3Futm_source%3DiContact%26utm_medium%3Demail%26utm_campaign%3DThe%20Fest%20Newsletters%26utm_content%3D20151008" target="blank">Merchandise</a></li>
 
-                                <li <?php echo ($section == "vip" ? "class='active'" : ""); ?>><a href="<?php echo base_url(); ?>">VIP Experience</a></li>
+                                <li <?php echo ($section == "vip" ? "class='active'" : ""); ?>><a href="https://www-demo.showclix.com/event/edm-festival-cuba5685586" target="blank">VIP Experience</a></li>
 
                                 <li <?php echo ($section == "book-travel" ? "class='active'" : ""); ?>><a href="<?php echo base_url(); ?>">Book Travel</a></li>
 

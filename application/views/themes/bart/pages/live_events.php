@@ -32,7 +32,7 @@
                 type: 'POST',
                 data: 'product_id=' + product_id,
                 beforeSend: function () {
-                    $('#event-template').css('height', '450px');
+                    
                     $('#event-template').html('<div id="event-loading" class="col-md-12">Loading....</div>');
 
                 },
@@ -117,7 +117,7 @@ function setup_player(){
         <?php $this->load->view(views_url() . 'templates/event-detail'); ?>
     </div>
 
-
+<div class="dc_clear"></div>
        
 <div class="carousel-container col-sm-12 carousel-events">
 

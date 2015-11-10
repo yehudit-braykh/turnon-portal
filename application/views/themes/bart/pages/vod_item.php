@@ -382,11 +382,12 @@ function handleOnMediaEnd(){
 
          </div>  
 
+<div style="height:150px; clear:both;"></div>
 
-        <div class="container-fluid vod_related_container">
+       <!-- <div class="container-fluid vod_related_container">
             <h4>You may also like</h4>
             <?php echo $item_related_items; ?>
-        </div>
+        </div> 
       
 
                             <?php if ($item_media_type == "tv_show") { ?>
@@ -394,7 +395,7 @@ function handleOnMediaEnd(){
                                     <div id="vod_item_sub_menu_container2"></div>
                                 </div>
                             <?php } ?>
-                            
+         -->                   
                 
          
 

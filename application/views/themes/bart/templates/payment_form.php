@@ -37,7 +37,6 @@
 
         <span class='css-select-moz'>
             <select id="expiration_year" class="text" style="width:70px;">
-                <option id="2014">2014</option>
                 <option id="2015">2015</option>
                 <option id="2016">2016</option>
                 <option id="2017">2017</option>
@@ -58,5 +57,5 @@
 
 <li id= "terms_and_conditions">
     <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
-    <div style="display: inline-block;"><a href="<?php echo base_url() . 'index.php/static_content/terms_and_conditions'; ?>" target="_blank" class="terms_and_conditions">Accept Terms and Conditions</a></div>
+    <div style="display: inline-block;"><a href="<?php echo base_url() . 'index.php/static_content/terms_conditions'; ?>" target="_blank" class="terms_and_conditions">Accept Terms and Conditions</a></div>
 </li>

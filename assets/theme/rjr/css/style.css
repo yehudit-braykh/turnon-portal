@@ -2070,7 +2070,7 @@ select:focus, select:active {
 
 .registration_container_payment{
     width: 960px;
-    height: 590px;
+    height: 610px;
     overflow: hidden;
 }
 
@@ -2254,6 +2254,17 @@ select:focus, select:active {
     float: left;
     background-color: #7f00bf;
     cursor: pointer;
+}
+
+.chbx-lbl{
+    padding: 6px!important;    
+}
+
+.chbx-container{
+    width: 90px;
+    height: 30px;
+    float: left;
+    margin-top: 12px;
 }
 
 #fb_container{
@@ -2595,6 +2606,7 @@ select:focus, select:active {
     width:100%;
     height:600px;
     margin: 0 auto;
+    text-align: center;
 }
 
 .terms_and_conditions {

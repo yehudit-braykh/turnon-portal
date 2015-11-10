@@ -185,52 +185,54 @@ if (isset($clientToken)) {
         </div>
 
         <?php
-        if (isset($subscription_data) && $subscription_data != "") {
-            if ($subscription_data[0]->{'plcontract$active'}) {
-                $subscription_status = 'Active';
+        if ($this->config->item('subscription_enabled')) {
+            if (isset($subscription_data) && $subscription_data != "") {
+                if ($subscription_data[0]->{'plcontract$active'}) {
+                    $subscription_status = 'Active';
+                } else {
+                    $subscription_status = 'Inactive';
+                }
+                ?>
+
+                <div class="information_content" style="background-color: rgba(255,255,255,0.1);">
+
+                    <h5>Subscription:</h5>
+
+                    <p><span>Status: </span><?php echo $subscription_status; ?></p>
+                    <p><span>Subscribed since: </span><?php echo date('Y-m-d', $subscription_data[0]->{'plcontract$contractStartDate'} / 1000); ?></p>
+                    <p><span>Subscription due date: </span><?php echo date('Y-m-d', $subscription_data[0]->{'plcontract$contractEndDate'} / 1000); ?></p>
+
+                    <button type="submit" class="btn btn-default btn-md">Cancel subscription</button>
+
+                    <div class="dc_clear"></div>
+
+                </div>
+
+                <!--        <div class="information_content" style="background-color: rgba(255,255,255,0.1);">
+
+                    <h5>Billing information:</h5>
+
+                    <p><span>Name on card: </span>Nnnnnn N Nnnnn</p>
+                    <p><span>Credit card number: </span>9999XXXX9999</p>
+                    <p><span>Expiration: </span>aaaa-mm</p>
+
+                    <button type="submit" class="btn btn-default btn-md">Modify</button>
+
+                    <div class="dc_clear"></div>
+
+                </div>-->
+
+                <?php
             } else {
-                $subscription_status = 'Inactive';
+                ?>
+
+
+                <div class="information_button_content">
+                    <button type="submit" class="subscriber_button btn btn-default btn-lg" class="send">Subscribe now</button>
+                </div>
+
+                <?php
             }
-            ?>
-
-            <div class="information_content" style="background-color: rgba(255,255,255,0.1);">
-
-                <h5>Subscription:</h5>
-
-                <p><span>Status: </span><?php echo $subscription_status; ?></p>
-                <p><span>Subscribed since: </span><?php echo date('Y-m-d', $subscription_data[0]->{'plcontract$contractStartDate'} / 1000); ?></p>
-                <p><span>Subscription due date: </span><?php echo date('Y-m-d', $subscription_data[0]->{'plcontract$contractEndDate'} / 1000); ?></p>
-
-                <button type="submit" class="btn btn-default btn-md">Cancel subscription</button>
-
-                <div class="dc_clear"></div>
-
-            </div>
-
-            <!--        <div class="information_content" style="background-color: rgba(255,255,255,0.1);">
-
-                <h5>Billing information:</h5>
-
-                <p><span>Name on card: </span>Nnnnnn N Nnnnn</p>
-                <p><span>Credit card number: </span>9999XXXX9999</p>
-                <p><span>Expiration: </span>aaaa-mm</p>
-
-                <button type="submit" class="btn btn-default btn-md">Modify</button>
-
-                <div class="dc_clear"></div>
-
-            </div>-->
-
-            <?php
-        } else {
-            ?>
-
-
-            <div class="information_button_content">
-                <button type="submit" class="subscriber_button btn btn-default btn-lg" class="send">Subscribe now</button>
-            </div>
-
-            <?php
         }
         if (isset($events) && sizeof($events) > 0) {
             ?>
@@ -239,15 +241,15 @@ if (isset($clientToken)) {
 
                 <h5>Purchased events:</h5>
                 <?php
-                for($i=0;$i < sizeof($events);$i++){
-                    if($events[$i]['available']){
-                        echo '<p>'.date('d-m-Y',$events[$i]['event_date']/1000).' - '.$events[$i]['title'].'</p>';
-                    }else{
-                          echo '<p><span>'.date('d-m-Y',$events[$i]['event_date']/1000).' - '.$events[$i]['title'].'</span></p>';
+                for ($i = 0; $i < sizeof($events); $i++) {
+                    if ($events[$i]['available']) {
+                        echo '<p>' . date('d-m-Y', $events[$i]['event_date'] / 1000) . ' - ' . $events[$i]['title'] . '</p>';
+                    } else {
+                        echo '<p><span>' . date('d-m-Y', $events[$i]['event_date'] / 1000) . ' - ' . $events[$i]['title'] . '</span></p>';
                     }
                 }
                 ?>
-<!--                <p>dd-mm-aaaa - Lorem ipsum #1</p>
+    <!--                <p>dd-mm-aaaa - Lorem ipsum #1</p>
                 <p>dd-mm-aaaa - Lorem ipsum #2</p>
                 <p><span>dd-mm-aaaa - Lorem ipsum #3</span></p>
                 <p><span>dd-mm-aaaa - Lorem ipsum #4</span></p>

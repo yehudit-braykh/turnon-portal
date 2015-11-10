@@ -3,11 +3,11 @@
         <div class="footer">
 
             <div class="col-sm-9 footer_left">
-                <a href="<?php echo base_url() . 'index.php/static_content/faqs'; ?>">FAQs</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<?php echo base_url() . 'index.php/static_content/about_us'; ?>">About Us</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<?php echo base_url(); ?>">Terms and Conditions</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<?php echo base_url(); ?>">Privacy Policy</a>
+                <a href="<?php echo base_url() . 'index.php/static_content/faqs'; ?>">FAQs</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<?php echo base_url() . 'index.php/static_content/about_us'; ?>">About Us</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<?php echo base_url() . 'index.php/static_content/terms_conditions'; ?>">Terms and Conditions</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<?php echo base_url() . 'index.php/static_content/privacy_policy'; ?>">Privacy Policy</a>
             </div>
 
             <div class="col-sm-9 footer_left_mbl">
-                <a href="<?php echo base_url() . 'index.php/static_content/faqs'; ?>">FAQs</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<?php echo base_url() . 'index.php/static_content/about_us'; ?>">About Us</a><br><a href="<?php echo base_url(); ?>">Terms and Conditions</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<?php echo base_url(); ?>">Privacy Policy</a>
+                <a href="<?php echo base_url() . 'index.php/static_content/faqs'; ?>">FAQs</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<?php echo base_url() . 'index.php/static_content/about_us'; ?>">About Us</a><br><a href="<?php echo base_url() . 'index.php/static_content/terms_conditions'; ?>">Terms and Conditions</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="<?php echo base_url() . 'index.php/static_content/privacy_policy'; ?>">Privacy Policy</a>
             </div>
 
 
