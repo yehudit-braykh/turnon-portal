@@ -229,10 +229,8 @@ if (isset($clientToken)) {
                     $('#registration_preloader').hide();
                     $('.subscriber_button').show();
                     $('.other-op-btn').show();
-                    TweenLite.fromTo(".form_info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-                            TweenLite.to(".form_info", 1, {delay: 6, alpha: 0});
-                        }});
                     $(".form_info").html("* " + data.message);
+                    show_info(); 
                 }
             });
 
@@ -240,8 +238,11 @@ if (isset($clientToken)) {
         });
 
         function show_info() {
+        $(".form_info").show();
             TweenLite.fromTo(".form_info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-                    TweenLite.to(".form_info", 1, {delay: 6, alpha: 0});
+                    TweenLite.to(".form_info", 1, {delay: 6, alpha: 0, onComplete: function (){
+                            $(".form_info").hide(); 
+                    });
                 }});
         }
 

@@ -2189,6 +2189,7 @@ select:focus, select:active {
     font-weight: normal;
     color:rgb(127,0,191) !important;
     text-align:center;
+    display: none;
 }
 
 .form_notes {
@@ -3308,6 +3309,11 @@ select:focus, select:active {
         float: none;
         display: list-item;
         margin-top: 20px;
+    }
+    
+    .form_info{
+        text-align: left;
+        margin-top: 15px;
     }
 
 }

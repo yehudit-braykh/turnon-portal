@@ -9,13 +9,17 @@
         });
 
         function show_info() {
+            $('.form_info').show();
             TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-                    TweenLite.to("#info", 1, {delay: 6, alpha: 0});
+                    TweenLite.to("#info", 1, {delay: 6, alpha: 0, onComplete: function () {
+                            $('.form_info').hide();
+                        }});
                 }});
         }
 
         $('#btn_next').on('click', function (event) {
             $(this).hide();
+            $('.form_info').hide();
             if (!($("#accept_terms_and_conditions").prop("checked"))) {
                 show_info();
                 $("#info").html("* You must accept terms and conditions before click next button");
@@ -81,10 +85,8 @@
                     $('#btn_skip').show();
                     $('#btn_next').show();
                     $('.other-op-btn').show();
-                    TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-                            TweenLite.to("#info", 1, {delay: 6, alpha: 0});
-                        }});
                     $("#info").html("* " + data.message);
+                    show_info();
                 }
             });
 
