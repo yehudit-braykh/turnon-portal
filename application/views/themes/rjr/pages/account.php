@@ -544,7 +544,7 @@ if (isset($clientToken)) {
                 <!-- TAB 4: Change Password -->
                 <div id="tab4">
 
-                    <div class="registration_container">
+                    <div class="registration_container" style="min-height:400px;">
                         <form id="changepasswordform" method="post">
                             <ol>
                                 <li>

@@ -2209,7 +2209,7 @@ select:focus, select:active {
 
 .registration_container form li.buttons,.payment_content form li.buttons { margin:5px 0 5px 0; clear:both; }
 
-.registration_container form, .payment_content form { margin:0; padding:6px 0; text-transform:none; float:left; font-weight:normal; color:#000; }
+.registration_container form, .payment_content form { margin:0; padding:6px 0; text-transform:none; font-weight:normal; color:#000; }
 
 .registration_container form label, .payment_content form label { float:left; padding-top: 15px; }
 
