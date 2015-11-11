@@ -27,11 +27,27 @@ class Static_content extends UVod_Controller {
         $this->parser->parse(views_url() . 'templates/footer', $data);
     }
     
+    public function terms_conditions_subscribers() {
+        $data = array();
+        $data['section'] = "terms_conditions";
+        $this->parser->parse(views_url() . 'templates/header', $data);
+        $this->parser->parse(views_url() . 'pages/terms_conditions_subscribers', $data);
+        $this->parser->parse(views_url() . 'templates/footer', $data);
+    }
+    
     public function privacy_policy() {
         $data = array();
         $data['section'] = "privacy_policy";
         $this->parser->parse(views_url() . 'templates/header', $data);
         $this->parser->parse(views_url() . 'pages/privacy_policy', $data);
+        $this->parser->parse(views_url() . 'templates/footer', $data);
+    }
+    
+    public function terms_of_use() {
+        $data = array();
+        $data['section'] = "privacy_policy";
+        $this->parser->parse(views_url() . 'templates/header', $data);
+        $this->parser->parse(views_url() . 'pages/terms_of_use', $data);
         $this->parser->parse(views_url() . 'templates/footer', $data);
     }
 
