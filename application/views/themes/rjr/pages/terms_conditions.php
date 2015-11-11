@@ -1,23 +1,32 @@
 </div>
 </div>
-
 <div class="content_centered">
-
-<div class="about">
-
-<h1> Subscription, Cancellation and Refund Terms (for Portal) </h1>
-
-<p><b>Monthly Charge</b> The service begins when we confirm your initial payment. We will charge you the fee stated at the time of purchase, monthly, until you cancel. Once the fee has been charged at the start of each month, that charge is final and no refund is available.</p>  
-
-
-<p><b>Renewal</b> The price is valid for a full 12 months. After the 12 month period we will renew your contract, automatically, unless you cancel. The price is subject to change, but you will be notified if there is a change.</p>
-
-<p><b>Cancellation</b> You can cancel your subscription at any time by sending an email to support@1spotmedia.com, or by accessing the HELP icon on our 1spotmedia.com site canceling your subscription stops the charge at the start of your next billing month.</p>
-
-<p><b>Refund</b> Payment for any video-on-demand or live stream content is 100% non-refundable. If you are dissatisfied with the website or any content or material, you can cancel your subscription at any time, and discontinue use of the site. </p>
-
+<div class="terms">
+<h1>LIVE STREAM AND VOD TERMS AND CONDITIONS</h1>
+<p><b>These are the Web Portal’s Terms and Conditions (the "Terms") which incorporate the Website Terms and Conditions, forming a contract between you and Radio Jamaica, Television Jamaica, Reggae Entertainment Television and Jamaica News Network and all associated companies collectively called The RJR Communications Group ("us", "we" or "our") for the live stream or browsing service.</b></p>
+<p><b>The Live Stream and Video on Demand (VOD)</b> is a web-based service, which entitles you, upon subscribing to the service, to view the live streams and the VOD content online via the designated website (“the Site”),</p>
+<p>These are the terms governing use of the service:</p>
+<ul>
+	<li>1 - You pay to Us the required Payment to allow viewing of the content.</li>
+	<li>2 - You are not permitted to send any content from the Portal to other users.</li>
+	<li>3 - You acknowledge that the Live Stream and the VOD content is owned by or licensed to Us and Your rights to such content shall be limited to the viewing of files for non-commercial private use in accordance with your purchase.</li>
+	<li>4 - You shall be responsible for installing the necessary software on your device in order to view the Live Stream and VOD content. We shall have no responsibility for the operation of, or inadequacies of your hardware or software that may hinder, slow or restrict reception to Our content.</li>
+</ul>
+<p><b>Privacy Statement</b> - Our primary goals in collecting information are to provide and improve our services, features and content and to enable users to enjoy and easily navigate the Site. We may use your information in order to better understand how our services are used. We may also use your personal information to contact you with 1Spotmedia newsletters, marketing or promotional materials and other information that may be of interest to you.</p>
+<p><b>Your Details</b> - In order to use Our live stream and VOD services, you must register your details with Us including your name and e-mail address and you must agree to Our processing of your personal details in accordance with Our Privacy Statement. If you do not agree to Our Privacy Statement you should not subscribe to this service or use the Site. Upon receipt of your details, we will send a confirmation e-mail to you. You are solely responsible for all use of and for protecting the confidentiality of any email verification and password used by you in connection with this service. You may not share these with any third parties. You must notify Us immediately of any unauthorized use of them or any other breach of security regarding the Site, that comes to your attention.</p>
+<p><b>Payment</b> - All fees for Live Stream and VOD service as set out on the Site are valid at the time of purchase, unless otherwise stated. You authorize Us to debit your credit card to recover all charges and amounts due and owed to Us. Your payment card will be debited the Live Stream or VOD fee at the time of ordering service. You confirm that the payment card that is being used is yours and that there are sufficient funds or credit facilities to cover the Live Stream or VOD Fee.</p>
+<h2>Subscription, Cancellation and Refund</h2>
+<p><b>Subscription</b> - When you subscribe to 1spotmedia, your contract is for 1 year, renewable each month. Under your 1 year contract, you are automatically billed each month.</p>
+<p><b>Monthly Charge</b> - The service begins when we confirm your initial payment. We will charge you the fee stated at the time of purchase, monthly, until you cancel. Once the fee has been charged at the start of each month, that charge is final and no refund is possible. </p>
+<p><b>Renewal</b> - The price is valid for a full 12 months. After the 12 month period we will renew your contract, automatically, unless you cancel. The price is subject to change, but you will be notified if there is a change. </p>
+<p><b>Cancellation</b> - You can cancel your subscription at any time by sending an email to support@1spotmedia.com, or by accessing the HELP icon on our 1spotmedia.com site. Canceling your subscription stops the charge at the start of your next billing month.</p>
+<p><b>Refund</b> - Payment for any video-on-demand or live stream content is non-refundable. If you are dissatisfied with the website or any content or material, you can cancel your subscription at any time, and discontinue use of the site. </p>
+<p><b>Our Liability to You</b> - We promise that all Live Stream and VOD content will correspond with their relevant description on the Site, that they will be of satisfactory quality and fit for the purpose for which they are purchased. We exclude all other express or implied terms, conditions, warranties, or representations whatsoever with regard to any web stream event or any information or service provided through the Site. In the case of death or personal injury due to Our negligence or where we have acted fraudulently, Our total liability to you for any losses suffered by you will be limited to the amount paid by you for the Live Stream and VOD content purchased (at Our sole discretion). We accept no liability for any indirect or consequential loss or damage, however caused, even if foreseeable. The above limitations on Our liability do not affect your non-excludable statutory rights as a consumer. We exclude all liability to the extent permitted by law, for any costs, losses or damages resulting from or related to your use or attempted use of the 1Spotmedia services in any country. Except in respect of a payment obligation, neither party will be liable for any failure to perform any obligation owed to the other due to causes beyond its reasonable control, for example in the case of industrial disputes, Acts of God and technical difficulties.</p>
+<p><b>Your Further Obligations to Us</b> - You agree that you will not use or duplicate the licensed content for any commercial or illegal purpose or for any other purpose prohibited by these Terms. You agree to abide by the terms of any copyright notice relating to and contained within the licensed content, for example, the prohibition on copying of any of the content or logos and supplying them to third parties. If you breach these Terms your permission to use the Site terminates immediately. We shall not be liable for any loss or damage from the illegal, incorrect or inappropriate use of the licensed content by you or anyone else, while they are in your possession.</p>
+<p><b>Waiver and Severance</b> - Any failure or delay by either party in exercising any right or remedy under these Terms shall not constitute a waiver of that, or any other, right or remedy. If any provision of these Terms is held to be invalid or unenforceable by any court or other competent authority, all other provisions will remain in full force and effect.</p>
+<p><b>Assignment</b> - You agree that We may assign any of Our rights and/or transfer, sub-contract or delegate any of Our obligations under these Terms. These Terms are personal to you and are entered into by you for your own benefit and not for the benefit of any third party.</p>
+<p><b>Variation of these Terms</b> – We reserve the right to alter or vary the Terms and in the event of such alteration or variation, We shall take all reasonable steps to notify you of such changes, for example, by prominently displaying the amended version on the Site. If you do not agree to the amended Terms, you can discontinue use this service. We reserve the right to modify the price of any subscription product, online streaming or VOD and/or any other service/products offered for purchase through the Site. We are not responsible for any error in copy or images relating to any subscription product or any other services/products offered for purchase through the Site.</p>
+<p><b>Entire Agreement</b> - These Terms, together with the Privacy Statement, the Web-Site Terms and Conditions, including any variations thereto, any order form and payment method instructions, if any, contain the entire agreement between you and Us. You acknowledge and agree that you have not entered into these Terms in reliance on any statement or representation of any person other than as expressly incorporated in these Terms and conditions. In the event of any conflict between these Terms and the Web Site Terms and Conditions, these Terms shall prevail to the extent that such conflict relates to your use of the Live Stream and VOD services.</p>
+<p>- See more at: http://www.1spotmedia.com/index.php/static_content/terms_of_use</p>
 </div>
-
 </div>
-
-
