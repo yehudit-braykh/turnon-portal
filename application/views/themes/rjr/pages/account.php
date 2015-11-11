@@ -16,7 +16,7 @@
 
                 if (data.message == "ok") {
 
-                    $("#info").html("Information saved succesfully.");
+                    $("#info").html("Information saved successfully.");
                 } else {
 
                     $("#info").html("* " + data.message);
@@ -54,7 +54,6 @@ if (isset($clientToken)) {
                         dataType: 'json',
                         data: {nonce: nonce}
                     }).done(function (data) {
-                        console.log(data);
                         if (data && data.error == false) {
                             TweenLite.fromTo("#billing_info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
                                     TweenLite.to("#billing_info", 1, {delay: 8, alpha: 0});
@@ -107,27 +106,25 @@ if (isset($clientToken)) {
 
         });
 
-        $('.subscriber_button').on('click', function () {
-            window.location = '<?php echo base_url(); ?>index.php/account/subscription_ssl';
-        });
-
-        $('#btn_cancel').on('click', function () {
-
-            $('#popup_cancel').bPopup();
-
-            return false;
-
-        });
-
-        $('#accept_button').on('click', function () {
-
+        $('#save-subscription').on('click', function () {
+            auto_renew = $("#contract-auto-renew").is(":checked");
+            $('#save_subs_preloader').html('Sending data...');
+            $('#save_subs_preloader').show();
             $.ajax({
-                url: "<?php echo base_url(); ?>index.php/account/cancel_subscription",
+                url: "<?php echo base_url(); ?>index.php/account/update_subscription",
                 type: 'POST',
                 dataType: 'json',
-                data: {contract_id: $('#contract_id').val()}
+                data: {
+                    contract_id: $('#contract_id').val(),
+                    auto_renew: auto_renew
+                }
             }).done(function (data) {
-                window.location = '<?php echo base_url(); ?>index.php/account/subscription_cancelled';
+                $('#save_subs_preloader').hide();
+                $('#save-subs-info').html('The data was saved successfully');
+                TweenLite.fromTo("#save-subs-info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
+                        TweenLite.to("#save-subs-info", 1, {delay: 8, alpha: 0});
+                    }});
+
             });
             return false;
         });
@@ -139,10 +136,99 @@ if (isset($clientToken)) {
             return false;
         });
 
+
+
+        $('.subscriber_button').on('click', function (event) {
+            $(this).hide();
+            if (!($("#accept_terms_and_conditions").prop("checked"))) {
+                show_info();
+                $("#info").html("* You must accept terms and conditions before click next button");
+                $('.subscriber_button').show();
+                return false;
+            }
+
+            var cardholder_name = $("#cardholder_name").val();
+            var valid_cardholder_name = /^[A-Za-z\s]+$/.test(cardholder_name);
+            if (!valid_cardholder_name) {
+                show_info();
+                $("#info").html("* Name on card only accepts letters and spaces");
+                $('.subscriber_button').show();
+                return false;
+            }
+
+            var card_number = $("#card_number").val();
+            var valid_card_number = /^[0-9]+$/.test(card_number);
+            if (!valid_card_number) {
+                show_info();
+                $("#info").html("* Card number only accepts numbers");
+                $('.subscriber_button#btn_next').show();
+                return false;
+            }
+
+            var security_code = $("#security_code").val();
+            var valid_security_code = /^[0-9]+$/.test(security_code);
+            if (!valid_security_code) {
+                show_info();
+                $("#info").html("* Security code only accepts numbers");
+                $('.subscriber_button').show();
+                return false;
+            }
+
+            $('.other-op-btn').hide();
+            $('#registration_preloader').html('Sending data...');
+            $('#registration_preloader').show();
+            pi_number = $('#card_number').val();
+            pi_type = GetCardType($('#card_number').val());
+            auto_renew = $("#auto-renew").is(":checked");
+            $.ajax({
+                url: "<?php echo base_url(); ?>index.php/account/subscribe_ssl",
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    pi_month: $('#expiration_month').val(),
+                    pi_year: $('#expiration_month').val() + '/' + $('#expiration_year').val(),
+                    pi_type: pi_type,
+                    pi_number: pi_number,
+                    subscription_id: subscription_id,
+                    auto_renew: auto_renew}
+            }).done(function (data) {
+
+                if (data && data.status == 'ok') {
+
+                    window.location.href = "<?php echo base_url(); ?>index.php/account/subscription_finished";
+                } else {
+
+                    $('#registration_preloader').hide();
+                    $('.subscriber_button').show();
+                    $('.other-op-btn').show();
+                    TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
+                            TweenLite.to("#info", 1, {delay: 6, alpha: 0});
+                        }});
+                    $("#info").html("* " + data.message);
+                }
+            });
+
+            return false;
+        });
+
+        function GetCardType(number)
+        {
+            var re = new RegExp("^4");
+            if (number.match(re) != null)
+                return "Visa";
+            re = new RegExp("^(34|37)");
+            if (number.match(re) != null)
+                return "American Express";
+            re = new RegExp("^5[1-5]");
+            if (number.match(re) != null)
+                return "MasterCard";
+            re = new RegExp("^6011");
+            if (number.match(re) != null)
+                return "Discover";
+            return "";
+        }
+
     });
-
-
-
 </script>
 
 </div>
@@ -167,7 +253,7 @@ if (isset($clientToken)) {
                 <div id="tab1">
 
                     <div class="registration_container">
-                        <form id="registerform" method="post">
+                        <form id="subscribeform" method="post">
                             <ol>
                                 <li>
                                     <label for="first_name">First Name*</label>
@@ -183,14 +269,14 @@ if (isset($clientToken)) {
                                 </li>
                                 <li>
                                     <label for="country" style="width: 100%">Country*</label>
-                           
-                                        <select id="country" name="country" class="text" style="width:238px;">
-                                            <option value="default" disabled="disabled" selected="selected">Select your country</option>
-                                            <?php
-                                            echo html_combo_country($user_country);
-                                            ?>
-                                        </select>
-                            
+
+                                    <select id="country" name="country" class="text" style="width:238px;">
+                                        <option value="default" disabled="disabled" selected="selected">Select your country</option>
+                                        <?php
+                                        echo html_combo_country($user_country);
+                                        ?>
+                                    </select>
+
                                 </li>
                                 <li>
                                     <label for="postal_code">Postal Code</label>
@@ -206,12 +292,17 @@ if (isset($clientToken)) {
                         </form>  
                     </div>
                 </div>
-                <div id="tab2">
+                <div id="tab2" style="padding-left:20px">
                     <div class="registration_container">
 
 
                         <?php
                         if (isset($subscription_data) && $subscription_data != "") {
+                            if ($subscription_data[0]->{'plcontract$autoRenew'}) {
+                                $auto_renew_chbx = 'checked="checked"';
+                            } else {
+                                $auto_renew_chbx = '';
+                            }
                             ?>
 
 
@@ -243,8 +334,14 @@ if (isset($clientToken)) {
                                     </li>
                                     <li class="buttons">
                                         <input id="contract_id" type="hidden" class="text" style="width:150px;" value="<?php echo $subscription_data[0]->id; ?>" />
-                                        <input type="image" id="btn_cancel" src="<?php echo asset_url(); ?>images/button_cancel_subscription.png" class="send" />
-
+                                        <div class="chbx-container">
+                                            <input id="contract-auto-renew"type="checkbox" <?php echo $auto_renew_chbx; ?>/><label class="chbx-lbl">Auto-renew</label>
+                                        </div>
+                                        <button class="common_btn" id="save-subscription">SAVE</button>      
+                                    </li>
+                                    <li> 
+                                        <p id="save_subs_preloader" class="form_info"></p>
+                                        <p id="save-subs-info" class="form_info"></p>
                                     </li>
                                 </ol>
                             </form>     
@@ -253,44 +350,98 @@ if (isset($clientToken)) {
                             ?>
 
                             <div class="registration_title_payment">WANT TO BECOME <br class="rwd-break"> A SUSCRIBER?</div>
-                            <div class="subscriber_button"></div>
-                            <div class="pricing_content">
-                                <div class="registration_pricing">
-                                    <div class="dc_pricingtable04">
-                                        <ul class="price-box" style="width:100%;">
-                                            <li class="pricing-header glass_blue">
-                                                <ul>
-                                                    <li class="title">Monthly Subscription</li>
-                                                    <?php
-                                                    if (isset($subscription_amount)) {
-                                                        $arr = explode('.', $subscription_amount);
-                                                        if (sizeof($arr) == 1) {
-                                                            $cents = '.00';
-                                                        } else {
-                                                            $cents = '.' . $arr[1];
-                                                        }
-                                                    }
-                                                    ?>
-                                                    <li class="price"><span class="currency">$</span><span class="big"><?php echo $arr[0]; ?></span><span class="small"><?php echo $cents; ?></span></li>
-                                                    <li class="month-label">Per Month</li>
-                                                </ul>
-                                            </li>
-                                            <li class="pricing-content">
-                                                <ul>
-                                                    <li><strong>+300</strong> VOD Clips</li>
-                                                    <li><strong>5</strong> Live Channels</li>
-                                                </ul>
-                                            </li>
-                                            <li class="pricing-footer"><strong>Unlimited access to our VOD Catalog.</strong></li>
-                                        </ul>
-                                        <div class="dc_clear"></div>
-                                    </div>
-                                </div>
-                            </div>
+
+
                             <?php
+                            if (sizeof($subscriptions) > 0) {
+
+                                $this->load->view(views_url() . 'templates/select_subscription');
+                            }
                         }
                         ?>
-
+                        <form method="post" id="subscribe-form" style="display: none;">
+                            <ol>
+                                <li>
+                                    <label for="cardholder_name">Name on Card*</label>
+                                    <input id="cardholder_name" class="text" />
+                                </li>
+                                <li> 
+                                    <div class="form_notes">Enter your name exactly as it appears <br class="rwd-break"> on your credit card.</div>
+                                </li>        
+                                <li>
+                                    <label for="card_number">Card Number*</label>
+                                    <input id="card_number" class="text" style="width:150px;" />
+                                </li>
+                                <li> 
+                                    <div class="form_notes">Enter your credit card number without spaces.</div>
+                                </li>        
+                                <li>
+                                    <label for="security_code">Security Code*</label>
+                                    <input id="security_code" class="text" type="password" style="width:70px;" />
+                                </li>
+                                <li> 
+                                    <div class="form_notes">Enter CVV code.</div>
+                                </li>        
+                                <li>
+                                    <label for="expiration_month">Month*</label>
+                                    <span class='css-select-moz'>
+                                        <select id="expiration_month" class="text" style="width:70px;">
+                                            <option id="01">01</option>
+                                            <option id="01">02</option>
+                                            <option id="01">03</option>
+                                            <option id="01">04</option>
+                                            <option id="01">05</option>
+                                            <option id="01">06</option>
+                                            <option id="01">07</option>
+                                            <option id="01">08</option>
+                                            <option id="01">09</option>
+                                            <option id="01">10</option>
+                                            <option id="01">11</option>
+                                            <option id="01">12</option>
+                                        </select>
+                                    </span>
+                                </li>
+                                <li> 
+                                    <div class="form_notes">Select the expiration month.</div>
+                                </li>        
+                                <li>
+                                    <label for="expiration_year">Year*</label>
+                                    <span class='css-select-moz'>
+                                        <select id="expiration_year" class="text" style="width:70px;">
+                                            <option id="2015">2015</option>
+                                            <option id="2016">2016</option>
+                                            <option id="2017">2017</option>
+                                            <option id="2018">2018</option>
+                                            <option id="2019">2019</option>
+                                            <option id="2020">2020</option>
+                                            <option id="2021">2021</option>
+                                            <option id="2022">2022</option>
+                                            <option id="2023">2023</option>
+                                            <option id="2024">2024</option>
+                                            <option id="2025">2025</option>
+                                        </select>
+                                    </span>
+                                </li>
+                                <li> 
+                                    <div class="form_notes">Select the expiration year.</div>
+                                </li>
+                                <li class="buttons">
+                                    <input id="auto-renew"type="checkbox" checked="checked"/><label class="chbx-lbl">Auto-renew</label>
+                                </li>
+                                <li id= "terms_and_conditions" style="margin-top: 10px">
+                                    <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
+                                    <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_and_conditions'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
+                                <li> 
+                                    <p id="info" class="form_info">&nbsp;</p>
+                                </li>
+                                <li class="buttons">
+                                    <button class="other-op-btn">Select other Plan</button>
+                                    <button class="subscriber_button">Subscribe</button>
+                                    <div id="registration_preloader"></div>
+                                    <div class="clr"></div>
+                                </li>
+                            </ol>
+                        </form>   
                     </div>
                 </div>
 
@@ -325,79 +476,79 @@ if (isset($clientToken)) {
                                 </li>
                                 <li>
                                     <label for="expiration_month" style="width: 100%">Month*</label>
-                                   
-                                        <select id="expiration_month" class="text billing_data" disabled="disabled" style="width:70px;">
-                                            <?php
-                                            if (isset($card_expiration_month)) {
-                                                for ($i = 1; $i <= 12; $i++) {
-                                                    if ($i == $card_expiration_month) {
-                                                        if ($i < 10) {
-                                                            echo '<option id="0' . $i . '" selected="selected">0' . $i . '</option>';
-                                                        } else {
-                                                            echo '<option id="' . $i . '" selected="selected">' . $i . '</option>';
-                                                        }
-                                                    } else {
-                                                        if ($i < 10) {
-                                                            echo '<option id="0' . $i . '">0' . $i . '</option>';
-                                                        } else {
-                                                            echo '<option id="' . $i . '">' . $i . '</option>';
-                                                        }
-                                                    }
-                                                }
-                                            } else {
-                                                ?>
-                                                <option id="01">01</option>
-                                                <option id="02">02</option>
-                                                <option id="03">03</option>
-                                                <option id="04">04</option>
-                                                <option id="05">05</option>
-                                                <option id="06">06</option>
-                                                <option id="07">07</option>
-                                                <option id="08">08</option>
-                                                <option id="09">09</option>
-                                                <option id="10">10</option>
-                                                <option id="11">11</option>
-                                                <option id="12">12</option>
-                                                <?php
-                                            }
-                                            ?>
-                                        </select>
-                                  
-                                </li>
-                                <li>
-                                    <label for="expiration_year" style="width: 100%">Year*</label>
-                               
-                                        <select id="expiration_year" class="text billing_data" disabled="disabled" style="width:90px;">
-                                            <?php
-                                            if (isset($card_expiration_year)) {
-                                                for ($i = 2014; $i <= 2025; $i++) {
-                                                    if ($i == $card_expiration_year) {
 
+                                    <select id="expiration_month" class="text billing_data" disabled="disabled" style="width:70px;">
+                                        <?php
+                                        if (isset($card_expiration_month)) {
+                                            for ($i = 1; $i <= 12; $i++) {
+                                                if ($i == $card_expiration_month) {
+                                                    if ($i < 10) {
+                                                        echo '<option id="0' . $i . '" selected="selected">0' . $i . '</option>';
+                                                    } else {
                                                         echo '<option id="' . $i . '" selected="selected">' . $i . '</option>';
+                                                    }
+                                                } else {
+                                                    if ($i < 10) {
+                                                        echo '<option id="0' . $i . '">0' . $i . '</option>';
                                                     } else {
-
                                                         echo '<option id="' . $i . '">' . $i . '</option>';
                                                     }
                                                 }
-                                            } else {
-                                                ?>
-                                                <option id="2014">2014</option>
-                                                <option id="2015">2015</option>
-                                                <option id="2016">2016</option>
-                                                <option id="2017">2017</option>
-                                                <option id="2018">2018</option>
-                                                <option id="2019">2019</option>
-                                                <option id="2020">2020</option>
-                                                <option id="2021">2021</option>
-                                                <option id="2022">2022</option>
-                                                <option id="2023">2023</option>
-                                                <option id="2024">2024</option>
-                                                <option id="2025">2025</option>
-                                                <?php
                                             }
+                                        } else {
                                             ?>
-                                        </select>
-                                
+                                            <option id="01">01</option>
+                                            <option id="02">02</option>
+                                            <option id="03">03</option>
+                                            <option id="04">04</option>
+                                            <option id="05">05</option>
+                                            <option id="06">06</option>
+                                            <option id="07">07</option>
+                                            <option id="08">08</option>
+                                            <option id="09">09</option>
+                                            <option id="10">10</option>
+                                            <option id="11">11</option>
+                                            <option id="12">12</option>
+                                            <?php
+                                        }
+                                        ?>
+                                    </select>
+
+                                </li>
+                                <li>
+                                    <label for="expiration_year" style="width: 100%">Year*</label>
+
+                                    <select id="expiration_year" class="text billing_data" disabled="disabled" style="width:90px;">
+                                        <?php
+                                        if (isset($card_expiration_year)) {
+                                            for ($i = 2014; $i <= 2025; $i++) {
+                                                if ($i == $card_expiration_year) {
+
+                                                    echo '<option id="' . $i . '" selected="selected">' . $i . '</option>';
+                                                } else {
+
+                                                    echo '<option id="' . $i . '">' . $i . '</option>';
+                                                }
+                                            }
+                                        } else {
+                                            ?>
+                                            <option id="2014">2014</option>
+                                            <option id="2015">2015</option>
+                                            <option id="2016">2016</option>
+                                            <option id="2017">2017</option>
+                                            <option id="2018">2018</option>
+                                            <option id="2019">2019</option>
+                                            <option id="2020">2020</option>
+                                            <option id="2021">2021</option>
+                                            <option id="2022">2022</option>
+                                            <option id="2023">2023</option>
+                                            <option id="2024">2024</option>
+                                            <option id="2025">2025</option>
+                                            <?php
+                                        }
+                                        ?>
+                                    </select>
+
                                 </li>
                                 <li> 
                                     <span id="billing_info" class="form_info">&nbsp;</span>

@@ -4,7 +4,7 @@
 
         echo 'UVOD_CONFIG: ' . UVOD_CONFIG;
         echo "<br>";
-        echo 'UVOD_ENVIRONMENT: ' . UVOD_ENVIRONMENT;        
+        echo 'UVOD_ENVIRONMENT: ' . ENVIRONMENT;        
         echo "<br>";
         echo 'UVOD_API_USER: ' . UVOD_API_USER;
         echo "<br>";

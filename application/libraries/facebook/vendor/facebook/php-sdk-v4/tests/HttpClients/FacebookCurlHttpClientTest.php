@@ -174,7 +174,7 @@ class FacebookCurlHttpClientTest extends AbstractTestHttpClient
             ->shouldReceive('getinfo')
             ->with(CURLINFO_HEADER_SIZE)
             ->once()
-            ->andReturn(mb_strlen($rawHeader));
+            ->andReturn(strlen($rawHeader));
         $this->curlMock
             ->shouldReceive('version')
             ->once()
@@ -198,7 +198,7 @@ class FacebookCurlHttpClientTest extends AbstractTestHttpClient
             ->shouldReceive('getinfo')
             ->with(CURLINFO_HEADER_SIZE)
             ->once()
-            ->andReturn(mb_strlen($this->fakeRawHeader)); // Mimic bug that doesn't count proxy header
+            ->andReturn(strlen($this->fakeRawHeader)); // Mimic bug that doesn't count proxy header
         $this->curlMock
             ->shouldReceive('version')
             ->once()
@@ -222,7 +222,7 @@ class FacebookCurlHttpClientTest extends AbstractTestHttpClient
             ->shouldReceive('getinfo')
             ->with(CURLINFO_HEADER_SIZE)
             ->once()
-            ->andReturn(mb_strlen($this->fakeRawHeader)); // Mimic bug that doesn't count proxy header
+            ->andReturn(strlen($this->fakeRawHeader)); // Mimic bug that doesn't count proxy header
         $this->curlMock
             ->shouldReceive('version')
             ->once()
@@ -246,7 +246,7 @@ class FacebookCurlHttpClientTest extends AbstractTestHttpClient
             ->shouldReceive('getinfo')
             ->with(CURLINFO_HEADER_SIZE)
             ->once()
-            ->andReturn(mb_strlen($rawHeader));
+            ->andReturn(strlen($rawHeader));
         $this->curlMock
             ->shouldReceive('version')
             ->once()
@@ -285,7 +285,7 @@ class FacebookCurlHttpClientTest extends AbstractTestHttpClient
             ->shouldReceive('getinfo')
             ->with(CURLINFO_HEADER_SIZE)
             ->once()
-            ->andReturn(mb_strlen($this->fakeRawHeader));
+            ->andReturn(strlen($this->fakeRawHeader));
         $this->curlMock
             ->shouldReceive('version')
             ->once()

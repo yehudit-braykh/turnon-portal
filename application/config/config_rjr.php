@@ -26,16 +26,11 @@ $config['button_play_width'] = '320px';
 $config['button_play_image'] = 'rjr-btn_play_bg.png';
 $config['button_play_padding_left'] = '150px';
 
-$config['category1'] = 'Recommended';
-$config['category2'] = 'New Releases';
-$config['category3'] = 'Coming Soon';
+$config['category1'] = array('label'=>'Recommended','value'=>'recommended');
+$config['category2'] = array('label'=>'New Releases','value'=>'new_releases');
+$config['category3'] = array('label'=>'Coming Soon','value'=>'coming_soon');
+
+$config['load_submenu'] = true;
 
 $config['timezone'] = 'America/Jamaica';
 
-$config['facebook']['api_id'] = '1623813711226372';
-$config['facebook']['app_secret'] = '86d226fc4bb64eef3ddab3a69bf523f8';
-$config['facebook']['redirect_url'] = 'http://localhost/uvod-portal/';
-$config['facebook']['permissions'] = array(
-  'email',
-  'public_profile'
-);

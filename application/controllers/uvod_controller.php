@@ -1,6 +1,7 @@
 <?php
 
-if (!defined('BASEPATH')) exit('No direct script access allowed');
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 
 define('APP_TARGET', 'portal');
 
@@ -36,6 +37,7 @@ class UVod_Controller extends CI_Controller {
         $this->load->helper('util');
         $this->load->model('config_model');
         $this->load->model('account_model');
+        $this->load->model('social_media_model');
 
         $this->config->load('config_' . UVOD_CONFIG, FALSE, TRUE);
 
@@ -69,25 +71,33 @@ class UVod_Controller extends CI_Controller {
 
         $this->load->vars($data);
 
-        if (isset($_SESSION['user_data']) && sizeof($_SESSION['user_data']) > 0) {
-            $this->check_valid_session($_SESSION['user_data']);
+        if (isset($_SESSION['uvod_user_data']) && sizeof($_SESSION['uvod_user_data']) > 0) {
+            $this->check_valid_session($_SESSION['uvod_user_data']);
         }
     }
 
     public function check_valid_session($data) {
 
-                $id = $this->account_model->get_self_id($data->token);
+        $status = true;
 
-                if (isset($id->error) && $id->error) {
-                    
-                    $_SESSION['user_data'] = null;
-                    unset($_SESSION['user_data']);
-                    
-                } else {
-                    
-                }
-           
-        
+        if (isset($_SESSION['uvod_user_data']->fb_id)) {
+            //CHECK IF FACEBOOK SESSION IS ACTIVE
+            $fb_session_status = $this->social_media_model->get_fb_profile();
+            if ($fb_session_status->status !== 'ok') {
+                $status = false;
+            }
+        }
+        if ($status) {
+            $id = $this->account_model->get_self_id($data->token);
+            if (isset($id->error) && $id->error) {
+
+                $_SESSION['uvod_user_data'] = null;
+                unset($_SESSION['uvod_user_data']);
+            }
+        } else {
+            $_SESSION['uvod_user_data'] = null;
+            unset($_SESSION['uvod_user_data']);
+        }
     }
-
 }
+    

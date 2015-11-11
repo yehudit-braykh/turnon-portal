@@ -155,6 +155,9 @@ class Vod_item extends UVod_Controller {
         $data['adPolicyId'] = $ad_policy_arr[sizeof($ad_policy_arr) - 1];
         $data['download_url'] = pdk_get_entry_mobile_streaming_url($item);
         $data['renditions'] = getEntryRenditions($item);
+        if(sizeof($data['renditions']) < 1){
+            $data['hls_streaming'] = getEntryStreamingUrl($item, 'HLS Stream');
+        }
 
         if ($ad_policy != '') {
             $this->check_ad_policy_expiration(array($ad_policy));
@@ -252,7 +255,7 @@ class Vod_item extends UVod_Controller {
                 $return = 'enabled';
                 break;
             case 'commerce_members':
-                if (isset($_SESSION['user_data']->token) && $_SESSION['user_data']->token != '') {
+                if (isset($_SESSION['uvod_user_data']->token) && $_SESSION['uvod_user_data']->token != '') {
                     $return = 'enabled';
                 } else {
                     $return = 'login';
@@ -261,9 +264,9 @@ class Vod_item extends UVod_Controller {
 
             case 'commerce_subscription':
 
-                if (isset($_SESSION['user_data']->token) && $_SESSION['user_data']->token != '') {
+                if (isset($_SESSION['uvod_user_data']->token) && $_SESSION['uvod_user_data']->token != '') {
 
-                    $subscription = $this->account_model->get_contract($_SESSION['user_data']->id);
+                    $subscription = $this->account_model->get_contract($_SESSION['uvod_user_data']->id);
                     if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
 
                         $return = 'enabled';

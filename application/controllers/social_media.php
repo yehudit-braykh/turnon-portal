@@ -15,7 +15,7 @@ class Social_Media extends UVod_Controller {
 
         $access_token = $this->facebook->get_access_token();
         $profile = $this->get_profile();
-        error_log('profile: '.$profile);
+
     }
     
     public function get_profile($access_token){

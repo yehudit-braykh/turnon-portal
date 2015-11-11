@@ -39,6 +39,6 @@ class McryptPseudoRandomStringGeneratorTest extends \PHPUnit_Framework_TestCase
         $randomString = $prsg->getPseudoRandomString(10);
 
         $this->assertEquals(1, preg_match('/^([0-9a-f]+)$/', $randomString));
-        $this->assertEquals(10, mb_strlen($randomString));
+        $this->assertEquals(10, strlen($randomString));
     }
 }

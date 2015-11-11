@@ -54,7 +54,6 @@ if (isset($clientToken)) {
                         dataType: 'json',
                         data: {nonce: nonce}
                     }).done(function (data) {
-                        console.log(data);
                         if (data && data.error == false) {
                             TweenLite.fromTo("#billing_info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
                                     TweenLite.to("#billing_info", 1, {delay: 8, alpha: 0});
@@ -108,7 +107,7 @@ if (isset($clientToken)) {
         });
 
         $('.subscriber_button').on('click', function () {
-            window.location = '<?php echo base_url(); ?>index.php/account/subscription';
+            window.location = '<?php echo base_url(); ?>index.php/account/subscription_ssl';
         });
 
         $('#btn_cancel').on('click', function () {

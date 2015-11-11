@@ -14,8 +14,8 @@ class Facebook {
         $this->ci = & get_instance();
         try {
             $this->fb = new Facebook\Facebook([
-                'app_id' => $this->ci->config->item('api_id', 'facebook'),
-                'app_secret' => $this->ci->config->item('app_secret', 'facebook'),
+                'app_id' => getenv('FACEBOOK_APP_ID'),
+                'app_secret' => getenv('FACEBOOK_APP_SECRET'),
                 'default_graph_version' => 'v2.2',
             ]);
         } catch (Facebook\Exceptions\FacebookResponseException $e) {

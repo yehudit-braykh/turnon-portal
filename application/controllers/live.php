@@ -44,7 +44,7 @@ class Live extends UVod_Controller {
                 $item = $channels->entries[$i]->media;
 
                 $policy_id = getEntryProperty($item, 'adPolicyId');
-               
+
                 if ($policy_id != '') {
                     $ids[] = getEntryProperty($item, 'adPolicyId');
                 }
@@ -60,9 +60,9 @@ class Live extends UVod_Controller {
                 $channel_stream_obj->hls = $release_hls_url_stream;
 
                 $channel_stream_obj->hls_blocked = $release_hls_blocked_url_stream;
-                $policy_arr= explode('/', $policy_id);
-                $channel_stream_obj->policy_id = $policy_arr[sizeof($policy_arr)-1];
-               
+                $policy_arr = explode('/', $policy_id);
+                $channel_stream_obj->policy_id = $policy_arr[sizeof($policy_arr) - 1];
+
                 $channels_stream[] = $channel_stream_obj;
             }
         }
@@ -72,7 +72,7 @@ class Live extends UVod_Controller {
         }
 
         $data['channels_stream'] = $channels_stream;
-
+        $data['section'] = "live";
 
         $data['account_status'] = $this->check_commerce_status();
 
@@ -94,7 +94,6 @@ class Live extends UVod_Controller {
 
             $timezone_offset = $this->input->post('timezone');
             date_default_timezone_set($timezone_offset);
-            
         } else {
 
             $timezone_offset = null;
@@ -129,9 +128,9 @@ class Live extends UVod_Controller {
     public function check_commerce_status() {
 
 
-        if (isset($_SESSION['user_data']->token) && $_SESSION['user_data']->token != '') {
+        if (isset($_SESSION['uvod_user_data']->token) && $_SESSION['uvod_user_data']->token != '') {
 
-            $subscription = $this->account_model->get_contract($_SESSION['user_data']->id);
+            $subscription = $this->account_model->get_contract($_SESSION['uvod_user_data']->id);
             if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
 
                 $return = 'enabled';
@@ -145,7 +144,5 @@ class Live extends UVod_Controller {
 
         return $return;
     }
-
-    
 
 }

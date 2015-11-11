@@ -36,11 +36,16 @@ class Account extends UVod_Controller {
         $data = array();
 
         $subscription = $this->account_model->get_subscriptions();
-        $amount = '';
         if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
-            $amount = $subscription->content->entries[0]->{'plsubscription$billingSchedule'}[0]->{'plsubscription$amounts'}->USD;
+            $data['subscriptions'] = $subscription->content->entries;
+
+            usort($data['subscriptions'], function($a, $b) {
+                if (intval($a->{'plsubscription$subscriptionLength'}) == intval($b->{'plsubscription$subscriptionLength'})) {
+                    return 0;
+                }
+                return (intval($a->{'plsubscription$subscriptionLength'}) < intval($b->{'plsubscription$subscriptionLength'})) ? -1 : 1;
+            });
         }
-        $data['subscription_amount'] = $amount;
 
         $this->parser->parse(views_url() . 'templates/header', $data);
         $this->parser->parse(views_url() . 'pages/subscription', $data);
@@ -66,8 +71,6 @@ class Account extends UVod_Controller {
             $ret->message = "You must specify a password.";
         } elseif (strlen($_POST['password']) < 8 || strlen($_POST['password']) > 16) {
             $ret->message = "Password must have between 8 and 16 chars lenght.";
-        } elseif ($_POST['password'] != $_POST['confirm']) {
-            $ret->message = "Passwords do not match.";
         } elseif ($this->account_model->exists_user_email($_POST['email'])) {
             $ret->message = "The selected email already exists.";
         }
@@ -75,18 +78,25 @@ class Account extends UVod_Controller {
             $ret->message = "You need to specify your full name.";
         }
 
-        // saves registration information in session
+// saves registration information in session
         if ($ret->message == "ok") {
             $_SESSION['registration_data'] = new stdClass();
             $_SESSION['registration_data']->email = $_POST['email'];
             $_SESSION['registration_data']->password = $_POST['password'];
 
             $full_name = explode(' ', $_POST['full_name']);
+            $sizeof_name = sizeof($full_name);
             $first_name = $full_name[0];
-            if (isset($full_name[1])) {
-                $last_name = $full_name[1];
+            if ($sizeof_name == 1) {
+                $last_name = '';
             } else {
                 $last_name = '';
+                for ($i = 1; $i < ($sizeof_name); $i++) {
+                    if ($i > 0) {
+                        $last_name .= ' ';
+                    }
+                    $last_name .= $full_name[$i];
+                }
             }
 
             $GLOBALS['hash'] = rand(10000, getrandmax());
@@ -96,7 +106,7 @@ class Account extends UVod_Controller {
 
             if (!$register->error) {
 
-                // logs current user to get security token
+// logs current user to get security token
 
                 $current_user = $this->account_model->simple_login($_POST['email'], $_POST['password']);
                 $ret = $current_user;
@@ -131,6 +141,7 @@ class Account extends UVod_Controller {
             } else {
                 $nonce = '';
             }
+
             $first_name = $_SESSION['registration_data']->first_name;
             $last_name = $_SESSION['registration_data']->last_name;
             $email = $_SESSION['registration_data']->email;
@@ -139,31 +150,37 @@ class Account extends UVod_Controller {
             $pi_year = $_POST['pi_year'];
             $pi_type = $_POST['pi_type'];
             $pi_number = $_POST['pi_number'];
+            $pi_security_code = $_POST['security_code'];
+            $subscription_id = $_POST['subscription_id'];
+            $auto_renew = $_POST['auto_renew'];
 
-            $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number);
+            $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $pi_security_code, $subscription_id, $auto_renew);
 
             if (isset($ret->error) && $ret->error == false) {
-                error_log('Email subscription from my registration');
                 $this->subscription_complete_mail($first_name, $last_name, $email);
+                echo json_encode(array('status' => 'ok'));
+            } else {
+                echo json_encode(array('status' => 'error', 'message' => $ret->message,));
             }
-
-            echo json_encode($ret);
         } else {
-            echo json_encode(array('message' => 'Internal Error. Please finish the registration process, then get the subscription in My Account section.'));
+            echo json_encode(array('status' => 'error', 'message' => 'Internal Error. Please finish the registration process, then get the subscription in My Account section.'));
         }
     }
 
     public function register_payment_ssl() {
 
         $data = array();
-
         $subscription = $this->account_model->get_subscriptions();
-
-        $amount = '';
         if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
-            $amount = $subscription->content->entries[0]->{'plsubscription$billingSchedule'}[0]->{'plsubscription$amounts'}->USD;
+            $data['subscriptions'] = $subscription->content->entries;
+
+            usort($data['subscriptions'], function($a, $b) {
+                if (intval($a->{'plsubscription$subscriptionLength'}) == intval($b->{'plsubscription$subscriptionLength'})) {
+                    return 0;
+                }
+                return (intval($a->{'plsubscription$subscriptionLength'}) < intval($b->{'plsubscription$subscriptionLength'})) ? -1 : 1;
+            });
         }
-        $data['subscription_amount'] = $amount;
 
         $this->parser->parse(views_url() . 'templates/header', $data);
         $this->parser->parse(views_url() . 'pages/register_payment', $data);
@@ -171,9 +188,10 @@ class Account extends UVod_Controller {
     }
 
     public function register_complete() {
+        if (isset($_SESSION['registration_data']->user_id)) {
+            $logout = $this->account_model->logout($_SESSION['registration_data']->user_id);
+        }
         $data = array();
-        $logout = $this->account_model->logout($_SESSION['registration_data']->user_id);
-
         $this->parser->parse(views_url() . 'templates/header', $data);
         $this->parser->parse(views_url() . 'pages/register_complete', $data);
         $this->parser->parse(views_url() . 'templates/footer', $data);
@@ -181,7 +199,9 @@ class Account extends UVod_Controller {
 
     public function register_subscription_complete() {
         $data = array();
-        $logout = $this->account_model->logout($_SESSION['registration_data']->user_id);
+        if (isset($_SESSION['registration_data']->user_id)) {
+            $logout = $this->account_model->logout($_SESSION['registration_data']->user_id);
+        }
 
         $this->parser->parse(views_url() . 'templates/header', $data);
         $this->parser->parse(views_url() . 'pages/register_subscription_complete', $data);
@@ -197,13 +217,13 @@ class Account extends UVod_Controller {
 
     public function my_account() {
 
-        if (!isset($_SESSION['user_data']) || !isset($_SESSION['user_data']->token)) {
+        if (!isset($_SESSION['uvod_user_data']) || !isset($_SESSION['uvod_user_data']->token)) {
             redirect(base_url() . 'index.php/account/signin');
         }
 
         $data = array();
-        $user_profile = $this->account_model->get_profile($_SESSION['user_data']->token);
-        $subscription = $this->account_model->get_contract($_SESSION['user_data']->id);
+        $user_profile = $this->account_model->get_profile($_SESSION['uvod_user_data']->token);
+        $subscription = $this->account_model->get_contract($_SESSION['uvod_user_data']->id);
 
         if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
             $data['subscription_data'] = $subscription->content->entries;
@@ -211,7 +231,7 @@ class Account extends UVod_Controller {
             if ($user_profile && $user_profile->content) {
                 if (isset($user_profile->content[0]->{'pluserprofile$publicDataMap'}->{'customer_id'})) {
                     $customer_id = $user_profile->content[0]->{'pluserprofile$publicDataMap'}->{'customer_id'};
-                    $_SESSION['user_data']->braintree_id = $customer_id;
+                    $_SESSION['uvod_user_data']->braintree_id = $customer_id;
                     $customer_data = $this->account_model->get_billing_information($customer_id);
 
                     if (isset($customer_data) && $customer_data->error == false) {
@@ -219,13 +239,6 @@ class Account extends UVod_Controller {
                         $data['card_number'] = $customer_data->content->card_number;
                         $data['card_expiration_month'] = $customer_data->content->expiration_month;
                         $data['card_expiration_year'] = $customer_data->content->expiration_year;
-
-//                        Braintree_Configuration::environment($this->config->item('braintree_environment'));
-//                        Braintree_Configuration::merchantId($this->config->item('braintree_merchantId'));
-//                        Braintree_Configuration::publicKey($this->config->item('braintree_publicKey'));
-//                        Braintree_Configuration::privateKey($this->config->item('braintree_privateKey'));
-//
-//                        $data['clientToken'] = Braintree_ClientToken::generate();
                     }
                 }
             }
@@ -234,12 +247,19 @@ class Account extends UVod_Controller {
             $amount = '';
             $subscription = $this->account_model->get_subscriptions();
             if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
-                $amount = $subscription->content->entries[0]->{'plsubscription$billingSchedule'}[0]->{'plsubscription$amounts'}->USD;
+                $data['subscriptions'] = $subscription->content->entries;
+
+                usort($data['subscriptions'], function($a, $b) {
+                    if (intval($a->{'plsubscription$subscriptionLength'}) == intval($b->{'plsubscription$subscriptionLength'})) {
+                        return 0;
+                    }
+                    return (intval($a->{'plsubscription$subscriptionLength'}) < intval($b->{'plsubscription$subscriptionLength'})) ? -1 : 1;
+                });
             }
-            $data['subscription_amount'] = $amount;
         }
 
         if ($user_profile && $user_profile->content) {
+            $data['user_email'] = $user_profile->content[0]->{'pluserprofile$email'};
             $data['user_first_name'] = $user_profile->content[0]->{'pluserprofile$firstName'};
             $data['user_last_name'] = $user_profile->content[0]->{'pluserprofile$lastName'};
             $data['user_city'] = "";
@@ -249,6 +269,7 @@ class Account extends UVod_Controller {
             $data['user_country'] = $user_profile->content[0]->{'pluserprofile$countryCode'};
             $data['user_postal_code'] = $user_profile->content[0]->{'pluserprofile$postalCode'};
         } else {
+            $data['user_email'] = "";
             $data['user_first_name'] = "";
             $data['user_last_name'] = "";
             $data['user_city'] = "";
@@ -263,20 +284,20 @@ class Account extends UVod_Controller {
 
     public function my_account_save() {
 
-        $save_profile = $this->account_model->save_profile($_SESSION['user_data']->token, $_SESSION['user_data']->id, $_POST['first_name'], $_POST['last_name'], $_POST['city'], $_POST['country'], $_POST['postal_code']);
+        $save_profile = $this->account_model->save_profile($_SESSION['uvod_user_data']->token, $_SESSION['uvod_user_data']->id, $_POST['first_name'], $_POST['last_name'], $_POST['city'], $_POST['country'], $_POST['postal_code']);
         echo json_encode($save_profile);
     }
 
     public function logout() {
 
-        if (isset($_SESSION['user_data'])) {
+        if (isset($_SESSION['uvod_user_data'])) {
 
-            $logout = $this->account_model->logout($_SESSION['user_data']->id);
+            $logout = $this->account_model->logout($_SESSION['uvod_user_data']->id);
 
             if (isset($logout->error) && !$logout->error) {
 
-                $_SESSION['user_data'] = null;
-                unset($_SESSION['user_data']);
+                $_SESSION['uvod_user_data'] = null;
+                unset($_SESSION['uvod_user_data']);
             }
         }
 
@@ -290,7 +311,7 @@ class Account extends UVod_Controller {
             $login = $this->account_model->login($_POST['email'], $_POST['password']);
 
             if (isset($login) && !$login->error) {
-                $_SESSION['user_data'] = $login->content;
+                $_SESSION['uvod_user_data'] = $login->content;
 
                 if (isset($_POST['remember_credentials'])) {
 
@@ -322,7 +343,7 @@ class Account extends UVod_Controller {
             $ret->message = "There is no user registered with that email.";
         }
 
-        // saves registration information in session
+// saves registration information in session
         if ($ret->message == "ok") {
             $_SESSION['registration_data'] = new stdClass();
             $_SESSION['registration_data']->email = $_POST['email'];
@@ -331,6 +352,13 @@ class Account extends UVod_Controller {
     }
 
     public function change_password() {
+        $data = array();
+        $this->load->view(views_url() . 'templates/header', $data);
+        $this->load->view(views_url() . 'pages/change_password', $data);
+        $this->load->view(views_url() . 'templates/footer', $data);
+    }
+    
+    public function change_pass() {
         $ret = new stdClass();
         $ret->message = "ok";
 
@@ -345,12 +373,19 @@ class Account extends UVod_Controller {
         } elseif ($_POST['new_password'] != $_POST['confirm_password']) {
             $ret->message = "Passwords do not match.";
         }
-        // saves registration information in session
+// saves registration information in session
         if ($ret->message == "ok") {
-            $ret = $this->account_model->change_password($_SESSION['user_data']->username, $_POST['current_password'], $_POST['new_password']);
+            $ret = $this->account_model->change_password($_SESSION['uvod_user_data']->username, $_POST['current_password'], $_POST['new_password']);
         }
 
         echo json_encode($ret);
+    }
+
+    public function change_password_completed() {
+        $data = array();
+        $this->load->view(views_url() . 'templates/header', $data);
+        $this->load->view(views_url() . 'pages/password_changed', $data);
+        $this->load->view(views_url() . 'templates/footer', $data);
     }
 
     public function send_activation_mail($name, $surname, $email, $hash) {
@@ -367,14 +402,30 @@ class Account extends UVod_Controller {
         }
     }
 
+    public function send_welcome_mail($name, $surname, $email) {
+        $email_data = array();
+        $email_data['name'] = $name;
+        $email_data['surname'] = $surname;
+
+        $message = $this->load->view(views_url() . 'templates/email_welcome', $email_data, TRUE);
+
+        if ($this->account_model->send_single_email($email, $message, "Welcome to 1SpotMedia!", "NO_RESPONSE@1spot.com", "1Spot Service")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function activate_account() {
         $data = array();
         $done = $this->account_model->activate_account($_GET['hash'], $_GET['email']);
         if ($done) {
+            $data['status'] = "ok";
             $data['message1'] = "ACCOUNT ACTIVE!";
             $data['message2'] = "Your account was activated successfully.";
             $data['message3'] = "Now you can proceed with the login.";
         } else {
+            $data['status'] = "error";
             $data['message1'] = "ERROR";
             $data['message2'] = "The activation process found an error.";
             $data['message3'] = "Please try again later.";
@@ -386,8 +437,8 @@ class Account extends UVod_Controller {
 
     public function subscribe_ssl() {
 
-        if (isset($_SESSION['user_data'])) {
-            $token = $_SESSION['user_data']->token;
+        if (isset($_SESSION['uvod_user_data'])) {
+            $token = $_SESSION['uvod_user_data']->token;
         } else if (isset($_SESSION['registration_data']->user_token)) {
             $token = $_SESSION['registration_data']->user_token;
         }
@@ -398,25 +449,27 @@ class Account extends UVod_Controller {
             $nonce = '';
         }
 
-        $first_name = $_SESSION['user_data']->firstName;
-        $last_name = $_SESSION['user_data']->lastName;
-        $email = $_SESSION['user_data']->email;
-        $city = '';
-        $postal_code = '';
-        $country = $_SESSION['user_data']->countryCode;
+        $first_name = $_SESSION['uvod_user_data']->firstName;
+        $last_name = $_SESSION['uvod_user_data']->lastName;
+        $email = $_SESSION['uvod_user_data']->email;
+        $country = $_SESSION['uvod_user_data']->countryCode;
         $pi_month = $_POST['pi_month'];
         $pi_year = $_POST['pi_year'];
         $pi_type = $_POST['pi_type'];
         $pi_number = $_POST['pi_number'];
-
-        $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $city, $postal_code, $country, $pi_month, $pi_year, $pi_type, $pi_number);
-
+        $pi_security_code = $_POST['security_code'];
+        $subscription_id = $_POST['subscription_id'];
+        $auto_renew = $_POST['auto_renew'];
+       
+        $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $pi_security_code, $subscription_id, $auto_renew);
+        error_log('RETURN: '.json_encode($ret));
         if (isset($ret->error) && $ret->error == false) {
-            error_log('Email subscription from my account');
             $this->subscription_complete_mail($first_name, $last_name, $email);
-        }
+            echo json_encode(array('status' => 'ok'));
+        } else {
 
-        echo json_encode($ret);
+            echo json_encode(array('status' => 'error', 'message' => $ret->message));
+        }
     }
 
     public function subscription_complete_mail($name, $surname, $email) {
@@ -426,17 +479,20 @@ class Account extends UVod_Controller {
         $email_data['surname'] = $surname;
         $message = $this->load->view(views_url() . 'templates/email_subscription_complete', $email_data, TRUE);
         $send_email_result = $this->account_model->send_single_email($email, $message, 'Subscription Notification Mail', 'NO_RESPONSE@1spot.com', "1Spot Media Portal");
-        if ($send_email_result == 1) {
-            error_log('Email was sended');
-        } else {
-            error_log('Email was not sended');
-        }
     }
 
     public function cancel_subscription() {
 
         $id = $_POST['contract_id'];
         $ret = $this->account_model->cancel_subscription($id);
+        echo json_encode($ret);
+    }
+    
+    public function update_subscription() {
+
+        $id = $_POST['contract_id'];
+        $auto_renew = $_POST['auto_renew'];
+        $ret = $this->account_model->update_subscription($id, $auto_renew);
         echo json_encode($ret);
     }
 
@@ -456,31 +512,11 @@ class Account extends UVod_Controller {
 
     public function update_billing_information() {
 
-        $customer_id = $_SESSION['user_data']->braintree_id;
+        $customer_id = $_SESSION['uvod_user_data']->braintree_id;
         $nonce = $_POST['nonce'];
         $ret = $this->account_model->update_billing_information($customer_id, $nonce);
 
         echo json_encode($ret);
-    }
-
-    public function relogin() {
-
-        if (isset($_SESSION['user_data'])) {
-
-            $id = $this->account_model->get_self_id($_SESSION['user_data']->token);
-
-            if (isset($id->error) && $id->error) {
-
-                $_SESSION['user_data'] = null;
-                unset($_SESSION['user_data']);
-                echo json_encode(array('status' => 'error'));
-            } else {
-
-                echo json_encode(array('status' => 'ok'));
-            }
-        } else {
-            echo json_encode(array('status' => 'error'));
-        }
     }
 
     public function send_activation_email_login() {
@@ -520,30 +556,80 @@ class Account extends UVod_Controller {
         echo json_encode($return);
     }
 
+    public function check_status() {
+
+        $status = true;
+
+        if (isset($_SESSION['uvod_user_data']->fb_id)) {
+
+//CHECK IF FACEBOOK SESSION IS ACTIVE
+            $fb_session_status = $this->social_media_model->get_fb_profile();
+
+            if ($fb_session_status->status !== 'ok') {
+                $status = false;
+            }
+        }
+        if ($status) {
+
+            if (isset($_SESSION['uvod_user_data'])) {
+
+                $id = $this->account_model->get_self_id($_SESSION['uvod_user_data']->token);
+                if (isset($id->error) && $id->error) {
+                    $status = false;
+                }
+            }
+        }
+
+        if ($status) {
+            echo json_encode(array('status' => 'ok'));
+        } else {
+            $_SESSION['uvod_user_data'] = null;
+            unset($_SESSION['uvod_user_data']);
+            echo json_encode(array('status' => 'error'));
+        }
+    }
+
     public function register_by_facebook() {
 
         $ret = new stdClass();
         $ret->message = "";
 
-        $profile = $this->social_media_model->get_fb_profile();
+        $fb_profile = $this->social_media_model->get_fb_profile();
 
-        if ($profile->status === 'ok') {
+        if ($fb_profile->status === 'ok') {
+            $fb_email = $fb_profile->content->email;
+            if ($this->account_model->exists_user_email($fb_email)) {
 
-            if ($this->account_model->exists_user_email($profile->content->email)) {
-                $ret->message = "This user already exists.";
                 $ret->status = "error";
+                $profile = $this->account_model->get_profile_by_email($fb_email);
+
+                if (isset($profile->error) && $profile->error === false) {
+                    if (isset($profile->content[0]->{'pluserprofile$publicDataMap'}->fb_id)) {
+                        $ret->message = "This Facebook account is already registered in 1spotmedia.";
+                    } else {
+                        $ret->message = "The email $fb_email is already registered with email and password,<br> you cannot register with your Facebook account.<br> Login using your credentials.";
+                    }
+                }
             } else {
-                $email = $profile->content->email;
-                $name_array = explode(' ', $profile->content->name);
-                if (isset($name_array[1])) {
-                    $last_name = $name_array[1];
+                $email = $fb_profile->content->email;
+                $full_name = explode(' ', $fb_profile->content->name);
+                $sizeof_name = sizeof($full_name);
+                $first_name = $full_name[0];
+                if ($sizeof_name == 1) {
+                    $last_name = '';
                 } else {
                     $last_name = '';
+                    for ($i = 1; $i < ($sizeof_name); $i++) {
+                        if ($i > 0) {
+                            $last_name .= ' ';
+                        }
+                        $last_name .= $full_name[$i];
+                    }
                 }
 
-                $fb_id = $profile->content->id;
+                $fb_id = $fb_profile->content->id;
                 $country = $_POST['country'];
-                $register = $this->account_model->register($email, $fb_id, $name_array[0], $last_name, $country, NULL, $fb_id);
+                $register = $this->account_model->register($email, $fb_id, $first_name, $last_name, $country, NULL, $fb_id);
 
                 if (isset($register->error) && $register->error) {
                     $ret->message = $register->message;
@@ -561,10 +647,15 @@ class Account extends UVod_Controller {
                         $_SESSION['registration_data']->user_token = $current_user->content->token;
                         $_SESSION['registration_data']->profile_id = $register->content->id;
                         $_SESSION['registration_data']->email = $email;
-                        $_SESSION['registration_data']->first_name = $name_array[0];
+                        $_SESSION['registration_data']->first_name = $first_name;
                         $_SESSION['registration_data']->last_name = $last_name;
                         $_SESSION['registration_data']->country = $country;
                         $_SESSION['registration_data']->method = 'fb';
+
+                        $this->send_welcome_mail($first_name, $last_name, $email);
+                    } else {
+                        $ret->message = $current_user->message;
+                        $ret->status = "error";
                     }
                 }
             }
@@ -581,21 +672,37 @@ class Account extends UVod_Controller {
         $ret->message = "";
 
         $profile = $this->social_media_model->get_fb_profile();
-error_log('profile: '.json_encode($profile));
+
         if ($profile->status === 'ok') {
             $email = $profile->content->email;
             $password = $profile->content->id;
 
             $login = $this->account_model->login($email, $password);
 
-             if (isset($login) && !$login->error) {
-                $_SESSION['user_data'] = $login->content;
-                 $ret->status = "ok";
-             }else{
-                  $ret->status = "error";
-                   $ret->message = $login->message;
-             }
+            if (isset($login) && !$login->error) {
+
+                $_SESSION['uvod_user_data'] = $login->content;
+                $_SESSION['uvod_user_data']->fb_id = $profile->content->id;
+// $_SESSION['copy_data'] = $_SESSION['uvod_user_data'];
+                $ret->status = "ok";
+            } else {
+                $ret->status = "error";
+                $profile = $this->account_model->get_profile_by_email($email);
+
+                if (isset($profile->error) && !$profile->error) {
+                    if (!isset($profile->content[0]->{'pluserprofile$publicDataMap'}->fb_id)) {
+
+                        $ret->message = "The email $email is already registered with email and password.<br> Login using your credentials.";
+                    } else {
+                        $ret->message = $login->message;
+                    }
+                } else {
+                    $ret->message = "You Facebook account is not registered in 1SpotMedia. <a class='register_link' href='" . base_url() . 'index.php/account/register_ssl' . "'>Register Now</a> with your Facebook account! ";
+                    $ret->status = "error";
+                }
+            }
         } else {
+
             $ret->message = $profile->msg;
             $ret->status = "error";
         }
