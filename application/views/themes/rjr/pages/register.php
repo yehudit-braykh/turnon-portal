@@ -27,6 +27,13 @@
         $('#btn_sign_up').on('click', function (event) {
 
             event.preventDefault();
+            
+            if (!($("#accept_terms_and_conditions").prop("checked"))) {
+                show_info();
+                $("#info").html("* You must accept terms and conditions before click Register button");
+                return false;
+            }
+            
             $(this).hide();
             var user_name = $('#full_name').val();
             var full_name = user_name.split(" ");
@@ -201,6 +208,10 @@
                     <li> 
                         <p id="info" class="form_info">&nbsp;</p>
                     </li>
+                    <li id= "terms_and_conditions">
+                        <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
+                        <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_and_conditions_subscribers'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
+                    <li> 
                     <li class="buttons">
                         <button id="btn_sign_up" class="send common_btn">REGISTER</button>
                         <div id="registration_preloader"></div>
