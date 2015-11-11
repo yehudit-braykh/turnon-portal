@@ -229,17 +229,17 @@ if (isset($clientToken)) {
                 if (data && data.status == 'ok') {
                     console.log('entra al if')
                     $('#save-subs-info').html('The data was saved sucsessfully');
-                     $('#save-subs-info').show();
+                    $('#save-subs-info').show();
                 } else {
                     console.log('entra al else')
                     $('#save-subs-info').html(data.message);
                 }
                 TweenLite.fromTo("#save-subs-info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-                        TweenLite.to("#save-subs-info", 1, {delay: 8, alpha: 0, onComplete: function(){
+                        TweenLite.to("#save-subs-info", 1, {delay: 8, alpha: 0, onComplete: function () {
                                 $('#save-subs-info').hide();
                                 $('#save-subscription').show();
-                        }});
-                        
+                            }});
+
                     }});
 
             });
@@ -417,11 +417,12 @@ if (isset($clientToken)) {
                                 </li>
                                 </ol>
                             </form>   
-                        </div>
+
+                            <?php
+                        }
+                        ?>
                     </div>
-                    <?php
-                }
-                ?>
+                </div>
                 <div id="tab3">
 
                     <div class="registration_container" style="min-height:500px;">
