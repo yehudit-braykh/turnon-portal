@@ -48,6 +48,7 @@
             if ($("#info").text() != '') {
                 TweenLite.fromTo("#info", 1, {alpha: 1}, {alpha: 0, onComplete: function () {
                         $("#info").html("");
+                        $("#info").hide();
                     }});
             }
         });
@@ -109,6 +110,7 @@
         FB.login(function (response) {
 
             if (response.authResponse) {
+                $("#info").show();
                 TweenLite.fromTo("#info", 1, {alpha: 1}, {alpha: 0});
                 checkLoginState();
             } else {
@@ -155,7 +157,12 @@
 
     function show_info(data) {
         $("#info").html("* " + data);
-        TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1});
+        $("#info").show();
+        TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
+                TweenLite.to("#info", 1, {delay: 6, alpha: 0, onComplete: function () {
+                        $("#info").hide();
+                    }});
+            }});
     }
 </script>
 
@@ -202,14 +209,14 @@
                     <div class="clr"></div>
                 </li>
 
-<!--                <li>
-
-                    <div class="or_separator">OR</div>
-
-                    <button id="signin_fb_btn"></button>
-                    <div id="fb_signin_preloader"></div>
-
-                </li>-->
+                <!--                <li>
+                
+                                    <div class="or_separator">OR</div>
+                
+                                    <button id="signin_fb_btn"></button>
+                                    <div id="fb_signin_preloader"></div>
+                
+                                </li>-->
 
                 <li>
                     <span style="padding-left:40px;">
