@@ -23,15 +23,15 @@ class Static_content extends UVod_Controller {
         $data = array();
         $data['section'] = "terms_conditions";
         $this->parser->parse(views_url() . 'templates/header', $data);
-        $this->parser->parse(views_url() . 'pages/terms_and_conditions', $data);
+        $this->parser->parse(views_url() . 'pages/terms_conditions', $data);
         $this->parser->parse(views_url() . 'templates/footer', $data);
     }
     
-    public function terms_and_conditions_subscribers() {
+    public function terms_conditions_subscribers() {
         $data = array();
         $data['section'] = "terms_conditions";
         $this->parser->parse(views_url() . 'templates/header', $data);
-        $this->parser->parse(views_url() . 'pages/terms_and_conditions_subscribers', $data);
+        $this->parser->parse(views_url() . 'pages/terms_conditions_subscribers', $data);
         $this->parser->parse(views_url() . 'templates/footer', $data);
     }
     
