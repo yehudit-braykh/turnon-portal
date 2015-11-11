@@ -13,34 +13,37 @@
         }).error(function (result) {
             country_code = 'US';
         });
-        
-        function show_info () {
+
+        function show_info() {
+            $("#info").show();
             TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-                            TweenLite.to("#info", 1, {delay: 6, alpha: 0});
+                    TweenLite.to("#info", 1, {delay: 6, alpha: 0, onComplete: function () {
+                            $("#info").hide();
                         }});
+                }});
         }
 
 //HANDLERS
         $('#btn_sign_up').on('click', function (event) {
-            
+
             event.preventDefault();
             $(this).hide();
-            var user_name =  $('#full_name').val();
+            var user_name = $('#full_name').val();
             var full_name = user_name.split(" ");
-            $('#info').css("text-align","start");
-            
+            $('#info').css("text-align", "start");
+
             if (full_name.length == 1) { // fullname only contains first name
                 show_info();
-                $("#info").html("* You must specify first & last name" );
+                $("#info").html("* You must specify first & last name");
                 $('#btn_sign_up').show();
                 return false;
-            }  
+            }
 
             $(this).hide();
             $('#registration_preloader').html('Sending data...');
             $('#registration_preloader').show();
-            
-              
+
+
             $.ajax({
                 url: "<?php echo base_url(); ?>index.php/account/register_step1_ssl",
                 type: 'POST',
@@ -54,10 +57,14 @@
                 } else {
                     $('#registration_preloader').hide();
                     $('#btn_sign_up').show();
-                    TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-                            TweenLite.to("#info", 1, {delay: 6, alpha: 0});
-                        }});
                     $("#info").html("* " + data.message);
+                    $("#info").show();
+                    TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
+                            TweenLite.to("#info", 1, {delay: 6, alpha: 0, onComplete: function () {
+                                    $("#info").hide();
+                                }});
+                        }});
+
 
                 }
             });
@@ -156,10 +163,6 @@
         }
     }
 
-    function show_info(data) {
-        $("#fb_info").html("* " + data);
-        TweenLite.fromTo("#fb_info", 1, {alpha: 0}, {alpha: 1});
-    }
 </script>
 </div>
 </div>
@@ -205,12 +208,12 @@
                     </li>
                 </ol>
             </form>
-<!--            <div id="fb_container">
-                <div id="fb_registration_preloader"></div>
-                <button id="signup_fb_btn"></button>
-
-                <p id="fb_info" class="form_info">&nbsp;</p>
-            </div>-->
+            <!--            <div id="fb_container">
+                            <div id="fb_registration_preloader"></div>
+                            <button id="signup_fb_btn"></button>
+            
+                            <p id="fb_info" class="form_info">&nbsp;</p>
+                        </div>-->
         </div>
     </div>
 </div>
