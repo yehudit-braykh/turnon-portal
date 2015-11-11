@@ -2512,7 +2512,7 @@ select:focus, select:active {
     margin-left: 10px;
 }
 
-.about{
+.about {
     margin:0;
     padding:35px 0 10px; 
 }
@@ -2528,12 +2528,16 @@ select:focus, select:active {
 
 .terms{
     margin:0;
-    padding:35px 0 10px; 
+    padding: 35px 20px 10px 20px; 
 }
 
 .terms h1{
     color: rgb(127,0,191);
     text-align:left; 
+}
+
+.terms h2{
+    color: rgb(127,0,191);
 }
 
 .terms p{
@@ -2660,6 +2664,13 @@ select:focus, select:active {
     padding: 6px 8px;
 }
 
+ul.ordered_list {
+    list-style: disc outside none;
+}
+
+ul.ordered_list li {
+    list-style: disc outside none;
+}
 
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
     /* IE10+ CSS styles go here */
