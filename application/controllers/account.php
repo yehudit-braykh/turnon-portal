@@ -156,8 +156,10 @@ class Account extends UVod_Controller {
 
             if (isset($ret->error) && $ret->error == false) {
 
-                if (isset($ret->subscription_data)) {
-                    $time = $ret->subscription_data->{'plsubscription$subscriptionLength'};
+                if (isset($ret->content->subscription_data)) {
+                    $time = $ret->content->subscription_data->{'plsubscription$subscriptionLength'};
+                } else {
+                    $time = '';
                 }
                 $this->subscription_complete_mail($first_name, $last_name, $email, $time, $auto_renew);
                 echo json_encode(array('status' => 'ok'));
@@ -444,8 +446,21 @@ class Account extends UVod_Controller {
         }
     }
 
-    public function subscription_complete_mail($name, $surname, $email, $duration, $auto_renew) {
+    public function update_subscription() {
+        $id = $_POST['contract_id'];
+        $auto_renew = $_POST['auto_renew'];
+        $ret = $this->account_model->update_subscription($id, $auto_renew);
 
+        if (isset($ret->error) && $ret->error == false) {
+            echo json_encode(array('status' => 'ok'));
+        } else {
+            echo json_encode(array('status' => 'error', 'message' => $ret->message,));
+        }
+
+    }
+
+    public function subscription_complete_mail($name, $surname, $email, $duration, $auto_renew) {
+        error_log('duration: ' . $duration);
         $email_data = array();
         $email_data['name'] = $name;
         $email_data['surname'] = $surname;

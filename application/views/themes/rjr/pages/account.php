@@ -178,7 +178,7 @@ if (isset($clientToken)) {
             pi_number = $('#card_number').val();
             pi_type = GetCardType($('#card_number').val());
             auto_renew = $("#auto-renew").is(":checked");
-            
+
             $.ajax({
                 url: "<?php echo base_url(); ?>index.php/account/subscribe_ssl",
                 type: 'POST',
@@ -206,6 +206,43 @@ if (isset($clientToken)) {
                 }
             });
 
+            return false;
+        });
+
+        $('#save-subscription').on('click', function (event) {
+            event.preventDefault();
+            $(this).hide();
+            auto_renew = $("#contract-auto-renew").is(":checked");
+            $('#save_subs_preloader').html('Sending data...');
+            $('#save_subs_preloader').show();
+            $.ajax({
+                url: "<?php echo base_url(); ?>index.php/account/update_subscription",
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    contract_id: $('#contract_id').val(),
+                    auto_renew: auto_renew
+                }
+            }).done(function (data) {
+                console.log(data)
+                $('#save_subs_preloader').hide();
+                if (data && data.status == 'ok') {
+                    console.log('entra al if')
+                    $('#save-subs-info').html('The data was saved sucsessfully');
+                     $('#save-subs-info').show();
+                } else {
+                    console.log('entra al else')
+                    $('#save-subs-info').html(data.message);
+                }
+                TweenLite.fromTo("#save-subs-info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
+                        TweenLite.to("#save-subs-info", 1, {delay: 8, alpha: 0, onComplete: function(){
+                                $('#save-subs-info').hide();
+                                $('#save-subscription').show();
+                        }});
+                        
+                    }});
+
+            });
             return false;
         });
 
@@ -301,13 +338,14 @@ if (isset($clientToken)) {
                 </div>
                 <div id="tab2" style="padding-left:20px">
                     <div class="registration_container">
-
-
                         <?php
                         if (isset($subscription_data) && $subscription_data != "") {
+                            if ($subscription_data[0]->{'plcontract$autoRenew'}) {
+                                $auto_renew_chbx = 'checked="checked"';
+                            } else {
+                                $auto_renew_chbx = '';
+                            }
                             ?>
-
-
 
                             <form method="post" id="cancelform">
                                 <ol>
@@ -336,8 +374,14 @@ if (isset($clientToken)) {
                                     </li>
                                     <li class="buttons">
                                         <input id="contract_id" type="hidden" class="text" style="width:150px;" value="<?php echo $subscription_data[0]->id; ?>" />
-                                        <input type="image" id="btn_cancel" src="<?php echo asset_url(); ?>images/button_cancel_subscription.png" class="send" />
-
+                                        <div class="chbx-container">
+                                            <input id="contract-auto-renew"type="checkbox" <?php echo $auto_renew_chbx; ?>/><label class="chbx-lbl">Auto-renew</label>
+                                        </div>
+                                        <button class="common_btn" id="save-subscription">SAVE</button>      
+                                    </li>
+                                    <li> 
+                                        <p id="save_subs_preloader" class="form_info"></p>
+                                        <p id="save-subs-info" class="form_info"></p>
                                     </li>
                                 </ol>
                             </form>     
