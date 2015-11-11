@@ -556,9 +556,9 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
 
                 <button class="dialog_button" id="singin_button">Sign In</button>
                 <div id="popup_error_outside"></div>
-
+<!--
                 <button id="signin_fb_btn" style="margin: 10px 0px 15px;"></button>
-                <div id="fb_signin_preloader"></div>
+                <div id="fb_signin_preloader"></div>-->
 
             </form>
 
