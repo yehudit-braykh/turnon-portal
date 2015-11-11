@@ -1037,6 +1037,15 @@ img{}
     color: #fff;
 }
 
+#save_data_preloader{
+    background: url(../preloader/images/preloader-section.gif) no-repeat center center;
+    background-size: 16px 16px;
+    background-position: 0px 2px;
+    text-align: left;
+    margin-top: 15px;
+    padding-left: 21px;
+    width: 250px;
+}
 
 .preloader_section {
     background: url(../preloader/images/preloader-section.gif) no-repeat center center;
@@ -3321,7 +3330,7 @@ ul.ordered_list li {
         display: list-item;
         margin-top: 20px;
     }
-    
+
     .form_info{
         text-align: left;
         margin-top: 15px;

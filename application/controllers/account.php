@@ -267,7 +267,13 @@ class Account extends UVod_Controller {
     public function my_account_save() {
 
         $save_profile = $this->account_model->save_profile($_SESSION['uvod_user_data']->token, $_SESSION['uvod_user_data']->id, $_POST['first_name'], $_POST['last_name'], $_POST['city'], $_POST['country'], $_POST['postal_code']);
-        echo json_encode($save_profile);
+        
+        if (isset($save_profile->error) && $save_profile->error == false) {
+            echo json_encode(array('status' => 'ok'));
+        } else {
+            echo json_encode(array('status' => 'error', 'message' => $save_profile->message,));
+        }
+      
     }
 
     public function logout() {

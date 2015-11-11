@@ -6,23 +6,28 @@
         $('#tab-container').easytabs();
 
         $('#btn_save').on('click', function (event) {
-
+            $(this).hide()
+            $('#save_data_preloader').html('Sending data...');
+            $('#save_data_preloader').show();
             $.ajax({
                 url: "<?php echo base_url(); ?>index.php/account/my_account_save",
                 type: 'POST',
                 dataType: 'json',
                 data: $('#registerform').serialize()
             }).done(function (data) {
-
-                if (data.message == "ok") {
-
+                $('#save_data_preloader').hide();
+                $('#btn_save').show();
+                $("#info").show();
+                if (data.status == "ok") {
+                    
                     $("#info").html("Information saved succesfully.");
                 } else {
-
                     $("#info").html("* " + data.message);
                 }
                 TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-                        TweenLite.to("#info", 1, {delay: 6, alpha: 0});
+                        TweenLite.to("#info", 1, {delay: 6, alpha: 0, onComplete: function () {
+                                $("#info").hide();
+                            }});
                     }});
 
 
@@ -329,6 +334,9 @@ if (isset($clientToken)) {
                                 <li> 
                                     <p id="info" class="form_info">&nbsp;</p>
                                 </li>
+                                <li>
+                                    <p id="save_data_preloader" class="form_info"></p>
+                                </li>
                                 <li class="buttons">
                                     <input type="image" id="btn_save" src="<?php echo asset_url(); ?>images/button_save.png" class="send" />
                                 </li>
@@ -423,123 +431,123 @@ if (isset($clientToken)) {
                         ?>
                     </div>
                 </div>
-<!--                <div id="tab3">
+                <!--                <div id="tab3">
+                
+                                    <div class="registration_container" style="min-height:500px;">
+                                        <form method="post" id="registerform2">
+                                            <ol>
+                                                <li>
+                                                    <label for="cardholder_name">Name on Card*</label>
+                                                    <input id="cardholder_name" class="text billing_data" disabled="disabled" value="<?php
+                if (isset($card_name)) {
+                    echo $card_name;
+                }
+                ?>" />
+                                                </li>
+                                                <li>
+                                                    <label for="card_number">Card Number*</label>
+                                                    <input id="card_number" class="text billing_data" disabled="disabled" style="width:150px;" value="<?php
+                if (isset($card_number)) {
+                    echo $card_number;
+                }
+                ?>" />
+                                                </li>
+                                                <li>
+                                                    <label for="security_code">Security Code*</label>
+                                                    <input id="security_code" class="text billing_data" type="password" disabled="disabled" style="width:70px;" value="<?php
+                if (isset($card_number)) {
+                    echo '***';
+                }
+                ?>" />
+                                                </li>
+                                                <li>
+                                                    <label for="expiration_month" style="width: 100%">Month*</label>
+                
+                                                    <select id="expiration_month" class="text billing_data" disabled="disabled" style="width:70px;">
+                <?php
+                if (isset($card_expiration_month)) {
+                    for ($i = 1; $i <= 12; $i++) {
+                        if ($i == $card_expiration_month) {
+                            if ($i < 10) {
+                                echo '<option id="0' . $i . '" selected="selected">0' . $i . '</option>';
+                            } else {
+                                echo '<option id="' . $i . '" selected="selected">' . $i . '</option>';
+                            }
+                        } else {
+                            if ($i < 10) {
+                                echo '<option id="0' . $i . '">0' . $i . '</option>';
+                            } else {
+                                echo '<option id="' . $i . '">' . $i . '</option>';
+                            }
+                        }
+                    }
+                } else {
+                    ?>
+                                                                        <option id="01">01</option>
+                                                                        <option id="02">02</option>
+                                                                        <option id="03">03</option>
+                                                                        <option id="04">04</option>
+                                                                        <option id="05">05</option>
+                                                                        <option id="06">06</option>
+                                                                        <option id="07">07</option>
+                                                                        <option id="08">08</option>
+                                                                        <option id="09">09</option>
+                                                                        <option id="10">10</option>
+                                                                        <option id="11">11</option>
+                                                                        <option id="12">12</option>
+                    <?php
+                }
+                ?>
+                                                    </select>
+                
+                                                </li>
+                                                <li>
+                                                    <label for="expiration_year" style="width: 100%">Year*</label>
+                
+                                                    <select id="expiration_year" class="text billing_data" disabled="disabled" style="width:90px;">
+                <?php
+                if (isset($card_expiration_year)) {
+                    for ($i = 2014; $i <= 2025; $i++) {
+                        if ($i == $card_expiration_year) {
 
-                    <div class="registration_container" style="min-height:500px;">
-                        <form method="post" id="registerform2">
-                            <ol>
-                                <li>
-                                    <label for="cardholder_name">Name on Card*</label>
-                                    <input id="cardholder_name" class="text billing_data" disabled="disabled" value="<?php
-                                    if (isset($card_name)) {
-                                        echo $card_name;
-                                    }
-                                    ?>" />
-                                </li>
-                                <li>
-                                    <label for="card_number">Card Number*</label>
-                                    <input id="card_number" class="text billing_data" disabled="disabled" style="width:150px;" value="<?php
-                                    if (isset($card_number)) {
-                                        echo $card_number;
-                                    }
-                                    ?>" />
-                                </li>
-                                <li>
-                                    <label for="security_code">Security Code*</label>
-                                    <input id="security_code" class="text billing_data" type="password" disabled="disabled" style="width:70px;" value="<?php
-                                    if (isset($card_number)) {
-                                        echo '***';
-                                    }
-                                    ?>" />
-                                </li>
-                                <li>
-                                    <label for="expiration_month" style="width: 100%">Month*</label>
+                            echo '<option id="' . $i . '" selected="selected">' . $i . '</option>';
+                        } else {
 
-                                    <select id="expiration_month" class="text billing_data" disabled="disabled" style="width:70px;">
-                                        <?php
-                                        if (isset($card_expiration_month)) {
-                                            for ($i = 1; $i <= 12; $i++) {
-                                                if ($i == $card_expiration_month) {
-                                                    if ($i < 10) {
-                                                        echo '<option id="0' . $i . '" selected="selected">0' . $i . '</option>';
-                                                    } else {
-                                                        echo '<option id="' . $i . '" selected="selected">' . $i . '</option>';
-                                                    }
-                                                } else {
-                                                    if ($i < 10) {
-                                                        echo '<option id="0' . $i . '">0' . $i . '</option>';
-                                                    } else {
-                                                        echo '<option id="' . $i . '">' . $i . '</option>';
-                                                    }
-                                                }
-                                            }
-                                        } else {
-                                            ?>
-                                            <option id="01">01</option>
-                                            <option id="02">02</option>
-                                            <option id="03">03</option>
-                                            <option id="04">04</option>
-                                            <option id="05">05</option>
-                                            <option id="06">06</option>
-                                            <option id="07">07</option>
-                                            <option id="08">08</option>
-                                            <option id="09">09</option>
-                                            <option id="10">10</option>
-                                            <option id="11">11</option>
-                                            <option id="12">12</option>
-                                            <?php
-                                        }
-                                        ?>
-                                    </select>
-
-                                </li>
-                                <li>
-                                    <label for="expiration_year" style="width: 100%">Year*</label>
-
-                                    <select id="expiration_year" class="text billing_data" disabled="disabled" style="width:90px;">
-                                        <?php
-                                        if (isset($card_expiration_year)) {
-                                            for ($i = 2014; $i <= 2025; $i++) {
-                                                if ($i == $card_expiration_year) {
-
-                                                    echo '<option id="' . $i . '" selected="selected">' . $i . '</option>';
-                                                } else {
-
-                                                    echo '<option id="' . $i . '">' . $i . '</option>';
-                                                }
-                                            }
-                                        } else {
-                                            ?>
-                                            <option id="2015">2015</option>
-                                            <option id="2016">2016</option>
-                                            <option id="2017">2017</option>
-                                            <option id="2018">2018</option>
-                                            <option id="2019">2019</option>
-                                            <option id="2020">2020</option>
-                                            <option id="2021">2021</option>
-                                            <option id="2022">2022</option>
-                                            <option id="2023">2023</option>
-                                            <option id="2024">2024</option>
-                                            <option id="2025">2025</option>
-                                            <?php
-                                        }
-                                        ?>
-                                    </select>
-
-                                </li>
-                                <li> 
-                                    <span id="billing_info" class="form_info">&nbsp;</span>
-                                </li>
-                                <li class="buttons">
-
-                                    <input type="image" id="btn_change_billing" src="<?php echo asset_url(); ?>images/button_modify.png"/>
-                                    <input type="image" id="btn_save_billing" src="<?php echo asset_url(); ?>images/button_save.png" class="send"/>
-                                    <div class="clr"></div>
-                                </li>
-                            </ol>
-                        </form>              
-                    </div>
-                </div>-->
+                            echo '<option id="' . $i . '">' . $i . '</option>';
+                        }
+                    }
+                } else {
+                    ?>
+                                                                        <option id="2015">2015</option>
+                                                                        <option id="2016">2016</option>
+                                                                        <option id="2017">2017</option>
+                                                                        <option id="2018">2018</option>
+                                                                        <option id="2019">2019</option>
+                                                                        <option id="2020">2020</option>
+                                                                        <option id="2021">2021</option>
+                                                                        <option id="2022">2022</option>
+                                                                        <option id="2023">2023</option>
+                                                                        <option id="2024">2024</option>
+                                                                        <option id="2025">2025</option>
+                    <?php
+                }
+                ?>
+                                                    </select>
+                
+                                                </li>
+                                                <li> 
+                                                    <span id="billing_info" class="form_info">&nbsp;</span>
+                                                </li>
+                                                <li class="buttons">
+                
+                                                    <input type="image" id="btn_change_billing" src="<?php echo asset_url(); ?>images/button_modify.png"/>
+                                                    <input type="image" id="btn_save_billing" src="<?php echo asset_url(); ?>images/button_save.png" class="send"/>
+                                                    <div class="clr"></div>
+                                                </li>
+                                            </ol>
+                                        </form>              
+                                    </div>
+                                </div>-->
 
                 <!-- TAB 4: Change Password -->
                 <div id="tab4">
