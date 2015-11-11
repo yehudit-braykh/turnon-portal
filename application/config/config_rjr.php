@@ -6,7 +6,7 @@
 $config['logo_file'] = 'tvj_logo.png';
 $config['logo_width'] = '127px';
 $config['logo_height'] = '96px';
-$config['logo_top'] = '40px';
+$config['logo_top'] = '44px';
 
 $config['menu_highlight_color'] = 'rgb(254,215,0)';
 

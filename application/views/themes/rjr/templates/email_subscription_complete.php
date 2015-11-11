@@ -1,9 +1,23 @@
 <div style="font-family: calibri,sans-serif;">
     <h4>Dear <?php echo $name . ' ' . $surname; ?></h4>
+<?php 
+if(intval($duration) > 1){
+    $month_text = 'months';
+    $renewal_txt = 'those '.$duration. ' months';
+}else{
+    $month_text = 'month';
+    $renewal_txt = 'these month';
+}
 
-    <p>Welcome to the 1spotmedia.com family.  Your subscription was successful.  When you subscribe to 1spotmedia, your contract is for 1 year, renewable each month. Under your 1 year contract, you are automatically billed each month.</p>
-    <p><b>Monthly Charge</b> - Your monthly cycle begins on the date of the initial purchase. Once the fee has been charged at the start of the month, that charge is final, and no refund is possible.  If you wish to cancel your subscription, this should be done before the next billing cycle</p>
-    <p><b>Renewal</b> - The price is valid for the full 12 months of your contract.  After that, we will renew your contract automatically, for another year, unless you cancel. The price is subject to change, but you will be notified if there is a change.</p> 
+if($auto_renew){
+    $auto_renew_txt = '<b>Renewal</b>The price is valid for the full '.$duration.' '.$month_text.' of your contract. You setted your subscription as auto renewal, so after '.$renewal_txt.', we will renew your contract automatically, for the same period. If you wish to set your subscription as not auto-renewal, you can do this on 1spotmedia web site'; 
+}else{
+    $auto_renew_txt = '<b>Renewal</b>The price is valid for the full '.$duration.' '.$month_text.' of your contract. You setted your subscription as not auto renewal, so after '.$renewal_txt.', we will cancel your contract automatically. If you wish to set your subscription as auto-renewal, you can do this on 1spotmedia web site'; 
+}
+?>
+    <p>Welcome to the 1spotmedia.com family.  Your subscription was successful. Your contract is for <?php echo $duration. ' '. $month_text;?>.</p>
+    <p><?php echo $auto_renew_txt;?></p>
+    
     <p>Should you have any questions or concerns, please feel to contact us by email at support@1spotmedia.com or access the HELP icon on our 1spotmedia.com site.</p>
     <p>We hope you enjoy the 1spotmedia.com experience.</p>
     <p>
