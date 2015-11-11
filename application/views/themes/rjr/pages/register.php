@@ -210,7 +210,7 @@
                     </li>
                     <li id= "terms_and_conditions">
                         <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
-                        <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_and_conditions_subscribers'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
+                        <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_conditions'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
                     <li> 
                     <li class="buttons">
                         <button id="btn_sign_up" class="send common_btn">REGISTER</button>
