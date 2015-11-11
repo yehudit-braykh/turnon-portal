@@ -423,7 +423,7 @@ if (isset($clientToken)) {
                         ?>
                     </div>
                 </div>
-                <div id="tab3">
+<!--                <div id="tab3">
 
                     <div class="registration_container" style="min-height:500px;">
                         <form method="post" id="registerform2">
@@ -539,7 +539,7 @@ if (isset($clientToken)) {
                             </ol>
                         </form>              
                     </div>
-                </div>
+                </div>-->
 
                 <!-- TAB 4: Change Password -->
                 <div id="tab4">
