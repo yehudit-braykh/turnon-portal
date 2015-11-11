@@ -290,7 +290,7 @@ if (isset($clientToken)) {
             <ul class='etabs'>
                 <li class='tab'><a href="#tab1" id="vod_item_sub_menu1">My Information</a></li>
                 <li class='tab'><a href="#tab2" id="vod_item_sub_menu2">Subscription</a></li>
-                <li class='tab'><a href="#tab3" id="vod_item_sub_menu3">Billing Information</a></li>
+                <!--<li class='tab'><a href="#tab3" id="vod_item_sub_menu3">Billing Information</a></li>-->
                 <li class='tab'><a href="#tab4" id="vod_item_sub_menu4">Change password</a></li>
             </ul>
             <div class='panel-container'>
