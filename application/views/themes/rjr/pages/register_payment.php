@@ -119,7 +119,7 @@
 <div class="content_centered">
     <div class="payment_content">
 
-        <div class="registration_title_payment">WANT TO BECOME <br class="rwd-break"> A SUSCRIBER?</div>
+        <div class="registration_title_payment">WANT TO BECOME <br class="rwd-break"> A SUBSCRIBER?</div>
 
         <?php
         if (sizeof($subscriptions) > 0) {

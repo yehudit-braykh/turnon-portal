@@ -81,7 +81,7 @@ for ($i = 0; $i < sizeof($subscriptions); $i++) {
                         <br />
                         <li><?php echo $months_txt; ?></li>
                         <li><b>+300</b> VOD Clips</li>
-                        <li><b>5</b> Live Channels</li>
+                        <li><b>6</b> Live Channels</li>
                         <li><b>Unlimited access to our VOD Catalog.</b></li>
 
                         <br /><a href="#" class="dc_pricing_button blue">Buy Now</a><!-- additional options: small, rounded, large, light_blue, blue, green, red, orange, yellow, pink, purple, grey, black -->
