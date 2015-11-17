@@ -233,8 +233,13 @@ class Account extends UVod_Controller {
             }
         } else {
 
-            $amount = '';
-            $subscription = $this->account_model->get_subscriptions();
+            if ($this->config->item('subscriptions_ids')) {
+                $subscriptions_ids = $this->config->item('subscriptions_ids');
+            } else {
+                $subscriptions_ids = null;
+            }
+
+            $subscription = $this->account_model->get_subscriptions($subscriptions_ids);
             if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
                 $data['subscriptions'] = $subscription->content->entries;
 
