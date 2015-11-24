@@ -209,14 +209,16 @@
                     <div class="clr"></div>
                 </li>
 
+                <li>
+
                 <!--                <li>
                 
-                                    <div class="or_separator">OR</div>
-                
-                                    <button id="signin_fb_btn"></button>
-                                    <div id="fb_signin_preloader"></div>
-                
-                                </li>-->
+                    <div class="or_separator">OR</div>
+
+                    <button id="signin_fb_btn"></button>
+                    <div id="fb_signin_preloader"></div>
+
+                </li>
 
                 <li>
                     <span style="padding-left:40px;">

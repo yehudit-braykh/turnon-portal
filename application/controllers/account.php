@@ -591,20 +591,39 @@ class Account extends UVod_Controller {
         $ret = new stdClass();
         $ret->message = "";
 
+        $merging = isset($_POST['fb_merge_accounts']);
+
+        if($merging){
+            error_log("FACEBOOK MERGE ACCOUNT -> ".$merging);            
+        }
+
         $fb_profile = $this->social_media_model->get_fb_profile();
 
         if ($fb_profile->status === 'ok') {
             $fb_email = $fb_profile->content->email;
-            if ($this->account_model->exists_user_email($fb_email)) {
+            if ($this->account_model->exists_user_email($fb_email) && !$merging) {
 
                 $ret->status = "error";
                 $profile = $this->account_model->get_profile_by_email($fb_email);
 
+                error_log("FACEBOOK MAIL ALREADY EXISTS - PROFILE -> ".json_encode($profile));
+
                 if (isset($profile->error) && $profile->error === false) {
+
+                    //Set some mergin account info
+                    $ret->merginProfiles = new stdClass();
+                    $ret->merginProfiles->fbName = $fb_profile->content->name;
+                    $ret->merginProfiles->plName = $profile->content[0]->{'pluserprofile$firstName'} . " " . $profile->content[0]->{'pluserprofile$lastName'};
+                    $ret->merginProfiles->email = $fb_email;
+
                     if (isset($profile->content[0]->{'pluserprofile$publicDataMap'}->fb_id)) {
                         $ret->message = "This Facebook account is already registered in 1spotmedia.";
+
+                        //Remove this line
+                        $ret->canMerge = true;
                     } else {
                         $ret->message = "The email $fb_email is already registered with email and password,<br> you cannot register with your Facebook account.<br> Login using your credentials.";
+                        $ret->canMerge = true;
                     }
                 }
             } else {
@@ -626,7 +645,8 @@ class Account extends UVod_Controller {
 
                 $fb_id = $fb_profile->content->id;
                 $country = $_POST['country'];
-                $register = $this->account_model->register($email, $fb_id, $first_name, $last_name, $country, NULL, $fb_id);
+
+                $register = $this->account_model->register($email, $fb_id, $first_name, $last_name, $country, NULL, $fb_id, $merging);
 
                 if (isset($register->error) && $register->error) {
                     $ret->message = $register->message;
