@@ -211,8 +211,8 @@
 
                 <li>
 
-                <!--                <li>
-                
+                <li>
+
                     <div class="or_separator">OR</div>
 
                     <button id="signin_fb_btn"></button>
