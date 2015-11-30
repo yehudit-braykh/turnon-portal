@@ -604,7 +604,7 @@ class Account extends UVod_Controller {
         }
 
         $fb_profile = $this->social_media_model->get_fb_profile();
-
+        error_log('fb profile: '.json_encode($fb_profile));
         if ($fb_profile->status === 'ok') {
             $fb_email = $fb_profile->content->email;
             if ($this->account_model->exists_user_email($fb_email) && !$merging) {
