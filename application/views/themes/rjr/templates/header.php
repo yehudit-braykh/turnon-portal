@@ -75,7 +75,7 @@
                                     window.location.href = '<?php echo base_url(); ?>index.php/live/main';
                                 });
                                 $('#top_menu_account').on('click', function (event) {
-                                    window.location.href = '<?php echo base_url(); ?>index.php/account/my_account';
+                                    window.location.href = '<?php echo base_url(); ?>index.php/account/my_account_ssl';
                                 });
                                 $('#editbox_search').keypress(function (e) {
                                     if (e.which == 13) {
@@ -304,7 +304,7 @@ for ($i = 0; $i < sizeof($vod_categories); $i++) {
                                                                 if (!isset($_SESSION['uvod_user_data']) || !isset($_SESSION['uvod_user_data']->token)) {
                                                                     echo "<div id='signin' style='padding-top:12px;'>LOG IN / REGISTER</div>";
                                                                 } else {
-                                                                    $logout = base_url() . 'index.php/account/logout';
+                                                                    $logout = base_url() . 'index.php/account/logout_ssl';
                                                                     echo "<div class='account_name'><div class='user_name'>" . $_SESSION['uvod_user_data']->firstName . "</div><div class='user-icon'></div></div><div class='link_logout'><div class='lock-icon'></div><a href='" . $logout . "'>Logout</a></div><div class='my_account'>My Account | </div>";
                                                                 }
                                                                 ?>                

@@ -83,33 +83,47 @@ if (isset($clientToken)) {
 ?>
         $('#btn_logout').on('click', function (event) {
             event.preventDefault();
-            $("#registerform").attr("action", "<?php echo base_url(); ?>index.php/account/logout");
+            $("#registerform").attr("action", "<?php echo base_url(); ?>index.php/account/logout_ssl");
             $("#registerform").submit();
         });
 
         $('#btn_change_password').on('click', function (event) {
             event.preventDefault();
+            $(this).hide();
+            $('#change_pass_preloader').html('Saving Password...');
+            $('#change_pass_preloader').show();
             $.ajax({
-                url: "<?php echo base_url(); ?>index.php/account/change_password",
+                url: "<?php echo base_url(); ?>index.php/account/change_password_ssl",
                 type: 'POST',
                 dataType: 'json',
                 data: $('#changepasswordform').serialize()
             }).done(function (data) {
-                TweenLite.fromTo("#infopass", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-                        TweenLite.to("#infopass", 1, {delay: 6, alpha: 0});
-                    }});
-
+                $('#change_pass_preloader').hide();
                 if (data.message == "ok") {
+
                     $("#infopass").html("Password changed.");
-                    $("#current_password").val("");
-                    $("#new_password").val("");
-                    $("#confirm_password").val("");
+                    $("#infopass").show();
+                    TweenLite.fromTo("#infopass", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
+                            TweenLite.to("#infopass", 1, {delay: 4, alpha: 0, onComplete: function () {
+                                    $("#current_password").val("");
+                                    $("#new_password").val("");
+                                    $("#confirm_password").val("");
+                                     $('#btn_change_password').show()
+                                }});
+
+                        }});
+
                 } else {
                     $("#infopass").html("* " + data.message);
+                    TweenLite.fromTo("#infopass", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
+                            TweenLite.to("#infopass", 1, {delay: 6, alpha: 0});
+
+                        }});
                 }
             });
 
         });
+
 
 
         $('#btn_cancel').on('click', function () {
@@ -221,7 +235,7 @@ if (isset($clientToken)) {
             $('#save_subs_preloader').html('Sending data...');
             $('#save_subs_preloader').show();
             $.ajax({
-                url: "<?php echo base_url(); ?>index.php/account/update_subscription",
+                url: "<?php echo base_url(); ?>index.php/account/update_subscription_ssl",
                 type: 'POST',
                 dataType: 'json',
                 data: {
@@ -229,18 +243,17 @@ if (isset($clientToken)) {
                     auto_renew: auto_renew
                 }
             }).done(function (data) {
-                console.log(data)
                 $('#save_subs_preloader').hide();
                 if (data && data.status == 'ok') {
-                    console.log('entra al if')
                     $('#save-subs-info').html('The data was saved sucsessfully');
                     $('#save-subs-info').show();
+
                 } else {
-                    console.log('entra al else')
                     $('#save-subs-info').html(data.message);
+                    $('#save-subs-info').show();
                 }
                 TweenLite.fromTo("#save-subs-info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-                        TweenLite.to("#save-subs-info", 1, {delay: 8, alpha: 0, onComplete: function () {
+                        TweenLite.to("#save-subs-info", 1, {delay: 6, alpha: 0, onComplete: function () {
                                 $('#save-subs-info').hide();
                                 $('#save-subscription').show();
                             }});
