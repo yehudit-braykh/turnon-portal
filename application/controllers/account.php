@@ -483,6 +483,7 @@ class Account extends UVod_Controller {
     }
 
     public function subscription_complete_mail($name, $surname, $email, $duration, $auto_renew) {
+        error_log('duration: '.$duration. ' autorenew: '.$auto_renew);
         $email_data = array();
         $email_data['name'] = $name;
         $email_data['surname'] = $surname;
