@@ -606,8 +606,11 @@ class Account extends UVod_Controller {
 
         $fb_profile = $this->social_media_model->get_fb_profile();
         error_log('fb profile: '.json_encode($fb_profile));
+
         if ($fb_profile->status === 'ok') {
             $fb_email = $fb_profile->content->email;
+
+            //First case, user exists for given facebook email and must check if can be merged
             if ($this->account_model->exists_user_email($fb_email) && !$merging) {
 
                 $ret->status = "error";
@@ -626,14 +629,17 @@ class Account extends UVod_Controller {
                     if (isset($profile->content[0]->{'pluserprofile$publicDataMap'}->fb_id)) {
                         $ret->message = "This Facebook account is already registered in 1spotmedia.";
 
-                        //Remove this line
+                        //This indicates that the accounts can be merged
                         $ret->canMerge = true;
                     } else {
                         $ret->message = "The email $fb_email is already registered with email and password,<br> you cannot register with your Facebook account.<br> Login using your credentials.";
                         $ret->canMerge = true;
                     }
                 }
+
+            //Second case, user doesn't exist for given facebook email or is mergin, both cases, register
             } else {
+
                 $email = $fb_profile->content->email;
                 $full_name = explode(' ', $fb_profile->content->name);
                 $sizeof_name = sizeof($full_name);
@@ -649,11 +655,19 @@ class Account extends UVod_Controller {
                         $last_name .= $full_name[$i];
                     }
                 }
-
+                
                 $fb_id = $fb_profile->content->id;
+
+                //If it is mergin, the user password must be provided. The given password will be attached to the facebook ID
+                if($merging){
+                    $fb_id = $fb_id . '|' . $_POST['password'];
+                }
+
+                //For facebook registration, use the id as password
+                $password = $fb_profile->content->id;
                 $country = $_POST['country'];
 
-                $register = $this->account_model->register($email, $fb_id, $first_name, $last_name, $country, NULL, $fb_id, $merging);
+                $register = $this->account_model->register($email, $password, $first_name, $last_name, $country, NULL, $fb_id, $merging);
 
                 if (isset($register->error) && $register->error) {
                     $ret->message = $register->message;
@@ -662,7 +676,7 @@ class Account extends UVod_Controller {
 
                     $ret->status = "ok";
 
-                    $current_user = $this->account_model->simple_login($email, $fb_id);
+                    $current_user = $this->account_model->simple_login($email, $password);
 
                     if (!$current_user->error) {
 
@@ -703,6 +717,8 @@ class Account extends UVod_Controller {
 
             $login = $this->account_model->login($email, $password);
 
+            error_log("FACEBOOK LOGIN ---> " . json_encode($login));
+
             if (isset($login) && !$login->error) {
 
                 $_SESSION['uvod_user_data'] = $login->content;
@@ -716,7 +732,7 @@ class Account extends UVod_Controller {
 
                 error_log("FACEBOOK USER NOT LINKED ---> " . json_encode($profile));
 
-                if (isset($profile->error) && !$profile->error) {
+                if (isset($profile->error)   && !$profile->error) {
                     $ret->merginProfiles = new stdClass();
                     $ret->merginProfiles->fbName = $fb_profile->content->name;
                     $ret->merginProfiles->plName = $profile->content[0]->{'pluserprofile$firstName'} . " " . $profile->content[0]->{'pluserprofile$lastName'};
