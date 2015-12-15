@@ -361,7 +361,6 @@ if (isset($clientToken)) {
                     <div class="registration_container">
                         <?php
                         if (isset($subscription_data) && $subscription_data != "") {
-                            error_log('SUBSCRIPTIONS: ' . json_encode($subscription_data));
                             if ($subscription_data->{'plcontract$autoRenew'}) {
                                 $auto_renew_chbx = 'checked="checked"';
                             } else {
