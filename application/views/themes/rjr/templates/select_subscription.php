@@ -79,7 +79,7 @@ for ($i = 0; $i < sizeof($subscriptions); $i++) {
 
                 <div class="plan" id="<?php echo $subscription_id; ?>">
                     <?php
-                    if (isset( $_SESSION['uvod_user_data']) && (!isset($_SESSION['is_subscriber']) || !$_SESSION['is_subscriber'])) {
+                    if (!isset($_SESSION['is_subscriber']) || (isset($_SESSION['is_subscriber']) && !$_SESSION['is_subscriber'])) {
                         ?>
                         <h4>7-Day Free Trial</h4>
                         <h4>+</h4>
