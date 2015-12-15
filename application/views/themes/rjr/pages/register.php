@@ -263,6 +263,10 @@
                         <div id="registration_preloader"></div>
                         <div class="clr"></div>
                     </li>
+        
+                    <li>
+                        <span>Already Registered? <a href="<?php echo base_url().'index.php/account/signin'; ?>" class="signin_link">Sign in</a></span>
+                    </li>
                 </ol>
             </form>
 

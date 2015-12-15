@@ -127,9 +127,9 @@ class Account_model extends CI_Model {
             'pi_security_code' => $pi_security_code,'subscription_id' => $subscription_id, 'auto_renew' => $auto_renew));
     }
 
-    public function get_contract($id) {
+    public function get_contract($id, $user_active = null) {
 
-        return apiPost("commerce/get_contract", array('id' => $id));
+        return apiPost("commerce/get_contract", array('id' => $id, 'user_active' => $user_active));
     }
 
     public function cancel_subscription($id) {

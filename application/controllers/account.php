@@ -212,13 +212,13 @@ class Account extends UVod_Controller {
 
         $data = array();
         $user_profile = $this->account_model->get_profile($_SESSION['uvod_user_data']->token);
-        $subscription = $this->account_model->get_contract($_SESSION['uvod_user_data']->id);
-
+        $subscription = $this->account_model->get_contract($_SESSION['uvod_user_data']->id, 'false');
 
         if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
             $subscriptions = $subscription->content->entries;
             for ($i = 0; $i < sizeof($subscriptions); $i++) {
-                if ($subscriptions[$i]->{'plcontract$originalSubscriptionId'} !== 'http://data.product.theplatform.com/product/data/Subscription/1363283' &&
+           
+                if ($subscriptions[$i]->{'plcontract$active'} && $subscriptions[$i]->{'plcontract$originalSubscriptionId'} !== 'http://data.product.theplatform.com/product/data/Subscription/1363283' &&
                         $subscriptions[$i]->{'plcontract$originalSubscriptionId'} !== 'http://data.product.theplatform.com/product/data/Subscription/13255581') {
                     $data['subscription_data'] = $subscriptions[$i];
                 }
@@ -318,6 +318,13 @@ class Account extends UVod_Controller {
 
             if (isset($login) && !$login->error) {
                 $_SESSION['uvod_user_data'] = $login->content;
+
+                $contracts = $this->account_model->get_contract($_SESSION['uvod_user_data']->id, 'false');
+                if (isset($contracts->content->entries) && sizeof($contracts->content->entries) > 0) {
+                    $_SESSION['is_subscriber'] = true;
+                } else {
+                    $_SESSION['is_subscriber'] = false;
+                }
 
                 if (isset($_POST['remember_credentials'])) {
 
@@ -462,7 +469,7 @@ class Account extends UVod_Controller {
             } else {
                 $time = '';
             }
-
+            $_SESSION['is_subscriber'] = true;
             $this->subscription_complete_mail($first_name, $last_name, $email, $time, $auto_renew);
             echo json_encode(array('status' => 'ok'));
         } else {
@@ -483,7 +490,7 @@ class Account extends UVod_Controller {
     }
 
     public function subscription_complete_mail($name, $surname, $email, $duration, $auto_renew) {
-        error_log('duration: '.$duration. ' autorenew: '.$auto_renew);
+        error_log('duration: ' . $duration . ' autorenew: ' . $auto_renew);
         $email_data = array();
         $email_data['name'] = $name;
         $email_data['surname'] = $surname;
@@ -605,7 +612,7 @@ class Account extends UVod_Controller {
         }
 
         $fb_profile = $this->social_media_model->get_fb_profile();
-        error_log('fb profile: '.json_encode($fb_profile));
+        error_log('fb profile: ' . json_encode($fb_profile));
         if ($fb_profile->status === 'ok') {
             $fb_email = $fb_profile->content->email;
             if ($this->account_model->exists_user_email($fb_email) && !$merging) {
@@ -697,7 +704,7 @@ class Account extends UVod_Controller {
 
         $fb_profile = $this->social_media_model->get_fb_profile();
 
-         if ($fb_profile->status === 'ok') {
+        if ($fb_profile->status === 'ok') {
             $email = $fb_profile->content->email;
             $password = $fb_profile->content->id;
 

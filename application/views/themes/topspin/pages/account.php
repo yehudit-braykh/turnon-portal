@@ -219,7 +219,7 @@ if (isset($clientToken)) {
                 return "Visa";
             re = new RegExp("^(34|37)");
             if (number.match(re) != null)
-                return "American Express";
+                return "Amex";
             re = new RegExp("^5[1-5]");
             if (number.match(re) != null)
                 return "MasterCard";

@@ -1521,6 +1521,20 @@ select:focus, select:active {
     background: #7f00bf;
     color: #fff;
 }
+
+.header_content{
+    height:40px;
+    text-align:right;
+    padding-top: 10px;
+    width: 960px;
+}
+
+.trial_advertisement{
+    color: #fff!important;
+    font-size: 13px;
+
+}
+
 #header_bar {
     max-width: 960px;
     margin: 0 auto;
@@ -2065,7 +2079,15 @@ select:focus, select:active {
     height: 430px;
 }
 #tab2 .registration_container{
-    height: 620px;
+    height: 920px;
+}
+
+.subscription_details{
+    margin-top: 30px;
+    float: left;
+    width: 90%;
+    padding: 5px;
+    font-size: 10px;
 }
 
 #subscription_form{
@@ -2641,6 +2663,10 @@ select:focus, select:active {
 }
 
 .terms_and_conditions {
+    color: #7f00bf !important ;
+}
+
+.signin_link {
     color: #7f00bf !important ;
 }
 

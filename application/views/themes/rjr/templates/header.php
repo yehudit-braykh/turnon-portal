@@ -36,11 +36,11 @@
                         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js"></script>
 
                         <!-- DCodes -->
-                        <link rel="stylesheet" type="text/css" href="<?php echo common_asset_url();  ?>css/dc_social_icons.css" />
-                        <link type="text/css" rel="stylesheet" href="<?php echo common_asset_url();  ?>css/dc_pricingtables.css" />
-                        <script type="text/javascript"  href="<?php echo common_asset_url();  ?>js/dc_pricingtables.js"></script>
+                        <link rel="stylesheet" type="text/css" href="<?php echo common_asset_url(); ?>css/dc_social_icons.css" />
+                        <link type="text/css" rel="stylesheet" href="<?php echo common_asset_url(); ?>css/dc_pricingtables.css" />
+                        <script type="text/javascript"  href="<?php echo common_asset_url(); ?>js/dc_pricingtables.js"></script>
 
-                      
+
 
 
                         <!-- BrainTree -->
@@ -262,6 +262,13 @@ for ($i = 0; $i < sizeof($vod_categories); $i++) {
                                         <div class="main">
                                             <div class="header">
                                                 <div id="header_bar_bg">
+                                                    <?php
+                                                    if (isset( $_SESSION['uvod_user_data']) && (!isset($_SESSION['is_subscriber']) || !$_SESSION['is_subscriber'])) {
+                                                        ?>
+                                                    <div class="content_centered header_content"><a class="trial_advertisement" href="<?php echo base_url().'index.php/account/my_account_ssl#tab2';?>"><b style="color:#e1cd00">Not a Subscriber?</b> Click here to start your 7-Day Free Trial</a></div>
+                                                        <?php
+                                                    }
+                                                    ?>
                                                     <div id="header_bar">
 
                                                         <div id="header_bar_tweet">
