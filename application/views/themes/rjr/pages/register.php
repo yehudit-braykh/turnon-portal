@@ -27,13 +27,13 @@
         $('#btn_sign_up').on('click', function (event) {
 
             event.preventDefault();
-            
+
             if (!($("#accept_terms_and_conditions").prop("checked"))) {
                 show_info();
                 $("#info").html("* You must accept terms and conditions before click Register button");
                 return false;
             }
-            
+
             $(this).hide();
             var user_name = $('#full_name').val();
             var full_name = user_name.split(" ");
@@ -78,7 +78,21 @@
         });
 
         $('#signup_fb_btn').on('click', function () {
-            registerWithFacebook();
+
+            if (!($("#fb_accept_terms_and_conditions").prop("checked"))) {
+                $("#fb_info").html("* You must accept terms and conditions before click Register button");
+                $("#fb_info").show();
+                TweenLite.fromTo("#fb_info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
+                        TweenLite.to("#fb_info", 1, {delay: 6, alpha: 0, onComplete: function () {
+                                $("#fb_info").hide();
+                            }});
+                    }});
+
+                return false;
+            } else {
+                registerWithFacebook();
+            }
+
         });
 
         $('#btn_sign_up_merge').on('click', mergeAccounts);
@@ -152,24 +166,24 @@
                 } else {
 
                     $('#fb_registration_preloader').css('display', 'none');
-                    if(data.canMerge){
+                    if (data.canMerge) {
                         $('#fb_registration_form').css('display', 'none');
-                        
+
                         var mergeForm = $('#fb_registration_merge').css('display', 'block');
                         mergeForm.find('.pl_email').text(data.merginProfiles.email);
                         mergeForm.find('.pl_name').text(data.merginProfiles.plName);
                         mergeForm.find('.fb_name').text(data.merginProfiles.fbName);
 
                         TweenLite.fromTo("#fb_registration_merge", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-                        }});
+                            }});
 
-                    }else{
+                    } else {
                         TweenLite.fromTo("#signup_fb_btn", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-                        }});
+                            }});
 
                         $("#fb_info").html("* " + data.message);
                         TweenLite.fromTo("#fb_info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-                        }});
+                            }});
                     }
                 }
             });
@@ -190,7 +204,7 @@
     function mergeAccounts() {
         var password = $('#fb_registration_merge [type=password]').val();
 
-        if(password){
+        if (password) {
 
             $('#fb_registration_merge').css('display', 'none');
 
@@ -210,14 +224,14 @@
                 } else {
                     $('#fb_registration_preloader').css('display', 'none');
                     TweenLite.fromTo("#signup_fb_btn", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-                    }});
+                        }});
 
                     $("#fb_info").html("* " + data.message);
                     TweenLite.fromTo("#fb_info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-                    }});
+                        }});
                 }
             });
-        }else{
+        } else {
             show_info('Current password is required');
         }
     } //end merge accounts
@@ -275,9 +289,18 @@
             <div id="fb_container">
 
                 <div id="fb_registration_preloader"></div>
-                
+
                 <div id="fb_registration_form">
                     <button id="signup_fb_btn"></button>
+                    <ul>
+                        <li id= "terms_and_conditions">
+                            <div style="display: inline-block;"><input id="fb_accept_terms_and_conditions" type="checkbox" /></div>   
+                            <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_conditions'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
+                        <li>
+                        <li> 
+                            <p id="fb_info" class="form_info">&nbsp;</p>
+                        </li>
+                    </ul>
                 </div>
 
                 <div id="fb_registration_merge" style="display: none;">
@@ -301,7 +324,7 @@
                                 <p class="pl_name"></p>
                             </div>
                         </div>
-                        
+
                         <div style="clear: both;"></div>
 
                         <div>
