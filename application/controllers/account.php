@@ -217,7 +217,7 @@ class Account extends UVod_Controller {
         if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
             $subscriptions = $subscription->content->entries;
             for ($i = 0; $i < sizeof($subscriptions); $i++) {
-           
+
                 if ($subscriptions[$i]->{'plcontract$active'} && $subscriptions[$i]->{'plcontract$originalSubscriptionId'} !== 'http://data.product.theplatform.com/product/data/Subscription/1363283' &&
                         $subscriptions[$i]->{'plcontract$originalSubscriptionId'} !== 'http://data.product.theplatform.com/product/data/Subscription/13255581') {
                     $data['subscription_data'] = $subscriptions[$i];
@@ -490,7 +490,7 @@ class Account extends UVod_Controller {
     }
 
     public function subscription_complete_mail($name, $surname, $email, $duration, $auto_renew) {
-        
+
         $email_data = array();
         $email_data['name'] = $name;
         $email_data['surname'] = $surname;
@@ -644,7 +644,7 @@ class Account extends UVod_Controller {
                     }
                 }
 
-            //Second case, user doesn't exist for given facebook email or is mergin, both cases, register
+                //Second case, user doesn't exist for given facebook email or is mergin, both cases, register
             } else {
 
                 $email = $fb_profile->content->email;
@@ -662,11 +662,11 @@ class Account extends UVod_Controller {
                         $last_name .= $full_name[$i];
                     }
                 }
-                
+
                 $fb_id = $fb_profile->content->id;
 
                 //If it is mergin, the user password must be provided. The given password will be attached to the facebook ID
-                if($merging){
+                if ($merging) {
                     $fb_id = $fb_id . '|' . $_POST['password'];
                 }
 
@@ -730,6 +730,14 @@ class Account extends UVod_Controller {
 
                 $_SESSION['uvod_user_data'] = $login->content;
                 $_SESSION['uvod_user_data']->fb_id = $fb_profile->content->id;
+
+                $contracts = $this->account_model->get_contract($_SESSION['uvod_user_data']->id, 'false');
+                if (isset($contracts->content->entries) && sizeof($contracts->content->entries) > 0) {
+                    $_SESSION['is_subscriber'] = true;
+                } else {
+                    $_SESSION['is_subscriber'] = false;
+                }
+
                 $ret->status = "ok";
             } else {
 
@@ -739,7 +747,7 @@ class Account extends UVod_Controller {
 
                 error_log("FACEBOOK USER NOT LINKED ---> " . json_encode($profile));
 
-                if (isset($profile->error)   && !$profile->error) {
+                if (isset($profile->error) && !$profile->error) {
                     $ret->merginProfiles = new stdClass();
                     $ret->merginProfiles->fbName = $fb_profile->content->name;
                     $ret->merginProfiles->plName = $profile->content[0]->{'pluserprofile$firstName'} . " " . $profile->content[0]->{'pluserprofile$lastName'};
