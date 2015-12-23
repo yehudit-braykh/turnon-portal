@@ -3261,13 +3261,13 @@ td.product_content{
 }
 
 #channels_button_up {
-    height: 25px;
+    height: 2.5vw;
     width: 100%;
     background: rgba(255,255,255,0.2) url(../images/channel_up.png) center center no-repeat;
 }
 
 #channels_button_down {
-    height: 25px;
+    height: 2.5vw;
     width: 100%;
     background: rgba(255,255,255,0.2) url(../images/channel_down.png) center center no-repeat;
 }
@@ -3280,13 +3280,13 @@ td.product_content{
 #live_channels_scroller {
     overflow: hidden;
     width: 150px;
-    height: 341px;
+    height: 470px;
     margin-left: 0px;
 }
 
 .live_channels_container {
     overflow: hidden;
-    height: 335px;
+    height: 470px;
     margin-top: 10px;
     margin-bottom: 10px;
 }

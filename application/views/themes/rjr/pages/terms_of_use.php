@@ -5,7 +5,7 @@
 
 <div class="terms">
 
-<h1>Live Stream and VOD Terms and Conditions</h1>
+<h1>Live Stream and VOD Terms & Conditions</h1>
 
 <p><b>These are the web Portal’s Terms and Conditions (the "Terms") which incorporate the Website Terms and Conditions, forming a contract between you and The RJR Communications Group ("Us", "We" or "Our") for the live stream and video on demand (VOD) service.</b></p>
 <p><b>The Live Stream and Video on Demand (VOD)</b> is a web-based service, which entitles you,upon subscribing to the service, to view the live streams and the VOD content online via the designated website (“the Site”),</p>

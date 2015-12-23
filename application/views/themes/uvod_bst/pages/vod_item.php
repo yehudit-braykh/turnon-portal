@@ -344,15 +344,6 @@ function handleOnMediaEnd(){
                 <div class="col-sm-7 info_vod">
 
                     <div class="col-sm-12">
-                        <!--<div class="vod_back" onclick="button_back_clickHandler()"></div>-->
-                        <?php
-                        $show_trailer_button = "yes";
-                        if ($this->config->item('show_trailer_button') !== FALSE)
-                            $show_trailer_button = $this->config->item('show_trailer_button');
-                        if ($show_trailer_button == "yes") {
-                            echo '<div class="vod_play_trailer" onclick="button_play_trailer_clickHandler()"></div>';
-                        }
-                        ?>
                         <?php
                         if ($item_media_type != 'tv_show') {
                             ?>
@@ -362,7 +353,15 @@ function handleOnMediaEnd(){
                             <div class="vod_show_episodes"></div>
                         <?php }
                         ?>
-                        <button type="button" class="btn btn-default btn-lg" onclick="button_play_trailer_clickHandler()">TRAILER</button>
+                        <?php
+                        $show_trailer_button = "yes";
+                        if ($this->config->item('show_trailer_button') !== FALSE)
+                            $show_trailer_button = $this->config->item('show_trailer_button');
+                        if ($show_trailer_button == "yes") {
+                            echo '<button type="button" class="btn btn-default btn-lg" onclick="button_play_trailer_clickHandler()">TRAILER</button>';
+                        }
+                        
+                        ?>
                     </div>
 
                     <div class="dc_clear"></div>
