@@ -2559,6 +2559,13 @@ select:focus, select:active {
     margin-bottom: 15px;
 }
 
+.subt {
+    font-size: 14px;
+    margin: 0!important;
+    color: rgb(127,0,191);
+    font-weight: bold;
+}
+
 .faqs{
     font-size: 14px !important;
     margin: 0;
@@ -2583,7 +2590,7 @@ select:focus, select:active {
     padding-top: 25px;
 }
 
-.faqs a{
+.faqs a, .terms a{
     color: #0000FF !important;
 }
 
