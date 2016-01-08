@@ -20,7 +20,7 @@ class Account_model extends CI_Model {
         return apiPost("user/logout", array("id" => $id));
     }
 
-    public function register($email, $password, $first_name, $last_name, $country, $hash = NULL, $fb_id = NULL) {
+    public function register($email, $password, $first_name, $last_name, $country, $hash = NULL, $fb_id = NULL, $merge = false) {
 
         return apiPost("user/register", array("email" => $email,
             "password" => $password,
@@ -28,7 +28,8 @@ class Account_model extends CI_Model {
             "last_name" => $last_name,
             "country" => $country,
             "fb_id" => $fb_id,
-            "hash" => $hash));
+            "hash" => $hash,
+            "merge" => $merge));
     }
 
     public function get_profile($token) {
@@ -82,7 +83,7 @@ class Account_model extends CI_Model {
             $message->track_opens = true;
             $mandrill->messages->send($message);
 
-            $response = apiPost("user/save_password", array("password" => $new_password['password'], "user_id" => $users->content->entries[0]->id));
+            $response = apiPost("user/save_password", array("password" => $new_password['password'], "user_id" => $email));
             return true;
         }
         return false;
@@ -166,6 +167,8 @@ class Account_model extends CI_Model {
             $ret = true;
         }
         
+        //$ret = false;
+
         return $ret;
     }
     

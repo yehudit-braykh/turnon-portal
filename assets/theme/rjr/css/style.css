@@ -123,7 +123,7 @@ h2 a { font-weight:bold; }
 
 /*images titles etc,...*/
 
-h3 { margin:0 0; font-size:14px; font-weight:normal; color:#fff; text-transform:none; line-height:20px; padding:5px 0 10px; }
+/*h3 { margin:0 0; font-size:14px; font-weight:normal; color:#fff; text-transform:none; line-height:20px; padding:5px 0 10px; }*/
 
 h3 span { color:#595959; text-decoration:none; font-weight:normal; margin:0; padding:0; font-size:10px; display:block; }
 
@@ -877,7 +877,7 @@ a.more { color:#8b8b8e; font-weight: normal; text-decoration: none; }
 
 .maps_view{ width:100%;}
 
-.col4 a img,.col3 a img{ max-width:100%; height:auto;}
+.col4 a img,.col3 a img{ width:220px; height:124px;}
 
 .col4.small h2 a{ font-size:17px !important;}
 
@@ -1037,6 +1037,15 @@ img{}
     color: #fff;
 }
 
+#save_data_preloader{
+    background: url(../preloader/images/preloader-section.gif) no-repeat center center;
+    background-size: 16px 16px;
+    background-position: 0px 2px;
+    text-align: left;
+    margin-top: 15px;
+    padding-left: 21px;
+    width: 250px;
+}
 
 .preloader_section {
     background: url(../preloader/images/preloader-section.gif) no-repeat center center;
@@ -2032,7 +2041,7 @@ select:focus, select:active {
     color: #7f00bf; 
     text-align: left; 
     font-family: "PT Sans", "Lato", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
-    margin: 10px 0px 0px 0px;
+    margin: 10px 0px 30px 0px;
     font-size: 30px;
     font-weight: normal;
     text-transform: uppercase;
@@ -2048,7 +2057,7 @@ select:focus, select:active {
     margin: 0px 0px 0px 0px;
 }
 .registration_container{ 
-    width: 960px;
+    width: 100%;
 
 }
 
@@ -2060,7 +2069,8 @@ select:focus, select:active {
 }
 
 #subscription_form{
-    margin: 0;
+
+    margin: -30px 0px 0px 30px;
     padding: 6px 0;
     text-transform: none;
     float: left;
@@ -2068,10 +2078,14 @@ select:focus, select:active {
     color: #000;
 }
 
-.registration_container_payment{
-    width: 960px;
-    height: 610px;
-    overflow: hidden;
+#subscribe-form{
+    width: 600px;
+    margin: -30px 0px 0px 30px;
+    padding: 6px 0;
+    text-transform: none;
+    float: left;
+    font-weight: normal;
+    color: #000;
 }
 
 .registration_cvv_info {
@@ -2086,10 +2100,23 @@ select:focus, select:active {
     height: 545px;
 }
 .registration_pricing {
-    width: 200px;
+    width: 22%;
     float: left;
     margin-right: 20px;
     cursor: pointer;
+}
+
+.most-popular{
+    border-radius: 5px;
+    border-width: 3px;
+    box-shadow: 20px 0 10px -10px rgba(0,0,0,.15),-20px 0 10px -10px rgba(0,0,0,.15);
+    moz-border-radius: 5px;
+    moz-box-shadow: 20px 0 10px -10px rgba(0,0,0,.15),-20px 0 10px -10px rgba(0,0,0,.15);
+    padding: 30px 20px;
+    top: -13px;
+    webkit-border-radius: 5px;
+    webkit-box-shadow: 20px 0 10px -10px rgba(0,0,0,.15),-20px 0 10px -10px rgba(0,0,0,.15);
+    z-index: 2;
 }
 
 .pricing_content .registration_pricing{
@@ -2171,6 +2198,7 @@ select:focus, select:active {
     font-weight: normal;
     color:rgb(127,0,191) !important;
     text-align:center;
+    display: none;
 }
 
 .form_notes {
@@ -2182,53 +2210,65 @@ select:focus, select:active {
     width: 100%;
 }
 
-.registration_container form *, .registration_container_payment form * { color:#000; }
+.registration_container form *, .payment_content form * { color:#000; }
 
-.registration_container form ol, .registration_container_payment form ol { margin:0; padding:0; list-style:none; }
+.registration_container form ol, .payment_content form ol { margin:0; padding:0; list-style:none; }
 
-.registration_container form li, .registration_container_payment form li { margin:0; padding:0; background:none; border:none; display:block; clear:both; }
+.registration_container form li, .payment_content form li { margin:0; padding:0; background:none; border:none; display:block; clear:both; }
 
-.registration_container form li.buttons,.registration_container_payment form li.buttons { margin:5px 0 5px 0; clear:both; }
+.registration_container form li.buttons,.payment_content form li.buttons { margin:5px 0 5px 0; clear:both; }
 
-.registration_container form, .registration_container_payment form { margin:0; padding:6px 0; text-transform:none; float:left; font-weight:normal; color:#000; }
+.registration_container form, .payment_content form { margin:0; padding:6px 0; text-transform:none; font-weight:normal; color:#000; float: left}
 
-.registration_container form label, .registration_container_payment form label { float:left; padding-top: 15px; }
+.registration_container form label, .payment_content form label { float:left; padding-top: 15px; }
 
-.registration_container form label .ness, .registration_container_payment form label .ness { color:#000; }
+.registration_container form label .ness, .payment_content form label .ness { color:#000; }
 
-.registration_container form label span, .registration_container_payment form label span { color:#000; }
+.registration_container form label span, .payment_content form label span { color:#000; }
 
-.registration_container form input.text, .registration_container_payment form input.text { width:250px; border:1px solid #999; padding:5px 2px; height:16px; background:#fff; float:left; font-size:12px; color:#000; clear: both; }
+.registration_container form input.text, .payment_content form input.text { width:250px; border:1px solid #999; padding:5px 2px; height:16px; background:#fff; float:left; font-size:12px; color:#000; clear: both; }
 
-.registration_container form select, .registration_container_payment form select { width:250px; float:left; font-size:12px; color:#000; clear: both; }
+.registration_container form select, .payment_content form select { width:250px; float:left; font-size:12px; color:#000; clear: both; }
 
-.registration_container form textarea, .registration_container_payment form textarea { width:75%; border:1px solid #999; margin:4px 0; padding:5px 2px; background:#fff; float:left; font-size:12px; color:#000; clear: both; }
+.registration_container form textarea, .payment_content form textarea { width:75%; border:1px solid #999; margin:4px 0; padding:5px 2px; background:#fff; float:left; font-size:12px; color:#000; clear: both; }
 
-.registration_container form li.buttons input, .registration_container_payment form li.buttons input { padding:0 0 3px 0; margin:10px 0 0 0px; border:0; color:#FFF; float:left; }
+.registration_container form li.buttons input, .payment_content form li.buttons input { padding:0 0 3px 0; margin:10px 0 0 0px; border:0; color:#FFF; float:left; }
 
-.other-op-btn, .subscriber_button{
+.other-op-btn, .subscriber_button, #btn_next, #btn_skip{
     height: 35px;
-    width: 110px;
     padding:0 0 3px 0; 
-    margin:10px 10px 0 0px; 
     border:0; 
     color:#FFF!important; 
     float:left;
     background-color: #6B00B1;
     text-transform: uppercase;
-    cursor: pointer; 
+    cursor: pointer;
+    margin-right: 10px;
 }
 
-.btn-skip{
-    height: 35px;
+.other-op-btn, .subscriber_button{
+    width: 110px;
+}
+
+#btn_next{
+    width: 80px;
+}
+
+#btn_skip{
     width: 140px;
+}
+
+#main-skip{
+    width: 140px;
+    margin: 30px auto!important;
+    height: 35px;
     padding:0 0 3px 0; 
-    margin:40px; 
     border:0; 
     color:#FFF!important; 
     background-color: #6B00B1;
     text-transform: uppercase;
     cursor: pointer;
+
 }
 
 .common_btn{
@@ -2256,7 +2296,7 @@ select:focus, select:active {
 
 #fb_container{
     float: left;
-    width: 40%;
+    width: 49%;
     height: 340px;
     border-left: 1px solid #ccc;
     margin-left: 30px;
@@ -2481,9 +2521,9 @@ select:focus, select:active {
     margin-left: 10px;
 }
 
-.about{
-    margin:0;
-    padding:35px 0 10px; 
+.about {
+    margin: 0;
+    padding: 35px 20px 10px 20px; 
 }
 
 .about h1{
@@ -2496,13 +2536,17 @@ select:focus, select:active {
 }
 
 .terms{
-    margin:0;
-    padding:35px 0 10px; 
+    margin: 0;
+    padding: 35px 20px 10px 20px; 
 }
 
 .terms h1{
     color: rgb(127,0,191);
     text-align:left; 
+}
+
+.terms h2{
+    color: rgb(127,0,191);
 }
 
 .terms p{
@@ -2515,10 +2559,17 @@ select:focus, select:active {
     margin-bottom: 15px;
 }
 
+.subt {
+    font-size: 14px;
+    margin: 0!important;
+    color: rgb(127,0,191);
+    font-weight: bold;
+}
+
 .faqs{
     font-size: 14px !important;
-    margin:0;
-    padding:35px 0 40px; 
+    margin: 0;
+    padding: 35px 20px 10px 20px; 
 }
 
 .faqs h1{
@@ -2539,7 +2590,7 @@ select:focus, select:active {
     padding-top: 25px;
 }
 
-.faqs a{
+.faqs a, .terms a{
     color: #0000FF !important;
 }
 
@@ -2629,6 +2680,13 @@ select:focus, select:active {
     padding: 6px 8px;
 }
 
+ul.ordered_list {
+    list-style: disc outside none;
+}
+
+ul.ordered_list li {
+    list-style: disc outside none;
+}
 
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
     /* IE10+ CSS styles go here */
@@ -2687,92 +2745,7 @@ select:focus, select:active {
                                 margin-top: 30px;
                             }
 
-                            .registration_content {
-                                width: 100%;
-                                margin: 40px 0px 0px 0px;
-                                position: relative;
-                                min-height: 400px;
-                            }
 
-                            .registration_title {
-                                margin: 10px 0px 0px 33px;
-                                line-height: 30px;
-                            }
-
-                            .registration_subtitle {
-                                margin: 0px 0px 0px 33px;
-                            }
-
-                            .registration_title_payment {
-                                margin: 10px 0px 0px 33px;
-                                line-height: 30px;
-                            }
-
-                            .registration_subtitle_payment {
-                                margin: 0px 0px 0px 33px;
-                            }
-
-                            .registration_container {
-                                width: 100%;
-                                overflow: hidden;
-                                padding-left: 0;
-                            }
-
-                            .registration_container_payment {
-                                width: 100%;
-                                overflow: hidden;
-                            }
-
-                            .registration_pricing {
-                                width: 100%;
-                                position:static;
-                            }
-
-                            .dc_pricingtable04 {
-                                width: 200px !important;
-                            }
-
-                            .dc_pricingtable04 ul.price-box {
-                                margin-left:0 !important;
-                            }
-
-                            .registration_cvv_info {
-                                width: 175px;
-                                height: 116px;
-                                position: absolute;
-                                left: 130px;
-                                top: 800px;
-                            }
-
-                            .registration_container form {
-                                margin: 0;
-                                padding: 6px 0;
-                                text-transform: none;
-                                font-weight: normal;
-                                color: #000;
-                                width: 100%;
-                            }
-
-                            .registration_container_payment form {
-                                margin: 0;
-                                padding: 6px 0;
-                                text-transform: none;
-                                font-weight: normal;
-                                color: #000;
-                                width: 100%;
-                            }
-
-                            .registration_container form ol {
-                                margin: 0px 0px 0px 33px;
-                                padding: 0;
-                                list-style: none;
-                            }
-
-                            .registration_container_payment form ol {
-                                margin: 0px 0px 0px 33px;
-                                padding: 0;
-                                list-style: none;
-                            }
 
                             .rwd-break {
                                 display:block;
@@ -2831,91 +2804,7 @@ select:focus, select:active {
                                                      margin-top: 30px;
                                                  }
 
-                                                 .registration_content {
-                                                     width: 100%;
-                                                     margin: 40px 0px 0px 0px;
-                                                     position: relative;
-                                                     min-height: 400px;
-                                                 }
 
-                                                 .registration_title {
-                                                     margin: 10px 0px 0px 50px;
-                                                     line-height: 30px;
-                                                 }
-
-                                                 .registration_subtitle {
-                                                     margin: 0px 0px 0px 50px;
-                                                 }
-
-                                                 .registration_title_payment {
-                                                     margin: 10px 0px 0px 60px;
-                                                     line-height: 30px;
-                                                 }
-
-                                                 .registration_subtitle_payment {
-                                                     margin: 0px 0px 0px 60px;
-                                                 }
-
-                                                 .registration_container {
-                                                     width: 100%;
-                                                     overflow: hidden;
-                                                 }
-
-                                                 .registration_container_payment {
-                                                     width: 100%;
-                                                     overflow: hidden;
-                                                 }
-
-                                                 .registration_pricing {
-                                                     width: 100%;
-                                                     position:static;
-                                                 }
-
-                                                 .dc_pricingtable04 {
-                                                     width: 200px !important;
-                                                 }
-
-                                                 .dc_pricingtable04 ul.price-box {
-                                                     margin-left:0 !important;
-                                                 }
-
-                                                 .registration_cvv_info {
-                                                     width: 175px;
-                                                     height: 116px;
-                                                     position: absolute;
-                                                     left: 190px;
-                                                     top: 800px;
-                                                 }
-
-                                                 .registration_container form {
-                                                     margin: 0;
-                                                     padding: 6px 0;
-                                                     text-transform: none;
-                                                     font-weight: normal;
-                                                     color: #000;
-                                                     width: 100%;
-                                                 }
-
-                                                 .registration_container_payment form {
-                                                     margin: 0;
-                                                     padding: 6px 0;
-                                                     text-transform: none;
-                                                     font-weight: normal;
-                                                     color: #000;
-                                                     width: 100%;
-                                                 }
-
-                                                 .registration_container form ol {
-                                                     margin: 0px 0px 0px 50px;
-                                                     padding: 0;
-                                                     list-style: none;
-                                                 }
-
-                                                 .registration_container_payment form ol {
-                                                     margin: 0px 0px 0px 50px;
-                                                     padding: 0;
-                                                     list-style: none;
-                                                 }
 
                                                  .rwd-break {
                                                      display:block;
@@ -2963,92 +2852,6 @@ select:focus, select:active {
                                                  .account_content {
                                                      width: 100%;
                                                      margin-top: 30px;
-                                                 }
-
-                                                 .registration_content {
-                                                     width: 100%;
-                                                     margin: 40px 0px 0px 0px;
-                                                     position: relative;
-                                                     min-height: 400px;
-                                                 }
-
-                                                 .registration_title {
-                                                     margin: 10px 0px 0px 60px;
-                                                     line-height: 30px;
-                                                 }
-
-                                                 .registration_subtitle {
-                                                     margin: 0px 0px 0px 60px;
-                                                 }
-
-                                                 .registration_title_payment {
-                                                     margin: 10px 0px 0px 80px;
-                                                     line-height: 30px;
-                                                 }
-
-                                                 .registration_subtitle_payment {
-                                                     margin: 0px 0px 0px 80px;
-                                                 }
-
-                                                 .registration_container {
-                                                     width: 100%;
-                                                     overflow: hidden;
-                                                 }
-
-                                                 .registration_container_payment {
-                                                     width: 100%;
-                                                     overflow: hidden;
-                                                 }
-
-                                                 .registration_pricing {
-                                                     width: 100%;
-                                                     position:static;
-                                                 }
-
-                                                 .dc_pricingtable04 {
-                                                     width: 200px !important;
-                                                 }
-
-                                                 .dc_pricingtable04 ul.price-box {
-                                                     margin-left:0 !important;
-                                                 }
-
-                                                 .registration_cvv_info {
-                                                     width: 175px;
-                                                     height: 116px;
-                                                     position: absolute;
-                                                     left: 190px;
-                                                     top: 800px;
-                                                 }
-
-                                                 .registration_container form {
-                                                     margin: 0;
-                                                     padding: 6px 0;
-                                                     text-transform: none;
-                                                     font-weight: normal;
-                                                     color: #000;
-                                                     width: 100%;
-                                                 }
-
-                                                 .registration_container_payment form {
-                                                     margin: 0;
-                                                     padding: 6px 0;
-                                                     text-transform: none;
-                                                     font-weight: normal;
-                                                     color: #000;
-                                                     width: 100%;
-                                                 }
-
-                                                 .registration_container form ol {
-                                                     margin: 0px 0px 0px 60px;
-                                                     padding: 0;
-                                                     list-style: none;
-                                                 }
-
-                                                 .registration_container_payment form ol {
-                                                     margin: 0px 0px 0px 60px;
-                                                     padding: 0;
-                                                     list-style: none;
                                                  }
 
                                                  .rwd-break {
@@ -3108,91 +2911,7 @@ select:focus, select:active {
                                                      margin-top: 30px;
                                                  }
 
-                                                 .registration_content {
-                                                     width: 100%;
-                                                     margin: 40px 0px 0px 0px;
-                                                     position: relative;
-                                                     min-height: 400px;
-                                                 }
 
-                                                 .registration_title {
-                                                     margin: 10px 0px 0px 70px;
-                                                     line-height: 30px;
-                                                 }
-
-                                                 .registration_subtitle {
-                                                     margin: 0px 0px 0px 70px;
-                                                 }
-
-                                                 .registration_title_payment {
-                                                     margin: 10px 0px 0px 90px;
-                                                     line-height: 30px;
-                                                 }
-
-                                                 .registration_subtitle_payment {
-                                                     margin: 0px 0px 0px 90px;
-                                                 }
-
-                                                 .registration_container {
-                                                     width: 100%;
-                                                     overflow: hidden;
-                                                 }
-
-                                                 .registration_container_payment {
-                                                     width: 100%;
-                                                     overflow: hidden;
-                                                 }
-
-                                                 .registration_pricing {
-                                                     width: 100%;
-                                                     position:static;
-                                                 }
-
-                                                 .dc_pricingtable04 {
-                                                     width: 200px !important;
-                                                 }
-
-                                                 .dc_pricingtable04 ul.price-box {
-                                                     margin-left:0 !important;
-                                                 }
-
-                                                 .registration_cvv_info {
-                                                     width: 175px;
-                                                     height: 116px;
-                                                     position: absolute;
-                                                     left: 210px;
-                                                     top: 800px;
-                                                 }
-
-                                                 .registration_container form {
-                                                     margin: 0;
-                                                     padding: 6px 0;
-                                                     text-transform: none;
-                                                     font-weight: normal;
-                                                     color: #000;
-                                                     width: 100%;
-                                                 }
-
-                                                 .registration_container_payment form {
-                                                     margin: 0;
-                                                     padding: 6px 0;
-                                                     text-transform: none;
-                                                     font-weight: normal;
-                                                     color: #000;
-                                                     width: 100%;
-                                                 }
-
-                                                 .registration_container form ol {
-                                                     margin: 0px 0px 0px 70px;
-                                                     padding: 0;
-                                                     list-style: none;
-                                                 }
-
-                                                 .registration_container_payment form ol {
-                                                     margin: 0px 0px 0px 70px;
-                                                     padding: 0;
-                                                     list-style: none;
-                                                 }
 
                                                  .rwd-break {
                                                      display:block;
@@ -3208,7 +2927,7 @@ select:focus, select:active {
                                                      width: 270px;
                                                  }
 
-                                                 .registration_container_payment form input.text {
+                                                 .payment_content form input.text {
                                                      width: 270px;
                                                  }
 
@@ -3251,91 +2970,7 @@ select:focus, select:active {
                                                      margin-top: 30px;
                                                  }
 
-                                                 .registration_content {
-                                                     width: 100%;
-                                                     margin: 40px 0px 0px 0px;
-                                                     position: relative;
-                                                     min-height: 400px;
-                                                 }
 
-                                                 .registration_title {
-                                                     margin: 10px 0px 0px 100px;
-                                                     line-height: 30px;
-                                                 }
-
-                                                 .registration_subtitle {
-                                                     margin: 0px 0px 0px 100px;
-                                                 }
-
-                                                 .registration_title_payment {
-                                                     margin: 10px 0px 0px 100px;
-                                                     line-height: 30px;
-                                                 }
-
-                                                 .registration_subtitle_payment {
-                                                     margin: 0px 0px 0px 100px;
-                                                 }
-
-                                                 .registration_container {
-                                                     width: 100%;
-                                                     overflow: hidden;
-                                                 }
-
-                                                 .registration_container_payment {
-                                                     width: 100%;
-                                                     overflow: hidden;
-                                                 }
-
-                                                 .registration_pricing {
-                                                     width: 100%;
-                                                     position:static;
-                                                 }
-
-                                                 .dc_pricingtable04 {
-                                                     width: 200px !important;
-                                                 }
-
-                                                 .dc_pricingtable04 ul.price-box {
-                                                     margin-left:0 !important;
-                                                 }
-
-                                                 .registration_cvv_info {
-                                                     width: 175px;
-                                                     height: 116px;
-                                                     position: absolute;
-                                                     left: 250px;
-                                                     top: 800px;
-                                                 }
-
-                                                 .registration_container form {
-                                                     margin: 0;
-                                                     padding: 6px 0;
-                                                     text-transform: none;
-                                                     font-weight: normal;
-                                                     color: #000;
-                                                     width: 100%;
-                                                 }
-
-                                                 .registration_container_payment form {
-                                                     margin: 0;
-                                                     padding: 6px 0;
-                                                     text-transform: none;
-                                                     font-weight: normal;
-                                                     color: #000;
-                                                     width: 100%;
-                                                 }
-
-                                                 .registration_container form ol {
-                                                     margin: 0px 0px 0px 100px;
-                                                     padding: 0;
-                                                     list-style: none;
-                                                 }
-
-                                                 .registration_container_payment form ol {
-                                                     margin: 0px 0px 0px 100px;
-                                                     padding: 0;
-                                                     list-style: none;
-                                                 }
 
                                                  .rwd-break {
                                                      display:block;
@@ -3351,7 +2986,7 @@ select:focus, select:active {
                                                      width: 270px;
                                                  }
 
-                                                 .registration_container_payment form input.text {
+                                                 .payment_content form input.text {
                                                      width: 270px;
                                                  }
 
@@ -3396,106 +3031,6 @@ select:focus, select:active {
                                                      margin-top: 30px;
                                                  }
 
-                                                 .registration_content {
-                                                     width: 100%;
-                                                     margin: 40px 0px 0px 0px;
-                                                     position: relative;
-                                                     min-height: 400px;
-                                                 }
-
-                                                 .registration_title {
-                                                     margin: 10px 0px 0px 120px;
-                                                     line-height: 30px;
-                                                 }
-
-                                                 .registration_subtitle {
-                                                     margin: 0px 0px 0px 120px;
-                                                 }
-
-                                                 .registration_title_payment {
-                                                     margin: 10px 0px 0px 80px;
-                                                     line-height: 30px;
-                                                 }
-
-                                                 .registration_subtitle_payment {
-                                                     margin: 0px 0px 0px 80px;
-                                                 }
-
-                                                 .registration_container {
-                                                     width: 100%;
-                                                     overflow: hidden;
-                                                 }
-
-                                                 .registration_container_payment {
-                                                     width: 100%;
-                                                     overflow: hidden;
-                                                 }
-
-                                                 .registration_pricing {
-                                                     width: 100%;
-                                                     position:static;
-                                                 }
-
-                                                 .dc_pricingtable04 {
-                                                     width: 200px !important;
-                                                 }
-
-                                                 .dc_pricingtable04 ul.price-box {
-                                                     margin-left:0 !important;
-                                                 }
-
-                                                 .registration_cvv_info {
-                                                     width: 175px;
-                                                     height: 116px;
-                                                     position: absolute;
-                                                     left: 310px;
-                                                     top: 747px;
-                                                 }
-
-                                                 .registration_container form {
-                                                     margin: 0;
-                                                     padding: 6px 0;
-                                                     text-transform: none;
-                                                     font-weight: normal;
-                                                     color: #000;
-                                                     width: 100%;
-                                                 }
-
-                                                 .registration_container_payment form {
-                                                     margin: 0;
-                                                     padding: 6px 0;
-                                                     text-transform: none;
-                                                     font-weight: normal;
-                                                     color: #000;
-                                                     width: 100%;
-                                                 }
-
-                                                 .registration_container form ol {
-                                                     margin: 0px 0px 0px 120px;
-                                                     padding: 0;
-                                                     list-style: none;
-                                                 }
-
-                                                 .registration_container_payment form ol {
-                                                     margin: 0px 0px 0px 120px;
-                                                     padding: 0;
-                                                     list-style: none;
-                                                 }
-
-
-                                                 .wrapper_form_subtitle {
-                                                     width:100%;
-                                                     height:250px;
-                                                     margin: 0 auto;
-                                                 }
-
-                                                 .registration_container form input.text {
-                                                     width: 330px;
-                                                 }
-
-                                                 .registration_container_payment form input.text {
-                                                     width: 330px;
-                                                 }
 
                                                  .footer {
                                                      display: none;
@@ -3544,105 +3079,7 @@ select:focus, select:active {
                                                      margin-top: 30px;
                                                  }
 
-                                                 .registration_content {
-                                                     width: 100%;
-                                                     margin: 40px 0px 0px 0px;
-                                                     position: relative;
-                                                     min-height: 400px;
-                                                 }
 
-                                                 .registration_title {
-                                                     margin: 10px 0px 0px 135px;
-                                                     line-height: 30px;
-                                                 }
-
-                                                 .registration_subtitle {
-                                                     margin: 0px 0px 0px 135px;
-                                                 }
-
-                                                 .registration_title_payment {
-                                                     margin: 10px 0px 0px 80px;
-                                                     line-height: 30px;
-                                                 }
-
-                                                 .registration_subtitle_payment {
-                                                     margin: 0px 0px 0px 80px;
-                                                 }
-
-                                                 .registration_container {
-                                                     width: 100%;
-                                                     overflow: hidden;
-                                                 }
-
-                                                 .registration_container_payment {
-                                                     width: 100%;
-                                                     overflow: hidden;
-                                                 }
-
-                                                 .registration_pricing {
-                                                     width: 100%;
-                                                     position:static;
-                                                 }
-
-                                                 .dc_pricingtable04 {
-                                                     width: 200px !important;
-                                                 }
-
-                                                 .dc_pricingtable04 ul.price-box {
-                                                     margin-left:0 !important;
-                                                 }
-
-                                                 .registration_cvv_info {
-                                                     width: 175px;
-                                                     height: 116px;
-                                                     position: absolute;
-                                                     left: 310px;
-                                                     top: 747px;
-                                                 }
-
-                                                 .registration_container form {
-                                                     margin: 0;
-                                                     padding: 6px 0;
-                                                     text-transform: none;
-                                                     font-weight: normal;
-                                                     color: #000;
-                                                     width: 100%;
-                                                 }
-
-                                                 .registration_container_payment form {
-                                                     margin: 0;
-                                                     padding: 6px 0;
-                                                     text-transform: none;
-                                                     font-weight: normal;
-                                                     color: #000;
-                                                     width: 100%;
-                                                 }
-
-                                                 .registration_container form ol {
-                                                     margin: 0px 0px 0px 135px;
-                                                     padding: 0;
-                                                     list-style: none;
-                                                 }
-
-                                                 .registration_container_payment form ol {
-                                                     margin: 0px 0px 0px 135px;
-                                                     padding: 0;
-                                                     list-style: none;
-                                                 }
-
-                                                 .wrapper_form_subtitle {
-                                                     width:100%;
-                                                     height:250px;
-                                                     margin: 0 auto;
-                                                 }
-
-                                                 .registration_container form input.text {
-                                                     width: 330px;
-                                                 }
-
-                                                 .registration_container_payment form input.text {
-                                                     width: 330px;
-                                                 }
 
                                                  .footer {
                                                      display: none;
@@ -3684,105 +3121,7 @@ select:focus, select:active {
                                                      margin-top: 30px;
                                                  }
 
-                                                 .registration_content {
-                                                     width: 100%;
-                                                     margin: 40px 0px 0px 0px;
-                                                     position: relative;
-                                                     min-height: 400px;
-                                                 }
 
-                                                 .registration_title {
-                                                     margin: 10px 0px 0px 140px;
-                                                     line-height: 30px;
-                                                 }
-
-                                                 .registration_subtitle {
-                                                     margin: 0px 0px 0px 140px;
-                                                 }
-
-                                                 .registration_title_payment {
-                                                     margin: 10px 0px 0px 110px;
-                                                     line-height: 30px;
-                                                 }
-
-                                                 .registration_subtitle_payment {
-                                                     margin: 0px 0px 0px 110px;
-                                                 }
-
-                                                 .registration_container {
-                                                     width: 100%;
-                                                     overflow: hidden;
-                                                 }
-
-                                                 .registration_container_payment {
-                                                     width: 100%;
-                                                     overflow: hidden;
-                                                 }
-
-                                                 .registration_pricing {
-                                                     width: 100%;
-                                                     position:static;
-                                                 }
-
-                                                 .dc_pricingtable04 {
-                                                     width: 200px !important;
-                                                 }
-
-                                                 .dc_pricingtable04 ul.price-box {
-                                                     margin-left:0 !important;
-                                                 }
-
-                                                 .registration_cvv_info {
-                                                     width: 175px;
-                                                     height: 116px;
-                                                     position: absolute;
-                                                     left: 310px;
-                                                     top: 747px;
-                                                 }
-
-                                                 .registration_container form {
-                                                     margin: 0;
-                                                     padding: 6px 0;
-                                                     text-transform: none;
-                                                     font-weight: normal;
-                                                     color: #000;
-                                                     width: 100%;
-                                                 }
-
-                                                 .registration_container_payment form {
-                                                     margin: 0;
-                                                     padding: 6px 0;
-                                                     text-transform: none;
-                                                     font-weight: normal;
-                                                     color: #000;
-                                                     width: 100%;
-                                                 }
-
-                                                 .registration_container form ol {
-                                                     margin: 0px 0px 0px 140px;
-                                                     padding: 0;
-                                                     list-style: none;
-                                                 }
-
-                                                 .registration_container_payment form ol {
-                                                     margin: 0px 0px 0px 140px;
-                                                     padding: 0;
-                                                     list-style: none;
-                                                 }
-
-                                                 .wrapper_form_subtitle {
-                                                     width:100%;
-                                                     height:250px;
-                                                     margin: 0 auto;
-                                                 }
-
-                                                 .registration_container form input.text {
-                                                     width: 370px;
-                                                 }
-
-                                                 .registration_container_payment form input.text {
-                                                     width: 370px;
-                                                 }
 
                                                  .footer {
                                                      display: none;
@@ -3824,105 +3163,6 @@ select:focus, select:active {
                                                      margin-top: 30px;
                                                  }
 
-                                                 .registration_content {
-                                                     width: 100%;
-                                                     margin: 40px 0px 0px 0px;
-                                                     position: relative;
-                                                     min-height: 400px;
-                                                 }
-
-                                                 .registration_title {
-                                                     margin: 10px 0px 0px 155px;
-                                                     line-height: 30px;
-                                                 }
-
-                                                 .registration_subtitle {
-                                                     margin: 0px 0px 0px 155px;
-                                                 }
-
-                                                 .registration_title_payment {
-                                                     margin: 10px 0px 0px 140px;
-                                                     line-height: 30px;
-                                                 }
-
-                                                 .registration_subtitle_payment {
-                                                     margin: 0px 0px 0px 140px;
-                                                 }
-
-                                                 .registration_container {
-                                                     width: 100%;
-                                                     overflow: hidden;
-                                                 }
-
-                                                 .registration_container_payment {
-                                                     width: 100%;
-                                                     overflow: hidden;
-                                                 }
-
-                                                 .registration_pricing {
-                                                     width: 100%;
-                                                     position:static;
-                                                 }
-
-                                                 .dc_pricingtable04 {
-                                                     width: 200px !important;
-                                                 }
-
-                                                 .dc_pricingtable04 ul.price-box {
-                                                     margin-left:0 !important;
-                                                 }
-
-                                                 .registration_cvv_info {
-                                                     width: 175px;
-                                                     height: 116px;
-                                                     position: absolute;
-                                                     left: 310px;
-                                                     top: 747px;
-                                                 }
-
-                                                 .registration_container form {
-                                                     margin: 0;
-                                                     padding: 6px 0;
-                                                     text-transform: none;
-                                                     font-weight: normal;
-                                                     color: #000;
-                                                     width: 100%;
-                                                 }
-
-                                                 .registration_container_payment form {
-                                                     margin: 0;
-                                                     padding: 6px 0;
-                                                     text-transform: none;
-                                                     font-weight: normal;
-                                                     color: #000;
-                                                     width: 100%;
-                                                 }
-
-                                                 .registration_container form ol {
-                                                     margin: 0px 0px 0px 155px;
-                                                     padding: 0;
-                                                     list-style: none;
-                                                 }
-
-                                                 .registration_container_payment form ol {
-                                                     margin: 0px 0px 0px 155px;
-                                                     padding: 0;
-                                                     list-style: none;
-                                                 }
-
-                                                 .wrapper_form_subtitle {
-                                                     width:100%;
-                                                     height:250px;
-                                                     margin: 0 auto;
-                                                 }
-
-                                                 .registration_container form input.text {
-                                                     width: 370px;
-                                                 }
-
-                                                 .registration_container_payment form input.text {
-                                                     width: 370px;
-                                                 }
 
                                                  .footer {
                                                      display: none;
@@ -3933,6 +3173,14 @@ select:focus, select:active {
                                                      float: none; 
                                                      margin-right: 0px; 
                                                  }
+
+}
+
+@media (max-width: 770px){
+    #tab2 .registration_container{
+        height: auto;
+    }
+
 
 }
 
@@ -3948,115 +3196,12 @@ select:focus, select:active {
                                                      margin-top: 30px;
                                                  }
 
-                                                 .registration_content {
-                                                     width: 100%;
-                                                     margin: 40px 0px 0px 0px;
-                                                     position: relative;
-                                                     min-height: 400px;
-                                                 }
 
-                                                 .registration_title {
-                                                     margin: 10px 0px 0px 180px;
-                                                     line-height: 30px;
-                                                 }
-
-                                                 .registration_subtitle {
-                                                     margin: 0px 0px 0px 180px;
-                                                 }
-
-                                                 .registration_title_payment {
-                                                     margin: 10px 0px 0px 155px;
-                                                     line-height: 30px;
-                                                 }
-
-                                                 .registration_subtitle_payment {
-                                                     margin: 0px 0px 0px 155px;
-                                                 }
-
-                                                 .registration_container {
-                                                     width: 100%;
-                                                     overflow: hidden;
-                                                 }
-
-                                                 .registration_container_payment {
-                                                     width: 100%;
-                                                     overflow: hidden;
-                                                 }
-
-                                                 .registration_pricing {
-                                                     width: 100%;
-                                                     position:static;
-                                                 }
-
-                                                 .dc_pricingtable04 {
-                                                     width: 200px !important;
-                                                 }
-
-                                                 .dc_pricingtable04 ul.price-box {
-                                                     margin-left:0 !important;
-                                                 }
-
-                                                 .registration_cvv_info {
-                                                     width: 175px;
-                                                     height: 116px;
-                                                     position: absolute;
-                                                     left: 310px;
-                                                     top: 747px;
-                                                 }
-
-                                                 .registration_container form {
-                                                     margin: 0;
-                                                     padding: 6px 0;
-                                                     text-transform: none;
-                                                     font-weight: normal;
-                                                     color: #000;
-                                                     width: 100%;
-                                                 }
-
-                                                 .registration_container_payment form {
-                                                     margin: 0;
-                                                     padding: 6px 0;
-                                                     text-transform: none;
-                                                     font-weight: normal;
-                                                     color: #000;
-                                                     width: 100%;
-                                                 }
-
-                                                 .registration_container form ol {
-                                                     margin: 0px 0px 0px 180px;
-                                                     padding: 0;
-                                                     list-style: none;
-                                                 }
-
-                                                 .registration_container_payment form ol {
-                                                     margin: 0px 0px 0px 180px;
-                                                     padding: 0;
-                                                     list-style: none;
-                                                 }
-
-                                                 .wrapper_form_subtitle {
-                                                     width:100%;
-                                                     height:250px;
-                                                     margin: 0 auto;
-                                                 }
-
-                                                 .registration_container form input.text {
-                                                     width: 370px;
-                                                 }
-
-                                                 .registration_container_payment form input.text {
-                                                     width: 370px;
-                                                 }
 
                                                  .footer {
                                                      display: none;
                                                  } 
 
-                                                 .pricing_content .registration_pricing {
-                                                     position: initial;
-                                                     float: none; 
-                                                     margin-right: 0px; 
-                                                 }
 
 }
 
@@ -4079,110 +3224,23 @@ select:focus, select:active {
                                                      min-height: 400px;
                                                  }
 
-                                                 .registration_title {
-                                                     margin: 10px 0px 0px 220px;
-                                                     line-height: 30px;
-                                                 }
 
-                                                 .registration_subtitle {
-                                                     margin: 0px 0px 0px 220px;
-                                                 }
-
-                                                 .registration_title_payment {
-                                                     margin: 10px 0px 0px 155px;
-                                                     line-height: 30px;
-                                                 }
-
-                                                 .registration_subtitle_payment {
-                                                     margin: 0px 0px 0px 155px;
-                                                 }
-
-                                                 .registration_container {
-                                                     width: 100%;
-                                                     overflow: hidden;
-                                                 }
-
-                                                 .registration_container_payment {
-                                                     width: 100%;
-                                                     overflow: hidden;
-                                                 }
-
-                                                 .registration_pricing {
-                                                     width: 100%;
-                                                     position:static;
-                                                 }
-
-                                                 .dc_pricingtable04 {
-                                                     width: 200px !important;
-                                                 }
-
-                                                 .dc_pricingtable04 ul.price-box {
-                                                     margin-left:0 !important;
-                                                 }
-
-                                                 .registration_cvv_info {
-                                                     width: 175px;
-                                                     height: 116px;
-                                                     position: absolute;
-                                                     left: 310px;
-                                                     top: 747px;
-                                                 }
-
-                                                 .registration_container form {
-                                                     margin: 0;
-                                                     padding: 6px 0;
-                                                     text-transform: none;
-                                                     font-weight: normal;
-                                                     color: #000;
-                                                     width: 100%;
-                                                 }
-
-                                                 .registration_container_payment form {
-                                                     margin: 0;
-                                                     padding: 6px 0;
-                                                     text-transform: none;
-                                                     font-weight: normal;
-                                                     color: #000;
-                                                     width: 100%;
-                                                 }
-
-                                                 .registration_container form ol {
-                                                     margin: 0px 0px 0px 220px;
-                                                     padding: 0;
-                                                     list-style: none;
-                                                 }
-
-                                                 .registration_container_payment form ol {
-                                                     margin: 0px 0px 0px 220px;
-                                                     padding: 0;
-                                                     list-style: none;
-                                                 }
-
-                                                 .wrapper_form_subtitle {
-                                                     width:100%;
-                                                     height:250px;
-                                                     margin: 0 auto;
-                                                 }
-
-                                                 .registration_container form input.text {
-                                                     width: 370px;
-                                                 }
-
-                                                 .registration_container_payment form input.text {
-                                                     width: 370px;
-                                                 }
 
                                                  .footer {
                                                      display: none;
                                                  } 
 
 
-                                                 .pricing_content .registration_pricing {
-                                                     position: initial;
-                                                     float: none; 
-                                                     margin-right: 0px; 
-                                                 }
 
+
+}
+
+@media (max-width: 1024px){
+    .registration_container {
+        width: 100%;
+        overflow: hidden;
+        min-height: 600px;
+    }
 }
 
 @media (min-width:1024px) and (max-width:1100px){ //IPad 1, 2, 3, 4, Samsung Galaxy Tablet
@@ -4199,173 +3257,10 @@ select:focus, select:active {
                                                       min-height: 400px;
                                                   }
 
-                                                  .registration_title {
-                                                      width: 265px;
-                                                      margin-left: auto;
-                                                      margin-right: auto;
-                                                      line-height: 30px;
-                                                  }
 
-                                                  .registration_subtitle {
-                                                      width: 265px;
-                                                      margin-left: auto;
-                                                      margin-right: auto;
-                                                  }
-
-                                                  .registration_title_payment {
-                                                      margin: 0px 0px 0px 300px;
-                                                  }
-
-
-                                                  .registration_container {
-                                                      width: 100%;
-                                                      overflow: hidden;
-                                                      min-height: 600px;
-                                                  }
-
-                                                  .registration_subtitle_payment {
-                                                      margin: 0px 0px 0px 300px;
-                                                  }
-
-                                                  .registration_container_payment {
-                                                      width: 100%;
-                                                      overflow: hidden;
-                                                      min-height: 600px;
-                                                  }
-
-                                                  .registration_pricing {
-                                                      position: absolute;
-                                                      width: 200px;
-                                                      left: 620px;
-                                                      top: 50px;
-                                                  }
-
-                                                  .dc_pricingtable04 {
-                                                      width: 200px !important;
-                                                  }
-
-                                                  .dc_pricingtable04 ul.price-box {
-                                                      margin-left:0 !important;
-                                                  }
-
-                                                  .registration_cvv_info {
-                                                      width: 175px;
-                                                      height: 116px;
-                                                      position: absolute;
-                                                      left: 375px;
-                                                      top: 253px;
-                                                  }
-
-                                                  .registration_container form {
-                                                      padding: 6px 0;
-                                                      text-transform: none;
-                                                      font-weight: normal;
-                                                      color: #000;
-                                                      display: block;
-                                                      margin-left: auto;  
-                                                      margin-right: auto;
-                                                      width: 265px;
-                                                      float:none;
-                                                  }
-
-                                                  .registration_container_payment form {
-                                                      padding: 6px 0;
-                                                      float: none;
-                                                      margin: 0px 0px 0px 180px;
-                                                  }
-
-                                                  .registration_container form ol {
-                                                      padding: 0;
-                                                      list-style: none;
-                                                  }
-
-                                                  .registration_container_payment form ol {
-                                                      padding: 0;
-                                                      list-style: none;
-                                                  }
-
-
-                                                  .wrapper_form_subtitle {
-                                                      width:100%;
-                                                      height:520px;
-                                                      margin: 0 auto;
-                                                  }
-
-                                                  .registration_container form input.text {
-                                                      width: 270px;
-                                                  }
-
-                                                  .registration_container_payment form input.text {
-                                                      width: 270px;
-                                                  }
 
 }
 
-@media (min-width:1280px) { // Generic Notebook
-
-                            .content_centered {
-                                width: 960px;
-                                margin: 0 auto;
-                            }
-
-                            .registration_content {
-                                width: 960px;
-                                margin: 0 auto;
-                                position: relative;
-                                min-height: 700px;
-                            }
-
-                            .registration_title_payment {
-                                color: #7f00bf;
-                                text-align: left;
-                                font-family: "PT Sans", "Lato", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
-                                margin: 10px 0px 0px 0px;
-                                font-size: 30px;
-                                font-weight: normal;
-                                text-transform: uppercase;
-                            }
-
-                            .registration_subtitle_payment {
-                                color: #7d7d7d;
-                                text-transform: none;
-                                font-size: 14px;
-                                text-align: left;
-                                font-family: "PT Sans", "Lato", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
-                                margin: 0px 0px 0px 0px
-                            }
-
-                            .registration_container_payment {
-                                width: 100%;
-                                overflow: hidden;
-                                min-height: 600px;
-                            }
-
-                            .registration_container form ol {
-                                padding: 0;
-                                list-style: none;
-                            }
-
-                            .registration_container_payment form ol {
-                                padding: 0;
-                                list-style: none;
-                            }
-
-
-                            .wrapper_form_subtitle {
-                                width:100%;
-                                height:520px;
-                                margin: 0 auto;
-                            }
-
-                            .registration_container form input.text {
-                                width: 270px;
-                            }
-
-                            .registration_container_payment form input.text {
-                                width: 270px;
-                            }
-
-}
 
 @media (min-width: 768px) and (max-width:800px) {
 
@@ -4433,6 +3328,21 @@ select:focus, select:active {
         margin-top: 9px;
     }
 
+    #tab2 .registration_container{
+        height: auto;
+    }
+
+    .other-op-btn, .subscriber_button, #btn_next, #btn_skip{
+        float: none;
+        display: list-item;
+        margin-top: 20px;
+    }
+
+    .form_info{
+        text-align: left;
+        margin-top: 15px;
+    }
+
 }
 
 @media (max-width: 736px){
@@ -4490,4 +3400,11 @@ select:focus, select:active {
         padding-top: 8px;
     }
 
+}
+
+@media (max-width: 680px){
+    #subscription_form, #subscribe-form{
+        margin-top: -10px;
+        width: 600px;
+    }
 }

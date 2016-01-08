@@ -36,8 +36,12 @@
                         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js"></script>
 
                         <!-- DCodes -->
-                        <link rel="stylesheet" type="text/css" href="<?php echo common_asset_url(); ?>css/dc_social_icons.css" />
-                        <link type="text/css" rel="stylesheet" href="<?php echo common_asset_url(); ?>css/dc_pricingtables.css" />
+                        <link rel="stylesheet" type="text/css" href="<?php echo common_asset_url();  ?>css/dc_social_icons.css" />
+                        <link type="text/css" rel="stylesheet" href="<?php echo common_asset_url();  ?>css/dc_pricingtables.css" />
+                        <script type="text/javascript"  href="<?php echo common_asset_url();  ?>js/dc_pricingtables.js"></script>
+
+                      
+
 
                         <!-- BrainTree -->
                         <script type="text/javascript" src="//js.braintreegateway.com/v2/braintree.js"></script>
@@ -51,13 +55,13 @@
 
                         <!-- Styled Combos -->
                         <script type='text/javascript' src="<?php echo common_asset_url(); ?>js/select.js"></script>
-        
+
 
                         <script>
                             $(function () {
 
                                 var tz = jstz.determine();
-                             
+
                                 timezone_offset = tz.name();
 
                                 $('#logo_left').on('click', function (event) {
@@ -71,7 +75,7 @@
                                     window.location.href = '<?php echo base_url(); ?>index.php/live/main';
                                 });
                                 $('#top_menu_account').on('click', function (event) {
-                                    window.location.href = '<?php echo base_url(); ?>index.php/account/my_account';
+                                    window.location.href = '<?php echo base_url(); ?>index.php/account/my_account_ssl';
                                 });
                                 $('#editbox_search').keypress(function (e) {
                                     if (e.which == 13) {
@@ -275,13 +279,13 @@ for ($i = 0; $i < sizeof($vod_categories); $i++) {
                                                     <div id="header_menu">
                                                         <div id="logo_left"></div>
                                                         <div class="top_menu">
-<?php
+                                                            <?php
 // menu highlight config
-$highlight_color = 'rgb(255,0,0)';
-if ($this->config->item('menu_highlight_color') !== FALSE) {
-    $highlight_color = $this->config->item('menu_highlight_color');
-}
-?>
+                                                            $highlight_color = 'rgb(255,0,0)';
+                                                            if ($this->config->item('menu_highlight_color') !== FALSE) {
+                                                                $highlight_color = $this->config->item('menu_highlight_color');
+                                                            }
+                                                            ?>
                                                             <div id="top_menu_vod"     <?php echo ($section == "vod" ? 'style="color:' . $highlight_color . ';"' : ""); ?>>Video on Demand</div>
                                                             <div id="top_menu_live"    <?php echo ($section == "live" ? 'style="color:' . $highlight_color . ';"' : ""); ?>>LIVE</div>
                                                             <div id="top_menu_about"> <a <?php echo ($section == "about_us" ? 'style="color:' . $highlight_color . ';"' : ""); ?> href="<?php echo base_url() . 'index.php/static_content/about_us'; ?>">ABOUT US</a></div>
@@ -296,14 +300,14 @@ if ($this->config->item('menu_highlight_color') !== FALSE) {
                                                                 </span>
                                                             </div>
                                                             <div id="top_menu_account" <?php echo ($section == "account" ? 'style="color:' . $highlight_color . ';"' : ""); ?>>
-<?php
-if (!isset($_SESSION['uvod_user_data']) || !isset($_SESSION['uvod_user_data']->token)) {
-    echo "<div id='signin' style='padding-top:12px;'>LOG IN / REGISTER</div>";
-} else {
-    $logout = base_url() . 'index.php/account/logout';
-    echo "<div class='account_name'><div class='user_name'>" . $_SESSION['uvod_user_data']->firstName . "</div><div class='user-icon'></div></div><div class='link_logout'><div class='lock-icon'></div><a href='" . $logout . "'>Logout</a></div><div class='my_account'>My Account | </div>";
-}
-?>                
+                                                                <?php
+                                                                if (!isset($_SESSION['uvod_user_data']) || !isset($_SESSION['uvod_user_data']->token)) {
+                                                                    echo "<div id='signin' style='padding-top:12px;'>LOG IN / REGISTER</div>";
+                                                                } else {
+                                                                    $logout = base_url() . 'index.php/account/logout_ssl';
+                                                                    echo "<div class='account_name'><div class='user_name'>" . $_SESSION['uvod_user_data']->firstName . "</div><div class='user-icon'></div></div><div class='link_logout'><div class='lock-icon'></div><a href='" . $logout . "'>Logout</a></div><div class='my_account'>My Account | </div>";
+                                                                }
+                                                                ?>                
                                                             </div>
                                                         </div>
                                                         <div id="header_sep"class="header_sep"></div>

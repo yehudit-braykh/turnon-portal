@@ -1,3 +1,4 @@
+
 <script type="text/javascript">
 
     $(function () {
@@ -5,24 +6,28 @@
         $('#tab-container').easytabs();
 
         $('#btn_save').on('click', function (event) {
-
-
+            $(this).hide()
+            $('#save_data_preloader').html('Sending data...');
+            $('#save_data_preloader').show();
             $.ajax({
                 url: "<?php echo base_url(); ?>index.php/account/my_account_save",
                 type: 'POST',
                 dataType: 'json',
                 data: $('#registerform').serialize()
             }).done(function (data) {
-
-                if (data.message == "ok") {
-
-                    $("#info").html("Information saved successfully.");
+                $('#save_data_preloader').hide();
+                $('#btn_save').show();
+                $("#info").show();
+                if (data.status == "ok") {
+                    
+                    $("#info").html("Information saved succesfully.");
                 } else {
-
                     $("#info").html("* " + data.message);
                 }
                 TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-                        TweenLite.to("#info", 1, {delay: 6, alpha: 0});
+                        TweenLite.to("#info", 1, {delay: 6, alpha: 0, onComplete: function () {
+                                $("#info").hide();
+                            }});
                     }});
 
 
@@ -78,53 +83,66 @@ if (isset($clientToken)) {
 ?>
         $('#btn_logout').on('click', function (event) {
             event.preventDefault();
-            $("#registerform").attr("action", "<?php echo base_url(); ?>index.php/account/logout");
+            $("#registerform").attr("action", "<?php echo base_url(); ?>index.php/account/logout_ssl");
             $("#registerform").submit();
         });
 
         $('#btn_change_password').on('click', function (event) {
             event.preventDefault();
+            $(this).hide();
+            $('#change_pass_preloader').html('Saving Password...');
+            $('#change_pass_preloader').show();
             $.ajax({
-                url: "<?php echo base_url(); ?>index.php/account/change_password",
+                url: "<?php echo base_url(); ?>index.php/account/change_password_ssl",
                 type: 'POST',
                 dataType: 'json',
                 data: $('#changepasswordform').serialize()
             }).done(function (data) {
-                TweenLite.fromTo("#infopass", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-                        TweenLite.to("#infopass", 1, {delay: 6, alpha: 0});
-                    }});
-
+                $('#change_pass_preloader').hide();
                 if (data.message == "ok") {
+
                     $("#infopass").html("Password changed.");
-                    $("#current_password").val("");
-                    $("#new_password").val("");
-                    $("#confirm_password").val("");
+                    $("#infopass").show();
+                    TweenLite.fromTo("#infopass", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
+                            TweenLite.to("#infopass", 1, {delay: 4, alpha: 0, onComplete: function () {
+                                    $("#current_password").val("");
+                                    $("#new_password").val("");
+                                    $("#confirm_password").val("");
+                                     $('#btn_change_password').show()
+                                }});
+
+                        }});
+
                 } else {
                     $("#infopass").html("* " + data.message);
+                    TweenLite.fromTo("#infopass", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
+                            TweenLite.to("#infopass", 1, {delay: 6, alpha: 0});
+
+                        }});
                 }
             });
 
         });
 
-        $('#save-subscription').on('click', function () {
-            auto_renew = $("#contract-auto-renew").is(":checked");
-            $('#save_subs_preloader').html('Sending data...');
-            $('#save_subs_preloader').show();
+
+
+        $('#btn_cancel').on('click', function () {
+
+            $('#popup_cancel').bPopup();
+
+            return false;
+
+        });
+
+        $('#accept_button').on('click', function () {
+
             $.ajax({
-                url: "<?php echo base_url(); ?>index.php/account/update_subscription",
+                url: "<?php echo base_url(); ?>index.php/account/cancel_subscription",
                 type: 'POST',
                 dataType: 'json',
-                data: {
-                    contract_id: $('#contract_id').val(),
-                    auto_renew: auto_renew
-                }
+                data: {contract_id: $('#contract_id').val()}
             }).done(function (data) {
-                $('#save_subs_preloader').hide();
-                $('#save-subs-info').html('The data was saved successfully');
-                TweenLite.fromTo("#save-subs-info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-                        TweenLite.to("#save-subs-info", 1, {delay: 8, alpha: 0});
-                    }});
-
+                window.location = '<?php echo base_url(); ?>index.php/account/subscription_cancelled';
             });
             return false;
         });
@@ -136,13 +154,12 @@ if (isset($clientToken)) {
             return false;
         });
 
-
-
         $('.subscriber_button').on('click', function (event) {
+            event.preventDefault()
             $(this).hide();
             if (!($("#accept_terms_and_conditions").prop("checked"))) {
                 show_info();
-                $("#info").html("* You must accept terms and conditions before click next button");
+                $(".form_info").html("* You must accept terms and conditions before click next button");
                 $('.subscriber_button').show();
                 return false;
             }
@@ -151,7 +168,7 @@ if (isset($clientToken)) {
             var valid_cardholder_name = /^[A-Za-z\s]+$/.test(cardholder_name);
             if (!valid_cardholder_name) {
                 show_info();
-                $("#info").html("* Name on card only accepts letters and spaces");
+                $(".form_info").html("* Name on card only accepts letters and spaces");
                 $('.subscriber_button').show();
                 return false;
             }
@@ -160,16 +177,16 @@ if (isset($clientToken)) {
             var valid_card_number = /^[0-9]+$/.test(card_number);
             if (!valid_card_number) {
                 show_info();
-                $("#info").html("* Card number only accepts numbers");
+                $(".form_info").html("* Card number only accepts numbers");
                 $('.subscriber_button#btn_next').show();
                 return false;
             }
 
-            var security_code = $("#security_code").val();
+            security_code = $("#security_code").val();
             var valid_security_code = /^[0-9]+$/.test(security_code);
             if (!valid_security_code) {
                 show_info();
-                $("#info").html("* Security code only accepts numbers");
+                $(".form_info").html("* Security code only accepts numbers");
                 $('.subscriber_button').show();
                 return false;
             }
@@ -180,6 +197,7 @@ if (isset($clientToken)) {
             pi_number = $('#card_number').val();
             pi_type = GetCardType($('#card_number').val());
             auto_renew = $("#auto-renew").is(":checked");
+
             $.ajax({
                 url: "<?php echo base_url(); ?>index.php/account/subscribe_ssl",
                 type: 'POST',
@@ -189,6 +207,7 @@ if (isset($clientToken)) {
                     pi_year: $('#expiration_month').val() + '/' + $('#expiration_year').val(),
                     pi_type: pi_type,
                     pi_number: pi_number,
+                    security_code: security_code,
                     subscription_id: subscription_id,
                     auto_renew: auto_renew}
             }).done(function (data) {
@@ -201,15 +220,58 @@ if (isset($clientToken)) {
                     $('#registration_preloader').hide();
                     $('.subscriber_button').show();
                     $('.other-op-btn').show();
-                    TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-                            TweenLite.to("#info", 1, {delay: 6, alpha: 0});
-                        }});
-                    $("#info").html("* " + data.message);
+                    $(".form_info").html("* " + data.message);
+                    show_info();
                 }
             });
 
             return false;
         });
+
+        $('#save-subscription').on('click', function (event) {
+            event.preventDefault();
+            $(this).hide();
+            auto_renew = $("#contract-auto-renew").is(":checked");
+            $('#save_subs_preloader').html('Sending data...');
+            $('#save_subs_preloader').show();
+            $.ajax({
+                url: "<?php echo base_url(); ?>index.php/account/update_subscription_ssl",
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    contract_id: $('#contract_id').val(),
+                    auto_renew: auto_renew
+                }
+            }).done(function (data) {
+                $('#save_subs_preloader').hide();
+                if (data && data.status == 'ok') {
+                    $('#save-subs-info').html('The data was saved sucsessfully');
+                    $('#save-subs-info').show();
+
+                } else {
+                    $('#save-subs-info').html(data.message);
+                    $('#save-subs-info').show();
+                }
+                TweenLite.fromTo("#save-subs-info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
+                        TweenLite.to("#save-subs-info", 1, {delay: 6, alpha: 0, onComplete: function () {
+                                $('#save-subs-info').hide();
+                                $('#save-subscription').show();
+                            }});
+
+                    }});
+
+            });
+            return false;
+        });
+
+        function show_info() {
+            $(".form_info").show();
+            TweenLite.fromTo(".form_info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
+                    TweenLite.to(".form_info", 1, {delay: 6, alpha: 0, onComplete: function () {
+                            $(".form_info").hide();
+                        }});
+                }});
+        }
 
         function GetCardType(number)
         {
@@ -246,14 +308,14 @@ if (isset($clientToken)) {
             <ul class='etabs'>
                 <li class='tab'><a href="#tab1" id="vod_item_sub_menu1">My Information</a></li>
                 <li class='tab'><a href="#tab2" id="vod_item_sub_menu2">Subscription</a></li>
-                <li class='tab'><a href="#tab3" id="vod_item_sub_menu3">Billing Information</a></li>
+                <!--<li class='tab'><a href="#tab3" id="vod_item_sub_menu3">Billing Information</a></li>-->
                 <li class='tab'><a href="#tab4" id="vod_item_sub_menu4">Change password</a></li>
             </ul>
             <div class='panel-container'>
                 <div id="tab1">
 
                     <div class="registration_container">
-                        <form id="subscribeform" method="post">
+                        <form id="registerform" method="post">
                             <ol>
                                 <li>
                                     <label for="first_name">First Name*</label>
@@ -285,6 +347,9 @@ if (isset($clientToken)) {
                                 <li> 
                                     <p id="info" class="form_info">&nbsp;</p>
                                 </li>
+                                <li>
+                                    <p id="save_data_preloader" class="form_info"></p>
+                                </li>
                                 <li class="buttons">
                                     <input type="image" id="btn_save" src="<?php echo asset_url(); ?>images/button_save.png" class="send" />
                                 </li>
@@ -294,8 +359,6 @@ if (isset($clientToken)) {
                 </div>
                 <div id="tab2" style="padding-left:20px">
                     <div class="registration_container">
-
-
                         <?php
                         if (isset($subscription_data) && $subscription_data != "") {
                             if ($subscription_data[0]->{'plcontract$autoRenew'}) {
@@ -304,8 +367,6 @@ if (isset($clientToken)) {
                                 $auto_renew_chbx = '';
                             }
                             ?>
-
-
 
                             <form method="post" id="cancelform">
                                 <ol>
@@ -349,88 +410,23 @@ if (isset($clientToken)) {
                         } else {
                             ?>
 
-                            <div class="registration_title_payment">WANT TO BECOME <br class="rwd-break"> A SUSCRIBER?</div>
-
+                            <div class="registration_title_payment">WANT TO BECOME <br class="rwd-break"> A SUBSCRIBER?</div>
 
                             <?php
                             if (sizeof($subscriptions) > 0) {
-
                                 $this->load->view(views_url() . 'templates/select_subscription');
                             }
-                        }
-                        ?>
-                        <form method="post" id="subscribe-form" style="display: none;">
-                            <ol>
-                                <li>
-                                    <label for="cardholder_name">Name on Card*</label>
-                                    <input id="cardholder_name" class="text" />
-                                </li>
-                                <li> 
-                                    <div class="form_notes">Enter your name exactly as it appears <br class="rwd-break"> on your credit card.</div>
-                                </li>        
-                                <li>
-                                    <label for="card_number">Card Number*</label>
-                                    <input id="card_number" class="text" style="width:150px;" />
-                                </li>
-                                <li> 
-                                    <div class="form_notes">Enter your credit card number without spaces.</div>
-                                </li>        
-                                <li>
-                                    <label for="security_code">Security Code*</label>
-                                    <input id="security_code" class="text" type="password" style="width:70px;" />
-                                </li>
-                                <li> 
-                                    <div class="form_notes">Enter CVV code.</div>
-                                </li>        
-                                <li>
-                                    <label for="expiration_month">Month*</label>
-                                    <span class='css-select-moz'>
-                                        <select id="expiration_month" class="text" style="width:70px;">
-                                            <option id="01">01</option>
-                                            <option id="01">02</option>
-                                            <option id="01">03</option>
-                                            <option id="01">04</option>
-                                            <option id="01">05</option>
-                                            <option id="01">06</option>
-                                            <option id="01">07</option>
-                                            <option id="01">08</option>
-                                            <option id="01">09</option>
-                                            <option id="01">10</option>
-                                            <option id="01">11</option>
-                                            <option id="01">12</option>
-                                        </select>
-                                    </span>
-                                </li>
-                                <li> 
-                                    <div class="form_notes">Select the expiration month.</div>
-                                </li>        
-                                <li>
-                                    <label for="expiration_year">Year*</label>
-                                    <span class='css-select-moz'>
-                                        <select id="expiration_year" class="text" style="width:70px;">
-                                            <option id="2015">2015</option>
-                                            <option id="2016">2016</option>
-                                            <option id="2017">2017</option>
-                                            <option id="2018">2018</option>
-                                            <option id="2019">2019</option>
-                                            <option id="2020">2020</option>
-                                            <option id="2021">2021</option>
-                                            <option id="2022">2022</option>
-                                            <option id="2023">2023</option>
-                                            <option id="2024">2024</option>
-                                            <option id="2025">2025</option>
-                                        </select>
-                                    </span>
-                                </li>
-                                <li> 
-                                    <div class="form_notes">Select the expiration year.</div>
-                                </li>
+                            ?>
+                            <form method="post" id="subscription_form" style="display: none;">
+                                <?php
+                                $this->load->view(views_url() . 'templates/credit_card_form');
+                                ?>
                                 <li class="buttons">
                                     <input id="auto-renew"type="checkbox" checked="checked"/><label class="chbx-lbl">Auto-renew</label>
                                 </li>
                                 <li id= "terms_and_conditions" style="margin-top: 10px">
                                     <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
-                                    <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_and_conditions'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
+                                    <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_conditions_subscribers'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
                                 <li> 
                                     <p id="info" class="form_info">&nbsp;</p>
                                 </li>
@@ -440,134 +436,136 @@ if (isset($clientToken)) {
                                     <div id="registration_preloader"></div>
                                     <div class="clr"></div>
                                 </li>
-                            </ol>
-                        </form>   
+                                </ol>
+                            </form>   
+
+                            <?php
+                        }
+                        ?>
                     </div>
                 </div>
+                <!--                <div id="tab3">
+                
+                                    <div class="registration_container" style="min-height:500px;">
+                                        <form method="post" id="registerform2">
+                                            <ol>
+                                                <li>
+                                                    <label for="cardholder_name">Name on Card*</label>
+                                                    <input id="cardholder_name" class="text billing_data" disabled="disabled" value="<?php
+                if (isset($card_name)) {
+                    echo $card_name;
+                }
+                ?>" />
+                                                </li>
+                                                <li>
+                                                    <label for="card_number">Card Number*</label>
+                                                    <input id="card_number" class="text billing_data" disabled="disabled" style="width:150px;" value="<?php
+                if (isset($card_number)) {
+                    echo $card_number;
+                }
+                ?>" />
+                                                </li>
+                                                <li>
+                                                    <label for="security_code">Security Code*</label>
+                                                    <input id="security_code" class="text billing_data" type="password" disabled="disabled" style="width:70px;" value="<?php
+                if (isset($card_number)) {
+                    echo '***';
+                }
+                ?>" />
+                                                </li>
+                                                <li>
+                                                    <label for="expiration_month" style="width: 100%">Month*</label>
+                
+                                                    <select id="expiration_month" class="text billing_data" disabled="disabled" style="width:70px;">
+                <?php
+                if (isset($card_expiration_month)) {
+                    for ($i = 1; $i <= 12; $i++) {
+                        if ($i == $card_expiration_month) {
+                            if ($i < 10) {
+                                echo '<option id="0' . $i . '" selected="selected">0' . $i . '</option>';
+                            } else {
+                                echo '<option id="' . $i . '" selected="selected">' . $i . '</option>';
+                            }
+                        } else {
+                            if ($i < 10) {
+                                echo '<option id="0' . $i . '">0' . $i . '</option>';
+                            } else {
+                                echo '<option id="' . $i . '">' . $i . '</option>';
+                            }
+                        }
+                    }
+                } else {
+                    ?>
+                                                                        <option id="01">01</option>
+                                                                        <option id="02">02</option>
+                                                                        <option id="03">03</option>
+                                                                        <option id="04">04</option>
+                                                                        <option id="05">05</option>
+                                                                        <option id="06">06</option>
+                                                                        <option id="07">07</option>
+                                                                        <option id="08">08</option>
+                                                                        <option id="09">09</option>
+                                                                        <option id="10">10</option>
+                                                                        <option id="11">11</option>
+                                                                        <option id="12">12</option>
+                    <?php
+                }
+                ?>
+                                                    </select>
+                
+                                                </li>
+                                                <li>
+                                                    <label for="expiration_year" style="width: 100%">Year*</label>
+                
+                                                    <select id="expiration_year" class="text billing_data" disabled="disabled" style="width:90px;">
+                <?php
+                if (isset($card_expiration_year)) {
+                    for ($i = 2014; $i <= 2025; $i++) {
+                        if ($i == $card_expiration_year) {
 
-                <div id="tab3">
+                            echo '<option id="' . $i . '" selected="selected">' . $i . '</option>';
+                        } else {
 
-                    <div class="registration_container" style="min-height:500px;">
-                        <form method="post" id="registerform2">
-                            <ol>
-                                <li>
-                                    <label for="cardholder_name">Name on Card*</label>
-                                    <input id="cardholder_name" class="text billing_data" disabled="disabled" value="<?php
-                                    if (isset($card_name)) {
-                                        echo $card_name;
-                                    }
-                                    ?>" />
-                                </li>
-                                <li>
-                                    <label for="card_number">Card Number*</label>
-                                    <input id="card_number" class="text billing_data" disabled="disabled" style="width:150px;" value="<?php
-                                    if (isset($card_number)) {
-                                        echo $card_number;
-                                    }
-                                    ?>" />
-                                </li>
-                                <li>
-                                    <label for="security_code">Security Code*</label>
-                                    <input id="security_code" class="text billing_data" type="password" disabled="disabled" style="width:70px;" value="<?php
-                                    if (isset($card_number)) {
-                                        echo '***';
-                                    }
-                                    ?>" />
-                                </li>
-                                <li>
-                                    <label for="expiration_month" style="width: 100%">Month*</label>
-
-                                    <select id="expiration_month" class="text billing_data" disabled="disabled" style="width:70px;">
-                                        <?php
-                                        if (isset($card_expiration_month)) {
-                                            for ($i = 1; $i <= 12; $i++) {
-                                                if ($i == $card_expiration_month) {
-                                                    if ($i < 10) {
-                                                        echo '<option id="0' . $i . '" selected="selected">0' . $i . '</option>';
-                                                    } else {
-                                                        echo '<option id="' . $i . '" selected="selected">' . $i . '</option>';
-                                                    }
-                                                } else {
-                                                    if ($i < 10) {
-                                                        echo '<option id="0' . $i . '">0' . $i . '</option>';
-                                                    } else {
-                                                        echo '<option id="' . $i . '">' . $i . '</option>';
-                                                    }
-                                                }
-                                            }
-                                        } else {
-                                            ?>
-                                            <option id="01">01</option>
-                                            <option id="02">02</option>
-                                            <option id="03">03</option>
-                                            <option id="04">04</option>
-                                            <option id="05">05</option>
-                                            <option id="06">06</option>
-                                            <option id="07">07</option>
-                                            <option id="08">08</option>
-                                            <option id="09">09</option>
-                                            <option id="10">10</option>
-                                            <option id="11">11</option>
-                                            <option id="12">12</option>
-                                            <?php
-                                        }
-                                        ?>
-                                    </select>
-
-                                </li>
-                                <li>
-                                    <label for="expiration_year" style="width: 100%">Year*</label>
-
-                                    <select id="expiration_year" class="text billing_data" disabled="disabled" style="width:90px;">
-                                        <?php
-                                        if (isset($card_expiration_year)) {
-                                            for ($i = 2014; $i <= 2025; $i++) {
-                                                if ($i == $card_expiration_year) {
-
-                                                    echo '<option id="' . $i . '" selected="selected">' . $i . '</option>';
-                                                } else {
-
-                                                    echo '<option id="' . $i . '">' . $i . '</option>';
-                                                }
-                                            }
-                                        } else {
-                                            ?>
-                                            <option id="2014">2014</option>
-                                            <option id="2015">2015</option>
-                                            <option id="2016">2016</option>
-                                            <option id="2017">2017</option>
-                                            <option id="2018">2018</option>
-                                            <option id="2019">2019</option>
-                                            <option id="2020">2020</option>
-                                            <option id="2021">2021</option>
-                                            <option id="2022">2022</option>
-                                            <option id="2023">2023</option>
-                                            <option id="2024">2024</option>
-                                            <option id="2025">2025</option>
-                                            <?php
-                                        }
-                                        ?>
-                                    </select>
-
-                                </li>
-                                <li> 
-                                    <span id="billing_info" class="form_info">&nbsp;</span>
-                                </li>
-                                <li class="buttons">
-
-                                    <input type="image" id="btn_change_billing" src="<?php echo asset_url(); ?>images/button_modify.png"/>
-                                    <input type="image" id="btn_save_billing" src="<?php echo asset_url(); ?>images/button_save.png" class="send"/>
-                                    <div class="clr"></div>
-                                </li>
-                            </ol>
-                        </form>              
-                    </div>
-                </div>
+                            echo '<option id="' . $i . '">' . $i . '</option>';
+                        }
+                    }
+                } else {
+                    ?>
+                                                                        <option id="2015">2015</option>
+                                                                        <option id="2016">2016</option>
+                                                                        <option id="2017">2017</option>
+                                                                        <option id="2018">2018</option>
+                                                                        <option id="2019">2019</option>
+                                                                        <option id="2020">2020</option>
+                                                                        <option id="2021">2021</option>
+                                                                        <option id="2022">2022</option>
+                                                                        <option id="2023">2023</option>
+                                                                        <option id="2024">2024</option>
+                                                                        <option id="2025">2025</option>
+                    <?php
+                }
+                ?>
+                                                    </select>
+                
+                                                </li>
+                                                <li> 
+                                                    <span id="billing_info" class="form_info">&nbsp;</span>
+                                                </li>
+                                                <li class="buttons">
+                
+                                                    <input type="image" id="btn_change_billing" src="<?php echo asset_url(); ?>images/button_modify.png"/>
+                                                    <input type="image" id="btn_save_billing" src="<?php echo asset_url(); ?>images/button_save.png" class="send"/>
+                                                    <div class="clr"></div>
+                                                </li>
+                                            </ol>
+                                        </form>              
+                                    </div>
+                                </div>-->
 
                 <!-- TAB 4: Change Password -->
                 <div id="tab4">
 
-                    <div class="registration_container">
+                    <div class="registration_container" style="min-height:400px;">
                         <form id="changepasswordform" method="post">
                             <ol>
                                 <li>
