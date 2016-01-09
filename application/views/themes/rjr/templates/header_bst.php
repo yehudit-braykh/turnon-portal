@@ -235,9 +235,9 @@
 
                                         <ul class="dropdown-menu">
 
-                                            <li id="sub_m"><a href="<?php echo base_url(); ?>index.php/account/my_account">My Account</a></li>
+                                            <li id="sub_m"><a href="<?php echo base_url(); ?>index.php/account/my_account_ssl">My Account</a></li>
 
-                                            <li id="sub_m"><a href="<?php echo base_url() . 'index.php/account/logout'; ?>">Log Out</a></li>
+                                            <li id="sub_m"><a href="<?php echo base_url() . 'index.php/account/logout_ssl'; ?>">Log Out</a></li>
 
                                         </ul>
 

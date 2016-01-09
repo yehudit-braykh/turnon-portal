@@ -2058,7 +2058,7 @@ select:focus, select:active {
 
 .registration_title_payment {
     color: #7f00bf; 
-    text-align: left; 
+    text-align: center; 
     font-family: "PT Sans", "Lato", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
     margin: 10px 0px 30px 0px;
     font-size: 30px;
@@ -2286,16 +2286,16 @@ select:focus, select:active {
 }
 
 #main-skip{
-    width: 140px;
+    width: 50%;
     margin: 30px auto!important;
-    height: 35px;
-    padding:0 0 3px 0; 
-    border:0; 
-    color:#FFF!important; 
+    height: 40px;
+    padding: 0 0 3px 0;
+    border: 0;
+    color: #FFF!important;
     background-color: #6B00B1;
     text-transform: uppercase;
     cursor: pointer;
-
+    font-size: 14px;
 }
 
 .common_btn{
@@ -3432,4 +3432,18 @@ ul.ordered_list li {
         margin-top: -10px;
         width: 600px;
     }
+}
+
+#btn_pay_per_view {
+    width: 100%;
+    margin: 30px auto!important;
+    height: 60px;
+    padding: 0 0 3px 0;
+    border: 0;
+    color: yellow!important;
+    background-color: #ff0000;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
 }

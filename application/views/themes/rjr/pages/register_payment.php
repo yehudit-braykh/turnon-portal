@@ -119,7 +119,11 @@
 <div class="content_centered">
     <div class="payment_content">
 
-        <div class="registration_title_payment">WANT TO BECOME <br class="rwd-break"> A SUBSCRIBER?</div>
+        <button id="btn_pay_per_view" class="skip-payment">I ONLY WANT TO WATCH A PAY-PER-VIEW EVENT REBEL SALUTE</button>        
+
+        <div class="registration_title_payment">-- OR --</div>
+
+        <div class="registration_title_payment">I WANT TO BECOME <br class="rwd-break"> A SUBSCRIBER OF 1SPOTMEDIA</div>
 
         <?php
         if (sizeof($subscriptions) > 0) {
