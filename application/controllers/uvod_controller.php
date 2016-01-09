@@ -29,7 +29,7 @@ class UVod_Controller extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        date_timezone_set('utc');
+        date_default_timezone_set('utc');
         session_start();
 
         $this->load->library('parser');
