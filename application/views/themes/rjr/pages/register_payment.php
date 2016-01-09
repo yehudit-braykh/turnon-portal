@@ -3,11 +3,17 @@
     $(function () {
 
         _gaq.push(['_trackEvent', 'Registration', 'Payment Information']);
+
         $('.skip-payment').on('click', function (event) {
             event.preventDefault();
             window.location.href = "<?php echo base_url(); ?>index.php/account/register_complete";
         });
 
+        $('#btn_pay_per_view').on('click', function (event) {
+            event.preventDefault();
+            window.location.href = "<?php echo base_url(); ?>index.php/account/register_complete";
+        });
+        
         function show_info() {
             $('.form_info').show();
             TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
