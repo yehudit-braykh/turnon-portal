@@ -5,6 +5,10 @@
 
         $('#tab-container').easytabs();
 
+        $('#btn_watch_now').on('click', function (event) {
+            window.location.href = "<?php echo base_url() . 'index.php/live_events/main'; ?>";
+        })
+
         $('#btn_save').on('click', function (event) {
             $(this).hide()
             $('#save_data_preloader').html('Sending data...');
@@ -308,7 +312,7 @@ if (isset($clientToken)) {
             <ul class='etabs'>
                 <li class='tab'><a href="#tab1" id="vod_item_sub_menu1">My Information</a></li>
                 <li class='tab'><a href="#tab2" id="vod_item_sub_menu2">Subscription</a></li>
-                <!--<li class='tab'><a href="#tab3" id="vod_item_sub_menu3">Billing Information</a></li>-->
+                <li class='tab'><a href="#tab3" id="vod_item_sub_menu3">Pay-Per-View Tickets</a></li>
                 <li class='tab'><a href="#tab4" id="vod_item_sub_menu4">Change password</a></li>
             </ul>
             <div class='panel-container'>
@@ -448,6 +452,33 @@ if (isset($clientToken)) {
                         ?>
                     </div>
                 </div>
+                
+                <div id="tab3" style="padding-left:20px">
+
+                    <?php
+
+                    if (isset($events) && sizeof($events->content) > 0) {
+                        ?>
+
+                        <div class="information_content" style="background-color: rgba(255,255,255,0.1);min-height:400px;">
+
+                            <?php
+                            for ($i = 0; $i < sizeof($events->content); $i++) {
+                                if ($events->content[$i]->already_purchased == true) {
+                                    echo '<div style="float:left;line-height:45px;">' . date('d-m-Y', $events->content[$i]->event_date / 1000) . ' - ' . $events->content[$i]->name . '</div><div style="float:right;width:120px;"><button type="submit" id="btn_watch_now" class="send">Watch Now</button></div>';
+                                }
+                            }
+                            ?>
+                            <div class="dc_clear"></div>
+
+                        </div>
+                        <?php
+                    }
+                    ?>
+
+                
+                </div>
+
                 <!--                <div id="tab3">
                 
                                     <div class="registration_container" style="min-height:500px;">

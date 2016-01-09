@@ -10,6 +10,7 @@ class Account extends UVod_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('account_model');
+        $this->load->model('live_events_model');        
 //        $this->load->model('social_media_model');
         $this->load->helper('pdk');
     }
@@ -118,7 +119,12 @@ class Account extends UVod_Controller {
         } else {
             $subscriptions_ids = null;
         }
+
         $subscription = $this->account_model->get_subscriptions($subscriptions_ids);
+
+            error_log('SUBSCRIPTIONS: ' . json_encode($subscription));
+
+
         if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
             $data['subscriptions'] = $subscription->content->entries;
 
@@ -228,14 +234,6 @@ class Account extends UVod_Controller {
                 if (isset($user_profile->content[0]->{'pluserprofile$publicDataMap'}->{'customer_id'})) {
                     $customer_id = $user_profile->content[0]->{'pluserprofile$publicDataMap'}->{'customer_id'};
                     $_SESSION['uvod_user_data']->braintree_id = $customer_id;
-//                    $customer_data = $this->account_model->get_billing_information($customer_id);
-//
-//                    if (isset($customer_data) && $customer_data->error == false) {
-//                        $data['card_name'] = $customer_data->content->card_name;
-//                        $data['card_number'] = $customer_data->content->card_number;
-//                        $data['card_expiration_month'] = $customer_data->content->expiration_month;
-//                        $data['card_expiration_year'] = $customer_data->content->expiration_year;
-//                    }
                 }
             }
         }
@@ -278,9 +276,70 @@ class Account extends UVod_Controller {
             $data['user_postal_code'] = "";
         }
 
+        $events = $this->get_events();
+
+        if ($events) {
+            $data['events'] = $events;
+        }
+
+        error_log('EVENTS: ' . json_encode($events));
+
         $this->load->view(views_url() . 'templates/header', $data);
         $this->load->view(views_url() . 'pages/account', $data);
         $this->load->view(views_url() . 'templates/footer', $data);
+    }
+
+    private function get_events() {
+
+        $media_ids = array();
+        $events = $this->live_events_model->get_events();
+
+        // checks if user is logged in
+        if (isset($_SESSION['uvod_user_data']) && isset($_SESSION['uvod_user_data']->id)) {
+
+            $orders = $this->live_events_model->get_orders($_SESSION['uvod_user_data']->id);
+            $data['orders'] = $orders;
+
+            if (isset($orders) && sizeof($orders->content->entries) > 0) {
+
+                for ($h = 0; $h < sizeof($orders->content->entries); $h++) {
+
+                    $id_arr = explode('/', $orders->content->entries[$h]->{'plorderitem$productId'});
+                    $product_id = $id_arr[sizeof($id_arr) - 1];
+                    if ($h == 0) {
+                        $product_ids = $product_id;
+                    } else {
+                        $product_ids .= '|' . $product_id;
+                    }
+                }
+
+                $products = $this->live_events_model->get_event_products($product_ids);
+
+                if (isset($products->content->entries) && sizeof($products->content->entries) > 0) {
+
+                    for ($i = 0; $i < sizeof($products->content->entries); $i++) {
+
+                        $events_ids = $products->content->entries[$i]->{'plproduct$scopeIds'};
+
+                        for ($j = 0; $j < sizeof($events_ids); $j++) {
+                            if (!in_array($events_ids[$j], $media_ids)) {
+                                $media_ids[] = $events_ids[$j];
+                            }
+                        }
+                    }
+
+                    for ($j = 0; $j < sizeof($events->content); $j++) {
+                        if (in_array($events->content[$j]->media->id, $media_ids)) {
+                            $events->content[$j]->already_purchased = true;
+                        } else {
+                            $events->content[$j]->already_purchased = false;
+                        }
+                    }
+                }
+            }
+        }
+
+        return $events;
     }
 
     public function my_account_save_ssl() {
