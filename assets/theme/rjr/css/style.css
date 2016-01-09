@@ -991,7 +991,7 @@ img{}
 }
 
 .top_menu div:hover {
-    color: #f00;	
+    color: #f00;    
 }
 
 #player_close_button {
@@ -1124,7 +1124,7 @@ img{}
 
 #vod_item_player_close {
     float: right;
-    padding-right: 6px;	
+    padding-right: 6px; 
     display: none;
 }
 
@@ -1139,7 +1139,7 @@ img{}
 
 #back_button_container {
     float: right;
-    padding-right: 6px;	
+    padding-right: 6px; 
 }
 
 #back_button_container a {
@@ -1267,7 +1267,7 @@ select:focus, select:active {
 
 #channels_button_up:hover,
 #channels_button_down:hover {
-    cursor: pointer;	
+    cursor: pointer;    
 }
 
 #live_channels_scroller {
@@ -1353,7 +1353,7 @@ select:focus, select:active {
     background: rgba(0,0,0,0);
     font-size: 9px;
     color: #ffffff;
-    text-align: center;	
+    text-align: center; 
 }
 
 #datepicker{
@@ -1568,6 +1568,7 @@ select:focus, select:active {
 .top_menu a:hover{ color: #f00;}
 #top_menu_vod, 
 #top_menu_live,
+#top_menu_live_events,
 #top_menu_about,
 #top_menu_faqs,
 #top_menu_support,
@@ -1632,17 +1633,21 @@ select:focus, select:active {
 }
 
 #top_menu_vod {
-    width: 150px;
+    width: 140px;
 }
 #top_menu_live {
-    width: 70px;    
+    width: 55px;    
 }
+#top_menu_live_events {
+    width: 110px;    
+}
+
 #top_menu_about {
-    width: 110px;
+    width: 80px;
 }
 
 #top_menu_faqs{
-    width: 130px;
+    width: 80px;
 }
 
 
@@ -1650,11 +1655,11 @@ select:focus, select:active {
     float: right;
     text-align: right;
     padding-top: 0px;
-    width: 157px;
+    width: 145px;
     margin-top: 3px;
 }
 #top_menu_support {
-    width: 120px;
+    width: 75px;
 }
 
 .search {

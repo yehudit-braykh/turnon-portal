@@ -294,9 +294,10 @@ for ($i = 0; $i < sizeof($vod_categories); $i++) {
                                                             }
                                                             ?>
                                                             <div id="top_menu_vod"     <?php echo ($section == "vod" ? 'style="color:' . $highlight_color . ';"' : ""); ?>>Video on Demand</div>
-                                                            <div id="top_menu_live"    <?php echo ($section == "live" ? 'style="color:' . $highlight_color . ';"' : ""); ?>>LIVE</div>
-                                                            <div id="top_menu_about"> <a <?php echo ($section == "about_us" ? 'style="color:' . $highlight_color . ';"' : ""); ?> href="<?php echo base_url() . 'index.php/static_content/about_us'; ?>">ABOUT US</a></div>
-                                                            <div id="top_menu_support"> <a <?php echo ($section == "faqs" ? 'style="color:' . $highlight_color . ';"' : ""); ?> href="<?php echo base_url() . 'index.php/static_content/faqs'; ?>">SUPPORT</a></div>
+                                                            <div id="top_menu_live"    <?php echo ($section == "live" ? 'style="color:' . $highlight_color . ';"' : ""); ?>>Live</div>
+                                                            <div id="top_menu_live_events"> <a <?php echo ($section == "live_events" ? 'style="color:' . $highlight_color . ';"' : ""); ?> href="<?php echo base_url() . 'index.php/live_events/main'; ?>">Pay-Per-View</a></div>                                                            
+                                                            <div id="top_menu_about"> <a <?php echo ($section == "about_us" ? 'style="color:' . $highlight_color . ';"' : ""); ?> href="<?php echo base_url() . 'index.php/static_content/about_us'; ?>">About Us</a></div>
+                                                            <div id="top_menu_support"> <a <?php echo ($section == "faqs" ? 'style="color:' . $highlight_color . ';"' : ""); ?> href="<?php echo base_url() . 'index.php/static_content/faqs'; ?>">Support</a></div>
                                                             <div id="top_menu_support" <?php echo ($section == "support" ? 'style="color:' . $highlight_color . ';"' : ""); ?> style="display: none;">SUPPORT</div>
                                                             <div id= "search" class="search">
                                                                 <input id="button_search" src="<?php echo asset_url(); ?>images/search_btn.png" class="button_search" type="image" />

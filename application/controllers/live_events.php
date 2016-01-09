@@ -143,9 +143,9 @@ class Live_events extends UVod_Controller {
         $data['section'] = "events";
         $data['events'] = $events;
 
-        $this->load->view(views_url() . 'templates/header', $data);
+        $this->load->view(views_url() . 'templates/header_bst', $data);
         $this->load->view(views_url() . 'pages/live_events', $data);
-        $this->load->view(views_url() . 'templates/footer', $data);
+        $this->load->view(views_url() . 'templates/footer_bst', $data);
     }
 
     public function get_event() {
@@ -288,9 +288,9 @@ class Live_events extends UVod_Controller {
 
             $data['events'] = $this->live_events_model->get_events();
 
-            $this->load->view(views_url() . 'templates/header', $data);
+            $this->load->view(views_url() . 'templates/header_bst', $data);
             $this->load->view(views_url() . 'pages/buy_events', $data);
-            $this->load->view(views_url() . 'templates/footer', $data);
+            $this->load->view(views_url() . 'templates/footer_bst', $data);
         } else {
             $this->load->view(views_url() . 'templates/header', $data);
             $this->load->view(views_url() . 'pages/signin', $data);
@@ -323,9 +323,9 @@ class Live_events extends UVod_Controller {
 
     public function event_payment() {
         $data = array();
-        $this->load->view(views_url() . 'templates/header', $data);
+        $this->load->view(views_url() . 'templates/header_bst', $data);
         $this->load->view(views_url() . 'pages/event_payment', $data);
-        $this->load->view(views_url() . 'templates/footer', $data);
+        $this->load->view(views_url() . 'templates/footer_bst', $data);
     }
 
     public function subscribe() {
@@ -368,9 +368,9 @@ class Live_events extends UVod_Controller {
 
     public function event_buy_complete() {
         $data = array();
-        $this->load->view(views_url() . 'templates/header', $data);
+        $this->load->view(views_url() . 'templates/header_bst', $data);
         $this->load->view(views_url() . 'pages/event_buy_complete', $data);
-        $this->load->view(views_url() . 'templates/footer', $data);
+        $this->load->view(views_url() . 'templates/footer_bst', $data);
     }
 
 }
