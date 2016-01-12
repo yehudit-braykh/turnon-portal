@@ -51,9 +51,11 @@
 <!-- content -->
 <div class="content_centered" style="height: 400px;">
     <?php
-    if (isset($_SESSION['registration_data']->method) && $_SESSION['registration_data']->method == 'email') {
+
+    if (isset($_SESSION['registration_data']->method) && $_SESSION['registration_data']->method === 'email') {
         ?>  
         <div class="now_page_resize">
+            <div class="form_title">Your Registration is Complete!</div><br>
             <div class="form_title">Please check your email <br class="rwd-break"> for an activation link to complete <br class="rwd-break"> your registration</div>
             <!--<div class="form_subtitle">Thanks for registering with us.</div>-->
             <div class="clr"></div>

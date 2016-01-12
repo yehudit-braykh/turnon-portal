@@ -3,11 +3,17 @@
     $(function () {
 
         _gaq.push(['_trackEvent', 'Registration', 'Payment Information']);
+
         $('.skip-payment').on('click', function (event) {
             event.preventDefault();
             window.location.href = "<?php echo base_url(); ?>index.php/account/register_complete";
         });
 
+        $('#btn_pay_per_view').on('click', function (event) {
+            event.preventDefault();
+            window.location.href = "<?php echo base_url(); ?>index.php/account/register_complete";
+        });
+        
         function show_info() {
             $('.form_info').show();
             TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
@@ -99,7 +105,7 @@
                 return "Visa";
             re = new RegExp("^(34|37)");
             if (number.match(re) != null)
-                return "American Express";
+                return "Amex";
             re = new RegExp("^5[1-5]");
             if (number.match(re) != null)
                 return "MasterCard";
@@ -119,7 +125,11 @@
 <div class="content_centered">
     <div class="payment_content">
 
-        <div class="registration_title_payment">WANT TO BECOME <br class="rwd-break"> A SUBSCRIBER?</div>
+        <button id="btn_pay_per_view" class="skip-payment">I ONLY WANT TO WATCH A PAY-PER-VIEW EVENT REBEL SALUTE</button>        
+
+        <div class="registration_title_payment">-- OR --</div>
+
+        <div class="registration_title_payment">I WANT TO BECOME <br class="rwd-break"> A SUBSCRIBER OF 1SPOTMEDIA</div>
 
         <?php
         if (sizeof($subscriptions) > 0) {

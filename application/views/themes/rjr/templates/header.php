@@ -36,11 +36,11 @@
                         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js"></script>
 
                         <!-- DCodes -->
-                        <link rel="stylesheet" type="text/css" href="<?php echo common_asset_url();  ?>css/dc_social_icons.css" />
-                        <link type="text/css" rel="stylesheet" href="<?php echo common_asset_url();  ?>css/dc_pricingtables.css" />
-                        <script type="text/javascript"  href="<?php echo common_asset_url();  ?>js/dc_pricingtables.js"></script>
+                        <link rel="stylesheet" type="text/css" href="<?php echo common_asset_url(); ?>css/dc_social_icons.css" />
+                        <link type="text/css" rel="stylesheet" href="<?php echo common_asset_url(); ?>css/dc_pricingtables.css" />
+                        <script type="text/javascript"  href="<?php echo common_asset_url(); ?>js/dc_pricingtables.js"></script>
 
-                      
+
 
 
                         <!-- BrainTree -->
@@ -262,6 +262,13 @@ for ($i = 0; $i < sizeof($vod_categories); $i++) {
                                         <div class="main">
                                             <div class="header">
                                                 <div id="header_bar_bg">
+                                                    <?php
+                                                    if (isset( $_SESSION['uvod_user_data']) && (!isset($_SESSION['is_subscriber']) || !$_SESSION['is_subscriber'])) {
+                                                        ?>
+                                                    <div class="content_centered header_content"><a class="trial_advertisement" href="<?php echo base_url().'index.php/account/my_account_ssl#tab2';?>"><b style="color:#e1cd00">Not a Subscriber?</b> Click here to start your 7-Day Free Trial</a></div>
+                                                        <?php
+                                                    }
+                                                    ?>
                                                     <div id="header_bar">
 
                                                         <div id="header_bar_tweet">
@@ -287,9 +294,10 @@ for ($i = 0; $i < sizeof($vod_categories); $i++) {
                                                             }
                                                             ?>
                                                             <div id="top_menu_vod"     <?php echo ($section == "vod" ? 'style="color:' . $highlight_color . ';"' : ""); ?>>Video on Demand</div>
-                                                            <div id="top_menu_live"    <?php echo ($section == "live" ? 'style="color:' . $highlight_color . ';"' : ""); ?>>LIVE</div>
-                                                            <div id="top_menu_about"> <a <?php echo ($section == "about_us" ? 'style="color:' . $highlight_color . ';"' : ""); ?> href="<?php echo base_url() . 'index.php/static_content/about_us'; ?>">ABOUT US</a></div>
-                                                            <div id="top_menu_support"> <a <?php echo ($section == "faqs" ? 'style="color:' . $highlight_color . ';"' : ""); ?> href="<?php echo base_url() . 'index.php/static_content/faqs'; ?>">SUPPORT</a></div>
+                                                            <div id="top_menu_live"    <?php echo ($section == "live" ? 'style="color:' . $highlight_color . ';"' : ""); ?>>Live</div>
+                                                            <div id="top_menu_live_events"> <a <?php echo ($section == "live_events" ? 'style="color:' . $highlight_color . ';"' : ""); ?> href="<?php echo base_url() . 'index.php/live_events/main'; ?>">Pay-Per-View</a></div>                                                            
+                                                            <div id="top_menu_about"> <a <?php echo ($section == "about_us" ? 'style="color:' . $highlight_color . ';"' : ""); ?> href="<?php echo base_url() . 'index.php/static_content/about_us'; ?>">About Us</a></div>
+                                                            <div id="top_menu_support"> <a <?php echo ($section == "faqs" ? 'style="color:' . $highlight_color . ';"' : ""); ?> href="<?php echo base_url() . 'index.php/static_content/faqs'; ?>">Support</a></div>
                                                             <div id="top_menu_support" <?php echo ($section == "support" ? 'style="color:' . $highlight_color . ';"' : ""); ?> style="display: none;">SUPPORT</div>
                                                             <div id= "search" class="search">
                                                                 <input id="button_search" src="<?php echo asset_url(); ?>images/search_btn.png" class="button_search" type="image" />
