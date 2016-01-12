@@ -456,17 +456,23 @@ if (isset($clientToken)) {
                 <div id="tab3" style="padding-left:20px">
 
                     <?php
-
                     if (isset($events) && sizeof($events->content) > 0) {
                         ?>
 
                         <div class="information_content" style="background-color: rgba(255,255,255,0.1);min-height:400px;">
 
                             <?php
+                            $flag = 0;
                             for ($i = 0; $i < sizeof($events->content); $i++) {
-                                if ($events->content[$i]->already_purchased == true) {
-                                    echo '<div style="float:left;line-height:45px;">' . date('d-m-Y', $events->content[$i]->event_date / 1000) . ' - ' . $events->content[$i]->name . '</div><div style="float:right;width:120px;"><button type="submit" id="btn_watch_now" class="send">Watch Now</button></div>';
+                                if (isset($events->content[$i]->already_purchased) && $events->content[$i]->already_purchased == true) {
+                                    $flag = 1;
+                                    echo '<div style="float:left;line-height:45px;width:100%;">' . date('d-m-Y', $events->content[$i]->event_date / 1000) . ' - ' . $events->content[$i]->name . '<div style="float:right;width:120px;margin-right:30%"><button type="submit" id="btn_watch_now" class="send">Watch Now</button></div></div>';
                                 }
+                            }
+                            if (!$flag) {
+                                ?>
+                            <div class="buy_events_link"><span>You don't have any pay-per-view tickets yet.</span><br><a href="<?php echo base_url() . 'index.php/live_events/buy_events'; ?>">Buy Now!</a></div>
+                                <?php
                             }
                             ?>
                             <div class="dc_clear"></div>
@@ -476,7 +482,7 @@ if (isset($clientToken)) {
                     }
                     ?>
 
-                
+
                 </div>
 
                 <!--                <div id="tab3">
