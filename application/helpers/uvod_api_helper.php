@@ -19,7 +19,7 @@ function apiCall($method, $parameters=null, $debug=false) {
 	curl_setopt($curl_handle, CURLOPT_USERPWD, $ci->config->item('api_user') . ':' . $ci->config->item('api_password'));  
 
 	$buffer = curl_exec($curl_handle);  
-// error_log('--------- buffer: method: '.$url.' return: '.$buffer);
+ error_log('--------- buffer: method: '.$url.' return: '.$buffer);
 	curl_close($curl_handle);  
 	
 	if ($debug) return $url;
@@ -45,7 +45,7 @@ function apiPost($method, $parameters=null) {
 
 	$buffer = curl_exec($curl_handle);  
 	curl_close($curl_handle);
-// error_log('--------- buffer: method: '.$url.' return: '.$buffer);
+ error_log('--------- buffer: method: '.$url.' return: '.$buffer);
 	// checks if API has a PHP error
 	if (strpos($buffer, "<div")) {
 		throw new Exception("API RETURN ERROR: " . $buffer);
