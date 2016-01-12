@@ -83,18 +83,18 @@ html[xmlns] .flexslider .slides {
     height: 1%;
 }
 
-.flexslider .slides > li:first-child {
+.flexslider .slides > li {
     width: 390px!important;
     overflow: hidden;
 }
 
-.flexslider .slides > li:first-child img{
+.flexslider .slides > li img{
     height: auto!important;
     width: 390px!important; 
     margin: 0px!important
 }
 
-.no-js .flexslider .slides > li:first-child {
+.no-js .flexslider .slides > li{
     display: block;
 }
 
