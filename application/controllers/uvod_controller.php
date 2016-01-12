@@ -37,7 +37,7 @@ class UVod_Controller extends CI_Controller {
         $this->load->helper('util');
         $this->load->model('config_model');
         $this->load->model('account_model');
-        $this->load->model('social_media_model');
+//        $this->load->model('social_media_model');
 
         $this->config->load('config_' . UVOD_CONFIG, FALSE, TRUE);
 
