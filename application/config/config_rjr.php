@@ -35,4 +35,5 @@ $config['load_submenu'] = true;
 $config['timezone'] = 'America/Jamaica';
 
 $config['subscriptions_ids'] = '19439888|19441019|19439889|19441020';
+$config['trial_subscription_id'] = '20028852';
 

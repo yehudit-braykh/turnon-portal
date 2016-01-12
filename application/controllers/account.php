@@ -10,6 +10,7 @@ class Account extends UVod_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('account_model');
+        $this->load->model('live_events_model');        
 //        $this->load->model('social_media_model');
         $this->load->helper('pdk');
     }
@@ -118,7 +119,12 @@ class Account extends UVod_Controller {
         } else {
             $subscriptions_ids = null;
         }
+
         $subscription = $this->account_model->get_subscriptions($subscriptions_ids);
+
+            error_log('SUBSCRIPTIONS: ' . json_encode($subscription));
+
+
         if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
             $data['subscriptions'] = $subscription->content->entries;
 
@@ -212,13 +218,13 @@ class Account extends UVod_Controller {
 
         $data = array();
         $user_profile = $this->account_model->get_profile($_SESSION['uvod_user_data']->token);
-        $subscription = $this->account_model->get_contract($_SESSION['uvod_user_data']->id);
-
+        $subscription = $this->account_model->get_contract($_SESSION['uvod_user_data']->id, 'false');
 
         if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
             $subscriptions = $subscription->content->entries;
             for ($i = 0; $i < sizeof($subscriptions); $i++) {
-                if ($subscriptions[$i]->{'plcontract$originalSubscriptionId'} !== 'http://data.product.theplatform.com/product/data/Subscription/1363283' &&
+
+                if ($subscriptions[$i]->{'plcontract$active'} && $subscriptions[$i]->{'plcontract$originalSubscriptionId'} !== 'http://data.product.theplatform.com/product/data/Subscription/1363283' &&
                         $subscriptions[$i]->{'plcontract$originalSubscriptionId'} !== 'http://data.product.theplatform.com/product/data/Subscription/13255581') {
                     $data['subscription_data'] = $subscriptions[$i];
                 }
@@ -228,14 +234,6 @@ class Account extends UVod_Controller {
                 if (isset($user_profile->content[0]->{'pluserprofile$publicDataMap'}->{'customer_id'})) {
                     $customer_id = $user_profile->content[0]->{'pluserprofile$publicDataMap'}->{'customer_id'};
                     $_SESSION['uvod_user_data']->braintree_id = $customer_id;
-//                    $customer_data = $this->account_model->get_billing_information($customer_id);
-//
-//                    if (isset($customer_data) && $customer_data->error == false) {
-//                        $data['card_name'] = $customer_data->content->card_name;
-//                        $data['card_number'] = $customer_data->content->card_number;
-//                        $data['card_expiration_month'] = $customer_data->content->expiration_month;
-//                        $data['card_expiration_year'] = $customer_data->content->expiration_year;
-//                    }
                 }
             }
         }
@@ -278,9 +276,70 @@ class Account extends UVod_Controller {
             $data['user_postal_code'] = "";
         }
 
+        $events = $this->get_events();
+
+        if ($events) {
+            $data['events'] = $events;
+        }
+
+        error_log('EVENTS: ' . json_encode($events));
+
         $this->load->view(views_url() . 'templates/header', $data);
         $this->load->view(views_url() . 'pages/account', $data);
         $this->load->view(views_url() . 'templates/footer', $data);
+    }
+
+    private function get_events() {
+
+        $media_ids = array();
+        $events = $this->live_events_model->get_events();
+
+        // checks if user is logged in
+        if (isset($_SESSION['uvod_user_data']) && isset($_SESSION['uvod_user_data']->id)) {
+
+            $orders = $this->live_events_model->get_orders($_SESSION['uvod_user_data']->id);
+            $data['orders'] = $orders;
+
+            if (isset($orders) && sizeof($orders->content->entries) > 0) {
+
+                for ($h = 0; $h < sizeof($orders->content->entries); $h++) {
+
+                    $id_arr = explode('/', $orders->content->entries[$h]->{'plorderitem$productId'});
+                    $product_id = $id_arr[sizeof($id_arr) - 1];
+                    if ($h == 0) {
+                        $product_ids = $product_id;
+                    } else {
+                        $product_ids .= '|' . $product_id;
+                    }
+                }
+
+                $products = $this->live_events_model->get_event_products($product_ids);
+
+                if (isset($products->content->entries) && sizeof($products->content->entries) > 0) {
+
+                    for ($i = 0; $i < sizeof($products->content->entries); $i++) {
+
+                        $events_ids = $products->content->entries[$i]->{'plproduct$scopeIds'};
+
+                        for ($j = 0; $j < sizeof($events_ids); $j++) {
+                            if (!in_array($events_ids[$j], $media_ids)) {
+                                $media_ids[] = $events_ids[$j];
+                            }
+                        }
+                    }
+
+                    for ($j = 0; $j < sizeof($events->content); $j++) {
+                        if (in_array($events->content[$j]->media->id, $media_ids)) {
+                            $events->content[$j]->already_purchased = true;
+                        } else {
+                            $events->content[$j]->already_purchased = false;
+                        }
+                    }
+                }
+            }
+        }
+
+        return $events;
     }
 
     public function my_account_save_ssl() {
@@ -318,6 +377,13 @@ class Account extends UVod_Controller {
 
             if (isset($login) && !$login->error) {
                 $_SESSION['uvod_user_data'] = $login->content;
+
+                $contracts = $this->account_model->get_contract($_SESSION['uvod_user_data']->id, 'false');
+                if (isset($contracts->content->entries) && sizeof($contracts->content->entries) > 0) {
+                    $_SESSION['is_subscriber'] = true;
+                } else {
+                    $_SESSION['is_subscriber'] = false;
+                }
 
                 if (isset($_POST['remember_credentials'])) {
 
@@ -462,7 +528,7 @@ class Account extends UVod_Controller {
             } else {
                 $time = '';
             }
-
+            $_SESSION['is_subscriber'] = true;
             $this->subscription_complete_mail($first_name, $last_name, $email, $time, $auto_renew);
             echo json_encode(array('status' => 'ok'));
         } else {
@@ -483,7 +549,7 @@ class Account extends UVod_Controller {
     }
 
     public function subscription_complete_mail($name, $surname, $email, $duration, $auto_renew) {
-        error_log('duration: '.$duration. ' autorenew: '.$auto_renew);
+
         $email_data = array();
         $email_data['name'] = $name;
         $email_data['surname'] = $surname;
@@ -605,7 +671,7 @@ class Account extends UVod_Controller {
         }
 
         $fb_profile = $this->social_media_model->get_fb_profile();
-        error_log('fb profile: '.json_encode($fb_profile));
+        error_log('fb profile: ' . json_encode($fb_profile));
 
         if ($fb_profile->status === 'ok') {
             $fb_email = $fb_profile->content->email;
@@ -637,7 +703,7 @@ class Account extends UVod_Controller {
                     }
                 }
 
-            //Second case, user doesn't exist for given facebook email or is mergin, both cases, register
+                //Second case, user doesn't exist for given facebook email or is mergin, both cases, register
             } else {
 
                 $email = $fb_profile->content->email;
@@ -655,11 +721,11 @@ class Account extends UVod_Controller {
                         $last_name .= $full_name[$i];
                     }
                 }
-                
+
                 $fb_id = $fb_profile->content->id;
 
                 //If it is mergin, the user password must be provided. The given password will be attached to the facebook ID
-                if($merging){
+                if ($merging) {
                     $fb_id = $fb_id . '|' . $_POST['password'];
                 }
 
@@ -711,7 +777,7 @@ class Account extends UVod_Controller {
 
         $fb_profile = $this->social_media_model->get_fb_profile();
 
-         if ($fb_profile->status === 'ok') {
+        if ($fb_profile->status === 'ok') {
             $email = $fb_profile->content->email;
             $password = $fb_profile->content->id;
 
@@ -723,6 +789,14 @@ class Account extends UVod_Controller {
 
                 $_SESSION['uvod_user_data'] = $login->content;
                 $_SESSION['uvod_user_data']->fb_id = $fb_profile->content->id;
+
+                $contracts = $this->account_model->get_contract($_SESSION['uvod_user_data']->id, 'false');
+                if (isset($contracts->content->entries) && sizeof($contracts->content->entries) > 0) {
+                    $_SESSION['is_subscriber'] = true;
+                } else {
+                    $_SESSION['is_subscriber'] = false;
+                }
+
                 $ret->status = "ok";
             } else {
 
@@ -732,7 +806,7 @@ class Account extends UVod_Controller {
 
                 error_log("FACEBOOK USER NOT LINKED ---> " . json_encode($profile));
 
-                if (isset($profile->error)   && !$profile->error) {
+                if (isset($profile->error) && !$profile->error) {
                     $ret->merginProfiles = new stdClass();
                     $ret->merginProfiles->fbName = $fb_profile->content->name;
                     $ret->merginProfiles->plName = $profile->content[0]->{'pluserprofile$firstName'} . " " . $profile->content[0]->{'pluserprofile$lastName'};
