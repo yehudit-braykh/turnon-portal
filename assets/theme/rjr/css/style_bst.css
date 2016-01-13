@@ -2859,7 +2859,7 @@ td.product_content{
 /*form & myaccount*/
 
 .container-fluid.form_cont {
-    background-color: #230034;
+    background-color: #26003a;
     padding-top: 4vw;
     padding-bottom: 245px;
     min-height: 500px;
@@ -2882,6 +2882,18 @@ td.product_content{
 .form_cont .btn-default:hover {
     background-color: #52007b;
     border-color: #52007b;
+}
+
+#event-confirm-section .btn-default {
+    background-color: transparent;
+     border-color: rgba(255,255,255,0.8);
+     color: rgba(255,255,255,0.8);
+}
+
+#event-confirm-section .btn-default:hover {
+    background-color: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.8);
+    color: rgba(255,255,255,0.8);
 }
 
 .information_content .btn-default {

@@ -81,7 +81,10 @@ function show_info () {
             return false;
         });
 
-       
+
+       $('#btn_modify').on('click', function (event) {
+            window.location.href = "<?php echo base_url(); ?>index.php/live_events/buy_events";
+       });
 
         function GetCardType(number)
         {
@@ -155,7 +158,7 @@ function show_info () {
 
             <div class="text3_box">If you have made ​​a mistake use this button to correct:</div>
 
-            <button type="submit" class="btn btn-default btn-md btn_modify">Modify selection</button>
+            <button type="submit" id="btn_modify" class="btn btn-default btn-md btn_modify">Modify selection</button>
 
         </div>
 
