@@ -3,7 +3,7 @@
 	if (file_exists("env.php")) require_once("env.php");
 	else die("<p>env.php file is missing.</p>");
 	
-	date_default_timezone_set('UTC');
+//	date_default_timezone_set('UTC');
 
 /*
  *---------------------------------------------------------------

@@ -4,8 +4,8 @@
     $(function () {
 
         $('#tab-container').easytabs();
-
-        $('#btn_watch_now').on('click', function (event) {
+        
+        $('.btn_watch_now').on('click', function (event) {
             window.location.href = "<?php echo base_url() . 'index.php/live_events/main'; ?>";
         })
 
@@ -464,9 +464,10 @@ if (isset($clientToken)) {
                             <?php
                             $flag = 0;
                             for ($i = 0; $i < sizeof($events->content); $i++) {
+                            
                                 if (isset($events->content[$i]->already_purchased) && $events->content[$i]->already_purchased == true) {
                                     $flag = 1;
-                                    echo '<div style="float:left;line-height:45px;width:100%;">' . date('d-m-Y', $events->content[$i]->event_date / 1000) . ' - ' . $events->content[$i]->name . '<div style="float:right;width:120px;margin-right:30%"><button type="submit" id="btn_watch_now" class="send">Watch Now</button></div></div>';
+                                    echo '<div style="float:left;line-height:45px;width:100%;">' . date('d-m-Y', $events->content[$i]->event_date / 1000) . ' - ' . $events->content[$i]->name . '<div style="float:right;width:120px;margin-right:30%"><button type="submit" id="btn_watch_now" class="send btn_watch_now">Watch Now</button></div></div>';
                                 }
                             }
                             if (!$flag) {
