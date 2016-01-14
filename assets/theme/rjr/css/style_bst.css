@@ -2256,7 +2256,7 @@ select:focus, select:active {
 /*#send_activation_email_register_button, #btn_redirect_login*/
 #btn_sign_in, #btn_sign_up, #btn_next, 
 #btn_logout, #btn_subscribe, #imageField 
- {
+{
     width: 100%;
     height: 40px;
     border: 0px;
@@ -2799,8 +2799,8 @@ td.product_content{
 .content_info .btn-primary:focus,
 .content_info .btn-primary:active:focus {
     color: #fff;
-    background-color: #0b72c7;
-    border-color: #0b72c7;
+    background-color: #52007b;
+    border-color: #52007b;
 }
 
 
@@ -2859,7 +2859,7 @@ td.product_content{
 /*form & myaccount*/
 
 .container-fluid.form_cont {
-    background-color: #13384d;
+    background-color: #26003a;
     padding-top: 4vw;
     padding-bottom: 245px;
     min-height: 500px;
@@ -2875,8 +2875,34 @@ td.product_content{
 }
 
 .form_cont .btn-default {
-    background-color: transparent;
+    background-color: rgb(127,0,191);
+    border-color: rgb(127,0,191);
 }
+
+.form_cont .btn-default:hover {
+    background-color: #52007b;
+    border-color: #52007b;
+}
+
+#event-confirm-section .btn-default {
+    background-color: transparent;
+    border-color: rgba(255,255,255,0.8);
+    color: rgba(255,255,255,0.8);
+}
+
+#event-confirm-section .btn-default:hover {
+    background-color: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.8);
+    color: rgba(255,255,255,0.8);
+}
+
+#purchased_ticket_btn{
+    background-color: rgb(127,0,191);
+    border-color: rgb(127,0,191);
+    border: 0px;
+    margin-top: 30px;
+    padding: 9px;
+} 
 
 .information_content .btn-default {
     margin-left: 50px;
@@ -3354,7 +3380,7 @@ td.product_content{
 
 .img_events {
     width: 100%;
-    margin-top: 20px;
+    margin-top: 45px;
     margin-bottom: 4vw;
 }
 
@@ -3370,6 +3396,7 @@ td.product_content{
 
 .info_events {
     margin-bottom: 2vw;
+    margin-top: 25px;
 }
 
 .info_events h3 {
@@ -3954,9 +3981,9 @@ td.product_content{
 @media (max-width: 767px) {
 
     .img_footer {
-            width: 100%;
-            height: 75px;
-            margin: 3px 0px;
+        width: 100%;
+        height: 75px;
+        margin: 3px 0px;
     }
 
 }

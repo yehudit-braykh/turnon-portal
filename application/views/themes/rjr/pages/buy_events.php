@@ -38,7 +38,8 @@
                         <?php echo $events->content[$i]->name; ?>
                     </div>
                     <div class="product_description">
-                        <?php echo date('F d, H:i',$events->content[$i]->event_date/1000).' hs.'; ?>
+                        <?php echo date('l, F d, Y - H:i', ($events->content[$i]->event_date / 1000)) . ' Hours EST'; ?>
+                        <!--<?php //echo date('F d, H:i',$events->content[$i]->event_date/1000).' hs.'; ?>-->
                     </div>
                 </div>
 

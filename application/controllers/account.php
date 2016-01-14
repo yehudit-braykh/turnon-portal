@@ -122,9 +122,6 @@ class Account extends UVod_Controller {
 
         $subscription = $this->account_model->get_subscriptions($subscriptions_ids);
 
-            error_log('SUBSCRIPTIONS: ' . json_encode($subscription));
-
-
         if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
             $data['subscriptions'] = $subscription->content->entries;
 
@@ -282,8 +279,6 @@ class Account extends UVod_Controller {
             $data['events'] = $events;
         }
 
-        error_log('EVENTS: ' . json_encode($events));
-
         $this->load->view(views_url() . 'templates/header', $data);
         $this->load->view(views_url() . 'pages/account', $data);
         $this->load->view(views_url() . 'templates/footer', $data);
@@ -327,7 +322,7 @@ class Account extends UVod_Controller {
                             }
                         }
                     }
-
+                    
                     for ($j = 0; $j < sizeof($events->content); $j++) {
                         if (in_array($events->content[$j]->media->id, $media_ids)) {
                             $events->content[$j]->already_purchased = true;
