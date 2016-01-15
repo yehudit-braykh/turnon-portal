@@ -12,6 +12,7 @@ class Live_events extends UVod_Controller {
         $this->load->model('vod_model');
         $this->load->model('vod_item_model');
         $this->load->helper('pdk');
+        date_default_timezone_set($this->config->item('timezone'));
     }
 
     public function mobile($id = null) {

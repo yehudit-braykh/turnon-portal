@@ -14,7 +14,7 @@
     $(window).load(function () {
         $('#events_slider').flexslider({
             animation: "slide",
-            itemWidth: 290,
+            itemWidth: 420,
             slideshow: false,
             animationLoop: false,
             controlNav: false,
