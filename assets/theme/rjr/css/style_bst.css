@@ -3375,12 +3375,16 @@ td.product_content{
     color: #fff;
     padding-top: 6px;
     font-size: 18px;
-    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+
+.pic_events{
+    padding-top: 45px;    
 }
 
 .img_events {
     width: 100%;
-    margin-top: 45px;
     margin-bottom: 4vw;
 }
 
