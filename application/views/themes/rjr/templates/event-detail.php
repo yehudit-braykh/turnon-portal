@@ -7,7 +7,12 @@ if (isset($events->content) && sizeof($events->content) > 0) {
     <script>
 
         $(document).ready(function () {
-            var clock = $('#countdown').FlipClock(<?php echo $event_time; ?>, {
+
+    <?php echo 'event_time=' . $event_time . ';'; ?>
+            var d = new Date(<?php echo $event_time; ?>)
+            var difference = d.getTimezoneOffset();
+
+            var clock = $('#countdown').FlipClock((difference * 60) + event_time, {
                 clockFace: 'DailyCounter',
                 countdown: true
             });
@@ -18,46 +23,46 @@ if (isset($events->content) && sizeof($events->content) > 0) {
 
         });
 
-       
+
 
     </script>
 
 
-<div class="container">
+    <div class="container">
 
-    <div class="content_info">
+        <div class="content_info">
 
-        <div class="col-sm-5 pic_events">
+            <div class="col-sm-5 pic_events">
 
-            <?php if ($data->live_now) {
-                ?>
-                <div class="col-sm-12 live_now_advise">LIVE NOW</div>
-                <?php
-            }
-            ?>
-            <img class="img_events" src="<?php echo $data->image; ?>">
-
-        </div>
-
-        <div class="col-sm-7 info_events">
-
-            <div class="col-sm-12" id="col_info_sm">
-
-                <?php if (!$data->live_now) {
+                <?php if ($data->live_now) {
                     ?>
-                    <h3><small>BEGINNING IN:</small></h3>
-                    <div class="live_events_countdown">
-                        <div id="countdown"></div>
-                    </div>
-                <?php }
+                    <div class="col-sm-12 live_now_advise">LIVE NOW</div>
+                    <?php
+                }
                 ?>
+                <img class="img_events" src="<?php echo $data->image; ?>">
 
-                <h2 class="event-detail-title"><?php echo $data->name; ?><br>
-                    <small><?php echo date('l, F d, Y - H:i', ($data->event_date / 1000)) . ' Hours EST - US $' . $data->price; ?></small>
-                </h2>
+            </div>
 
-                <h5 class="vod_info_credit_item_value"><?php echo $data->description; ?></h5>
-                <div class="dc_clear"></div>
+            <div class="col-sm-7 info_events">
+
+                <div class="col-sm-12" id="col_info_sm">
+
+                    <?php if (!$data->live_now) {
+                        ?>
+                        <h3><small>BEGINNING IN:</small></h3>
+                        <div class="live_events_countdown">
+                            <div id="countdown"></div>
+                        </div>
+                    <?php }
+                    ?>
+
+                    <h2 class="event-detail-title"><?php echo $data->name; ?><br>
+                        <small><?php echo date('l, F d, Y - H:i', ($data->event_date / 1000)) . ' Hours EST - US $' . $data->price; ?></small>
+                    </h2>
+
+                    <h5 class="vod_info_credit_item_value"><?php echo $data->description; ?></h5>
+                    <div class="dc_clear"></div>
                     <?php
                     if (isset($data->already_purchased) && $data->already_purchased) {
                         if ($data->live_now) {
@@ -80,16 +85,16 @@ if (isset($events->content) && sizeof($events->content) > 0) {
                     }
                     ?>
 
-                    </div>
+                </div>
 
-               
 
+
+            </div>
         </div>
-</div>
 
 
 
-        </div>
+    </div>
 
     <?php
 }

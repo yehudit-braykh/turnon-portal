@@ -93,7 +93,6 @@ class Live_events extends UVod_Controller {
 
     public function main($id = null) {
 
-
         $media_ids = array();
         $events = $this->live_events_model->list_simple_events();
 
