@@ -215,14 +215,14 @@ class Account extends UVod_Controller {
 
         $data = array();
         $user_profile = $this->account_model->get_profile($_SESSION['uvod_user_data']->token);
-        $subscription = $this->account_model->get_contract($_SESSION['uvod_user_data']->id, 'false');
-
+        $subscription = $this->account_model->get_contract($_SESSION['uvod_user_data']->id, 'true');
+        
         if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
+
             $subscriptions = $subscription->content->entries;
             for ($i = 0; $i < sizeof($subscriptions); $i++) {
-
-                if ($subscriptions[$i]->{'plcontract$active'} && $subscriptions[$i]->{'plcontract$originalSubscriptionId'} !== 'http://data.product.theplatform.com/product/data/Subscription/1363283' &&
-                        $subscriptions[$i]->{'plcontract$originalSubscriptionId'} !== 'http://data.product.theplatform.com/product/data/Subscription/13255581') {
+             
+                if ($subscriptions[$i]->{'plcontract$active'} && $subscriptions[$i]->{'plcontract$originalSubscriptionId'} !== 'http://data.product.theplatform.com/product/data/Subscription/1363283') {
                     $data['subscription_data'] = $subscriptions[$i];
                 }
             }
@@ -255,7 +255,7 @@ class Account extends UVod_Controller {
                 });
             }
         }
-
+        
         if ($user_profile && $user_profile->content) {
             $data['user_first_name'] = $user_profile->content[0]->{'pluserprofile$firstName'};
             $data['user_last_name'] = $user_profile->content[0]->{'pluserprofile$lastName'};
