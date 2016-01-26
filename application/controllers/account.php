@@ -373,7 +373,7 @@ class Account extends UVod_Controller {
             if (isset($login) && !$login->error) {
                 $_SESSION['uvod_user_data'] = $login->content;
 
-                $contracts = $this->account_model->get_contract($_SESSION['uvod_user_data']->id, 'false');
+                $contracts = $this->account_model->get_contract($_SESSION['uvod_user_data']->id);
                 if (isset($contracts->content->entries) && sizeof($contracts->content->entries) > 0) {
                     $_SESSION['is_subscriber'] = true;
                 } else {
