@@ -5,6 +5,7 @@
         <meta name="description" content="Challenging the future of TV">
             <meta name="keywords" content="website, business, store" />
             <meta name="robots" content="index, follow" />
+            <meta name="google-site-verification" content="sgX8x5zuGC0Ql12s5XaBVWkBF4RY1fEJJGKkzkoedEI" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=no">
                 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
