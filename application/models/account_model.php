@@ -11,7 +11,7 @@ class Account_model extends CI_Model {
     public function login($user, $pass, $disabled = false) {
         return apiPost("user/login_portal", array("username" => $user, "password" => $pass, "disabled" => $disabled));
     }
-    
+
     public function simple_login($user, $pass) {
         return apiPost("user/login", array("username" => $user, "password" => $pass));
     }
@@ -35,7 +35,7 @@ class Account_model extends CI_Model {
     public function get_profile($token) {
         return apiCall("user/get_profile", array('token' => $token));
     }
-    
+
     public function get_self_id($token) {
         return apiPost("user/get_self_id", array('token' => $token));
     }
@@ -99,12 +99,21 @@ class Account_model extends CI_Model {
             $message->subject = $subject;
             $message->from_email = $from_address;
             $message->from_name = $from_name;
-            $message->to = array(array('email' => $email));
+
+            $recipients = array();
+            for ($i = 0; $i < sizeof($email); $i++) {
+                $address = new stdClass();
+                $address->email = $email[$i];
+                $address->type = 'to';
+                $recipients[] = $address;
+            }
+
+            $message->to = $recipients;
             //$message->to = array(array('email' => "sebastoian@hotmail.com"));
 
             $message->track_opens = true;
             $mandrill->messages->send($message);
-            
+
             return true;
         } catch (Exception $e) {
             return false;
@@ -122,9 +131,9 @@ class Account_model extends CI_Model {
 
     public function subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $pi_security_code, $subscription_id, $auto_renew) {
 
-        return apiPost("commerce/subscription_checkout", array('token' => $token,'nonce' => $nonce, 'first_name' => $first_name, 'last_name' => $last_name,
-            'email' => $email, 'country' => $country, 'pi_month' => $pi_month, 'pi_year' => $pi_year, 'pi_type' => $pi_type, 'pi_number' => $pi_number, 
-            'pi_security_code' => $pi_security_code,'subscription_id' => $subscription_id, 'auto_renew' => $auto_renew));
+        return apiPost("commerce/subscription_checkout", array('token' => $token, 'nonce' => $nonce, 'first_name' => $first_name, 'last_name' => $last_name,
+            'email' => $email, 'country' => $country, 'pi_month' => $pi_month, 'pi_year' => $pi_year, 'pi_type' => $pi_type, 'pi_number' => $pi_number,
+            'pi_security_code' => $pi_security_code, 'subscription_id' => $subscription_id, 'auto_renew' => $auto_renew));
     }
 
     public function get_contract($id, $user_active = null) {
@@ -136,7 +145,7 @@ class Account_model extends CI_Model {
 
         return apiPost("commerce/cancel_subscription", array('id' => $id));
     }
-    
+
     public function update_subscription($id, $auto_renew) {
 
         return apiPost("commerce/update_contract", array('id' => $id, 'auto_renew' => $auto_renew));
@@ -144,7 +153,7 @@ class Account_model extends CI_Model {
 
     public function get_subscriptions($id = null) {
 
-        return apiPost("commerce/get_subscriptions",array('id'=>$id));
+        return apiPost("commerce/get_subscriptions", array('id' => $id));
     }
 
     public function get_billing_information($id) {
@@ -160,21 +169,22 @@ class Account_model extends CI_Model {
     public function exists_user_email($email) {
 
         $ret = false;
-        
+
         $resp = apiCall("user/get_single_user", array('email' => $email));
-  
+
         if ($resp && isset($resp->content) && isset($resp->content->entries) && sizeof($resp->content->entries) > 0) {
             $ret = true;
         }
-        
+
         //$ret = false;
 
         return $ret;
     }
-    
+
     public function get_profile_by_email($email) {
         return apiPost("user/get_profile_by_email", array('email' => $email));
     }
+
 }
 
 ?>
