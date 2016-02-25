@@ -519,8 +519,10 @@ class Account extends UVod_Controller {
         if (isset($ret->error) && $ret->error == false) {
 
             if (isset($ret->subscription_data)) {
+                error_log('ESTA SETEADO EL SUSCRIPTION: '. json_encode($ret->subscription_data));
                 $time = $ret->subscription_data->{'plsubscription$subscriptionLength'};
             } else {
+                error_log('NO ESTA SETEADO EL SUSCRIPTION');
                 $time = '';
             }
             $_SESSION['is_subscriber'] = true;
