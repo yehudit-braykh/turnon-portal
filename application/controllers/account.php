@@ -515,7 +515,7 @@ class Account extends UVod_Controller {
         $auto_renew = $_POST['auto_renew'];
 
         $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $pi_security_code, $subscription_id, $auto_renew);
-
+        error_log('SUBSCRIPTION RET: '.json_encode($ret));
         if (isset($ret->error) && $ret->error == false) {
 
             if (isset($ret->subscription_data)) {
