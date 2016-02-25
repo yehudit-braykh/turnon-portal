@@ -100,16 +100,20 @@ class Account_model extends CI_Model {
             $message->from_email = $from_address;
             $message->from_name = $from_name;
 
-            $recipients = array();
-            for ($i = 0; $i < sizeof($email); $i++) {
-                $address = new stdClass();
-                $address->email = $email[$i];
-                $address->type = 'to';
-                $recipients[] = $address;
+            if (is_array($email)) {
+                $recipients = array();
+                for ($i = 0; $i < sizeof($email); $i++) {
+                    $address = new stdClass();
+                    $address->email = $email[$i];
+                    $address->type = 'to';
+                    $recipients[] = $address;
+                }
+
+                $message->to = $recipients;
+            } else {
+                $message->to = array(array('email' => $email));
             }
 
-            $message->to = $recipients;
-            //$message->to = array(array('email' => "sebastoian@hotmail.com"));
 
             $message->track_opens = true;
             $mandrill->messages->send($message);
