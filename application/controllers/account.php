@@ -515,14 +515,13 @@ class Account extends UVod_Controller {
         $auto_renew = $_POST['auto_renew'];
 
         $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $pi_security_code, $subscription_id, $auto_renew);
-        error_log('SUBSCRIPTION RET: '.json_encode($ret));
+
         if (isset($ret->error) && $ret->error == false) {
 
             if (isset($ret->content->subscription_data)) {
-                error_log('ESTA SETEADO EL SUSCRIPTION: '. json_encode($ret->subscription_data));
-                $time = $ret->subscription_data->{'plsubscription$subscriptionLength'};
+                $time = $ret->content->subscription_data->{'plsubscription$subscriptionLength'};
             } else {
-                error_log('NO ESTA SETEADO EL SUSCRIPTION');
+
                 $time = '';
             }
             $_SESSION['is_subscriber'] = true;
