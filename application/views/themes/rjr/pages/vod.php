@@ -104,9 +104,7 @@
                     if (isset($slider[$i]->link)) {
                         $item_url = $slider[$i]->link;
                     } else {
-                        $item_id_arr = explode("/", $slider[$i]->id);
-                        $item_id = $item_id_arr[sizeof($item_id_arr) - 1];
-                        $item_url = base_url() . 'index.php/vod_item/detail/id/' . $item_id;
+                        $item_url = base_url() . 'index.php/vod_item/detail/id/' . $slider[$i]->_id;
                     }
                     ?>
 

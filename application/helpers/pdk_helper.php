@@ -7,10 +7,10 @@ function getEntryId($entry) {
 
 function getEntryCategories($entry) {
     $ret = "";
-    if ($entry && $entry->{'media$categories'}) {
+    if ($entry && $entry->{'categories'}) {
         $retArr = array();
-        for ($i = 0; $i < sizeof($entry->{'media$categories'}); $i++) {
-            $retArr[] = $entry->{'media$categories'}[i]->{'media$name'};
+        for ($i = 0; $i < sizeof($entry->{'categories'}); $i++) {
+            $retArr[] = $entry->{'categories'}[i]->{'name'};
         }
         $ret = implode(",", $retArr);
     }
@@ -20,9 +20,9 @@ function getEntryCategories($entry) {
 function getEntryFirstGenre($entry) {
     $ret = "";
     if ($entry &&
-            isset($entry->{'media$categories'}) &&
-            sizeof($entry->{'media$categories'}) > 0) {
-        $ret = $entry->{'media$categories'}[0]->{'media$name'};
+            isset($entry->{'categories'}) &&
+            sizeof($entry->{'categories'}) > 0) {
+        $ret = $entry->{'categories'}[0]->{'name'};
     }
     return $ret;
 }
@@ -30,9 +30,9 @@ function getEntryFirstGenre($entry) {
 function getEntryFirstVodCategory($entry) {
     $ret = "";
     if ($entry &&
-            isset($entry->{'pl1$vod_category'}) &&
-            sizeof($entry->{'pl1$vod_category'}) > 0) {
-        $ret = $entry->{'pl1$vod_category'}[0];
+            isset($entry->{'vod_category'}) &&
+            sizeof($entry->{'vod_category'}) > 0) {
+        $ret = $entry->{'vod_category'}[0];
     }
 
     return $ret;
@@ -41,8 +41,8 @@ function getEntryFirstVodCategory($entry) {
 function getEntryFirstMediaType($entry) {
     $ret = "";
     if ($entry &&
-            isset($entry->{'pl1$media_type'})) {
-        $ret = $entry->{'pl1$media_type'};
+            isset($entry->{'media_type'})) {
+        $ret = $entry->{'media_type'};
     }
     return $ret;
 }
@@ -50,9 +50,9 @@ function getEntryFirstMediaType($entry) {
 function getEntryFirstFeaturedCategory($entry) {
     $ret = "";
     if ($entry &&
-            isset($entry->{'pl1$featured_category'}) &&
-            sizeof($entry->{'pl1$featured_category'}) > 0) {
-        $ret = $entry->{'pl1$featured_category'}[0];
+            isset($entry->{'featured_category'}) &&
+            sizeof($entry->{'featured_category'}) > 0) {
+        $ret = $entry->{'featured_category'}[0];
     }
     return $ret;
 }
@@ -63,10 +63,10 @@ function getEntryProperty($entry, $property) {
 
     switch ($property) {
         case 'cover':
-            if ($entry->{'media$thumbnails'} &&
-                    sizeof($entry->{'media$thumbnails'}) &&
-                    $entry->{'media$thumbnails'}[0]->{'plfile$url'}) {
-                $ret = $entry->{'media$thumbnails'}[0]->{'plfile$url'};
+            if ($entry->{'thumbnails'} &&
+                    sizeof($entry->{'thumbnails'}) &&
+                    $entry->{'thumbnails'}[0]->{'url'}) {
+                $ret = $entry->{'thumbnails'}[0]->{'url'};
             }
             break;
         case 'title':
@@ -75,24 +75,24 @@ function getEntryProperty($entry, $property) {
             }
             break;
         case 'year':
-            if (isset($entry->{'pl1$movie_year'})) {
-                $ret = $entry->{'pl1$movie_year'};
+            if (isset($entry->{'movie_year'})) {
+                $ret = $entry->{'movie_year'};
             }
             break;
         case 'runtime':
-            if (isset($entry->{'pl1$runtime'})) {
-                $ret = $entry->{'pl1$runtime'};
+            if (isset($entry->{'runtime'})) {
+                $ret = $entry->{'runtime'};
             }
             break;
 
         case 'director':
-            if (isset($entry->{'pl1$directors'})) {
-                $ret = $entry->{'pl1$directors'};
+            if (isset($entry->{'directors'})) {
+                $ret = $entry->{'directors'};
             }
             break;
         case 'actors':
-            if (isset($entry->{'pl1$actors'})) {
-                $ret = $entry->{'pl1$actors'};
+            if (isset($entry->{'actors'})) {
+                $ret = $entry->{'actors'};
             }
             break;
         case 'description':
@@ -101,28 +101,28 @@ function getEntryProperty($entry, $property) {
             }
             break;
         case 'adPolicyId':
-            if (isset($entry->{'plmedia$adPolicyId'})) {
-                $ret = $entry->{'plmedia$adPolicyId'};
+            if (isset($entry->{'pladPolicyId'})) {
+                $ret = $entry->{'pladPolicyId'};
             }
             break;
         case 'genre':
-            if (isset($entry->{'media$categories'})) {
+            if (isset($entry->{'categories'})) {
                 $arr_genres = array();
-                for ($i = 0; $i < sizeof($entry->{'media$categories'}); $i++) {
-                    if ($entry->{'media$categories'}[$i]->{'media$scheme'} != 'commerce') {
-                        $arr_genres[] = $entry->{'media$categories'}[$i]->{'media$name'};
+                for ($i = 0; $i < sizeof($entry->{'categories'}); $i++) {
+                    if ($entry->{'categories'}[$i]->{'scheme'} != 'commerce') {
+                        $arr_genres[] = $entry->{'categories'}[$i]->{'name'};
                     }
                 }
                 $ret = implode(", ", $arr_genres);
             }
             break;
         case 'commerce':
-            if (isset($entry->{'media$categories'})) {
+            if (isset($entry->{'categories'})) {
                 $arr_genres = array();
-                for ($i = 0; $i < sizeof($entry->{'media$categories'}); $i++) {
-                    if ($entry->{'media$categories'}[$i]->{'media$scheme'} == 'commerce') {
+                for ($i = 0; $i < sizeof($entry->{'categories'}); $i++) {
+                    if ($entry->{'categories'}[$i]->{'scheme'} == 'commerce') {
 
-                        $arr_genres[] = $entry->{'media$categories'}[$i]->{'media$name'};
+                        $arr_genres[] = $entry->{'categories'}[$i]->{'name'};
                     }
                 }
                 $commerce_class = implode(", ", $arr_genres);
@@ -143,53 +143,53 @@ function getEntryProperty($entry, $property) {
             }
             break;
         case 'writer':
-            if (isset($entry->{'pl1$writer'})) {
-                $ret = $entry->{'pl1$writer'};
+            if (isset($entry->{'writer'})) {
+                $ret = $entry->{'writer'};
             }
             break;
         case 'tags':
-            if (isset($entry->{'media$keywords'})) {
-                $ret = $entry->{'media$keywords'};
+            if (isset($entry->{'keywords'})) {
+                $ret = $entry->{'keywords'};
             }
             break;
         case 'rating':
-            if (isset($entry->{'media$ratings'}) && sizeof($entry->{'media$ratings'})) {
+            if (isset($entry->{'ratings'}) && sizeof($entry->{'ratings'})) {
                 $arr_sub_ratings = array();
-                for ($i = 0; $i < sizeof($entry->{'media$ratings'}[0]->subRatings); $i++) {
-                    $arr_sub_ratings[] = strtoupper($entry->{'media$ratings'}[0]->subRatings[$i]);
+                for ($i = 0; $i < sizeof($entry->{'ratings'}[0]->subRatings); $i++) {
+                    $arr_sub_ratings[] = strtoupper($entry->{'ratings'}[0]->subRatings[$i]);
                 }
-                $ret = strtoupper($entry->{'media$ratings'}[0]->rating) . (sizeof($arr_sub_ratings) ? " (" . implode(", ", $arr_sub_ratings) . ")" : "");
+                $ret = strtoupper($entry->{'ratings'}[0]->rating) . (sizeof($arr_sub_ratings) ? " (" . implode(", ", $arr_sub_ratings) . ")" : "");
             }
             break;
         case 'media_definition':
-            if (isset($entry->{'pl1$mediaDefinition'})) {
-                $ret = $entry->{'pl1$mediaDefinition'}[0];
+            if (isset($entry->{'mediaDefinition'})) {
+                $ret = $entry->{'mediaDefinition'}[0];
             }
-            if (isset($entry->{'pl1$media_definition'})) {
-                $ret = $entry->{'pl1$media_definition'}[0];
+            if (isset($entry->{'media_definition'})) {
+                $ret = $entry->{'media_definition'}[0];
             }
             break;
         case 'language':
         case 'trailer':
         case 'media_type':
-            if (isset($entry->{'pl1$media_type'})) {
-                $ret = $entry->{'pl1$media_type'};
+            if (isset($entry->{'media_type'})) {
+                $ret = $entry->{'media_type'};
             }
             break;
         case 'blocked_stream_public_url':
-            if (isset($entry->{'pl1$blocked_stream_public_url'})) {
-                $ret = $entry->{'pl1$blocked_stream_public_url'};
+            if (isset($entry->{'blocked_stream_public_url'})) {
+                $ret = $entry->{'blocked_stream_public_url'};
             }
             break;
         case 'blocked_stream_hls_url':
-            if (isset($entry->{'pl1$blocked_stream_hls_url'})) {
-                $ret = $entry->{'pl1$blocked_stream_hls_url'};
+            if (isset($entry->{'blocked_stream_hls_url'})) {
+                $ret = $entry->{'blocked_stream_hls_url'};
             }
             break;
         case 'aired_date':
-            if (isset($entry->{'pl1$aired_date'})) {
-                $date = $entry->{'pl1$aired_date'};
-                $ret = strtotime($date);
+            if (isset($entry->{'aired_date'})) {
+                $date = $entry->{'aired_date'};
+                $ret = $date;
             } else {
                 $ret = '';
             }
@@ -201,10 +201,10 @@ function getEntryProperty($entry, $property) {
 
 function getEntryReleaseId($entry, $rendition = "Video") {
     $ret = "";
-    if ($entry && $entry->{'media$content'}) {
-        for ($i = 0; $i < sizeof($entry->{'media$content'}); $i++) {
-            if ($entry->{'media$content'}[$i]->{'plfile$assetTypes'}[0] == $rendition) {
-                $ret = $entry->{'media$content'}[$i]->{'plfile$releases'}[0]->{'plrelease$pid'};
+    if ($entry && $entry->{'content'}) {
+        for ($i = 0; $i < sizeof($entry->{'content'}); $i++) {
+            if ($entry->{'content'}[$i]->{'assetTypes'}[0] == $rendition) {
+                $ret = $entry->{'content'}[$i]->{'releases'}[0]->{'plrelease$pid'};
                 break;
             }
         }
@@ -214,15 +214,15 @@ function getEntryReleaseId($entry, $rendition = "Video") {
 
 function getEntryReleaseUrl($entry, $rendition = "Video") {
     $ret = "";
-    if ($entry && $entry->{'media$content'}) {
-        for ($i = 0; $i < sizeof($entry->{'media$content'}); $i++) {
-            if (isset($entry->{'media$content'}[$i]->{'plfile$assetTypes'}) &&
-                    sizeof($entry->{'media$content'}[$i]->{'plfile$assetTypes'})) {
-                for ($j = 0; $j < sizeof($entry->{'media$content'}[$i]->{'plfile$assetTypes'}); $j++) {
-                    if ($entry->{'media$content'}[$i]->{'plfile$assetTypes'}[$j] == $rendition &&
-                            isset($entry->{'media$content'}[$i]->{'plfile$releases'}) &&
-                            sizeof($entry->{'media$content'}[$i]->{'plfile$releases'})) {
-                        $ret = $entry->{'media$content'}[$i]->{'plfile$releases'}[0]->{'plrelease$url'};
+    if ($entry && $entry->{'content'}) {
+        for ($i = 0; $i < sizeof($entry->{'content'}); $i++) {
+            if (isset($entry->{'content'}[$i]->{'assetTypes'}) &&
+                    sizeof($entry->{'content'}[$i]->{'assetTypes'})) {
+                for ($j = 0; $j < sizeof($entry->{'content'}[$i]->{'assetTypes'}); $j++) {
+                    if ($entry->{'content'}[$i]->{'assetTypes'}[$j] == $rendition &&
+                            isset($entry->{'content'}[$i]->{'releases'}) &&
+                            sizeof($entry->{'content'}[$i]->{'releases'})) {
+                        $ret = $entry->{'content'}[$i]->{'releases'}[0]->{'plrelease$url'};
                         break;
                     }
                 }
@@ -236,14 +236,14 @@ function getEntryReleaseUrl($entry, $rendition = "Video") {
 
 function getEntryStreamingUrl($entry, $rendition = "Video") {
     $ret = "";
-    if ($entry && $entry->{'media$content'}) {
-        for ($i = 0; $i < sizeof($entry->{'media$content'}); $i++) {
-            if (isset($entry->{'media$content'}[$i]->{'plfile$assetTypes'}) &&
-                    sizeof($entry->{'media$content'}[$i]->{'plfile$assetTypes'})) {
-                for ($j = 0; $j < sizeof($entry->{'media$content'}[$i]->{'plfile$assetTypes'}); $j++) {
-                    if ($entry->{'media$content'}[$i]->{'plfile$assetTypes'}[$j] == $rendition &&
-                            isset($entry->{'media$content'}[$i]->{'plfile$streamingUrl'})) {
-                        $ret = $entry->{'media$content'}[$i]->{'plfile$streamingUrl'};
+    if ($entry && $entry->{'content'}) {
+        for ($i = 0; $i < sizeof($entry->{'content'}); $i++) {
+            if (isset($entry->{'content'}[$i]->{'assetTypes'}) &&
+                    sizeof($entry->{'content'}[$i]->{'assetTypes'})) {
+                for ($j = 0; $j < sizeof($entry->{'content'}[$i]->{'assetTypes'}); $j++) {
+                    if ($entry->{'content'}[$i]->{'assetTypes'}[$j] == $rendition &&
+                            isset($entry->{'content'}[$i]->{'streamingUrl'})) {
+                        $ret = $entry->{'content'}[$i]->{'streamingUrl'};
                         break;
                     }
                 }
@@ -257,14 +257,14 @@ function getEntryStreamingUrl($entry, $rendition = "Video") {
 
 function getEntryFileUrl($entry, $rendition = "Video") {
     $ret = "";
-    if ($entry && $entry->{'media$content'}) {
-        for ($i = 0; $i < sizeof($entry->{'media$content'}); $i++) {
-            if (isset($entry->{'media$content'}[$i]->{'plfile$assetTypes'}) &&
-                    sizeof($entry->{'media$content'}[$i]->{'plfile$assetTypes'})) {
-                for ($j = 0; $j < sizeof($entry->{'media$content'}[$i]->{'plfile$assetTypes'}); $j++) {
-                    if ($entry->{'media$content'}[$i]->{'plfile$assetTypes'}[$j] == $rendition &&
-                            isset($entry->{'media$content'}[$i]->{'plfile$url'})) {
-                        $ret = $entry->{'media$content'}[$i]->{'plfile$url'};
+    if ($entry && $entry->{'content'}) {
+        for ($i = 0; $i < sizeof($entry->{'content'}); $i++) {
+            if (isset($entry->{'content'}[$i]->{'assetTypes'}) &&
+                    sizeof($entry->{'content'}[$i]->{'assetTypes'})) {
+                for ($j = 0; $j < sizeof($entry->{'content'}[$i]->{'assetTypes'}); $j++) {
+                    if ($entry->{'content'}[$i]->{'assetTypes'}[$j] == $rendition &&
+                            isset($entry->{'content'}[$i]->{'url'})) {
+                        $ret = $entry->{'content'}[$i]->{'url'};
                         break;
                     }
                 }
@@ -278,18 +278,18 @@ function getEntryFileUrl($entry, $rendition = "Video") {
 
 function getEntryRenditions($entry, $rendition = "Video") {
     $ret = array();
-    if ($entry && $entry->{'media$content'}) {
-        for ($i = 0; $i < sizeof($entry->{'media$content'}); $i++) {
-            if (isset($entry->{'media$content'}[$i]->{'plfile$assetTypes'}) && sizeof($entry->{'media$content'}[$i]->{'plfile$assetTypes'})) {
-                for ($j = 0; $j < sizeof($entry->{'media$content'}[$i]->{'plfile$assetTypes'}); $j++) {
-                    if ($entry->{'media$content'}[$i]->{'plfile$assetTypes'}[$j] == $rendition && 
-                        isset($entry->{'media$content'}[$i]->{'plfile$streamingUrl'})) {
+    if ($entry && $entry->{'content'}) {
+        for ($i = 0; $i < sizeof($entry->{'content'}); $i++) {
+            if (isset($entry->{'content'}[$i]->{'assetTypes'}) && sizeof($entry->{'content'}[$i]->{'assetTypes'})) {
+                for ($j = 0; $j < sizeof($entry->{'content'}[$i]->{'assetTypes'}); $j++) {
+                    if ($entry->{'content'}[$i]->{'assetTypes'}[$j] == $rendition && 
+                        isset($entry->{'content'}[$i]->{'streamingUrl'})) {
 
                         $rend = new stdClass();
 
-                        $rend->file = $entry->{'media$content'}[$i]->{'plfile$streamingUrl'};
-                        $rend->label = $entry->{'media$content'}[$i]->{'plfile$width'} . 'x' . $entry->{'media$content'}[$i]->{'plfile$height'} . ' ' . formatBytes($entry->{'media$content'}[$i]->{'plfile$bitrate'}, 0);
-                        $rend->bitrate = $entry->{'media$content'}[$i]->{'plfile$bitrate'};
+                        $rend->file = $entry->{'content'}[$i]->{'streamingUrl'};
+                        $rend->label = $entry->{'content'}[$i]->{'width'} . 'x' . $entry->{'content'}[$i]->{'height'} . ' ' . formatBytes($entry->{'content'}[$i]->{'bitrate'}, 0);
+                        $rend->bitrate = $entry->{'content'}[$i]->{'bitrate'};
 
                         $ret[] = $rend;
                     }
@@ -320,34 +320,35 @@ function formatBytes($bytes, $precision = 2) {
 
 function getEntryThumbnail($entry, $type) {
     $ret = "";
-    if ($entry && $entry->{'media$thumbnails'}) {
-        for ($i = 0; $i < sizeof($entry->{'media$thumbnails'}); $i++) {
-            if ($entry->{'media$thumbnails'}[$i]->{'plfile$assetTypes'} &&
-                    sizeof($entry->{'media$thumbnails'}[$i]->{'plfile$assetTypes'})) {
-                for ($j = 0; $j < sizeof($entry->{'media$thumbnails'}[$i]->{'plfile$assetTypes'}); $j++) {
-
-                    if ($entry->{'media$thumbnails'}[$i]->{'plfile$assetTypes'}[$j] == $type) {
-                        if ($entry->{'media$thumbnails'}[$i]->{'plfile$downloadUrl'}) {
-                            $ret = $entry->{'media$thumbnails'}[$i]->{'plfile$downloadUrl'};
-                        } else {
-                            $ret = $entry->{'media$thumbnails'}[$i]->{'plfile$url'};
-                        }
+    
+     if ($entry && $entry->{'content'}) {
+        for ($i = 0; $i < sizeof($entry->{'content'}); $i++) {
+            if ($entry->{'content'}[$i]->{'assetTypes'} &&
+                    sizeof($entry->{'content'}[$i]->{'assetTypes'})) {
+                for ($j = 0; $j < sizeof($entry->{'content'}[$i]->{'assetTypes'}); $j++) {
+                    if ($entry->{'content'}[$i]->{'assetTypes'}[$j] == $type) {
+                        $ret = urldecode($entry->{'content'}[$i]->{'downloadUrl'});
                         break;
                     }
                 }
             }
+            if ($ret)
+                break;
         }
     }
-
     return $ret;
+    
+    
+    
+    
 }
 
 // returns if the object it's a movie, series or episode
 function getEntryVodType($entry) {
 
-    if (isset($entry->{'pl1$vod_category'})) {
-        for ($i = 0; $i < sizeof($entry->{'pl1$vod_category'}); $i++) {
-            if ($entry->{'pl1$vod_category'}[$i] == "tvj_shows") {
+    if (isset($entry->{'vod_category'})) {
+        for ($i = 0; $i < sizeof($entry->{'vod_category'}); $i++) {
+            if ($entry->{'vod_category'}[$i] == "tvj_shows") {
                 if (isset($entry->seasons)) {
                     return "tvj_shows";
                 } else {
@@ -373,14 +374,14 @@ function parseDate($entry) {
 
 function pdk_get_entry_download_url($entry, $rendition, $width) {
     $ret = "";
-    if ($entry && $entry->{'media$content'}) {
-        for ($i = 0; $i < sizeof($entry->{'media$content'}); $i++) {
-            if ($entry->{'media$content'}[$i]->{'plfile$assetTypes'} &&
-                    sizeof($entry->{'media$content'}[$i]->{'plfile$assetTypes'})) {
-                for ($j = 0; $j < sizeof($entry->{'media$content'}[$i]->{'plfile$assetTypes'}); $j++) {
-                    if ($entry->{'media$content'}[$i]->{'plfile$assetTypes'}[$j] == $rendition &&
-                            $entry->{'media$content'}[$i]->{'plfile$width'} == $width) {
-                        $ret = $entry->{'media$content'}[$i]->{'plfile$downloadUrl'};
+    if ($entry && $entry->{'content'}) {
+        for ($i = 0; $i < sizeof($entry->{'content'}); $i++) {
+            if ($entry->{'content'}[$i]->{'assetTypes'} &&
+                    sizeof($entry->{'content'}[$i]->{'assetTypes'})) {
+                for ($j = 0; $j < sizeof($entry->{'content'}[$i]->{'assetTypes'}); $j++) {
+                    if ($entry->{'content'}[$i]->{'assetTypes'}[$j] == $rendition &&
+                            $entry->{'content'}[$i]->{'width'} == $width) {
+                        $ret = $entry->{'content'}[$i]->{'downloadUrl'};
                         break;
                     }
                 }
