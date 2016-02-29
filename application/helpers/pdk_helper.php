@@ -155,8 +155,10 @@ function getEntryProperty($entry, $property) {
         case 'rating':
             if (isset($entry->ratings) && sizeof($entry->ratings)) {
                 $arr_sub_ratings = array();
-                for ($i = 0; $i < sizeof($entry->ratings[0]->subRatings); $i++) {
-                    $arr_sub_ratings[] = strtoupper($entry->ratings[0]->subRatings[$i]);
+                if (isset($entry->ratings[0]->subRatings)) {
+                    for ($i = 0; $i < sizeof($entry->ratings[0]->subRatings); $i++) {
+                        $arr_sub_ratings[] = strtoupper($entry->ratings[0]->subRatings[$i]);
+                    }
                 }
                 $ret = strtoupper($entry->ratings[0]->rating) . (sizeof($arr_sub_ratings) ? " (" . implode(", ", $arr_sub_ratings) . ")" : "");
             }
@@ -243,7 +245,7 @@ function getEntryStreamingUrl($entry, $rendition = "Video") {
                 for ($j = 0; $j < sizeof($entry->content[$i]->assetTypes); $j++) {
                     if ($entry->content[$i]->assetTypes[$j] == $rendition &&
                             isset($entry->content[$i]->streamingUrl)) {
-                        $ret = $entry->content[$i]->streamingUrl;
+                        $ret = urldecode($entry->content[$i]->streamingUrl);
                         break;
                     }
                 }
@@ -282,12 +284,12 @@ function getEntryRenditions($entry, $rendition = "Video") {
         for ($i = 0; $i < sizeof($entry->content); $i++) {
             if (isset($entry->content[$i]->assetTypes) && sizeof($entry->content[$i]->assetTypes)) {
                 for ($j = 0; $j < sizeof($entry->content[$i]->assetTypes); $j++) {
-                    if ($entry->content[$i]->assetTypes[$j] == $rendition && 
-                        isset($entry->content[$i]->streamingUrl)) {
+                    if ($entry->content[$i]->assetTypes[$j] == $rendition &&
+                            isset($entry->content[$i]->streamingUrl)) {
 
                         $rend = new stdClass();
 
-                        $rend->file = $entry->content[$i]->streamingUrl;
+                        $rend->file = urldecode($entry->content[$i]->streamingUrl);
                         $rend->label = $entry->content[$i]->width . 'x' . $entry->content[$i]->height . ' ' . formatBytes($entry->content[$i]->bitrate, 0);
                         $rend->bitrate = $entry->content[$i]->bitrate;
 
@@ -298,14 +300,12 @@ function getEntryRenditions($entry, $rendition = "Video") {
         }
     }
 
-    usort($ret, function($a, $b)
-    {
+    usort($ret, function($a, $b) {
         return ($a->bitrate < $b->bitrate);
     });
 
     return $ret;
 }
-
 
 function formatBytes($bytes, $precision = 2) {
     $units = array('b', 'kb', 'mb', 'gb', 'tb');
@@ -320,8 +320,8 @@ function formatBytes($bytes, $precision = 2) {
 
 function getEntryThumbnail($entry, $type) {
     $ret = "";
-    
-     if ($entry && $entry->content) {
+
+    if ($entry && $entry->content) {
         for ($i = 0; $i < sizeof($entry->content); $i++) {
             if ($entry->content[$i]->assetTypes &&
                     sizeof($entry->content[$i]->assetTypes)) {
@@ -337,10 +337,6 @@ function getEntryThumbnail($entry, $type) {
         }
     }
     return $ret;
-    
-    
-    
-    
 }
 
 // returns if the object it's a movie, series or episode
