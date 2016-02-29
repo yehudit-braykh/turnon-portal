@@ -147,18 +147,28 @@
                 ?>
 
                 <br>
-                <div class="content_full_size">
-                    <div class="category-title"><?php echo $category1['label']; ?></div>
-                    <?php $this->load->view(views_url() . '/templates/home_category', array('category' => $category1['value'])); ?>
-                    <div class="clr"></div>
-                </div>
-                <div class="content_full_size">
-                    <div class="category-title"><?php echo $category2['label']; ?></div>
-                    <?php $this->load->view(views_url() . '/templates/home_category', array('category' => $category2['value'])); ?>
-                    <div class="clr"></div>
-                </div>
                 <?php
-                if (isset($items[$category3['label']]) && sizeof($items[$category3['label']]) > 0) {
+     
+                if (isset($items[$category1['value']]) && sizeof($items[$category1['value']]) > 0) {
+
+                    ?>
+                    <div class="content_full_size">
+                        <div class="category-title"><?php echo $category1['label']; ?></div>
+                        <?php $this->load->view(views_url() . '/templates/home_category', array('category' => $category1['value'])); ?>
+                        <div class="clr"></div>
+                    </div>
+                    <?php
+                }
+                if (isset($items[$category2['value']]) && sizeof($items[$category2['value']]) > 0) {
+                    ?>
+                    <div class="content_full_size">
+                        <div class="category-title"><?php echo $category2['label']; ?></div>
+                        <?php $this->load->view(views_url() . '/templates/home_category', array('category' => $category2['value'])); ?>
+                        <div class="clr"></div>
+                    </div>
+                    <?php
+                }
+                if (isset($items[$category3['value']]) && sizeof($items[$category3['value']]) > 0) {
                     ?>
                     <div class="content_full_size">
                         <div class="category-title"><?php echo $category3['label']; ?></div>
@@ -177,11 +187,11 @@
 
                 <div class="content_full_size">
                     <br>
-    <?php echo $items_category_1; ?>
+                    <?php echo $items_category_1; ?>
                     <div class="clr"></div>
                 </div>
 
-<?php } ?>
+            <?php } ?>
 
             <div class="clr"></div>
         </div>

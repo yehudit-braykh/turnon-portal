@@ -105,19 +105,21 @@ class Vod_item extends UVod_Controller {
 
         $uri_arr = $this->uri->uri_to_assoc(3);
 
-        $item = $this->vod_item_model->get_item_data($uri_arr['id'])->content;
+        $get_item = $this->vod_item_model->get_item_data($uri_arr['id'])->content;
+        $item = $get_item->entries[0];
+        error_log('VOD-ITEM:' . json_encode($item));
+        $data = array();  
         if (isset($item->seasons)) {
             $seasons_number = count($item->seasons);
             $episodes_number = 0;
             for ($x = 0; $x < $seasons_number; $x++) {
                 $episodes_number += count($item->seasons[$x]->episodes);
             }
-        
+
             $data['item_seasons_number'] = $seasons_number;
             $data['item_episodes_number'] = $episodes_number;
-        
         }
-        
+
         $data['section'] = "vod";
         $data['item_id'] = $uri_arr['id'];
 
@@ -155,7 +157,7 @@ class Vod_item extends UVod_Controller {
         $data['adPolicyId'] = $ad_policy_arr[sizeof($ad_policy_arr) - 1];
         $data['download_url'] = pdk_get_entry_mobile_streaming_url($item);
         $data['renditions'] = getEntryRenditions($item);
-        if(sizeof($data['renditions']) < 1){
+        if (sizeof($data['renditions']) < 1) {
             $data['hls_streaming'] = getEntryStreamingUrl($item, 'HLS Stream');
         }
 
