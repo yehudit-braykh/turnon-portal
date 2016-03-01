@@ -105,9 +105,8 @@ class Vod_item extends UVod_Controller {
 
         $uri_arr = $this->uri->uri_to_assoc(3);
 
-        $get_item = $this->vod_item_model->get_item_data($uri_arr['id'])->content;
-        $item = $get_item->entries[0];
-        error_log('VOD-ITEM:' . json_encode($item));
+        $item = $this->vod_item_model->get_item_data($uri_arr['id'])->content;
+
         $data = array();  
         if (isset($item->seasons)) {
             $seasons_number = count($item->seasons);
