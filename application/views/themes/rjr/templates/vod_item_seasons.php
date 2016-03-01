@@ -35,7 +35,7 @@ $('#selectSeason div:last-child').addClass('vod_item_sub_menu_selected');
                                     ?>
                                
                                 <option value="<?php echo $item_seasons[$i]->number; ?>" <?php echo $selected; ?> >
-                                        <?php echo $item_seasons[$i]->title ?>
+                                        <?php // error_log('ITEM SEASON: '.  json_encode($item_seasons));echo $item_seasons[$i]->title ?>
                                     </option>
                                 <?php  
                                 }
