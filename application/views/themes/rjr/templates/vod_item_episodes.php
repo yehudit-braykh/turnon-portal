@@ -22,19 +22,20 @@ if(isset($item_episodes)){
 
     for ($i = 0; $i < sizeof($item_episodes); $i++) {
 
-        $item_id_arr = explode("/", $item_episodes[$i]->media->id);
+        $item_id_arr = explode("/", $item_episodes[$i]->media->_id);
         $item_id = $item_id_arr[sizeof($item_id_arr) - 1];
         ?>
         <div class="vod_item_episode_container" onclick="loadEpisode(<?php echo $item_id; ?>);">
             <div style="float: left;">
                 <div class="ribbon_content <?php echo $item_episodes[$i]->media->commerce_type;?>" style="margin:10px;"></div>
                 <?php
-                if (count($item_episodes[$i]->media->{'media$thumbnails'}) > 0) {
-                    foreach ($item_episodes[$i]->media->{'media$thumbnails'} as $item) {
-                        echo "<img class='episodeImg' src='" . $item->{'plfile$downloadUrl'} . "'/>";
-                        break;
+                if(isset($item_episodes[$i]->media->content)){
+                    $thumnail = getEntryThumbnail($item_episodes[$i]->media, 'Poster H');
+                    if($thumnail !== ''){
+                         echo "<img class='episodeImg' src='" . $thumnail . "'/>";
                     }
                 }
+           
                 ?>
             </div>
             <div  style="float: left;width: 420px;">
