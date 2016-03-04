@@ -146,7 +146,7 @@ if (isset($events->content) && sizeof($events->content) > 0) {
                         <div class="slider-first-element">
                             <img src="<?php echo $data[$i]->image; ?>" />
                             <div class="slider-caption">
-                                <div class="first-item-carousel-title"><span><?php echo $data[$i]->name; ?></span></div><br>
+                                <div class="first-item-carousel-title"><span><?php echo $data[$i]->name; ?></span></div>
                                 <div class="first-item-carousel-date">
                                     <?php echo $event_item_overlay; ?>
                                     <span><?php echo date('l, F d, Y - H:i', ($data[$i]->event_date / 1000)) . ' Hs EST - US $' . $data[$i]->price; ?></span>
