@@ -525,7 +525,7 @@ class Account extends UVod_Controller {
                 $time = '';
             }
             $_SESSION['is_subscriber'] = true;
-            $this->subscription_complete_mail($first_name, $last_name, array($email,'alejandro.miller@univtec.com','belen.dalfarra@univtec.com'), $time, $auto_renew);
+            $this->subscription_complete_mail($first_name, $last_name, array($email), $time, $auto_renew);
             echo json_encode(array('status' => 'ok'));
         } else {
             echo json_encode(array('status' => 'error', 'message' => $ret->message,));
