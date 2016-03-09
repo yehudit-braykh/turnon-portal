@@ -1,12 +1,4 @@
 RewriteEngine on
 
-RewriteCond %{HTTPS} off
-RewriteCond %{REQUEST_URI} ssl$
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301]
 
-RewriteCond %{HTTPS} on
-RewriteCond %{REQUEST_URI} !(ssl$)
-Rewriterule ^(.*)$ http://%{HTTP_HOST}%{REQUEST_URI} [R=301]
-
-redirect /index.php/account/register http://1spotmedia.com/index.php/account/register_ssl
 

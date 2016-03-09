@@ -373,7 +373,7 @@ class Account extends UVod_Controller {
             if (isset($login) && !$login->error) {
                 $_SESSION['uvod_user_data'] = $login->content;
 
-                $contracts = $this->account_model->get_contract($_SESSION['uvod_user_data']->id, 'false');
+                $contracts = $this->account_model->get_contract($_SESSION['uvod_user_data']->id);
                 if (isset($contracts->content->entries) && sizeof($contracts->content->entries) > 0) {
                     $_SESSION['is_subscriber'] = true;
                 } else {
@@ -518,13 +518,14 @@ class Account extends UVod_Controller {
 
         if (isset($ret->error) && $ret->error == false) {
 
-            if (isset($ret->subscription_data)) {
-                $time = $ret->subscription_data->{'plsubscription$subscriptionLength'};
+            if (isset($ret->content->subscription_data)) {
+                $time = $ret->content->subscription_data->{'plsubscription$subscriptionLength'};
             } else {
+
                 $time = '';
             }
             $_SESSION['is_subscriber'] = true;
-            $this->subscription_complete_mail($first_name, $last_name, $email, $time, $auto_renew);
+            $this->subscription_complete_mail($first_name, $last_name, array($email), $time, $auto_renew);
             echo json_encode(array('status' => 'ok'));
         } else {
             echo json_encode(array('status' => 'error', 'message' => $ret->message,));

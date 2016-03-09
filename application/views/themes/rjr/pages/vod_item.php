@@ -154,6 +154,15 @@
                                                                                         autostart: true,
                                                                                         aspectratio: "16:9",
                                                                                         width: "100%",
+                                                                                        logo:{
+                                                                                                file: '<?php echo asset_url(); ?>images/<?php echo $this->config->item('logo_file'); ?>',
+                                                                                                position: 'bottom.right',
+                                                                                                hide: 'false',
+                                                                                                hide: 'false',
+                                                                                                over: '10',
+                                                                                                out: '0.75'
+                                                                           
+                                                                                                                                                                        },
                                                                                         <?php 
                                                                                         if(sizeof($renditions) > 0){
                                                                                         ?>

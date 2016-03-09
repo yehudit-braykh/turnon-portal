@@ -267,7 +267,7 @@ class Vod_item extends UVod_Controller {
 
                 if (isset($_SESSION['uvod_user_data']->token) && $_SESSION['uvod_user_data']->token != '') {
 
-                    $subscription = $this->account_model->get_contract($_SESSION['uvod_user_data']->id);
+                    $subscription = $this->account_model->get_contract($_SESSION['uvod_user_data']->id,'true');
                     if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
 
                         $return = 'enabled';

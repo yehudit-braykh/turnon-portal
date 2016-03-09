@@ -125,7 +125,7 @@
 <div class="content_centered">
     <div class="payment_content">
 
-        <button id="btn_pay_per_view" class="skip-payment">I ONLY WANT TO WATCH A PAY-PER-VIEW EVENT REBEL SALUTE</button>        
+        <button id="btn_pay_per_view" class="skip-payment">I'M HERE FOR ISSA/GRACE KENNEDY BOYS & GIRLS CHAMPS 2016</button>        
 
         <div class="registration_title_payment">-- OR --</div>
 
