@@ -23,7 +23,7 @@ class Vod extends UVod_Controller {
 
         // get slider
         $data['slider'] = $this->vod_model->get_slider(APP_TARGET, $sub_section);
-        error_log('SLIDER: '.json_encode( $data['slider']));
+
         // genres filter
 
         if ($this->config->item('create_items_on_view') !== FALSE) {

@@ -24,7 +24,7 @@ if (isset($channel_selected)) {
     }
 } else {
     $channel_number = 0;
-    $channel_id = $channels->entries[0]->id;
+    $channel_id = $channels->entries[0]->_id;
     $channel_name = $channels->entries[0]->title;
 }
 ?>
@@ -151,25 +151,29 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
 
         if (country === 'Jamaica') {
 
-            if (account_status === 'login') {
-                $('#popup_login').bPopup();
-
-            } else if (account_status === 'enabled' || account_status === 'subscriber') {
-                stream_url = release_url;
-                load_data(stream_url, id, channel_obj, channel_name, policy_id);
-            }
+//            if (account_status === 'login') {
+//                $('#popup_login').bPopup();
+//
+//            } else if (account_status === 'enabled' || account_status === 'subscriber') {
+//                stream_url = release_url;
+//                load_data(stream_url, id, channel_obj, channel_name, policy_id);
+//            }
+            stream_url = release_url;
+             load_data(stream_url, id, channel_obj, channel_name, policy_id);
 
         } else {
 
-            if (account_status === 'login') {
-                $('#popup_login_outside').bPopup();
-
-            } else if (account_status === 'subscriber') {
-                $('#popup_subscriber').bPopup();
-            } else if (account_status === 'enabled') {
-                stream_url = release_blocked_url;
-                load_data(stream_url, id, channel_obj, channel_name, policy_id);
-            }
+//            if (account_status === 'login') {
+//                $('#popup_login_outside').bPopup();
+//
+//            } else if (account_status === 'subscriber') {
+//                $('#popup_subscriber').bPopup();
+//            } else if (account_status === 'enabled') {
+//                stream_url = release_blocked_url;
+//                load_data(stream_url, id, channel_obj, channel_name, policy_id);
+//            }
+  stream_url = release_blocked_url;
+            load_data(stream_url, id, channel_obj, channel_name, policy_id);
 
 
         }
@@ -483,7 +487,7 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
                                     $channel_image = getEntryThumbnail($channels->entries[$i]->media, "Channel Logo Small");
                                 }
                                 ?>
-                                <div class="live_channel_container" station="<?php echo $channels->entries[$i]->id; ?>" id="channel_<?php echo $i; ?>" <?php echo 'style="background: url(' . $channel_image . ') center center no-repeat; background-size: 126px 68px;' . ($i == 0 ? 'box-shadow: 2px 0px 20px rgba(0,0,255,0.8); border: 1px solid rgba(0,0,255,0.8);"' : '"'); ?>></div>
+                                <div class="live_channel_container" station="<?php echo $channels->entries[$i]->_id; ?>" id="channel_<?php echo $i; ?>" <?php echo 'style="background: url(' . $channel_image . ') center center no-repeat; background-size: 126px 68px;' . ($i == 0 ? 'box-shadow: 2px 0px 20px rgba(0,0,255,0.8); border: 1px solid rgba(0,0,255,0.8);"' : '"'); ?>></div>
                                 <?php
                             }
                         }
