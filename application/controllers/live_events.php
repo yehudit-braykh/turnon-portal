@@ -97,48 +97,48 @@ class Live_events extends UVod_Controller {
         $events = $this->live_events_model->list_simple_events();
 
 //      checks if user is logged in
-        if (isset($_SESSION['uvod_user_data']) && isset($_SESSION['uvod_user_data']->id)) {
-
-            $orders = $this->live_events_model->get_orders($_SESSION['uvod_user_data']->id);
-            $data['orders'] = $orders;
-
-            if (isset($orders) && sizeof($orders->content->entries) > 0) {
-
-                for ($h = 0; $h < sizeof($orders->content->entries); $h++) {
-
-                    $id_arr = explode('/', $orders->content->entries[$h]->{'plorderitem$productId'});
-                    $product_id = $id_arr[sizeof($id_arr) - 1];
-                    if ($h == 0) {
-                        $product_ids = $product_id;
-                    } else {
-                        $product_ids .= '|' . $product_id;
-                    }
-                }
-
-                $products = $this->live_events_model->get_event_products($product_ids);
-
-                if (isset($products->content->entries) && sizeof($products->content->entries) > 0) {
-
-                    for ($i = 0; $i < sizeof($products->content->entries); $i++) {
-
-                        $events_ids = $products->content->entries[$i]->{'plproduct$scopeIds'};
-
-                        for ($j = 0; $j < sizeof($events_ids); $j++) {
-                            if (!in_array($events_ids[$j], $media_ids)) {
-                                $media_ids[] = $events_ids[$j];
-                            }
-                        }
-                    }
-
-
-                    if (in_array($events->content[0]->media->id, $media_ids)) {
-                        $events->content[0]->already_purchased = true;
-                    } else {
-                        $events->content[0]->already_purchased = false;
-                    }
-                }
-            }
-        }
+//        if (isset($_SESSION['uvod_user_data']) && isset($_SESSION['uvod_user_data']->id)) {
+//
+//            $orders = $this->live_events_model->get_orders($_SESSION['uvod_user_data']->id);
+//            $data['orders'] = $orders;
+//
+//            if (isset($orders) && sizeof($orders->content->entries) > 0) {
+//
+//                for ($h = 0; $h < sizeof($orders->content->entries); $h++) {
+//
+//                    $id_arr = explode('/', $orders->content->entries[$h]->{'plorderitem$productId'});
+//                    $product_id = $id_arr[sizeof($id_arr) - 1];
+//                    if ($h == 0) {
+//                        $product_ids = $product_id;
+//                    } else {
+//                        $product_ids .= '|' . $product_id;
+//                    }
+//                }
+//
+//                $products = $this->live_events_model->get_event_products($product_ids);
+//
+//                if (isset($products->content->entries) && sizeof($products->content->entries) > 0) {
+//
+//                    for ($i = 0; $i < sizeof($products->content->entries); $i++) {
+//
+//                        $events_ids = $products->content->entries[$i]->{'plproduct$scopeIds'};
+//
+//                        for ($j = 0; $j < sizeof($events_ids); $j++) {
+//                            if (!in_array($events_ids[$j], $media_ids)) {
+//                                $media_ids[] = $events_ids[$j];
+//                            }
+//                        }
+//                    }
+//
+//
+//                    if (in_array($events->content[0]->media->id, $media_ids)) {
+//                        $events->content[0]->already_purchased = true;
+//                    } else {
+//                        $events->content[0]->already_purchased = false;
+//                    }
+//                }
+//            }
+//        }
 
         $data['section'] = "events";
         $data['events'] = $events;

@@ -309,6 +309,7 @@ for ($i = 0; $i < sizeof($vod_categories); $i++) {
                                                             </div>
                                                             <div id="top_menu_account" <?php echo ($section == "account" ? 'style="color:' . $highlight_color . ';"' : ""); ?>>
                                                                 <?php
+                                                       
                                                                 if (!isset($_SESSION['uvod_user_data']) || !isset($_SESSION['uvod_user_data']->token)) {
                                                                     echo "<div id='signin' style='padding-top:12px;'>LOG IN / REGISTER</div>";
                                                                 } else {
