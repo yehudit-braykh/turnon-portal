@@ -74,6 +74,7 @@ class Vod extends UVod_Controller {
 
     public function section($category, $genre = "", $end_date = "") {
 
+
         // special fixed category: featured
         if ($category == "featured") {
             if (!$genre)
@@ -196,7 +197,7 @@ class Vod extends UVod_Controller {
                 if (!$cover_url)
                     $cover_url = getEntryThumbnail($items->content->entries[$i], "Mezzanine " . $cover_asset_type);
 
-                $item_id_arr = explode("/", $items->content->entries[$i]->id);
+                $item_id_arr = explode("/", $items->content->entries[$i]->_id);
                 $item_id = $item_id_arr[sizeof($item_id_arr) - 1];
                 $commerce_class = getEntryProperty($items->content->entries[$i], 'commerce');
 
