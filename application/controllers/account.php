@@ -350,7 +350,7 @@ class Account extends UVod_Controller {
 
         if (isset($_SESSION['uvod_user_data'])) {
 
-            $logout = $this->account_model->logout($_SESSION['uvod_user_data']->id);
+            $logout = $this->account_model->logout($_SESSION['uvod_user_data']->token);
 
             if (isset($logout->error) && !$logout->error) {
 
@@ -367,7 +367,7 @@ class Account extends UVod_Controller {
         if (isset($_POST['email']) && isset($_POST['password'])) {
 
             $login = $this->account_model->login($_POST['email'], $_POST['password']);
-
+            error_log('LOGIN CONTROLLER: '.json_encode($login));
             if (isset($login) && !$login->error) {
         
                 $_SESSION['uvod_user_data'] = $login->content;

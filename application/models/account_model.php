@@ -16,8 +16,8 @@ class Account_model extends CI_Model {
         return apiPost("user/login", array("username" => $user, "password" => $pass));
     }
 
-    public function logout($id) {
-        return apiPost("user/logout", array("id" => $id));
+    public function logout($token) {
+        return apiPost("user/logout", array("token" => $token));
     }
 
     public function register($email, $password, $first_name, $last_name, $country, $hash = NULL, $fb_id = NULL, $merge = false) {
