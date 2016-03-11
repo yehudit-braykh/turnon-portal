@@ -51,9 +51,8 @@ class Account extends UVod_Controller {
             $ret->message = "You must specify a password.";
         } elseif (strlen($_POST['password']) < 8 || strlen($_POST['password']) > 16) {
             $ret->message = "Password must have between 8 and 16 chars lenght.";
-        } elseif ($this->account_model->exists_user_email($_POST['email'])) {
-            $ret->message = "The selected email already exists.";
-        }
+        } 
+        
         if (!isset($_POST['full_name']) || strlen($_POST['full_name']) < 3) {
             $ret->message = "You need to specify your full name.";
         }
@@ -82,20 +81,17 @@ class Account extends UVod_Controller {
             $GLOBALS['hash'] = rand(10000, getrandmax());
 
             $register = $this->account_model->register($_POST['email'], $_POST['password'], $first_name, $last_name, $_POST['country'], $GLOBALS['hash']);
-            $ret = $register;
-
+            
+            error_log('REGISTER: '.json_encode($register));
+            $ret = new stdClass();
             if (!$register->error) {
 
-// logs current user to get security token
+                    $ret->message = 'ok';
+                    $ret->content = $register;
 
-                $current_user = $this->account_model->simple_login($_POST['email'], $_POST['password']);
-                $ret = $current_user;
-
-                if (!$current_user->error) {
-
-                    $_SESSION['registration_data']->user_id = $current_user->content->id;
-                    $_SESSION['registration_data']->user_token = $current_user->content->token;
-                    $_SESSION['registration_data']->profile_id = $register->content->id;
+                    $_SESSION['registration_data']->user_id = $register->content->user->userId;
+                    $_SESSION['registration_data']->user_token = $register->content->user->token;
+                    $_SESSION['registration_data']->profile_id = $register->content->profile->_id;
                     $_SESSION['registration_data']->first_name = $first_name;
                     $_SESSION['registration_data']->last_name = $last_name;
                     $_SESSION['registration_data']->country = $_POST['country'];
@@ -103,7 +99,9 @@ class Account extends UVod_Controller {
                     $_SESSION['registration_data']->method = 'email';
 
                     $this->send_activation_mail($first_name, $last_name, $_POST['email'], $_SESSION['registration_data']->hash);
-                }
+                
+            }else{
+                $ret->message = $register->message;
             }
         }
 
