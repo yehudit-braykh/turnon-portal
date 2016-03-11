@@ -170,7 +170,7 @@ function show_info () {
 
         
 
-            <form method="post" id="loginform">
+            <form method="post" id="payment_form">
 
                 <ol>
                       <?php $this->load->view(views_url() . 'templates/payment_form'); ?>

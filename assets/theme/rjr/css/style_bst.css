@@ -2229,25 +2229,32 @@ select:focus, select:active {
     margin-right: auto;
 }
 
+#payment_form { 
+    width: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /*#loginform * { color:#FFF; margin-top: 5px; }*/
 
-#loginform ol { margin:0; padding:0; list-style:none; }
+#loginform ol , #payment_form ol { margin:0; padding:0; list-style:none; }
 
-#loginform li { margin-bottom: 10px; padding:0; background:none; border:none; display:block; clear:both; }
+#loginform li, #payment_form li { margin-bottom: 10px; padding:0; background:none; border:none; display:block; clear:both; }
 
-#loginform li.buttons { margin:5px 0 5px 0; clear:both; }
+#loginform li.buttons, #payment_form li.buttons { margin:5px 0 5px 0; clear:both; }
 
-#loginform label { margin:0; width:60px; padding-top:6px; text-transform:none; font-weight:normal; color:#FFF; font-size: 14px;}
+#loginform label, #payment_form label { margin:0; width:60px; padding-top:6px; text-transform:none; font-weight:normal; color:#FFF; font-size: 14px;}
 
-#loginform label .ness { color:#000; }
+#loginform label .ness, #payment_form label .ness { color:#000; }
 
-#loginform label span { color:#000; }
+#loginform label span, #payment_form label span { color:#000; }
 
-#loginform input.text { width:100%; border:1px solid #999;  height:40px; background:#fff; font-size:14px; color:#000; padding-left: 5px; border-radius: 5px;}
+#loginform input.text, #payment_form input.text { width:100%; border:1px solid #999;  height:40px; background:#fff; font-size:14px; color:#000; padding-left: 5px; border-radius: 5px;}
 
-#loginform textarea { width:75%; border:1px solid #999; margin:4px 0; padding:5px 2px; background:#fff; float:left; font-size:12px; color:#000; }
+#loginform textarea, #payment_form textarea { width:75%; border:1px solid #999; margin:4px 0; padding:5px 2px; background:#fff; float:left; font-size:12px; color:#000; }
 
-#loginform li.buttons input { padding:0 0 3px 0; margin:10px 0 0 60px; border:0; color:#FFF; float:left; }
+#loginform li.buttons input, #payment_form li.buttons input { padding:0 0 3px 0; margin:10px 0 0 60px; border:0; color:#FFF; float:left; }
 
 .logout_button_container {
     float: right;
@@ -3489,7 +3496,7 @@ td.product_content{
     margin-top: 5px;
 }
 
-.form_buy_tickets #loginform {
+.form_buy_tickets #loginform, .form_buy_tickets #payment_form {
     margin-left: 0px;
     margin-top: 22px;
 }
@@ -3919,7 +3926,7 @@ td.product_content{
         margin-bottom: 3px;
     }
 
-    .form_buy_tickets #loginform {
+    .form_buy_tickets #loginform, .form_buy_tickets #payment_form {
         margin-left: auto;
         margin-top: 25px;
     }
