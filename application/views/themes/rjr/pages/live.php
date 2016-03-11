@@ -151,32 +151,34 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
 
         if (country === 'Jamaica') {
 
-//            if (account_status === 'login') {
-//                $('#popup_login').bPopup();
-//
-//            } else if (account_status === 'enabled' || account_status === 'subscriber') {
-//                stream_url = release_url;
-//                load_data(stream_url, id, channel_obj, channel_name, policy_id);
-//            }
+           if (account_status === 'login') {
+               $('#popup_login').bPopup();
+
+           } else if (account_status === 'enabled' || account_status === 'subscriber') {
+               stream_url = release_url;
+               load_data(stream_url, id, channel_obj, channel_name, policy_id);
+           }
             stream_url = release_url;
              load_data(stream_url, id, channel_obj, channel_name, policy_id);
 
         } else {
 
-//            if (account_status === 'login') {
-//                $('#popup_login_outside').bPopup();
-//
-//            } else if (account_status === 'subscriber') {
-//                $('#popup_subscriber').bPopup();
-//            } else if (account_status === 'enabled') {
-//                stream_url = release_blocked_url;
-//                load_data(stream_url, id, channel_obj, channel_name, policy_id);
-//            }
+           if (account_status === 'login') {
+               $('#popup_login_outside').bPopup();
+
+           /*} else if (account_status === 'subscriber') {
+               $('#popup_subscriber').bPopup();
+           } else if (account_status === 'enabled') {
+               stream_url = release_blocked_url;
+               load_data(stream_url, id, channel_obj, channel_name, policy_id);*/
+           } else{
+
   stream_url = release_blocked_url;
             load_data(stream_url, id, channel_obj, channel_name, policy_id);
 
 
         }
+    }
 
         if (typeof (id) != 'undefined') {
 
