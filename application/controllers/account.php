@@ -214,20 +214,21 @@ class Account extends UVod_Controller {
         $data = array();
         $user_profile = $this->account_model->get_profile($_SESSION['uvod_user_data']->token);
         $subscription = $this->account_model->get_contract($_SESSION['uvod_user_data']->id, 'true');
+
         
         if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
 
             $subscriptions = $subscription->content->entries;
             for ($i = 0; $i < sizeof($subscriptions); $i++) {
-             
-                if ($subscriptions[$i]->{'plcontract$active'} && $subscriptions[$i]->{'plcontract$originalSubscriptionId'} !== 'http://data.product.theplatform.com/product/data/Subscription/1363283') {
+
+                if ($subscriptions[$i]->active && $subscriptions[$i]->originalSubscriptionId !== 'BASIC_SUBSCRIPTION_ID') {
                     $data['subscription_data'] = $subscriptions[$i];
                 }
             }
 
             if ($user_profile && $user_profile->content) {
-                if (isset($user_profile->content[0]->{'pluserprofile$publicDataMap'}->{'customer_id'})) {
-                    $customer_id = $user_profile->content[0]->{'pluserprofile$publicDataMap'}->{'customer_id'};
+                if (isset($user_profile->content->publicDataMap->customer_id)) {
+                    $customer_id = $user_profile->content->publicDataMap->customer_id;
                     $_SESSION['uvod_user_data']->braintree_id = $customer_id;
                 }
             }
@@ -246,23 +247,24 @@ class Account extends UVod_Controller {
                 $data['subscriptions'] = $subscription->content->entries;
 
                 usort($data['subscriptions'], function($a, $b) {
-                    if (intval($a->{'plsubscription$subscriptionLength'}) == intval($b->{'plsubscription$subscriptionLength'})) {
+                    if (intval($a->subscriptionLength) == intval($b->subscriptionLength)) {
                         return 0;
                     }
-                    return (intval($a->{'plsubscription$subscriptionLength'}) < intval($b->{'plsubscription$subscriptionLength'})) ? -1 : 1;
+                    return (intval($a->subscriptionLength) < intval($b->subscriptionLength)) ? -1 : 1;
                 });
             }
         }
         
+        
         if ($user_profile && $user_profile->content) {
-            $data['user_first_name'] = $user_profile->content[0]->{'pluserprofile$firstName'};
-            $data['user_last_name'] = $user_profile->content[0]->{'pluserprofile$lastName'};
+            $data['user_first_name'] = $user_profile->content->firstName;
+            $data['user_last_name'] = $user_profile->content->lastName;
             $data['user_city'] = "";
-            if (isset($user_profile->content[0]->{'pluserprofile$publicDataMap'}->{'city'})) {
-                $data['user_city'] = $user_profile->content[0]->{'pluserprofile$publicDataMap'}->{'city'};
+            if (isset($user_profile->content->publicDataMap->city)) {
+                $data['user_city'] = $user_profile->content->publicDataMap->city;
             }
-            $data['user_country'] = $user_profile->content[0]->{'pluserprofile$countryCode'};
-            $data['user_postal_code'] = $user_profile->content[0]->{'pluserprofile$postalCode'};
+            $data['user_country'] = $user_profile->content->countryCode;
+            $data['user_postal_code'] = $user_profile->content->postalCode;
         } else {
             $data['user_first_name'] = "";
             $data['user_last_name'] = "";
@@ -272,11 +274,11 @@ class Account extends UVod_Controller {
         }
 
         $events = $this->get_events();
-
+        error_log('EVENTS ES ' . json_encode($events));
         if ($events) {
             $data['events'] = $events;
         }
-
+        
         $this->load->view(views_url() . 'templates/header', $data);
         $this->load->view(views_url() . 'pages/account', $data);
         $this->load->view(views_url() . 'templates/footer', $data);
@@ -290,29 +292,30 @@ class Account extends UVod_Controller {
         // checks if user is logged in
         if (isset($_SESSION['uvod_user_data']) && isset($_SESSION['uvod_user_data']->id)) {
 
-            $orders = $this->live_events_model->get_orders($_SESSION['uvod_user_data']->id);
-            $data['orders'] = $orders;
+            $orders_item = $this->live_events_model->get_orders_item($_SESSION['uvod_user_data']->id);
+            $data['orders_item'] = $orders_item;
 
-            if (isset($orders) && sizeof($orders->content->entries) > 0) {
+            if (isset($orders_item) && sizeof($orders_item->content->entries) > 0) {
 
-                for ($h = 0; $h < sizeof($orders->content->entries); $h++) {
+                for ($h = 0; $h < sizeof($orders_item->content->entries); $h++) {
 
-                    $id_arr = explode('/', $orders->content->entries[$h]->{'plorderitem$productId'});
+                    $id_arr = explode('/', $orders_item->content->entries[$h]->productId);
                     $product_id = $id_arr[sizeof($id_arr) - 1];
                     if ($h == 0) {
-                        $product_ids = $product_id;
+                        $product_ids = intval($product_id);
                     } else {
-                        $product_ids .= '|' . $product_id;
+                        $product_ids .= '|' . intval($product_id);
                     }
                 }
 
                 $products = $this->live_events_model->get_event_products($product_ids);
 
+
                 if (isset($products->content->entries) && sizeof($products->content->entries) > 0) {
 
                     for ($i = 0; $i < sizeof($products->content->entries); $i++) {
 
-                        $events_ids = $products->content->entries[$i]->{'plproduct$scopeIds'};
+                        $events_ids = $products->content->entries[$i]->scopeIds;
 
                         for ($j = 0; $j < sizeof($events_ids); $j++) {
                             if (!in_array($events_ids[$j], $media_ids)) {
@@ -331,7 +334,7 @@ class Account extends UVod_Controller {
                 }
             }
         }
-
+        error_log('ANTES DE RETURN EVENTS' . json_encode($events));
         return $events;
     }
 
