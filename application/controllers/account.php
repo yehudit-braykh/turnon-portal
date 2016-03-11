@@ -441,6 +441,7 @@ class Account extends UVod_Controller {
     }
 
     public function send_activation_mail($name, $surname, $email, $hash) {
+        error_log('llego al send activation:'.$email.' hash: '.$hash);
         $email_data = array();
         $email_data['name'] = $name;
         $email_data['surname'] = $surname;
