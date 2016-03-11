@@ -59,7 +59,8 @@
             }).done(function (data) {
 
                 if (data.message == 'ok') {
-                    window.location.href = "<?php echo base_url(); ?>index.php/account/register_payment_ssl";
+//                    window.location.href = "<?php echo base_url(); ?>index.php/account/register_payment_ssl";
+                    window.location.href = "<?php echo base_url(); ?>index.php/account/register_complete";
 
                 } else {
                     $('#registration_preloader').hide();
