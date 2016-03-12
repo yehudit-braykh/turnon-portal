@@ -281,13 +281,14 @@ class Live_events extends UVod_Controller {
 
         $data = array();
         if (isset($_SESSION['uvod_user_data']->id)) {
-            $orders = $this->live_events_model->get_orders($_SESSION['uvod_user_data']->id);
-            if (isset($orders->content->entries) && sizeof($orders->content->entries) > 0) {
-                $data['subscription_data'] = $orders->content->entries;
+            $order_items = $this->live_events_model->get_orders_item($_SESSION['uvod_user_data']->id);
+//            error_log('ORDERS: '.json_encode($order_items));
+            if (isset($order_items->content->entries) && sizeof($order_items->content->entries) > 0) {
+                $data['subscription_data'] = $order_items->content->entries;
             }
 
             $data['events'] = $this->live_events_model->get_events();
-
+//            error_log('EVENTS: '.json_encode($data['events']));
             $this->load->view(views_url() . 'templates/header_bst', $data);
             $this->load->view(views_url() . 'pages/buy_events', $data);
             $this->load->view(views_url() . 'templates/footer_bst', $data);
