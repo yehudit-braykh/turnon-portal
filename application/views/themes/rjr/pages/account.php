@@ -365,7 +365,7 @@ if (isset($clientToken)) {
                     <div class="registration_container">
                         <?php
                         if (isset($subscription_data) && $subscription_data != "") {
-                            if ($subscription_data->{'plcontract$autoRenew'}) {
+                            if ($subscription_data->{'autoRenew'}) {
                                 $auto_renew_chbx = 'checked="checked"';
                             } else {
                                 $auto_renew_chbx = '';
@@ -376,33 +376,33 @@ if (isset($clientToken)) {
                                 <ol>
                                     <li>
                                         <label for="subscription_type">Type</label>
-                                        <input id="subscription_type" class="text" style="width:180px;" value="<?php echo $subscription_data->title; ?>" />
+                                        <input id="subscription_type" class="text" style="width:180px;" value="<?php echo $subscription_data->title; ?>" readonly/>
                                     </li>
                                     <li>
                                         <label for="contract_status">Status</label>
                                         <input id="contract_status" class="text" style="width:150px;" value="<?php
-                                        if ($subscription_data->{'plcontract$active'}) {
+                                        if ($subscription_data->{'active'}) {
                                             echo 'Active';
                                         } else {
                                             echo 'Inactive';
                                         }
-                                        ?>"/>
+                                        ?>" readonly/>
                                     </li>
 
                                     <li>
                                         <label for="contact_start_date">Subscribed since</label>
-                                        <input id="contact_start_date" class="text" style="width:150px;" value="<?php echo date('Y-m-d', $subscription_data->{'plcontract$contractStartDate'} / 1000); ?>" />
+                                        <input id="contact_start_date" class="text" style="width:150px;" value="<?php echo date('Y-m-d', $subscription_data->{'contractStartDate'} / 1000); ?>" readonly/>
                                     </li>
                                     <li>
                                         <label for="contact_end_date">Subscription due date</label>
-                                        <input id="contact_end_date" class="text" style="width:150px;" value="<?php echo date('Y-m-d', $subscription_data->{'plcontract$contractEndDate'} / 1000); ?>" />
+                                        <input id="contact_end_date" class="text" style="width:150px;" value="<?php echo date('Y-m-d', $subscription_data->{'contractEndDate'} / 1000); ?>" readonly/>
                                     </li>
 
                                     <li> 
                                         <p id="info" style="color:#fff;text-align:center;margin-left:120px;">&nbsp;</p>
                                     </li>
                                     <li class="buttons">
-                                        <input id="contract_id" type="hidden" class="text" style="width:150px;" value="<?php echo $subscription_data->id; ?>" />
+                                        <input id="contract_id" type="hidden" class="text" style="width:150px;" value="<?php echo $subscription_data->_id; ?>" />
                                         <div class="chbx-container">
                                             <input id="contract-auto-renew"type="checkbox" <?php echo $auto_renew_chbx; ?>/><label class="chbx-lbl">Auto-renew</label>
                                         </div>

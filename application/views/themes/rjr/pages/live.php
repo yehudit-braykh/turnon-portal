@@ -151,32 +151,34 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
 
         if (country === 'Jamaica') {
 
-//            if (account_status === 'login') {
-//                $('#popup_login').bPopup();
-//
-//            } else if (account_status === 'enabled' || account_status === 'subscriber') {
-//                stream_url = release_url;
-//                load_data(stream_url, id, channel_obj, channel_name, policy_id);
-//            }
+           if (account_status === 'login') {
+               $('#popup_login').bPopup();
+
+           } else if (account_status === 'enabled' || account_status === 'subscriber') {
+               stream_url = release_url;
+               load_data(stream_url, id, channel_obj, channel_name, policy_id);
+           }
             stream_url = release_url;
              load_data(stream_url, id, channel_obj, channel_name, policy_id);
 
         } else {
 
-//            if (account_status === 'login') {
-//                $('#popup_login_outside').bPopup();
-//
-//            } else if (account_status === 'subscriber') {
-//                $('#popup_subscriber').bPopup();
-//            } else if (account_status === 'enabled') {
-//                stream_url = release_blocked_url;
-//                load_data(stream_url, id, channel_obj, channel_name, policy_id);
-//            }
+           if (account_status === 'login') {
+               $('#popup_login_outside').bPopup();
+
+           /*} else if (account_status === 'subscriber') {
+               $('#popup_subscriber').bPopup();
+           } else if (account_status === 'enabled') {
+               stream_url = release_blocked_url;
+               load_data(stream_url, id, channel_obj, channel_name, policy_id);*/
+           } else{
+
   stream_url = release_blocked_url;
             load_data(stream_url, id, channel_obj, channel_name, policy_id);
 
 
         }
+    }
 
         if (typeof (id) != 'undefined') {
 
@@ -377,19 +379,19 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
         $('#popup_error_outside').html('');
     });
 
-    setInterval(function () {
-
-        $.ajax({
-            url: base_url + 'index.php/account/check_status',
-            type: 'POST',
-            dataType: 'json',
-            success: function (data) {
-                if (data.status == 'error') {
-                    window.location = base_url;
-                }
-            }
-        })
-    }, 120000);
+//    setInterval(function () {
+//
+//        $.ajax({
+//            url: base_url + 'index.php/account/check_status',
+//            type: 'POST',
+//            dataType: 'json',
+//            success: function (data) {
+//                if (data.status == 'error') {
+//                    window.location = base_url;
+//                }
+//            }
+//        })
+//    }, 120000);
 
     window.fbAsyncInit = function () {
         FB.init({
