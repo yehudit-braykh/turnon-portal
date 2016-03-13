@@ -1,7 +1,7 @@
 <?php
 
 function getEntryId($entry) {
-    $item_id_arr = explode("/", $entry->id);
+    $item_id_arr = explode("/", $entry->_id);
     return $item_id_arr[sizeof($item_id_arr) - 1];
 }
 
