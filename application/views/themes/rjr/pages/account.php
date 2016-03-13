@@ -112,7 +112,7 @@ if (isset($clientToken)) {
                                     $("#current_password").val("");
                                     $("#new_password").val("");
                                     $("#confirm_password").val("");
-                                    $('#btn_change_password').show()
+                                    $('#btn_change_password').show();
                                 }});
 
                         }});
@@ -121,7 +121,7 @@ if (isset($clientToken)) {
                     $("#infopass").html("* " + data.message);
                     TweenLite.fromTo("#infopass", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
                             TweenLite.to("#infopass", 1, {delay: 6, alpha: 0});
-
+                            $('#btn_change_password').show();
                         }});
                 }
             });

@@ -426,8 +426,8 @@ class Account extends UVod_Controller {
 
         if (!isset($_POST['new_password'])) {
             $ret->message = "You must specify your current password.";
-        } elseif (strlen($_POST['current_password']) < 8 || strlen($_POST['current_password']) > 16) {
-            $ret->message = "current password have between 8 and 16 chars lenght.";
+        //} elseif (strlen($_POST['current_password']) < 8 || strlen($_POST['current_password']) > 16) {
+            //$ret->message = "current password have between 8 and 16 chars lenght.";
         } elseif (!isset($_POST['new_password'])) {
             $ret->message = "You must specify your new password.";
         } elseif (strlen($_POST['new_password']) < 8 || strlen($_POST['new_password']) > 16) {
@@ -437,7 +437,7 @@ class Account extends UVod_Controller {
         }
 // saves registration information in session
         if ($ret->message == "ok") {
-            $ret = $this->account_model->change_password($_SESSION['uvod_user_data']->username, $_POST['current_password'], $_POST['new_password']);
+            $ret = $this->account_model->change_password($_SESSION['uvod_user_data']->username, $_POST['current_password'], $_POST['new_password'], $_SESSION['uvod_user_data']->token);
         }
 
         echo json_encode($ret);

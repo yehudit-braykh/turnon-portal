@@ -111,8 +111,8 @@ class Account_model extends CI_Model {
         }
     }
 
-    public function change_password($email, $password, $new_password) {
-        return apiPost("user/change_password", array("email" => $email, "password" => $password, "new_password" => $new_password));
+    public function change_password($email, $password, $new_password, $token) {
+        return apiPost("user/change_password", array("email" => $email, "password" => $password, "new_password" => $new_password, "token" => $token));
     }
 
     public function activate_account($hash, $email) {
