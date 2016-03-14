@@ -68,11 +68,11 @@
             <li> 
                 <span id="info" class="form_info" style="width:265px;display:block;margin-left:auto;margin-right:auto;"></span>
             </li>
-            <li class="buttons" style="width: 200px;margin: 10px auto;">
-                <input type='image' id="send_activation_email_register_button" class="send" src="<?php echo asset_url(); ?>images/button_resend_activation_email.png"/>
+<!--            <li class="buttons" style="width: 200px;margin: 10px auto;">
+                <input type='image' id="send_activation_email_register_button" class="send" src="<?php //echo asset_url(); ?>images/button_resend_activation_email.png"/>
                 <div id="send_activation_email_preloader"></div>
                 <div class="clr"></div>
-            </li>
+            </li>-->
         </div>
         <?php
     } else {
