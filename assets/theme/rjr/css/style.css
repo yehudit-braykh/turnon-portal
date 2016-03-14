@@ -2374,27 +2374,27 @@ select:focus, select:active {
 
 /* form login */
 
-#loginform { margin:0; padding:5px 0; }
+#loginform, #reset_password_form { margin:0; padding:5px 0; }
 
-#loginform * { color:#000; }
+#loginform *, #reset_password_form *{ color:#000; }
 
-#loginform ol { margin:0; padding:0; list-style:none; }
+#loginform ol, #reset_password_form ol{ margin:0; padding:0; list-style:none; }
 
-#loginform li { margin-bottom: 15px; padding:0; background:none; border:none; display:block; clear:both; }
+#loginform li, #reset_password_form li{ margin-bottom: 15px; padding:0; background:none; border:none; display:block; clear:both; }
 
-#loginform li.buttons { margin:5px 0 5px 0; clear:both; }
+#loginform li.buttons, #reset_password_form li.buttons{ margin:5px 0 5px 0; clear:both; }
 
-#loginform label { margin:0; width:60px; padding:6px 0; text-transform:none; font-weight:normal; color:#000; }
+#loginform label,#reset_password_form label{ margin:0; width:60px; padding:6px 0; text-transform:none; font-weight:normal; color:#000; }
 
-#loginform label .ness { color:#000; }
+#loginform label .ness, #reset_password_form { color:#000; }
 
-#loginform label span { color:#000; }
+#loginform label span, #reset_password_form label span{ color:#000; }
 
-#loginform input.text { width:98%; border:1px solid #999;  height:30px; background:#fff; font-size:12px; color:#000; }
+#loginform input.text, #reset_password_form input.text{ width:98%; border:1px solid #999;  height:30px; background:#fff; font-size:12px; color:#000; }
 
-#loginform textarea { width:75%; border:1px solid #999; margin:4px 0; padding:5px 2px; background:#fff; float:left; font-size:12px; color:#000; }
+#loginform textarea,#reset_password_form textarea{ width:75%; border:1px solid #999; margin:4px 0; padding:5px 2px; background:#fff; float:left; font-size:12px; color:#000; }
 
-#loginform li.buttons input { padding:0 0 3px 0; margin:10px 0 0 60px; border:0; color:#FFF; float:left; }
+#loginform li.buttons input,#reset_password_form li.buttons input{ padding:0 0 3px 0; margin:10px 0 0 60px; border:0; color:#FFF; float:left; }
 
 .logout_button_container {
     float: right;
@@ -2402,7 +2402,8 @@ select:focus, select:active {
 
 #btn_login,
 #btn_watch_now,
-.btn_watch_now{
+.btn_watch_now,
+#btn_reset_password{
     width: 100%;
     height: 40px;
     border: 0px;

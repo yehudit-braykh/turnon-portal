@@ -33,6 +33,13 @@
                 $("#info").html("* You must accept terms and conditions before click Register button");
                 return false;
             }
+            
+
+            if ($('#email').val() !== $("#confirm_email").val()) {
+                show_info();
+                $("#info").html("* Email and Confirm are not match");
+                return false;
+            }
 
             $(this).hide();
             var user_name = $('#full_name').val();
@@ -263,6 +270,10 @@
                     </li>
                     <li> 
                         <div class="form_notes">You will use this email address to login.</div>
+                    </li>
+                    <li>
+                        <label for="confirm_email">Confirm Email*</label>
+                        <input id="confirm_email" name="confirm_email" class="text" />
                     </li>
                     <li>
                         <label for="password">Password*</label>
