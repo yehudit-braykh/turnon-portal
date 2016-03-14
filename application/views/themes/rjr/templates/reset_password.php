@@ -42,8 +42,9 @@
 
     });
 </script>
-<div class="form_subtitle">Your password has expired and must be changed</div>
+
 <form  id="reset_password_form" style="width:350px;display:none;margin-left:auto;margin-right:auto;">
+    <div class="form_subtitle">Your password has expired and must be changed</div>
     <ol>
         <li>
             <label for="reset_pass_input">New Password</label>

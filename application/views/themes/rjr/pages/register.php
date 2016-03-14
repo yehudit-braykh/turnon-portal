@@ -1,6 +1,14 @@
 <div id="fb-root"></div>
 <script>
 
+    window.onload = function () {
+        var myInput = document.getElementById('confirm_email');
+        myInput.onpaste = function (e) {
+            e.preventDefault();
+        };
+    };
+
+
     _gaq.push(['_trackEvent', 'Registration', 'Login Information']);
     country_code = '';
 
