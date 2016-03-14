@@ -133,6 +133,21 @@ class Live_events extends UVod_Controller {
                     } else {
                         $events->content[0]->already_purchased = false;
                     }
+                } else if (isset($products->content) && sizeof(isset($products->content))) {
+
+                    $events_ids = $products->content->scopeIds;
+
+                    for ($j = 0; $j < sizeof($events_ids); $j++) {
+                        if (!in_array($events_ids[$j], $media_ids)) {
+                            $media_ids[] = $events_ids[$j];
+                        }
+                    }
+
+                    if (in_array($events->content[0]->media->_id, $media_ids)) {
+                        $events->content[0]->already_purchased = true;
+                    } else {
+                        $events->content[0]->already_purchased = false;
+                    }
                 }
             }
         }
@@ -183,6 +198,15 @@ class Live_events extends UVod_Controller {
                                 if (!in_array($events_ids[$j], $media_ids)) {
                                     $media_ids[] = $events_ids[$j];
                                 }
+                            }
+                        }
+                    } else if (isset($products->content) && sizeof(isset($products->content))) {
+
+                        $events_ids = $products->content->scopeIds;
+
+                        for ($j = 0; $j < sizeof($events_ids); $j++) {
+                            if (!in_array($events_ids[$j], $media_ids)) {
+                                $media_ids[] = $events_ids[$j];
                             }
                         }
                     }
@@ -260,8 +284,8 @@ class Live_events extends UVod_Controller {
                 $ret.= '<img class="item_img" src="' . $cover_url . '" />
                         <div class="h" style="width:' . $cover_h_width . ';height:' . $cover_h_height . ';">
                         <div class="title_content">' . getEntryProperty($items->content->entries[$i], 'title') . '</div>' .
-                        $aired_date_div .
-                        '</div>                                        
+                    $aired_date_div .
+                    '</div>                                        
                                </a>
                                 
 		        </div>';

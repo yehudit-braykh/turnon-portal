@@ -331,6 +331,22 @@ class Account extends UVod_Controller {
                             $events->content[$j]->already_purchased = false;
                         }
                     }
+                } else if (isset($products->content) && sizeof(isset($products->content))) {
+
+                    $events_ids = $products->content->scopeIds;
+
+                    for ($j = 0; $j < sizeof($events_ids); $j++) {
+                        if (!in_array($events_ids[$j], $media_ids)) {
+                            $media_ids[] = $events_ids[$j];
+                        }
+                    }
+                    for ($j = 0; $j < sizeof($events->content); $j++) {
+                        if (in_array($events->content[$j]->media->_id, $media_ids)) {
+                            $events->content[$j]->already_purchased = true;
+                        } else {
+                            $events->content[$j]->already_purchased = false;
+                        }
+                    }
                 }
             }
         }
@@ -360,8 +376,8 @@ class Account extends UVod_Controller {
                 $_SESSION['uvod_user_data'] = null;
                 unset($_SESSION['uvod_user_data']);
             }
-        }else{
-                   error_log('NO esta seteado el session');
+        } else {
+            error_log('NO esta seteado el session');
         }
 
         redirect(base_url());
@@ -501,11 +517,11 @@ class Account extends UVod_Controller {
     }
 
     public function reset_password() {
-        
+
         $ret = new stdClass();
         if ($_SESSION['reset_password_data']) {
-            
-                $ret->message = "ok";
+
+            $ret->message = "ok";
 
             if (!isset($_POST['new_password'])) {
                 $ret->message = "You must specify your current password.";
@@ -519,7 +535,7 @@ class Account extends UVod_Controller {
 // saves registration information in session
             if ($ret->message == "ok") {
                 $ret = $this->account_model->change_password($_SESSION['reset_password_data']->username, '', $_POST['new_password'], $_SESSION['reset_password_data']->token);
-                $_SESSION['uvod_user_data'] =  $_SESSION['reset_password_data'];
+                $_SESSION['uvod_user_data'] = $_SESSION['reset_password_data'];
                 unset($_SESSION['reset_password_data']);
             }
         }
