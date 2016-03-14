@@ -59,12 +59,12 @@ class Account_model extends CI_Model {
     public function send_password_email($email) {
 
         $users = apiCall("user/get_single_user", array("email" => $email));
-
+        error_log('users: '.json_encode($users));
         if (isset($users->content->entryCount) && (intval($users->content->entryCount) > 0)) {
 
             $profile = apiCall("user/get_single_profile", array("email" => $email, 'id' => $users->content->entries[0]->_id));
 
-            $mandrill = new Mandrill('lwISZr2Z9D-IoPggcDSaOQ');
+//            $mandrill = new Mandrill('lwISZr2Z9D-IoPggcDSaOQ');
             $new_password = array();
             $new_password['password'] = rand(10000000, getrandmax());
             if (isset($profile->content->{'pluserprofile$displayName'})) {
@@ -83,9 +83,11 @@ class Account_model extends CI_Model {
             //$message->to = array(array('email' => "sebastoian@hotmail.com"));
 
             $message->track_opens = true;
-            $mandrill->messages->send($message);
+            error_log('el mensaje: '.$new_password['password']);
+//            $mandrill->messages->send($message);
 
-            $response = apiPost("user/save_password", array("password" => $new_password['password'], "user_id" => $email));
+            $response = apiPost("user/save_password", array("password" => $new_password['password'], "email" => $email, "token" => $users->content->entries[0]->token));
+            error_log('SAVE PASS: '.json_encode($response));
             return true;
         }
         return false;
