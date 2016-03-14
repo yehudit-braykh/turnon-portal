@@ -43,7 +43,7 @@
 <?php
 for ($i = 0; $i < sizeof($subscriptions); $i++) {
     $subscription_id = getEntryId($subscriptions[$i]);
-    $subscription_amount = $subscriptions[$i]->{'plsubscription$billingSchedule'}[0]->{'plsubscription$amounts'}->USD;
+    $subscription_amount = $subscriptions[$i]->billingSchedule[0]->amount;
     $arr = explode('.', $subscription_amount);
     if (sizeof($arr) == 1) {
         $cents = '.00';
@@ -51,8 +51,8 @@ for ($i = 0; $i < sizeof($subscriptions); $i++) {
         $cents = '.' . $arr[1];
     }
 
-    if (intval($subscriptions[$i]->{'plsubscription$subscriptionLength'} > 1)) {
-        $months_txt = 'Each ' . $subscriptions[$i]->{'plsubscription$subscriptionLength'} . ' Months';
+    if (intval($subscriptions[$i]->subscriptionLength > 1)) {
+        $months_txt = 'Each ' . $subscriptions[$i]->subscriptionLength . ' Months';
     } else {
         $months_txt = 'Per Month';
     }
@@ -62,7 +62,7 @@ for ($i = 0; $i < sizeof($subscriptions); $i++) {
         if (sizeof($subscriptions) > 0) {
             for ($i = 0; $i < sizeof($subscriptions); $i++) {
                 $subscription_id = getEntryId($subscriptions[$i]);
-                $subscription_amount = $subscriptions[$i]->{'plsubscription$billingSchedule'}[0]->{'plsubscription$amounts'}->USD;
+                $subscription_amount = $subscriptions[$i]->billingSchedule[0]->amount;
                 $arr = explode('.', $subscription_amount);
                 if (sizeof($arr) == 1) {
                     $cents = '.00';
@@ -70,8 +70,8 @@ for ($i = 0; $i < sizeof($subscriptions); $i++) {
                     $cents = '.' . $arr[1];
                 }
 
-                if (intval($subscriptions[$i]->{'plsubscription$subscriptionLength'} > 1)) {
-                    $months_txt = 'Each ' . $subscriptions[$i]->{'plsubscription$subscriptionLength'} . ' Months';
+                if (intval($subscriptions[$i]->subscriptionLength > 1)) {
+                    $months_txt = 'Each ' . $subscriptions[$i]->subscriptionLength . ' Months';
                 } else {
                     $months_txt = 'Per Month';
                 }

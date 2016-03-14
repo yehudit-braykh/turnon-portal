@@ -274,7 +274,7 @@ class Account extends UVod_Controller {
         }
 
         $events = $this->get_events();
-        error_log('EVENTS ES ' . json_encode($events));
+
         if ($events) {
             $data['events'] = $events;
         }
@@ -293,6 +293,7 @@ class Account extends UVod_Controller {
         if (isset($_SESSION['uvod_user_data']) && isset($_SESSION['uvod_user_data']->id)) {
 
             $orders_item = $this->live_events_model->get_orders_item($_SESSION['uvod_user_data']->id);
+            
             $data['orders_item'] = $orders_item;
 
             if (isset($orders_item) && sizeof($orders_item->content->entries) > 0) {
@@ -300,16 +301,15 @@ class Account extends UVod_Controller {
                 for ($h = 0; $h < sizeof($orders_item->content->entries); $h++) {
 
                     $id_arr = explode('/', $orders_item->content->entries[$h]->productId);
-                    $product_id = $id_arr[sizeof($id_arr) - 1];
+                    $product_id = intval($id_arr[sizeof($id_arr) - 1]);
                     if ($h == 0) {
-                        $product_ids = intval($product_id);
+                        $product_ids = $product_id;
                     } else {
-                        $product_ids .= '|' . intval($product_id);
+                        $product_ids .= '|' . $product_id;
                     }
                 }
 
                 $products = $this->live_events_model->get_event_products($product_ids);
-
 
                 if (isset($products->content->entries) && sizeof($products->content->entries) > 0) {
 
@@ -325,7 +325,7 @@ class Account extends UVod_Controller {
                     }
                     
                     for ($j = 0; $j < sizeof($events->content); $j++) {
-                        if (in_array($events->content[$j]->media->id, $media_ids)) {
+                        if (in_array($events->content[$j]->media->_id, $media_ids)) {
                             $events->content[$j]->already_purchased = true;
                         } else {
                             $events->content[$j]->already_purchased = false;
@@ -334,7 +334,7 @@ class Account extends UVod_Controller {
                 }
             }
         }
-        error_log('ANTES DE RETURN EVENTS' . json_encode($events));
+
         return $events;
     }
 
@@ -426,8 +426,8 @@ class Account extends UVod_Controller {
 
         if (!isset($_POST['new_password'])) {
             $ret->message = "You must specify your current password.";
-        } elseif (strlen($_POST['current_password']) < 8 || strlen($_POST['current_password']) > 16) {
-            $ret->message = "current password have between 8 and 16 chars lenght.";
+        //} elseif (strlen($_POST['current_password']) < 8 || strlen($_POST['current_password']) > 16) {
+            //$ret->message = "current password have between 8 and 16 chars lenght.";
         } elseif (!isset($_POST['new_password'])) {
             $ret->message = "You must specify your new password.";
         } elseif (strlen($_POST['new_password']) < 8 || strlen($_POST['new_password']) > 16) {
@@ -437,7 +437,7 @@ class Account extends UVod_Controller {
         }
 // saves registration information in session
         if ($ret->message == "ok") {
-            $ret = $this->account_model->change_password($_SESSION['uvod_user_data']->username, $_POST['current_password'], $_POST['new_password']);
+            $ret = $this->account_model->change_password($_SESSION['uvod_user_data']->username, $_POST['current_password'], $_POST['new_password'], $_SESSION['uvod_user_data']->token);
         }
 
         echo json_encode($ret);
