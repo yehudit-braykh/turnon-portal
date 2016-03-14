@@ -352,7 +352,7 @@ class Account extends UVod_Controller {
     public function logout_ssl() {
 
         if (isset($_SESSION['uvod_user_data'])) {
-
+            error_log('esta seteado el session');
             $logout = $this->account_model->logout($_SESSION['uvod_user_data']->token);
 
             if (isset($logout->error) && !$logout->error) {
@@ -360,6 +360,8 @@ class Account extends UVod_Controller {
                 $_SESSION['uvod_user_data'] = null;
                 unset($_SESSION['uvod_user_data']);
             }
+        }else{
+                   error_log('NO esta seteado el session');
         }
 
         redirect(base_url());
@@ -373,7 +375,8 @@ class Account extends UVod_Controller {
             error_log('LOGIN CONTROLLER: ' . json_encode($login));
             if (isset($login) && !$login->error) {
 
-                if (isset($login->mustResetPassword) && !$login->mustResetPassword) {
+                if (isset($login->content->mustResetPassword) && !$login->content->mustResetPassword) {
+                    error_log('no resetea');
                     $_SESSION['uvod_user_data'] = $login->content;
 
                     $contracts = $this->account_model->get_contract($_SESSION['uvod_user_data']->id, 'false');
@@ -396,8 +399,9 @@ class Account extends UVod_Controller {
                         unset($_COOKIE['UNIVCORP']);
                         setcookie('UNIVCORP', "", time() - 3600);
                     }
-                }else{
-                       $_SESSION['user_email'] = $login->content->username;
+                } else {
+                    error_log('resetea');
+                    $_SESSION['reset_password_data'] = $login->content;
                 }
             }
 
@@ -495,10 +499,31 @@ class Account extends UVod_Controller {
         $this->load->view(views_url() . 'pages/account_active', $data);
         $this->load->view(views_url() . 'templates/footer', $data);
     }
-    
-    
-    public function reset_password(){
+
+    public function reset_password() {
         
+        $ret = new stdClass();
+        if ($_SESSION['reset_password_data']) {
+            
+                $ret->message = "ok";
+
+            if (!isset($_POST['new_password'])) {
+                $ret->message = "You must specify your current password.";
+                //} elseif (strlen($_POST['current_password']) < 8 || strlen($_POST['current_password']) > 16) {
+                //$ret->message = "current password have between 8 and 16 chars lenght.";
+            } elseif (!isset($_POST['new_password'])) {
+                $ret->message = "You must specify your new password.";
+            } elseif (strlen($_POST['new_password']) < 8 || strlen($_POST['new_password']) > 16) {
+                $ret->message = "your new password have between 8 and 16 chars lenght.";
+            }
+// saves registration information in session
+            if ($ret->message == "ok") {
+                $ret = $this->account_model->change_password($_SESSION['reset_password_data']->username, '', $_POST['new_password'], $_SESSION['reset_password_data']->token);
+                $_SESSION['uvod_user_data'] =  $_SESSION['reset_password_data'];
+                unset($_SESSION['reset_password_data']);
+            }
+        }
+        echo json_encode($ret);
     }
 
     public function subscribe_ssl() {

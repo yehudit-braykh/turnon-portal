@@ -263,12 +263,12 @@ for ($i = 0; $i < sizeof($vod_categories); $i++) {
                                             <div class="header">
                                                 <div id="header_bar_bg">
                                                     <?php
-                                                    if (isset( $_SESSION['uvod_user_data']) && (!isset($_SESSION['is_subscriber']) || !$_SESSION['is_subscriber'])) {
-                                                        ?>
-                                                    <div class="content_centered header_content"><a class="trial_advertisement" href="<?php echo base_url().'index.php/account/my_account_ssl#tab2';?>"><b style="color:#e1cd00">Not a Subscriber?</b> Click here to start your 7-Day Free Trial</a></div>
+//                                                    if (isset( $_SESSION['uvod_user_data']) && (!isset($_SESSION['is_subscriber']) || !$_SESSION['is_subscriber'])) {
+                                                       ?>
+                                                    <!--<div class="content_centered header_content"><a class="trial_advertisement" href="//<?php //echo base_url().'index.php/account/my_account_ssl#tab2';?>"><b style="color:#e1cd00">Not a Subscriber?</b> Click here to start your 7-Day Free Trial</a></div>-->
                                                         <?php
-                                                    }
-                                                    ?>
+//                                                    }
+                                                   ?>
                                                     <div id="header_bar">
 
                                                         <div id="header_bar_tweet">
@@ -287,7 +287,7 @@ for ($i = 0; $i < sizeof($vod_categories); $i++) {
                                                         <div id="logo_left"></div>
                                                         <div class="top_menu">
                                                             <?php
-// menu highlight config
+
                                                             $highlight_color = 'rgb(255,0,0)';
                                                             if ($this->config->item('menu_highlight_color') !== FALSE) {
                                                                 $highlight_color = $this->config->item('menu_highlight_color');

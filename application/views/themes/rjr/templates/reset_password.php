@@ -21,7 +21,7 @@
                 url: "<?php echo base_url(); ?>index.php/account/reset_password",
                 type: 'POST',
                 dataType: 'json',
-                data: "email=" + $('#rest_password_input').val()
+                data: "new_password=" + $('#rest_password_input').val()
             }).done(function (data) {
                 if (data.message == 'ok') {
                     window.location.href = '<?php echo base_url(); ?>';
