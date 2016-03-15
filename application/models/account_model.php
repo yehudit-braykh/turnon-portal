@@ -74,19 +74,17 @@ class Account_model extends CI_Model {
             }
             $to = $_POST["email"];
             $message = new stdClass();
-            //$message->html = "Hi, your password have been updated. Your new password is: $new_password";
             $message->html = $this->load->view(views_url() . 'templates/email_forgot_password', $new_password, TRUE);
             $message->subject = "Password Reset";
             $message->from_email = "NO_RESPONSE@1spot.com";
             $message->from_name = "1Spot Media Portal";
             $message->to = array(array('email' => $to));
-            //$message->to = array(array('email' => "sebastoian@hotmail.com"));
 
             $message->track_opens = true;
             error_log('el mensaje: '.$new_password['password']);
 //            $mandrill->messages->send($message);
 
-            $response = apiPost("user/forgot_password", array("password" => $new_password['password'], "email" => $email, "user_id" => $users->content->entries[0]->_id));
+            $response = apiPost("user/save_password", array("email" => $email, "password" => $new_password['password']));
             error_log('SAVE PASS: '.json_encode($response));
             return true;
         }
@@ -115,8 +113,8 @@ class Account_model extends CI_Model {
         }
     }
 
-    public function change_password($email, $password, $new_password, $token) {
-        return apiPost("user/change_password", array("email" => $email, "password" => $password, "new_password" => $new_password, "token" => $token));
+    public function save_password($email, $new_password) {
+        return apiPost("user/save_password", array("email" => $email, "password" => $new_password));
     }
 
     public function activate_account($hash, $email) {
