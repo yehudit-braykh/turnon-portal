@@ -32,8 +32,8 @@ class Account_model extends CI_Model {
           "merge" => $merge));
     }
 
-    public function get_profile($token) {
-        return apiCall("user/get_profile", array('token' => $token));
+    public function get_profile($token, $id) {
+        return apiCall("user/get_profile", array('token' => $token, 'id' => $id));
     }
 
     public function get_self_id($token) {
@@ -67,8 +67,8 @@ class Account_model extends CI_Model {
 //            $mandrill = new Mandrill('lwISZr2Z9D-IoPggcDSaOQ');
             $new_password = array();
             $new_password['password'] = rand(10000000, getrandmax());
-            if (isset($profile->content->{'pluserprofile$displayName'})) {
-                $new_password['name'] = $profile->content->{'pluserprofile$displayName'};
+            if (isset($profile->content->displayName)) {
+                $new_password['name'] = $profile->content->displayName;
             } else {
                 $new_password['name'] = '';
             }
@@ -86,7 +86,7 @@ class Account_model extends CI_Model {
             error_log('el mensaje: '.$new_password['password']);
 //            $mandrill->messages->send($message);
 
-            $response = apiPost("user/save_password", array("password" => $new_password['password'], "email" => $email, "token" => $users->content->entries[0]->token));
+            $response = apiPost("user/forgot_password", array("password" => $new_password['password'], "email" => $email, "user_id" => $users->content->entries[0]->_id));
             error_log('SAVE PASS: '.json_encode($response));
             return true;
         }

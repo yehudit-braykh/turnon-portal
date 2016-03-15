@@ -212,7 +212,7 @@ class Account extends UVod_Controller {
         }
 
         $data = array();
-        $user_profile = $this->account_model->get_profile($_SESSION['uvod_user_data']->token);
+        $user_profile = $this->account_model->get_profile($_SESSION['uvod_user_data']->token, $_SESSION['uvod_user_data']->id);
         $subscription = $this->account_model->get_contract($_SESSION['uvod_user_data']->id, 'true');
 
 
