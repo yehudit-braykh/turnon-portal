@@ -2,17 +2,15 @@
 <?php
 if (isset($events->content) && sizeof($events->content) > 0) {
     $data = $events->content[0];
-    $event_time = ($data->event_date - (time() * 1000)) / 1000;
+    $event_time = $data->event_date;
     ?>
     <script>
 
         $(document).ready(function () {
 
     <?php echo 'event_time=' . $event_time . ';'; ?>
-            var d = new Date(<?php echo $event_time; ?>)
-            var difference = d.getTimezoneOffset();
 
-            var clock = $('#countdown').FlipClock((difference * 60) + event_time, {
+            var clock = $('#countdown').FlipClock((event_time - new Date().getTime())/1000, {
                 clockFace: 'DailyCounter',
                 countdown: true
             });

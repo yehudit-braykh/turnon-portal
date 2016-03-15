@@ -127,7 +127,6 @@ class Live_events extends UVod_Controller {
                         }
                     }
 
-
                     if (in_array($events->content[0]->media->_id, $media_ids)) {
                         $events->content[0]->already_purchased = true;
                     } else {
