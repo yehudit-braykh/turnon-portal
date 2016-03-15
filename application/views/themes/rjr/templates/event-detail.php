@@ -58,7 +58,17 @@ if (isset($events->content) && sizeof($events->content) > 0) {
                     ?>
 
                     <h2 class="event-detail-title"><?php echo $data->name; ?><br>
-                        <small><?php echo date('l, F d, Y - H:i', ($data->event_date / 1000)) . ' Hours EST - US $' . $data->price; ?></small>
+                        <small>
+                            <?php 
+                             $tz = 'EST';
+                            $timestamp = $data->event_date / 1000;
+                            $dt = new DateTime("now", new DateTimeZone($tz)); //first argument "must" be a string
+                            $dt->setTimestamp($timestamp); //adjust the object to correct timestamp
+                            $event_date = $dt->format('l, F d, Y - H:i');
+
+                            echo $event_date . ' Hours EST - US $' . $data->price;
+
+                            ?></small>
                     </h2>
 
                     <h5 class="vod_info_credit_item_value"><?php echo $data->description; ?></h5>
