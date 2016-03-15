@@ -39,6 +39,11 @@ class Account extends UVod_Controller {
         $this->parser->parse(views_url() . 'pages/register', $data);
         $this->parser->parse(views_url() . 'templates/footer', $data);
     }
+    
+    //Proxy for mobile App
+    public function register(){
+        $this->register_ssl();
+    } 
 
     public function register_step1_ssl() {
 
