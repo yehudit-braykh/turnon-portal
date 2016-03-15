@@ -151,12 +151,12 @@ if (isset($events->content) && sizeof($events->content) > 0) {
                                     <?php echo $event_item_overlay; ?>
                                     <span><?php
                                         $tz = 'EST';
-                                        $timestamp = $data->event_date / 1000;
+                                        $timestamp = $data[$i]->event_date / 1000;
                                         $dt = new DateTime("now", new DateTimeZone($tz)); //first argument "must" be a string
                                         $dt->setTimestamp($timestamp); //adjust the object to correct timestamp
                                         $event_date = $dt->format('l, F d, Y - H:i');
 
-                                        echo $event_date . ' Hours EST - US $' . $data->price;
+                                        echo $event_date . ' Hours EST - US $' . $data[$i]->price;
                                         ?></span>
                                 </div>
                             </div>
