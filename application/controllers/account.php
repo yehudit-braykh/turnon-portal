@@ -213,16 +213,16 @@ class Account extends UVod_Controller {
 
         $data = array();
         $user_profile = $this->account_model->get_profile($_SESSION['uvod_user_data']->token, $_SESSION['uvod_user_data']->id);
-        $subscription = $this->account_model->get_contract($_SESSION['uvod_user_data']->id, 'true');
+        $contracts = $this->account_model->get_contract($_SESSION['uvod_user_data']->id, 'true');
 
+      
+        if (isset($contracts->content->entries) && sizeof($contracts->content->entries) > 0) {
 
-        if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
+            $contracs_data = $contracts->content->entries;
+            for ($i = 0; $i < sizeof($contracs_data); $i++) {
 
-            $subscriptions = $subscription->content->entries;
-            for ($i = 0; $i < sizeof($subscriptions); $i++) {
-
-                if ($subscriptions[$i]->active && $subscriptions[$i]->originalSubscriptionId !== 'BASIC_SUBSCRIPTION_ID') {
-                    $data['subscription_data'] = $subscriptions[$i];
+                if ($contracs_data[$i]->active && $contracs_data[$i]->originalSubscriptionId !== 'BASIC_SUBSCRIPTION_ID') {
+                    $data['subscription_data'] = $contracs_data[$i];
                 }
             }
 
@@ -243,6 +243,7 @@ class Account extends UVod_Controller {
             }
 
             $subscription = $this->account_model->get_subscriptions($subscriptions_ids);
+              error_log('SUBSCRIPTION: '.json_encode($subscription));
             if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
                 $data['subscriptions'] = $subscription->content->entries;
 
