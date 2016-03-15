@@ -72,7 +72,7 @@ class UVod_Controller extends CI_Controller {
         $this->load->vars($data);
 
         if (isset($_SESSION['uvod_user_data']) && sizeof($_SESSION['uvod_user_data']) > 0) {
-            $this->check_valid_session($_SESSION['uvod_user_data']);
+//            $this->check_valid_session($_SESSION['uvod_user_data']);
         }
     }
 
