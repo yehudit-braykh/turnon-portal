@@ -75,7 +75,7 @@ if (isset($events->content) && sizeof($events->content) > 0) {
                     if (isset($data->already_purchased) && $data->already_purchased) {
                         if ($data->live_now) {
                             ?>
-                            <div class='already_purchased_msg'>YOUR TICKET IS READY!<br><b>PLEASE STAND BY FOR THE LIVE STREAM OF THE 2016 REBEL SALUTE!</b></div>
+                            <div class='already_purchased_msg'>YOUR TICKET IS READY!<br><b>PLEASE STAND BY FOR THE LIVE STREAM OF ISSA/GRACE KENNEDY BOYS AND GIRLS CHAMPS 2016!</b></div>
                             <button type="button" class="btn btn-primary btn-lg btn_events" onclick="button_play_clickHandler()" role="button">Watch now</button>
 
                             <?php
