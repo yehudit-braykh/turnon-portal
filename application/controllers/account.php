@@ -376,7 +376,7 @@ class Account extends UVod_Controller {
         if (isset($_SESSION['uvod_user_data'])) {
 
             $logout = $this->account_model->logout($_SESSION['uvod_user_data']->token);
-
+        error_log('SIGN OUT: ' . json_encode($logout));
             if (isset($logout->error) && !$logout->error) {
 
                 $_SESSION['uvod_user_data'] = null;
