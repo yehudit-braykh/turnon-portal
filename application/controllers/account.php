@@ -568,13 +568,13 @@ class Account extends UVod_Controller {
         $pi_security_code = $_POST['security_code'];
         $subscription_id = $_POST['subscription_id'];
         $auto_renew = $_POST['auto_renew'];
-            error_log('el token en el portal: '.$token);
+
         $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $pi_security_code, $subscription_id, $auto_renew);
 
         if (isset($ret->error) && $ret->error == false) {
 
             if (isset($ret->subscription_data)) {
-                $time = $ret->subscription_data->{'plsubscription$subscriptionLength'};
+                $time = $ret->subscription_data->subscriptionLength;
             } else {
                 $time = '';
             }
@@ -693,8 +693,8 @@ class Account extends UVod_Controller {
 
             if (isset($_SESSION['uvod_user_data'])) {
 
-                $id = $this->account_model->get_self_id($_SESSION['uvod_user_data']->token);
-                if (isset($id->error) && $id->error) {
+                $self_user = $this->account_model->get_self_id($_SESSION['uvod_user_data']->token);
+                if (!isset($self_user->content->_id)) {
                     $status = false;
                 }
             }

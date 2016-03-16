@@ -96,6 +96,23 @@ if (isset($events->content) && sizeof($events->content) > 0) {
                 $('.footer').css({display: "block"});
             }});
     }
+    ;
+
+
+    setInterval(function () {
+
+        $.ajax({
+            url: base_url + 'index.php/account/check_status',
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                if (data.status == 'error') {
+                    window.location = base_url;
+                }
+            }
+        })
+    }, 120000);
+
 
 </script>
 
@@ -114,7 +131,7 @@ if (isset($events->content) && sizeof($events->content) > 0) {
 
 
 <div id="event-template">
-    <?php $this->load->view(views_url() . 'templates/event-detail'); ?>
+<?php $this->load->view(views_url() . 'templates/event-detail'); ?>
 </div>
 
 <div class="dc_clear"></div>
@@ -148,7 +165,7 @@ if (isset($events->content) && sizeof($events->content) > 0) {
                             <div class="slider-caption">
                                 <div class="first-item-carousel-title"><span><?php echo $data[$i]->name; ?></span></div>
                                 <div class="first-item-carousel-date">
-                                    <?php echo $event_item_overlay; ?>
+                                        <?php echo $event_item_overlay; ?>
                                     <span><?php
                                         $tz = 'EST';
                                         $timestamp = $data[$i]->event_date / 1000;
@@ -167,13 +184,13 @@ if (isset($events->content) && sizeof($events->content) > 0) {
                     <?php
                     /*  } else { */
                     ?>
-                    <!-- <li class="carousel-item" product-id='<?php //echo $data[$i]->id; ?>'>
+                    <!-- <li class="carousel-item" product-id='<?php //echo $data[$i]->id;  ?>'>
                         <div class="slide-img-content">
-                            <img src="<?php //echo $data[$i]->image;  ?>" />
+                            <img src="<?php //echo $data[$i]->image;   ?>" />
                         </div>
-                        <span class="item-carousel-title"><?php //echo $data[$i]->name;  ?></span><br>
-                        <span class="item-carousel-date"><?php //echo date('d-m, H:i', ($data[$i]->event_date / 1000));  ?> hs</span>
-                        <p class="item-description"><?php //echo $data[$i]->description; ?></p>
+                        <span class="item-carousel-title"><?php //echo $data[$i]->name;   ?></span><br>
+                        <span class="item-carousel-date"><?php //echo date('d-m, H:i', ($data[$i]->event_date / 1000));   ?> hs</span>
+                        <p class="item-description"><?php //echo $data[$i]->description;  ?></p>
                     </li> -->
 
 
