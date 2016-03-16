@@ -568,7 +568,7 @@ class Account extends UVod_Controller {
         $pi_security_code = $_POST['security_code'];
         $subscription_id = $_POST['subscription_id'];
         $auto_renew = $_POST['auto_renew'];
-
+            error_log('el token en el portal: '.$token);
         $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $pi_security_code, $subscription_id, $auto_renew);
 
         if (isset($ret->error) && $ret->error == false) {
