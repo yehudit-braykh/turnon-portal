@@ -89,7 +89,7 @@ class UVod_Controller extends CI_Controller {
         }
         if ($status) {
             $user = $this->account_model->get_self_id($data->token);
-            error_log('SELF : '.json_encode($user));
+           
             if (!isset($user->content->_id)) {
                 $_SESSION['uvod_user_data'] = null;
                 unset($_SESSION['uvod_user_data']);

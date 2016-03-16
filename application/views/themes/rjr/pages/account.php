@@ -109,7 +109,7 @@ if (isset($clientToken)) {
                     $("#infopass").show();
                     TweenLite.fromTo("#infopass", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
                             TweenLite.to("#infopass", 1, {delay: 4, alpha: 0, onComplete: function () {
-                                    $("#current_password").val("");
+                                    
                                     $("#new_password").val("");
                                     $("#confirm_password").val("");
                                     $('#btn_change_password').show();
@@ -329,25 +329,7 @@ if (isset($clientToken)) {
                                     <label for="last_name">Last Name*</label>
                                     <input id="last_name" name="last_name" class="text" value="<?php echo $user_last_name; ?>" />
                                 </li>
-                                <li>
-                                    <label for="city">City</label>
-                                    <input id="city" name="city" class="text" value="<?php echo $user_city; ?>" />
-                                </li>
-                                <li>
-                                    <label for="country" style="width: 100%">Country*</label>
-
-                                    <select id="country" name="country" class="text" style="width:238px;">
-                                        <option value="default" disabled="disabled" selected="selected">Select your country</option>
-                                        <?php
-                                        echo html_combo_country($user_country);
-                                        ?>
-                                    </select>
-
-                                </li>
-                                <li>
-                                    <label for="postal_code">Postal Code</label>
-                                    <input id="postal_code" name="postal_code" class="text" value="<?php echo $user_postal_code; ?>" />
-                                </li>
+                                
                                 <li> 
                                     <p id="info" class="form_info">&nbsp;</p>
                                 </li>
@@ -610,13 +592,7 @@ if (isset($clientToken)) {
                     <div class="registration_container" style="min-height:400px;">
                         <form id="changepasswordform" method="post">
                             <ol>
-                                <li>
-                                    <label for="current_password">Current Password*</label>
-                                    <input id="current_password" name="current_password" class="text" type="password" />
-                                </li>
-                                <li> 
-                                    <div class="form_notes">Enter your current password.</div>
-                                </li>                        
+                                                     
                                 <li>
                                     <label for="new_password">New Password*</label>
                                     <input id="new_password" name="new_password" class="text" type="password" />
