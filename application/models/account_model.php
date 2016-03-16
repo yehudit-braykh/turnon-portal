@@ -23,17 +23,17 @@ class Account_model extends CI_Model {
     public function register($email, $password, $first_name, $last_name, $country, $hash = NULL, $fb_id = NULL, $merge = false) {
 
         return apiPost("user/register", array("email" => $email,
-            "password" => $password,
-            "first_name" => $first_name,
-            "last_name" => $last_name,
-            "country" => $country,
-            "fb_id" => $fb_id,
-            "hash" => $hash,
-            "merge" => $merge));
+          "password" => $password,
+          "first_name" => $first_name,
+          "last_name" => $last_name,
+          "country" => $country,
+          "fb_id" => $fb_id,
+          "hash" => $hash,
+          "merge" => $merge));
     }
 
-    public function get_profile($token) {
-        return apiCall("user/get_profile", array('token' => $token));
+    public function get_profile($token, $id) {
+        return apiCall("user/get_profile", array('token' => $token, 'id' => $id));
     }
 
     public function get_self_id($token) {
@@ -42,48 +42,49 @@ class Account_model extends CI_Model {
 
     public function save_profile($token, $id, $first_name, $last_name, $city, $country, $postal_code) {
         return apiPost("user/save_profile", array("token" => $token,
-            "id" => $id,
-            "first_name" => $first_name,
-            "last_name" => $last_name,
-            "city" => $city,
-            "country" => $country,
-            "postal_code" => $postal_code));
+          "id" => $id,
+          "first_name" => $first_name,
+          "last_name" => $last_name,
+          "city" => $city,
+          "country" => $country,
+          "postal_code" => $postal_code));
     }
 
     public function save_merchant_info($user_token, $payment_token, $customer_id) {
         return apiPost("commerce/save_merchant_info", array("user_token" => $user_token,
-            "payment_token" => $payment_token,
-            "customer_id" => $customer_id));
+          "payment_token" => $payment_token,
+          "customer_id" => $customer_id));
     }
 
     public function send_password_email($email) {
-        $users = apiCall("user/get_single_user", array("email" => $email));
-        $profile = apiCall("user/get_single_profile", array("email" => $email));
 
+        $users = apiCall("user/get_single_user", array("email" => $email));
 
         if (isset($users->content->entryCount) && (intval($users->content->entryCount) > 0)) {
+
+            $profile = apiCall("user/get_single_profile", array("email" => $email, 'id' => $users->content->entries[0]->_id));
+
             $mandrill = new Mandrill('lwISZr2Z9D-IoPggcDSaOQ');
             $new_password = array();
             $new_password['password'] = rand(10000000, getrandmax());
-            if (isset($profile->content->{'pluserprofile$displayName'})) {
-                $new_password['name'] = $profile->content->{'pluserprofile$displayName'};
+            if (isset($profile->content->displayName)) {
+                $new_password['name'] = $profile->content->displayName;
             } else {
                 $new_password['name'] = '';
             }
             $to = $_POST["email"];
             $message = new stdClass();
-            //$message->html = "Hi, your password have been updated. Your new password is: $new_password";
             $message->html = $this->load->view(views_url() . 'templates/email_forgot_password', $new_password, TRUE);
             $message->subject = "Password Reset";
             $message->from_email = "NO_RESPONSE@1spot.com";
             $message->from_name = "1Spot Media Portal";
             $message->to = array(array('email' => $to));
-            //$message->to = array(array('email' => "sebastoian@hotmail.com"));
 
             $message->track_opens = true;
             $mandrill->messages->send($message);
 
-            $response = apiPost("user/save_password", array("password" => $new_password['password'], "user_id" => $email));
+            $response = apiPost("user/save_password", array("email" => $email, "password" => $new_password['password']));
+            error_log('SAVE PASS: '.json_encode($response));
             return true;
         }
         return false;
@@ -99,21 +100,8 @@ class Account_model extends CI_Model {
             $message->subject = $subject;
             $message->from_email = $from_address;
             $message->from_name = $from_name;
-
-            if (is_array($email)) {
-                $recipients = array();
-                for ($i = 0; $i < sizeof($email); $i++) {
-                    $address = new stdClass();
-                    $address->email = $email[$i];
-                    $address->type = 'to';
-                    $recipients[] = $address;
-                }
-
-                $message->to = $recipients;
-            } else {
-                $message->to = array(array('email' => $email));
-            }
-
+            $message->to = array(array('email' => $email));
+            //$message->to = array(array('email' => "sebastoian@hotmail.com"));
 
             $message->track_opens = true;
             $mandrill->messages->send($message);
@@ -124,8 +112,8 @@ class Account_model extends CI_Model {
         }
     }
 
-    public function change_password($email, $password, $new_password, $token) {
-        return apiPost("user/change_password", array("email" => $email, "password" => $password, "new_password" => $new_password, "token" => $token));
+    public function save_password($email, $new_password) {
+        return apiPost("user/save_password", array("email" => $email, "password" => $new_password));
     }
 
     public function activate_account($hash, $email) {
@@ -136,8 +124,8 @@ class Account_model extends CI_Model {
     public function subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $pi_security_code, $subscription_id, $auto_renew) {
 
         return apiPost("commerce/subscription_checkout", array('token' => $token, 'nonce' => $nonce, 'first_name' => $first_name, 'last_name' => $last_name,
-            'email' => $email, 'country' => $country, 'pi_month' => $pi_month, 'pi_year' => $pi_year, 'pi_type' => $pi_type, 'pi_number' => $pi_number,
-            'pi_security_code' => $pi_security_code, 'subscription_id' => $subscription_id, 'auto_renew' => $auto_renew));
+          'email' => $email, 'country' => $country, 'pi_month' => $pi_month, 'pi_year' => $pi_year, 'pi_type' => $pi_type, 'pi_number' => $pi_number,
+          'pi_security_code' => $pi_security_code, 'subscription_id' => $subscription_id, 'auto_renew' => $auto_renew));
     }
 
     public function get_contract($id, $user_active = null) {

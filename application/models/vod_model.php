@@ -18,7 +18,8 @@ class Vod_model extends CI_Model {
         
             $parameters["media_type"] = 'movie|clip|tv_show';
 //            $parameters["media_type"] = 'clip';
-            $parameters["limit"] = '100';
+            $parameters["limit"] = '50';
+            $parameters["sort"] = 'added:-1';
 
         return apiCall("vod/list_items_api", $parameters);
     }

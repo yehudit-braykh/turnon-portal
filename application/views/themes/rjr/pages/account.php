@@ -4,7 +4,7 @@
     $(function () {
 
         $('#tab-container').easytabs();
-        
+
         $('.btn_watch_now').on('click', function (event) {
             window.location.href = "<?php echo base_url() . 'index.php/live_events/main'; ?>";
         })
@@ -14,7 +14,7 @@
             $('#save_data_preloader').html('Sending data...');
             $('#save_data_preloader').show();
             $.ajax({
-                url: "<?php echo base_url(); ?>index.php/account/my_account_save",
+                url: "<?php echo base_url(); ?>index.php/account/my_account_save_ssl",
                 type: 'POST',
                 dataType: 'json',
                 data: $('#registerform').serialize()
@@ -109,7 +109,7 @@ if (isset($clientToken)) {
                     $("#infopass").show();
                     TweenLite.fromTo("#infopass", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
                             TweenLite.to("#infopass", 1, {delay: 4, alpha: 0, onComplete: function () {
-                                    $("#current_password").val("");
+                                    
                                     $("#new_password").val("");
                                     $("#confirm_password").val("");
                                     $('#btn_change_password').show();
@@ -329,25 +329,7 @@ if (isset($clientToken)) {
                                     <label for="last_name">Last Name*</label>
                                     <input id="last_name" name="last_name" class="text" value="<?php echo $user_last_name; ?>" />
                                 </li>
-                                <li>
-                                    <label for="city">City</label>
-                                    <input id="city" name="city" class="text" value="<?php echo $user_city; ?>" />
-                                </li>
-                                <li>
-                                    <label for="country" style="width: 100%">Country*</label>
-
-                                    <select id="country" name="country" class="text" style="width:238px;">
-                                        <option value="default" disabled="disabled" selected="selected">Select your country</option>
-                                        <?php
-                                        echo html_combo_country($user_country);
-                                        ?>
-                                    </select>
-
-                                </li>
-                                <li>
-                                    <label for="postal_code">Postal Code</label>
-                                    <input id="postal_code" name="postal_code" class="text" value="<?php echo $user_postal_code; ?>" />
-                                </li>
+                                
                                 <li> 
                                     <p id="info" class="form_info">&nbsp;</p>
                                 </li>
@@ -452,7 +434,7 @@ if (isset($clientToken)) {
                         ?>
                     </div>
                 </div>
-                
+
                 <div id="tab3" style="padding-left:20px">
 
                     <?php
@@ -464,7 +446,7 @@ if (isset($clientToken)) {
                             <?php
                             $flag = 0;
                             for ($i = 0; $i < sizeof($events->content); $i++) {
-                            
+
                                 if (isset($events->content[$i]->already_purchased) && $events->content[$i]->already_purchased == true) {
                                     $flag = 1;
                                     echo '<div style="float:left;line-height:45px;width:100%;">' . date('d-m-Y', $events->content[$i]->event_date / 1000) . ' - ' . $events->content[$i]->name . '<div style="float:right;width:120px;margin-right:30%"><button type="submit" id="btn_watch_now" class="send btn_watch_now">Watch Now</button></div></div>';
@@ -472,7 +454,7 @@ if (isset($clientToken)) {
                             }
                             if (!$flag) {
                                 ?>
-                            <div class="buy_events_link"><span>You don't have any pay-per-view tickets yet.</span><br><a href="<?php echo base_url() . 'index.php/live_events/buy_events'; ?>">Buy Now!</a></div>
+                                <div class="buy_events_link"><span>You don't have any pay-per-view tickets yet.</span><br><a href="<?php echo base_url() . 'index.php/live_events/buy_events'; ?>">Buy Now!</a></div>
                                 <?php
                             }
                             ?>
@@ -538,18 +520,18 @@ if (isset($clientToken)) {
                     }
                 } else {
                     ?>
-                                                                                <option id="01">01</option>
-                                                                                <option id="02">02</option>
-                                                                                <option id="03">03</option>
-                                                                                <option id="04">04</option>
-                                                                                <option id="05">05</option>
-                                                                                <option id="06">06</option>
-                                                                                <option id="07">07</option>
-                                                                                <option id="08">08</option>
-                                                                                <option id="09">09</option>
-                                                                                <option id="10">10</option>
-                                                                                <option id="11">11</option>
-                                                                                <option id="12">12</option>
+                                                                                        <option id="01">01</option>
+                                                                                        <option id="02">02</option>
+                                                                                        <option id="03">03</option>
+                                                                                        <option id="04">04</option>
+                                                                                        <option id="05">05</option>
+                                                                                        <option id="06">06</option>
+                                                                                        <option id="07">07</option>
+                                                                                        <option id="08">08</option>
+                                                                                        <option id="09">09</option>
+                                                                                        <option id="10">10</option>
+                                                                                        <option id="11">11</option>
+                                                                                        <option id="12">12</option>
                     <?php
                 }
                 ?>
@@ -573,17 +555,17 @@ if (isset($clientToken)) {
                     }
                 } else {
                     ?>
-                                                                                <option id="2015">2015</option>
-                                                                                <option id="2016">2016</option>
-                                                                                <option id="2017">2017</option>
-                                                                                <option id="2018">2018</option>
-                                                                                <option id="2019">2019</option>
-                                                                                <option id="2020">2020</option>
-                                                                                <option id="2021">2021</option>
-                                                                                <option id="2022">2022</option>
-                                                                                <option id="2023">2023</option>
-                                                                                <option id="2024">2024</option>
-                                                                                <option id="2025">2025</option>
+                                                                                        <option id="2015">2015</option>
+                                                                                        <option id="2016">2016</option>
+                                                                                        <option id="2017">2017</option>
+                                                                                        <option id="2018">2018</option>
+                                                                                        <option id="2019">2019</option>
+                                                                                        <option id="2020">2020</option>
+                                                                                        <option id="2021">2021</option>
+                                                                                        <option id="2022">2022</option>
+                                                                                        <option id="2023">2023</option>
+                                                                                        <option id="2024">2024</option>
+                                                                                        <option id="2025">2025</option>
                     <?php
                 }
                 ?>
@@ -610,13 +592,7 @@ if (isset($clientToken)) {
                     <div class="registration_container" style="min-height:400px;">
                         <form id="changepasswordform" method="post">
                             <ol>
-                                <li>
-                                    <label for="current_password">Current Password*</label>
-                                    <input id="current_password" name="current_password" class="text" type="password" />
-                                </li>
-                                <li> 
-                                    <div class="form_notes">Enter your current password.</div>
-                                </li>                        
+                                                     
                                 <li>
                                     <label for="new_password">New Password*</label>
                                     <input id="new_password" name="new_password" class="text" type="password" />
