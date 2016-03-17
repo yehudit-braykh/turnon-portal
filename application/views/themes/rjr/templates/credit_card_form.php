@@ -49,7 +49,6 @@
         <label for="expiration_year">Year*</label>
         <span class='css-select-moz'>
             <select id="expiration_year" class="text" style="width:85px;">
-                <option id="2015">2015</option>
                 <option id="2016">2016</option>
                 <option id="2017">2017</option>
                 <option id="2018">2018</option>
