@@ -68,7 +68,7 @@ if (isset($events->content) && sizeof($events->content) > 0) {
     $data = $events->content[0];
     if ($data->live_now && isset($data->already_purchased) && $data->already_purchased) {
         ?>
-                stream_url = "<?php echo $data->streaming_url; ?>";
+                stream_url = "http://rjr_flash-lh.akamaihd.net/z/rjrexternal_1@179257/manifest.f4m";
                 jwplayer("jw_live_player").setup({
                     file: stream_url,
                     width: '100%',
