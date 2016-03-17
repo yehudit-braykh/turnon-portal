@@ -393,4 +393,73 @@ error_log('el ret del event: '.json_encode($ret));
         $this->load->view(views_url() . 'templates/footer_bst', $data);
     }
 
+    public function hds_test($id = null) {
+
+        $media_ids = array();
+        $events = $this->live_events_model->list_simple_events();
+
+//      checks if user is logged in
+        if (isset($_SESSION['uvod_user_data']) && isset($_SESSION['uvod_user_data']->id)) {
+
+            $orders = $this->live_events_model->get_orders_item($_SESSION['uvod_user_data']->id);
+            $data['orders'] = $orders;
+
+            if (isset($orders) && sizeof($orders->content->entries) > 0) {
+
+                for ($h = 0; $h < sizeof($orders->content->entries); $h++) {
+
+                    if ($h == 0) {
+                        $product_ids = $orders->content->entries[$h]->productId;
+                    } else {
+                        $product_ids .= '|' . $orders->content->entries[$h]->productId;
+                    }
+                }
+
+                $products = $this->live_events_model->get_event_products($product_ids);
+
+                if (isset($products->content->entries) && sizeof($products->content->entries) > 0) {
+
+                    for ($i = 0; $i < sizeof($products->content->entries); $i++) {
+
+                        $events_ids = $products->content->entries[$i]->scopeIds;
+
+                        for ($j = 0; $j < sizeof($events_ids); $j++) {
+                            if (!in_array($events_ids[$j], $media_ids)) {
+                                $media_ids[] = $events_ids[$j];
+                            }
+                        }
+                    }
+
+                    if (in_array($events->content[0]->media->_id, $media_ids)) {
+                        $events->content[0]->already_purchased = true;
+                    } else {
+                        $events->content[0]->already_purchased = false;
+                    }
+                } else if (isset($products->content) && sizeof(isset($products->content))) {
+
+                    $events_ids = $products->content->scopeIds;
+
+                    for ($j = 0; $j < sizeof($events_ids); $j++) {
+                        if (!in_array($events_ids[$j], $media_ids)) {
+                            $media_ids[] = $events_ids[$j];
+                        }
+                    }
+
+                    if (in_array($events->content[0]->media->_id, $media_ids)) {
+                        $events->content[0]->already_purchased = true;
+                    } else {
+                        $events->content[0]->already_purchased = false;
+                    }
+                }
+            }
+        }
+
+        $data['section'] = "events";
+        $data['events'] = $events;
+
+        $this->load->view(views_url() . 'templates/header_bst', $data);
+        $this->load->view(views_url() . 'pages/live_events_hds', $data);
+        $this->load->view(views_url() . 'templates/footer_bst', $data);
+    }
+
 }
