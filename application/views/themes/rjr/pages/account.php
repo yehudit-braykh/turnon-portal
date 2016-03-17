@@ -588,8 +588,7 @@ if (isset($clientToken)) {
 
                 <!-- TAB 4: Change Password -->
                 <div id="tab4">
-                    <input type="text" name="prevent_autofill" id="prevent_autofill" value="" style="display:none;" />
-                    <input type="password" name="password_fake" id="password_fake" value="" style="display:none;" />
+                   
                     <div class="registration_container" style="min-height:400px;">
                         <form id="changepasswordform" method="post">
                             <ol>
