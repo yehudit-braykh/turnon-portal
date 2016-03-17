@@ -1,3 +1,5 @@
+<input type="text" name="prevent_autofill" id="prevent_autofill" value="" style="display:none;" />
+<input type="password" name="password_fake" id="password_fake" value="" style="display:none;" />
 <li> 
     <p id="info" class="form_info"></p>
 </li>
@@ -58,3 +60,12 @@
     <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
     <div style="display: inline-block;"><a href="<?php echo base_url() . 'index.php/static_content/terms_conditions'; ?>" target="_blank" class="terms_and_conditions">Accept Terms and Conditions</a></div>
 </li>
+
+<script type="text/javascript">
+    $(function(){  
+        var passElem = $("input#security_code");
+        passElem.focus(function() { 
+            passElem.prop("type", "password");                                             
+        });
+    });
+</script>

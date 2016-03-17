@@ -347,7 +347,7 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
     });
 
     $(document).on('submit', '#suscriber_form', function () {
-        window.location = base_url + 'index.php/account/my_account#tab2';
+        window.location = base_url + 'index.php/account/my_account_ssl#tab2';
         return false;
     });
 

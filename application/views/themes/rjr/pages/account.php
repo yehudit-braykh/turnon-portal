@@ -109,7 +109,7 @@ if (isset($clientToken)) {
                     $("#infopass").show();
                     TweenLite.fromTo("#infopass", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
                             TweenLite.to("#infopass", 1, {delay: 4, alpha: 0, onComplete: function () {
-                                    
+
                                     $("#new_password").val("");
                                     $("#confirm_password").val("");
                                     $('#btn_change_password').show();
@@ -329,7 +329,7 @@ if (isset($clientToken)) {
                                     <label for="last_name">Last Name*</label>
                                     <input id="last_name" name="last_name" class="text" value="<?php echo $user_last_name; ?>" />
                                 </li>
-                                
+
                                 <li> 
                                     <p id="info" class="form_info">&nbsp;</p>
                                 </li>
@@ -520,18 +520,18 @@ if (isset($clientToken)) {
                     }
                 } else {
                     ?>
-                                                                                        <option id="01">01</option>
-                                                                                        <option id="02">02</option>
-                                                                                        <option id="03">03</option>
-                                                                                        <option id="04">04</option>
-                                                                                        <option id="05">05</option>
-                                                                                        <option id="06">06</option>
-                                                                                        <option id="07">07</option>
-                                                                                        <option id="08">08</option>
-                                                                                        <option id="09">09</option>
-                                                                                        <option id="10">10</option>
-                                                                                        <option id="11">11</option>
-                                                                                        <option id="12">12</option>
+                                                                                            <option id="01">01</option>
+                                                                                            <option id="02">02</option>
+                                                                                            <option id="03">03</option>
+                                                                                            <option id="04">04</option>
+                                                                                            <option id="05">05</option>
+                                                                                            <option id="06">06</option>
+                                                                                            <option id="07">07</option>
+                                                                                            <option id="08">08</option>
+                                                                                            <option id="09">09</option>
+                                                                                            <option id="10">10</option>
+                                                                                            <option id="11">11</option>
+                                                                                            <option id="12">12</option>
                     <?php
                 }
                 ?>
@@ -555,17 +555,17 @@ if (isset($clientToken)) {
                     }
                 } else {
                     ?>
-                                                                                        <option id="2015">2015</option>
-                                                                                        <option id="2016">2016</option>
-                                                                                        <option id="2017">2017</option>
-                                                                                        <option id="2018">2018</option>
-                                                                                        <option id="2019">2019</option>
-                                                                                        <option id="2020">2020</option>
-                                                                                        <option id="2021">2021</option>
-                                                                                        <option id="2022">2022</option>
-                                                                                        <option id="2023">2023</option>
-                                                                                        <option id="2024">2024</option>
-                                                                                        <option id="2025">2025</option>
+                                                                                            <option id="2015">2015</option>
+                                                                                            <option id="2016">2016</option>
+                                                                                            <option id="2017">2017</option>
+                                                                                            <option id="2018">2018</option>
+                                                                                            <option id="2019">2019</option>
+                                                                                            <option id="2020">2020</option>
+                                                                                            <option id="2021">2021</option>
+                                                                                            <option id="2022">2022</option>
+                                                                                            <option id="2023">2023</option>
+                                                                                            <option id="2024">2024</option>
+                                                                                            <option id="2025">2025</option>
                     <?php
                 }
                 ?>
@@ -588,11 +588,12 @@ if (isset($clientToken)) {
 
                 <!-- TAB 4: Change Password -->
                 <div id="tab4">
-
+                    <input type="text" name="prevent_autofill" id="prevent_autofill" value="" style="display:none;" />
+                    <input type="password" name="password_fake" id="password_fake" value="" style="display:none;" />
                     <div class="registration_container" style="min-height:400px;">
                         <form id="changepasswordform" method="post">
                             <ol>
-                                                     
+
                                 <li>
                                     <label for="new_password">New Password*</label>
                                     <input id="new_password" name="new_password" class="text" type="password" />
