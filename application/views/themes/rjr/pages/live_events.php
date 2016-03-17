@@ -68,15 +68,18 @@ if (isset($events->content) && sizeof($events->content) > 0) {
     $data = $events->content[0];
     if ($data->live_now && isset($data->already_purchased) && $data->already_purchased) {
         ?>
-                stream_url = "<?php echo $data->streaming_url; ?>";
-                jwplayer("jw_live_player").setup({
+            stream_url = "http://rjr_flash-lh.akamaihd.net/z/rjrexternal_1@179257/manifest.f4m";
+            jwplayer("jw_live_player").setup({
+                width: '100%',
+                autostart: true,
+                aspectratio: "16:9",
+                playlist: [{
                     file: stream_url,
-                    width: '100%',
-                    androidhls: true,
-                    autostart: true,
-                    aspectratio: "16:9"
-                });
-
+                    provider: "http://players.edgesuite.net/flash/plugins/jw/v3.8/AkamaiAdvancedJWStreamProvider.swf",
+                    type:'mp4'
+                }],
+                primary: "flash"
+            });
         <?php
     }
 }
