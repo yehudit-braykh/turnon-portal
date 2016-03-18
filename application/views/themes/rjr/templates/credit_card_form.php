@@ -1,3 +1,5 @@
+<input type="text" name="prevent_autofill" id="prevent_autofill" value="" style="display:none;" />
+<input type="password" name="password_fake" id="password_fake" value="" style="display:none;" />
 <div class="registration_subtitle_payment">Enter your payment information</div>
 <ol>
     <li>
@@ -47,7 +49,6 @@
         <label for="expiration_year">Year*</label>
         <span class='css-select-moz'>
             <select id="expiration_year" class="text" style="width:85px;">
-                <option id="2015">2015</option>
                 <option id="2016">2016</option>
                 <option id="2017">2017</option>
                 <option id="2018">2018</option>
@@ -65,3 +66,12 @@
         <div class="form_notes">Select the expiration year.</div>
     </li>
 
+
+<script type="text/javascript">
+    $(function(){  
+        var passElem = $("input#security_code");
+        passElem.focus(function() { 
+            passElem.prop("type", "password");                                             
+        });
+    });
+</script>

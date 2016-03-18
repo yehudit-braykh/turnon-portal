@@ -14,7 +14,7 @@
         for ($i = 0; $i < sizeof($events->content); $i++) {
             if (isset($subscription_data) && sizeof($subscription_data) > 0) {
                 for ($h = 0; $h < sizeof($subscription_data); $h++) {
-                    if ($events->content[$i]->id === $subscription_data[$h]->{'plorderitem$productId'}) {
+                    if ($events->content[$i]->id === $subscription_data[$h]->productId) {
 
                         $buy_column = '<div class="col-sm-2 already_purchased"><div>ALREADY<br/>PURCHASED</div><a href="' . base_url() . 'index.php/live_events/main"></div><div class="col-sm-2 col_button"><button type="button" class="btn btn-default btn-sm watch_now_btn">WATCH NOW!</button></a></div>';
                         break;

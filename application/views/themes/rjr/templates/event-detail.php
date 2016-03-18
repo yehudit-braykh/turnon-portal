@@ -2,17 +2,15 @@
 <?php
 if (isset($events->content) && sizeof($events->content) > 0) {
     $data = $events->content[0];
-    $event_time = ($data->event_date - (time() * 1000)) / 1000;
+    $event_time = $data->event_date;
     ?>
     <script>
 
         $(document).ready(function () {
 
     <?php echo 'event_time=' . $event_time . ';'; ?>
-            var d = new Date(<?php echo $event_time; ?>)
-            var difference = d.getTimezoneOffset();
 
-            var clock = $('#countdown').FlipClock((difference * 60) + event_time, {
+            var clock = $('#countdown').FlipClock((event_time - new Date().getTime())/1000, {
                 clockFace: 'DailyCounter',
                 countdown: true
             });
@@ -58,7 +56,17 @@ if (isset($events->content) && sizeof($events->content) > 0) {
                     ?>
 
                     <h2 class="event-detail-title"><?php echo $data->name; ?><br>
-                        <small><?php echo date('l, F d, Y - H:i', ($data->event_date / 1000)) . ' Hours EST - US $' . $data->price; ?></small>
+                        <small>
+                            <?php 
+                             $tz = 'EST';
+                            $timestamp = $data->event_date / 1000;
+                            $dt = new DateTime("now", new DateTimeZone($tz)); //first argument "must" be a string
+                            $dt->setTimestamp($timestamp); //adjust the object to correct timestamp
+                            $event_date = $dt->format('l, F d, Y - H:i');
+
+                            echo $event_date . ' Hours EST - US $' . $data->price;
+
+                            ?></small>
                     </h2>
 
                     <h5 class="vod_info_credit_item_value"><?php echo $data->description; ?></h5>
@@ -67,7 +75,7 @@ if (isset($events->content) && sizeof($events->content) > 0) {
                     if (isset($data->already_purchased) && $data->already_purchased) {
                         if ($data->live_now) {
                             ?>
-                            <div class='already_purchased_msg'>YOUR TICKET IS READY!<br><b>PLEASE STAND BY FOR THE LIVE STREAM OF THE 2016 REBEL SALUTE!</b></div>
+                            <div class='already_purchased_msg'>YOUR TICKET IS READY!<br></div>
                             <button type="button" class="btn btn-primary btn-lg btn_events" onclick="button_play_clickHandler()" role="button">Watch now</button>
 
                             <?php

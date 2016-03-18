@@ -2746,6 +2746,14 @@ td.product_content{
 
 }
 
+#no-event-template{
+    height: 400px;
+    text-align: center;
+    padding-top: 50px;
+    color: #fff;
+    font-size: 26px;
+}
+
 #event-loading{
     height: 350px;
     color: #fff;

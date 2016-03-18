@@ -151,34 +151,26 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
 
         if (country === 'Jamaica') {
 
-           if (account_status === 'login') {
-               $('#popup_login').bPopup();
+            if (account_status === 'login') {
+                $('#popup_login').bPopup();
 
-           } else if (account_status === 'enabled' || account_status === 'subscriber') {
-               stream_url = release_url;
-               load_data(stream_url, id, channel_obj, channel_name, policy_id);
-           }
-            stream_url = release_url;
-             load_data(stream_url, id, channel_obj, channel_name, policy_id);
+            } else if (account_status === 'enabled' || account_status === 'subscriber') {
+                stream_url = release_url;
+                load_data(stream_url, id, channel_obj, channel_name, policy_id);
+            }
 
         } else {
 
-           if (account_status === 'login') {
-               $('#popup_login_outside').bPopup();
+            if (account_status === 'login') {
+                $('#popup_login_outside').bPopup();
 
-           /*} else if (account_status === 'subscriber') {
-               $('#popup_subscriber').bPopup();
-           } else if (account_status === 'enabled') {
-               stream_url = release_blocked_url;
-               load_data(stream_url, id, channel_obj, channel_name, policy_id);*/
-           } else{
-
-  stream_url = release_blocked_url;
-            load_data(stream_url, id, channel_obj, channel_name, policy_id);
-
-
+            } else if (account_status === 'subscriber') {
+                $('#popup_subscriber').bPopup();
+            } else if (account_status === 'enabled') {
+                stream_url = release_blocked_url;
+                load_data(stream_url, id, channel_obj, channel_name, policy_id);
+            }
         }
-    }
 
         if (typeof (id) != 'undefined') {
 
@@ -277,6 +269,10 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
                     onPlay: function (e) {
                         handleOnMediaStart(channel_name);
                     }
+                },
+                advertising: {
+                    client: 'googima',
+                    tag: 'http://ad4.liverail.com/?LR_PUBLISHER_ID=151407&LR_SCHEMA=vast2-vpaid&LR_TAGS=prime_time_news,prime_time_sports,smile_jamaica&LR_AUTOPLAY=1&LR_VERTICALS=test'
                 }
             });
         }
@@ -344,7 +340,7 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
 
     });
 
-    $(document).on('click','#signin_fb_btn', function (event) {
+    $(document).on('click', '#signin_fb_btn', function (event) {
         event.preventDefault();
         signInWithFacebook();
     });
@@ -355,7 +351,7 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
     });
 
     $(document).on('submit', '#suscriber_form', function () {
-        window.location = base_url + 'index.php/account/my_account#tab2';
+        window.location = base_url + 'index.php/account/my_account_ssl#tab2';
         return false;
     });
 
@@ -379,19 +375,19 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
         $('#popup_error_outside').html('');
     });
 
-//    setInterval(function () {
-//
-//        $.ajax({
-//            url: base_url + 'index.php/account/check_status',
-//            type: 'POST',
-//            dataType: 'json',
-//            success: function (data) {
-//                if (data.status == 'error') {
-//                    window.location = base_url;
-//                }
-//            }
-//        })
-//    }, 120000);
+    setInterval(function () {
+
+        $.ajax({
+            url: base_url + 'index.php/account/check_status',
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                if (data.status == 'error') {
+                    window.location = base_url;
+                }
+            }
+        })
+    }, 120000);
 
     window.fbAsyncInit = function () {
         FB.init({
@@ -423,9 +419,9 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
                 show_info('You must accept the permissions to Login with Facebook');
             }
         },
-                {
-                    scope: 'email,public_profile'
-                });
+          {
+              scope: 'email,public_profile'
+          });
         return false;
     }
 
@@ -449,7 +445,7 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
                 dataType: 'json'
             }).done(function (data) {
                 if (data.status == 'ok') {
-                   location.reload();
+                    location.reload();
                 } else {
                     $('#fb_signin_preloader').hide();
                     show_info(data.message);
@@ -562,9 +558,9 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
 
                 <button class="dialog_button" id="singin_button">Sign In</button>
                 <div id="popup_error_outside"></div>
-<!--
-                <button id="signin_fb_btn" style="margin: 10px 0px 15px;"></button>
-                <div id="fb_signin_preloader"></div>-->
+                <!--
+                                <button id="signin_fb_btn" style="margin: 10px 0px 15px;"></button>
+                                <div id="fb_signin_preloader"></div>-->
 
             </form>
 

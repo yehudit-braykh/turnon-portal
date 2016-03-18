@@ -1,6 +1,14 @@
 <div id="fb-root"></div>
 <script>
 
+    window.onload = function () {
+        var myInput = document.getElementById('confirm_email');
+        myInput.onpaste = function (e) {
+            e.preventDefault();
+        };
+    };
+
+
     _gaq.push(['_trackEvent', 'Registration', 'Login Information']);
     country_code = '';
 
@@ -31,6 +39,13 @@
             if (!($("#accept_terms_and_conditions").prop("checked"))) {
                 show_info();
                 $("#info").html("* You must accept terms and conditions before click Register button");
+                return false;
+            }
+            
+
+            if ($('#email').val() !== $("#confirm_email").val()) {
+                show_info();
+                $("#info").html("* Email and Confirm are not match");
                 return false;
             }
 
@@ -263,6 +278,10 @@
                     </li>
                     <li> 
                         <div class="form_notes">You will use this email address to login.</div>
+                    </li>
+                    <li>
+                        <label for="confirm_email">Confirm Email*</label>
+                        <input id="confirm_email" name="confirm_email" class="text" />
                     </li>
                     <li>
                         <label for="password">Password*</label>
