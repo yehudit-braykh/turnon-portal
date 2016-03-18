@@ -269,6 +269,10 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
                     onPlay: function (e) {
                         handleOnMediaStart(channel_name);
                     }
+                },
+                advertising: {
+                    client: 'googima',
+                    tag: 'http://ad4.liverail.com/?LR_PUBLISHER_ID=151407&LR_SCHEMA=vast2-vpaid&LR_TAGS=prime_time_news,prime_time_sports,smile_jamaica&LR_AUTOPLAY=1&LR_VERTICALS=test'
                 }
             });
         }
