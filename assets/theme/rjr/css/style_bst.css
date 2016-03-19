@@ -3578,7 +3578,8 @@ td.product_content{
     }
 
     #navbar2 {
-        max-height: 80px;
+        max-height: 145px;
+        /*max-height: 80px;*/
     }
 
     .nav > li {
@@ -3729,7 +3730,8 @@ td.product_content{
 
     #navbar2 {
         min-height: 0px;
-        max-height: 65px;
+        max-height: 105px;
+        /*max-height: 65px;*/
         padding: 0px 1em;
     }
 
@@ -3740,6 +3742,7 @@ td.product_content{
     #brand_logo {
         height: 65px;
         margin-top: -1px;
+        min-width: 80px;
     }
 
     .epg_title {
