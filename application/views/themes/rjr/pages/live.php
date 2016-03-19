@@ -278,14 +278,15 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
 
     function get_country_data(callback) {
 
-//        $.getJSON("http://www.geoplugin.net/json.gp?jsoncallback=?", {
         $.getJSON("http://www.geoplugin.net/json.gp?jsonback=?", {
         }).done(function (result) {
             count = result['geoplugin_countryName'];
             country_var = count;
+            console.log('Country is ', count);
             callback(count);
         }).error(function (result) {
             callback('Jamaica');
+            console.log('Country was forced to Jamaica');
         });
     }
 
