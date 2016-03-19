@@ -48,7 +48,7 @@ class Vod_item extends UVod_Controller {
 
     public function seasons() {
         $data = array();
-        error_log('llega al model');
+    
         $uri_arr = $this->uri->uri_to_assoc(3);
 
         $item = $this->vod_item_model->get_item_data($uri_arr['id'])->content;

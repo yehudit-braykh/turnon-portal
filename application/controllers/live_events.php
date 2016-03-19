@@ -375,7 +375,7 @@ class Live_events extends UVod_Controller {
             $pi_security_code = $_POST['pi_security_code'];
 
             $ret = $this->live_events_model->subscription_checkout($product_id, $token, $nonce, $first_name, $last_name, $email, $city, $postal_code, $country, $pi_month, $pi_year, $pi_type, $pi_number, $pi_security_code);
-error_log('el ret del event: '.json_encode($ret));
+
             if (isset($ret->error) && $ret->error) {
                 echo json_encode(array('status' => 'error', 'message' => $ret->message));
             } else {

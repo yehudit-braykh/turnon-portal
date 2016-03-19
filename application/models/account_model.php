@@ -84,7 +84,7 @@ class Account_model extends CI_Model {
             $mandrill->messages->send($message);
 
             $response = apiPost("user/save_password", array("email" => $email, "password" => $new_password['password']));
-            error_log('SAVE PASS: '.json_encode($response));
+          
             return true;
         }
         return false;

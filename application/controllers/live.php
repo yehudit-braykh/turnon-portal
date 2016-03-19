@@ -30,7 +30,7 @@ class Live extends UVod_Controller {
         if ($channels_obj && isset($channels_obj->content)) {
             $channels = $channels_obj->content;
         }
-        error_log('CHANNELS: '.json_encode($channels_obj));
+   
         $data['channels'] = $channels;
         $channels_stream = array();
         $ids = array();
