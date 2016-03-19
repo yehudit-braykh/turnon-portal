@@ -145,11 +145,9 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
 
     }
 
-
     function get_channel(country, release_url, release_blocked_url, channel_obj, id, channel_name, policy_id) {
-console.log('pais: '+country)
 
-        if (country === 'Jamaica' || country === 'Argentina') {
+        if (country === 'Jamaica') {
 
             if (account_status === 'login') {
                 $('#popup_login').bPopup();
