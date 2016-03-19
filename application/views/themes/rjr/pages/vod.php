@@ -16,55 +16,55 @@
         });
 
 
-        $.ajax({
-            url: "<?php echo base_url() . 'index.php/live/epg_home_timeline'; ?>",
-            type: "POST",
-            data: "timezone=" + timezone_offset,
-            beforeSend: function () {
-                $('#epg_preview_bg').html('');
-                $('#epg_preview_bg').append("<div id='#epg_home_scroller'></div>");
-                $('#epg_home_scroller').html('<div id="loadingIcon"></div>');
-                $('#loadingIcon').css('margin-top', "0px");
-            },
-            success: function (data) {
-                $('#epg_preview_bg').html(data);
-
-            }
-        });
-
-
-        var interval;
-
-        setTimeout(set_interval, 3000);
-
-        $(document).on('click', '.epg_preview_channel_info', function () {
-            clearInterval(interval);
-            change_epg();
-            setTimeout(set_interval, 3000);
-        });
-
-        function set_interval() {
-            interval = setInterval(change_epg, 3000);
-        }
-
-        function change_epg() {
-
-            if ($('.channel_data:visible').next('.channel_data').length > 0) {
-                var next = $('.channel_data:visible').next();
-            } else {
-                next = $('.channel_data:first');
-            }
-            $('.channel_data:visible').fadeOut('slow', '', next.fadeIn('slow'));
-        }
-
-        $(document).on('click', '.epg_preview_program', function () {
-
-            arrId = $(this).attr('id').split('/');
-            stationId = arrId[arrId.length - 1];
-            url = '<?php echo base_url() . 'index.php/live/main/'; ?>' + stationId;
-
-            window.location.assign(url);
-        });
+//        $.ajax({
+//            url: "<?php //echo base_url() . 'index.php/live/epg_home_timeline'; ?>",
+//            type: "POST",
+//            data: "timezone=" + timezone_offset,
+//            beforeSend: function () {
+//                $('#epg_preview_bg').html('');
+//                $('#epg_preview_bg').append("<div id='#epg_home_scroller'></div>");
+//                $('#epg_home_scroller').html('<div id="loadingIcon"></div>');
+//                $('#loadingIcon').css('margin-top', "0px");
+//            },
+//            success: function (data) {
+//                $('#epg_preview_bg').html(data);
+//
+//            }
+//        });
+//
+//
+//        var interval;
+//
+//        setTimeout(set_interval, 3000);
+//
+//        $(document).on('click', '.epg_preview_channel_info', function () {
+//            clearInterval(interval);
+//            change_epg();
+//            setTimeout(set_interval, 3000);
+//        });
+//
+//        function set_interval() {
+//            interval = setInterval(change_epg, 3000);
+//        }
+//
+//        function change_epg() {
+//
+//            if ($('.channel_data:visible').next('.channel_data').length > 0) {
+//                var next = $('.channel_data:visible').next();
+//            } else {
+//                next = $('.channel_data:first');
+//            }
+//            $('.channel_data:visible').fadeOut('slow', '', next.fadeIn('slow'));
+//        }
+//
+//        $(document).on('click', '.epg_preview_program', function () {
+//
+//            arrId = $(this).attr('id').split('/');
+//            stationId = arrId[arrId.length - 1];
+//            url = '<?php //echo base_url() . 'index.php/live/main/'; ?>' + stationId;
+//
+//            window.location.assign(url);
+//        });
 
         $(document).on('click', '.cameraContent', function () {
             if ($(this).children('.camera_caption').attr('target') && $(this).children('.camera_caption').attr('target') == '_blank') {
