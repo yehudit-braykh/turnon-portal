@@ -38,7 +38,7 @@
 	/* Tablet Portrait size to standard 960 (devices and browsers) */
 	@media only screen and (min-width: 768px) and (max-width: 959px) {
     .header_resize {background:url(../images/header_bg2.png) no-repeat top center; }
-	.footer {background:url(../images/footer_bg2.png) no-repeat top center; }
+	
 	.prefooter{ width:100%;}
 	.prefooter_resize{ padding:30px 32px; width:91.7%;}
 	.col4.small{ width:21%;}
@@ -135,7 +135,7 @@
 		 .centercol.percent .col3 a img{ width:188px;}
 		 .col3 a img{ width:196px;}
          #coment .podpis,#coment2 .podpis,#coment3 .podpis{ width:91%;}
-		 .footer {background:url(../images/footer_bg4.png) no-repeat top center; }
+		 
           .header_resize {background:url(../images/header_bg4.png) no-repeat top center;  }
 		 #slider-wrapper object { height: 160px; }
 	 
