@@ -376,19 +376,19 @@ console.log('pais: '+country)
         $('#popup_error_outside').html('');
     });
 
-    setInterval(function () {
-
-        $.ajax({
-            url: base_url + 'index.php/account/check_status',
-            type: 'POST',
-            dataType: 'json',
-            success: function (data) {
-                if (data.status == 'error') {
-                    window.location = base_url;
-                }
-            }
-        })
-    }, 120000);
+//    setInterval(function () {
+//
+//        $.ajax({
+//            url: base_url + 'index.php/account/check_status',
+//            type: 'POST',
+//            dataType: 'json',
+//            success: function (data) {
+//                if (data.status == 'error') {
+//                    window.location = base_url;
+//                }
+//            }
+//        })
+//    }, 120000);
 
     window.fbAsyncInit = function () {
         FB.init({
