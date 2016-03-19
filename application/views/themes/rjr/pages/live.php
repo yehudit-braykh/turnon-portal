@@ -278,7 +278,7 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
 
     function get_country_data(callback) {
 
-        $.getJSON("http://www.geoplugin.net/json.gp?jsonback=?", {
+        $.getJSON("http://www.geoplugin.net/json.gp?jsoncallback=?", {
         }).done(function (result) {
             count = result['geoplugin_countryName'];
             country_var = count;
