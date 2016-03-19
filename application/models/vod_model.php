@@ -26,14 +26,14 @@ class Vod_model extends CI_Model {
 
         $cache = $this->fastcache_model->get_cache($cache_id);
         if (!$cache) {
-            error_log('NO esta seteado el cache');
+            error_log('HOME-MEDIA USA LA BASE');
             $data = apiCall("vod/list_items_api", $parameters);
             $this->fastcache_model->set_cache($cache_id, $data);
-        }else{
-               error_log('esta seteado el cache');
+        } else {
+            error_log('HOME MEDIA- USA EL CACHE');
             $data = $cache;
         }
-        
+
         return $data;
     }
 
@@ -74,7 +74,19 @@ class Vod_model extends CI_Model {
 
         $parameters = array("target" => $target, "section" => $section);
 
-        return apiCall("resources/slider", $parameters);
+        $cache_id = 'get_slider';
+
+        $cache = $this->fastcache_model->get_cache($cache_id);
+        if (!$cache) {
+            error_log('GET-SLIDER - USA LA BASE');
+            $data =  apiCall("resources/slider", $parameters);
+            $this->fastcache_model->set_cache($cache_id, $data);
+        } else {
+            error_log('GET-SLIDER - USA EL CACHE');
+            $data = $cache;
+        }
+
+        return $data;
     }
 
     public function get_genres($scheme) {
