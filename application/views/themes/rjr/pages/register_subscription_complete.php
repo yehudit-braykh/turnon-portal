@@ -61,8 +61,8 @@
 
         <div class="wrapper_form_subtitle">
             <div class="form_subtitle"><a href="<?php echo base_url() . "index.php/static_content/faqs"; ?>">I have not received an email. What do I do?</a></div>
-            <input type='image' id="send_activation_email_register_button" class="send" src="<?php echo asset_url(); ?>images/button_resend_activation_email.png"/>
-            <div id="send_activation_email_preloader"></div>
+<!--            <input type='image' id="send_activation_email_register_button" class="send" src="<?php echo asset_url(); ?>images/button_resend_activation_email.png"/>
+            <div id="send_activation_email_preloader"></div>-->
             <div class="clr"></div>
 
             <!--    <div class="form_buttons_centered">

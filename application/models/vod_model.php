@@ -7,7 +7,7 @@ class Vod_model extends CI_Model {
         $this->load->model('fastcache_model');
     }
 
-    public function get_items_by_genre($genre, $category = null, $featured = null, $media_type = null) {
+    public function get_items_by_genre($genre, $category = null, $featured = null, $media_type = null, $sort = null, $limit = null) {
         $parameters = array();
 
         if ($genre)
@@ -18,19 +18,18 @@ class Vod_model extends CI_Model {
             $parameters["featured"] = $featured;
 
         $parameters["media_type"] = 'movie|clip|tv_show';
-//            $parameters["media_type"] = 'clip';
-        $parameters["limit"] = '50';
-        $parameters["sort"] = 'added:-1';
+
+        $parameters["limit"] = $sort;
+        $parameters["sort"] = $limit;
 
         $cache_id = 'list_items_api' . $genre . $category . $featured;
 
         $cache = $this->fastcache_model->get_cache($cache_id);
+
         if (!$cache) {
-            error_log('HOME-MEDIA USA LA BASE');
             $data = apiCall("vod/list_items_api", $parameters);
             $this->fastcache_model->set_cache($cache_id, $data);
         } else {
-            error_log('HOME MEDIA- USA EL CACHE');
             $data = $cache;
         }
 
@@ -78,11 +77,9 @@ class Vod_model extends CI_Model {
 
         $cache = $this->fastcache_model->get_cache($cache_id);
         if (!$cache) {
-            error_log('GET-SLIDER - USA LA BASE');
             $data =  apiCall("resources/slider", $parameters);
             $this->fastcache_model->set_cache($cache_id, $data);
-        } else {
-            error_log('GET-SLIDER - USA EL CACHE');
+        } else {;
             $data = $cache;
         }
 

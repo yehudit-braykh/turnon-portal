@@ -125,10 +125,6 @@
 <div class="content_centered">
     <div class="payment_content">
 
-        <button id="btn_pay_per_view" class="skip-payment">I'M HERE FOR ISSA/GRACE KENNEDY BOYS & GIRLS CHAMPS 2016</button>        
-
-        <div class="registration_title_payment">-- OR --</div>
-
         <div class="registration_title_payment">I WANT TO BECOME <br class="rwd-break"> A SUBSCRIBER OF 1SPOTMEDIA</div>
 
         <?php

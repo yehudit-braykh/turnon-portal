@@ -129,10 +129,10 @@ class Account extends UVod_Controller {
             $data['subscriptions'] = $subscription->content->entries;
 
             usort($data['subscriptions'], function($a, $b) {
-                if (intval($a->{'plsubscription$subscriptionLength'}) == intval($b->{'plsubscription$subscriptionLength'})) {
+                if (intval($a->subscriptionLength) == intval($b->subscriptionLength)) {
                     return 0;
                 }
-                return (intval($a->{'plsubscription$subscriptionLength'}) < intval($b->{'plsubscription$subscriptionLength'})) ? -1 : 1;
+                return (intval($a->subscriptionLength) < intval($b->subscriptionLength)) ? -1 : 1;
             });
         }
 
