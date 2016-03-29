@@ -35,4 +35,8 @@ class fastcache_model extends CI_Model {
         $this->cache->set($id, $data, $cache_expiration);
     }
 
+    public function clean_cache() {
+        $this->cache->clean();
+    }
+
 }

@@ -323,7 +323,7 @@ function getEntryThumbnail($entry, $type) {
 
     if ($entry && $entry->content) {
         for ($i = 0; $i < sizeof($entry->content); $i++) {
-            if ($entry->content[$i]->assetTypes &&
+            if (isset($entry->content[$i]->assetTypes) &&
                     sizeof($entry->content[$i]->assetTypes)) {
                 for ($j = 0; $j < sizeof($entry->content[$i]->assetTypes); $j++) {
                     if ($entry->content[$i]->assetTypes[$j] == $type) {
@@ -372,7 +372,7 @@ function pdk_get_entry_download_url($entry, $rendition, $width) {
     $ret = "";
     if ($entry && $entry->content) {
         for ($i = 0; $i < sizeof($entry->content); $i++) {
-            if ($entry->content[$i]->assetTypes &&
+            if (isset($entry->content[$i]->assetTypes) &&
                     sizeof($entry->content[$i]->assetTypes)) {
                 for ($j = 0; $j < sizeof($entry->content[$i]->assetTypes); $j++) {
                     if ($entry->content[$i]->assetTypes[$j] == $rendition &&

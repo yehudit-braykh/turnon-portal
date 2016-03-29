@@ -9,6 +9,7 @@ class Vod extends UVod_Controller {
         parent::__construct();
         $this->load->model('vod_model');
         $this->load->model('live_model');
+        $this->load->model('fastcache_model');
         $this->load->helper('pdk');
     }
 
@@ -28,20 +29,24 @@ class Vod extends UVod_Controller {
 
         $items = array();
         $recommended = $this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, RECOMMENDED, null, '12', 'added:-1');
-        for($i=0;$i<sizeof($recommended->content->entries);$i++){
+        for ($i = 0; $i < sizeof($recommended->content->entries); $i++) {
             $items[] = $recommended->content->entries[$i];
         }
         $new_releases = $this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, NEW_RELEASES, null, '12', 'added:-1');
-         for($i=0;$i<sizeof($new_releases->content->entries);$i++){
+        for ($i = 0; $i < sizeof($new_releases->content->entries); $i++) {
             $items[] = $new_releases->content->entries[$i];
         }
         $coming_soon = $this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, COMING_SOON, null, '12', 'added:-1');
-          for($i=0;$i<sizeof($coming_soon->content->entries);$i++){
+        for ($i = 0; $i < sizeof($coming_soon->content->entries); $i++) {
             $items[] = $coming_soon->content->entries[$i];
         }
 
         $categories = array($data['category1']['value'], $data['category2']['value'], $data['category3']['value']);
         $data['items'] = $this->get_items_by_value('featured_category', $categories, $items);
+
+        if (isset($_GET['flush_cache']) && $_GET['flush_cache'] == 'true') {
+            $this->fastcache_model->clean_cache();
+        }
 
         $this->load->view(views_url() . 'templates/header', $data);
         if ($this->config->item('load_submenu') != false) {
