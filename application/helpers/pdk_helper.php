@@ -322,7 +322,7 @@ function getEntryThumbnail($entry, $type) {
     $ret = "";
 
     if ($entry && $entry->content) {
-        for ($i = 0; $i < sizeof($entry->content); $i++) {
+        for ($i = 0; $i < sizeof($entry->content); $i++) { 
             if (isset($entry->content[$i]->assetTypes) &&
                     sizeof($entry->content[$i]->assetTypes)) {
                 for ($j = 0; $j < sizeof($entry->content[$i]->assetTypes); $j++) {
