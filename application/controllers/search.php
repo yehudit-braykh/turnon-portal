@@ -21,7 +21,6 @@ class Search extends UVod_Controller {
         $kword = str_replace('(','%28',$kword);
         $kword = str_replace(')','%29',$kword);
         $items = $this->search_model->search_vod($kword);
-
         $data['search_result_items'] = $this->create_items($items);
 
         $search_result_size = 0;
@@ -69,7 +68,7 @@ class Search extends UVod_Controller {
                 if (!$cover_url)
                     $cover_url = getEntryThumbnail($items->content->entries[$i], "Mezzanine Poster V");
 
-                $item_id_arr = explode("/", $items->content->entries[$i]->id);
+                $item_id_arr = explode("/", $items->content->entries[$i]->_id);
                 $item_id = $item_id_arr[sizeof($item_id_arr) - 1];
                 $commerce_class = getEntryProperty($items->content->entries[$i], 'commerce');
                
