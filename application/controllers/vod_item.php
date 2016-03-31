@@ -179,7 +179,7 @@ class Vod_item extends UVod_Controller {
         $data['item_trailer_release_url'] = $trailer_release_url;
 
         if ($this->config->item('theme') == 'orbita' || $this->config->item('theme') == 'htv') {
-            $data['items_category_1'] = $this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, RECOMMENDED);
+            $data['items_category_1'] = $this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, RECOMMENDED,'40','added:-1');
         }
 
         $this->load->view(views_url() . 'templates/header', $data);

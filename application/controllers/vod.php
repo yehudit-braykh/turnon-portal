@@ -11,6 +11,10 @@ class Vod extends UVod_Controller {
         $this->load->model('live_model');
         $this->load->model('fastcache_model');
         $this->load->helper('pdk');
+        
+         if (isset($_GET['flush_cache']) && $_GET['flush_cache'] == 'true') {
+            $this->fastcache_model->clean_cache();
+        }
     }
 
     public function featured($sub_section = COMING_SOON) {
@@ -44,9 +48,7 @@ class Vod extends UVod_Controller {
         $categories = array($data['category1']['value'], $data['category2']['value'], $data['category3']['value']);
         $data['items'] = $this->get_items_by_value('featured_category', $categories, $items);
 
-        if (isset($_GET['flush_cache']) && $_GET['flush_cache'] == 'true') {
-            $this->fastcache_model->clean_cache();
-        }
+       
 
         $this->load->view(views_url() . 'templates/header', $data);
         if ($this->config->item('load_submenu') != false) {
@@ -83,9 +85,9 @@ class Vod extends UVod_Controller {
                 $genre = COMING_SOON;
             return $this->featured($genre);
         }
-
+        
         $vod_categories = $this->config_model->get_vod_categories()->content;
-        foreach ($vod_categories as $value) {
+        foreach ($vod_categories as $value) {  
             if ($value->id == $category) {
                 $filter = $value->filter_field;
                 $data['category'] = $value->title;
@@ -94,7 +96,7 @@ class Vod extends UVod_Controller {
                 }
             }
         }
-
+      
         // all others categorie filtered by genre
         switch ($filter) {
             case 'genre': {
@@ -123,10 +125,11 @@ class Vod extends UVod_Controller {
                         }
                     }
 
-                    $data['items_category_1'] = $this->create_items($this->vod_model->get_items_by_genre($genre, $category));
+                    $data['items_category_1'] = $this->create_items($this->vod_model->get_items_by_genre($genre, $category, null, null, '30', 'added:-1'));
                     break;
                 }
             case 'aired_date': {
+           
                     if ($genre == 'all') {
                         $genre = '';
                     }
@@ -135,9 +138,9 @@ class Vod extends UVod_Controller {
                     $data['selected_category_id'] = $genre;
 
                     if ($this->config->item('create_items_on_view') !== FALSE) {
-                        $data['items_category_1'] = $this->vod_model->get_items_by_aired_date($genre, $end_date, $category);
+                        $data['items_category_1'] = $this->vod_model->get_items_by_aired_date($genre, $end_date, $category, null,'30', 'aired_date:-1');
                     } else {
-                        $data['items_category_1'] = $this->create_items($this->vod_model->get_items_by_aired_date($genre, $end_date, $category));
+                        $data['items_category_1'] = $this->create_items($this->vod_model->get_items_by_aired_date($genre, $end_date, $category, null ,'30', 'aired_date:-1'));
                     }
 
                     $data['selected_category_text'] = 'All';
