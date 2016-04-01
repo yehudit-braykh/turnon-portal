@@ -92,7 +92,7 @@
 </div>
 <div class="header_resize2">
     <div class="clr"></div>
-    <?php if (isset($slider)) { error_log('SLIDER: '.  json_encode($slider));?>
+    <?php if (isset($slider)) { ?>
 
         <!-- Slider Start -->
         <div style="width:100%; margin:0 auto; position:relative;">
