@@ -10,9 +10,9 @@
 
     <p>Welcome to the 1spotmedia.com family. Your subscription was successful. Your contract is for <?php echo $duration . ' ' . $month_text; ?>.</p>
     <?php
-    error_log('el auto renew es: '.$auto_renew);
+
     if ($auto_renew === 'true' || $auto_renew === TRUE) {
-        error_log('entra al if de auto renew en true');
+
         ?>
         <p>Renewal - The price is valid for the full month of your contract. You selected your subscription for the auto renewal option, therefore  <?php echo $duration; ?> month(s), 
            we will renew your contract and bill you automatically, for the same period. If you wish to change your subscription to not auto-renew, simply uncheck that option on the 
