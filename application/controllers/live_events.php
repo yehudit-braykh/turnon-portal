@@ -127,11 +127,14 @@ class Live_events extends UVod_Controller {
                         }
                     }
 
-                    if (in_array($events->content[0]->media->_id, $media_ids)) {
-                        $events->content[0]->already_purchased = true;
-                    } else {
-                        $events->content[0]->already_purchased = false;
+                    if ($events && $events->content) {
+                        if (in_array($events->content[0]->media->_id, $media_ids)) {
+                            $events->content[0]->already_purchased = true;
+                        } else {
+                            $events->content[0]->already_purchased = false;
+                        }
                     }
+                    
                 } else if (isset($products->content) && sizeof(isset($products->content))) {
 
                     $events_ids = $products->content->scopeIds;
