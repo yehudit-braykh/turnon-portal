@@ -236,12 +236,15 @@ class Vod extends UVod_Controller {
             for ($h = 0; $h < sizeof($values); $h++) {
                 if (in_array($values[$h], $items[$i]->{$category})) {
                     if (array_key_exists($values[$h], $return)) {
+                        
                         $data = $this->get_item_data($items[$i]);
-                        $return[$values[$h]][] = $data;
+                        if (!array_key_exists($data->id, $return[$values[$h]])) {
+                            $return[$values[$h]][$data->id] = $data;
+                        }
                     } else {
                         $return[$values[$h]] = array();
                         $data = $this->get_item_data($items[$i]);
-                        $return[$values[$h]][] = $data;
+                        $return[$values[$h]][$data->id] = $data;
                     }
                 }
             }
