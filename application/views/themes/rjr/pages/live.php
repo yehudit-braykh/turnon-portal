@@ -1,5 +1,5 @@
-<script type="text/javascript" src="https://content.jwplatform.com/libraries/07qZPa5L.js" ></script>
-<script>jwplayer.key = "wldzyhAXC/pV8hrmoKJJUJQUQU7UwoOXl6rN1w==";</script>
+​<script type="text/javascript" src="<?php echo common_asset_url(); ?>js/jwplayer/jwplayer.js" ></script>
+<script>jwplayer.key = "BFr/jM6cxDTO5jdihqzp0fQ3Advd0Q8Fp6FUqw==";</script>
 
 <script type="text/javascript">
 <?php echo 'base_url = "' . base_url() . '";'; ?>
@@ -235,42 +235,81 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
         TweenMax.to(channel_obj, .3, {boxShadow: "2px 0px 20px rgba(127,26,191,0.8)", border: "1px solid rgba(127,26,191,0.8)"});
 
         current_channel = channel_obj;
-
-        jwplayer("jw_live_player").setup({
-            width: "100%",
-            autostart: true,
-            aspectratio: "16:9",
-            playlist: [{
+        if (policy_id != '') {
+            // change channel
+            jwplayer("jw_live_player").setup({
                 file: stream_url,
-                provider: "http://players.edgesuite.net/flash/plugins/jw/v3.9/AkamaiAdvancedJWStreamProvider.swf",
-                type:'mp4'
-            }],
-            primary: 'flash',
-            events: {
-				onPlay: function(e) {
-					handleMediaEvents('Play', channel_name);
-				},
-				onComplete: function(e){
-					handleMediaEvents('Complete', channel_name);
-				},
-				onPause: function(e){
-					handleMediaEvents('Pause', channel_name);
-				},
-				onBuffer: function(e){
-					handleMediaEvents('Buffer', channel_name);
-				},
-				onIdle: function(e){
-					handleMediaEvents('Idle', channel_name);
-				},
-				onError: function(e){
-					handleMediaEvents('Error', channel_name);
-				}
-            },
-            advertising: {
-                client: 'googima',
-                tag: 'http://ad4.liverail.com/?LR_PUBLISHER_ID=151407&LR_SCHEMA=vast2-vpaid&LR_TAGS=prime_time_news,prime_time_sports,smile_jamaica&LR_AUTOPLAY=1&LR_VERTICALS=test'
-            }
-        });
+                primary: 'flash',
+                androidhls: true,
+                autostart: true,
+                aspectratio: "16:9",
+                width: "100%",
+                events: {
+                    /*onPlay: function (e) {
+                        handleOnMediaStart(channel_name);
+                    }*/
+					onPlay: function(e) {
+						handleMediaEvents('Play', channel_name);
+					},
+					onComplete: function(e){
+						handleMediaEvents('Complete', channel_name);
+					},
+					onPause: function(e){
+						handleMediaEvents('Pause', channel_name);
+					},
+					onBuffer: function(e){
+						handleMediaEvents('Buffer', channel_name);
+					},
+					onIdle: function(e){
+						handleMediaEvents('Idle', channel_name);
+					},
+					onError: function(e){
+						handleMediaEvents('Error', channel_name);
+					}
+                },
+                advertising: {
+                    client: 'vast',
+                    'skipoffset': 5,
+                    tag: base_url + 'index.php/vod/get_advertisement_xml?policy_id=' + policy_id
+                }
+            });
+        } else {
+            jwplayer("jw_live_player").setup({
+                file: stream_url,
+                primary: 'flash',
+                androidhls: true,
+                autostart: true,
+                aspectratio: "16:9",
+                width: "100%",
+                events: {
+                    /*onPlay: function (e) {
+                        handleOnMediaStart(channel_name);
+                    }*/
+					onPlay: function(e) {
+						handleMediaEvents('Play', channel_name);
+					},
+					onComplete: function(e){
+						handleMediaEvents('Complete', channel_name);
+					},
+					onPause: function(e){
+						handleMediaEvents('Pause', channel_name);
+					},
+					onBuffer: function(e){
+						handleMediaEvents('Buffer', channel_name);
+					},
+					onIdle: function(e){
+						handleMediaEvents('Idle', channel_name);
+					},
+					onError: function(e){
+						handleMediaEvents('Error', channel_name);
+					}
+                },
+                advertising: {
+                    client: 'googima',
+                    tag: 'http://ad4.liverail.com/?LR_PUBLISHER_ID=151407&LR_SCHEMA=vast2-vpaid&LR_TAGS=prime_time_news,prime_time_sports,smile_jamaica&LR_AUTOPLAY=1&LR_VERTICALS=test'
+                }
+            });
+        }
     }
 
     function get_country_data(callback) {
