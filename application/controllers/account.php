@@ -573,8 +573,8 @@ class Account extends UVod_Controller {
 
         if (isset($ret->error) && $ret->error == false) {
 
-            if (isset($ret->subscription_data)) {
-                $time = $ret->subscription_data->subscriptionLength;
+            if (isset($ret->content->subscription_data)) {
+                $time = $ret->content->subscription_data->{'subscriptionLength'};
             } else {
                 $time = '';
             }
