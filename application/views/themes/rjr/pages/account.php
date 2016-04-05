@@ -119,6 +119,7 @@ if (isset($clientToken)) {
 
                 } else {
                     $("#infopass").html("* " + data.message);
+                    $("#infopass").show();
                     TweenLite.fromTo("#infopass", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
                             TweenLite.to("#infopass", 1, {delay: 6, alpha: 0});
                             $('#btn_change_password').show();
