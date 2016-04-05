@@ -245,9 +245,27 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
                 aspectratio: "16:9",
                 width: "100%",
                 events: {
-                    onPlay: function (e) {
+                    /*onPlay: function (e) {
                         handleOnMediaStart(channel_name);
-                    }
+                    }*/
+					onPlay: function(e) {
+						handleMediaEvents('Play', channel_name);
+					},
+					onComplete: function(e){
+						handleMediaEvents('Complete', channel_name);
+					},
+					onPause: function(e){
+						handleMediaEvents('Pause', channel_name);
+					},
+					onBuffer: function(e){
+						handleMediaEvents('Buffer', channel_name);
+					},
+					onIdle: function(e){
+						handleMediaEvents('Idle', channel_name);
+					},
+					onError: function(e){
+						handleMediaEvents('Error', channel_name);
+					}
                 },
                 advertising: {
                     client: 'vast',
@@ -264,9 +282,27 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
                 aspectratio: "16:9",
                 width: "100%",
                 events: {
-                    onPlay: function (e) {
+                    /*onPlay: function (e) {
                         handleOnMediaStart(channel_name);
-                    }
+                    }*/
+					onPlay: function(e) {
+						handleMediaEvents('Play', channel_name);
+					},
+					onComplete: function(e){
+						handleMediaEvents('Complete', channel_name);
+					},
+					onPause: function(e){
+						handleMediaEvents('Pause', channel_name);
+					},
+					onBuffer: function(e){
+						handleMediaEvents('Buffer', channel_name);
+					},
+					onIdle: function(e){
+						handleMediaEvents('Idle', channel_name);
+					},
+					onError: function(e){
+						handleMediaEvents('Error', channel_name);
+					}
                 },
                 advertising: {
                     client: 'googima',
@@ -289,6 +325,11 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
             console.log('Country was forced to Jamaica');
         });
     }
+	
+	function handleMediaEvents(action, channelName)
+	{
+		ga('send', {hitType: 'event', eventCategory: 'Videos', eventAction: action, eventLabel: channelName});
+	}
 
     function handleOnMediaStart(channel_name) {
         _gaq.push(['_trackEvent', 'Live', 'Play', channel_name]);

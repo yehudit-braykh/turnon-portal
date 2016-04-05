@@ -2,7 +2,8 @@
 
     $(function () {
 
-        _gaq.push(['_trackEvent', 'Registration', 'Register complete']);
+        //_gaq.push(['_trackEvent', 'Registration', 'Register complete']);
+		ga('send', {hitType: 'event', eventCategory: 'User Type', eventAction: 'Register', eventLabel: 'Registration Complete'});
 
         function show_info(data) {
 

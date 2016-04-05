@@ -1,8 +1,41 @@
+<?php 
+$available_subscription_labels = $this->config->item('available_subscription_labels');
+$available_subscription_prices = $this->config->item('available_subscription_prices');
+?>
 <script type="text/javascript">
+
+	<?php if(!empty($_GET['s_id']) && !empty($available_subscription_labels[$_GET['s_id']]) && !empty($available_subscription_prices[$_GET['s_id']])): ?>
+	<?php 
+	$current_subscription = $available_subscription_labels[$_GET['s_id']]; 
+	$current_subscription_price = $available_subscription_prices[$_GET['s_id']];
+	?>
+	//e-commerce code on subscribe thank you page only - immediately after ga('create',
+	ga('require', 'ecommerce');
+
+	ga('ecommerce:addTransaction', {
+	'id': '<?php echo uniqid(); ?>', // Transaction ID. Required. - Unique number
+	'affiliation': '', // store name.
+	'revenue': '<?php echo $current_subscription_price; ?>', // total revenue.
+	'shipping': '', // Shipping.
+	'tax': '' // Tax.
+	});
+
+	ga('ecommerce:addItem', {
+		'id': '<?php echo uniqid(); ?>', // Transaction ID. Required. Same as in the transaction data.
+		'name': '<?php echo $current_subscription; ?>', // Product name. Required.
+		'sku': '<?php echo $current_subscription; ?>', // Product SKU. - required - unique value
+		'category': 'subscription', // Product Category or variation.
+		'price': '<?php echo $current_subscription_price; ?>', // Product price.
+		'quantity': '1' // Product Quantity.
+	});
+
+	ga('ecommerce:send');
+	<?php endif; ?>
 
     $(function () {
 
-        _gaq.push(['_trackEvent', 'Registration', 'Register complete']);
+        //_gaq.push(['_trackEvent', 'Registration', 'Register complete']);
+		ga('send', {hitType: 'event', eventCategory: 'User Type', eventAction: 'Subscribe', eventLabel: 'Subscription Complete'});
         
         $('#send_activation_email_register_button').click(function () {
 

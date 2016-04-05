@@ -1,7 +1,5 @@
-<script type="text/javascript" src="https://content.jwplatform.com/libraries/07qZPa5L.js" ></script>
-<script>jwplayer.key = "wldzyhAXC/pV8hrmoKJJUJQUQU7UwoOXl6rN1w==";</script>
-
-
+​<script type="text/javascript" src="<?php echo common_asset_url(); ?>js/jwplayer/jwplayer.js" ></script>
+<script>jwplayer.key = "BFr/jM6cxDTO5jdihqzp0fQ3Advd0Q8Fp6FUqw==";</script>
 
 <script type="text/javascript">
 
@@ -187,10 +185,22 @@
                                                                                           ?>
                                                                                           events: {
                                                                                                 onPlay: function(e) {
-                                                                                                    handleOnMediaStart();
+                                                                                                    handleMediaEvents('Play');
                                                                                                 },
                                                                                                 onComplete: function(e){
-                                                                                                    handleOnMediaEnd();
+                                                                                                    handleMediaEvents('Complete');
+                                                                                                },
+																								onPause: function(e){
+                                                                                                    handleMediaEvents('Pause');
+                                                                                                },
+																								onBuffer: function(e){
+                                                                                                    handleMediaEvents('Buffer');
+                                                                                                },
+																								onIdle: function(e){
+                                                                                                    handleMediaEvents('Idle');
+                                                                                                },
+																								onError: function(e){
+                                                                                                    handleMediaEvents('Error');
                                                                                                 }
                                                                                             },
                                                                                             advertising: {client: 'googima',tag:'http://ad4.liverail.com/?LR_PUBLISHER_ID=151407&LR_SCHEMA=vast2-vpaid'},
@@ -296,15 +306,26 @@
                                                     set_item_sub_menu_selection('#vod_item_sub_menu2');
                                                     return false;
                                         }
+										
+										function getVideoName()
+										{
+											return "<?php echo str_replace('"', '', $item_id).'-'.str_replace('"', '',$item_title); ?>";
+										}
+										
+										function handleMediaEvents(action)
+										{
+											var videoName = getVideoName();
+											ga('send', {hitType: 'event', eventCategory: 'Videos', eventAction: action, eventLabel: videoName});
+										}
                                                 
-                                                function handleOnMediaStart(){
-                                                 
-                                                     _gaq.push(['_trackEvent', 'Videos', 'Play', "<?php echo str_replace('"', '', $item_id).'-'.str_replace('"', '',$item_title); ?>"]);
-                                                }
-                                                
-                                                function handleOnMediaEnd(){
-                                                     _gaq.push(['_trackEvent', 'Videos', 'End', "<?php echo str_replace('"', '',$item_id).'-'.str_replace('"', '',$item_title); ?>"]);
-                                                }
+										function handleOnMediaStart(){
+										 
+											 _gaq.push(['_trackEvent', 'Videos', 'Play', "<?php echo str_replace('"', '', $item_id).'-'.str_replace('"', '',$item_title); ?>"]);
+										}
+										
+										function handleOnMediaEnd(){
+											 _gaq.push(['_trackEvent', 'Videos', 'End', "<?php echo str_replace('"', '',$item_id).'-'.str_replace('"', '',$item_title); ?>"]);
+										}
                                                 
 </script>
 
