@@ -1,5 +1,5 @@
-​<script type="text/javascript" src="<?php echo common_asset_url(); ?>js/jwplayer/jwplayer.js" ></script>
-<script>jwplayer.key = "BFr/jM6cxDTO5jdihqzp0fQ3Advd0Q8Fp6FUqw==";</script>
+<script type="text/javascript" src="https://content.jwplatform.com/libraries/07qZPa5L.js" ></script>
+<script>jwplayer.key = "wldzyhAXC/pV8hrmoKJJUJQUQU7UwoOXl6rN1w==";</script>
 
 <script type="text/javascript">
 
