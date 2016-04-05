@@ -13,6 +13,8 @@ class Vod_item extends UVod_Controller {
         $this->load->helper('url');
         $this->load->helper('util');
         $this->load->helper('pdk');
+
+        date_default_timezone_set('UTC');
     }
 
     public function info() {
@@ -48,7 +50,7 @@ class Vod_item extends UVod_Controller {
 
     public function seasons() {
         $data = array();
-    
+
         $uri_arr = $this->uri->uri_to_assoc(3);
 
         $item = $this->vod_item_model->get_item_data($uri_arr['id'])->content;
@@ -107,7 +109,7 @@ class Vod_item extends UVod_Controller {
 
         $item = $this->vod_item_model->get_item_data($uri_arr['id'])->content;
 
-        $data = array();  
+        $data = array();
         if (isset($item->seasons)) {
             $seasons_number = count($item->seasons);
             $episodes_number = 0;
@@ -179,7 +181,7 @@ class Vod_item extends UVod_Controller {
         $data['item_trailer_release_url'] = $trailer_release_url;
 
         if ($this->config->item('theme') == 'orbita' || $this->config->item('theme') == 'htv') {
-            $data['items_category_1'] = $this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, RECOMMENDED,'40','added:-1');
+            $data['items_category_1'] = $this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, RECOMMENDED, '40', 'added:-1');
         }
 
         $this->load->view(views_url() . 'templates/header', $data);
@@ -235,8 +237,8 @@ class Vod_item extends UVod_Controller {
                 $ret.= '<img class="item_img" src="' . $cover_url . '" />
                         <div class="h" style="width:' . $cover_h_width . ';height:' . $cover_h_height . ';">
                         <div class="title_content">' . getEntryProperty($items->content->entries[$i], 'title') . '</div>' .
-                        $aired_date_div .
-                        ' </div>   
+                    $aired_date_div .
+                    ' </div>   
 				</a>
                                 
 		        </div>';
@@ -267,7 +269,7 @@ class Vod_item extends UVod_Controller {
 
                 if (isset($_SESSION['uvod_user_data']->token) && $_SESSION['uvod_user_data']->token != '') {
 
-                    $subscription = $this->account_model->get_contract($_SESSION['uvod_user_data']->id,'true');
+                    $subscription = $this->account_model->get_contract($_SESSION['uvod_user_data']->id, 'true');
                     if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
 
                         $return = 'enabled';

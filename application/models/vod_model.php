@@ -100,7 +100,7 @@ class Vod_model extends CI_Model {
     }
 
     public function get_dates() {
-        date_default_timezone_set('America/Los_Angeles');
+        date_default_timezone_set('UTC');
 
         $months = array();
         $months[0]['id'] = 'all';
