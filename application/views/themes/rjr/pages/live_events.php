@@ -84,11 +84,7 @@ if (isset($events->content) && sizeof($events->content) > 0) {
                         width: '100%',
                         autostart: true,
                         aspectratio: "16:9",
-                        playlist: [{
-                            file: stream_url,
-                            provider: "http://players.edgesuite.net/flash/plugins/jw/v3.8/AkamaiAdvancedJWStreamProvider.swf",
-                            type:'mp4'
-                        }],
+                        file: stream_url,
                         primary: "flash"
                     });
 
