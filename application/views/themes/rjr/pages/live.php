@@ -150,7 +150,9 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
         if (country === 'Jamaica') {
 
             if (account_status === 'login') {
+                  $('#jw_live_player').text('LOGIN TO WATCH LIVE SIGNALS...');
                 $('#popup_login').bPopup();
+              
 
             } else if (account_status === 'enabled' || account_status === 'subscriber') {
                 stream_url = release_url;
@@ -160,9 +162,11 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
         } else {
 
             if (account_status === 'login') {
+                 $('#jw_live_player').text('LOGIN TO WATCH LIVE SIGNALS...');
                 $('#popup_login_outside').bPopup();
 
             } else if (account_status === 'subscriber') {
+                  $('#jw_live_player').text('BECOME A SUBSCRIBER TO WATCH LIVE SIGNALS...');
                 $('#popup_subscriber').bPopup();
             } else if (account_status === 'enabled') {
                 stream_url = release_blocked_url;
@@ -467,7 +471,7 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
 
             <div id="live_player_container">
 
-                <div id="jw_live_player">Loading the player...</div>
+                <div id="jw_live_player"></div>
             </div>
 
             <div class="channels_widget_container">
