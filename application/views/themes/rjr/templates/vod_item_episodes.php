@@ -1,5 +1,6 @@
 <script type="text/javascript">
     function loadEpisode(id) {
+
         window.location.href = '<?php echo base_url(); ?>index.php/vod_item/detail/id/' + id;
     }
     <?php echo 'var datas = '.  json_encode($item_episodes).';';?>
@@ -25,7 +26,7 @@ if(isset($item_episodes)){
         $item_id_arr = explode("/", $item_episodes[$i]->media->_id);
         $item_id = $item_id_arr[sizeof($item_id_arr) - 1];
         ?>
-        <div class="vod_item_episode_container" onclick="loadEpisode(<?php echo $item_id; ?>);">
+        <div class="vod_item_episode_container" onclick="loadEpisode('<?php echo $item_id; ?>');">
             <div style="float: left;">
                 <div class="ribbon_content <?php echo $item_episodes[$i]->media->commerce_type;?>" style="margin:10px;"></div>
                 <?php

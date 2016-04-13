@@ -90,6 +90,8 @@
             }).done(function (data) {
                 if (data.message == 'ok') {
 
+					ga('send', {hitType: 'event', eventCategory: 'User Type', eventAction: 'Login', eventLabel: 'Login Complete'});
+					
                     if (data.content.mustResetPassword) {
                         $('#login_preloader').hide();
                         $('#login_preloader').html('');

@@ -37,3 +37,23 @@ $config['timezone'] = 'America/Jamaica';
 $config['subscriptions_ids'] = '19439888|19441019|19439889|19441020';
 $config['trial_subscription_id'] = '20028852';
 
+$config['available_subscription_labels'] = array(
+	'19439888' => '1_MONTH_SUBSCRIPTION',
+	'19439889' => '3_MONTH_SUBSCRIPTION',
+	'19441019' => '6_MONTH_SUBSCRIPTION',
+	'19441020' => '12_MONTH_SUBSCRIPTION',
+	// '1363283' => 'BASIC_SUBSCRIPTION_ID',
+	// '13255581' => 'COMPLIMENTARY_SUBSCRIPTION_ID',
+	// '21080117' => 'SEVEN_DAYS_TRIAL_ID',
+);
+
+$config['available_subscription_prices'] = array(
+	'19439888' => '9.99',
+	'19439889' => '24.98',
+	'19441019' => '49.95',
+	'19441020' => '99.9',
+	// '1363283' => 'BASIC_SUBSCRIPTION_ID',
+	// '13255581' => 'COMPLIMENTARY_SUBSCRIPTION_ID',
+	// '21080117' => 'SEVEN_DAYS_TRIAL_ID',
+);
+

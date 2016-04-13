@@ -1,5 +1,5 @@
-​<script type="text/javascript" src="<?php echo common_asset_url(); ?>js/jwplayer/jwplayer.js" ></script>
-<script>jwplayer.key = "BFr/jM6cxDTO5jdihqzp0fQ3Advd0Q8Fp6FUqw==";</script>
+<script type="text/javascript" src="https://content.jwplatform.com/libraries/07qZPa5L.js" ></script>
+<script>jwplayer.key = "wldzyhAXC/pV8hrmoKJJUJQUQU7UwoOXl6rN1w==";</script>
 
 <script type="text/javascript">
 <?php echo 'base_url = "' . base_url() . '";'; ?>
@@ -146,7 +146,7 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
     }
 
     function get_channel(country, release_url, release_blocked_url, channel_obj, id, channel_name, policy_id) {
-console.log("Country: "+ country + " Subscription status: "+account_status);
+
         if (country === 'Jamaica') {
 
             if (account_status === 'login') {
@@ -163,7 +163,6 @@ console.log("Country: "+ country + " Subscription status: "+account_status);
                 $('#popup_login_outside').bPopup();
 
             } else if (account_status === 'subscriber') {
-                $('#jw_live_player').text("Subscribe to view this content");
                 $('#popup_subscriber').bPopup();
             } else if (account_status === 'enabled') {
                 stream_url = release_blocked_url;
@@ -236,45 +235,38 @@ console.log("Country: "+ country + " Subscription status: "+account_status);
         TweenMax.to(channel_obj, .3, {boxShadow: "2px 0px 20px rgba(127,26,191,0.8)", border: "1px solid rgba(127,26,191,0.8)"});
 
         current_channel = channel_obj;
-        if (policy_id != '') {
-            // change channel
-            jwplayer("jw_live_player").setup({
-                file: stream_url,
-                primary: 'flash',
-                androidhls: true,
-                autostart: true,
-                aspectratio: "16:9",
-                width: "100%",
-                events: {
-                    onPlay: function (e) {
-                        handleOnMediaStart(channel_name);
-                    }
-                },
-                advertising: {
-                    client: 'vast',
-                    'skipoffset': 5,
-                    tag: base_url + 'index.php/vod/get_advertisement_xml?policy_id=' + policy_id
-                }
-            });
-        } else {
-            jwplayer("jw_live_player").setup({
-                file: stream_url,
-                primary: 'flash',
-                androidhls: true,
-                autostart: true,
-                aspectratio: "16:9",
-                width: "100%",
-                events: {
-                    onPlay: function (e) {
-                        handleOnMediaStart(channel_name);
-                    }
-                },
-                advertising: {
-                    client: 'googima',
-                    tag: 'http://ad4.liverail.com/?LR_PUBLISHER_ID=151407&LR_SCHEMA=vast2-vpaid&LR_TAGS=prime_time_news,prime_time_sports,smile_jamaica&LR_AUTOPLAY=1&LR_VERTICALS=test'
-                }
-            });
-        }
+
+        jwplayer("jw_live_player").setup({
+            width: "100%",
+            autostart: true,
+            aspectratio: "16:9",
+            file: stream_url,
+            primary: 'flash',
+            events: {
+				onPlay: function(e) {
+					handleMediaEvents('Play', channel_name);
+				},
+				onComplete: function(e){
+					handleMediaEvents('Complete', channel_name);
+				},
+				onPause: function(e){
+					handleMediaEvents('Pause', channel_name);
+				},
+				onBuffer: function(e){
+					handleMediaEvents('Buffer', channel_name);
+				},
+				onIdle: function(e){
+					handleMediaEvents('Idle', channel_name);
+				},
+				onError: function(e){
+					handleMediaEvents('Error', channel_name);
+				}
+            },
+            advertising: {
+                client: 'googima',
+                tag: 'http://ad4.liverail.com/?LR_PUBLISHER_ID=151407&LR_SCHEMA=vast2-vpaid&LR_TAGS=prime_time_news,prime_time_sports,smile_jamaica&LR_AUTOPLAY=1&LR_VERTICALS=test'
+            }
+        });
     }
 
     function get_country_data(callback) {
@@ -286,11 +278,15 @@ console.log("Country: "+ country + " Subscription status: "+account_status);
             console.log('Country is ', count);
             callback(count);
         }).error(function (result) {
-             console.log('Country was forced to Jamaica');
             callback('Jamaica');
-           
+            console.log('Country was forced to Jamaica');
         });
     }
+	
+	function handleMediaEvents(action, channelName)
+	{
+		ga('send', {hitType: 'event', eventCategory: 'Videos', eventAction: action, eventLabel: channelName});
+	}
 
     function handleOnMediaStart(channel_name) {
         _gaq.push(['_trackEvent', 'Live', 'Play', channel_name]);

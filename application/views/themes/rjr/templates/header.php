@@ -1,8 +1,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:tp="http://player.theplatform.com/" xml:lang="en" lang="en">
     <head>
-        <title>1Spot Media Portal</title>
-        <meta name="description" content="Challenging the future of TV">
+		<?php if(!empty($item_title)): ?>
+			<title><?php echo $item_title; ?></title>
+		<?php else: ?>
+			<title>1Spot Media Portal</title>
+		<?php endif; ?>
+		
+		<?php if(!empty($item_description)): ?>
+			<meta name="description" content="<?php echo $item_description; ?>">
+		<?php else: ?>
+			<meta name="description" content="Challenging the future of TV">
+		<?php endif; ?>
+		
             <meta name="keywords" content="website, business, store" />
             <meta name="robots" content="index, follow" />
             <meta name="google-site-verification" content="vD6AjRdZ4j60LaYkzVXhsrF_cBgKDRrpYew0aq1H3uI" />
