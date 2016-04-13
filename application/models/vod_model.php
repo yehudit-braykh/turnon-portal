@@ -17,7 +17,7 @@ class Vod_model extends CI_Model {
         if ($featured)
             $parameters["featured"] = $featured;
 
-        $parameters["media_type"] = 'movie|clip|tv_show|episodes';
+        $parameters["media_type"] = 'movie|clip|tv_show|episode';
 
         $parameters["limit"] = $limit;
         $parameters["sort"] = $sort;
