@@ -146,7 +146,7 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
     }
 
     function get_channel(country, release_url, release_blocked_url, channel_obj, id, channel_name, policy_id) {
-
+console.log("Country: "+ country + " Subscription status: "+account_status);
         if (country === 'Jamaica') {
 
             if (account_status === 'login') {
@@ -163,6 +163,7 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
                 $('#popup_login_outside').bPopup();
 
             } else if (account_status === 'subscriber') {
+                $('#jw_live_player').text("Subscribe to view this content");
                 $('#popup_subscriber').bPopup();
             } else if (account_status === 'enabled') {
                 stream_url = release_blocked_url;
@@ -285,8 +286,9 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
             console.log('Country is ', count);
             callback(count);
         }).error(function (result) {
+             console.log('Country was forced to Jamaica');
             callback('Jamaica');
-            console.log('Country was forced to Jamaica');
+           
         });
     }
 
