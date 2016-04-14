@@ -20,6 +20,7 @@ class Vod_model extends CI_Model {
         $parameters["media_type"] = 'movie|clip|tv_show|episode';
 
         $parameters["limit"] = $limit;
+
         $parameters["sort"] = $sort;
 
         $cache_id = 'list_items_api' . $genre . $category . $featured;
