@@ -54,7 +54,7 @@
   <?php if ($item_tags) { ?>
   <div class="vod_info_credits_details">
     <div class="vod_info_credit_item_title">Tags:</div>
-    <div class="vod_info_credit_item_value"><p><?php echo $item_tags; ?></p></div>
+    <div class="vod_info_credit_item_value"><p><?php echo implode(',', $item_tags); ?></p></div>
   </div>
   <div class="clr"></div>
   <?php } ?>
