@@ -282,7 +282,7 @@ class Vod extends UVod_Controller {
 
             $aired_date = getEntryProperty($item, 'aired_date');
             if ($aired_date !== '') {
-                $data->aired_date = date('F d, Y', $aired_date);
+                $data->aired_date = date('F d, Y', $aired_date/1000);
             } else {
                 $data->aired_date = '';
             }

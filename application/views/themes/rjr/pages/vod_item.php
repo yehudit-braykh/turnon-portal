@@ -408,7 +408,7 @@
                 if (isset($aired_date) && $aired_date !== '' && $item_media_type != 'tv_show') {
                     
                     ?>
-                    <div class="vod_aired_date"><?php echo date('F d, Y', $aired_date); ?></div>
+                    <div class="vod_aired_date"><?php echo date('F d, Y', $aired_date/1000); ?></div>
                         <?php
                 }
                 ?>
