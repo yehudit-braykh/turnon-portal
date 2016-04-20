@@ -216,7 +216,7 @@ class Vod extends UVod_Controller {
                                 <a href="' . base_url() . 'index.php/vod_item/detail/id/' . $item_id . '" class="cover" style="width:' . $cover_width . ';height:' . $cover_height . ';">';
 
                 if ($mediatype != "tv_show" && $this->config->item('theme') !== 'orbita') {
-                    $aired_date_div = '<div>' . date('F d, Y',(getEntryProperty($items->content->entries[$i], 'aired_date'))) . '</div>';
+                    $aired_date_div = '<div>' . date('F d, Y',(getEntryProperty($items->content->entries[$i], 'aired_date')/1000)) . '</div>';
                     $ret.= '<div class="ribbon_content ' . $commerce_class . '" style="width:' . $cover_width . ';height:' . $cover_height . ';margin:5px"></div>';
                 }
 
