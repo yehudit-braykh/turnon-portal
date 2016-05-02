@@ -22,7 +22,7 @@ if (defined('ENVIRONMENT'))
 		case 'development':
 		case 'local':
 		case 'development':
-		case 'testing':
+		case 'staging':
 		case 'production':
 			error_reporting(E_ALL);
 		break;
