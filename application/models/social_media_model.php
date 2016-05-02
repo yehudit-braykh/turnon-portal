@@ -17,10 +17,17 @@ class Social_Media_model extends CI_Model {
             $access_token = $this->facebook->get_access_token();
 
             $profile = $this->facebook->get_user_profile($access_token);
-       
+           
+            $profile_obj = json_decode($profile);
+            $fb_id = $profile_obj->id;
+            $params = array();
+            $params['type'] = 'normal';
+
+            $picture = $this->facebook->get_picture($access_token, $fb_id, $params);
+            
             $return->status ='ok';
-            $return->content = json_decode($profile);
-            $return->msg = json_decode($profile);
+            $return->content = $profile_obj;
+            $return->msg = $profile_obj;
         } catch (Exception $e) {
   
             $return->status ='error';

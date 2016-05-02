@@ -11,7 +11,7 @@ class Account extends UVod_Controller {
         parent::__construct();
         $this->load->model('account_model');
         $this->load->model('live_events_model');
-//        $this->load->model('social_media_model');
+        $this->load->model('social_media_model');
         $this->load->helper('pdk');
     }
 
@@ -594,6 +594,8 @@ class Account extends UVod_Controller {
         if (isset($ret->error) && $ret->error == false) {
             echo json_encode(array('status' => 'ok'));
         } else {
+
+            // file_put_contents('change_auto_renew.txt', $ret);
             echo json_encode(array('status' => 'error', 'message' => $ret->message,));
         }
     }
@@ -709,6 +711,17 @@ class Account extends UVod_Controller {
         }
     }
 
+    public function register_by_fb() {
+        $data = array();
+
+        $fb_profile = $this->social_media_model->get_fb_profile();
+        error_log('fb profile: ' . json_encode($fb_profile));
+
+        $this->load->view(views_url() . 'templates/header', $data);
+        $this->load->view(views_url() . 'pages/register_by_fb', $data);
+        $this->load->view(views_url() . 'templates/footer', $data);
+    }
+
     public function register_by_facebook() {
 
         $ret = new stdClass();
@@ -742,7 +755,7 @@ class Account extends UVod_Controller {
                     $ret->merginProfiles->plName = $profile->content[0]->{'pluserprofile$firstName'} . " " . $profile->content[0]->{'pluserprofile$lastName'};
                     $ret->merginProfiles->email = $fb_email;
 
-                    if (isset($profile->content[0]->{'pluserprofile$publicDataMap'}->fb_id)) {
+                    if (isset($profile->content[0]->fbId) && $profile->content[0]->fbId) {
                         $ret->message = "This Facebook account is already registered in 1spotmedia.";
 
                         //This indicates that the accounts can be merged
@@ -830,7 +843,7 @@ class Account extends UVod_Controller {
         if ($fb_profile->status === 'ok') {
             $email = $fb_profile->content->email;
             $password = $fb_profile->content->id;
-
+            error_log('email: ' . $email);
             $login = $this->account_model->login($email, $password);
 
             error_log("FACEBOOK LOGIN ---> " . json_encode($login));
@@ -859,7 +872,7 @@ class Account extends UVod_Controller {
                 if (isset($profile->error) && !$profile->error) {
                     $ret->merginProfiles = new stdClass();
                     $ret->merginProfiles->fbName = $fb_profile->content->name;
-                    $ret->merginProfiles->plName = $profile->content[0]->{'pluserprofile$firstName'} . " " . $profile->content[0]->{'pluserprofile$lastName'};
+                    $ret->merginProfiles->plName = $profile->content[0]->firstName . " " . $profile->content[0]->lastName;
                     $ret->merginProfiles->email = $email;
 
                     /*

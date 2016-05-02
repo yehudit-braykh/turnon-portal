@@ -14,24 +14,21 @@ class Facebook {
         $this->ci = & get_instance();
         try {
             $this->fb = new Facebook\Facebook([
-                'app_id' => getenv('FACEBOOK_APP_ID'),
-                'app_secret' => getenv('FACEBOOK_APP_SECRET'),
-                'default_graph_version' => 'v2.2',
+              'app_id' => getenv('FACEBOOK_APP_ID'),
+              'app_secret' => getenv('FACEBOOK_APP_SECRET'),
+              'default_graph_version' => 'v2.2',
             ]);
         } catch (Facebook\Exceptions\FacebookResponseException $e) {
             throw new Exception($e->getMessage());
         }
-
     }
 
     public function get_access_token() {
 
         if (isset($_SESSION['fb_access_token']) && $this->validate_access_token($_SESSION['fb_access_token'])) {
-          
+
             $access_token = $_SESSION['fb_access_token'];
             //$this->fb->setDefaultAccessToken($_SESSION['fb_access_token']);
-        
-            
         } else {
 
             $helper = $this->fb->getJavaScriptHelper();
@@ -40,7 +37,6 @@ class Facebook {
                 $access_token = $helper->getAccessToken();
                 $_SESSION['fb_access_token'] = (string) $access_token;
                 //$this->fb->setDefaultAccessToken($access_token);
-               
             } catch (Facebook\Exceptions\FacebookResponseException $e) {
                 throw new Exception($e->getMessage());
             } catch (Facebook\Exceptions\FacebookSDKException $e) {
@@ -58,8 +54,8 @@ class Facebook {
 
     public function get_user_profile($access_token) {
         try {
-          
-            $response = $this->fb->get('/me?fields=id,email,name',$access_token);
+
+            $response = $this->fb->get('/me?fields=id,email,name', $access_token);
             $user = $response->getGraphUser();
         } catch (Facebook\Exceptions\FacebookResponseException $e) {
             throw new Exception($e->getMessage());
@@ -71,13 +67,37 @@ class Facebook {
     }
 
     public function validate_access_token($access_token) {
-     
+
         try {
             $this->fb->get('/app?access_token=' . $access_token);
         } catch (Facebook\Exceptions\FacebookResponseException $e) {
             return false;
         }
         return true;
+    }
+
+    public function get_picture($access_token, $user_id, $parameters = null) {
+
+
+//        $request = new FacebookRequest(
+//            $session, 'GET', '/{user-id}/picture'
+//        );
+//        $response = $request->execute();
+//        $graphObject = $response->getGraphObject();
+
+
+        try {
+
+            $endpoint = '/' . $user_id . '/picture';
+
+            $response = $this->fb->sendRequest('GET',$endpoint, $parameters, $access_token);
+            $picture = $response->getGraphObject();
+            
+            error_log('PICTURE: '.json_encode($picture));
+        } catch (Facebook\Exceptions\FacebookResponseException $e) {
+            return false;
+        }
+        return $picture;
     }
 
 }

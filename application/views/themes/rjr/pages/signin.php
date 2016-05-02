@@ -90,8 +90,8 @@
             }).done(function (data) {
                 if (data.message == 'ok') {
 
-					ga('send', {hitType: 'event', eventCategory: 'User Type', eventAction: 'Login', eventLabel: 'Login Complete'});
-					
+                    ga('send', {hitType: 'event', eventCategory: 'User Type', eventAction: 'Login', eventLabel: 'Login Complete'});
+
                     if (data.content.mustResetPassword) {
                         $('#login_preloader').hide();
                         $('#login_preloader').html('');
@@ -285,11 +285,11 @@
                     <div class="clr"></div>
                 </li>
 
-                <!--                <li>
-                                    <div class="or_separator">OR</div>
-                                    <button id="signin_fb_btn"></button>
-                                    <div id="fb_signin_preloader"></div>
-                                </li>-->
+                <li>
+                    <div class="or_separator">OR</div>
+                    <button id="signin_fb_btn"></button>
+                    <div id="fb_signin_preloader"></div>
+                </li>
 
                 <li>
                     <span style="padding-left:40px;">
