@@ -15,10 +15,8 @@ class Vod extends UVod_Controller {
          if (isset($_GET['flush_cache']) && $_GET['flush_cache'] == 'true') {
             $this->fastcache_model->clean_cache();
         }
-        
-    
-            date_default_timezone_set('UTC');
-   
+
+        date_default_timezone_set('UTC');   
     }
 
     public function featured($sub_section = COMING_SOON) {
@@ -34,7 +32,6 @@ class Vod extends UVod_Controller {
         $data['slider'] = $this->vod_model->get_slider(APP_TARGET, $sub_section);
 
         // genres filter
-
         $items = array();
         $recommended = $this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, RECOMMENDED, null, '12', 'aired_date:-1');
         for ($i = 0; $i < sizeof($recommended->content->entries); $i++) {
@@ -51,8 +48,6 @@ class Vod extends UVod_Controller {
 
         $categories = array($data['category1']['value'], $data['category2']['value'], $data['category3']['value']);
         $data['items'] = $this->get_items_by_value('featured_category', $categories, $items);
-
-       
 
         $this->load->view(views_url() . 'templates/header', $data);
         if ($this->config->item('load_submenu') != false) {
@@ -129,7 +124,7 @@ class Vod extends UVod_Controller {
                         }
                     }
 
-                    $data['items_category_1'] = $this->create_items($this->vod_model->get_items_by_genre($genre, $category, null, null, '30', 'added:-1'));
+                    $data['items_category_1'] = $this->create_items($this->vod_model->get_items_by_genre($genre, $category, null, null, '5000', 'aired_date:-1'));
                     break;
                 }
             case 'aired_date': {
@@ -142,9 +137,9 @@ class Vod extends UVod_Controller {
                     $data['selected_category_id'] = $genre;
 
                     if ($this->config->item('create_items_on_view') !== FALSE) {
-                        $data['items_category_1'] = $this->vod_model->get_items_by_aired_date($genre, $end_date, $category, null,'30', 'aired_date:-1');
+                        $data['items_category_1'] = $this->vod_model->get_items_by_aired_date($genre, $end_date, $category, null,'5000', 'aired_date:-1');
                     } else {
-                        $data['items_category_1'] = $this->create_items($this->vod_model->get_items_by_aired_date($genre, $end_date, $category, null ,'30', 'aired_date:-1'));
+                        $data['items_category_1'] = $this->create_items($this->vod_model->get_items_by_aired_date($genre, $end_date, $category, null ,'5000', 'aired_date:-1'));
                     }
 
                     $data['selected_category_text'] = 'All';
@@ -216,7 +211,11 @@ class Vod extends UVod_Controller {
                                 <a href="' . base_url() . 'index.php/vod_item/detail/id/' . $item_id . '" class="cover" style="width:' . $cover_width . ';height:' . $cover_height . ';">';
 
                 if ($mediatype != "tv_show" && $this->config->item('theme') !== 'orbita') {
-                    $aired_date_div = '<div>' . date('F d, Y',(getEntryProperty($items->content->entries[$i], 'aired_date')/1000)) . '</div>';
+
+                    $aired_date_val = getEntryProperty($items->content->entries[$i], 'aired_date');
+                    $aired_date_str = $aired_date_val ? date('F d, Y',($aired_date_val/1000)) : '';
+
+                    $aired_date_div = '<div>' . $aired_date_str . '</div>';
                     $ret.= '<div class="ribbon_content ' . $commerce_class . '" style="width:' . $cover_width . ';height:' . $cover_height . ';margin:5px"></div>';
                 }
 

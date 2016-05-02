@@ -3,10 +3,10 @@
 /*-------------------------------------------------------------------------
    RJR CONFIG FILE
 --------------------------------------------------------------------------*/
-$config['logo_file'] = 'topspin_logo.png';
+$config['logo_file'] = 'tvj_logo.png';
 $config['logo_width'] = '127px';
 $config['logo_height'] = '96px';
-$config['logo_top'] = '40px';
+$config['logo_top'] = '44px';
 
 $config['menu_highlight_color'] = 'rgb(254,215,0)';
 
@@ -26,11 +26,27 @@ $config['button_play_width'] = '320px';
 $config['button_play_image'] = 'rjr-btn_play_bg.png';
 $config['button_play_padding_left'] = '150px';
 
-$config['category1'] = array('label'=>'Recommended','value'=>'recommended');
-$config['category2'] = array('label'=>'New Releases','value'=>'new_releases');
+$config['category1'] = array('label'=>'New Releases','value'=>'new_releases');
+$config['category2'] = array('label'=>'Recommended','value'=>'recommended');
 $config['category3'] = array('label'=>'Coming Soon','value'=>'coming_soon');
 
-$config['load_submenu'] = false;
+$config['load_submenu'] = true;
 
 $config['timezone'] = 'America/Jamaica';
 
+$config['subscriptions_ids'] = '19439888|19441019|19439889|19441020';
+$config['trial_subscription_id'] = '20028852';
+
+$config['available_subscription_labels'] = array(
+	'19439888' => '1_MONTH_SUBSCRIPTION',
+	'19439889' => '3_MONTH_SUBSCRIPTION',
+	'19441019' => '6_MONTH_SUBSCRIPTION',
+	'19441020' => '12_MONTH_SUBSCRIPTION'
+);
+
+$config['available_subscription_prices'] = array(
+	'19439888' => '9.99',
+	'19439889' => '24.98',
+	'19441019' => '49.95',
+	'19441020' => '99.9'
+);
