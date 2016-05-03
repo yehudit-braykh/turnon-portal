@@ -270,7 +270,7 @@
                 </ol>
             </form>
 
-            <div id="fb_container">
+<!--            <div id="fb_container">
 
                 <div id="fb_registration_preloader"></div>
 
@@ -319,7 +319,7 @@
 
                     <button id="btn_sign_up_merge" class="send common_btn" style="display: block; margin: auto; width: 200px; float: initial">LINK ACCOUNTS</button>
                 </div>
-            </div>
+            </div>-->
 
         </div>
     </div>

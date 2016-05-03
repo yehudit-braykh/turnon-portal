@@ -157,7 +157,7 @@
             }).done(function (data) {
 
                 if (data.status === 'ok') {
-                    window.location.href = '<?php echo base_url(); ?>index.php/live_events/event_payment';
+                    window.location.href = '<?php echo base_url(); ?>index.php/live_events/event_payment_ssl';
                 } else {
 
                     window.location.href = '<?php echo base_url(); ?>index.php/account/signin';
