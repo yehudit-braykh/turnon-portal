@@ -344,7 +344,7 @@ class Live_events extends UVod_Controller {
         }
     }
 
-    public function event_payment() {
+    public function event_payment_ssl() {
         $data = array();
         $this->load->view(views_url() . 'templates/header_bst', $data);
         $this->load->view(views_url() . 'pages/event_payment', $data);
