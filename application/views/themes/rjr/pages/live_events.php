@@ -79,7 +79,8 @@ if (isset($events->content) && sizeof($events->content) > 0) {
 
                 if (!is_mobile) {
 
-                    stream_url = "http://rjr_flash-lh.akamaihd.net/z/rjrexternal_1@179257/manifest.f4m";
+                   // stream_url = "http://rjr_flash-lh.akamaihd.net/z/rjrexternal_1@179257/manifest.f4m";
+                    stream_url = "http://rjr_flash-lh.akamaihd.net/i/rjrexternal_1@179257/master.m3u8";
                     jwplayer("jw_live_player").setup({
                         width: '100%',
                         autostart: true,
