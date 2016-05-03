@@ -388,7 +388,7 @@ class Account extends UVod_Controller {
     }
 
     public function login() {
-
+        error_log('LLEGA AL LOGIN');
         if (isset($_POST['email']) && isset($_POST['password'])) {
 
             $login = $this->account_model->login($_POST['email'], $_POST['password']);
