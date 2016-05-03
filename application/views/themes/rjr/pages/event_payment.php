@@ -52,7 +52,7 @@ function show_info () {
             pi_number = $('#card_number').val();
             pi_type = GetCardType($('#card_number').val());
             $.ajax({
-                url: "<?php echo base_url(); ?>index.php/live_events/subscribe",
+                url: "<?php echo base_url(); ?>index.php/live_events/subscribe_ssl",
                 type: 'POST',
                 dataType: 'json',
                 data: {

@@ -70,7 +70,7 @@
         $(document).on('click', '.buy_button', function () {
 
             $.ajax({
-                url: "<?php echo base_url(); ?>index.php/live_events/checkout_event",
+                url: "<?php echo base_url(); ?>index.php/live_events/checkout_event_ssl",
                 type: 'POST',
                 dataType: 'json',
                 data: 'product_id=' + $(this).parents('.product_id').attr('id')

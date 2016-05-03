@@ -321,7 +321,7 @@ class Live_events extends UVod_Controller {
         }
     }
 
-    public function checkout_event() {
+    public function checkout_event_ssl() {
 
         if (isset($_SESSION['uvod_user_data']->id) && $_POST['product_id']) {
 
@@ -351,7 +351,7 @@ class Live_events extends UVod_Controller {
         $this->load->view(views_url() . 'templates/footer_bst', $data);
     }
 
-    public function subscribe() {
+    public function subscribe_ssl() {
 
         if (isset($_SESSION['uvod_user_data']->token)) {
             $token = $_SESSION['uvod_user_data']->token;
