@@ -11,7 +11,7 @@ class Account extends UVod_Controller {
         parent::__construct();
         $this->load->model('account_model');
         $this->load->model('live_events_model');
-        $this->load->model('social_media_model');
+//        $this->load->model('social_media_model');
         $this->load->helper('pdk');
     }
 
