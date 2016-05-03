@@ -299,7 +299,7 @@ class Live_events extends UVod_Controller {
         return $ret;
     }
 
-    public function buy_events() {
+    public function buy_events_ssl() {
 
         $data = array();
         if (isset($_SESSION['uvod_user_data']->id)) {

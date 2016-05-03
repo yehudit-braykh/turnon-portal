@@ -89,7 +89,7 @@ if (isset($events->content) && sizeof($events->content) > 0 && $events->error ==
                         }
                     } else {
                         ?>
-                        <a href="<?php echo base_url(); ?>index.php/live_events/buy_events" class="btn btn-primary btn-lg btn_events" role="button">Buy your ticket now!</a>
+                        <a href="<?php echo base_url(); ?>index.php/live_events/buy_events_ssl" class="btn btn-primary btn-lg btn_events" role="button">Buy your ticket now!</a>
 
                         <?php
                     }
