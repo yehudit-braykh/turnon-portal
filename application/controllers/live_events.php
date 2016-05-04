@@ -134,14 +134,14 @@ class Live_events extends UVod_Controller {
                             $events->content[0]->already_purchased = false;
                         }
                     }
-                    
                 } else if (isset($products->content) && sizeof(isset($products->content))) {
+                    if (isset($products->content->scopeIds)) {
+                        $events_ids = $products->content->scopeIds;
 
-                    $events_ids = $products->content->scopeIds;
-
-                    for ($j = 0; $j < sizeof($events_ids); $j++) {
-                        if (!in_array($events_ids[$j], $media_ids)) {
-                            $media_ids[] = $events_ids[$j];
+                        for ($j = 0; $j < sizeof($events_ids); $j++) {
+                            if (!in_array($events_ids[$j], $media_ids)) {
+                                $media_ids[] = $events_ids[$j];
+                            }
                         }
                     }
 
@@ -298,18 +298,16 @@ class Live_events extends UVod_Controller {
 
         return $ret;
     }
-    
-    public function check_login_status(){
 
-        if (isset($_SESSION['uvod_user_data']->id)) {      
+    public function check_login_status() {
+
+        if (isset($_SESSION['uvod_user_data']->id)) {
             $result = array('status' => 'buy');
         } else {
             $result = array('status' => 'login');
         }
         echo json_encode($result);
     }
-    
-    
 
     public function buy_events_ssl() {
 
