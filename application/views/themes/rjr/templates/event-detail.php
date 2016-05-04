@@ -4,7 +4,6 @@ if (isset($events->content) && sizeof($events->content) > 0 && $events->error ==
 
     $data = $events->content[0];
     $event_time = $data->event_date;
-
     ?>
     <script>
 
@@ -12,7 +11,7 @@ if (isset($events->content) && sizeof($events->content) > 0 && $events->error ==
 
     <?php echo 'event_time=' . $event_time . ';'; ?>
 
-            var clock = $('#countdown').FlipClock((event_time - new Date().getTime())/1000, {
+            var clock = $('#countdown').FlipClock((event_time - new Date().getTime()) / 1000, {
                 clockFace: 'DailyCounter',
                 countdown: true
             });
@@ -21,7 +20,29 @@ if (isset($events->content) && sizeof($events->content) > 0 && $events->error ==
                 $('#popup_login').bPopup();
             });
 
+
+
+
+            $("#buy_ticket_btn").on("click", function () {
+                $.ajax({
+                    url: '<?php echo base_url(); ?>index.php/live_events/check_login_status',
+                    type: 'POST',
+                    dataType: 'json',
+                }).done(function (data) {
+console.log("data: ",data)
+                    if (data.status == 'buy') {
+
+                        window.location.href = "<?php echo base_url(); ?>index.php/live_events/buy_events_ssl";
+                    } else {
+                        window.location.href = "<?php echo base_url(); ?>index.php/account/signin";
+                    }
+                });
+
+            })
+
+
         });
+
 
 
 
@@ -59,15 +80,14 @@ if (isset($events->content) && sizeof($events->content) > 0 && $events->error ==
 
                     <h2 class="event-detail-title"><?php echo $data->name; ?><br>
                         <small>
-                            <?php 
-                             $tz = 'EST';
+                            <?php
+                            $tz = 'EST';
                             $timestamp = $data->event_date / 1000;
                             $dt = new DateTime("now", new DateTimeZone($tz)); //first argument "must" be a string
                             $dt->setTimestamp($timestamp); //adjust the object to correct timestamp
                             $event_date = $dt->format('l, F d, Y - H:i');
 
                             echo $event_date . ' Hours EST - US $' . $data->price;
-
                             ?></small>
                     </h2>
 
@@ -89,7 +109,7 @@ if (isset($events->content) && sizeof($events->content) > 0 && $events->error ==
                         }
                     } else {
                         ?>
-                        <a href="<?php echo base_url(); ?>index.php/live_events/buy_events_ssl" class="btn btn-primary btn-lg btn_events" role="button">Buy your ticket now!</a>
+                        <a id="buy_ticket_btn" href="#" class="btn btn-primary btn-lg btn_events" role="button">Buy your ticket now!</a>
 
                         <?php
                     }

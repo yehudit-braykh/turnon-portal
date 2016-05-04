@@ -298,6 +298,18 @@ class Live_events extends UVod_Controller {
 
         return $ret;
     }
+    
+    public function check_login_status(){
+
+        if (isset($_SESSION['uvod_user_data']->id)) {      
+            $result = array('status' => 'buy');
+        } else {
+            $result = array('status' => 'login');
+        }
+        echo json_encode($result);
+    }
+    
+    
 
     public function buy_events_ssl() {
 
