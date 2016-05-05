@@ -3431,6 +3431,14 @@ td.product_content{
     letter-spacing: 1px;
 }
 
+.view_purchased_ticket{
+    font-size: 16px;
+    color: rgb(127,0,191);
+    padding-bottom: 5px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
 .already_purchased_sub_msg{
     font-size: 18px;
     color: #fff;

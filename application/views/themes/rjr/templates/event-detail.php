@@ -1,6 +1,7 @@
 
 <?php
-if (isset($events->content) && sizeof($events->content) > 0 && $events->error == false) {
+error_log('EVENTS: ' . json_encode($events));
+if (isset($events->content) && sizeof($events->content) > 0 && (!isset($events->error) || $events->error == false)) {
 
     $data = $events->content[0];
     $event_time = $data->event_date;
@@ -29,7 +30,7 @@ if (isset($events->content) && sizeof($events->content) > 0 && $events->error ==
                     type: 'POST',
                     dataType: 'json',
                 }).done(function (data) {
-console.log("data: ",data)
+
                     if (data.status == 'buy') {
 
                         window.location.href = "<?php echo base_url(); ?>index.php/live_events/buy_events_ssl";
@@ -41,13 +42,13 @@ console.log("data: ",data)
             })
 
 
+            $(".view_purchased_ticket").on("click", function () {
+
+                window.location.href = "<?php echo base_url(); ?>index.php/account/my_account_ssl/#tab3";
+
+            });
         });
-
-
-
-
     </script>
-
 
     <div class="container">
 
@@ -104,7 +105,7 @@ console.log("data: ",data)
                         } else {
                             ?>
                             <div class='already_purchased_msg'>ALREADY PURCHASED!</div>               
-                            <div class='already_purchased_sub_msg'>Your ticket is ready.</div>
+                            <div class='view_purchased_ticket'>Click here to see your purchased Tickets.</div>
                             <?php
                         }
                     } else {

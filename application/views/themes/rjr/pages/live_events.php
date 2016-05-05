@@ -79,13 +79,16 @@ if (isset($events->content) && sizeof($events->content) > 0) {
 
                 if (!is_mobile) {
 
-                   // stream_url = "http://rjr_flash-lh.akamaihd.net/z/rjrexternal_1@179257/manifest.f4m";
-                    stream_url = "http://rjr_flash-lh.akamaihd.net/i/rjrexternal_1@179257/master.m3u8";
+                    stream_url = "http://rjr_flash-lh.akamaihd.net/z/rjrexternal_1@179257/manifest.f4m";
                     jwplayer("jw_live_player").setup({
                         width: '100%',
                         autostart: true,
                         aspectratio: "16:9",
-                        file: stream_url,
+                        playlist: [{
+                            file: stream_url,
+                            provider: "http://players.edgesuite.net/flash/plugins/jw/v3.8/AkamaiAdvancedJWStreamProvider.swf",
+                            type:'mp4'
+                        }],
                         primary: "flash"
                     });
 
@@ -123,19 +126,19 @@ if (isset($events->content) && sizeof($events->content) > 0) {
     ;
 
 
-//    setInterval(function () {
-//
-//        $.ajax({
-//            url: base_url + 'index.php/account/check_status',
-//            type: 'POST',
-//            dataType: 'json',
-//            success: function (data) {
-//                if (data.status == 'error') {
-//                    window.location = base_url;
-//                }
-//            }
-//        })
-//    }, 120000);
+    setInterval(function () {
+
+        $.ajax({
+            url: base_url + 'index.php/account/check_status',
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                if (data.status == 'error') {
+                    window.location = base_url;
+                }
+            }
+        })
+    }, 120000);
 
 
 </script>

@@ -98,7 +98,15 @@
                         $('#loginform').hide();
                         $('#reset_password_form').show();
                     } else {
-                        window.location.href = '<?php echo base_url(); ?>';
+                        <?php 
+                        if(isset($from_page)){
+                            $url = base_url() .'index.php/'.$from_page;
+                        }else{
+                            $url = base_url();
+                        }
+                        ?>
+                        
+                        window.location.href = '<?php echo $url; ?>';
                     }
                 }
                 else if (data.message == 'Your account is not active yet. Check your email for the activation link.') {

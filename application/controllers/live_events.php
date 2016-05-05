@@ -152,14 +152,18 @@ class Live_events extends UVod_Controller {
                     }
                 }
             }
+            $data['section'] = "events";
+            $data['events'] = $events;
+
+            $this->load->view(views_url() . 'templates/header_bst', $data);
+            $this->load->view(views_url() . 'pages/live_events', $data);
+            $this->load->view(views_url() . 'templates/footer_bst', $data);
+        } else {
+            $data = array("from_page"=>'live_events/main');
+            $this->parser->parse(views_url() . 'templates/header', $data);
+            $this->parser->parse(views_url() . 'pages/signin', $data);
+            $this->parser->parse(views_url() . 'templates/footer', $data);
         }
-
-        $data['section'] = "events";
-        $data['events'] = $events;
-
-        $this->load->view(views_url() . 'templates/header_bst', $data);
-        $this->load->view(views_url() . 'pages/live_events', $data);
-        $this->load->view(views_url() . 'templates/footer_bst', $data);
     }
 
     public function get_event() {
