@@ -150,9 +150,9 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
         if (country === 'Jamaica') {
 
             if (account_status === 'login') {
-                  $('#jw_live_player').text('LOGIN TO WATCH LIVE SIGNALS...');
+                $('#jw_live_player').text('LOGIN TO WATCH LIVE SIGNALS...');
                 $('#popup_login').bPopup();
-              
+
 
             } else if (account_status === 'enabled' || account_status === 'subscriber') {
                 stream_url = release_url;
@@ -162,11 +162,11 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
         } else {
 
             if (account_status === 'login') {
-                 $('#jw_live_player').text('LOGIN TO WATCH LIVE SIGNALS...');
+                $('#jw_live_player').text('LOGIN TO WATCH LIVE SIGNALS...');
                 $('#popup_login_outside').bPopup();
 
             } else if (account_status === 'subscriber') {
-                  $('#jw_live_player').text('BECOME A SUBSCRIBER TO WATCH LIVE SIGNALS...');
+                $('#jw_live_player').text('BECOME A SUBSCRIBER TO WATCH LIVE SIGNALS...');
                 $('#popup_subscriber').bPopup();
             } else if (account_status === 'enabled') {
                 stream_url = release_blocked_url;
@@ -247,24 +247,24 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
             file: stream_url,
             primary: 'flash',
             events: {
-				onPlay: function(e) {
-					handleMediaEvents('Play', channel_name);
-				},
-				onComplete: function(e){
-					handleMediaEvents('Complete', channel_name);
-				},
-				onPause: function(e){
-					handleMediaEvents('Pause', channel_name);
-				},
-				onBuffer: function(e){
-					handleMediaEvents('Buffer', channel_name);
-				},
-				onIdle: function(e){
-					handleMediaEvents('Idle', channel_name);
-				},
-				onError: function(e){
-					handleMediaEvents('Error', channel_name);
-				}
+                onPlay: function (e) {
+                    handleMediaEvents('Play', channel_name);
+                },
+                onComplete: function (e) {
+                    handleMediaEvents('Complete', channel_name);
+                },
+                onPause: function (e) {
+                    handleMediaEvents('Pause', channel_name);
+                },
+                onBuffer: function (e) {
+                    handleMediaEvents('Buffer', channel_name);
+                },
+                onIdle: function (e) {
+                    handleMediaEvents('Idle', channel_name);
+                },
+                onError: function (e) {
+                    handleMediaEvents('Error', channel_name);
+                }
             },
             advertising: {
                 client: 'googima',
@@ -286,11 +286,11 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
             console.log('Country was forced to Jamaica');
         });
     }
-	
-	function handleMediaEvents(action, channelName)
-	{
-		ga('send', {hitType: 'event', eventCategory: 'Videos', eventAction: action, eventLabel: channelName});
-	}
+
+    function handleMediaEvents(action, channelName)
+    {
+        ga('send', {hitType: 'event', eventCategory: 'Videos', eventAction: action, eventLabel: channelName});
+    }
 
     function handleOnMediaStart(channel_name) {
         _gaq.push(['_trackEvent', 'Live', 'Play', channel_name]);

@@ -455,7 +455,7 @@ if (isset($clientToken)) {
                             }
                             if (!$flag) {
                                 ?>
-                                <div class="buy_events_link"><span>You don't have any pay-per-view tickets yet.</span><br><a href="<?php echo base_url() . 'index.php/live_events/buy_events'; ?>">Buy Now!</a></div>
+                                <div class="buy_events_link"><span>You don't have any pay-per-view tickets yet.</span><br><a href="<?php echo base_url() . 'index.php/live_events/buy_events_ssl'; ?>">Buy Now!</a></div>
                                 <?php
                             }
                             ?>

@@ -84,7 +84,7 @@
 
 
         $('#btn_modify').on('click', function (event) {
-            window.location.href = "<?php echo base_url(); ?>index.php/live_events/buy_events";
+            window.location.href = "<?php echo base_url(); ?>index.php/live_events/buy_events_ssl";
         });
 
         function GetCardType(number)
