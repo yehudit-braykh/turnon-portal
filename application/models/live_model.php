@@ -29,7 +29,20 @@ class Live_model extends CI_Model {
     }
 
     public function get_epg_timeline($date, $length, $channel) {
-        return apiPost("live/get_epg_timeline", array('start' => $date, 'length' => $length, 'channel' => $channel));
+
+        $cache_id = 'live/epg_timeline_' . $channel;
+
+        $cache = $this->fastcache_model->get_cache($cache_id);
+        if (!$cache) {
+            error_log('EPG TIMELINE - USA LA BASE');
+            $data = apiPost("live/get_epg_timeline", array('start' => $date, 'length' => $length, 'channel' => $channel));
+            $this->fastcache_model->set_cache($cache_id, $data, 300);
+        } else {
+            error_log('EPG TIMELINE - USA EL CACHE');
+            $data = $cache;
+        }
+
+        return $data;
     }
 
     public function get_epg_data($date = null) {
