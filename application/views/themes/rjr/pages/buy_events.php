@@ -38,8 +38,16 @@
                         <?php echo $events->content[$i]->name; ?>
                     </div>
                     <div class="product_description">
-                        <?php echo date('l, F d, Y - H:i', ($events->content[$i]->event_date / 1000)) . ' Hours EST'; ?>
-                        <!--<?php //echo date('F d, H:i',$events->content[$i]->event_date/1000).' hs.'; ?>-->
+                        <?php
+                        $tz = 'EST';
+                        $timestamp = $data[$i]->event_date / 1000;
+                        $dt = new DateTime("now", new DateTimeZone($tz)); //first argument "must" be a string
+                        $dt->setTimestamp($timestamp); //adjust the object to correct timestamp
+                        $event_date = $dt->format('l, F d, Y - H:i');
+
+                        echo $event_date . ' Hours EST';
+                        ?>
+                        <!--<?php //echo date('F d, H:i',$events->content[$i]->event_date/1000).' hs.';  ?>-->
                     </div>
                 </div>
 
