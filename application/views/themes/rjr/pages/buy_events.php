@@ -40,7 +40,7 @@
                     <div class="product_description">
                         <?php
                         $tz = 'EST';
-                        $timestamp = $data[$i]->event_date / 1000;
+                        $timestamp = $events->content[$i]->event_date / 1000;
                         $dt = new DateTime("now", new DateTimeZone($tz)); //first argument "must" be a string
                         $dt->setTimestamp($timestamp); //adjust the object to correct timestamp
                         $event_date = $dt->format('l, F d, Y - H:i');
