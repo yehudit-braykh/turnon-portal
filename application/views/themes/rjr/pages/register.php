@@ -168,11 +168,23 @@
 
                 }});
 
-          window.location.href = "<?php echo base_url(); ?>index.php/account/register_by_fb";
+            $.ajax({
+                url: "<?php echo base_url(); ?>index.php/account/check_fb_account",
+                type: 'POST',
+                dataType: 'json',
+            }).done(function (data) {
+                if (data.status !== 'error') {
+                    window.location.href = "<?php echo base_url(); ?>index.php/account/" + data.status;
+                } else {
+
+                }
+
+            })
+
         } else if (response.status === 'not_authorized') {
             registerWithFacebook();
 
-        } 
+        }
     }
 
     function show_info(data) {
@@ -270,7 +282,7 @@
                 </ol>
             </form>
 
-<!--            <div id="fb_container">
+            <div id="fb_container">
 
                 <div id="fb_registration_preloader"></div>
 
@@ -319,7 +331,7 @@
 
                     <button id="btn_sign_up_merge" class="send common_btn" style="display: block; margin: auto; width: 200px; float: initial">LINK ACCOUNTS</button>
                 </div>
-            </div>-->
+            </div>
 
         </div>
     </div>

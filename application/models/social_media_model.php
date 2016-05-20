@@ -22,8 +22,11 @@ class Social_Media_model extends CI_Model {
             $fb_id = $profile_obj->id;
             $params = array();
             $params['type'] = 'normal';
+            $params['redirect'] = 0;
 
             $picture = $this->facebook->get_picture($access_token, $fb_id, $params);
+            $picture_obj = json_decode($picture);
+            $profile_obj->picture = str_replace("\/","",$picture_obj->data->url);
             
             $return->status ='ok';
             $return->content = $profile_obj;

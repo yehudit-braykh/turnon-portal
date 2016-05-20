@@ -78,22 +78,13 @@ class Facebook {
 
     public function get_picture($access_token, $user_id, $parameters = null) {
 
-
-//        $request = new FacebookRequest(
-//            $session, 'GET', '/{user-id}/picture'
-//        );
-//        $response = $request->execute();
-//        $graphObject = $response->getGraphObject();
-
-
         try {
 
             $endpoint = '/' . $user_id . '/picture';
 
-            $response = $this->fb->sendRequest('GET',$endpoint, $parameters, $access_token);
-            $picture = $response->getGraphObject();
-            
-            error_log('PICTURE: '.json_encode($picture));
+            $response = $this->fb->sendRequest('GET',$endpoint, $parameters, $access_token, null,'v2.0');
+            $picture = $response->getBody();
+
         } catch (Facebook\Exceptions\FacebookResponseException $e) {
             return false;
         }

@@ -11,7 +11,7 @@ class Account extends UVod_Controller {
         parent::__construct();
         $this->load->model('account_model');
         $this->load->model('live_events_model');
-//        $this->load->model('social_media_model');
+        $this->load->model('social_media_model');
         $this->load->helper('pdk');
     }
 
@@ -388,7 +388,7 @@ class Account extends UVod_Controller {
     }
 
     public function login() {
-   
+
         if (isset($_POST['email']) && isset($_POST['password'])) {
 
             $login = $this->account_model->login($_POST['email'], $_POST['password']);
@@ -711,18 +711,55 @@ class Account extends UVod_Controller {
         }
     }
 
-    public function register_by_fb() {
+    public function check_fb_account() {
         $data = array();
 
         $fb_profile = $this->social_media_model->get_fb_profile();
         error_log('fb profile: ' . json_encode($fb_profile));
+
+        $data['fb_profile'] = $fb_profile;
+
+        if ($fb_profile->status === 'ok') {
+            $fb_email = $fb_profile->content->email;
+
+            //First case, user exists for given facebook email and must check if can be merged
+            if ($this->account_model->exists_user_email($fb_email)) {
+                $return = array('status' => 'link_account');
+            } else {
+                $return = array('status' => 'register_by_fb');
+            }
+        } else {
+            $return = array('status' => 'register_ssl');
+        }
+
+        echo json_encode($return);
+    }
+
+    public function register_by_fb() {
+
+        $fb_profile = $this->social_media_model->get_fb_profile();
+        error_log('fb profile: ' . json_encode($fb_profile));
+
+        $data['fb_profile'] = $fb_profile;
 
         $this->load->view(views_url() . 'templates/header', $data);
         $this->load->view(views_url() . 'pages/register_by_fb', $data);
         $this->load->view(views_url() . 'templates/footer', $data);
     }
 
-    public function register_by_facebook() {
+    public function link_account() {
+
+        $fb_profile = $this->social_media_model->get_fb_profile();
+        error_log('fb profile: ' . json_encode($fb_profile));
+
+        $data['fb_profile'] = $fb_profile;
+
+        $this->load->view(views_url() . 'templates/header', $data);
+        $this->load->view(views_url() . 'pages/link_accounts', $data);
+        $this->load->view(views_url() . 'templates/footer', $data);
+    }
+
+    public function singup_by_fb() {
 
         $ret = new stdClass();
         $ret->message = "";
