@@ -11,8 +11,6 @@ define('UVOD_THEME', read_config_var('UVOD_THEME'));
 define('FACEBOOK_APP_ID', read_config_var('FACEBOOK_APP_ID'));
 define('FACEBOOK_APP_SECRET', read_config_var('FACEBOOK_APP_SECRET'));
 
-error_log('FB ID:'.read_config_var('FACEBOOK_APP_ID').' FB SECRET: '.read_config_var('FACEBOOK_APP_SECRET'));
-
 function read_config_var($variable) {
 
 	$ret = '';

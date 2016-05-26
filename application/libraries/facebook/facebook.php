@@ -13,14 +13,12 @@ class Facebook {
     public function __construct() {
         $this->ci = & get_instance();
         try {
-               error_log('entro al try: FBID: '.FACEBOOK_APP_ID.' SECRET: '.FACEBOOK_APP_SECRET);
             $this->fb = new Facebook\Facebook([
-              'app_id' => getenv('FACEBOOK_APP_ID'),
-              'app_secret' => getenv('FACEBOOK_APP_SECRET'),
+              'app_id' => FACEBOOK_APP_ID,
+              'app_secret' => FACEBOOK_APP_SECRET,
               'default_graph_version' => 'v2.2',
             ]);
         } catch (Facebook\Exceptions\FacebookResponseException $e) {
-            error_log('entro a la excepcion: FBID: '.getenv('FACEBOOK_APP_ID').' SECRET: '.getenv('FACEBOOK_APP_SECRET'));
             throw new Exception($e->getMessage());
         }
     }
