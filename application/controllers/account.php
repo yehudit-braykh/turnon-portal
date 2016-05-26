@@ -880,7 +880,7 @@ class Account extends UVod_Controller {
         $ret->message = "";
 
         $fb_profile = $this->social_media_model->get_fb_profile();
-
+  error_log('fb profile: ' . json_encode($fb_profile));
         if ($fb_profile->status === 'ok') {
 
             $fb_id = $fb_profile->content->id;
