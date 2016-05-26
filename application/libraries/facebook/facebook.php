@@ -19,6 +19,7 @@ class Facebook {
               'default_graph_version' => 'v2.2',
             ]);
         } catch (Facebook\Exceptions\FacebookResponseException $e) {
+            error_log('entro a la excepcion: FBID: '.getenv('FACEBOOK_APP_ID').' SECRET: '.getenv('FACEBOOK_APP_SECRET'));
             throw new Exception($e->getMessage());
         }
     }
