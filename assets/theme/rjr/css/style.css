@@ -2085,16 +2085,22 @@ select:focus, select:active {
     margin-top: 35px;
 }
 
+
 #fb_password_container{
     float: left;
     margin: 10px 0px 0px 30px;
     width: 56%;
 }
 
+#fb_link_container{
+    margin: auto;
+    width: 300px;
+}
+
 .fb_label{    
     float: left;
     margin-left: 30px;
-    }
+}
 
 .fb_buttons{
     width: 100%;
@@ -2108,6 +2114,12 @@ select:focus, select:active {
     text-align: center;    
     font-family: "PT Sans", "Lato", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
     margin: auto;
+}
+
+#link_image{
+    top: 24%!important;
+    width: 8%!important;
+    left: 46%!important;
 }
 
 .register_back { 
@@ -2439,7 +2451,7 @@ select:focus, select:active {
 
 }
 
-#fb_password_container .text{
+#fb_password_container .text, #fb_link_container .text{
     width: 98%;
     border: 1px solid #999;
     height: 30px;

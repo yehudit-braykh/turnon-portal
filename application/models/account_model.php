@@ -11,6 +11,10 @@ class Account_model extends CI_Model {
     public function login($user, $pass, $disabled = false) {
         return apiPost("user/login_portal", array("username" => $user, "password" => $pass, "disabled" => $disabled));
     }
+    
+    public function login_by_fb($fb_id) {
+        return apiPost("user/login_by_fb", array("fb_id" => $fb_id));
+    }
 
     public function simple_login($user, $pass) {
         return apiPost("user/login", array("username" => $user, "password" => $pass));
@@ -20,7 +24,7 @@ class Account_model extends CI_Model {
         return apiPost("user/logout", array("token" => $token));
     }
 
-    public function register($email, $password, $first_name, $last_name, $country, $hash = NULL, $fb_id = NULL, $merge = false) {
+    public function register($email, $password, $first_name, $last_name, $country, $hash = NULL, $fb_id = NULL) {
 
         return apiPost("user/register", array("email" => $email,
           "password" => $password,
@@ -28,8 +32,8 @@ class Account_model extends CI_Model {
           "last_name" => $last_name,
           "country" => $country,
           "fb_id" => $fb_id,
-          "hash" => $hash,
-          "merge" => $merge));
+          "hash" => $hash)
+        );
     }
 
     public function get_profile($token, $id) {
@@ -48,6 +52,10 @@ class Account_model extends CI_Model {
           "city" => $city,
           "country" => $country,
           "postal_code" => $postal_code));
+    }
+    
+    public function update_user($id, $data) {
+        return apiPost("user/update_user", array("id" => $id, "data" => $data));
     }
 
     public function save_merchant_info($user_token, $payment_token, $customer_id) {
@@ -164,13 +172,13 @@ class Account_model extends CI_Model {
 
         $resp = apiCall("user/get_single_user", array('email' => $email));
 
-        if ($resp && isset($resp->content) && isset($resp->content->entries) && sizeof($resp->content->entries) > 0) {
-            $ret = true;
-        }
+//        if ($resp && isset($resp->content) && isset($resp->content->entries) && sizeof($resp->content->entries) > 0) {
+//            $ret = true;
+//        }
 
         //$ret = false;
 
-        return $ret;
+        return $resp;
     }
 
     public function get_profile_by_email($email) {
