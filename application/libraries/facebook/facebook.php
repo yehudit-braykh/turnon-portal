@@ -13,7 +13,7 @@ class Facebook {
     public function __construct() {
         $this->ci = & get_instance();
         try {
-               error_log('entro al try: FBID: '.getenv('FACEBOOK_APP_ID').' SECRET: '.getenv('FACEBOOK_APP_SECRET'));
+               error_log('entro al try: FBID: '.FACEBOOK_APP_ID.' SECRET: '.FACEBOOK_APP_SECRET);
             $this->fb = new Facebook\Facebook([
               'app_id' => getenv('FACEBOOK_APP_ID'),
               'app_secret' => getenv('FACEBOOK_APP_SECRET'),
