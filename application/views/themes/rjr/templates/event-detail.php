@@ -1,6 +1,5 @@
 
 <?php
-error_log('EVENTS: ' . json_encode($events));
 if (isset($events->content) && sizeof($events->content) > 0 && (!isset($events->error) || $events->error == false)) {
 
     $data = $events->content[0];
@@ -14,7 +13,41 @@ if (isset($events->content) && sizeof($events->content) > 0 && (!isset($events->
 
             var clock = $('#countdown').FlipClock((event_time - new Date().getTime()) / 1000, {
                 clockFace: 'DailyCounter',
-                countdown: true
+                countdown: true,
+                callbacks: {
+                    stop: function () {
+
+                        <?php
+                        if (isset($events->content) && sizeof($events->content) > 0) {
+                            $data = $events->content[0];
+                            if (isset($data->already_purchased) && $data->already_purchased) {
+
+                                ?>
+                                    open_player();
+                                    setup_player();
+                                    TweenMax.set("#event_player_container", {height: "auto"});
+                                    TweenMax.from("#event_player_container", 1, {height: 0});
+                                    TweenMax.fromTo("#event_player_close", 1, {alpha: 0}, {alpha: 1});
+                                    
+                                    var add_html = "<div class='already_purchased_msg'>YOUR TICKET IS READY!<br></div>";
+                                    add_html +=  "<button type='button' id='new_watch_now_btn' class='btn btn-primary btn-lg btn_events' onclick='button_play_clickHandler()' role='button'>Watch now</button>"
+                                    $(".already_purchased_msg").hide();                                
+                                    $(".view_purchased_ticket").hide();                                
+                                    $("#col_info_sm").append(add_html);
+                                    $("#new_watch_now_btn").bind("click",function(){
+                                        open_player();
+                                        setup_player();
+                                        TweenMax.set("#event_player_container", {height: "auto"});
+                                        TweenMax.from("#event_player_container", 1, {height: 0});
+                                        TweenMax.fromTo("#event_player_close", 1, {alpha: 0}, {alpha: 1});
+                                    })
+
+                                <?php
+                            }
+                        }
+                        ?>
+                    }
+                }
             });
 
             $("#btn_buy_tickets").click(function () {

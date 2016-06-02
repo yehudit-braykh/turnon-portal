@@ -128,6 +128,15 @@ class Live_events extends UVod_Controller {
                     }
 
                     if ($events && $events->content) {
+
+                        $now = intval(time() . '000');
+
+                        if ($now > $events->content[0]->event_date) {
+                            $events->content[0]->live_now = true;
+                        } else {
+                            $events->content[0]->live_now = false;
+                        }
+
                         if (in_array($events->content[0]->media->_id, $media_ids)) {
                             $events->content[0]->already_purchased = true;
                         } else {
@@ -159,7 +168,7 @@ class Live_events extends UVod_Controller {
             $this->load->view(views_url() . 'pages/live_events', $data);
             $this->load->view(views_url() . 'templates/footer_bst', $data);
         } else {
-            $data = array("from_page"=>'live_events/main');
+            $data = array("from_page" => 'live_events/main');
             $this->parser->parse(views_url() . 'templates/header', $data);
             $this->parser->parse(views_url() . 'pages/signin', $data);
             $this->parser->parse(views_url() . 'templates/footer', $data);
