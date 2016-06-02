@@ -1,6 +1,7 @@
 <?php
 
 // Config constants
+//define('ENVIRONMENT', read_config_var('UVOD_ENVIRONMENT'));
 define('ENVIRONMENT', read_config_var('ENVIRONMENT'));
 define('UVOD_CONFIG', read_config_var('UVOD_CONFIG'));
 define('UVOD_API_USER', read_config_var('UVOD_API_USER'));

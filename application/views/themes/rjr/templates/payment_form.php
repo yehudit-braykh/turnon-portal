@@ -1,5 +1,4 @@
-<input type="text" name="prevent_autofill" id="prevent_autofill" value="" style="display:none;" />
-<input type="password" name="password_fake" id="password_fake" value="" style="display:none;" />
+
 <li> 
     <p id="info" class="form_info"></p>
 </li>
@@ -9,13 +8,15 @@
 </li>
 
 <li>
+    <input type="text" name="prevent_autofill" id="prevent_autofill" value="" style="display:none;" />
+    <input type="password" name="password_fake" id="password_fake" value="" style="display:none;" />
     <input id="card_number" name="card_number" value="" placeholder="Credit card number" class="text" autocomplete="off"/>
 </li>
 
 <li>
     <input id="security_code" name="security_code" value="" placeholder="Security code" class="text" type="password" autocomplete="off"/>
 </li>
- 
+
 <li>
     <div id="title_expiration">Expiration date:</div> 
     <div id="expiration_date"> 
@@ -62,10 +63,10 @@
 </li>
 
 <script type="text/javascript">
-    $(function(){  
+    $(function () {
         var passElem = $("input#security_code");
-        passElem.focus(function() { 
-            passElem.prop("type", "password");                                             
+        passElem.focus(function () {
+            passElem.prop("type", "password");
         });
     });
 </script>

@@ -2056,6 +2056,15 @@ select:focus, select:active {
     margin: 0px 0px 0px 0px;
 }
 
+.registration_fb_subtitle { 
+    color: #000;
+    text-transform: none;
+    font-size: 18px;
+    float: left;  
+    font-family: "PT Sans", "Lato", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+    margin: 0px 0px 10px 30px;
+}
+
 .registration_title_payment {
     color: #7f00bf; 
     text-align: center; 
@@ -2065,6 +2074,61 @@ select:focus, select:active {
     font-weight: normal;
     text-transform: uppercase;
     line-height: 30px;
+}
+
+#register_by_fb_content{
+    margin-top: 30px;
+}
+
+#fb_image{
+    float: left;
+    margin-top: 35px;
+}
+
+
+#fb_password_container{
+    float: left;
+    margin: 10px 0px 0px 30px;
+    width: 56%;
+}
+
+#fb_link_container{
+    margin: auto;
+    width: 300px;
+}
+
+.fb_label{    
+    float: left;
+    margin-left: 30px;
+}
+
+.fb_buttons{
+    width: 100%;
+    text-align: center;
+}
+
+.register_session_expired { 
+    color: #7d7d7d;
+    text-transform: none;
+    font-size: 20px;
+    text-align: center;    
+    font-family: "PT Sans", "Lato", "Trebuchet MS", Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+    margin: auto;
+}
+
+#link_image{
+    top: 24%!important;
+    width: 8%!important;
+    left: 46%!important;
+}
+
+.register_back { 
+
+    width: 100px;
+    height: 42px;
+    margin: 10px auto;
+    cursor: pointer;
+    background: url(../images/btn_back.png) no-repeat; 
 }
 
 #btn_pay_per_view {
@@ -2367,7 +2431,35 @@ select:focus, select:active {
 
 }
 
+#register_by_fb_form{
+    width:450px;
+    display:block;
+    margin-top: 40px;
+    margin-left:auto;
+    margin-right:auto;
+}
 
+#register_fb_btn{
+    margin: 40px auto;
+    width: 156px;
+    height: 45px;
+    background-image: url(../images/button-register-by-fb.png );
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: 0px;
+    cursor: pointer;
+
+}
+
+#fb_password_container .text, #fb_link_container .text{
+    width: 98%;
+    border: 1px solid #999;
+    height: 30px;
+    background: #fff;
+    font-size: 12px;
+    color: #000;
+
+}
 
 
 /* form login */

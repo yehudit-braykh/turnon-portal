@@ -162,22 +162,39 @@
     function statusChangeCallback(response) {
 
         if (response.status === 'connected') {
+            TweenLite.fromTo("#signup_fb_btn", 1, {alpha: 1}, {alpha: 0});
             $('#fb_registration_preloader').html('Sending data...');
             $('#fb_registration_preloader').css('display', 'block');
-            TweenLite.fromTo("#signup_fb_btn", 1, {alpha: 1}, {alpha: 0, onComplete: function () {
+            $.ajax({
+                url: "<?php echo base_url(); ?>index.php/account/check_fb_account_ssl",
+                type: 'POST',
+                dataType: 'json',
+            }).done(function (data) {
+                if (data.status !== 'error') {
+                    window.location.href = "<?php echo base_url(); ?>index.php/account/" + data.status;
+                } else {
+                    $('#fb_registration_preloader').css('display', 'none');
+                    TweenLite.fromTo("#signup_fb_btn", 1, {alpha: 0}, {alpha: 1});
+                    show_fb_info(data.msg);
+                }
 
-                }});
+            });
 
-          window.location.href = "<?php echo base_url(); ?>index.php/account/register_by_fb";
         } else if (response.status === 'not_authorized') {
             registerWithFacebook();
 
-        } 
+        }
     }
 
     function show_info(data) {
         $(".form_info").html("* " + data);
         TweenLite.fromTo(".form_info", 1, {alpha: 0}, {alpha: 1});
+    }
+
+    function show_fb_info(data) {
+        $("#fb_info").html("* " + data);
+        $("#fb_info").css("display",'block');
+        TweenLite.fromTo("#fb_info", 1, {alpha: 0}, {alpha: 1});
     }
 
     //To merge 1Spot account with Facebook account
@@ -270,7 +287,7 @@
                 </ol>
             </form>
 
-<!--            <div id="fb_container">
+            <div id="fb_container">
 
                 <div id="fb_registration_preloader"></div>
 
@@ -319,7 +336,7 @@
 
                     <button id="btn_sign_up_merge" class="send common_btn" style="display: block; margin: auto; width: 200px; float: initial">LINK ACCOUNTS</button>
                 </div>
-            </div>-->
+            </div>
 
         </div>
     </div>
