@@ -89,7 +89,7 @@ if (isset($events->content) && sizeof($events->content) > 0 && (!isset($events->
 
             <div class="col-sm-5 pic_events">
 
-                <?php if ($data->live_now) {
+                <?php if (isset($data->live_now) && $data->live_now) {
                     ?>
                     <div class="col-sm-12 live_now_advise">LIVE NOW</div>
                     <?php
