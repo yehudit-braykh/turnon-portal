@@ -230,6 +230,7 @@ class Live_events extends UVod_Controller {
 
             $event_element = new stdClass;
             $event_element->content = array();
+             $now = intval(time() . '000');
             for ($h = 0; $h < sizeof($events->content); $h++) {
                 if ($events->content[$h]->id === $prod_id) {
                     if (sizeof($media_ids) > 0) {
@@ -239,9 +240,15 @@ class Live_events extends UVod_Controller {
 
                             $events->content[$h]->already_purchased = false;
                         }
+
+                        if ($now > $events->content[$h]->event_date) {
+                            $events->content[$h]->live_now = true;
+                        } else {
+                            $events->content[$h]->live_now = false;
+                        }
                     }
                     $event_element->content[] = $events->content[$h];
-                    break;
+                    break; 
                 }
             }
 
