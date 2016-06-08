@@ -57,7 +57,7 @@
 <?php
 if (isset($events->content) && sizeof($events->content) > 0) {
     $data = $events->content[0];
-    if ($data->live_now && isset($data->already_purchased) && $data->already_purchased) {
+    if ((isset($data->live_now) && $data->live_now) && isset($data->already_purchased) && $data->already_purchased) {
 
         ?>
 
@@ -190,7 +190,7 @@ if (isset($events->content) && sizeof($events->content) > 0) {
                 <?php
                 $data = $events->content;
                 for ($i = 0; $i < sizeof($data); $i++) {
-                    if ($data[$i]->live_now) {
+                    if (isset($data[$i]->live_now) && $data[$i]->live_now) {
                         $event_item_overlay = '<span class="item-carousel-subtitle"> LIVE NOW!</span>';
                         ?>
                         <?php
