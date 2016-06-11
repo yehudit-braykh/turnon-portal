@@ -1,4 +1,5 @@
-
+<input type="text" name="card_number" id="prevent_autofill" value="" style="display:none;" />
+<input type="password" name="security_code" id="password_fake" value="" style="display:none;" />
 <li> 
     <p id="info" class="form_info"></p>
 </li>
@@ -8,8 +9,7 @@
 </li>
 
 <li>
-    <input type="text" name="prevent_autofill" id="prevent_autofill" value="" style="display:none;" />
-    <input type="password" name="password_fake" id="password_fake" value="" style="display:none;" />
+
     <input id="card_number" name="card_number" value="" placeholder="Credit card number" class="text" autocomplete="off"/>
 </li>
 
