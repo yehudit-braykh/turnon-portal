@@ -10,11 +10,11 @@
 
 <li>
 
-    <input id="card_number" name="card_number" value="" placeholder="Credit card number" class="text" autocomplete="off"/>
+    <input id="card_number" name="card_number" value="" placeholder="Credit card number" class="text"/>
 </li>
 
 <li>
-    <input id="security_code" name="security_code" value="" placeholder="Security code" class="text" type="password" autocomplete="off"/>
+    <input id="security_code" name="security_code" value="" placeholder="Security code" class="text" type="password"/>
 </li>
 
 <li>
