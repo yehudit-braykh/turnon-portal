@@ -1,5 +1,5 @@
-<input type="text" name="prevent_autofill" id="prevent_autofill" value="" style="display:none;" />
-<input type="password" name="password_fake" id="password_fake" value="" style="display:none;" />
+<input type="text" name="card_number" id="prevent_autofill" value="" style="display:none;" />
+<input type="password" name="security_code" id="password_fake" value="" style="display:none;" />
 <div class="registration_subtitle_payment">Enter your payment information</div>
 <ol>
     <li>
