@@ -129,7 +129,7 @@ if (isset($events->content) && sizeof($events->content) > 0 && (!isset($events->
                     <div class="dc_clear"></div>
                     <?php
                     if (isset($data->already_purchased) && $data->already_purchased) {
-                        if ($data->live_now) {
+                        if (isset($data->live_now) && $data->live_now) {
                             ?>
                             <div class='already_purchased_msg'>YOUR TICKET IS READY!<br></div>
                             <button type="button" class="btn btn-primary btn-lg btn_events" onclick="button_play_clickHandler()" role="button">Watch now</button>
