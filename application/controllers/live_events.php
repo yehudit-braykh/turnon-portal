@@ -495,4 +495,11 @@ class Live_events extends UVod_Controller {
         $this->load->view(views_url() . 'templates/footer_bst', $data);
     }
 
+    function ppv(){
+        $data = array();
+         $this->load->view(views_url() . 'templates/header_bst', $data);
+        $this->load->view(views_url() . 'pages/ppv', $data);
+        $this->load->view(views_url() . 'templates/footer_bst', $data);
+    }
+    
 }

@@ -50,18 +50,27 @@
                 }
             });
         });
-        
-        
 
     });
 
     function button_play_clickHandler() {
+<?php
+if (isset($events->content) && sizeof($events->content) > 0) {
+    $data = $events->content[0];
+    if ((isset($data->live_now) && $data->live_now) && isset($data->already_purchased) && $data->already_purchased) {
 
-        open_player();
-        setup_player();
-        TweenMax.set("#event_player_container", {height: "auto"});
-        TweenMax.from("#event_player_container", 1, {height: 0});
-        TweenMax.fromTo("#event_player_close", 1, {alpha: 0}, {alpha: 1});
+        ?>
+
+                open_player();
+                setup_player();
+                TweenMax.set("#event_player_container", {height: "auto"});
+                TweenMax.from("#event_player_container", 1, {height: 0});
+                TweenMax.fromTo("#event_player_close", 1, {alpha: 0}, {alpha: 1});
+
+        <?php
+    }
+}
+?>
 
     }
 
@@ -95,7 +104,9 @@
                         provider: "http://players.edgesuite.net/flash/plugins/jw/v3.8/AkamaiAdvancedJWStreamProvider.swf",
                         type: 'mp4'
                     }],
+            
                 primary: "flash",
+                
             });
 
         } else {
@@ -214,13 +225,13 @@
                     <?php
                     /*  } else { */
                     ?>
-                    <!-- <li class="carousel-item" product-id='<?php //echo $data[$i]->id;      ?>'>
+                    <!-- <li class="carousel-item" product-id='<?php //echo $data[$i]->id;     ?>'>
                         <div class="slide-img-content">
-                            <img src="<?php //echo $data[$i]->image;       ?>" />
+                            <img src="<?php //echo $data[$i]->image;      ?>" />
                         </div>
-                        <span class="item-carousel-title"><?php //echo $data[$i]->name;       ?></span><br>
-                        <span class="item-carousel-date"><?php //echo date('d-m, H:i', ($data[$i]->event_date / 1000));       ?> hs</span>
-                        <p class="item-description"><?php //echo $data[$i]->description;      ?></p>
+                        <span class="item-carousel-title"><?php //echo $data[$i]->name;      ?></span><br>
+                        <span class="item-carousel-date"><?php //echo date('d-m, H:i', ($data[$i]->event_date / 1000));      ?> hs</span>
+                        <p class="item-description"><?php //echo $data[$i]->description;     ?></p>
                     </li> -->
 
 
