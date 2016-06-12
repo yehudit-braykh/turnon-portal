@@ -94,6 +94,7 @@ class Live_events extends UVod_Controller {
 
         $media_ids = array();
         $events = $this->live_events_model->list_simple_events();
+        $now = intval(time() . '000');
 
 //      checks if user is logged in
         if (isset($_SESSION['uvod_user_data']) && isset($_SESSION['uvod_user_data']->id)) {
@@ -129,8 +130,6 @@ class Live_events extends UVod_Controller {
 
                     if ($events && $events->content) {
 
-                        $now = intval(time() . '000');
-
                         if ($now > $events->content[0]->event_date) {
                             $events->content[0]->live_now = true;
                         } else {
@@ -158,6 +157,12 @@ class Live_events extends UVod_Controller {
                         $events->content[0]->already_purchased = true;
                     } else {
                         $events->content[0]->already_purchased = false;
+                    }
+
+                    if ($now > $events->content[0]->event_date) {
+                        $events->content[0]->live_now = true;
+                    } else {
+                        $events->content[0]->live_now = false;
                     }
                 }
             }
@@ -230,7 +235,7 @@ class Live_events extends UVod_Controller {
 
             $event_element = new stdClass;
             $event_element->content = array();
-             $now = intval(time() . '000');
+            $now = intval(time() . '000');
             for ($h = 0; $h < sizeof($events->content); $h++) {
                 if ($events->content[$h]->id === $prod_id) {
                     if (sizeof($media_ids) > 0) {
@@ -248,7 +253,7 @@ class Live_events extends UVod_Controller {
                         }
                     }
                     $event_element->content[] = $events->content[$h];
-                    break; 
+                    break;
                 }
             }
 
@@ -495,11 +500,11 @@ class Live_events extends UVod_Controller {
         $this->load->view(views_url() . 'templates/footer_bst', $data);
     }
 
-    function ppv(){
+    function ppv() {
         $data = array();
-         $this->load->view(views_url() . 'templates/header_bst', $data);
+        $this->load->view(views_url() . 'templates/header_bst', $data);
         $this->load->view(views_url() . 'pages/ppv', $data);
         $this->load->view(views_url() . 'templates/footer_bst', $data);
     }
-    
+
 }
