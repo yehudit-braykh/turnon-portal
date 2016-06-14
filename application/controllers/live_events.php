@@ -96,6 +96,18 @@ class Live_events extends UVod_Controller {
         $events = $this->live_events_model->list_simple_events();
         $now = intval(time() . '000');
 
+        if ($events && isset($events->content)) {
+
+            for ($x = 0; $x < sizeof($events->content); $x++) {
+
+                if ($now > $events->content[$x]->event_date) {
+                    $events->content[$x]->live_now = true;
+                } else {
+                    $events->content[$x]->live_now = false;
+                }
+            }
+        }
+
 //      checks if user is logged in
         if (isset($_SESSION['uvod_user_data']) && isset($_SESSION['uvod_user_data']->id)) {
 
@@ -113,38 +125,20 @@ class Live_events extends UVod_Controller {
                     }
                 }
 
-                $products = $this->live_events_model->get_event_products($product_ids);
+                $products_obj = $this->live_events_model->get_event_products($product_ids);
+                error_log('PRODUCT: ' . json_encode($products_obj));
+                if (isset($products_obj->content->entries)) {
+                    $products = $products_obj->content->entries;
+                } else if (isset($products_obj->content) && sizeof(isset($products_obj->content))) {
 
-                if (isset($products->content->entries) && sizeof($products->content->entries) > 0) {
+                    $products = array($products_obj->content);
+                }
 
-                    for ($i = 0; $i < sizeof($products->content->entries); $i++) {
+                if (sizeof($products) > 0) {
 
-                        $events_ids = $products->content->entries[$i]->scopeIds;
+                    for ($i = 0; $i < sizeof($products); $i++) {
 
-                        for ($j = 0; $j < sizeof($events_ids); $j++) {
-                            if (!in_array($events_ids[$j], $media_ids)) {
-                                $media_ids[] = $events_ids[$j];
-                            }
-                        }
-                    }
-
-                    if ($events && $events->content) {
-
-                        if ($now > $events->content[0]->event_date) {
-                            $events->content[0]->live_now = true;
-                        } else {
-                            $events->content[0]->live_now = false;
-                        }
-
-                        if (in_array($events->content[0]->media->_id, $media_ids)) {
-                            $events->content[0]->already_purchased = true;
-                        } else {
-                            $events->content[0]->already_purchased = false;
-                        }
-                    }
-                } else if (isset($products->content) && sizeof(isset($products->content))) {
-                    if (isset($products->content->scopeIds)) {
-                        $events_ids = $products->content->scopeIds;
+                        $events_ids = $products[$i]->scopeIds;
 
                         for ($j = 0; $j < sizeof($events_ids); $j++) {
                             if (!in_array($events_ids[$j], $media_ids)) {
@@ -158,14 +152,9 @@ class Live_events extends UVod_Controller {
                     } else {
                         $events->content[0]->already_purchased = false;
                     }
-
-                    if ($now > $events->content[0]->event_date) {
-                        $events->content[0]->live_now = true;
-                    } else {
-                        $events->content[0]->live_now = false;
-                    }
                 }
             }
+
             $data['section'] = "events";
             $data['events'] = $events;
 
@@ -513,5 +502,4 @@ class Live_events extends UVod_Controller {
 //        $this->load->view(views_url() . 'pages/ppv_html', $data);
 //        $this->load->view(views_url() . 'templates/footer_bst', $data);
 //    }
-
 }

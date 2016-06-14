@@ -185,7 +185,14 @@
             }).done(function (data) {
                 console.log("el data es: ",data);
                 if (data.status == 'ok') {
-                    window.location.href = "<?php echo base_url(); ?>";
+                    <?php 
+                        if(isset($from_page)){
+                            $url = base_url() .'index.php/'.$from_page;
+                        }else{
+                            $url = base_url();
+                        }
+                        ?>
+                    window.location.href = "<?php echo $url; ?>";
                 } else if (data.status == 'merge') {
                     window.location.href = "<?php echo base_url(); ?>index.php/account/merge_accounts";
                 } else {

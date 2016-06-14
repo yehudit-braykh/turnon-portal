@@ -17,35 +17,34 @@ if (isset($events->content) && sizeof($events->content) > 0 && (!isset($events->
                 callbacks: {
                     stop: function () {
 
-                        <?php
-                        if (isset($events->content) && sizeof($events->content) > 0) {
-                            $data = $events->content[0];
-                            if (isset($data->already_purchased) && $data->already_purchased) {
+    <?php
+    if (isset($events->content) && sizeof($events->content) > 0) {
+        $data = $events->content[0];
+        if (isset($data->already_purchased) && $data->already_purchased) {
+            ?>
+                                open_player();
+                                setup_player();
+                                TweenMax.set("#event_player_container", {height: "auto"});
+                                TweenMax.from("#event_player_container", 1, {height: 0});
+                                TweenMax.fromTo("#event_player_close", 1, {alpha: 0}, {alpha: 1});
 
-                                ?>
+                                var add_html = "<div class='already_purchased_msg'>YOUR TICKET IS READY!<br></div>";
+                                add_html += "<button type='button' id='new_watch_now_btn' class='btn btn-primary btn-lg btn_events' onclick='button_play_clickHandler()' role='button'>Watch now</button>"
+                                $(".already_purchased_msg").hide();
+                                $(".view_purchased_ticket").hide();
+                                $("#col_info_sm").append(add_html);
+                                $("#new_watch_now_btn").bind("click", function () {
                                     open_player();
                                     setup_player();
                                     TweenMax.set("#event_player_container", {height: "auto"});
                                     TweenMax.from("#event_player_container", 1, {height: 0});
                                     TweenMax.fromTo("#event_player_close", 1, {alpha: 0}, {alpha: 1});
-                                    
-                                    var add_html = "<div class='already_purchased_msg'>YOUR TICKET IS READY!<br></div>";
-                                    add_html +=  "<button type='button' id='new_watch_now_btn' class='btn btn-primary btn-lg btn_events' onclick='button_play_clickHandler()' role='button'>Watch now</button>"
-                                    $(".already_purchased_msg").hide();                                
-                                    $(".view_purchased_ticket").hide();                                
-                                    $("#col_info_sm").append(add_html);
-                                    $("#new_watch_now_btn").bind("click",function(){
-                                        open_player();
-                                        setup_player();
-                                        TweenMax.set("#event_player_container", {height: "auto"});
-                                        TweenMax.from("#event_player_container", 1, {height: 0});
-                                        TweenMax.fromTo("#event_player_close", 1, {alpha: 0}, {alpha: 1});
-                                    })
+                                })
 
-                                <?php
-                            }
-                        }
-                        ?>
+            <?php
+        }
+    }
+    ?>
                     }
                 }
             });
@@ -81,6 +80,97 @@ if (isset($events->content) && sizeof($events->content) > 0 && (!isset($events->
 
             });
         });
+
+
+
+
+        function button_play_clickHandler() {
+
+            open_player();
+            setup_player();
+            TweenMax.set("#event_player_container", {height: "auto"});
+            TweenMax.from("#event_player_container", 1, {height: 0});
+            TweenMax.fromTo("#event_player_close", 1, {alpha: 0}, {alpha: 1});
+
+        }
+
+        function open_player() {
+
+            $('.player_container').css('background-color', '#000');
+            $('.player_container .col-sm-2').css('min-height', '1px');
+            $('.player_container .col-sm-8').css('min-height', '1px');
+            $('#event_player_container').show();
+            $('#event_player_close').show();
+            $('.carousel-container').css({display: "none"});
+            $('.event-detail-result').css({display: "none"});
+            $('.footer').css({display: "none"});
+        }
+
+
+
+        function setup_player() {
+
+            var is_mobile = mobileAndTabletcheck();
+
+            if (!is_mobile) {
+
+                stream_url = "http://rjr_flash-lh.akamaihd.net/z/rjrexternal_1@179257/manifest.f4m";
+                jwplayer("jw_live_player").setup({
+                    width: '100%',
+                    autostart: true,
+                    aspectratio: "16:9",
+                    playlist: [{
+                            file: stream_url,
+                            provider: "http://players.edgesuite.net/flash/plugins/jw/v3.8/AkamaiAdvancedJWStreamProvider.swf",
+                            type: 'mp4'
+                        }],
+                    primary: "flash",
+                });
+
+            } else {
+
+                stream_url = "<?php echo $data->streaming_url; ?>";
+                jwplayer("jw_live_player").setup({
+                    file: stream_url,
+                    width: '100%',
+                    androidhls: true,
+                    autostart: true,
+                    aspectratio: "16:9"
+                });
+
+            }
+
+        }
+
+        function button_close_clickHandler() {
+            TweenMax.to("#event_player_container", 1, {height: 0});
+            TweenMax.to("#event_player_close", 1, {alpha: 0, onComplete: function () {
+                    $("#event_player_container").hide();
+                    $("#event_player_close").hide();
+                    $('.player_container .col-sm-2').css('min-height', '0px');
+                    $('.player_container .col-sm-8').css('min-height', '0px');
+                    $('#back_button_container').show();
+                    $('.carousel-container').css({display: "block"});
+                    $('.event-detail-result').css({display: "block"});
+                    $('.footer').css({display: "block"});
+                }});
+        }
+        ;
+
+
+        setInterval(function () {
+
+            $.ajax({
+                url: base_url + 'index.php/account/check_status',
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                    if (data.status == 'error') {
+                        window.location = base_url;
+                    }
+                }
+            })
+        }, 120000);
     </script>
 
     <div class="container">
