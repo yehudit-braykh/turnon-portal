@@ -2,7 +2,19 @@
 <?php
 if (isset($events->content) && sizeof($events->content) > 0 && (!isset($events->error) || $events->error == false)) {
 
-    $data = $events->content[0];
+    $live_now = false;
+    for ($i = 0; $i < sizeof($events->content); $i++) {
+
+        if ($events->content[$i]->live_now && !$events->content[$i]->media->event_is_bundle) {
+            $data = $events->content[$i];
+            $live_now = true;
+            break;
+        }
+    }
+    if (!$live_now) {
+        $data = $events->content[0];
+    }
+
     $event_time = $data->event_date;
     ?>
     <script>
@@ -19,7 +31,7 @@ if (isset($events->content) && sizeof($events->content) > 0 && (!isset($events->
 
     <?php
     if (isset($events->content) && sizeof($events->content) > 0) {
-        $data = $events->content[0];
+
         if (isset($data->already_purchased) && $data->already_purchased) {
             ?>
                                 open_player();
@@ -30,6 +42,9 @@ if (isset($events->content) && sizeof($events->content) > 0 && (!isset($events->
 
                                 var add_html = "<div class='already_purchased_msg'>YOUR TICKET IS READY!<br></div>";
                                 add_html += "<button type='button' id='new_watch_now_btn' class='btn btn-primary btn-lg btn_events' onclick='button_play_clickHandler()' role='button'>Watch now</button>"
+                                var live_html = '<div class="col-sm-12 live_now_advise">LIVE NOW</div>';
+                                $('.pic_events').prepend(live_html);
+    
                                 $(".already_purchased_msg").hide();
                                 $(".view_purchased_ticket").hide();
                                 $("#col_info_sm").append(add_html);
@@ -193,27 +208,60 @@ if (isset($events->content) && sizeof($events->content) > 0 && (!isset($events->
 
                 <div class="col-sm-12" id="col_info_sm">
 
-                    <?php if (isset($data->live_now) && !$data->live_now) {
+                    <?php
+                    if (isset($data->live_now) && !$data->live_now) {
+
+                        if (isset($data->media->event_is_bundle) && $data->media->event_is_bundle && isset($data->media->next_event)) {
+                            $beginning_txt = 'THE NEXT EVENT: ' . $data->media->next_event . ' beginning in:';
+                        } else {
+                            $beginning_txt = 'BEGINNING IN';
+                        }
                         ?>
-                        <h3><small>BEGINNING IN:</small></h3>
+                        <h3><small><?php echo $beginning_txt; ?></small></h3>
                         <div class="live_events_countdown">
                             <div id="countdown"></div>
                         </div>
                     <?php }
                     ?>
 
-                    <h2 class="event-detail-title"><?php echo $data->name; ?><br>
-                        <small>
+                    <h2 class="event-detail-title"><?php echo $data->name; ?><br> </h2>
+                    <?php
+                    $tz = 'EST';
+                    $now = intval(time() . '000');
+                    if (isset($data->media->event_is_bundle) && $data->media->event_is_bundle) {
+                        ?>
+                        <ol>
+                            <h4>This ticket include: </h4>
                             <?php
-                            $tz = 'EST';
-                            $timestamp = $data->event_date / 1000;
-                            $dt = new DateTime("now", new DateTimeZone($tz)); //first argument "must" be a string
-                            $dt->setTimestamp($timestamp); //adjust the object to correct timestamp
-                            $event_date = $dt->format('l, F d, Y - H:i');
+                            for ($si = 0; $si < sizeof($data->media->bundle_scope_ids); $si++) {
+                                $event_date = '';
+                                $timestamp = $data->media->bundle_scope_ids[$si]->date / 1000;
+                                $dt = new DateTime("now", new DateTimeZone($tz)); //first argument "must" be a string
+                                $dt->setTimestamp($timestamp); //adjust the object to correct timestamp
+                                $event_date = $dt->format('l, F d, Y - H:i');
+                                $live_txt = '';
+                                if($now > $data->media->bundle_scope_ids[$si]->date){
+                                    $live_txt = ' - <b style="color:orange;">LIVE NOW</b>';
+                                }
+                                ?>
+                                <li> <?php echo  $data->media->bundle_scope_ids[$si]->title . ' - ' . $event_date . ' Hs EST' . $live_txt; ?></li>
+                                <?php
+                            }
+                            ?>
+                        </ol>
+                        <h3>Price: US $<?php echo $data->price; ?></3>
+                        <?php
+                    } else {
 
-                            echo $event_date . ' Hours EST - US $' . $data->price;
-                            ?></small>
-                    </h2>
+                        $timestamp = $data->event_date / 1000;
+                        $dt = new DateTime("now", new DateTimeZone($tz)); //first argument "must" be a string
+                        $dt->setTimestamp($timestamp); //adjust the object to correct timestamp
+                        $event_date = $dt->format('l, F d, Y - H:i');
+
+                        echo '<h3>' . $event_date . ' Hours EST - US $' . $data->price . '</h3>';
+                    }
+                    ?>
+
 
                     <h5 class="vod_info_credit_item_value"><?php echo $data->description; ?></h5>
                     <div class="dc_clear"></div>

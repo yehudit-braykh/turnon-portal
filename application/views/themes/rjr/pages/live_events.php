@@ -72,27 +72,27 @@
 
 
 <div id="event-template">
-<?php $this->load->view(views_url() . 'templates/event-detail'); ?>
+    <?php $this->load->view(views_url() . 'templates/event-detail'); ?>
 </div>
 
 <div class="dc_clear"></div>
 
 <div class="carousel-container col-sm-12 carousel-events">
 
-<?php
-if (isset($events->content) && sizeof($events->content) > 0) {
-    ?>
+    <?php
+    if (isset($events->content) && sizeof($events->content) > 0) {
+        ?>
         <div class="category-title">Scheduled Events</div>
         <!--<div class="col-md-6">-->
         <div id="events_slider" class="flexslider">
             <ul class="slides">
 
-    <?php
-    $data = $events->content;
-    for ($i = 0; $i < sizeof($data); $i++) {
-        if (isset($data[$i]->live_now) && $data[$i]->live_now) {
-            $event_item_overlay = '<span class="item-carousel-subtitle"> LIVE NOW!</span>';
-            ?>
+                <?php
+                $data = $events->content;
+                for ($i = 0; $i < sizeof($data); $i++) {
+                    if (isset($data[$i]->live_now) && $data[$i]->live_now) {
+                        $event_item_overlay = '<span class="item-carousel-subtitle"> LIVE NOW!</span>';
+                        ?>
                         <?php
                     } else {
                         $event_item_overlay = '';
@@ -106,39 +106,43 @@ if (isset($events->content) && sizeof($events->content) > 0) {
                             <div class="slider-caption">
                                 <div class="first-item-carousel-title"><span><?php echo $data[$i]->name; ?></span></div>
                                 <div class="first-item-carousel-date">
-        <?php echo $event_item_overlay; ?>
+                                    <?php echo $event_item_overlay; ?>
                                     <span><?php
-                                    $tz = 'EST';
-                                    $timestamp = $data[$i]->event_date / 1000;
-                                    $dt = new DateTime("now", new DateTimeZone($tz)); //first argument "must" be a string
-                                    $dt->setTimestamp($timestamp); //adjust the object to correct timestamp
-                                    $event_date = $dt->format('l, F d, Y - H:i');
+                                        if (!$data[$i]->media->event_is_bundle) {
+                                            $tz = 'EST';
+                                            $timestamp = $data[$i]->event_date / 1000;
+                                            $dt = new DateTime("now", new DateTimeZone($tz)); //first argument "must" be a string
+                                            $dt->setTimestamp($timestamp); //adjust the object to correct timestamp
+                                            $event_date = $dt->format('l, F d, Y - H:i');
 
-                                    echo $event_date . ' Hours EST - US $' . $data[$i]->price;
-                                    ?></span>
+                                            echo $event_date . ' Hours EST - US $' . $data[$i]->price;
+                                        }else{
+                                              echo 'Price: US $' . $data[$i]->price;
+                                        }
+                                        ?></span>
                                 </div>
                             </div>
 
 
                         </div>
                     </li>
-        <?php
-        /*  } else { */
-        ?>
-                    <!-- <li class="carousel-item" product-id='<?php //echo $data[$i]->id;     ?>'>
+                    <?php
+                    /*  } else { */
+                    ?>
+                    <!-- <li class="carousel-item" product-id='<?php //echo $data[$i]->id;      ?>'>
                         <div class="slide-img-content">
-                            <img src="<?php //echo $data[$i]->image;       ?>" />
+                            <img src="<?php //echo $data[$i]->image;        ?>" />
                         </div>
-                        <span class="item-carousel-title"><?php //echo $data[$i]->name;       ?></span><br>
-                        <span class="item-carousel-date"><?php //echo date('d-m, H:i', ($data[$i]->event_date / 1000));       ?> hs</span>
-                        <p class="item-description"><?php //echo $data[$i]->description;      ?></p>
+                        <span class="item-carousel-title"><?php //echo $data[$i]->name;        ?></span><br>
+                        <span class="item-carousel-date"><?php //echo date('d-m, H:i', ($data[$i]->event_date / 1000));        ?> hs</span>
+                        <p class="item-description"><?php //echo $data[$i]->description;       ?></p>
                     </li> -->
 
 
-        <?php
-        //}
-    }
-    ?>
+                    <?php
+                    //}
+                }
+                ?>
             </ul>
         </div>
     </div>
