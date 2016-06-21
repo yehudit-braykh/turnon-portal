@@ -99,7 +99,7 @@ class Live_events extends UVod_Controller {
         $media_ids = array();
         $events = $this->live_events_model->list_simple_events();
         $now = intval(time() . '000');
-      
+
         if ($events && isset($events->content)) {
 
             for ($x = 0; $x < sizeof($events->content); $x++) {
@@ -130,7 +130,7 @@ class Live_events extends UVod_Controller {
                 }
 
                 $products_obj = $this->live_events_model->get_event_products($product_ids);
-               
+
                 if (isset($products_obj->content->entries)) {
                     $products = $products_obj->content->entries;
                 } else if (isset($products_obj->content) && sizeof(isset($products_obj->content))) {
@@ -212,22 +212,24 @@ class Live_events extends UVod_Controller {
                     }
 
                     $products = $this->live_events_model->get_event_products($product_ids);
-   
+
                     if (isset($products->content->entries) && sizeof($products->content->entries) > 0) {
                         $product = $products->content->entries;
                     } else if (isset($products->content) && sizeof(isset($products->content))) {
                         $product = array($products->content);
                     }
 
-                    if (sizeof($products) > 0) {
+                    if (sizeof($product) > 0) {
 
                         for ($i = 0; $i < sizeof($product); $i++) {
 
-                            $events_ids = $product[$i]->scopeIds;
+                            if (isset($product[$i]->scopeIds)) {
+                                $events_ids = $product[$i]->scopeIds;
 
-                            for ($j = 0; $j < sizeof($events_ids); $j++) {
-                                if (!in_array($events_ids[$j], $media_ids)) {
-                                    $media_ids[] = $events_ids[$j];
+                                for ($j = 0; $j < sizeof($events_ids); $j++) {
+                                    if (!in_array($events_ids[$j], $media_ids)) {
+                                        $media_ids[] = $events_ids[$j];
+                                    }
                                 }
                             }
                         }
