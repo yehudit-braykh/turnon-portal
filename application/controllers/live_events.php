@@ -100,7 +100,7 @@ class Live_events extends UVod_Controller {
         $media_ids = array();
         $events = $this->live_events_model->list_simple_events();
         $now = intval(time() . '000');
-        error_log('EVENTS: '.json_encode($events));
+
 //      checks if user is logged in
         if (isset($_SESSION['uvod_user_data']) && isset($_SESSION['uvod_user_data']->id)) {
 
@@ -119,7 +119,7 @@ class Live_events extends UVod_Controller {
                 }
 
                 $products = $this->live_events_model->get_event_products($product_ids);
-                error_log('PRODUCTS: '.json_encode($products));
+
                 if (isset($products->content->entries) && sizeof($products->content->entries) > 0) {
 
                     for ($i = 0; $i < sizeof($products->content->entries); $i++) {

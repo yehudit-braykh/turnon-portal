@@ -13,6 +13,10 @@ class Account extends UVod_Controller {
         $this->load->model('live_events_model');
         $this->load->model('social_media_model');
         $this->load->helper('pdk');
+
+        if (isset($_GET['flush_cache']) && $_GET['flush_cache'] == 'true') {
+            $this->fastcache_model->clean_cache();
+        }
     }
 
     public function forgot() {
@@ -290,7 +294,7 @@ class Account extends UVod_Controller {
         $this->load->view(views_url() . 'templates/footer', $data);
     }
 
-     private function get_events() {
+    private function get_events() {
 
         $media_ids = array();
         $events = $this->live_events_model->get_events();
@@ -306,17 +310,16 @@ class Account extends UVod_Controller {
 
                 for ($h = 0; $h < sizeof($orders_item->content->entries); $h++) {
 
-                    $id_arr = explode('/', $orders_item->content->entries[$h]->productId);
-                    $product_id = intval($id_arr[sizeof($id_arr) - 1]);
+                    $product_id = $orders_item->content->entries[$h]->productId;
                     if ($h == 0) {
                         $product_ids = $product_id;
                     } else {
                         $product_ids .= '|' . $product_id;
                     }
                 }
-
+             
                 $products = $this->live_events_model->get_event_products($product_ids);
-
+               
                 if (isset($products->content->entries) && sizeof($products->content->entries) > 0) {
 
                     for ($i = 0; $i < sizeof($products->content->entries); $i++) {
@@ -880,7 +883,7 @@ class Account extends UVod_Controller {
         $ret->message = "";
 
         $fb_profile = $this->social_media_model->get_fb_profile();
-  error_log('fb profile: ' . json_encode($fb_profile));
+        error_log('fb profile: ' . json_encode($fb_profile));
         if ($fb_profile->status === 'ok') {
 
             $fb_id = $fb_profile->content->id;
