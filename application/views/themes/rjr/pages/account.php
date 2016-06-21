@@ -451,11 +451,11 @@ if (isset($clientToken)) {
                                 if (isset($events->content[$i]->already_purchased) && $events->content[$i]->already_purchased == true) {
                                     $flag = 1;
                                     if (isset($events->content[$i]->live_now) && $events->content[$i]->live_now) {
-                                        $live_txt = '<button type="submit" id="btn_watch_now" class="send btn_watch_now">Watch Now</button>';
+                                        $live_txt = '<div style="float:right;width:120px;margin-right:30%"><button type="submit" id="btn_watch_now" class="send btn_watch_now">Watch Now</button></div>';
                                     } else {
-                                        $live_txt = 'ALREADY PURCHASED!';
+                                        $live_txt = '<div style="float:right;margin-right:30%">ALREADY PURCHASED!</div>';
                                     }
-                                    echo '<div style="float:left;line-height:45px;width:100%;">' . date('d-m-Y', $events->content[$i]->event_date / 1000) . ' - ' . $events->content[$i]->name . '<div style="float:right;width:120px;margin-right:30%">' . $live_txt . '</div></div>';
+                                    echo '<div style="float:left;line-height:45px;width:100%;">' . date('d-m-Y', $events->content[$i]->event_date / 1000) . ' - ' . $events->content[$i]->name . $live_txt;
                                 }
                             }
                             if (!$flag) {
