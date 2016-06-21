@@ -290,7 +290,7 @@ class Account extends UVod_Controller {
         $this->load->view(views_url() . 'templates/footer', $data);
     }
 
-    private function get_events() {
+     private function get_events() {
 
         $media_ids = array();
         $events = $this->live_events_model->get_events();
