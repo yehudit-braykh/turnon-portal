@@ -455,7 +455,7 @@ if (isset($clientToken)) {
                                     } else {
                                         $live_txt = '<div style="float:right;margin-right:30%">ALREADY PURCHASED!</div>';
                                     }
-                                    echo '<div style="float:left;line-height:45px;width:100%;">' . date('d-m-Y', $events->content[$i]->event_date / 1000) . ' - ' . $events->content[$i]->name . $live_txt;
+                                    echo '<div style="float:left;line-height:45px;width:100%;">' . date('d-m-Y', $events->content[$i]->event_date / 1000) . ' - ' . $events->content[$i]->name . $live_txt. '</div>';
                                 }
                             }
                             if (!$flag) {
