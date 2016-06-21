@@ -41,9 +41,10 @@
                 type: 'POST',
                 data: 'product_id=' + product_id,
                 beforeSend: function () {
-
                     $('#event-template').html('<div id="event-loading" class="col-md-12">Loading....</div>');
-
+                    body = $("html, body");
+                    body.stop().animate({scrollTop: 0}, '500', 'swing', function () {
+                    });
                 },
                 success: function (data) {
                     $('#event-template').html(data);
@@ -116,8 +117,8 @@
                                             $event_date = $dt->format('l, F d, Y - H:i');
 
                                             echo $event_date . ' Hours EST - US $' . $data[$i]->price;
-                                        }else{
-                                              echo 'Price: US $' . $data[$i]->price;
+                                        } else {
+                                            echo 'Price: US $' . $data[$i]->price;
                                         }
                                         ?></span>
                                 </div>
@@ -129,13 +130,13 @@
                     <?php
                     /*  } else { */
                     ?>
-                    <!-- <li class="carousel-item" product-id='<?php //echo $data[$i]->id;      ?>'>
+                    <!-- <li class="carousel-item" product-id='<?php //echo $data[$i]->id;         ?>'>
                         <div class="slide-img-content">
-                            <img src="<?php //echo $data[$i]->image;        ?>" />
+                            <img src="<?php //echo $data[$i]->image;           ?>" />
                         </div>
-                        <span class="item-carousel-title"><?php //echo $data[$i]->name;        ?></span><br>
-                        <span class="item-carousel-date"><?php //echo date('d-m, H:i', ($data[$i]->event_date / 1000));        ?> hs</span>
-                        <p class="item-description"><?php //echo $data[$i]->description;       ?></p>
+                        <span class="item-carousel-title"><?php //echo $data[$i]->name;           ?></span><br>
+                        <span class="item-carousel-date"><?php //echo date('d-m, H:i', ($data[$i]->event_date / 1000));           ?> hs</span>
+                        <p class="item-description"><?php //echo $data[$i]->description;          ?></p>
                     </li> -->
 
 
