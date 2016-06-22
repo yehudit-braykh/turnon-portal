@@ -331,7 +331,7 @@ class Account extends UVod_Controller {
                 }
 
                 $products = $this->live_events_model->get_event_products($product_ids);
-           
+                error_log('PRODUCTS: '.json_encode($products));
                 if (isset($products->content->entries) && sizeof($products->content->entries) > 0) {
 
                     for ($i = 0; $i < sizeof($products->content->entries); $i++) {
@@ -352,7 +352,7 @@ class Account extends UVod_Controller {
                             $events->content[$j]->already_purchased = false;
                         }
                     }
-                } else if (isset($products->content) && sizeof(isset($products->content))) {
+                } else if (isset($products->content) && sizeof(isset($products->content)) && !isset($products->content->entries)) {
 
                     $events_ids = $products->content->scopeIds;
 
