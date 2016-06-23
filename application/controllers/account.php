@@ -340,7 +340,7 @@ class Account extends UVod_Controller {
                             $events->content[$j]->already_purchased = false;
                         }
                     }
-                } else if (isset($products->content) && sizeof(isset($products->content))) {
+                } else if (isset($products->content) && sizeof(isset($products->content)) && !isset($products->content->entries)) {
 
                     $events_ids = $products->content->scopeIds;
 
