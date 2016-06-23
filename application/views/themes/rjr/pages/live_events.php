@@ -41,6 +41,9 @@
                 type: 'POST',
                 data: 'product_id=' + product_id,
                 beforeSend: function () {
+                    if(typeof(clock) !== 'undefined'){
+                        clock.stop();
+                    }
                     $('#event-template').html('<div id="event-loading" class="col-md-12">Loading....</div>');
                     body = $("html, body");
                     body.stop().animate({scrollTop: 0}, '500', 'swing', function () {
