@@ -135,11 +135,11 @@ class Vod extends UVod_Controller {
                     $months = $this->vod_model->get_dates();
                     $data['months'] = $months;
                     $data['selected_category_id'] = $genre;
-
+error_log("genre: ".$genre. " date: ". $end_date. " category: ". $category);
                     if ($this->config->item('create_items_on_view') !== FALSE) {
-                        $data['items_category_1'] = $this->vod_model->get_items_by_aired_date($genre, $end_date, $category, null,'5000', 'aired_date:-1');
+                        $data['items_category_1'] = $this->vod_model->get_items_by_aired_date($genre, $end_date, $category, null,'1000', 'aired_date:-1');
                     } else {
-                        $data['items_category_1'] = $this->create_items($this->vod_model->get_items_by_aired_date($genre, $end_date, $category, null ,'5000', 'aired_date:-1'));
+                        $data['items_category_1'] = $this->create_items($this->vod_model->get_items_by_aired_date($genre, $end_date, $category, null ,'1000', 'aired_date:-1'));
                     }
 
                     $data['selected_category_text'] = 'All';

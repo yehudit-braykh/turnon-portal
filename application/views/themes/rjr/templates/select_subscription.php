@@ -86,9 +86,25 @@ for ($i = 0; $i < sizeof($subscriptions); $i++) {
                         <?php
                     }
                     ?>
-                    <h3><?php echo $subscriptions[$i]->title ?><span><?php echo '$' . $arr[0]; ?><?php echo $cents; ?></span></h3>
+                    <h3><?php echo $subscriptions[$i]->title ?>
+                        <span><?php echo '$' . $arr[0]; ?><?php echo $cents . '<br>'; ?>
+                            <?php
+                        if ($subscriptions[$i]->description) {
+                            ?>
+                            <div class="price_subtitle">
+                                <?php echo $subscriptions[$i]->description; ?>
+                            </div>
+                            <?php
+                        }
+                        ?>
+                        </span>
+
+                    </h3>
                     <ul>
                         <br />
+                        
+
+                       
                         <li><?php echo $months_txt; ?></li>
                         <li>Access to 7 Live Channels<br>(4 TV + 3 Radio)</li>
                         <li><b>Unrestricted access to our VoD Catalogue</b></li>

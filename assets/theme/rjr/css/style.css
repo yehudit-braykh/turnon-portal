@@ -2539,6 +2539,13 @@ select:focus, select:active {
     margin: 10px 0px 10px 0px;
 }
 
+.price_subtitle{
+    font-size: 12px;
+    line-height: 0%!important;
+    margin-top: -8px;
+    color: #7F0077;
+}
+
 .dropcontainer {
     position:relative;
     font-size: 16px;
