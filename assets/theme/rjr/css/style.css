@@ -990,8 +990,17 @@ img{}
     cursor: pointer;
 }
 
-.top_menu div:hover {
-    color: #f00;    
+.top_menu_btn{
+    float: left;
+}
+
+.top_menu_btn:hover {
+    color: rgb(254,215,0);   
+}
+
+.top_menu_separator{
+    float: left;
+    margin: 0px 5px;
 }
 
 #player_close_button {
@@ -2872,7 +2881,7 @@ ul.ordered_list li {
 
 @media (min-width: 320px) {
 
-    #signin {
+    .top_menu_btn, .top_menu_separator {
         padding-top: 10px !important;
     }
 
@@ -3547,7 +3556,7 @@ ul.ordered_list li {
         width: 60px;
     }
 
-    #signin {
+    .top_menu_btn, .top_menu_separator{
         padding-top: 8px;
     }
 

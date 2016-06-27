@@ -288,6 +288,8 @@ class Account extends UVod_Controller {
         if ($events) {
             $data['events'] = $events;
         }
+        
+        $data['section'] = "my_account";
 
         $this->load->view(views_url() . 'templates/header', $data);
         $this->load->view(views_url() . 'pages/account', $data);
