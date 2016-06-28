@@ -214,7 +214,7 @@ class Live_events extends UVod_Controller {
 
                     $products = $this->live_events_model->get_event_products($product_ids);
 
-                    if (isset($products->content->entries) && sizeof($products->content->entries) > 0) {
+                    if (isset($products->content->entries)) {
                         $product = $products->content->entries;
                     } else if (isset($products->content) && sizeof(isset($products->content))) {
                         $product = array($products->content);
