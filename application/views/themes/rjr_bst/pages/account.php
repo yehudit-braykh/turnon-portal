@@ -3,7 +3,7 @@
 
     $(function () {
 
-        $('#tab-container').easytabs();
+       
 
         $('.btn_watch_now').on('click', function (event) {
             window.location.href = "<?php echo base_url() . 'index.php/live_events/main'; ?>";
@@ -85,10 +85,9 @@ if (isset($clientToken)) {
     <?php
 }
 ?>
-        $('#btn_logout').on('click', function (event) {
+        $('#logout-btn').on('click', function (event) {
             event.preventDefault();
-            $("#registerform").attr("action", "<?php echo base_url(); ?>index.php/account/logout_ssl");
-            $("#registerform").submit();
+            window.location.href = "<?php echo base_url(); ?>index.php/account/logout_ssl";
         });
 
         $('#btn_change_password').on('click', function (event) {
@@ -298,10 +297,42 @@ if (isset($clientToken)) {
     });
 </script>
 
-</div>
+<div class="custom-container">
+    <div class="main-title section-title">MY ACCOUNT</div>
+    <div class="options-container col-md-3">
+        <ul>
+            <li >
+                <a href="#tab1" id="vod_item_sub_menu1">Profile</a>
+            </li>
+            <li >
+                <a href="#tab2" id="vod_item_sub_menu2">Subscription</a>
+            </li>
+            <li >
+                <a href="#tab2" id="vod_item_sub_menu2">Billing Information</a>
+            </li>
+            <li >
+                <a href="#tab3" id="vod_item_sub_menu3">Pay-Per-View Tickets</a>
+            </li>
+            <li >
+                <a href="#tab3" id="vod_item_sub_menu3">My Devices</a>
+            </li>
+            <li >
+                <a href="#tab4" id="vod_item_sub_menu4">Change password</a>
+            </li>
+            <li>
+                <button id="logout-btn" class="common-button">LOGOUT</button>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-9">
+
+    </div>
+
 </div>
 
-<!-- content -->
+
+<!--
+ content 
 <div class="account_content content_centered">
     <div class="logout_button_container">
         <input type="image" id="btn_logout" src="<?php echo asset_url(); ?>images/button_logout.png" class="send" style="margin-left:10px;" />
@@ -346,135 +377,135 @@ if (isset($clientToken)) {
                 </div>
                 <div id="tab2" style="padding-left:20px">
                     <div class="registration_container">
-                        <?php
-                        if (isset($subscription_data) && $subscription_data != "") {
-                            if ($subscription_data->{'autoRenew'}) {
-                                $auto_renew_chbx = 'checked="checked"';
-                            } else {
-                                $auto_renew_chbx = '';
-                            }
-                            ?>
+<?php
+if (isset($subscription_data) && $subscription_data != "") {
+    if ($subscription_data->{'autoRenew'}) {
+        $auto_renew_chbx = 'checked="checked"';
+    } else {
+        $auto_renew_chbx = '';
+    }
+    ?>
 
-                            <form method="post" id="cancelform">
-                                <ol>
-                                    <li>
-                                        <label for="subscription_type">Type</label>
-                                        <input id="subscription_type" class="text" style="width:180px;" value="<?php echo $subscription_data->title; ?>" readonly/>
-                                    </li>
-                                    <li>
-                                        <label for="contract_status">Status</label>
-                                        <input id="contract_status" class="text" style="width:150px;" value="<?php
-                                        if ($subscription_data->{'active'}) {
-                                            echo 'Active';
-                                        } else {
-                                            echo 'Inactive';
-                                        }
-                                        ?>" readonly/>
-                                    </li>
+                                <form method="post" id="cancelform">
+                                    <ol>
+                                        <li>
+                                            <label for="subscription_type">Type</label>
+                                            <input id="subscription_type" class="text" style="width:180px;" value="<?php echo $subscription_data->title; ?>" readonly/>
+                                        </li>
+                                        <li>
+                                            <label for="contract_status">Status</label>
+                                            <input id="contract_status" class="text" style="width:150px;" value="<?php
+    if ($subscription_data->{'active'}) {
+        echo 'Active';
+    } else {
+        echo 'Inactive';
+    }
+    ?>" readonly/>
+                                        </li>
 
-                                    <li>
-                                        <label for="contact_start_date">Subscribed since</label>
-                                        <input id="contact_start_date" class="text" style="width:150px;" value="<?php echo date('Y-m-d', $subscription_data->{'contractStartDate'} / 1000); ?>" readonly/>
-                                    </li>
-                                    <li>
-                                        <label for="contact_end_date">Subscription due date</label>
-                                        <input id="contact_end_date" class="text" style="width:150px;" value="<?php echo date('Y-m-d', $subscription_data->{'contractEndDate'} / 1000); ?>" readonly/>
-                                    </li>
+                                        <li>
+                                            <label for="contact_start_date">Subscribed since</label>
+                                            <input id="contact_start_date" class="text" style="width:150px;" value="<?php echo date('Y-m-d', $subscription_data->{'contractStartDate'} / 1000); ?>" readonly/>
+                                        </li>
+                                        <li>
+                                            <label for="contact_end_date">Subscription due date</label>
+                                            <input id="contact_end_date" class="text" style="width:150px;" value="<?php echo date('Y-m-d', $subscription_data->{'contractEndDate'} / 1000); ?>" readonly/>
+                                        </li>
 
+                                        <li> 
+                                            <p id="info" style="color:#fff;text-align:center;margin-left:120px;">&nbsp;</p>
+                                        </li>
+                                        <li class="buttons">
+                                            <input id="contract_id" type="hidden" class="text" style="width:150px;" value="<?php echo $subscription_data->_id; ?>" />
+                                            <div class="chbx-container">
+                                                <input id="contract-auto-renew"type="checkbox" <?php echo $auto_renew_chbx; ?>/><label class="chbx-lbl">Auto-renew</label>
+                                            </div>
+                                            <button class="common_btn" id="save-subscription">SAVE</button>      
+                                        </li>
+                                        <li> 
+                                            <p id="save_subs_preloader" class="form_info"></p>
+                                            <p id="save-subs-info" class="form_info"></p>
+                                        </li>
+                                    </ol>
+                                </form>     
+    <?php
+} else {
+    ?>
+
+                                <div class="registration_title_payment">WANT TO BECOME <br class="rwd-break"> A SUBSCRIBER?</div>
+
+    <?php
+    if (sizeof($subscriptions) > 0) {
+        $this->load->view(views_url() . 'templates/select_subscription');
+    }
+    ?>
+                                <form method="post" id="subscription_form" style="display: none;">
+    <?php
+    $this->load->view(views_url() . 'templates/credit_card_form');
+    ?>
+                                    <li class="buttons">
+                                        <input id="auto-renew"type="checkbox" checked="checked"/><label class="chbx-lbl">Auto-renew</label>
+                                    </li>
+                                    <li id= "terms_and_conditions" style="margin-top: 10px">
+                                        <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
+                                        <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_conditions_subscribers'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
                                     <li> 
-                                        <p id="info" style="color:#fff;text-align:center;margin-left:120px;">&nbsp;</p>
+                                        <p id="info" class="form_info">&nbsp;</p>
                                     </li>
                                     <li class="buttons">
-                                        <input id="contract_id" type="hidden" class="text" style="width:150px;" value="<?php echo $subscription_data->_id; ?>" />
-                                        <div class="chbx-container">
-                                            <input id="contract-auto-renew"type="checkbox" <?php echo $auto_renew_chbx; ?>/><label class="chbx-lbl">Auto-renew</label>
-                                        </div>
-                                        <button class="common_btn" id="save-subscription">SAVE</button>      
+                                        <button class="other-op-btn">Select other Plan</button>
+                                        <button class="subscriber_button">Subscribe</button>
+                                        <div id="registration_preloader"></div>
+                                        <div class="clr"></div>
                                     </li>
-                                    <li> 
-                                        <p id="save_subs_preloader" class="form_info"></p>
-                                        <p id="save-subs-info" class="form_info"></p>
-                                    </li>
-                                </ol>
-                            </form>     
-                            <?php
-                        } else {
-                            ?>
+                                    </ol>
+                                </form>   
 
-                            <div class="registration_title_payment">WANT TO BECOME <br class="rwd-break"> A SUBSCRIBER?</div>
-
-                            <?php
-                            if (sizeof($subscriptions) > 0) {
-                                $this->load->view(views_url() . 'templates/select_subscription');
-                            }
-                            ?>
-                            <form method="post" id="subscription_form" style="display: none;">
-                                <?php
-                                $this->load->view(views_url() . 'templates/credit_card_form');
-                                ?>
-                                <li class="buttons">
-                                    <input id="auto-renew"type="checkbox" checked="checked"/><label class="chbx-lbl">Auto-renew</label>
-                                </li>
-                                <li id= "terms_and_conditions" style="margin-top: 10px">
-                                    <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
-                                    <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_conditions_subscribers'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
-                                <li> 
-                                    <p id="info" class="form_info">&nbsp;</p>
-                                </li>
-                                <li class="buttons">
-                                    <button class="other-op-btn">Select other Plan</button>
-                                    <button class="subscriber_button">Subscribe</button>
-                                    <div id="registration_preloader"></div>
-                                    <div class="clr"></div>
-                                </li>
-                                </ol>
-                            </form>   
-
-                            <?php
-                        }
-                        ?>
+    <?php
+}
+?>
                     </div>
                 </div>
 
                 <div id="tab3" style="padding-left:20px">
 
-                    <?php
-                    if (isset($events) && sizeof($events->content) > 0) {
-                        ?>
+<?php
+if (isset($events) && sizeof($events->content) > 0) {
+    ?>
 
-                        <div class="information_content" style="background-color: rgba(255,255,255,0.1);min-height:400px;">
+                            <div class="information_content" style="background-color: rgba(255,255,255,0.1);min-height:400px;">
 
-                            <?php
-                            $flag = 0;
-                            for ($i = 0; $i < sizeof($events->content); $i++) {
+    <?php
+    $flag = 0;
+    for ($i = 0; $i < sizeof($events->content); $i++) {
 
-                                if (isset($events->content[$i]->already_purchased) && $events->content[$i]->already_purchased == true) {
-                                    $flag = 1;
-                                    if (isset($events->content[$i]->live_now) && $events->content[$i]->live_now) {
-                                        $live_txt = '<div style="float:right;width:120px;margin-right:30%"><button type="submit" id="btn_watch_now" class="send btn_watch_now">Watch Now</button></div>';
-                                    } else {
-                                        $live_txt = '<div style="float:right;margin-right:30%">ALREADY PURCHASED!</div>';
-                                    }
-                                    echo '<div style="float:left;line-height:45px;width:100%;">' . date('d-m-Y', $events->content[$i]->event_date / 1000) . ' - ' . $events->content[$i]->name . $live_txt. '</div>';
-                                }
-                            }
-                            if (!$flag) {
-                                ?>
-                                <div class="buy_events_link"><span>You don't have any pay-per-view tickets yet.</span><br><a href="<?php echo base_url() . 'index.php/live_events/buy_events_ssl'; ?>">Buy Now!</a></div>
-                                <?php
-                            }
-                            ?>
-                            <div class="dc_clear"></div>
+        if (isset($events->content[$i]->already_purchased) && $events->content[$i]->already_purchased == true) {
+            $flag = 1;
+            if (isset($events->content[$i]->live_now) && $events->content[$i]->live_now) {
+                $live_txt = '<div style="float:right;width:120px;margin-right:30%"><button type="submit" id="btn_watch_now" class="send btn_watch_now">Watch Now</button></div>';
+            } else {
+                $live_txt = '<div style="float:right;margin-right:30%">ALREADY PURCHASED!</div>';
+            }
+            echo '<div style="float:left;line-height:45px;width:100%;">' . date('d-m-Y', $events->content[$i]->event_date / 1000) . ' - ' . $events->content[$i]->name . $live_txt . '</div>';
+        }
+    }
+    if (!$flag) {
+        ?>
+                                        <div class="buy_events_link"><span>You don't have any pay-per-view tickets yet.</span><br><a href="<?php echo base_url() . 'index.php/live_events/buy_events_ssl'; ?>">Buy Now!</a></div>
+        <?php
+    }
+    ?>
+                                <div class="dc_clear"></div>
 
-                        </div>
-                        <?php
-                    }
-                    ?>
+                            </div>
+    <?php
+}
+?>
 
 
                 </div>
 
-                <!--                <div id="tab3">
+                                <div id="tab3">
                 
                                     <div class="registration_container" style="min-height:500px;">
                                         <form method="post" id="registerform2">
@@ -482,65 +513,65 @@ if (isset($clientToken)) {
                                                 <li>
                                                     <label for="cardholder_name">Name on Card*</label>
                                                     <input id="cardholder_name" class="text billing_data" disabled="disabled" value="<?php
-                    if (isset($card_name)) {
-                        echo $card_name;
-                    }
-                    ?>" />
+if (isset($card_name)) {
+    echo $card_name;
+}
+?>" />
                                                 </li>
                                                 <li>
                                                     <label for="card_number">Card Number*</label>
                                                     <input id="card_number" class="text billing_data" disabled="disabled" style="width:150px;" value="<?php
-                if (isset($card_number)) {
-                    echo $card_number;
-                }
-                    ?>" />
+if (isset($card_number)) {
+    echo $card_number;
+}
+?>" />
                                                 </li>
                                                 <li>
                                                     <label for="security_code">Security Code*</label>
                                                     <input id="security_code" class="text billing_data" type="password" disabled="disabled" style="width:70px;" value="<?php
-                if (isset($card_number)) {
-                    echo '***';
-                }
-                    ?>" />
+if (isset($card_number)) {
+    echo '***';
+}
+?>" />
                                                 </li>
                                                 <li>
                                                     <label for="expiration_month" style="width: 100%">Month*</label>
                 
                                                     <select id="expiration_month" class="text billing_data" disabled="disabled" style="width:70px;">
-                <?php
-                if (isset($card_expiration_month)) {
-                    for ($i = 1; $i <= 12; $i++) {
-                        if ($i == $card_expiration_month) {
-                            if ($i < 10) {
-                                echo '<option id="0' . $i . '" selected="selected">0' . $i . '</option>';
-                            } else {
-                                echo '<option id="' . $i . '" selected="selected">' . $i . '</option>';
-                            }
-                        } else {
-                            if ($i < 10) {
-                                echo '<option id="0' . $i . '">0' . $i . '</option>';
-                            } else {
-                                echo '<option id="' . $i . '">' . $i . '</option>';
-                            }
-                        }
-                    }
-                } else {
-                    ?>
-                                                                                                    <option id="01">01</option>
-                                                                                                    <option id="02">02</option>
-                                                                                                    <option id="03">03</option>
-                                                                                                    <option id="04">04</option>
-                                                                                                    <option id="05">05</option>
-                                                                                                    <option id="06">06</option>
-                                                                                                    <option id="07">07</option>
-                                                                                                    <option id="08">08</option>
-                                                                                                    <option id="09">09</option>
-                                                                                                    <option id="10">10</option>
-                                                                                                    <option id="11">11</option>
-                                                                                                    <option id="12">12</option>
-                    <?php
-                }
-                ?>
+<?php
+if (isset($card_expiration_month)) {
+    for ($i = 1; $i <= 12; $i++) {
+        if ($i == $card_expiration_month) {
+            if ($i < 10) {
+                echo '<option id="0' . $i . '" selected="selected">0' . $i . '</option>';
+            } else {
+                echo '<option id="' . $i . '" selected="selected">' . $i . '</option>';
+            }
+        } else {
+            if ($i < 10) {
+                echo '<option id="0' . $i . '">0' . $i . '</option>';
+            } else {
+                echo '<option id="' . $i . '">' . $i . '</option>';
+            }
+        }
+    }
+} else {
+    ?>
+                                                                                                        <option id="01">01</option>
+                                                                                                        <option id="02">02</option>
+                                                                                                        <option id="03">03</option>
+                                                                                                        <option id="04">04</option>
+                                                                                                        <option id="05">05</option>
+                                                                                                        <option id="06">06</option>
+                                                                                                        <option id="07">07</option>
+                                                                                                        <option id="08">08</option>
+                                                                                                        <option id="09">09</option>
+                                                                                                        <option id="10">10</option>
+                                                                                                        <option id="11">11</option>
+                                                                                                        <option id="12">12</option>
+    <?php
+}
+?>
                                                     </select>
                 
                                                 </li>
@@ -548,33 +579,33 @@ if (isset($clientToken)) {
                                                     <label for="expiration_year" style="width: 100%">Year*</label>
                 
                                                     <select id="expiration_year" class="text billing_data" disabled="disabled" style="width:90px;">
-                <?php
-                if (isset($card_expiration_year)) {
-                    for ($i = 2014; $i <= 2025; $i++) {
-                        if ($i == $card_expiration_year) {
+<?php
+if (isset($card_expiration_year)) {
+    for ($i = 2014; $i <= 2025; $i++) {
+        if ($i == $card_expiration_year) {
 
-                            echo '<option id="' . $i . '" selected="selected">' . $i . '</option>';
-                        } else {
+            echo '<option id="' . $i . '" selected="selected">' . $i . '</option>';
+        } else {
 
-                            echo '<option id="' . $i . '">' . $i . '</option>';
-                        }
-                    }
-                } else {
-                    ?>
-                                                                                                    <option id="2015">2015</option>
-                                                                                                    <option id="2016">2016</option>
-                                                                                                    <option id="2017">2017</option>
-                                                                                                    <option id="2018">2018</option>
-                                                                                                    <option id="2019">2019</option>
-                                                                                                    <option id="2020">2020</option>
-                                                                                                    <option id="2021">2021</option>
-                                                                                                    <option id="2022">2022</option>
-                                                                                                    <option id="2023">2023</option>
-                                                                                                    <option id="2024">2024</option>
-                                                                                                    <option id="2025">2025</option>
-                    <?php
-                }
-                ?>
+            echo '<option id="' . $i . '">' . $i . '</option>';
+        }
+    }
+} else {
+    ?>
+                                                                                                        <option id="2015">2015</option>
+                                                                                                        <option id="2016">2016</option>
+                                                                                                        <option id="2017">2017</option>
+                                                                                                        <option id="2018">2018</option>
+                                                                                                        <option id="2019">2019</option>
+                                                                                                        <option id="2020">2020</option>
+                                                                                                        <option id="2021">2021</option>
+                                                                                                        <option id="2022">2022</option>
+                                                                                                        <option id="2023">2023</option>
+                                                                                                        <option id="2024">2024</option>
+                                                                                                        <option id="2025">2025</option>
+    <?php
+}
+?>
                                                     </select>
                 
                                                 </li>
@@ -590,9 +621,9 @@ if (isset($clientToken)) {
                                             </ol>
                                         </form>              
                                     </div>
-                                </div>-->
+                                </div>
 
-                <!-- TAB 4: Change Password -->
+                 TAB 4: Change Password 
                 <div id="tab4">
 
                     <div class="registration_container" style="min-height:400px;">
@@ -626,7 +657,7 @@ if (isset($clientToken)) {
             </div>
         </div>
     </div>
-    <!-- /content -->
+     /content 
 
     <div class="popup" id="popup_cancel">
         <span class="button b-close"><span>X</span></span>
@@ -637,4 +668,4 @@ if (isset($clientToken)) {
                 <button class="dialog_button question b-close" id="deny_button">No</button>
             </form>
         </div>
-    </div>
+    </div>-->

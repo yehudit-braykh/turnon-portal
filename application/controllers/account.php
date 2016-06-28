@@ -288,6 +288,8 @@ class Account extends UVod_Controller {
         if ($events) {
             $data['events'] = $events;
         }
+        
+        $data['section'] = "my_account";
 
         $this->load->view(views_url() . 'templates/header', $data);
         $this->load->view(views_url() . 'pages/account', $data);
@@ -298,6 +300,18 @@ class Account extends UVod_Controller {
 
         $media_ids = array();
         $events = $this->live_events_model->get_events();
+        $now = intval(time() . '000');
+        if ($events && isset($events->content)) {
+
+            for ($x = 0; $x < sizeof($events->content); $x++) {
+
+                if ($now > $events->content[$x]->event_date) {
+                    $events->content[$x]->live_now = true;
+                } else {
+                    $events->content[$x]->live_now = false;
+                }
+            }
+        }
 
         // checks if user is logged in
         if (isset($_SESSION['uvod_user_data']) && isset($_SESSION['uvod_user_data']->id)) {
@@ -305,7 +319,7 @@ class Account extends UVod_Controller {
             $orders_item = $this->live_events_model->get_orders_item($_SESSION['uvod_user_data']->id);
 
             $data['orders_item'] = $orders_item;
-
+            
             if (isset($orders_item) && sizeof($orders_item->content->entries) > 0) {
 
                 for ($h = 0; $h < sizeof($orders_item->content->entries); $h++) {
@@ -718,7 +732,7 @@ class Account extends UVod_Controller {
         $data = array();
 
         $fb_profile = $this->social_media_model->get_fb_profile();
-        error_log('fb profile: ' . json_encode($fb_profile));
+       
 
         $data['fb_profile'] = $fb_profile;
 
@@ -727,7 +741,7 @@ class Account extends UVod_Controller {
 
             //First case, user exists for given facebook email and must check if can be merged
             $user = $this->account_model->exists_user_email($fb_email);
-            error_log('USER: ' . json_encode($user));
+           
             if (isset($user->content) && isset($user->content->entries) && sizeof($user->content->entries) > 0) {
                 if (isset($user->content->entries[0]->fbId) && $user->content->entries[0]->fbId !== '') {
 
@@ -748,7 +762,6 @@ class Account extends UVod_Controller {
     public function register_by_fb() {
 
         $fb_profile = $this->social_media_model->get_fb_profile();
-        error_log('fb profile: ' . json_encode($fb_profile));
 
         $data['fb_profile'] = $fb_profile;
 
@@ -760,8 +773,6 @@ class Account extends UVod_Controller {
     public function merge_accounts() {
 
         $fb_profile = $this->social_media_model->get_fb_profile();
-        error_log('fb profile: ' . json_encode($fb_profile));
-
         $data['fb_profile'] = $fb_profile;
 
         $this->load->view(views_url() . 'templates/header', $data);
@@ -775,7 +786,6 @@ class Account extends UVod_Controller {
         $ret->message = "";
 
         $fb_profile = $this->social_media_model->get_fb_profile();
-        error_log('fb profile: ' . json_encode($fb_profile));
 
         if ($fb_profile->status === 'ok') {
 
@@ -802,7 +812,6 @@ class Account extends UVod_Controller {
             $country = $_POST['country'];
 
             $register = $this->account_model->register($email, $password, $first_name, $last_name, $country, NULL, $fb_id);
-            error_log('REGISTER: ' . json_encode($register));
             $ret = new stdClass();
             if (!$register->error) {
 
@@ -837,15 +846,12 @@ class Account extends UVod_Controller {
         $ret->message = "";
 
         $fb_profile = $this->social_media_model->get_fb_profile();
-        error_log('fb profile: ' . json_encode($fb_profile));
-
+        
         if ($fb_profile->status === 'ok') {
 
             $email = $fb_profile->content->email;
-            error_log('email: ' . $email . ' pass: ' . $_POST['password']);
+            
             $login = $this->account_model->login($email, $_POST['password']);
-
-            error_log("FACEBOOK LOGIN ---> " . json_encode($login));
 
             if (isset($login) && !$login->error) {
 
@@ -856,7 +862,6 @@ class Account extends UVod_Controller {
                 $data->fbId = $fb_profile->content->id;
 
                 $update = $this->account_model->update_user($login->content->id, $data);
-                error_log('update: ' . json_encode($update));
 
                 if (isset($update) && !$update->error) {
                     $ret->status = "ok";
@@ -883,15 +888,12 @@ class Account extends UVod_Controller {
         $ret->message = "";
 
         $fb_profile = $this->social_media_model->get_fb_profile();
-        error_log('fb profile: ' . json_encode($fb_profile));
         if ($fb_profile->status === 'ok') {
 
             $fb_id = $fb_profile->content->id;
             $fb_email = $fb_profile->content->email;
 
             $login = $this->account_model->login_by_fb($fb_id);
-
-            error_log("FACEBOOK LOGIN ---> " . json_encode($login));
 
             if (isset($login) && !$login->error) {
 
@@ -909,7 +911,7 @@ class Account extends UVod_Controller {
             } else {
 
                 $user = $this->account_model->exists_user_email($fb_email);
-                error_log('USER: ' . json_encode($user));
+              
                 if (isset($user->content) && isset($user->content->entries) && sizeof($user->content->entries) > 0) {
                     if (!isset($user->content->entries[0]->fbId) || !$user->content->entries[0]->fbId || $user->content->entries[0]->fbId == '') {
 
@@ -928,7 +930,7 @@ class Account extends UVod_Controller {
             $ret->message = "Facebook User Error. Please refresh the page and try again.";
             $ret->status = "error";
         }
-        error_log('RET: ' . json_encode($ret));
+       
         echo json_encode($ret);
     }
 

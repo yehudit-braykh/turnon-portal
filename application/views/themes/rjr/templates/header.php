@@ -180,9 +180,7 @@ for ($i = 0; $i < sizeof($vod_categories); $i++) {
                                 .top_menu a:hover{ 
                                     color: <?php echo $this->config->item('menu_highlight_color'); ?>;
                                 }
-                                .top_menu div:hover {
-                                    color: <?php echo $this->config->item('menu_highlight_color'); ?>;
-                                }
+                                
                                 .top_sub_menu_selected {
                                     color: <?php echo $this->config->item('menu_highlight_color'); ?> !important;
                                 }
@@ -322,7 +320,11 @@ for ($i = 0; $i < sizeof($vod_categories); $i++) {
                                                                 <?php
                                                        
                                                                 if (!isset($_SESSION['uvod_user_data']) || !isset($_SESSION['uvod_user_data']->token)) {
-                                                                    echo "<div id='signin' style='padding-top:12px;'>LOG IN / REGISTER</div>";
+                                                                    ?>
+                                                                    <div id='signin' class="top_menu_btn" style='padding-top:12px;'>LOG IN</div>
+                                                                    <div class="top_menu_separator">|</div>
+                                                                    <div id='register' class="top_menu_btn" style='padding-top:12px;'>REGISTER</div>
+                                                                    <?php
                                                                 } else {
                                                                     $logout = base_url() . 'index.php/account/logout_ssl';
                                                                     echo "<div class='account_name'><div class='user_name'>" . $_SESSION['uvod_user_data']->firstName . "</div><div class='user-icon'></div></div><div class='link_logout'><div class='lock-icon'></div><a href='" . $logout . "'>Logout</a></div><div class='my_account'>My Account | </div>";

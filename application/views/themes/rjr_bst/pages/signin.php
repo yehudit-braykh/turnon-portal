@@ -27,8 +27,7 @@
 
             event.preventDefault();
             $(this).hide();
-            $('#send_activation_email_preloader').show();
-            $('#send_activation_email_preloader').html('Sending activation email...');
+
 
             $.ajax({
                 url: '<?php echo base_url(); ?>index.php/account/send_activation_email_login',
@@ -39,11 +38,9 @@
 
                 if (data.status == 'ok') {
 
-                    $('#send_activation_email_preloader').hide();
                     $('#send_activation_email_login_button').hide();
                     show_info(data.message);
                 } else {
-                    $('#send_activation_email_preloader').hide();
                     $('#send_activation_email_login_button').show();
                     show_info(data.message);
                 }
@@ -61,9 +58,7 @@
         });
 
         $('#btn_login').on('click', function (event) {
-
             event.preventDefault();
-            $(this).hide();
             login();
 
         });
@@ -71,7 +66,7 @@
         $('#loginform').on('keypress', function (e) {
             var code = e.keyCode || e.which;
             if (code == 13) {
-                $('#btn_login').hide();
+                $('#btn_login').attr('disabled', true);
                 login();
                 e.preventDefault();
                 return false;
@@ -79,8 +74,7 @@
         });
 
         function login() {
-            $('#login_preloader').show();
-            $('#login_preloader').html('Login...');
+            disable_buttons();
 
             $.ajax({
                 url: '<?php echo base_url(); ?>index.php/account/login',
@@ -93,31 +87,29 @@
                     ga('send', {hitType: 'event', eventCategory: 'User Type', eventAction: 'Login', eventLabel: 'Login Complete'});
 
                     if (data.content.mustResetPassword) {
-                        $('#login_preloader').hide();
-                        $('#login_preloader').html('');
+
                         $('#loginform').hide();
                         $('#reset_password_form').show();
                     } else {
-                        <?php 
-                        if(isset($from_page)){
-                            $url = base_url() .'index.php/'.$from_page;
-                        }else{
-                            $url = base_url();
-                        }
-                        ?>
-                        
+<?php
+if (isset($from_page)) {
+    $url = base_url() . 'index.php/' . $from_page;
+} else {
+    $url = base_url();
+}
+?>
+
                         window.location.href = '<?php echo $url; ?>';
                     }
                 }
                 else if (data.message == 'Your account is not active yet. Check your email for the activation link.') {
-                    $('#login_preloader').hide();
-                    $('#btn_login').show();
+
+                    enable_buttons();
                     $('#send_activation_email_login_button').show();
                     show_info(data.message);
                 }
                 else {
-                    $('#login_preloader').hide();
-                    $('#btn_login').show();
+                    enable_buttons();
                     show_info(data.message)
                 }
             });
@@ -174,8 +166,6 @@
 
         if (response.status === 'connected') {
             $('#send_activation_email_login_button').hide();
-            $('#fb_signin_preloader').html('Sending data...');
-            $('#fb_signin_preloader').css('display', 'block');
             TweenLite.fromTo("#signup_fb_btn", 1, {alpha: 1}, {alpha: 0});
 
             $.ajax({
@@ -183,20 +173,19 @@
                 type: 'POST',
                 dataType: 'json'
             }).done(function (data) {
-                console.log("el data es: ",data);
+                console.log("el data es: ", data);
                 if (data.status == 'ok') {
-                    <?php 
-                        if(isset($from_page)){
-                            $url = base_url() .'index.php/'.$from_page;
-                        }else{
-                            $url = base_url();
-                        }
-                        ?>
+<?php
+if (isset($from_page)) {
+    $url = base_url() . 'index.php/' . $from_page;
+} else {
+    $url = base_url();
+}
+?>
                     window.location.href = "<?php echo $url; ?>";
                 } else if (data.status == 'merge') {
                     window.location.href = "<?php echo base_url(); ?>index.php/account/merge_accounts";
                 } else {
-                    $('#fb_signin_preloader').hide();
                     show_info(data.message);
 
                 }
@@ -216,6 +205,13 @@
             }});
     }
 
+    function disable_buttons() {
+        $('button').attr('disabled', true);
+    }
+    function enable_buttons() {
+        $('button').attr('disabled', false);
+    }
+
     //To merge 1Spot account with Facebook account
     function mergeAccounts() {
 
@@ -223,10 +219,6 @@
 
         if (password) {
             $('#btn_sign_up_merge').hide();
-
-            $('#fb_signin_merge_preloader').html('Sending data...');
-            $('#fb_signin_merge_preloader').show();
-
 
             $.ajax({
                 url: "<?php echo base_url(); ?>index.php/account/register_by_facebook",
@@ -239,7 +231,6 @@
                     checkLoginState();
                 } else {
                     $('#btn_sign_up_merge').show();
-                    $('#fb_signin_merge_preloader').hide();
                     show_info(data.message);
                 }
             });
@@ -249,71 +240,70 @@
     } //end merge accounts
 </script>
 
-</div>
-</div>
 
-<div class="header_resize2" id="login-box">
-    <div class="now_page_resize">
-        <div class="form_title">LOG IN</div>
-        <div class="clr"></div>
-    </div>
-    <div class="clr"></div>
-    <div style="width:100%;height:600px;margin: 0 auto;">
-        <form id="loginform" style="width:300px;display:block;margin-left:auto;margin-right:auto;">
-            <ol>
-                <li> 
-                    <span id="info" class="form_info"></span>
-                </li>
-                <li class="buttons">
-                    <input type='image' id="send_activation_email_login_button" class="send" src="<?php echo asset_url(); ?>images/button_resend_activation_email.png"/>
-                    <div id="send_activation_email_preloader"></div>
-                    <div class="clr"></div>
-                </li>    
-                <li>
-                    <label for="email">Email</label><br>
-                    <input id="email" name="email" class="text"/>
-                </li>
-                <li>
-                    <label for="password">Password</label><br>
-                    <input id="password" name="password" class="text" type="password" />
+<div class="form-container">
+    <div class="main-title">LOG IN</div>
+    <form id="loginform" class="common-form">
+        <ul>
 
-                    <span style="float: right;">
-                        Forgot your <a href="<?php echo base_url(); ?>index.php/account/forgot" style="color:rgb(127,0,191);">password</a>?
-                    </span>
+            <li>
+                <button id="signin_fb_btn" class="fb-btn">LogIn with Facebook</button>
+            </li>
+            <li>
+                <div class="or_separator">OR</div>
+            </li>
 
-                </li>
-                <li>
-                    <input id="remember_credentials" name="remember_credentials" type="checkbox">
-                    <label for="remember_credentials" style="width: 200px;">Remember Email and password</label>
+            <li>
+                <div class="form-subtitle">Enter your credentials</div>
+            </li>
 
-                </li>
-                <li class="buttons">
-                    <button type="submit" id="btn_login" class="send">LOGIN</button>
-                    <div id="login_preloader"></div>
-                    <div class="clr"></div>
-                </li>
+            <li class="buttons">
+                <!--<input type='image' id="send_activation_email_login_button" class="send" src="<?php //echo asset_url();       ?>images/button_resend_activation_email.png"/>-->
+                <div id="send_activation_email_preloader"></div>
+                <div class="clr"></div>
+            </li>    
+            <li>
+                <label for="email">Email</label><br>
+                <input id="email" name="email" class="text"/>
 
-                <li>
-                    <div class="or_separator">OR</div>
-                    <button id="signin_fb_btn"></button>
-                    <div id="fb_signin_preloader"></div>
-                </li>
+            </li>
+            <li>
+                <label for="password">Password</label><br>
+                <input id="password" name="password" class="text" type="password" /> 
+            </li>
+            <li>
+                <input id="remember_credentials" name="remember_credentials" type="checkbox" class="common-checkbox">
+                <label for="remember_credentials" style="width: 200px;">Remember Email and password</label>
+            </li>
+            <li> 
+                <span id="info" class="form_info"></span>
+            </li>
 
-                <li>
-                    <span style="padding-left:40px;">
-                        Not registered yet?  <a href="<?php echo base_url(); ?>index.php/account/register_ssl" style="color:rgb(127,0,191);">Create your account</a>
-                    </span>
-                </li>
+            <li class="buttons">
+                <button type="submit" id="btn_login" class="common-button">LOGIN</button>
+            </li>
 
-            </ol>
-        </form>
 
-        <?php
-        $this->load->view(views_url() . '/templates/reset_password');
-        ?>
+            <li>
+                <span>
+                    Forget your <a href="<?php echo base_url(); ?>index.php/account/forgot" style="color:rgb(127,0,191);">password</a>?
+                </span>
+            </li>
+            <li>
+                <span>
+                    Not registered yet?  <a href="<?php echo base_url(); ?>index.php/account/register_ssl" style="color:rgb(127,0,191);">Create your account</a>
+                </span>
+            </li>
 
-    </div>
-    <div class="clr"></div>
+        </ul>
+    </form>
+
+    <?php
+    $this->load->view(views_url() . '/templates/reset_password');
+    ?>
+
+
+
 </div>
 <!-- /content -->
 
