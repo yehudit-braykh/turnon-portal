@@ -22,8 +22,8 @@ if (isset($events->content) && sizeof($events->content) > 0 && (!isset($events->
         $(document).ready(function () {
 
     <?php echo 'event_time=' . $event_time . ';'; ?>
-
-            var clock = $('#countdown').FlipClock((event_time - new Date().getTime()) / 1000, {
+      
+             clock = $('#countdown').FlipClock((event_time - new Date().getTime()) / 1000, {
                 clockFace: 'DailyCounter',
                 countdown: true,
                 callbacks: {
@@ -46,6 +46,7 @@ if (isset($events->content) && sizeof($events->content) > 0 && (!isset($events->
                                 $('.pic_events').prepend(live_html);
     
                                 $(".already_purchased_msg").hide();
+                                $(".already_purchased_submsg").hide();
                                 $(".view_purchased_ticket").hide();
                                 $("#col_info_sm").append(add_html);
                                 $("#new_watch_now_btn").bind("click", function () {
@@ -276,6 +277,7 @@ if (isset($events->content) && sizeof($events->content) > 0 && (!isset($events->
                         } else {
                             ?>
                             <div class='already_purchased_msg'>ALREADY PURCHASED!</div>               
+                            <div class='already_purchased_submsg'>At the event time the player will start automatically</div>               
                             <div class='view_purchased_ticket'>Click here to see your purchased Tickets.</div>
                             <?php
                         }

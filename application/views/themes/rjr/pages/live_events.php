@@ -42,7 +42,7 @@
                 data: 'product_id=' + product_id,
                 beforeSend: function () {
                     if(typeof(clock) !== 'undefined'){
-                        clock.stop();
+                        clock._destroyTimer;
                     }
                     $('#event-template').html('<div id="event-loading" class="col-md-12">Loading....</div>');
                     body = $("html, body");
