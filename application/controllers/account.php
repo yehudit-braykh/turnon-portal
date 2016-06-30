@@ -277,17 +277,29 @@ class Account extends UVod_Controller {
             $data['user_first_name'] = $user_profile->content->firstName;
             $data['user_last_name'] = $user_profile->content->lastName;
             $data['user_city'] = $user_profile->content->city;
-            $data['user_state'] = $user_profile->content->state;
-            $data['user_country'] = $user_profile->content->countryCode;
-            $data['user_address_line1'] = $user_profile->content->addressLine1;
-            $data['user_address_line2'] = $user_profile->content->addressLine2;
             $data['user_zip_code'] = $user_profile->content->postalCode;
+            $data['user_country'] = $user_profile->content->countryCode;
+            if (isset($user_profile->content->addressLine1)) {
+                $data['user_address_line1'] = $user_profile->content->addressLine1;
+            } else {
+                $data['user_address_line1'] = "";
+            }
+            if (isset($user_profile->content->addressLine2)) {
+                $data['user_address_line2'] = $user_profile->content->addressLine2;
+            } else {
+                $data['user_address_line2'] = "";
+            }
+            if (isset($user_profile->content->state)) {
+                $data['user_state'] = $user_profile->content->state;
+            } else {
+                $data['user_state'] = "";
+            }
 
             if (sizeof($user_profile->content->paymentData) && isset($user_profile->content->paymentData[0]->creditCardId)) {
                 $credit_card_id = $user_profile->content->paymentData[0]->creditCardId;
                 $credit_card = $this->account_model->get_credit_card($credit_card_id);
-                
-                error_log("CREDIT CARD: ".json_encode($credit_card));
+
+                error_log("CREDIT CARD: " . json_encode($credit_card));
             }
         } else {
             $data['user_email'] = "";
