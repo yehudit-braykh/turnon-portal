@@ -44,14 +44,10 @@ class Account_model extends CI_Model {
         return apiPost("user/get_self_id", array('token' => $token));
     }
 
-    public function save_profile($token, $id, $first_name, $last_name, $city, $country, $postal_code) {
+    public function save_profile($token, $id, $data) {
         return apiPost("user/save_profile", array("token" => $token,
           "id" => $id,
-          "first_name" => $first_name,
-          "last_name" => $last_name,
-          "city" => $city,
-          "country" => $country,
-          "postal_code" => $postal_code));
+          "data" => $data));
     }
     
     public function update_user($id, $data) {
@@ -183,6 +179,10 @@ class Account_model extends CI_Model {
 
     public function get_profile_by_email($email) {
         return apiPost("user/get_profile_by_email", array('email' => $email));
+    }
+    
+    public function get_credit_card($credit_card_id){
+          return apiCall("commerce/get_credit_card", array('card_id' => $credit_card_id));
     }
 
 }

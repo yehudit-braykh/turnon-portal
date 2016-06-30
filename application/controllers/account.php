@@ -254,6 +254,8 @@ class Account extends UVod_Controller {
             $subscription = $this->account_model->get_subscriptions($subscriptions_ids);
 
             if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
+
+                $data['user_status'] = 'Subscriptor';
                 $data['subscriptions'] = $subscription->content->entries;
 
                 usort($data['subscriptions'], function($a, $b) {
@@ -262,25 +264,41 @@ class Account extends UVod_Controller {
                     }
                     return (intval($a->subscriptionLength) < intval($b->subscriptionLength)) ? -1 : 1;
                 });
+            } else {
+                $data['user_status'] = 'Registered User';
             }
+        } else {
+            $data['user_status'] = 'Subscriptor';
         }
 
 
         if ($user_profile && $user_profile->content) {
+            $data['user_email'] = $user_profile->content->email;
             $data['user_first_name'] = $user_profile->content->firstName;
             $data['user_last_name'] = $user_profile->content->lastName;
-            $data['user_city'] = "";
-            if (isset($user_profile->content->publicDataMap->city)) {
-                $data['user_city'] = $user_profile->content->publicDataMap->city;
-            }
+            $data['user_city'] = $user_profile->content->city;
+            $data['user_state'] = $user_profile->content->state;
             $data['user_country'] = $user_profile->content->countryCode;
-            $data['user_postal_code'] = $user_profile->content->postalCode;
+            $data['user_address_line1'] = $user_profile->content->addressLine1;
+            $data['user_address_line2'] = $user_profile->content->addressLine2;
+            $data['user_zip_code'] = $user_profile->content->postalCode;
+
+            if (sizeof($user_profile->content->paymentData) && isset($user_profile->content->paymentData[0]->creditCardId)) {
+                $credit_card_id = $user_profile->content->paymentData[0]->creditCardId;
+                $credit_card = $this->account_model->get_credit_card($credit_card_id);
+                
+                error_log("CREDIT CARD: ".json_encode($credit_card));
+            }
         } else {
+            $data['user_email'] = "";
             $data['user_first_name'] = "";
             $data['user_last_name'] = "";
             $data['user_city'] = "";
+            $data['user_state'] = "";
             $data['user_country'] = "";
-            $data['user_postal_code'] = "";
+            $data['user_address_line1'] = "";
+            $data['user_address_line2'] = "";
+            $data['user_zip_code'] = "";
         }
 
         $events = $this->get_events();
@@ -288,7 +306,7 @@ class Account extends UVod_Controller {
         if ($events) {
             $data['events'] = $events;
         }
-        
+
         $data['section'] = "my_account";
 
         $this->load->view(views_url() . 'templates/header', $data);
@@ -319,7 +337,7 @@ class Account extends UVod_Controller {
             $orders_item = $this->live_events_model->get_orders_item($_SESSION['uvod_user_data']->id);
 
             $data['orders_item'] = $orders_item;
-            
+
             if (isset($orders_item) && sizeof($orders_item->content->entries) > 0) {
 
                 for ($h = 0; $h < sizeof($orders_item->content->entries); $h++) {
@@ -379,7 +397,9 @@ class Account extends UVod_Controller {
 
     public function my_account_save_ssl() {
 
-        $save_profile = $this->account_model->save_profile($_SESSION['uvod_user_data']->token, $_SESSION['uvod_user_data']->id, $_POST['first_name'], $_POST['last_name'], $_POST['city'], $_POST['country'], $_POST['postal_code']);
+        $data = $_POST;
+
+        $save_profile = $this->account_model->save_profile($_SESSION['uvod_user_data']->token, $_SESSION['uvod_user_data']->id, $data);
 
         if (isset($save_profile->error) && $save_profile->error == false) {
             echo json_encode(array('status' => 'ok'));
@@ -732,7 +752,7 @@ class Account extends UVod_Controller {
         $data = array();
 
         $fb_profile = $this->social_media_model->get_fb_profile();
-       
+
 
         $data['fb_profile'] = $fb_profile;
 
@@ -741,7 +761,7 @@ class Account extends UVod_Controller {
 
             //First case, user exists for given facebook email and must check if can be merged
             $user = $this->account_model->exists_user_email($fb_email);
-           
+
             if (isset($user->content) && isset($user->content->entries) && sizeof($user->content->entries) > 0) {
                 if (isset($user->content->entries[0]->fbId) && $user->content->entries[0]->fbId !== '') {
 
@@ -846,11 +866,11 @@ class Account extends UVod_Controller {
         $ret->message = "";
 
         $fb_profile = $this->social_media_model->get_fb_profile();
-        
+
         if ($fb_profile->status === 'ok') {
 
             $email = $fb_profile->content->email;
-            
+
             $login = $this->account_model->login($email, $_POST['password']);
 
             if (isset($login) && !$login->error) {
@@ -911,7 +931,7 @@ class Account extends UVod_Controller {
             } else {
 
                 $user = $this->account_model->exists_user_email($fb_email);
-              
+
                 if (isset($user->content) && isset($user->content->entries) && sizeof($user->content->entries) > 0) {
                     if (!isset($user->content->entries[0]->fbId) || !$user->content->entries[0]->fbId || $user->content->entries[0]->fbId == '') {
 
@@ -930,7 +950,7 @@ class Account extends UVod_Controller {
             $ret->message = "Facebook User Error. Please refresh the page and try again.";
             $ret->status = "error";
         }
-       
+
         echo json_encode($ret);
     }
 

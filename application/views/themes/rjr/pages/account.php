@@ -5,6 +5,13 @@
 
         $('#tab-container').easytabs();
 
+
+        $('#edit_fields_btn').on('click', function (event) {
+            event.preventDefault();
+            $('.editable-field').css('background', '#fff');
+            $('.editable-field').removeAttr('disabled');
+        });
+
         $('.btn_watch_now').on('click', function (event) {
             window.location.href = "<?php echo base_url() . 'index.php/live_events/main'; ?>";
         })
@@ -313,32 +320,80 @@ if (isset($clientToken)) {
             <ul class='etabs'>
                 <li class='tab'><a href="#tab1" id="vod_item_sub_menu1">My Information</a></li>
                 <li class='tab'><a href="#tab2" id="vod_item_sub_menu2">Subscription</a></li>
-                <li class='tab'><a href="#tab3" id="vod_item_sub_menu3">Pay-Per-View Tickets</a></li>
-                <li class='tab'><a href="#tab4" id="vod_item_sub_menu4">Change password</a></li>
+                <li class='tab'><a href="#tab3" id="vod_item_sub_menu2">Billing Information</a></li>
+                <li class='tab'><a href="#tab4" id="vod_item_sub_menu3">Pay-Per-View Tickets</a></li>
+                <li class='tab'><a href="#tab5" id="vod_item_sub_menu4">Change password</a></li>
             </ul>
             <div class='panel-container'>
                 <div id="tab1">
 
                     <div class="registration_container">
-                        <form id="registerform" method="post">
+                        <form id="registerform" onsubmit="funtion(){
+                                    return false;
+                                }">
                             <ol>
                                 <li>
-                                    <label for="first_name">First Name*</label>
-                                    <input id="first_name" name="first_name" class="text" value="<?php echo $user_first_name; ?>" />
+                                    <label for="user_status">User Status</label>
+                                    <input id="user_status" name="user_status" class="text" value="<?php echo $user_status; ?>" disabled="disabled"/>
                                 </li>
                                 <li>
-                                    <label for="last_name">Last Name*</label>
-                                    <input id="last_name" name="last_name" class="text" value="<?php echo $user_last_name; ?>" />
+                                    <label for="first_name">First Name</label>
+                                    <input id="first_name" name="first_name" class="text editable-field" value="<?php echo $user_first_name; ?>" disabled="disabled"/>
+                                </li>
+                                <li>
+                                    <label for="last_name">Last Name</label>
+                                    <input id="last_name" name="last_name" class="text editable-field" value="<?php echo $user_last_name; ?>" disabled="disabled"/>
+                                </li>
+                                <li>
+                                    <label for="email">Email</label>
+                                    <input id="email" name="email" class="text" value="<?php echo $user_email; ?>" disabled="disabled" />
+                                </li>
+                                <li>
+                                    <div class="col-right">
+                                        <label for="address_line_1">Address Line 1</label>
+                                        <input id="address_line_1" name="address_line_1" class="text editable-field" value="<?php echo $user_address_line1; ?>" disabled="disabled"/>
+                                    </div>
+                                    <div class="col-left">
+                                        <label for="address_line_2">Address Line 2</label>
+                                        <input id="address_line_2" name="address_line_2" class="text editable-field" value="<?php echo $user_address_line2; ?>" disabled="disabled"/>
+                                    </div>
                                 </li>
 
+                                <li>
+                                    <div class="col-right">
+                                        <ul>
+                                            <li>
+                                                <label for="city">City</label>
+                                                <input id="city" name="city" class="text editable-field" value="<?php echo $user_city; ?>" disabled="disabled"/>
+                                            </li>
+                                            <li>
+                                                <label for="postal_code">Zip Code</label>
+                                                <input id="postal_code" name="postal_code" class="text editable-field" value="<?php echo $user_zip_code; ?>" disabled="disabled"/>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-left">
+                                        <ul>
+                                            <li>
+                                                <label for="state">State</label>
+                                                <input id="state" name="state" class="text editable-field" value="<?php echo $user_state; ?>" disabled="disabled"/>
+                                            </li>
+                                            <li>
+                                                <label for="country">Country</label>
+                                                <input id="country" name="country" class="text editable-field" value="<?php echo $user_country; ?>" disabled="disabled"/>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="buttons">
+                                    <button id="edit_fields_btn" class="common_btn">EDIT</button>
+                                    <button id="btn_save" class="common_btn">SAVE</button>
+                                </li>
                                 <li> 
                                     <p id="info" class="form_info">&nbsp;</p>
                                 </li>
                                 <li>
                                     <p id="save_data_preloader" class="form_info"></p>
-                                </li>
-                                <li class="buttons">
-                                    <input type="image" id="btn_save" src="<?php echo asset_url(); ?>images/button_save.png" class="send" />
                                 </li>
                             </ol>
                         </form>  
@@ -437,6 +492,31 @@ if (isset($clientToken)) {
                 </div>
 
                 <div id="tab3" style="padding-left:20px">
+                    <div class="registration_container">
+                        <form>
+                            <ul>
+                                <li>
+                                    <label for="user_status">User Status</label>
+                                    <input id="user_status" name="user_status" class="text" value="<?php echo $user_status; ?>" disabled="disabled"/>
+                                </li>
+                                <li>
+                                    <label for="first_name">First Name</label>
+                                    <input id="first_name" name="first_name" class="text editable-field" value="<?php echo $user_first_name; ?>" disabled="disabled"/>
+                                </li>
+                                <li>
+                                    <label for="last_name">Last Name</label>
+                                    <input id="last_name" name="last_name" class="text editable-field" value="<?php echo $user_last_name; ?>" disabled="disabled"/>
+                                </li>
+                                <li>
+                                    <label for="email">Email</label>
+                                    <input id="email" name="email" class="text" value="<?php echo $user_email; ?>" disabled="disabled" />
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="tab4" style="padding-left:20px">
 
                     <?php
                     if (isset($events) && sizeof($events->content) > 0) {
@@ -455,7 +535,7 @@ if (isset($clientToken)) {
                                     } else {
                                         $live_txt = '<div style="float:right;margin-right:30%">ALREADY PURCHASED!</div>';
                                     }
-                                    echo '<div style="float:left;line-height:45px;width:100%;">' . date('d-m-Y', $events->content[$i]->event_date / 1000) . ' - ' . $events->content[$i]->name . $live_txt. '</div>';
+                                    echo '<div style="float:left;line-height:45px;width:100%;">' . date('d-m-Y', $events->content[$i]->event_date / 1000) . ' - ' . $events->content[$i]->name . $live_txt . '</div>';
                                 }
                             }
                             if (!$flag) {
@@ -482,10 +562,10 @@ if (isset($clientToken)) {
                                                 <li>
                                                     <label for="cardholder_name">Name on Card*</label>
                                                     <input id="cardholder_name" class="text billing_data" disabled="disabled" value="<?php
-                    if (isset($card_name)) {
-                        echo $card_name;
-                    }
-                    ?>" />
+                if (isset($card_name)) {
+                    echo $card_name;
+                }
+                ?>" />
                                                 </li>
                                                 <li>
                                                     <label for="card_number">Card Number*</label>
@@ -493,7 +573,7 @@ if (isset($clientToken)) {
                 if (isset($card_number)) {
                     echo $card_number;
                 }
-                    ?>" />
+                ?>" />
                                                 </li>
                                                 <li>
                                                     <label for="security_code">Security Code*</label>
@@ -501,7 +581,7 @@ if (isset($clientToken)) {
                 if (isset($card_number)) {
                     echo '***';
                 }
-                    ?>" />
+                ?>" />
                                                 </li>
                                                 <li>
                                                     <label for="expiration_month" style="width: 100%">Month*</label>
@@ -526,18 +606,18 @@ if (isset($clientToken)) {
                     }
                 } else {
                     ?>
-                                                                                                    <option id="01">01</option>
-                                                                                                    <option id="02">02</option>
-                                                                                                    <option id="03">03</option>
-                                                                                                    <option id="04">04</option>
-                                                                                                    <option id="05">05</option>
-                                                                                                    <option id="06">06</option>
-                                                                                                    <option id="07">07</option>
-                                                                                                    <option id="08">08</option>
-                                                                                                    <option id="09">09</option>
-                                                                                                    <option id="10">10</option>
-                                                                                                    <option id="11">11</option>
-                                                                                                    <option id="12">12</option>
+                                                                                                                                    <option id="01">01</option>
+                                                                                                                                    <option id="02">02</option>
+                                                                                                                                    <option id="03">03</option>
+                                                                                                                                    <option id="04">04</option>
+                                                                                                                                    <option id="05">05</option>
+                                                                                                                                    <option id="06">06</option>
+                                                                                                                                    <option id="07">07</option>
+                                                                                                                                    <option id="08">08</option>
+                                                                                                                                    <option id="09">09</option>
+                                                                                                                                    <option id="10">10</option>
+                                                                                                                                    <option id="11">11</option>
+                                                                                                                                    <option id="12">12</option>
                     <?php
                 }
                 ?>
@@ -561,17 +641,17 @@ if (isset($clientToken)) {
                     }
                 } else {
                     ?>
-                                                                                                    <option id="2015">2015</option>
-                                                                                                    <option id="2016">2016</option>
-                                                                                                    <option id="2017">2017</option>
-                                                                                                    <option id="2018">2018</option>
-                                                                                                    <option id="2019">2019</option>
-                                                                                                    <option id="2020">2020</option>
-                                                                                                    <option id="2021">2021</option>
-                                                                                                    <option id="2022">2022</option>
-                                                                                                    <option id="2023">2023</option>
-                                                                                                    <option id="2024">2024</option>
-                                                                                                    <option id="2025">2025</option>
+                                                                                                                                    <option id="2015">2015</option>
+                                                                                                                                    <option id="2016">2016</option>
+                                                                                                                                    <option id="2017">2017</option>
+                                                                                                                                    <option id="2018">2018</option>
+                                                                                                                                    <option id="2019">2019</option>
+                                                                                                                                    <option id="2020">2020</option>
+                                                                                                                                    <option id="2021">2021</option>
+                                                                                                                                    <option id="2022">2022</option>
+                                                                                                                                    <option id="2023">2023</option>
+                                                                                                                                    <option id="2024">2024</option>
+                                                                                                                                    <option id="2025">2025</option>
                     <?php
                 }
                 ?>
@@ -593,7 +673,7 @@ if (isset($clientToken)) {
                                 </div>-->
 
                 <!-- TAB 4: Change Password -->
-                <div id="tab4">
+                <div id="tab5">
 
                     <div class="registration_container" style="min-height:400px;">
                         <form id="changepasswordform" method="post">
