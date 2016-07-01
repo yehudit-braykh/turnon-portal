@@ -12,6 +12,38 @@
             $('.editable-field').removeAttr('disabled');
         });
 
+        $('#edit_credit_card_btn').on('click', function (event) {
+            event.preventDefault();
+            $('#change_cc_form').show();
+        });
+
+        $('#save_credit_card').on('click', function (event) {
+            event.preventDefault();
+            $.ajax({
+                url: "<?php echo base_url(); ?>index.php/account/save_credit_card",
+                type: 'POST',
+                dataType: 'json',
+                data: $('#change_credit_card_form').serialize()
+            }).done(function (data) {
+                $('#save_data_preloader').hide();
+                $("#info").show();
+                if (data.status == "ok") {
+
+                    $("#info").html("Information saved succesfully.");
+                } else {
+                    $("#info").html("* " + data.message);
+                }
+                TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
+                        TweenLite.to("#info", 1, {delay: 6, alpha: 0, onComplete: function () {
+                                $("#info").hide();
+                            }});
+                    }});
+
+
+            });
+
+        })
+
         $('.btn_watch_now').on('click', function (event) {
             window.location.href = "<?php echo base_url() . 'index.php/live_events/main'; ?>";
         })
@@ -493,27 +525,45 @@ if (isset($clientToken)) {
 
                 <div id="tab3" style="padding-left:20px">
                     <div class="registration_container">
-                        <form>
+                        <form style="margin-right: 50px;">
                             <ul>
                                 <li>
-                                    <label for="user_status">User Status</label>
-                                    <input id="user_status" name="user_status" class="text" value="<?php echo $user_status; ?>" disabled="disabled"/>
+                                    <label for="card_owner">Name on Card</label>
+                                    <input id="card_owner" name="card_owner" class="text" value="<?php echo $card_owner; ?>" disabled="disabled"/>
                                 </li>
                                 <li>
-                                    <label for="first_name">First Name</label>
-                                    <input id="first_name" name="first_name" class="text editable-field" value="<?php echo $user_first_name; ?>" disabled="disabled"/>
+                                    <label for="card_type">Card Type</label>
+                                    <input id="card_type" name="card_type" class="text editable-field" value="<?php echo $card_type; ?>" disabled="disabled"/>
                                 </li>
                                 <li>
-                                    <label for="last_name">Last Name</label>
-                                    <input id="last_name" name="last_name" class="text editable-field" value="<?php echo $user_last_name; ?>" disabled="disabled"/>
+                                    <label for="card_number">Card Number</label>
+                                    <input id="card_number" name="card_number" class="text editable-field" value="<?php echo $card_number; ?>" disabled="disabled"/>
                                 </li>
                                 <li>
-                                    <label for="email">Email</label>
-                                    <input id="email" name="email" class="text" value="<?php echo $user_email; ?>" disabled="disabled" />
+                                    <label for="email">Expiration Date</label>
+                                    <input id="card_expiration_date" name="card_expiration_date" class="text" value="<?php echo $card_expiration_date; ?>" disabled="disabled" />
+                                </li>
+                                <li>
+                                    <button id="edit_credit_card_btn" class="common_btn billing_btns">CHANGE CREDIT CARD</button>
                                 </li>
                             </ul>
                         </form>
+                        <div id="change_cc_container" class=" col-right payment_content" style="display: none;">
+                            <form id="change_credit_card_form">
+                                <ul>
+                                    <?php $this->load->view(views_url() . 'templates/credit_card_form'); ?>
+                                    <li> 
+                                        <p id="info" class="form_info">&nbsp;</p>
+                                    </li>
+                                    <li>
+                                        <button id="save_credit_card" class="common_btn billing_btns">SAVE CREDIT CARD</button>
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
+
                     </div>
+
                 </div>
 
                 <div id="tab4" style="padding-left:20px">
@@ -606,18 +656,18 @@ if (isset($clientToken)) {
                     }
                 } else {
                     ?>
-                                                                                                                                    <option id="01">01</option>
-                                                                                                                                    <option id="02">02</option>
-                                                                                                                                    <option id="03">03</option>
-                                                                                                                                    <option id="04">04</option>
-                                                                                                                                    <option id="05">05</option>
-                                                                                                                                    <option id="06">06</option>
-                                                                                                                                    <option id="07">07</option>
-                                                                                                                                    <option id="08">08</option>
-                                                                                                                                    <option id="09">09</option>
-                                                                                                                                    <option id="10">10</option>
-                                                                                                                                    <option id="11">11</option>
-                                                                                                                                    <option id="12">12</option>
+                                                                                                                                                        <option id="01">01</option>
+                                                                                                                                                        <option id="02">02</option>
+                                                                                                                                                        <option id="03">03</option>
+                                                                                                                                                        <option id="04">04</option>
+                                                                                                                                                        <option id="05">05</option>
+                                                                                                                                                        <option id="06">06</option>
+                                                                                                                                                        <option id="07">07</option>
+                                                                                                                                                        <option id="08">08</option>
+                                                                                                                                                        <option id="09">09</option>
+                                                                                                                                                        <option id="10">10</option>
+                                                                                                                                                        <option id="11">11</option>
+                                                                                                                                                        <option id="12">12</option>
                     <?php
                 }
                 ?>
@@ -641,17 +691,17 @@ if (isset($clientToken)) {
                     }
                 } else {
                     ?>
-                                                                                                                                    <option id="2015">2015</option>
-                                                                                                                                    <option id="2016">2016</option>
-                                                                                                                                    <option id="2017">2017</option>
-                                                                                                                                    <option id="2018">2018</option>
-                                                                                                                                    <option id="2019">2019</option>
-                                                                                                                                    <option id="2020">2020</option>
-                                                                                                                                    <option id="2021">2021</option>
-                                                                                                                                    <option id="2022">2022</option>
-                                                                                                                                    <option id="2023">2023</option>
-                                                                                                                                    <option id="2024">2024</option>
-                                                                                                                                    <option id="2025">2025</option>
+                                                                                                                                                        <option id="2015">2015</option>
+                                                                                                                                                        <option id="2016">2016</option>
+                                                                                                                                                        <option id="2017">2017</option>
+                                                                                                                                                        <option id="2018">2018</option>
+                                                                                                                                                        <option id="2019">2019</option>
+                                                                                                                                                        <option id="2020">2020</option>
+                                                                                                                                                        <option id="2021">2021</option>
+                                                                                                                                                        <option id="2022">2022</option>
+                                                                                                                                                        <option id="2023">2023</option>
+                                                                                                                                                        <option id="2024">2024</option>
+                                                                                                                                                        <option id="2025">2025</option>
                     <?php
                 }
                 ?>

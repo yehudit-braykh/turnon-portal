@@ -184,6 +184,12 @@ class Account_model extends CI_Model {
     public function get_credit_card($credit_card_id){
           return apiCall("commerce/get_credit_card", array('card_id' => $credit_card_id));
     }
+    
+    public function save_credit_card($token, $id, $data) {
+        return apiPost("user/save_credit_card", array("token" => $token,
+          "id" => $id,
+          "data" => $data));
+    }
 
 }
 

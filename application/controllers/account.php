@@ -300,6 +300,11 @@ class Account extends UVod_Controller {
                 $credit_card = $this->account_model->get_credit_card($credit_card_id);
 
                 error_log("CREDIT CARD: " . json_encode($credit_card));
+
+                $data['card_type'] = ucfirst($credit_card->content->type);
+                $data['card_number'] = $credit_card->content->number;
+                $data['card_expiration_date'] = $credit_card->content->expire_month . '/' . $credit_card->content->expire_year;
+                $data['card_owner'] = $credit_card->content->first_name . ' ' . $credit_card->content->last_name;
             }
         } else {
             $data['user_email'] = "";
@@ -405,6 +410,18 @@ class Account extends UVod_Controller {
         }
 
         return $events;
+    }
+
+    public function save_credit_card() {
+
+        $data = $_POST;
+        $save_cc = $this->account_model->save_credit_card($_SESSION['uvod_user_data']->token, $_SESSION['uvod_user_data']->id, $data);
+
+        if (isset($save_cc->error) && $save_cc->error == false) {
+            echo json_encode(array('status' => 'ok'));
+        } else {
+            echo json_encode(array('status' => 'error', 'message' => $save_cc->message,));
+        }
     }
 
     public function my_account_save_ssl() {
