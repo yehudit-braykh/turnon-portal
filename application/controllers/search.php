@@ -18,8 +18,8 @@ class Search extends UVod_Controller {
 
         $keyword = $uri_arr['keyword'];
         $kword = base64_decode($keyword);
-        $kword = str_replace('(','%28',$kword);
-        $kword = str_replace(')','%29',$kword);
+        $kword = str_replace('(', '%28', $kword);
+        $kword = str_replace(')', '%29', $kword);
         $items = $this->search_model->search_vod($kword);
         $data['search_result_items'] = $this->create_items($items);
 
@@ -71,21 +71,26 @@ class Search extends UVod_Controller {
                 $item_id_arr = explode("/", $items->content->entries[$i]->_id);
                 $item_id = $item_id_arr[sizeof($item_id_arr) - 1];
                 $commerce_class = getEntryProperty($items->content->entries[$i], 'commerce');
-               
+
                 $mediatype = getEntryProperty($items->content->entries[$i], 'media_type');
                 $aired_date_div = "";
                 $ret .= '<div class="col4 no_spacer img_hover_box" style="width:' . $cover_width . '">
                                 <a href="' . base_url() . 'index.php/vod_item/detail/id/' . $item_id . '" class="cover" style="width:' . $cover_width . ';height:' . $cover_height . ';">';
                 if ($mediatype != "tv_show" && $this->config->item('theme') !== 'orbita') {
-                    $aired_date_div = '<div>' . date("F d, Y", (getEntryProperty($items->content->entries[$i], 'aired_date')/1000)) . '</div>';
-                    $ret.= '<div class="ribbon_content '. $commerce_class . '" style="width:' . $cover_width . ';height:' . $cover_height . ';"></div>';
+                    $ad = getEntryProperty($items->content->entries[$i]);
+                    $aired_date = '';
+                    if ($ad && $ad !== '') {
+                        $aired_date = date("F d, Y", (getEntryProperty($items->content->entries[$i], 'aired_date') / 1000));
+                    }
+                    $aired_date_div = '<div>' . $aired_date . '</div>';
+                    $ret.= '<div class="ribbon_content ' . $commerce_class . '" style="width:' . $cover_width . ';height:' . $cover_height . ';"></div>';
                 }
-                
-               $ret .= '<img class="item_img" src="' . $cover_url . '" />
+
+                $ret .= '<img class="item_img" src="' . $cover_url . '" />
                         <div class="h" style="width:' . $cover_h_width . ';height:' . $cover_h_height . ';"> 
-                        <div class="title_content">'. getEntryProperty($items->content->entries[$i], 'title') . '</div>' .
-                            $aired_date_div .
-                        '</div>
+                        <div class="title_content">' . getEntryProperty($items->content->entries[$i], 'title') . '</div>' .
+                    $aired_date_div .
+                    '</div>
                         </a>
                                 
 		        </div>';
