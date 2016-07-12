@@ -412,13 +412,14 @@ class Account extends UVod_Controller {
         return $events;
     }
 
-    public function save_credit_card() {
+    public function save_credit_card_ssl() {
 
         $data = $_POST;
+        $data['user_data'] = $_SESSION['uvod_user_data'];
         $save_cc = $this->account_model->save_credit_card($_SESSION['uvod_user_data']->token, $_SESSION['uvod_user_data']->id, $data);
 
         if (isset($save_cc->error) && $save_cc->error == false) {
-            echo json_encode(array('status' => 'ok'));
+            echo json_encode(array('status' => 'ok','new_cc' => $save_cc->content->new_credit_card));
         } else {
             echo json_encode(array('status' => 'error', 'message' => $save_cc->message,));
         }

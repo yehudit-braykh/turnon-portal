@@ -186,7 +186,7 @@ class Account_model extends CI_Model {
     }
     
     public function save_credit_card($token, $id, $data) {
-        return apiPost("user/save_credit_card", array("token" => $token,
+        return apiPost("commerce/save_credit_card", array("token" => $token,
           "id" => $id,
           "data" => $data));
     }

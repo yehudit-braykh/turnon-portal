@@ -2541,7 +2541,12 @@ select:focus, select:active {
 }
 
 .billing_btns{
-    width: 100%!important;
+    width: 44%!important;
+    float: left;
+}
+
+#edit_credit_card_btn{
+     width: 100%!important;
 }
 
 #signin_fb_btn{

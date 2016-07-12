@@ -42,8 +42,7 @@
 
                         <script type="text/javascript" src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
-                        <script type="text/javascript" src="<?php echo common_asset_url(); ?>js/buttons.js"></script>
-                        <script type="text/javascript">stLight.options({publisher: "5a4dfa75-6ae8-4a93-a4b6-1054af491e52", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+                      
                         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js"></script>
 
                         <!-- DCodes -->

@@ -14,30 +14,93 @@
 
         $('#edit_credit_card_btn').on('click', function (event) {
             event.preventDefault();
-            $('#change_cc_form').show();
+            $("#change_credit_card_form .text").val('');
+            $('#change_cc_container').show();
+        });
+        
+        $('#cancel_credit_card').on('click', function (event) {
+            event.preventDefault();
+            $("#change_credit_card_form .text").val('');
+            $('#change_cc_container').hide();
         });
 
         $('#save_credit_card').on('click', function (event) {
             event.preventDefault();
+            
+            $("#change_cc_preloader").show();
+            $("#cc_buttons").hide();
+
+            var cardholder_name = $("#cardholder_name").val();
+            var valid_cardholder_name = /^[A-Za-z\s]+$/.test(cardholder_name);
+            if (!valid_cardholder_name) {
+                show_info();
+                $("#info").html("* Name on card only accepts letters and spaces");
+                return false;
+            }
+
+            var card_number = $("#card_number").val();
+            var valid_card_number = /^[0-9]+$/.test(card_number);
+            if (!valid_card_number) {
+                show_info();
+                $("#info").html("* Card number only accepts numbers");
+                return false;
+            }
+
+            security_code = $("#security_code").val();
+            var valid_security_code = /^[0-9]+$/.test(security_code);
+            if (!valid_security_code) {
+                show_info();
+                $("#info").html("* Security code only accepts numbers");
+
+                return false;
+            }
+
+            pi_number = $('#card_number').val();
+            pi_type = GetCardType($('#card_number').val());
+
             $.ajax({
-                url: "<?php echo base_url(); ?>index.php/account/save_credit_card",
+                url: "<?php echo base_url(); ?>index.php/account/save_credit_card_ssl",
                 type: 'POST',
                 dataType: 'json',
-                data: $('#change_credit_card_form').serialize()
+                data: {
+                    pi_month: $('#expiration_month').val(),
+                    pi_year: $('#expiration_month').val() + '/' + $('#expiration_year').val(),
+                    pi_type: pi_type,
+                    pi_number: pi_number,
+                    security_code: security_code}
             }).done(function (data) {
-                $('#save_data_preloader').hide();
-                $("#info").show();
+                $('#change_cc_preloader').hide();
+                $("#cc_buttons").show();
+
                 if (data.status == "ok") {
 
-                    $("#info").html("Information saved succesfully.");
+                    $("#change_cc_info").show();
+                    $("#change_cc_info").html("Information saved succesfully.");
+
+                    $("#current_card_owner").val(data.new_cc.first_name + " " + data.new_cc.last_name);
+                    $("#current_card_type").val(data.new_cc.type);
+                    $("#current_card_number").val(data.new_cc.number);
+                    $("#current_card_expiration_date").val(data.new_cc.expire_month + "/" + data.new_cc.expire_year);
+
+
+                    TweenLite.fromTo("#change_cc_info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
+                            TweenLite.to("#change_cc_info", 1, {delay: 6, alpha: 0, onComplete: function () {
+                                    $("#change_cc_info").hide();
+                                }});
+                        }});
+                    $("#change_cc_container").hide();
+
                 } else {
+                    $("#info").show();
                     $("#info").html("* " + data.message);
+
+                    TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
+                            TweenLite.to("#info", 1, {delay: 6, alpha: 0, onComplete: function () {
+                                    $("#info").hide();
+                                }});
+                        }});
                 }
-                TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-                        TweenLite.to("#info", 1, {delay: 6, alpha: 0, onComplete: function () {
-                                $("#info").hide();
-                            }});
-                    }});
+
 
 
             });
@@ -334,6 +397,15 @@ if (isset($clientToken)) {
             return "";
         }
 
+        function show_info() {
+            $('.form_info').show();
+            TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
+//                    TweenLite.to("#info", 1, {delay: 6, alpha: 0, onComplete: function () {
+//                            $('.form_info').hide();
+//                        }});
+                }});
+        }
+
     });
 </script>
 
@@ -352,7 +424,12 @@ if (isset($clientToken)) {
             <ul class='etabs'>
                 <li class='tab'><a href="#tab1" id="vod_item_sub_menu1">My Information</a></li>
                 <li class='tab'><a href="#tab2" id="vod_item_sub_menu2">Subscription</a></li>
-                <li class='tab'><a href="#tab3" id="vod_item_sub_menu2">Billing Information</a></li>
+                <?php if (isset($card_type)) {
+                    ?>
+                    <li class='tab'><a href="#tab3" id="vod_item_sub_menu2">Billing Information</a></li>
+                    <?php
+                }
+                ?>
                 <li class='tab'><a href="#tab4" id="vod_item_sub_menu3">Pay-Per-View Tickets</a></li>
                 <li class='tab'><a href="#tab5" id="vod_item_sub_menu4">Change password</a></li>
             </ul>
@@ -522,49 +599,61 @@ if (isset($clientToken)) {
                         ?>
                     </div>
                 </div>
+                <?php if (isset($card_type)) {
+                    ?>
 
-                <div id="tab3" style="padding-left:20px">
-                    <div class="registration_container">
-                        <form style="margin-right: 50px;">
-                            <ul>
-                                <li>
-                                    <label for="card_owner">Name on Card</label>
-                                    <input id="card_owner" name="card_owner" class="text" value="<?php echo $card_owner; ?>" disabled="disabled"/>
-                                </li>
-                                <li>
-                                    <label for="card_type">Card Type</label>
-                                    <input id="card_type" name="card_type" class="text editable-field" value="<?php echo $card_type; ?>" disabled="disabled"/>
-                                </li>
-                                <li>
-                                    <label for="card_number">Card Number</label>
-                                    <input id="card_number" name="card_number" class="text editable-field" value="<?php echo $card_number; ?>" disabled="disabled"/>
-                                </li>
-                                <li>
-                                    <label for="email">Expiration Date</label>
-                                    <input id="card_expiration_date" name="card_expiration_date" class="text" value="<?php echo $card_expiration_date; ?>" disabled="disabled" />
-                                </li>
-                                <li>
-                                    <button id="edit_credit_card_btn" class="common_btn billing_btns">CHANGE CREDIT CARD</button>
-                                </li>
-                            </ul>
-                        </form>
-                        <div id="change_cc_container" class=" col-right payment_content" style="display: none;">
-                            <form id="change_credit_card_form">
+                    <div id="tab3" style="padding-left:20px">
+                        <div class="registration_container">
+                            <form style="margin-right: 50px;">
                                 <ul>
+                                    <li>
+                                        <label for="card_owner">Name on Card</label>
+                                        <input id="current_card_owner" name="card_owner" class="text" value="<?php echo $card_owner; ?>" disabled="disabled"/>
+                                    </li>
+                                    <li>
+                                        <label for="card_type">Card Type</label>
+                                        <input id="current_card_type" name="card_type" class="text editable-field" value="<?php echo $card_type; ?>" disabled="disabled"/>
+                                    </li>
+                                    <li>
+                                        <label for="card_number">Card Number</label>
+                                        <input id="current_card_number" name="card_number" class="text editable-field" value="<?php echo $card_number; ?>" disabled="disabled"/>
+                                    </li>
+                                    <li>
+                                        <label for="email">Expiration Date</label>
+                                        <input id="current_card_expiration_date" name="card_expiration_date" class="text" value="<?php echo $card_expiration_date; ?>" disabled="disabled" />
+                                    </li>
+                                    <li> 
+                                        <p id="change_cc_info" class="form_info">&nbsp;</p>
+                                    </li>
+                                    <li>
+                                        <button id="edit_credit_card_btn" class="common_btn">CHANGE CREDIT CARD</button>
+                                    </li>
+                                </ul>
+                            </form>
+                            <div id="change_cc_container" class=" col-right payment_content" style="display: none;">
+                                <form id="change_credit_card_form" >
+
                                     <?php $this->load->view(views_url() . 'templates/credit_card_form'); ?>
                                     <li> 
                                         <p id="info" class="form_info">&nbsp;</p>
                                     </li>
                                     <li>
+                                        <div id="cc_buttons">
                                         <button id="save_credit_card" class="common_btn billing_btns">SAVE CREDIT CARD</button>
+                                        <button id="cancel_credit_card" class="common_btn billing_btns">CANCEL</button>
+                                        </div>
+                                        <p id="change_cc_preloader" class="form_info">Sending data...</p>
                                     </li>
-                                </ul>
-                            </form>
+                                    </ol>
+                                </form>
+                            </div>
+
                         </div>
 
                     </div>
-
-                </div>
+                    <?php
+                }
+                ?>
 
                 <div id="tab4" style="padding-left:20px">
 
@@ -604,125 +693,7 @@ if (isset($clientToken)) {
 
                 </div>
 
-                <!--                <div id="tab3">
-                
-                                    <div class="registration_container" style="min-height:500px;">
-                                        <form method="post" id="registerform2">
-                                            <ol>
-                                                <li>
-                                                    <label for="cardholder_name">Name on Card*</label>
-                                                    <input id="cardholder_name" class="text billing_data" disabled="disabled" value="<?php
-                if (isset($card_name)) {
-                    echo $card_name;
-                }
-                ?>" />
-                                                </li>
-                                                <li>
-                                                    <label for="card_number">Card Number*</label>
-                                                    <input id="card_number" class="text billing_data" disabled="disabled" style="width:150px;" value="<?php
-                if (isset($card_number)) {
-                    echo $card_number;
-                }
-                ?>" />
-                                                </li>
-                                                <li>
-                                                    <label for="security_code">Security Code*</label>
-                                                    <input id="security_code" class="text billing_data" type="password" disabled="disabled" style="width:70px;" value="<?php
-                if (isset($card_number)) {
-                    echo '***';
-                }
-                ?>" />
-                                                </li>
-                                                <li>
-                                                    <label for="expiration_month" style="width: 100%">Month*</label>
-                
-                                                    <select id="expiration_month" class="text billing_data" disabled="disabled" style="width:70px;">
-                <?php
-                if (isset($card_expiration_month)) {
-                    for ($i = 1; $i <= 12; $i++) {
-                        if ($i == $card_expiration_month) {
-                            if ($i < 10) {
-                                echo '<option id="0' . $i . '" selected="selected">0' . $i . '</option>';
-                            } else {
-                                echo '<option id="' . $i . '" selected="selected">' . $i . '</option>';
-                            }
-                        } else {
-                            if ($i < 10) {
-                                echo '<option id="0' . $i . '">0' . $i . '</option>';
-                            } else {
-                                echo '<option id="' . $i . '">' . $i . '</option>';
-                            }
-                        }
-                    }
-                } else {
-                    ?>
-                                                                                                                                                        <option id="01">01</option>
-                                                                                                                                                        <option id="02">02</option>
-                                                                                                                                                        <option id="03">03</option>
-                                                                                                                                                        <option id="04">04</option>
-                                                                                                                                                        <option id="05">05</option>
-                                                                                                                                                        <option id="06">06</option>
-                                                                                                                                                        <option id="07">07</option>
-                                                                                                                                                        <option id="08">08</option>
-                                                                                                                                                        <option id="09">09</option>
-                                                                                                                                                        <option id="10">10</option>
-                                                                                                                                                        <option id="11">11</option>
-                                                                                                                                                        <option id="12">12</option>
-                    <?php
-                }
-                ?>
-                                                    </select>
-                
-                                                </li>
-                                                <li>
-                                                    <label for="expiration_year" style="width: 100%">Year*</label>
-                
-                                                    <select id="expiration_year" class="text billing_data" disabled="disabled" style="width:90px;">
-                <?php
-                if (isset($card_expiration_year)) {
-                    for ($i = 2014; $i <= 2025; $i++) {
-                        if ($i == $card_expiration_year) {
-
-                            echo '<option id="' . $i . '" selected="selected">' . $i . '</option>';
-                        } else {
-
-                            echo '<option id="' . $i . '">' . $i . '</option>';
-                        }
-                    }
-                } else {
-                    ?>
-                                                                                                                                                        <option id="2015">2015</option>
-                                                                                                                                                        <option id="2016">2016</option>
-                                                                                                                                                        <option id="2017">2017</option>
-                                                                                                                                                        <option id="2018">2018</option>
-                                                                                                                                                        <option id="2019">2019</option>
-                                                                                                                                                        <option id="2020">2020</option>
-                                                                                                                                                        <option id="2021">2021</option>
-                                                                                                                                                        <option id="2022">2022</option>
-                                                                                                                                                        <option id="2023">2023</option>
-                                                                                                                                                        <option id="2024">2024</option>
-                                                                                                                                                        <option id="2025">2025</option>
-                    <?php
-                }
-                ?>
-                                                    </select>
-                
-                                                </li>
-                                                <li> 
-                                                    <span id="billing_info" class="form_info">&nbsp;</span>
-                                                </li>
-                                                <li class="buttons">
-                
-                                                    <input type="image" id="btn_change_billing" src="<?php echo asset_url(); ?>images/button_modify.png"/>
-                                                    <input type="image" id="btn_save_billing" src="<?php echo asset_url(); ?>images/button_save.png" class="send"/>
-                                                    <div class="clr"></div>
-                                                </li>
-                                            </ol>
-                                        </form>              
-                                    </div>
-                                </div>-->
-
-                <!-- TAB 4: Change Password -->
+                <!-- TAB 5: Change Password -->
                 <div id="tab5">
 
                     <div class="registration_container" style="min-height:400px;">
