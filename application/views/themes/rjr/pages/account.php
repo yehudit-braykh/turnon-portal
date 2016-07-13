@@ -3,6 +3,10 @@
 
     $(function () {
 
+        String.prototype.capitalize = function () {
+            return this.charAt(0).toUpperCase() + this.slice(1);
+        }
+
         $('#tab-container').easytabs();
 
 
@@ -17,7 +21,7 @@
             $("#change_credit_card_form .text").val('');
             $('#change_cc_container').show();
         });
-        
+
         $('#cancel_credit_card').on('click', function (event) {
             event.preventDefault();
             $("#change_credit_card_form .text").val('');
@@ -26,34 +30,47 @@
 
         $('#save_credit_card').on('click', function (event) {
             event.preventDefault();
-            
-            $("#change_cc_preloader").show();
-            $("#cc_buttons").hide();
 
             var cardholder_name = $("#cardholder_name").val();
             var valid_cardholder_name = /^[A-Za-z\s]+$/.test(cardholder_name);
             if (!valid_cardholder_name) {
-                show_info();
-                $("#info").html("* Name on card only accepts letters and spaces");
+                show_info("#save_cc_info");
+                $("#save_cc_info").html("* Name on card only accepts letters and spaces");
                 return false;
             }
 
             var card_number = $("#card_number").val();
             var valid_card_number = /^[0-9]+$/.test(card_number);
             if (!valid_card_number) {
-                show_info();
-                $("#info").html("* Card number only accepts numbers");
+                show_info("#save_cc_info");
+                $("#save_cc_info").html("* Card number only accepts numbers");
                 return false;
             }
 
             security_code = $("#security_code").val();
             var valid_security_code = /^[0-9]+$/.test(security_code);
             if (!valid_security_code) {
-                show_info();
-                $("#info").html("* Security code only accepts numbers");
-
+                show_info("#save_cc_info");
+                $("#save_cc_info").html("* Security code only accepts numbers");
                 return false;
             }
+
+            expiration_month = $("#expiration_month").val();
+            if (!expiration_month || expiration_month == "") {
+                show_info("#save_cc_info");
+                $("#save_cc_info").html("* Expiration month is mandatory");
+                return false;
+            }
+
+            expiration_year = $("#expiration_year").val();
+            if (!expiration_year || expiration_year == "") {
+                show_info("#save_cc_info");
+                $("#save_cc_info").html("* Expiration year is mandatory");
+                return false;
+            }
+
+            $("#change_cc_preloader").show();
+            $("#cc_buttons").hide();
 
             pi_number = $('#card_number').val();
             pi_type = GetCardType($('#card_number').val());
@@ -78,7 +95,7 @@
                     $("#change_cc_info").html("Information saved succesfully.");
 
                     $("#current_card_owner").val(data.new_cc.first_name + " " + data.new_cc.last_name);
-                    $("#current_card_type").val(data.new_cc.type);
+                    $("#current_card_type").val(data.new_cc.type.capitalize());
                     $("#current_card_number").val(data.new_cc.number);
                     $("#current_card_expiration_date").val(data.new_cc.expire_month + "/" + data.new_cc.expire_year);
 
@@ -91,12 +108,12 @@
                     $("#change_cc_container").hide();
 
                 } else {
-                    $("#info").show();
-                    $("#info").html("* " + data.message);
+                    $("#save_cc_info").show();
+                    $("#save_cc_info").html("* " + data.message);
 
-                    TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-                            TweenLite.to("#info", 1, {delay: 6, alpha: 0, onComplete: function () {
-                                    $("#info").hide();
+                    TweenLite.fromTo("#save_cc_info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
+                            TweenLite.to("#save_cc_info", 1, {delay: 6, alpha: 0, onComplete: function () {
+                                    $("#save_cc_info").hide();
                                 }});
                         }});
                 }
@@ -265,7 +282,7 @@ if (isset($clientToken)) {
             event.preventDefault()
             $(this).hide();
             if (!($("#accept_terms_and_conditions").prop("checked"))) {
-                show_info();
+                show_info("#subscribe_info");
                 $(".form_info").html("* You must accept terms and conditions before click next button");
                 $('.subscriber_button').show();
                 return false;
@@ -274,7 +291,7 @@ if (isset($clientToken)) {
             var cardholder_name = $("#cardholder_name").val();
             var valid_cardholder_name = /^[A-Za-z\s]+$/.test(cardholder_name);
             if (!valid_cardholder_name) {
-                show_info();
+                show_info("#subscribe_info");
                 $(".form_info").html("* Name on card only accepts letters and spaces");
                 $('.subscriber_button').show();
                 return false;
@@ -283,7 +300,7 @@ if (isset($clientToken)) {
             var card_number = $("#card_number").val();
             var valid_card_number = /^[0-9]+$/.test(card_number);
             if (!valid_card_number) {
-                show_info();
+                show_info("#subscribe_info");
                 $(".form_info").html("* Card number only accepts numbers");
                 $('.subscriber_button#btn_next').show();
                 return false;
@@ -292,7 +309,7 @@ if (isset($clientToken)) {
             security_code = $("#security_code").val();
             var valid_security_code = /^[0-9]+$/.test(security_code);
             if (!valid_security_code) {
-                show_info();
+                show_info("#subscribe_info");
                 $(".form_info").html("* Security code only accepts numbers");
                 $('.subscriber_button').show();
                 return false;
@@ -328,7 +345,7 @@ if (isset($clientToken)) {
                     $('.subscriber_button').show();
                     $('.other-op-btn').show();
                     $(".form_info").html("* " + data.message);
-                    show_info();
+                    show_info(".form_info");
                 }
             });
 
@@ -371,11 +388,11 @@ if (isset($clientToken)) {
             return false;
         });
 
-        function show_info() {
-            $(".form_info").show();
-            TweenLite.fromTo(".form_info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-                    TweenLite.to(".form_info", 1, {delay: 6, alpha: 0, onComplete: function () {
-                            $(".form_info").hide();
+        function show_info(info) {
+            $(info).show();
+            TweenLite.fromTo(info, 1, {alpha: 0}, {alpha: 1, onComplete: function () {
+                    TweenLite.to(info, 1, {delay: 6, alpha: 0, onComplete: function () {
+                            $(info).hide();
                         }});
                 }});
         }
@@ -397,14 +414,7 @@ if (isset($clientToken)) {
             return "";
         }
 
-        function show_info() {
-            $('.form_info').show();
-            TweenLite.fromTo("#info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-//                    TweenLite.to("#info", 1, {delay: 6, alpha: 0, onComplete: function () {
-//                            $('.form_info').hide();
-//                        }});
-                }});
-        }
+
 
     });
 </script>
@@ -583,7 +593,7 @@ if (isset($clientToken)) {
                                     <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
                                     <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_conditions_subscribers'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
                                 <li> 
-                                    <p id="info" class="form_info">&nbsp;</p>
+                                    <p id="subscribe_info" class="form_info">&nbsp;</p>
                                 </li>
                                 <li class="buttons">
                                     <button class="other-op-btn">Select other Plan</button>
@@ -635,12 +645,12 @@ if (isset($clientToken)) {
 
                                     <?php $this->load->view(views_url() . 'templates/credit_card_form'); ?>
                                     <li> 
-                                        <p id="info" class="form_info">&nbsp;</p>
+                                        <p id="save_cc_info" class="form_info">&nbsp;</p>
                                     </li>
                                     <li>
                                         <div id="cc_buttons">
-                                        <button id="save_credit_card" class="common_btn billing_btns">SAVE CREDIT CARD</button>
-                                        <button id="cancel_credit_card" class="common_btn billing_btns">CANCEL</button>
+                                            <button id="save_credit_card" class="common_btn billing_btns">SAVE CREDIT CARD</button>
+                                            <button id="cancel_credit_card" class="common_btn billing_btns">CANCEL</button>
                                         </div>
                                         <p id="change_cc_preloader" class="form_info">Sending data...</p>
                                     </li>

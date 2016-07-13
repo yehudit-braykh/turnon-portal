@@ -77,10 +77,10 @@ class Search extends UVod_Controller {
                 $ret .= '<div class="col4 no_spacer img_hover_box" style="width:' . $cover_width . '">
                                 <a href="' . base_url() . 'index.php/vod_item/detail/id/' . $item_id . '" class="cover" style="width:' . $cover_width . ';height:' . $cover_height . ';">';
                 if ($mediatype != "tv_show" && $this->config->item('theme') !== 'orbita') {
-                    $ad = getEntryProperty($items->content->entries[$i]);
+                    $ad = getEntryProperty($items->content->entries[$i],'aired_date');
                     $aired_date = '';
                     if($ad && $ad !== ''){
-                        $aired_date = date("F d, Y", (getEntryProperty($items->content->entries[$i], 'aired_date')/1000));
+                        $aired_date = date("F d, Y", $ad /1000);
                     }
                     $aired_date_div = '<div>' .  $aired_date . '</div>';
                     $ret.= '<div class="ribbon_content '. $commerce_class . '" style="width:' . $cover_width . ';height:' . $cover_height . ';"></div>';
