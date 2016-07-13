@@ -295,8 +295,13 @@ class Account extends UVod_Controller {
                 $data['user_state'] = "";
             }
 
-            if (sizeof($user_profile->content->paymentData) && isset($user_profile->content->paymentData[0]->creditCardId)) {
-                $credit_card_id = $user_profile->content->paymentData[0]->creditCardId;
+            if (sizeof($user_profile->content->paymentData) && (isset($user_profile->content->paymentData[0]->creditCardId) || isset($user_profile->content->paymentData[0]->creditCard))) {
+
+                if (isset($user_profile->content->paymentData[0]->creditCardId)) {
+                    $credit_card_id = $user_profile->content->paymentData[0]->creditCardId;
+                } else {
+                    $credit_card_id = $user_profile->content->paymentData[0]->creditCard;
+                }
                 $credit_card = $this->account_model->get_credit_card($credit_card_id);
 
                 error_log("CREDIT CARD: " . json_encode($credit_card));
@@ -419,7 +424,7 @@ class Account extends UVod_Controller {
         $save_cc = $this->account_model->save_credit_card($_SESSION['uvod_user_data']->token, $_SESSION['uvod_user_data']->id, $data);
 
         if (isset($save_cc->error) && $save_cc->error == false) {
-            echo json_encode(array('status' => 'ok','new_cc' => $save_cc->content->new_credit_card));
+            echo json_encode(array('status' => 'ok', 'new_cc' => $save_cc->content->new_credit_card));
         } else {
             echo json_encode(array('status' => 'error', 'message' => $save_cc->message,));
         }
