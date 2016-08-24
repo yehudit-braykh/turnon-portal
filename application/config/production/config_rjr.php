@@ -3,6 +3,8 @@
 /*-------------------------------------------------------------------------
    RJR CONFIG FILE
 --------------------------------------------------------------------------*/
+$config['streams_md5_shared_secret'] = '900P@rkCenter456';
+
 $config['logo_file'] = 'tvj_logo.png';
 $config['logo_width'] = '127px';
 $config['logo_height'] = '96px';

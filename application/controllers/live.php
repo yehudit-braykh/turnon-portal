@@ -12,9 +12,7 @@ class Live extends UVod_Controller {
         $this->load->model('vod_item_model');
         $this->load->model('vod_model');
         $this->load->helper('pdk');
-//         if ($this->config->item('timezone')) {
-//            date_default_timezone_set($this->config->item('timezone'));
-//        }
+        $this->load->helper('stream_security');
     }
 
     public function main($id = null) {
@@ -35,8 +33,6 @@ class Live extends UVod_Controller {
         $channels_stream = array();
         $ids = array();
 
-
-
         if ($channels && $channels->entries && isset($channels->entries[0]->media)) {
             for ($i = 0; $i < sizeof($channels->entries); $i++) {
 
@@ -50,7 +46,8 @@ class Live extends UVod_Controller {
                 }
 
                 $release_hls_url = getEntryStreamingUrl($item, "HLS Stream");
-                $release_hls_url_stream = $release_hls_url;
+                
+                $release_hls_url_stream = get_secure_hls_url($release_hls_url, $this->config->item('streams_md5_shared_secret'));
 
                 $release_hls_blocked_url = getEntryStreamingUrl($item, "HLS Blocked Stream");
                 $release_hls_blocked_url_stream = $release_hls_blocked_url;
