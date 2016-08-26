@@ -271,7 +271,6 @@ class Account extends UVod_Controller {
             $data['user_status'] = 'Subscriptor';
         }
 
-
         if ($user_profile && $user_profile->content) {
             $data['user_email'] = $user_profile->content->email;
             $data['user_first_name'] = $user_profile->content->firstName;
@@ -310,6 +309,11 @@ class Account extends UVod_Controller {
                 $data['card_number'] = $credit_card->content->number;
                 $data['card_expiration_date'] = $credit_card->content->expire_month . '/' . $credit_card->content->expire_year;
                 $data['card_owner'] = $credit_card->content->first_name . ' ' . $credit_card->content->last_name;
+            }else{
+                $data['card_type'] = "";
+                $data['card_number'] = "";
+                $data['card_expiration_date'] = "";
+                $data['card_owner'] = "";
             }
         } else {
             $data['user_email'] = "";
@@ -639,9 +643,40 @@ class Account extends UVod_Controller {
         $pi_number = $_POST['pi_number'];
         $pi_security_code = $_POST['security_code'];
         $subscription_id = $_POST['subscription_id'];
-        $auto_renew = $_POST['auto_renew'];
 
-        $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $pi_security_code, $subscription_id, $auto_renew);
+        $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $pi_security_code, $subscription_id);
+
+        if (isset($ret->error) && $ret->error == false) {
+
+            if (isset($ret->content->subscription_data)) {
+                $time = $ret->content->subscription_data->{'subscriptionLength'};
+            } else {
+                $time = '';
+            }
+            $_SESSION['is_subscriber'] = true;
+            $this->subscription_complete_mail($first_name, $last_name, $email, $time, $auto_renew);
+            echo json_encode(array('status' => 'ok'));
+        } else {
+            echo json_encode(array('status' => 'error', 'message' => $ret->message,));
+        }
+    }
+    
+    public function subscribe_by_stored_cc_ssl() {
+
+        if (isset($_SESSION['uvod_user_data'])) {
+            $token = $_SESSION['uvod_user_data']->token;
+        } else if (isset($_SESSION['registration_data']->user_token)) {
+            $token = $_SESSION['registration_data']->user_token;
+        }
+
+
+        $first_name = $_SESSION['uvod_user_data']->firstName;
+        $last_name = $_SESSION['uvod_user_data']->lastName;
+        $email = $_SESSION['uvod_user_data']->email;
+        $country = $_SESSION['uvod_user_data']->countryCode;
+        $subscription_id = $_POST['subscription_id'];
+
+        $ret = $this->account_model->subscribe_by_stored_cc($token, $first_name, $last_name, $email, $country, $subscription_id);
 
         if (isset($ret->error) && $ret->error == false) {
 

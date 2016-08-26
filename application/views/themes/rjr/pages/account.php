@@ -22,6 +22,18 @@
             $('#change_cc_container').show();
         });
 
+        $('#change_credit_card_btn').on('click', function (event) {
+            event.preventDefault();
+            $('#current_credit_card_container').hide();
+            $('#new_credit_card_container').show();
+        });
+
+        $('#use_stored_cc').on('click', function (event) {
+            event.preventDefault();
+            $('#new_credit_card_container').hide();
+            $('#current_credit_card_container').show();
+        });
+
         $('#cancel_credit_card').on('click', function (event) {
             event.preventDefault();
             $("#change_credit_card_form .text").val('');
@@ -122,7 +134,8 @@
 
             });
 
-        })
+        });
+
 
         $('.btn_watch_now').on('click', function (event) {
             window.location.href = "<?php echo base_url() . 'index.php/live_events/main'; ?>";
@@ -320,7 +333,7 @@ if (isset($clientToken)) {
             $('#registration_preloader').show();
             pi_number = $('#card_number').val();
             pi_type = GetCardType($('#card_number').val());
-            auto_renew = $("#auto-renew").is(":checked");
+
 
             $.ajax({
                 url: "<?php echo base_url(); ?>index.php/account/subscribe_ssl",
@@ -333,7 +346,34 @@ if (isset($clientToken)) {
                     pi_number: pi_number,
                     security_code: security_code,
                     subscription_id: subscription_id,
-                    auto_renew: auto_renew}
+                }
+            }).done(function (data) {
+
+                if (data && data.status == 'ok') {
+
+                    window.location.href = "<?php echo base_url(); ?>index.php/account/subscription_finished";
+                } else {
+
+                    $('#registration_preloader').hide();
+                    $('.subscriber_button').show();
+                    $('.other-op-btn').show();
+                    $(".form_info").html("* " + data.message);
+                    show_info(".form_info");
+                }
+            });
+
+            return false;
+        });
+
+
+        $("#subscribe_stored_cc_btn").on('click', function () {
+            $.ajax({
+                url: "<?php echo base_url(); ?>index.php/account/subscribe_by_stored_cc",
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    subscription_id: subscription_id
+                }
             }).done(function (data) {
 
                 if (data && data.status == 'ok') {
@@ -434,7 +474,7 @@ if (isset($clientToken)) {
             <ul class='etabs'>
                 <li class='tab'><a href="#tab1" id="vod_item_sub_menu1">My Information</a></li>
                 <li class='tab'><a href="#tab2" id="vod_item_sub_menu2">Subscription</a></li>
-                <?php if (isset($card_type)) {
+                <?php if (isset($card_type) && $card_type !== "") {
                     ?>
                     <li class='tab'><a href="#tab3" id="vod_item_sub_menu2">Billing Information</a></li>
                     <?php
@@ -522,11 +562,6 @@ if (isset($clientToken)) {
                     <div class="registration_container">
                         <?php
                         if (isset($subscription_data) && $subscription_data != "") {
-                            if ($subscription_data->{'autoRenew'}) {
-                                $auto_renew_chbx = 'checked="checked"';
-                            } else {
-                                $auto_renew_chbx = '';
-                            }
                             ?>
 
                             <form method="post" id="cancelform">
@@ -560,9 +595,7 @@ if (isset($clientToken)) {
                                     </li>
                                     <li class="buttons">
                                         <input id="contract_id" type="hidden" class="text" style="width:150px;" value="<?php echo $subscription_data->_id; ?>" />
-                                        <div class="chbx-container">
-                                            <input id="contract-auto-renew"type="checkbox" <?php echo $auto_renew_chbx; ?>/><label class="chbx-lbl">Auto-renew</label>
-                                        </div>
+
                                         <button class="common_btn" id="save-subscription">SAVE</button>      
                                     </li>
                                     <li> 
@@ -581,27 +614,62 @@ if (isset($clientToken)) {
                             if (sizeof($subscriptions) > 0) {
                                 $this->load->view(views_url() . 'templates/select_subscription');
                             }
+
+                            if (isset($card_type) && $card_type !== "") {
+                                $display_current_cc = 'style="display: block;"';
+                                $display_new_cc = 'style="display: none;"';
+                            } else {
+                                $display_current_cc = 'style="display: none;"';
+                                $display_new_cc = 'style="display: block;"';
+                            }
                             ?>
                             <form method="post" id="subscription_form" style="display: none;">
-                                <?php
-                                $this->load->view(views_url() . 'templates/credit_card_form');
-                                ?>
-                                <li class="buttons">
-                                    <input id="auto-renew"type="checkbox" checked="checked"/><label class="chbx-lbl">Auto-renew</label>
-                                </li>
-                                <li id= "terms_and_conditions" style="margin-top: 10px">
-                                    <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
-                                    <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_conditions_subscribers'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
-                                <li> 
-                                    <p id="subscribe_info" class="form_info">&nbsp;</p>
-                                </li>
-                                <li class="buttons">
-                                    <button class="other-op-btn">Select other Plan</button>
-                                    <button class="subscriber_button">Subscribe</button>
-                                    <div id="registration_preloader"></div>
-                                    <div class="clr"></div>
-                                </li>
-                                </ol>
+                                <div id="current_credit_card_container" <?php echo $display_current_cc; ?>>
+                                    <ul>
+                                        <?php
+                                        $this->load->view(views_url() . 'templates/change_credit_card');
+                                        ?>
+
+                                        <li> 
+                                            <p id="subscribe_info" class="form_info">&nbsp;</p>
+                                        </li>
+                                        <li class="buttons" style="margin-top: 25px;">
+                                            <button class="other-op-btn">Select other Plan</button>
+                                            <button id="change_credit_card_btn">Change Credit<br>Card</button>
+                                            <button id="subscribe_stored_cc_btn" class="subscriber_button">Subscribe</button>
+                                            <div id="registration_preloader"></div>
+                                            <div class="clr"></div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div id="new_credit_card_container" <?php echo $display_new_cc; ?>>
+                                    <?php
+                                    $this->load->view(views_url() . 'templates/credit_card_form');
+                                    ?>
+
+                                    <li id= "terms_and_conditions" style="margin-top: 10px">
+                                        <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
+                                        <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_conditions_subscribers'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
+                                    <li> 
+                                        <p id="subscribe_info" class="form_info">&nbsp;</p>
+                                    </li>
+                                    <li class="buttons">
+                                        <button class="other-op-btn">Select other Plan</button>
+                                        <?php
+                                        if (isset($card_type) && $card_type !== "") {
+                                            ?>
+                                            <button id="use_stored_cc">Use stored<br>Credit Card</button>
+                                            <?php
+                                        }
+                                        ?>
+                                        <button class="subscriber_button">Subscribe</button>
+                                        <div id="registration_preloader"></div>
+                                        <div class="clr"></div>
+                                    </li>
+                                    </ol>
+                                </div>
+
                             </form>   
 
                             <?php
@@ -609,32 +677,16 @@ if (isset($clientToken)) {
                         ?>
                     </div>
                 </div>
-                <?php if (isset($card_type)) {
+                <?php if (isset($card_type) && $card_type !== "") {
                     ?>
 
                     <div id="tab3" style="padding-left:20px">
                         <div class="registration_container">
                             <form style="margin-right: 50px;">
                                 <ul>
-                                    <li>
-                                        <label for="card_owner">Name on Card</label>
-                                        <input id="current_card_owner" name="card_owner" class="text" value="<?php echo $card_owner; ?>" disabled="disabled"/>
-                                    </li>
-                                    <li>
-                                        <label for="card_type">Card Type</label>
-                                        <input id="current_card_type" name="card_type" class="text editable-field" value="<?php echo $card_type; ?>" disabled="disabled"/>
-                                    </li>
-                                    <li>
-                                        <label for="card_number">Card Number</label>
-                                        <input id="current_card_number" name="card_number" class="text editable-field" value="<?php echo $card_number; ?>" disabled="disabled"/>
-                                    </li>
-                                    <li>
-                                        <label for="email">Expiration Date</label>
-                                        <input id="current_card_expiration_date" name="card_expiration_date" class="text" value="<?php echo $card_expiration_date; ?>" disabled="disabled" />
-                                    </li>
-                                    <li> 
-                                        <p id="change_cc_info" class="form_info">&nbsp;</p>
-                                    </li>
+                                    <?php
+                                    $this->load->view(views_url() . 'templates/change_credit_card');
+                                    ?>
                                     <li>
                                         <button id="edit_credit_card_btn" class="common_btn">CHANGE CREDIT CARD</button>
                                     </li>

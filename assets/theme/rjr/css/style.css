@@ -2372,13 +2372,13 @@ select:focus, select:active {
 
 .registration_container form li.buttons input, .payment_content form li.buttons input { padding:0 0 3px 0; margin:10px 0 0 0px; border:0; color:#FFF; float:left; }
 
-.other-op-btn, .subscriber_button, #btn_next, #btn_skip{
+.other-op-btn, .subscriber_button, #btn_next, #btn_skip, #change_credit_card_btn, #use_stored_cc{
     height: 35px;
     padding:0 0 3px 0; 
     border:0; 
     color:#FFF!important; 
     float:left;
-    background-color: #6B00B1;
+    background-color: rgb(127,0,191);
     text-transform: uppercase;
     cursor: pointer;
     margin-right: 10px;
@@ -2389,7 +2389,7 @@ select:focus, select:active {
 }
 
 
-.other-op-btn, .subscriber_button{
+.other-op-btn, .subscriber_button, #change_credit_card_btn, #use_stored_cc{
     width: 110px;
 }
 
