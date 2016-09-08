@@ -24,7 +24,7 @@ if (defined('ENVIRONMENT'))
 		case 'development':
 		case 'staging':
 		case 'production':
-			error_reporting(E_ALL);
+			error_reporting(E_ERROR);
 		break;
 
 		default:
@@ -189,3 +189,13 @@ require_once BASEPATH.'core/CodeIgniter.php';
 
 /* End of file index.php */
 /* Location: ./index.php */
+
+
+
+function debug(){
+	$args = func_get_args();
+	echo "<pre>";
+	print_r($args);
+	die();
+
+}
