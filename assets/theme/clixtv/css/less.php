@@ -10,11 +10,12 @@ $parser = new Less_Parser(array( 'compress'=>true ));
 $parser->parseFile( ROOT_DIR."/assets/theme/clixtv/css/main.less", "/assets/theme/clixtv/css");
 
 //$css_file_name = Less_Cache::Get( "/cache/" );
+header("Content-type: text/css");
 
 //$compiled = file_get_contents( '/var/www/writable_folder/'.$css_file_name );
 die($parser->getCss());
 //file_put_contents("/cache/a.css", $parser->getCss());
-//echo $parser->getCss();
+// echo $parser->getCss();
 
 
 

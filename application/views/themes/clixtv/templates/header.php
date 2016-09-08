@@ -26,7 +26,7 @@
 
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"/>
                 <link rel="stylesheet"  href="<?php echo asset_url(); ?>css/lightslider.css"/>
-                <link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/style.css" />
+                <link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/less.php" />
 
                 <script>
                     (function (i, s, o, g, r, a, m) {
@@ -76,7 +76,7 @@
                             n && (this.domain = n), o.id = "js-iframe-async", o.src = e, this.t = +new Date, this.zendeskHost = t, this.zEQueue = a, this.body.appendChild(o)
                         }, o.write('<body onload="document._l();">'), o.close()
                     }("//assets.zendesk.com/embeddable_framework/main.js", "univtec.zendesk.com");/*]]>*/</script>
-                <!-- End of Unified Video Technologies Zendesk Widget script -->                        
+                <!-- End of Unified Video Technologies Zendesk Widget script -->
 
                 </head>
 
@@ -108,7 +108,7 @@
 
                                             <?php
                                             if (!isset($_SESSION['uvod_user_data']) || !isset($_SESSION['uvod_user_data']->token)) {
-                                                
+
                                                 ?>
                                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span id="user-icon" class="glyphicon glyphicon-user"></span></a>
                                                 <ul class="dropdown-menu">
