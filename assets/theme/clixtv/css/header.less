@@ -11,7 +11,7 @@ header {
 }
 
 .header-clix {
-    background-color: #141a53;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0));
     .navbar-brand {
         margin-right: 10px;
         padding: 10px 0px;
@@ -43,12 +43,15 @@ header {
         }
         .nav>li>a:focus, .nav>li>a:hover {
             text-decoration: none;
-            color: #141a53;
-            background-color: white;
+            color: #e61419;
+            background-color: transparent;
+        }
+        .nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+            background-color: transparent;
         }
         .dropdown-menu {
             padding: 0;
-            border-radius: 5px;
+            margin-top: 30px;
         }
         .dropdown-menu>li>a {
             margin: 0;
@@ -58,6 +61,78 @@ header {
                 color: white;
             }
         }
+
+        #search {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 60px;
+            height: 60px;
+        }
+        #label {
+            width: 60px;
+            height: 60px;
+            position: relative;
+            z-index: 20;
+        }
+        #label label {
+            display: block;
+            width: 60px;
+            height: 60px;
+            background: url("../img/search.png") 0 0;
+            font-size: 0;
+            color: rgba(0, 0, 0, 0);
+            text-indent: -9999px;
+            cursor: pointer;
+        }
+        #label label:hover {
+            background: url("../img/search.png") -60px 0
+        }
+        #label.active label {
+            background: url("../img/search.png") -60px 0
+        }
+        #input {
+            position: absolute;
+            top: 0;
+            left: 60px;
+            width: 450px;
+            height: 60px;
+            z-index: 5;
+            overflow: hidden;
+        }
+        #input input {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: -450px;
+            width: 450px;
+            height: 100%;
+            margin: 0;
+            padding: 0 10px;
+            border: none;
+            background-color: #23688b;
+            color: #fff;
+            font-size: 18px;
+            backface-visibility: none;
+            border-radius: 0;
+            transition: left 0;
+        }
+        #input input:focus {
+            outline: none
+        }
+        #input.focus {
+            z-index: 20
+        }
+        #input.focus input {
+            left: 0;
+            transition: left 0.3s;
+        }
+
+
+
+
+
+
         .signin-div {
             margin-left: 10px;
             margin-top: -9px;
@@ -72,6 +147,49 @@ header {
                 border-radius: 3px;
                 background-color: #ffffff;
             }
+        }
+    }
+    .columns {
+        background-color: rgba(0, 0, 0, 0.8);
+        -moz-column-count: 4;
+        /* Firefox */
+        -webkit-column-count: 4;
+        /* Safari and Chrome */
+        column-count: 4;
+        width: 900px;
+        height: 392px;
+        border-top: 12px solid white;
+        .home-ul {
+            color: #e61419;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .white-ul {
+            font-size: 18px;
+        }
+        .white-ul {
+            li:first-child {
+                font-weight: bold;
+            }
+        }
+        ul {
+            margin-top: 30px;
+            height: ~"calc(100% - 30px)";
+            padding-left: 20px;
+            li {
+                margin-bottom: 10px;
+                list-style: none;
+            }
+        }
+        .arrow-up {
+            position: absolute;
+            margin-top: -24px;
+            left: 45px;
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 12px solid
         }
     }
 }

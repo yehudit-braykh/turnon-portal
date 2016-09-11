@@ -56,7 +56,7 @@
 
     <body>
         <?php
-            $this->load->view(views_url() . 'components/header', array("channels" => $vod_categories));
+            $this->load->view(views_url() . 'components/header', array("categories" => $categories));
          ?>
 
         <?php
