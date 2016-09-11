@@ -24,7 +24,7 @@ if (defined('ENVIRONMENT'))
 		case 'development':
 		case 'staging':
 		case 'production':
-			error_reporting(E_ERROR);
+			error_reporting(E_ERROR | E_PARSE | E_COMPILE_ERROR);
 		break;
 
 		default:

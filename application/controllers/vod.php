@@ -20,14 +20,27 @@ class Vod extends UVod_Controller {
     }
 
     public function featured($sub_section = COMING_SOON) {
-
+    	//debug(class_exists('Mongo'));
+    	//debug(PHP_INT_SIZE);
+    	//debug("B", is_32bit());
+    	$this->load->model("categories");
+    	
+    	
+    	
+    	$res = $this->categories->get_all();
+    	foreach ($res as $cat){
+    		$channels[] = $cat["title"];
+    	}
+    	$data["channels"] = $channels;
+    	
+    	/*
         // default categories
         $data = array();
         $data['category1'] = $this->config->item('category1');
         $data['category2'] = $this->config->item('category2');
         $data['category3'] = $this->config->item('category3');
         $data['section'] = "featured";
-
+        debug("A", $data);
         // get slider
         $data['slider'] = $this->vod_model->get_slider(APP_TARGET, $sub_section);
 
@@ -54,7 +67,7 @@ class Vod extends UVod_Controller {
         //     $this->load->view(views_url() . 'templates/sub_menu1', $data);
         // }
         // $this->load->view(views_url() . 'pages/vod', $data);
-        // $this->load->view(views_url() . 'templates/footer', $data);
+        // $this->load->view(views_url() . 'templates/footer', $data);*/
         $this->load->view(views_url() . 'components/html', $data);
     }
 
