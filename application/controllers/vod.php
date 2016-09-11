@@ -20,6 +20,7 @@ class Vod extends UVod_Controller {
     }
 
     public function featured($sub_section = COMING_SOON) {
+    	
     	//debug(class_exists('Mongo'));
     	//debug(PHP_INT_SIZE);
     	//debug("B", is_32bit());
@@ -31,7 +32,7 @@ class Vod extends UVod_Controller {
     	foreach ($res as $cat){
     		$channels[] = $cat["title"];
     	}
-    	$data["channels"] = $channels;
+    	$data["categories"] = $channels;
     	
     	/*
         // default categories
