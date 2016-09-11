@@ -30,9 +30,9 @@ class Vod extends UVod_Controller {
     	
     	$res = $this->categories->get_all();
     	foreach ($res as $cat){
-    		$channels[] = $cat["title"];
+    		$categories[] = array("title" => $cat["title"], "_id" => $cat["_id"]);
     	}
-    	$data["categories"] = $channels;
+    	$data["categories"] = $categories;
     	
     	/*
         // default categories
