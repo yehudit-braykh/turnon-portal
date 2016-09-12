@@ -16,12 +16,54 @@
 
                     </div>
                 </a>
+                <li class="visible-xs">
+                    <form class="search-form" onclick="resizeInput()" tabindex="0" action="#" method="post" >
+                        <div class="sub-search" >
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </div>
+                        <div class="sub-search input-sub">
+                            <input type="text" name="search-terms" id="search-terms" onblur="removeInput()"  placeholder="Search...">
+                        </div>
+                    </form>
+                </li>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="dropdown">
+                    <li class="dropdown visible-xs">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Celebrities <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>Katy Perry</li>
+                            <li>Tyga</li>
+                            <li>Alana Blanchard</li>
+                            <li>Nelly</li>
+                            <li>Plain White T’s</li>
+                            <li>See Full List…</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown visible-xs">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Channels <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <?php
+                            foreach ($vods as $category => $video) {
+                                echo '<li id="top_sub_menu_' . $category . '"><a href="#">' . $category . '</a></li>';
+                            }
+                            ?>
+                        </ul>
+                    </li>
+                    <li class="dropdown visible-xs">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Offers <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>Nike</li>
+                            <li>Offers</li>
+                            <li>DirecTV</li>
+                            <li>Dodge</li>
+                            <li>Porsche</li>
+                            <li>See Full List…</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown hidden-xs">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Browse <span class="caret"></span></a>
                         <ul class="dropdown-menu columns">
                             <div class="arrow-up">
@@ -52,8 +94,8 @@
                             <ul class="white-ul">
                                 <li>Categories</li>
                                 <?php
-                                for ($i = 0; $i < count($categories); $i++) {
-                                    echo '<li id="top_sub_menu_' . $categories[$i]->id . '"><a href="#">' . $categories[$i] . '</a></li>';
+                                foreach ($vods as $category => $video) {
+                                    echo '<li id="top_sub_menu_' . $category . '"><a href="#">' . $category . '</a></li>';
                                 }
                                 ?>
                             </ul>
@@ -68,20 +110,20 @@
                             </ul>
                         </ul>
                     </li>
-                <li><a href="#">What is ClixTV</a></li>
-                <li>
-                    <form class="search-form" onclick="resizeInput()" tabindex="0" action="#" method="post" >
-                        <div class="sub-search" >
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                        </div>
-                        <div class="sub-search input-sub">
-                            <input type="text" name="search-terms" id="search-terms" onblur="removeInput()"  placeholder="Search...">
-                        </div>
-                    </form>
-                </li>
+                    <li><a href="#">What is ClixTV</a></li>
+                    <li class="hidden-xs">
+                        <form class="search-form" onclick="resizeInput()" tabindex="0" action="#" method="post" >
+                            <div class="sub-search" >
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </div>
+                            <div class="sub-search input-sub">
+                                <input type="text" name="search-terms" id="search-terms" onblur="removeInput()"  placeholder="Search...">
+                            </div>
+                        </form>
+                    </li>
 
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right hidden-xs">
                     <li class="signin-div">
                         <div class="singin-btn">
                             Login

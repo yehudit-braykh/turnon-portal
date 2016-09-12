@@ -11,10 +11,51 @@ header {
 }
 
 .header-clix {
-    z-index: 1;
+    z-index: 100;
     position: fixed;
     width: 100%;
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0));
+    .search-form {
+        outline: none;
+        margin-top: 4px;
+        @media (max-width: @screen-xs-max) {
+            text-align: center;
+            margin-top: 0px;
+        }
+        .sub-search {
+            display: inline-block;
+            margin-right: 10px;
+            .fa-search {
+                margin-top: 9px;
+                @media (max-width: @screen-xs-max) {
+                    margin-top: 0px;
+                }
+                &:hover {
+                    color: #e61419;
+                }
+            }
+            &.input-sub {
+                width: 264px;
+                @media (max-width: @screen-xs-max) {
+                    width: auto;
+                }
+                #search-terms {
+                    transition: 0.6s ease;
+                    width: 0px;
+                    opacity: 0;
+                    border: 1px solid white;
+                    border-radius: 2px;
+                    background-color: transparent;
+                    outline: none;
+                    &.focused {
+                        width: 240px;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+
     .navbar-brand {
         margin-right: 10px;
         padding: 10px 0px;
@@ -32,7 +73,11 @@ header {
     }
     .navbar-collapse {
         margin-top: 22px;
-
+        @media (max-width: @screen-xs-max) {
+            margin-top: 0;
+            background-color: rgba(0,0,0,0.6);
+            border-top: none;
+        }
         a {
             border-radius: 3px;
             color: white;
@@ -57,13 +102,15 @@ header {
         .dropdown-menu {
             padding: 0;
             margin-top: 30px;
-        }
-        .dropdown-menu>li>a {
-            margin: 0;
-            color: #141a53;
-            &:hover, &:focus {
-                background-color: #141a53;
-                color: white;
+            @media(max-width: @screen-xs-max) {
+                margin-top: 0px;
+                margin-left: 30px;
+                font-size: 16px;
+                li>a {
+                    color: white;
+                    text-decoration: none;
+                    background-color: transparent;
+                }
             }
         }
         .dropdown {
@@ -74,42 +121,16 @@ header {
 
             }
         }
-        .search-form {
-            outline: none;
-            margin-top: 4px;
-            .sub-search {
-                display: inline-block;
-                margin-right: 10px;
-                .fa-search {
-                    margin-top: 9px;
-                    &:hover {
-                        color: #e61419;
-                    }
-                }
-                &.input-sub {
-                    width: 264px;
-                    #search-terms {
-                        transition: 0.6s ease;
-                        width: 0px;
-                        opacity: 0;
-                        border: 1px solid white;
-                        border-radius: 2px;
-                        background-color: transparent;
-                        outline: none;
-                        &.focused {
-                            width: 240px;
-                            opacity: 1;
-                        }
-                    }
-                }
-            }
-        }
+
 
         .signin-div {
             margin-left: 10px;
             margin-top: -9px;
             text-align: center;
             font-size: 24px;
+            @media (max-width: @screen-xs-max) {
+                text-align: left;
+            }
             div {
                 cursor: pointer;
                 &:hover, &:focus {
