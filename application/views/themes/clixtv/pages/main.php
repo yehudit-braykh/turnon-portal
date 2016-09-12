@@ -59,9 +59,12 @@
           <label for="img-6" class="nav-dot" id="img-dot-6"></label>
         </li>
     </ul>
+    <?php
+        foreach ($vods as $category => $videos) {
+     ?>
     <div class="single-category">
         <div class="category-header">
-            Recently Added
+            <?php echo $category; ?>
         </div>
         <div class="carusel">
             <div class="arrow-right hidden-xs" onclick="moveRight('recentInner')">
@@ -73,185 +76,66 @@
                 </div>
             </div>
             <div class="row__inner recentInner">
+                <?php foreach ($videos as $video) { ?>
                 <div class="tile">
                     <div class="pr">
                         <div class="tile__media">
-                            <img class="tile__img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/70390/show-1.jpg" alt=""  />
+                            <img class="tile__img" src="<?php echo $video["Poster H"]["url"]; ?>" alt=""  />
                         </div>
-                        <div class="tile__details">
+                        <div class="tile__details" onclick="openPreview('<?php echo $category?>' , '<?php echo$video["title"] ?>')">
                             <div class="tile__title">
                                 <div class="detail-header">
-                                    Video Title
+                                    <?php echo $video["title"]; ?>
                                 </div>
                                 <div class="detail-desc">
-                                    Video Description
+                                    <?php echo $video["description"]; ?>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="tile">
-                    <div class="pr">
-                        <div class="tile__media">
-                            <img class="tile__img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/70390/show-2.jpg" alt=""  />
-                        </div>
-                        <div class="tile__details">
-                            <div class="tile__title">
-                                  <div class="detail-header">
-                                      Video Title
-                                  </div>
-                                  <div class="detail-desc">
-                                      Video Description
-                                  </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tile">
-                    <div class="pr">
-                        <div class="tile__media">
-                            <img class="tile__img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/70390/show-3.jpg" alt=""  />
-                        </div>
-                        <div class="tile__details">
-                            <div class="tile__title">
-                              <div class="detail-header">
-                                  Video Title
-                              </div>
-                              <div class="detail-desc">
-                                  Video Description
-                              </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tile">
-                    <div class="pr">
-                        <div class="tile__media">
-                            <img class="tile__img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/70390/show-4.jpg" alt=""  />
-                        </div>
-                        <div class="tile__details">
-                            <div class="tile__title">
-                                  <div class="detail-header">
-                                      Video Title
-                                  </div>
-                                  <div class="detail-desc">
-                                      Video Description
-                                  </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tile">
-                    <div class="pr">
-                        <div class="tile__media">
-                            <img class="tile__img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/70390/show-5.jpg" alt=""  />
-                        </div>
-                        <div class="tile__details">
-                          <div class="tile__title">
-                                  <div class="detail-header">
-                                      Video Title
-                                  </div>
-                                  <div class="detail-desc">
-                                      Video Description
-                                  </div>
-
-                          </div>
-                        </div>
-                    </div>
-                  </div>
-                  <div class="tile">
-                      <div class="pr">
-                            <div class="tile__media">
-                                <img class="tile__img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/70390/show-6.jpg" alt=""  />
-                            </div>
-                            <div class="tile__details">
-                                <div class="tile__title">
-                                      <div class="detail-header">
-                                          Video Title
-                                      </div>
-                                      <div class="detail-desc">
-                                          Video Description
-                                      </div>
-                                </div>
-                            </div>
-                      </div>
-                  </div>
-                  <div class="tile">
-                      <div class="pr">
-                            <div class="tile__media">
-                                <img class="tile__img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/70390/show-7.jpg" alt=""  />
-                            </div>
-                            <div class="tile__details">
-                                <div class="tile__title">
-                                      <div class="detail-header">
-                                          Video Title
-                                      </div>
-                                      <div class="detail-desc">
-                                          Video Description
-                                      </div>
-
-                                </div>
-                            </div>
-                      </div>
-                  </div>
-                  <div class="tile">
-                      <div class="pr">
-                            <div class="tile__media">
-                                <img class="tile__img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/70390/show-8.jpg" alt=""  />
-                            </div>
-                            <div class="tile__details">
-                                <div class="tile__title">
-                                  <div class="detail-header">
-                                      Video Title
-                                  </div>
-                                  <div class="detail-desc">
-                                      Video Description
-                                  </div>
-
-                                </div>
-                            </div>
-                      </div>
-                  </div>
-                  <div class="tile">
-                      <div class="pr">
-                            <div class="tile__media">
-                                <img class="tile__img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/70390/show-9.jpg" alt=""  />
-                            </div>
-                            <div class="tile__details">
-                                <div class="tile__title">
-                                      <div class="detail-header">
-                                          Video Title
-                                      </div>
-                                      <div class="detail-desc">
-                                          Video Description
-                                      </div>
-
-                                </div>
-                            </div>
-                      </div>
-                  </div>
-
-                  <div class="tile">
-                    <div class="tile__media">
-                      <img class="tile__img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/70390/show-10.jpg" alt=""  />
-                    </div>
-                    <div class="tile__details">
-                      <div class="tile__title">
-                            <div class="detail-header">
-                                  Video Title
-                            </div>
-                            <div class="detail-desc">
-                                Video Description
-                            </div>
-                      </div>
-                    </div>
-                  </div>
+                <?php } ?>
             </div>
         </div>
-        <div class="episode-info">
+        <div class="episode-info <?php echo $category ?>" style="">
+            <div class="right-cont">
+                <div class="icon icon-play-152x152">
+                </div>
+                <div class="reward-button">
+                    100 Reward Point
+                </div>
+            </div>
+            <div class="show-title">
+                Show Title
+            </div>
+            <div class="episode-title">
+                Episode ## | Episode Name
+            </div>
+            <div class="views-span">
+                Number of Views
+            </div>
+            <div class="share-span">
+                <span class="fa fa-share fa-1.5x"></span>
+                <span>Share</span>
+            </div>
+            <div class="episode-desc">
+                Descrption Metatags some info about amazing epsiode that no one has ever seen yet but soon to arrive in the box office next to you!
+            </div>
+            <div class="offers-span">
+                Offers in this series  |  Click to Redeem
+            </div>
+            <div class="offers-cont">
+                <div class="single-offer">
 
+                </div>
+                <div class="single-offer">
+
+                </div>
+                <div class="single-offer">
+
+                </div>
+            </div>
         </div>
     </div>
+    <?php } ?>
 </div>

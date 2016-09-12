@@ -25,25 +25,26 @@ class Vod extends UVod_Controller {
     	//debug(PHP_INT_SIZE);
     	//debug("B", is_32bit());
     	$this->load->model("categories");
+
     	$this->load->model("medias");
-    	
-    	
-    	
+
+
+
     	$res = $this->categories->get_all();
     	foreach ($res as $cat){
     		$categories[] = array("title" => $cat["title"], "_id" => $cat["_id"]->{"\$id"});
     		//debug($cat["title"]);
     		//debug($this->vod_model->get_items_by_vod_category($cat["_id"]->{"\$id"}));
-    		
+
     	}
     	$data["categories"] = $categories;
-    	
+
     	foreach ($categories as $cat) {
     		$vods[$cat["title"]] = $this->medias->get_series_by_cat($cat["title"]);
     	}
     	$data["vods"] = $vods;
-    	
- 	$data["html"] = $this->load->view(views_url().'pages/main', array(), true);
+    	// debug($vods);
+ 	$data["html"] = $this->load->view(views_url().'pages/main', array("vods"=>$vods), true);
 
     	/*
         // default categories

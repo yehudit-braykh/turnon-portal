@@ -8,18 +8,69 @@
         color: white;
     }
     .episode-info {
-        height: 800px;
-        padding: 60px;
+        overflow: hidden;
+        color: white;
+        height: 0px;
+        padding: 0px 0px;
+        transition: 1s ease;
         background-size: cover;
         background-position: center;
+        .right-cont {
+            margin-top: 200px;
+            text-align: center;
+            width: 45%;
+            float: right;
+            .icon-play-152x152,.reward-button {
+                margin: auto;
+            }
+            .reward-button {
+                margin-top: 30px;
+                padding: 8px;
+                width: 360px;
+                height: 68px;
+                background-color: #e61419;
+                font-size: 36px;
+                font-weight: bold;
+            }
+        }
         .show-title {
-            font-size: 64px;
+            font-size: 56px;
             font-weight: bold;
             margin-bottom: 10px;
         }
-        .episode-title, .views-span {
-            font-size: 36px;
+        .episode-title {
             font-weight: bold;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        .share-span , .views-span {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        .episode-desc {
+            font-size: 32px;
+            max-width: 50%;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .offers-span {
+            color: #e61419;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        .offers-cont {
+            max-width: 50%;
+            .single-offer {
+                display: inline-block;
+                height: 150px;
+                width: ~"calc(33% - 20px)";
+                margin-right: 20px;
+                background-color: #ededed;
+            }
+        }
+        &.open {
+            height: 800px;
+            padding: 30px 50px;
         }
     }
 

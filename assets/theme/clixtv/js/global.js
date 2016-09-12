@@ -13,7 +13,11 @@ function moveRight (className) {
 function moveLeft (className) {
     $('.'+className+'').removeClass('moveLeft')
 }
+function openPreview (category, title) {
+    console.log(category);
+    $('.episode-info.' + category + '').addClass('open')
 
+}
 
 
 $('.dropdown').on('show.bs.dropdown', function(e){
