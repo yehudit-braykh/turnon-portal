@@ -22,7 +22,7 @@
                             <i class="fa fa-search" aria-hidden="true"></i>
                         </div>
                         <div class="sub-search input-sub">
-                            <input type="text" name="search-terms" id="search-terms" onblur="removeInput()"  placeholder="Search...">
+                            <input type="text" name="search-terms" id="<?php if( window.innerWidth < 786 ) {echo 'search-terms'; } ?>" onblur="removeInput()"  placeholder="Search...">
                         </div>
                     </form>
                 </li>
@@ -31,6 +31,8 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
+                    <li class="visible-xs"><a href="#">Login</a></li>
+                    <li class="visible-xs" style="border-bottom: 1px solid #ededed; padding-bottom: 6px;"><a href="#">Register</a></li>
                     <li class="dropdown visible-xs">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Celebrities <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -110,7 +112,7 @@
                             </ul>
                         </ul>
                     </li>
-                    <li><a href="#">What is ClixTV</a></li>
+                    <li class="hidden-xs"><a href="#">What is ClixTV</a></li>
                     <li class="hidden-xs">
                         <form class="search-form" onclick="resizeInput()" tabindex="0" action="#" method="post" >
                             <div class="sub-search" >
