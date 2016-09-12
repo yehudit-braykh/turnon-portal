@@ -1,3 +1,143 @@
+.main-page {
+    position: relative;
+    background-color: #1b1b1b;
+
+    .category-header {
+        padding: 10px 60px;
+        font-size: 36px;
+        color: white;
+    }
+    .episode-info {
+        height: 800px;
+        padding: 60px;
+        background-size: cover;
+        background-position: center;
+        .show-title {
+            font-size: 64px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .episode-title, .views-span {
+            font-size: 36px;
+            font-weight: bold;
+        }
+    }
+
+
+
+    //IMAGE SLIDER PURE CSS JS START
+    .slides {
+        padding: 0;
+        width: 100%;
+        height: 70vh;
+        display: block;
+        margin: 0 auto;
+        position: relative;
+        .overflow {
+            padding: 0px 60px;
+            position: absolute;
+            width: 100%;
+            height: 60%;
+            bottom: 80px;
+            @media (max-width: @screen-xs-max) {
+                padding: 0px 15px;
+            }
+            .rewards-cont {
+                z-index: 1;
+                width: 100%;
+                height:25%;
+                position: absolute;
+                bottom: 0;
+                @media (max-width: @screen-xs-max) {
+                    height:20%;
+                }
+                .single-reward {
+                    background-position: center center;
+                    background-size: cover;
+                    background-color: #ededed;
+                    width: 18%;
+                    display: inline-block;
+                    height: 100%;
+                    margin-right: 20px;
+                    @media (max-width: @screen-xs-max) {
+                        width: 25%;
+                    }
+                }
+            }
+        }
+    }
+    .slides * {
+        user-select: none;
+        -ms-user-select: none;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+    }
+    .slides input { display: none; }
+    .slide-container { display: block; }
+    .slide {
+        top: 0;
+        opacity: 0;
+        width: 100%;
+        height: 70vh;
+        display: block;
+        position: absolute;
+        background-position: center center;
+        background-size: cover;
+        transform: translateX(-100%);
+        transition: all .7s ease-in-out;
+    }
+    input:checked + .slide-container  .slide {
+        opacity: 1;
+        transform: translateX(0%);
+        transition: opacity 1s ease-in-out;
+    }
+    .nav-dots {
+    	bottom: 40px;
+    	height: 32px;
+    	display: block;
+    	position: absolute;
+    	right: 60px;
+    }
+    .nav-dots .nav-dot {
+        border: 1px solid white;
+    	width: 32px;
+    	height: 32px;
+    	margin: 0 4px;
+    	position: relative;
+    	border-radius: 100%;
+    	display: inline-block;
+    	background-color: transparent;
+
+    }
+    .nav-dots .nav-dot:hover {
+    	cursor: pointer;
+    	background-color: white;
+    }
+    input#img-1:checked ~ .nav-dots label#img-dot-1,
+    input#img-2:checked ~ .nav-dots label#img-dot-2,
+    input#img-3:checked ~ .nav-dots label#img-dot-3,
+    input#img-4:checked ~ .nav-dots label#img-dot-4,
+    input#img-5:checked ~ .nav-dots label#img-dot-5,
+    input#img-6:checked ~ .nav-dots label#img-dot-6 {
+    	background-color: white;
+    }
+    //END OF SLIDER CSS
+
+
+
+    // padding-top: 128px;
+    // @media (max-width: @screen-xs-max) {
+    //     padding-top: 55px;
+    // }
+
+
+
+
+}
+
+
 .container-custom{
     float: left;
     width: 100%;

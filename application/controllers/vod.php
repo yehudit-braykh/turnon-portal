@@ -20,7 +20,7 @@ class Vod extends UVod_Controller {
     }
 
     public function featured($sub_section = COMING_SOON) {
-    	
+
     	//debug(class_exists('Mongo'));
     	//debug(PHP_INT_SIZE);
     	//debug("B", is_32bit());
@@ -43,6 +43,8 @@ class Vod extends UVod_Controller {
     	}
     	$data["vods"] = $vods;
     	
+ 	$data["html"] = $this->load->view(views_url().'pages/main', array(), true);
+
     	/*
         // default categories
         $data = array();

@@ -70,22 +70,24 @@
                     </li>
                 <li><a href="#">What is ClixTV</a></li>
                 <li>
-                    <form id="search" action="#" method="post">
-                        <div id="label"><label for="search-terms" id="search-label">search</label></div>
-                        <div id="input"><input type="text" name="search-terms" id="search-terms" placeholder="Enter search terms..."></div>
+                    <form class="search-form" onclick="resizeInput()" tabindex="0" action="#" method="post" >
+                        <div class="sub-search" >
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </div>
+                        <div class="sub-search input-sub">
+                            <input type="text" name="search-terms" id="search-terms" onblur="removeInput()"  placeholder="Search...">
+                        </div>
                     </form>
                 </li>
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">FAQ</a></li>
                     <li class="signin-div">
                         <div class="singin-btn">
-                            SIGN IN
+                            Login
                         </div>
                         <div class="">
-                            Register Now
+                            Register now
                         </div>
                     </li>
                 </ul>

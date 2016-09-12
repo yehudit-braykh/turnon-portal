@@ -1,0 +1,183 @@
+.carusel {
+    margin-top: -60px;
+    margin-bottom: -60px;
+    color: white;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    height: 33vh;
+    @media (max-width: @screen-xs-max) {
+        margin-top: -70px;
+        margin-bottom: -70px;
+        overflow-x: scroll;
+    }
+    .arrow-right {
+        z-index: 2;
+        position: absolute;
+        height: 100%;
+        width: 33px;
+        right: 0;
+        top: 0;
+        .icon-arrow-right-33x111 {
+            cursor: pointer;
+            top: ~"calc(50% - 55px)";
+            position: absolute;
+            right: 10px;
+            z-index: 1;
+        }
+    }
+     .arrow-left {
+        z-index: 2;
+         position: absolute;
+         height: 100%;
+         width: 33px;
+         left: 0;
+         top: 0;
+        .icon-arrow-left-33x111 {
+            cursor: pointer;
+            top: ~"calc(50% - 55px)";
+            position: absolute;
+            left: 10px;
+            z-index: 1;
+        }
+    }
+}
+.row__inner {
+    left: 0%;
+    transition-delay: 0ms;
+    transition: 1s ease;
+    -webkit-transition: 1s ease;
+    position: absolute;
+    // -webkit-transition: 450ms transform;
+    // transition: 450ms transform;
+    font-size: 0;
+    white-space: nowrap;
+    margin: 70.3125px 0;
+    padding-bottom: 10px;
+    @media (max-width: @screen-xs-max) {
+        position: relative;
+    }
+    &.moveLeft {
+        left: -100%;
+    }
+}
+.tile {
+    width: ~"calc(20vw - 10px)";
+    position: relative;
+    display: inline-block;
+      // width: 250px;
+      // height: 140.625px;
+    margin-right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition-delay: 0ms;
+    -webkit-transition: 450ms all;
+    transition: 450ms all;
+    -webkit-transform-origin: center left;
+        transform-origin: center left;
+    @media (max-width: @screen-xs-max) {
+        width: 140px;
+        height: 70.625px;
+    }
+}
+.tile__img {
+  width: 100%;
+  height: 18vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+     @media (max-width: @screen-xs-max) {
+         width: 140px;
+         height: 70.625px;
+     }
+}
+.tile__details {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  font-size: 10px;
+  opacity: 0;
+  background: -webkit-linear-gradient(bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+  -webkit-transition: 450ms opacity;
+  transition: 450ms opacity;
+  transition-delay: 0ms;
+}
+
+.tile__details:before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: #000;
+}
+.tile__details:after {
+      content: '';
+    position: absolute;
+  margin-top: -38px;
+  margin-left: -38px;
+   left: 50%;
+   top: 50%;
+  width: 76px;
+  height: 76px;
+  background-image: url('../images/play.png');
+  background-position: center center;
+  background-size: contain;
+  line-height: 50px;
+  text-align: center;
+  z-index: 10;
+    @media (max-width: @screen-xs-max) {
+        width: 40px;
+        height: 40px;
+        margin-top: -20px;
+        margin-left: -20px;
+    }
+}
+.tile__details:before {
+  content: '';
+  left: 0;
+  width: 100%;
+  font-size: 30px;
+  margin-left: 7px;
+  margin-top: -18px;
+  text-align: center;
+  z-index: 2;
+}
+.tile:hover .tile__details {
+  opacity: 1;
+}
+.tile__title {
+  position: absolute;
+  bottom: 20px;
+  padding: 10px;
+  .detail-desc {
+      margin-top: 6px;
+      font-size: 8px;
+  }
+}
+// .row__inner:hover {
+//   -webkit-transform: translate3d(0, 0, 0);
+//           transform: translate3d(0, 0, 0);
+// }
+.row__inner:hover .tile {
+  opacity: 0.3;
+}
+.row__inner:hover .tile:hover {
+  -webkit-transform: scale(2);
+          transform: scale(2);
+  opacity: 1;
+  @media(max-width: @screen-xs-max) {
+      -webkit-transform: scale(1.5);
+              transform: scale(1.5);
+
+  }
+}
+.tile:hover ~ .tile {
+  -webkit-transform: translate3d(20vw, 0, 0);
+          transform: translate3d(20vw, 0, 0);
+      @media(max-width: @screen-xs-max) {
+          -webkit-transform: translate3d(70px, 0, 0);
+                  transform: translate3d(70px, 0, 0);
+
+      }
+}
