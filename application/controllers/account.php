@@ -108,7 +108,7 @@ class Account extends UVod_Controller {
                 $_SESSION['registration_data']->hash = $GLOBALS['hash'];
                 $_SESSION['registration_data']->method = 'email';
 
-                $this->send_activation_mail($first_name, $last_name, $_POST['email'], $_SESSION['registration_data']->hash);
+//                $this->send_activation_mail($first_name, $last_name, $_POST['email'], $_SESSION['registration_data']->hash);
             } else {
                 $ret->message = $register->message;
             }
