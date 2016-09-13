@@ -1,203 +1,149 @@
-// GLOBAL HEADER DEFFENITIONS: HEIGHT PADDING ETC.
-header {
-    height: 128px;
-    padding: 20px 26px;
-    font-size: 24px;
-    color: white;
-    @media (max-width: @screen-xs-max) {
-        padding: 10px;
-         height: 55px;
-    }
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 25/06/2016, 11:19:58
+    Author     : ale_miller10
+*/
+
+@main-height: 70px;
+
+
+.navbar-custom{
+    background-color: @nav-background;
+    font-family: @nav-font-family;
+    font-size: 16px;
+    width: 100%;
+    height: @nav-height;
+    position: fixed;
+    top:0px;
+    padding-right: 2%;
+    z-index: 9999;
 }
 
-.header-clix {
-    z-index: 100;
-    position: fixed;
+#main-logo{
+    width: 80px;
+    height: 90px;
+    background-image:  url("@{images-folder}tvj_logo.png");
+    background-size: 80px 80px;  
+    background-position-y: 7px;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 20px;
+    z-index: 1;
+}
+
+.navbar-custom .navbar-collapse{
+    padding-right: 0px;
+}
+
+.auxiliar-nav{
+    height: 40px; 
     width: 100%;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0));
-    .search-form {
-        outline: none;
-        margin-top: 4px;
-        @media (max-width: @screen-xs-max) {
-            text-align: center;
-            margin-top: 0px;
-        }
-        .sub-search {
-            display: inline-block;
-            margin-right: 10px;
-            .fa-search {
-                margin-top: 9px;
-                @media (max-width: @screen-xs-max) {
-                    margin-top: 0px;
-                }
-                &:hover {
-                    color: #e61419;
-                }
-            }
-            &.input-sub {
-                width: 264px;
-                @media (max-width: @screen-xs-max) {
-                    width: auto;
-                }
-                #search-terms {
-                    transition: 0.6s ease;
-                    width: 0px;
-                    opacity: 0;
-                    border: 1px solid white;
-                    border-radius: 2px;
-                    background-color: transparent;
-                    outline: none;
-                    &.focused {
-                        width: 240px;
-                        opacity: 1;
-                    }
-                }
-            }
-        }
-    }
+    float: left
+}
 
-    .navbar-brand {
-        margin-right: 10px;
-        padding: 10px 0px;
-        @media (max-width: @screen-xs-max) {
-            padding: 0;
-        }
-    }
-    .navbar-toggle {
-        @media (max-width: @screen-xs-max) {
-            padding: 0;
-        }
-        .icon-bar {
-            background-color: white;
-        }
-    }
-    .navbar-collapse {
-        margin-top: 22px;
-        @media (max-width: @screen-xs-max) {
-            margin-top: 0;
-            background-color: rgba(0,0,0,0.6);
-            border-top: none;
-        }
-        a {
-            border-radius: 3px;
-            color: white;
-            margin-right: 10px;
-        }
-        .caret {
-            margin-top: -4px;
-            border-right: 8px solid transparent;
-            border-left: 8px solid transparent;
-            border-top: 16px dashed
-        }
-        .nav>li>a:focus, .nav>li>a:hover {
-            text-decoration: none;
-            background-color: transparent;
-        }
-        .nav>li>a:hover {
-            color: #e61419;
-        }
-        .nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
-            background-color: transparent;
-        }
-        .dropdown-menu {
-            padding: 0;
-            margin-top: 30px;
-            @media(max-width: @screen-xs-max) {
-                margin-top: 0px;
-                margin-left: 30px;
-                font-size: 16px;
-                li>a {
-                    color: white;
-                    text-decoration: none;
-                    background-color: transparent;
-                }
-            }
-        }
-        .dropdown {
-            &.open {
-                .dropdown-toggle {
-                    color: #e61419;
-                }
+.main-nav{
+    height: 50px;
+    width: 100%;
+    float: left;
+}
 
-            }
-        }
+.main-nav .navbar{
+    margin-bottom: 0px;
+}
+
+.navbar-custom .navbar-nav > li > a {
+    color: #999;
+    border-left: 1px #333 solid;
+    border-top: 1px #333 solid;
+}
+
+.main-nav .navbar-nav > li > a{
+    height: 49px;
+}
+
+.main-nav .navbar-nav > li{
+    width: 175px;
+    text-align: center;
+}
+
+.auxiliar-nav .navbar-nav > li > a{
+    height: 39px;
+    font-size: 12px;
+    padding-top: 9px;
+    
+}
+
+.auxiliar-nav .navbar-nav > li > a:last-of-type, .main-nav .navbar-nav > li > a:last-of-type{
+    border-right: 1px #333 solid;
+}
+
+.main-nav .nav>li>a:focus, .main-nav .nav>li>a:hover{
+    color: @nav-highlight-font-color;
+    background-color:@nav-highlight-bg-color;
+}
+
+.auxiliar-nav .nav>li>a:focus, .auxiliar-nav .nav>li>a:hover{
+    color: #fff;
+    background-color:transparent;
+}
 
 
-        .signin-div {
-            margin-left: 10px;
-            margin-top: -9px;
-            text-align: center;
-            font-size: 24px;
-            @media (max-width: @screen-xs-max) {
-                text-align: left;
-            }
-            div {
-                cursor: pointer;
-                &:hover, &:focus {
-                    color: #e61419;
-                }
-            }
-            .singin-btn {
-                transition: 0.6s ease;
-                margin-bottom: 2px;
-                line-height: 1.2;
-                color: white;
-                width: 150px;
-                height: 34px;
-                border-radius: 4px;
-                background-color: #e61419;
-                &:hover, &:focus {
-                    background-color: white;
-                    color: #e61419;
-                }
-            }
-        }
-    }
-    .columns {
-        background-color: rgba(0, 0, 0, 0.8);
-        -moz-column-count: 4;
-        /* Firefox */
-        -webkit-column-count: 4;
-        /* Safari and Chrome */
-        column-count: 4;
-        width: 900px;
-        height: 320px;
-        border-top: 12px solid white;
-        .home-ul {
-            border-right: 2px solid white;
-            color: #e61419;
-            font-size: 18px;
-            font-weight: bold;
-        }
-        .white-ul {
-            font-size: 18px;
-        }
-        .white-ul {
-            li:first-child {
-                font-weight: bold;
-            }
-        }
-        ul {
-            height: 100%;
-            overflow: hidden;
-            li:first-child {
-                padding-top: 30px;
-            }
-            padding-left: 20px;
-            li {
-                margin-bottom: 10px;
-                list-style: none;
-            }
-        }
-        .arrow-up {
-            position: absolute;
-            margin-top: -24px;
-            left: 45px;
-            width: 0;
-            height: 0;
-            border-left: 15px solid transparent;
-            border-right: 15px solid transparent;
-            border-bottom: 12px solid
-        }
-    }
+.main-nav .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .main-nav .navbar-nav > .active > a:focus {
+    color: @nav-highlight-font-color;
+    background-color:@nav-highlight-bg-color;
+}
+
+.auxiliar-nav .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .auxiliar-nav  .navbar-nav > .active > a:focus {
+    color: @nav-highlight-font-color;
+    background: transparent;
+
+}
+.navbar-custom .navbar-brand {
+    color:#eeeeee;
+}
+
+.navbar-custom .nav .open>a, .nav .open>a:focus, .nav .open>a:hover{
+    color: #ffffff;
+    background-color: @nav-highlight-bg-color;
+    border-color: #333;
+}
+
+.main-nav .dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .main-nav .dropdown-menu>.active>a:hover{
+    background-color: @main-color;
+}
+
+
+#user-icon{
+    font-size: 14px;
+}
+
+#editbox_search{
+    background-color: #333;
+    border: none;
+    width: 80%;
+    height: 50px;
+    color: #999;
+    padding-left: 5px;
+    float: left;
+
+}
+
+#editbox_search:focus{
+    outline: none;
+}
+
+#search-icon{
+    background-color: #333;
+    float: left;
+    width: 20%;
+    height: 50px;
+    border: none;
+    color: #999;
+    top: 0px;
+    text-align: center;
+    padding-top: 17px;
 }

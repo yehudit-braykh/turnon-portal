@@ -11,49 +11,23 @@ class Vod extends UVod_Controller {
         $this->load->model('live_model');
         $this->load->model('fastcache_model');
         $this->load->helper('pdk');
-
+        
          if (isset($_GET['flush_cache']) && $_GET['flush_cache'] == 'true') {
             $this->fastcache_model->clean_cache();
         }
 
-        date_default_timezone_set('UTC');
+        date_default_timezone_set('UTC');   
     }
 
     public function featured($sub_section = COMING_SOON) {
 
-    	//debug(class_exists('Mongo'));
-    	//debug(PHP_INT_SIZE);
-    	//debug("B", is_32bit());
-    	$this->load->model("categories");
-
-    	$this->load->model("medias");
-
-
-
-    	$res = $this->categories->get_all();
-    	foreach ($res as $cat){
-    		$categories[] = array("title" => $cat["title"], "_id" => $cat["_id"]->{"\$id"});
-    		//debug($cat["title"]);
-    		//debug($this->vod_model->get_items_by_vod_category($cat["_id"]->{"\$id"}));
-
-    	}
-    	$data["categories"] = $categories;
-
-    	foreach ($categories as $cat) {
-    		$vods[$cat["title"]] = $this->medias->get_series_by_cat($cat["title"]);
-    	}
-    	$data["vods"] = $vods;
-    	// debug($vods);
- 	$data["html"] = $this->load->view(views_url().'pages/main', array("vods"=>$vods), true);
-
-    	/*
         // default categories
         $data = array();
         $data['category1'] = $this->config->item('category1');
         $data['category2'] = $this->config->item('category2');
         $data['category3'] = $this->config->item('category3');
         $data['section'] = "featured";
-        debug("A", $data);
+
         // get slider
         $data['slider'] = $this->vod_model->get_slider(APP_TARGET, $sub_section);
 
@@ -75,13 +49,12 @@ class Vod extends UVod_Controller {
         $categories = array($data['category1']['value'], $data['category2']['value'], $data['category3']['value']);
         $data['items'] = $this->get_items_by_value('featured_category', $categories, $items);
 
-        // $this->load->view(views_url() . 'templates/header', $data);
-        // if ($this->config->item('load_submenu') != false) {
-        //     $this->load->view(views_url() . 'templates/sub_menu1', $data);
-        // }
-        // $this->load->view(views_url() . 'pages/vod', $data);
-        // $this->load->view(views_url() . 'templates/footer', $data);*/
-        $this->load->view(views_url() . 'components/html', $data);
+        $this->load->view(views_url() . 'templates/header', $data);
+        if ($this->config->item('load_submenu') != false) {
+            $this->load->view(views_url() . 'templates/sub_menu1', $data);
+        }
+        $this->load->view(views_url() . 'pages/vod', $data);
+        $this->load->view(views_url() . 'templates/footer', $data);
     }
 
     public function reset_vod_category($category, $new_category) {
@@ -111,9 +84,9 @@ class Vod extends UVod_Controller {
                 $genre = COMING_SOON;
             return $this->featured($genre);
         }
-
+        
         $vod_categories = $this->config_model->get_vod_categories()->content;
-        foreach ($vod_categories as $value) {
+        foreach ($vod_categories as $value) {  
             if ($value->id == $category) {
                 $filter = $value->filter_field;
                 $data['category'] = $value->title;
@@ -122,7 +95,7 @@ class Vod extends UVod_Controller {
                 }
             }
         }
-
+      
         // all others categorie filtered by genre
         switch ($filter) {
             case 'genre': {
@@ -155,7 +128,7 @@ class Vod extends UVod_Controller {
                     break;
                 }
             case 'aired_date': {
-
+           
                     if ($genre == 'all') {
                         $genre = '';
                     }
@@ -180,22 +153,21 @@ error_log("genre: ".$genre. " date: ". $end_date. " category: ". $category);
                 }
         }
 
-        // if ($this->config->item('create_items_on_view') !== FALSE) {
-        //     $this->load->view(views_url() . 'templates/header', $data);
-        //     if ($this->config->item('load_submenu') != false) {
-        //         $this->load->view(views_url() . 'templates/sub_menu1', $data);
-        //     }
-        //     $this->load->view(views_url() . 'pages/vod_list', $data);
-        //     $this->load->view(views_url() . 'templates/footer', $data);
-        // } else {
-        //     $this->parser->parse(views_url() . 'templates/header', $data);
-        //     if ($this->config->item('load_submenu') != false) {
-        //         $this->load->view(views_url() . 'templates/sub_menu1', $data);
-        //     }
-        //     $this->parser->parse(views_url() . 'pages/vod_list', $data);
-        //     $this->parser->parse(views_url() . 'templates/footer', $data);
-        // }
-        $this->load->view(views_url() . 'components/html', $data);
+        if ($this->config->item('create_items_on_view') !== FALSE) {
+            $this->load->view(views_url() . 'templates/header', $data);
+            if ($this->config->item('load_submenu') != false) {
+                $this->load->view(views_url() . 'templates/sub_menu1', $data);
+            }
+            $this->load->view(views_url() . 'pages/vod_list', $data);
+            $this->load->view(views_url() . 'templates/footer', $data);
+        } else {
+            $this->parser->parse(views_url() . 'templates/header', $data);
+            if ($this->config->item('load_submenu') != false) {
+                $this->load->view(views_url() . 'templates/sub_menu1', $data);
+            }
+            $this->parser->parse(views_url() . 'pages/vod_list', $data);
+            $this->parser->parse(views_url() . 'templates/footer', $data);
+        }
     }
 
     private function create_items($items, $max = 0) {
@@ -248,12 +220,12 @@ error_log("genre: ".$genre. " date: ". $end_date. " category: ". $category);
                 }
 
                 $ret.= '<img class="item_img" src="' . $cover_url . '" />
-
+                                                     
                                </a>
                            <div class="h" style="width:' . $cover_h_width . ';height:' . $cover_h_height . ';margin:5px 0px 0px 5px;">
                         <div class="title_content">' . getEntryProperty($items->content->entries[$i], 'title') . '</div>' .
                     $aired_date_div .
-                    '</div>
+                    '</div>                
 		        </div>';
             }
         }
@@ -267,7 +239,7 @@ error_log("genre: ".$genre. " date: ". $end_date. " category: ". $category);
             for ($h = 0; $h < sizeof($values); $h++) {
                 if (in_array($values[$h], $items[$i]->{$category})) {
                     if (array_key_exists($values[$h], $return)) {
-
+                        
                         $data = $this->get_item_data($items[$i]);
                         if (!array_key_exists($data->id, $return[$values[$h]])) {
                             $return[$values[$h]][$data->id] = $data;
