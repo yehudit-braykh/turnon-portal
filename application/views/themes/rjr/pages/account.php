@@ -395,7 +395,6 @@ if (isset($clientToken)) {
         $('#save-subscription').on('click', function (event) {
             event.preventDefault();
             $(this).hide();
-            auto_renew = $("#contract-auto-renew").is(":checked");
             $('#save_subs_preloader').html('Sending data...');
             $('#save_subs_preloader').show();
             $.ajax({
@@ -404,7 +403,7 @@ if (isset($clientToken)) {
                 dataType: 'json',
                 data: {
                     contract_id: $('#contract_id').val(),
-                    auto_renew: auto_renew
+                    auto_renew: false
                 }
             }).done(function (data) {
                 $('#save_subs_preloader').hide();
@@ -596,7 +595,7 @@ if (isset($clientToken)) {
                                     <li class="buttons">
                                         <input id="contract_id" type="hidden" class="text" style="width:150px;" value="<?php echo $subscription_data->_id; ?>" />
 
-                                        <button class="common_btn" id="save-subscription">SAVE</button>      
+                                        <button class="common_btn" id="save-subscription">CANCEL SUBSCRIPTION</button>      
                                     </li>
                                     <li> 
                                         <p id="save_subs_preloader" class="form_info"></p>
