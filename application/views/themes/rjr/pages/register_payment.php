@@ -66,7 +66,6 @@
             $('#registration_preloader').show();
             pi_number = $('#card_number').val();
             pi_type = GetCardType($('#card_number').val());
-            auto_renew = $("#auto-renew").is(":checked");
 
             $.ajax({
                 url: "<?php echo base_url(); ?>index.php/account/register_step2_ssl",
@@ -78,7 +77,6 @@
                     pi_type: pi_type,
                     pi_number: pi_number,
                     subscription_id: subscription_id,
-                    auto_renew: auto_renew,
                     security_code: security_code}
             }).done(function (data) {
 
@@ -141,9 +139,6 @@
             <?php
             $this->load->view(views_url() . 'templates/credit_card_form');
             ?>
-            <li class="buttons">
-                <input id="auto-renew"type="checkbox" checked="checked"/><label class="chbx-lbl">Auto-renew</label>
-            </li>
             <li id= "terms_and_conditions" style="margin-top: 10px">
                 <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
                 <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_conditions_subscribers'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>

@@ -2409,6 +2409,11 @@ select:focus, select:active {
     cursor: pointer;
 }
 
+#save-subscription{
+    width: 190px;
+    font-size: 12px;
+}
+
 .chbx-lbl{
     padding: 6px!important;    
 }

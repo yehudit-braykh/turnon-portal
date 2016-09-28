@@ -201,7 +201,7 @@ if (isset($clientToken)) {
             $('#registration_preloader').show();
             pi_number = $('#card_number').val();
             pi_type = GetCardType($('#card_number').val());
-            auto_renew = $("#auto-renew").is(":checked");
+          
 
             $.ajax({
                 url: "<?php echo base_url(); ?>index.php/account/subscribe_ssl",
@@ -214,7 +214,7 @@ if (isset($clientToken)) {
                     pi_number: pi_number,
                     security_code: security_code,
                     subscription_id: subscription_id,
-                    auto_renew: auto_renew}
+                    auto_renew: false}
             }).done(function (data) {
 
                 if (data && data.status == 'ok') {
@@ -240,17 +240,16 @@ if (isset($clientToken)) {
             $('#save_subs_preloader').html('Sending data...');
             $('#save_subs_preloader').show();
             $.ajax({
-                url: "<?php echo base_url(); ?>index.php/account/update_subscription_ssl",
+                url: "<?php echo base_url(); ?>index.php/account/cancel_subscription_ssl",
                 type: 'POST',
                 dataType: 'json',
                 data: {
                     contract_id: $('#contract_id').val(),
-                    auto_renew: auto_renew
                 }
             }).done(function (data) {
                 $('#save_subs_preloader').hide();
                 if (data && data.status == 'ok') {
-                    $('#save-subs-info').html('The data was saved sucsessfully');
+                    $('#save-subs-info').html('The subscription was cancelled');
                     $('#save-subs-info').show();
 
                 } else {
@@ -386,10 +385,8 @@ if (isset($clientToken)) {
                                     </li>
                                     <li class="buttons">
                                         <input id="contract_id" type="hidden" class="text" style="width:150px;" value="<?php echo $subscription_data->_id; ?>" />
-                                        <div class="chbx-container">
-                                            <input id="contract-auto-renew"type="checkbox" <?php echo $auto_renew_chbx; ?>/><label class="chbx-lbl">Auto-renew</label>
-                                        </div>
-                                        <button class="common_btn" id="save-subscription">SAVE</button>      
+                                           
+                                          <button class="common_btn" id="save-subscription">CANCEL SUBSCRIPTION</button>      
                                     </li>
                                     <li> 
                                         <p id="save_subs_preloader" class="form_info"></p>
