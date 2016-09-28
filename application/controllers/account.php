@@ -607,7 +607,7 @@ class Account extends UVod_Controller {
     public function cancel_subscription_ssl() {
         
         $id = $_POST['contract_id'];
-        $auto_renew = false;
+        $auto_renew = "false";
         $ret = $this->account_model->update_subscription($id, $auto_renew);
 
         if (isset($ret->error) && $ret->error == false) {
