@@ -80,9 +80,7 @@ class Account extends UVod_Controller {
             } else {
                 $last_name = '';
                 for ($i = 1; $i < ($sizeof_name); $i++) {
-                    if ($i > 0) {
-                        $last_name .= ' ';
-                    }
+      
                     $last_name .= $full_name[$i];
                 }
             }
