@@ -2409,7 +2409,7 @@ select:focus, select:active {
     cursor: pointer;
 }
 
-#save-subscription{
+#cancel-subscription{
     width: 190px;
     font-size: 12px;
 }

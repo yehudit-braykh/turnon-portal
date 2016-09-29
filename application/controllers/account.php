@@ -80,7 +80,7 @@ class Account extends UVod_Controller {
             } else {
                 $last_name = '';
                 for ($i = 1; $i < ($sizeof_name); $i++) {
-      
+
                     $last_name .= $full_name[$i];
                 }
             }
@@ -286,7 +286,7 @@ class Account extends UVod_Controller {
         if ($events) {
             $data['events'] = $events;
         }
-        
+
         $data['section'] = "my_account";
 
         $this->load->view(views_url() . 'templates/header', $data);
@@ -317,7 +317,7 @@ class Account extends UVod_Controller {
             $orders_item = $this->live_events_model->get_orders_item($_SESSION['uvod_user_data']->id);
 
             $data['orders_item'] = $orders_item;
-            
+
             if (isset($orders_item) && sizeof($orders_item->content->entries) > 0) {
 
                 for ($h = 0; $h < sizeof($orders_item->content->entries); $h++) {
@@ -329,9 +329,9 @@ class Account extends UVod_Controller {
                         $product_ids .= '|' . $product_id;
                     }
                 }
-             
+
                 $products = $this->live_events_model->get_event_products($product_ids);
-               
+
                 if (isset($products->content->entries) && sizeof($products->content->entries) > 0) {
 
                     for ($i = 0; $i < sizeof($products->content->entries); $i++) {
@@ -601,15 +601,33 @@ class Account extends UVod_Controller {
         }
     }
 
-    
     public function cancel_subscription_ssl() {
-        
+
         $id = $_POST['contract_id'];
         $auto_renew = "false";
         $ret = $this->account_model->update_subscription($id, $auto_renew);
 
         if (isset($ret->error) && $ret->error == false) {
-            echo json_encode(array('status' => 'ok'));
+
+            $operation = new stdClass();
+            $operation->type = 'cancel_subscription';
+            $operation->date = date('d-m-Y H:i', time());
+            $operation->contract_id = $id;
+
+            if (isset($_SESSION['uvod_user_data'])) {
+                $token = $_SESSION['uvod_user_data']->token;
+                $user_id = $_SESSION['uvod_user_data']->id;
+            }
+
+            $add_operation = $this->account_model->add_operation($token, $user_id, $operation);
+
+            if (isset($add_operation->error) && $add_operation->error == false) {
+                
+                $msg = "Your subscription was cancelled. It remains active until " . date('Y-m-d', $ret->content->{'contractEndDate'} / 1000) . "."; 
+                echo json_encode(array('status' => 'ok', 'message' => $msg));
+            } else {
+                echo json_encode(array('status' => 'error', 'message' => $add_operation->message));
+            }
         } else {
 
             // file_put_contents('change_auto_renew.txt', $ret);
@@ -732,7 +750,7 @@ class Account extends UVod_Controller {
         $data = array();
 
         $fb_profile = $this->social_media_model->get_fb_profile();
-       
+
 
         $data['fb_profile'] = $fb_profile;
 
@@ -741,7 +759,7 @@ class Account extends UVod_Controller {
 
             //First case, user exists for given facebook email and must check if can be merged
             $user = $this->account_model->exists_user_email($fb_email);
-           
+
             if (isset($user->content) && isset($user->content->entries) && sizeof($user->content->entries) > 0) {
                 if (isset($user->content->entries[0]->fbId) && $user->content->entries[0]->fbId !== '') {
 
@@ -846,11 +864,11 @@ class Account extends UVod_Controller {
         $ret->message = "";
 
         $fb_profile = $this->social_media_model->get_fb_profile();
-        
+
         if ($fb_profile->status === 'ok') {
 
             $email = $fb_profile->content->email;
-            
+
             $login = $this->account_model->login($email, $_POST['password']);
 
             if (isset($login) && !$login->error) {
@@ -911,7 +929,7 @@ class Account extends UVod_Controller {
             } else {
 
                 $user = $this->account_model->exists_user_email($fb_email);
-              
+
                 if (isset($user->content) && isset($user->content->entries) && sizeof($user->content->entries) > 0) {
                     if (!isset($user->content->entries[0]->fbId) || !$user->content->entries[0]->fbId || $user->content->entries[0]->fbId == '') {
 
@@ -930,7 +948,7 @@ class Account extends UVod_Controller {
             $ret->message = "Facebook User Error. Please refresh the page and try again.";
             $ret->status = "error";
         }
-       
+
         echo json_encode($ret);
     }
 
