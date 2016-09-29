@@ -214,7 +214,7 @@ if (isset($clientToken)) {
                     pi_number: pi_number,
                     security_code: security_code,
                     subscription_id: subscription_id,
-                    auto_renew: false}
+                    }
             }).done(function (data) {
 
                 if (data && data.status == 'ok') {
@@ -236,7 +236,6 @@ if (isset($clientToken)) {
         $('#save-subscription').on('click', function (event) {
             event.preventDefault();
             $(this).hide();
-            auto_renew = $("#contract-auto-renew").is(":checked");
             $('#save_subs_preloader').html('Sending data...');
             $('#save_subs_preloader').show();
             $.ajax({
@@ -409,9 +408,7 @@ if (isset($clientToken)) {
                                 <?php
                                 $this->load->view(views_url() . 'templates/credit_card_form');
                                 ?>
-                                <li class="buttons">
-                                    <input id="auto-renew"type="checkbox" checked="checked"/><label class="chbx-lbl">Auto-renew</label>
-                                </li>
+                                
                                 <li id= "terms_and_conditions" style="margin-top: 10px">
                                     <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
                                     <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_conditions_subscribers'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
