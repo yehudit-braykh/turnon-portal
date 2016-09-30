@@ -80,7 +80,9 @@ class Account extends UVod_Controller {
             } else {
                 $last_name = '';
                 for ($i = 1; $i < ($sizeof_name); $i++) {
-
+                    if ($i > 1) {
+                        $last_name .= ' ';
+                    }
                     $last_name .= $full_name[$i];
                 }
             }
@@ -622,8 +624,8 @@ class Account extends UVod_Controller {
             $add_operation = $this->account_model->add_operation($token, $user_id, $operation);
 
             if (isset($add_operation->error) && $add_operation->error == false) {
-                
-                $msg = "Your subscription was cancelled. It remains active until " . date('Y-m-d', $ret->content->{'contractEndDate'} / 1000) . "."; 
+
+                $msg = "Your subscription was cancelled. It remains active until " . date('Y-m-d', $ret->content->{'contractEndDate'} / 1000) . ".";
                 echo json_encode(array('status' => 'ok', 'message' => $msg));
             } else {
                 echo json_encode(array('status' => 'error', 'message' => $add_operation->message));
