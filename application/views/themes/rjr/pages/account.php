@@ -376,7 +376,7 @@ if (isset($clientToken)) {
                                         <p id="info" style="color:#fff;text-align:center;margin-left:120px;">&nbsp;</p>
                                     </li>
                                     <?php
-                                    if ($subscription_data->autoRenew) {
+                                    if ($subscription_data->autoRenew || $subscription_data->autoRenew == NULL) {
                                         ?>
                                         <li class="buttons">
                                             <input id="contract_id" type="hidden" class="text" style="width:150px;" value="<?php echo $subscription_data->_id; ?>" />

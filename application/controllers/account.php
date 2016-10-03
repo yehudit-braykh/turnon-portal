@@ -643,7 +643,7 @@ class Account extends UVod_Controller {
         $email_data['name'] = $name;
         $email_data['surname'] = $surname;
         $email_data['duration'] = $duration;
-        $email_data['auto_renew'] = $auto_renew;
+        $email_data['auto_renew'] = true;
         $message = $this->load->view(views_url() . 'templates/email_subscription_complete', $email_data, TRUE);
         $send_email_result = $this->account_model->send_single_email($email, $message, 'Subscription Notification Mail', 'NO_RESPONSE@1spot.com', "1Spot Media Portal");
     }
