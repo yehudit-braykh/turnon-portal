@@ -201,7 +201,7 @@ if (isset($clientToken)) {
             $('#registration_preloader').show();
             pi_number = $('#card_number').val();
             pi_type = GetCardType($('#card_number').val());
-            auto_renew = $("#auto-renew").is(":checked");
+
 
             $.ajax({
                 url: "<?php echo base_url(); ?>index.php/account/subscribe_ssl",
@@ -214,7 +214,7 @@ if (isset($clientToken)) {
                     pi_number: pi_number,
                     security_code: security_code,
                     subscription_id: subscription_id,
-                    auto_renew: auto_renew}
+                }
             }).done(function (data) {
 
                 if (data && data.status == 'ok') {
@@ -233,36 +233,32 @@ if (isset($clientToken)) {
             return false;
         });
 
-        $('#save-subscription').on('click', function (event) {
+        $('#cancel-subscription').on('click', function (event) {
             event.preventDefault();
             $(this).hide();
-            auto_renew = $("#contract-auto-renew").is(":checked");
             $('#save_subs_preloader').html('Sending data...');
             $('#save_subs_preloader').show();
             $.ajax({
-                url: "<?php echo base_url(); ?>index.php/account/update_subscription_ssl",
+                url: "<?php echo base_url(); ?>index.php/account/cancel_subscription_ssl",
                 type: 'POST',
                 dataType: 'json',
                 data: {
                     contract_id: $('#contract_id').val(),
-                    auto_renew: auto_renew
                 }
             }).done(function (data) {
                 $('#save_subs_preloader').hide();
-                if (data && data.status == 'ok') {
-                    $('#save-subs-info').html('The data was saved sucsessfully');
-                    $('#save-subs-info').show();
+                $('#save-subs-info').html(data.message);
+                $('#save-subs-info').show();
 
-                } else {
-                    $('#save-subs-info').html(data.message);
-                    $('#save-subs-info').show();
-                }
                 TweenLite.fromTo("#save-subs-info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-                        TweenLite.to("#save-subs-info", 1, {delay: 6, alpha: 0, onComplete: function () {
-                                $('#save-subs-info').hide();
-                                $('#save-subscription').show();
-                            }});
+                        if (data && data.status !== 'ok') {
+                            $('#cancel-subscription').show();
 
+                            TweenLite.to("#save-subs-info", 1, {delay: 6, alpha: 0, onComplete: function () {
+                                    $('#save-subs-info').hide();
+
+                                }});
+                        }
                     }});
 
             });
@@ -348,11 +344,6 @@ if (isset($clientToken)) {
                     <div class="registration_container">
                         <?php
                         if (isset($subscription_data) && $subscription_data != "") {
-                            if ($subscription_data->{'autoRenew'}) {
-                                $auto_renew_chbx = 'checked="checked"';
-                            } else {
-                                $auto_renew_chbx = '';
-                            }
                             ?>
 
                             <form method="post" id="cancelform">
@@ -384,13 +375,23 @@ if (isset($clientToken)) {
                                     <li> 
                                         <p id="info" style="color:#fff;text-align:center;margin-left:120px;">&nbsp;</p>
                                     </li>
-                                    <li class="buttons">
-                                        <input id="contract_id" type="hidden" class="text" style="width:150px;" value="<?php echo $subscription_data->_id; ?>" />
-                                        <div class="chbx-container">
-                                            <input id="contract-auto-renew"type="checkbox" <?php echo $auto_renew_chbx; ?>/><label class="chbx-lbl">Auto-renew</label>
-                                        </div>
-                                        <button class="common_btn" id="save-subscription">SAVE</button>      
-                                    </li>
+                                    <?php
+                                    if ($subscription_data->autoRenew || $subscription_data->autoRenew == NULL) {
+                                        ?>
+                                        <li class="buttons">
+                                            <input id="contract_id" type="hidden" class="text" style="width:150px;" value="<?php echo $subscription_data->_id; ?>" />
+
+                                            <button class="common_btn" id="cancel-subscription">CANCEL SUBSCRIPTION</button>      
+                                        </li>
+                                        <?php
+                                    } else {
+                                        ?>
+                                        <li>
+                                            <p class="form_info" style="display: block;">Your subscription was cancelled. It remains active until <?php echo date('Y-m-d', $subscription_data->{'contractEndDate'} / 1000); ?>.</p>
+                                        </li>
+                                        <?php
+                                    }
+                                    ?>
                                     <li> 
                                         <p id="save_subs_preloader" class="form_info"></p>
                                         <p id="save-subs-info" class="form_info"></p>
@@ -412,9 +413,7 @@ if (isset($clientToken)) {
                                 <?php
                                 $this->load->view(views_url() . 'templates/credit_card_form');
                                 ?>
-                                <li class="buttons">
-                                    <input id="auto-renew"type="checkbox" checked="checked"/><label class="chbx-lbl">Auto-renew</label>
-                                </li>
+
                                 <li id= "terms_and_conditions" style="margin-top: 10px">
                                     <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
                                     <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_conditions_subscribers'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
@@ -455,7 +454,7 @@ if (isset($clientToken)) {
                                     } else {
                                         $live_txt = '<div style="float:right;margin-right:30%">ALREADY PURCHASED!</div>';
                                     }
-                                    echo '<div style="float:left;line-height:45px;width:100%;">' . date('d-m-Y', $events->content[$i]->event_date / 1000) . ' - ' . $events->content[$i]->name . $live_txt. '</div>';
+                                    echo '<div style="float:left;line-height:45px;width:100%;">' . date('d-m-Y', $events->content[$i]->event_date / 1000) . ' - ' . $events->content[$i]->name . $live_txt . '</div>';
                                 }
                             }
                             if (!$flag) {
@@ -482,10 +481,10 @@ if (isset($clientToken)) {
                                                 <li>
                                                     <label for="cardholder_name">Name on Card*</label>
                                                     <input id="cardholder_name" class="text billing_data" disabled="disabled" value="<?php
-                    if (isset($card_name)) {
-                        echo $card_name;
-                    }
-                    ?>" />
+                if (isset($card_name)) {
+                    echo $card_name;
+                }
+                ?>" />
                                                 </li>
                                                 <li>
                                                     <label for="card_number">Card Number*</label>
@@ -493,7 +492,7 @@ if (isset($clientToken)) {
                 if (isset($card_number)) {
                     echo $card_number;
                 }
-                    ?>" />
+                ?>" />
                                                 </li>
                                                 <li>
                                                     <label for="security_code">Security Code*</label>
@@ -501,7 +500,7 @@ if (isset($clientToken)) {
                 if (isset($card_number)) {
                     echo '***';
                 }
-                    ?>" />
+                ?>" />
                                                 </li>
                                                 <li>
                                                     <label for="expiration_month" style="width: 100%">Month*</label>
@@ -526,18 +525,18 @@ if (isset($clientToken)) {
                     }
                 } else {
                     ?>
-                                                                                                    <option id="01">01</option>
-                                                                                                    <option id="02">02</option>
-                                                                                                    <option id="03">03</option>
-                                                                                                    <option id="04">04</option>
-                                                                                                    <option id="05">05</option>
-                                                                                                    <option id="06">06</option>
-                                                                                                    <option id="07">07</option>
-                                                                                                    <option id="08">08</option>
-                                                                                                    <option id="09">09</option>
-                                                                                                    <option id="10">10</option>
-                                                                                                    <option id="11">11</option>
-                                                                                                    <option id="12">12</option>
+                                                                                                                    <option id="01">01</option>
+                                                                                                                    <option id="02">02</option>
+                                                                                                                    <option id="03">03</option>
+                                                                                                                    <option id="04">04</option>
+                                                                                                                    <option id="05">05</option>
+                                                                                                                    <option id="06">06</option>
+                                                                                                                    <option id="07">07</option>
+                                                                                                                    <option id="08">08</option>
+                                                                                                                    <option id="09">09</option>
+                                                                                                                    <option id="10">10</option>
+                                                                                                                    <option id="11">11</option>
+                                                                                                                    <option id="12">12</option>
                     <?php
                 }
                 ?>
@@ -561,17 +560,17 @@ if (isset($clientToken)) {
                     }
                 } else {
                     ?>
-                                                                                                    <option id="2015">2015</option>
-                                                                                                    <option id="2016">2016</option>
-                                                                                                    <option id="2017">2017</option>
-                                                                                                    <option id="2018">2018</option>
-                                                                                                    <option id="2019">2019</option>
-                                                                                                    <option id="2020">2020</option>
-                                                                                                    <option id="2021">2021</option>
-                                                                                                    <option id="2022">2022</option>
-                                                                                                    <option id="2023">2023</option>
-                                                                                                    <option id="2024">2024</option>
-                                                                                                    <option id="2025">2025</option>
+                                                                                                                    <option id="2015">2015</option>
+                                                                                                                    <option id="2016">2016</option>
+                                                                                                                    <option id="2017">2017</option>
+                                                                                                                    <option id="2018">2018</option>
+                                                                                                                    <option id="2019">2019</option>
+                                                                                                                    <option id="2020">2020</option>
+                                                                                                                    <option id="2021">2021</option>
+                                                                                                                    <option id="2022">2022</option>
+                                                                                                                    <option id="2023">2023</option>
+                                                                                                                    <option id="2024">2024</option>
+                                                                                                                    <option id="2025">2025</option>
                     <?php
                 }
                 ?>

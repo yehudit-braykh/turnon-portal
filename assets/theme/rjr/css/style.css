@@ -2409,6 +2409,11 @@ select:focus, select:active {
     cursor: pointer;
 }
 
+#cancel-subscription{
+    width: 190px;
+    font-size: 12px;
+}
+
 .chbx-lbl{
     padding: 6px!important;    
 }

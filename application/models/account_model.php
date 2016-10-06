@@ -128,6 +128,10 @@ class Account_model extends CI_Model {
 
         return apiPost("user/activate_account", array("hash" => $hash, "email" => $email));
     }
+    
+    public function add_operation($token, $user_id, $operation){
+            return apiPost("user/add_operation", array("token" => $token, "user_id" => $user_id, "operation" => $operation));
+    }
 
     public function subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $pi_security_code, $subscription_id, $auto_renew) {
 
