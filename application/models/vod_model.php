@@ -28,9 +28,11 @@ class Vod_model extends CI_Model {
         $cache = $this->fastcache_model->get_cache($cache_id);
 
         if (!$cache) {
+            error_log('usa la base');
             $data = apiCall("vod/list_items_api", $parameters);
             $this->fastcache_model->set_cache($cache_id, $data);
         } else {
+             error_log('usa el cache');
             $data = $cache;
         }
 
