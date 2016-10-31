@@ -1,10 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:tp="http://player.theplatform.com/" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:tp="http://player.theplatform.com/" xml:lang="es" lang="es">
     <head>
 		<?php if(!empty($item_title)): ?>
 			<title><?php echo $item_title; ?></title>
 		<?php else: ?>
-			<title>1Spot Media Portal</title>
+			<title>Megavisión</title>
 		<?php endif; ?>
 		
 		<?php if(!empty($item_description)): ?>
@@ -317,7 +317,7 @@ for ($i = 0; $i < sizeof($vod_categories); $i++) {
                                                                     <?php
                                                                 } else {
                                                                     $logout = base_url() . 'index.php/account/logout_ssl';
-                                                                    echo "<div class='account_name'><div class='user_name'>" . $_SESSION['uvod_user_data']->firstName . "</div><div class='user-icon'></div></div><div class='link_logout'><div class='lock-icon'></div><a href='" . $logout . "'>Logout</a></div><div class='my_account'>My Account | </div>";
+                                                                    echo "<div class='account_name'><div class='user_name'>" . $_SESSION['uvod_user_data']->firstName . "</div><div class='user-icon'></div></div><div class='link_logout'><div class='lock-icon'></div><a href='" . $logout . "'>Salir</a></div><div class='my_account'>Mi Cuenta | </div>";
                                                                 }
                                                                 ?>                
                                                             </div>

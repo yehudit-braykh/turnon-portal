@@ -579,7 +579,7 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
 
 <div class="popup" id="popup_subscriber">
     <span class="button b-close"><span>X</span></span>
-    <div class="form_title">Necesita ser Subscriptor para verlo...</div>
+    <div class="form_title">Necesita ser Suscriptor para ver señales en vivo</div>
     <div class="popup_content">
         <form id="suscriber_form" class="popup_form">
             <button class="dialog_button" id="singin_button">REGISTRESE AHORA</button>

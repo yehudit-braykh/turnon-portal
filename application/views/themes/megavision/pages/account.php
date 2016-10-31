@@ -302,15 +302,15 @@ if (isset($clientToken)) {
     <div class="logout_button_container">
         <input type="image" id="btn_logout" src="<?php echo asset_url(); ?>images/button_logout.png" class="send" style="margin-left:10px;" />
     </div>
-    <div class="registration_title">My Account</div>
+    <div class="registration_title">Mi Cuenta</div>
     <br>
     <div class="registration_container">    
         <div id="tab-container" class="tab-container">
             <ul class='etabs'>
-                <li class='tab'><a href="#tab1" id="vod_item_sub_menu1">My Information</a></li>
-                <li class='tab'><a href="#tab2" id="vod_item_sub_menu2">Subscription</a></li>
-                <li class='tab'><a href="#tab3" id="vod_item_sub_menu3">Pay-Per-View Tickets</a></li>
-                <li class='tab'><a href="#tab4" id="vod_item_sub_menu4">Change password</a></li>
+                <li class='tab'><a href="#tab1" id="vod_item_sub_menu1">Mis Datos</a></li>
+                <li class='tab'><a href="#tab2" id="vod_item_sub_menu2">Suscripción</a></li>
+                <li class='tab'><a href="#tab3" id="vod_item_sub_menu3">Entradas de Eventos</a></li>
+                <li class='tab'><a href="#tab4" id="vod_item_sub_menu4">Cambiar Contraseña</a></li>
             </ul>
             <div class='panel-container'>
                 <div id="tab1">
@@ -319,11 +319,11 @@ if (isset($clientToken)) {
                         <form id="registerform" method="post">
                             <ol>
                                 <li>
-                                    <label for="first_name">First Name*</label>
+                                    <label for="first_name">Nombre*</label>
                                     <input id="first_name" name="first_name" class="text" value="<?php echo $user_first_name; ?>" />
                                 </li>
                                 <li>
-                                    <label for="last_name">Last Name*</label>
+                                    <label for="last_name">Apellido*</label>
                                     <input id="last_name" name="last_name" class="text" value="<?php echo $user_last_name; ?>" />
                                 </li>
 
@@ -349,11 +349,11 @@ if (isset($clientToken)) {
                             <form method="post" id="cancelform">
                                 <ol>
                                     <li>
-                                        <label for="subscription_type">Type</label>
+                                        <label for="subscription_type">Tipo de Suscripción</label>
                                         <input id="subscription_type" class="text" style="width:180px;" value="<?php echo $subscription_data->title; ?>" readonly/>
                                     </li>
                                     <li>
-                                        <label for="contract_status">Status</label>
+                                        <label for="contract_status">Estado</label>
                                         <input id="contract_status" class="text" style="width:150px;" value="<?php
                                         if ($subscription_data->{'active'}) {
                                             echo 'Active';
@@ -364,11 +364,11 @@ if (isset($clientToken)) {
                                     </li>
 
                                     <li>
-                                        <label for="contact_start_date">Subscribed since</label>
+                                        <label for="contact_start_date">Inicio de la Suscripción</label>
                                         <input id="contact_start_date" class="text" style="width:150px;" value="<?php echo date('Y-m-d', $subscription_data->{'contractStartDate'} / 1000); ?>" readonly/>
                                     </li>
                                     <li>
-                                        <label for="contact_end_date">Subscription due date</label>
+                                        <label for="contact_end_date">Vencimiento de la Suscripción</label>
                                         <input id="contact_end_date" class="text" style="width:150px;" value="<?php echo date('Y-m-d', $subscription_data->{'contractEndDate'} / 1000); ?>" readonly/>
                                     </li>
 
@@ -381,13 +381,13 @@ if (isset($clientToken)) {
                                         <li class="buttons">
                                             <input id="contract_id" type="hidden" class="text" style="width:150px;" value="<?php echo $subscription_data->_id; ?>" />
 
-                                            <button class="common_btn" id="cancel-subscription">CANCEL SUBSCRIPTION</button>      
+                                            <button class="common_btn" id="cancel-subscription">CANCELAR SUSCRIPCION</button>      
                                         </li>
                                         <?php
                                     } else {
                                         ?>
                                         <li>
-                                            <p class="form_info" style="display: block;">Your subscription was cancelled. It remains active until <?php echo date('Y-m-d', $subscription_data->{'contractEndDate'} / 1000); ?>.</p>
+                                            <p class="form_info" style="display: block;">Su Suscripción ha sido cancelada. Estará activa hasta el <?php echo date('Y-m-d', $subscription_data->{'contractEndDate'} / 1000); ?>.</p>
                                         </li>
                                         <?php
                                     }
@@ -402,7 +402,7 @@ if (isset($clientToken)) {
                         } else {
                             ?>
 
-                            <div class="registration_title_payment">WANT TO BECOME <br class="rwd-break"> A SUBSCRIBER?</div>
+                            <div class="registration_title_payment">DESEA CONVERTIRSE EN <br class="rwd-break"> SUSCRIPTOR?</div>
 
                             <?php
                             if (sizeof($subscriptions) > 0) {
@@ -416,13 +416,13 @@ if (isset($clientToken)) {
 
                                 <li id= "terms_and_conditions" style="margin-top: 10px">
                                     <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
-                                    <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_conditions_subscribers'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
+                                    <div style="display: inline-block;">Aceptar <a href="<?php echo base_url() . 'index.php/static_content/terms_conditions_subscribers'; ?>" target="_blank" class="terms_and_conditions">Términos y Condiciones</a>*</div></li>
                                 <li> 
                                     <p id="info" class="form_info">&nbsp;</p>
                                 </li>
                                 <li class="buttons">
-                                    <button class="other-op-btn">Select other Plan</button>
-                                    <button class="subscriber_button">Subscribe</button>
+                                    <button class="other-op-btn">Seleccione </br>otro Plan</button>
+                                    <button class="subscriber_button">Suscribir</button>
                                     <div id="registration_preloader"></div>
                                     <div class="clr"></div>
                                 </li>
@@ -450,16 +450,16 @@ if (isset($clientToken)) {
                                 if (isset($events->content[$i]->already_purchased) && $events->content[$i]->already_purchased == true) {
                                     $flag = 1;
                                     if (isset($events->content[$i]->live_now) && $events->content[$i]->live_now) {
-                                        $live_txt = '<div style="float:right;width:120px;margin-right:30%"><button type="submit" id="btn_watch_now" class="send btn_watch_now">Watch Now</button></div>';
+                                        $live_txt = '<div style="float:right;width:120px;margin-right:30%"><button type="submit" id="btn_watch_now" class="send btn_watch_now">Ver ahora</button></div>';
                                     } else {
-                                        $live_txt = '<div style="float:right;margin-right:30%">ALREADY PURCHASED!</div>';
+                                        $live_txt = '<div style="float:right;margin-right:30%">YA COMPRADO!</div>';
                                     }
                                     echo '<div style="float:left;line-height:45px;width:100%;">' . date('d-m-Y', $events->content[$i]->event_date / 1000) . ' - ' . $events->content[$i]->name . $live_txt . '</div>';
                                 }
                             }
                             if (!$flag) {
                                 ?>
-                                <div class="buy_events_link"><span>You don't have any pay-per-view tickets yet.</span><br><a href="<?php echo base_url() . 'index.php/live_events/buy_events_ssl'; ?>">Buy Now!</a></div>
+                                <div class="buy_events_link"><span>No tiene ninguna entrada de evento comprada todavía.</span><br><a href="<?php echo base_url() . 'index.php/live_events/buy_events_ssl'; ?>">Comprar ahora!</a></div>
                                 <?php
                             }
                             ?>
@@ -599,18 +599,18 @@ if (isset($clientToken)) {
                             <ol>
 
                                 <li>
-                                    <label for="new_password">New Password*</label>
+                                    <label for="new_password">Contraseña Nueva*</label>
                                     <input id="new_password" name="new_password" class="text" type="password" />
                                 </li>
                                 <li> 
-                                    <div class="form_notes">New password should have between 8 and 16 characters.</div>
+                                    <div class="form_notes">La Nueva Contraeña deberá tener entre 8 y 16 caracteres.</div>
                                 </li>                
                                 <li>
-                                    <label for="confirm_password">Confirm Password*</label>
+                                    <label for="confirm_password">Confirmar Contraseña Nueva*</label>
                                     <input id="confirm_password" name="confirm_password" class="text" type="password" />
                                 </li>
                                 <li> 
-                                    <div class="form_notes">Re-enter your new password for confirmation.</div>
+                                    <div class="form_notes">Vuelva a ingresar su Contraseña Nueva.</div>
                                 </li>                
                                 <li> 
                                     <span id="infopass" class="form_info">&nbsp;</span>
@@ -629,10 +629,10 @@ if (isset($clientToken)) {
 
     <div class="popup" id="popup_cancel">
         <span class="button b-close"><span>X</span></span>
-        <div class="form_title" style="line-height:1.2">Do you want cancel<br>this subscription?</div>
+        <div class="form_title" style="line-height:1.2">¿Quiere cancelar<br>esta Suscripción?</div>
         <div class="popup_content">
             <form id="cancel_form" class="popup_form">
-                <button class="dialog_button question" id="accept_button">Yes</button>
+                <button class="dialog_button question" id="accept_button">Si</button>
                 <button class="dialog_button question b-close" id="deny_button">No</button>
             </form>
         </div>

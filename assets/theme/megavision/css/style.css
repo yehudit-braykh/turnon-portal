@@ -2395,7 +2395,7 @@ select:focus, select:active {
     border:0; 
     color:#FFF!important; 
     float:left;
-    background-color: #6B00B1;
+    background-color: #069;
     text-transform: uppercase;
     cursor: pointer;
     margin-right: 10px;
@@ -2420,7 +2420,7 @@ select:focus, select:active {
     padding:0 0 3px 0; 
     border:0; 
     color:#FFF!important; 
-    background-color: #6B00B1;
+    background-color: #069;
     text-transform: uppercase;
     cursor: pointer;
 
@@ -2588,7 +2588,7 @@ select:focus, select:active {
     font-size: 12px;
     line-height: 0%!important;
     margin-top: -8px;
-    color: #7F0077;
+    color: #069;
 }
 
 .dropcontainer {
@@ -2721,8 +2721,9 @@ select:focus, select:active {
 }
 
 .about {
-    margin: 0;
+    margin: auto;
     padding: 35px 20px 10px 20px; 
+    max-width: 960px;
 }
 
 .about h1{
@@ -2735,8 +2736,9 @@ select:focus, select:active {
 }
 
 .terms{
-    margin: 0;
+    margin: auto;
     padding: 35px 20px 10px 20px; 
+    max-width: 960px;
 }
 
 .terms h1{
@@ -2767,8 +2769,9 @@ select:focus, select:active {
 
 .faqs{
     font-size: 14px !important;
-    margin: 0;
+    margin: auto;
     padding: 35px 20px 10px 20px; 
+    max-width: 960px;
 }
 
 .faqs h1{
