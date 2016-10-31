@@ -254,6 +254,8 @@ class Account extends UVod_Controller {
             $subscription = $this->account_model->get_subscriptions($subscriptions_ids);
 
             if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
+
+                $data['user_status'] = 'Subscriptor';
                 $data['subscriptions'] = $subscription->content->entries;
 
                 usort($data['subscriptions'], function($a, $b) {
@@ -262,25 +264,67 @@ class Account extends UVod_Controller {
                     }
                     return (intval($a->subscriptionLength) < intval($b->subscriptionLength)) ? -1 : 1;
                 });
+            } else {
+                $data['user_status'] = 'Registered User';
             }
+        } else {
+            $data['user_status'] = 'Subscriptor';
         }
 
-
         if ($user_profile && $user_profile->content) {
+            $data['user_email'] = $user_profile->content->email;
             $data['user_first_name'] = $user_profile->content->firstName;
             $data['user_last_name'] = $user_profile->content->lastName;
-            $data['user_city'] = "";
-            if (isset($user_profile->content->publicDataMap->city)) {
-                $data['user_city'] = $user_profile->content->publicDataMap->city;
-            }
+            $data['user_city'] = $user_profile->content->city;
+            $data['user_zip_code'] = $user_profile->content->postalCode;
             $data['user_country'] = $user_profile->content->countryCode;
-            $data['user_postal_code'] = $user_profile->content->postalCode;
+            if (isset($user_profile->content->addressLine1)) {
+                $data['user_address_line1'] = $user_profile->content->addressLine1;
+            } else {
+                $data['user_address_line1'] = "";
+            }
+            if (isset($user_profile->content->addressLine2)) {
+                $data['user_address_line2'] = $user_profile->content->addressLine2;
+            } else {
+                $data['user_address_line2'] = "";
+            }
+            if (isset($user_profile->content->state)) {
+                $data['user_state'] = $user_profile->content->state;
+            } else {
+                $data['user_state'] = "";
+            }
+
+            if (sizeof($user_profile->content->paymentData) && (isset($user_profile->content->paymentData[0]->creditCardId) || isset($user_profile->content->paymentData[0]->creditCard))) {
+
+                if (isset($user_profile->content->paymentData[0]->creditCardId)) {
+                    $credit_card_id = $user_profile->content->paymentData[0]->creditCardId;
+                } else {
+                    $credit_card_id = $user_profile->content->paymentData[0]->creditCard;
+                }
+                $credit_card = $this->account_model->get_credit_card($credit_card_id);
+
+                error_log("CREDIT CARD: " . json_encode($credit_card));
+
+                $data['card_type'] = ucfirst($credit_card->content->type);
+                $data['card_number'] = $credit_card->content->number;
+                $data['card_expiration_date'] = $credit_card->content->expire_month . '/' . $credit_card->content->expire_year;
+                $data['card_owner'] = $credit_card->content->first_name . ' ' . $credit_card->content->last_name;
+            }else{
+                $data['card_type'] = "";
+                $data['card_number'] = "";
+                $data['card_expiration_date'] = "";
+                $data['card_owner'] = "";
+            }
         } else {
+            $data['user_email'] = "";
             $data['user_first_name'] = "";
             $data['user_last_name'] = "";
             $data['user_city'] = "";
+            $data['user_state'] = "";
             $data['user_country'] = "";
-            $data['user_postal_code'] = "";
+            $data['user_address_line1'] = "";
+            $data['user_address_line2'] = "";
+            $data['user_zip_code'] = "";
         }
 
         $events = $this->get_events();
@@ -377,9 +421,24 @@ class Account extends UVod_Controller {
         return $events;
     }
 
+    public function save_credit_card_ssl() {
+
+        $data = $_POST;
+        $data['user_data'] = $_SESSION['uvod_user_data'];
+        $save_cc = $this->account_model->save_credit_card($_SESSION['uvod_user_data']->token, $_SESSION['uvod_user_data']->id, $data);
+
+        if (isset($save_cc->error) && $save_cc->error == false) {
+            echo json_encode(array('status' => 'ok', 'new_cc' => $save_cc->content->new_credit_card));
+        } else {
+            echo json_encode(array('status' => 'error', 'message' => $save_cc->message,));
+        }
+    }
+
     public function my_account_save_ssl() {
 
-        $save_profile = $this->account_model->save_profile($_SESSION['uvod_user_data']->token, $_SESSION['uvod_user_data']->id, $_POST['first_name'], $_POST['last_name'], $_POST['city'], $_POST['country'], $_POST['postal_code']);
+        $data = $_POST;
+
+        $save_profile = $this->account_model->save_profile($_SESSION['uvod_user_data']->token, $_SESSION['uvod_user_data']->id, $data);
 
         if (isset($save_profile->error) && $save_profile->error == false) {
             echo json_encode(array('status' => 'ok'));
@@ -586,7 +645,7 @@ class Account extends UVod_Controller {
         $subscription_id = $_POST['subscription_id'];
         $auto_renew = "true";
 
-        $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $pi_security_code, $subscription_id, $auto_renew);
+        $ret = $this->account_model->subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $pi_security_code, $subscription_id);
 
         if (isset($ret->error) && $ret->error == false) {
 
@@ -602,12 +661,25 @@ class Account extends UVod_Controller {
             echo json_encode(array('status' => 'error', 'message' => $ret->message,));
         }
     }
+    
+    public function subscribe_by_stored_cc_ssl() {
 
-    public function cancel_subscription_ssl() {
+        if (isset($_SESSION['uvod_user_data'])) {
+            $token = $_SESSION['uvod_user_data']->token;
+        } else if (isset($_SESSION['registration_data']->user_token)) {
+            $token = $_SESSION['registration_data']->user_token;
+        }
+
+
+        $first_name = $_SESSION['uvod_user_data']->firstName;
+        $last_name = $_SESSION['uvod_user_data']->lastName;
+        $email = $_SESSION['uvod_user_data']->email;
+        $country = $_SESSION['uvod_user_data']->countryCode;
+        $subscription_id = $_POST['subscription_id'];
 
         $id = $_POST['contract_id'];
         $auto_renew = "false";
-        $ret = $this->account_model->update_subscription($id, $auto_renew);
+        $ret = $this->account_model->subscribe_by_stored_cc($token, $first_name, $last_name, $email, $country, $subscription_id);
 
         if (isset($ret->error) && $ret->error == false) {
 
@@ -620,7 +692,17 @@ class Account extends UVod_Controller {
                 $token = $_SESSION['uvod_user_data']->token;
                 $user_id = $_SESSION['uvod_user_data']->id;
             }
+            $_SESSION['is_subscriber'] = true;
+            $this->subscription_complete_mail($first_name, $last_name, $email, $time, $auto_renew);
+            echo json_encode(array('status' => 'ok'));
+        } else {
+            echo json_encode(array('status' => 'error', 'message' => $ret->message,));
+        }
+    }
 
+    public function update_subscription_ssl() {
+        $id = $_POST['contract_id'];
+        $auto_renew = $_POST['auto_renew'];
             $add_operation = $this->account_model->add_operation($token, $user_id, $operation);
 
             if (isset($add_operation->error) && $add_operation->error == false) {

@@ -2029,7 +2029,7 @@ select:focus, select:active {
     width: 100%;
 }
 .account_content{
-    width:803px;  
+    width:1000px;  
     margin-top: 30px; 
 }
 .registration_content { 
@@ -2180,10 +2180,22 @@ select:focus, select:active {
 }
 
 #tab1 .registration_container{
-    height: 430px;
+    height: 560px;
 }
 #tab2 .registration_container{
     height: 920px;
+}
+
+#tab3 .registration_container{
+    height: 600px;
+}
+
+.col-right, .col-left{
+    float: left;
+}
+
+.col-right{
+    margin-right: 30px;
 }
 
 .subscription_details{
@@ -2360,19 +2372,24 @@ select:focus, select:active {
 
 .registration_container form li.buttons input, .payment_content form li.buttons input { padding:0 0 3px 0; margin:10px 0 0 0px; border:0; color:#FFF; float:left; }
 
-.other-op-btn, .subscriber_button, #btn_next, #btn_skip{
+.other-op-btn, .subscriber_button, #btn_next, #btn_skip, #change_credit_card_btn, #use_stored_cc{
     height: 35px;
     padding:0 0 3px 0; 
     border:0; 
     color:#FFF!important; 
     float:left;
-    background-color: #6B00B1;
+    background-color: rgb(127,0,191);
     text-transform: uppercase;
     cursor: pointer;
     margin-right: 10px;
 }
 
-.other-op-btn, .subscriber_button{
+.text:disabled{
+    background: #ddd!important;
+}
+
+
+.other-op-btn, .subscriber_button, #change_credit_card_btn, #use_stored_cc{
     width: 110px;
 }
 
@@ -2516,6 +2533,25 @@ select:focus, select:active {
     font-size: 14px;
     cursor: pointer;
 
+}
+
+.common_btn{
+    height: 40px;
+    border: 0px;
+    background-color: rgb(127,0,191);
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.billing_btns{
+    width: 44%!important;
+    float: left;
+}
+
+#edit_credit_card_btn{
+     width: 100%!important;
 }
 
 #signin_fb_btn{
