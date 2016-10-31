@@ -24,7 +24,7 @@
                     $date = date('M d, Y', ($value->startTime / 1000));
                     $currentDate = date('l M d, Y', ($value->startTime / 1000));
                     if ($today == $currentDate) {
-                        echo '<td class="select_day daySelected" item-time="' . ($value->startTime) . '"><div id="on_today">ON TODAY</div><div class="today_content"><span class="epg_table_day">' . strtoupper($day) . '</span><br>' .
+                        echo '<td class="select_day daySelected" item-time="' . ($value->startTime) . '"><div id="on_today">HOY</div><div class="today_content"><span class="epg_table_day">' . strtoupper($day) . '</span><br>' .
                         '<span class="epg_table_date">' . strtoupper($date) . '</span>' . '</div></td>';
                     }
                     $h++;

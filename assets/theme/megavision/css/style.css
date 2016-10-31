@@ -95,7 +95,7 @@ body { background:url(../images/body_bg.png) repeat top left; }
 
 #page { background: none repeat scroll 0 0 rgba(0, 0, 0, 0.4); overflow: hidden; position: relative; width: 100%; }
 
-a { color:#e93232; font-weight:normal; text-decoration:none; }
+a { color:#00F; font-weight:normal; text-decoration:none; }
 
 a.detail {color:#626262; font-size:14px; display:block;}
 
@@ -1411,9 +1411,9 @@ select:focus, select:active {
     height: 19px;
     background-color: #069;
     color: #fff;
-    font-size: 8px;
+    font-size: 10px;
     text-align: center;
-    margin: 5px auto 1px;
+    margin: 5px auto 2px;
 }
 
 .today_content{
@@ -1498,7 +1498,7 @@ select:focus, select:active {
 }
 
 .epg_channel_name{
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     font-size: 17px;
     font-weight: bold;
     color: #069;
@@ -1613,7 +1613,8 @@ select:focus, select:active {
     color: #fff;
     line-height: 1.2em;
     cursor: pointer;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
+    margin-top: 3px;
 }
 
 .my_account{
@@ -1635,6 +1636,9 @@ select:focus, select:active {
     cursor: default;
     float: right;
 }
+
+.link_logout a{color: #fff;}
+.link_logout a:hover{color: #fff !important;}
 
 .user-icon, .lock-icon{
     width: 10px;
@@ -2423,9 +2427,9 @@ select:focus, select:active {
 }
 
 .common_btn{
-    width: 65px;
+    width: 120px;
     height: 38px;
-    padding: 0 0 3px 0;
+    /*padding: 0 0 3px 0;*/
     margin: 10px 0 0 0px;
     border: 0;
     color: #FFF!important;
@@ -2504,6 +2508,8 @@ select:focus, select:active {
 /* form login */
 
 #loginform, #reset_password_form { margin:0; padding:5px 0; }
+
+#loginform a {color: #00f;}
 
 #loginform *, #reset_password_form *{ color:#000; }
 
@@ -2841,11 +2847,11 @@ select:focus, select:active {
 }
 
 .terms_and_conditions {
-    color: #069 !important ;
+    color: #00f !important ;
 }
 
 .signin_link {
-    color: #069 !important ;
+    color: #00f !important ;
 }
 
 .remark_terms_and_conditions {

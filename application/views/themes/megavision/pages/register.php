@@ -38,14 +38,14 @@
 
             if (!($("#accept_terms_and_conditions").prop("checked"))) {
                 show_info();
-                $("#info").html("* You must accept terms and conditions before click Register button");
+                $("#info").html("* Debe aceptar los Términos y Condiciones antes de oprimir el botón");
                 return false;
             }
 
 
             if ($('#email').val() !== $("#confirm_email").val()) {
                 show_info();
-                $("#info").html("* Email and Confirm are not match");
+                $("#info").html("* El Email y la COnfirmación no coinciden");
                 return false;
             }
 
@@ -56,13 +56,13 @@
 
             if (full_name.length == 1) { // fullname only contains first name
                 show_info();
-                $("#info").html("* You must specify first & last name");
+                $("#info").html("* Debe especificar nombre y apellido");
                 $('#btn_sign_up').show();
                 return false;
             }
 
             $(this).hide();
-            $('#registration_preloader').html('Sending data...');
+            $('#registration_preloader').html('Enviando datos...');
             $('#registration_preloader').show();
 
 
@@ -96,7 +96,7 @@
         $('#signup_fb_btn').on('click', function () {
 
             if (!($("#fb_accept_terms_and_conditions").prop("checked"))) {
-                $("#fb_info").html("* You must accept terms and conditions before click Register button");
+                $("#fb_info").html("* Debe aceptar los Términos y Condiciones antes de oprimir el botón");
                 $("#fb_info").show();
                 TweenLite.fromTo("#fb_info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
                         TweenLite.to("#fb_info", 1, {delay: 6, alpha: 0, onComplete: function () {
@@ -144,7 +144,7 @@
 
                 checkLoginState()
             } else {
-                show_info('You must accept the permissions to register with Facebook');
+                show_info('Debe aceptar los permisos para registrarse con Facebook');
             }
         },
           {
@@ -163,7 +163,7 @@
 
         if (response.status === 'connected') {
             TweenLite.fromTo("#signup_fb_btn", 1, {alpha: 1}, {alpha: 0});
-            $('#fb_registration_preloader').html('Sending data...');
+            $('#fb_registration_preloader').html('Enviando datos...');
             $('#fb_registration_preloader').css('display', 'block');
             $.ajax({
                 url: "<?php echo base_url(); ?>index.php/account/check_fb_account_ssl",
@@ -205,7 +205,7 @@
 
             $('#fb_registration_merge').css('display', 'none');
 
-            $('#fb_registration_preloader').html('Sending data...');
+            $('#fb_registration_preloader').html('Enviando datos...');
             $('#fb_registration_preloader').css('display', 'block');
 
             $.ajax({
@@ -229,7 +229,7 @@
                 }
             });
         } else {
-            show_info('Current password is required');
+            show_info('Se requiere contraseña actual');
         }
     } //end merge accounts
 
@@ -242,15 +242,15 @@
 <div class="content_centered">
     <div class="registration_content">
 
-        <div class="registration_title">REGISTER</div>
-        <div class="registration_subtitle">Enter your login information</div>
+        <div class="registration_title">REGISTRAR</div>
+        <div class="registration_subtitle">Ingrese la información de su cuenta:</div>
 
         <div class="registration_container">
 
             <form method="post" id="registerform">
                 <ol>
                     <li>
-                        <label for="first_name">Full Name*</label>
+                        <label for="first_name">Nombre Completo*</label>
                         <input id="full_name" name="full_name" class="text"/>
                     </li>
                     <li>
@@ -258,18 +258,18 @@
                         <input id="email" name="email" class="text" />
                     </li>
                     <li> 
-                        <div class="form_notes">You will use this email address to login.</div>
+                        <div class="form_notes">Utilizará este Email para iniciar sesión.</div>
                     </li>
                     <li>
-                        <label for="confirm_email">Confirm Email*</label>
+                        <label for="confirm_email">Confirmar Email*</label>
                         <input id="confirm_email" name="confirm_email" class="text" />
                     </li>
                     <li>
-                        <label for="password">Password*</label>
+                        <label for="password">Contrasña*</label>
                         <input id="password" name="password" class="text" type="password" />
                     </li>
                     <li> 
-                        <div class="form_notes">Password should have <br class="rwd-break"> between 8 and 16 characters.</div>
+                        <div class="form_notes">La Contraseña deberá tener <br class="rwd-break"> entre 8 y 16 caracteres.</div>
                     </li>
 
                     <li> 
@@ -277,10 +277,10 @@
                     </li>
                     <li id= "terms_and_conditions">
                         <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
-                        <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_conditions'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
+                        <div style="display: inline-block;">Aceptar <a href="<?php echo base_url() . 'index.php/static_content/terms_conditions'; ?>" target="_blank" class="terms_and_conditions">Términos y Condiciones</a>*</div></li>
                     <li> 
                     <li class="buttons">
-                        <button id="btn_sign_up" class="send common_btn">REGISTER</button>
+                        <button id="btn_sign_up" class="send common_btn">REGISTRAR</button>
                         <div id="registration_preloader"></div>
                         <div class="clr"></div>
                     </li>
@@ -296,7 +296,7 @@
                     <ul>
                         <li id= "terms_and_conditions">
                             <div style="display: inline-block;"><input id="fb_accept_terms_and_conditions" type="checkbox" /></div>   
-                            <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_conditions'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
+                            <div style="display: inline-block;">Aceptar <a href="<?php echo base_url() . 'index.php/static_content/terms_conditions'; ?>" target="_blank" class="terms_and_conditions">Términos y Condiciones</a>*</div></li>
                         <li>
                         <li> 
                             <p id="fb_info" class="form_info">&nbsp;</p>
@@ -306,8 +306,8 @@
 
                 <div id="fb_registration_merge" style="display: none;">
                     <div style="padding: 0 10px;">
-                        <div class="registration_title">LINK YOUR ACCOUNT</div>
-                        <div class="registration_subtitle">The email (<span class="pl_email"></span>) from your Facebook account already has an associated 1Spot account. Would you like to link the two?</div>
+                        <div class="registration_title">ENLAZAR SU CUENTA</div>
+                        <div class="registration_subtitle">El Email (<span class="pl_email"></span>) de su cuenta de Facebook ya tiene una cuenta asociada con nosotros. ¿Le gustaría enlazar las dos?</div>
                     </div>
                     <p class="form_info">&nbsp;</p>
                     <div  style="position: relative;">
@@ -329,12 +329,12 @@
                         <div style="clear: both;"></div>
 
                         <div>
-                            <label for="password">Password</label><br>
+                            <label for="password">Contraseña</label><br>
                             <input id="password" name="password" class="text" type="password" />
                         </div>
                     </div>
 
-                    <button id="btn_sign_up_merge" class="send common_btn" style="display: block; margin: auto; width: 200px; float: initial">LINK ACCOUNTS</button>
+                    <button id="btn_sign_up_merge" class="send common_btn" style="display: block; margin: auto; width: 200px; float: initial">ENLAZAR CUENTAS</button>
                 </div>
             </div>
 

@@ -28,7 +28,7 @@
             event.preventDefault();
             $(this).hide();
             $('#send_activation_email_preloader').show();
-            $('#send_activation_email_preloader').html('Sending activation email...');
+            $('#send_activation_email_preloader').html('Enviar Email de activación...');
 
             $.ajax({
                 url: '<?php echo base_url(); ?>index.php/account/send_activation_email_login',
@@ -109,7 +109,7 @@
                         window.location.href = '<?php echo $url; ?>';
                     }
                 }
-                else if (data.message == 'Your account is not active yet. Check your email for the activation link.') {
+                else if (data.message == 'Su cuenta aún no está activada. Consulte su correo electrónico para obtener el link de activación.') {
                     $('#login_preloader').hide();
                     $('#btn_login').show();
                     $('#send_activation_email_login_button').show();
@@ -155,7 +155,7 @@
                 TweenLite.fromTo("#info", 1, {alpha: 1}, {alpha: 0});
                 checkLoginState();
             } else {
-                show_info('You must accept the permissions to Login with Facebook');
+                show_info('Debe aceptar los permisos para iniciar sesión con Facebook');
             }
         },
           {
@@ -224,7 +224,7 @@
         if (password) {
             $('#btn_sign_up_merge').hide();
 
-            $('#fb_signin_merge_preloader').html('Sending data...');
+            $('#fb_signin_merge_preloader').html('Enviando datos...');
             $('#fb_signin_merge_preloader').show();
 
 
@@ -244,7 +244,7 @@
                 }
             });
         } else {
-            show_info('Current password is required');
+            show_info('Se requiere contraseña actual');
         }
     } //end merge accounts
 </script>
@@ -278,7 +278,7 @@
                     <input id="password" name="password" class="text" type="password" />
 
                     <span style="float: right;">
-                        Olvidó su<a href="<?php echo base_url(); ?>index.php/account/forgot" style="color:rgb(127,0,191);"> contraseña</a>?
+                        Olvidó su<a href="<?php echo base_url(); ?>index.php/account/forgot"> contraseña</a>?
                     </span>
 
                 </li>
@@ -294,14 +294,14 @@
                 </li>
 
                 <li>
-                    <div class="or_separator">O</div>
+                    <div class="or_separator">ó</div>
                     <button id="signin_fb_btn"></button>
                     <div id="fb_signin_preloader"></div>
                 </li>
 
                 <li>
                     <span style="padding-left:40px;">
-                        Todavía no está Registrado?  <a href="<?php echo base_url(); ?>index.php/account/register_ssl" style="color:rgb(127,0,191);">Regístrese ahora.</a>
+                        Todavía no está Registrado?  <a href="<?php echo base_url(); ?>index.php/account/register_ssl">Regístrese ahora.</a>
                     </span>
                 </li>
 

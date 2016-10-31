@@ -99,8 +99,9 @@
     margin: 30px auto;
     margin-bottom: 10px;
     cursor: pointer;
-}.dialog_button:hover {
-    background-color:#7c16cb;
+}
+.dialog_button:hover {
+    background-color:#06c;
 }
 
 .question{

@@ -150,7 +150,7 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
         if (country === 'Jamaica') {
 
             if (account_status === 'login') {
-                $('#jw_live_player').text('LOGIN TO WATCH LIVE SIGNALS...');
+                $('#jw_live_player').text('INGRESE PARA VER LAS SEÑALES EN VIVO...');
                 $('#popup_login').bPopup();
 
 
@@ -162,11 +162,11 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
         } else {
 
             if (account_status === 'login') {
-                $('#jw_live_player').text('LOGIN TO WATCH LIVE SIGNALS...');
+                $('#jw_live_player').text('INGRESE PARA VER LAS SEÑALES EN VIVO...');
                 $('#popup_login_outside').bPopup();
 
             } else if (account_status === 'subscriber') {
-                $('#jw_live_player').text('BECOME A SUBSCRIBER TO WATCH LIVE SIGNALS...');
+                $('#jw_live_player').text('CONVIERTASE EN SUSCRIPTOR PARA VER LAS SEÑALES EN VIVO...');
                 $('#popup_subscriber').bPopup();
             } else if (account_status === 'enabled') {
                 stream_url = release_blocked_url;
@@ -192,7 +192,7 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
                 },
                 success: function (data) {
                     $('#epg_container').html(data);
-                    $('.epg_channel_name').text(channel_name + " SCHEDULE");
+                    $('.epg_channel_name').text("Programación: " + channel_name);
                     if (country !== 'Jamaica') {
                         $('.blocked_text').css('display', 'block');
                     }
@@ -236,7 +236,7 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
         if (current_channel)
             TweenMax.to(current_channel, .3, {boxShadow: "0px 0px 10px rgba(0,0,0,1)", border: "1px solid #000"});
 
-        TweenMax.to(channel_obj, .3, {boxShadow: "2px 0px 20px rgba(127,26,191,0.8)", border: "1px solid rgba(127,26,191,0.8)"});
+        TweenMax.to(channel_obj, .3, {boxShadow: "2px 0px 20px rgba(102,204,255,0.8)", border: "1px solid rgba(102,204,255,0.8)"});
 
         current_channel = channel_obj;
 
@@ -418,7 +418,7 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
                 TweenLite.fromTo("#info", 1, {alpha: 1}, {alpha: 0});
                 checkLoginState();
             } else {
-                show_info('You must accept the permissions to Login with Facebook');
+                show_info('Debe aceptar los permisos para iniciar sesión con Facebook');
             }
         },
           {
@@ -437,7 +437,7 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
 
         if (response.status === 'connected') {
             $('#send_activation_email_login_button').hide();
-            $('#fb_signin_preloader').html('Sending data...');
+            $('#fb_signin_preloader').html('Enviando datos...');
             $('#fb_signin_preloader').css('display', 'block');
             TweenLite.fromTo("#signup_fb_btn", 1, {alpha: 1}, {alpha: 0});
 
@@ -504,28 +504,28 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
 
 <div class="popup" id="popup_location">
     <span class="button b-close"><span>X</span></span>
-    <div class="location_title">This content is not available<br>for your location</div>
+    <div class="location_title">Éste contenido no está disponible<br>para su ubicación</div>
 
 </div>
 
 <div class="popup" id="popup_login">
     <span class="button b-close"><span>X</span></span>`
-    <div class="form_title">BECOME A MEMBER TO WATCH LIVE SIGNALS...</div>
+    <div class="form_title">NECESITA TENER UNA CUENTA PARA VER LAS SEÑALES EN VIVO</div>
     <div class="popup_content">
         <div class="col_izq">
-            <div class="popup_title">Sign In</div>
+            <div class="popup_title">Ingresar:</div>
             <form id="login_form" class="popup_form">
 
-                <div class="popup_label">Email Address</div>
+                <div class="popup_label">Usuario:</div>
                 <input name="email" id="email" class="popup_input" type="email"  required="required"/>
 
-                <div class="popup_label">Password</div>
+                <div class="popup_label">Contraseña:</div>
 
                 <input name="password" id="password" class="popup_input" type="password" required="required"/>
 
-                <div id="forgot_span">Forgot your<a href="#" id="forgot_btn"> password?</a></div>
+                <div id="forgot_span">Olvidó su<a href="#" id="forgot_btn"> Contraseña?</a></div>
 
-                <button class="dialog_button" id="singin_button">Sign In</button>
+                <button class="dialog_button" id="singin_button">INGRESAR</button>
                 <div id="popup_error"></div>
 
             </form>
@@ -533,9 +533,9 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
         </div>
         <div class="col_der">
             <form id="register_form" class="popup_form">
-                <div class="popup_title">Not a member?</div>
+                <div class="popup_title">No tiene una cuenta?</div>
 
-                <button class="dialog_button" id="register_btn">Register Now</button>
+                <button class="dialog_button" id="register_btn">REGISTRESE AHORA</button>
             </form>
         </div>
     </div>
@@ -543,7 +543,7 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
 
 <div class="popup" id="popup_login_outside">
     <span class="button b-close"><span>X</span></span>
-    <div class="form_title">Necesita ser Subscriptor para verlo...</div>
+    <div class="form_title">NECESITA SER SUSCRIPTOR </br>PARA VER LAS SEÑALES EN VIVO</div>
     <div class="popup_content">
         <div class="col_izq">
             <div class="popup_title">Ingrese</div>
