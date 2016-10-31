@@ -34,7 +34,7 @@
 <div id="accordion1">
 
 <h3 class="quest">1.	What is 1spotmedia?</h3>
-<p class="ask">-	1Spotmedia is the RJR Communications Group’s  Internet media service, offering the full range of the RJR Communications Group  television and radio brands, including TVJ, RETV, JNN, TVJSN, RJR94FM, FAMEFM, and HITZFM, POWER 106, MUSIC 99 in one spot online. 1Spotmedia is everywhere TV and radio, with live stream and video on demand (VOD) content on PCs, tablets and smartphones.</p>
+<p class="ask">-	1Spotmedia is the RJR Communications Group’s  Internet media service, offering the full range of the RJR Communications Group  television and radio brands, including TVJ, RETV, JNN, TVJSN, RJR94FM, FAME 95 FM, and HITZ 92 FM, POWER 106, MUSIC 99 in one spot online. 1Spotmedia is everywhere TV and radio, with live stream and video on demand (VOD) content on PCs, tablets and smartphones.</p>
 
 <h3 class="quest">2.	When do new episodes become available on demand?</h3>
 <p class="ask">-	Episodes typically become available on demand the day after airing on TV. Broadcasts of live episodes can take several hours longer to become available for streaming - often until the afternoon of the next day.</p>
@@ -130,7 +130,7 @@
 <p class="ask">-  Unfortunately, we do not have a way for you to update your credit card information at this time.  You need to let your subscription lapse and re-subscribe.</p>
 
 <h3 class="quest">10.  How do I cancel my subscription and/or stop the auto-billing?</h3>
-<p class="ask">-  Simply un-check the auto-renew button in the My Subscription Tab of My Account and you will not be billed again.  Your subscription will automatically cancelled at the end of the period subscribed.</p>
+<p class="ask">-  In order to cancel your subscription you need to go to 1spotmedia.com website, sign in and in "your account" click on "cancel subscription". Your subscription will automatically cancelled at the end of the period subscribed.</p>
 
 <h3 class="quest">11.  I live in Jamaica and you are still asking me to subscribe?</h3>
 <p class="ask">-  Please go to your web browser and in Google type in IP Address and send us the result.  Sometimes the internet provider in Jamaica is using an IP address outside of Jamaica.  We determine who needs to subscribe based on your IP address.</p>
