@@ -309,7 +309,7 @@ class Account extends UVod_Controller {
                 $data['card_number'] = $credit_card->content->number;
                 $data['card_expiration_date'] = $credit_card->content->expire_month . '/' . $credit_card->content->expire_year;
                 $data['card_owner'] = $credit_card->content->first_name . ' ' . $credit_card->content->last_name;
-            }else{
+            } else {
                 $data['card_type'] = "";
                 $data['card_number'] = "";
                 $data['card_expiration_date'] = "";
@@ -661,7 +661,7 @@ class Account extends UVod_Controller {
             echo json_encode(array('status' => 'error', 'message' => $ret->message,));
         }
     }
-    
+
     public function subscribe_by_stored_cc_ssl() {
 
         if (isset($_SESSION['uvod_user_data'])) {
@@ -703,15 +703,10 @@ class Account extends UVod_Controller {
     public function update_subscription_ssl() {
         $id = $_POST['contract_id'];
         $auto_renew = $_POST['auto_renew'];
-            $add_operation = $this->account_model->add_operation($token, $user_id, $operation);
+        $ret = $this->account_model->update_subscription($id, $auto_renew);
 
-            if (isset($add_operation->error) && $add_operation->error == false) {
-
-                $msg = "Your subscription was cancelled. It remains active until " . date('Y-m-d', $ret->content->{'contractEndDate'} / 1000) . ".";
-                echo json_encode(array('status' => 'ok', 'message' => $msg));
-            } else {
-                echo json_encode(array('status' => 'error', 'message' => $add_operation->message));
-            }
+        if (isset($ret->error) && $ret->error == false) {
+            echo json_encode(array('status' => 'ok'));
         } else {
 
             // file_put_contents('change_auto_renew.txt', $ret);
