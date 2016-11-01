@@ -684,24 +684,15 @@ class Account extends UVod_Controller {
         $country = $_SESSION['uvod_user_data']->countryCode;
         $subscription_id = $_POST['subscription_id'];
 
-        $id = $_POST['contract_id'];
-        $auto_renew = "false";
         $ret = $this->account_model->subscribe_by_stored_cc($token, $first_name, $last_name, $email, $country, $subscription_id);
 
         if (isset($ret->error) && $ret->error == false) {
 
-            $operation = new stdClass();
-            $operation->type = 'cancel_subscription';
-            $operation->date = date('d-m-Y H:i', time());
-            $operation->contract_id = $id;
-
-            if (isset($_SESSION['uvod_user_data'])) {
-                $token = $_SESSION['uvod_user_data']->token;
-                $user_id = $_SESSION['uvod_user_data']->id;
-            }
             $_SESSION['is_subscriber'] = true;
-            $this->subscription_complete_mail($first_name, $last_name, $email, $time, $auto_renew);
+            $this->subscription_complete_mail($first_name, $last_name, $email, $time, true);
             echo json_encode(array('status' => 'ok'));
+        
+            
         } else {
             echo json_encode(array('status' => 'error', 'message' => $ret->message,));
         }

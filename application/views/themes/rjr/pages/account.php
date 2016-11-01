@@ -368,7 +368,7 @@ if (isset($clientToken)) {
 
         $("#subscribe_stored_cc_btn").on('click', function () {
             $.ajax({
-                url: "<?php echo base_url(); ?>index.php/account/subscribe_by_stored_cc",
+                url: "<?php echo base_url(); ?>index.php/account/subscribe_by_stored_cc_ssl",
                 type: 'POST',
                 dataType: 'json',
                 data: {
