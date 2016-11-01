@@ -224,7 +224,6 @@ class Account extends UVod_Controller {
         $user_profile = $this->account_model->get_profile($_SESSION['uvod_user_data']->token, $_SESSION['uvod_user_data']->id);
         $contracts = $this->account_model->get_contract($_SESSION['uvod_user_data']->id, 'true');
 
-
         if (isset($contracts->content->entries) && sizeof($contracts->content->entries) > 0) {
 
             $contracs_data = $contracts->content->entries;
@@ -244,7 +243,8 @@ class Account extends UVod_Controller {
         }
 
         if (!isset($data['subscription_data'])) {
-
+            
+            $data['user_status'] = 'Registered User';
             if ($this->config->item('subscriptions_ids')) {
                 $subscriptions_ids = $this->config->item('subscriptions_ids');
             } else {
@@ -255,7 +255,7 @@ class Account extends UVod_Controller {
 
             if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
 
-                $data['user_status'] = 'Subscriptor';
+
                 $data['subscriptions'] = $subscription->content->entries;
 
                 usort($data['subscriptions'], function($a, $b) {
@@ -264,8 +264,6 @@ class Account extends UVod_Controller {
                     }
                     return (intval($a->subscriptionLength) < intval($b->subscriptionLength)) ? -1 : 1;
                 });
-            } else {
-                $data['user_status'] = 'Registered User';
             }
         } else {
             $data['user_status'] = 'Subscriptor';
@@ -687,7 +685,7 @@ class Account extends UVod_Controller {
         $ret = $this->account_model->subscribe_by_stored_cc($token, $first_name, $last_name, $email, $country, $subscription_id);
 
         if (isset($ret->error) && $ret->error == false) {
-            
+
             if (isset($ret->content->subscription_data)) {
                 $time = $ret->content->subscription_data->{'subscriptionLength'};
             } else {
@@ -697,7 +695,6 @@ class Account extends UVod_Controller {
             $_SESSION['is_subscriber'] = true;
             $this->subscription_complete_mail($first_name, $last_name, $email, $time, true);
             echo json_encode(array('status' => 'ok'));
-        
         } else {
             echo json_encode(array('status' => 'error', 'message' => $ret->message,));
         }
@@ -736,7 +733,7 @@ class Account extends UVod_Controller {
         $ret = $this->account_model->update_subscription($id, $auto_renew);
 
         if (isset($ret->error) && $ret->error == false) {
-           
+
             $operation = new stdClass();
             $operation->type = 'cancel_subscription';
             $operation->date = date('d-m-Y H:i', time());
