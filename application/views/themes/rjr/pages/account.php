@@ -633,7 +633,10 @@ if (isset($clientToken)) {
                                         <?php
                                         $this->load->view(views_url() . 'templates/change_credit_card');
                                         ?>
-
+                                        <li id= "terms_and_conditions" style="margin-top: 10px">
+                                            <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
+                                            <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_conditions_subscribers'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
+                                        <li> 
                                         <li> 
                                             <p id="subscribe_info" class="form_info">&nbsp;</p>
                                         </li>
