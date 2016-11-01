@@ -304,11 +304,18 @@ class Account extends UVod_Controller {
                 $credit_card = $this->account_model->get_credit_card($credit_card_id);
 
                 error_log("CREDIT CARD: " . json_encode($credit_card));
+                if ($credit_card->error !== 1 && $credit_card->content) {
 
-                $data['card_type'] = ucfirst($credit_card->content->type);
-                $data['card_number'] = $credit_card->content->number;
-                $data['card_expiration_date'] = $credit_card->content->expire_month . '/' . $credit_card->content->expire_year;
-                $data['card_owner'] = $credit_card->content->first_name . ' ' . $credit_card->content->last_name;
+                    $data['card_type'] = ucfirst($credit_card->content->type);
+                    $data['card_number'] = $credit_card->content->number;
+                    $data['card_expiration_date'] = $credit_card->content->expire_month . '/' . $credit_card->content->expire_year;
+                    $data['card_owner'] = $credit_card->content->first_name . ' ' . $credit_card->content->last_name;
+                } else {
+                    $data['card_type'] = "";
+                    $data['card_number'] = "";
+                    $data['card_expiration_date'] = "";
+                    $data['card_owner'] = "";
+                }
             } else {
                 $data['card_type'] = "";
                 $data['card_number'] = "";
@@ -364,7 +371,7 @@ class Account extends UVod_Controller {
 
             $data['orders_item'] = $orders_item;
 
-            if (isset($orders_item) && sizeof($orders_item->content->entries) > 0) {
+            if (isset($orders_item->content->entries) && sizeof($orders_item->content->entries) > 0) {
 
                 for ($h = 0; $h < sizeof($orders_item->content->entries); $h++) {
 
