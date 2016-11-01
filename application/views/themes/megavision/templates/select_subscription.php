@@ -52,9 +52,9 @@ for ($i = 0; $i < sizeof($subscriptions); $i++) {
     }
 
     if (intval($subscriptions[$i]->subscriptionLength > 1)) {
-        $months_txt = 'Each ' . $subscriptions[$i]->subscriptionLength . ' Months';
+        $months_txt = 'Cada ' . $subscriptions[$i]->subscriptionLength . ' meses';
     } else {
-        $months_txt = 'Per Month';
+        $months_txt = 'por mes';
     }
     ?>
     <div id="dc_pricingtable01">
@@ -71,9 +71,9 @@ for ($i = 0; $i < sizeof($subscriptions); $i++) {
                 }
 
                 if (intval($subscriptions[$i]->subscriptionLength > 1)) {
-                    $months_txt = 'Each ' . $subscriptions[$i]->subscriptionLength . ' Months';
+                    $months_txt = 'Cada ' . $subscriptions[$i]->subscriptionLength . ' meses';
                 } else {
-                    $months_txt = 'Per Month';
+                    $months_txt = 'por mes';
                 }
                 ?>
 
@@ -81,7 +81,7 @@ for ($i = 0; $i < sizeof($subscriptions); $i++) {
                     <?php
                     if (!isset($_SESSION['is_subscriber']) || (isset($_SESSION['is_subscriber']) && !$_SESSION['is_subscriber'])) {
                         ?>
-                        <h4>7-Day Free Trial</h4>
+                        <h4>7 días de prueba gratis</h4>
                         <h4>+</h4>
                         <?php
                     }
@@ -106,12 +106,12 @@ for ($i = 0; $i < sizeof($subscriptions); $i++) {
 
                        
                         <li><?php echo $months_txt; ?></li>
-                        <li>Access to 7 Live Channels<br>(4 TV + 3 Radio)</li>
-                        <li><b>Unrestricted access to our VoD Catalogue</b></li>
-                        <li>You can watch <b>3</b> screens simultaneously</li>
-                        <li>Watch on your <b>computer</b>, <b>phone</b> and <b>tablet</b></li>
+                        <li>Acceso a 7 señales en vivo<br>(4 TV + 3 Radio)</li>
+                        <li><b>Acceso sin restricciones a nuestro catálogo de video a la carta</b></li>
+                        <li>Visualización en <b>3</b> pantallas simultáneamente</li>
+                        <li>Para ver en su <b>ordenador</b>, <b>teléfono celular</b> y <b>tablet</b></li>
 
-                        <br /><a href="#" class="dc_pricing_button blue">Buy Now</a><!-- additional options: small, rounded, large, light_blue, blue, green, red, orange, yellow, pink, purple, grey, black -->
+                        <br /><a href="#" class="dc_pricing_button blue">Comprar</a><!-- additional options: small, rounded, large, light_blue, blue, green, red, orange, yellow, pink, purple, grey, black -->
                     </ul>
                 </div>
 
@@ -127,13 +127,13 @@ for ($i = 0; $i < sizeof($subscriptions); $i++) {
 <div class="subscription_details">
     <ol>
         <li>
-            * Following your '7-Day Free Trial' you will be charged the subscription fee for the plan that you choose.
+            * Luego del periodo de prueba se debitará de su tarjeta de crédito el importe del plan que haya elegido.
         </li>
         <li>
-            * You will be notified 2 days before your free trial ends, that your subscription fee will be charged in two days time.
+            * Sera notificado 2 dias antes de que acabe el periodo de prueba. 2 dias despues de esta notificacion el importe del plan elegido sera debitado de su tarjeta.
         </li>
         <li>
-            * Subscription plans are set to automatically renew at the end of each subscription plan cycle. If you wish to disable this feature you may do so at any time throughout the duration of your subscription by visiting your “My Account” page following your login to the 1spotmedia.com portal.
+            * Los planes de subscripcion seran renovados automaticamente cuando finalice el periodo de subscripcion del plan elegido. Si usted desea desactivar esta opcion, puede hacerlo en cualquier momento visitando la seccion "Mi Cuenta".
         </li>
     </ol>
 </div>
