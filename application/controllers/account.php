@@ -687,12 +687,17 @@ class Account extends UVod_Controller {
         $ret = $this->account_model->subscribe_by_stored_cc($token, $first_name, $last_name, $email, $country, $subscription_id);
 
         if (isset($ret->error) && $ret->error == false) {
+            
+            if (isset($ret->content->subscription_data)) {
+                $time = $ret->content->subscription_data->{'subscriptionLength'};
+            } else {
+                $time = '';
+            }
 
             $_SESSION['is_subscriber'] = true;
             $this->subscription_complete_mail($first_name, $last_name, $email, $time, true);
             echo json_encode(array('status' => 'ok'));
         
-            
         } else {
             echo json_encode(array('status' => 'error', 'message' => $ret->message,));
         }
