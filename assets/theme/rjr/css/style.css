@@ -2270,8 +2270,8 @@ select:focus, select:active {
     height: 38px;
 }
 
-#login_preloader, #subscription_preloader, #forgot_preloader, #registration_preloader, #send_activation_email_preloader{
-    width: 16px;
+#login_preloader, #subscription_preloader, #forgot_preloader, #registration_preloader, #send_activation_email_preloader,.preloader_obj{
+    width: 100px;
     height: 16px;
     background-image: url(../preloader/images/preloader-gallery.gif);
     background-size: 16px 16px;

@@ -291,13 +291,15 @@ if (isset($clientToken)) {
             return false;
         });
 
-        $('.subscriber_button').on('click', function (event) {
-            event.preventDefault()
+        $('#subscribe_btn').on('click', function (event) {
+     
+            event.preventDefault();
+                   console.log('click');
             $(this).hide();
-            if (!($("#accept_terms_and_conditions").prop("checked"))) {
+            if (!($("#subscibe_accept_terms_and_conditions").prop("checked"))) {
                 show_info("#subscribe_info");
-                $(".form_info").html("* You must accept terms and conditions before click next button");
-                $('.subscriber_button').show();
+                $("#subscribe_info").html("* You must accept terms and conditions before click next button");
+                $('#subscribe_btn').show();
                 return false;
             }
 
@@ -305,8 +307,8 @@ if (isset($clientToken)) {
             var valid_cardholder_name = /^[A-Za-z\s]+$/.test(cardholder_name);
             if (!valid_cardholder_name) {
                 show_info("#subscribe_info");
-                $(".form_info").html("* Name on card only accepts letters and spaces");
-                $('.subscriber_button').show();
+                $("#subscribe_info").html("* Name on card only accepts letters and spaces");
+                $('#subscribe_btn').show();
                 return false;
             }
 
@@ -314,7 +316,7 @@ if (isset($clientToken)) {
             var valid_card_number = /^[0-9]+$/.test(card_number);
             if (!valid_card_number) {
                 show_info("#subscribe_info");
-                $(".form_info").html("* Card number only accepts numbers");
+                $("#subscribe_info").html("* Card number only accepts numbers");
                 $('.subscriber_button#btn_next').show();
                 return false;
             }
@@ -323,14 +325,14 @@ if (isset($clientToken)) {
             var valid_security_code = /^[0-9]+$/.test(security_code);
             if (!valid_security_code) {
                 show_info("#subscribe_info");
-                $(".form_info").html("* Security code only accepts numbers");
-                $('.subscriber_button').show();
+                $("#subscribe_info").html("* Security code only accepts numbers");
+                $('#subscribe_btn').show();
                 return false;
             }
 
             $('.other-op-btn').hide();
-            $('#registration_preloader').html('Sending data...');
-            $('#registration_preloader').show();
+            $('#subscribe_preloader').html('Sending data...');
+            $('#subscribe_preloader').show();
             pi_number = $('#card_number').val();
             pi_type = GetCardType($('#card_number').val());
 
@@ -354,11 +356,11 @@ if (isset($clientToken)) {
                     window.location.href = "<?php echo base_url(); ?>index.php/account/subscription_finished";
                 } else {
 
-                    $('#registration_preloader').hide();
-                    $('.subscriber_button').show();
+                    $('#subscribe_preloader').hide();
+                    $('#subscribe_btn').show();
                     $('.other-op-btn').show();
-                    $(".form_info").html("* " + data.message);
-                    show_info(".form_info");
+                    $("#subscribe_info").html("* " + data.message);
+                    show_info("#subscribe_info");
                 }
             });
 
@@ -367,6 +369,11 @@ if (isset($clientToken)) {
 
 
         $("#subscribe_stored_cc_btn").on('click', function () {
+
+            $("#stored_cc_btn_container").hide();
+            $('#registration_preloader').html('Sending data...');
+            $('#registration_preloader').show();
+
             $.ajax({
                 url: "<?php echo base_url(); ?>index.php/account/subscribe_by_stored_cc_ssl",
                 type: 'POST',
@@ -382,7 +389,8 @@ if (isset($clientToken)) {
                 } else {
 
                     $('#registration_preloader').hide();
-                    $('.subscriber_button').show();
+                    $('#registration_preloader').html('');
+                    $('#subscribe_stored_cc_btn').show();
                     $('.other-op-btn').show();
                     $(".form_info").html("* " + data.message);
                     show_info(".form_info");
@@ -424,7 +432,9 @@ if (isset($clientToken)) {
         });
 
         function show_info(info) {
+        console.log('llega al show info');
             $(info).show();
+            $('.form_info').show();
             TweenLite.fromTo(info, 1, {alpha: 0}, {alpha: 1, onComplete: function () {
                     TweenLite.to(info, 1, {delay: 6, alpha: 0, onComplete: function () {
                             $(info).hide();
@@ -638,13 +648,15 @@ if (isset($clientToken)) {
                                             <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_conditions_subscribers'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
                                         <li> 
                                         <li> 
-                                            <p id="subscribe_info" class="form_info">&nbsp;</p>
+                                            <p id="change_cc_info" class="form_info">&nbsp;</p>
                                         </li>
-                                        <li class="buttons" style="margin-top: 25px;">
+                                        <li id="stored_cc_btn_container" class="buttons" style="margin-top: 25px;">
                                             <button class="other-op-btn">Select other Plan</button>
                                             <button id="change_credit_card_btn">Change Credit<br>Card</button>
                                             <button id="subscribe_stored_cc_btn" class="subscriber_button">Subscribe</button>
-                                            <div id="registration_preloader"></div>
+                                        </li>
+                                        <li>
+                                            <div id="registration_preloader" class="preloader_obj"></div>
                                             <div class="clr"></div>
                                         </li>
                                     </ul>
@@ -656,7 +668,7 @@ if (isset($clientToken)) {
                                     ?>
 
                                     <li id= "terms_and_conditions" style="margin-top: 10px">
-                                        <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
+                                        <div style="display: inline-block;"><input id="subscibe_accept_terms_and_conditions" type="checkbox" /></div>   
                                         <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_conditions_subscribers'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
                                     <li> 
                                         <p id="subscribe_info" class="form_info">&nbsp;</p>
@@ -666,12 +678,12 @@ if (isset($clientToken)) {
                                         <?php
                                         if (isset($card_type) && $card_type !== "") {
                                             ?>
-                                            <button id="use_stored_cc">Use stored<br>Credit Card</button>
+                                            <button id="use_stored_cc" class="other-op-btn">Use stored<br>Credit Card</button>
                                             <?php
                                         }
                                         ?>
-                                        <button class="subscriber_button">Subscribe</button>
-                                        <div id="registration_preloader"></div>
+                                        <button id="subscribe_btn" class="subscriber_button">Subscribe</button>
+                                        <div id="subscribe_preloader" class="preloader_obj"></div>
                                         <div class="clr"></div>
                                     </li>
                                     </ol>
