@@ -398,31 +398,26 @@ if (isset($clientToken)) {
             $('#save_subs_preloader').html('Sending data...');
             $('#save_subs_preloader').show();
             $.ajax({
-                url: "<?php echo base_url(); ?>index.php/account/update_subscription_ssl",
+                url: "<?php echo base_url(); ?>index.php/account/cancel_subscription_ssl",
                 type: 'POST',
                 dataType: 'json',
                 data: {
                     contract_id: $('#contract_id').val(),
-                    auto_renew: false
                 }
             }).done(function (data) {
                 $('#save_subs_preloader').hide();
-                if (data && data.status == 'ok') {
-                    $('#save-subs-info').html('The data was saved sucsessfully');
-                    $('#save-subs-info').show();
-                
 
-                } else {
-                    $('#save-subs-info').html(data.message);
-                    $('#save-subs-info').show();
+                $('#save-subs-info').html(data.message);
+                $('#save-subs-info').show();
+                if (data && data.status !== 'ok') {
+                    $('#cancel-subscription').show();
+
+                    TweenLite.to("#save-subs-info", 1, {delay: 6, alpha: 0, onComplete: function () {
+                            $('#save-subs-info').hide();
+                            $('#save-subscription').show();
+
+                        }});
                 }
-                TweenLite.fromTo("#save-subs-info", 1, {alpha: 0}, {alpha: 1, onComplete: function () {
-                        TweenLite.to("#save-subs-info", 1, {delay: 6, alpha: 0, onComplete: function () {
-                                $('#save-subs-info').hide();
-                                $('#save-subscription').show();
-                            }});
-
-                    }});
 
             });
             return false;
@@ -595,15 +590,15 @@ if (isset($clientToken)) {
                                     </li>
                                     <li class="buttons">
                                         <input id="contract_id" type="hidden" class="text" style="width:150px;" value="<?php echo $subscription_data->_id; ?>" />
-                                        <?php 
-                                        if($subscription_data->autoRenew){
-                                        ?>
-                                        <button class="common_btn" id="save-subscription">CANCEL SUBSCRIPTION</button>
                                         <?php
-                                        }else{
+                                        if ($subscription_data->autoRenew) {
                                             ?>
-                                        <p>Your subscription was cancelled. It remains active until <?php echo date('Y-m-d', $subscription_data->{'contractEndDate'} / 1000); ?></p>
-                                        <?php
+                                            <button class="common_btn" id="save-subscription">CANCEL SUBSCRIPTION</button>
+                                            <?php
+                                        } else {
+                                            ?>
+                                            <p>Your subscription was cancelled. It remains active until <?php echo date('Y-m-d', $subscription_data->{'contractEndDate'} / 1000); ?></p>
+                                            <?php
                                         }
                                         ?>
                                     </li>

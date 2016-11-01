@@ -732,11 +732,39 @@ class Account extends UVod_Controller {
         $send_email_result = $this->account_model->send_single_email($email, $message, 'Subscription Notification Mail', 'NO_RESPONSE@1spot.com', "1Spot Media Portal");
     }
 
-    public function cancel_subscription() {
+    public function cancel_subscription_ssl() {
+
 
         $id = $_POST['contract_id'];
-        $ret = $this->account_model->cancel_subscription($id);
-        echo json_encode($ret);
+        $auto_renew = "false";
+        $ret = $this->account_model->update_subscription($id, $auto_renew);
+
+        if (isset($ret->error) && $ret->error == false) {
+           
+            $operation = new stdClass();
+            $operation->type = 'cancel_subscription';
+            $operation->date = date('d-m-Y H:i', time());
+            $operation->contract_id = $id;
+
+            if (isset($_SESSION['uvod_user_data'])) {
+                $token = $_SESSION['uvod_user_data']->token;
+                $user_id = $_SESSION['uvod_user_data']->id;
+            }
+
+            $add_operation = $this->account_model->add_operation($token, $user_id, $operation);
+
+            if (isset($add_operation->error) && $add_operation->error == false) {
+
+                $msg = "Your subscription was cancelled. It remains active until " . date('Y-m-d', $ret->content->{'contractEndDate'} / 1000) . ".";
+                echo json_encode(array('status' => 'ok', 'message' => $msg));
+            } else {
+                echo json_encode(array('status' => 'error', 'message' => $add_operation->message));
+            }
+        } else {
+
+            // file_put_contents('change_auto_renew.txt', $ret);
+            echo json_encode(array('status' => 'error', 'message' => $ret->message,));
+        }
     }
 
     public function subscription_cancelled() {
