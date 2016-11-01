@@ -410,6 +410,7 @@ if (isset($clientToken)) {
                 if (data && data.status == 'ok') {
                     $('#save-subs-info').html('The data was saved sucsessfully');
                     $('#save-subs-info').show();
+                
 
                 } else {
                     $('#save-subs-info').html(data.message);
@@ -572,7 +573,7 @@ if (isset($clientToken)) {
                                     <li>
                                         <label for="contract_status">Status</label>
                                         <input id="contract_status" class="text" style="width:150px;" value="<?php
-                                        if ($subscription_data->{'active'}) {
+                                        if ($subscription_data->active) {
                                             echo 'Active';
                                         } else {
                                             echo 'Inactive';
@@ -594,8 +595,17 @@ if (isset($clientToken)) {
                                     </li>
                                     <li class="buttons">
                                         <input id="contract_id" type="hidden" class="text" style="width:150px;" value="<?php echo $subscription_data->_id; ?>" />
-
-                                        <button class="common_btn" id="save-subscription">CANCEL SUBSCRIPTION</button>      
+                                        <?php 
+                                        if($subscription_data->autoRenew){
+                                        ?>
+                                        <button class="common_btn" id="save-subscription">CANCEL SUBSCRIPTION</button>
+                                        <?php
+                                        }else{
+                                            ?>
+                                        <p>Your subscription was cancelled. It remains active until <?php echo date('Y-m-d', $subscription_data->{'contractEndDate'} / 1000); ?></p>
+                                        <?php
+                                        }
+                                        ?>
                                     </li>
                                     <li> 
                                         <p id="save_subs_preloader" class="form_info"></p>
