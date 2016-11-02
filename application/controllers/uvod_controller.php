@@ -5,25 +5,7 @@ if (!defined('BASEPATH'))
 
 define('APP_TARGET', 'portal');
 
-define('MAX_PAGE_ITEMS', 5);
-define('MOVIES_DEFAULT_CATEGORY', 'all');
-define('TV_SHOWS_DEFAULT_CATEGORY', 'all');
 
-// Defaults
-define('DEFAULT_SECTION', 'vod');
-define('DEFAULT_SECTION1', 'featured');
-define('DEFAULT_SECTION2', 'coming_soon');
-
-// Featured Categories
-define('COMING_SOON', 'coming_soon');
-define('RECOMMENDED', 'recommended');
-define('POPULAR_ITEMS', 'popular_items');
-define('FREE_TITLE', 'free_title');
-define('NEW_RELEASES', 'new_releases');
-
-// VOD Categories
-define('FEATURED', 'featured');
-define('VOD_ALL', '');
 
 class UVod_Controller extends CI_Controller {
 

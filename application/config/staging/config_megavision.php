@@ -3,34 +3,9 @@
 /*-------------------------------------------------------------------------
    RJR CONFIG FILE
 --------------------------------------------------------------------------*/
-define('MAX_PAGE_ITEMS', 5);
-define('MOVIES_DEFAULT_CATEGORY', 'all');
-define('TV_SHOWS_DEFAULT_CATEGORY', 'all');
-
-// Defaults
-define('DEFAULT_SECTION', 'vod');
-define('DEFAULT_SECTION1', 'featured');
-define('DEFAULT_SECTION2', 'coming_soon');
-
-// Featured Categories
-define('CATEGORY_3', 'coming_soon');
-define('CATEGORY_1', 'recommended');
-define('POPULAR_ITEMS', 'popular_items');
-define('FREE_TITLE', 'free_title');
-define('CATEGORY_2', 'new_releases');
-
-// VOD Categories
-define('FEATURED', 'featured');
-define('VOD_ALL', '');
-
 $config['streams_md5_shared_secret'] = '900P@rkCenter456';
 
-$config['logo_file'] = 'tvj_logo.png';
-$config['logo_width'] = '127px';
-$config['logo_height'] = '96px';
-$config['logo_top'] = '44px';
-
-$config['menu_highlight_color'] = 'rgb(254,215,0)';
+$config['menu_highlight_color'] = '#006699';
 
 $config['cover_asset_type'] = 'Poster H';
 $config['cover_width'] = '220px';
@@ -48,9 +23,9 @@ $config['button_play_width'] = '320px';
 $config['button_play_image'] = 'rjr-btn_play_bg.png';
 $config['button_play_padding_left'] = '150px';
 
-$config['category1'] = array('label'=>'New Releases','value'=>'new_releases');
-$config['category2'] = array('label'=>'Recommended','value'=>'recommended');
-$config['category3'] = array('label'=>'Coming Soon','value'=>'coming_soon');
+$config['category1'] = array('label'=>'ÚLTIMOS VIDEOS','value'=>'new_releases');
+$config['category2'] = array('label'=>'RECOMENDADOS','value'=>'recommended');
+$config['category3'] = array('label'=>'PRÓXIMAMENTE','value'=>'coming_soon');
 
 $config['load_submenu'] = true;
 
