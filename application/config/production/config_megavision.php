@@ -23,9 +23,9 @@ $config['button_play_width'] = '320px';
 $config['button_play_image'] = 'rjr-btn_play_bg.png';
 $config['button_play_padding_left'] = '150px';
 
-$config['category1'] = array('label'=>'ÚLTIMOS VIDEOS','value'=>'new_releases');
-$config['category2'] = array('label'=>'RECOMENDADOS','value'=>'recommended');
-$config['category3'] = array('label'=>'PRÓXIMAMENTE','value'=>'coming_soon');
+$config['category1'] = array('label'=>'ÚLTIMOS VIDEOS','value'=>'ultimos_videos');
+$config['category2'] = array('label'=>'RECOMENDADOS','value'=>'recomendados');
+$config['category3'] = array('label'=>'PRÓXIMAMENTE','value'=>'proximamente');
 
 $config['load_submenu'] = true;
 
