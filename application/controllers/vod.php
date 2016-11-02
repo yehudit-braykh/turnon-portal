@@ -81,7 +81,7 @@ class Vod extends UVod_Controller {
         // special fixed category: featured
         if ($category == "featured") {
             if (!$genre)
-                $genre = COMING_SOON;
+                $genre = CATEGORY_2;
             return $this->featured($genre);
         }
         
