@@ -33,15 +33,15 @@ class Vod extends UVod_Controller {
 
         // genres filter
         $items = array();
-        $recommended = $this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, RECOMMENDED, null, '12', 'aired_date:-1');
+        $recommended = $this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, CATEGORY_1, null, '12', 'aired_date:-1');
         for ($i = 0; $i < sizeof($recommended->content->entries); $i++) {
             $items[] = $recommended->content->entries[$i];
         }
-        $new_releases = $this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, NEW_RELEASES, null, '16', 'aired_date:-1');
+        $new_releases = $this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, CATEGORY_2, null, '16', 'aired_date:-1');
         for ($i = 0; $i < sizeof($new_releases->content->entries); $i++) {
             $items[] = $new_releases->content->entries[$i];
         }
-        $coming_soon = $this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, COMING_SOON, null, '12', 'aired_date:-1');
+        $coming_soon = $this->vod_model->get_items_by_genre(VOD_ALL, VOD_ALL, CATEGORY_3, null, '12', 'aired_date:-1');
         for ($i = 0; $i < sizeof($coming_soon->content->entries); $i++) {
             $items[] = $coming_soon->content->entries[$i];
         }
