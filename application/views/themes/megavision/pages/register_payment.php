@@ -28,7 +28,7 @@
             $('.form_info').hide();
             if (!($("#accept_terms_and_conditions").prop("checked"))) {
                 show_info();
-                $("#info").html("* You must accept terms and conditions before click next button");
+                $("#info").html("* Debe aceptar los Términos y Condiciones antes de apretar el botón 'SIGUIENTE'");
                 $('#btn_next').show();
                 return false;
             }
@@ -37,7 +37,7 @@
             var valid_cardholder_name = /^[A-Za-z\s]+$/.test(cardholder_name);
             if (!valid_cardholder_name) {
                 show_info();
-                $("#info").html("* Name on card only accepts letters and spaces");
+                $("#info").html("* 'Titular de la Tarjeta de Crédito' sólo acepta letras y espacios en blanco");
                 $('#btn_next').show();
                 return false;
             }
@@ -46,7 +46,7 @@
             var valid_card_number = /^[0-9]+$/.test(card_number);
             if (!valid_card_number) {
                 show_info();
-                $("#info").html("* Card number only accepts numbers");
+                $("#info").html("* 'Número de Tarjeta' sólo acepta números");
                 $('#btn_next').show();
                 return false;
             }
@@ -55,14 +55,14 @@
             var valid_security_code = /^[0-9]+$/.test(security_code);
             if (!valid_security_code) {
                 show_info();
-                $("#info").html("* Security code only accepts numbers");
+                $("#info").html("* 'Código de Seguridad' sólo acepta números");
                 $('#btn_next').show();
                 return false;
             }
 
             $('#btn_skip').hide();
             $('.other-op-btn').hide();
-            $('#registration_preloader').html('Sending data...');
+            $('#registration_preloader').html('Enviando datos...');
             $('#registration_preloader').show();
             pi_number = $('#card_number').val();
             pi_type = GetCardType($('#card_number').val());
@@ -123,14 +123,14 @@
 <div class="content_centered">
     <div class="payment_content">
 
-        <div class="registration_title_payment">I WANT TO BECOME <br class="rwd-break"> A SUBSCRIBER OF 1SPOTMEDIA</div>
+        <div class="registration_title_payment">DESEO CONVERTIRME <br class="rwd-break"> EN SUSCRIPTOR</div>
 
         <?php
         if (sizeof($subscriptions) > 0) {
             $this->load->view(views_url() . 'templates/select_subscription');
             ?>
             <div style="width:100%;text-align: center">
-                <button id="main-skip" class="skip-payment">SKIP AND CONTINUE REGISTRATION</button>
+                <button id="main-skip" class="skip-payment">OMITIR Y CONTINUAR LA REGISTRACIÓN</button>
             </div>
             <?php
         }
@@ -141,14 +141,14 @@
             ?>
             <li id= "terms_and_conditions" style="margin-top: 10px">
                 <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
-                <div style="display: inline-block;">Accept <a href="<?php echo base_url() . 'index.php/static_content/terms_conditions_subscribers'; ?>" target="_blank" class="terms_and_conditions">Terms and Conditions</a>*</div></li>
+                <div style="display: inline-block;">Aceptar <a href="<?php echo base_url() . 'index.php/static_content/terms_conditions_subscribers'; ?>" target="_blank" class="terms_and_conditions">Términos y Condiciones</a>*</div></li>
             <li> 
                 <p id="info" class="form_info">&nbsp;</p>
             </li>
             <li class="buttons">
-                <button class="other-op-btn">Select other Plan</button>
-                <button id="btn_skip" class="skip-payment">SKIP AND CONTINUE REGISTRATION</button>
-                <button id="btn_next">NEXT</button>
+                <button class="other-op-btn">SELECCIONAR OTRO PLAN</button>
+                <button id="btn_skip" class="skip-payment">OMITIR Y CONTINUAR LA REGISTRACIÓN</button>
+                <button id="btn_next">SIGUIENTE</button>
                 <div id="registration_preloader"></div>
                 <div class="clr"></div>
             </li>

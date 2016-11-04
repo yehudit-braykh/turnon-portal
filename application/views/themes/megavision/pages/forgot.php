@@ -5,7 +5,7 @@
         $('#imageField').on('click', function (event) {
             $(this).hide();
             $('#forgot_preloader').show();
-            $('#forgot_preloader').html('Sending email...');
+            $('#forgot_preloader').html('Enviando correo...');
 
             $.ajax({
                 url: "<?php echo base_url(); ?>index.php/account/forgot_step1",
@@ -36,8 +36,8 @@
 </div>
 <div class="header_resize2">
     <div class="now_page_resize">
-        <div class="form_title">FORGOT YOUR PASSWORD</div>
-        <div class="form_subtitle">Enter your information to recover your password</div>
+        <div class="form_title">RECUPERO DE CONTRASEÑA</div>
+        <div class="form_subtitle">Ingrese su correo electrónico para recuperar la contraseña.</div>
         <div class="clr"></div>
     </div>
 
@@ -46,7 +46,7 @@
         <form  method="post" id="loginform" style="width:350px;display:block;margin-left:auto;margin-right:auto;">
             <ol>
                 <li>
-                    <label for="email">Email*</label>
+                    <label for="email">Correo Electrónico*</label>
                     <input id="email" name="email" class="text" />
                 </li>
 

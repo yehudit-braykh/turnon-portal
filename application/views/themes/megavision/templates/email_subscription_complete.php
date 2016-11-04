@@ -1,33 +1,32 @@
 <div style="font-family: calibri,sans-serif;">
-    <h4>Dear <?php echo $name . ' ' . $surname; ?></h4>
+    <h4>Estimado <?php echo $name . ' ' . $surname; ?></h4>
     <?php
     if (intval($duration) > 1) {
-        $month_text = 'months';
+        $month_text = 'meses';
     } else {
-        $month_text = 'month';
+        $month_text = 'mes';
     }
     ?>
 
-    <p>Welcome to the 1spotmedia.com family. Your subscription was successful. Your contract is for <?php echo $duration . ' ' . $month_text; ?>.</p>
+    <p>Bienvenido a la familia Megavisión. La suscripción se realizó correctamente. Su contrato es por <?php echo $duration . ' ' . $month_text; ?>.</p>
     <?php
 
     if ($auto_renew === 'true' || $auto_renew === TRUE) {
 
         ?>
-        <p>Renewal - The price is valid for the full month of your contract. You selected your subscription for the auto renewal option, therefore  <?php echo $duration; ?> month(s), 
-           we will renew your contract and bill you automatically, for the same period. If you wish to change your subscription to not auto-renew, simply uncheck that option on the 
-           1spotmedia web site.
+        <p>Renovación - El precio es válido durante todo el mes de su contrato. Ha seleccionado la opción de renovación automática, por lo tanto  <?php echo $duration; ?> month(s), 
+           renovaremos su contrato y le facturaremos automáticamente, durante el mismo período. Si desea cambiar su suscripción para no renovar automáticamente, simplemente desactive esta opción en nuestro sitio.
         </p>
 
         <?php
     }
     ?>
-    <p>Should you have any questions, please feel to contact us by email at support@1spotmedia.com or access the HELP icon on our 1spotmedia.com site.</p>
-    <p>We hope you enjoy the 1spotmedia.com great live streaming and original Jamaican content.</p>
+    <p>Si tiene alguna pregunta, por favor, póngase en contacto con nosotros por correo electrónico en mail@mail.com o acceda al botón Ayuda en nuestro sitio web.</p>
+    <p>Esperamos que disfrute de nuestro contenido.</p>
     <p>
-        Sincerely,<br> 
-        The 1spotmedia.com Team<br> 
+        Sinceramente,<br> 
+        El equipo de Megavisión<br> 
         <br>
     </p>
-    <span style="font-size: 12px">Please do not reply to this message; it was sent from an unmonitored email address.</span><br>
+    <span style="font-size: 12px">Por favor, no responda este mensaje. Se envió desde una dirección de correo electrónico automática.</span><br>
 </div>

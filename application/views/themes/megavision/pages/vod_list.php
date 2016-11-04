@@ -112,8 +112,8 @@
                         <?php } else if ($show_filter == 'yes' && $filter == 'aired_date') { ?>
 
                             <div style="width:100%; height: 40px;">
-                                <input class="sort_datepicker" type="text" id="start_date_datepicker" placeholder="START DATE" ><div id="dropdown_btn_start" class="dropdown_btn"></div>
-                                <input class="sort_datepicker" type="text" id="end_date_datepicker" placeholder="END DATE" disabled="disabled"><div id="dropdown_btn_end" class="dropdown_btn"></div>
+                                <input class="sort_datepicker" type="text" id="start_date_datepicker" placeholder="FECHA INICIAL" ><div id="dropdown_btn_start" class="dropdown_btn"></div>
+                                <input class="sort_datepicker" type="text" id="end_date_datepicker" placeholder="FECHA FINAL" disabled="disabled"><div id="dropdown_btn_end" class="dropdown_btn"></div>
                                 <div id="clear_btn"></div>
                             </div>
 

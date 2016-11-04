@@ -17,7 +17,7 @@
     });
 
     function show_episodes_preloader() {
-        $("#vod_item_episodes_container").html('<div class="preloader_section" alt="Loading...">&nbsp;</div>');
+        $("#vod_item_episodes_container").html('<div class="preloader_section" alt="Cargando...">&nbsp;</div>');
     }
     $('#selectSeason div:last-child').addClass('vod_item_sub_menu_selected');
 </script>

@@ -41,7 +41,7 @@ if(isset($item_episodes)){
             </div>
             <div  style="float: left;width: 420px;">
                 <div class="vod_item_episode_title"><?php echo $item_episodes[$i]->media->title; ?></div>
-                <div class="vod_item_episode_details">Episode <?php echo $item_episodes[$i]->number; ?> </div>
+                <div class="vod_item_episode_details">Episodio <?php echo $item_episodes[$i]->number; ?> </div>
                 <div class="vod_item_episode_description"><p><?php echo substr($item_episodes[$i]->media->description, 0, 250) . "..."; ?></p></div>
             </div>
         </div>

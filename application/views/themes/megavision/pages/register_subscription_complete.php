@@ -42,7 +42,7 @@ $available_subscription_prices = $this->config->item('available_subscription_pri
             event.preventDefault();
             $(this).hide();
             $('#send_activation_email_preloader').show();
-            $('#send_activation_email_preloader').html('Sending activation email...');
+            $('#send_activation_email_preloader').html('Enviando email de activación...');
 
             $.ajax({
                 url: '<?php echo base_url(); ?>index.php/account/send_activation_email_register',
@@ -77,9 +77,9 @@ $available_subscription_prices = $this->config->item('available_subscription_pri
 <!-- content -->
 <div class="content_centered">
     <div class="now_page_resize">
-        <div class="form_title">Your payment was accepted succesfully!</div>
-        <div class="form_subtitle">You can now enjoy all our exclusive content.</div>
-         <div class="form_subtitle">Thanks for registering with us.</div>
+        <div class="form_title">Su pago se realizó con éxito!</div>
+        <div class="form_subtitle">Ya puede disfrutar de todo nuestro contenido exclusivo.</div>
+         <div class="form_subtitle">Gracias por registrarse con nosotros.</div>
         <div class="clr"></div>
     </div>
     <?php

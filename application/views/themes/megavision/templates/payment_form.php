@@ -5,20 +5,20 @@
 </li>
 
 <li>
-    <input id="cardholder_name" placeholder="Name on card" class="text" />
+    <input id="cardholder_name" placeholder="Titular de la Tarjeta de Crédito" class="text" />
 </li>
 
 <li>
 
-    <input id="card_number" name="card_number" value="" placeholder="Credit card number" class="text"/>
+    <input id="card_number" name="card_number" value="" placeholder="Número de Tarjeta" class="text"/>
 </li>
 
 <li>
-    <input id="security_code" name="security_code" value="" placeholder="Security code" class="text" type="password"/>
+    <input id="security_code" name="security_code" value="" placeholder="Código de Seguridad" class="text" type="password"/>
 </li>
 
 <li>
-    <div id="title_expiration">Expiration date:</div> 
+    <div id="title_expiration">Fecha de vencimiento::</div> 
     <div id="expiration_date"> 
 
         <span class='css-select-moz'>
@@ -54,12 +54,12 @@
         </span> 
 
     </div>
-    <div id="label_select"><label for="expiration_month">Month*</label><label for="expiration_year">Year*</label></div>
+    <div id="label_select"><label for="expiration_month">Mes*</label><label for="expiration_year">Año*</label></div>
 </li>
 
 <li id= "terms_and_conditions">
     <div style="display: inline-block;"><input id="accept_terms_and_conditions" type="checkbox" /></div>   
-    <div style="display: inline-block;"><a href="<?php echo base_url() . 'index.php/static_content/terms_conditions'; ?>" target="_blank" class="terms_and_conditions">Accept Terms and Conditions</a></div>
+    <div style="display: inline-block;"><a href="<?php echo base_url() . 'index.php/static_content/terms_conditions'; ?>" target="_blank" class="terms_and_conditions">Aceptar Términos y Condiciones</a></div>
 </li>
 
 <script type="text/javascript">
