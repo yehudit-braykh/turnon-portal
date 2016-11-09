@@ -1,0 +1,136 @@
+
+.carousel-container{
+    width: 100%;
+    padding-bottom: 50px;
+    background-color: #333333;
+    margin-bottom: 175px;
+    padding-top: 20px;
+
+}
+
+.slider-title h3{
+    margin: 20px 70px;
+    font-family: 'Roboto'!important;
+}
+
+.event_item_overlay_date{
+    width: 120px;
+    height: 38px;
+    color: #000;
+    z-index: 2;
+    background-color: #fd7d10;
+    position: absolute;
+    font-family: 'Lato';
+    padding: 10px 0px 0px 5px;
+
+}
+
+.event_item_overlay_live{
+    width: 116px;
+    height: 34px;
+    color: #fd7d10;
+    z-index: 2;
+    background-color: #fff;
+    border: 2px solid #fd7d10;
+    position: absolute;
+    font-family: 'Lato';
+    padding: 6px 0px 0px 5px;
+    text-align: center;
+
+}
+
+.carousel-inner{
+    width: 90%!important;
+    left: 60px!important;
+}
+
+.carousel-title{
+    margin-left: 60px;
+}
+
+
+.item-carousel-title{
+    height: 20px;
+    color: #fff;
+    font-family: 'Roboto';
+    font-size: 14px;
+    margin: 10px;
+}
+
+.first-item-carousel-title{
+    /*height: 10px;*/
+    color: #fff;
+    font-family: 'Roboto';
+    font-size: 20px;
+    padding-left: 14px;
+    margin-top: 36px;
+    margin-bottom: 4px;
+
+}
+
+
+.item-carousel-date{
+    height: 20px;
+    font-family: 'Roboto';
+    font-size: 13px;
+    color: rgba(255,255,255,0.8);
+    margin: 10px;
+}
+
+.first-item-carousel-date{
+    height: 20px;
+    font-size: 13px;
+    font-family: 'Roboto';
+    padding-left: 14px;
+    color: rgba(255,255,255,0.8);
+}
+
+.item-carousel-subtitle{
+    color: #FFF;
+    font-family: 'Roboto';
+    font-size: 13px;
+    background-color: #F06702;
+    margin-right: 5px;
+    padding: 2px 7px;
+
+
+}
+
+ 
+.slider-first-element{
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+
+.slider-caption{
+    width: 100%;
+    height: 50%;
+    position: absolute;
+    bottom: 0px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+1,000000+79&amp;0+0,0.65+66 */
+    background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.01) 1%, rgba(0,0,0,0.65) 66%, rgba(0,0,0,0.65) 79%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(1%,rgba(0,0,0,0.01)), color-stop(66%,rgba(0,0,0,0.65)), color-stop(79%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.01) 1%,rgba(0,0,0,0.65) 66%,rgba(0,0,0,0.65) 79%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.01) 1%,rgba(0,0,0,0.65) 66%,rgba(0,0,0,0.65) 79%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.01) 1%,rgba(0,0,0,0.65) 66%,rgba(0,0,0,0.65) 79%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.01) 1%,rgba(0,0,0,0.65) 66%,rgba(0,0,0,0.65) 79%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+}
+
+.slide-img-content{
+    width: 100%;
+    height: 124px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.item-description{
+    height: 46px;
+    overflow: auto;
+    font-family: 'Roboto';
+    font-size: 11px;
+    color: rgba(255,255,255,0.6);
+    margin: 15px 0px;
+    padding: 0px 10px;
+}

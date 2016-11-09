@@ -44,14 +44,10 @@ class Account_model extends CI_Model {
         return apiPost("user/get_self_id", array('token' => $token));
     }
 
-    public function save_profile($token, $id, $first_name, $last_name, $city, $country, $postal_code) {
+    public function save_profile($token, $id, $data) {
         return apiPost("user/save_profile", array("token" => $token,
           "id" => $id,
-          "first_name" => $first_name,
-          "last_name" => $last_name,
-          "city" => $city,
-          "country" => $country,
-          "postal_code" => $postal_code));
+          "data" => $data));
     }
     
     public function update_user($id, $data) {
@@ -133,11 +129,17 @@ class Account_model extends CI_Model {
             return apiPost("user/add_operation", array("token" => $token, "user_id" => $user_id, "operation" => $operation));
     }
 
-    public function subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $pi_security_code, $subscription_id, $auto_renew) {
+    public function subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $pi_security_code, $subscription_id) {
 
         return apiPost("commerce/subscription_checkout", array('token' => $token, 'nonce' => $nonce, 'first_name' => $first_name, 'last_name' => $last_name,
           'email' => $email, 'country' => $country, 'pi_month' => $pi_month, 'pi_year' => $pi_year, 'pi_type' => $pi_type, 'pi_number' => $pi_number,
-          'pi_security_code' => $pi_security_code, 'subscription_id' => $subscription_id, 'auto_renew' => $auto_renew));
+          'pi_security_code' => $pi_security_code, 'subscription_id' => $subscription_id));
+    }
+    
+    public function subscribe_by_stored_cc($token, $first_name, $last_name, $email, $country, $subscription_id) {
+
+        return apiPost("commerce/subscribe_by_stored_cc", array('token' => $token, 'first_name' => $first_name, 'last_name' => $last_name,
+          'email' => $email, 'country' => $country, 'subscription_id' => $subscription_id));
     }
 
     public function get_contract($id, $user_active = null) {
@@ -187,6 +189,16 @@ class Account_model extends CI_Model {
 
     public function get_profile_by_email($email) {
         return apiPost("user/get_profile_by_email", array('email' => $email));
+    }
+    
+    public function get_credit_card($credit_card_id){
+          return apiCall("commerce/get_credit_card", array('card_id' => $credit_card_id));
+    }
+    
+    public function save_credit_card($token, $id, $data) {
+        return apiPost("commerce/save_credit_card", array("token" => $token,
+          "id" => $id,
+          "data" => $data));
     }
 
 }

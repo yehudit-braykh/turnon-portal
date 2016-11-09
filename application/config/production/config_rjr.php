@@ -3,6 +3,26 @@
 /*-------------------------------------------------------------------------
    RJR CONFIG FILE
 --------------------------------------------------------------------------*/
+define('MAX_PAGE_ITEMS', 5);
+define('MOVIES_DEFAULT_CATEGORY', 'all');
+define('TV_SHOWS_DEFAULT_CATEGORY', 'all');
+
+// Defaults
+define('DEFAULT_SECTION', 'vod');
+define('DEFAULT_SECTION1', 'featured');
+define('DEFAULT_SECTION2', 'coming_soon');
+
+// Featured Categories
+define('CATEGORY_3', 'coming_soon');
+define('CATEGORY_1', 'recommended');
+define('POPULAR_ITEMS', 'popular_items');
+define('FREE_TITLE', 'free_title');
+define('CATEGORY_2', 'new_releases');
+
+// VOD Categories
+define('FEATURED', 'featured');
+define('VOD_ALL', '');
+
 $config['streams_md5_shared_secret'] = '900P@rkCenter456';
 
 $config['logo_file'] = 'tvj_logo.png';

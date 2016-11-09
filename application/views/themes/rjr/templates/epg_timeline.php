@@ -61,7 +61,7 @@
 
                     if ($country == 'Jamaica') {
                        
-                        if ($title_arr[0] != '') {
+                        if ($title_arr[0] !== $previous_title) {
                             $title = $title_arr[0];
                             if ($i == 0) {
                                 echo '<tr class="current_row"><td class="epgTime current_epg_date">' . date('h:i A', ($epg->content->entries[$i]->startTime / 1000)) . '</td>'
@@ -70,6 +70,7 @@
                                 echo '<tr><td class="epgTime">' . date('h:i A', ($epg->content->entries[$i]->startTime / 1000)) . '</td>'
                                 . '<td class="epgData" id="' . $epg->content->entries[$i]->startTime . '">' . '<span>' . $title . '</span></td></tr>';
                             }
+                            $previous_title = $title_arr[0];
                  
                         }
                     } else {

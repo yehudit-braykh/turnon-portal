@@ -8,8 +8,10 @@ class Vod_item_model extends CI_Model {
     }
 
     public function get_item_data($id) {
-        $token = "";
+        //For a series which has a lot of episodes
+        ini_set('memory_limit', '1024M');
 
+        $token = "";
         $cache_id = 'vod/item_api' . $id;
 
         $cache = $this->fastcache_model->get_cache($cache_id);
@@ -38,9 +40,9 @@ class Vod_item_model extends CI_Model {
             $parameters["featured"] = $featured;
         if ($media_type)
             $parameters["media_type"] = $media_type;
-        
-           $cache_id = 'vod/list_items_related' . $id .$category.$genre.$media_type;
-        
+
+        $cache_id = 'vod/list_items_related' . $id . $category . $genre . $media_type;
+
         $cache = $this->fastcache_model->get_cache($cache_id);
 
         if (!$cache) {
@@ -53,7 +55,6 @@ class Vod_item_model extends CI_Model {
         }
 
         return $data;
-        
     }
 
     public function check_ad_policy_expiration($ids) {

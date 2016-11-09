@@ -13,20 +13,6 @@ class Live_events_model extends CI_Model {
 
     public function get_event_products($ids) {
 
-        $cache_id = 'event/get_event_products' . $ids;
-
-        $cache = $this->fastcache_model->get_cache($cache_id);
-        if (!$cache) {
-            error_log('GET EVENTS PRODUCTS - USA LA BASE');
-            $data = apiCall("event/get_event_products", array('products_id' => $ids));
-            $this->fastcache_model->set_cache($cache_id, $data);
-        } else {
-            error_log('GET EVENTS PRODUCTS - USA EL CACHE');
-            $data = $cache;
-        }
-
-        return $data;
-
         return apiCall("event/get_event_products", array('products_id' => $ids));
     }
 
