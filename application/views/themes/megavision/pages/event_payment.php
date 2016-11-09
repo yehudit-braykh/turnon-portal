@@ -15,7 +15,7 @@
             $(this).hide();
             if (!($("#accept_terms_and_conditions").prop("checked"))) {
                 show_info();
-                $("#info").html("* You must accept terms and conditions before click next button");
+                $("#info").html("* Debe aceptar los Términos y Condiciones antes de apretar el botón 'SIGUIENTE'");
                 $('#btn_next').show();
                 return false;
             }
@@ -24,7 +24,7 @@
             var valid_cardholder_name = /^[A-Za-z\s]+$/.test(cardholder_name);
             if (!valid_cardholder_name) {
                 show_info();
-                $("#info").html("* Name on card only accepts letters and spaces");
+                $("#info").html("* 'Titular de la Tarjeta de Crédito' sólo acepta letras y espacios en blanco");
                 $('#btn_next').show();
                 return false;
             }
@@ -33,7 +33,7 @@
             var valid_card_number = /^[0-9]+$/.test(card_number);
             if (!valid_card_number) {
                 show_info();
-                $("#info").html("* Card number only accepts numbers");
+                $("#info").html("* 'Número de Tarjeta' sólo acepta números");
                 $('#btn_next').show();
                 return false;
             }
@@ -42,13 +42,13 @@
             var valid_security_code = /^[0-9]+$/.test(security_code);
             if (!valid_security_code) {
                 show_info();
-                $("#info").html("* Security code only accepts numbers");
+                $("#info").html("* 'Código de Seguridad' sólo acepta números");
                 $('#btn_next').show();
                 return false;
             }
 
             $('#btn_skip').hide();
-            $('#registration_preloader').html('Sending data...');
+            $('#registration_preloader').html('Enviando datos...');
             $('#registration_preloader').show();
             pi_number = $('#card_number').val();
             pi_type = GetCardType($('#card_number').val());
@@ -119,7 +119,7 @@
 
     <div class="col-sm-12">
         <div class="col-sm-3"></div>
-        <div class="col-sm-6"><div class="form_title">Buy Tickets</div></div>
+        <div class="col-sm-6"><div class="form_title">Comprar Boletos</div></div>
         <div class="col-sm-3"></div>
     </div>
 
@@ -135,7 +135,7 @@
         <div class="col-sm-3">
 
             <div id='event-confirm-section'>
-                <div class="text1_box">TOTAL PURCHASE</div>
+                <div class="text1_box">COMPRA TOTAL</div>
 
 <?php
 if (isset($_SESSION['event_price'])) {
@@ -155,11 +155,11 @@ if (isset($_SESSION['event_price'])) {
                 }
                 ?>
 
-                <div class="text3_box">When you press CONFIRM PAYMENT, the transaction will be processed and can’t be reversed.</div>
+                <div class="text3_box">Al presionar CONFIRMAR PAGO, la transacción será procesada y no podrá ser revertida.</div>
 
-                <div class="text3_box">If you have made ​​a mistake use this button to correct:</div>
+                <div class="text3_box">Si ha cometido un error, utilice este botón para corregir:</div>
 
-                <button type="submit" id="btn_modify" class="btn btn-default btn-md btn_modify">Modify selection</button>
+                <button type="submit" id="btn_modify" class="btn btn-default btn-md btn_modify">Modificar selección</button>
 
             </div>
 
@@ -176,7 +176,7 @@ if (isset($_SESSION['event_price'])) {
                 <ol>
 <?php $this->load->view(views_url() . 'templates/payment_form'); ?>
                     <li class="buttons">
-                        <button type="submit" id="btn_next" class="send">CONFIRM PAYMENT</button>
+                        <button type="submit" id="btn_next" class="send">CONFIRMAR PAGO</button>
                     </li>
                     <li>
                         <div id="registration_preloader"></div>

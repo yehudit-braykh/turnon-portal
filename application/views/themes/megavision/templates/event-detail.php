@@ -40,9 +40,9 @@ if (isset($events->content) && sizeof($events->content) > 0 && (!isset($events->
                                 TweenMax.from("#event_player_container", 1, {height: 0});
                                 TweenMax.fromTo("#event_player_close", 1, {alpha: 0}, {alpha: 1});
 
-                                var add_html = "<div class='already_purchased_msg'>YOUR TICKET IS READY!<br></div>";
-                                add_html += "<button type='button' id='new_watch_now_btn' class='btn btn-primary btn-lg btn_events' onclick='button_play_clickHandler()' role='button'>Watch now</button>"
-                                var live_html = '<div class="col-sm-12 live_now_advise">LIVE NOW</div>';
+                                var add_html = "<div class='already_purchased_msg'>SU BOLETO ESTA LISTO!<br></div>";
+                                add_html += "<button type='button' id='new_watch_now_btn' class='btn btn-primary btn-lg btn_events' onclick='button_play_clickHandler()' role='button'>Ver ahora</button>"
+                                var live_html = '<div class="col-sm-12 live_now_advise">EN VIVO</div>';
                                 $('.pic_events').prepend(live_html);
     
                                 $(".already_purchased_msg").hide();
@@ -197,7 +197,7 @@ if (isset($events->content) && sizeof($events->content) > 0 && (!isset($events->
 
                 <?php if (isset($data->live_now) && $data->live_now) {
                     ?>
-                    <div class="col-sm-12 live_now_advise">LIVE NOW</div>
+                    <div class="col-sm-12 live_now_advise">EN VIVO</div>
                     <?php
                 }
                 ?>
@@ -213,9 +213,9 @@ if (isset($events->content) && sizeof($events->content) > 0 && (!isset($events->
                     if (isset($data->live_now) && !$data->live_now) {
 
                         if (isset($data->media->event_is_bundle) && $data->media->event_is_bundle && isset($data->media->next_event)) {
-                            $beginning_txt = 'THE NEXT EVENT: ' . $data->media->next_event . ' beginning in:';
+                            $beginning_txt = 'PROXIMO EVENTO: ' . $data->media->next_event . ' comienza en:';
                         } else {
-                            $beginning_txt = 'BEGINNING IN';
+                            $beginning_txt = 'COMENZANDO EN';
                         }
                         ?>
                         <h3><small><?php echo $beginning_txt; ?></small></h3>
@@ -232,7 +232,7 @@ if (isset($events->content) && sizeof($events->content) > 0 && (!isset($events->
                     if (isset($data->media->event_is_bundle) && $data->media->event_is_bundle) {
                         ?>
                         <ol>
-                            <h4>This ticket include: </h4>
+                            <h4>Este paquete incluye: </h4>
                             <?php
                             for ($si = 0; $si < sizeof($data->media->bundle_scope_ids); $si++) {
                                 $event_date = '';
@@ -259,7 +259,7 @@ if (isset($events->content) && sizeof($events->content) > 0 && (!isset($events->
                         $dt->setTimestamp($timestamp); //adjust the object to correct timestamp
                         $event_date = $dt->format('l, F d, Y - H:i');
 
-                        echo '<h3>' . $event_date . ' Hours EST - US $' . $data->price . '</h3>';
+                        echo '<h3>' . $event_date . ' Horas EST - $' . $data->price . '</h3>';
                     }
                     ?>
 
@@ -270,20 +270,20 @@ if (isset($events->content) && sizeof($events->content) > 0 && (!isset($events->
                     if (isset($data->already_purchased) && $data->already_purchased) {
                         if (isset($data->live_now) && $data->live_now) {
                             ?>
-                            <div class='already_purchased_msg'>YOUR TICKET IS READY!<br></div>
-                            <button type="button" class="btn btn-primary btn-lg btn_events" onclick="button_play_clickHandler()" role="button">Watch now</button>
+                            <div class='already_purchased_msg'>SU BOLETO ESTA LISTO!<br></div>
+                            <button type="button" class="btn btn-primary btn-lg btn_events" onclick="button_play_clickHandler()" role="button">Ver ahora</button>
 
                             <?php
                         } else {
                             ?>
-                            <div class='already_purchased_msg'>ALREADY PURCHASED!</div>               
-                            <div class='already_purchased_submsg'>At the event time the player will start automatically</div>               
-                            <div class='view_purchased_ticket'>Click here to see your purchased Tickets.</div>
+                            <div class='already_purchased_msg'>YA COMPRADO!</div>               
+                            <div class='already_purchased_submsg'>En el momento del evento la reproducción comenzará automáticamente</div>               
+                            <div class='view_purchased_ticket'>Haga click aquí para ver los boletos comprados.</div>
                             <?php
                         }
                     } else {
                         ?>
-                        <a id="buy_ticket_btn" href="#" class="btn btn-primary btn-lg btn_events" role="button">Buy your ticket now!</a>
+                        <a id="buy_ticket_btn" href="#" class="btn btn-primary btn-lg btn_events" role="button">Compre su boleto ahora!</a>
 
                         <?php
                     }
