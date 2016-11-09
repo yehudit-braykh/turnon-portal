@@ -50,7 +50,7 @@ class Live extends UVod_Controller {
                 $release_hls_url_stream = get_secure_hls_url($release_hls_url, $this->config->item('streams_md5_shared_secret'));
 
                 $release_hls_blocked_url = getEntryStreamingUrl($item, "HLS Blocked Stream");
-                $release_hls_blocked_url_stream = $release_hls_blocked_url;
+                $release_hls_blocked_url_stream = get_secure_hls_url($release_hls_blocked_url, $this->config->item('streams_md5_shared_secret'));
 
                 $channel_stream_obj = new stdClass();
 
