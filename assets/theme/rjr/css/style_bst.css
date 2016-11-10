@@ -3408,7 +3408,7 @@ td.product_content{
 }
 
 .vod_info_credit_item_value {
-    color: #FFF;
+    /*color: #FFF;*/
     letter-spacing: 0.1em;
     margin-bottom: 30px;
 }
