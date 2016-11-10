@@ -33,12 +33,12 @@
 
             if ($('#password').val() !== $("#confirm_password").val()) {
                 show_info();
-                $("#info").html("* Password and Confirm are not match");
+                $("#info").html("* La Contraseña y la confirmación no coinciden");
                 return false;
             }
 
             $(this).hide();
-            $('#registration_preloader').html('Sending data...');
+            $('#registration_preloader').html('Enviando datos...');
             $('#registration_preloader').show();
 
             $.ajax({
@@ -86,7 +86,7 @@
 
 <div class="header_resize2" id="login-box">
     <div class="now_page_resize">
-        <div class="form_title">REGISTER By FACEBOOK</div>
+        <div class="form_title">REGISTRACIÓN POR FACEBOOK</div>
         <div class="clr"></div>
     </div>
     <div class="clr"></div>
@@ -98,16 +98,16 @@
                 ?>
 
                 <img id="fb_image" src="<?php echo $fb_profile->content->picture; ?>"/>
-                <div class="registration_fb_subtitle">Welcome <?php echo $fb_profile->content->name; ?></div>
+                <div class="registration_fb_subtitle">Bienvenid <?php echo $fb_profile->content->name; ?></div>
              
                 <div id="fb_password_container">
                     <div>
-                        <label for="password">Password</label><br>
+                        <label for="password">Contraseña</label><br>
                         <input id="password" name="password" class="text" type="password" />
                     </div>
 
                     <div>
-                        <label for="confirm_password">Confirm Password</label><br>
+                        <label for="confirm_password">Confirmar Contraseña</label><br>
                         <input id="confirm_password" name="confirm_password" class="text" type="password" />
                      
                     </div>
@@ -121,7 +121,7 @@
             } else {
                 ?>
                 <div style="width: 300px;text-align: center">
-                    <div class="register_session_expired">Your session has expired</div>
+                    <div class="register_session_expired">Su sesión ha expirado</div>
                     <div class="register_back" onclick="button_back_clickHandler()"></div>
                 </div>
                 <?php

@@ -17,7 +17,7 @@
             event.preventDefault();
             $(this).hide();
             $('#send_activation_email_preloader').show();
-            $('#send_activation_email_preloader').html('Sending activation email...');
+            $('#send_activation_email_preloader').html('Enviando email de activación...');
 
             $.ajax({
                 url: '<?php echo base_url(); ?>index.php/account/send_activation_email_register',
@@ -56,9 +56,9 @@
     if (isset($_SESSION['registration_data']->method) && $_SESSION['registration_data']->method === 'email') {
         ?>  
         <div class="now_page_resize">
-            <div class="form_title">Your Registration is Complete!</div><br>
+            <div class="form_title">Su Registración está completa!</div><br>
             <!--<div class="form_title">Please check your email <br class="rwd-break"> for an activation link to complete <br class="rwd-break"> your registration</div>-->
-            <div class="form_subtitle">Thanks for registering with us.</div>
+            <div class="form_subtitle">Gracias por registrarse con nosotros.</div>
 <!--            <div class="clr"></div>
             <div class="form_title_hint">The activation email may <br class="rwd-break"> take up to 1 hour to arrive </div>
             <div class="clr"></div>-->
@@ -80,9 +80,9 @@
         ?>
         <div class="now_page_resize">
 
-            <div class="form_title">The registration process is complete.</div>
+            <div class="form_title">El proceso de Registración está completo.</div>
              <div class="clr"></div>
-             <div class="form_title_hint">Login with your facebook account <br class="rwd-break"> clicking <a href="<?php echo base_url().'index.php/account/signin';?>">here</a> and start enjoying 1spotmedia services!" </div>
+             <div class="form_title_hint">Ingrese con su cuenta de facebook <br class="rwd-break"> haciendo click <a href="<?php echo base_url().'index.php/account/signin';?>">aquí</a> y comience a disfrutar nuestros servicios!" </div>
             <div class="clr"></div>
             <br>
         </div>

@@ -309,7 +309,7 @@ if (isset($clientToken)) {
             <ul class='etabs'>
                 <li class='tab'><a href="#tab1" id="vod_item_sub_menu1">Mis Datos</a></li>
                 <li class='tab'><a href="#tab2" id="vod_item_sub_menu2">Suscripción</a></li>
-                <li class='tab'><a href="#tab3" id="vod_item_sub_menu3">Entradas de Eventos</a></li>
+                <!--<li class='tab'><a href="#tab3" id="vod_item_sub_menu3">Boletos de Eventos</a></li>-->
                 <li class='tab'><a href="#tab4" id="vod_item_sub_menu4">Cambiar Contraseña</a></li>
             </ul>
             <div class='panel-container'>
@@ -459,7 +459,7 @@ if (isset($clientToken)) {
                             }
                             if (!$flag) {
                                 ?>
-                                <div class="buy_events_link"><span>No tiene ninguna entrada de evento comprada todavía.</span><br><a href="<?php echo base_url() . 'index.php/live_events/buy_events_ssl'; ?>">Comprar ahora!</a></div>
+                                <div class="buy_events_link"><span>No tiene ningún boleto comprado todavía.</span><br><a href="<?php echo base_url() . 'index.php/live_events/buy_events_ssl'; ?>">Comprar ahora!</a></div>
                                 <?php
                             }
                             ?>

@@ -1,9 +1,9 @@
 
 <div style="font-family: calibri,sans-serif;">
-    <h4>Dear <?php echo $name.","; ?></h4>
+    <h4>Estimado <?php echo $name.","; ?></h4>
 
     <p>
-        Your password have been updated. Your new password is
+        Se ha actualizado su contraseña. La nueva contraseña es
     </p>
     <p style="font-size:18px;">
         <?php echo $password; ?>
@@ -12,11 +12,11 @@
     
     <br>
     <p>
-        Thank you,<br> 
-        The 1spotmedia.com Team<br> 
+        Gracias,<br> 
+        El equipo de Megavisión<br> 
         <br>
 
-        <span style="font-size: 12px">Please do not reply to this message; it was sent from an unmonitored email address.</span><br> 
+        <span style="font-size: 12px">Por favor, no responda este mensaje. Se envió desde una dirección de correo electrónico automática.</span><br> 
 
     </p>
 </div>

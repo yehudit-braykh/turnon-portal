@@ -1,1 +1,1 @@
-<div>This is the comments panel</div>
+<div>Este es el panel de Comentarios</div>

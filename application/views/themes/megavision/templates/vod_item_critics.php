@@ -1,1 +1,1 @@
-<div>More info here...</div>
+<div>Más información...</div>
