@@ -5,6 +5,23 @@
 --------------------------------------------------------------------------*/
 $config['streams_md5_shared_secret'] = '900P@rkCenter456';
 
+// Defaults
+define('DEFAULT_SECTION', 'vod');
+define('DEFAULT_SECTION1', 'featured');
+define('DEFAULT_SECTION2', 'coming_soon');
+
+// Featured Categories
+define('CATEGORY_3', 'coming_soon');
+define('CATEGORY_1', 'recommended');
+define('POPULAR_ITEMS', 'popular_items');
+define('FREE_TITLE', 'free_title');
+define('CATEGORY_2', 'new_releases');
+
+// VOD Categories
+define('FEATURED', 'featured');
+define('VOD_ALL', '');
+
+
 $config['logo_file'] = 'tvj_logo.png';
 $config['logo_width'] = '127px';
 $config['logo_height'] = '96px';
