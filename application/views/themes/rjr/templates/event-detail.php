@@ -92,7 +92,7 @@ if (isset($events->content) && sizeof($events->content) > 0 && (!isset($events->
 
             $(".view_purchased_ticket").on("click", function () {
 
-                window.location.href = "<?php echo base_url(); ?>index.php/account/my_account_ssl/#tab3";
+                window.location.href = "<?php echo base_url(); ?>index.php/account/my_account_ssl/#tab4";
 
             });
         });
