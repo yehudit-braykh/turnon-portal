@@ -16,7 +16,6 @@ class Live_events extends UVod_Controller {
         if (isset($_GET['flush_cache']) && $_GET['flush_cache'] == 'true') {
             $this->fastcache_model->clean_cache();
         }
-
     }
 
     public function mobile($id = null) {
@@ -417,6 +416,13 @@ class Live_events extends UVod_Controller {
             if (isset($ret->error) && $ret->error) {
                 echo json_encode(array('status' => 'error', 'message' => $ret->message));
             } else {
+                error_log('ORDER: '.json_encode($ret));
+                $email_data = array();
+                $email_data['fullname'] = $first_name . " " . $last_name;
+                $email_data['order'] = $ret;
+                $message = $this->load->view(views_url() . 'templates/email_buy_ppv_ticket', $email_data, TRUE);
+                $send_email_result = $this->account_model->send_single_email($email, $message, 'Subscription Notification Mail', 'NO_RESPONSE@1spot.com', "1Spot Media Portal");
+                error_log('SEND EMAIL:'.json_encode($send_email_result));
                 echo json_encode(array('status' => 'ok', 'message' => ''));
             }
         } else {
@@ -506,6 +512,4 @@ class Live_events extends UVod_Controller {
 //        $this->load->view(views_url() . 'pages/ppv', $data);
 //        $this->load->view(views_url() . 'templates/footer_bst', $data);
 //    }
-    
-       
 }
