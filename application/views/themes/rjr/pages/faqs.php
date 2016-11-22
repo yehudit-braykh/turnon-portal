@@ -51,6 +51,12 @@
 <h3 class="quest">6.  Why am I seeing different content than my friends, relative outside and inside of Jamaica?</h3>
 <p class="ask">-  There are some programs that we do not have broadcast rights outside of Jamaica and when that occurs we provide alternative content to subscribers who do not reside in Jamaica.</p>
 
+<h3 class="quest">7.  Why am I being billed for the 7- day free Trial when it supposed to be free?</h3>
+<p class="ask">-  The money of the user never gets deducted during his 7 day free trial. The way our 7-day trial program works is our merchant processor (Paypal) places an authorization to charge the credit card. When the user signs up and doesn't convert to the subscription the merchant releases that authorization after the trial period is over.</br>This means that there is no refund afterwards because the money is never deducted from the user.</p>
+
+<h3 class="quest">8.  How soon should I cancel if I don’t wish to continue after the 7-day free trial?</h3>
+<p class="ask">-  Users can cancel their subscription up until one (1) day before the 7-day free trial ends.</p>
+
 </div>
 
 <h2>Registration</h2>
@@ -134,6 +140,9 @@
 
 <h3 class="quest">11.  I live in Jamaica and you are still asking me to subscribe?</h3>
 <p class="ask">-  Please go to your web browser and in Google type in IP Address and send us the result.  Sometimes the internet provider in Jamaica is using an IP address outside of Jamaica.  We determine who needs to subscribe based on your IP address.</p>
+
+<h3 class="quest">12.  How do I purchase a subscription?</h3>
+<p class="ask">-  Please visit www.1spotmedia.com My Accounts, click on Subscription, select subscription package, click buy now.</p>
 
 </div>
 

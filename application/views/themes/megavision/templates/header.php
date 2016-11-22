@@ -292,7 +292,7 @@ for ($i = 0; $i < sizeof($vod_categories); $i++) {
                                                                 $highlight_color = $this->config->item('menu_highlight_color');
                                                             }
                                                             ?>
-                                                            <div id="top_menu_vod"     <?php echo ($section == "vod" ? 'style="color:' . $highlight_color . ';"' : ""); ?>>MEDIA CENTER</div>
+                                                            <div id="top_menu_vod"     <?php echo ($section == "vod" ? 'style="color:' . $highlight_color . ';"' : ""); ?>>VIDEO ON DEMAND</div>
                                                             <div id="top_menu_live"    <?php echo ($section == "live" ? 'style="color:' . $highlight_color . ';"' : ""); ?>>EN VIVO</div>
                                                             <!--<div id="top_menu_live_events"> <a <?php echo ($section == "live_events" ? 'style="color:' . $highlight_color . ';"' : ""); ?> href="<?php echo base_url() . 'index.php/live_events/main'; ?>">EVENTOS</a></div> -->                                                           
                                                             <!--<div id="top_menu_about"> <a <?php echo ($section == "about_us" ? 'style="color:' . $highlight_color . ';"' : ""); ?> href="<?php echo base_url() . 'index.php/static_content/about_us'; ?>">About Us</a></div>

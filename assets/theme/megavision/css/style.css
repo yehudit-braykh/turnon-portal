@@ -981,12 +981,12 @@ img{}
     font-style: normal;
     font-size: 32px;
     float: left;
-    width: 222px;
+    width: 260px;
     height: 65px;
-    background-size: 220px auto;
+    background-size: 260px auto;
     background-image: url(../images/megavision_logo_home.png);
     position: absolute;
-    top: 16px;
+    top: 12px;
     background-repeat: no-repeat;
 }
 
@@ -1577,7 +1577,7 @@ select:focus, select:active {
     margin: 0 auto;
     overflow: hidden;    
 }
-.top_menu { margin: 1px 0px 0px 245px; padding: 8px 0 0 0; height:30px; font-size: 13px; color: #6cf;}
+.top_menu { margin: 1px 0px 0px 280px; padding: 8px 0 0 0; height:30px; font-size: 13px; color: #6cf;}
 .top_menu a{ color: #6cf; cursor: pointer;}
 .top_menu #signin { 
     color: #fff;
@@ -1668,10 +1668,10 @@ select:focus, select:active {
 }
 
 #top_menu_vod {
-    width: 135px;
+    width: 150px;
 }
 #top_menu_live {
-    width: 234px;    
+    width: 184px;    
 }
 #top_menu_live_events {
     width: 150px;    
@@ -1714,7 +1714,7 @@ select:focus, select:active {
 
 .search input.button_search { margin:0; padding:0; border:none; float:left; }
 
-.header_sep { float: right; padding:4px 0 0; width:720px; height:1px; border-bottom:1px solid rgba(255,255,255,0.4); }
+.header_sep { float: right; padding:4px 0 0; width:685px; height:1px; border-bottom:1px solid rgba(255,255,255,0.4); }
 
 .header_resize2 { width:100%;  padding:0 ; position:relative; }
 
@@ -1848,7 +1848,7 @@ select:focus, select:active {
 .vod_info_container { margin-left: 0px; }
 #vod_item_sub_menu_container { padding: 10px 0px 0px 10px; float: left;width: 500px; }
 
-.top_sub_menu { margin: 0px 0px 0px 140px; padding: 0 0 0 0; font-size: 14px; }
+.top_sub_menu { margin: 0px 0px 0px 272px; padding: 0 0 0 0; font-size: 14px; }
 .top_sub_menu div { text-align: center; margin: 0px 0px 0px 0px; padding: 5px 10px 5px 10px; border-bottom: 0px; float:left; color: rgba(255,255,255,0.7);}
 .top_sub_menu div:hover{ color: #f00; cursor: pointer; }
 .top_sub_menu_selected { color: #f00 !important; }
