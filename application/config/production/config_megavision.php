@@ -16,7 +16,7 @@ define('DEFAULT_SECTION1', 'featured');
 define('DEFAULT_SECTION2', 'coming_soon');
 
 // Featured Categories
-define('CATEGORY_1', 'ultimos_videos');
+define('CATEGORY_1', 'reportajes');
 define('CATEGORY_2', 'recomendados');
 define('CATEGORY_3', 'proximamente');
 
@@ -46,7 +46,7 @@ $config['button_play_width'] = '320px';
 $config['button_play_image'] = 'rjr-btn_play_bg.png';
 $config['button_play_padding_left'] = '150px';
 
-$config['category1'] = array('label' => 'ÚLTIMOS VIDEOS', 'value' => 'ultimos_videos');
+$config['category1'] = array('label' => 'REPORTAJES', 'value' => 'reportajes');
 $config['category2'] = array('label' => 'RECOMENDADOS', 'value' => 'recomendados');
 $config['category3'] = array('label' => 'PRÓXIMAMENTE', 'value' => 'proximamente');
 

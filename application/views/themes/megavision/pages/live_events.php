@@ -44,7 +44,7 @@
                     if(typeof(clock) !== 'undefined'){
                         clock._destroyTimer;
                     }
-                    $('#event-template').html('<div id="event-loading" class="col-md-12">Loading....</div>');
+                    $('#event-template').html('<div id="event-loading" class="col-md-12">Cargando....</div>');
                     body = $("html, body");
                     body.stop().animate({scrollTop: 0}, '500', 'swing', function () {
                     });
@@ -66,9 +66,9 @@
     <div class="col-sm-8">
 
         <div id="event_player_container">
-            <div id="jw_live_player">Loading the player...</div>
+            <div id="jw_live_player">Cargando reproductor...</div>
         </div>
-        <div id="event_player_close"><a href="#" onclick="button_close_clickHandler()">close</a></div>
+        <div id="event_player_close"><a href="#" onclick="button_close_clickHandler()">cerrar</a></div>
 
     </div>
     <div class="col-sm-2"></div>
@@ -86,7 +86,7 @@
     <?php
     if (isset($events->content) && sizeof($events->content) > 0) {
         ?>
-        <div class="category-title">Scheduled Events</div>
+        <div class="category-title">Eventos programados</div>
         <!--<div class="col-md-6">-->
         <div id="events_slider" class="flexslider">
             <ul class="slides">
@@ -95,7 +95,7 @@
                 $data = $events->content;
                 for ($i = 0; $i < sizeof($data); $i++) {
                     if (isset($data[$i]->live_now) && $data[$i]->live_now) {
-                        $event_item_overlay = '<span class="item-carousel-subtitle"> LIVE NOW!</span>';
+                        $event_item_overlay = '<span class="item-carousel-subtitle"> EN VIVO!</span>';
                         ?>
                         <?php
                     } else {
@@ -119,9 +119,9 @@
                                             $dt->setTimestamp($timestamp); //adjust the object to correct timestamp
                                             $event_date = $dt->format('l, F d, Y - H:i');
 
-                                            echo $event_date . ' Hours EST - US $' . $data[$i]->price;
+                                            echo $event_date . ' Horas EST - $' . $data[$i]->price;
                                         } else {
-                                            echo 'Price: US $' . $data[$i]->price;
+                                            echo 'Precio: $' . $data[$i]->price;
                                         }
                                         ?></span>
                                 </div>

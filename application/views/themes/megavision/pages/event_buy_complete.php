@@ -6,8 +6,8 @@
 
 <div class="container-fluid form_cont" style="text-align: center;">
 
-    <div class="complete_title">Your payment was accepted succesfully!</div>
-    <button id="purchased_ticket_btn" class="btn-default">Click here to see your purchased ticket(s)</button>
+    <div class="complete_title">Su pago se aceptó con éxito!</div>
+    <button id="purchased_ticket_btn" class="btn-default">Haga click aquí para ver los boletos comprados</button>
     <div class="clr"></div>
 
 </div>
