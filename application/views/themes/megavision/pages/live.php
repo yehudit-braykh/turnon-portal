@@ -2,6 +2,9 @@
 <script>jwplayer.key = "wldzyhAXC/pV8hrmoKJJUJQUQU7UwoOXl6rN1w==";</script>
 
 <script type="text/javascript">
+
+var allowed_country = 'Argentina';
+
 <?php echo 'base_url = "' . base_url() . '";'; ?>
 <?php
 echo "account_status = '" . $account_status . "';";
@@ -147,7 +150,7 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
 
     function get_channel(country, release_url, release_blocked_url, channel_obj, id, channel_name, policy_id) {
 
-        if (country === 'Jamaica') {
+        if (country === allowed_country) {
 
             if (account_status === 'login') {
                 $('#jw_live_player').text('INGRESE PARA VER LAS SEÑALES EN VIVO...');
@@ -193,7 +196,7 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
                 success: function (data) {
                     $('#epg_container').html(data);
                     $('.epg_channel_name').text("Programación: " + channel_name);
-                    if (country !== 'Jamaica') {
+                    if (country !== allowed_country) {
                         $('.blocked_text').css('display', 'block');
                     }
                     reload_epg()
@@ -282,8 +285,8 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
             console.log('Country is ', count);
             callback(count);
         }).error(function (result) {
-            callback('Jamaica');
-            console.log('Country was forced to Jamaica');
+            callback(allowed_country);
+            console.log('Country was forced to ' + allowed_country);
         });
     }
 
