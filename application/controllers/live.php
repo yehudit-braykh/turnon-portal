@@ -11,8 +11,13 @@ class Live extends UVod_Controller {
         $this->load->model('account_model');
         $this->load->model('vod_item_model');
         $this->load->model('vod_model');
+        $this->load->model('fastcache_model');
         $this->load->helper('pdk');
         $this->load->helper('stream_security');
+
+        if (isset($_GET['flush_cache']) && $_GET['flush_cache'] == 'true') {
+            $this->fastcache_model->clean_cache();
+        }
     }
 
     public function main($id = null) {
@@ -28,7 +33,7 @@ class Live extends UVod_Controller {
         if ($channels_obj && isset($channels_obj->content)) {
             $channels = $channels_obj->content;
         }
-   
+
         $data['channels'] = $channels;
         $channels_stream = array();
         $ids = array();
@@ -46,7 +51,7 @@ class Live extends UVod_Controller {
                 }
 
                 $release_hls_url = getEntryStreamingUrl($item, "HLS Stream");
-                
+
                 $release_hls_url_stream = get_secure_hls_url($release_hls_url, $this->config->item('streams_md5_shared_secret'));
 
                 $release_hls_blocked_url = getEntryStreamingUrl($item, "HLS Blocked Stream");
@@ -127,7 +132,7 @@ class Live extends UVod_Controller {
 
         if (isset($_SESSION['uvod_user_data']->token) && $_SESSION['uvod_user_data']->token != '') {
 
-            $subscription = $this->account_model->get_contract($_SESSION['uvod_user_data']->id,'true');
+            $subscription = $this->account_model->get_contract($_SESSION['uvod_user_data']->id, 'true');
             if (isset($subscription->content->entries) && sizeof($subscription->content->entries) > 0) {
 
                 $return = 'enabled';
