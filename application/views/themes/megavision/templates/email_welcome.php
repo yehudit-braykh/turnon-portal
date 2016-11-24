@@ -6,10 +6,10 @@
         Gracias por registrarse con nosotros.
     </p>
    
-    <p>
+    <!--<p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br>    
         Siempre estamos trabajando para mejorar las características, la funcionalidad y el diseño a fin de satisfacer mejor sus necesidades. Esperamos que disfrute su experiencia.
-    </p>
+    </p>-->
     <br>
     <p>
         Gracias,<br> 
