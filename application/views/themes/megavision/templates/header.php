@@ -76,7 +76,7 @@
                                 timezone_offset = tz.name();
 
                                 $('#logo_left').on('click', function (event) {
-                                    window.location.href = '<?php echo base_url(); ?>';
+                                    window.location.href = 'http://www.megavision.com.sv';
                                 });
                                 $('#top_menu_vod').on('click', function (event) {
                                     window.location.href = '<?php echo base_url(); ?>';
