@@ -364,6 +364,7 @@ h2.h2_act_href a.ico_4:hover{background:url(../images/ico_a-04.png) no-repeat le
 .commerce_free{
     background-image: url(../images/ribbon_free.png);
     background-repeat: no-repeat;
+    margin: 0px!important;
 
 
 }
@@ -371,12 +372,14 @@ h2.h2_act_href a.ico_4:hover{background:url(../images/ico_a-04.png) no-repeat le
 .commerce_members{
     background-image: url(../images/ribbon_members.png);
     background-repeat: no-repeat;
+    margin: 0px!important;
 
 
 }
 .commerce_subscription{
     background-image: url(../images/ribbon_premium.png);
     background-repeat: no-repeat;
+    margin: 0px!important;
 
 
 }
