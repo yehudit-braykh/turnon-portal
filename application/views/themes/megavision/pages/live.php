@@ -513,7 +513,7 @@ for ($i = 0; $i < sizeof($channels_stream); $i++) {
 
 <div class="popup" id="popup_login">
     <span class="button b-close"><span>X</span></span>`
-    <div class="form_title">NECESITA TENER UNA CUENTA PARA VER LAS SEÑALES EN VIVO</div>
+    <div class="form_title">NECESITA TENER UNA CUENTA  </br>PARA VER LAS SEÑALES EN VIVO</div>
     <div class="popup_content">
         <div class="col_izq">
             <div class="popup_title">Ingresar:</div>
