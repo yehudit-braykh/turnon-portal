@@ -3,7 +3,7 @@
 
 <script type="text/javascript">
 
-var allowed_country = 'Argentina';
+var allowed_country = 'El Salvador';
 
 <?php echo 'base_url = "' . base_url() . '";'; ?>
 <?php

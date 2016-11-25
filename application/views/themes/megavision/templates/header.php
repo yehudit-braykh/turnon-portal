@@ -235,7 +235,7 @@ for ($i = 0; $i < sizeof($vod_categories); $i++) {
 
                         </script>
                         <!-- Start of Unified Video Technologies Zendesk Widget script -->
-                        <script>/*<![CDATA[*/window.zEmbed || function (e, t) {
+                        <!-- script>/*<![CDATA[*/window.zEmbed || function (e, t) {
                                 var n, o, d, i, s, a = [], r = document.createElement("iframe");
                                 window.zEmbed = function () {
                                     a.push(arguments)
@@ -249,7 +249,7 @@ for ($i = 0; $i < sizeof($vod_categories); $i++) {
                                     var o = this.createElement("script");
                                     n && (this.domain = n), o.id = "js-iframe-async", o.src = e, this.t = +new Date, this.zendeskHost = t, this.zEQueue = a, this.body.appendChild(o)
                                 }, o.write('<body onload="document._l();">'), o.close()
-                            }("//assets.zendesk.com/embeddable_framework/main.js", "univtec.zendesk.com");/*]]>*/</script>
+                            }("//assets.zendesk.com/embeddable_framework/main.js", "univtec.zendesk.com");/*]]>*/</script -->
                         <!-- End of Unified Video Technologies Zendesk Widget script -->                        
 
 
