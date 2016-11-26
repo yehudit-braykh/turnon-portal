@@ -12,6 +12,7 @@ class Live_events extends UVod_Controller {
         $this->load->model('vod_model');
         $this->load->model('vod_item_model');
         $this->load->helper('pdk');
+        $this->load->helper('stream_security');
 
         if (isset($_GET['flush_cache']) && $_GET['flush_cache'] == 'true') {
             $this->fastcache_model->clean_cache();
@@ -416,13 +417,13 @@ class Live_events extends UVod_Controller {
             if (isset($ret->error) && $ret->error) {
                 echo json_encode(array('status' => 'error', 'message' => $ret->message));
             } else {
-                error_log('ORDER: '.json_encode($ret));
+                error_log('ORDER: ' . json_encode($ret));
                 $email_data = array();
                 $email_data['fullname'] = $first_name . " " . $last_name;
                 $email_data['order'] = $ret;
                 $message = $this->load->view(views_url() . 'templates/email_buy_ppv_ticket', $email_data, TRUE);
                 $send_email_result = $this->account_model->send_single_email($email, $message, 'Subscription Notification Mail', 'NO_RESPONSE@1spot.com', "1Spot Media Portal");
-                error_log('SEND EMAIL:'.json_encode($send_email_result));
+                error_log('SEND EMAIL:' . json_encode($send_email_result));
                 echo json_encode(array('status' => 'ok', 'message' => ''));
             }
         } else {
@@ -506,10 +507,15 @@ class Live_events extends UVod_Controller {
         $this->load->view(views_url() . 'templates/footer_bst', $data);
     }
 
-//    function ppv_day2() {
-//        $data = array();
-//        $this->load->view(views_url() . 'templates/header_bst', $data);
-//        $this->load->view(views_url() . 'pages/ppv', $data);
-//        $this->load->view(views_url() . 'templates/footer_bst', $data);
-//    }
+    function ppv_day1() {
+        
+        $data = array();
+        $url = "http://advncemmd.mmdlive.lldns.net/advncemmd/ebb1bb3f19034869bbf2728c576e0c55/manifest.m3u8";
+        $data['url'] = get_secure_hls_url($url, $this->config->item('streams_md5_shared_secret'));
+
+        $this->load->view(views_url() . 'templates/header_bst', $data);
+        $this->load->view(views_url() . 'pages/ppv', $data);
+        $this->load->view(views_url() . 'templates/footer_bst', $data);
+    }
+
 }
