@@ -984,9 +984,9 @@ img{}
     font-style: normal;
     font-size: 32px;
     float: left;
-    width: 260px;
-    height: 65px;
-    background-size: 260px auto;
+    width: 238px;
+    height: 87px;
+    background-size: 115px auto;    
     background-image: url(../images/logo_ped.png);
     position: absolute;
     top: 12px;
