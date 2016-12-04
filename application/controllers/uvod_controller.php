@@ -49,7 +49,8 @@ class UVod_Controller extends CI_Controller {
         }
 
         // get vod categories
-        $data['vod_categories'] = $this->config_model->get_vod_categories()->content;
+        $vod_categories = $this->config_model->get_vod_categories();
+        $data['vod_categories'] = ($vod_categories ? $vod_categories->content : '');
 
         $this->load->vars($data);
 
