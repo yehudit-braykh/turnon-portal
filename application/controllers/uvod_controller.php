@@ -31,21 +31,21 @@ class UVod_Controller extends CI_Controller {
         if ($this->uri->segment(1, 0)) {
             $data['section'] = $this->uri->segment(1, 0);
         } else {
-            $data['section'] = DEFAULT_SECTION;
+            // $data['section'] = DEFAULT_SECTION;
         }
 
         // set section 1
         if ($this->uri->segment(3, 0)) {
             $data['sub_section1'] = $this->uri->segment(3, 0);
         } else {
-            $data['sub_section1'] = DEFAULT_SECTION1;
+            // $data['sub_section1'] = DEFAULT_SECTION1;
         }
 
         // set section 3
         if ($this->uri->segment(4, 0)) {
             $data['sub_section2'] = $this->uri->segment(4, 0);
         } else {
-            $data['sub_section2'] = DEFAULT_SECTION2;
+            // $data['sub_section2'] = DEFAULT_SECTION2;
         }
 
         // get vod categories
@@ -72,7 +72,7 @@ class UVod_Controller extends CI_Controller {
         }
         if ($status) {
             $user = $this->account_model->get_self_id($data->token);
-           
+
             if (!isset($user->content->_id)) {
                 $_SESSION['uvod_user_data'] = null;
                 unset($_SESSION['uvod_user_data']);
@@ -83,4 +83,3 @@ class UVod_Controller extends CI_Controller {
         }
     }
 }
-    

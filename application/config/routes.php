@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = 'vod/section/featured';
+$route['default_controller'] = 'vod/index';
 //$route['(:any)'] = 'pages/view/$1';
 
 /* End of file routes.php */
