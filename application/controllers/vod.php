@@ -51,7 +51,7 @@ class Vod extends UVod_Controller {
         // $data["tags"] = $tags;
         // // debug($vods);
        //  $data["html"] = $this->load->view(views_url().'pages/home', $data, true);
-        $this->load->view(views_url() . 'pages/components/html', $data);
+        $this->load->view(views_url() . 'pages/components/html');
     }
     // public function featured($sub_section = COMING_SOON) {
     //
