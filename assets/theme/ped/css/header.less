@@ -1,3 +1,79 @@
-.header-page{
-    margin: 10px;
+.header{
+    width: 100%;
+    height: 100px;
+    color: white;
+    font-size: 16px;
+    .navbar  {
+        padding: 0px 50px;
+        background-color: black;
+        border: 0;
+        border-radius: 0;
+        @media (max-width: @screen-xs-max) {
+            padding: 0px 15px;
+        }
+        .navbar-toggle {
+            margin-top: 33px;
+            margin-right: 0;
+            margin-bottom: 0;
+            .icon-bar {
+                background-color: white;
+            }
+        }
+
+        .container-fluid {
+            @media (min-width: @screen-xs-max) {
+                padding-left: 0px;
+                padding-right: 0px;
+            }
+            .navbar-brand {
+                position: relative;
+                height: 100px;
+                padding: 0;
+                width: 120px;
+                .brand-img{
+                    z-index: 2;
+                    background-image: url('/assets/theme/ped/images/logo_ped.png');
+                    background-position: center;
+                    background-size: 60%;
+                    background-repeat: no-repeat;
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    right: 0;
+                    left: 0;
+                }
+                .brand-bg {
+                    z-index: 1;
+                    -webkit-transform: skew(-20deg);
+    	            -moz-transform: skew(-20deg);
+    	            -o-transform: skew(-20deg);
+                    background-color: white;
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    right: 0;
+                    left: 0;
+
+                }
+
+            }
+        }
+        // height: 150px;
+        .navbar-nav>li {
+            &:hover {
+                background-color: white;
+                a {
+                    color: black;
+                }
+            }
+            padding: 25px 20px;
+            border-right: 1px solid rgba(208,208,208, 0.15);
+            a {
+                color: white;
+                &:hover {
+                    background-color: transparent;
+                }
+            }
+        }
+    }
 }
