@@ -30,6 +30,14 @@
        <!-- ANGULAR CONTOLLERS -->
        <script src="<?php echo asset_url(); ?>js/controllers/pages/home.js"></script>
        <script src="<?php echo asset_url(); ?>js/controllers/pages/header.js"></script>
+       <script src="<?php echo asset_url(); ?>js/controllers/pages/account.js"></script>
+       <script src="<?php echo asset_url(); ?>js/controllers/pages/celebrities.js"></script>
+       <script src="<?php echo asset_url(); ?>js/controllers/pages/celebrity.js"></script>
+       <script src="<?php echo asset_url(); ?>js/controllers/pages/category.js"></script>
+       <script src="<?php echo asset_url(); ?>js/controllers/pages/categories.js"></script>
+       <script src="<?php echo asset_url(); ?>js/controllers/pages/video.js"></script>
+       <script src="<?php echo asset_url(); ?>js/controllers/pages/survey.js"></script>
+       <script src="<?php echo asset_url(); ?>js/controllers/pages/lottery.js"></script>
 
         <!-- COMPONENTS CONTROLLERS -->
 

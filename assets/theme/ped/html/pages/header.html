@@ -59,20 +59,115 @@
             <button type="submit" class="btn btn-default">Submit</button>
           </form> -->
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Link</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-              </ul>
-            </li>
+              <li class="signin-div">
+                  <div class="logged-in" ng-show="isLoggedIn()">
+                      <div class="dropdown ib">
+                          <div id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="ib dropdown-toggle user-section">
+                              <img class="user-img" src="{{user.profile_pic}}" width=40 height=40 style="cursor: pointer;border-radius: 50px;" />
+                              {{user.name}}
+                              <span class="caret"></span>
+                          </div>
+                          <ul class="dropdown-menu account-drop" aria-labelledby="dropdownMenu1">
+                            <li><a ng-click="go('/account/account')">My Account</a></li>
+                            <li><a ng-click="go('/account/history')">My History</a></li>
+                            <li><a ng-click="go('/account/settings')">My Settings</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a ng-click="logout()">Logout</a></li>
+                          </ul>
+                      </div>
+
+                  </div>
+                  <div class="logged-out" ng-show="!isLoggedIn()">
+                      <div class="singin-btn hand"  data-toggle="modal" data-target="#loginModal" ng-click="showRegister=false">
+                          Login
+                      </div>
+                      <div class="hand"  data-toggle="modal" data-target="#loginModal">
+                          <a href="#">Register now</a>
+                      </div>
+                  </div>
+              </li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
+    <div class="sec-navbar">
+        <div class="container">
+            <div class="button hand  col-xs-5 col-sm-3 col-md-2 pr">Encuesta <span class="icon icon-clipboard-17x18 pa"></span></div>
+            <div class="button hand col-xs-5 col-sm-3 col-md-2 pr">Concurso <span class="icon icon-medal-13x13 pa"></span></div>
+            <div class="search-cont pr col-xs-12 col-sm-5 col-md-4">
+                <input type="text" class="search" placeholder="Search" /><i class="fa fa-search pa" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+</div>
 
+<div class="modal loginModal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" ng-controller="headerController">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <button type="button" class="close pa" style="right:15px; top: 15px;" data-dismiss="modal" aria-label="Close"><span class="icon icon-x-white-20x19"></span></button>
+            <div ng-hide="showRegister">
+                <div class="modal-header">
+                Login
+            </div>
+                <div class="modal-body">
+                <div class="login-buttons">
+                    <div class="login-button facebook" onclick="window.open('/hauth/login/Facebook','fb','left=20,top=20,width=500,height=400,toolbar=1,resizable=0')">
+                        Login with Facebook
+                        <span class="icon icon-facebook-logo-29x29 flr"></span>
+                    </div>
+                    <div class="login-button twitter"  onclick="window.open('/hauth/login/Twitter','twitter','left=20,top=20,width=500,height=400,toolbar=1,resizable=0')">
+                        Login with Twitter
+                        <span class="icon icon-twitter-logo-34x27 flr"></span>
+                    </div>
+                    <div class="login-button google"  onclick="window.open('/hauth/login/Google','google','left=20,top=20,width=500,height=400,toolbar=1,resizable=0')">
+                        Login with Google
+                        <span class="icon icon-google-logo-30x31 flr"></span>
+                    </div>
+                </div>
+                <div class="other-span">
+                    or </br>
+                    Enter your credentials
+                </div>
+                <div class="credentials-login"><form>
+                    <input type="email" name="email" ng-model="userRegister.email" placeholder="Email" required>
+                    <input type="password" name="password" ng-model="userRegister.password" placeholder="Password" required>
+                    <div class="remember-me">
+                        <input type="checkbox" name="remember-me" ng-model="userRegister.rememberMe" style="width:20px;" /><label for="remember-me">Remember Me</label>
+                    </div>
+                    <div class="login-error" ng-show="loginError">{{loginError}}<img class="error-triangle" src="/assets/theme/clixtv/images/red-triangle.png" /></div>
+                    <input type="submit" class="login-btn" ng-click="loginUser()" value="LOGIN"></form>
+                </div>
+
+                <div class="forgot-register">
+                    <div class="">
+                        Forget your password?
+                    </div>
+                    <div class="">
+                        Not registered? <span style="color: white;cursor:pointer;"> <a ng-click="showRegister=true">Create your account</a></span>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div ng-show="showRegister">
+                <div class="modal-header">Register</div>
+                <div class="modal-body">
+                    <div class="credentials-login"><form>
+                        <input type="text" name="first-name" ng-model="userRegister.first_name" placeholder="First Name" required>
+                        <input type="text" name="last-name" ng-model="userRegister.last_name" placeholder="Last Name" required>
+                        <input type="email" name="email" ng-model="userRegister.email" placeholder="Email" required>
+                        <input type="password" name="password" ng-model="userRegister.password" placeholder="Password" required>
+                        <input type="password" name="confirm-password" ng-model="userRegister.confirmPassword" placeholder="Confirm Password" required>
+                        <div class="register-error" ng-show="registerError">{{registerError}}<img class="error-triangle" src="/assets/theme/clixtv/images/red-triangle.png" /></div>
+                        <input type="submit" class="login-btn" ng-click="registerUser()" value="REGISTER"></form>
+                        <label>We’ll send a verification link to the email address you used to create the account. </label>
+                    </div>
+                    <div class="forgot-register">
+                        <div class="">
+                            Have an Account? <span style="color: white; cursor:pointer;"> <a ng-click="showRegister=false">Login</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -2,7 +2,7 @@ var h = null;
 peruDigitalApp.controller('headerController', function homeController ($scope) {
       h = $scope;
       $scope.isLoggedIn= function(){
-          return false;
+          return true;
       }
 
       $scope.user={name:'Larry Vaughn',
