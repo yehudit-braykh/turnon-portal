@@ -1,5 +1,33 @@
 <div class="celebrities-page">
+    <div class="celebrities-header pr" style="background-image:url({{celebritiesPage.cover_url}})">
+        <div class="header-title">{{celebritiesPage.title}}</div>
+        <div class="header-desc">{{celebritiesPage.desc}}</div>
+        <div class="overlay pa"></div>
+    </div>
+    <div class="celebrities-content">
+        <div class="row">
+            <ped-Brands-Carousel></ped-Brands-Carousel>
+        </div>
+        <div class="container celebrities" ng-init="celebsToShow=6">
+            <div class="col-xs-12 col-sm-6 col-md-4 pr celebrity hand" ng-repeat="celeb in celebrities | limitTo:celebsToShow" ng-click="go('/celebrity/'+celeb.name)" >
+                <img class="celeb-img"  src="{{celeb.icon_url}}" />
+                <div class="celeb-name pa">{{celeb.name}}</div>
+            </div>
+            <div class="col-xs-12 more hand" ng-click="celebsToShow=celebsToShow+3">More <span class="arrow-down"></span></div>
+        </div>
+        <div class="row">
+            <div class="row-title">NEW RELEASES</div>
+            <div class="row-content carousel-blue">
+                <ped-Carousel data-model="newReleaseVids"></ped-Carousel>
+            </div>
+        </div>
+        <div class="row">
+            <div class="row-title">RECOMMENDED SHOWS</div>
+            <div class="row-content carousel-blue">
+                <ped-Carousel data-model="recommendedShows"></ped-Carousel>
+            </div>
+        </div>
 
-
+    </div>
 
 </div>

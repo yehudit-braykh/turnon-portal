@@ -1,0 +1,46 @@
+<div class="celebrity-page">
+    <div class="celebrity-header pr">
+        <div class="col-xs-12 col-md-6 header-img" style="background-image:url({{celebrity.cover_url}})">
+            <div class="overlay pa"></div>
+        </div>
+        <div class="col-xs-12 col-md-6 header-right">
+            <div class="header-title">{{celebrity.title}}</div>
+            <div class="header-desc">{{celebrity.desc}}</div>
+            <div class="header-social">
+                <div class="icon icon-facebook-circle-29x29 hand"></div>
+                <div class="icon icon-linkedin-circle-29x29 hand"></div>
+                <div class="icon icon-instagram-circle-29x29 hand"></div>
+                <div class="icon icon-twitter-circle-29x29 hand"></div>
+                <div class="icon icon-youtube-circle-29x29 hand"></div>
+            </div>
+        </div>
+
+    </div>
+    <div class="celebrity-content">
+        <div class="row">
+            <ped-Brands-Carousel></ped-Brands-Carousel>
+        </div>
+        <div class="container videos" ng-init="videosToShow=6">
+            <div class="col-xs-12 col-sm-6 col-md-4 pr video hand" ng-repeat="vid in videos | limitTo:videosToShow" ng-click="go('/video/'+vid.id)" >
+                <img class="vid-img"  src="{{vid.icon_url}}" />
+                <div class="vid-info pa">
+                    {{vid.name}}<br/>
+                    <span class="vid-date">{{vid.date}}</span>
+                </div>
+            </div>
+            <div class="col-xs-12 more hand" ng-click="videosToShow=videosToShow+3">More <span class="arrow-down"></span></div>
+        </div>
+        <div class="row">
+            <div class="row-title">NUESTROS PERIODISTAS</div>
+            <div class="row-content cother-celebs">
+                <div class="col-xs-6 col-sm-4 col-md-2 pr celebrity hand" ng-repeat="celeb in otherCelebrities" ng-click="go('/celebrity/'+celeb.name)" >
+                    <img class="celeb-img"  src="{{celeb.icon_url}}" />
+                    <div class="celeb-name pa">{{celeb.name}}</div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

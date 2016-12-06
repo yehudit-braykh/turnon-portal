@@ -11,15 +11,15 @@ peruDigitalApp.config(function($routeProvider, $locationProvider){
         templateUrl: '/assets/theme/ped/html/pages/home.html',
         controller: 'homeController'
     })
-    .when('/categories', {
-        templateUrl: '/assets/theme/ped/html/pages/categories.html',
-        controller: 'categories/Controller'
-    })
     .when('/category/:categoryName', {
         templateUrl: '/assets/theme/ped/html/pages/category.html',
         controller: 'categoryController'
     })
-    .when('/celebtiry/:celebrityName', {
+    .when('/celebrities', {
+        templateUrl: '/assets/theme/ped/html/pages/celebrities.html',
+        controller: 'celebritiesController'
+    })
+    .when('/celebrity/:celebrityName', {
         templateUrl: '/assets/theme/ped/html/pages/celebrity.html',
         controller: 'celebrityController'
     })

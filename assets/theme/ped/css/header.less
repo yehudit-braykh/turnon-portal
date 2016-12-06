@@ -1,3 +1,7 @@
+body{
+    background-image: linear-gradient(to bottom, #00353f, #00353f);
+}
+
 .header{
     width: 100%;
     color: white;
@@ -458,6 +462,140 @@
             border-top: none;
         }
         .navbar-right {
+
+            & li:hover{
+                background-color: black !important;
+            }
+
+            .signin-div {
+                text-align: center;
+                margin-top: 0px;
+
+
+                @media (max-width: @screen-xs-max) {
+                    text-align: left;
+                }
+                div {
+                    cursor: pointer;
+                }
+                .logged-out {
+                    margin-top: -6px;
+                }
+                .logged-in {
+                    margin-top: 6px;
+                    .account-drop {
+                        right: -12px;
+                        font-size: 20px;
+                        background-color: rgba(0,0,0,0.8);
+                        margin-top: 17px;
+                        li {
+
+                        }
+                    }
+                    .user-section {
+                        transition: 0.5s ease;
+                        img {
+                            transition: border-color 0.5s ease;
+                            border: 2px solid white;
+                            border-color:  #FFFFFF;
+                        }
+                        &:hover, &:focus {
+                            color: #e61419;
+                            img {
+                                border-color:  #e61419;
+                            }
+                        }
+                    }
+                    .reward-span {
+                        &:hover, &:focus {
+                            color: #e61419;
+                        }
+                    }
+
+                    .notifications{
+                        float: left;
+                        margin:5px 30px 0 0;
+                        position: relative;
+                        cursor: pointer;
+
+                        .notifications-number{
+                            height: 25px;
+                            width: 25px;
+                            background-color: #e31924;
+                            z-index: 5;
+                            right: -12px;
+                            top: -12px;
+                            position: absolute;
+                            border-radius: 50%;
+                            color: white;
+                            font-size: 15px;
+                            line-height: 25px;
+                        }
+
+                        .nots{
+                            position: absolute;
+                            background-color: rgba(227,25,36,0.5);
+                            width: 312px;
+                            border-radius: 6px;
+                            left:0;
+                            top: 40px;
+                            padding: 0;
+                            list-style: none;
+                            color: white;
+                            text-align: left;
+                            .not{
+                                font-size: 14px;
+                                padding: 12px 11px 10px 11px;
+                                border-bottom: 1px solid black;
+
+                                span{
+                                    font-size: 10px;
+                                }
+
+                                &:last-child{
+                                    border: 0;
+                                }
+                            }
+                            .red-triangle{
+                                position: absolute;
+                                left: 10px;
+                                top: -20px;
+                            }
+                            .title{
+                                text-align: left;
+                                padding: 4px 15px;
+                                border-bottom: 3px solid black;
+                            }
+                        }
+
+                        .ng-hide-add, .ng-hide-remove {
+                          transition: all linear 0.3s;
+                        }
+
+                        .ng-hide {
+                          line-height: 0;
+                          font-size: 0;
+                          opacity: 0;
+                        }
+                    }
+                }
+                .singin-btn {
+                    margin-top: -2px;
+                    transition: 0.6s ease;
+                    margin-bottom: 2px;
+                    line-height: 1.2;
+                    color: white;
+                    width: 150px;
+                    height: 28px;
+                    border-radius: 20px;
+                    background-color: #e61419;
+                    &:hover, &:focus {
+                        background-color: white;
+                        color: #e61419;
+                    }
+                }
+            }
+
             @media (min-width: @screen-xs-max) {
                 margin-right: -30px;
             }
@@ -513,133 +651,8 @@
 
             }
         }
-        .signin-div {
-            text-align: center;
-            margin-top: 0px;
 
-            @media (max-width: @screen-xs-max) {
-                text-align: left;
-            }
-            div {
-                cursor: pointer;
-            }
-            .logged-out {
-                margin-top: -6px;
-            }
-            .logged-in {
-                margin-top: 6px;
-                .account-drop {
-                    right: -12px;
-                    font-size: 20px;
-                    background-color: rgba(0,0,0,0.8);
-                    margin-top: 17px;
-                    li {
 
-                    }
-                }
-                .user-section {
-                    transition: 0.5s ease;
-                    img {
-                        transition: border-color 0.5s ease;
-                        border: 2px solid white;
-                        border-color:  #FFFFFF;
-                    }
-                    &:hover, &:focus {
-                        color: #e61419;
-                        img {
-                            border-color:  #e61419;
-                        }
-                    }
-                }
-                .reward-span {
-                    &:hover, &:focus {
-                        color: #e61419;
-                    }
-                }
-
-                .notifications{
-                    float: left;
-                    margin:5px 30px 0 0;
-                    position: relative;
-                    cursor: pointer;
-
-                    .notifications-number{
-                        height: 25px;
-                        width: 25px;
-                        background-color: #e31924;
-                        z-index: 5;
-                        right: -12px;
-                        top: -12px;
-                        position: absolute;
-                        border-radius: 50%;
-                        color: white;
-                        font-size: 15px;
-                        line-height: 25px;
-                    }
-
-                    .nots{
-                        position: absolute;
-                        background-color: rgba(227,25,36,0.5);
-                        width: 312px;
-                        border-radius: 6px;
-                        left:0;
-                        top: 40px;
-                        padding: 0;
-                        list-style: none;
-                        color: white;
-                        text-align: left;
-                        .not{
-                            font-size: 14px;
-                            padding: 12px 11px 10px 11px;
-                            border-bottom: 1px solid black;
-
-                            span{
-                                font-size: 10px;
-                            }
-
-                            &:last-child{
-                                border: 0;
-                            }
-                        }
-                        .red-triangle{
-                            position: absolute;
-                            left: 10px;
-                            top: -20px;
-                        }
-                        .title{
-                            text-align: left;
-                            padding: 4px 15px;
-                            border-bottom: 3px solid black;
-                        }
-                    }
-
-                    .ng-hide-add, .ng-hide-remove {
-                      transition: all linear 0.3s;
-                    }
-
-                    .ng-hide {
-                      line-height: 0;
-                      font-size: 0;
-                      opacity: 0;
-                    }
-                }
-            }
-            .singin-btn {
-                margin-top: -2px;
-                transition: 0.6s ease;
-                margin-bottom: 2px;
-                line-height: 1.2;
-                color: white;
-                width: 150px;
-                height: 28px;
-                border-radius: 20px;
-                background-color: #e61419;
-                &:hover, &:focus {
-                    background-color: white;
-                    color: #e61419;
-                }
-            }
-        }
     }
     .dropdown {
 

@@ -45,6 +45,8 @@
         <!-- ANGULAR FILTERS -->
 
         <!-- ANGULAR DIRECTIVES -->
+        <script src="<?php echo asset_url(); ?>js/directives/ped-carousel.js"></script>
+        <script src="<?php echo asset_url(); ?>js/directives/ped-brands-carousel.js"></script>
 
         <!-- END ANGULAR -->
         <script type="text/javascript" src="<?php echo common_asset_url(); ?>js/greensock/TweenMax.min.js"></script>
