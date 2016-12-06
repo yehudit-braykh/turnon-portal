@@ -1,0 +1,58 @@
+.stitches-icon(@x: 0, @y: 0, @width: 0, @height: 0) {
+    background-position: @x @y;
+    width: @width;
+    height: @height;
+}
+
+.icon {
+    background-image: url(/assets/theme/ped/images/sprite2.png);    background-repeat: no-repeat;
+    display: block;
+
+    &.icon-channel_down-20x14 {
+        .stitches-icon(-3px, -3px, 20px, 14px);
+    }
+
+    &.icon-channel_left-14x20 {
+        .stitches-icon(-29px, -3px, 14px, 20px);
+    }
+
+    &.icon-channel_right14x20 {
+        .stitches-icon(-49px, -3px, 14px, 20px);
+    }
+
+    &.icon-channel_up-20x14 {
+        .stitches-icon(-69px, -3px, 20px, 14px);
+    }
+
+    &.icon-epg-down-16x10 {
+        .stitches-icon(-95px, -3px, 16px, 10px);
+    }
+
+    &.icon-epg-up-16x10 {
+        .stitches-icon(-117px, -3px, 16px, 10px);
+    }
+
+    &.icon-lock-15x20 {
+        .stitches-icon(-139px, -3px, 15px, 20px);
+    }
+
+    &.icon-lock-15x20-blue {
+        .stitches-icon(-160px, -3px, 15px, 20px);
+    }
+
+    &.icon-logo-ped {
+        .stitches-icon(-3px, -29px, 176px, 133px);
+    }
+
+    &.icon-logo-ped-120x92 {
+        .stitches-icon(-185px, -3px, 120px, 92px);
+    }
+
+    &.icon-user-20x20 {
+        .stitches-icon(-311px, -3px, 20px, 20px);
+    }
+
+    &.icon-user-20x20-blue {
+        .stitches-icon(-311px, -29px, 20px, 20px);
+    }
+}
