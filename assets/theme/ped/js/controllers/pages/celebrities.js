@@ -10,7 +10,6 @@ peruDigitalApp.controller('celebritiesController', function celebritiesControlle
     $scope.celebrities=celebritiesFactory.getAllCelebrities();
 
     $scope.brands= brandsFactory.getAllBrands();
-    console.log($scope.brands);
 
     $scope.go = function(path){
         $location.path(path);

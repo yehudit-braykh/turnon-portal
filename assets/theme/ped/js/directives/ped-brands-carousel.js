@@ -4,7 +4,7 @@ peruDigitalApp.directive('pedBrandsCarousel', function() {
       transclude: true,
       scope: {
           model: '=',
-          carouselId: '='
+          carouselId: '@'
       },
       controller: ['$scope', function pedBrandsCarouselController($scope) {
           sc = $scope;
@@ -32,7 +32,7 @@ peruDigitalApp.directive('pedBrandsCarousel', function() {
                   $scope.relatedPosition = 0;
               }
           }
-          
+
       }],
       templateUrl: '/assets/theme/ped/html/directives/ped-brands-carousel.html'
     };

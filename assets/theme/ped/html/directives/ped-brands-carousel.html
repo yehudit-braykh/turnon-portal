@@ -10,8 +10,7 @@
         </div>
         <div class="row__inner recentInner {{caruselPosition==1?'moveLeft':''}} {{activeVideo?'unhover':''}}">
             <div class="tile {{activeVideo._id==video._id?'selected':''}}" ng-repeat="brand in model">
-                <div class="pr h100">
-                    <div style="background-image:url({{brand.icon_url}})"
+                <div class="pr tile-content" style="background-image:url({{brand.icon_url}})">
                 </div>
             </div>
         </div>
