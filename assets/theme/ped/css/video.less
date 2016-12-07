@@ -1,5 +1,100 @@
 .video-page{
+    .video-header{
+        margin: 0;
+        background-color: black;
+        height: 60vh;
+
+        color: white;
 
 
+        .header-img{
+            background-position: center;
+            background-size: cover;
+            height: 100%;
+
+            .overlay {
+                left: 40%;
+                right: 0;
+                bottom: 0;
+                top: 0;
+                background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 47%, #000000);
+            }
+
+            .header-play{
+                top:32%;
+                right: 80px;
+            }
+        }
+
+        .header-right{
+            background-color: black;
+            .header-title{
+                font-size: 48px;
+                padding-top: 6vh;
+            }
+
+            .header-desc{
+                font-size: 24px;
+                max-width: 90%;
+                text-align: justify;
+                margin-top: 6vh;
+                margin-bottom: 30px;
+            }
+
+            @media(max-width: @screen-sm-max){
+
+                .header-title{
+                    font-size: 34px;
+                    padding-top: 5vh;
+                }
+
+                .header-desc{
+                    font-size: 18px;
+                    max-width: 100%;
+                    margin-top: 2vh;
+                }
+
+            }
+
+            @media(min-width: @screen-sm-max) and (max-width: @screen-md-max){
+                .header-title{
+                    font-size: 38px;
+                    padding-top: 5vh;
+                }
+
+                .header-desc{
+                    font-size: 18px;
+                    max-width: 100%;
+                    margin-top: 2vh;
+                }
+            }
+        }
+
+    }
+
+    @media(max-width: @screen-xs-max){
+        .video-header {
+            height: 30vh;
+        }
+    }
+
+    .video-content{
+
+        .row-title {
+            margin-left: 100px;
+            font-size: 28px;
+            color: white;
+            margin-top: 40px;
+        }
+
+        .carousel-blue{
+            background-color: #003f4d;
+            height: 220px;
+            margin-top:70px;
+            margin-bottom: 70px;
+        }
+
+
+    }
 
 }

@@ -4,7 +4,7 @@
             <div class="overlay pa"></div>
         </div>
         <div class="col-xs-12 col-md-6 header-right">
-            <div class="header-title">{{celebrity.title}}</div>
+            <div class="header-title">{{celebrity.name}}</div>
             <div class="header-desc">{{celebrity.desc}}</div>
             <div class="header-social">
                 <div class="icon icon-facebook-circle-29x29 hand"></div>
@@ -27,15 +27,17 @@
                     {{vid.name}}<br/>
                     <span class="vid-date">{{vid.date}}</span>
                 </div>
+                <span class="vid-play icon icon-play-circle-43x43 pa"></span>
             </div>
-            <div class="col-xs-12 more hand" ng-click="videosToShow=videosToShow+3">More <span class="arrow-down"></span></div>
+            <div class="col-xs-12 more hand text-right" ng-click="videosToShow=videosToShow+3">More <span class="arrow-down"></span></div>
         </div>
         <div class="row">
-            <div class="row-title">NUESTROS PERIODISTAS</div>
-            <div class="row-content cother-celebs">
-                <div class="col-xs-6 col-sm-4 col-md-2 pr celebrity hand" ng-repeat="celeb in otherCelebrities" ng-click="go('/celebrity/'+celeb.name)" >
-                    <img class="celeb-img"  src="{{celeb.icon_url}}" />
-                    <div class="celeb-name pa">{{celeb.name}}</div>
+            <div class="row-title container">NUESTROS PERIODISTAS</div>
+            <div class="row-content other-celebs">
+                <div class="celebrity hand col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="celeb in otherCelebrities" ng-click="go('/celebrity/'+celeb.name)" >
+                    <div class="pr celeb-img" style="background-image:url({{celeb.icon_url}})">
+                        <div class="celeb-name pa">{{celeb.name}}</div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,3 +1,193 @@
-.ped-brands-carousel{
-    
+.ped-brands-carousel-container{
+    height: 200px;
+    .ped-brands-carousel{
+            margin: 10px 26px;
+            color: white;
+            overflow: hidden;
+            height: 100%;
+
+            width: ~"calc(100% - 52px)";
+            position: relative;
+            @media (max-width: @screen-xs-max) {
+                height: 40vw;
+                overflow-x: scroll;
+                -webkit-overflow-scrolling: touch;
+            }
+            &:hover {
+                .arrow-right, .arrow-left {
+                    opacity: 0.5;
+                }
+            }
+            .arrow-right {
+                z-index: 2;
+                position: absolute;
+                height: 100%;
+                width: 65px;
+                right: 0;
+                top: 0;
+                opacity: 0;
+                transition: 0.5s ease;
+                &:hover, &:focus {
+                    opacity: 1;
+                }
+                &.opacity0 {
+                    opacity: 0;
+                }
+                .icon-arrow-right-49x82 {
+                    cursor: pointer;
+                    position: absolute;
+                    right: 10px;
+                    z-index: 1;
+                    top: ~"calc(14vw - 41px)";
+                }
+            }
+             .arrow-left {
+                z-index: 2;
+                 position: absolute;
+                 height: 83%;
+                 width: 65px;
+                 left: 0;
+                 top: 0;
+                 opacity: 0;
+                 transition: 0.5s ease;
+                 &:hover, &:focus {
+                     opacity: 1;
+                 }
+                 &.opacity0 {
+                     opacity: 0;
+                 }
+                .icon-arrow-left-49x82 {
+                    cursor: pointer;
+                    top: ~"calc(14vw - 41px)";
+                    position: absolute;
+                    left: 10px;
+                    z-index: 1;
+                }
+            }
+
+            .row__inner {
+                background-color: transparent;
+                left: 0%;
+                height: 100%;
+                transition-delay: 0ms;
+                transition: 1s ease;
+                -webkit-transition: 1s ease;
+                position: absolute;
+                font-size: 0;
+                white-space: nowrap;
+                padding-bottom: 10px;
+                @media (max-width: @screen-xs-max) {
+                    position: relative;
+                }
+                &.moveLeft {
+                    left: -100%;
+                }
+            }
+            .tile {
+                padding: 1.7vw 0px;
+                vertical-align: middle;
+                background-color: transparent;
+                height: 13.5vw;
+                width: ~"calc(20vw - 22px)";
+                position: relative;
+                display: inline-block;
+                margin-right: 10px;
+                font-size: 20px;
+                cursor: pointer;
+                transition-delay: 0ms;
+                -webkit-transition: 450ms all;
+                transition: 450ms all;
+                -webkit-transform-origin: center left;
+                    transform-origin: center left;
+                @media (max-width: @screen-xs-max) {
+                    width: ~"calc(50vw - 8px)";
+                    height: 27vw;
+                }
+                .icon-triangle-29x12 {
+                    display: none;
+                    margin-left: -15px;
+                    left: 50%;
+                    bottom: -12px;
+                }
+                &.selected {
+                    >.h100 {
+                        border: 2px solid #919191;
+                    }
+
+                    .icon-triangle-29x12 {
+                        display: block;
+                    }
+                }
+            }
+
+            .tile__details:before {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              display: #000;
+            }
+
+
+            .tile__title {
+                overflow-x: hidden;
+                background-color: rgba(0,0,0,1);
+                width: 100%;
+                transition: 0.5s ease;
+                position: absolute;
+                bottom: 0px;
+                padding: 2px 10px;
+              .tile-header {
+                  font-size: 12px;
+                  font-weight: bold;
+              }
+              .detail-desc {
+                  font-size: 8px;
+              }
+            }
+
+
+            .row__inner {
+                &.unhover:hover{
+                    .tile:hover {
+                        height: 10.1vw;
+                        -webkit-transform: scale(1);
+                        transform: scale(1);
+                        opacity: 1;
+                        @media (max-width: @screen-xs-max) {
+                            height: 27vw;
+                        }
+                        .tile__media {
+                            background-color: transparent;
+                            .sponser-bg {
+                                opacity: 0;
+                            }
+                        }
+                        .tile__details .tile__title {
+                            bottom: 0px;
+                        }
+                        .tile-tint {
+                        	bottom: 0;
+                        }
+                        .detail-desc {
+        					display: none !important;
+        				}
+                    }
+                    .tile:hover ~ .tile {
+                        -webkit-transform: translate3d(0, 0, 0);
+                        transform: translate3d(0, 0, 0);
+                    }
+                    .sponsers-footer {
+                        height: 30%;
+                        background-color: transparent;
+                        bottom: 16px;
+                        .single-sponser {
+                            background-color: transparent;
+                        }
+                        .reward-square {
+                            opacity: 0;
+                        }
+                    }
+                }
+            }
+        }
 }

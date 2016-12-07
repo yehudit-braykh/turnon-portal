@@ -1,5 +1,32 @@
 <div class="video-page">
+    <div class="video-header pr">
+        <div class="col-xs-12 col-md-7 header-img hand" style="background-image:url({{video.cover_url}})">
+            <div class="overlay pa"></div>
+            <div class="header-play pa icon icon-play-circle-164x164"></div>
+            <div class="videoPlayer pa"></div>
+        </div>
+        <div class="col-xs-12 col-md-5 header-right">
+            <div class="header-title">{{video.title}}</div>
+            <div class="header-desc">{{video.desc}}</div>
+        </div>
+    </div>
+    <div class="video-content">
+        <div class="row">
+            <ped-Brands-Carousel></ped-Brands-Carousel>
+        </div>
+        <div class="row">
+            <div class="row-title">NEW RELEASES</div>
+            <div class="row-content carousel-blue">
+                <ped-Carousel data-model="newReleaseVids"></ped-Carousel>
+            </div>
+        </div>
+        <div class="row">
+            <div class="row-title">RECOMMENDED SHOWS</div>
+            <div class="row-content carousel-blue">
+                <ped-Carousel data-model="recommendedShows"></ped-Carousel>
+            </div>
+        </div>
 
-
+    </div>
 
 </div>

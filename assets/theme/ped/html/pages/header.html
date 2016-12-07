@@ -22,22 +22,22 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li class="active">
-                <a href="#">POLITICA</a>
+                <a ng-click="go('/category/POLITICA')">POLITICA</a>
             </li>
             <li>
-                <a href="#">PERU</a>
+                <a ng-click="go('/category/PERU')">PERU</a>
             </li>
             <li>
-                <a href="#">MUNDO</a>
+                <a ng-click="go('/category/MUNDO')">MUNDO</a>
             </li>
             <li>
-                <a href="#">DEPORTE</a>
+                <a ng-click="go('/category/DEPORTE')">DEPORTE</a>
             </li>
             <li>
-                <a href="#">ENTRETENIMIENT</a>
+                <a ng-click="go('/category/ENTRETENIMIENT')">ENTRETENIMIENT</a>
             </li>
             <li>
-                <a href="#">ECONOMIA</a>
+                <a ng-click="go('/category/ECONOMIA')">ECONOMIA</a>
             </li>
             <!-- <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
@@ -92,8 +92,8 @@
     </nav>
     <div class="sec-navbar">
         <div class="container">
-            <div class="button hand  col-xs-5 col-sm-3 col-md-2 pr">Encuesta <span class="icon icon-clipboard-17x18 pa"></span></div>
-            <div class="button hand col-xs-5 col-sm-3 col-md-2 pr">Concurso <span class="icon icon-medal-13x13 pa"></span></div>
+            <div class="button hand  col-xs-5 col-sm-3 col-md-2 pr" ng-click="go('/survey')">Encuesta <span class="icon icon-clipboard-17x18 pa"></span></div>
+            <div class="button hand col-xs-5 col-sm-3 col-md-2 pr" ng-click="go('/lottery')">Concurso <span class="icon icon-medal-13x13 pa"></span></div>
             <div class="search-cont pr col-xs-12 col-sm-5 col-md-4">
                 <input type="text" class="search" placeholder="Search" /><i class="fa fa-search pa" aria-hidden="true"></i>
             </div>
