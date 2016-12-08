@@ -20,7 +20,7 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
+          <ul class="nav navbar-nav left-nav">
             <li class="active">
                 <a ng-click="go('/category/POLITICA')">POLITICA</a>
             </li>
@@ -79,10 +79,7 @@
                   </div>
                   <div class="logged-out" ng-show="!isLoggedIn()">
                       <div class="singin-btn hand"  data-toggle="modal" data-target="#loginModal" ng-click="showRegister=false">
-                          Login
-                      </div>
-                      <div class="hand"  data-toggle="modal" data-target="#loginModal">
-                          <a href="#">Register now</a>
+                          LOGIN
                       </div>
                   </div>
               </li>
@@ -107,8 +104,8 @@
             <button type="button" class="close pa" style="right:15px; top: 15px;" data-dismiss="modal" aria-label="Close"><span class="icon icon-x-white-20x19"></span></button>
             <div ng-hide="showRegister">
                 <div class="modal-header">
-                Login
-            </div>
+                    LOGIN
+                </div>
                 <div class="modal-body">
                 <div class="login-buttons">
                     <div class="login-button facebook" onclick="window.open('/hauth/login/Facebook','fb','left=20,top=20,width=500,height=400,toolbar=1,resizable=0')">
@@ -142,8 +139,8 @@
                     <div class="">
                         Forget your password?
                     </div>
-                    <div class="">
-                        Not registered? <span style="color: white;cursor:pointer;"> <a ng-click="showRegister=true">Create your account</a></span>
+                    <div class="not-reg">
+                        Not registered? <span style="cursor:pointer;"> <a ng-click="showRegister=true">Create your account</a></span>
                     </div>
                 </div>
             </div>
@@ -162,8 +159,8 @@
                         <label>We’ll send a verification link to the email address you used to create the account. </label>
                     </div>
                     <div class="forgot-register">
-                        <div class="">
-                            Have an Account? <span style="color: white; cursor:pointer;"> <a ng-click="showRegister=false">Login</a></span>
+                        <div class="not-reg">
+                            Have an Account? <span style="cursor:pointer;"> <a ng-click="showRegister=false">Login</a></span>
                         </div>
                     </div>
                 </div>
