@@ -1,5 +1,5 @@
 var celebs = null;
-peruDigitalApp.controller('celebritiesController', function celebritiesController ($scope, $location, celebritiesFactory, brandsFactory) {
+peruDigitalApp.controller('celebritiesController', function celebritiesController ($scope, $location, celebritiesFactory, brandsFactory, videosFactory) {
       celebs = $scope;
 
       $scope.celebritiesPage={title:'Join Our Selebreties',
@@ -10,6 +10,11 @@ peruDigitalApp.controller('celebritiesController', function celebritiesControlle
     $scope.celebrities=celebritiesFactory.getAllCelebrities();
 
     $scope.brands= brandsFactory.getAllBrands();
+
+    $scope.newReleaseVids= videosFactory.getAllVideos();
+
+    $scope.recommendedShows= videosFactory.getAllVideos();
+
 
     $scope.go = function(path){
         $location.path(path);

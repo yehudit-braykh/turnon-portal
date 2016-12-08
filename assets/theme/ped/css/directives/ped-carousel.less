@@ -1,4 +1,217 @@
 .ped-carousel-container{
+    height: 220px;
+    .ped-carousel{
+            margin: 10px 26px;
+            color: white;
+            height: 100%;
 
-    
+            width: ~"calc(100% - 52px)";
+            position: relative;
+            @media (max-width: @screen-xs-max) {
+                height: 40vw;
+                overflow-x: scroll;
+                -webkit-overflow-scrolling: touch;
+            }
+            &:hover {
+                .arrow-right, .arrow-left {
+                    opacity: 0.5;
+                }
+            }
+            .arrow-right {
+                z-index: 2;
+                position: absolute;
+                height: 100%;
+                width: 65px;
+                right: 0;
+                top: 0;
+                opacity: 1;
+                transition: 0.5s ease;
+                &:hover, &:focus {
+                    opacity: 1;
+                }
+                &.opacity0 {
+                    opacity: 0;
+                }
+                .icon-arrow-right-32x83 {
+                    cursor: pointer;
+                    position: absolute;
+                    right: 10px;
+                    z-index: 1;
+                    top: ~"calc(50% - 42px)";
+                }
+            }
+             .arrow-left {
+                z-index: 2;
+                 position: absolute;
+                 height: 100%;
+                 width: 65px;
+                 left: 0;
+                 top: 0;
+                 opacity: 1;
+                 transition: 0.5s ease;
+                 &:hover, &:focus {
+                     opacity: 1;
+                 }
+                 &.opacity0 {
+                     opacity: 0;
+                 }
+                .icon-arrow-left-32x83 {
+                    cursor: pointer;
+                    top: ~"calc(50% - 42px)";
+                    position: absolute;
+                    left: 10px;
+                    z-index: 1;
+                }
+            }
+
+            .row__inner {
+                background-color: transparent;
+                left: 0%;
+                height: 100%;
+                transition-delay: 0ms;
+                transition: 1s ease;
+                -webkit-transition: 1s ease;
+                position: absolute;
+                font-size: 0;
+                white-space: nowrap;
+                @media (max-width: @screen-xs-max) {
+                    position: relative;
+                }
+                &.moveLeft {
+                    left: -100%;
+                }
+            }
+            .tile {
+                padding: 1.7vw 0px;
+                vertical-align: middle;
+                background-color: transparent;
+                height: 100%;
+                width: ~"calc(16vw - 22px)";
+                position: relative;
+                display: inline-block;
+                margin-right: 10px;
+                font-size: 20px;
+                cursor: pointer;
+                transition-delay: 0ms;
+                -webkit-transition: 450ms all;
+                transition: 450ms all;
+                -webkit-transform-origin: center left;
+                    transform-origin: center left;
+                @media (max-width: @screen-xs-max) {
+                    width: ~"calc(50vw - 8px)";
+
+                }
+                .tile-content {
+                    background-position: center;
+                    background-size: cover;
+                    height: 100%;
+                    background-repeat: no-repeat;
+                    transition: 1s;
+
+                    .subscribe {
+                        font-size: 16px;
+                        text-align: center;
+                        width: 110px;
+                        height: 22px;
+                        background-color: #ff1c63;
+                    }
+
+                    .free {
+                        background-color: #3e5697;
+                    }
+
+                    .info {
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        transition: 1s;
+                        padding: 3px 15px;
+                        background-color: rgba(255,255,255,0.5);
+
+                        .title {
+                            font-size: 18px;
+                            color: #00353f;
+                            font-weight: 500;
+                        }
+
+                        .expiry {
+                            color: #4a4a4a;
+                            font-size: 12px;
+                        }
+
+                    }
+
+                    .desc{
+                        transition: 1s;
+                        bottom: -10px;
+                        position: absolute;
+                        height: 0;
+                        white-space: normal;
+                        font-size: 12px;
+                        line-height: 15px;
+                        overflow: hidden;
+                        right: 0px;
+                        left: 0px;
+                        color: white;
+                        padding: 5px 15px;
+                        background-color: rgba(0,0,0,0.5);
+                        opacity: 0;
+                    }
+
+                    &:hover{
+                        z-index: 1;
+                        transform: scale(1.7);
+                        box-shadow: 0px 0px 25px black;
+
+                        .info{
+                            background-color: rgba(0,0,0,0.5);
+                            bottom: 52px;
+                        }
+
+                        .title {
+                            color: white;
+                            display: inline-block;
+
+                        }
+
+                        .expiry {
+                            color: white;
+                            margin-left: 11px;
+                        }
+
+                        .desc{
+                            bottom: 0;
+                            height: 52px;
+                            opacity: 1;
+                        }
+                    }
+                }
+
+            }
+
+            .tile__details:before {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              display: #000;
+            }
+
+            .row__inner {
+                &.unhover:hover{
+                    .tile:hover {
+                        height: 10.1vw;
+                        -webkit-transform: scale(1);
+                        transform: scale(1);
+                        opacity: 1;
+                        @media (max-width: @screen-xs-max) {
+                            height: 27vw;
+                        }
+                    }
+                    .tile:hover ~ .tile {
+                        -webkit-transform: translate3d(0, 0, 0);
+                        transform: translate3d(0, 0, 0);
+                    }
+                }
+            }
+        }
 }
