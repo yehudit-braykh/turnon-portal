@@ -13,8 +13,10 @@
                 <div class="pr tile-content hand" style="background-image:url({{video.icon_url}})" ng-click="go('/video/'+video.id)" >
                     <div class="pa subscribe {{video.isFree?'free':''}}">{{video.isFree?'FREE':'SUBSCRIBE'}}</div>
                     <div class="pa info">
-                        <div class="title">{{video.title}}</div>
-                        <span class="expiry">{{video.date}}</span>
+                        <div class="title">
+                            {{video.title}}
+                            <span class="expiry">{{video.date}}</span>
+                        </div>
                         <div class="desc">
                                 {{video.desc | limitTo:200}}
                         </div>

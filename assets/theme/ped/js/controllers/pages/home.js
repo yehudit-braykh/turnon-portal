@@ -56,4 +56,9 @@ peruDigitalApp.controller('homeController', function homeController ($scope, $lo
         $location.path(path);
     }
 
+    $scope.getSlidesNumber = function(){
+        return new Array($scope.homeSlides.length/2);
+    }
+
+
   });

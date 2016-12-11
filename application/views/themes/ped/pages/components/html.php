@@ -13,6 +13,7 @@
 
 
         <link rel="stylesheet" href="/assets/common/css/font-awesome.min.css">
+
         <script src="<?php echo asset_url(); ?>js/lightslider.js"></script>
         <script src="<?php echo asset_url(); ?>js/jquery.tmpl.min.js"></script>
         <script src="<?php echo asset_url(); ?>js/jquery.easytabs.min.js"></script>
@@ -43,7 +44,7 @@
         <!-- ANGULAR FACTORIES -->
         <script src="<?php echo asset_url(); ?>js/factories/user.js"></script>
         <script src="<?php echo asset_url(); ?>js/factories/videos.js"></script>
-        <script src="<?php echo asset_url(); ?>js/factories/category.js"></script>
+        <script src="<?php echo asset_url(); ?>js/factories/categories.js"></script>
         <script src="<?php echo asset_url(); ?>js/factories/celebrities.js"></script>
         <script src="<?php echo asset_url(); ?>js/factories/brands.js"></script>
         <script src="<?php echo asset_url(); ?>js/factories/epg.js"></script>

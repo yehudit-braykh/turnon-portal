@@ -130,14 +130,20 @@
 
                         .title {
                             font-size: 18px;
-                            color: #00353f;
+                            color: rgba(0, 53, 63,1);
                             font-weight: 500;
+                            transition: 1s;
+                            height: 40px;
+
+                            .expiry {
+                                color: rgb(74, 74, 74,1);
+                                font-size: 12px;
+                                display: block;
+                                transition: 1s;
+                            }
                         }
 
-                        .expiry {
-                            color: #4a4a4a;
-                            font-size: 12px;
-                        }
+
 
                         .desc{
                             height: 0;
@@ -146,9 +152,9 @@
                             line-height: 15px;
                             overflow: hidden;
                             color: white;
-                            padding: 6px 0px;
+                            padding-bottom: 6px;
                             opacity: 0;
-                            transition: 0.7s;
+                            transition: 1s;
                         }
 
                     }
@@ -165,19 +171,21 @@
                         }
 
                         .title {
-                            color: white;
+                            color: rgba(255,255,255,1);
                             display: inline-block;
 
+                            .expiry {
+                                color: rgba(255,255,255,1);
+                                margin-left: 11px;
+                                display: inline-block;
+                            }
+
                         }
 
-                        .expiry {
-                            color: white;
-                            margin-left: 11px;
-                        }
+
 
                         .desc{
-                            bottom: 0;
-                            height: 52px;
+                            height: 45px;
                             opacity: 1;
                         }
                     }

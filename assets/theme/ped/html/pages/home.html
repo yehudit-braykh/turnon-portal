@@ -4,13 +4,25 @@
 
           <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
-                <div class="item pr {{$index==0?'active':''}}" ng-repeat="slide in homeSlides" style="background-image:url({{slide.cover_url}})">
-                    <div class="info pa">
-                        <div class="header-text">
-                            {{slide.title}}
+                <div class="item {{$index==0?'active':''}}" ng-repeat="i in getSlidesNumber() track by $index">
+                    <div class="item-content left-slide col-xs-6 pr"  style="background-image:url({{homeSlides[2*$index].cover_url}})">
+                        <div class="info pa">
+                            <div class="header-text">
+                                {{homeSlides[$index].title}}
+                            </div>
+                            <div class="span-text hidden-xs">
+                                {{homeSlides[2*$index+1].desc}}
+                            </div>
                         </div>
-                        <div class="span-text">
-                            {{slide.desc}}
+                    </div>
+                    <div class="item-content left-slide col-xs-6"  style="background-image:url({{homeSlides[2*$index+1].cover_url}})">
+                        <div class="info pa">
+                            <div class="header-text">
+                                {{homeSlides[2*$index].title}}
+                            </div>
+                            <div class="span-text hidden-xs">
+                                {{homeSlides[2*$index+1].desc}}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -32,14 +44,14 @@
             <ped-Brands-Carousel data-model="brands" data-carouse-id="brands"></ped-Brands-Carousel>
         </div>
         <div class="row epg">
-            <div class="col-md-2 epg-header text-center pr" >EN VIVO
+            <div class="col-xs-3 col-md-2 epg-header text-center pr" >EN VIVO
             </div>
-            <div class="col-md-10 epg-content">
+            <div class="col-xs-9 col-md-10 epg-content">
                 <div class="row epg-channel">
-                    <div class="channel-name">{{channel1.name}}</div>
-                    <div class="channel-img" style="background-image:url({{channel1.icon_url}})"></div>
-                    <div class="channel-epg">
-                        <div class="channel-program" ng-repeat="program in channel1.programs">
+                    <div class="channel-name col-xs-3 col-sm-2 ">{{channel1.name}}</div>
+                    <div class="channel-img col-xs-3 col-sm-2 col-lg-1" style="background-image:url({{channel1.icon_url}})"></div>
+                    <div class="channel-epg col-xs-6 col-sm-8">
+                        <div class="channel-program col-xs-12 col-sm-6 col-md-3 col-lg-2" ng-repeat="program in channel1.programs">
                             {{program.start_time}}<br/>
                             {{program.name}}<br/>
                             {{program.category}}<br/>
@@ -48,10 +60,10 @@
                     </div>
                 </div>
                 <div class="row epg-channel">
-                    <div class="channel-name">{{channel2.name}}</div>
-                    <div class="channel-img" style="background-image:url({{channel2.icon_url}})"></div>
-                    <div class="channel-epg">
-                        <div class="channel-program" ng-repeat="program in channel2.programs">
+                    <div class="channel-name col-xs-3 col-sm-2 ">{{channel2.name}}</div>
+                    <div class="channel-img col-xs-3 col-sm-2 col-lg-1" style="background-image:url({{channel2.icon_url}})"></div>
+                    <div class="channel-epg col-xs-6 col-sm-8">
+                        <div class="channel-program col-xs-12 col-sm-6 col-md-3 col-lg-2" ng-repeat="program in channel2.programs">
                             {{program.start_time}}<br/>
                             {{program.name}}<br/>
                             {{program.category}}<br/>
