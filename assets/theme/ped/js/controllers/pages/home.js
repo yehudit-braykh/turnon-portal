@@ -24,6 +24,18 @@ peruDigitalApp.controller('homeController', function homeController ($scope, $lo
                         cover_url:'assets/theme/ped/images/static-images/home-slider/slide1.png'},
                         {title:'Get The Boot A Birds Eye Look Into Mcse Boot Camps',
                         desc:'In today’s net-savvy world it has become common for any business to have a website which they use mostly for advertising their products and services.',
+                        cover_url:'assets/theme/ped/images/static-images/home-slider/slide2.png'},
+                       {title:'Get The Boot A Birds Eye Look Into Mcse Boot Camps',
+                        desc:'In today’s net-savvy world it has become common for any business to have a website which they use mostly for advertising their products and services.',
+                        cover_url:'assets/theme/ped/images/static-images/home-slider/slide1.png'},
+                       {title:'Get The Boot A Birds Eye Look Into Mcse Boot Camps',
+                        desc:'In today’s net-savvy world it has become common for any business to have a website which they use mostly for advertising their products and services.',
+                        cover_url:'assets/theme/ped/images/static-images/home-slider/slide2.png'},
+                       {title:'Get The Boot A Birds Eye Look Into Mcse Boot Camps',
+                        desc:'In today’s net-savvy world it has become common for any business to have a website which they use mostly for advertising their products and services.',
+                        cover_url:'assets/theme/ped/images/static-images/home-slider/slide1.png'},
+                        {title:'Get The Boot A Birds Eye Look Into Mcse Boot Camps',
+                        desc:'In today’s net-savvy world it has become common for any business to have a website which they use mostly for advertising their products and services.',
                         cover_url:'assets/theme/ped/images/static-images/home-slider/slide2.png'}]
 
 
@@ -43,4 +55,26 @@ peruDigitalApp.controller('homeController', function homeController ($scope, $lo
     $scope.go = function(path){
         $location.path(path);
     }
+
+
+    $('.multi-item-carousel').carousel({
+  interval: false
+});
+
+// for every slide in carousel, copy the next slide's item in the slide.
+// Do the same for the next, next item.
+$('.multi-item-carousel .item').each(function(){
+  var next = $(this).next();
+  if (!next.length) {
+    next = $(this).siblings(':first');
+  }
+  next.children(':first-child').clone().appendTo($(this));
+
+  if (next.next().length>0) {
+    next.next().children(':first-child').clone().appendTo($(this));
+  } else {
+  	$(this).siblings(':first').children(':first-child').clone().appendTo($(this));
+  }
+});
+
   });

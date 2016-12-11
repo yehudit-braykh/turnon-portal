@@ -15,10 +15,11 @@
                     <div class="pa info">
                         <div class="title">{{video.title}}</div>
                         <span class="expiry">{{video.date}}</span>
+                        <div class="desc">
+                                {{video.desc | limitTo:200}}
+                        </div>
                     </div>
-                    <div class="desc pa">
-                            {{video.desc | limitTo:200}}
-                    </div>
+
                 </div>
             </div>
         </div>

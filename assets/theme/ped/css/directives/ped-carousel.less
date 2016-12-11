@@ -139,24 +139,21 @@
                             font-size: 12px;
                         }
 
+                        .desc{
+                            height: 0;
+                            white-space: normal;
+                            font-size: 12px;
+                            line-height: 15px;
+                            overflow: hidden;
+                            color: white;
+                            padding: 6px 0px;
+                            opacity: 0;
+                            transition: 0.7s;
+                        }
+
                     }
 
-                    .desc{
-                        transition: 1s;
-                        bottom: -10px;
-                        position: absolute;
-                        height: 0;
-                        white-space: normal;
-                        font-size: 12px;
-                        line-height: 15px;
-                        overflow: hidden;
-                        right: 0px;
-                        left: 0px;
-                        color: white;
-                        padding: 5px 15px;
-                        background-color: rgba(0,0,0,0.5);
-                        opacity: 0;
-                    }
+
 
                     &:hover{
                         z-index: 1;
@@ -165,7 +162,6 @@
 
                         .info{
                             background-color: rgba(0,0,0,0.5);
-                            bottom: 52px;
                         }
 
                         .title {
