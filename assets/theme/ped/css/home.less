@@ -188,7 +188,7 @@
 
                     .channel-epg{
                         height: 100%;
-                        overflow-x: scroll;
+                        overflow-x: hidden;
                         overflow-y: hidden;
                         white-space: nowrap;
                         display: inline-block;
@@ -197,6 +197,7 @@
 
                         @media(max-width: @screen-xs-max){
                             width: ~"calc(100% - 100px)";
+                            overflow-x: scroll;
                         }
                         .channel-program{
                             font-size: 15px;
