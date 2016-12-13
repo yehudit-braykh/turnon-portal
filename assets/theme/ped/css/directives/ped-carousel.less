@@ -1,14 +1,14 @@
 .ped-carousel-container{
-    height: 220px;
+//    height: 220px;
     .ped-carousel{
             margin: 10px 26px;
             color: white;
-            height: 100%;
+    //        height: 100%;
 
             width: ~"calc(100% - 52px)";
             position: relative;
             @media (max-width: @screen-xs-max) {
-                height: 50vw;
+    //            height: 50vw;
                 overflow-x: scroll;
                 -webkit-overflow-scrolling: touch;
             }
@@ -67,16 +67,15 @@
             .row__inner {
                 background-color: transparent;
                 left: 0%;
-                height: 100%;
+                position: relative;
+        //        height: 100%;
                 transition-delay: 0ms;
                 transition: 1s ease;
                 -webkit-transition: 1s ease;
-                position: absolute;
+            //    position: absolute;
                 font-size: 0;
                 white-space: nowrap;
-                @media (max-width: @screen-xs-max) {
-                    position: relative;
-                }
+
                 &.moveLeft {
                     left: -100%;
                 }
@@ -86,7 +85,7 @@
                 vertical-align: middle;
                 background-color: transparent;
                 height: 13vw;
-                width: ~"calc(24vw - 14px)";
+                width: ~"calc(25vw - 12px)";
                 position: relative;
                 display: inline-block;
                 margin-right: 10px;
@@ -98,7 +97,7 @@
                 -webkit-transform-origin: center left;
                 transform-origin: center left;
                 @media (min-width: @screen-xs-max) and (max-width: @screen-sm-max) {
-                    width: ~"calc(49vw - 8px)";
+                    width: ~"calc(49vw - 6px)";
                     height: 25vw;
 
                 }
@@ -110,7 +109,7 @@
                 }
 
                 @media (max-width: @screen-xs-max) {
-                    width: 95vw;
+                    width: 96vw;
                     height: 48vw;
 
                 }
@@ -177,7 +176,7 @@
 
                     &:hover{
                         z-index: 1;
-                        transform: scale(1.7);
+                        transform: scale(1.2) translateY(-11px);
                         box-shadow: 0px 0px 25px black;
 
                         .info{
