@@ -8,7 +8,7 @@
             width: ~"calc(100% - 52px)";
             position: relative;
             @media (max-width: @screen-xs-max) {
-                height: 40vw;
+                height: 50vw;
                 overflow-x: scroll;
                 -webkit-overflow-scrolling: touch;
             }
@@ -82,11 +82,11 @@
                 }
             }
             .tile {
-                padding: 1.7vw 0px;
+                margin-top: 2vw;
                 vertical-align: middle;
                 background-color: transparent;
-                height: 100%;
-                width: ~"calc(16.6666666666vw - 14px)";
+                height: 13vw;
+                width: ~"calc(24vw - 14px)";
                 position: relative;
                 display: inline-block;
                 margin-right: 10px;
@@ -96,9 +96,22 @@
                 -webkit-transition: 450ms all;
                 transition: 450ms all;
                 -webkit-transform-origin: center left;
-                    transform-origin: center left;
+                transform-origin: center left;
+                @media (min-width: @screen-xs-max) and (max-width: @screen-sm-max) {
+                    width: ~"calc(49vw - 8px)";
+                    height: 25vw;
+
+                }
+
+                @media (min-width: @screen-sm-max) and (max-width: @screen-md-max) {
+                    width: ~"calc(33vw - 10px)";
+                    height: 18vw;
+
+                }
+
                 @media (max-width: @screen-xs-max) {
-                    width: ~"calc(50vw - 8px)";
+                    width: 95vw;
+                    height: 48vw;
 
                 }
                 .tile-content {
@@ -129,11 +142,12 @@
                         background-color: rgba(255,255,255,0.5);
 
                         .title {
-                            font-size: 18px;
+                            font-size: 14px;
                             color: rgba(0, 53, 63,1);
                             font-weight: 500;
                             transition: 1s;
                             height: 40px;
+                            overflow: hidden;
 
                             .expiry {
                                 color: rgb(74, 74, 74,1);
@@ -176,7 +190,7 @@
 
                             .expiry {
                                 color: rgba(255,255,255,1);
-                                margin-left: 11px;
+                                margin-left: 5px;
                                 display: inline-block;
                             }
 

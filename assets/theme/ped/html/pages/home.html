@@ -29,11 +29,11 @@
 
             </div>
               <!-- Left and right controls -->
-              <a class="left carousel-control" onclick="$(this).closest('.homeCarousel').carousel('prev');" role="button" data-slide="prev">
+              <a class="left carousel-control hidden-xs" onclick="$(this).closest('.homeCarousel').carousel('prev');" role="button" data-slide="prev">
                 <span class="icon icon-arrow-left-32x83" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
               </a>
-              <a class="right carousel-control" onclick="$(this).closest('.homeCarousel').carousel('next');" role="button" data-slide="next">
+              <a class="right carousel-control hidden-xs" onclick="$(this).closest('.homeCarousel').carousel('next');" role="button" data-slide="next">
                 <span class="icon icon-arrow-right-32x83" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
               </a>
@@ -44,14 +44,14 @@
             <ped-Brands-Carousel data-model="brands" data-carouse-id="brands"></ped-Brands-Carousel>
         </div>
         <div class="row epg">
-            <div class="col-xs-3 col-md-2 epg-header text-center pr" >EN VIVO
+            <div class="col-xs-12 col-sm-3 col-md-2 epg-header pr" >EN VIVO
             </div>
-            <div class="col-xs-9 col-md-10 epg-content">
+            <div class="col-xs-12 col-sm-9 col-md-10 epg-content">
                 <div class="row epg-channel">
-                    <div class="channel-name col-xs-3 col-sm-2 ">{{channel1.name}}</div>
-                    <div class="channel-img col-xs-3 col-sm-2 col-lg-1" style="background-image:url({{channel1.icon_url}})"></div>
-                    <div class="channel-epg col-xs-6 col-sm-8">
-                        <div class="channel-program col-xs-12 col-sm-6 col-md-3 col-lg-2" ng-repeat="program in channel1.programs">
+                    <div class="channel-name ">{{channel1.name}}</div>
+                    <div class="channel-img hidden-xs " style="background-image:url({{channel1.icon_url}})"></div>
+                    <div class="channel-epg ">
+                        <div class="channel-program" ng-repeat="program in channel1.programs">
                             {{program.start_time}}<br/>
                             {{program.name}}<br/>
                             {{program.category}}<br/>
@@ -60,10 +60,10 @@
                     </div>
                 </div>
                 <div class="row epg-channel">
-                    <div class="channel-name col-xs-3 col-sm-2 ">{{channel2.name}}</div>
-                    <div class="channel-img col-xs-3 col-sm-2 col-lg-1" style="background-image:url({{channel2.icon_url}})"></div>
-                    <div class="channel-epg col-xs-6 col-sm-8">
-                        <div class="channel-program col-xs-12 col-sm-6 col-md-3 col-lg-2" ng-repeat="program in channel2.programs">
+                    <div class="channel-name">{{channel2.name}}</div>
+                    <div class="channel-img hidden-xs" style="background-image:url({{channel2.icon_url}})"></div>
+                    <div class="channel-epg">
+                        <div class="channel-program" ng-repeat="program in channel2.programs">
                             {{program.start_time}}<br/>
                             {{program.name}}<br/>
                             {{program.category}}<br/>
@@ -75,13 +75,13 @@
 
         </div>
         <div class="row">
-            <div class="row-title">NEW RELEASES</div>
+            <div class="row-title container">NEW RELEASES</div>
             <div class="row-content carousel-blue">
                 <ped-Carousel data-model="newReleaseVids"></ped-Carousel>
             </div>
         </div>
         <div class="row">
-            <div class="row-title">RECOMMENDED SHOWS</div>
+            <div class="row-title container">RECOMMENDED SHOWS</div>
             <div class="row-content carousel-blue">
                 <ped-Carousel data-model="recommendedShows"></ped-Carousel>
             </div>

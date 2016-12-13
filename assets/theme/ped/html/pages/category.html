@@ -1,19 +1,12 @@
 <div class="category-page">
     <div class="category-header row pr">
-        <div class="col-xs-12 col-md-6 header-img" style="background-image:url({{category.cover_url}})">
-            <div class="overlay pa"></div>
-        </div>
-        <div class="col-xs-12 col-md-6 header-right">
-            <div class="header-title">{{category.name}}</div>
-            <div class="header-desc">{{category.desc}}</div>
-            <div class="header-social">
-                <div class="icon icon-facebook-circle-29x29 hand"></div>
-                <div class="icon icon-linkedin-circle-29x29 hand"></div>
-                <div class="icon icon-instagram-circle-29x29 hand"></div>
-                <div class="icon icon-twitter-circle-29x29 hand"></div>
-                <div class="icon icon-youtube-circle-29x29 hand"></div>
+        <div class="col-xs-12 header-img" style="background-image:url({{category.cover_url}})">
+            <div class="header-info overlay pa">
+                <div class="header-title">{{category.name}}</div>
+                <div class="header-desc">{{category.desc}}</div>
             </div>
         </div>
+
 
     </div>
     <div class="category-content">
@@ -30,18 +23,6 @@
                 <span class="vid-play icon icon-play-circle-43x43 pa"></span>
             </div>
             <div class="col-xs-12 more hand text-right" ng-click="videosToShow=videosToShow+3">More <span class="arrow-down"></span></div>
-        </div>
-        <div class="row">
-            <div class="row-title container">NUESTROS PERIODISTAS</div>
-            <div class="row-content other-celebs">
-                <div class="container" style="height:inherit">
-                    <div class="celebrity hand col-xs-6 col-sm-4 col-md-3" ng-repeat="celeb in otherCelebrities" ng-click="go('/celebrity/'+celeb.name)" >
-                        <div class="pr celeb-img" style="background-image:url({{celeb.icon_url}})">
-                            <div class="celeb-name pa">{{celeb.name}}</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
 
