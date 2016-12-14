@@ -1,7 +1,6 @@
 var cat = null;
 peruDigitalApp.controller('categoryController', function categoryController ($scope, videosFactory, celebritiesFactory, categoriesFactory, $routeParams, $location, brandsFactory) {
       cat = $scope;
-
       $scope.category= categoriesFactory.getCategoryByName($routeParams.categoryName);
 
 

@@ -28,7 +28,6 @@ peruDigitalApp.factory("categoriesFactory", function($http, $q) {
              return allCategories;
          },
          getCategoryByName: function(categoryName){
-             console.log(categoryName);
              for(var celeb in allCategories){
                  if (allCategories[celeb].name.toLowerCase()==categoryName.toLowerCase())
                     return allCategories[celeb];

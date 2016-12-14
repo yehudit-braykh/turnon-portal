@@ -31,6 +31,14 @@ body{
             }
             .left-nav {
                 margin-left: 26px;
+
+                .active {
+                    background-color: white;
+
+                    a{
+                        color: black;
+                    }
+                }
             }
             .navbar-brand {
                 position: relative;
@@ -75,23 +83,33 @@ body{
                     cursor: pointer;
                 }
 
-                &:hover {
-                    background-color: transparent;
-                    color: white;
-
-                    a{
-                        color: white;
-                    }
-                }
 
                 .logged-out {
 
                     padding-top: 14px;
                     padding-bottom: 14px;
+
+                    .singin-btn {
+                        color: #0095c0;
+                        width: 150px;
+
+                        &:hover, &:focus {
+                            background-color: white !important;
+                        }
+                    }
                 }
-                .logged-in {
-                    padding-top: 14px;
-                    padding-bottom: 14px;
+                &.logged-in {
+                    padding-bottom: 10px;
+
+                    &:hover {
+                        background-color: transparent !important;
+                        color: white;
+
+                        a{
+                            color: white;
+                        }
+                    }
+
                     .account-drop {
                         right: -12px;
                         font-size: 20px;
@@ -110,14 +128,7 @@ body{
                         }
                     }
                 }
-                .singin-btn {
-                    color: #0095c0;
-                    width: 150px;
 
-                    &:hover, &:focus {
-                        background-color: white;
-                    }
-                }
             }
         }
         // height: 150px;

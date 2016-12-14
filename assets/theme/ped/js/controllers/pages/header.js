@@ -2,6 +2,7 @@ var he = null;
 peruDigitalApp.controller('headerController', function headerController ($scope, $location, AuthService, User) {
       he = $scope;
 
+
       $scope.go = function(path){
           $location.path(path);
       }
