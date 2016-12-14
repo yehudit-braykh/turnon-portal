@@ -63,12 +63,12 @@
                   <div class="logged-in" ng-show="isLoggedIn()">
                       <div class="dropdown ib">
                           <div id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="ib dropdown-toggle user-section">
-                              <img class="user-img" src="{{user.profile_pic}}" width=40 height=40 style="cursor: pointer;border-radius: 50px;" />
-                              {{user.name}}
+                              <img class="user-img" src="{{user.image}}" width=40 height=40 style="cursor: pointer;border-radius: 50px;" />
+                              {{user.firstName}} {{user.lastName}}
                               <span class="caret"></span>
                           </div>
                           <ul class="dropdown-menu account-drop" aria-labelledby="dropdownMenu1">
-                            <li><a ng-click="go('/account/account')">My Account</a></li>
+                            <li><a ng-click="go('/account')">My Account</a></li>
                             <li><a ng-click="go('/account/history')">My History</a></li>
                             <li><a ng-click="go('/account/settings')">My Settings</a></li>
                             <li role="separator" class="divider"></li>

@@ -7,7 +7,7 @@
     <div class="account-info container">
         <div class="row">
             <div class="col-sm-3 left-user">
-                <div class="user-image" style="background-image: url('{{user.image_url}}'); ">
+                <div class="user-image" style="background-image: url('{{user.image}}'); ">
 
                 </div>
                 <div class="edit-btn" ng-if="editing">
@@ -22,7 +22,7 @@
                                 First Name
                             </div>
                             <div class="field-input" ng-if="!editing">
-                                {{user.first_name}}
+                                {{user.firstName}}
                             </div>
                             <input class="account-input" type="text" ng-model="user.first_name" ng-if="editing">
                         </div>
@@ -42,7 +42,7 @@
                                 Last Name
                             </div>
                             <div class="field-input" ng-if="!editing">
-                                {{user.last_name}}
+                                {{user.lastName}}
                             </div>
                             <input class="account-input" type="text" ng-model="user.last_name" ng-if="editing">
                         </div>
@@ -51,7 +51,7 @@
                                 Date of Birth
                             </div>
                             <div class="field-input" ng-if="!editing">
-                                {{user.birth | date: dd/MM/yyyy}}
+                                {{user.birthDay | date: dd/MM/yyyy}}
                             </div>
                             <input class="account-input" type="date" ng-model="user.birth"  ng-if="editing">
                         </div>

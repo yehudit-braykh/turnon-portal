@@ -48,6 +48,8 @@
         <script src="<?php echo asset_url(); ?>js/factories/celebrities.js"></script>
         <script src="<?php echo asset_url(); ?>js/factories/brands.js"></script>
         <script src="<?php echo asset_url(); ?>js/factories/epg.js"></script>
+        <script src="<?php echo asset_url(); ?>js/factories/user.js"></script>
+        <script src="<?php echo asset_url(); ?>js/factories/cache.js"></script>
 
         <!-- ANGULAR FILTERS -->
 

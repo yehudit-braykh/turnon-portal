@@ -2,7 +2,7 @@
 
 	if (file_exists("env.php")) require_once("env.php");
 	else die("<p>env.php file is missing.</p>");
-	
+
 	date_default_timezone_set('UTC');
 
 /*
@@ -16,7 +16,7 @@
 
 if (defined('ENVIRONMENT'))
 {
-  
+
 	switch (ENVIRONMENT)
 	{
 		case 'development':
@@ -189,3 +189,12 @@ require_once BASEPATH.'core/CodeIgniter.php';
 
 /* End of file index.php */
 /* Location: ./index.php */
+
+
+function debug(){
+	$args = func_get_args();
+	echo "<pre>";
+	print_r($args);
+	die();
+
+}

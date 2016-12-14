@@ -11,7 +11,7 @@ class Account_model extends CI_Model {
     public function login($user, $pass, $disabled = false) {
         return apiPost("user/login_portal", array("username" => $user, "password" => $pass, "disabled" => $disabled));
     }
-    
+
     public function login_by_fb($fb_id) {
         return apiPost("user/login_by_fb", array("fb_id" => $fb_id));
     }
@@ -24,8 +24,8 @@ class Account_model extends CI_Model {
         return apiPost("user/logout", array("token" => $token));
     }
 
-    public function register($email, $password, $first_name, $last_name, $country, $hash = NULL, $fb_id = NULL) {
-
+    public function register($email, $password, $first_name, $last_name, $country = NULL, $hash = NULL, $fb_id = NULL) {
+        // debug($email, $password, $first_name, $last_name);
         return apiPost("user/register", array("email" => $email,
           "password" => $password,
           "first_name" => $first_name,
@@ -44,12 +44,16 @@ class Account_model extends CI_Model {
         return apiPost("user/get_self_id", array('token' => $token));
     }
 
-    public function save_profile($token, $id, $data) {
+    public function save_profile($token, $id, $first_name, $last_name, $city, $country, $postal_code) {
         return apiPost("user/save_profile", array("token" => $token,
           "id" => $id,
-          "data" => $data));
+          "first_name" => $first_name,
+          "last_name" => $last_name,
+          "city" => $city,
+          "country" => $country,
+          "postal_code" => $postal_code));
     }
-    
+
     public function update_user($id, $data) {
         return apiPost("user/update_user", array("id" => $id, "data" => $data));
     }
@@ -88,7 +92,7 @@ class Account_model extends CI_Model {
             $mandrill->messages->send($message);
 
             $response = apiPost("user/save_password", array("email" => $email, "password" => $new_password['password']));
-          
+
             return true;
         }
         return false;
@@ -124,22 +128,12 @@ class Account_model extends CI_Model {
 
         return apiPost("user/activate_account", array("hash" => $hash, "email" => $email));
     }
-    
-    public function add_operation($token, $user_id, $operation){
-            return apiPost("user/add_operation", array("token" => $token, "user_id" => $user_id, "operation" => $operation));
-    }
 
-    public function subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $pi_security_code, $subscription_id) {
+    public function subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $pi_security_code, $subscription_id, $auto_renew) {
 
         return apiPost("commerce/subscription_checkout", array('token' => $token, 'nonce' => $nonce, 'first_name' => $first_name, 'last_name' => $last_name,
           'email' => $email, 'country' => $country, 'pi_month' => $pi_month, 'pi_year' => $pi_year, 'pi_type' => $pi_type, 'pi_number' => $pi_number,
-          'pi_security_code' => $pi_security_code, 'subscription_id' => $subscription_id));
-    }
-    
-    public function subscribe_by_stored_cc($token, $first_name, $last_name, $email, $country, $subscription_id) {
-
-        return apiPost("commerce/subscribe_by_stored_cc", array('token' => $token, 'first_name' => $first_name, 'last_name' => $last_name,
-          'email' => $email, 'country' => $country, 'subscription_id' => $subscription_id));
+          'pi_security_code' => $pi_security_code, 'subscription_id' => $subscription_id, 'auto_renew' => $auto_renew));
     }
 
     public function get_contract($id, $user_active = null) {
@@ -189,16 +183,6 @@ class Account_model extends CI_Model {
 
     public function get_profile_by_email($email) {
         return apiPost("user/get_profile_by_email", array('email' => $email));
-    }
-    
-    public function get_credit_card($credit_card_id){
-          return apiCall("commerce/get_credit_card", array('card_id' => $credit_card_id));
-    }
-    
-    public function save_credit_card($token, $id, $data) {
-        return apiPost("commerce/save_credit_card", array("token" => $token,
-          "id" => $id,
-          "data" => $data));
     }
 
 }
