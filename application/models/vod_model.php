@@ -7,13 +7,13 @@ class Vod_model extends CI_Model {
         $this->load->model('fastcache_model');
     }
 
-    public function get_items_by_genre($genre, $category = null, $featured = null, $media_type = null, $limit = null, $sort = null) {
+    public function get_items_by_category($category, $genre = null, $featured = null, $media_type = null, $limit = null, $sort = null) {
         $parameters = array();
 
-        if ($genre)
-            $parameters["genre"] = $genre;
         if ($category)
             $parameters["category"] = $category;
+        if ($genre)
+            $parameters["genre"] = $genre;
         if ($featured)
             $parameters["featured"] = $featured;
 
@@ -52,7 +52,7 @@ class Vod_model extends CI_Model {
             $parameters["featured"] = $featured;
 
         $parameters["media_type"] = 'clip|tv_show';
-        
+
          $parameters["limit"] = $limit;
         $parameters["sort"] = $sort;
 
@@ -66,7 +66,7 @@ class Vod_model extends CI_Model {
             $parameters["category"] = $category;
 
         $parameters["media_type"] = 'clip|tv_show';
-
+        // debug(apiCall("vod/get_media_by_vod_category", $parameters));
         return apiCall("vod/get_media_by_vod_category", $parameters);
     }
 
