@@ -6,13 +6,36 @@ class Account_model extends CI_Model {
 
     public function __construct() {
         $this->load->helper('uvod_api');
+        $this->load->library('HybridAuthLib');
     }
 
     public function login($user, $pass, $disabled = false) {
-        return apiPost("user/login_portal", array("username" => $user, "password" => $pass, "disabled" => $disabled));
+
+        $data = apiPost("user/login_portal", array("username" => $user, "password" => $pass, "disabled" => $disabled));
+        debug($data);
+		debug($data->content->token);
+		if($data->content->token){
+			$this->session->set_userdata('login_token', $data->content->token);
+        }
+        return $data;
+    }
+
+    public function link_facebook($user, $pass) {
+
+        $data = apiPost("user/login_portal", array("username" => $user, "password" => $pass, "disabled" => false));
+		//debug($data);
+		if($data->content->token){
+			$this->session->set_userdata('login_token', $data->content->token);
+            $fb_data  = $this->session->userdata('fb_profile');
+        //    debug($fb_data->identifier);
+            $ddata = $this->update_profile( $data->content->id , $fb_data->identifier, $fb_data );
+            debug($ddata);
+        }
+        return $data;
     }
 
     public function login_by_fb($fb_id) {
+        //debug($fb_id);
         return apiPost("user/login_by_fb", array("fb_id" => $fb_id));
     }
 
@@ -24,16 +47,20 @@ class Account_model extends CI_Model {
         return apiPost("user/logout", array("token" => $token));
     }
 
-    public function register($email, $password, $first_name, $last_name, $country = NULL, $hash = NULL, $fb_id = NULL) {
-        // debug($email, $password, $first_name, $last_name);
-        return apiPost("user/register", array("email" => $email,
+    public function register($email, $password, $first_name, $last_name, $country = NULL, $hash = NULL, $fb_id = NULL, $merge = false, $fb_data = NULL) {
+        // debug($email, $password, $first_name, $last_name, $fb_id, $merge);
+        $data = apiPost("user/register", array("email" => $email,
           "password" => $password,
           "first_name" => $first_name,
           "last_name" => $last_name,
           "country" => $country,
           "fb_id" => $fb_id,
-          "hash" => $hash)
+          "hash" => $hash,
+          "merge" => $merge,
+          "fb_data" => $fb_data)
         );
+    //    debug($data);
+        return $data;
     }
 
     public function get_profile($token, $id) {
@@ -44,19 +71,37 @@ class Account_model extends CI_Model {
         return apiPost("user/get_self_id", array('token' => $token));
     }
 
-    public function save_profile($token, $id, $first_name, $last_name, $city, $country, $postal_code) {
-        return apiPost("user/save_profile", array("token" => $token,
+    public function update_profile($token, $id, $fb_id = NULL, $fb_data = NULL, $first_name = NULL, $last_name = NULL, $address = NULL, $birthDay = NULL) {
+
+    //    debug($token, $id, $first_name, $last_name, $address, $birthDay, $fb_id, $fb_data);
+
+        $data = new stdClass();
+
+        if($first_name)
+            $data->first_name = $first_name;
+        if($last_name)
+            $data->last_name = $last_name;
+        if($address)
+            $data->city = $address;
+        if($birthDay)
+            $data->birthdate = $birthDay;
+        if($fb_id)
+            $data->fb_id = $fb_id;
+        if($fb_data)
+            $data->fb_data = $fb_data;
+
+        $ddata = new stdClass();
+
+        $ddata->token= $token;
+        $ddata->id= $id;
+        $ddata->data= $data;
+        debug('111',apiPost("user/update_user", $ddata));
+        return apiPost("user/update_profile", array("token" => $token,
           "id" => $id,
-          "first_name" => $first_name,
-          "last_name" => $last_name,
-          "city" => $city,
-          "country" => $country,
-          "postal_code" => $postal_code));
+          "data" => $data));
     }
 
-    public function update_user($id, $data) {
-        return apiPost("user/update_user", array("id" => $id, "data" => $data));
-    }
+
 
     public function save_merchant_info($user_token, $payment_token, $customer_id) {
         return apiPost("commerce/save_merchant_info", array("user_token" => $user_token,

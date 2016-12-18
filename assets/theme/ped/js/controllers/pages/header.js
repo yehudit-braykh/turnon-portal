@@ -1,10 +1,14 @@
 var he = null;
-peruDigitalApp.controller('headerController', function headerController ($scope, $location, AuthService, User) {
+peruDigitalApp.controller('headerController', function headerController ($scope, $rootScope, $location, AuthService, User) {
       he = $scope;
 
 
       $scope.go = function(path){
           $location.path(path);
+      }
+
+      $scope.socialLogin = function(){
+          $rootScope.socialLogin= true;
       }
 
       $scope.isLoggedIn= function(){
@@ -44,7 +48,7 @@ peruDigitalApp.controller('headerController', function headerController ($scope,
     });
 
     $scope.$on("auth-login-error", function (event, args){
-      $scope.loginError= args.title;
+      $scope.loginError= args.message;
     });
 
 

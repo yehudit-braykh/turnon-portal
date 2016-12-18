@@ -24,7 +24,7 @@
                             <div class="field-input" ng-if="!editing">
                                 {{user.firstName}}
                             </div>
-                            <input class="account-input" type="text" ng-model="user.first_name" ng-if="editing">
+                            <input class="account-input" type="text" ng-model="user.firstName" ng-if="editing">
                         </div>
                         <div class="single-field">
                             <div class="field-header">
@@ -44,7 +44,7 @@
                             <div class="field-input" ng-if="!editing">
                                 {{user.lastName}}
                             </div>
-                            <input class="account-input" type="text" ng-model="user.last_name" ng-if="editing">
+                            <input class="account-input" type="text" ng-model="user.lastName" ng-if="editing">
                         </div>
                         <div class="single-field">
                             <div class="field-header">
@@ -53,7 +53,7 @@
                             <div class="field-input" ng-if="!editing">
                                 {{user.birthDay | date: dd/MM/yyyy}}
                             </div>
-                            <input class="account-input" type="date" ng-model="user.birth"  ng-if="editing">
+                            <input class="account-input" type="date" ng-model="user.birthDay"  ng-if="editing">
                         </div>
                     </div>
                     <div class="col-xs-10 col-xs-offset-1">

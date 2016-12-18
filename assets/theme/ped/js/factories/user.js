@@ -6,7 +6,13 @@ peruDigitalApp.factory('AuthService', function ($http, $rootScope, $location, Us
 	scope.getCurrentUser = function (){
 		$http({method: 'GET', url: '/api/account/get_current'}).
 	    	success(function(data, status, headers, config) {
-	    		if (data.code == "403.1" || !data) $rootScope.$broadcast("auth-current-error");
+				if(data.code == "1"){
+					if($rootScope.socialLogin){
+						scope.activateLinkByFacebook = true;
+						$rootScope.$broadcast("auth-login-error", data);
+					}
+				}
+	    		else if (data.code == "403.1" || !data) $rootScope.$broadcast("auth-current-error");
 	    		else {
 					User.set(data);
 				}
@@ -15,6 +21,16 @@ peruDigitalApp.factory('AuthService', function ($http, $rootScope, $location, Us
 	    		$rootScope.$broadcast("auth-current-error");
 	    	});
 	};
+
+	scope.saveProfile = function(user){
+		$http({method: 'POST', url: '/api/account/save_profile', data:user}).
+    	success(function(data, status, headers, config) {
+		//	console.log('save profile success', data);
+    	}).
+    	error(function(data, status, headers, config) {
+    	//	console.log('save profile error', data);
+    	});
+	}
 
 
 
@@ -45,15 +61,34 @@ peruDigitalApp.factory('AuthService', function ($http, $rootScope, $location, Us
 	};
 
 	scope.login = function (email, pass) {
-		$http({method: 'POST', url: '/api/account/login_user', data: {email: email, password: pass}}).
-    	success(function(data, status, headers, config) {
-		//	console.log('LOGIN INFO',data);
-    		User.set(data.content);
-    	}).
-    	error(function(data, status, headers, config) {
-    		$rootScope.$broadcast("auth-login-error", data);
-    	});
+		if(scope.activateLinkByFacebook)
+		{
+			scope.linkFacebook(email,pass);
+		}
+		else {
+			$http({method: 'POST', url: '/api/account/login_user', data: {email: email, password: pass}}).
+	    	success(function(data, status, headers, config) {
+			//	console.log('LOGIN INFO',data);
+	    		User.set(data.content);
+	    	}).
+	    	error(function(data, status, headers, config) {
+	    		$rootScope.$broadcast("auth-login-error", data);
+	    	});
+		}
+
 	};
+
+	scope.linkFacebook = function(email,pass){
+		$http({method: 'POST', url: '/api/account/link_facebook', data: {email: email, password: pass}}).
+		success(function(data, status, headers, config) {
+		//	console.log('LOGIN INFO',data);
+			User.set(data.content);
+		}).
+		error(function(data, status, headers, config) {
+			$rootScope.$broadcast("auth-login-error", data);
+		});
+
+	}
 
 	scope.logout = function (){
 		$http({method: 'POST', url: '/api/account/logout'}).
@@ -77,11 +112,13 @@ peruDigitalApp.factory('AuthService', function ($http, $rootScope, $location, Us
 	}
 
 	scope.twitterLogin = function (){
+		scope.socialLogin= true;
 		window.open('/hauth/login/Twitter?ref='+location.hash.substring(3)+'&network=twitter', 'twitter','left=20,top=20,width=500,height=400,toolbar=1,resizable=0');
 		//statsService.login('twitter', 'start');
 	}
 
 	scope.instagramLogin = function (){
+		scope.socialLogin= true;
 		window.open('/hauth/login/Instagram', 'instagram','left=20,top=20,width=500,height=400,toolbar=1,resizable=0');
 		//statsService.login('instagram', 'start');
 	}

@@ -6,13 +6,14 @@ class HAuth extends CI_Controller {
 	{
 		header("Cache-Control: private");
 		$this->load->view('hauth/home');
+
 	}
 
 	public function login($provider){
-
 		error_reporting(7);
 		header("Cache-Control: private");
 		//$this->load->model('users');
+		$this->load->model('account_model');
 		//$this->load->library('Aauth');
 		//$this->load->library('aws_sdk');
 		$this->load->library('session');
@@ -44,10 +45,26 @@ class HAuth extends CI_Controller {
 
 				try{
 					$profile = $service->getUserProfile();
-					$this->session->set_userdata('profile', $profile);
+				//	debug($profile->identifier);
+				//	$this->session->set_userdata('profile', $profile);
+					$fbLogin = $this->account_model->login_by_fb($profile->identifier);
+					if($fbLogin->error){
+						$fbRegister = $this->account_model->register($profile->email, $this->randomPassword(), $profile->firstName, $profile->lastName, NULL, NULL, $profile->identifier, true, $profile);
 
-					// debug($shit);
+						if (strpos($fbRegister->message, "User already registered")){
+							$this->session->set_userdata('fb_profile', $profile);
+							throw new Exception("Please Login with your Email:".$profile->email.", to link to Facebook Account", 1);
+						/*	$this->account_model->update_user($profile->email, array("email" => $email,
+					          "first_name" => $profile->firstName,
+					          "last_name" =>  $profile->lastName,
+					          "fb_id" => $profile->identifier));*/
 
+						}else{
+							$userProfile = $this->account_model->login_by_fb($profile->identifier);
+							debug($userProfile);
+							$this->session->set_userdata('profile', $userProfile);
+						}
+					}
 				}
 				catch( Exception $e ){
 					// User not connected?
@@ -56,6 +73,12 @@ class HAuth extends CI_Controller {
 						$service->logout();
 						$service = $this->hybridauthlib->authenticate($provider);
 						$profile = $service->getUserProfile();
+					}
+					if( $e->getCode() == 1){
+						$error = new stdClass();
+						$error->code = $e->getCode();
+						$error->message = $e->getMessage();
+						$this->session->set_userdata('profile', $error);
 					}
 				}
 				//debug($service->getUserProfile());
@@ -85,6 +108,7 @@ class HAuth extends CI_Controller {
 						$service = $this->hybridauthlib->authenticate($provider);
 						$profile = $service->getUserProfile();
 					}
+
 				}
 
 
@@ -117,6 +141,19 @@ class HAuth extends CI_Controller {
 		require_once APPPATH.'/libraries/hybridauth/index.php';
 
 	}
+
+	function randomPassword() {
+	    $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#.';
+	    $pass = array(); //remember to declare $pass as an array
+	    $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+	    for ($i = 0; $i < 16; $i++) {
+	        $n = rand(0, $alphaLength);
+	        $pass[] = $alphabet[$n];
+	    }
+
+	    return implode($pass); //turn the array into a string
+	}
+
 }
 
 /* End of file hauth.php */

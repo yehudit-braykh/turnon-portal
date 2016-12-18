@@ -15,6 +15,13 @@ peruDigitalApp.controller('accountController', function accountController ($scop
       $scope.editing = false;
 
       $scope.enableEdit = function () {
+          if($scope.editing)
+            $scope.update_user();
           $scope.editing = !$scope.editing
+
+      }
+
+      $scope.update_user= function(){
+          AuthService.saveProfile($scope.user);
       }
   });

@@ -25,9 +25,19 @@ class Account extends REST_Controller{
 	}
 	function login_user_post(){
 		$data = $this->post();
-        // debug($data);
-		$this->response($this->account_model->simple_login($data['email'], $data['password']),200);
-
+		$this->response($this->account_model->login($data['email'], $data['password']), 200);
     }
+
+	function link_facebook_post(){
+		$data = $this->post();
+		$this->response($this->account_model->link_facebook($data['email'], $data['password']), 200);
+    }
+
+	function save_profile_post(){
+		$data = $this->post();
+	//	debug($data);
+		$token= $this->session->userdata('login_token');
+		$this->response($this->account_model->save_profile($this->session->userdata('login_token'), $data['email'], $data['firstName'], $data['lastName'], $data['birthDay']),200);
+	}
 
 }
