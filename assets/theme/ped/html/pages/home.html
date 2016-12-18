@@ -43,37 +43,7 @@
         <div class="row">
             <ped-Brands-Carousel data-model="brands" data-carouse-id="brands"></ped-Brands-Carousel>
         </div>
-        <div class="row epg">
-            <div class="col-xs-12 col-sm-3 col-md-2 epg-header pr" >EN VIVO
-            </div>
-            <div class="col-xs-12 col-sm-9 col-md-10 epg-content">
-                <div class="row epg-channel">
-                    <div class="channel-name ">{{channel1.name}}</div>
-                    <div class="channel-img hidden-xs " style="background-image:url({{channel1.icon_url}})"></div>
-                    <div class="channel-epg ">
-                        <div class="channel-program" ng-repeat="program in channel1.programs">
-                            {{program.start_time}}<br/>
-                            {{program.name}}<br/>
-                            {{program.category}}<br/>
-                            <div class="program-progress-container"><div class="progress" style="width:{{calcPercent(program.start_time,program.end_time)+'%'}}"></div></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row epg-channel">
-                    <div class="channel-name">{{channel2.name}}</div>
-                    <div class="channel-img hidden-xs" style="background-image:url({{channel2.icon_url}})"></div>
-                    <div class="channel-epg">
-                        <div class="channel-program" ng-repeat="program in channel2.programs">
-                            {{program.start_time}}<br/>
-                            {{program.name}}<br/>
-                            {{program.category}}<br/>
-                            <div class="program-progress-container"><div class="progress" style="width:{{calcPercent(program.start_time,program.end_time)+'%'}}"></div></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+        
         <div class="row">
             <div class="row-title container">NEW RELEASES</div>
             <div class="row-content carousel-blue">

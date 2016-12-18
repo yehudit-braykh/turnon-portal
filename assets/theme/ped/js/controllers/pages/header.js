@@ -1,7 +1,10 @@
 var he = null;
-peruDigitalApp.controller('headerController', function headerController ($scope, $rootScope, $location, AuthService, User) {
+peruDigitalApp.controller('headerController', function headerController ($scope, $rootScope, $location, AuthService, User, epgFactory) {
       he = $scope;
 
+      $scope.channel1= epgFactory.getEpgByChannelId(1);
+
+      $scope.channel2= epgFactory.getEpgByChannelId(2);
 
       $scope.go = function(path){
           $location.path(path);
@@ -70,6 +73,18 @@ peruDigitalApp.controller('headerController', function headerController ($scope,
     $scope.finished_login = function (data){
         AuthService.getCurrentUser();
     };
+
+    $scope.calcPercent = function(start_time,end_time){
+        var timeNow = (new Date()).getHours()*60+(new Date()).getMinutes();
+        var start= start_time.substr(0,2)*60+start_time.substr(3,2)*1;
+        var end= end_time.substr(0,2)*60+end_time.substr(3,2)*1;
+        if(start>=timeNow)
+            return 0;
+        if(end<=timeNow)
+            return 100;
+        return ((timeNow-start)/(end-start)*100);
+    }
+
 });
 
 var finished_login = function(data){

@@ -1,5 +1,5 @@
 var h = null;
-peruDigitalApp.controller('homeController', function homeController ($scope, $location, celebritiesFactory, brandsFactory, videosFactory, epgFactory) {
+peruDigitalApp.controller('homeController', function homeController ($scope, $location, celebritiesFactory, brandsFactory, videosFactory) {
       h = $scope;
 
       $scope.celebritiesPage={title:'Join Our Selebreties',
@@ -15,9 +15,6 @@ peruDigitalApp.controller('homeController', function homeController ($scope, $lo
 
     $scope.recommendedShows= videosFactory.getAllVideos();
 
-    $scope.channel1= epgFactory.getEpgByChannelId(1);
-
-    $scope.channel2= epgFactory.getEpgByChannelId(2);
 
     $scope.homeSlides=[{title:'Get The Boot A Birds Eye Look Into Mcse Boot Camps',
                         desc:'In today’s net-savvy world it has become common for any business to have a website which they use mostly for advertising their products and services.',
@@ -39,16 +36,6 @@ peruDigitalApp.controller('homeController', function homeController ($scope, $lo
                         cover_url:'assets/theme/ped/images/static-images/home-slider/slide2.png'}]
 
 
-    $scope.calcPercent = function(start_time,end_time){
-        var timeNow = (new Date()).getHours()*60+(new Date()).getMinutes();
-        var start= start_time.substr(0,2)*60+start_time.substr(3,2)*1;
-        var end= end_time.substr(0,2)*60+end_time.substr(3,2)*1;
-        if(start>=timeNow)
-            return 0;
-        if(end<=timeNow)
-            return 100;
-        return ((timeNow-start)/(end-start)*100);
-    }
 
 
 
