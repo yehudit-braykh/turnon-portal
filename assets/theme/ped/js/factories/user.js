@@ -22,13 +22,13 @@ peruDigitalApp.factory('AuthService', function ($http, $rootScope, $location, Us
 	    	});
 	};
 
-	scope.saveProfile = function(user){
-		$http({method: 'POST', url: '/api/account/save_profile', data:user}).
+	scope.updateProfile = function(user){
+		$http({method: 'POST', url: '/api/account/update_profile', data:user}).
     	success(function(data, status, headers, config) {
-		//	console.log('save profile success', data);
+			console.log('save profile success', data);
     	}).
     	error(function(data, status, headers, config) {
-    	//	console.log('save profile error', data);
+    		console.log('save profile error', data);
     	});
 	}
 
@@ -63,6 +63,7 @@ peruDigitalApp.factory('AuthService', function ($http, $rootScope, $location, Us
 	scope.login = function (email, pass) {
 		if(scope.activateLinkByFacebook)
 		{
+			console.log('111');
 			scope.linkFacebook(email,pass);
 		}
 		else {
@@ -141,22 +142,22 @@ peruDigitalApp.factory('AuthService', function ($http, $rootScope, $location, Us
 peruDigitalApp.service('User', function ($rootScope, $http, $location) {
 	u = this;
 	this.set = function (user) {
-	//	console.log("SETTING USER", user);
+		console.log("SETTING USER", user);
 		if(user.isException){
 			$rootScope.$broadcast("auth-login-error", user);
 		}
 		else{
-			this.email = user.userName;  // TODO: incorrect api data
 			this.email = user.email;
 			this.registerd_on = user.registerd_on;
 	        this.lastName = user.lastName;
 			this.firstName = user.firstName;
 	        this.gender = user.gender;
-			this.image = user.photoURL;
-	        this.birthDay = user.birthDay+'/'+ user.birthMonth +'/'+ user.birthYear;
+			this.image = user.avatar;
+	        this.birthdate = user.birthdate;
 			this.registerd_on = user.creationDate;
-			this.location = user.location;
-			this.id = user.userId;
+			this.city = user.city;
+			this.addressLine1 = user.addressLine1;
+			this.id = user._id;
 			this.following = user.following;
 			this.todos = user.todos;
 			this.about = user.about;

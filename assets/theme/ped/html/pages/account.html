@@ -7,7 +7,7 @@
     <div class="account-info container">
         <div class="row">
             <div class="col-sm-3 left-user">
-                <div class="user-image" style="background-image: url('{{user.image}}'); ">
+                <div class="user-image" style="background-image: url('{{user.avatar}}'); ">
 
                 </div>
                 <div class="edit-btn" ng-if="editing">
@@ -30,10 +30,10 @@
                             <div class="field-header">
                                 Email
                             </div>
-                            <div class="field-input" ng-if="!editing">
+                            <div class="field-input" >
                                 {{user.email}}
                             </div>
-                            <input class="account-input" type="text" ng-model="user.email" ng-if="editing">
+                        <!--    <input class="account-input" type="text" ng-model="user.email" ng-if="editing"> -->
                         </div>
                     </div>
                     <div class="col-sm-5">
@@ -51,9 +51,9 @@
                                 Date of Birth
                             </div>
                             <div class="field-input" ng-if="!editing">
-                                {{user.birthDay | date: dd/MM/yyyy}}
+                                {{user.birthdate | date: dd/MM/yyyy}}
                             </div>
-                            <input class="account-input" type="date" ng-model="user.birthDay"  ng-if="editing">
+                            <input class="account-input" type="date" ng-model="user.birthdate" value="{{user.birthdate}}"  ng-if="editing">
                         </div>
                     </div>
                     <div class="col-xs-10 col-xs-offset-1">
@@ -62,18 +62,18 @@
                                 Address
                             </div>
                             <div class="field-input" ng-if="!editing">
-                                {{user.address}}
+                                {{user.city}}
                             </div>
-                            <input class="account-input" type="text" ng-model="user.address" ng-if="editing">
+                            <input class="account-input" type="text" ng-model="user.city" ng-if="editing">
                         </div>
                         <div class="single-field">
                             <div class="field-header">
                                 Phone
                             </div>
                             <div class="field-input" ng-if="!editing">
-                                {{user.phone}}
+                                {{user.addressLine1}}
                             </div>
-                            <input class="account-input" type="text" ng-model="user.phone" ng-if="editing">
+                            <input class="account-input" type="text" ng-model="user.addressLine1" ng-if="editing">
                         </div>
                         <div class="edit-btn" ng-click="enableEdit()">
                             <span ng-if="!editing">EDIT</span>

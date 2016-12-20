@@ -48,22 +48,25 @@ class HAuth extends CI_Controller {
 				//	debug($profile->identifier);
 				//	$this->session->set_userdata('profile', $profile);
 					$fbLogin = $this->account_model->login_by_fb($profile->identifier);
-					if($fbLogin->error){
+					//debug($fbLogin->error == Null);
+					if(!$fbLogin->content){
 						$fbRegister = $this->account_model->register($profile->email, $this->randomPassword(), $profile->firstName, $profile->lastName, NULL, NULL, $profile->identifier, true, $profile);
 
 						if (strpos($fbRegister->message, "User already registered")){
 							$this->session->set_userdata('fb_profile', $profile);
 							throw new Exception("Please Login with your Email:".$profile->email.", to link to Facebook Account", 1);
-						/*	$this->account_model->update_user($profile->email, array("email" => $email,
-					          "first_name" => $profile->firstName,
-					          "last_name" =>  $profile->lastName,
-					          "fb_id" => $profile->identifier));*/
-
 						}else{
-							$userProfile = $this->account_model->login_by_fb($profile->identifier);
-							debug($userProfile);
-							$this->session->set_userdata('profile', $userProfile);
+							$fb_login= $this->account_model->login_by_fb($profile->content->identifier);
+							$this->session->set_userdata('login_token', $data->content->token);
+			                $user_data = $this->account_model->get_profile($fb_login->content->token, $fb_login->content->id);
+			                $this->session->set_userdata('profile', $user_data->content);
 						}
+					}else {
+					//	debug($fbLogin->content->token);
+						$user_data = $this->account_model->get_profile($fbLogin->content->token, $fbLogin->content->id);
+						$this->session->set_userdata('login_token', $fbLogin->content->token);
+						$this->session->set_userdata('profile', $user_data->content);
+					//	debug($this->session->userdata('profile'));
 					}
 				}
 				catch( Exception $e ){

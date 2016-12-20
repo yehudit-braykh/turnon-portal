@@ -14,9 +14,9 @@ class Account extends REST_Controller{
 		$this->response($this->account_model->register($data['email'], $data['password'], $data['first_name'],$data['last_name'], $data['country']),200);
     }
 	function get_current_get(){
-		$sessionData = $this->session->userdata('profile');
-		// debug($sessionData);
-		$this->response($sessionData, 200);
+		$profile= $this->session->userdata('profile');
+		// debug($profile);
+		$this->response($profile, 200);
 	}
 	function logout_post(){
 		$data = $this->post();
@@ -24,6 +24,7 @@ class Account extends REST_Controller{
 		$this->response($this->account_model->logout($data['token']),200);
 	}
 	function login_user_post(){
+	//	debug('111');
 		$data = $this->post();
 		$this->response($this->account_model->login($data['email'], $data['password']), 200);
     }
@@ -33,11 +34,11 @@ class Account extends REST_Controller{
 		$this->response($this->account_model->link_facebook($data['email'], $data['password']), 200);
     }
 
-	function save_profile_post(){
+	function update_profile_post(){
 		$data = $this->post();
+		$profile= $this->session->userdata('profile');
 	//	debug($data);
-		$token= $this->session->userdata('login_token');
-		$this->response($this->account_model->save_profile($this->session->userdata('login_token'), $data['email'], $data['firstName'], $data['lastName'], $data['birthDay']),200);
+		$this->response($this->account_model->update_profile($profile->_id,Null,Null, $data['firstName'], $data['lastName'], Null, $data['birthdate']),200);
 	}
 
 }

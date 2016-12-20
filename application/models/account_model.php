@@ -12,26 +12,33 @@ class Account_model extends CI_Model {
     public function login($user, $pass, $disabled = false) {
 
         $data = apiPost("user/login_portal", array("username" => $user, "password" => $pass, "disabled" => $disabled));
-        debug($data);
-		debug($data->content->token);
 		if($data->content->token){
 			$this->session->set_userdata('login_token', $data->content->token);
+            $user_data = $this->get_profile($data->content->token, $data->content->id);
+            $this->session->set_userdata('profile', $user_data->content);
+
         }
-        return $data;
+        return $user_data;
     }
 
     public function link_facebook($user, $pass) {
 
-        $data = apiPost("user/login_portal", array("username" => $user, "password" => $pass, "disabled" => false));
+        $loging_data = apiPost("user/login_portal", array("username" => $user, "password" => $pass, "disabled" => false));
 		//debug($data);
-		if($data->content->token){
-			$this->session->set_userdata('login_token', $data->content->token);
+		if($loging_data->content->token){
+			$this->session->set_userdata('login_token', $loging_data->content->token);
             $fb_data  = $this->session->userdata('fb_profile');
         //    debug($fb_data->identifier);
-            $ddata = $this->update_profile( $data->content->id , $fb_data->identifier, $fb_data );
-            debug($ddata);
+            $updated_data = $this->update_user( $loging_data->content->id , $fb_data->identifier, $fb_data );
+        //    debug($updated_data);
+            if($updated_data){
+                $fb_login= $this->login_by_fb($fb_data->identifier);
+                $user_data = $this->get_profile($fb_login->content->token, $fb_login->content->id);
+                $this->session->set_userdata('profile', $user_data);
+                //debug("fblogin", $user_data);
+            }
         }
-        return $data;
+        return $user_data;
     }
 
     public function login_by_fb($fb_id) {
@@ -71,32 +78,52 @@ class Account_model extends CI_Model {
         return apiPost("user/get_self_id", array('token' => $token));
     }
 
-    public function update_profile($token, $id, $fb_id = NULL, $fb_data = NULL, $first_name = NULL, $last_name = NULL, $address = NULL, $birthDay = NULL) {
+    public function update_profile( $id, $fb_id = NULL, $fb_data = NULL, $first_name = NULL, $last_name = NULL, $address = NULL, $birthDay = NULL) {
 
-    //    debug($token, $id, $first_name, $last_name, $address, $birthDay, $fb_id, $fb_data);
+      // debug( $id, $first_name, $last_name, $address, $birthDay, $fb_id, $fb_data);
 
         $data = new stdClass();
 
         if($first_name)
-            $data->first_name = $first_name;
+            $data->firstName = $first_name;
         if($last_name)
-            $data->last_name = $last_name;
+            $data->lastName = $last_name;
         if($address)
             $data->city = $address;
         if($birthDay)
             $data->birthdate = $birthDay;
         if($fb_id)
-            $data->fb_id = $fb_id;
+            $data->fbId = $fb_id;
         if($fb_data)
-            $data->fb_data = $fb_data;
+            $data->fbData = $fb_data;
 
-        $ddata = new stdClass();
+        //    debug($this->session->userdata('login_token'));
+        return apiPost("user/update_profile", array("token" => $this->session->userdata('login_token'),
+          "id" => $id,
+          "data" => $data));
+    }
 
-        $ddata->token= $token;
-        $ddata->id= $id;
-        $ddata->data= $data;
-        debug('111',apiPost("user/update_user", $ddata));
-        return apiPost("user/update_profile", array("token" => $token,
+    public function update_user( $id, $fb_id = NULL, $fb_data = NULL, $first_name = NULL, $last_name = NULL, $address = NULL, $birthDay = NULL) {
+
+      // debug( $id, $first_name, $last_name, $address, $birthDay, $fb_id, $fb_data);
+
+        $data = new stdClass();
+
+        if($first_name)
+            $data->firstName = $first_name;
+        if($last_name)
+            $data->lastName = $last_name;
+        if($address)
+            $data->city = $address;
+        if($birthDay)
+            $data->birthdate = $birthDay;
+        if($fb_id)
+            $data->fbId = $fb_id;
+        if($fb_data)
+            $data->fbData = $fb_data;
+
+        //    debug($data);
+        return apiPost("user/update_user", array("token" => $this->session->userdata('login_token'),
           "id" => $id,
           "data" => $data));
     }

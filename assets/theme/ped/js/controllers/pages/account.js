@@ -22,6 +22,6 @@ peruDigitalApp.controller('accountController', function accountController ($scop
       }
 
       $scope.update_user= function(){
-          AuthService.saveProfile($scope.user);
+          AuthService.updateProfile($scope.user);
       }
   });
