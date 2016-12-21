@@ -67,12 +67,12 @@
                   <div class="logged-in">
                       <div class="dropdown ib">
                           <div id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="ib dropdown-toggle user-section">
-                              <img class="user-img" src="{{user.image}}" width=40 height=40 style="cursor: pointer;border-radius: 50px;" />
+                              <img class="user-img" src="{{user.avatar?user.avatar:'/assets/theme/ped/images/profile.png'}}" width=40 height=40 style="cursor: pointer;border-radius: 50px;" />
                               {{user.firstName}} {{user.lastName}}
                               <span class="caret"></span>
                           </div>
                           <ul class="dropdown-menu account-drop" aria-labelledby="dropdownMenu1">
-                            <li><a ng-click="go('/account')">My Account</a></li>
+                            <li><a ng-click="go('/account/overview')">My Account</a></li>
                             <li><a ng-click="go('/account/history')">My History</a></li>
                             <li><a ng-click="go('/account/settings')">My Settings</a></li>
                             <li role="separator" class="divider"></li>
@@ -93,7 +93,7 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-    <div class="row epg">
+    <div class="row epg" ng-show="isHome()">
         <div class="col-xs-12 col-sm-3 col-md-2 epg-header pr" >EN VIVO
         </div>
         <div class="col-xs-12 col-sm-9 col-md-10 epg-content">

@@ -1,8 +1,24 @@
 .account-page{
     .account-header {
-        font-size: 24px;
-        padding: 20px 0px;
+        font-size: 28px;
         color: white;
+        background-color: black;
+        padding: 15px 0;
+
+        .navigation{
+            margin-top: 10px;
+            .nav-item{
+                display: inline;
+                margin-right: 60px;
+                padding: 17px 0px;
+                font-size: 20px;
+
+
+                &.active, &:hover{
+                    border-bottom: 4px solid white;
+                }
+            }
+        }
     }
     .account-info {
         margin-top: 50px;
@@ -50,6 +66,7 @@
                     border: 1px solid #00aacf;
                     font-size: 16px;
                     padding: 10px;
+                    height: 42px;
                 }
             }
             .edit-btn {
@@ -63,6 +80,57 @@
                 height: 50px;
                 background-color: #33acd1;
                 border-radius: 4px;
+            }
+        }
+
+        .plans{
+            .plan{
+                text-align: center;
+                color: #efefef;
+                background-color: rgba(0,0,0,0.3);
+                border-radius: 2px;
+                .plan-title{
+                    font-size: 28px;
+                    line-height: 30px;
+                    padding: 15px 0;
+
+                }
+
+                .plan-price{
+                    font-size: 64px;
+                    color: #0096c1;
+                    padding: 15px 0px;
+                }
+
+                .plan-duration{
+                    font-size: 16px;
+                    padding: 15px 0;
+                }
+
+                .buy{
+                    width: 100%;
+                    text-align: center;
+                    padding: 14px 0;
+                    font-size: 20px;
+                    background-color: #0096c1;
+                    border: 0;
+                    outline: 0;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .details{
+            text-align: center;
+            margin: 40px 0;
+            width: 100%;
+            font-size: 28px;
+            background-color: rgba(0, 150, 193, 0.44);
+            color: white;
+
+            & > div{
+                line-height: 80px;
+                border-bottom: 1px solid #00353f;
             }
         }
     }

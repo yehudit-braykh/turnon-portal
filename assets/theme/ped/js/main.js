@@ -27,7 +27,7 @@ peruDigitalApp.config(function($routeProvider, $locationProvider){
         templateUrl: '/assets/theme/ped/html/pages/video.html',
         controller: 'videoController'
     })
-    .when('/account', {
+    .when('/account/:sectionName', {
         templateUrl: '/assets/theme/ped/html/pages/account.html',
         controller: 'accountController'
     })

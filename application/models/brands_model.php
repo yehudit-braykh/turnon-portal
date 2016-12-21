@@ -46,7 +46,7 @@ class Brands_model extends CI_Model {
     }
 	function get_all_brands () {
             $parameters = array();
-            $data = apiCall("brand/list", $parameters);
+            $data = apiCall("brand/list", array("size"=> '9999', 'page'=> '0'));
             $res = $data->content->entries;
             $brands = array();
             foreach ($res as $row) {

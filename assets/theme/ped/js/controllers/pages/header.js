@@ -1,6 +1,12 @@
 var he = null;
-peruDigitalApp.controller('headerController', function headerController ($scope, $rootScope, $location, AuthService, User, epgFactory) {
+peruDigitalApp.controller('headerController', function headerController ($scope, $rootScope, $location, AuthService, User, epgFactory, $routeParams) {
       he = $scope;
+
+      $scope.isHome = function(){
+        return $location.path()==="/";
+      }
+
+      console.log($scope.isHome());
 
       $scope.channel1= epgFactory.getEpgByChannelId(1);
 

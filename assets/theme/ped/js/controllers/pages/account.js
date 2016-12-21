@@ -1,7 +1,9 @@
 var acc = null;
-peruDigitalApp.controller('accountController', function accountController ($scope, AuthService, User, $location) {
+peruDigitalApp.controller('accountController', function accountController ($scope, AuthService, User, $location, $routeParams) {
       acc = $scope;
 
+      $scope.shownView = $routeParams.sectionName;
+      console.log($scope.shownView);
       $scope.isLoggedIn= function(){
           return AuthService.isLoggedIn();
       }

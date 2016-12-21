@@ -34,7 +34,7 @@ class Account_model extends CI_Model {
             if($updated_data){
                 $fb_login= $this->login_by_fb($fb_data->identifier);
                 $user_data = $this->get_profile($fb_login->content->token, $fb_login->content->id);
-                $this->session->set_userdata('profile', $user_data);
+                $this->session->set_userdata('profile', $user_data->content);
                 //debug("fblogin", $user_data);
             }
         }
@@ -42,13 +42,10 @@ class Account_model extends CI_Model {
     }
 
     public function login_by_fb($fb_id) {
-        //debug($fb_id);
         return apiPost("user/login_by_fb", array("fb_id" => $fb_id));
     }
 
-    public function simple_login($user, $pass) {
-        return apiPost("user/login", array("username" => $user, "password" => $pass));
-    }
+
 
     public function logout($token) {
         return apiPost("user/logout", array("token" => $token));
@@ -78,26 +75,8 @@ class Account_model extends CI_Model {
         return apiPost("user/get_self_id", array('token' => $token));
     }
 
-    public function update_profile( $id, $fb_id = NULL, $fb_data = NULL, $first_name = NULL, $last_name = NULL, $address = NULL, $birthDay = NULL) {
+    public function update_profile( $id, $data) {
 
-      // debug( $id, $first_name, $last_name, $address, $birthDay, $fb_id, $fb_data);
-
-        $data = new stdClass();
-
-        if($first_name)
-            $data->firstName = $first_name;
-        if($last_name)
-            $data->lastName = $last_name;
-        if($address)
-            $data->city = $address;
-        if($birthDay)
-            $data->birthdate = $birthDay;
-        if($fb_id)
-            $data->fbId = $fb_id;
-        if($fb_data)
-            $data->fbData = $fb_data;
-
-        //    debug($this->session->userdata('login_token'));
         return apiPost("user/update_profile", array("token" => $this->session->userdata('login_token'),
           "id" => $id,
           "data" => $data));
