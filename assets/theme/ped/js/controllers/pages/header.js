@@ -1,5 +1,5 @@
 var he = null;
-peruDigitalApp.controller('headerController', function headerController ($scope, $rootScope, $location, AuthService, User, epgFactory, $routeParams) {
+peruDigitalApp.controller('headerController', function headerController ($scope, $rootScope, $location, AuthService, User, videoFactory,categoriesFactory, $routeParams) {
       he = $scope;
 
       $scope.isHome = function(){
@@ -33,6 +33,7 @@ peruDigitalApp.controller('headerController', function headerController ($scope,
           first_name:'',
           last_name:''
     };
+<<<<<<< 4b3031b986a7972c2fd371c2c5651d6068ef8719
     $scope.logout = function (){
         AuthService.logout();
         $location.url('/');
@@ -51,6 +52,23 @@ peruDigitalApp.controller('headerController', function headerController ($scope,
             $scope.registerError="Password does not match confirm password!";
         }else{
             AuthService.register($scope.userRegister).then(function(data) {
+=======
+        $scope.logout = function (){
+            AuthService.logout();
+            $location.url('/');
+        }
+
+
+        $scope.registerUser = function () {
+            $scope.registerError=null;
+            //   $scope.userRegister.last_name = 'Rozo';
+            //   $scope.userRegister.first_name = 'Mark';
+            // console.log('here!!!', $scope.user );
+            if($scope.userRegister.password != $scope.userRegister.confirmPassword){
+                $scope.registerError="Password does not match confirm password!";
+            }else{
+                AuthService.register($scope.userRegister).then(function(data) {
+>>>>>>> 2f3c36328c0a5e4e7a63f478b84aa4506b10c79a
             });
         }
     };
