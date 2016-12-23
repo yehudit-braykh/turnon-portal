@@ -7,13 +7,22 @@ peruDigitalApp.controller('celebritiesController', function celebritiesControlle
                            While NASA has had many ups and downs, the launch and continued operation of the Hubble space telescope probably ranks next to the moon.',
                           cover_url:'/assets/theme/ped/images/static-images/bgs/celebrities.png'};
 
-    $scope.celebrities=celebritiesFactory.getAllCelebrities();
+    celebritiesFactory.getAllCelebrities().then(function(data){
+        $scope.celebrities= data.data;
 
-    $scope.brands= brandsFactory.getAllBrands();
+    });
 
-    $scope.newReleaseVids= videosFactory.getAllVideos();
+    brandsFactory.getAllBrands().then(function(data){
+        $scope.brands= data.data;
+    });
 
-    $scope.recommendedShows= videosFactory.getAllVideos();
+    videoFactory.getRecommendedVideos().then(function(data){
+        $scope.recommendedShows= data.data;
+    });
+
+    videoFactory.getNewReleasesVideos().then(function(data){
+        $scope.newReleaseVids= data.data;
+    });
 
 
     $scope.go = function(path){

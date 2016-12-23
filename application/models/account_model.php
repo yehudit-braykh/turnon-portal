@@ -7,18 +7,21 @@ class Account_model extends CI_Model {
     public function __construct() {
         $this->load->helper('uvod_api');
         $this->load->library('HybridAuthLib');
+        $this->load->library('session');
     }
 
     public function login($user, $pass, $disabled = false) {
 
         $data = apiPost("user/login_portal", array("username" => $user, "password" => $pass, "disabled" => $disabled));
-		if($data->content->token){
+		if($data->content){
 			$this->session->set_userdata('login_token', $data->content->token);
             $user_data = $this->get_profile($data->content->token, $data->content->id);
             $this->session->set_userdata('profile', $user_data->content);
+            return $user_data;
 
         }
-        return $user_data;
+        return $data;
+
     }
 
     public function link_facebook($user, $pass) {
@@ -121,29 +124,29 @@ class Account_model extends CI_Model {
 
         if (isset($users->content->entryCount) && (intval($users->content->entryCount) > 0)) {
 
-            $profile = apiCall("user/get_single_profile", array("email" => $email, 'id' => $users->content->entries[0]->_id));
-
+        //    $profile = apiCall("user/get_single_profile", array("email" => $email, 'id' => $users->content->entries[0]->_id));
+            $profile = $users->content->entries[0];
             $mandrill = new Mandrill('lwISZr2Z9D-IoPggcDSaOQ');
             $new_password = array();
             $new_password['password'] = rand(10000000, getrandmax());
-            if (isset($profile->content->displayName)) {
-                $new_password['name'] = $profile->content->displayName;
+            if (isset($profile->displayName)) {
+                $new_password['name'] = $profile->fullName;
             } else {
                 $new_password['name'] = '';
             }
-            $to = $_POST["email"];
+            $to = $email;
             $message = new stdClass();
-            $message->html = $this->load->view(views_url() . 'templates/email_forgot_password', $new_password, TRUE);
+            $message->html = $this->load->view( 'templates/email_forgot_password', $new_password, TRUE);
             $message->subject = "Password Reset";
-            $message->from_email = "NO_RESPONSE@1spot.com";
-            $message->from_name = "1Spot Media Portal";
+            $message->from_email = "noreply@peru-digital.com";
+            $message->from_name = "Peru Digital Portal";
             $message->to = array(array('email' => $to));
 
             $message->track_opens = true;
             $mandrill->messages->send($message);
 
             $response = apiPost("user/save_password", array("email" => $email, "password" => $new_password['password']));
-
+        //    debug($response);
             return true;
         }
         return false;
@@ -235,6 +238,18 @@ class Account_model extends CI_Model {
     public function get_profile_by_email($email) {
         return apiPost("user/get_profile_by_email", array('email' => $email));
     }
+
+    function subscripe($data){
+		$data = array();
+        $profile= $this->session->userdata('profile');
+        $data['token'] = $this->session->userdata('login-token');
+
+        $data['first_name'] = $profile->firstName;
+        $data['last_name'] = $profile->lastName;
+        $data['email'] = $profile->email;
+
+        return apiPost("commerce/subscription_checkout", $data);
+	}
 
 }
 

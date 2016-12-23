@@ -43,14 +43,21 @@ peruDigitalApp.factory("celebritiesFactory", function($http, $q) {
                          While NASA has had many ups and downs, the launch and continued operation of the Hubble space telescope probably ranks next to the moon.',
                          cover_url:'/assets/theme/ped/images/static-images/bgs/celebrity.png'}];
     return {
-        getAllCelebrities: function() {
-             return allCelebrities;
-         },
+        getAllCelebrities: function(){
+            return $http({method: 'GET', url: '/api/celebrity/get_all_celebrities'}).
+                       success(function(data, status, headers, config) {
+                           return data;
+                       }).
+                       error(function(data, status, headers, config) {
+                       });
+        },
          getCelebrityByName: function(celebrityName){
-             for(var celeb in allCelebrities){
-                 if (allCelebrities[celeb].name==celebrityName)
-                    return allCelebrities[celeb];
-             }
+             return $http({method: 'GET', url: '/api/celebrity/get_celebrity_by_name/?celebrity='+celebrityName}).
+                        success(function(data, status, headers, config) {
+                            return data;
+                        }).
+                        error(function(data, status, headers, config) {
+                        });
          }
     }
 });

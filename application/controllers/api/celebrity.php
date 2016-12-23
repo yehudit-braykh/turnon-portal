@@ -23,7 +23,7 @@ class Celebrity extends REST_Controller{
 
 	function get_all_celebrities_get(){
         // debug($this->celebrity_model->get_all_celebrities()->content);
-		$this->response($this->celebrity_model->get_all_celebrities()->content,200);
+		$this->response($this->celebrity_model->get_all_celebrities(),200);
     }
 
     function get_celeb_brands_get(){

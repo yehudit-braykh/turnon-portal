@@ -41,19 +41,17 @@ class Brands_model extends CI_Model {
         return apiCall("brand/get_related_cellebs", $parameters);
     }
 
-    public function get_list_brands(){
-        return apiCall("brand/list");
-    }
+
 	function get_all_brands () {
             $parameters = array();
             $data = apiCall("brand/list", array("size"=> '9999', 'page'=> '0'));
+
             $res = $data->content->entries;
             $brands = array();
             foreach ($res as $row) {
 	            $brand = new stdclass();
 	            $brand->id = $row->_id;
 	            $brand->title = $row->title;
-				$brand->is_charity = $row->is_charity;
 	            $brand->images = array();
 	            foreach ($row->content as $brand_content) {
 	            	$image = new stdclass();
@@ -63,117 +61,8 @@ class Brands_model extends CI_Model {
 	            }
 	             $brands[$brand->id] = $brand;
             }
-            // debug($brands);
             return $brands;
     }
-	function get_brands_obj () {
-		$parameters = array();
-		$data = apiCall("brand/list", $parameters);
-		$res = $data->content->entries;
-		// debug($res);
-		$brands = array();
-		foreach ($res as $row) {
-			if ($row->is_charity) { // skip even members
-					continue;
-				}
-			$brand = new stdclass();
-			$brand->id = $row->_id;
-			$brand->title = $row->title;
-
-			$brand->images = array();
-			foreach ($row->content as $brand_content) {
-				$image = new stdclass();
-				$image->name = $brand_content->assetTypes[0];
-				$image->url = $brand_content->downloadUrl;
-				$brand->images[$image->name] = $image;
-			}
-			 $brands[$brand->id] = $brand;
-		}
-		// debug($brands);
-		return $brands;
-	}
-	function get_brands_array () {
-			$parameters = array();
-			$data = apiCall("brand/list", $parameters);
-			$res = $data->content->entries;
-			// debug($res);
-			$brands = array();
-			foreach ($res as $row) {
-				if ($row->is_charity) { // skip even members
-						continue;
-					}
-				$brand = new stdclass();
-				$brand->id = $row->_id;
-				$brand->title = $row->title;
-
-				$brand->images = array();
-				foreach ($row->content as $brand_content) {
-					$image = new stdclass();
-					$image->name = $brand_content->assetTypes[0];
-					$image->url = $brand_content->downloadUrl;
-					$brand->images[$image->name] = $image;
-				}
-				 array_push($brands,$brand);
-			}
-			// debug($brands);
-			return $brands;
-	}
-	function get_all_charities () {
-            $parameters = array();
-            $data = apiCall("brand/list", $parameters);
-            $res = $data->content->entries;
-			// debug($res);
-            $brands = array();
-            foreach ($res as $row) {
-				if (!$row->is_charity) { // skip charities
-	        			continue;
-	    			}
-				// $brand->charity =;
-	            // debug($row);
-	            $brand = new stdclass();
-	            $brand->id = $row->_id;
-	            $brand->title = $row->title;
-
-	            $brand->images = array();
-	            foreach ($row->content as $brand_content) {
-	            	$image = new stdclass();
-	              	$image->name = $brand_content->assetTypes[0];
-	              	$image->url = $brand_content->downloadUrl;
-	              	$brand->images[$image->name] = $image;
-	            }
-	             $brands[$brand->id] = $brand;
-            }
-
-            // debug($brands);
-            return $brands;
-    }
-	function get_all_charities_array () {
-			$parameters = array();
-			$data = apiCall("brand/list", $parameters);
-			$res = $data->content->entries;
-			// debug($res);
-			$brands = array();
-			foreach ($res as $row) {
-				if (!$row->is_charity) { // skip regular brands
-						continue;
-					}
-				$brand = new stdclass();
-				$brand->id = $row->_id;
-				$brand->title = $row->title;
-
-				$brand->images = array();
-				foreach ($row->content as $brand_content) {
-					$image = new stdclass();
-					$image->name = $brand_content->assetTypes[0];
-					$image->url = $brand_content->downloadUrl;
-					$brand->images[$image->name] = $image;
-				}
-				 array_push($brands,$brand);
-			}
-			// debug($brands);
-			return $brands;
-
-	}
 
 	function rows($rows){
         //debug($rows);

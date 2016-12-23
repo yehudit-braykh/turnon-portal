@@ -51,6 +51,7 @@ peruDigitalApp.factory('AuthService', function ($http, $rootScope, $location, Us
 			}else{
 	    		$rootScope.$broadcast("auth-register-success");
 	    		deferred.resolve(data);
+				scope.login(args.email, args.password);
 			}
     	}).
     	error(function(data, status, headers, config) {

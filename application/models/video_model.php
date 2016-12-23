@@ -5,178 +5,74 @@ class Video_model extends CI_Model {
 		$this->load->helper('uvod_api');
 	}
 
-	public function get_brand($id){
+	public function get_epg($channel){
 
 		$parameters= array();
-		$paramters["id"] = $id;
-		//debug(apiCall("brand/get_item", $parameters));
-		return apiCall("brand/get_item", $parameters);
+		$parameters["channel"] = $channel;
+
+		return apiCall("live/list_epg", $parameters);
 	}
 
-    public function get_brand_offers($id){
+	public function get_video_by_id($id){
+		$parameters = array();
+		$parameters['id'] = $id;
+
+		$data = apiCall("vod/get_item", $parameters);
+
+		$videos = $this->rows($data->content->entries);
+	//	debug($videos);
+		return $videos[0];
+	}
+
+    public function get_videos_by_featured($cat){
 
 		$parameters = array();
-		if($id)
-			$parameters["id"]= $id;
-		//debug(apiCall("brand/get_related_offers", $parameters));
-        return apiCall("brand/get_related_offers", $parameters);
-    }
-    public function get_brand_videos($id){
+		$parameters["category"] = $cat;
+
+		$data =   apiCall("vod/get_items_by_featured_category", $parameters);
+
+		$videos = $this->rows($data->content->entries);
+		return $videos;
+	}
+
+	public function get_videos_by_category($cat){
+
 		$parameters = array();
-		if($id)
-			$parameters["id"]= $id;
-        $data= apiCall("brand/get_related_videos", $parameters);
+		$parameters["category"] = $cat;
 
-
-       	$videos = $this->rows($data->content->entries);
+		$data =  apiCall("vod/get_items_by_category", $parameters);
+		$videos = $this->rows($data->content->entries);
 
 		return $videos;
-    }
-
-	public function get_brand_celebs($id){
-		$parameters = array();
-		if($id)
-			$parameters["id"]= $id;
-		//debug($id);
-        return apiCall("brand/get_related_cellebs", $parameters);
-    }
-
-    public function get_list_brands(){
-        return apiCall("brand/list");
-    }
-	function get_all_brands () {
-            $parameters = array();
-            $data = apiCall("brand/list", array("size"=> '9999', 'page'=> '0'));
-            $res = $data->content->entries;
-            $brands = array();
-            foreach ($res as $row) {
-	            $brand = new stdclass();
-	            $brand->id = $row->_id;
-	            $brand->title = $row->title;
-				$brand->is_charity = $row->is_charity;
-	            $brand->images = array();
-	            foreach ($row->content as $brand_content) {
-	            	$image = new stdclass();
-	              	$image->name = $brand_content->assetTypes[0];
-	              	$image->url = $brand_content->downloadUrl;
-	              	$brand->images[$image->name] = $image;
-	            }
-	             $brands[$brand->id] = $brand;
-            }
-            // debug($brands);
-            return $brands;
-    }
-	function get_brands_obj () {
-		$parameters = array();
-		$data = apiCall("brand/list", $parameters);
-		$res = $data->content->entries;
-		// debug($res);
-		$brands = array();
-		foreach ($res as $row) {
-			if ($row->is_charity) { // skip even members
-					continue;
-				}
-			$brand = new stdclass();
-			$brand->id = $row->_id;
-			$brand->title = $row->title;
-
-			$brand->images = array();
-			foreach ($row->content as $brand_content) {
-				$image = new stdclass();
-				$image->name = $brand_content->assetTypes[0];
-				$image->url = $brand_content->downloadUrl;
-				$brand->images[$image->name] = $image;
-			}
-			 $brands[$brand->id] = $brand;
-		}
-		// debug($brands);
-		return $brands;
 	}
-	function get_brands_array () {
-			$parameters = array();
-			$data = apiCall("brand/list", $parameters);
-			$res = $data->content->entries;
-			// debug($res);
-			$brands = array();
-			foreach ($res as $row) {
-				if ($row->is_charity) { // skip even members
-						continue;
-					}
-				$brand = new stdclass();
-				$brand->id = $row->_id;
-				$brand->title = $row->title;
 
-				$brand->images = array();
-				foreach ($row->content as $brand_content) {
-					$image = new stdclass();
-					$image->name = $brand_content->assetTypes[0];
-					$image->url = $brand_content->downloadUrl;
-					$brand->images[$image->name] = $image;
-				}
-				 array_push($brands,$brand);
-			}
-			// debug($brands);
-			return $brands;
+    public function search($txt){
+
+		$parameters = array();
+		$parameters["keyword"] = $txt;
+
+		return apiCall("vod/search", $parameters);
 	}
-	function get_all_charities () {
-            $parameters = array();
-            $data = apiCall("brand/list", $parameters);
-            $res = $data->content->entries;
-			// debug($res);
-            $brands = array();
-            foreach ($res as $row) {
-				if (!$row->is_charity) { // skip charities
-	        			continue;
-	    			}
-				// $brand->charity =;
-	            // debug($row);
-	            $brand = new stdclass();
-	            $brand->id = $row->_id;
-	            $brand->title = $row->title;
 
-	            $brand->images = array();
-	            foreach ($row->content as $brand_content) {
-	            	$image = new stdclass();
-	              	$image->name = $brand_content->assetTypes[0];
-	              	$image->url = $brand_content->downloadUrl;
-	              	$brand->images[$image->name] = $image;
-	            }
-	             $brands[$brand->id] = $brand;
-            }
+	public function get_all_series(){
 
-            // debug($brands);
-            return $brands;
-    }
-	function get_all_charities_array () {
-			$parameters = array();
-			$data = apiCall("brand/list", $parameters);
-			$res = $data->content->entries;
-			// debug($res);
-			$brands = array();
-			foreach ($res as $row) {
-				if (!$row->is_charity) { // skip regular brands
-						continue;
-					}
-				$brand = new stdclass();
-				$brand->id = $row->_id;
-				$brand->title = $row->title;
+		$parameters= array();
+		$parameters['media_type']="tv_show";
 
-				$brand->images = array();
-				foreach ($row->content as $brand_content) {
-					$image = new stdclass();
-					$image->name = $brand_content->assetTypes[0];
-					$image->url = $brand_content->downloadUrl;
-					$brand->images[$image->name] = $image;
-				}
-				 array_push($brands,$brand);
-			}
-			// debug($brands);
-			return $brands;
+		return apiCall("vod/get_items_by_media_type", $parameters);
+	}
 
+	public function get_serie_by_id($id){
+
+		$parameters= array();
+		$parameters['id'] = $id;
+		$parameters['media_type'] = "tv_show";
+
+		return apiCall("vod/get_serie", $parameters);
 	}
 
 	function rows($rows){
-        //debug($rows);
+    //    debug($rows);
         $medias = array();
         foreach ($rows as $media) {
             $media = (array) $media;
@@ -185,18 +81,24 @@ class Video_model extends CI_Model {
                     "title" => 	$media["title"],
                     "series_id" => 	$media["series_id"],
                     "description" => $media["description"],
-                    "tvSeasonEpisodeNumber" => $media["tvSeasonEpisodeNumber"],
-                    "brands" => $media["brands"],
+					"date" => $media["added"]
+                    //"tvSeasonEpisodeNumber" => $media["tvSeasonEpisodeNumber"],
+                //    "brands" => $media["brands"],
             );
             //debug($tmp, $media);
-            foreach ($media["content"] as $file) {
-                $tmp[str_replace (" ", "", $file->assetTypes[0])] = array(
-                        "url" => $file->downloadUrl
-                );
-            }
-            $medias[] = $tmp;
+			if($media["content"]){
+	            foreach ($media["content"] as $file) {
+	                $tmp[str_replace (" ", "", $file->assetTypes[0])] = array(
+	                        "url" => $file->downloadUrl
+	                );
+	            }
+	            $medias[] = $tmp;
+			}
         }
+	//	debug($medias);
         return $medias;
     }
+
+
 }
 ?>

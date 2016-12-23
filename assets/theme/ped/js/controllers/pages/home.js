@@ -1,19 +1,26 @@
 var h = null;
-peruDigitalApp.controller('homeController', function homeController ($scope, $location, celebritiesFactory, brandsFactory, videosFactory) {
+peruDigitalApp.controller('homeController', function homeController ($scope, $location, celebritiesFactory, brandsFactory, videoFactory) {
       h = $scope;
 
-      $scope.celebritiesPage={title:'Join Our Selebreties',
-                          desc:'In the history of modern astronomy, there is probably no one greater leap forward than the building and launch of the space telescope known as the Hubble.\
-                           While NASA has had many ups and downs, the launch and continued operation of the Hubble space telescope probably ranks next to the moon.',
-                          cover_url:'/assets/theme/ped/images/static-images/bgs/celebrities.png'};
-
+      
     $scope.celebrities=celebritiesFactory.getAllCelebrities();
 
-    $scope.brands= brandsFactory.getAllBrands();
+    brandsFactory.getAllBrands().then(function(data){
+        $scope.brands= data.data;
+    });
 
-    $scope.newReleaseVids= videosFactory.getAllVideos();
+    videoFactory.getNewReleasesVideos().then(function(data){
+        $scope.newReleaseVids= data.data;
 
-    $scope.recommendedShows= videosFactory.getAllVideos();
+    });
+
+
+    videoFactory.getRecommendedVideos().then(function(data){
+        $scope.recommendedShows= data.data;
+
+    });
+
+
 
 
     $scope.homeSlides=[{title:'Get The Boot A Birds Eye Look Into Mcse Boot Camps',

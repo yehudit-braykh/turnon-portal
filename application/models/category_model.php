@@ -29,9 +29,8 @@ class category_model extends CI_Model {
 		$data = apiCall("vod/list_genres", $parameters);
 
 		$cats= (array)$data->content;
-
 		foreach ($cats as $key=>$cat){
-			$cat->icon_url='/assets/theme/clixtv/images/cats/cat'.(($key % 9)+1).'.jpg';
+			$cat->cover_url='/assets/theme/ped/images/cats/cat'.(($key % 9)+1).'.jpg';
 		}
 
 		foreach ($cats as $cat){
@@ -49,11 +48,11 @@ class category_model extends CI_Model {
 
 		$parameters = array();
         if ($cat)
-            $parameters["genre"] = $cat;
-        $parameters["media_type"] = 'movie|clip|tv_show|episode';
-        $parameters["limit"] = null;
-        $parameters["sort"] = null;
-        $data= apiCall("vod/list_items_api", $parameters);
+            $parameters["category"] = $cat;
+    //    $parameters["media_type"] = 'movie|clip|tv_show|episode';
+    //    $parameters["limit"] = null;
+    //    $parameters["sort"] = null;
+        $data= apiCall("vod/get_items_by_category", $parameters);
 
        	$videos = $this->rows($data->content->entries);
 		//debug($videos);
@@ -70,8 +69,9 @@ class category_model extends CI_Model {
                     "title" => 	$media["title"],
                     "series_id" => 	$media["series_id"],
                     "description" => $media["description"],
-                    "tvSeasonEpisodeNumber" => $media["tvSeasonEpisodeNumber"],
-                    "brands" => $media["brands"],
+					"date" => $media['added']
+            //        "tvSeasonEpisodeNumber" => $media["tvSeasonEpisodeNumber"],
+            //        "brands" => $media["brands"],
             );
             //debug($tmp, $media);
             foreach ($media["content"] as $file) {

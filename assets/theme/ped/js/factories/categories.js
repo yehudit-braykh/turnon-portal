@@ -25,13 +25,28 @@ peruDigitalApp.factory("categoriesFactory", function($http, $q) {
                          cover_url:'/assets/theme/ped/images/static-images/bgs/celebrities.png'}];
     return {
         getAllCategories: function() {
-             return allCategories;
+            return $http({method: 'GET', url: '/api/category/get_all_categories'}).
+                       success(function(data, status, headers, config) {
+                           return data;
+                       }).
+                       error(function(data, status, headers, config) {
+                       });
          },
          getCategoryByName: function(categoryName){
-             for(var celeb in allCategories){
-                 if (allCategories[celeb].name.toLowerCase()==categoryName.toLowerCase())
-                    return allCategories[celeb];
-             }
+             return $http({method: 'GET', url: '/api/category/get_category_by_name/?category='+ categoryName}).
+                        success(function(data, status, headers, config) {
+                            return data;
+                        }).
+                        error(function(data, status, headers, config) {
+                        });
+         },
+         getCategoryVideos: function(categoryName){
+             return $http({method: 'GET', url: '/api/category/get_category_videos/?category='+ categoryName}).
+                        success(function(data, status, headers, config) {
+                            return data;
+                        }).
+                        error(function(data, status, headers, config) {
+                        });
          }
     }
 });

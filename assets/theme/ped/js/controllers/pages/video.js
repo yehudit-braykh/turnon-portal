@@ -1,13 +1,21 @@
 var vid = null;
-peruDigitalApp.controller('videoController', function videoController ($scope, brandsFactory, videosFactory, $routeParams) {
+peruDigitalApp.controller('videoController', function videoController ($scope, brandsFactory, videoFactory, $routeParams) {
     vid = $scope;
 
-    $scope.video= videosFactory.getVideoById($routeParams.videoId);
+    videoFactory.getVideoById($routeParams.videoId).then(function(data){
 
-    $scope.brands= brandsFactory.getAllBrands();
+        $scope.video= data.data;
+    });
 
-    $scope.newReleaseVids= videosFactory.getAllVideos();
+    brandsFactory.getAllBrands().then(function(data){
+        $scope.brands= data.data;
+    });
 
-    $scope.recommendedShows= videosFactory.getAllVideos();
+    videoFactory.getRecommendedVideos().then(function(data){
+        $scope.newReleaseVids= data.data;
+
+        $scope.recommendedShows= data.data;
+
+    });
 
   });

@@ -1,16 +1,28 @@
 var cat = null;
-peruDigitalApp.controller('categoryController', function categoryController ($scope, videosFactory, celebritiesFactory, categoriesFactory, $routeParams, $location, brandsFactory) {
+peruDigitalApp.controller('categoryController', function categoryController ($scope, videoFactory, celebritiesFactory, categoriesFactory, $routeParams, $location, brandsFactory) {
       cat = $scope;
-      $scope.category= categoriesFactory.getCategoryByName($routeParams.categoryName);
+
+    categoriesFactory.getCategoryByName($routeParams.categoryName).then(function(data){
+
+        $scope.category=  data.data;
+    });
 
 
-    $scope.otherCelebrities = celebritiesFactory.getAllCelebrities();
+    celebritiesFactory.getAllCelebrities().then(function(data){
 
-    $scope.otherCelebrities.splice($scope.otherCelebrities.indexOf($scope.celebrity),1);
+        $scope.otherCelebrities = data.data;
 
-    $scope.videos= videosFactory.getAllVideos();
+    });
 
-    $scope.brands= brandsFactory.getAllBrands();
+    categoriesFactory.getCategoryVideos($routeParams.categoryName).then(function(data){
+
+        $scope.videos= data.data;
+    });
+
+
+    brandsFactory.getAllBrands().then(function(data){
+        $scope.brands= data.data;
+    });
 
         $scope.go = function(path){
             $location.path(path);

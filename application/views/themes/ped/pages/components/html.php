@@ -38,16 +38,16 @@
        <script src="<?php echo asset_url(); ?>js/controllers/pages/video.js"></script>
        <script src="<?php echo asset_url(); ?>js/controllers/pages/survey.js"></script>
        <script src="<?php echo asset_url(); ?>js/controllers/pages/lottery.js"></script>
+       <script src="<?php echo asset_url(); ?>js/controllers/pages/live.js"></script>
 
         <!-- COMPONENTS CONTROLLERS -->
 
         <!-- ANGULAR FACTORIES -->
         <script src="<?php echo asset_url(); ?>js/factories/user.js"></script>
-        <script src="<?php echo asset_url(); ?>js/factories/videos.js"></script>
         <script src="<?php echo asset_url(); ?>js/factories/categories.js"></script>
         <script src="<?php echo asset_url(); ?>js/factories/celebrities.js"></script>
         <script src="<?php echo asset_url(); ?>js/factories/brands.js"></script>
-        <script src="<?php echo asset_url(); ?>js/factories/epg.js"></script>
+        <script src="<?php echo asset_url(); ?>js/factories/video.js"></script>
         <script src="<?php echo asset_url(); ?>js/factories/user.js"></script>
         <script src="<?php echo asset_url(); ?>js/factories/cache.js"></script>
 

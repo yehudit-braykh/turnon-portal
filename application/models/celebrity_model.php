@@ -6,9 +6,9 @@ class Celebrity_model extends CI_Model {
 	}
 
 	function get_all_celebrities(){
-		//debug(apiCall("celebrity/get_all_celebs", $parameters));
+	//	debug(apiCall("celebrity/list"));
 
-		return apiCall("celebrity/get_all_celebs", array("size"=> '9999', 'page'=> '0'));
+		return apiCall("celebrity/list", array("size"=> '9999', 'page'=> '0'));
     }
 
 	public function get_celebrity($id){

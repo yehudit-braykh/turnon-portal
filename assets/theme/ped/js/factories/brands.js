@@ -1,18 +1,12 @@
 peruDigitalApp.factory("brandsFactory", function($http, $q) {
     return {
-       getAllBrands: function() {
-            return [{name:'Coca Cola', icon_url:'assets/theme/ped/images/static-images/brands/coca-cola.png'},
-                    {name:'', icon_url:'assets/theme/ped/images/static-images/brands/crystal-beer.png'},
-                    {name:'Coca Cola', icon_url:'assets/theme/ped/images/static-images/brands/coca-cola.png'},
-                    {name:'', icon_url:'assets/theme/ped/images/static-images/brands/crystal-beer.png'},
-                    {name:'Coca Cola', icon_url:'assets/theme/ped/images/static-images/brands/coca-cola.png'},
-                    {name:'', icon_url:'assets/theme/ped/images/static-images/brands/crystal-beer.png'},
-                    {name:'Coca Cola', icon_url:'assets/theme/ped/images/static-images/brands/coca-cola.png'},
-                    {name:'', icon_url:'assets/theme/ped/images/static-images/brands/crystal-beer.png'},
-                    {name:'Coca Cola', icon_url:'assets/theme/ped/images/static-images/brands/coca-cola.png'},
-                    {name:'', icon_url:'assets/theme/ped/images/static-images/brands/crystal-beer.png'},
-                    {name:'Coca Cola', icon_url:'assets/theme/ped/images/static-images/brands/coca-cola.png'},
-                    {name:'', icon_url:'assets/theme/ped/images/static-images/brands/crystal-beer.png'}];
-        }
+        getAllBrands: function() {
+            return $http({method: 'GET', url: '/api/brands/get_brands'}).
+                       success(function(data, status, headers, config) {
+                           return data;
+                       }).
+                       error(function(data, status, headers, config) {
+                       });
+         },
     };
 });

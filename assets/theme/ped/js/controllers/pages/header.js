@@ -6,11 +6,14 @@ peruDigitalApp.controller('headerController', function headerController ($scope,
         return $location.path()==="/";
       }
 
-      console.log($scope.isHome());
+      categoriesFactory.getAllCategories().then(function(data){
 
-      $scope.channel1= epgFactory.getEpgByChannelId(1);
+        $scope.categories = data.data
+      });
 
-      $scope.channel2= epgFactory.getEpgByChannelId(2);
+      $scope.channel1= videoFactory.getEpgByChannelId(1);
+
+      $scope.channel2= videoFactory.getEpgByChannelId(2);
 
       $scope.go = function(path){
           $location.path(path);
@@ -63,7 +66,7 @@ peruDigitalApp.controller('headerController', function headerController ($scope,
 
     $scope.$on("auth-register-success", function (){
         $('.loginModal').modal('hide')
-        $scope.loginUser();
+
     });
 
     $scope.$on("auth-register-error", function (event, args){

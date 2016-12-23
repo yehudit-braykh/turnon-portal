@@ -11,7 +11,8 @@ class Account extends REST_Controller{
     function register_post(){
         $data = $this->post();
         // debug($data);
-		$this->response($this->account_model->register($data['email'], $data['password'], $data['first_name'],$data['last_name'], $data['country']),200);
+		 $this->response($this->account_model->register($data['email'], $data['password'], $data['first_name'],$data['last_name'], $data['country']),200);
+
     }
 	function get_current_get(){
 		$profile= $this->session->userdata('profile');
@@ -39,6 +40,19 @@ class Account extends REST_Controller{
 		$profile= $this->session->userdata('profile');
 	//	debug($data);
 		$this->response($this->account_model->update_profile($profile->_id,$data),200);
+	}
+
+	function subscripe_post(){
+		$data = $this->post();
+
+		$this->response($this->account_model->subscripe($data),200);
+	}
+
+	function send_password_email_get(){
+		$email = $this->get('email');
+
+		$this->response($this->account_model->send_password_email($email),200);
+
 	}
 
 }

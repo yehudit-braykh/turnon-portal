@@ -2,8 +2,8 @@
     <div class="category-header row pr">
         <div class="col-xs-12 header-img" style="background-image:url({{category.cover_url}})">
             <div class="header-info overlay pa">
-                <div class="header-title">{{category.name}}</div>
-                <div class="header-desc">{{category.desc}}</div>
+                <div class="header-title">{{category.title}}</div>
+                <div class="header-desc">{{category.description}}</div>
             </div>
         </div>
 
@@ -14,11 +14,11 @@
             <ped-Brands-Carousel data-model="brands" data-carousel-id="brands"></ped-Brands-Carousel>
         </div>
         <div class="container videos" ng-init="videosToShow=6">
-            <div class="col-xs-12 col-sm-6 col-md-4 pr video hand" ng-repeat="vid in videos | limitTo:videosToShow" ng-click="go('/video/'+vid.id)" >
-                <img class="vid-img"  src="{{vid.icon_url}}" />
+            <div class="col-xs-12 col-sm-6 col-md-4 pr video hand" ng-repeat="vid in videos | limitTo:videosToShow" ng-click="go('/video/'+vid._id)" >
+                <img class="vid-img"  src="{{vid.PosterH.url?vid.PosterH.url:'/assets/theme/ped/images/no-img.png'}}" />
                 <div class="vid-info pa">
-                    {{vid.name}}<br/>
-                    <span class="vid-date">{{vid.date}}</span>
+                    {{vid.title}}<br/>
+                    <span class="vid-date">{{vid.date | date: dd/MM/YYYY}}</span>
                 </div>
                 <span class="vid-play icon icon-play-circle-43x43 pa"></span>
             </div>
