@@ -6,26 +6,26 @@ class Account extends REST_Controller{
 		parent::__construct();
 		$this->load->model("account_model");
 		$this->load->library('session');
-
 	}
+	
     function register_post(){
         $data = $this->post();
-        // debug($data);
 		 $this->response($this->account_model->register($data['email'], $data['password'], $data['first_name'],$data['last_name'], $data['country']),200);
-
     }
+
 	function get_current_get(){
 		$profile= $this->session->userdata('profile');
-		// debug($profile);
+		$profile->subscription= $this->session->userdata('subscription');
+		$profile->purchased_products= $this->session->userdata('purchased_products');
 		$this->response($profile, 200);
 	}
+
 	function logout_post(){
-		$data = $this->post();
-		$this->session->sess_destroy();
-		$this->response($this->account_model->logout($data['token']),200);
+
+		$this->response($this->account_model->logout(),200);
 	}
+
 	function login_user_post(){
-	//	debug('111');
 		$data = $this->post();
 		$this->response($this->account_model->login($data['email'], $data['password']), 200);
     }
@@ -38,7 +38,6 @@ class Account extends REST_Controller{
 	function update_profile_post(){
 		$data = $this->post();
 		$profile= $this->session->userdata('profile');
-	//	debug($data);
 		$this->response($this->account_model->update_profile($profile->_id,$data),200);
 	}
 
@@ -50,7 +49,6 @@ class Account extends REST_Controller{
 
 	function send_password_email_get(){
 		$email = $this->get('email');
-
 		$this->response($this->account_model->send_password_email($email),200);
 
 	}

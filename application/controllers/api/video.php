@@ -12,6 +12,11 @@ class Video extends REST_Controller{
 		$this->response($this->video_model->get_epg($channel)->content,200);
     }
 
+	function list_channels_get(){
+
+		$this->response($this->video_model->list_channels()->content,200);
+    }
+
 	function get_video_by_id_get(){
 		$id = $this->get("id");
 		$this->response($this->video_model->get_video_by_id($id),200);

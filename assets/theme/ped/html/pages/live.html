@@ -1,16 +1,34 @@
 <div class="live-page">
-    <div class="page-header row">
-        <div class="col-xs-5">
-            <div class="row">
+    <div class="page-header">
+        <div class="container">
+            <div class="col-xs-12 col-sm-4" style="padding:0">
+                <div class="col-xs-6 col-sm-12 channel hand channel1 selected">
+                    <div class="channel-title">PERU 1</div>
+                    <div class="playing-now">
+                        <div class="time">12:00 - 13:00</div>
+                        <div class="playing-name">Mid Morning Hit Mix</div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-12 channel hand channel2">
+                    <div class="channel-title">PERU 2</div>
+                    <div class="playing-now">
+                        <div class="time">12:00 - 13:00</div>
+                        <div class="playing-name">Mid Morning Hit Mix</div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="row">
+
+            <div class="col-xs-12 col-sm-8 video-player-wrapper">
+                <jwplayer data-video="activeVideo" data-auto-play="true" data-id="video-player"></jwplayer>
             </div>
-        </div>
 
-        <div class="col-xs-7">
-            <jwplayer data-video="video" data-auto-play="false" data-id="video-player"></jwplayer>
         </div>
-
     </div>
     <div class="page-content">
         <div class="row brands">

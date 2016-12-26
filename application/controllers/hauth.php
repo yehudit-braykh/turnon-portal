@@ -21,7 +21,6 @@ class HAuth extends CI_Controller {
 		try {
     		$this->load->library('HybridAuthLib');
     	} catch (Exception $e) {
-    		//$this->errors->create(array("category" => "get_me", "text" => json_encode($e)));
     		if ($e->getCode() == 5) {//Authentification failed! Twitter returned an error. 401 Unauthorized.
     			$this->session->unset_userdata("HA::STORE");
     			$this->load->library('HybridAuthLib', null, 'HybridAuthLib_tmp');
@@ -29,26 +28,16 @@ class HAuth extends CI_Controller {
     		}
     	}
 
-		//$this->users->get_me();
-		//$this->session->set_userdata("aa", "bb");
-		//$this->session->sess_read();
-		//debug($this->session->all_userdata(), $this->session);
-		//debug($_COOKIE, $_SESSION);
 		if ($this->hybridauthlib->providerEnabled($provider)) {
 
 			try {
 
 				if (!$this->hybridauthlib->isConnectedWith($provider)) $this->load->view('hauth/done');
-				//$this->session->unset_userdata("HA::STORE");
-				//debug($service, $this->session->all_userdata());
 				$service = $this->hybridauthlib->authenticate($provider);
 
 				try{
 					$profile = $service->getUserProfile();
-				//	debug($profile->identifier);
-				//	$this->session->set_userdata('profile', $profile);
 					$fbLogin = $this->account_model->login_by_fb($profile->identifier);
-					//debug($fbLogin->error == Null);
 					if(!$fbLogin->content){
 						$fbRegister = $this->account_model->register($profile->email, $this->randomPassword(), $profile->firstName, $profile->lastName, NULL, NULL, $profile->identifier, true, $profile);
 
@@ -57,16 +46,17 @@ class HAuth extends CI_Controller {
 							throw new Exception("Please Login with your Email:".$profile->email.", to link to Facebook Account", 1);
 						}else{
 							$fb_login= $this->account_model->login_by_fb($profile->content->identifier);
-							$this->session->set_userdata('login_token', $data->content->token);
-			                $user_data = $this->account_model->get_profile($fb_login->content->token, $fb_login->content->id);
+							$data = new stdClass;
+			                $data->firstName = $fb_data->firstName;
+			                $data->lastName = $fb_data->lastName;
+			                $data->gender = $fb_data->gender;
+			                $data->avatar = $fb_data->photoURL;
+			                $data->addressLine1 = $fb_data->phone;
+			                $data->city = $fb_data->city;
+			                $data->birthDate = date_create($fb_data->birthYear."-".$fb_data->birthMonth."-".$fb_data->birthDay);
+			                $user_data = $this->account_model->update_profile($fb_login->content->id,$data);
 			                $this->session->set_userdata('profile', $user_data->content);
 						}
-					}else {
-					//	debug($fbLogin->content->token);
-						$user_data = $this->account_model->get_profile($fbLogin->content->token, $fbLogin->content->id);
-						$this->session->set_userdata('login_token', $fbLogin->content->token);
-						$this->session->set_userdata('profile', $user_data->content);
-					//	debug($this->session->userdata('profile'));
 					}
 				}
 				catch( Exception $e ){
@@ -84,14 +74,7 @@ class HAuth extends CI_Controller {
 						$this->session->set_userdata('profile', $error);
 					}
 				}
-				//debug($service->getUserProfile());
-				//debug($service);
 
-				//$profile = $this->fix_hauth_profile($profile);
-				//$user = $this->users->login_provider($provider, $profile);
-				//debug($user);
-				//debug("A");
-				//debug($user, $service->api()->api('/me/friends'), $service->getUserContacts());
 				$_SESSION["social"] = (array) $profile;
 				$_SESSION["social"]["with"] = $provider;
 				$_SESSION["social"]["since"] = date("d/m/Y");
@@ -111,15 +94,8 @@ class HAuth extends CI_Controller {
 						$service = $this->hybridauthlib->authenticate($provider);
 						$profile = $service->getUserProfile();
 					}
-
 				}
 
-
-				//debug($service->getUserProfile());
-				//debug($service);
-				//$user = $this->users->login_provider($provider, $profile);
-				//debug("A");
-				//debug($user, $service->api()->api('/me/friends'), $service->getUserContacts());
 				$this->load->view('hauth/done');
 			}
 		} else {
@@ -130,7 +106,6 @@ class HAuth extends CI_Controller {
 	{
 
 		header("Cache-Control: private");
-		//session_start();
 		log_message('debug', 'controllers.HAuth.endpoint called.');
 		log_message('info', 'controllers.HAuth.endpoint: $_REQUEST: '.print_r($_REQUEST, TRUE));
 
@@ -139,7 +114,6 @@ class HAuth extends CI_Controller {
 			log_message('debug', 'controllers.HAuth.endpoint: the request method is GET, copying REQUEST array into GET array.');
 			$_GET = $_REQUEST;
 		}
-
 		log_message('debug', 'controllers.HAuth.endpoint: loading the original HybridAuth endpoint script.');
 		require_once APPPATH.'/libraries/hybridauth/index.php';
 

@@ -13,6 +13,12 @@ class Video_model extends CI_Model {
 		return apiCall("live/list_epg", $parameters);
 	}
 
+	public function list_channels(){
+
+		$parameters= array();
+		return apiCall("live/list_channels", $parameters);
+	}
+
 	public function get_video_by_id($id){
 		$parameters = array();
 		$parameters['id'] = $id;

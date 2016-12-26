@@ -3,7 +3,7 @@ peruDigitalApp.controller('accountController', function accountController ($scop
       acc = $scope;
 
       $scope.shownView = $routeParams.sectionName;
-      console.log($scope.shownView);
+//      console.log($scope.shownView);
       $scope.isLoggedIn= function(){
           return AuthService.isLoggedIn();
       }

@@ -25,10 +25,10 @@ peruDigitalApp.factory('AuthService', function ($http, $rootScope, $location, Us
 	scope.updateProfile = function(user){
 		$http({method: 'POST', url: '/api/account/update_profile', data:user}).
     	success(function(data, status, headers, config) {
-			console.log('save profile success', data);
+		//	console.log('save profile success', data);
     	}).
     	error(function(data, status, headers, config) {
-    		console.log('save profile error', data);
+    //		console.log('save profile error', data);
     	});
 	}
 
@@ -64,7 +64,6 @@ peruDigitalApp.factory('AuthService', function ($http, $rootScope, $location, Us
 	scope.login = function (email, pass) {
 		if(scope.activateLinkByFacebook)
 		{
-			console.log('111');
 			scope.linkFacebook(email,pass);
 		}
 		else {
@@ -143,7 +142,7 @@ peruDigitalApp.factory('AuthService', function ($http, $rootScope, $location, Us
 peruDigitalApp.service('User', function ($rootScope, $http, $location) {
 	u = this;
 	this.set = function (user) {
-		console.log("SETTING USER", user);
+	//	console.log("SETTING USER", user);
 		if(user.isException){
 			$rootScope.$broadcast("auth-login-error", user);
 		}
