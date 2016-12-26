@@ -46,7 +46,9 @@
             <button type="submit" class="btn btn-default">Submit</button>
           </form> -->
           <div class="search-cont pr hidden-xs">
-              <input type="text" class="search" placeholder="Search" /><i class="fa fa-search pa hand" aria-hidden="true"></i>
+              <form ng-submit="search()">
+              <input type="text" id="search" class="search" placeholder="Search" /><i class="fa fa-search pa hand" ng-click="search()" aria-hidden="true"></i>
+            </form>
           </div>
           <ul class="nav navbar-nav navbar-right">
 
@@ -88,9 +90,9 @@
                 <div class="channel-name hand" ng-click="go('/live/Peru 1')">{{channel1.name}}</div>
                 <div class="channel-img hidden-xs hand" ng-click="go('/live/Peru 1')" style="background-image:url({{channel1.icon_url}})"></div>
                 <div class="channel-epg ">
-                    <div class="channel-program" ng-repeat="program in channel1.programs">
+                    <div class="channel-program" ng-repeat="program in epg | limitTo:4">
                         {{program.start_time}}<br/>
-                        {{program.name}}<br/>
+                        {{program.program.title}}<br/>
                         {{program.category}}<br/>
                         <div class="program-progress-container"><div class="progress" style="width:{{calcPercent(program.start_time,program.end_time)+'%'}}"></div></div>
                     </div>
@@ -100,9 +102,9 @@
                 <div class="channel-name hand"  ng-click="go('/live/Peru 2')" >{{channel2.name}}</div>
                 <div class="channel-img hidden-xs hand" ng-click="go('/live/Peru 2')" style="background-image:url({{channel2.icon_url}})"></div>
                 <div class="channel-epg">
-                    <div class="channel-program" ng-repeat="program in channel2.programs">
+                    <div class="channel-program" ng-repeat="program in cepg | limitTo:4">
                         {{program.start_time}}<br/>
-                        {{program.name}}<br/>
+                        {{program.program.title}}<br/>
                         {{program.category}}<br/>
                         <div class="program-progress-container"><div class="progress" style="width:{{calcPercent(program.start_time,program.end_time)+'%'}}"></div></div>
                     </div>

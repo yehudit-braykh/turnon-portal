@@ -51,8 +51,8 @@ peruDigitalApp.factory("celebritiesFactory", function($http, $q) {
                        error(function(data, status, headers, config) {
                        });
         },
-         getCelebrityByName: function(celebrityName){
-             return $http({method: 'GET', url: '/api/celebrity/get_celebrity_by_name/?celebrity='+celebrityName}).
+         getCelebrityById: function(celebrityId){
+             return $http({method: 'GET', url: '/api/celebrity/get_celebrity_by_name/?id='+celebrityId}).
                         success(function(data, status, headers, config) {
                             return data;
                         }).

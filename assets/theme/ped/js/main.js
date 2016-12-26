@@ -35,6 +35,10 @@ peruDigitalApp.config(function($routeProvider, $locationProvider){
         templateUrl: '/assets/theme/ped/html/pages/account.html',
         controller: 'accountController'
     })
+    .when('/search/:keyword', {
+        templateUrl: '/assets/theme/ped/html/pages/search.html',
+        controller: 'searchController'
+    })
     .when('/lottery', {
         templateUrl: '/assets/theme/ped/html/pages/lottery.html',
         controller: 'lotteryController'

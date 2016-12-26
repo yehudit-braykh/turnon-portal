@@ -4,24 +4,24 @@
 
           <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
-                <div class="item {{$index==0?'active':''}}" ng-repeat="i in getSlidesNumber() track by $index">
-                    <div class="item-content left-slide col-xs-6 pr"  style="background-image:url({{homeSlides[2*$index].cover_url}})">
+                <div class="item {{$index==0?'active':''}}" ng-repeat="slide in featuredVideos track by $index">
+                    <div class="item-content left-slide col-xs-6 pr"  style="background-image:url({{featuredVideos[$index][0].PosterH.url}})">
                         <div class="info pa">
                             <div class="header-text">
-                                {{homeSlides[$index].title}}
+                                {{featuredVideos[$index][0].title}}
                             </div>
                             <div class="span-text hidden-xs">
-                                {{homeSlides[2*$index+1].desc}}
+                                {{featuredVideos[$index][0].desc}}
                             </div>
                         </div>
                     </div>
-                    <div class="item-content left-slide col-xs-6"  style="background-image:url({{homeSlides[2*$index+1].cover_url}})">
+                    <div class="item-content left-slide col-xs-6"  style="background-image:url({{featuredVideos[$index][1].PosterH.url}})">
                         <div class="info pa">
                             <div class="header-text">
-                                {{homeSlides[2*$index].title}}
+                                {{featuredVideos[$index][1].title}}
                             </div>
                             <div class="span-text hidden-xs">
-                                {{homeSlides[2*$index+1].desc}}
+                                {{featuredVideos[$index][1].desc}}
                             </div>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
         <div class="row">
             <ped-Brands-Carousel data-model="brands" data-carouse-id="brands"></ped-Brands-Carousel>
         </div>
-        
+
         <div class="row">
             <div class="row-title container">NEW RELEASES</div>
             <div class="row-content carousel-blue">
@@ -59,9 +59,9 @@
         <div class="row">
             <div class="row-title container">NUESTROS PERIODISTAS</div>
             <div class="row-content other-celebs">
-                <div class="celebrity hand col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="celeb in celebrities" ng-click="go('/celebrity/'+celeb.name)" >
-                    <div class="pr celeb-img" style="background-image:url({{celeb.icon_url}})">
-                        <div class="celeb-name pa">{{celeb.name}}</div>
+                <div class="celebrity hand col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="celeb in celebrities" ng-click="go('/celebrity/'+celeb._id)" >
+                    <div class="pr celeb-img" style="background-image:url({{celeb.PosterH.url}})">
+                        <div class="celeb-name pa">{{celeb.title}}</div>
                     </div>
                 </div>
             </div>

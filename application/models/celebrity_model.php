@@ -6,15 +6,17 @@ class Celebrity_model extends CI_Model {
 	}
 
 	function get_all_celebrities(){
-	//	debug(apiCall("celebrity/list"));
 
-		return apiCall("celebrity/list", array("size"=> '9999', 'page'=> '0'));
+		$data =  apiCall("celebrity/list", array("size"=> '9999', 'page'=> '0'));
+		return $this->rows($data->content->entries);
+
     }
 
 	public function get_celebrity($id){
 		$parameters = array();
 		$parameters['id'] = $id;
-		return apiCall("celebrity/get_item", $parameters);
+		$data = apiCall("celebrity/get_item", $parameters);
+		return $this->rows($data->content->entries);
 	}
 
 	public function get_celeb_videos($id){
@@ -66,15 +68,17 @@ class Celebrity_model extends CI_Model {
                     "title" => 	$media["title"],
                     "series_id" => 	$media["series_id"],
                     "description" => $media["description"],
-                    "tvSeasonEpisodeNumber" => $media["tvSeasonEpisodeNumber"],
+            //        "tvSeasonEpisodeNumber" => $media["tvSeasonEpisodeNumber"],
                     "brands" => $media["brands"],
             );
             //debug($tmp, $media);
-            foreach ($media["content"] as $file) {
-                $tmp[str_replace (" ", "", $file->assetTypes[0])] = array(
-                        "url" => $file->downloadUrl
-                );
-            }
+			if($media["content"]){
+	            foreach ($media["content"] as $file) {
+	                $tmp[str_replace (" ", "", $file->assetTypes[0])] = array(
+	                        "url" => $file->downloadUrl
+	                );
+	            }
+			}
             $medias[] = $tmp;
         }
         return $medias;

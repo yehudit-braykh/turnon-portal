@@ -38,7 +38,9 @@ class HAuth extends CI_Controller {
 				try{
 					$profile = $service->getUserProfile();
 					$fbLogin = $this->account_model->login_by_fb($profile->identifier);
+				//	debug($fbLogin);
 					if(!$fbLogin->content){
+					//	debug($profile);
 						$fbRegister = $this->account_model->register($profile->email, $this->randomPassword(), $profile->firstName, $profile->lastName, NULL, NULL, $profile->identifier, true, $profile);
 
 						if (strpos($fbRegister->message, "User already registered")){

@@ -6,14 +6,20 @@ peruDigitalApp.controller('headerController', function headerController ($scope,
         return $location.path()==="/";
       }
 
+      $scope.search = function(){
+          $scope.go('/search/'+document.getElementById("search").value);
+
+      }
+
       categoriesFactory.getAllCategories().then(function(data){
 
         $scope.categories = data.data
       });
 
-      $scope.channel1= videoFactory.getEpgByChannelId(1);
+      videoFactory.getEpg().then(function(data){
+          $scope.epg = data.data;
 
-      $scope.channel2= videoFactory.getEpgByChannelId(2);
+      });
 
       $scope.go = function(path){
           $location.path(path);

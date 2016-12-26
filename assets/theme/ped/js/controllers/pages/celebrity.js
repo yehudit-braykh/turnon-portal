@@ -2,12 +2,15 @@ var celeb = null;
 peruDigitalApp.controller('celebrityController', function celebrityController ($scope, videoFactory, celebritiesFactory, $routeParams, $location, brandsFactory) {
       celeb = $scope;
 
-      $scope.celebrity= celebritiesFactory.getCelebrityByName($routeParams.celebrityName);
+     celebritiesFactory.getCelebrityById($routeParams.celebrityId).then(function(data){
 
+         $scope.celebrity= data.data;
 
-    $scope.otherCelebrities = celebritiesFactory.getAllCelebrities();
-
-    $scope.otherCelebrities.splice($scope.otherCelebrities.indexOf($scope.celebrity),1);
+         celebritiesFactory.getAllCelebrities().then(function(data){
+             $scope.otherCelebrities = data.data;
+        //     $scope.otherCelebrities.splice($scope.otherCelebrities.indexOf($scope.celebrity),1);
+         });
+     });
 
     $scope.videos= videoFactory.getAllVideos();
 

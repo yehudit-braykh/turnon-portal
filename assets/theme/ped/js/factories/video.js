@@ -35,8 +35,16 @@ peruDigitalApp.factory("videoFactory", function($http, $q) {
                 if (allChannels[ch].id==channelId)
                     return allChannels[ch];
         },
-        getEpgById: function(channelId){
-            return $http({method: 'GET', url: '/api/video/get_epg_by_id/?id='+ channelId}).
+        getEpg: function(channelId){
+            return $http({method: 'GET', url: '/api/video/get_epg/?id='+ channelId}).
+        	success(function(data, status, headers, config) {
+                return data;
+        	}).
+        	error(function(data, status, headers, config) {
+        	});
+        },
+        getChannels: function(channelId){
+            return $http({method: 'GET', url: '/api/video/list_channels'}).
         	success(function(data, status, headers, config) {
                 return data;
         	}).
@@ -61,6 +69,14 @@ peruDigitalApp.factory("videoFactory", function($http, $q) {
         },
         getRecommendedVideos: function(){
             return $http({method: 'GET', url: '/api/video/get_videos_by_featured/?category=recommended'}).
+            	success(function(data, status, headers, config) {
+                    return data;
+            	}).
+            	error(function(data, status, headers, config) {
+            	});
+        },
+        getFeaturedVideos: function(){
+            return $http({method: 'GET', url: '/api/video/get_videos_by_featured/?category=featured'}).
             	success(function(data, status, headers, config) {
                     return data;
             	}).

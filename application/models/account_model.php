@@ -54,7 +54,10 @@ class Account_model extends CI_Model {
     }
 
     public function login_by_fb($fb_id) {
+    //    debug($fb_id);
         $fbLogin =  apiPost("user/login_by_fb", array("fb_id" => $fb_id));
+
+    //    debug($fbLogin);
         $this->session->set_userdata('login_token', $data->content->token);
         $this->session->set_userdata('subscription', $fbLogin->content->subscription);
         $this->session->set_userdata('purchased_products', $fbLogin->content->purchased_products);
@@ -71,6 +74,7 @@ class Account_model extends CI_Model {
     }
 
     public function register($email, $password, $first_name, $last_name, $country = NULL, $hash = NULL, $fb_id = NULL, $merge = false, $fb_data = NULL) {
+    //    debug($fb_id);
         $data = apiPost("user/register", array("email" => $email,
           "password" => $password,
           "first_name" => $first_name,

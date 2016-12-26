@@ -8,9 +8,13 @@ class Video_model extends CI_Model {
 	public function get_epg($channel){
 
 		$parameters= array();
-		$parameters["channel"] = $channel;
+		if($channel)
+			$parameters["channel"] = $channel;
 
-		return apiCall("live/list_epg", $parameters);
+		$data = apiCall("live/list_epg", $parameters);
+		//debug($data);
+		return $data;
+
 	}
 
 	public function list_channels(){
@@ -56,8 +60,9 @@ class Video_model extends CI_Model {
 
 		$parameters = array();
 		$parameters["keyword"] = $txt;
-
-		return apiCall("vod/search", $parameters);
+		$data =  apiCall("vod/search", $parameters);
+		$results = $this->resultsRows($data->content->entries);
+		return ($results);
 	}
 
 	public function get_all_series(){
@@ -103,6 +108,45 @@ class Video_model extends CI_Model {
         }
 	//	debug($medias);
         return $medias;
+    }
+
+	function resultsRows($rows){
+    //    debug($rows);
+        $medias = array();
+        foreach ($rows as $media) {
+            $media = (array) $media;
+            $tmp = array(
+                    "_id" => $media["_id"],
+                    "title" => 	$media["title"],
+                    "series_id" => 	$media["series_id"],
+                    "description" => $media["description"],
+					"media_type" => $media["media_type"]
+                    //"tvSeasonEpisodeNumber" => $media["tvSeasonEpisodeNumber"],
+                //    "brands" => $media["brands"],
+            );
+            //debug($tmp, $media);
+			if($media["content"]){
+	            foreach ($media["content"] as $file) {
+	                $tmp[str_replace (" ", "", $file->assetTypes[0])] = array(
+	                        "url" => $file->downloadUrl
+	                );
+	            }
+	            $medias[] = $tmp;
+			}
+        }
+	//	debug($medias);
+        return $medias;
+    }
+
+	public function get_items_by_vod_category($category) {
+        $parameters = array();
+
+        if ($category)
+            $parameters["category"] = $category;
+
+        $parameters["media_type"] = 'clip|tv_show';
+        // debug(apiCall("vod/get_media_by_vod_category", $parameters));
+        return apiCall("vod/get_media_by_vod_category", $parameters);
     }
 
 

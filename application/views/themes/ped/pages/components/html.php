@@ -39,6 +39,7 @@
        <script src="<?php echo asset_url(); ?>js/controllers/pages/survey.js"></script>
        <script src="<?php echo asset_url(); ?>js/controllers/pages/lottery.js"></script>
        <script src="<?php echo asset_url(); ?>js/controllers/pages/live.js"></script>
+       <script src="<?php echo asset_url(); ?>js/controllers/pages/search.js"></script>
 
         <!-- COMPONENTS CONTROLLERS -->
 

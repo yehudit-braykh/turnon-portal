@@ -7,7 +7,7 @@ class Account extends REST_Controller{
 		$this->load->model("account_model");
 		$this->load->library('session');
 	}
-	
+
     function register_post(){
         $data = $this->post();
 		 $this->response($this->account_model->register($data['email'], $data['password'], $data['first_name'],$data['last_name'], $data['country']),200);
