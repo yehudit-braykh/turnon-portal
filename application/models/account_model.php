@@ -218,7 +218,7 @@ class Account_model extends CI_Model {
     }
 
     public function get_billing_information($id) {
-
+  
         return apiPost("commerce/get_billing_information", array('id' => $id));
     }
 

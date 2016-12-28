@@ -4,15 +4,18 @@ peruDigitalApp.controller('celebrityController', function celebrityController ($
 
      celebritiesFactory.getCelebrityById($routeParams.celebrityId).then(function(data){
 
-         $scope.celebrity= data.data;
-
+         $scope.celebrity= data.data[0];
          celebritiesFactory.getAllCelebrities().then(function(data){
              $scope.otherCelebrities = data.data;
         //     $scope.otherCelebrities.splice($scope.otherCelebrities.indexOf($scope.celebrity),1);
          });
      });
 
-    $scope.videos= videoFactory.getAllVideos();
+     videoFactory.getvideoByCelebId($routeParams.celebrityId).then(function(data){
+
+         $scope.videos= data.data;
+     });
+
 
     brandsFactory.getAllBrands().then(function(data){
         $scope.brands= data.data;

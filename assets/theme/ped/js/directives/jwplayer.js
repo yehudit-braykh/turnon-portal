@@ -9,6 +9,7 @@ peruDigitalApp.directive('jwplayer', function() {
       },
       controller: ['$scope', function jwpCtrl($scope) {
           $scope.setupVideo= function(vid){
+            console.log(vid);
               if(vid){
                   jwplayer($scope.id).setup({
                      file: vid.HLSStream.url,

@@ -1,11 +1,11 @@
 <div class="celebrity-page">
     <div class="celebrity-header row pr">
-        <div class="col-xs-12 col-md-6 header-img" style="background-image:url({{celebrity.cover_url}})">
+        <div class="col-xs-12 col-md-6 header-img" style="background-image:url({{celebrity.PosterH.url}})">
             <div class="overlay pa"></div>
         </div>
         <div class="col-xs-12 col-md-6 header-right">
-            <div class="header-title">{{celebrity.name}}</div>
-            <div class="header-desc">{{celebrity.desc}}</div>
+            <div class="header-title">{{celebrity.title}}</div>
+            <div class="header-desc">{{celebrity.description}}</div>
             <div class="header-social">
                 <div class="icon icon-facebook-circle-29x29 hand"></div>
                 <div class="icon icon-linkedin-circle-29x29 hand"></div>
@@ -34,9 +34,9 @@
         <div class="row">
             <div class="row-title container">NUESTROS PERIODISTAS</div>
             <div class="row-content other-celebs">
-                <div class="celebrity hand col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="celeb in otherCelebrities" ng-click="go('/celebrity/'+celeb.name)" >
-                    <div class="pr celeb-img" style="background-image:url({{celeb.icon_url}})">
-                        <div class="celeb-name pa">{{celeb.name}}</div>
+                <div class="celebrity hand col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="celeb in otherCelebrities" ng-click="go('/celebrity/'+celeb._id)" >
+                    <div class="pr celeb-img" style="background-image:url({{celeb.PosterH.url}})">
+                        <div class="celeb-name pa">{{celeb.title}}</div>
                     </div>
                 </div>
             </div>

@@ -193,38 +193,15 @@
             <div class="account-info container">
                 <div class="container">
                     <div class="row plans">
-                        <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="col-xs-12 col-sm-6 col-md-3" ng-repeat="plan in plans | filter:display | limitTo:4">
                             <div class="plan">
-                                <div class="plan-title">1 MONTH</div>
-                                <div class="plan-price">$9.99</div>
-                                <div class="plan-duration">Per Month</div>
-                                <input type="button" class="buy" value="Buy Now" />
+                                <div class="plan-title">{{plan.billingSchedule[0].duration}} Month{{plan.billingSchedule[0].duration>1?'s':''}}</div>
+                                <div class="plan-price">${{plan.billingSchedule[0].amount}}</div>
+                                <div class="plan-duration">{{plan.billingSchedule[0].duration==1?'Per':'Each'}} {{plan.billingSchedule[0].duration>1?plan.billingSchedule[0].duration+' ':''}}Month{{plan.billingSchedule[0].duration>1?'s':''}}</div>
+                                <input type="button" class="buy" value="Buy Now" ng-click="buyPlan(plan._id)" />
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-6 col-md-3">
-                            <div class="plan">
-                                <div class="plan-title">3 MONTHS</div>
-                                <div class="plan-price">$24.99</div>
-                                <div class="plan-duration">Each 3 Months</div>
-                                <input type="button" class="buy" value="Buy Now" />
-                            </div>
-                        </div>
-                        <div class=" col-xs-12 col-sm-6 col-md-3">
-                            <div class="plan">
-                                <div class="plan-title">6 MONTHS</div>
-                                <div class="plan-price">$47.99</div>
-                                <div class="plan-duration">Each 6 Months</div>
-                                <input type="button" class="buy" value="Buy Now" />
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-3">
-                            <div class="plan">
-                                <div class="plan-title">12 MONTHS</div>
-                                <div class="plan-price">$91.99</div>
-                                <div class="plan-duration">Each 12 Months</div>
-                                <input type="button" class="buy" value="Buy Now" />
-                            </div>
-                        </div>
+
                     </div>
                     <div class="row details">
                         <div class="col-xs-12">Access to 7 Live Channels (4 TV +3 Radio)</div>

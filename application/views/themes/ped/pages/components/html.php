@@ -51,6 +51,7 @@
         <script src="<?php echo asset_url(); ?>js/factories/video.js"></script>
         <script src="<?php echo asset_url(); ?>js/factories/user.js"></script>
         <script src="<?php echo asset_url(); ?>js/factories/cache.js"></script>
+        <script src="<?php echo asset_url(); ?>js/factories/subscriptions.js"></script>
 
         <!-- ANGULAR FILTERS -->
 

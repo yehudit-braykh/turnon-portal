@@ -20,7 +20,11 @@ class Video_model extends CI_Model {
 	public function list_channels(){
 
 		$parameters= array();
-		return apiCall("live/list_channels", $parameters);
+		$data =  apiCall("live/list_channels", $parameters);
+	//	debug($data);
+		$channels = $this->channelRows($data->content->entries);
+		//debug($channels);
+		return $channels;
 	}
 
 	public function get_video_by_id($id){
@@ -83,7 +87,6 @@ class Video_model extends CI_Model {
 	}
 
 	function rows($rows){
-    //    debug($rows);
         $medias = array();
         foreach ($rows as $media) {
             $media = (array) $media;
@@ -109,6 +112,34 @@ class Video_model extends CI_Model {
 	//	debug($medias);
         return $medias;
     }
+
+		function ChannelRows($rows){
+	    //    debug($rows);
+	        $medias = array();
+	        foreach ($rows as $media) {
+	            $media = (array) $media;
+	            $tmp = array(
+	                    "_id" => $media["_id"],
+	                    "title" => 	$media["title"],
+	                //    "series_id" => 	$media["series_id"],
+	                    "description" => $media["description"],
+						"date" => $media["added"]
+	                    //"tvSeasonEpisodeNumber" => $media["tvSeasonEpisodeNumber"],
+	                //    "brands" => $media["brands"],
+	            );
+	            //debug($tmp, $media);
+				if($media["media"]->content){
+		            foreach ($media["media"]->content as $file) {
+		                $tmp[str_replace (" ", "", $file->assetTypes[0])] = array(
+		                        "url" => $file->downloadUrl
+		                );
+		            }
+		            $medias[] = $tmp;
+				}
+	        }
+		//	debug($medias);
+	        return $medias;
+	    }
 
 	function resultsRows($rows){
     //    debug($rows);

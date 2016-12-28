@@ -53,4 +53,17 @@ class Account extends REST_Controller{
 
 	}
 
+	public function get_subscriptions_get() {
+
+		$this->response($this->account_model->get_subscriptions()->content,200);
+	}
+
+	function get_billing_information_get(){
+
+		$id = $this->get('id');
+
+		$this->response($this->account_model->get_billing_information($id),200);
+
+	}
+
 }

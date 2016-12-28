@@ -235,6 +235,9 @@
                         background-size: contain;
                         width: 140px;
                         display: inline-block;
+                        background-clip: content-box;
+                        padding: 10px;
+
                     }
 
                     .channel-epg{
@@ -260,6 +263,12 @@
                             width: 150px;
                             padding: 0px 16px;
                             display: inline-block;
+
+                            .program-title {
+                                height: 40px;
+                                white-space: normal;
+                                overflow: hidden;
+                              }
 
                             &:last-child{
                                 border:0;

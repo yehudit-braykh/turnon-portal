@@ -159,7 +159,7 @@ body{
                     color: black;
                 }
             }
-            padding: 25px 0px;
+            padding: 25px 8px;
             border-right: 1px solid rgba(208,208,208, 0.15);
             a {
                 color: white;
@@ -299,6 +299,8 @@ body{
                     background-size: contain;
                     width: 140px;
                     display: inline-block;
+                    padding: 10px;
+                    background-clip: content-box;
                 }
 
                 .channel-epg{
@@ -324,6 +326,12 @@ body{
                         width: 150px;
                         padding: 0px 16px;
                         display: inline-block;
+
+                        .program-title {
+                            height: 40px;
+                            white-space: normal;
+                            overflow: hidden;
+                          }
 
                         &:last-child{
                             border:0;

@@ -74,11 +74,13 @@ class category_model extends CI_Model {
             //        "brands" => $media["brands"],
             );
             //debug($tmp, $media);
-            foreach ($media["content"] as $file) {
-                $tmp[str_replace (" ", "", $file->assetTypes[0])] = array(
-                        "url" => $file->downloadUrl
-                );
-            }
+						if($media["content"]){
+	            foreach ($media["content"] as $file) {
+	                $tmp[str_replace (" ", "", $file->assetTypes[0])] = array(
+	                        "url" => $file->downloadUrl
+	                );
+	            }
+						}
             $medias[] = $tmp;
         }
         return $medias;

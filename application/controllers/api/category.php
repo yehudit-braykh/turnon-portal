@@ -7,7 +7,7 @@ class Category extends REST_Controller{
 		$this->load->model("category_model");
 		// $this->load->library('session');
 	}
-	
+
     function get_all_categories_get(){
 		$categories = $this->category_model->get_all_categories();
 		// debug($categories);

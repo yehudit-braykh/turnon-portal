@@ -16,10 +16,21 @@ peruDigitalApp.controller('headerController', function headerController ($scope,
         $scope.categories = data.data
       });
 
-      videoFactory.getEpg().then(function(data){
-          $scope.epg = data.data;
+      videoFactory.getChannels().then(function(data){
+          $scope.channels = data.data;
+
+          videoFactory.getEpg($scope.channels[0]._id).then(function(data){
+              $scope.epg1 = data.data;
+
+          });
+          videoFactory.getEpg($scope.channels[0]._id).then(function(data){
+              $scope.epg2 = data.data;
+
+          });
 
       });
+
+
 
       $scope.go = function(path){
           $location.path(path);
@@ -93,10 +104,10 @@ peruDigitalApp.controller('headerController', function headerController ($scope,
         AuthService.getCurrentUser();
     };
 
-    $scope.calcPercent = function(start_time,end_time){
-        var timeNow = (new Date()).getHours()*60+(new Date()).getMinutes();
-        var start= start_time.substr(0,2)*60+start_time.substr(3,2)*1;
-        var end= end_time.substr(0,2)*60+end_time.substr(3,2)*1;
+    $scope.calcPercent = function(startTime,endTime){
+        var timeNow = new Date();
+        var start= new Date(startTime);
+        var end= new Date(endTime);
         if(start>=timeNow)
             return 0;
         if(end<=timeNow)

@@ -31,12 +31,9 @@ peruDigitalApp.controller('homeController', function homeController ($scope, $lo
         }
     });
 
-    videoFactory.getChannels().then(function(data){
-        $scope.channels = data.data;
 
-    });
 
-    
+
 
 
     $scope.go = function(path){

@@ -21,7 +21,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav left-nav" >
-            <li class="{{selectedCat==cat.title?'active':''}} hand" ng-repeat="cat in categories | limitTo:5" >
+            <li class="{{selectedCat==cat.title?'active':''}} hand" ng-repeat="cat in categories | limitTo:6" >
                 <a ng-click="go('/category/'+cat.title);selectedCat='{{cat.title}}'">{{cat.title}}</a>
             </li>
 
@@ -87,26 +87,24 @@
         </div>
         <div class="col-xs-12 col-sm-9 col-md-10 epg-content">
             <div class="row epg-channel">
-                <div class="channel-name hand" ng-click="go('/live/Peru 1')">{{channel1.name}}</div>
-                <div class="channel-img hidden-xs hand" ng-click="go('/live/Peru 1')" style="background-image:url({{channel1.icon_url}})"></div>
+                <div class="channel-name hand" ng-click="go('/live/'+channels[0].title)">{{channels[0].title}}</div>
+                <div class="channel-img hidden-xs hand" ng-click="go('/live/'+channels[0].title)" style="background-image:url({{channels[0].ChannelLogoSmall.url}})"></div>
                 <div class="channel-epg ">
-                    <div class="channel-program" ng-repeat="program in epg | limitTo:4">
-                        {{program.start_time}}<br/>
-                        {{program.program.title}}<br/>
-                        {{program.category}}<br/>
-                        <div class="program-progress-container"><div class="progress" style="width:{{calcPercent(program.start_time,program.end_time)+'%'}}"></div></div>
+                    <div class="channel-program" ng-repeat="program in epg1 | limitTo:4">
+                        <div class="program-time">{{program.startTime | date:'HH:mm'}}</div>
+                        <div class="program-title">{{program.program.title}}</div>
+                        <div class="program-progress-container"><div class="progress" style="width:{{calcPercent(program.startTime,program.endTime)+'%'}}"></div></div>
                     </div>
                 </div>
             </div>
             <div class="row epg-channel">
-                <div class="channel-name hand"  ng-click="go('/live/Peru 2')" >{{channel2.name}}</div>
-                <div class="channel-img hidden-xs hand" ng-click="go('/live/Peru 2')" style="background-image:url({{channel2.icon_url}})"></div>
+                <div class="channel-name hand"  ng-click="go('/live/'+channels[0].title)" >{{channels[0].title}}</div>
+                <div class="channel-img hidden-xs hand" ng-click="go('/live/'+channels[0].title)" style="background-image:url({{channels[0].ChannelLogoSmall.url}})"></div>
                 <div class="channel-epg">
-                    <div class="channel-program" ng-repeat="program in cepg | limitTo:4">
-                        {{program.start_time}}<br/>
-                        {{program.program.title}}<br/>
-                        {{program.category}}<br/>
-                        <div class="program-progress-container"><div class="progress" style="width:{{calcPercent(program.start_time,program.end_time)+'%'}}"></div></div>
+                    <div class="channel-program" ng-repeat="program in epg2 | limitTo:4">
+                        <div class="program-time">{{program.startTime | date:'HH:mm'}}</div>
+                        <div class="program-title">{{program.program.title}}</div>
+                        <div class="program-progress-container"><div class="progress" style="width:{{calcPercent(program.startTime,program.endTime)+'%'}}"></div></div>
                     </div>
                 </div>
             </div>

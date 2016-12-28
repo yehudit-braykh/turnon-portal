@@ -19,7 +19,7 @@ peruDigitalApp.config(function($routeProvider, $locationProvider){
         templateUrl: '/assets/theme/ped/html/pages/celebrities.html',
         controller: 'celebritiesController'
     })
-    .when('/celebrity/:celebrityName', {
+    .when('/celebrity/:celebrityId', {
         templateUrl: '/assets/theme/ped/html/pages/celebrity.html',
         controller: 'celebrityController'
     })
