@@ -87,8 +87,8 @@
         </div>
         <div class="col-xs-12 col-sm-9 col-md-10 epg-content">
             <div class="row epg-channel">
-                <div class="channel-name hand" ng-click="go('/live/'+channels[0].title)">{{channels[0].title}}</div>
-                <div class="channel-img hidden-xs hand" ng-click="go('/live/'+channels[0].title)" style="background-image:url({{channels[0].ChannelLogoSmall.url}})"></div>
+                <div class="channel-name hand" ng-click="go('/live/'+channels[1].title)">{{channels[1].title}}</div>
+                <div class="channel-img hidden-xs hand" ng-click="go('/live/'+channels[1].title)" style="background-image:url({{channels[1].ChannelLogoSmall.url}})"></div>
                 <div class="channel-epg ">
                     <div class="channel-program" ng-repeat="program in epg1 | limitTo:4">
                         <div class="program-time">{{program.startTime | date:'HH:mm'}}</div>

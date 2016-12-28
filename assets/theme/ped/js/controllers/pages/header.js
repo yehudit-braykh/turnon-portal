@@ -19,7 +19,7 @@ peruDigitalApp.controller('headerController', function headerController ($scope,
       videoFactory.getChannels().then(function(data){
           $scope.channels = data.data;
 
-          videoFactory.getEpg($scope.channels[0]._id).then(function(data){
+          videoFactory.getEpg($scope.channels[1]._id).then(function(data){
               $scope.epg1 = data.data;
 
           });

@@ -10,9 +10,9 @@ peruDigitalApp.controller('liveController', function liveController ($scope, bra
 
       videoFactory.getChannels().then(function(data){
           $scope.channels = data.data;
-          $scope.activeVideo = $scope.channels[0];
+          $scope.activeVideo = $scope.channels[1];
 
-          videoFactory.getEpg($scope.channels[0]._id).then(function(data){
+          videoFactory.getEpg($scope.channels[1]._id).then(function(data){
               $scope.epg1 = data.data;
 
           });

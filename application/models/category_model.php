@@ -52,7 +52,7 @@ class category_model extends CI_Model {
     //    $parameters["media_type"] = 'movie|clip|tv_show|episode';
     //    $parameters["limit"] = null;
     //    $parameters["sort"] = null;
-        $data= apiCall("vod/get_items_by_category", $parameters);
+        $data= apiCall("vod/get_items_by_vod_category", $parameters);
 
        	$videos = $this->rows($data->content->entries);
 		//debug($videos);
