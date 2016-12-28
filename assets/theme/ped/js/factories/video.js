@@ -53,6 +53,14 @@ peruDigitalApp.factory("videoFactory", function($http, $q) {
         	error(function(data, status, headers, config) {
         	});
         },
+        getComingSoonVideos: function(){
+            return $http({method: 'GET', url: '/api/video/get_videos_by_featured/?category=proximamente'}).
+        	success(function(data, status, headers, config) {
+                return data;
+        	}).
+        	error(function(data, status, headers, config) {
+        	});
+        },
         getRecommendedVideos: function(){
             return $http({method: 'GET', url: '/api/video/get_videos_by_featured/?category=recomendados'}).
             	success(function(data, status, headers, config) {

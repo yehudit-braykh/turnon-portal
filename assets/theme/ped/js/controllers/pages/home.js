@@ -16,6 +16,11 @@ peruDigitalApp.controller('homeController', function homeController ($scope, $lo
 
     });
 
+    videoFactory.getComingSoonVideos().then(function(data){
+        $scope.comingSoonVids= data.data;
+
+    });
+
     videoFactory.getRecommendedVideos().then(function(data){
         $scope.recommendedShows= data.data;
 
