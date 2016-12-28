@@ -46,7 +46,7 @@ peruDigitalApp.factory("videoFactory", function($http, $q) {
         	});
         },
         getNewReleasesVideos: function(){
-            return $http({method: 'GET', url: '/api/video/get_videos_by_featured/?category=new_releases'}).
+            return $http({method: 'GET', url: '/api/video/get_videos_by_featured/?category=nuevos'}).
         	success(function(data, status, headers, config) {
                 return data;
         	}).
@@ -54,7 +54,7 @@ peruDigitalApp.factory("videoFactory", function($http, $q) {
         	});
         },
         getRecommendedVideos: function(){
-            return $http({method: 'GET', url: '/api/video/get_videos_by_featured/?category=recommended'}).
+            return $http({method: 'GET', url: '/api/video/get_videos_by_featured/?category=recomendados'}).
             	success(function(data, status, headers, config) {
                     return data;
             	}).
