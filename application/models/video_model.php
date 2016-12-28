@@ -10,7 +10,9 @@ class Video_model extends CI_Model {
 		$parameters= array();
 		if($channel)
 			$parameters["channel"] = $channel;
-
+			$date = new DateTime();
+			$parameters["start"] = $date->getTimestamp();
+			$parameters["length"] = 2;
 		$data = apiCall("live/list_epg", $parameters);
 		//debug($data);
 		return $data;
