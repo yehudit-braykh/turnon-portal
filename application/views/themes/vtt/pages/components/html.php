@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:tp="http://player.theplatform.com/" xml:lang="en" lang="en" ng-app="peruDigital">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:tp="http://player.theplatform.com/" xml:lang="en" lang="en" ng-app="vtt">
     <head>
 
         <meta name="keywords" content="website, business, store" />
@@ -8,9 +8,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-        <script src="/assets/theme/ped/js/jquery-2.2.4.min.js" crossorigin="anonymous"></script>
+        <script src="/assets/theme/vtt/js/jquery-2.2.4.min.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="<?php echo asset_url(); ?>js/jquery.min.js"></script>
-        <script src="/assets/theme/ped/js/bootstrap.min.js" crossorigin="anonymous"></script>
+        <script src="/assets/theme/vtt/js/bootstrap.min.js" crossorigin="anonymous"></script>
 
 
         <link rel="stylesheet" href="/assets/common/css/font-awesome.min.css">
@@ -53,8 +53,8 @@
 
         <!-- END ANGULAR -->
         <script type="text/javascript" src="<?php echo common_asset_url(); ?>js/greensock/TweenMax.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/less.php" />
         <link rel="stylesheet" href="/assets/common/css/bootstrap.min.css" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/less.php" />
         <!-- <link rel="stylesheet"  href="<?php echo asset_url(); ?>css/lightslider.css"/> -->
 
         <script type="text/javascript" src="https://content.jwplatform.com/libraries/07qZPa5L.js" ></script>
