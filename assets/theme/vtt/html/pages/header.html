@@ -10,71 +10,23 @@
             <span class="icon-bar" ></span>
           </button>
           <a class="navbar-brand" href="#">
-              <div class="brand-bg">
-              </div>
-              <div class="brand-img">
-              </div>
-              <!-- <img src="/assets/theme/ped/images/logo_ped.png" alt=""> -->
+              <img src="/assets/theme/vtt/images/logo.png" alt="">
           </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav left-nav" >
-            <li class="{{selectedCat==cat.title?'active':''}} hand" ng-repeat="cat in categories | limitTo:6" >
-                <a ng-click="go('/category/'+cat.title);selectedCat='{{cat.title}}'">{{cat.title}}</a>
+            <li class="hand" ng-repeat="item in menu" >
+                <a ng-click="go('/')">{{item.title}}</a>
             </li>
-
-
-            <!-- <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">One more separated link</a></li>
-                </ul>
-            </li> -->
           </ul>
-          <!-- <form class="navbar-form navbar-left">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search">
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-          </form> -->
-          <div class="search-cont pr hidden-xs">
-              <form ng-submit="search()">
-              <input type="text" id="search" class="search" placeholder="Search" /><i class="fa fa-search pa hand" ng-click="search()" aria-hidden="true"></i>
-            </form>
-          </div>
+
           <ul class="nav navbar-nav navbar-right">
-
-              <li class="signin-div logged-in" ng-show="isLoggedIn()">
-                  <div class="logged-in">
-                      <div class="dropdown ib">
-                          <div id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="ib dropdown-toggle user-section">
-                              <img class="user-img" src="{{user.avatar?user.avatar:'/assets/theme/ped/images/profile.png'}}" width=40 height=40 style="cursor: pointer;border-radius: 50px;" />
-                              {{user.firstName}} {{user.lastName}}
-                              <span class="caret"></span>
-                          </div>
-                          <ul class="dropdown-menu account-drop" aria-labelledby="dropdownMenu1">
-                            <li><a ng-click="go('/account/overview')">My Account</a></li>
-                            <li><a ng-click="go('/account/history')">My History</a></li>
-                            <li><a ng-click="go('/account/settings')">My Settings</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a ng-click="logout()">Logout</a></li>
-                          </ul>
-                      </div>
-
-                  </div>
-            </li>
             <li class="signin-div logged-out" ng-show="!isLoggedIn()">
                   <div class="logged-out">
-                      <div class="singin-btn hand"  data-toggle="modal" data-target="#loginModal" ng-click="showRegister=false">
-                          LOGIN
+                      <div class="singin-btn hand"  ng-click="go('/')">
+                          Mi Cuenta
                       </div>
                   </div>
               </li>
@@ -82,48 +34,9 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-    <div class="row epg" ng-show="isHome()">
-        <div class="col-xs-12 col-sm-3 col-md-2 epg-header pr" >EN VIVO
-        </div>
-        <div class="col-xs-12 col-sm-9 col-md-10 epg-content">
-            <div class="row epg-channel">
-                <div class="channel-name hand" ng-click="go('/live/'+channels[1].title)">{{channels[1].title}}</div>
-                <div class="channel-img hidden-xs hand" ng-click="go('/live/'+channels[1].title)" style="background-image:url({{channels[1].ChannelLogoSmall.url}})"></div>
-                <div class="channel-epg ">
-                    <div class="channel-program" ng-repeat="program in epg1 | limitTo:4">
-                        <div class="program-time">{{program.startTime | date:'HH:mm'}}</div>
-                        <div class="program-title">{{program.program.title}}</div>
-                        <div class="program-progress-container"><div class="progress" style="width:{{calcPercent(program.startTime,program.endTime)+'%'}}"></div></div>
-                    </div>
-                </div>
-            </div>
-            <div class="row epg-channel">
-                <div class="channel-name hand"  ng-click="go('/live/'+channels[0].title)" >{{channels[0].title}}</div>
-                <div class="channel-img hidden-xs hand" ng-click="go('/live/'+channels[0].title)" style="background-image:url({{channels[0].ChannelLogoSmall.url}})"></div>
-                <div class="channel-epg">
-                    <div class="channel-program" ng-repeat="program in epg2 | limitTo:4">
-                        <div class="program-time">{{program.startTime | date:'HH:mm'}}</div>
-                        <div class="program-title">{{program.program.title}}</div>
-                        <div class="program-progress-container"><div class="progress" style="width:{{calcPercent(program.startTime,program.endTime)+'%'}}"></div></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-<!--    <div class="sec-navbar">
-        <div class="container">
-            <div class="button hand  col-xs-5 col-sm-3 col-md-2 pr" ng-click="go('/survey')">Encuesta <span class="icon icon-clipboard-17x18 pa"></span></div>
-            <div class="button hand col-xs-5 col-sm-3 col-md-2 pr" ng-click="go('/lottery')">Concurso <span class="icon icon-medal-13x13 pa"></span></div>
-            <div class="search-cont pr col-xs-12 col-sm-5 col-md-4">
-                <input type="text" class="search" placeholder="Search" /><i class="fa fa-search pa" aria-hidden="true"></i>
-            </div>
-        </div>
-    </div> -->
 </div>
 
-<div class="modal loginModal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" ng-controller="headerController">
+<!-- <div class="modal loginModal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" ng-controller="headerController">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <button type="button" class="close pa" style="right:15px; top: 15px;" data-dismiss="modal" aria-label="Close"><span class="icon icon-x-white-20x19"></span></button>
@@ -192,4 +105,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

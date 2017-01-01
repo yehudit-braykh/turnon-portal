@@ -1,4 +1,4 @@
-peruDigitalApp.directive('jwplayer', function() {
+vttApp.directive('jwplayer', function() {
     return {
       restrict: 'E',
       transclude: true,

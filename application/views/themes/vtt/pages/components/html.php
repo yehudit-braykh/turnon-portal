@@ -9,6 +9,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
         <script src="/assets/theme/ped/js/jquery-2.2.4.min.js" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="<?php echo asset_url(); ?>js/jquery.min.js"></script>
         <script src="/assets/theme/ped/js/bootstrap.min.js" crossorigin="anonymous"></script>
 
 
@@ -31,27 +32,17 @@
        <!-- ANGULAR CONTOLLERS -->
        <script src="<?php echo asset_url(); ?>js/controllers/pages/home.js"></script>
        <script src="<?php echo asset_url(); ?>js/controllers/pages/header.js"></script>
-       <script src="<?php echo asset_url(); ?>js/controllers/pages/account.js"></script>
-       <script src="<?php echo asset_url(); ?>js/controllers/pages/celebrities.js"></script>
-       <script src="<?php echo asset_url(); ?>js/controllers/pages/celebrity.js"></script>
-       <script src="<?php echo asset_url(); ?>js/controllers/pages/category.js"></script>
-       <script src="<?php echo asset_url(); ?>js/controllers/pages/video.js"></script>
-       <script src="<?php echo asset_url(); ?>js/controllers/pages/survey.js"></script>
-       <script src="<?php echo asset_url(); ?>js/controllers/pages/lottery.js"></script>
-       <script src="<?php echo asset_url(); ?>js/controllers/pages/live.js"></script>
-       <script src="<?php echo asset_url(); ?>js/controllers/pages/search.js"></script>
+       <!-- <script src="<?php echo asset_url(); ?>js/controllers/pages/account.js"></script> -->
 
         <!-- COMPONENTS CONTROLLERS -->
 
         <!-- ANGULAR FACTORIES -->
         <script src="<?php echo asset_url(); ?>js/factories/user.js"></script>
-        <script src="<?php echo asset_url(); ?>js/factories/categories.js"></script>
-        <script src="<?php echo asset_url(); ?>js/factories/celebrities.js"></script>
-        <script src="<?php echo asset_url(); ?>js/factories/brands.js"></script>
+        <!-- <script src="<?php echo asset_url(); ?>js/factories/brands.js"></script>
         <script src="<?php echo asset_url(); ?>js/factories/video.js"></script>
         <script src="<?php echo asset_url(); ?>js/factories/user.js"></script>
         <script src="<?php echo asset_url(); ?>js/factories/cache.js"></script>
-        <script src="<?php echo asset_url(); ?>js/factories/subscriptions.js"></script>
+        <script src="<?php echo asset_url(); ?>js/factories/subscriptions.js"></script> -->
 
         <!-- ANGULAR FILTERS -->
 
@@ -64,7 +55,7 @@
         <script type="text/javascript" src="<?php echo common_asset_url(); ?>js/greensock/TweenMax.min.js"></script>
         <link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/less.php" />
         <link rel="stylesheet" href="/assets/common/css/bootstrap.min.css" crossorigin="anonymous">
-        <link rel="stylesheet"  href="<?php echo asset_url(); ?>css/lightslider.css"/>
+        <!-- <link rel="stylesheet"  href="<?php echo asset_url(); ?>css/lightslider.css"/> -->
 
         <script type="text/javascript" src="https://content.jwplatform.com/libraries/07qZPa5L.js" ></script>
 		<script>jwplayer.key = "wldzyhAXC/pV8hrmoKJJUJQUQU7UwoOXl6rN1w==";</script>

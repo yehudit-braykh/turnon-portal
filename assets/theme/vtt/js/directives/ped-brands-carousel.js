@@ -1,4 +1,4 @@
-peruDigitalApp.directive('pedBrandsCarousel', function() {
+vttApp.directive('pedBrandsCarousel', function() {
     return {
       restrict: 'E',
       transclude: true,

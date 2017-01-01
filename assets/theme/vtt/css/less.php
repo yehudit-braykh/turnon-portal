@@ -7,7 +7,7 @@ Less_Cache::$cache_dir = ROOT_DIR.'/assets/cache/';
 require ROOT_DIR.'/application/libraries/less/Less.php';
 
 $parser = new Less_Parser(array( 'compress'=>true ));
-$parser->parseFile( ROOT_DIR."/assets/theme/ped/css/main.less", "/assets/theme/ped/css");
+$parser->parseFile( ROOT_DIR."/assets/theme/vtt/css/main.less", "/assets/theme/vtt/css");
 
 //$css_file_name = Less_Cache::Get( "/cache/" );
 header("Content-type: text/css");
