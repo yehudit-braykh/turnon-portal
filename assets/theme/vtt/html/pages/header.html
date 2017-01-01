@@ -1,0 +1,195 @@
+<div class="header" ng-controller="headerController">
+    <nav class="navbar ">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only" >Toggle navigation</span>
+            <span class="icon-bar" ></span>
+            <span class="icon-bar" ></span>
+            <span class="icon-bar" ></span>
+          </button>
+          <a class="navbar-brand" href="#">
+              <div class="brand-bg">
+              </div>
+              <div class="brand-img">
+              </div>
+              <!-- <img src="/assets/theme/ped/images/logo_ped.png" alt=""> -->
+          </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav left-nav" >
+            <li class="{{selectedCat==cat.title?'active':''}} hand" ng-repeat="cat in categories | limitTo:6" >
+                <a ng-click="go('/category/'+cat.title);selectedCat='{{cat.title}}'">{{cat.title}}</a>
+            </li>
+
+
+            <!-- <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">One more separated link</a></li>
+                </ul>
+            </li> -->
+          </ul>
+          <!-- <form class="navbar-form navbar-left">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form> -->
+          <div class="search-cont pr hidden-xs">
+              <form ng-submit="search()">
+              <input type="text" id="search" class="search" placeholder="Search" /><i class="fa fa-search pa hand" ng-click="search()" aria-hidden="true"></i>
+            </form>
+          </div>
+          <ul class="nav navbar-nav navbar-right">
+
+              <li class="signin-div logged-in" ng-show="isLoggedIn()">
+                  <div class="logged-in">
+                      <div class="dropdown ib">
+                          <div id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="ib dropdown-toggle user-section">
+                              <img class="user-img" src="{{user.avatar?user.avatar:'/assets/theme/ped/images/profile.png'}}" width=40 height=40 style="cursor: pointer;border-radius: 50px;" />
+                              {{user.firstName}} {{user.lastName}}
+                              <span class="caret"></span>
+                          </div>
+                          <ul class="dropdown-menu account-drop" aria-labelledby="dropdownMenu1">
+                            <li><a ng-click="go('/account/overview')">My Account</a></li>
+                            <li><a ng-click="go('/account/history')">My History</a></li>
+                            <li><a ng-click="go('/account/settings')">My Settings</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a ng-click="logout()">Logout</a></li>
+                          </ul>
+                      </div>
+
+                  </div>
+            </li>
+            <li class="signin-div logged-out" ng-show="!isLoggedIn()">
+                  <div class="logged-out">
+                      <div class="singin-btn hand"  data-toggle="modal" data-target="#loginModal" ng-click="showRegister=false">
+                          LOGIN
+                      </div>
+                  </div>
+              </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <div class="row epg" ng-show="isHome()">
+        <div class="col-xs-12 col-sm-3 col-md-2 epg-header pr" >EN VIVO
+        </div>
+        <div class="col-xs-12 col-sm-9 col-md-10 epg-content">
+            <div class="row epg-channel">
+                <div class="channel-name hand" ng-click="go('/live/'+channels[1].title)">{{channels[1].title}}</div>
+                <div class="channel-img hidden-xs hand" ng-click="go('/live/'+channels[1].title)" style="background-image:url({{channels[1].ChannelLogoSmall.url}})"></div>
+                <div class="channel-epg ">
+                    <div class="channel-program" ng-repeat="program in epg1 | limitTo:4">
+                        <div class="program-time">{{program.startTime | date:'HH:mm'}}</div>
+                        <div class="program-title">{{program.program.title}}</div>
+                        <div class="program-progress-container"><div class="progress" style="width:{{calcPercent(program.startTime,program.endTime)+'%'}}"></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row epg-channel">
+                <div class="channel-name hand"  ng-click="go('/live/'+channels[0].title)" >{{channels[0].title}}</div>
+                <div class="channel-img hidden-xs hand" ng-click="go('/live/'+channels[0].title)" style="background-image:url({{channels[0].ChannelLogoSmall.url}})"></div>
+                <div class="channel-epg">
+                    <div class="channel-program" ng-repeat="program in epg2 | limitTo:4">
+                        <div class="program-time">{{program.startTime | date:'HH:mm'}}</div>
+                        <div class="program-title">{{program.program.title}}</div>
+                        <div class="program-progress-container"><div class="progress" style="width:{{calcPercent(program.startTime,program.endTime)+'%'}}"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<!--    <div class="sec-navbar">
+        <div class="container">
+            <div class="button hand  col-xs-5 col-sm-3 col-md-2 pr" ng-click="go('/survey')">Encuesta <span class="icon icon-clipboard-17x18 pa"></span></div>
+            <div class="button hand col-xs-5 col-sm-3 col-md-2 pr" ng-click="go('/lottery')">Concurso <span class="icon icon-medal-13x13 pa"></span></div>
+            <div class="search-cont pr col-xs-12 col-sm-5 col-md-4">
+                <input type="text" class="search" placeholder="Search" /><i class="fa fa-search pa" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div> -->
+</div>
+
+<div class="modal loginModal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" ng-controller="headerController">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <button type="button" class="close pa" style="right:15px; top: 15px;" data-dismiss="modal" aria-label="Close"><span class="icon icon-x-white-20x19"></span></button>
+            <div ng-hide="showRegister">
+                <div class="modal-header">
+                    LOGIN
+                </div>
+                <div class="modal-body">
+                <div class="login-buttons">
+                    <div class="login-button facebook" ng-click="socialLogin()" onclick="window.open('/hauth/login/Facebook','fb','left=20,top=20,width=500,height=400,toolbar=1,resizable=0')">
+                        Login with Facebook
+                        <span class="icon icon-facebook-logo-29x29 flr"></span>
+                    </div>
+                    <div class="login-button twitter" ng-click="socialLogin()"  onclick="window.open('/hauth/login/Twitter','twitter','left=20,top=20,width=500,height=400,toolbar=1,resizable=0')">
+                        Login with Twitter
+                        <span class="icon icon-twitter-logo-34x27 flr"></span>
+                    </div>
+                    <div class="login-button google"  ng-click="socialLogin()" onclick="window.open('/hauth/login/Google','google','left=20,top=20,width=500,height=400,toolbar=1,resizable=0')">
+                        Login with Google
+                        <span class="icon icon-google-logo-30x31 flr"></span>
+                    </div>
+                </div>
+                <div class="other-span">
+                    or </br>
+                    Enter your credentials
+                </div>
+                <div class="credentials-login"><form>
+                    <input type="email" name="email" ng-model="userRegister.email" placeholder="Email" required>
+                    <input type="password" name="password" ng-model="userRegister.password" placeholder="Password" required>
+                    <div class="remember-me">
+                        <input type="checkbox" name="remember-me" ng-model="userRegister.rememberMe" style="width:20px;" /><label for="remember-me">Remember Me</label>
+                    </div>
+                    <div class="login-error" ng-show="loginError">{{loginError}}<img class="error-triangle" src="/assets/theme/ped/images/red-triangle.png" /></div>
+                    <input type="submit" class="login-btn" ng-click="loginUser()" value="LOGIN"></form>
+                </div>
+
+                <div class="forgot-register">
+                    <div class="">
+                        Forget your password?
+                    </div>
+                    <div class="not-reg">
+                        Not registered? <span style="cursor:pointer;"> <a ng-click="showRegister=true">Create your account</a></span>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div ng-show="showRegister">
+                <div class="modal-header">Register</div>
+                <div class="modal-body">
+                    <div class="credentials-login"><form>
+                        <input type="text" name="first-name" ng-model="userRegister.first_name" placeholder="First Name" required>
+                        <input type="text" name="last-name" ng-model="userRegister.last_name" placeholder="Last Name" required>
+                        <input type="email" name="email" ng-model="userRegister.email" placeholder="Email" required>
+                        <input type="password" name="password" ng-model="userRegister.password" placeholder="Password" required>
+                        <input type="password" name="confirm-password" ng-model="userRegister.confirmPassword" placeholder="Confirm Password" required>
+                        <div class="register-error" ng-show="registerError">{{registerError}}<img class="error-triangle" src="/assets/theme/ped/images/red-triangle.png" /></div>
+                        <input type="submit" class="login-btn" ng-click="registerUser()" value="REGISTER"></form>
+                        <label>We’ll send a verification link to the email address you used to create the account. </label>
+                    </div>
+                    <div class="forgot-register">
+                        <div class="not-reg">
+                            Have an Account? <span style="cursor:pointer;"> <a ng-click="showRegister=false">Login</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

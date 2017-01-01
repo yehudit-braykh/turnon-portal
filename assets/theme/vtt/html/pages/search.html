@@ -1,0 +1,18 @@
+<div class="search-page container">
+    <div class="search-header">
+        Results for: {{keyword}}
+    </div>
+    <div class="results">
+        <div class="col-xs-12 col-sm-6 col-md-4 pr result hand ng-scope" ng-repeat="result in results | limitTo:resultsToShow" ng-click="go('/video/'+result._id)">
+            <img class="result-img" src="{{result.PosterH.url}}">
+            <div class="result-info pa ng-binding">
+                {{result.title}}<br>
+                <span class="result-date ng-binding">{{result.date}}</span>
+            </div>
+            <span class="result-play icon icon-play-circle-43x43 pa"></span>
+        </div>
+        <div class="col-xs-12 more hand text-right" ng-click="resultsToShow=resultsToShow+3">More <span class="arrow-down"></span></div>
+    </div>
+
+
+</div>

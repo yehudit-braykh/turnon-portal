@@ -1,0 +1,18 @@
+<div class="ped-brands-carousel-container">
+    <div id="{{carouselId}}" class="ped-brands-carousel pr">
+        <div class="arrow-right hidden-xs {{caruselPosition==1?'opacity0':''}}" ng-click="moveRight()">
+            <div class="icon icon-arrow-right-32x83"  >
+            </div>
+        </div>
+        <div class="arrow-left  hidden-xs {{caruselPosition==0?'opacity0':''}}" ng-click="moveLeft()">
+            <div class="icon icon-arrow-left-32x83" >
+            </div>
+        </div>
+        <div class="row__inner recentInner {{caruselPosition==1?'moveLeft':''}} {{activeVideo?'unhover':''}}">
+            <div class="tile {{activeVideo._id==video._id?'selected':''}}" ng-repeat="brand in model">
+                <div class="pr tile-content" style="background-image:url({{brand.images['Brand Transparent Logo'].url}})">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

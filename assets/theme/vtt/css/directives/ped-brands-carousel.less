@@ -1,0 +1,139 @@
+.ped-brands-carousel-container{
+    height: 100px;
+    .ped-brands-carousel{
+            margin: 10px 26px;
+            color: white;
+            height: 100%;
+
+            width: ~"calc(100% - 52px)";
+            position: relative;
+            @media (max-width: @screen-xs-max) {
+            //    height: 40vw;
+                overflow-x: scroll;
+                -webkit-overflow-scrolling: touch;
+            }
+            &:hover {
+                .arrow-right, .arrow-left {
+                    opacity: 0.5;
+                }
+            }
+            .arrow-right {
+                z-index: 2;
+                position: absolute;
+                height: 100%;
+                width: 65px;
+                right: 0;
+                top: 0;
+                opacity: 0;
+                transition: 0.5s ease;
+                &:hover, &:focus {
+                    opacity: 1;
+                }
+                &.opacity0 {
+                    opacity: 0;
+                }
+                .icon-arrow-right-32x83 {
+                    cursor: pointer;
+                    position: absolute;
+                    right: 10px;
+                    z-index: 1;
+                    top: ~"calc(50 - 42px)";
+                }
+            }
+             .arrow-left {
+                z-index: 2;
+                 position: absolute;
+                 height: 83%;
+                 width: 65px;
+                 left: 0;
+                 top: 0;
+                 opacity: 0;
+                 transition: 0.5s ease;
+                 &:hover, &:focus {
+                     opacity: 1;
+                 }
+                 &.opacity0 {
+                     opacity: 0;
+                 }
+                .icon-arrow-left-32x83 {
+                    cursor: pointer;
+                    top: ~"calc(50% - 42px)";
+                    position: absolute;
+                    left: 10px;
+                    z-index: 1;
+                }
+            }
+
+            .row__inner {
+                background-color: transparent;
+                left: 0%;
+                height: 100%;
+                transition-delay: 0ms;
+                transition: 1s ease;
+                -webkit-transition: 1s ease;
+                position: absolute;
+                font-size: 0;
+                white-space: nowrap;
+                padding-bottom: 10px;
+                @media (max-width: @screen-xs-max) {
+                    position: relative;
+                }
+                &.moveLeft {
+                    left: -100%;
+                }
+            }
+            .tile {
+                padding: 10px 0px;
+                vertical-align: middle;
+                background-color: transparent;
+                height: 100%;
+                width: ~"calc(13vw - 27px)";
+                position: relative;
+                display: inline-block;
+                margin-right: 20px;
+                font-size: 20px;
+                cursor: pointer;
+                transition-delay: 0ms;
+                -webkit-transition: 450ms all;
+                transition: 450ms all;
+                -webkit-transform-origin: center left;
+                    transform-origin: center left;
+                @media (max-width: @screen-xs-max) {
+                    width: ~"calc(23vw - 8px)";
+                    height: 15vw;
+                }
+                .tile-content {
+                    background-position: center;
+                    background-size: contain;
+                    height: 100%;
+                    background-repeat: no-repeat;
+                }
+
+            }
+
+            .tile__details:before {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              display: #000;
+            }
+
+            .row__inner {
+                &.unhover:hover{
+                    .tile:hover {
+                        height: 10.1vw;
+                        -webkit-transform: scale(1);
+                        transform: scale(1);
+                        opacity: 1;
+                        @media (max-width: @screen-xs-max) {
+                            height: 27vw;
+                        }
+                    }
+                    .tile:hover ~ .tile {
+                        -webkit-transform: translate3d(0, 0, 0);
+                        transform: translate3d(0, 0, 0);
+                    }
+                }
+            }
+        }
+}

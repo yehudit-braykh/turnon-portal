@@ -1,0 +1,134 @@
+.home-page{
+    .home-header{
+        height: 60vh;
+        .homeCarousel {
+            width: 100%;
+            height: inherit;
+            color: white;
+
+            .carousel-control {
+                &.left, &.right {
+                    background-image: none;
+                    .icon-arrow-left-32x83 {
+                        position: absolute;
+                        top: 50%;
+                        left: 26px;
+                        margin-top: -15px;
+                    }
+                    .icon-arrow-right-32x83 {
+                        position: absolute;
+                        top: 50%;
+                        right: 26px;
+                        margin-top: -15px;
+                    }
+                }
+            }
+            .carousel-inner{
+                height: 100%;
+
+                .item {
+                height: 100%;
+                    .item-content{
+                    background-position: center;
+                    background-size: cover;
+                    height: 100%;
+                    .info{
+                        bottom: 0;
+                        width: 80%;
+                        left: 10%;
+                    }
+                    .header-text {
+                        font-weight: bold;
+                        font-size: 36px;
+                        @media (max-width: @screen-md-max) {
+                            font-size: 32px;
+                        }
+                        @media (max-width: @screen-sm-max) {
+                            font-size: 28px;
+                        }
+                        @media (max-width: @screen-xs-max) {
+                            font-size: 18px;
+                        }
+                    }
+                    .span-text {
+                        font-size: 20px;
+                        line-height: 26px;
+                        margin-bottom: 20px;
+                        text-align: justify;
+                        @media (max-width: 560px) {
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+            }
+        }
+    }
+
+    @media (max-width: @screen-xs-max){
+        .home-header{
+            height: 30vh;
+        }
+    }
+
+    .home-content{
+
+        .row-title {
+            margin-left: 40px;
+            font-size: 28px;
+            color: white;
+            margin-top: 20px;
+            text-transform: uppercase;
+        }
+
+        .carousel-blue{
+            background-color: #003f4d;
+            margin-top:20px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+
+
+        .other-celebs{
+            margin-top:40px;
+            height: 315px;
+            background-color: #003f4d;
+            overflow: hidden;
+            padding: 0px 40px;
+
+            @media (max-width: @screen-xs-max){
+                height: 230px;
+            }
+
+            .celebrity{
+                padding: 15px;
+                height: 100%;
+                float: left;
+
+                .celeb-img{
+                    height: 100%;
+                    background-position: center center;
+                    background-size: cover;
+                }
+
+                .celeb-name{
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    line-height: 50px;
+                    background-color: rgba(255,255,255,0.5);
+                    font-size: 18px;
+                    color: #00353f;
+                    padding-left: 10px;
+
+                    @media (max-width: @screen-xs-max){
+                        font-size: 14px;
+                    }
+                }
+            }
+
+        }
+    }
+
+}

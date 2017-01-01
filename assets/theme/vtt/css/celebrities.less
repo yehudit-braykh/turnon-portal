@@ -1,0 +1,106 @@
+.celebrities-page{
+    .celebrities-header{
+        margin: 0;
+        height: 60vh;
+        background-position: center center;
+        background-size: cover;
+        color: white;
+        text-align: center;
+        .header-title{
+            font-size: 64px;
+            padding-top: 20vh;
+        }
+
+        .header-desc{
+            font-size: 25px;
+            max-width: 65%;
+            margin: 0 auto;
+
+        }
+
+        .overlay {
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 55%;
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000);
+            z-index: 1;
+        }
+
+        @media(max-width: @screen-xs-max){
+            .header-title{
+                font-size: 34px;
+                padding-top: 15vh;
+            }
+
+            .header-desc{
+                font-size: 18px;
+                max-width: 80%;
+
+            }
+        }
+    }
+
+    .celebrities-content{
+
+        .row-title {
+            margin-left: 100px;
+            font-size: 28px;
+            color: white;
+            margin-top: 40px;
+        }
+
+        .carousel-blue{
+            background-color: #003f4d;
+            height: 220px;
+            margin-top:40px;
+            margin-bottom: 10px;
+        }
+
+        .celebrities{
+            margin-top:40px;
+        }
+
+        .celebrity{
+            padding: 15px;
+            .celeb-name{
+                background-position: center;
+                background-size: cover;
+            }
+
+            .celeb-img{
+                width: 100%;
+            }
+
+            .celeb-name{
+                bottom: 15px;
+                left:15px;
+                right: 15px;
+                line-height: 50px;
+                background-color: rgba(255,255,255,0.5 );
+                font-size: 36px;
+                padding-left: 15px;
+                color: #00353f;
+                padding-left: 15px;
+
+            }
+
+        }
+        .more{
+            height: 40px;
+            margin-top: 28px;
+            font-size: 28px;
+            color: white;
+            .arrow-down {
+                width: 0px;
+                height: 0px;
+                border-left: 10px solid transparent;
+                border-right: 10px solid transparent;
+                border-top: 10px solid #fff;
+                display: inline-block;
+                margin: 2px;
+            }
+        }
+    }
+
+}
