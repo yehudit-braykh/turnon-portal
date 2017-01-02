@@ -1,8 +1,8 @@
 var h = null;
-vttApp.controller('homeController', function homeController ($scope, $location, $log) {
-      h = $scope;
+vttApp.controller('homeController', function homeController ($scope, $location, $http, $log) {
+    h = $scope;
 
-$log.log(h);
+    $scope.videos = {};
 
     $scope.featuredVideos = {
         0:{url:"/assets/theme/vtt/images/static-images/home-slider/slide1.png", title:"Titulo del Programa",desc:"The official Wikipedia Android app is designed to help you find, discover, and explore knowledge on Wikipedia. Settle a bet with a friend search…"},
@@ -11,10 +11,22 @@ $log.log(h);
         3:{url:"/assets/theme/vtt/images/static-images/home-slider/slide2.png", title:"Titulo del Programa",desc:"The official Wikipedia Android app is designed to help you find, discover, and explore knowledge on Wikipedia. Settle a bet with a friend search…"}
     };
 
+    $scope.getNewRelease = function(success,error){
+        $http.get("index.php/api/vod/get_new_release").then(success,error);
+    };
+
     $scope.go = function(path){
         $location.path(path);
     }
+    function init(){
+        $scope.getNewRelease(
+            function(response){
+                $scope.videos = response.data.content.entries;
+            },
+            function(){}
+        );
+    }
 
-
+    init();
 
   });

@@ -37,7 +37,33 @@ vttApp.directive('pedCarousel', function() {
               $location.path(path);
           }
 
+          $scope.subscriptionType = function(type){
+              if(type == "commerce_free_media"){
+                  return 'free';
+              }
+              if(type == "commerce_members_media"){
+                  return 'member';
+              }
+              if(type == "commerce_subscription_basic_media"){
+                  return 'subscribe';
+              }
+              return 'free';
+          };
+
+          $scope.getPosterH = function(video){
+              if(video.PosterH){
+                  return video.PosterH.downloadUrl;
+              }
+              var content = video.content;
+              var i;
+              for(i = 0; i < Object.keys(content).length; i++){
+                  if(content[i].assetTypes[0] == "Poster H"){
+                      return content[i].downloadUrl;
+                  }
+              }
+          };
+
       }],
-      templateUrl: '/assets/theme/ped/html/directives/ped-carousel.html'
+      templateUrl: '/assets/theme/vtt/html/directives/ped-carousel.html'
     };
   })

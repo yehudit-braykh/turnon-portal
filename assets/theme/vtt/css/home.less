@@ -1,11 +1,18 @@
 .home-page{
+    background-color: #231f20;
     .home-header{
         height: 60vh;
         .homeCarousel {
             width: 100%;
             height: inherit;
             color: white;
-
+            .carousel-indicators{
+                li{
+                    width: 20px;
+                    height: 20px;
+                    margin: 1px 10px;
+                }
+            }
             .carousel-control {
                 &.left, &.right {
                     background-image: none;
@@ -25,46 +32,68 @@
             }
             .carousel-inner{
                 height: 100%;
-
                 .item {
-                height: 100%;
-                    .item-content{
-                    background-position: center;
-                    background-size: cover;
                     height: 100%;
-                    .info{
-                        bottom: 0;
-                        width: 80%;
-                        left: 10%;
-                    }
-                    .header-text {
-                        font-weight: bold;
-                        font-size: 36px;
-                        @media (max-width: @screen-md-max) {
-                            font-size: 32px;
+                        .item-content{
+                        background-position: center;
+                        background-size: cover;
+                        height: 100%;
+                        .info{
+                            padding: 10px 30px;
+                            bottom: 5%;
+                            width: 30%;
+                            left: 10%;
+                            background-color: rgba(0, 0, 0, 0.75);
+                            @media (max-width: @screen-xs-max) {
+                                width: 80%;
+                            }
                         }
-                        @media (max-width: @screen-sm-max) {
-                            font-size: 28px;
+                        .header-text {
+                            font-weight: bold;
+                            font-size: 36px;
+                            @media (max-width: @screen-md-max) {
+                                font-size: 30px;
+                            }
+                            @media (max-width: @screen-sm-max) {
+                                font-size: 26px;
+                            }
+                            @media (max-width: @screen-xs-max) {
+                                font-size: 16px;
+                            }
                         }
-                        @media (max-width: @screen-xs-max) {
-                            font-size: 18px;
-                        }
-                    }
-                    .span-text {
-                        font-size: 20px;
-                        line-height: 26px;
-                        margin-bottom: 20px;
-                        text-align: justify;
-                        @media (max-width: 560px) {
-                            font-size: 14px;
+                        .span-text {
+                            font-size: 20px;
+                            margin-bottom: 20px;
+                            text-align: justify;
+                            @media (max-width: @screen-md-max) {
+                                font-size: 16px;
+                            }
+                            @media (max-width: @screen-sm-max) {
+                                font-size: 14px;
+                                margin-bottom: 10px;
+                            }
                         }
                     }
                 }
             }
-            }
         }
     }
 
+    .btn-primary{
+        h2{
+            padding: 5px 10px;
+            margin: 0;
+            @media (max-width: @screen-md-max) {
+                font-size: 26px;
+            }
+            @media (max-width: @screen-sm-max) {
+                font-size: 24px;
+            }
+            @media (max-width: @screen-xs-max) {
+                font-size: 16px;
+            }
+        }
+    }
     @media (max-width: @screen-xs-max){
         .home-header{
             height: 30vh;
@@ -72,63 +101,48 @@
     }
 
     .home-content{
-
-        .row-title {
-            margin-left: 40px;
-            font-size: 28px;
-            color: white;
-            margin-top: 20px;
-            text-transform: uppercase;
-        }
-
-        .carousel-blue{
-            background-color: #003f4d;
-            margin-top:20px;
-            margin-bottom: 10px;
-            overflow: hidden;
-        }
-
-
-
-        .other-celebs{
-            margin-top:40px;
-            height: 315px;
-            background-color: #003f4d;
-            overflow: hidden;
-            padding: 0px 40px;
-
-            @media (max-width: @screen-xs-max){
-                height: 230px;
+        margin: 0 6vw;
+        .video-title{
+            margin: 30px 20px 0px 20px;
+            @media (max-width: @screen-xs-max) {
+                    margin: 10px 0px;
             }
-
-            .celebrity{
-                padding: 15px;
-                height: 100%;
-                float: left;
-
-                .celeb-img{
-                    height: 100%;
-                    background-position: center center;
-                    background-size: cover;
+            h1{
+                font-size: 54px;
+                font-weight: bold;
+                color: #fcfbf5;
+                @media (max-width: @screen-xs-max) {
+                    font-size: 20px;
                 }
-
-                .celeb-name{
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
-                    line-height: 50px;
-                    background-color: rgba(255,255,255,0.5);
-                    font-size: 18px;
-                    color: #00353f;
-                    padding-left: 10px;
-
-                    @media (max-width: @screen-xs-max){
-                        font-size: 14px;
+            }
+            .watch-more{
+                float: right;
+                color: #ebec30;
+                text-align: right;
+                h2{
+                    @media (max-width: @screen-xs-max) {
+                        font-size: 16px;
                     }
                 }
             }
+        }
+        .row-title {
+            margin-left: 40px;
+            font-size: 32px;
+            color: white;
+            margin-top: 10px;
+            @media (max-width: @screen-xs-max) {
+                font-size: 18px;
+                margin-left: 10px;
+            }
+        }
 
+        .carousel-videos{
+            background-image: linear-gradient(to bottom, rgba(246, 247, 93, 0.25), rgba(234, 236, 47, 0.25));
+            margin-top:10px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            border-top: 15px solid #ebed2f;
         }
     }
-
 }

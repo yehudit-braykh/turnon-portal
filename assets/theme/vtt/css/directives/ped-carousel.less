@@ -1,11 +1,11 @@
 .ped-carousel-container{
 //    height: 220px;
     .ped-carousel{
-            margin: 10px 26px;
+            // margin: 10px 26px;
             color: white;
     //        height: 100%;
 
-            width: ~"calc(100% - 52px)";
+            width: ~"calc(100%)";
             position: relative;
             @media (max-width: @screen-xs-max) {
     //            height: 50vw;
@@ -21,43 +21,45 @@
                 z-index: 2;
                 position: absolute;
                 height: 100%;
-                width: 65px;
+                width: 10vw;
                 right: 0;
                 top: 0;
                 opacity: 1;
                 transition: 0.5s ease;
+                background-image: linear-gradient(to right, rgba(35, 31, 32, 0), #231f20);
                 &:hover, &:focus {
                     opacity: 1;
                 }
                 &.opacity0 {
                     opacity: 0;
                 }
-                .icon-arrow-right-32x83 {
+                .icon-arrow-right-small {
                     cursor: pointer;
                     position: absolute;
                     right: 10px;
                     z-index: 1;
-                    top: ~"calc(50% - 42px)";
+                    top: ~"calc(50% - 30px)";
                 }
             }
              .arrow-left {
                 z-index: 2;
                  position: absolute;
                  height: 100%;
-                 width: 65px;
+                 width: 10vw;
                  left: 0;
                  top: 0;
                  opacity: 1;
                  transition: 0.5s ease;
+                 background-image: linear-gradient(to left, rgba(35, 31, 32, 0), #231f20);
                  &:hover, &:focus {
                      opacity: 1;
                  }
                  &.opacity0 {
                      opacity: 0;
                  }
-                .icon-arrow-left-32x83 {
+                .icon-arrow-left-small {
                     cursor: pointer;
-                    top: ~"calc(50% - 42px)";
+                    top: ~"calc(50% - 30px)";
                     position: absolute;
                     left: 10px;
                     z-index: 1;
@@ -66,7 +68,7 @@
 
             .row__inner {
                 background-color: transparent;
-                left: 0%;
+                left: 1.5vw;
                 position: relative;
         //        height: 100%;
                 transition-delay: 0ms;
@@ -81,15 +83,15 @@
                 }
             }
             .tile {
-                margin-top: 2vw;
-                margin-bottom: 2vw;
+                margin-top: 1.5vw;
+                margin-bottom: 1.5vw;
                 vertical-align: middle;
                 background-color: transparent;
                 height: 13vw;
-                width: ~"calc(25vw - 12px)";
+                width: ~"calc(20vw)";
                 position: relative;
                 display: inline-block;
-                margin-right: 10px;
+                margin-right: 1.5vw;
                 font-size: 20px;
                 cursor: pointer;
                 transition-delay: 0ms;
@@ -122,15 +124,27 @@
                     transition: 0.5s;
 
                     .subscribe {
-                        font-size: 16px;
+                        font-size: 30px;
                         text-align: center;
-                        width: 110px;
-                        height: 22px;
+                        padding: 5px 0;
+                        width: 160px;
                         background-color: #ff1c63;
                     }
 
                     .free {
-                        background-color: #3e5697;
+                        font-size: 30px;
+                        text-align: center;
+                        padding: 5px 0;
+                        width: 160px;
+                        background-color: #038d7f;
+                    }
+
+                    .member {
+                        font-size: 30px;
+                        text-align: center;
+                        padding: 5px 0;
+                        width: 160px;
+                        background-color: #a10c99;
                     }
 
                     .info {
@@ -156,9 +170,6 @@
                                 transition: 0.5s;
                             }
                         }
-
-
-
                         .desc{
                             height: 0;
                             white-space: normal;
@@ -172,9 +183,6 @@
                         }
 
                     }
-
-
-
                     &:hover{
                         z-index: 1;
                         transform: scale(1.2);
@@ -195,9 +203,6 @@
                             }
 
                         }
-
-
-
                         .desc{
                             height: 45px;
                             opacity: 1;
