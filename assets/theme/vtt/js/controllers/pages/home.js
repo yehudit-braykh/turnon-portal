@@ -2,6 +2,7 @@ var h = null;
 vttApp.controller('homeController', function homeController ($scope, $location, $http, $log) {
     h = $scope;
 
+    $scope.down = false;
     $scope.videos = {};
     $scope.channels = {
         0:{url:"/assets/theme/vtt/images/logo.png"},
@@ -31,6 +32,11 @@ vttApp.controller('homeController', function homeController ($scope, $location, 
     $scope.go = function(path){
         $location.path(path);
     }
+
+    $scope.moveDown = function(){
+        $scope.down = !$scope.down;
+    }
+
     function init(){
         $scope.getNewRelease(
             function(response){

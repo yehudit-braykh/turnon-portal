@@ -26,7 +26,10 @@
                 top: 0;
                 opacity: 1;
                 transition: 0.5s ease;
-                background-image: linear-gradient(to right, rgba(35, 31, 32, 0), #231f20);
+                background: -moz-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(26,23,24,1) 75%, rgba(35,31,32,1) 100%); /* FF3.6-15 */
+                background: -webkit-linear-gradient(left, rgba(0,0,0,0) 0%,rgba(26,23,24,1) 75%,rgba(35,31,32,1) 100%); /* Chrome10-25,Safari5.1-6 */
+                background: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(26,23,24,1) 75%,rgba(35,31,32,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#231f20',GradientType=1 ); /* IE6-9 */
                 &:hover, &:focus {
                     opacity: 1;
                 }
@@ -36,7 +39,7 @@
                 .icon-arrow-right-small {
                     cursor: pointer;
                     position: absolute;
-                    right: 10px;
+                    right: 0;
                     z-index: 1;
                     top: ~"calc(50% - 30px)";
                 }
@@ -50,7 +53,10 @@
                  top: 0;
                  opacity: 1;
                  transition: 0.5s ease;
-                 background-image: linear-gradient(to left, rgba(35, 31, 32, 0), #231f20);
+                background: -moz-linear-gradient(left, rgba(35,31,32,1) 0%, rgba(26,23,24,1) 25%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+                background: -webkit-linear-gradient(left, rgba(35,31,32,1) 0%,rgba(26,23,24,1) 25%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+                background: linear-gradient(to right, rgba(35,31,32,1) 0%,rgba(26,23,24,1) 25%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#231f20', endColorstr='#00000000',GradientType=1 ); /* IE6-9 */
                  &:hover, &:focus {
                      opacity: 1;
                  }
@@ -61,7 +67,7 @@
                     cursor: pointer;
                     top: ~"calc(50% - 30px)";
                     position: absolute;
-                    left: 10px;
+                    left: 0;
                     z-index: 1;
                 }
             }
@@ -87,8 +93,8 @@
                 margin-bottom: 1.5vw;
                 vertical-align: middle;
                 background-color: transparent;
-                height: 13vw;
-                width: ~"calc(20vw)";
+                height: 11.25vw;
+                width: 20vw;
                 position: relative;
                 display: inline-block;
                 margin-right: 1.5vw;
