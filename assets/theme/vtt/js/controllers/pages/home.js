@@ -3,6 +3,19 @@ vttApp.controller('homeController', function homeController ($scope, $location, 
     h = $scope;
 
     $scope.videos = {};
+    $scope.channels = {
+        0:{url:"/assets/theme/vtt/images/logo.png"},
+        1:{url:"/assets/theme/vtt/images/logo.png"},
+        2:{url:"/assets/theme/vtt/images/logo.png"},
+        3:{url:"/assets/theme/vtt/images/logo.png"},
+        4:{url:"/assets/theme/vtt/images/logo.png"},
+        5:{url:"/assets/theme/vtt/images/logo.png"},
+        6:{url:"/assets/theme/vtt/images/logo.png"},
+        7:{url:"/assets/theme/vtt/images/logo.png"},
+        8:{url:"/assets/theme/vtt/images/logo.png"},
+        9:{url:"/assets/theme/vtt/images/logo.png"},
+        10:{url:"/assets/theme/vtt/images/logo.png"}
+    };
 
     $scope.featuredVideos = {
         0:{url:"/assets/theme/vtt/images/static-images/home-slider/slide1.png", title:"Titulo del Programa",desc:"The official Wikipedia Android app is designed to help you find, discover, and explore knowledge on Wikipedia. Settle a bet with a friend search…"},
@@ -25,6 +38,7 @@ vttApp.controller('homeController', function homeController ($scope, $location, 
             },
             function(){}
         );
+
     }
 
     init();
