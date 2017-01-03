@@ -23,115 +23,183 @@ and open the template in the editor.
 @import "directives/ped-carousel";
 @import "directives/ped-brands-carousel";
 
+// @font-face {
+// 	font-family: 'PTsans';
+// 	src: url('/assets/theme/vtt/fonts/sans/PTSans-Regular.eot');
+// 	src: url('/assets/theme/vtt/fonts/sans/PTSans-Regular.eot?#iefix') format('embedded-opentype'),
+// 		url('/assets/theme/vtt/fonts/sans/PTSans-Regular.woff2') format('woff2'),
+// 		url('/assets/theme/vtt/fonts/sans/PTSans-Regular.woff') format('woff'),
+// 		url('/assets/theme/vtt/fonts/sans/PTSans-Regular.ttf') format('truetype'),
+// 		url('/assets/theme/vtt/fonts/sans/PTSans-Regular.svg#PTSans-Regular') format('svg');
+// 	font-weight: normal;
+// 	font-style: normal;
+// }
+// @font-face {
+// 	font-family: 'PTcaption';
+// 	src: url('/assets/theme/vtt/fonts/sans/PTSans-Caption.eot');
+// 	src: url('/assets/theme/vtt/fonts/sans/PTSans-Caption.eot?#iefix') format('embedded-opentype'),
+// 		url('/assets/theme/vtt/fonts/sans/PTSans-Caption.woff2') format('woff2'),
+// 		url('/assets/theme/vtt/fonts/sans/PTSans-Caption.woff') format('woff'),
+// 		url('/assets/theme/vtt/fonts/sans/PTSans-Caption.ttf') format('truetype'),
+// 		url('/assets/theme/vtt/fonts/sans/PTSans-Caption.svg#PTSans-Caption') format('svg');
+// 	font-weight: normal;
+// 	font-style: normal;
+// }
+// @font-face {
+// 	font-family: 'PTsans';
+// 	src: url('/assets/theme/vtt/fonts/sans/PTSans-Italic.eot');
+// 	src: url('/assets/theme/vtt/fonts/sans/PTSans-Italic.eot?#iefix') format('embedded-opentype'),
+// 		url('/assets/theme/vtt/fonts/sans/PTSans-Italic.woff2') format('woff2'),
+// 		url('/assets/theme/vtt/fonts/sans/PTSans-Italic.woff') format('woff'),
+// 		url('/assets/theme/vtt/fonts/sans/PTSans-Italic.ttf') format('truetype'),
+// 		url('/assets/theme/vtt/fonts/sans/PTSans-Italic.svg#PTSans-Italic') format('svg');
+// 	font-weight: normal;
+// 	font-style: italic;
+// }
+// @font-face {
+// 	font-family: 'PTsans';
+// 	src: url('/assets/theme/vtt/fonts/sans/PTSans-Bold.eot');
+// 	src: url('/assets/theme/vtt/fonts/sans/PTSans-Bold.eot?#iefix') format('embedded-opentype'),
+// 		url('/assets/theme/vtt/fonts/sans/PTSans-Bold.woff2') format('woff2'),
+// 		url('/assets/theme/vtt/fonts/sans/PTSans-Bold.woff') format('woff'),
+// 		url('/assets/theme/vtt/fonts/sans/PTSans-Bold.ttf') format('truetype'),
+// 		url('/assets/theme/vtt/fonts/sans/PTSans-Bold.svg#PTSans-Bold') format('svg');
+// 	font-weight: bold;
+// 	font-style: normal;
+// }
+// @font-face {
+// 	font-family: 'PTsans';
+// 	src: url('/assets/theme/vtt/fonts/sans/PTSans-BoldItalic.eot');
+// 	src: url('/assets/theme/vtt/fonts/sans/PTSans-BoldItalic.eot?#iefix') format('embedded-opentype'),
+// 		url('/assets/theme/vtt/fonts/sans/PTSans-BoldItalic.woff2') format('woff2'),
+// 		url('/assets/theme/vtt/fonts/sans/PTSans-BoldItalic.woff') format('woff'),
+// 		url('/assets/theme/vtt/fonts/sans/PTSans-BoldItalic.ttf') format('truetype'),
+// 		url('/assets/theme/vtt/fonts/sans/PTSans-BoldItalic.svg#PTSans-BoldItalic') format('svg');
+// 	font-weight: bold;
+// 	font-style: italic;
+// }
+//
+// @font-face {
+// 	font-family: 'Cabin';
+// 	src: url('/assets/theme/vtt/fonts/cab/Cabin-Regular.eot');
+// 	src: url('/assets/theme/vtt/fonts/cab/Cabin-Regular.eot?#iefix') format('embedded-opentype'),
+// 		url('/assets/theme/vtt/fonts/cab/Cabin-Regular.woff2') format('woff2'),
+// 		url('/assets/theme/vtt/fonts/cab/Cabin-Regular.woff') format('woff'),
+// 		url('/assets/theme/vtt/fonts/cab/Cabin-Regular.ttf') format('truetype'),
+// 		url('/assets/theme/vtt/fonts/cab/Cabin-Regular.svg#Cabin-Regular') format('svg');
+// 	font-weight: normal;
+// 	font-style: normal;
+// }
+// @font-face {
+// 	font-family: 'Cabin';
+// 	src: url('/assets/theme/vtt/fonts/cab/Cabin-Italic.eot');
+// 	src: url('/assets/theme/vtt/fonts/cab/Cabin-Italic.eot?#iefix') format('embedded-opentype'),
+// 		url('/assets/theme/vtt/fonts/cab/Cabin-Italic.woff2') format('woff2'),
+// 		url('/assets/theme/vtt/fonts/cab/Cabin-Italic.woff') format('woff'),
+// 		url('/assets/theme/vtt/fonts/cab/Cabin-Italic.ttf') format('truetype'),
+// 		url('/assets/theme/vtt/fonts/cab/Cabin-Italic.svg#Cabin-Italic') format('svg');
+// 	font-weight: normal;
+// 	font-style: italic;
+// }
+// @font-face {
+// 	font-family: 'Cabin';
+// 	src: url('/assets/theme/vtt/fonts/cab/Cabin-Bold.eot');
+// 	src: url('/assets/theme/vtt/fonts/cab/Cabin-Bold.eot?#iefix') format('embedded-opentype'),
+// 		url('/assets/theme/vtt/fonts/cab/Cabin-Bold.woff2') format('woff2'),
+// 		url('/assets/theme/vtt/fonts/cab/Cabin-Bold.woff') format('woff'),
+// 		url('/assets/theme/vtt/fonts/cab/Cabin-Bold.ttf') format('truetype'),
+// 		url('/assets/theme/vtt/fonts/cab/Cabin-Bold.svg#Cabin-Bold') format('svg');
+//
+// 	font-weight: bold;
+// 	font-style: normal;
+// }
+// @font-face {
+// 	font-family: 'Cabin';
+// 	src: url('/assets/theme/vtt/fonts/cab/Cabin-BoldItalic.eot');
+// 	src: url('/assets/theme/vtt/fonts/cab/Cabin-BoldItalic.eot?#iefix') format('embedded-opentype'),
+// 		url('/assets/theme/vtt/fonts/cab/Cabin-BoldItalic.woff2') format('woff2'),
+// 		url('/assets/theme/vtt/fonts/cab/Cabin-BoldItalic.woff') format('woff'),
+// 		url('/assets/theme/vtt/fonts/cab/Cabin-BoldItalic.ttf') format('truetype'),
+// 		url('/assets/theme/vtt/fonts/cab/Cabin-BoldItalic.svg#Cabin-BoldItalic') format('svg');
+// 	font-weight: bold;
+// 	font-style: italic;
+// }
+
 @font-face {
-	font-family: 'PTsans';
-	src: url('/assets/theme/ped/fonts/sans/PTSans-Regular.eot');
-	src: url('/assets/theme/ped/fonts/sans/PTSans-Regular.eot?#iefix') format('embedded-opentype'),
-		url('/assets/theme/ped/fonts/sans/PTSans-Regular.woff2') format('woff2'),
-		url('/assets/theme/ped/fonts/sans/PTSans-Regular.woff') format('woff'),
-		url('/assets/theme/ped/fonts/sans/PTSans-Regular.ttf') format('truetype'),
-		url('/assets/theme/ped/fonts/sans/PTSans-Regular.svg#PTSans-Regular') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-@font-face {
-	font-family: 'PTcaption';
-	src: url('/assets/theme/ped/fonts/sans/PTSans-Caption.eot');
-	src: url('/assets/theme/ped/fonts/sans/PTSans-Caption.eot?#iefix') format('embedded-opentype'),
-		url('/assets/theme/ped/fonts/sans/PTSans-Caption.woff2') format('woff2'),
-		url('/assets/theme/ped/fonts/sans/PTSans-Caption.woff') format('woff'),
-		url('/assets/theme/ped/fonts/sans/PTSans-Caption.ttf') format('truetype'),
-		url('/assets/theme/ped/fonts/sans/PTSans-Caption.svg#PTSans-Caption') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-@font-face {
-	font-family: 'PTsans';
-	src: url('/assets/theme/ped/fonts/sans/PTSans-Italic.eot');
-	src: url('/assets/theme/ped/fonts/sans/PTSans-Italic.eot?#iefix') format('embedded-opentype'),
-		url('/assets/theme/ped/fonts/sans/PTSans-Italic.woff2') format('woff2'),
-		url('/assets/theme/ped/fonts/sans/PTSans-Italic.woff') format('woff'),
-		url('/assets/theme/ped/fonts/sans/PTSans-Italic.ttf') format('truetype'),
-		url('/assets/theme/ped/fonts/sans/PTSans-Italic.svg#PTSans-Italic') format('svg');
-	font-weight: normal;
-	font-style: italic;
-}
-@font-face {
-	font-family: 'PTsans';
-	src: url('/assets/theme/ped/fonts/sans/PTSans-Bold.eot');
-	src: url('/assets/theme/ped/fonts/sans/PTSans-Bold.eot?#iefix') format('embedded-opentype'),
-		url('/assets/theme/ped/fonts/sans/PTSans-Bold.woff2') format('woff2'),
-		url('/assets/theme/ped/fonts/sans/PTSans-Bold.woff') format('woff'),
-		url('/assets/theme/ped/fonts/sans/PTSans-Bold.ttf') format('truetype'),
-		url('/assets/theme/ped/fonts/sans/PTSans-Bold.svg#PTSans-Bold') format('svg');
-	font-weight: bold;
-	font-style: normal;
-}
-@font-face {
-	font-family: 'PTsans';
-	src: url('/assets/theme/ped/fonts/sans/PTSans-BoldItalic.eot');
-	src: url('/assets/theme/ped/fonts/sans/PTSans-BoldItalic.eot?#iefix') format('embedded-opentype'),
-		url('/assets/theme/ped/fonts/sans/PTSans-BoldItalic.woff2') format('woff2'),
-		url('/assets/theme/ped/fonts/sans/PTSans-BoldItalic.woff') format('woff'),
-		url('/assets/theme/ped/fonts/sans/PTSans-BoldItalic.ttf') format('truetype'),
-		url('/assets/theme/ped/fonts/sans/PTSans-BoldItalic.svg#PTSans-BoldItalic') format('svg');
+	font-family: 'Roboto';
+	src: url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-BoldItalic.eot');
+	src: url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-BoldItalic.eot?#iefix') format('embedded-opentype'),
+	url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-BoldItalic.woff2') format('woff2'),
+	url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-BoldItalic.woff') format('woff'),
+	url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-BoldItalic.ttf') format('truetype'),
+	url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-BoldItalic.svg#/assets/theme/vtt/fonts/roboto/RobotoCondensed-BoldItalic') format('svg');
 	font-weight: bold;
 	font-style: italic;
 }
 
 @font-face {
-	font-family: 'Cabin';
-	src: url('/assets/theme/ped/fonts/cab/Cabin-Regular.eot');
-	src: url('/assets/theme/ped/fonts/cab/Cabin-Regular.eot?#iefix') format('embedded-opentype'),
-		url('/assets/theme/ped/fonts/cab/Cabin-Regular.woff2') format('woff2'),
-		url('/assets/theme/ped/fonts/cab/Cabin-Regular.woff') format('woff'),
-		url('/assets/theme/ped/fonts/cab/Cabin-Regular.ttf') format('truetype'),
-		url('/assets/theme/ped/fonts/cab/Cabin-Regular.svg#Cabin-Regular') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-@font-face {
-	font-family: 'Cabin';
-	src: url('/assets/theme/ped/fonts/cab/Cabin-Italic.eot');
-	src: url('/assets/theme/ped/fonts/cab/Cabin-Italic.eot?#iefix') format('embedded-opentype'),
-		url('/assets/theme/ped/fonts/cab/Cabin-Italic.woff2') format('woff2'),
-		url('/assets/theme/ped/fonts/cab/Cabin-Italic.woff') format('woff'),
-		url('/assets/theme/ped/fonts/cab/Cabin-Italic.ttf') format('truetype'),
-		url('/assets/theme/ped/fonts/cab/Cabin-Italic.svg#Cabin-Italic') format('svg');
-	font-weight: normal;
-	font-style: italic;
-}
-@font-face {
-	font-family: 'Cabin';
-	src: url('/assets/theme/ped/fonts/cab/Cabin-Bold.eot');
-	src: url('/assets/theme/ped/fonts/cab/Cabin-Bold.eot?#iefix') format('embedded-opentype'),
-		url('/assets/theme/ped/fonts/cab/Cabin-Bold.woff2') format('woff2'),
-		url('/assets/theme/ped/fonts/cab/Cabin-Bold.woff') format('woff'),
-		url('/assets/theme/ped/fonts/cab/Cabin-Bold.ttf') format('truetype'),
-		url('/assets/theme/ped/fonts/cab/Cabin-Bold.svg#Cabin-Bold') format('svg');
-
+	font-family: 'Roboto';
+	src: url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-Bold.eot');
+	src: url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-Bold.eot?#iefix') format('embedded-opentype'),
+	url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-Bold.woff2') format('woff2'),
+	url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-Bold.woff') format('woff'),
+	url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-Bold.ttf') format('truetype'),
+	url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-Bold.svg#/assets/theme/vtt/fonts/roboto/RobotoCondensed-Bold') format('svg');
 	font-weight: bold;
 	font-style: normal;
 }
+
 @font-face {
-	font-family: 'Cabin';
-	src: url('/assets/theme/ped/fonts/cab/Cabin-BoldItalic.eot');
-	src: url('/assets/theme/ped/fonts/cab/Cabin-BoldItalic.eot?#iefix') format('embedded-opentype'),
-		url('/assets/theme/ped/fonts/cab/Cabin-BoldItalic.woff2') format('woff2'),
-		url('/assets/theme/ped/fonts/cab/Cabin-BoldItalic.woff') format('woff'),
-		url('/assets/theme/ped/fonts/cab/Cabin-BoldItalic.ttf') format('truetype'),
-		url('/assets/theme/ped/fonts/cab/Cabin-BoldItalic.svg#Cabin-BoldItalic') format('svg');
-	font-weight: bold;
+	font-family: 'Roboto';
+	src: url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-Light.eot');
+	src: url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-Light.eot?#iefix') format('embedded-opentype'),
+	url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-Light.woff2') format('woff2'),
+	url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-Light.woff') format('woff'),
+	url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-Light.ttf') format('truetype'),
+	url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-Light.svg#/assets/theme/vtt/fonts/roboto/RobotoCondensed-Light') format('svg');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Roboto';
+	src: url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-LightItalic.eot');
+	src: url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-LightItalic.eot?#iefix') format('embedded-opentype'),
+	url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-LightItalic.woff2') format('woff2'),
+	url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-LightItalic.woff') format('woff'),
+	url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-LightItalic.ttf') format('truetype'),
+	url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-LightItalic.svg#/assets/theme/vtt/fonts/roboto/RobotoCondensed-LightItalic') format('svg');
+	font-weight: 300;
 	font-style: italic;
 }
 
-body{
-	background-color: #231f20;
+@font-face {
+	font-family: 'Roboto';
+	src: url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-Regular.eot');
+	src: url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-Regular.eot?#iefix') format('embedded-opentype'),
+	url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-Regular.woff2') format('woff2'),
+	url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-Regular.woff') format('woff'),
+	url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-Regular.ttf') format('truetype'),
+	url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-Regular.svg#/assets/theme/vtt/fonts/roboto/RobotoCondensed-Regular') format('svg');
+	font-weight: normal;
+	font-style: normal;
 }
 
-.cabin {
-	font-family: Cabin;
+@font-face {
+	font-family: 'Roboto';
+	src: url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-Italic.eot');
+	src: url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-Italic.eot?#iefix') format('embedded-opentype'),
+	url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-Italic.woff2') format('woff2'),
+	url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-Italic.woff') format('woff'),
+	url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-Italic.ttf') format('truetype'),
+	url('/assets/theme/vtt/fonts/roboto/RobotoCondensed-Italic.svg#/assets/theme/vtt/fonts/roboto/RobotoCondensed-Italic') format('svg');
+	font-weight: normal;
+	font-style: italic;
 }
+
+// .cabin {
+// 	font-family: Cabin;
+// }
 
 .browse-btn {
 	@media (max-width: @screen-xs-max) {
@@ -222,8 +290,9 @@ html {
 body {
 	width: 100%;
 	overflow-x: hidden;
-	font-family: 'PTsans', arial, 'Lato', sans-serif;
-	background-color: #141414;
+	// font-family: 'PTsans', arial, 'Lato', sans-serif;
+	background-color: #231f20;
+	font-family: 'Roboto';
 }
 .w100 {
 	width: 100%;
