@@ -46,11 +46,13 @@
 
         <!-- ANGULAR FACTORIES -->
         <script src="<?php echo asset_url(); ?>js/factories/user.js"></script>
-        <!-- <script src="<?php echo asset_url(); ?>js/factories/brands.js"></script>
+        <script src="<?php echo asset_url(); ?>js/factories/user.js"></script>
+        <script src="<?php echo asset_url(); ?>js/factories/categories.js"></script>
+        <script src="<?php echo asset_url(); ?>js/factories/celebrities.js"></script>
         <script src="<?php echo asset_url(); ?>js/factories/video.js"></script>
         <script src="<?php echo asset_url(); ?>js/factories/user.js"></script>
         <script src="<?php echo asset_url(); ?>js/factories/cache.js"></script>
-        <script src="<?php echo asset_url(); ?>js/factories/subscriptions.js"></script> -->
+        <script src="<?php echo asset_url(); ?>js/factories/subscriptions.js"></script>
 
         <!-- ANGULAR FILTERS -->
 

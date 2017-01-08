@@ -1,3 +1,56 @@
 .peliculas-page{
+    color: white;
+    .page-header{
+        font-size: 48px;
+        border:0;
+    }
+    .page-content{
+        .filter{
+            font-size: 36px;
+            margin-bottom: 15px;
 
+            .categories{
+                .category{
+                    display: inline-block;
+                    margin-right: 30px;
+                    padding: 15px 2px;
+                    font-size: 27px;
+
+                    &.selected, &:hover{
+                        border-bottom: 10px solid #a41435;
+                        padding-bottom: 5px;
+                    }
+                }
+            }
+            .search{
+                #search-box{
+                    height: 45px;
+                    background: none;
+                    border: 2px solid #a41435;
+                    padding-left: 30px;
+                }
+            }
+        }
+        .videos{
+            .video{
+                background-position: center;
+                background-size: cover;
+                padding-bottom: ~"calc(153% - 45px)";
+                margin-bottom: 30px;
+                transition: 0.5s;
+
+                &:hover{
+                    transform: scale(1.1);
+                    z-index: 1;
+                }
+
+                .subscription{
+                    background: #038d7f;
+                    display: inline-block;
+                    padding: 5px 15px;
+                    font-size: 17px;
+                }
+            }
+        }
+    }
 }
