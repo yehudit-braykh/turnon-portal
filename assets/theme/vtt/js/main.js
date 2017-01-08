@@ -23,6 +23,10 @@ vttApp.config(function($routeProvider, $locationProvider){
         templateUrl: '/assets/theme/vtt/html/pages/peliculas.html',
         controller: 'peliculasController'
     })
+    .when('/Pelicula/:PeliculaId', {
+        templateUrl: '/assets/theme/vtt/html/pages/pelicula.html',
+        controller: 'peliculaController'
+    })
     .when('/Karaoke', {
         templateUrl: '/assets/theme/vtt/html/pages/karaoke.html',
         controller: 'karaokeController'

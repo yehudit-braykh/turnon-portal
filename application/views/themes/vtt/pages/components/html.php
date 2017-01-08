@@ -37,6 +37,7 @@
        <script src="<?php echo asset_url(); ?>js/controllers/pages/como-funciona.js"></script>
        <script src="<?php echo asset_url(); ?>js/controllers/pages/karaoke.js"></script>
        <script src="<?php echo asset_url(); ?>js/controllers/pages/peliculas.js"></script>
+       <script src="<?php echo asset_url(); ?>js/controllers/pages/pelicula.js"></script>
        <script src="<?php echo asset_url(); ?>js/controllers/pages/programas.js"></script>
        <script src="<?php echo asset_url(); ?>js/controllers/pages/television-gratis.js"></script>
        <script src="<?php echo asset_url(); ?>js/controllers/pages/videos.js"></script>

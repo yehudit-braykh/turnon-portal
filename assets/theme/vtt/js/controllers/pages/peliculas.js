@@ -1,8 +1,9 @@
-var p = null;
+var ps = null;
 vttApp.controller('peliculasController', function peliculasController ($scope, $location, categoriesFactory, videoFactory, $http, $log) {
-    p = $scope;
+    ps = $scope;
 
     $scope.selectedCat = '';
+    $scope.search='';
 
     $scope.go = function(path){
         $location.path(path);
@@ -26,12 +27,15 @@ vttApp.controller('peliculasController', function peliculasController ($scope, $
     };
 
     $scope.videosFilter = function(item){
+        if($scope.selectedCat=='' && $scope.search=='')
+            return item;
         if($scope.selectedCat=='')
-            return item;
-        if(item.categories){
-          if(item.categories.indexOf($scope.selectedCat.toLowerCase())>=0)
-            return item;
-        }
+            if(item.title.includes($scope.search))
+                return item;
+        if($scope.search=='' && item.categories  && item.categories.indexOf($scope.selectedCat.toLowerCase())>=0)
+                    return item;
+        if(item.categories && item.categories.indexOf($scope.selectedCat.toLowerCase())>=0 && item.title.includes($scope.search))
+                return item;
     }
 
   });

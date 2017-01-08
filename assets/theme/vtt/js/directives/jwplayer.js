@@ -19,12 +19,19 @@ vttApp.directive('jwplayer', function() {
                      controls: true,
                      width: "100%",
                      icons: false,
+                     image: vid.PosterH.url,
                  });
+                 jwplayer().on('play', function() {
+                     document.getElementById($scope.id).style.display = "block";
+                     document.getElementById("play-arrow").style.display = "none";
+                 })
              }
              else{
                  jwplayer($scope.id).remove();
              }
          }
+
+
 
          $scope.playVideo = function(){
              jwplayer().play();

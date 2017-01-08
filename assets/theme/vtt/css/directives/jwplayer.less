@@ -1,13 +1,10 @@
 .jwp-container{
+    position: relative;
     .play-holder {
-        top: 60px;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        @media (max-width: @screen-xs-max) {
-            top: 0;
-            bottom: 60px;
-        }
+        top: ~"calc(50% - 93px)";
+        left: ~"calc(50% - 93px)";
+        position: absolute;
+
         .img-play {
             background-image: url(/assets/theme/clixtv/images/play-grey-200x181.png);
             width: 100%;

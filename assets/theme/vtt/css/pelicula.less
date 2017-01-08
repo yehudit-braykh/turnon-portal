@@ -1,0 +1,86 @@
+.pelicula-page{
+    color: white;
+    .page-nav{
+        font-size: 36px;
+        margin-bottom: 15px;
+        .search{
+            font-size: 35px;
+            padding: 8px 0;
+            #search-box{
+                height: 45px;
+                background: none;
+                border: 2px solid #a41435;
+                padding-left: 50px;
+                outline: 0;
+            }
+
+            .fa-search{
+                color: #a41435;
+                position: absolute;
+                top: 11px;
+                left: 10px;
+            }
+        }
+    }
+    .video-holder{
+        border-top: 10px solid #a41435;
+        background-image: linear-gradient(to top, rgba(223, 26, 14, 0), rgba(163, 19, 53, 0.5));
+        padding: 40px;
+        .title{
+            padding: 10px 0;
+            font-size: 26px;
+        }
+        .video-player{
+            width: 100%;
+            margin: 30px 0px;
+        }
+
+        .video-info{
+            .left{
+                .video-cover{
+                    background-position: center;
+                    background-size: cover;
+                    padding-bottom: ~"calc(153% - 45px)";
+                    margin-bottom: 30px;
+                    transition: 0.5s;
+
+                    .subscription{
+                        background: #038d7f;
+                        display: inline-block;
+                        padding: 5px 15px;
+                        font-size: 17px;
+                    }
+                }
+            }
+
+            .right{
+                padding: 10px 15%;
+                font-size: 26px;
+                .video-title{
+                    font-weight: bold;
+                    font-size: 40px;
+
+                    span{
+                        display: inline-block;
+                        transform: scale(0.7);
+                        vertical-align: middle;
+                    }
+                }
+
+                .video-details{
+                    font-size: 36px;
+                    span{
+                        font-weight: bold;
+                    }
+                }
+
+                .video-desc{
+                    font-size: 21px;
+                    padding: 12px;
+                }
+            }
+        }
+
+    }
+
+}

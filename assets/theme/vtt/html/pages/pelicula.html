@@ -1,0 +1,55 @@
+<div class="pelicula-page vive-container">
+    <div class="page-nav row">
+        <div class="route col-xs-12 col-md-8">
+            <a href="#!/Peliculas">Pelicula</a>
+            <i class="fa fa-caret-right" aria-hidden="true"></i>
+            <a href="#!/{{video.categories[0]}}">{{video.categories[0]}}</a>
+            <i class="fa fa-caret-right" aria-hidden="true"></i>
+            <span>{{video.title}}</span>
+
+
+        </div>
+        <div class="search col-xs-12 col-md-4">
+            <i class="fa fa-search"></i>
+            <input id="search-box" type="text" placeholder="Search..." ng-model="search" ></input>
+        </div>
+    </div>
+    <div class="video-holder">
+        <div class="title">
+            <span>{{video.title}}</span>
+            <span class="flr">{{video.date | date:'MMMM d, y'}}
+        </div>
+        <div class="video-player">
+            <jwplayer data-video="video" data-id="videoplayer" data-auto-play="false"></jwplayer>
+        </div>
+        <div class="video-info row">
+            <div class="left col-xs-12 col-md-3">
+                <div class="video-cover" style="background-image:url({{video.PosterH.url}})" >
+                    <div class="subscription">{{video.isFree?'Free':'Subscription'}}</div>
+                </div>
+            </div>
+            <div class=" right col-xs-12 col-md-9">
+                <div class="video-title">
+                    {{video.title}}
+                    <span class="icon icon-facebook-40x40"></span>
+                    <span class="icon icon-twitter-40x40"></span>
+                    <span class="icon icon-instagram-40x40"></span>
+                </div>
+                <div class="video-details">
+                    {{video.date | date:'MMMM y'}}    {{video.duration }} Min  <span class="hand flr" ng-click="addToWatchLish()"><i class="fa fa-plus-circle"></i>  Mi Lista</span>
+                </div>
+                <div class="video-desc">
+                    {{video.description}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="carousel-holder">
+        <div class="title">
+            {{user.name}}, te recomendamos que veas estas películas
+        </div>
+        <div class="carousel">
+            <ped-carousel data-model="videos" ></ped-carousel>
+        </div>
+    </div>
+</div>
