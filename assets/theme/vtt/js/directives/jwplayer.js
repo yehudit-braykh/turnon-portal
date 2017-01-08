@@ -31,8 +31,6 @@ vttApp.directive('jwplayer', function() {
              }
          }
 
-
-
          $scope.playVideo = function(){
              jwplayer().play();
              document.getElementById($scope.id).style.display = "block";
