@@ -88,7 +88,8 @@
                 vertical-align: middle;
                 background-color: transparent;
                 height: 11.25vw;
-                width: 20vw;
+                width: 18vw;
+                height: 10vw;
                 position: relative;
                 display: inline-block;
                 margin-right: 1.5vw;
@@ -99,27 +100,47 @@
                 transition: 450ms all;
                 -webkit-transform-origin: center left;
                 transform-origin: center left;
+
+                &.vertical{
+                    width: 14vw;
+                    height: 21.5vw;
+                    .tile-content{
+                        padding-bottom: 153% !important;
+                    }
+                }
                 @media (min-width: @screen-xs-max) and (max-width: @screen-sm-max) {
-                    width: ~"calc(49vw - 6px)";
+                    width: ~"calc(44.5vw - 6px)";
                     height: 25vw;
+                    &.vertical{
+                        width: 15.9vw;
+                        height: 24.5vw;
+                    }
 
                 }
 
                 @media (min-width: @screen-sm-max) and (max-width: @screen-md-max) {
-                    width: ~"calc(33vw - 10px)";
-                    height: 18vw;
+                    width: ~"calc(28vw - 10px)";
+                    height: 16vw;
+                    &.vertical{
+                        width: 20.2vw;
+                        height:31vw
+                    }
 
                 }
 
                 @media (max-width: @screen-xs-max) {
                     width: 96vw;
-                    height: 48vw;
+                    height: 53.76vw;
+                    &.vertical{
+                        width: 91vw;
+                        height: 139vw;
+                    }
 
                 }
                 .tile-content {
                     background-position: center;
                     background-size: cover;
-                    height: 100%;
+                    padding-bottom: 56%;
                     background-repeat: no-repeat;
                     transition: 0.5s;
 

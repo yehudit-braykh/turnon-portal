@@ -4,6 +4,7 @@ vttApp.directive('pedCarousel', function() {
       transclude: true,
       scope: {
           model: '=',
+          orientation: '@',
           carouselId: '@'
       },
       controller: ['$scope', '$location', function pedCarouselController($scope, $location) {

@@ -83,4 +83,35 @@
 
     }
 
+    .carousel-holder{
+        .title{
+            font-size: 36px;
+        }
+        .carousel{
+            position: relative;
+            &::before{
+                content: '';
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                right: ~"calc(100% - 20px)";
+                width: 400px;
+                background-color: #231f20;
+                z-index: 1;
+
+            }
+
+            &::after{
+                content: '';
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: ~"calc(100% - 20px)";
+                width: 400px;
+                background-color: #231f20;
+                z-index: 1;
+
+            }
+        }
+    }
 }
