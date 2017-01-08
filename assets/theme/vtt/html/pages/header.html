@@ -18,14 +18,14 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav left-nav" >
             <li class="hand" ng-repeat="item in menu" >
-                <a ng-click="go('/')">{{item.title}}</a>
+                <a ng-click="go('/'+item.title)">{{item.title}}</a>
             </li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
             <li class="signin-div logged-out" ng-show="!isLoggedIn()">
                   <div class="logged-out">
-                      <div class="singin-btn hand"  ng-click="go('/')">
+                      <div class="singin-btn hand"  ng-click="go('/account')">
                           Mi Cuenta
                       </div>
                   </div>

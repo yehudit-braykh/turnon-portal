@@ -32,6 +32,14 @@
        <!-- ANGULAR CONTOLLERS -->
        <script src="<?php echo asset_url(); ?>js/controllers/pages/home.js"></script>
        <script src="<?php echo asset_url(); ?>js/controllers/pages/header.js"></script>
+       <script src="<?php echo asset_url(); ?>js/controllers/pages/account.js"></script>
+       <script src="<?php echo asset_url(); ?>js/controllers/pages/canales-premium.js"></script>
+       <script src="<?php echo asset_url(); ?>js/controllers/pages/como-funciona.js"></script>
+       <script src="<?php echo asset_url(); ?>js/controllers/pages/karaoke.js"></script>
+       <script src="<?php echo asset_url(); ?>js/controllers/pages/peliculas.js"></script>
+       <script src="<?php echo asset_url(); ?>js/controllers/pages/programas.js"></script>
+       <script src="<?php echo asset_url(); ?>js/controllers/pages/television-gratis.js"></script>
+       <script src="<?php echo asset_url(); ?>js/controllers/pages/videos.js"></script>
        <!-- <script src="<?php echo asset_url(); ?>js/controllers/pages/account.js"></script> -->
 
         <!-- COMPONENTS CONTROLLERS -->
