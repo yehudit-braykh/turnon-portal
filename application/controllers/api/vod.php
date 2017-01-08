@@ -7,7 +7,7 @@ class Vod extends REST_Controller{
 		$this->load->model('vod_model');
 	}
 	function get_new_release_get () {
-		 $row = $this->vod_model->get_items_by_category('', '', 'new_releases', null, '16', 'aired_date:-1');
+		 $row = $this->vod_model->get_items_by_genre('', '', 'new_releases', null, '16', 'aired_date:-1');
 		 $this->response($row, 200);
 	}
 	function get_slider_get () {

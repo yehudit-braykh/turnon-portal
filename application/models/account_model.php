@@ -57,7 +57,7 @@ class Account_model extends CI_Model {
     //    debug($fb_id);
         $fbLogin =  apiPost("user/login_by_fb", array("fb_id" => $fb_id));
 
-    //    debug($fbLogin);
+    //   debug($fbLogin);
         $this->session->set_userdata('login_token', $data->content->token);
         $this->session->set_userdata('subscription', $fbLogin->content->subscription);
         $this->session->set_userdata('purchased_products', $fbLogin->content->purchased_products);
@@ -218,7 +218,7 @@ class Account_model extends CI_Model {
     }
 
     public function get_billing_information($id) {
-  
+
         return apiPost("commerce/get_billing_information", array('id' => $id));
     }
 

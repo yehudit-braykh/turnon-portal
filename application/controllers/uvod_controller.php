@@ -26,37 +26,37 @@ class UVod_Controller extends CI_Controller {
         // common values
         $data['base_url'] = base_url();
         $data['asset_url'] = asset_url();
-
-        // set section
-        if ($this->uri->segment(1, 0)) {
-            $data['section'] = $this->uri->segment(1, 0);
-        } else {
-            // $data['section'] = DEFAULT_SECTION;
-        }
-
-        // set section 1
-        if ($this->uri->segment(3, 0)) {
-            $data['sub_section1'] = $this->uri->segment(3, 0);
-        } else {
-            // $data['sub_section1'] = DEFAULT_SECTION1;
-        }
-
-        // set section 3
-        if ($this->uri->segment(4, 0)) {
-            $data['sub_section2'] = $this->uri->segment(4, 0);
-        } else {
-            // $data['sub_section2'] = DEFAULT_SECTION2;
-        }
-
-        // get vod categories
-        $vod_categories = $this->config_model->get_vod_categories();
-        $data['vod_categories'] = ($vod_categories ? $vod_categories->content : '');
-
-        $this->load->vars($data);
-
-        if (isset($_SESSION['uvod_user_data']) && sizeof($_SESSION['uvod_user_data']) > 0) {
-            $this->check_valid_session($_SESSION['uvod_user_data']);
-        }
+        //
+        // // set section
+        // if ($this->uri->segment(1, 0)) {
+        //     $data['section'] = $this->uri->segment(1, 0);
+        // } else {
+        //     // $data['section'] = DEFAULT_SECTION;
+        // }
+        //
+        // // set section 1
+        // if ($this->uri->segment(3, 0)) {
+        //     $data['sub_section1'] = $this->uri->segment(3, 0);
+        // } else {
+        //     // $data['sub_section1'] = DEFAULT_SECTION1;
+        // }
+        //
+        // // set section 3
+        // if ($this->uri->segment(4, 0)) {
+        //     $data['sub_section2'] = $this->uri->segment(4, 0);
+        // } else {
+        //     // $data['sub_section2'] = DEFAULT_SECTION2;
+        // }
+        //
+        // // get vod categories
+        // $vod_categories = $this->config_model->get_vod_categories();
+        // $data['vod_categories'] = ($vod_categories ? $vod_categories->content : '');
+        //
+        // $this->load->vars($data);
+        //
+        // if (isset($_SESSION['uvod_user_data']) && sizeof($_SESSION['uvod_user_data']) > 0) {
+        //     $this->check_valid_session($_SESSION['uvod_user_data']);
+        // }
     }
 
     public function check_valid_session($data) {

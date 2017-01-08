@@ -37,12 +37,12 @@ class HAuth extends CI_Controller {
 
 				try{
 					$profile = $service->getUserProfile();
+				//	debug($profile);
 					$fbLogin = $this->account_model->login_by_fb($profile->identifier);
 				//	debug($fbLogin);
 					if(!$fbLogin->content){
-					//	debug($profile);
 						$fbRegister = $this->account_model->register($profile->email, $this->randomPassword(), $profile->firstName, $profile->lastName, NULL, NULL, $profile->identifier, true, $profile);
-
+					//	debug($fbRegister);
 						if (strpos($fbRegister->message, "User already registered")){
 							$this->session->set_userdata('fb_profile', $profile);
 							throw new Exception("Please Login with your Email:".$profile->email.", to link to Facebook Account", 1);
@@ -70,10 +70,12 @@ class HAuth extends CI_Controller {
 						$profile = $service->getUserProfile();
 					}
 					if( $e->getCode() == 1){
+
 						$error = new stdClass();
 						$error->code = $e->getCode();
 						$error->message = $e->getMessage();
 						$this->session->set_userdata('profile', $error);
+					//	debug($this->session->userdata('profile'));
 					}
 				}
 

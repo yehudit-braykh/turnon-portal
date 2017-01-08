@@ -10,9 +10,7 @@ class Video_model extends CI_Model {
 		$parameters= array();
 		if($channel)
 			$parameters["channel"] = $channel;
-			$date = new DateTime();
-			$parameters["start"] = $date->getTimestamp();
-			$parameters["length"] = 2;
+
 		$data = apiCall("live/list_epg", $parameters);
 		//debug($data);
 		return $data;
@@ -46,6 +44,7 @@ class Video_model extends CI_Model {
 		$parameters["category"] = $cat;
 
 		$data =   apiCall("vod/get_items_by_featured_category", $parameters);
+		//debug($data);
 
 		$videos = $this->rows($data->content->entries);
 		return $videos;
@@ -101,7 +100,9 @@ class Video_model extends CI_Model {
                     //"tvSeasonEpisodeNumber" => $media["tvSeasonEpisodeNumber"],
                 //    "brands" => $media["brands"],
             );
-            //debug($tmp, $media);
+            if($media["vod_category"])
+				$tmp["categories"] = $media["vod_category"];
+
 			if($media["content"]){
 	            foreach ($media["content"] as $file) {
 	                $tmp[str_replace (" ", "", $file->assetTypes[0])] = array(

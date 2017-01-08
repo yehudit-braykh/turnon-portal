@@ -14,9 +14,10 @@ class Account extends REST_Controller{
     }
 
 	function get_current_get(){
-		$profile= $this->session->userdata('profile');
-		$profile->subscription= $this->session->userdata('subscription');
-		$profile->purchased_products= $this->session->userdata('purchased_products');
+		if($this->session->userdata('profile')) $profile = $this->session->userdata('profile');
+	//	debug($this->session->userdata('profile'));
+		if ($this->session->userdata('subscription')) $profile->subscription = $this->session->userdata('subscription');
+		if($this->session->userdata('purchased_products')) $profile->purchased_products = $this->session->userdata('purchased_products');
 		$this->response($profile, 200);
 	}
 
