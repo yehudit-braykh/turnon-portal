@@ -1,7 +1,7 @@
-var ps = null;
-vttApp.controller('programasController', function programasController ($scope, $location, categoriesFactory, videoFactory, $http, $log) {
-    ps = $scope;
-
+var kg = null;
+vttApp.controller('karaokeGenreController', function karaokeGenreController ($scope, $location, $routeParams, categoriesFactory, videoFactory, $http, $log) {
+    kg = $scope;
+    $scope.genreName = $routeParams.genreName;
     $scope.selectedCat = '';
     $scope.search='';
 
@@ -9,13 +9,22 @@ vttApp.controller('programasController', function programasController ($scope, $
         $location.path(path);
     }
 
+    categoriesFactory.getCategoryByName($scope.genreName).then(function(data){
+        $scope.genre=data.data;
+    });
+
     categoriesFactory.getAllCategories().then(function(data){
         $scope.categories=data.data;
 
     });
 
+    categoriesFactory.getCategoryVideos($scope.genreName).then(function(data){
+        //$scope.genreVideos=data.data;
+    });
+
     videoFactory.getFeaturedVideos().then(function(data){
         $scope.videos= data.data;
+        $scope.genreVideos=data.data;
 
     });
 

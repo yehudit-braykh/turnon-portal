@@ -1,3 +1,30 @@
-<div class="programas-page">
+<div class="programas-page vive-container">
+    <div class="page-header">
+        Programas
+    </div>
+    <div class="page-content">
+        <div class="filter row">
+            <div class="categories col-xs-12 col-md-8">
+                <div class="category hand {{selectedCat==cat.title?'selected':''}}" ng-repeat="cat in categories" ng-click="changeSelectedCat(cat.title)">
+                    {{cat.title}}
+                </div>
+            </div>
+            <div class="search col-xs-12 col-md-4">
+                <i class="fa fa-search"></i>
+                <input id="search-box" type="text" placeholder="Search..." ng-model="search" ></input>
+            </div>
+        </div>
+        <div class="videos row">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-repeat="video in videos | filter:videosFilter">
+                <div class="video hand" style="background-image:url({{video.PosterH.url}})" ng-click="go('/Programa/'+video._id)">
+                    <div class="info">
+                        <div class="title">{{video.title}}</div>
+                        <div class="desc">{{video.description}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 </div>

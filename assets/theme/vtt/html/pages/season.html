@@ -1,0 +1,44 @@
+<div class="pelicula-page vive-container">
+    <div class="page-nav row">
+        <div class="route col-xs-12 col-md-8">
+            <a href="#!/Peliculas">Pelicula</a>
+            <i class="fa fa-caret-right" aria-hidden="true"></i>
+            <a href="#!/{{video.categories[0]}}">{{video.categories[0]}}</a>
+            <i class="fa fa-caret-right" aria-hidden="true"></i>
+            <span>{{video.title}}</span>
+
+
+        </div>
+        <div class="search col-xs-12 col-md-4">
+            <i class="fa fa-search"></i>
+            <input id="search-box" type="text" placeholder="Search..." ng-model="search" ></input>
+        </div>
+    </div>
+    <div class="video-holder">
+        <div class="title">
+            <span>{{video.title}} Temporada 1 Episodio 1</span>
+            <span class="flr">{{video.date | date:'MMMM d, y'}}
+        </div>
+        <div class="video-player">
+            <jwplayer data-video="video" data-id="videoplayer" data-auto-play="true"></jwplayer>
+        </div>
+        <div class="video-info row">
+            <div class="watch-list hand" ng-click="addToWatchLish()">
+                <i class="fa fa-plus-circle"></i>  Mi Lista
+            </div>
+            <div class="video-social flr" >
+                <span class="icon icon-facebook-40x40"></span>
+                <span class="icon icon-twitter-40x40"></span>
+                <span class="icon icon-instagram-40x40"></span>
+            </div>
+            <div class="video-desc ">
+                {{video.description}}
+            </div>
+        </div>
+    </div>
+    <div class="carousel-holder">
+        <div class="carousel">
+            <ped-carousel data-model="videos"  ></ped-carousel>
+        </div>
+    </div>
+</div>

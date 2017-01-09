@@ -1,0 +1,32 @@
+<div class="karaoke-genre-page vive-container">
+    <div class="page-header row">
+        <div class="title fll">Karaoake <i class="fa fa-caret-right"></i> {{genre.title}}</div>
+        <div class="search pr flr">
+            <i class="fa fa-search"></i>
+            <input id="search-box" type="text" placeholder="Search..." ng-model="search" ></input>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="player-wrapper row">
+            <div class="player col-xs-12 col-md-8">
+                <jwplayer data-video="genreVideos[0]" data-auto-play="true" data-id="video-player"></jwplayer>
+            </div>
+            <div class="songs col-xs-12 col-md-4">
+                <div class="song hand" ng-repeat="song in videos | filter:videosFilter" ng-click="go('/Karaoke/Singer/'+song._id)">
+                        Artist Name - {{song.title}}
+                </div>
+            </div>
+        </div>
+
+        <div class="albums-wrapper">
+            <div class="title">Albums</div>
+            <div class="albums row">
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="cat in videos |  limitTo:6 " ng-click="">
+                    <div class="album hand" style="background-image:url({{cat.PosterH.url}})" ng-click="go('/Pelicula/'+video._id)">
+                        <div class="title">{{cat.title}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

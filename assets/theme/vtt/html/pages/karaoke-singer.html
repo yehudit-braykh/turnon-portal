@@ -1,0 +1,38 @@
+<div class="karaoke-singer-page ">
+    <div class="page-header">
+        <div class="title vive-container">Karaoake <i class="fa fa-caret-right"></i> {{singer.title}}</div>
+        <div class="singer-poster" style="background-image:url({{singer.PosterH.url}})">
+        </div>
+    </div>
+    <div class="page-content vive-container">
+        <div class="albums-wrapper">
+            <div class="title">Albums</div>
+            <div class="albums row">
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="cat in videos |  limitTo:6 " ng-click="">
+                    <div class="album hand" style="background-image:url({{cat.PosterH.url}})" ng-click="go('/Pelicula/'+video._id)">
+                        <div class="title">{{cat.title}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="filter row">
+            <div class="title col-xs-12 col-md-8">Top Songs</div>
+            <div class="search col-xs-12 col-md-4">
+                <i class="fa fa-search"></i>
+                <input id="search-box" type="text" placeholder="Search..." ng-model="search" ></input>
+            </div>
+        </div>
+        <div class="songs row">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-repeat="song in videos | filter:videosFilter">
+                <div class="song hand row" ng-click="go('/Karaoke/Singer/'+song._id)">
+                    <div class="pic fll" style="background-image:url({{song.PosterH.url}})"></div>
+                    <div class="info fll">
+                        {{song.title}}<br/>
+                        Album Title
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

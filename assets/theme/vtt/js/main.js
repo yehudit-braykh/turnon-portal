@@ -15,9 +15,17 @@ vttApp.config(function($routeProvider, $locationProvider){
         templateUrl: '/assets/theme/vtt/html/pages/television-gratis.html',
         controller: 'televisionGratisController'
     })
+    .when('/Video', {
+        templateUrl: '/assets/theme/vtt/html/pages/video.html',
+        controller: 'videoController'
+    })
+    .when('/Video/Category/:categoryName', {
+        templateUrl: '/assets/theme/vtt/html/pages/video-category.html',
+        controller: 'videoCategoryController'
+    })
     .when('/Videos', {
-        templateUrl: '/assets/theme/vtt/html/pages/videos.html',
-        controller: 'videosController'
+        templateUrl: '/assets/theme/vtt/html/pages/video-categories.html',
+        controller: 'videoCategoriesController'
     })
     .when('/Peliculas', {
         templateUrl: '/assets/theme/vtt/html/pages/peliculas.html',
@@ -31,9 +39,25 @@ vttApp.config(function($routeProvider, $locationProvider){
         templateUrl: '/assets/theme/vtt/html/pages/karaoke.html',
         controller: 'karaokeController'
     })
+    .when('/Karaoke/Singer/:singerId', {
+        templateUrl: '/assets/theme/vtt/html/pages/karaoke-singer.html',
+        controller: 'karaokeSingerController'
+    })
+    .when('/Karaoke/Genre/:genreName', {
+        templateUrl: '/assets/theme/vtt/html/pages/karaoke-genre.html',
+        controller: 'karaokeGenreController'
+    })
     .when('/Programas', {
         templateUrl: '/assets/theme/vtt/html/pages/programas.html',
         controller: 'programasController'
+    })
+    .when('/Programa/:ProgrmaId', {
+        templateUrl: '/assets/theme/vtt/html/pages/programa.html',
+        controller: 'programaController'
+    })
+    .when('/Season/:episodeId', {
+        templateUrl: '/assets/theme/vtt/html/pages/season.html',
+        controller: 'seasonController'
     })
     .when('/Canales Premium', {
         templateUrl: '/assets/theme/vtt/html/pages/canales-premium.html',

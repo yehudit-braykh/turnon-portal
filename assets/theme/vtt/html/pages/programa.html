@@ -1,4 +1,4 @@
-<div class="pelicula-page vive-container">
+<div class="programa-page vive-container">
     <div class="page-nav row">
         <div class="route col-xs-12 col-md-8">
             <a href="#!/Peliculas">Pelicula</a>
@@ -15,28 +15,17 @@
         </div>
     </div>
     <div class="video-holder">
-        <div class="title">
-            <span>{{video.title}}</span>
-            <span class="flr">{{video.date | date:'MMMM d, y'}}
-        </div>
-        <div class="video-player">
-            <jwplayer data-video="video" data-id="videoplayer" data-auto-play="false"></jwplayer>
-        </div>
         <div class="video-info row">
-            <div class="left col-xs-12 col-md-3">
+            <div class="left col-xs-12 col-md-5">
                 <div class="video-cover" style="background-image:url({{video.PosterH.url}})" >
-                    <div class="subscription">{{video.isFree?'Free':'Subscription'}}</div>
                 </div>
             </div>
-            <div class=" right col-xs-12 col-md-9">
+            <div class=" right col-xs-12 col-md-7">
                 <div class="video-title">
                     {{video.title}}
-                    <span class="icon icon-facebook-40x40"></span>
-                    <span class="icon icon-twitter-40x40"></span>
-                    <span class="icon icon-instagram-40x40"></span>
                 </div>
                 <div class="video-details">
-                    {{video.date | date:'MMMM y'}}    {{video.duration }} Min  <span class="hand flr" ng-click="addToWatchLish()"><i class="fa fa-plus-circle"></i>  Mi Lista</span>
+                    {{video.seasons}} Temporadas  {{video.episodes}} Episodios  <span class="hand flr" ng-click="addToWatchLish()"><i class="fa fa-plus-circle"></i>  Mi Lista</span>
                 </div>
                 <div class="video-desc ">
                     {{video.description}}
@@ -44,12 +33,24 @@
             </div>
         </div>
     </div>
+    <div class="seasons">
+        <div class="dropdown">
+  <button class="btn season-btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Temporada 1
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li>Temporada 1</li>
+    <li>Temporada 2</li>
+    <li>Temporada 3</li>
+    <li>Temporada 4</li>
+
+  </ul>
+</div>
+    </div>
     <div class="carousel-holder">
-        <div class="title">
-            {{user.name}}, te recomendamos que veas estas películas
-        </div>
         <div class="carousel">
-            <ped-carousel data-model="videos" data-orientation="vertical" ></ped-carousel>
+            <ped-carousel data-model="videos"  ></ped-carousel>
         </div>
     </div>
 </div>

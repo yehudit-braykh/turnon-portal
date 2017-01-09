@@ -1,19 +1,26 @@
-.karaoke-page{
+.karaoke-singer-page{
     color: white;
     .page-header{
         font-size: 48px;
         border:0;
+
+        .singer-poster{
+            border-top:10px solid #40a20b;
+            height: 25vw;
+            background-position: center;
+            background-size: cover;
+        }
     }
     .page-content{
-        .by-genre{
+        .albums-wrapper{
             font-size: 36px;
             margin-bottom: 50px;
 
-            .genres{
+            .albums{
                 border-top: 10px solid #40a20b;
                 background-image: linear-gradient(to left, rgba(35, 31, 32, 0), #322e2e);
                 padding: 30px;
-                .genre{
+                .album{
                     background-position: center;
                     background-size: cover;
                     padding-top: ~"calc(100% - 45px)";
@@ -21,7 +28,7 @@
                     transition: 0.5s;
 
                     &:hover{
-                        transform: scale(1.1);
+                        transform: scale(1.25);
                         z-index: 1;
                     }
 
@@ -61,30 +68,35 @@
                 }
             }
         }
-        .videos{
+        .songs{
             border-top: 10px solid #40a20b;
-            background-image: linear-gradient(to top, rgba(252,251,245,0), #fcfbf5);
+            background-image: linear-gradient(to top, rgba(252, 251, 245, 0), #fcfbf5);
             padding: 30px;
-            .video{
-                background-position: center;
-                background-size: cover;
-                padding-top: ~"calc(100% - 45px)";
-                margin-bottom: 30px;
+            .song{
                 transition: 0.5s;
+                padding: 20px;
+                background: rgba(35, 31, 32, 0.4);
+                background-clip: content-box;
 
                 &:hover{
                     transform: scale(1.1);
                     z-index: 1;
                 }
 
-                .title{
-                    background: rgba(0,0,0,0.6);
-                    padding: 5px 15px;
-                    font-size: 17px;
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
+                .pic{
+                    width: 30%;
+                    padding-bottom: 30%;
+                    background-position: center;
+                    background-size: cover;
+
                 }
+
+                .info{
+                    padding: 20px 10px 0 10px;
+                    font-size: 17px;
+                    width: 60%;
+                }
+
             }
         }
     }

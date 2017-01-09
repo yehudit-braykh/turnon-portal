@@ -1,0 +1,55 @@
+#centerSlots {
+    width: 950px;
+    margin: 0 auto;
+}
+
+#center-1, #signin-slot {
+    float: left;
+}
+
+#center-1 {
+    width: 520px;
+    vertical-align: top;
+}
+
+#signin-slot, #ap_signin1a_pagelet {
+    width: 470px;
+    padding-left: 10px;
+}
+
+#center-3 .ap_row, #signin-slot .ap_row {
+    margin-left: -15px;
+    text-align: left;
+}
+
+#signin-slot .ap_col1 {
+    width: auto;
+}
+
+#center-3 .ap_col2 {
+    margin-left: 15px;
+    width: auto;
+    margin-top: -5px;
+    clear: left;
+    float: left;
+}
+
+.ap_pagelet {
+    width: 950px;
+}
+
+h1 {
+    font-size: 100%;
+}
+
+body {
+    font-family: arial,helvetica,sans-serif;
+}
+
+h2 {
+    font-weight: normal;
+}
+
+#center-2 {
+    margin-top: 25px;
+}
