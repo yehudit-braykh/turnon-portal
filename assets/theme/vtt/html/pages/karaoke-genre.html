@@ -10,22 +10,35 @@
         <div class="player-wrapper row">
             <div class="player col-xs-12 col-md-8">
                 <jwplayer data-video="genreVideos[0]" data-auto-play="true" data-id="video-player"></jwplayer>
+                <div class="video-info">
+                    <div class="title">
+                        Tifulo del Playlist   <span class="hand flr" ng-click="addToWatchLish()"> <i class="fa fa-plus-circle"></i> Mi Lista</span>
+                    </div>
+                    <div class="social" >
+                        <span class="icon icon-facebook-40x40"></span>
+                        <span class="icon icon-twitter-40x40"></span>
+                        <span class="icon icon-instagram-40x40"></span>
+                    </div>
+                </div>
             </div>
-            <div class="songs col-xs-12 col-md-4">
-                <div class="song hand" ng-repeat="song in videos | filter:videosFilter" ng-click="go('/Karaoke/Singer/'+song._id)">
-                        Artist Name - {{song.title}}
+            <div class=" col-xs-12 col-md-4">
+                <div class="songs">
+                    <div class="song hand" ng-repeat="song in videos | filter:videosFilter" ng-click="go('/Karaoke/Singer/'+song._id)">
+                            Artist Name - {{song.title}}
+                    </div>
+                </div>
+                <div class="next">
+                    <div class="next-btn hand flr"><i class="fa fa-forward" aria-hidden="true"></i> Next Playlist</div>
                 </div>
             </div>
         </div>
 
-        <div class="albums-wrapper">
-            <div class="title">Albums</div>
-            <div class="albums row">
-                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="cat in videos |  limitTo:6 " ng-click="">
-                    <div class="album hand" style="background-image:url({{cat.PosterH.url}})" ng-click="go('/Pelicula/'+video._id)">
-                        <div class="title">{{cat.title}}</div>
-                    </div>
-                </div>
+        <div class="carousel-holder row">
+            <div class="title">
+                Most Popular Playlists
+            </div>
+            <div class="carousel">
+                <vtt-carousel data-model="videos" data-title="true" data-target-dir="Karaoke/Genre" data-target-param="title" ></vtt-carousel>
             </div>
         </div>
     </div>

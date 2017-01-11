@@ -15,7 +15,7 @@ vttApp.config(function($routeProvider, $locationProvider){
         templateUrl: '/assets/theme/vtt/html/pages/television-gratis.html',
         controller: 'televisionGratisController'
     })
-    .when('/Video', {
+    .when('/Video/:videoId', {
         templateUrl: '/assets/theme/vtt/html/pages/video.html',
         controller: 'videoController'
     })

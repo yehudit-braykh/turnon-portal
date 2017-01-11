@@ -7,13 +7,13 @@
             </ol>
             <div class="carousel-inner" role="listbox">
                 <div class="item {{$index==0?'active':''}}" ng-repeat="slide in featuredVideos track by $index">
-                    <div class="item-content left-slide pr"  style="background-image:url('{{slide.url}}')">
+                    <div class="item-content left-slide pr"  style="background-image:url('{{slide.PosterH.url}}')">
                         <div class="info pa">
                             <div class="header-text">
                                 {{slide.title}}
                             </div>
                             <div class="span-text hidden-xs">
-                                {{slide.desc}}
+                                {{slide.description}}
                             </div>
                             <div class="span-text">
                                 <button type="button" class="btn btn-primary"><h2>VIVE Ahora</h2></button>
@@ -44,31 +44,31 @@
         <div class="row">
             <div class="row-title container">Trending </div>
             <div class="row-content carousel-videos">
-                <ped-Carousel data-model="videos"></ped-Carousel>
+                <vtt-carousel data-model="videos" data-subscription="true"></vtt-carousel>
             </div>
         </div>
         <div class="row">
             <div class="row-title container">Notocias</div>
             <div class="row-content carousel-videos">
-                <ped-Carousel data-model="videos"></ped-Carousel>
+                <vtt-carousel data-model="videos" data-subscription="true"></vtt-carousel>
             </div>
         </div>
         <div class="row">
             <div class="row-title container">Salud</div>
             <div class="row-content carousel-videos">
-                <ped-Carousel data-model="videos"></ped-Carousel>
+                <vtt-Carousel data-model="videos" data-subscription="true"></vtt-carousel>
             </div>
         </div>
         <div class="row">
             <div class="row-title container">Mujer</div>
             <div class="row-content carousel-videos">
-                <ped-Carousel data-model="videos"></ped-Carousel>
+                <vtt-carousel data-model="videos" data-subscription="true"></vtt-carousel>
             </div>
         </div>
         <div class="row">
             <div class="row-title container">Deporters</div>
             <div class="row-content carousel-videos">
-                <ped-Carousel data-model="videos"></ped-Carousel>
+                <vtt-carousel data-model="videos" data-subscription="true"></vtt-carousel>
             </div>
         </div>
 
@@ -78,13 +78,26 @@
             </div>
         </div>
 
-        <div class="row live-channels {{down?'move-down':''}}">
-            <div class="col-md-2 channels" ng-repeat="channel in channels" ng-click="go('')">
-                <div class="channel" style="background-image:url('{{channel.url}}');">
+        <div class="row live-channels {{down?'move-down':''}}" >
+            <div class="col-md-2 channels" ng-repeat="channel in channels | limitTo:canalsToShow" ng-click="go('')">
+                <div class="channel" style="background-image:url('{{channel.PosterH.url}}');">
                 </div>
             </div>
         </div>
-        <div class="arrow-down" ng-click="moveDown()">
+        <div class="arrow-down" ng-click="moreCanals()">
+            <span class="icon icon-arrow-down-white" ></span>
+        </div>
+        <div class="row section-title">
+            <h1>Peliculas<h1>
+        </div>
+        <div class="peliculas row">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-repeat="video in videos | limitTo:peliculasToShow">
+                <div class="video hand" style="background-image:url({{video.PosterH.url}})" ng-click="go('/Pelicula/'+video._id)">
+                    <div class="subscription">{{video.isFree?'Free':'Subscription'}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="arrow-down" ng-click="morePeliculas()">
             <span class="icon icon-arrow-down-white" ></span>
         </div>
     </div>

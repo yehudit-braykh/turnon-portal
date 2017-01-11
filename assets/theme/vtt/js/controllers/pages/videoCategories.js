@@ -1,6 +1,6 @@
-var ka = null;
-vttApp.controller('karaokeController', function karaokeController ($scope, $location, categoriesFactory, videoFactory, $http, $log) {
-    ka = $scope;
+var vcs = null;
+vttApp.controller('videoCategoriesController', function videoCategoriesController ($scope, $location, categoriesFactory, videoFactory, $http, $log) {
+    vcs = $scope;
 
     $scope.selectedCat = '';
     $scope.search='';

@@ -1,8 +1,8 @@
-var ka = null;
-vttApp.controller('karaokeController', function karaokeController ($scope, $location, categoriesFactory, videoFactory, $http, $log) {
-    ka = $scope;
-
-    $scope.selectedCat = '';
+var vc = null;
+vttApp.controller('videoCategoryController', function videoCategoryController ($scope, $location, $routeParams, categoriesFactory, videoFactory, $http, $log) {
+    vc = $scope;
+    $scope.catName = $routeParams.categoryName;
+    $scope.selectedCountry = '';
     $scope.search='';
 
     $scope.go = function(path){
@@ -11,31 +11,34 @@ vttApp.controller('karaokeController', function karaokeController ($scope, $loca
 
     categoriesFactory.getAllCategories().then(function(data){
         $scope.categories=data.data;
-
     });
 
     videoFactory.getFeaturedVideos().then(function(data){
         $scope.videos= data.data;
-
     });
 
-    $scope.changeSelectedCat = function (cat) {
-        if($scope.selectedCat==cat)
-            $scope.selectedCat='';
+    $scope.countries=['Mexico','Cuba','Peru',"Brazil",'Paraguai', 'Bolivia', 'Chile', 'Colombia'];
+
+    $scope.selectCountry = function(co){
+        if(co=='All')
+            $scope.selectedCountry='';
         else
-            $scope.selectedCat = cat;
+            $scope.selectedCountry = co;
+    };
+
+    $scope.selectFilter = function (item) {
+        if($scope.selectedFilter==item)
+            $scope.selectedFilter='';
+        else
+            $scope.selectedFilter = item;
     };
 
     $scope.videosFilter = function(item){
-        if($scope.selectedCat=='' && $scope.search=='')
+        if($scope.search=='')
             return item;
-        if($scope.selectedCat=='')
-            if(item.title.includes($scope.search))
-                return item;
-        if($scope.search=='' && item.categories  && item.categories.indexOf($scope.selectedCat.toLowerCase())>=0)
-                    return item;
-        if(item.categories && item.categories.indexOf($scope.selectedCat.toLowerCase())>=0 && item.title.includes($scope.search))
-                return item;
+        if(item.title.includes($scope.search))
+            return item;
+
     }
 
   });

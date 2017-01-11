@@ -1,5 +1,6 @@
 .home-page{
     background-color: #231f20;
+    padding-bottom: 40px;
     .home-header{
         height: 60vh;
         .homeCarousel {
@@ -148,24 +149,18 @@
         }
 
         .live-channels{
-            height: 6.2vw;
-            overflow: hidden;
             margin: 10px 35px 20px 35px;
             transition-delay: 0ms;
             transition: 1s ease;
             -webkit-transition: 1s ease;
-            &.move-down{
-                height: 13vw;
-            }
+
             .channels{
-                height: 6.2vw;
-                background-color: rgba(252,251,245,0.1);
-                margin: 2px;
-                width: 11vw;
-                padding: 20px;
+
+                padding: 2px;
                 .channel{
+                    background-color: rgba(252,251,245,0.1);
                     cursor: pointer;
-                    height: 100%;
+                    padding-top: 53%;
                     background-size: contain;
                     background-repeat: no-repeat;
                     background-position: center;
@@ -178,6 +173,28 @@
             cursor: pointer;
             .icon{
                 margin: auto;
+            }
+        }
+
+        .peliculas{
+            .video{
+                background-position: center;
+                background-size: cover;
+                padding-bottom: ~"calc(153% - 45px)";
+                margin-bottom: 30px;
+                transition: 0.5s;
+
+                &:hover{
+                    transform: scale(1.1);
+                    z-index: 1;
+                }
+
+                .subscription{
+                    background: #038d7f;
+                    display: inline-block;
+                    padding: 5px 15px;
+                    font-size: 17px;
+                }
             }
         }
     }

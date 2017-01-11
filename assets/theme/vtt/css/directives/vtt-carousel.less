@@ -1,5 +1,5 @@
-.ped-carousel-container{
-    .ped-carousel{
+.vtt-carousel-container{
+    .vtt-carousel{
             color: white;
 
             width: ~"calc(100%)";
@@ -26,12 +26,7 @@
                 background: -webkit-linear-gradient(left, rgba(0,0,0,0) 0%,rgba(26,23,24,1) 75%,rgba(35,31,32,1) 100%); /* Chrome10-25,Safari5.1-6 */
                 background: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(26,23,24,1) 75%,rgba(35,31,32,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
                 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#231f20',GradientType=1 ); /* IE6-9 */
-                &:hover, &:focus {
-                    opacity: 1;
-                }
-                &.opacity0 {
-                    opacity: 0;
-                }
+
                 .icon-arrow-right-small {
                     cursor: pointer;
                     position: absolute;
@@ -53,12 +48,7 @@
                 background: -webkit-linear-gradient(left, rgba(35,31,32,1) 0%,rgba(26,23,24,1) 25%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
                 background: linear-gradient(to right, rgba(35,31,32,1) 0%,rgba(26,23,24,1) 25%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
                 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#231f20', endColorstr='#00000000',GradientType=1 ); /* IE6-9 */
-                 &:hover, &:focus {
-                     opacity: 1;
-                 }
-                 &.opacity0 {
-                     opacity: 0;
-                 }
+
                 .icon-arrow-left-small {
                     cursor: pointer;
                     top: ~"calc(50% - 30px)";
@@ -144,27 +134,22 @@
                     background-repeat: no-repeat;
                     transition: 0.5s;
 
-                    .subscribe {
-                        font-size: 30px;
+                    .subscribe , .free , .member{
+                        font-size: 24px;
                         text-align: center;
-                        padding: 5px 0;
-                        width: 160px;
+                        padding: 5px 40px;
+
+                    }
+
+                    .subscribe{
                         background-color: #ff1c63;
                     }
 
                     .free {
-                        font-size: 30px;
-                        text-align: center;
-                        padding: 5px 0;
-                        width: 160px;
                         background-color: #038d7f;
                     }
 
                     .member {
-                        font-size: 30px;
-                        text-align: center;
-                        padding: 5px 0;
-                        width: 160px;
                         background-color: #a10c99;
                     }
 
@@ -173,61 +158,32 @@
                         right: 0;
                         bottom: 0;
                         transition: 0.5s;
-                        padding: 3px 15px;
-                        background-color: rgba(255,255,255,0.5);
+
+                        background-color: rgba(35, 31, 32, 0.7);
 
                         .title {
-                            font-size: 14px;
-                            color: rgba(0, 53, 63,1);
-                            font-weight: 500;
-                            transition: 0.5s;
-                            height: 40px;
-                            overflow: hidden;
-
-                            .expiry {
-                                color: rgb(74, 74, 74,1);
-                                font-size: 12px;
-                                display: block;
-                                transition: 0.5s;
-                            }
-                        }
-                        .desc{
-                            height: 0;
-                            white-space: normal;
-                            font-size: 12px;
-                            line-height: 15px;
-                            overflow: hidden;
+                            padding: 10px 15px;
+                            font-size: 21px;
                             color: white;
-                            padding-bottom: 6px;
-                            opacity: 0;
-                            transition: 0.5s;
+                            font-weight: 500;
+                            overflow: hidden;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
                         }
 
+                        .desc{
+                            padding: 10px 15px;
+                        }
+
+                        .date{
+                            padding: 10px 15px;
+                        }
                     }
                     &:hover{
                         z-index: 1;
                         transform: scale(1.2);
                         box-shadow: 0px 0px 25px black;
 
-                        .info{
-                            background-color: rgba(0,0,0,0.5);
-                        }
-
-                        .title {
-                            color: rgba(255,255,255,1);
-                            display: inline-block;
-
-                            .expiry {
-                                color: rgba(255,255,255,1);
-                                margin-left: 5px;
-                                display: inline-block;
-                            }
-
-                        }
-                        .desc{
-                            height: 45px;
-                            opacity: 1;
-                        }
                     }
                 }
 

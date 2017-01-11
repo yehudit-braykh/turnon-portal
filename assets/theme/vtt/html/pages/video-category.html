@@ -1,29 +1,34 @@
-<div class="karaoke-page vive-container">
-    <div class="page-header">
-        Karaoake
-    </div>
+<div class="video-category-page vive-container">
+
     <div class="page-content">
-        <div class="by-genre">
-            <div class="title">By Genre</div>
-            <div class="genres row">
-                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="cat in categories |  limitTo:6 " ng-click="">
-                    <div class="genre hand" style="background-image:url({{cat.PosterH.url}})" ng-click="go('/Karaoke/Genre/'+cat.title)">
-                        <div class="title">{{cat.title}}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="title ">Videos <i class="fa fa-caret-right"></i> {{catName}}</div>
         <div class="filter row">
-            <div class="title col-xs-12 col-md-8">By Singer</div>
+            <div class="col-xs-12 col-md-8">
+                <span class="recent {{selectedFilter=='recent'?'selected':''}} hand" ng-click="selectFilter('recent')">Los Más Recientes</span>
+                <span class="most-watched {{selectedFilter=='most'?'selected':''}} hand" ng-click="selectFilter('most')">Lo Más Visto</span>
+            </div>
             <div class="search col-xs-12 col-md-4">
                 <i class="fa fa-search"></i>
                 <input id="search-box" type="text" placeholder="Search..." ng-model="search" ></input>
             </div>
+            <div class="dropdown">
+                <button class="btn season-btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  {{selectedCountry?selectedCountry:'Select Country'}}
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li ng-click="selectCountry('All')">All</li>
+                  <li ng-repeat="country in countries" ng-click="selectCountry(country)">{{country}}</li>
+                </ul>
+          </div>
         </div>
-        <div class="videos row">
-            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="video in videos | filter:videosFilter">
-                <div class="video hand" style="background-image:url({{video.PosterH.url}})" ng-click="go('/Karaoke/Singer/'+video._id)">
-                    <div class="title">{{video.title}}</div>
+        <div class="categories row">
+            <div class=" col-xs-6 col-sm-4" ng-repeat="vid in videos | filter:videosFilter">
+                <div class="cat pr hand" style="background-image:url({{vid.PosterH.url}})" ng-click="go('/Video/'+vid._id)">
+                    <div class="overlay pa">
+                        <div class="title">{{vid.title}}</div>
+                        <div class="desc">{{vid.description}}</div>
+                    </div>
                 </div>
             </div>
         </div>

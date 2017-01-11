@@ -63,8 +63,7 @@
         <!-- ANGULAR FILTERS -->
 
         <!-- ANGULAR DIRECTIVES -->
-        <script src="<?php echo asset_url(); ?>js/directives/ped-carousel.js"></script>
-        <script src="<?php echo asset_url(); ?>js/directives/ped-brands-carousel.js"></script>
+        <script src="<?php echo asset_url(); ?>js/directives/vtt-carousel.js"></script>
         <script src="<?php echo asset_url(); ?>/js/directives/jwplayer.js"></script>
 
         <!-- END ANGULAR -->

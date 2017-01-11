@@ -1,3 +1,58 @@
-<div class="canales-premium-page">
+<div class="canales-premium-page vive-container">
+    <div class="page-header row">
+        <div class="title">Canales Premium</div>
+        <div class="dropdown">
+            <button class="btn season-btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              {{selectedCountry?selectedCountry:'Select Country'}}
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li ng-click="selectCountry('All')">All</li>
+              <li ng-repeat="country in countries" ng-click="selectCountry(country)">{{country}}</li>
+            </ul>
+      </div>
+    </div>
+    <div class="page-content">
+        <div class="player-wrapper row">
+            <div class="player pr col-xs-12 col-md-8">
+                <div class="prev-btn hand pa"><i class="fa fa-backward" aria-hidden="true"></i></div>
+                <jwplayer data-video="genreVideos[0]" data-auto-play="true" data-id="video-player"></jwplayer>
+                <div class="video-info">
+                    <div class="title fll">
+                        Tifulo del Playlist
+                    </div>
+                    <div class="social flr" >
+                        <span class="icon icon-facebook-40x40"></span>
+                        <span class="icon icon-twitter-40x40"></span>
+                        <span class="icon icon-instagram-40x40"></span>
+                    </div>
+                    <div class="desc">{{genreVideos[0].description}}</div>
+                </div>
+            </div>
+            <div class=" col-xs-12 col-md-4">
+                <div class="channels">
+                    <div class="channel hand" ng-repeat="ch in videos | filter:videosFilter" ng-click="go('/Karaoke/Singer/'+ch._id)">
+                        <div class="channel-icon" style="background-image:url({{ch.PosterH.url}})"></div>
+                            Live Now: {{ch.title}}
+                    </div>
+                </div>
+            </div>
+            <div class="channel-epg ">
+                <div class="channel-program" ng-repeat="program in epg" >
+                    <div class="program-title">{{program.program.title | limitTo:20 }}</div>
+                    <div class="program-time">{{program.startTime | date:'h:mm a'}}</div>
+                    <div class="program-progress-bar-container"><div class="program-progress-bar" style="width:{{calcPercent(program.startTime,program.endTime)+'%'}}"></div></div>
+                </div>
+            </div>
+        </div>
 
+        <div class="carousel-holder row">
+            <div class="title">
+                Most Popular Playlists
+            </div>
+            <div class="carousel">
+                <vtt-carousel data-model="videos" data-title="true" data-target-dir="Karaoke/Genre" data-target-param="title" ></vtt-carousel>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,13 +1,20 @@
-vttApp.directive('pedCarousel', function() {
+vttApp.directive('vttCarousel', function() {
     return {
       restrict: 'E',
       transclude: true,
       scope: {
           model: '=',
           orientation: '@',
-          carouselId: '@'
+          targetDir: '@',
+          targetParam: '@',
+          title : '=',
+          date: '=',
+          subscription: '=',
+          dateFormat: '@',
+          description: '=',
+        carouselId: '@'
       },
-      controller: ['$scope', '$location', function pedCarouselController($scope, $location) {
+      controller: ['$scope', '$location', function vttCarouselController($scope, $location) {
           sc = $scope;
           $scope.caruselPosition = 0;
           $scope.relatedPosition = 0;
@@ -65,6 +72,6 @@ vttApp.directive('pedCarousel', function() {
           };
 
       }],
-      templateUrl: '/assets/theme/vtt/html/directives/ped-carousel.html'
+      templateUrl: '/assets/theme/vtt/html/directives/vtt-carousel.html'
     };
   })

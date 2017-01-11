@@ -1,9 +1,10 @@
-var ka = null;
-vttApp.controller('karaokeController', function karaokeController ($scope, $location, categoriesFactory, videoFactory, $http, $log) {
-    ka = $scope;
+var p = null;
+vttApp.controller('videoController', function videoController ($scope, $location, $routeParams, categoriesFactory, videoFactory, $http, $log) {
+    p = $scope;
 
-    $scope.selectedCat = '';
     $scope.search='';
+
+    $scope.videoId=$routeParams.videoId;
 
     $scope.go = function(path){
         $location.path(path);
@@ -19,12 +20,22 @@ vttApp.controller('karaokeController', function karaokeController ($scope, $loca
 
     });
 
-    $scope.changeSelectedCat = function (cat) {
-        if($scope.selectedCat==cat)
-            $scope.selectedCat='';
-        else
-            $scope.selectedCat = cat;
+    videoFactory.getVideoById($scope.videoId).then(function(data){
+        $scope.video=data.data;
+        $scope.video.description= "Yo, robot (título original en inglés, I, Robot) es una película de ciencia ficción distópica producida en 2004, dirigida por Alex Proyas y protagonizada por Will Smith. Aunque se atribuye la historia a las Series de Robots de Isaac Asimov, que incluye una recopilación de cuentos del mismo nombre, Yo, robot, en realidad está basada en un guion de Jeff Vintar, titulado Hardwired. Algunas ideas de Asimov acerca de los robots —la más importante, las Tres leyes de la robótica— fueron añadidas al guion de Vintar después de que los productores adquirieron los derechos sobre el título del libro.";
+        $scope.video.duration= 158;
+    });
+
+    $scope.addToWatchLish = function(){
+        console.log('added to watch list');
     };
+
+    $scope.calcVideoAge =function(){
+        var date = $scope.video.date;
+        var now = new Date();
+        var sub= now.getTime()-date.getTime();
+        console.log(sub);
+    }
 
     $scope.videosFilter = function(item){
         if($scope.selectedCat=='' && $scope.search=='')

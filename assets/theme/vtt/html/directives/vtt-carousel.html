@@ -1,5 +1,5 @@
-<div class="ped-carousel-container">
-    <div id="{{carouselId}}" class="ped-carousel pr">
+<div class="vtt-carousel-container">
+    <div id="{{carouselId}}" class="vtt-carousel pr">
         <div class="arrow-right hidden-xs {{caruselPosition==1?'opacity0':''}}" ng-click="moveRight()">
             <div class="icon icon-arrow-right-small"  >
             </div>
@@ -10,19 +10,21 @@
         </div>
         <div class="row__inner recentInner {{caruselPosition==1?'moveLeft':''}} {{activeVideo?'unhover':''}}">
             <div class="tile {{orientation?'vertical':''}} {{activeVideo._id==video._id?'selected':''}}" ng-repeat="video in model">
-                <div class="pr tile-content hand" style="background-image:url({{video.PosterH.url}})" ng-click="go('/video/'+video._id)" >
-                    <div class="pa {{subscriptionType(video.categories[0].name)}}">
+                <div class="pr tile-content hand" style="background-image:url({{video.PosterH.url}})" ng-click="go('/'+targetDir+'/'+video[targetParam])" >
+                    <div class="pa {{subscription?'':'hidden'}} {{subscriptionType(video.categories[0].name)}}">
                         {{subscriptionType(video.categories[0].name) | uppercase}}
                     </div>
-                    <!-- <div class="pa info">
-                        <div class="title">
+                     <div class="pa info">
+                        <div class="title {{title?'':'hidden'}}">
                             {{video.title}}
-                            <span class="expiry">{{video.date | date: dd/MM/YYYY}}</span>
                         </div>
-                        <div class="desc">
+                        <div class="date {{date?'':'hidden'}}">
+                            {{video.date | date: dateFormat?dateFormat:'dd-MM-yyyy'}}
+                        </div>
+                       <div class="desc {{description?'':'hidden'}}">
                                 {{video.description | limitTo:200}}
                         </div>
-                    </div> -->
+                    </div>
                 </div>
             </div>
         </div>

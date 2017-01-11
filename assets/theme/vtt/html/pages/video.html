@@ -1,33 +1,51 @@
-<div class="karaoke-page vive-container">
-    <div class="page-header">
-        Karaoake
+<div class="video-page vive-container">
+    <div class="page-nav row">
+        <div class="route col-xs-12 col-md-8">
+            <a href="#!/Peliculas">Pelicula</a>
+            <i class="fa fa-caret-right" aria-hidden="true"></i>
+            <a href="#!/{{video.categories[0]}}">{{video.categories[0]}}</a>
+            <i class="fa fa-caret-right" aria-hidden="true"></i>
+            <span>{{video.title}}</span>
+
+
+        </div>
+        <div class="search col-xs-12 col-md-4">
+            <i class="fa fa-search"></i>
+            <input id="search-box" type="text" placeholder="Search..." ng-model="search" ></input>
+        </div>
     </div>
-    <div class="page-content">
-        <div class="by-genre">
-            <div class="title">By Genre</div>
-            <div class="genres row">
-                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="cat in categories |  limitTo:6 " ng-click="">
-                    <div class="genre hand" style="background-image:url({{cat.PosterH.url}})" ng-click="go('/Karaoke/Genre/'+cat.title)">
-                        <div class="title">{{cat.title}}</div>
-                    </div>
+    <div class="video-holder">
+        <div class="video-player">
+            <jwplayer data-video="video" data-id="videoplayer" data-auto-play="false"></jwplayer>
+        </div>
+        <div class="video-info row">
+            <div class="left col-xs-12 col-md-3">
+                <div class="video-cover" style="background-image:url({{video.PosterH.url}})" >
+                    <div class="subscription">{{video.isFree?'Free':'Subscription'}}</div>
+                </div>
+            </div>
+            <div class=" right col-xs-12 col-md-9">
+                <div class="video-title">
+                    {{video.title}}
+                    <span class="icon icon-facebook-40x40"></span>
+                    <span class="icon icon-twitter-40x40"></span>
+                    <span class="icon icon-instagram-40x40"></span>
+                </div>
+                <div class="video-details">
+                    {{video.date | date:'MMMM y'}}    {{video.duration }} Min  <span class="hand flr" ng-click="addToWatchLish()"><i class="fa fa-plus-circle"></i>  Mi Lista</span>
+                </div>
+                <div class="video-desc ">
+                    {{video.description}}
                 </div>
             </div>
         </div>
-        <div class="filter row">
-            <div class="title col-xs-12 col-md-8">By Singer</div>
-            <div class="search col-xs-12 col-md-4">
-                <i class="fa fa-search"></i>
-                <input id="search-box" type="text" placeholder="Search..." ng-model="search" ></input>
-            </div>
-        </div>
-        <div class="videos row">
-            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="video in videos | filter:videosFilter">
-                <div class="video hand" style="background-image:url({{video.PosterH.url}})" ng-click="go('/Karaoke/Singer/'+video._id)">
-                    <div class="title">{{video.title}}</div>
-                </div>
-            </div>
-        </div>
-
     </div>
-
+    <div class="carousel-holder">
+        <div class="title">
+            Previous Shows
+        </div>
+        <div class="carousel">
+            <vtt-carousel data-model="videos" data-date="true" data-date-format="EEE d.MM.yyyy" data-target-dir="Video" ></vtt-carousel>
+        </div>
+    </div>
 </div>

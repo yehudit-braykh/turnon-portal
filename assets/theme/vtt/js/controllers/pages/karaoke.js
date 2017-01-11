@@ -1,5 +1,5 @@
 var vcs = null;
-vttApp.controller('videoCategoriesController', function videoCategoriesController ($scope, $location, categoriesFactory, videoFactory, $http, $log) {
+vttApp.controller('karaokeController', function karaokeController ($scope, $location, categoriesFactory, videoFactory, $http, $log) {
     vcs = $scope;
 
     $scope.selectedCat = '';

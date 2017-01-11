@@ -15,12 +15,6 @@ class Account_model extends CI_Model {
         $data = apiPost("user/login_portal", array("username" => $user, "password" => $pass, "disabled" => $disabled));
 		if($data->content){
 			$this->session->set_userdata('login_token', $data->content->token);
-            $this->session->set_userdata('subscription', $data->content->subscription);
-            $this->session->set_userdata('purchased_products', $data->content->purchased_products);
-            if($data->content->subscription)
-                $user_data->content->subscription = $data->content->subscription;
-            if($data->content->purchased_products)
-                $user_data->content->purchased_products = $data->content->purchased_products;
             $user_data = $this->get_profile($data->content->token, $data->content->id);
             $this->session->set_userdata('profile', $user_data->content);
             return $user_data;
@@ -29,12 +23,42 @@ class Account_model extends CI_Model {
 
     }
 
-    public function link_facebook($user, $pass) {
+    public function hybrid_login($profile, $provider){
+        $fbLogin = $this->login_by_fb($profile->identifier);
+        if($fbLogin->_id==0){// Facbook Id not in DB try Registering with Email, RandPass and FBID
+            $fbRegister = $this->register($profile->email, $this->randomPassword(), $profile->firstName, $profile->lastName, NULL, $profile->identifier);
+            if (!strpos($fbRegister->message, "User already registered")){  // Success on Registation Saving On session and Updating User Profile
+                $fb_id = $profile->identifier;
+                $fb_login= $this->account_model->login_by_fb($fb_id);
+                $data = new stdClass;
+                $data->gender = $profile->gender;
+                $data->avatar = $profile->photoURL;
+                $data->addressLine1 = $profile->phone;
+                $data->city = $profile->city;
+                $date = date_create($profile->birthYear."-".$profile->birthMonth."-".$profile->birthDay);
+                $data->birthDate = date_timestamp_get($date);
+                $user_data = $this->update_profile($fb_login->_id,$data);
+                $this->session->set_userdata('profile', $user_data->content);
+            }else{ // Email Exists in DB, moving To merge function
+                $this->session->set_userdata('fb_profile', $profile);
+                $error = new stdClass();
+                $error->message = "Please Login with your Email:".$profile->email.", to link to Facebook Account";
+                $error->email = $profile->email;
+                $error->code = 1;
+                $this->session->set_userdata('profile', $error);
+                return ;
 
-        $loging_data = apiPost("user/login_portal", array("username" => $user, "password" => $pass, "disabled" => false));
-		if($loging_data->content->token){
+
+
+            }
+        }
+    }
+
+    public function link_facebook($user, $pass) {
+        $login_data = apiPost("user/login_portal", array("username" => $user, "password" => $pass, "disabled" => false));
+		if($login_data->content->token){
             $fb_data  = $this->session->userdata('fb_profile');
-            $updated_data = $this->update_user( $loging_data->content->id , $fb_data->identifier, $fb_data );
+            $updated_data = $this->update_user( $login_data->content->id , $fb_data->identifier, $fb_data );
             if($updated_data){
                 $fb_login= $this->login_by_fb($fb_data->identifier);
                 $data = new stdClass;
@@ -44,26 +68,23 @@ class Account_model extends CI_Model {
                 $data->avatar = $fb_data->photoURL;
                 $data->addressLine1 = $fb_data->phone;
                 $data->city = $fb_data->city;
-                $data->birthDate = date_create($fb_data->birthYear."-".$fb_data->birthMonth."-".$fb_data->birthDay);
-                $user_data = $this->account_model->update_profile($fb_login->content->id,$data);
-
-                $this->session->set_userdata('profile', $user_data->content);
+                $date = date_create($fb_data->birthYear."-".$fb_data->birthMonth."-".$fb_data->birthDay);
+                $data->birthDate = date_timestamp_get($date);
+                $user = $this->account_model->update_profile($fb_login->_id,$data);
+                $this->session->unset_userdata('fb_profile');
+                $this->session->set_userdata('profile', $user->content);
             }
         }
-        return $user_data;
+        return $user;
     }
 
     public function login_by_fb($fb_id) {
-    //    debug($fb_id);
         $fbLogin =  apiPost("user/login_by_fb", array("fb_id" => $fb_id));
-
-    //   debug($fbLogin);
-        $this->session->set_userdata('login_token', $data->content->token);
-        $this->session->set_userdata('subscription', $fbLogin->content->subscription);
-        $this->session->set_userdata('purchased_products', $fbLogin->content->purchased_products);
-        $user_data = $this->account_model->get_profile($fbLogin->content->token, $fbLogin->content->id);
-        $this->session->set_userdata('profile', $user_data->content);
-        return $fbLogin;
+        $token = $fbLogin->content->token;
+        $this->session->set_userdata('login_token', $token);
+        $user_data = $this->account_model->get_profile($fbLogin->content->token, $fbLogin->content->id)->content;
+        $this->session->set_userdata('profile', $user_data);
+        return $user_data;
     }
 
     public function logout() {
@@ -73,17 +94,13 @@ class Account_model extends CI_Model {
         return $data;
     }
 
-    public function register($email, $password, $first_name, $last_name, $country = NULL, $hash = NULL, $fb_id = NULL, $merge = false, $fb_data = NULL) {
-    //    debug($fb_id);
+    public function register($email, $password, $first_name, $last_name, $country = NULL, $fb_id = NULL) {
         $data = apiPost("user/register", array("email" => $email,
           "password" => $password,
           "first_name" => $first_name,
           "last_name" => $last_name,
           "country" => $country,
-          "fb_id" => $fb_id,
-          "hash" => $hash,
-          "merge" => $merge,
-          "fb_data" => $fb_data)
+          "fb_id" => $fb_id)
         );
         return $data;
     }
@@ -97,7 +114,7 @@ class Account_model extends CI_Model {
     }
 
     public function update_profile( $id, $data) {
-
+    //    debug($id, $data, $this->session);
         return apiPost("user/update_profile", array("token" => $this->session->userdata('login_token'),
           "id" => $id,
           "data" => $data));
@@ -248,6 +265,18 @@ class Account_model extends CI_Model {
         $data['email'] = $profile->email;
 
         return apiPost("commerce/subscription_checkout", $data);
+	}
+
+    private function randomPassword() {
+	    $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#.';
+	    $pass = array(); //remember to declare $pass as an array
+	    $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+	    for ($i = 0; $i < 16; $i++) {
+	        $n = rand(0, $alphaLength);
+	        $pass[] = $alphabet[$n];
+	    }
+
+	    return implode($pass); //turn the array into a string
 	}
 }
 
