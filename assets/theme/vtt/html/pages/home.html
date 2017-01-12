@@ -38,7 +38,7 @@
                 <h1>Videos</h1>
             </div>
             <div class="watch-more col-sm-4 col-xs-8">
-                <a href=""><h2>Ver Mas Categorías</h2></a>
+                <a href=""><h2>Ver Mas Categorֳ­as</h2></a>
             </div>
         </div>
         <div class="row">
@@ -78,13 +78,37 @@
             </div>
         </div>
 
-        <div class="row live-channels {{down?'move-down':''}}" >
-            <div class="col-md-2 channels" ng-repeat="channel in channels | limitTo:canalsToShow" ng-click="go('')">
-                <div class="channel" style="background-image:url('{{channel.PosterH.url}}');">
+        <div class="row live-channels {{moreChannels?'move-down':''}}" >
+            <div class="channels" ng-repeat="channel in channels | limitTo:canalsToShow" ng-click="go('')">
+                <div class="channel">
+                    <img src="{{channel.PosterH.url}}" alt="">
+                </div>
+            </div>
+            <div class="more-channels">
+                <div class="select-channels">
+                    <h1>Selecciona 10 Canales por $4.99 al mes o 24 Canales por $9.99 al mes</h1>
+                </div>
+                <div class="arrow-right hidden-xs {{channelPosition==1?'opacity0':''}}" ng-click="moveChannelRight()">
+                    <div class="icon icon-right-channel"  >
+                    </div>
+                </div>
+                <div class="arrow-left  hidden-xs {{channelPosition==0?'opacity0':''}}" ng-click="moveChannelLeft()">
+                    <div class="icon icon-left-channel" >
+                    </div>
+                </div>
+                <div class="all-channels {{channelPosition==1?'move-left':''}}">
+                    <div class="channels" ng-repeat="channel in channels" ng-click="go('')">
+                        <div class="channel">
+                            <img src="{{channel.PosterH.url}}" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="arrow-up" ng-click="lessCanals()" ng-show="moreChannels">
+                    <span class="icon icon-arrow-up-white" ></span>
                 </div>
             </div>
         </div>
-        <div class="arrow-down" ng-click="moreCanals()">
+        <div class="arrow" ng-click="moreCanals()" ng-hide="moreChannels">
             <span class="icon icon-arrow-down-white" ></span>
         </div>
         <div class="row section-title">
@@ -97,7 +121,7 @@
                 </div>
             </div>
         </div>
-        <div class="arrow-down" ng-click="morePeliculas()">
+        <div class="arrow" ng-click="morePeliculas()">
             <span class="icon icon-arrow-down-white" ></span>
         </div>
     </div>
