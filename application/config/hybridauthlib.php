@@ -47,6 +47,7 @@ $config =
 			"Twitter" => array (
 				"enabled" => true,
 				"keys"    => array ( "key" => getenv("twitter_stage_id"), "secret" => getenv("twitter_stage_secret") ),
+				"includeEmail" => true,
 				"display" => "popup"
 			),
 

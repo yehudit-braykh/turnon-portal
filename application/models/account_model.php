@@ -24,8 +24,10 @@ class Account_model extends CI_Model {
     }
 
     public function hybrid_login($profile, $provider){
+        //debug($provider);
         $fbLogin = $this->login_by_fb($profile->identifier);
         if($fbLogin->_id==0){// Facbook Id not in DB try Registering with Email, RandPass and FBID
+            if($provider == "Twitter") $profile->lastName = $profile->firstName;
             $fbRegister = $this->register($profile->email, $this->randomPassword(), $profile->firstName, $profile->lastName, NULL, $profile->identifier);
             if (!strpos($fbRegister->message, "User already registered")){  // Success on Registation Saving On session and Updating User Profile
                 $fb_id = $profile->identifier;
@@ -40,11 +42,16 @@ class Account_model extends CI_Model {
                 $user_data = $this->update_profile($fb_login->_id,$data);
                 $this->session->set_userdata('profile', $user_data->content);
             }else{ // Email Exists in DB, moving To merge function
-                $this->session->set_userdata('fb_profile', $profile);
                 $error = new stdClass();
-                $error->message = "Please Login with your Email:".$profile->email.", to link to Facebook Account";
                 $error->email = $profile->email;
-                $error->code = 1;
+                if ($provider == "Facebook"){
+                    $this->session->set_userdata('fb_profile', $profile);
+                    $error->message = "Please Login with your Email:".$profile->email.", to link Your Facebook Account";
+                    $error->code = 11;
+                } else {
+                    $error->message = "Please Login with Facebook Or with Your E-mail";
+                    $error->code = 12;
+                }
                 $this->session->set_userdata('profile', $error);
                 return ;
 
