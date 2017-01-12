@@ -58,6 +58,20 @@ vttApp.directive('vttCarousel', function() {
               return 'free';
           };
 
+          $scope.watch = function(permission, id){
+              var permissionType =  $scope.subscriptionType(permission);
+              if(permissionType == 'subscribe'){
+                  $('.subscription-modal').modal('show')
+              }
+              else if(permissionType == 'member'){
+                  $('.register-modal').modal('show')
+              }
+              else{
+                  console.log(id);
+                  $scope.go('Video/' + id);
+              }
+          }
+
           $scope.getPosterH = function(video){
               if(video.PosterH){
                   return video.PosterH.downloadUrl;

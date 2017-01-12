@@ -36,73 +36,26 @@
     </nav>
 </div>
 
-<!-- <div class="modal loginModal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" ng-controller="headerController">
+<div class="modal subscription-modal" id="subscriptionModal" tabindex="-1" role="dialog" aria-labelledby="subscriptionModal" ng-controller="headerController">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <button type="button" class="close pa" style="right:15px; top: 15px;" data-dismiss="modal" aria-label="Close"><span class="icon icon-x-white-20x19"></span></button>
-            <div ng-hide="showRegister">
-                <div class="modal-header">
-                    LOGIN
-                </div>
-                <div class="modal-body">
-                <div class="login-buttons">
-                    <div class="login-button facebook" ng-click="socialLogin()" onclick="window.open('/hauth/login/Facebook','fb','left=20,top=20,width=500,height=400,toolbar=1,resizable=0')">
-                        Login with Facebook
-                        <span class="icon icon-facebook-logo-29x29 flr"></span>
-                    </div>
-                    <div class="login-button twitter" ng-click="socialLogin()"  onclick="window.open('/hauth/login/Twitter','twitter','left=20,top=20,width=500,height=400,toolbar=1,resizable=0')">
-                        Login with Twitter
-                        <span class="icon icon-twitter-logo-34x27 flr"></span>
-                    </div>
-                    <div class="login-button google"  ng-click="socialLogin()" onclick="window.open('/hauth/login/Google','google','left=20,top=20,width=500,height=400,toolbar=1,resizable=0')">
-                        Login with Google
-                        <span class="icon icon-google-logo-30x31 flr"></span>
-                    </div>
-                </div>
-                <div class="other-span">
-                    or </br>
-                    Enter your credentials
-                </div>
-                <div class="credentials-login"><form>
-                    <input type="email" name="email" ng-model="userRegister.email" placeholder="Email" required>
-                    <input type="password" name="password" ng-model="userRegister.password" placeholder="Password" required>
-                    <div class="remember-me">
-                        <input type="checkbox" name="remember-me" ng-model="userRegister.rememberMe" style="width:20px;" /><label for="remember-me">Remember Me</label>
-                    </div>
-                    <div class="login-error" ng-show="loginError">{{loginError}}<img class="error-triangle" src="/assets/theme/ped/images/red-triangle.png" /></div>
-                    <input type="submit" class="login-btn" ng-click="loginUser()" value="LOGIN"></form>
-                </div>
-
-                <div class="forgot-register">
-                    <div class="">
-                        Forget your password?
-                    </div>
-                    <div class="not-reg">
-                        Not registered? <span style="cursor:pointer;"> <a ng-click="showRegister=true">Create your account</a></span>
-                    </div>
-                </div>
-            </div>
-            </div>
-            <div ng-show="showRegister">
-                <div class="modal-header">Register</div>
-                <div class="modal-body">
-                    <div class="credentials-login"><form>
-                        <input type="text" name="first-name" ng-model="userRegister.first_name" placeholder="First Name" required>
-                        <input type="text" name="last-name" ng-model="userRegister.last_name" placeholder="Last Name" required>
-                        <input type="email" name="email" ng-model="userRegister.email" placeholder="Email" required>
-                        <input type="password" name="password" ng-model="userRegister.password" placeholder="Password" required>
-                        <input type="password" name="confirm-password" ng-model="userRegister.confirmPassword" placeholder="Confirm Password" required>
-                        <div class="register-error" ng-show="registerError">{{registerError}}<img class="error-triangle" src="/assets/theme/ped/images/red-triangle.png" /></div>
-                        <input type="submit" class="login-btn" ng-click="registerUser()" value="REGISTER"></form>
-                        <label>We’ll send a verification link to the email address you used to create the account. </label>
-                    </div>
-                    <div class="forgot-register">
-                        <div class="not-reg">
-                            Have an Account? <span style="cursor:pointer;"> <a ng-click="showRegister=false">Login</a></span>
-                        </div>
-                    </div>
-                </div>
+        <div class="inner">
+            <img src="/assets/theme/vtt/images/logo.png">
+            <div class="info">
+                <h2>Este Contenido es de nuestra librería Premium,</h2>
+                <h1>HAZ <a>CLICK</a> AQUÍ PARA SUSCRIBIRTE Y VIVIR TU TELE!</h1>
             </div>
         </div>
     </div>
-</div> -->
+</div>
+
+<div class="modal register-modal" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModal" ng-controller="headerController">
+    <div class="modal-dialog" role="document">
+        <div class="inner">
+            <img src="/assets/theme/vtt/images/logo.png">
+            <div class="info">
+                <h1>HAZ <a>CLICK</a> AQUÍ PARA REGISTRARTE</h1>
+                <h2>Disfruta y VIVE Tu Tele Gratis!</h2>
+            </div>
+        </div>
+    </div>
+</div>

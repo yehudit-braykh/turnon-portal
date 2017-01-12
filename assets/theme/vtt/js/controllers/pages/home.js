@@ -42,5 +42,4 @@ vttApp.controller('homeController', function homeController ($scope, $location, 
         $scope.peliculasToShow=$scope.peliculasToShow+4;
     }
 
-
   });

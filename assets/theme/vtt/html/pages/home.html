@@ -93,7 +93,7 @@
         <div class="peliculas row">
             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-repeat="video in videos | limitTo:peliculasToShow">
                 <div class="video hand" style="background-image:url({{video.PosterH.url}})" ng-click="go('/Pelicula/'+video._id)">
-                    <div class="subscription">{{video.isFree?'Free':'Subscription'}}</div>
+                    <div class="pa {{video.isFree?'free':'member'}}">{{video.isFree?'FREE':'MEMBER'}}</div>
                 </div>
             </div>
         </div>
