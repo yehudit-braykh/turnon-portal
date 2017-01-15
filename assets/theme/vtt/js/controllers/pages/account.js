@@ -1,6 +1,8 @@
 var acc = null;
-vttApp.controller('aController', function accountController ($scope, $location, $http, $log) {
+vttApp.controller('aController', function accountController ($scope, $location, $http, $log, User, AuthService) {
     acc = $scope;
+
+    $scope.user  = User;
 
     $scope.menu =
     {
@@ -31,15 +33,13 @@ vttApp.controller('aController', function accountController ($scope, $location, 
         {PosterH:{url:"/assets/theme/vtt/images/paypal.png"}}
     ];
 
-    $scope.profile = {};
-    $scope.profile.registeredDevices = {
+    $scope.user.registeredDevices = {
         0:{name: "iPad", id:"A12345678901234567890"},
         1:{name: "Cellphone", id:"A12345678901234567890"},
         2:{name: "iPone", id:"A12345678901234567890"}
     };
     $scope.editing = false;
     $scope.billingInfo = true;
-    $scope.profile.avatar = "/assets/theme/vtt/images/profile.png";
 
     $scope.edit = function(){
         $scope.editing = !$scope.editing;
@@ -47,6 +47,10 @@ vttApp.controller('aController', function accountController ($scope, $location, 
 
     $scope.go = function(path){
         $location.path(path);
+    }
+
+    $scope.uploadImage = function(image){
+        console.log(image);
     }
 
   });

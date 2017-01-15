@@ -19,56 +19,56 @@
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <label for="mi-plan">Mi Plan</label>
-                                        <input type="text" class="form-control" id="mi-plan" ng-model="profile.plan.title" ng-disabled="true">
+                                        <input type="text" class="form-control" id="mi-plan" ng-model="user.plan.title" ng-disabled="true">
                                     </div>
                                 </div>
                                 <div class="row form-section">
                                     <div class="col-sm-3 col-xs-6 profile-picture">
                                         <label for="image" >Foto o Icono</label>
-                                        <label for="image" class="form-control profile-picture" style="height: 77%; padding: 0; background-image: url('{{profile.avatar}}')">
-                                            <input type="file" name="image" id="image" accept="image/*" style="display:none;" onchange="angular.element(this).scope().uploadImage(profileForm)"/>
+                                        <label for="image" class="form-control profile-picture" style="height: 77%; padding: 0; background-image: url({{user.image?user.image:'/assets/theme/vtt/images/profile.png'}})">
+                                            <input type="file" name="image" id="image" accept="image/*" style="display:none;" onchange="angular.element(this).scope().uploadImage(image)"/>
                                             <!-- <img class="img" src="{{profile.avatar}}" alt="NO IMAGE"/> -->
                                         </label>
                                     </div>
                                     <div class="col-sm-4 col-xs-6 names">
                                         <label for="firstName">Primer Nombre</label>
-                                        <input type="text" class="form-control" id="firstName" ng-model="profile.firstName" ng-disabled="!editing">
+                                        <input type="text" class="form-control" id="firstName" ng-model="user.firstName" ng-disabled="!editing">
                                         <label for="lastName">Apellido</label>
-                                        <input type="text" class="form-control" id="lastName" ng-model="profile.lastName" ng-disabled="!editing">
+                                        <input type="text" class="form-control" id="lastName" ng-model="user.lastName" ng-disabled="!editing">
                                     </div>
                                 </div>
                                 <div class="row form-section">
                                     <div class="col-sm-4">
                                         <label for="email">Email</label>
-                                        <input type="email" class="form-control" id="email" ng-model="profile.email" ng-disabled="!editing">
+                                        <input type="email" class="form-control" id="email" ng-model="user.email" ng-disabled="!editing">
                                     </div>
                                     <div class="col-sm-4" >
                                         <label for="vemail">Verify Email</label>
-                                        <input type="vemail" class="form-control" id="vemail" ng-model="profile.vemail" ng-disabled="!editing">
+                                        <input type="vemail" class="form-control" id="vemail" ng-model="user.vemail" ng-disabled="!editing">
                                     </div>
                                 </div>
                                 <div class="row" style="margin-top:0;">
                                     <div class="col-sm-4">
                                         <label for="addressLine1">Address Line 1</label>
-                                        <input type="text" class="form-control" id="addressLine1" ng-model="profile.addressLine1" ng-disabled="!editing">
+                                        <input type="text" class="form-control" id="addressLine1" ng-model="user.addressLine1" ng-disabled="!editing">
                                         <label for="city">City</label>
-                                        <input type="text" class="form-control" id="city" ng-model="profile.city" ng-disabled="!editing">
+                                        <input type="text" class="form-control" id="city" ng-model="user.city" ng-disabled="!editing">
                                         <label for="postalCode">Zip Code</label>
-                                        <input type="text" class="form-control" id="postalCode" ng-model="profile.postalCode" ng-disabled="!editing">
+                                        <input type="text" class="form-control" id="postalCode" ng-model="user.postalCode" ng-disabled="!editing">
                                     </div>
                                     <div class="col-sm-4">
                                         <label for="addressLine2">Address Line 2</label>
-                                        <input type="text" class="form-control" id="addressLine2" ng-model="profile.addressLine2" ng-disabled="!editing">
+                                        <input type="text" class="form-control" id="addressLine2" ng-model="user.addressLine2" ng-disabled="!editing">
                                         <label for="state">State</label>
-                                        <input type="text" class="form-control" id="state" ng-model="profile.state" ng-disabled="!editing">
+                                        <input type="text" class="form-control" id="state" ng-model="user.state" ng-disabled="!editing">
                                         <label for="countryName">Country</label>
-                                        <input type="text" class="form-control" id="countryName" ng-model="profile.countryName" ng-disabled="!editing">
+                                        <input type="text" class="form-control" id="countryName" ng-model="user.country" ng-disabled="!editing">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <button type="submit" class="btn btn-primary" ng-click="edit()" ng-hide="editing">EDITAR</button>
-                                        <button type="submit" class="btn btn-primary" ng-click="update(profile)" ng-show="editing">UPDATE</button>
+                                        <button type="submit" class="btn btn-primary" ng-click="update(user)" ng-show="editing">UPDATE</button>
                                     </div>
                                     <div class="col-sm-4">
                                         <button type="submit" class="btn btn-primary" ng-click="edit()" ng-show="editing">CANCEL</button>
@@ -204,14 +204,14 @@
                                             <th>Device ID</th>
                                             <th>Eliminar</th>
                                         </tr>
-                                        <tr ng-hide="profile.registeredDevices.length != 0">
+                                        <tr ng-hide="user.registeredDevices.length != 0">
                                             <th>
                                                 <h1>No Devices Registered</h1>
                                             </th>
                                         </tr>
                                     </thead>
                                 </table>
-                                <table class="table" ng-repeat="device in profile.registeredDevices">
+                                <table class="table" ng-repeat="device in user.registeredDevices">
                                     <tbody>
                                         <tr>
                                             <th>
