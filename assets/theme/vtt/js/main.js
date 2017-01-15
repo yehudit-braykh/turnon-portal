@@ -75,6 +75,10 @@ vttApp.config(function($routeProvider, $locationProvider){
         templateUrl: '/assets/theme/vtt/html/pages/como-funciona.html',
         controller: 'comoFuncionaController'
     })
+    .when('/mi-cuenta', {
+        templateUrl: '/assets/theme/vtt/html/pages/account.html',
+        controller: 'aController'
+    })
     .otherwise({
         redirectTo: '/'
     });;

@@ -1,3 +1,261 @@
+
 <div class="account-page">
-    
+    <div class="tabs-area" ng-hide="showConfirmation">
+        <div class="row">
+            <div class="col-md-3 side-menu">
+                <h1>MI CUENTA</h1>
+                <ul class="nav nav-tabs nav-stacked" role="tablist">
+                    <li ng-repeat="menuItem in menu" class="nav-item {{$first?'active':''}}">
+                        <a class="nav-link {{$first?'active':''}}" data-toggle="tab" href="mi-cuenta#{{menuItem.id}}" role="tab" >{{menuItem.name}}</a>
+                    </li>
+                </ul>
+                <button type="button" class="logout" ng-click="logout()">Salir</button>
+            </div>
+            <div class="col-md-9">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="perfil" role="tabpanel">
+                        <div class="profile">
+                            <form name="profileForm">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="mi-plan">Mi Plan</label>
+                                        <input type="text" class="form-control" id="mi-plan" ng-model="profile.plan.title" ng-disabled="true">
+                                    </div>
+                                </div>
+                                <div class="row form-section">
+                                    <div class="col-sm-3 col-xs-6 profile-picture">
+                                        <label for="image" >Foto o Icono</label>
+                                        <label for="image" class="form-control profile-picture" style="height: 77%; padding: 0; background-image: url('{{profile.avatar}}')">
+                                            <input type="file" name="image" id="image" accept="image/*" style="display:none;" onchange="angular.element(this).scope().uploadImage(profileForm)"/>
+                                            <!-- <img class="img" src="{{profile.avatar}}" alt="NO IMAGE"/> -->
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-6 names">
+                                        <label for="firstName">Primer Nombre</label>
+                                        <input type="text" class="form-control" id="firstName" ng-model="profile.firstName" ng-disabled="!editing">
+                                        <label for="lastName">Apellido</label>
+                                        <input type="text" class="form-control" id="lastName" ng-model="profile.lastName" ng-disabled="!editing">
+                                    </div>
+                                </div>
+                                <div class="row form-section">
+                                    <div class="col-sm-4">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control" id="email" ng-model="profile.email" ng-disabled="!editing">
+                                    </div>
+                                    <div class="col-sm-4" >
+                                        <label for="vemail">Verify Email</label>
+                                        <input type="vemail" class="form-control" id="vemail" ng-model="profile.vemail" ng-disabled="!editing">
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top:0;">
+                                    <div class="col-sm-4">
+                                        <label for="addressLine1">Address Line 1</label>
+                                        <input type="text" class="form-control" id="addressLine1" ng-model="profile.addressLine1" ng-disabled="!editing">
+                                        <label for="city">City</label>
+                                        <input type="text" class="form-control" id="city" ng-model="profile.city" ng-disabled="!editing">
+                                        <label for="postalCode">Zip Code</label>
+                                        <input type="text" class="form-control" id="postalCode" ng-model="profile.postalCode" ng-disabled="!editing">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label for="addressLine2">Address Line 2</label>
+                                        <input type="text" class="form-control" id="addressLine2" ng-model="profile.addressLine2" ng-disabled="!editing">
+                                        <label for="state">State</label>
+                                        <input type="text" class="form-control" id="state" ng-model="profile.state" ng-disabled="!editing">
+                                        <label for="countryName">Country</label>
+                                        <input type="text" class="form-control" id="countryName" ng-model="profile.countryName" ng-disabled="!editing">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <button type="submit" class="btn btn-primary" ng-click="edit()" ng-hide="editing">EDITAR</button>
+                                        <button type="submit" class="btn btn-primary" ng-click="update(profile)" ng-show="editing">UPDATE</button>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <button type="submit" class="btn btn-primary" ng-click="edit()" ng-show="editing">CANCEL</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="suscripción" role="tabpanel">
+                        <div class="subscription">
+                            <form name="subscriptionForm">
+                                <div class="row" style="display:flex;">
+                                    <div class="col-sm-4">
+                                        <label for="type">Mi Plan</label>
+                                        <input type="text" class="form-control" id="type" ng-model="subscription.title" disabled>
+                                        <label for="status">Estatus</label>
+                                        <input type="text" class="form-control" id="status" ng-model="subscription.status" disabled>
+                                        <label for="since">Miembro desde</label>
+                                        <input type="text" class="form-control" id="since" value="{{subscription.contractStartDate | date: 'MMMM dd'}}" disabled>
+                                    </div>
+                                    <div class="col-sm-4" style="align-self: flex-end;">
+                                        <label for="dueDate">Vence</label>
+                                        <input type="text" class="form-control" id="dueDate" value="{{subscription.contractEndDate | date: 'MMMM dd'}}" disabled>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <button type="submit" class="btn cancel" ng-click="cancelSubscription(subscriptionForm)">Cancelar Suscripción</button>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <button type="submit" class="btn btn-primary change-plan" ng-click="changePlan(subscriptionForm)">Cambiar Plan</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="pagos" role="tabpanel">
+                        <div class="billing-info">
+                            <form name="billingInformation" ng-hide="newCard">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="name">Nombre en Tarjeta</label>
+                                        <input type="text" class="form-control {{submitted.billingForm && billingForm.name.$invalid?'error':''}}" id="name" name="name" ng-model="billing.name" disabled>
+                                        <label for="name" class="description"><span>Entre el Nombre Exacto Como Figura en Su Tarjeta</span></label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="cardType">Tipo de Tarjeta</label>
+                                        <input type="text" class="form-control" id="cardType" name="cardType" ng-model="billingInfo.type" disabled style="text-transform: uppercase;">
+                                        <label for="exDate">Fecha de Expiración</label>
+                                        <input type="text" class="form-control" id="exDate" name="exDate" ng-model="billingInfo.exDate" disabled>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label for="address">Dirección de Tarjeta</label>
+                                        <input type="text" class="form-control" id="address" name="address" ng-model="billingInfo.address" disabled>
+                                        <label for="name" class="description"><span>Dirección donde se recibe la cuenta</span></label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <button type="button" class="btn btn-primary" ng-click="changeCard(billingForm)" ng-if="billingInfo">Cambiar Tarjeta de Crédito</button>
+                                        <!-- <button type="button" class="btn btn-primary" ng-click="deleteCard(billingForm)" ng-if="billingInfo">DELETE CREDIT CARD</button> -->
+                                        <button type="button" class="btn btn-primary" ng-click="changeCard(billingForm)" ng-if="!billingInfo">ADD CREDIT CARD</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <form name="billingForm" ng-show="newCard">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <label for="cardType">Card Type</label>
+                                        <input type="text" class="form-control {{submitted.billingForm && billingForm.cardType.$invalid?'error':''}}" id="cardType" name="cardType" ng-model="billing.pi_type" required >
+                                        <label for="number">Card Number</label>
+                                        <input type="text" class="form-control {{submitted.billingForm && billingForm.number.$invalid?'error':''}}" id="number" name="number" ng-model="billing.pi_number" required>
+                                        <label for="securityCode">Security Code</label>
+                                        <input type="text" class="form-control {{submitted.billingForm && billingForm.securityCode.$invalid?'error':''}}" id="securityCode" name="securityCode" ng-model="billing.security_code" required>
+                                        <label for="exDate">Expiration Date</label>
+                                        <div class="row">
+                                            <select class="form-control exp-date {{submitted.billingForm && billingForm.CCMonth.$invalid?'error':''}}" name="CCMonth" id="CCMonth" ng-model="billing.pi_month" required>
+                                                <option value="01">January</option>
+                                                <option value="02">February</option>
+                                                <option value="03">March</option>
+                                                <option value="04">April</option>
+                                                <option value="05">May</option>
+                                                <option value="06">June</option>
+                                                <option value="07">July</option>
+                                                <option value="08">August</option>
+                                                <option value="09">September</option>
+                                                <option value="10">October</option>
+                                                <option value="11">November</option>
+                                                <option value="12">December</option>
+                                            </select>
+                                            <select class="form-control exp-date {{submitted.billingForm && billingForm.CCYear.$invalid?'error':''}}" name="CCYear" ng-model="billing.pi_year" required>
+                                                <option value="2017">2017</option>
+                                                <option value="2018">2018</option>
+                                                <option value="2019">2019</option>
+                                                <option value="2020">2020</option>
+                                                <option value="2021">2021</option>
+                                                <option value="2022">2022</option>
+                                                <option value="2023">2023</option>
+                                                <option value="2024">2024</option>
+                                                <option value="2025">2025</option>
+                                                <option value="2026">2026</option>
+                                                <option value="2027">2027</option>
+                                                <option value="2028">2028</option>
+                                                <option value="2029">2029</option>
+                                            </select>
+                                        </div>
+                                        <div class="card-error" ng-show="billingError"><img class="error-triangle" src="/assets/theme/rjr/images/red-triangle.png" />{{billingError}}</div>
+                                        <button type="submit" class="btn btn-primary" ng-click="saveCard(billingForm)" ng-show="newCard">SAVE</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="other-methods row">
+                                <div class="all-methods">
+                                    <h2>Otros Métodos de Pago</h2>
+                                    <div class="methods" ng-repeat="channel in channels" ng-click="go('')">
+                                        <div class="method" style="background-image:url('{{channel.PosterH.url}}')">
+                                            <!-- <img src="{{channel.PosterH.url}}" alt=""> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="dispositivos" role="tabpanel">
+                        <div class="devices">
+                            <div class="row">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre del Dispositivo</th>
+                                            <th>Device ID</th>
+                                            <th>Eliminar</th>
+                                        </tr>
+                                        <tr ng-hide="profile.registeredDevices.length != 0">
+                                            <th>
+                                                <h1>No Devices Registered</h1>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                                <table class="table" ng-repeat="device in profile.registeredDevices">
+                                    <tbody>
+                                        <tr>
+                                            <th>
+                                                {{device.name}}
+                                            </th>
+                                            <th>
+                                                {{device.id}}
+                                            </th>
+                                            <th>
+                                                <div class="remove-device">
+                                                    <span class="glyphicon glyphicon-remove-sign"></span>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="cambio" role="tabpanel">
+                        <div class="change-password">
+                            <form name="passwordForm">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="current">Contraseña Actual</label>
+                                        <input type="password" class="form-control" id="current" name="current" ng-model="changePassword.current" required>
+                                    </div>
+                                </div>
+                                <div class="row" style="display: flex;align-items: baseline;">
+                                    <div class="col-sm-4">
+                                        <label for="newPassword">Nueva Contraseña</label>
+                                        <input type="password" class="form-control" id="newPassword" name="newPassword" ng-model="changePassword.newPassword" required>
+                                        <button type="submit" class="btn btn-primary" ng-click="changePassword(passwordForm)">SAVE AND UPDATE</button>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label for="confirmNewPassword">Confirmación de Contraseña</label>
+                                        <input type="password" class="form-control" id="confirmNewPassword" name="confirmNewPassword" ng-model="changePassword.confirmNewPassword" required>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
