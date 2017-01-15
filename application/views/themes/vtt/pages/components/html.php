@@ -63,6 +63,7 @@
         <script src="<?php echo asset_url(); ?>js/factories/subscriptions.js"></script>
 
         <!-- ANGULAR FILTERS -->
+        <script src="<?php echo asset_url(); ?>js/filters/range.js"></script>
 
         <!-- ANGULAR DIRECTIVES -->
         <script src="<?php echo asset_url(); ?>js/directives/vtt-carousel.js"></script>

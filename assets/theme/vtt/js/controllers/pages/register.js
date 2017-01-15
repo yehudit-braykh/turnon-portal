@@ -1,35 +1,123 @@
-var re = null;
-vttApp.controller('registerController', function registerController ($scope, $routeParams, AuthService, $location) {
-      re = $scope;
-      $scope.userCheck = {
-          confirmEmail:'',
-          confirmPassword: ''
-      }
-      $scope.userRegister = {
-          email: '',
-          password: '',
-          first_name:'',
-          last_name:'',
-          country: '',
-    };
-
-    $scope.go = function(path){
-        $location.path(path);
+var reg = null;
+vttApp.controller('registerController', function registerController ($scope, $routeParams, AuthService, $location, $locale) {
+    reg = $scope;
+    $scope.months=$scope.months = $locale.DATETIME_FORMATS.MONTH;
+    $scope.currentYear = new Date().getFullYear();
+    $scope.selectedPlan ='';
+    $scope.selectedChannels=[];
+    $scope.MaxChannels=10;
+    $scope.search='';
+    $scope.shownView="register";
+    $scope.userCheck = {
+      confirmEmail:'',
+      confirmPassword: ''
     }
-      $scope.registerUser = function () {
-          $scope.registerError=null;
-          if($scope.userRegister.password != $scope.userCheck.confirmPassword){
-              $scope.registerError="Password does not match confirm password!";
-          }else if ($scope.userRegister.email != $scope.userCheck.confirmEmail){
-              $scope.registerError="Email does not match confirm Email!";
-          }else {
-              AuthService.register($scope.userRegister).then(function(data) {
-              });
-          }
+  $scope.userRegister = {
+      email: '',
+      password: '',
+      first_name:'',
+      last_name:'',
+      country: '',
+  };
+  $scope.ccInfo = {
+    number:'',
+    address:'',
+    cvv:'',
+    month:'',
+    year:''
+  };
+
+  $scope.go = function(path){
+      $location.path(path);
+  }
+
+  $scope.registerUser = function () {
+      $scope.registerError=null;
+      if(!$scope.userRegister.first_name || !$scope.userRegister.last_name || !$scope.userRegister.password || !$scope.userCheck.confirmPassword || !$scope.userCheck.confirmEmail){
+         $scope.registerError="Please Fill All Fields";
+      } else if($scope.userRegister.password != $scope.userCheck.confirmPassword){
+          $scope.registerError="Password does not match confirm password!";
+      }else if ($scope.userRegister.email != $scope.userCheck.confirmEmail){
+          $scope.registerError="Email does not match confirm Email!";
+      }else if($scope.userRegister.password.length<8 || $scope.userRegister.password.length>16){
+          $scope.registerError="Debe tener entre 8 a 16 caracteres contraseña";
+      } else if (!$("#terms").is(':checked')) {
+          $scope.registerError="Acepto los Términos y Condiciones";
+      }else {
+          AuthService.register($scope.userRegister).then(function(data) {
+          });
+      }
+  };
+
+  $scope.isSelectedChannel = function(id){
+      return $scope.selectedChannels.indexOf(id)>=0;
+  };
+
+  $scope.selectChannel = function(id){
+        if($scope.isSelectedChannel(id))
+            $scope.selectedChannels.splice($scope.selectedChannels.indexOf(id),1);
+        else if ($scope.selectedChannels.length < $scope.MaxChannels)
+            $scope.selectedChannels.push(id);
+  };
+
+  $scope.channelsFilter = function(item){
+      if($scope.search=='')
+          return item;
+      if(item.title.includes($scope.search))
+          return item;
   };
 
 
-      $scope.countries = [
+  $scope.choosePlan = function(){
+      $scope.choosePlanError="";
+      if (!$scope.selectedPlan ||!$scope.ccInfo.number || !$scope.ccInfo.address || !$scope.ccInfo.cvv || !$scope.ccInfo.month || !$scope.ccInfo.year){
+          $scope.choosePlanError = "Please Fill All Fields";
+      }else {
+          $scope.shownView="ChooseChannels";
+      }
+  };
+
+  $scope.choosechannels = function(){
+      if ($scope.selectedChannels.length == $scope.MaxChannels)
+          $scope.go('/');
+  };
+
+  $scope.plans=[{id: 11, title:'Freemium', channels: 0, cost: 0, duration: 0},
+                {id: 12, title:'Suscripció', channels: 10, cost: 4.99, duration: 30},
+                {id: 13, title:'Suscripció', channels: 24, cost: 9.99, duration: 30},
+                {id: 14, title:'7 Day Trial', channels: 0, cost: 0, duration: 7}];
+
+  $scope.channels=[{id: 1, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                   {id: 2, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                   {id: 3, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                   {id: 4, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                   {id: 5, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                   {id: 6, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                   {id: 7, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                   {id: 8, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                   {id: 9, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                   {id: 10, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                   {id: 11, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                   {id: 12, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                   {id: 13, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                   {id: 14, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                   {id: 15, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                   {id: 16, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                   {id: 17, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                   {id: 18, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                   {id: 19, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                   {id: 20, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                   {id: 21, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                   {id: 22, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                   {id: 23, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                   {id: 24, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                   {id: 25, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                   {id: 26, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                   {id: 27, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                   {id: 28, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                   {id: 29, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}}];
+
+  $scope.countries = [
          {name: 'Afghanistan', code: 'AF'},
          {name: 'Åland Islands', code: 'AX'},
          {name: 'Albania', code: 'AL'},
@@ -275,16 +363,15 @@ vttApp.controller('registerController', function registerController ($scope, $ro
          {name: 'Zimbabwe', code: 'ZW'}
        ];
 
-       $scope.$on("auth-register-success", function (){
-           $scope.go('/');
+   $scope.$on("auth-register-success", function (){
+       $scope.shownView='ChoosePlan';
 
-       });
+   });
 
-       $scope.$on("auth-register-error", function (event, args){
-         if(args.message.includes('User already registered'))
-             $scope.registerError= "User already registered!";
-         else
-             $scope.registerError= args.message;
-       });
-
-  });
+   $scope.$on("auth-register-error", function (event, args){
+     if(args.message.includes('User already registered'))
+         $scope.registerError= "User already registered!";
+     else
+         $scope.registerError= args.message;
+   });
+});
