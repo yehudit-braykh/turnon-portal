@@ -1,0 +1,108 @@
+.register-page {
+    width: 550px;
+    padding-bottom: 80px;
+    margin: auto;
+    color: white;
+    text-align: center;
+    @media (max-width: @screen-xs-max) {
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .register-header {
+        margin-top: 60px;
+        font-size: 48px;
+        margin-bottom: 50px;
+    }
+    .terms-span {
+        font-size: 20px;
+        margin-bottom: 40px;
+        span {
+            color: orange;
+        }
+    }
+    .facebook-register {
+        width: 260px;
+        margin: auto;
+        font-size: 20px;
+        background-color: #3a5897;
+        padding: 11px;
+        margin-bottom: 40px;
+    }
+    .line {
+        height: 2px;
+        text-align: center;
+        border-bottom: 1px solid white;
+        line-height: 0.1em;
+        margin: 10px 0 30px;
+       span {
+           font-size: 20px;
+           background: #113453;
+           padding: 0 10px;
+       }
+    }
+    .email-registry {
+        .email-header {
+            color: orange;
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        .input-header {
+            text-align: left;
+            font-size: 20px;
+
+        }
+        .register-input {
+            width: 100%;
+            border: 1px solid white;
+            font-size: 20px;
+            padding: 4px;
+            background-color: transparent;
+            margin-bottom: 30px;
+            &:disabled {
+                color:  rgba(255, 255, 255, 0.45);
+            }
+            @media (max-width: @screen-xs-max) {
+                width: 100%;
+            }
+
+        }
+        .country-select {
+            select {
+                margin-bottom: 40px;
+                width: 260px;
+                padding: 11px;
+                font-size: 20px;
+                background: #113453;
+                @media (max-width: @screen-xs-max) {
+                    width: 100%;
+                }
+                option {
+               margin:40px;
+               background: #113453;
+               color:#ccc;
+               text-shadow:0 1px 0 rgba(0,0,0,0.4);
+                }
+            }
+
+            label {
+                vertical-align: middle;
+                font-size: 18px;
+            }
+            .checkbox {
+                margin-bottom: 60px;
+                input[type=checkbox] {
+                    position: relative;
+                    margin-left: 0;
+                    float: left;
+                }
+            }
+            .continue-btn {
+                padding: 11px;
+                background-color: orange;
+                border-radius: 3px;
+                font-size: 24px;
+            }
+        }
+    }
+}

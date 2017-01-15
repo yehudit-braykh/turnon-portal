@@ -1,0 +1,78 @@
+<div class="register-page">
+    <div class="register-header">
+        REGISTER
+    </div>
+    <div class="terms-span">
+        By registering you accept <span>terms and conditions</span>
+    </div>
+    <div class="facebook-register" onclick="window.open('/hauth/login/Facebook','fb','left=20,top=20,width=500,height=400,toolbar=1,resizable=0')">
+        <span class="icon icon-facebook-logo-19x19 fll"></span>Register with Facebook
+    </div>
+    <div class="line">
+        <span>or</span>
+    </div>
+    <div class="email-registry">
+        <div class="email-header">
+            Enter login with your Email
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="input-header">
+                    First Name*
+                </div>
+                <input class="register-input" type="text" ng-model="userRegister.first_name">
+            </div>
+            <div class="col-sm-6">
+                <div class="input-header">
+                    Last Name*
+                </div>
+                <input class="register-input" type="text" ng-model="userRegister.last_name">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="input-header">
+                    Email*
+                </div>
+                <input class="register-input" type="email" ng-model="userRegister.email">
+            </div>
+            <div class="col-sm-6">
+                <div class="input-header">
+                    Confirm Email*
+                </div>
+                <input class="register-input" type="email" ng-model="userCheck.confirmEmail">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="input-header">
+                    Password*
+                </div>
+                <input class="register-input" type="password" ng-model="userRegister.password">
+            </div>
+            <div class="col-sm-6">
+                <div class="input-header">
+                    Password Confirm*
+                </div>
+                <input class="register-input" type="password" ng-model="userCheck.confirmPassword">
+            </div>
+        </div>
+        <div class="row country-select">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="input-header">
+                    Country*
+                </div>
+                <select class="" ng-model="userRegister.country" ng-change="user">
+                    <option value="">-- Select a Country --</option>
+                    <option ng-repeat="country in countries" value="{{country.name}}">{{country.name}}</option>
+                </select>
+                <div class="checkbox">
+                    <input type="checkbox" name="" value=""><label>Remember Email and Password</label>
+                </div>
+                <div class="continue-btn">
+                    CONTINUE
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

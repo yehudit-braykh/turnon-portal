@@ -33,6 +33,8 @@
        <script src="<?php echo asset_url(); ?>js/controllers/pages/home.js"></script>
        <script src="<?php echo asset_url(); ?>js/controllers/pages/header.js"></script>
        <script src="<?php echo asset_url(); ?>js/controllers/pages/account.js"></script>
+       <script src="<?php echo asset_url(); ?>js/controllers/pages/login.js"></script>
+       <script src="<?php echo asset_url(); ?>js/controllers/pages/register.js"></script>
        <script src="<?php echo asset_url(); ?>js/controllers/pages/canales-premium.js"></script>
        <script src="<?php echo asset_url(); ?>js/controllers/pages/como-funciona.js"></script>
        <script src="<?php echo asset_url(); ?>js/controllers/pages/karaoke.js"></script>

@@ -1,6 +1,8 @@
 var he = null;
-vttApp.controller('headerController', function headerController ($scope, $rootScope, $location, $routeParams) {
+vttApp.controller('headerController', function headerController ($scope, $rootScope, $location, $routeParams, User, AuthService) {
       he = $scope;
+
+      $scope.user = User;
 
       $scope.menu = {
         0:{title:"Television Gratis"},
@@ -21,20 +23,24 @@ vttApp.controller('headerController', function headerController ($scope, $rootSc
 
       }
 
+
+
+      $scope.isLoggedIn= function(){
+         return AuthService.isLoggedIn();
+      }
+
+      $scope.logout = function (){
+          AuthService.logout();
+          $location.url('/');
+      }
       $scope.go = function(path){
           $location.path(path);
       }
 
-      $scope.userRegister = {
-          email: '',
-          password: '',
-          first_name:'',
-          last_name:''
-    };
+      $scope.finished_login = function (data){
+          AuthService.getCurrentUser();
+          $scope.user = User;
+          $scope.go('/');
+      };
 
 });
-
-var finished_login = function(data){
-  $("[ng-controller=headerController]").scope().finished_login(data);
-
-};
