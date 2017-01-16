@@ -9,7 +9,7 @@
     <div class="page-content">
         <div class="player-wrapper row">
             <div class="player col-xs-12 col-md-8">
-                <jwplayer data-video="genreVideos[0]" data-auto-play="true" data-id="video-player"></jwplayer>
+                <jwplayer ng-if="genreVideos" data-video="genreVideos[0]" data-auto-play="true" data-id="video-player"></jwplayer>
                 <div class="video-info">
                     <div class="title">
                         Tifulo del Playlist   <span class="hand flr" ng-click="addToWatchLish()"> <i class="fa fa-plus-circle"></i> Mi Lista</span>

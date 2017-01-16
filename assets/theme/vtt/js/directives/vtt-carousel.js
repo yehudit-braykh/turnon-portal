@@ -12,8 +12,10 @@ vttApp.directive('vttCarousel', function() {
           subscription: '=',
           dateFormat: '@',
           description: '=',
-          mylist: "=",
-        carouselId: '@'
+          select: '@',
+          selectedItem: '=',
+          mylist: '=',
+          carouselId: '@'
       },
       controller: ['$scope', '$location', function vttCarouselController($scope, $location) {
           sc = $scope;
@@ -74,6 +76,13 @@ vttApp.directive('vttCarousel', function() {
               else{
                   $scope.go($scope.targetDir+'/'+video[$scope.targetParam]);
               }
+          }
+
+          $scope.selectTile = function(video){
+              if ($scope.selectedItem == video)
+                $scope.selectedItem= null;
+            else
+                $scope.selectedItem = video;
           }
 
           $scope.getPosterH = function(video){

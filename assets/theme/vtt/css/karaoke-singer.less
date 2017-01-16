@@ -43,6 +43,29 @@
                     }
                 }
             }
+
+            .album-items {
+                height: 0;
+                overflow: hidden;
+                transition: all 1s ease-out;
+
+                .fa-times {
+                    position: absolute;
+                    right: 20px;
+                    top: 15px;
+                }
+
+                &.active{
+                    height: 500px;
+                    margin-top: 100px;
+                }
+
+                .song{
+                    background-color: rgba(63, 162, 10, 0.4);
+
+
+                }
+            }
         }
         .filter{
             font-size: 36px;
@@ -71,12 +94,12 @@
         }
         .songs{
             border-top: 10px solid #40a20b;
-            background-image: linear-gradient(to top, rgba(252, 251, 245, 0), #fcfbf5);
+            background-image: linear-gradient(to top, #292525 40%, #514E4D);
             padding: 30px;
             .song{
                 transition: 0.5s;
                 padding: 20px;
-                background: rgba(35, 31, 32, 0.4);
+                background: #3E393A;
                 background-clip: content-box;
 
                 &:hover{

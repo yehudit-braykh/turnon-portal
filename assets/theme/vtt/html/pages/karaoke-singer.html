@@ -8,7 +8,21 @@
         <div class="albums-wrapper">
             <div class="title">Albums</div>
             <div class="albums row">
-                <vtt-carousel data-model="videos" data-orientation="square" data-title="ture"></vtt-carousel>
+                <vtt-carousel data-model="videos" data-orientation="square" data-select="true" data-selected-item="selectedAlbum" data-target-dir="Karaoke/Singer" data-target-param="_id" data-title="ture"></vtt-carousel>
+            </div>
+            <div class="album-items pr {{selectedAlbum?'active':''}}">
+                <span class="fa fa-times hand" ng-click="selectedAlbum=null"></span>
+                <div class="songs row">
+                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-repeat="song in videos | filter:videosFilter">
+                        <div class="song hand row" ng-click="go('Karaoke/Genre/'+song.title)">
+                            <div class="pic fll" style="background-image:url({{song.PosterH.url}})"></div>
+                            <div class="info fll">
+                                {{song.title}}<br/>
+                                Album Title
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="filter row">
@@ -20,15 +34,14 @@
         </div>
         <div class="songs row">
             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-repeat="song in videos | filter:videosFilter">
-                <div class="song hand row" ng-click="go('/Karaoke/Singer/'+song._id)">
+                <div class="song hand row" ng-click="go('Karaoke/Genre/'+song.title)">
                     <div class="pic fll" style="background-image:url({{song.PosterH.url}})"></div>
                     <div class="info fll">
                         {{song.title}}<br/>
                         Album Title
+                    </div>
                 </div>
             </div>
         </div>
-
-    </div>
 
 </div>

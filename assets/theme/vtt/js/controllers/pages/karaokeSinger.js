@@ -4,6 +4,7 @@ vttApp.controller('karaokeSingerController', function karaokeSingerController ($
     $scope.singerId = $routeParams.singerId;
     $scope.selectedCat = '';
     $scope.search='';
+    $scope.selectedAlbum='';
 
     $scope.go = function(path){
         $location.path(path);
