@@ -14,6 +14,7 @@
                     <div class="pa {{subscription?'':'hidden'}} {{subscriptionType(video.categories[0].name)}}">
                         {{subscriptionType(video.categories[0].name) | uppercase}}
                     </div>
+                    <i class="fa fa-times-circle" ng-click="removeFromList($event)" ng-if="mylist"></i>
                      <div class="pa info">
                         <div class="title {{title?'':'hidden'}}">
                             {{video.title}}

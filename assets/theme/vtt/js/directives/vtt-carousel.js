@@ -12,6 +12,7 @@ vttApp.directive('vttCarousel', function() {
           subscription: '=',
           dateFormat: '@',
           description: '=',
+          mylist: "=",
         carouselId: '@'
       },
       controller: ['$scope', '$location', function vttCarouselController($scope, $location) {
@@ -44,6 +45,10 @@ vttApp.directive('vttCarousel', function() {
           $scope.go = function(path){
               $location.path(path);
           }
+
+          $scope.removeFromList = function(event){
+              event.stopPropagation();
+          };
 
           $scope.subscriptionType = function(type){
               if(type == "commerce_free_media"){
