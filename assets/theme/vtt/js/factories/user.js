@@ -23,12 +23,14 @@ vttApp.factory('AuthService', function ($http, $rootScope, $location, User, $q, 
 	};
 
 	scope.updateProfile = function(user){
+		console.log('111');
 		$http({method: 'POST', url: '/api/account/update_profile', data:user}).
     	success(function(data, status, headers, config) {
-		//	console.log('save profile success', data);
+			//console.log('save profile success', data);
+			User.set(data.content);
     	}).
     	error(function(data, status, headers, config) {
-    //		console.log('save profile error', data);
+    		console.log('save profile error', data);
     	});
 	}
 
@@ -141,8 +143,13 @@ vttApp.factory('AuthService', function ($http, $rootScope, $location, User, $q, 
 
 vttApp.service('User', function ($rootScope, $http, $location) {
 	u = this;
+	this.data=null;
+	this.get = function(){
+		return this.data;
+	}
+
 	this.set = function (user) {
-	//	console.log("SETTING USER", user);
+	/*	console.log("SETTING USER", user);
 		this.email = user.email;
 		this.registerd_on = user.registerd_on;
         this.lastName = user.lastName;
@@ -163,12 +170,13 @@ vttApp.service('User', function ($rootScope, $http, $location) {
 		this.google = user.google;
 		this.twitter = user.twitter;
 		this.vkontakte = user.vkontakte
-		this.instagram = user.instagram;
+		this.instagram = user.instagram;*/
+		this.data=user;
 		$rootScope.$broadcast("auth-login-success");
 		$rootScope.isLogin=true;
 	};
 	this.destroy = function () {
-		this.networks = null;
+	/*	this.networks = null;
 		this.connected_via = null;
 		this.email = null;
 		this.lastName = null;
@@ -193,10 +201,11 @@ vttApp.service('User', function ($rootScope, $http, $location) {
 		this.instagram = null;
 		this.vkontakte = null;
 		this.instagram = null;
-		this.tags = null;
+		this.tags = null;*/
+		this.data=null;
 		$rootScope.$broadcast("auth-logout");
 		$rootScope.isLogin=false;
 	};
-	return this;
+	return this.data;
 
 });

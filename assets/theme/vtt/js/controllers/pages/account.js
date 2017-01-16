@@ -2,7 +2,7 @@ var acc = null;
 vttApp.controller('aController', function accountController ($scope, $location, $http, $log, User, AuthService) {
     acc = $scope;
 
-    $scope.user  = User;
+    $scope.user  = User.get();
     $scope.selectedChannels=[];
     $scope.MaxChannels=10;
     $scope.search = {text:""};
@@ -67,17 +67,26 @@ vttApp.controller('aController', function accountController ($scope, $location, 
                      {id: 28, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
                      {id: 29, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}}];
 
-    $scope.user.registeredDevices = {
+    /*$scope.user.registeredDevices = {
         0:{name: "iPad", id:"A12345678901234567890"},
         1:{name: "Cellphone", id:"A12345678901234567890"},
         2:{name: "iPone", id:"A12345678901234567890"}
-    };
-    $scope.editing = false;
+    };*/
+    $scope.editingProfile = false;
+    $scope.editingPassword = false;
     $scope.billingInfo = true;
 
-    $scope.edit = function(){
-        $scope.editing = !$scope.editing;
+    $scope.editProfile = function(){
+        $scope.editingProfile = !$scope.editingProfile;
     };
+    $scope.editPassword = function(){
+        $scope.editingPassword = !$scope.editingPassword;
+    };
+
+    $scope.updateProfile = function(){
+        AuthService.updateProfile($scope.user);
+        $scope.editProfile();
+    }
 
     $scope.go = function(path){
         $location.path(path);

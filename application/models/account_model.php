@@ -121,10 +121,9 @@ class Account_model extends CI_Model {
     }
 
     public function update_profile( $id, $data) {
-    //    debug($id, $data, $this->session);
-        return apiPost("user/update_profile", array("token" => $this->session->userdata('login_token'),
-          "id" => $id,
-          "data" => $data));
+        $profile=  apiPost("user/update_profile", array("token" => $this->session->userdata('login_token'), "id" => $id, "data" => $data));
+        $this->session->set_userdata('profile', $profile);
+        return $profile;
     }
 
     public function update_user( $id, $fb_id = NULL, $fb_data = NULL, $first_name = NULL, $last_name = NULL, $address = NULL, $birthDay = NULL) {

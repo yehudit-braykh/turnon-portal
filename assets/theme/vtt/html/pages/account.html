@@ -32,46 +32,46 @@
                                     </div>
                                     <div class="col-sm-4 col-xs-6 names">
                                         <label for="firstName">Primer Nombre</label>
-                                        <input type="text" class="form-control" id="firstName" ng-model="user.firstName" ng-disabled="!editing">
+                                        <input type="text" class="form-control" id="firstName" ng-model="user.firstName" ng-disabled="!editingProfile">
                                         <label for="lastName">Apellido</label>
-                                        <input type="text" class="form-control" id="lastName" ng-model="user.lastName" ng-disabled="!editing">
+                                        <input type="text" class="form-control" id="lastName" ng-model="user.lastName" ng-disabled="!editingProfile">
                                     </div>
                                 </div>
                                 <div class="row form-section">
                                     <div class="col-sm-4">
                                         <label for="email">Email</label>
-                                        <input type="email" class="form-control" id="email" ng-model="user.email" ng-disabled="!editing">
+                                        <input type="email" class="form-control" id="email" ng-model="user.email" ng-disabled="!editingProfile">
                                     </div>
                                     <div class="col-sm-4" >
                                         <label for="vemail">Verify Email</label>
-                                        <input type="vemail" class="form-control" id="vemail" ng-model="user.vemail" ng-disabled="!editing">
+                                        <input type="vemail" class="form-control" id="vemail" ng-model="user.vemail" ng-disabled="!editingProfile">
                                     </div>
                                 </div>
                                 <div class="row" style="margin-top:0;">
                                     <div class="col-sm-4">
                                         <label for="addressLine1">Address Line 1</label>
-                                        <input type="text" class="form-control" id="addressLine1" ng-model="user.addressLine1" ng-disabled="!editing">
+                                        <input type="text" class="form-control" id="addressLine1" ng-model="user.addressLine1" ng-disabled="!editingProfile">
                                         <label for="city">City</label>
-                                        <input type="text" class="form-control" id="city" ng-model="user.city" ng-disabled="!editing">
+                                        <input type="text" class="form-control" id="city" ng-model="user.city" ng-disabled="!editingProfile">
                                         <label for="postalCode">Zip Code</label>
-                                        <input type="text" class="form-control" id="postalCode" ng-model="user.postalCode" ng-disabled="!editing">
+                                        <input type="text" class="form-control" id="postalCode" ng-model="user.postalCode" ng-disabled="!editingProfile">
                                     </div>
                                     <div class="col-sm-4">
                                         <label for="addressLine2">Address Line 2</label>
-                                        <input type="text" class="form-control" id="addressLine2" ng-model="user.addressLine2" ng-disabled="!editing">
+                                        <input type="text" class="form-control" id="addressLine2" ng-model="user.addressLine2" ng-disabled="!editingProfile">
                                         <label for="state">State</label>
-                                        <input type="text" class="form-control" id="state" ng-model="user.state" ng-disabled="!editing">
+                                        <input type="text" class="form-control" id="state" ng-model="user.state" ng-disabled="!editingProfile">
                                         <label for="countryName">Country</label>
-                                        <input type="text" class="form-control" id="countryName" ng-model="user.country" ng-disabled="!editing">
+                                        <input type="text" class="form-control" id="countryName" ng-model="user.country" ng-disabled="!editingProfile">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <button type="submit" class="btn btn-primary" ng-click="edit()" ng-hide="editing">EDITAR</button>
-                                        <button type="submit" class="btn btn-primary" ng-click="update(user)" ng-show="editing">UPDATE</button>
+                                        <button type="submit" class="btn btn-primary" ng-click="editProfile()" ng-hide="editingProfile">EDITAR</button>
+                                        <button type="submit" class="btn btn-primary" ng-click="updateProfile(user)" ng-show="editingProfile">UPDATE</button>
                                     </div>
                                     <div class="col-sm-4">
-                                        <button type="submit" class="btn btn-primary" ng-click="edit()" ng-show="editing">CANCEL</button>
+                                        <button type="submit" class="btn btn-primary" ng-click="editProfile()" ng-show="editingProfile">CANCEL</button>
                                     </div>
                                 </div>
                             </form>
@@ -244,7 +244,7 @@
                                     <div class="col-sm-4">
                                         <label for="newPassword">Nueva Contraseña</label>
                                         <input type="password" class="form-control" id="newPassword" name="newPassword" ng-model="changePassword.newPassword" required>
-                                        <button type="submit" class="btn btn-primary" ng-click="changePassword(passwordForm)">SAVE AND UPDATE</button>
+                                        <button type="submit" class="btn btn-primary" ng-click="changePassword()">SAVE AND UPDATE</button>
                                     </div>
                                     <div class="col-sm-4">
                                         <label for="confirmNewPassword">Confirmación de Contraseña</label>
