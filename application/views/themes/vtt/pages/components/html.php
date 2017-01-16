@@ -49,7 +49,7 @@
        <script src="<?php echo asset_url(); ?>js/controllers/pages/video.js"></script>
        <script src="<?php echo asset_url(); ?>js/controllers/pages/videoCategory.js"></script>
        <script src="<?php echo asset_url(); ?>js/controllers/pages/videoCategories.js"></script>
-
+       <script src="<?php echo asset_url(); ?>js/controllers/components/footer.js"></script>
         <!-- COMPONENTS CONTROLLERS -->
 
         <!-- ANGULAR FACTORIES -->
