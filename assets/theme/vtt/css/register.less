@@ -12,25 +12,29 @@
     text-align: center;
 
     .narrow{
-        width: 550px;
-        margin: auto;
+
+        margin: 0px 24%;
+        @media (max-width: 1360px) {
+            margin: 0px 20%;
+        }
+        @media (max-width: 1360px) {
+            margin: 0px 14%;
+        }
         @media (max-width: @screen-xs-max) {
-            width: 100%;
-            padding-left: 20px;
-            padding-right: 20px;
+            margin: 0px 4%;
         }
     }
     .register-header {
         margin-top: 60px;
         font-size: 48px;
-        margin-bottom: 50px;
+        margin-bottom: 14px;
         color: #df1b0f;
     }
     .register {
 
         .terms-span {
-            font-size: 20px;
-            margin-bottom: 40px;
+            font-size: 30px;
+            margin-bottom: 30px;
             span {
                 color: #df1b0f;
             }
@@ -38,7 +42,7 @@
         .facebook-register {
             background-color: #3a5897;
             border-radius: 3px;
-            width: 65%;
+            width: 50%;
             padding: 10px;
             font-size: 20px;
             margin: 0 auto 40px;
@@ -55,35 +59,40 @@
         .line {
             height: 2px;
             text-align: center;
-            border-bottom: 1px solid white;
+            border-bottom: 3px solid white;
             line-height: 0.1em;
-            margin: 10px 0 30px;
+            width: 70%;
+            margin: auto;
+            margin-bottom: 40px;
            span {
                font-size: 28px;
-               background: #231f20;
+               background: #302C31;
                padding: 0 20px;
                color: #df1b0f;
            }
         }
         .email-registry {
             .email-header {
-                font-size: 29px;
-                margin-bottom: 30px;
+                font-size: 32px;
+                margin-bottom: 20px;
+            }
+            .single-input {
+                margin-bottom: 20px;
             }
             .input-header {
                 text-align: left;
-                font-size: 20px;
-                min-height: 28px;
-
+                font-size: 26px;
+                padding-bottom: 10px;
+                padding-left: 16px;
+                @media (max-width: 1600px) {
+                    font-size: 22px;
+                }
             }
 
             .input-details {
-                position: absolute;
-                bottom: 12px;
                 font-size: 12px;
                 width: 100%;
                 text-align: left;
-                left: 19px;
                 color: rgba(252, 251, 245, 0.5);
             }
 
@@ -96,11 +105,11 @@
 
             .register-input {
                 width: 100%;
-                border: 1px solid #df1b0f;
+                border: 3px solid #df1b0f;
                 font-size: 20px;
                 padding: 4px;
                 background-color: transparent;
-                margin-bottom: 30px;
+                margin-bottom: 4px;
                 -webkit-appearance: none;
                 -moz-appearance: none;
                 outline: 0;
@@ -140,6 +149,7 @@
                     }
                 }
                 .checkbox {
+                    margin-top: 40px;
                     margin-bottom: 60px;
                     input[type=checkbox] {
                         position: relative;
@@ -161,6 +171,8 @@
                     font-size: 19px;
                 }
                 .continue-btn {
+                    width: 300px;
+                    margin: auto;
                     padding: 11px;
                     background-color: #fcfbf5;
                     border-radius: 3px;
