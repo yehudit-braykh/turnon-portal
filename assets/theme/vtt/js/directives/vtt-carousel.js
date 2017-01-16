@@ -58,7 +58,7 @@ vttApp.directive('vttCarousel', function() {
               return 'free';
           };
 
-          $scope.watch = function(permission, id){
+          $scope.watch = function(permission, video){
               var permissionType =  $scope.subscriptionType(permission);
               if(permissionType == 'subscribe'){
                   $('.subscription-modal').modal('show')
@@ -67,7 +67,7 @@ vttApp.directive('vttCarousel', function() {
                   $('.register-modal').modal('show')
               }
               else{
-                  $scope.go('Video/' + id);
+                  $scope.go($scope.targetDir+'/'+video[$scope.targetParam]);
               }
           }
 

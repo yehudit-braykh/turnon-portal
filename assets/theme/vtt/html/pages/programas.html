@@ -5,11 +5,11 @@
     <div class="page-content">
         <div class="filter row">
             <div class="categories col-xs-12 col-md-8">
-                <div class="category hand {{selectedCat==cat.title?'selected':''}}" ng-repeat="cat in categories" ng-click="changeSelectedCat(cat.title)">
+                <div class="category hand {{selectedCat==cat.title?'selected':''}}" ng-repeat="cat in categories | limitTo: 4" ng-click="changeSelectedCat(cat.title)">
                     {{cat.title}}
                 </div>
             </div>
-            <div class="search col-xs-12 col-md-4">
+            <div class="search flr pr">
                 <i class="fa fa-search"></i>
                 <input id="search-box" type="text" placeholder="Search..." ng-model="search" ></input>
             </div>

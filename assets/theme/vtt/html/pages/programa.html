@@ -2,14 +2,14 @@
     <div class="page-nav row">
         <div class="route col-xs-12 col-md-8">
             <a href="#!/Peliculas">Programa</a>
-            <i class="fa fa-caret-right" aria-hidden="true"></i>
+            <span><i class="fa fa-caret-right" aria-hidden="true"></i>
             <a href="#!/{{video.categories[0]}}">{{video.categories[0]}}</a>
             <i class="fa fa-caret-right" aria-hidden="true"></i>
-            <span>{{video.title}}</span>
+            {{video.title}}</span>
 
 
         </div>
-        <div class="search col-xs-12 col-md-4">
+        <div class="search flr pr">
             <i class="fa fa-search"></i>
             <input id="search-box" type="text" placeholder="Search..." ng-model="search" ></input>
         </div>
@@ -25,7 +25,7 @@
                     {{video.title}}
                 </div>
                 <div class="video-details">
-                    {{video.seasons}} Temporadas  {{video.episodes}} Episodios  <span class="hand flr" ng-click="addToWatchLish()"><i class="fa fa-plus-circle"></i>  Mi Lista</span>
+                    {{video.seasons}} Temporadas  {{video.episodes}} Episodios  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hand " ng-click="addToWatchLish()"><i class="fa fa-plus-circle"></i>  Mi Lista</span>
                 </div>
                 <div class="video-desc ">
                     {{video.description}}
