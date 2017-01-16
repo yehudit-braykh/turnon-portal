@@ -3,6 +3,10 @@ vttApp.controller('aController', function accountController ($scope, $location, 
     acc = $scope;
 
     $scope.user  = User;
+    $scope.selectedChannels=[];
+    $scope.MaxChannels=10;
+    $scope.search = {text:""};
+    $scope.channelsToShow = 18;
 
     $scope.menu =
     {
@@ -14,7 +18,7 @@ vttApp.controller('aController', function accountController ($scope, $location, 
         5:{name:"Cambiar Mis Canales", id:"mis-canales"}
     };
 
-    $scope.channels = [
+    $scope.methods = [
         {PosterH:{url:"/assets/theme/vtt/images/paypal.png"}},
         {PosterH:{url:"/assets/theme/vtt/images/paypal.png"}},
         {PosterH:{url:"/assets/theme/vtt/images/paypal.png"}},
@@ -33,6 +37,36 @@ vttApp.controller('aController', function accountController ($scope, $location, 
         {PosterH:{url:"/assets/theme/vtt/images/paypal.png"}}
     ];
 
+    $scope.channels=[{id: 1, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                     {id: 2, title:'Brazil', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                     {id: 3, title:'Peru', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                     {id: 4, title:'Peru', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                     {id: 5, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                     {id: 6, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                     {id: 7, title:'Brazil', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                     {id: 8, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                     {id: 9, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                     {id: 10, title:'Peru', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                     {id: 11, title:'Brazil', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                     {id: 12, title:'Brazil', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                     {id: 13, title:'Brazil', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                     {id: 14, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                     {id: 15, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                     {id: 16, title:'Peru', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                     {id: 17, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                     {id: 18, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                     {id: 19, title:'Brazil', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                     {id: 20, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                     {id: 21, title:'Brazil', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                     {id: 22, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                     {id: 23, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                     {id: 24, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                     {id: 25, title:'Peru', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                     {id: 26, title:'Brazil', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                     {id: 27, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                     {id: 28, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}},
+                     {id: 29, title:'Argentina', PosterH:{url:'/assets/theme/vtt/images/logo.png'}}];
+
     $scope.user.registeredDevices = {
         0:{name: "iPad", id:"A12345678901234567890"},
         1:{name: "Cellphone", id:"A12345678901234567890"},
@@ -47,10 +81,37 @@ vttApp.controller('aController', function accountController ($scope, $location, 
 
     $scope.go = function(path){
         $location.path(path);
-    }
+    };
 
     $scope.uploadImage = function(image){
         console.log(image);
+    };
+
+    $scope.isSelectedChannel = function(id){
+        return $scope.selectedChannels.indexOf(id)>=0;
+    };
+
+    $scope.selectChannel = function(id){
+          if($scope.isSelectedChannel(id))
+              $scope.selectedChannels.splice($scope.selectedChannels.indexOf(id),1);
+          else if ($scope.selectedChannels.length < $scope.MaxChannels)
+              $scope.selectedChannels.push(id);
+    };
+
+    $scope.channelsFilter = function(item){
+        if($scope.search.text=='')
+            return item;
+        if(item.title.search(new RegExp($scope.search.text, "i")) != -1){
+            return item;
+        }
+    };
+
+    $scope.moreCanales = function(){
+        if($scope.channelsToShow < $scope.channels.length)
+            $scope.channelsToShow = $scope.channels.length;
+        else
+            $scope.channelsToShow = 18;
     }
+
 
   });

@@ -185,8 +185,8 @@
                             <div class="other-methods row">
                                 <div class="all-methods">
                                     <h2>Otros Métodos de Pago</h2>
-                                    <div class="methods" ng-repeat="channel in channels" ng-click="go('')">
-                                        <div class="method" style="background-image:url('{{channel.PosterH.url}}')">
+                                    <div class="methods" ng-repeat="method in methods" ng-click="go('')">
+                                        <div class="method" style="background-image:url('{{method.PosterH.url}}')">
                                             <!-- <img src="{{channel.PosterH.url}}" alt=""> -->
                                         </div>
                                     </div>
@@ -196,7 +196,7 @@
                     </div>
                     <div class="tab-pane" id="dispositivos" role="tabpanel">
                         <div class="devices">
-                            <div class="row">
+                            <div class="row devices-table">
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -222,7 +222,7 @@
                                             </th>
                                             <th>
                                                 <div class="remove-device">
-                                                    <span class="glyphicon glyphicon-remove-sign"></span>
+                                                    <i class="fa fa-times" aria-hidden="true"></i>
                                                 </div>
                                             </th>
                                         </tr>
@@ -254,22 +254,36 @@
                             </form>
                         </div>
                     </div>
-                    <div class="tab-pane" id="mis-canales" role="tabpanel">
-                        <div class="my-channels">
-                            <div class="all-channels">
-                                <div class="change-channels row">
-                                    <div class="col-sm-6">
-                                        <h2>Elija sus Canales</h2>
-                                    </div>
-                                    <div class="col-sm-6 count">
-                                        <h2 >(10 de 10)</h2>
-                                    </div>
-                                </div>
-                                <div class="channels" ng-repeat="channel in channels" ng-click="go('')">
-                                    <div class="channel" style="background-image:url('{{channel.PosterH.url}}')">
-                                    </div>
+                    <div class="tab-pane my-channels" id="mis-canales" role="tabpanel">
+                        <h2>Choose your channels</h2>
+                        <div class="filters row">
+                            <div class="sortFilters col-sm-6">
+                                <span class="sort selected">Por País</span>
+                                <span class="sort">Por Nombre</span>
+                                <span class="sort">Por Tipo</span>
+                            </div>
+                            <div class="search-wrapper col-sm-6">
+                                <div class="search">
+                                    <i class="fa fa-search"></i>
+                                    <input id="search" type="text" placeholder="Search..." ng-model="search.text" ></input>
                                 </div>
                             </div>
+                        </div>
+                        <div class="channels-grid">
+                            <div class="grid-header row">
+                                <div class="title fll">Elija sus Canales</div>
+                                <div class="pages flr">({{selectedChannels.length}} de {{MaxChannels}})</div>
+                            </div>
+                            <div class="channels-content row">
+                                <div class="channel hand {{isSelectedChannel(channel.id)?'selected':''}} col-xs-4 col-sm-3 col-md-2" ng-click="selectChannel(channel.id)" ng-repeat="channel in channels | filter:channelsFilter | limitTo:channelsToShow">
+                                    <i class="fa fa-times-circle" ng-if="isSelectedChannel(channel.id)"></i>
+                                    <div class="bg " style="background-image:url({{channel.PosterH.url}})"></div>
+                                    <div class="name">{{channel.title}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="arrow" ng-click="moreCanales()">
+                            <span class="icon icon-arrow-down-white" ></span>
                         </div>
                     </div>
                 </div>
