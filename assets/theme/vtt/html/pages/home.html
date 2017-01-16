@@ -89,9 +89,10 @@
         </div>
 
         <div class="row live-channels {{moreChannels?'move-down':''}}" >
-            <div class="channels" ng-repeat="channel in channels | limitTo:canalsToShow" ng-click="go('')">
-                <div class="channel">
-                    <img src="{{channel.PosterH.url}}" alt="">
+            <div class="channels-top">
+                <div class="channels" ng-repeat="channel in channels | limitTo:canalsToShow" ng-click="go('')">
+                    <div class="channel" style="background-image:url({{channel.PosterH.url}})">
+                    </div>
                 </div>
             </div>
             <div class="more-channels">
@@ -106,10 +107,12 @@
                     <div class="icon icon-left-channel" >
                     </div>
                 </div>
-                <div class="all-channels {{channelPosition==1?'move-left':''}}">
-                    <div class="channels" ng-repeat="channel in channels" ng-click="go('')">
-                        <div class="channel">
-                            <img src="{{channel.PosterH.url}}" alt="">
+                <div class="channels-bottom">
+                    <div class="all-channels {{channelPosition==1?'move-left':''}}">
+                        <div class="channels" ng-repeat="channel in channels" ng-click="go('')">
+                            <div class="channel" style="background-image:url({{channel.PosterH.url}})">
+                            </div>
+                            <div class="name">{{channel.title}}</div>
                         </div>
                     </div>
                 </div>
@@ -125,7 +128,7 @@
             <h1>Peliculas<h1>
         </div>
         <div class="peliculas row">
-            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3" ng-repeat="video in videos | limitTo:peliculasToShow">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-repeat="video in videos | limitTo:peliculasToShow">
                 <div class="video hand" style="background-image:url({{video.PosterH.url}})" ng-click="go('/Pelicula/'+video._id)">
                     <div class="pa {{video.isFree?'free':'member'}}">{{video.isFree?'FREE':'MEMBER'}}</div>
                 </div>
