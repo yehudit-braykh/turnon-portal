@@ -12,7 +12,31 @@
             .genres{
                 border-top: 10px solid #40a20b;
                 background-color: rgba(63, 162, 10, 0.3);
-                padding: 30px;
+                padding: 10px 0;
+                position: relative;
+
+                &::before{
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    right: 100%;
+                    background-color: #343031;
+                    width: 370px;
+                    z-index: 1;
+
+                }
+
+                &::after{
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 100%;
+                    background-color: #343031;
+                    width: 370px;
+                    z-index: 1;
+                }
                 .genre{
                     background-position: center;
                     background-size: cover;

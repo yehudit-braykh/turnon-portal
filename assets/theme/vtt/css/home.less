@@ -1,5 +1,4 @@
 .home-page{
-    background-color: #231f20;
     padding-bottom: 40px;
     .home-header{
         height: 60vh;
@@ -144,12 +143,35 @@
             background-image: linear-gradient(to bottom, rgba(246, 247, 93, 0.25), rgba(234, 236, 47, 0.25));
             margin-top:10px;
             margin-bottom: 20px;
-            overflow: hidden;
             border-top: 15px solid #ebed2f;
+            position: relative;
             &.my-list{
                 background-image: none;
                 background-color: rgba(171, 18, 23, 0.25);
                 border-top: 15px solid #ab1217;
+            }
+
+            &::before{
+                content: '';
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                right: 100%;
+                background-color: #343031;
+                width: 370px;
+                z-index: 1;
+
+            }
+
+            &::after{
+                content: '';
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 100%;
+                background-color: #343031;
+                width: 370px;
+                z-index: 1;
             }
         }
 
