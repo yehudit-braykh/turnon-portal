@@ -63,7 +63,7 @@ vttApp.directive('vttCarousel', function() {
               if(permissionType == 'subscribe'){
                   $('.subscription-modal').modal('show')
               }
-              else if(permissionType == 'member' || permissionType == 'subscribe'){
+              else if(permissionType == 'free' || permissionType == 'subscribe'){
                   $('.register-modal').modal('show')
               }
               else{
