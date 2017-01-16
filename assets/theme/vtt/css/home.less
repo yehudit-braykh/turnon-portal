@@ -281,6 +281,7 @@
         }
 
         .peliculas{
+                border-top: 7px solid #a41435;
             .video{
                 background-position: center;
                 background-size: cover;
@@ -298,6 +299,11 @@
                     text-align: center;
                     padding: 5px 40px;
                     color: white;
+
+                    @media (max-width: @screen-xs-max){
+                        font-size: 17px;
+                        padding: 5px 20px;
+                    }
 
                 }
 

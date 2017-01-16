@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="row__inner recentInner {{caruselPosition==1?'moveLeft':''}} {{activeVideo?'unhover':''}}">
-            <div class="tile {{orientation?'vertical':''}} {{activeVideo._id==video._id?'selected':''}}" ng-repeat="video in model">
+            <div class="tile {{orientation?orientation:''}} {{activeVideo._id==video._id?'selected':''}}" ng-repeat="video in model">
                 <div class="pr tile-content hand" style="background-image:url({{video.PosterH.url}})" data-toggle="modal" ng-click="watch(video.categories[0].name, video._id)">
                     <div class="pa {{subscription?'':'hidden'}} {{subscriptionType(video.categories[0].name)}}">
                         {{subscriptionType(video.categories[0].name) | uppercase}}

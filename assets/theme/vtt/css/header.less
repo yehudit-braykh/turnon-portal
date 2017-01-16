@@ -28,6 +28,36 @@
                 padding-left: 0px;
                 padding-right: 0px;
             }
+            @media (max-width: @screen-xs-max){
+                .navbar-collapse{
+                    position: absolute;
+                    right: 25px;
+                    z-index: 1;
+                    width: 190px;
+                    border-width: 0px 2px 2px;
+                    border-right-style: solid;
+                    border-bottom-style: solid;
+                    border-left-style: solid;
+                    border-right-color: white;
+                    border-bottom-color: white;
+                    border-left-color: white;
+                    border-image: initial;
+                    border-top-style: initial;
+                    border-top-color: initial;
+                    background-color: rgb(35, 31, 32);
+                    font-size: 20px;
+                    padding: 0;
+                    ul{
+                        width: 100%;
+                        li{
+                                border-bottom: 1px solid gray;
+                                padding: 0 10px;
+                        }
+                    }
+
+                }
+            }
+
             .left-nav {
                 margin-left: 26px;
                 @media (max-width: @screen-xs-max) {
@@ -61,9 +91,11 @@
                 div {
                     cursor: pointer;
                 }
-                .logged-out {
-                    padding-top: 14px;
-                    padding-bottom: 14px;
+                .logged-in {
+                    padding: 10px 10px 8px 10px;
+                    @media(max-width: @screen-xs-max){
+                        padding: 0;
+                    }
                     .singin-btn {
                         color: #df1b0f;
                         &:hover, &:focus {
@@ -71,8 +103,11 @@
                         }
                     }
                 }
-                &.logged-in {
-                    padding-bottom: 10px;
+                .logged-out {
+                    padding: 10px 10px 8px 10px;
+                    @media(max-width: @screen-xs-max){
+                        padding: 0;
+                    }
                     &:hover {
                         background-color: transparent !important;
                         color: white;

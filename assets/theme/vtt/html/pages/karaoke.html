@@ -6,11 +6,7 @@
         <div class="by-genre">
             <div class="title">By Genre</div>
             <div class="genres row">
-                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="cat in categories |  limitTo:6 " ng-click="">
-                    <div class="genre hand" style="background-image:url({{cat.PosterH.url}})" ng-click="go('/Karaoke/Genre/'+cat.title)">
-                        <div class="title">{{cat.title}}</div>
-                    </div>
-                </div>
+                <vtt-carousel data-model="categories" data-title="true"></vtt-carousel>
             </div>
         </div>
         <div class="filter row">

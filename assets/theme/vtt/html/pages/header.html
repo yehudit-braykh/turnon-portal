@@ -23,20 +23,22 @@
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-            <li class="signin-div logged-out" ng-show="isLoggedIn()">
-                  <div class="logged-out">
-                      <div class="singin-btn hand"  ng-click="go('/mi-cuenta')">
-                          Mi Cuenta
-                      </div>
-                  </div>
-              </li>
-              <li class="signin-div logged-in" ng-show="!isLoggedIn()">
-                    <div class="logged-in">
-                        <div class="singin-btn hand"  ng-click="go('/Login')">
-                            Login
-                        </div>
-                    </div>
-                </li>
+            <li class="signin-div " ng-show="isLoggedIn()">
+                <div class="logged-in">
+                    <div class="singin-btn hand"  ng-click="go('/mi-cuenta')">Mi Cuenta</div>
+                </div>
+            </li>
+            <li class="signin-div " ng-show="isLoggedIn()">
+                <div class="logged-in">
+                    <div class="singin-btn hand"  ng-click="logout()">Logout</div>
+                </div>
+            </li>
+            <li class="signin-div " ng-show="!isLoggedIn()">
+                <div class="logged-out">
+                    <div class="singin-btn hand"  ng-click="go('/Login')">Login</div>
+                </div>
+            </li>
+
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->

@@ -7,7 +7,7 @@ vttApp.controller('registerController', function registerController ($scope, $ro
     $scope.selectedChannels=[];
     $scope.MaxChannels=10;
     $scope.search='';
-    $scope.shownView="register";
+    $scope.shownView="ChooseChannels";
     $scope.userCheck = {
       confirmEmail:'',
       confirmPassword: ''

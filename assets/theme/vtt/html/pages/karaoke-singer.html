@@ -8,11 +8,7 @@
         <div class="albums-wrapper">
             <div class="title">Albums</div>
             <div class="albums row">
-                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="cat in videos |  limitTo:6 " ng-click="">
-                    <div class="album hand" style="background-image:url({{cat.PosterH.url}})" ng-click="go('/Pelicula/'+video._id)">
-                        <div class="title">{{cat.title}}</div>
-                    </div>
-                </div>
+                <vtt-carousel data-model="videos" data-orientation="square" data-title="ture"></vtt-carousel>
             </div>
         </div>
         <div class="filter row">
