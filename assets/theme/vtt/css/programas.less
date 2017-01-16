@@ -1,4 +1,5 @@
 .programas-page{
+
     color: white;
     .page-header{
         font-size: 48px;
@@ -17,6 +18,7 @@
                     font-size: 27px;
 
                     &.selected, &:hover{
+                        border-radius: 10px;
                         border-bottom: 10px solid #ebed2f;
                         padding-bottom: 5px;
                     }
@@ -44,7 +46,7 @@
             .video{
                 background-position: center;
                 background-size: cover;
-                padding-top: ~"calc(153% - 160px)";
+                padding-top: 100%;
                 margin-bottom: 30px;
                 transition: 0.5s;
 
@@ -54,16 +56,22 @@
                 }
 
                 .info{
-                    background-image: linear-gradient(to bottom, rgba(235, 236, 48, 0), rgba(235, 236, 48, 0.5));
-                    padding: 5px 15px;
+                    background: rgba(35,31,32,0.5);
+                    background: -moz-linear-gradient(top, rgba(35,31,32,0.5) 0%, rgba(186,186,44,0.7) 100%);
+                    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(35,31,32,0.5)), color-stop(100%, rgba(186,186,44,0.7)));
+                    background: -webkit-linear-gradient(top, rgba(35,31,32,0.5) 0%, rgba(186,186,44,0.7) 100%);
+                    background: -o-linear-gradient(top, rgba(35,31,32,0.5) 0%, rgba(186,186,44,0.7) 100%);
+                    background: -ms-linear-gradient(top, rgba(35,31,32,0.5) 0%, rgba(186,186,44,0.7) 100%);
+                    background: linear-gradient(to bottom, rgba(35,31,32,0.5) 0%, rgba(186,186,44,0.7) 100%);
+                    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#231f20', endColorstr='#baba2c', GradientType=0 );
+                    padding: 20px;
                     height: 160px;
                     overflow: hidden;
                     .title{
-                        font-size: 35px;
+                        font-size: 30px;
                     }
                     .desc{
-                        font-size: 14px;
-                        line-height: 31px;
+                        font-size: 18px;
                     }
                 }
             }

@@ -1,5 +1,4 @@
 <div class="video-categories-page vive-container">
-    
     <div class="page-content">
         <div class="filter row">
             <div class="title col-xs-12 col-md-8">Videos</div>
@@ -9,14 +8,12 @@
             </div>
         </div>
         <div class="categories row">
-            <div class="cat col-xs-6 col-sm-4 col-md-3" ng-repeat="cat in videos | filter:videosFilter">
+            <div class="cat col-xs-6 col-sm-4" ng-repeat="cat in videos | filter:videosFilter">
                 <div class="title">{{cat.title}}</div>
                 <div class="cover pr hand" style="background-image:url({{cat.PosterH.url}})" ng-click="go('/Video/Category/'+cat.title)">
                     <div class="overlay pa"></div>
                 </div>
             </div>
         </div>
-
     </div>
-
 </div>
