@@ -254,6 +254,24 @@
                             </form>
                         </div>
                     </div>
+                    <div class="tab-pane" id="mis-canales" role="tabpanel">
+                        <div class="my-channels">
+                            <div class="all-channels">
+                                <div class="change-channels row">
+                                    <div class="col-sm-6">
+                                        <h2>Elija sus Canales</h2>
+                                    </div>
+                                    <div class="col-sm-6 count">
+                                        <h2 >(10 de 10)</h2>
+                                    </div>
+                                </div>
+                                <div class="channels" ng-repeat="channel in channels" ng-click="go('')">
+                                    <div class="channel" style="background-image:url('{{channel.PosterH.url}}')">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

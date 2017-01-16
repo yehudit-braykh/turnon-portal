@@ -270,6 +270,49 @@
                     }
                 }
             }
+            .my-channels{
+                .all-channels{
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-content: flex-start;
+                    position: relative;
+                    width: 45vw;
+                    transition: 1s ease;
+                    .change-channels{
+                        height: 4vw;
+                        width: 45vw;
+                        background-color: rgba(252,251,245,0.1);
+                        margin-left: 0;
+                        h2{
+                            color: #fcfbf5;
+                            font-size: 28px;
+                            margin-left: 10px;
+                        }
+                        .count{
+                            h2{
+                                font-weight: 300;
+                                text-align: right;
+                            }
+                        }
+
+                    }
+                    .channels{
+                        width: 9vw;
+                        height: 5.05vw;
+                        background-color: rgba(252,251,245,0.1);
+                        padding: 15px;
+                        border: 2px solid;
+                        .channel{
+                            cursor: pointer;
+                            text-align: center;
+                            height: ~'calc(5.05vw - 30px)';
+                            background-position: center;
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                        }
+                    }
+                }
+            }
         }
     }
 }
