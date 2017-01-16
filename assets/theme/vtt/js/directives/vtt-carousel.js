@@ -63,11 +63,10 @@ vttApp.directive('vttCarousel', function() {
               if(permissionType == 'subscribe'){
                   $('.subscription-modal').modal('show')
               }
-              else if(permissionType == 'member'){
+              else if(permissionType == 'member' || permissionType == 'subscribe'){
                   $('.register-modal').modal('show')
               }
               else{
-                  console.log(id);
                   $scope.go('Video/' + id);
               }
           }
