@@ -46,12 +46,28 @@
             </div>
         </div>
 
-        <div class="carousel-holder row">
-            <div class="title">
-                Most Popular Playlists
-            </div>
-            <div class="carousel">
-                <vtt-carousel data-model="videos" data-title="true" data-target-dir="Karaoke/Genre" data-target-param="title" ></vtt-carousel>
+        <div class="row live-channels" >
+            <div class="channels">
+                <div class="select-channels">
+                    <h1>Disfruta VIVE TU TELE selecionando mas  canales</h1>
+                </div>
+                <div class="arrow-right hidden-xs {{channelPosition==1?'opacity0':''}}" ng-click="moveChannelRight()">
+                    <div class="icon icon-right-channel"  >
+                    </div>
+                </div>
+                <div class="arrow-left  hidden-xs {{channelPosition==0?'opacity0':''}}" ng-click="moveChannelLeft()">
+                    <div class="icon icon-left-channel" >
+                    </div>
+                </div>
+                <div class="channels-bottom">
+                    <div class="all-channels {{channelPosition==1?'move-left':''}}">
+                        <div class="channels" ng-repeat="channel in liveChannels" ng-click="go('')">
+                            <div class="channel" style="background-image:url({{channel.PosterH.url}})">
+                            </div>
+                            <div class="name">{{channel.title}}</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

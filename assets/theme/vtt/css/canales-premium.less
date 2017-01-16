@@ -190,80 +190,132 @@
             }
         }
 
-        .carousel-holder{
-            .title{
-                font-size: 36px;
-            }
-            .carousel{
-                border-top: 10px solid #40a20b;
-                background-image: rgba(63, 162, 10, 0.3);
+        .live-channels{
+            margin: 70px -15px 60px -15px;
+            transition-delay: 0ms;
+            transition: 1s ease;
+            -webkit-transition: 1s ease;
+            overflow: hidden;
+            .channels{
                 position: relative;
-                &::before{
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    bottom: 0;
-                    right: 100%;
-                    width: 400px;
-                    background-color: #231f20;
-                    z-index: 1;
-
+                width: 100%;
+                .select-channels{
+                    width: 100%;
+                    background-color: rgba(252,251,245,0.1);
+                    padding: 1vw;
+                    text-align: center;
+                    // margin: 0 2px 2px 2px;
+                    h1{
+                        font-size: 34px;
+                        color: #fcfbf5;
+                        margin: auto;
+                        padding: 1vw;
+                        @media (max-width: @screen-xs-max) {
+                            font-size: 16px;
+                        }
+                    }
                 }
-
-                &::after{
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    bottom: 0;
-                    left: 100%;
-                    width: 400px;
-                    background-color: #231f20;
-                    z-index: 1;
-
+                .arrow-up{
+                    background-color: rgba(252,251,245,0.1);
+                    width: 100%;
+                    margin: auto;
+                    height: 5vh;
+                    padding-top: 10px;
+                    .icon{
+                        margin: auto;
+                        cursor: pointer;
+                    }
                 }
-            }
-        }
-
-        .albums-wrapper{
-            font-size: 36px;
-            margin-bottom: 50px;
-
-            .playlists{
-                border-top: 10px solid #40a20b;
-                background-color: rgba(63, 162, 10, 0.3);
-                padding: 30px;
-                .playlist{
-                    background-position: center;
-                    background-size: cover;
-                    padding-top: ~"calc(100% - 45px)";
-                    margin-bottom: 30px;
-                    transition: 0.5s;
-
-                    &:hover{
-                        transform: scale(1.25);
+                .channels-bottom{
+                    overflow: hidden;
+                    background-color: rgba(252,251,245,0.1);
+                    @media (max-width: @screen-xs-max) {
+                        overflow-x: scroll;
+                        -webkit-overflow-scrolling: touch;
+                    }
+                    .all-channels{
+                        display: flex;
+                        flex-wrap: wrap;
+                        align-content: flex-start;
+                        width: 200%;
+                        position: relative;
+                        left: 0;
+                        transition: 1s ease;
+                        &.move-left{
+                            left: -100%;
+                        }
+                        .channels{
+                            background-color: rgba(252,251,245,0.1);
+                            border: 2px solid #231f20;
+                            width: 7.1425%;
+                            padding: 8px;
+                            @media (max-width: @screen-xs-max) {
+                                width: 12.5%;
+                                padding: 2px;
+                            }
+                            .channel{
+                                background-position: center;
+                                background-size: contain;
+                                background-repeat: no-repeat;
+                                padding-bottom: 33%;
+                            }
+                        }
+                        .name {
+                            color: #fcfbf5;
+                            font-size: 18px;
+                            padding: 5px;
+                            text-align: center;
+                            @media (max-width: @screen-xs-max) {
+                                font-size: 10px;
+                            }
+                        }
+                    }
+                }
+                &:hover {
+                    .arrow-right, .arrow-left {
+                        opacity: 0.5;
+                    }
+                }
+                .arrow-right {
+                    z-index: 2;
+                    position: absolute;
+                    height: ~"calc(100% - 2px)";
+                    width: 2.5%;
+                    right: 0;
+                    top: 0;
+                    opacity: 1;
+                    transition: 0.5s ease;
+                    background-color: rgba(252, 251, 245, 0.1);
+                    .icon-right-channel {
+                        cursor: pointer;
+                        position: absolute;
+                        right: 8px;
+                        z-index: 1;
+                        top: ~"calc(50% - 30px)";
+                    }
+                }
+                 .arrow-left {
+                    z-index: 2;
+                     position: absolute;
+                     height: ~"calc(100% - 2px)";
+                     width: 2.5%;
+                     left: 0;
+                     top: 0;
+                     opacity: 1;
+                     transition: 0.5s ease;
+                     background-color: rgba(252, 251, 245, 0.1);
+                    .icon-left-channel {
+                        cursor: pointer;
+                        top: ~"calc(50% - 30px)";
+                        position: absolute;
+                        left: 8px;
                         z-index: 1;
                     }
-
-                    .title{
-                        background: rgba(0,0,0,0.6);
-                        padding: 5px 15px;
-                        font-size: 17px;
-                        white-space: nowrap;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                    }
                 }
             }
         }
-        .filter{
-            font-size: 36px;
-            margin-bottom: 15px;
 
-            .title{
 
-            }
-
-        }
 
     }
 }
