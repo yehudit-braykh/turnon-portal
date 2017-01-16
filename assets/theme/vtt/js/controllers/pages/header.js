@@ -5,7 +5,7 @@ vttApp.controller('headerController', function headerController ($scope, $rootSc
       $scope.user = User;
 
       $scope.menu = {
-        0:{title:"Television Gratis"},
+        // 0:{title:"Television Gratis"},
         1:{title:"Videos"},
         2:{title:"Peliculas"},
         3:{title:"Karaoke"},
