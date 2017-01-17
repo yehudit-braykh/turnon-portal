@@ -16,22 +16,29 @@
         <div class="player-wrapper row">
             <div class="player pr col-xs-12 col-md-8">
                 <div class="prev-btn hand pa"><i class="fa fa-backward" aria-hidden="true"></i></div>
-                <jwplayer data-video="genreVideos[0]" data-auto-play="true" data-id="video-player"></jwplayer>
+                <jwplayer data-video="activeVideo" data-auto-play="true" data-id="video-player"></jwplayer>
                 <div class="video-info">
-                    <div class="title fll">
-                        Tifulo del Playlist
+                    <div class="title-social">
+                        <div class="title fll">
+                            Tifulo del Playlist
+                        </div>
+                        <div class="social flr" >
+                            <span class="icon icon-facebook-40x40"></span>
+                            <span class="icon icon-twitter-40x40"></span>
+                            <span class="icon icon-instagram-40x40"></span>
+                        </div>
                     </div>
-                    <div class="social flr" >
+                    <!-- <div class="social flr" >
                         <span class="icon icon-facebook-40x40"></span>
                         <span class="icon icon-twitter-40x40"></span>
                         <span class="icon icon-instagram-40x40"></span>
-                    </div>
-                    <div class="desc">{{genreVideos[0].description}}</div>
+                    </div> -->
+                    <div class="desc">{{activeVideo.description}}</div>
                 </div>
             </div>
             <div class=" col-xs-12 col-md-4">
                 <div class="channels">
-                    <div class="channel hand" ng-repeat="ch in videos | filter:videosFilter" ng-click="go('/Karaoke/Singer/'+ch._id)">
+                    <div class="channel {{activeVideo._id == ch._id?'active':''}} hand" ng-repeat="ch in videos | filter:videosFilter" ng-click="changeVideo(ch)">
                         <div class="channel-icon" style="background-image:url({{ch.PosterH.url}})"></div>
                             Live Now: {{ch.title}}
                     </div>

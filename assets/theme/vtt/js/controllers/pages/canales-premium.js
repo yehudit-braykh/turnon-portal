@@ -25,6 +25,7 @@ vttApp.controller('canalesPremiumController', function canalesPremiumController 
     videoFactory.getFeaturedVideos().then(function(data){
         $scope.videos= data.data;
         $scope.genreVideos=data.data;
+        $scope.activeVideo = $scope.videos[0];
 
     });
 
@@ -33,6 +34,10 @@ vttApp.controller('canalesPremiumController', function canalesPremiumController 
             $scope.selectedCat='';
         else
             $scope.selectedCat = cat;
+    };
+
+    $scope.changeVideo = function(video){
+        $scope.activeVideo = video;
     };
 
     $scope.videosFilter = function(item){
