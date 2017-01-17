@@ -10,8 +10,8 @@ vttApp.controller('headerController', function headerController ($scope, $rootSc
         2:{title:"Peliculas"},
         3:{title:"Karaoke"},
         4:{title:"Programas"},
-        5:{title:"Canales Premium"},
-        6:{title:"Como Funciona"}
+        5:{title:"Canales Premium"}
+        // 6:{title:"Como Funciona"}
     };
 
       $scope.isHome = function(){
