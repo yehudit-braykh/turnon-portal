@@ -16,7 +16,7 @@
         </div>
         <div class="videos row">
             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-repeat="video in movies | filter:videosFilter">
-                <div class="video hand" style="background-image:url({{video.PosterH.url}})" ng-click="go('/Pelicula/'+video._id)">
+                <div class="video hand" style="background-image:url({{video.PosterH.url}})" ng-click="go('/Pelicula/'+videos[0]._id)">
                     <div class="{{video.categories[0].name == free?'free':'member'}}"}}>{{video.isFree?'FREE':'MEMBERS'}}</div>
                 </div>
             </div>

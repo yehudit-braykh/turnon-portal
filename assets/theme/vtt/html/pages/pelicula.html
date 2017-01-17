@@ -25,7 +25,7 @@
         <div class="video-info row">
             <div class="left col-xs-12 col-md-3">
                 <div class="video-cover" style="background-image:url({{video.PosterH.url}})" >
-                    <div class="subscription">{{video.isFree?'Free':'Subscription'}}</div>
+                    <div class="{{video.categories[0].name == free?'free':'member'}}">{{video.categories[0].name == free?'FREE':'MEMBERS'}}</div>
                 </div>
             </div>
             <div class=" right col-xs-12 col-md-9">
@@ -49,7 +49,7 @@
             {{user.name}}, te recomendamos que veas estas películas
         </div>
         <div class="carousel">
-            <vtt-carousel data-model="videos" data-subscription="true" data-orientation="vertical" ></vtt-carousel>
+            <vtt-carousel data-model="movies" data-subscription="true" data-orientation="vertical" ></vtt-carousel>
         </div>
     </div>
 </div>
