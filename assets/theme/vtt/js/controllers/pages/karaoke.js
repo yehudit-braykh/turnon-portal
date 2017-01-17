@@ -6,7 +6,6 @@ vttApp.controller('karaokeController', function karaokeController ($scope, $loca
     $scope.search='';
 
     $scope.go = function(path){
-        console.log(path);
         $location.path(path);
     }
 

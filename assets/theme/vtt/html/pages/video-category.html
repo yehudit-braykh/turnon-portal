@@ -11,7 +11,7 @@
                 <i class="fa fa-search"></i>
                 <input id="search-box" type="text" placeholder="Search..." ng-model="search" ></input>
             </div>
-            <div class="dropdown">
+            <div class="fll dropdown">
                 <button class="btn season-btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                   {{selectedCountry?selectedCountry:'Select Country'}}
                     <span class="caret"></span>
@@ -24,10 +24,10 @@
         </div>
         <div class="categories row">
             <div class=" col-xs-6 col-sm-4" ng-repeat="vid in videos | filter:videosFilter">
-                <div class="cat pr hand" style="background-image:url({{vid.PosterH.url}})" ng-click="go('/Video/'+vid._id)">
+                <div class="cat pr hand" style="background-image:url({{vid.PosterH.url}})" ng-click="go('/Video/'+fvideos[0]._id)">
                     <div class="overlay pa">
                         <div class="title">{{vid.title}}</div>
-                        <div class="desc">{{vid.description}}</div>
+                        <div class="desc">{{vid.description | limitTo:100}}</div>
                     </div>
                 </div>
             </div>
