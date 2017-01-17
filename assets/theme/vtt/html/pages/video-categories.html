@@ -11,7 +11,7 @@
         <div class="categories row">
             <div class="cat col-xs-6 col-sm-4" ng-repeat="cat in categories | filter:videosFilter track by $index">
                 <div class="title">{{cat.title}}</div>
-                <div class="cover pr hand" style="background-image:url({{'assets/theme/vtt/images/static-images/cats/'+(1+ $index%6)+'.png'}})" ng-click="go('/Video/Category/'+cat.title)">
+                <div class="cover pr hand" style="background-image:url({{'assets/theme/vtt/images/static-images/cats/'+(1+ $index%8)+'.png'}})" ng-click="go('/Video/Category/'+cat.title)">
                     <div class="overlay pa"></div>
                 </div>
             </div>

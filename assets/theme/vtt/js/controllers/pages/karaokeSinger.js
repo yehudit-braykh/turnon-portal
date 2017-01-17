@@ -45,4 +45,15 @@ vttApp.controller('karaokeSingerController', function karaokeSingerController ($
                 return item;
     }
 
+    $scope.album=[{id: 1, title:"Clasicos",PosterH:{url:'/assets/theme/vtt/images/static-images/album5.png'}},
+                {id: 2, title:"Ranchera",PosterH:{url:'/assets/theme/vtt/images/static-images/album4.png'}},
+                {id: 3, title:"Rock & POP",PosterH:{url:'/assets/theme/vtt/images/static-images/album1.png'}},
+                {id: 4, title:"Romantico",PosterH:{url:'/assets/theme/vtt/images/static-images/album3.png'}},
+                {id: 5, title:"Salsa & Merengue",PosterH:{url:'/assets/theme/vtt/images/static-images/album2.png'}},
+                {id: 6, title:"Blues",PosterH:{url:'/assets/theme/vtt/images/static-images/singer1.png'}},
+                {id: 7, title:"Romantico",PosterH:{url:'/assets/theme/vtt/images/static-images/singer5.png'}},
+                {id: 8, title:"Clasicos",PosterH:{url:'/assets/theme/vtt/images/static-images/singer2.png'}},
+                {id: 9, title:"Jazz",PosterH:{url:'/assets/theme/vtt/images/static-images/singer3.png'}},
+                {id: 10,title:"Hip Hop", PosterH:{url:'/assets/theme/vtt/images/static-images/singer4.png'}}];
+
   });

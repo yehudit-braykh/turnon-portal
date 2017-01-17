@@ -6,7 +6,7 @@
         <div class="by-genre">
             <div class="title">By Genre</div>
             <div class="genres">
-                <vtt-carousel data-model="videos" data-target-dir="Karaoke/Genre" data-orientation="square" data-target-param="title" data-title="true"></vtt-carousel>
+                <vtt-carousel data-model="genre" data-target-dir="Karaoke/Genre" data-orientation="square" data-target-param="title" data-title="true"></vtt-carousel>
             </div>
         </div>
         <div class="filter row">
@@ -17,9 +17,9 @@
             </div>
         </div>
         <div class="videos row">
-            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="video in videos | filter:videosFilter">
-                <div class="video hand" style="background-image:url({{video.PosterH.url}})" ng-click="go('/Karaoke/Singer/'+video._id)">
-                    <div class="title">{{video.title}}</div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="singer in singers | filter:videosFilter">
+                <div class="video hand" style="background-image:url({{singer.PosterH.url}})" ng-click="go('/Karaoke/Singer/'+videos[0]._id)">
+                    <div class="title">{{singer.title}}</div>
                 </div>
             </div>
         </div>

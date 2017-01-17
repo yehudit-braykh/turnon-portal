@@ -53,28 +53,28 @@ vttApp.directive('vttCarousel', function() {
           };
 
           $scope.subscriptionType = function(type){
-              if(type == "commerce_free_media"){
+              if(type == "free"){
                   return 'free';
               }
-              if(type == "commerce_members_media"){
-                  return 'member';
+              if(type == "member"){
+                  return 'members';
               }
-              if(type == "commerce_subscription_basic_media"){
+              if(type == "subscribe"){
                   return 'subscribe';
               }
               return 'free';
           };
 
           $scope.watch = function(permission, video){
+              if($scope.mylist){
+                  $scope.go($scope.targetDir+'/'+video[$scope.targetParam]);
+              }
               var permissionType =  $scope.subscriptionType(permission);
-              if(permissionType == 'subscribe'){
+              if(permissionType == 'members'){
                   $('.subscription-modal').modal('show')
               }
               else if(permissionType == 'free' || permissionType == 'subscribe'){
                   $('.register-modal').modal('show')
-              }
-              else{
-                  $scope.go($scope.targetDir+'/'+video[$scope.targetParam]);
               }
           }
 
