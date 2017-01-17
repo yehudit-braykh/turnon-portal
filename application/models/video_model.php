@@ -32,10 +32,12 @@ class Video_model extends CI_Model {
 		$parameters['id'] = $id;
 
 		$data = apiCall("vod/get_item", $parameters);
+		if ($data->content->entries){
+			$videos = $this->rows($data->content->entries);
+			return $videos[0];
+		}
+		return;
 
-		$videos = $this->rows($data->content->entries);
-	//	debug($videos);
-		return $videos[0];
 	}
 
     public function get_videos_by_featured($cat){
