@@ -12,6 +12,7 @@ vttApp.controller('karaokeSingerController', function karaokeSingerController ($
 
     videoFactory.getVideoById($scope.singerId).then(function(data){
         $scope.singer=data.data;
+        $scope.singer.PosterH = {url:'/assets/theme/vtt/images/static-images/slider2.png'};
         $scope.singer.description= "Yo, robot (título original en inglés, I, Robot) es una película de ciencia ficción distópica producida en 2004, dirigida por Alex Proyas y protagonizada por Will Smith. Aunque se atribuye la historia a las Series de Robots de Isaac Asimov, que incluye una recopilación de cuentos del mismo nombre, Yo, robot, en realidad está basada en un guion de Jeff Vintar, titulado Hardwired. Algunas ideas de Asimov acerca de los robots —la más importante, las Tres leyes de la robótica— fueron añadidas al guion de Vintar después de que los productores adquirieron los derechos sobre el título del libro.";
         $scope.singer.duration= 158;
     });
