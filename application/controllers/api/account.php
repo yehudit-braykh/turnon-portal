@@ -15,7 +15,12 @@ class Account extends REST_Controller{
     }
 
 	function get_current_get(){
-		$this->response($this->session->userdata('profile'), 200);
+		$profile_id = $this->session->userdata('profile_id');
+		$token= $this->session->userdata('login_token');
+		if(isset($profile_id->code))
+			$this->response($profile_id,200);
+	//	debug($this->account_model->get_profile($token, $profile_id));
+		$this->response($this->account_model->get_profile($token, $profile_id)->content, 200);
 	}
 
 	function logout_post(){

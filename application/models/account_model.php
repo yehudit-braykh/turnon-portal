@@ -15,9 +15,9 @@ class Account_model extends CI_Model {
         $data = apiPost("user/login_portal", array("username" => $user, "password" => $pass, "disabled" => $disabled));
 		if($data->content){
 			$this->session->set_userdata('login_token', $data->content->token);
-            $user_data = $this->get_profile($data->content->token, $data->content->id);
-            $this->session->set_userdata('profile', $user_data->content);
-            return $user_data;
+            $user_profile = $this->get_profile($data->content->token, $data->content->id);
+            $this->session->set_userdata('profile_id', $user_profile->content->_id);
+            return $user_profile;
         }
         return $data;
 
@@ -63,36 +63,53 @@ class Account_model extends CI_Model {
 
     public function link_facebook($user, $pass) {
         $login_data = apiPost("user/login_portal", array("username" => $user, "password" => $pass, "disabled" => false));
+        if($login_data->error){
+            $error = new stdClass();
+            $error->message = "Username or Password Wrong, Please check your Credentials";
+            $error->code = 10;
+            return $error;
+        } else
 		if($login_data->content->token){
             $fb_data  = $this->session->userdata('fb_profile');
-            $updated_data = $this->update_user( $login_data->content->id , $fb_data->identifier, $fb_data );
-            if($updated_data){
-                $fb_login= $this->login_by_fb($fb_data->identifier);
-                $data = new stdClass;
-                $data->firstName = $fb_data->firstName;
-                $data->lastName = $fb_data->lastName;
-                $data->gender = $fb_data->gender;
-                $data->avatar = $fb_data->photoURL;
-                $data->addressLine1 = $fb_data->phone;
-                $data->city = $fb_data->city;
-                $date = date_create($fb_data->birthYear."-".$fb_data->birthMonth."-".$fb_data->birthDay);
-                $data->birthDate = date_timestamp_get($date);
-                $user = $this->account_model->update_profile($fb_login->_id,$data);
-                $this->session->unset_userdata('fb_profile');
-                $this->session->set_userdata('profile', $user->content);
+        //    debug($fb_data);
+            if($fb_data){
+                $updated_data = $this->update_user( $login_data->content->id , $fb_data->identifier, $fb_data );
+            //    debug($updated_data);
+                if($updated_data){
+                    $fb_login= $this->login_by_fb($fb_data->identifier);
+            //        debug($fb_login);
+                    $data = array();
+                    $data["firstName"] = $fb_data->firstName;
+                    $data["lastName"] = $fb_data->lastName;
+                    $data["gender"] = $fb_data->gender;
+                    $data["avatar"] = $fb_data->photoURL;
+                    $data["addressLine1"] = $fb_data->phone;
+                    $data["city"] = $fb_data->city;
+                    $date = date_create($fb_data->birthYear."-".$fb_data->birthMonth."-".$fb_data->birthDay);
+                    //debug($date);
+                    $data["birthDate"] = date_timestamp_get($date);
+                    $user = $this->account_model->update_profile($fb_login->_id,$data);
+                    $this->session->unset_userdata('fb_profile');
+                    $this->session->set_userdata('profile_id', $user->content->_id);
+                    return $user;
+                }
             }
         }
-        return $user;
+
     }
+
 
     public function login_by_fb($fb_id) {
         $fbLogin =  apiPost("user/login_by_fb", array("fb_id" => $fb_id));
+    //    debug($fbLogin);
         $token = $fbLogin->content->token;
         $this->session->set_userdata('login_token', $token);
         $user_data = $this->account_model->get_profile($fbLogin->content->token, $fbLogin->content->id)->content;
-        $this->session->set_userdata('profile', $user_data);
+        $this->session->set_userdata('profile_id', $user_data->_id);
         return $user_data;
+
     }
+
 
     public function logout() {
         $data =  apiPost("user/logout", array("token" => $this->session->userdata('login_token')));
@@ -120,10 +137,33 @@ class Account_model extends CI_Model {
         return apiPost("user/get_self_id", array('token' => $token));
     }
 
-    public function update_profile( $id, $data) {
-        $profile=  apiPost("user/update_profile", array("token" => $this->session->userdata('login_token'), "id" => $id, "data" => $data));
-        $this->session->set_userdata('profile', $profile);
-        return $profile;
+    public function update_profile($id ,$data) {
+        if($data["fbData"]=='')
+            unset($data["fbData"]);
+        if($data["operations"]=='')
+            unset($data["operations"]);
+        if($data["paymentData"]=='')
+            unset($data["paymentData"]);
+        if($data["registeredDevices"]=='')
+            unset($data["registeredDevices"]);
+        if($data["readNotifications"]=='')
+            unset($data["readNotifications"]);
+        if($data["favoriteBrands"]=='')
+            unset($data["favoriteBrands"]);
+        if($data["favoriteCelebs"]=='')
+            unset($data["favoriteCelebs"]);
+        if($data["favoriteVideos"]=='')
+            unset($data["favoriteVideos"]);
+        if($data["favoriteCategories"]=='')
+            unset($data["favoriteCategories"]);
+        if($data["favoriteCharities"]=='')
+            unset($data["favoriteCharities"]);
+        if($data["offersSaved"]=='')
+            unset($data["offersSaved"]);
+
+        $response = apiPost("user/update_profile", array("token" => $this->session->userdata('login_token'), "id" => $id, "data" => $data));
+    //     debug($response);
+        return $response->content;
     }
 
     public function update_user( $id, $fb_id = NULL, $fb_data = NULL, $first_name = NULL, $last_name = NULL, $address = NULL, $birthDay = NULL) {
