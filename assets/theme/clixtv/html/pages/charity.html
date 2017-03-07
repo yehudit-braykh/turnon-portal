@@ -1,0 +1,172 @@
+<div class="charity-page">
+    <div class="charity-header" style="background-image:url('{{charity.BrandLogo.url}}')">
+        <div class="container">
+            <div class="overlay">
+                <div class="pic" style="background-image:url({{charity.BrandLogo.url}})"></div>
+                <div class="info">
+                    <div class="title">
+                        {{charity.title}}
+                    </div>
+                    <div class="favorites" ng-click="addToFavorites()"><span>{{isFavorite()?'-':'+'}}  Favorites<i class="icon {{isFavorite()?'icon-favorite-icon-filled':'icon-favorite-star-sm'}}"></i></span></div>
+                    <span class="icon icon-share-black-36x37 hand" style="display: inline-block;vertical-align: middle;" ng-click="shareModal()"></span>
+                </div>
+                <div class="videos">123 Videos</div>
+            </div>
+        </div>
+    </div>
+    <div class="tabs-selectors">
+        <div class="tab-selector {{shownTab=='Home'?'active':''}}" ng-click="shownTab='Home'">Home</div>
+        <div class="tab-selector {{shownTab=='Donate'?'active':''}}" ng-click="shownTab='Donate'">Donate</div>
+        <div class="tab-selector {{shownTab=='Stars'?'active':''}}" ng-click="shownTab='Stars'">Stars</div>
+        <div class="tab-selector {{shownTab=='Videos'?'active':''}}" ng-click="shownTab='Videos'">Videos</div>
+    </div>
+    <div class="tabs" ng-switch="shownTab">
+        <div class="tab home row" ng-switch-when="Home">
+            <div class="home-left col-md-10">
+                <div class="info row">
+                    <div class="player col-sm-7">
+                        <jwplayer ng-if="charity.video" data-id="charityPlayer" data-video="charity.video" data-auto-play="true"></jwplayer>
+                    </div>
+                    <div class="details col-sm-5">
+                        <div class="title">About {{charity.title}}</div>
+                        <div class="desc">{{charity.video.description}}</div>
+                        <div class="donate-btn hand" ng-click="openDonateModal()">Donate</div>
+                    </div>
+                </div>
+                <div class="celebrity-section" ng-repeat="celeb in charity.relatedVideos">
+                    <div class="title">{{celeb.title}} And {{charity.title}}   <i class="fa fa-chevron-right" aria-hidden="true"></i></div>
+                    <div class="celeb-videos row">
+                        <clix-block class="col-md-3" ng-repeat="video in charity.relatedVideos | limitTo:4" data-model="video" ></clix-block>
+                    </div>
+                </div>
+                <div class="all-videos hand" ng-click="$parent.shownTab='Videos'"s>See All Videos</div>
+            </div>
+            <div class="home-right col-md-2">
+                <div class="title">STARS THAT SUPPORT FEEDING AMERICA</div>
+                <clix-sec-block class="celeb" ng-repeat="celeb in celebrities | limitTo:4" data-model="celeb" data-category="true" data-href="celebrity" data-href-param="title" ></clix-sec-block>
+                <div class="all-stars hand" ng-click="$parent.shownTab='Stars'"s>See All Stars</div>
+            </div>
+        </div>
+        <div class="tab" ng-switch-when="Donate">Donate</div>
+        <div class="tab" ng-switch-when="Stars">
+            <div class="celebrity-section" ng-repeat="celeb in charity.relatedVideos">
+                <div class="title">{{celeb.title}} And {{charity.title}}   <i class="fa fa-chevron-right" aria-hidden="true"></i></div>
+                <div class="celeb-videos row">
+                    <clix-block class="video col-xs-12 col-sm-6 col-md-3" ng-repeat="video in charity.relatedVideos | limitTo:4" data-model="video" ></clix-block>
+                </div>
+            </div>
+        </div>
+        <div class="tab" ng-switch-when="Videos">
+            <div class="tab-header row">
+                <div class="title col-md-9">All Videos Featuring {{charity.title}}   </div>
+                <div class="filter sort col-md-3">
+                    <div class="filter-btn hand dropdown-toggle" type="button" id="sortddm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        {{selectedSort?selectedSort:'SORT BY'}}
+                        <span class="fa fa-angle-down flr" style="font-size:33px;"></span>
+                    </div>
+                      <ul class="filter-menu dropdown-menu" aria-labelledby="sortddm">
+                        <li class="hand filter-menu-row" ng-click="selectedSort='A - Z';sortBy('title')">A - Z</li>
+                        <li class="hand filter-menu-row" ng-click="selectedSort='Recently Added';sortBy('')">Most Viewed</li>
+                        <li class="hand filter-menu-row" ng-click="selectedSort='Favorites';sortBy('')">Favorites</li>
+                      </ul>
+                </div>
+            </div>
+
+            <div class="celeb-videos row">
+                <clix-block class="video col-xs-12 col-sm-6 col-md-3" ng-repeat="video in charity.relatedVideos" data-model="video" ></clix-block>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="donateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">{{buyPoints?'Buy':'Donate'}} Points</h4>
+          </div>
+          <div class="modal-body">
+
+            <div class="redeem-content {{buyPoints?'buy':''}}">
+                <div class="available-balance">
+                    <div class="value">
+                        <span class="control minus"><i class="fa fa-minus"></i></span>
+                        <span class="value-num">$17.60</span>
+                        <span class="control plus"><i class="fa fa-plus"></i></span>
+                    </div>
+                    <div class="available">Available Cash Balance</div>
+                    <div class="balance">1760 Points Balance</div>
+                </div>
+                <div class="buy-points">
+                    <div class="points">
+                        <span class="doallar">$</span>
+                        <input id="points-input" type="text" maxlength="5" style="width:40px;" placeholder="00" class="points-input" />.<span class="zeros">00</span>
+                    </div>
+                    <div class="points-value">
+                        Input amount to apply to points
+                        <span>Each dollar equals one point.</span>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="buy-more-block {{buyPoints?'buy':''}}">
+
+                <div class="buy-more-cc">
+                    <div class="title">
+                        CREDIT CARD <i class="icon icon-lock-11x14" style="display:inline-block"></i>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" ng-change="CCnumberFormat()" maxlength="20" size="21" name="cc-number" id="cc-number" autocomplete="cc-number" placeholder="xxxx xxxx xxxx xxxx" ng-model="userEdit.creditCard.number">
+                        <label for="cc-number">credit card number</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" maxlength="3" size="3" name="cc-csc" autocomplete="cc-csc" placeholder="xxx" ng-model="userEdit.creditCard.cvv">
+                        <label for="cc-csc">cvv <span class="icon icon-info-icon"></span></label>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" ng-change="CCexpiryFormat()" maxlength="5" size="6" name="cc-exp" id="cc-exp" autocomplete="cc-exp" placeholder="mm/yy" ng-model="userEdit.creditCard.expiry">
+                        <label for="cc-exp">Expiration Date</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" name="cc-name" autocomplete="cc-name" size="24" placeholder="Your Name" ng-model="userEdit.creditCard.holder">
+                        <label for="cc-name">Name (As shown on Card)</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" maxlength="7" size="10" name="postal-code" placeholder="Zip Code" autocomplete="postal-code" ng-model="userEdit.creditCard.zip">
+                        <label for="postal-code">Zip/Postal Code</label>
+                    </div>
+                    <div class="credit-card-error" ng-if="ccError">
+                        {{ccError}}
+                    </div>
+                    <div ng-show="editableAccount=='creditCard'">
+                        <div class="cancel-btn" ng-click="cancelEdit()">Cancel</div>
+                        <div class="save-btn" ng-click="update_user()">Save</div>
+                    </div>
+                </div>
+                <div class="buy-more-offer">
+                    <div class="title">Want to buy more points?</div>
+                    <div class="buy-more-btn" ng-click="buyPoints=true">Buy Points Here</div>
+                </div>
+
+            </div>
+          </div>
+          <div class="modal-footer">
+              <div class='desclaimer' >
+                  <input class="terms-check" type="checkbox" name="text" id="terms-check" ng-model="termsAccept">
+                  <label for="terms-check"></label>
+                  <span>I accept the Terms and Conditions</span>
+              </div>
+              <div class="buttons {{buyPoints?'buy':''}}">
+                  <div class="donate-btns">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn btn-primary" ng-click="buy=false">Donate Now</button>
+                  </div>
+                  <div class="donate-btns">
+                      <button type="button" class="btn btn-default" ng-click="buyPoints=false">Back</button>
+                      <button type="button" class="btn btn-primary" ng-click="redeemCard(selectedRedeemCard)">Complete Purchase</button>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,247 @@
+<div class="header-clix" ng-controller="headerController">
+    <nav class="navbar">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand" ng-click="go('/')" style="back">
+                    <div class="visible-xs icon icon-clix-logo-resp-37x33">
+                    </div>
+                </div>
+                <li class="visible-xs">
+
+                    <form class="search-form" ng-click="resizeInput()" tabindex="0" action="#" method="post" >
+                        <div class="sub-search" >
+                            <i class="icon icon-search-21x22" aria-hidden="true"></i>
+                        </div>
+                        <div class="sub-search input-sub">
+                            <input type="text" name="search-terms" class="{{focused?'focused':' '}}" id="search-terms-mobile" ng-blur="searchUnfocus()" ng-focus="searchFocus()"  placeholder="Search...">
+                        </div>
+                    </form>
+                </li>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav left-nav">
+                    <li ng-if="!user.email" class="visible-xs" ><a href="#" ng-click="showLoginModal()">Login</a></li>
+                    <li ng-if="!user.email" class="visible-xs" style="border-bottom: 1px solid #ededed; " ><a ng-click="showLoginModal(true)">Register</a></li>
+                    <li ng-if="user.email" class="visible-xs"><a href="#" ng-click="go('account/account')">My Account</a></li>
+                    <li ng-if="user.email" class="visible-xs" style="border-bottom: 1px solid #ededed; "><a ng-click="logout()">Logout</a></li>
+                    <li class="hand"><a class="{{getLocation().includes('categ')?'active':''}}" ng-click="go('/categories')">Categories</a></li>
+                    <li class="hand"><a class="{{getLocation().includes('celeb')?'active':''}}" ng-click="go('/celebrities')">Stars</a></li>
+                    <li class="hand"><a class="{{getLocation().includes('offer')||getLocation().includes('brand')?'active':''}}" ng-click="go('offers')">Brands</a></li>
+                    <li class="hand"><a class="{{getLocation().includes('charit')?'active':''}}" ng-click="go('/charities')">Charities</a></li>
+                    <li class="visible-xs"><a ng-click="go('/account/account')">MY ACCOUNT</a></li>
+                    <li class="visible-xs"><a ng-click="go('/watchlist')">WATCHLIST</a></li>
+                    <li class="hidden-xs">
+                        <a class="search-a">
+                        <form class="search-form" ng-click="resizeInput()" tabindex="0" action="#" method="post" >
+                            <div class="sub-search input-sub">
+                                <i class="icon icon-search-21x22 hand" aria-hidden="true"></i>
+                                <input type="text" name="search-terms" class="{{focused?'focused':' '}}" id="search-terms" ng-blur="searchUnfocus()" ng-focus="searchFocus()"  placeholder="Search...">
+                            </div>
+                        </form>
+                        </a>
+                    </li>
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right hidden-xs">
+
+                    <li class="signin-div">
+                        <div class="logged-in" ng-if="user.email">
+                            <div class="ib mr20">
+                                <div class="points" ng-click="go('/account/rewards')"> <span count-to="{{user.current_balance}}" value="0" duration="1"></span></div>
+                                <div class="reward-span cabin" style="margin-top: 4px;" ng-click="go('/account/rewards')">REWARD POINTS</div>
+                            </div>
+                            <div class="dropdown mr16 ib">
+                                <span class="pr" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="ib dropdown-toggle">
+
+                                    <img class="user-img" src="{{user.avatar}}" width=50 height=50 style="cursor: pointer;border-radius: 50px;" />
+                                </span>
+                                <ul class="dropdown-menu {{unreadNotificationsCount()?'':''}} nots" aria-labelledby="dropdownMenu2">
+                                    <div class="title">Notifictions</div>
+                                    <li ng-repeat="notification in notifications | orderBy:added:false" ng-click="notificationClick(notification)" class="not">
+                                        <div class="not-title">
+                                            <span class="not-subject">
+                                                {{notification.subject}}
+                                            </span>
+                                            <span class="not-text">
+                                                 added a new video : {{notification.message}}
+                                            </span>
+                                        </div>
+                                        <div class="not-time">
+                                            <span class="icon icon-star-23x21" style="display:inline-block;vertical-align: sub;"></span> {{notification.added | timeago}}
+                                            <span class="not-reward-points">100 Reward Points</span>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <div class="dropdown ib">
+                                <div id="dropdownMenu1" class="ib" class="ib dropdown-toggle user-section">
+                                    <span>{{user.firstName}}</span>
+                                    <span ng-click="showAccountDrop='true'" class="hand icon icon-arrow-left-20x33 ml15"></span>
+                                </div>
+                                <ul class="dropdown-menu account-drop {{showAccountDrop=='true'?'show':''}}" aria-labelledby="dropdownMenu1">
+                                    <span ng-click="showAccountDrop='false'" class="hand icon icon-arrow-right-20x33 pa"  style="left:20px;top:20px;z-index:2"></span>
+                                    <div class="image-field">
+                            			<div class="overlay-image" style="background-image: url({{user.avatar}})">
+
+                            			</div>
+                            			<div class="user-image" style="background-image: url({{user.avatar}})">
+                            			</div>
+                            			<div class="user-name">
+                            				{{user.firstName}} {{user.lastName}}
+                            			</div>
+                                        <div class="my-clix">
+                            				MY CLIXTV
+                            			</div>
+                            		</div>
+                                  <li><a ng-click="go('/account/account');showAccountDrop='false'"><img class="li-img" src="/assets/theme/clixtv/images/sprite/user-24x31.png" >Account</a></li>
+                                  <li><a ng-click="go('/account/watchlist');showAccountDrop='false'"><img class="li-img" src="/assets/theme/clixtv/images/sprite/plus-30x30.png" alt="">Watch List</a></li>
+                                  <li><a ng-click="go('/account/favorites');showAccountDrop='false'"><img class="li-img" src="/assets/theme/clixtv/images/sprite/star-36x33.png" alt="">Favorites</a></li>
+                                  <li><a ng-click="go('/account/offers');showAccountDrop='false'"><img class="li-img" src="/assets/theme/clixtv/images/sprite/offers-31x30.png" alt="">Saved Offers</a></li>
+                                  <li><a ng-click="go('/account/rewards');showAccountDrop='false'"><img class="li-img" src="/assets/theme/clixtv/images/sprite/cup-27x26.png" alt="">Rewards</a></li>
+                                  <li><a ng-click="go('/account/notifications');showAccountDrop='false'"><img class="li-img" src="/assets/theme/clixtv/images/sprite/bell-25x25.png" alt="">Notifications</a></li>
+                                  <li><a ng-click="go('/account/settings');showAccountDrop='false'"><img class="li-img" src="/assets/theme/clixtv/images/sprite/settings-29x29.png" alt="">Settings</a></li>
+                                  <li class="logout"><span ng-click="logout();showAccountDrop='false'">Log out</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="logged-out" ng-if="!user.email">
+                            <div class="singin-btn" ng-click="showLoginModal()">
+	                            Login
+	                        </div>
+                            <div class="" style="cursor:pointer" >
+                                <a ng-click="showLoginModal(true)">Register now</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+
+</div>
+<!-- Modal -->
+<div class="modal loginModal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" ng-controller="loginController">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" >
+            <div class="wrapper {{showRegister?'left':''}}">
+                <div class="login">
+                    <div class="modal-header">
+                    <img src="assets/theme/clixtv/images/logo-185x41.png" />
+                    </div>
+                    <div class="modal-body">
+                        <div class="login-buttons">
+                            <div class="facebook-button" onclick="window.open('/hauth/login/Facebook','fb','left=20,top=20,width=500,height=400,toolbar=1,resizable=0')">
+                                log in with Facebook
+                            </div>
+                            <div class="other">
+                                <span>or with e-mail</span>
+                            </div>
+                        </div>
+
+                        <form>
+                            <div class="credentials-login">
+                                <div class="fields">
+                                    <div class="field first">
+                                        <i class="icon icon-email-15x10"></i>
+                                        <input type="email" name="email" ng-model="userRegister.email" placeholder="Email" required>
+
+                                    </div>
+                                    <div class="field">
+                                        <i class="icon icon-lock-11x14"></i>
+                                        <input type="password" name="password" ng-model="userRegister.password" placeholder="Password" required>
+                                    </div>
+                                </div>
+                                <div class="btns">
+                                    <div class="login-error" ng-show="loginError">{{loginError}}</div>
+                                    <input type="submit" class="login-btn" ng-click="loginUser()" value="LOGIN">
+                                </div>
+
+                            </div>
+                        </form>
+                        <div class="forgot-register">
+                            <div class="hand undeline" ng-click="resetPassword()">
+                                Forgot Password?
+                            </div>
+                            <div class="">
+                                Don’t have an account? <span class="undeline" style="color: red;cursor:pointer;" ng-click="showRegister=true"> Sign Up</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        By signing in, you agree to our <a ng-click="go('terms')">Terms of Service</a> and <a ng-click="go('privacy')">Privacy Policy</a>
+                    </div>
+                </div>
+                <div class="register">
+                    <div class="modal-header">
+                    <img src="assets/theme/clixtv/images/logo-185x41.png" />
+                    </div>
+                    <div class="modal-body">
+                        <div class="login-buttons">
+                            <div class="facebook-button" onclick="window.open('/hauth/login/Facebook','fb','left=20,top=20,width=500,height=400,toolbar=1,resizable=0')">
+                                sign up with Facebook
+                            </div>
+                            <div class="other">
+                                <span>or with e-mail</span>
+                            </div>
+                        </div>
+
+                        <form>
+                            <div class="credentials-login">
+                                <div class="fields">
+                                    <div class="field first">
+                                        <i class="icon icon-email-15x10"></i>
+                                        <input type="email" name="email" ng-model="userRegister.email" placeholder="Email" required>
+
+                                    </div>
+                                    <!-- <div class="field first">
+                                        <i class="fa fa-envelope-o"></i>
+                                        <input type="email" name="email" ng-model="userRegister.confirmEmail" placeholder="Confirm Email" required>
+                                    </div> -->
+                                    <div class="field first">
+                                        <i class="icon icon-lock-11x14"></i>
+                                        <input type="password" name="password" ng-model="userRegister.password" placeholder="Password" required>
+                                    </div>
+                                    <div class="field first">
+                                        <i class="icon icon-lock-11x14"></i>
+                                        <input type="password" name="password" ng-model="userRegister.confirmPassword" placeholder="Confirm Password" required>
+                                    </div>
+                                    <div class="field first">
+                                        <i class="icon icon-user-15x18"></i>
+                                        <input type="text" name="first-name" ng-model="userRegister.first_name" placeholder="First Name" required>
+                                    </div>
+                                    <div class="field">
+                                        <i class="icon icon-user-15x18"></i>
+                                        <input type="text" name="last-name" ng-model="userRegister.last_name" placeholder="Last Name" required>
+                                    </div>
+                                </div>
+                                <div class="btns">
+                                    <div class="register-error" ng-show="registerError">{{registerError}}</div>
+                                    <input type="submit" class="login-btn" ng-click="registerUser()" value="SIGN UP">
+                                </div>
+                            </div>
+                        </form>
+                        <div class="forgot-register">
+                            <div class="">
+                                Have an Account? <span class="undeline" style="color: red; cursor:pointer;" ng-click="showRegister=false">Login</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        By signing in, you agree to our <a ng-click="go('terms')">Terms of Service</a> and <a ng-click="go('privacy')">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

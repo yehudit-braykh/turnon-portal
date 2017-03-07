@@ -1,0 +1,145 @@
+<div class="offer-page">
+    <div class="offer-page-header" style="background-image:url('{{offer.BackgroundImage.url}}')">
+        <div class="container">
+            <div class="overlay">
+                <div class="pic" style="background-image:url({{offer.BrandLogo.url}})"></div>
+                <div class="info">
+                    <div class="title">
+                        {{offer.title}}
+                    </div>
+                    <div class="favorites hand" ng-click="addRemoveOffer()"><span>{{isSavedOffer()?'- Unsave Offer':'+ Save Offer'}}</span></div>
+                    <div class="share">
+                        <span class="icon icon-share-black-36x37 hand" ng-click="shareModal()"></span> <span class="reward">50</span>
+                    </div>
+                </div>
+                <div class="videos">Expires 1 February 2017</div>
+            </div>
+        </div>
+    </div>
+    <div class="tabs-selectors">
+        <div class="tab-selector {{shownTab=='OverView'?'active':''}}" ng-click="shownTab='OverView'">OverView</div>
+        <div class="tab-selector {{shownTab=='Related Offers'?'active':''}}" ng-click="shownTab='Related Offers'">Related Offers</div>
+        <div class="tab-selector {{shownTab=='Videos'?'active':''}}" ng-click="shownTab='Videos'">Videos</div>
+    </div>
+    <div class="tabs" ng-switch="shownTab">
+        <div class="tab home row" ng-switch-when="OverView">
+            <div class="home-left col-md-10">
+                <div class="info row">
+                    <div class="slider col-sm-7">
+                        <div id="myCarousel" class="carousel slide" data-interval="false" data-ride="carousel">
+                              <!-- Indicators -->
+                              <ol class="carousel-indicators">
+                                <li data-target="#myCarousel" ng-repeat="video in offer.relatedVideos | limitTo:4 track by $index" data-slide-to="{{$index}}" class="{{$index==0?'active':''}}"></li>
+                              </ol>
+                              <!-- Wrapper for slides -->
+                              <div class="carousel-inner" role="listbox">
+                                <div ng-repeat="video in slide | limitTo:4 track by $index"  class="item {{$index==0?'active':''}}" style="background-image:url('{{video}}')">
+                                <!--  <div class="carousel-caption">
+                                    <h3>Chania</h3>
+                                    <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
+                                </div>-->
+                                </div>
+                              </div>
+                              <!-- Left and right controls -->
+                              <a class="left carousel-control" onclick='$("#myCarousel").carousel("prev")' role="button" data-slide="prev">
+                                <span class="icon icon-arrow-left-20x33" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                              </a>
+                              <a class="right carousel-control" onclick='$("#myCarousel").carousel("next")' role="button" data-slide="next">
+                                <span class="icon icon-arrow-right-20x33" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                              </a>
+                            </div>
+                    </div>
+                    <div class="details col-sm-5">
+                        <div class="title">Instructions</div>
+                        <div class="desc">
+                            1. Click the button below to shop online at {{relatedBrand.title}}. Your Coupon code will be copied your clipboard automatically.<br/>
+                            2. Paste you code during checkout.<br/>
+                            3. Enjoy!
+                        </div>
+
+                        <div class="save-offer-btn hand" ng-click="addRemoveOffer()"><span class="save-offer-btn-content"><span  style="font-size: 23px;">{{isSavedOffer()?'-':'+'}}</span> Save Offer <span class="reward">50</span></span> </div>
+                        <div class="donate-btn hand">Redeem Now <span class="reward">50</span></div>
+                        <div class="social" ><span class="icon icon-share-black-36x37 hand" ng-click="shareModal()"></span> <span class="reward">50</span></div>
+                    </div>
+                </div>
+                <div class="tab-details">
+                    <div class="row">
+                        <div class="title col-xs-12">{{offer.title}}</div>
+                        <div class="desc col-xs-12 col-sm-6">
+                            QuietComfort® 25 headphones are engineered to sound better, be more comfortable and easier to take with you. Put them on, and suddenly everything changes. Your music is deep, powerful and balanced, and so quiet that every note sounds clearer. Even air travel becomes enjoyable, as engine roar gently fades away. No matter how noisy the world is, it's just you and your music—or simply peace and quiet.<br/>
+                            These headphones are designed for iPhone, iPad and iPod models. A version is also available for Samsung and Android devices.
+                        </div>
+                        <div class="desc col-xs-12 col-sm-6">
+                            - Significant noise reduction for travel, work and anywhere in between.</br>
+                            - Deep, powerful sound for the music you love.</br>
+                            - Lightweight around-ear fit you can wear all day long.</br>
+                            - Inline mic/remote for music and calls on Apple devices.
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="title col-xs-12">About {{relatedBrand.title}}</div>
+                        <div class="desc col-xs-12">
+                            QuietComfort® 25 headphones are engineered to sound better, be more comfortable and easier to take with you. Put them on, and suddenly everything changes. Your music is deep, powerful and balanced, and so quiet that every note sounds clearer. Even air travel becomes enjoyable, as engine roar gently fades away. No matter how noisy the world is, it's just you and your music—or simply peace and quiet.<br/><br/>
+                            These headphones are designed for iPhone, iPad and iPod models. A version is also available for Samsung and Android devices.
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="title col-xs-12">Specifications</div>
+                        <div class="desc col-xs-12 col-sm-6">
+                            Dimensions/weight without the cable</br><br/>
+                            HEADPHONES: <span>7.5" H x 6" W x 0.9" D (6.9 oz)</span><br/>
+                            LENGTH OF CABLE: <span>56 in</span><br/>
+                            CARRYING CASE: <span>8.25" H x 5.75" W x 2" D</span>
+                        </div>
+                        <div class="desc col-xs-12 col-sm-6">
+                            In the box<br/><br/>
+                            <span>
+                                QuietComfort® 25 headphones<br/>
+                                56 in (1.42 m) QC®25 inline remote and microphone cable<br/>
+                                Airline adapter<br/>
+                                Carrying case<br/>
+                                AAA battery
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="home-right col-md-2">
+                <div class="title">More offers </br> from {{relatedBrand.title}}</div>
+                <clix-sec-block ng-repeat="offer in relatedOffers | limitTo:3" data-model="offer"  style="margin-bottom:30px;display:block" data-offer="true" data-href="offer" data-sub-menu="true" data-href-param="_id" ></clix-sec-block>
+                <div class="all-stars hand" ng-click="$parent.shownTab='Stars'"s>See All Offers</div>
+            </div>
+        </div>
+        <div class="tab offers" ng-switch-when="Related Offers">
+            <div class="tab-header row">
+                <div class="title col-md-9">All {{relatedBrand.title}} offers </div>
+            </div>
+            <div class="row">
+                    <clix-sec-block ng-repeat="offer in relatedOffers" data-model="offer" class="offer col-xs-6 col-sm-3 col-md-4 col-lg-2" data-offer="true" data-href="offer" data-href-param="_id"  ></clix-sec-block>
+            </div>
+
+        </div>
+        <div class="tab" ng-switch-when="Videos">
+            <div class="tab-header row">
+                <div class="title col-md-9">All Videos Featuring {{offer.title}}   </div>
+                <div class="filter sort col-md-3">
+                    <div class="filter-btn hand dropdown-toggle" type="button" id="sortddm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        {{selectedSort?selectedSort:'SORT BY'}}
+                        <span class="fa fa-angle-down flr" style="font-size:33px;"></span>
+                    </div>
+                      <ul class="filter-menu dropdown-menu" aria-labelledby="sortddm">
+                        <li class="hand filter-menu-row" ng-click="selectedSort='A - Z';sortBy('title')">A - Z</li>
+                        <li class="hand filter-menu-row" ng-click="selectedSort='Recently Added';sortBy('')">Most Viewed</li>
+                        <li class="hand filter-menu-row" ng-click="selectedSort='Favorites';sortBy('')">Favorites</li>
+                      </ul>
+                </div>
+            </div>
+
+            <div class="celeb-videos row">
+                <clix-block class="video col-xs-12 col-sm-6 col-md-3" ng-repeat="video in offer.relatedVideos" data-model="video" ></clix-block>
+            </div>
+        </div>
+    </div>
+</div>

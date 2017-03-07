@@ -1,0 +1,869 @@
+<div class="user-account">
+	<div class="top-account">
+		<div class="image-field" >
+			<div class="overlay-image" style="background-image: url('{{user.avatar}}')">
+
+			</div>
+			<div class="user-image" style="background-image: url('{{user.avatar}}')">
+			</div>
+			<div class="user-name">
+				{{user.firstName}} {{user.lastName}}
+			</div>
+			<div class="my-clix">
+				MY CLIXTV
+			</div>
+			<!-- <img class="user-image hand" src="{{user.image}}" width=100 height=100 alt="Click to change profile picture" ng-click="openUploadDialog()" /> -->
+			<input type="file" onchange="angular.element(this).scope().uploadProfileImage(files)" accept="image/*" style="display:none" id="profilePicFile" name="filedata"/>
+
+		</div>
+		<div class="top-header">
+			<div class="pa" ng-switch="shownView">
+				<div class="" ng-switch-when="account">
+					Account Overview
+				</div>
+				<div class="" ng-switch-when="watchlist">
+					Watch List
+				</div>
+				<div class="" ng-switch-when="favorites">
+					Favorites
+				</div>
+				<div class="" ng-switch-when="offers">
+					Offers
+				</div>
+				<div class="" ng-switch-when="rewards">
+					Rewards
+				</div>
+				<div class="" ng-switch-when="notifications">
+					Notifications
+				</div>
+				<div class="" ng-switch-when="settings">
+					Settings
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="bottom-account">
+		<div class="nav-left">
+			<div class="single-tab {{shownView=='account'?'selected':''}}" ng-click="shownView='account'">
+				<div class="ib view-width3">
+					<img src="/assets/theme/clixtv/images/sprite/user-24x31.png" style="padding: 0 0.3vw;">
+				</div>
+				Account
+			</div>
+			<div class="single-tab {{shownView=='watchlist'?'selected':''}}" ng-click="shownView='watchlist'">
+				<div class="ib view-width3">
+					<img src="/assets/theme/clixtv/images/sprite/plus-30x30.png" alt="">
+				</div>
+				Watch List
+			</div>
+			<div class="single-tab {{shownView=='favorites'?'selected':''}}" ng-click="shownView='favorites'">
+				<div class="ib view-width3">
+					<img src="/assets/theme/clixtv/images/sprite/star-36x33.png" alt="">
+				</div>
+				Favorites
+			</div>
+			<div class="single-tab {{shownView=='offers'?'selected':''}}" ng-click="shownView='offers'">
+				<div class="ib view-width3">
+					<img src="/assets/theme/clixtv/images/sprite/offers-31x30.png" alt="">
+				</div>
+				Saved Offers
+			</div>
+			<div class="single-tab {{shownView=='rewards'?'selected':''}}" ng-click="shownView='rewards'">
+				<div class="ib view-width3">
+					<img src="/assets/theme/clixtv/images/sprite/cup-27x26.png" alt="">
+				</div>
+				Rewards
+			</div>
+			<div class="single-tab {{shownView=='notifications'?'selected':''}}" ng-click="shownView='notifications'">
+				<div class="ib view-width3">
+					<img src="/assets/theme/clixtv/images/sprite/bell-25x25.png" alt="">
+				</div>
+				<span class="pr">Notifications<span class="notifications-number" ng-show="unreadNotificationsCount()">{{unreadNotificationsCount()}}</span></span>
+			</div>
+			<div class="single-tab {{shownView=='settings'?'selected':''}}" ng-click="shownView='settings'">
+				<div class="ib view-width3">
+					<img src="/assets/theme/clixtv/images/sprite/settings-29x29.png" alt="">
+				</div>
+				Settings
+			</div>
+		</div>
+		<div class="selected-section" ng-switch="shownView">
+			<div class="account row" ng-switch-when="account">
+				<div class="left-side">
+					<div class="overview-header">
+						PERSONAL INFORMATION
+					</div>
+					<div class="overview-body">
+						<div class="single-input">
+							<div class="input-header">
+								FIRST NAME
+								<span class="icon icon-edit-icon-normal-25x26" ng-hide="editableAccount=='firstName'" ng-click="startEdit('firstName')" ></span>
+
+							</div>
+							<div class="input-body">
+								<div class="unedit" ng-hide="editableAccount=='firstName'">
+									{{user.firstName}}
+								</div>
+								<div class="edit-mode" ng-if="editableAccount=='firstName'">
+									<input type="text" ng-model="userEdit.firstName">
+									<span ng-show="editableAccount=='firstName'">
+										<div class="cancel-btn" ng-click="cancelEdit()">Cancel</div>
+										<div class="save-btn" ng-click="update_user()">Save</div>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="single-input">
+							<div class="input-header">
+								LAST NAME
+								<span class="icon icon-edit-icon-normal-25x26" ng-hide="editableAccount=='lastName'" ng-click="startEdit('lastName')" ></span>
+
+							</div>
+							<div class="input-body">
+								<div class="unedit" ng-hide="editableAccount=='lastName'">
+									{{user.lastName}}
+								</div>
+								<div class="edit-mode" ng-if="editableAccount=='lastName'">
+									<input type="text" ng-model="userEdit.lastName">
+									<span ng-show="editableAccount=='lastName'">
+										<div class="cancel-btn" ng-click="cancelEdit()">Cancel</div>
+										<div class="save-btn" ng-click="update_user()">Save</div>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="single-input">
+							<div class="input-header">
+								EMAIL
+							</div>
+							<div class="input-body">
+								<div class="unedit">
+									{{user.email}}
+								</div>
+							</div>
+						</div>
+						<div class="single-input">
+							<div class="input-header">
+								DATE OF BIRTH
+								<span class="icon icon-edit-icon-normal-25x26" ng-hide="editableAccount=='birthdate'" ng-click="startEdit('birthdate')" ></span>
+
+							</div>
+							<div class="input-body">
+								<div class="unedit" ng-hide="editableAccount=='birthdate'">
+									{{user.birthdate}}
+								</div>
+								<div class="edit-mode" ng-if="editableAccount=='birthdate'">
+									<input type="date" ng-model="userEdit.birthdate">
+									<span ng-show="editableAccount=='birthdate'" >
+										<div class="cancel-btn" ng-click="cancelEdit()">Cancel</div>
+										<div class="save-btn" ng-click="update_user()">Save</div>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="single-input">
+							<div class="input-header">
+								COUNTRY
+								<span class="icon icon-edit-icon-normal-25x26" ng-hide="editableAccount=='country'" ng-click="startEdit('country')" ></span>
+
+							</div>
+							<div class="input-body">
+								<div class="unedit" ng-hide="editableAccount=='country'">
+									Israel
+								</div>
+								<div class="edit-mode" ng-if="editableAccount=='country'">
+									<input type="text" ng-model="userEdit.country">
+									<span ng-show="editableAccount=='country'">
+										<div class="cancel-btn" ng-click="cancelEdit()">Cancel</div>
+										<div class="save-btn" ng-click="update_user()">Save</div>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="single-input">
+							<div class="input-header">
+								GENDER
+								<span class="icon icon-edit-icon-normal-25x26" ng-hide="editableAccount=='gender'" ng-click="startEdit('gender')" ></span>
+
+							</div>
+							<div class="input-body">
+								<div class="unedit" ng-hide="editableAccount=='gender'">
+									{{user.gender}}
+								</div>
+								<div class="edit-mode" ng-if="editableAccount=='gender'">
+									<input type="text" ng-model="userEdit.gender">
+									<span ng-show="editableAccount=='gender'" >
+										<div class="cancel-btn" ng-click="cancelEdit()">Cancel</div>
+										<div class="save-btn" ng-click="update_user()">Save</div>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="single-input">
+							<div class="input-header">
+								PHONE
+								<span class="icon icon-edit-icon-normal-25x26" ng-hide="editableAccount=='phone'" ng-click="startEdit('phone')" ></span>
+							</div>
+							<div class="input-body">
+								<div class="unedit" ng-hide="editableAccount=='phone'">
+									{{user.phone}}
+								</div>
+								<div class="edit-mode" ng-if="editableAccount=='phone'">
+									<input type="text" ng-model="userEdit.phone">
+									<span ng-show="editableAccount=='phone'">
+										<div class="cancel-btn" ng-click="cancelEdit()">Cancel</div>
+										<div class="save-btn" ng-click="update_user()">Save</div>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="single-input">
+							<div class="input-header">
+								CREDIT CARD <i class="icon icon-lock-11x14" style="display:inline-block"></i>
+								<span class="icon icon-edit-icon-normal-25x26" ng-hide="editableAccount=='creditCard'" ng-click="startEdit('creditCard')" ></span>
+
+
+							</div>
+							<div class="input-body">
+								<div class="unedit" ng-hide="editableAccount=='creditCard'">
+									VISA 1234{{user.creditCard}}
+								</div>
+								<div class="edit-mode" ng-if="editableAccount=='creditCard'">
+									<div class="input-group">
+										<input type="text" ng-change="CCnumberFormat()" maxlength="20" size="21" name="cc-number" id="cc-number" autocomplete="cc-number" placeholder="xxxx xxxx xxxx xxxx" ng-model="userEdit.creditCard.number">
+										<label for="cc-number">credit card number</label>
+									</div>
+									<div class="input-group">
+										<input type="text" maxlength="3" size="3" name="cc-csc" autocomplete="cc-csc" placeholder="xxx" ng-model="userEdit.creditCard.cvv">
+										<label for="cc-csc">cvv <span>i</span></label>
+									</div>
+									<div class="input-group">
+										<input type="text" ng-change="CCexpiryFormat()" maxlength="5" size="6" name="cc-exp" id="cc-exp" autocomplete="cc-exp" placeholder="mm/yy" ng-model="userEdit.creditCard.expiry">
+										<label for="cc-exp">Expiration Date</label>
+									</div>
+									<div class="input-group">
+										<input type="text" name="cc-name" autocomplete="cc-name" placeholder="John Smith" ng-model="userEdit.creditCard.holder">
+										<label for="cc-name">Name (As shown on Card)</label>
+									</div>
+									<div class="input-group">
+										<input type="text" maxlength="7" size="10" name="postal-code" autocomplete="postal-code" ng-model="userEdit.creditCard.zip">
+										<label for="postal-code">Zip/Postal Code</label>
+									</div>
+									<div class="credit-card-error" ng-if="ccError">
+										{{ccError}}
+									</div>
+									<div ng-show="editableAccount=='creditCard'">
+										<div class="cancel-btn" ng-click="cancelEdit()">Cancel</div>
+										<div class="save-btn" ng-click="update_user()">Save</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="right-side">
+					<div class="overview-header">
+						REWARD POINTS
+					</div>
+
+ 					<div class="overview-body">
+						<div class="single-input">
+							<div class="cash-value">
+								$17.60
+							</div>
+							<div class="grey-span">
+								Available Cash Balance </br>
+								1760 Points Balance
+							</div>
+						</div>
+						<div class="single-input">
+							<div class="level-span">
+								LEVEL 2
+							</div>
+							<div class="grey-span">
+								Reward Status
+							</div>
+						</div>
+						<div class="single-input">
+							<div class="points-span">
+								185 OF 500 POINTS
+							</div>
+							<div class="progress">
+								<div class="progress-bar" role="progressbar" style="width: 60%;">
+							    	<span class="sr-only">60% Complete</span>
+							    </div>
+							</div>
+							<div class="grey-span">
+								Earn 500 points or more this month to stay at <span style="color: #ff0000">Level 2</span>
+							</div>
+							<div class="rewards-btn">
+								GO TO MY REWARDS
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="watchlist" ng-switch-when="watchlist">
+				<div class="row">
+					<div ng-if="user.watchlist" class="col-md-4 col-lg-3 col-xs-12 col-sm-6" ng-repeat="video in watchlist">
+						<clix-block class="" data-model="video">
+						</clix-block>
+					</div>
+					<div class="" ng-if="!user.watchlist">
+						Add Videos to watchlist and watch them later
+					</div>
+
+				</div>
+			</div>
+			<div class="favorites" ng-switch-when="favorites">
+				<div class="tabs-selectors">
+			        <div class="tab-selector {{tabs.shownTab=='stars'?'active':''}}" ng-click="tabs.shownTab='stars'">STARS</div>
+			        <div class="tab-selector {{tabs.shownTab=='brands'?'active':''}}" ng-click="tabs.shownTab='brands'">BRANDS</div>
+			        <div class="tab-selector {{tabs.shownTab=='charities'?'active':''}}" ng-click="tabs.shownTab='charities'">CHARITIES</div>
+					<div class="tab-selector {{tabs.shownTab=='categories'?'active':''}}" ng-click="tabs.shownTab='categories'">CATEGORIES</div>
+			    </div>
+				<div class="" ng-switch="tabs.shownTab">
+					<div class="" ng-switch-when="stars">
+						<div class="filter-search row">
+							<div class="filter col-sm-4">
+								<i class="icon icon-search-21x22"></i>
+								<input class="search filter-btn" type="text" placeholder="Search Stars">
+							</div>
+							<div class="filter col-sm-4">
+								<div class="filter-btn hand dropdown-toggle" type="button" id="sortddm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+			                        {{selectedSort?selectedSort:'FILTER BY'}}
+			                        <span class="fa fa-angle-down flr" style="font-size:33px;"></span>
+			                    </div>
+			                      <ul class="filter-menu dropdown-menu" aria-labelledby="sortddm">
+			                        <li class="hand filter-menu-row" ng-click="selectedSort='A - Z';sortBy('title')">ALL</li>
+			                        <li class="hand filter-menu-row" ng-click="selectedSort='Recently Added';sortBy('')">ATHLETES</li>
+			                        <li class="hand filter-menu-row" ng-click="selectedSort='Favorites';sortBy('')">INFLUENCERS</li>
+									<li class="hand filter-menu-row" ng-click="selectedSort='Recently Added';sortBy('')">MOVIE STARS</li>
+			                        <li class="hand filter-menu-row" ng-click="selectedSort='Favorites';sortBy('')">MUSICIANS</li>
+									<li class="hand filter-menu-row" ng-click="selectedSort='Favorites';sortBy('')">TV STARS</li>
+			                      </ul>
+							</div>
+							<div class="filter col-sm-4">
+								<div class="filter-btn hand dropdown-toggle" type="button" id="sortddm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+									{{selectedSort?selectedSort:'SORT BY'}}
+									<span class="fa fa-angle-down flr" style="font-size:33px;"></span>
+								</div>
+								  <ul class="filter-menu dropdown-menu" aria-labelledby="sortddm">
+									<li class="hand filter-menu-row" ng-click="selectedSort='A - Z';sortBy('title')">A - Z</li>
+									<li class="hand filter-menu-row" ng-click="selectedSort='Recently Added';sortBy('')">Most Viewed</li>
+									<li class="hand filter-menu-row" ng-click="selectedSort='Favorites';sortBy('')">Favorites</li>
+								  </ul>
+							</div>
+						</div>
+						<div class="">
+							<div class="" ng-if="!user.favoriteCelebs">
+								Like your favorite Stars to appear here!
+							</div>
+							<div class="" ng-if="user.favoriteCelebs">
+								<clix-block class="col-sm-3" ng-repeat="celeb in favoriteCelebs" data-model="celeb" style="margin:15px 0"></clix-block>
+							</div>
+						</div>
+					</div>
+					<div class="" ng-switch-when="brands">
+						<div class="filter-search row">
+							<div class="col-sm-4">
+
+								<i class="icon icon-search-21x22"></i>
+								<input class="search filter-btn" type="text" placeholder="Search Brands">
+							</div>
+							<div class="col-sm-4">
+								<div class="filter-btn hand dropdown-toggle" type="button" id="sortddm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+									{{selectedSort?selectedSort:'FILTER BY'}}
+									<span class="fa fa-angle-down flr" style="font-size:33px;"></span>
+								</div>
+								  <ul class="filter-menu dropdown-menu" aria-labelledby="sortddm">
+									<li class="hand filter-menu-row" ng-click="selectedSort='ALL';sortBy('title')">ALL</li>
+									<li class="hand filter-menu-row" ng-click="selectedSort='AUTO & HOME';sortBy('')">AUTO & HOME</li>
+									<li class="hand filter-menu-row" ng-click="selectedSort='BABY, KIDS & TOYS';sortBy('')">BABY, KIDS & TOYS</li>
+									<li class="hand filter-menu-row" ng-click="selectedSort='ELECTRONICS';sortBy('')">ELECTRONICS</li>
+									<li class="hand filter-menu-row" ng-click="selectedSort='ENTERTAINMENT';sortBy('')">ENTERTAINMENT</li>
+									<li class="hand filter-menu-row" ng-click="selectedSort='GROCERY, HOUSEHOLD & PETS';sortBy('')">GROCERY, HOUSEHOLD & PETS</li>
+									<li class="hand filter-menu-row" ng-click="selectedSort='ENTERTAINMENT';sortBy('')">HEALTH & BEAUTY</li>
+									<li class="hand filter-menu-row" ng-click="selectedSort='GROCERY, HOUSEHOLD & PETS';sortBy('')">JEWELRY & WATCHES</li>
+								  </ul>
+							</div>
+							<div class="col-sm-4">
+								<div class="filter-btn hand dropdown-toggle" type="button" id="sortddm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+									{{selectedSort?selectedSort:'SORT BY'}}
+									<span class="fa fa-angle-down flr" style="font-size:33px;"></span>
+								</div>
+								  <ul class="filter-menu dropdown-menu" aria-labelledby="sortddm">
+									<li class="hand filter-menu-row" ng-click="selectedSort='A - Z';sortBy('title')">A - Z</li>
+									<li class="hand filter-menu-row" ng-click="selectedSort='Recently Added';sortBy('')">Most Viewed</li>
+									<li class="hand filter-menu-row" ng-click="selectedSort='Favorites';sortBy('')">Favorites</li>
+								  </ul>
+							</div>
+						</div>
+						<div class="">
+							<div class="" ng-if="!user.favoriteBrands">
+								Like your favorite Stars to appear here!
+							</div>
+							<div class="" ng-if="user.favoriteBrands">
+								<clix-sec-block class="brand col-xs-6 col-sm-4 col-md-3 col-lg-2" data-sub-menu="true" data-brand="true" data-href="brand" data-href-param="title" ng-repeat="brand in favoriteBrands" data-model="brand" style="margin:15px 0"></clix-sec-block>
+							</div>
+						</div>
+					</div>
+					<div class="" ng-switch-when="charities">
+						<div class="filter-search row">
+							<div class="col-sm-4">
+								<i class="icon icon-search-21x22"></i>
+								<input class="search filter-btn" type="text" placeholder="Search Charities" ng-model="searchCharities">
+							</div>
+						</div>
+						<div class="">
+							<div class="" ng-if="!user.favoriteCharities">
+								Like your favorite Stars to appear here!
+							</div>
+							<div class="" ng-if="user.favoriteCharities">
+								<clix-sec-block class="brand col-xs-6 col-sm-4 col-md-3 col-lg-2" data-sub-menu="true" data-charity="true" data-href="charity" data-href-param="title" ng-repeat="charity in favoriteCharities | filter:searchCharities" data-model="charity" style="margin:15px 0"></clix-sec-block>
+
+							</div>
+						</div>
+					</div>
+					<div class="" ng-switch-when="categories">
+						<div class="" ng-if="!user.favoriteCategories">
+							Like your favorite Stars to appear here!
+						</div>
+						<div class="" ng-if="user.favoriteCategories">
+							<clix-sec-block ng-repeat="cat in favoriteCategories" data-model="cat" data-href="category" data-href-param="title" data-category="true" class="category col-xs-6 col-sm-4 col-md-3 col-lg-2" style="margin:15px 0"></clix-sec-block>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div class="" ng-switch-when="offers">
+				<div class="">
+					<div class="" ng-if="!user.offersSaved">
+						No Saved Offers!
+					</div>
+					<div class="" ng-if="user.offersSaved">
+						<clix-sec-block class="charity col-xs-6 col-sm-4 col-md-3 col-lg-2" data-sub-menu="true" data-offer="true" data-href="offer" data-href-param="title" ng-repeat="offer in offersSaved" data-model="offer" style="margin:15px 0"></clix-sec-block>
+					</div>
+				</div>
+			</div>
+			<div class=rewards"" ng-switch-when="rewards">
+				<div class="tabs-selectors">
+					<div class="tab-selector {{tabs.rewardTabs=='summary'?'active':''}}" ng-click="tabs.rewardTabs='summary'">SUMMARY</div>
+					<div class="tab-selector {{tabs.rewardTabs=='activity'?'active':''}}" ng-click="tabs.rewardTabs='activity'">ACTIVITY</div>
+					<div class="tab-selector {{tabs.rewardTabs=='redeem'?'active':''}}" ng-click="tabs.rewardTabs='redeem'">REDEEM</div>
+				</div>
+				<div class="" ng-switch="tabs.rewardTabs">
+					<div class="row summary" ng-switch-when="summary">
+						<div class="left-side">
+							<div class="overview-body">
+								<div class="single-input summary-header">
+									REWARD SUMMARY
+								</div>
+								<div class="single-input">
+									<div class="cash-value">
+										$17.60
+									</div>
+									<div class="grey-span">
+										Available Cash Balance </br>
+										1760 Points Balance
+									</div>
+								</div>
+								<div class="single-input">
+									<div class="level-span">
+										LEVEL 2
+									</div>
+									<div class="grey-span">
+										Reward Status
+									</div>
+								</div>
+								<div class="single-input">
+									<div class="points-span">
+										185 OF 500 POINTS
+									</div>
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" style="width: 60%;">
+											<span class="sr-only">60% Complete</span>
+										</div>
+									</div>
+									<div class="grey-span">
+										Earn 500 points or more this month to stay at <span style="color: #ff0000">Level 2</span>
+									</div>
+									<div class="rewards-btn" ng-click="tabs.rewardTabs='redeem'">
+										REDEEM
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="right-side">
+							<div class="overview-body">
+								<div class="single-input">
+									<div class="summary-header">
+										RECENT ACTIVITY
+									</div>
+								</div>
+								<div class="activity-log">
+									<div class="single-activity media" ng-repeat="activity in user.reward.recent_actions">
+										<div class="media-left">
+											<img src="{{activity.img}}" alt="">
+										</div>
+										<div class="media-body">
+											<div class="media-title">
+												Geico
+											</div>
+											<div class="media-text">
+												Coupon Redeemed
+											</div>
+											<div class="media-time">
+												{{activity.timestamp | timeago}}
+											</div>
+											<div class="points-span">
+												+{{activity.value}}
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="button-cont">
+									<div class="reward-btn">
+										<div class="rewardspan" ng-click="tabs.rewardTabs='activity'">
+											SEE ALL ACTIVITY
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<div class="activity" ng-switch-when="activity">
+						<div class="tabs-selectors">
+							<div class="tab-selector {{tabs.innerReward=='all'?'active':''}}" ng-click="tabs.innerReward='all'">ALL</div>
+							<div class="tab-selector {{tabs.innerReward=='incoming'?'active':''}}" ng-click="tabs.innerReward='incoming'">POINTS IN	</div>
+							<div class="tab-selector {{tabs.innerReward=='outgoing'?'active':''}}" ng-click="tabs.innerReward='outgoing'">POINTS OUT</div>
+						</div>
+						<div class="" ng-switch="tabs.innerReward">
+							<div class="activity-log" ng-switch-when="all">
+								<div class="single-activity media" ng-repeat="activity in user.reward.recent_actions">
+									<div class="media-left">
+										<img src="{{activity.img}}" alt="">
+									</div>
+									<div class="media-body">
+										<div class="media-title">
+											Geico
+										</div>
+										<div class="media-text">
+											Coupon Redeemed
+										</div>
+										<div class="media-time">
+											{{activity.timestamp | timeago}}
+										</div>
+										<div class="points-span">
+											+{{activity.value}}
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="activity-log" ng-switch-when="incoming">
+								<div class="single-activity media" ng-repeat="activity in user.reward.recent_actions">
+									<div class="media-left">
+										<img src="{{activity.img}}" alt="">
+									</div>
+									<div class="media-body">
+										<div class="media-title">
+											Geico
+										</div>
+										<div class="media-text">
+											Coupon Redeemed
+										</div>
+										<div class="media-time">
+											{{activity.timestamp | timeago}}
+										</div>
+										<div class="points-span">
+											+{{activity.value}}
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="activity-log" ng-switch-when="outgoing">
+								<div class="single-activity media" ng-repeat="activity in user.reward.recent_actions">
+									<div class="media-left">
+										<img src="{{activity.img}}" alt="">
+									</div>
+									<div class="media-body">
+										<div class="media-title">
+											Geico
+										</div>
+										<div class="media-text">
+											Coupon Redeemed
+										</div>
+										<div class="media-time">
+											{{activity.timestamp | timeago}}
+										</div>
+										<div class="points-span">
+											+{{activity.value}}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="redeem" ng-switch-when="redeem">
+						<div class="redeem-desc">
+							Select your preferred method of redemption and you will be taken to the next page where you will choose your amount and redeem your reward points!
+						</div>
+						<div class="redeem-cards row">
+							<div class="col-md-15 col-sm-4 col-xs-6 redeem-card ng-scope pr" ng-repeat="card in giftCards" ng-click="openRedeemModal(card)">
+								<div class="card-pic" style="background-image:url({{card.additional_properties._thumbnail.url}})"></div>
+								<div class="go-overlay pa">GO</div>
+								<div class="card-info">
+									<div class="card-name">{{card.name}}</div>
+									<div class="redeem-now">Reedeem Now</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal fade" id="redeemModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h4 class="modal-title" id="myModalLabel">Reedeem Rewards</h4>
+						      </div>
+						      <div class="modal-body">
+						        <div class="redeem-card">
+									<div class="redeem-pic" style="background-image:url({{selectedRedeemCard.additional_properties._thumbnail.url}})"></div>
+									<div class="redeem-info">
+										<div class="card-name">{{selectedRedeemCard.name}}</div>
+										<div class="redeem-only">REDEEM ONLINE ONLY</div>
+									</div>
+
+								</div>
+								<div class="redeem-content">
+									<div class="value">
+										<span class="control minus"><i class="fa fa-minus"></i></span>
+										<span class="value-num">$17.60</span>
+										<span class="control plus"><i class="fa fa-plus"></i></span>
+									</div>
+									<div class="available">Available Cash Balance</div>
+									<div class="balance">1760 Points Balance</div>
+								</div>
+						      </div>
+						      <div class="modal-footer">
+								  <div class='desclaimer' >{{selectedRedeemCard.long_description}}</div>
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+						        <button type="button" class="btn btn-primary" ng-click="redeemCard(selectedRedeemCard)">Redeem Now</button>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div class="notifications" ng-switch-when="notifications">
+				<div class="notifications-header">
+					MY NOTIFICATIONS
+				</div>
+				<div class="activity-log">
+					<div class="single-activity media {{activity.read?'read':''}}" ng-repeat="activity in notifications" ng-click="go('video/'+activity.updatedByUserId)">
+						<div class="media-left">
+							<div class="img" style="background-image:url({{activity.video.PosterH.url?activity.video.PosterH.url:'http://advncedcdn.vo.llnwd.net/clixtv_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d71ac801b1000371112a/geico_thumbnail.jpg'}})"></div>
+						</div>
+						<div class="media-body">
+							<div class="media-title">
+								<span class="media-subject">{{activity.subject}}</span>
+								<span class="media-text"> added a new video:</span>
+								<span class="media-text video">
+									{{activity.message}}
+								</span>
+							</div>
+							<div class="media-time">
+								<span class="icon icon-star-23x21" style="display:inline-block;vertical-align: sub;"></span> {{activity.added | timeago}}
+								<span class="reward-points">100 Reward Points</span>
+							</div>
+							<div class="points-span">
+								<div class="dots hand dropdown-toggle" id="dotsMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">...</div>
+								<ul class="dropdown-menu" aria-labelledby="dotsMenu">
+									<li><a><span class="ib icon icon-share-white-19x20" style="vertical-align: bottom;"></span>Share <span class="reward">50</span></a></li>
+								   	<li><a class="hand"> <span class="ib icon icon-bell-21x21" style="vertical-align: bottom;"></span>Turn off Notifications about {{activity.subject}}</a></li>
+								   	<li><a ><span class="ib icon icon-star-23x21" style="vertical-align: bottom;"></span> Go to star Page</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="settings" ng-switch-when="settings">
+				<div class="single-setting">
+					<div class="togglebox-right">
+						<input class="input-toggle" type="checkbox" name="offers" id="offers-toggle">
+						<label for="offers-toggle"></label>
+					</div>
+					<div class="setting-header">
+						Offers Updates
+					</div>
+					<div class="setting-desc">
+						GET THE LATEST BRAND UPDATES ON CLIXTV
+					</div>
+				</div>
+				<div class="single-setting">
+					<div class="togglebox-right">
+						<input class="input-toggle" type="checkbox" name="video" id="video-toggle">
+						<label for="video-toggle"></label>
+					</div>
+					<div class="setting-header">
+						Video Updates
+					</div>
+					<div class="setting-desc">
+						GET NOTIFIED WHEN NEW VIDEOS ARE ADDED TO CLIXTV
+					</div>
+				</div>
+				<div class="single-setting">
+					<div class="togglebox-right">
+						<input class="input-toggle" type="checkbox" name="charity" id="charity-toggle">
+						<label for="charity-toggle"></label>
+					</div>
+					<div class="setting-header">
+						Charity Updates
+					</div>
+					<div class="setting-desc">
+						GET NOTIFIED WHEN NEW CHARITIES ARE ADDED TO CLIXTV
+					</div>
+				</div>
+				<div class="your-clix">
+					Your ClixTV
+				</div>
+				<div class="single-setting">
+					<div class="togglebox-right">
+						<input class="input-toggle" type="checkbox" name="recomended" id="recomended-toggle">
+						<label for="recomended-toggle"></label>
+					</div>
+					<div class="setting-header">
+						Recomended Videos
+					</div>
+					<div class="setting-desc">
+						CLIX VIDEOS WE THINK YOU'LL LIKE
+					</div>
+				</div>
+				<div class="single-setting">
+					<div class="togglebox-right">
+						<input class="input-toggle" type="checkbox" name="categories" id="categories-toggle">
+						<label for="categories-toggle"></label>
+					</div>
+					<div class="setting-header">
+						Video Categories Updates
+					</div>
+					<div class="setting-desc">
+						A VIDEO CATEGORY OF YOURS IS UPDATED
+					</div>
+				</div>
+				<div class="single-setting">
+					<div class="togglebox-right">
+						<input class="input-toggle" type="checkbox" name="star" id="star-toggle">
+						<label for="star-toggle"></label>
+					</div>
+					<div class="setting-header">
+						Star Updates
+					</div>
+					<div class="setting-desc">
+						A FAVORITE STAR OF YOURS IS UPDATED
+					</div>
+				</div>
+				<div class="single-setting">
+					<div class="togglebox-right">
+						<input class="input-toggle" type="checkbox" name="brand" id="brand-toggle">
+						<label for="brand-toggle"></label>
+					</div>
+					<div class="setting-header">
+						Brand Updates
+					</div>
+					<div class="setting-desc">
+						A FAVORITE BRAND OF YOURS IS UPDATED
+					</div>
+				</div>
+				<div class="your-clix">
+					Notifications
+				</div>
+				<div class="single-setting">
+
+					<div class="check-box-right">
+						<div class="row">
+							<div class="check-box col-xs-6">
+								<span class="input-label">Text</span>
+								<input class="input-check" type="checkbox" name="text" id="text-check">
+								<label for="text-check"></label>
+							</div>
+							<div class="check-box col-xs-6">
+								<span class="input-label">Push</span>
+								<input class="input-check" type="checkbox" name="push" id="push-check">
+								<label for="push-check"></label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="single-input col-xs-12">
+								<div class="input-header">
+									Phone
+									<span class="icon icon-edit-icon-normal-25x26" ng-hide="editableAccount=='Phone'" ng-click="startEdit('Phone')" ></span>
+								</div>
+								<div class="input-body">
+									<div class="unedit" ng-hide="editableAccount=='Phone'">
+										{{user.Phone}}
+									</div>
+									<div class="edit-mode" ng-if="editableAccount=='Phone'">
+										<input type="text" ng-model="userEdit.Phone">
+										<span ng-show="editableAccount=='Phone'">
+											<div class="cancel-btn" ng-click="cancelEdit()">Cancel</div>
+											<div class="save-btn" ng-click="update_user()">Save</div>
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="noti-desclaimer col-xs-12">
+								Modifying your phone number here will change the phone number for your account.
+							</div>
+						</div>
+					</div>
+					<div class="check-box-right email">
+						<div class="row">
+							<div class="check-box col-xs-6">
+								<span class="input-label">Email</span>
+								<input class="input-check" type="checkbox" name="email" id="email-check">
+								<label for="email-check"></label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="single-input col-xs-12">
+								<div class="input-header">
+									Email
+									<span class="icon icon-edit-icon-normal-25x26" ng-hide="editableAccount=='email'" ng-click="startEdit('email')" ></span>
+								</div>
+								<div class="input-body">
+									<div class="unedit" ng-hide="editableAccount=='email'">
+										{{user.email}}
+									</div>
+									<div class="edit-mode" ng-if="editableAccount=='email'">
+										<input type="text" ng-model="userEdit.email">
+										<span ng-show="editableAccount=='email'">
+											<div class="cancel-btn" ng-click="cancelEdit()">Cancel</div>
+											<div class="save-btn" ng-click="update_user()">Save</div>
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="noti-desclaimer col-xs-12">
+								Modifying your email address here, will change the email address for your account.
+							</div>
+						</div>
+
+					</div>
+					<div class="setting-header">
+						Send Notifications
+					</div>
+					<div class="setting-desc">
+						How we will keep you Up-To-Date
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
