@@ -1,0 +1,290 @@
+.brand-page {
+    color: white;
+    background-color: #0E0E0E;
+    @media (max-width: @screen-xs-max) {
+         padding-top: : 55px;
+    }
+    .brand-page-header {
+        position: relative;
+        height: 60vh;
+        background-position: center center;
+        background-size: cover;
+        background-attachment: fixed;
+        .overlay{
+            position: absolute;
+            background: rgba(0,0,0,0);
+            background: -moz-linear-gradient(to bottom, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.77));
+            background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,0,0,0)), color-stop(100%, rgba(0,0,0,0.77)));
+            background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.69) 50%, rgba(0,0,0,1) 100%);
+            background: -o-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.77) 100%);
+            background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.77) 100%);
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.77));
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=0 );
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: left;
+            padding: 10px 30px;
+            .pic {
+                background-position: center;
+                background-size: cover;
+                width: 135px;
+                height: 135px;
+                float: left;
+                border-radius: 50%;
+                margin-right: 20px;
+            }
+
+            .info{
+                float: left;
+                .title{
+                    font-family: Cabin;
+                    font-size: 56px;
+                    letter-spacing: 2.3px;
+
+                    @media (max-width: @screen-sm-max){
+                            font-size: 35px;
+                            letter-spacing:1.9px;
+                    }
+                }
+
+
+
+                .favorites{
+
+                    display: inline-block;
+                    border-radius: 30px;
+                    background-image: linear-gradient(to left, #fa0d1b, #911685);
+                    margin: 10px 0;
+                    padding: 2px;
+                    cursor: pointer;
+                    margin-right: 13px;
+                    span{
+                        background-color: #0e0e0e;
+                        font-size: 18px;
+                        text-transform: uppercase;
+                        padding: 8px 0px;
+                        letter-spacing: 1.2px;
+                        border-radius: 30px;
+                        position: relative;
+                        display: inline-block;
+                        text-align: center;
+                        width: 232px;
+
+                        .icon{
+                            right: 15px;
+                            top: 7px;
+                            font-size: 25px;
+                            position: absolute;
+                        }
+                    }
+
+                    &:hover span{
+                        background-color: transparent;
+
+                        .icon{
+                            background-position: center;
+                            background-size: cover;
+                            background-image: url('/assets/theme/clixtv/images/sprite/favorite-icon-filled.png');
+                        }
+                    }
+
+
+
+
+                }
+                .fa-share-alt{
+                    font-size: 20px;
+                    cursor: pointer;
+                }
+            }
+
+            .videos{
+                position: absolute;
+                right: 36px;
+                bottom: 43px;
+                color: #757575;
+                font-size: 1.3vw;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                font-family: Cabin;
+            }
+        }
+
+    }
+
+    .tabs-selectors{
+        border-bottom: 1px solid #636363;
+        margin: 10px 30px;
+        .tab-selector{
+            display: inline-block;
+            padding: 10px 0px;
+            margin: 0 30px 0 0;
+            font-size: 24px;
+            color: #8a8a8a;
+            cursor: pointer;
+            font-family: Cabin;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+
+            &:hover, &.active{
+                color: white;
+                border-bottom: 4px solid #fe0000;
+                padding-bottom: 6px;
+            }
+        }
+    }
+
+    .tabs{
+        margin: 30px;
+
+        .tab{
+            margin: 0;
+            &.home{
+                .home-left{
+                    .info{
+                        border-bottom: 1px solid #636363;
+                        padding: 30px 0;
+                        margin-right: 15px;
+                        .player{
+
+                        }
+                        .details{
+                            .title{
+                                color: #9c9b9b;
+                                font-size: 26px;
+                                letter-spacing: 3.8px;
+                                text-transform: uppercase;
+                                font-family: Cabin;
+                            }
+
+                            .desc{
+                                font-size: 26px;
+                                line-height: 30px;
+                                letter-spacing: 0.5px;
+                                border-bottom: 1px solid #303030;
+                                padding-bottom: 30px;
+                            }
+
+                            .social{
+                                margin-top: 15px;
+                                padding-left: 20px;
+                                .icon{
+                                    float: left;
+                                    margin-right: 20px;
+                                }
+                                .reward{
+                                    background-color: #fe0000;
+                                    border-radius: 50px;
+                                    padding: 8px 10px;
+                                    float: left;
+                                    font-size: 20px;
+                                    width: 42px;
+                                    height: 42px;
+                                    letter-spacing: 0.4px;
+                                    position: relative;
+
+                                    span{
+                                        font-size: 10px;
+                                        position: absolute;
+                                        top: 10px;
+                                        left: 6px;
+                                    }
+
+                                }
+                            }
+
+                        }
+                    }
+
+                }
+
+                .home-right{
+                    background-color: #1b1b1b;
+                    border: 1px solid #777;
+                    padding: 0 30px;
+
+                    .offer {
+                        margin: 30px 5px;
+                        display: block;
+                    }
+
+                    .title{
+                        color: #898989;
+                        font-size: 1.35vw;
+                        text-align: center;
+                        padding: 30px 0;
+                        font-family: Cabin;
+                        text-transform: uppercase;
+                        letter-spacing: 2.4px;
+                    }
+
+                    .all-stars {
+                        font-size: 0.8vw;
+                        text-align: center;
+                        color: #898989;
+                        border: 1px solid #979797;
+                        padding: 0.23vw;
+                        letter-spacing: 0.125vw;
+                        text-transform: uppercase;
+                        border-radius: 40px;
+                        margin: 0.8vw;
+
+                        &:hover{
+                            color: white;
+                            border-color: white;
+                        }
+                    }
+                }
+            }
+
+            .tab-header{
+                border-bottom: 1px solid #a1a1a1;
+                margin: 30px 0px;
+            }
+
+            .title{
+                font-size: 30px;
+                color: #aaaaaa;
+                letter-spacing: 2px;
+                padding: 10px 0px 20px;
+                text-transform: uppercase;
+
+                .fa-chevron-right{
+                    margin-left: 30px;
+                }
+            }
+
+            .celebrity-section{
+                margin: 20px 0px;
+            }
+
+            .all-videos {
+                font-size: 18px;
+                text-align: center;
+                color: #9c9b9b;
+                border: 1px solid #a1a1a1;
+                padding: 2px;
+                letter-spacing: 2.3px;
+                text-transform: uppercase;
+                border-radius: 40px;
+                margin: 15px 20px;
+                margin: 20px auto;
+                width: 260px;
+            }
+
+
+            .celeb-videos{
+
+                .video{
+                    margin-bottom: 25px;
+                }
+            }
+
+            .offer{
+                margin-bottom: 30px;
+            }
+        }
+    }
+
+}

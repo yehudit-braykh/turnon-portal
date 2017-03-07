@@ -1,0 +1,47 @@
+.about-page {
+    // padding-top: 72px;
+    font-family: PTsans, arial, 'Lato', sans-serif;
+    overflow-x: hidden;
+	.about-head {
+		background-image: url(/assets/theme/clixtv/images/about_bg.png);
+		background-size: cover;
+		height: 60vh;
+	}
+	.about-easy {
+        
+		background-image: url(/assets/theme/clixtv/images/about_bg.png);
+		background-size: cover;
+		height: 62vh;
+	}
+	.about-free {
+		background-image: url(/assets/theme/clixtv/images/about_bg.png);
+		background-size: cover;
+	}
+
+    .about-what, .about-free, .about-easy {
+        position: relative;
+        .white-circle {
+            background-image: url(/assets/theme/clixtv/images/arrow-thin.png);
+            background-size: 45%;
+            background-repeat: no-repeat;
+            background-position: center 45%;
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            border-radius: 45px;
+            background-color: white;
+            top: -40px;
+            left: 50%;
+            margin-left: -45px;
+            &.left {
+                top: -50px;
+                background-position: center 63%;
+                left: 35%;
+            }
+            &.center {
+                top: -35px;
+                background-position: center 50%;
+            }
+        }
+    }
+}

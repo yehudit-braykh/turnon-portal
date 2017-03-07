@@ -1,0 +1,50 @@
+
+    .mentio-menu{
+        background: black;
+        padding: 0;
+
+        &.scrollable-menu {
+            height: auto;
+            max-height: 300px;
+            min-width: 250px;
+            overflow: auto;
+        }
+        &.menu-highlighted {
+            font-weight: bold;
+        }
+
+        li{
+            padding: 5px;
+            line-height: 40px;
+            border-bottom: 2px solid black;
+            background-color: #282828;
+            font-size: 16px;
+
+            a{
+                color: white;
+
+                &:hover{
+                    color: white;
+                }
+            }
+
+            .item-pic {
+                background-position: center;
+                background-size: cover;
+                width: 40px;
+                height: 40px;
+                float: left;
+                margin-right: 10px;
+                border-radius: 50%;
+            }
+
+            .menu-highlighted{
+                background-color: #fe0000;
+            }
+
+            &:hover{
+                background-color: #333333;
+            }
+        }
+
+    }

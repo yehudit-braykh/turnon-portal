@@ -1,0 +1,70 @@
+<div class="main-page">
+    <div id="myCarousel" class="homeCarousel carousel slide " data-ride="carousel">
+      <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+      <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <div class="header-text">
+                    The Network That Gives.
+                </div>
+                <div class="span-text">
+                    SUPPORT YOUR FAVORITE CAUSES BY WATCHING
+                </div>
+                <div class="signup-btn" ng-click="openLogin()">
+                    SIGN UP FREE
+                </div>
+            </div>
+            <div class="item">
+                <div class="header-text">
+                    Your Stars. Their Passions.
+                </div>
+                <div class="span-text">
+                    PREMIUM CONTENT FROM YOUR FAVORITE STARS
+                </div>
+                <div class="signup-btn" ng-click="openLogin()">
+                    SIGN UP FREE
+                </div>
+            </div>
+            <div class="item">
+                <div class="span-text2">
+                    PREMIUM CONTENT FROM YOUR FAVORITE STARS
+                </div>
+                <div class="header-text">
+                    Your Stars. Their Passions.
+                </div>
+                <div class="signup-btn" ng-click="openLogin()">
+                    SIGN UP FREE
+                </div>
+            </div>
+        </div>
+          <!-- Left and right controls -->
+          <a class="left carousel-control" onclick="$(this).closest('.homeCarousel').carousel('prev');" role="button" data-slide="prev">
+            <span class="icon icon-arrow-left-20x33" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" onclick="$(this).closest('.homeCarousel').carousel('next');" role="button" data-slide="next">
+            <span class="icon icon-arrow-right-20x33" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+  </div>
+    <div class="top-video">
+        <div class="overflow-bg">
+        </div>
+        <video src="http://advncedcdn.vo.llnwd.net/clixtv_storage/storage/57cdc2665aad0b6fcf67bb3d/5829ca559c56fb0004f1fd6d/file.mp4" autoplay loop muted>
+        </video>
+
+    </div>
+    <div class="carousel-row"  ng-repeat="category in categories track by $index">
+        <div class="page-title2" ng-click="go('category/'+category.title)">{{category.title}} <i class="icon icon-right-arrow-12x23" aria-hidden="true"></i></div>
+        <div class="carousel" >
+            <clix-carousel ng-if="getVideos(category.title)" data-videos="getVideos(category.title)" data-index="$index"></clix-carousel>
+        </div>
+    </div>
+
+</div>
