@@ -7,7 +7,10 @@
                     <div class="title">
                         {{brand.title}}
                     </div>
-                    <div class="favorites hand" ng-click="addToFavorites()"><span>{{isFavorite()?'-':'+'}}  Favorites<i class="icon {{isFavorite()?'icon-favorite-icon-filled':'icon-favorite-star-sm'}}" style="display:inline-block"></i></span></div>
+                    <div class="favorites-border-gradient hand" ng-click="addToFavorites()"><span>{{isFavorite()?'-':'+'}}  Favorites<i class="icon {{isFavorite()?'icon-favorite-icon-filled':'icon-favorite-star-sm'}}" style="display:inline-block"></i></span></div>
+                    <div class="share">
+                        <span class="icon icon-share-black-36x37 hand" ng-click="shareModal()"></span> <span class="reward">50</span>
+                    </div>
                 </div>
                 <div class="videos">{{relatedOffers.length}} {{relatedOffers.length>1?'Offers':Offer}}</div>
             </div>
@@ -23,18 +26,18 @@
         <div class="tab home row" ng-switch-when="Home">
             <div class="home-left col-md-10">
                 <div class="info row">
-                    <div class="player col-sm-7">
+                    <div class="player col-sm-7" style="padding-left:0;">
                         <jwplayer ng-if="brand" data-id="charityPlayer" data-video="brand" data-auto-play="true"></jwplayer>
                     </div>
                     <div class="details col-sm-5">
                         <div class="title">About {{brand.title}}</div>
-                        <div class="desc">{{brand.video.description}}</div>
+                        <div class="desc">{{brand.description}}</div>
                     </div>
                 </div>
-                <div class="celebrity-section" ng-repeat="celeb in brand.relatedVideos">
+                <div class="celebrity-section row" ng-repeat="celeb in brand.relatedVideos">
                     <div class="title">{{celeb.title}} And {{brand.title}}   <i class="icon icon-arrow-right-gray-12x23" style="display: inline-block;" style="display: inline-block;" aria-hidden="true"></i></div>
                     <div class="celeb-videos row">
-                        <clix-block class="col-md-3" ng-repeat="video in brand.relatedVideos | limitTo:4" data-model="video" ></clix-block>
+                        <clix-carousel ng-if="brand.relatedVideos" data-slides="4" data-videos="brand.relatedVideos" data-index="brand._id"></clix-caeousel>
                     </div>
                 </div>
                 <div class="all-videos hand" ng-click="$parent.shownTab='Videos'"s>See All Videos</div>
@@ -45,14 +48,14 @@
                 <div class="all-stars hand" ng-click="$parent.shownTab='Offers'"s>See All Offers</div>
             </div>
         </div>
-        <div class="tab row" ng-switch-when="Offers">
+        <div class="tab row" ng-switch-when="Offers" style="margin:0 -15px">
             <clix-sec-block ng-repeat="offer in relatedOffers" data-model="offer" class="offer col-xs-6 col-sm-3 col-md-4 col-lg-2" data-offer="true" data-sub-menu="true" data-href="offer" data-href-param="_id"  ></clix-sec-block>
         </div>
         <div class="tab row" ng-switch-when="Stars">
-            <div class="celebrity-section" ng-repeat="celeb in brand.relatedVideos">
+            <div class="celebrity-section" ng-repeat="celeb in brand.celebrities">
                 <div class="title">{{celeb.title}} And {{brand.title}}   <i class="icon icon-arrow-right-gray-12x23" style="display: inline-block;" aria-hidden="true"></i></div>
                 <div class="celeb-videos row">
-                    <clix-block class="video col-xs-12 col-sm-6 col-md-3" ng-repeat="video in brand.relatedVideos | limitTo:4" data-model="video" ></clix-block>
+                    <clix-carousel ng-if="brand.relatedVideos" data-videos="brand.relatedVideos" data-index="celeb._id"></clix-caeousel>
                 </div>
             </div>
         </div>
@@ -73,7 +76,7 @@
             </div>
 
             <div class="celeb-videos row">
-                <clix-block class="video col-xs-12 col-sm-6 col-md-3" ng-repeat="video in brand.relatedVideos | orderBy:sortField" data-model="video" ></clix-block>
+                <clix-block class="video col-xs-12 col-sm-6 col-md-3 col-lg-15" ng-repeat="video in brand.relatedVideos | orderBy:sortField" data-model="video" ></clix-block>
             </div>
         </div>
     </div>

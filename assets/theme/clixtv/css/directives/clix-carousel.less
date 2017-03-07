@@ -14,6 +14,7 @@
         }
 
     }
+
     .slick-list {
         padding-left: 0px !important;
         padding-right: 70px !important;
@@ -34,15 +35,15 @@
     }
     .slick-arrow{
         position: absolute;
-        // height: 20px;
         height: 100%;
         width: 62px;
         top: 0;
         cursor: pointer;
-        // top: ~"calc(50% - 16.5px)";
-        // -webkit-transform: translate(0, -50%);
-        // -ms-transform: translate(0, -50%);
-        // transform: translate(0, -50%);
+
+        &.hidden{
+            display: none;
+        }
+
         &:hover, &:focus {
             &:before {
             }

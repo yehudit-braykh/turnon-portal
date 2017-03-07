@@ -4,7 +4,7 @@
             <div class="brand-logo" style="background-image:url('{{model.BrandTransparentLogo.url}}')"></div>
             <div class="img-overlay pa"></div>
         </div>
-        <div class="img pr offer " ng-if="offer" style="background-image:url('{{model.BackgroundImage.url}}')">
+        <div class="img pr offer " ng-if="offer" style="background-image:url('{{model.BrandLogo.url}}')">
             <div class="offer-overlay pa"></div>
             <div class="offer-logo pa" style="background-image:url('{{model.BrandTransparentLogo.url}}')"></div>
             <div class="img-overlay pa"></div>
@@ -20,7 +20,7 @@
         <div class="dropdown" ng-if="!brand">
           <div class="dots hand dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class='hand icon icon-dots-icon-normal'></span></div>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li><a class="hand" ng-click="shareModal()"><span style="display:inline-block" class="icon icon-share-white-19x20 ib hand" ng-click="shareModal()"></span> Share</a></li>
+            <li><a class="hand" ng-click="shareModal()"><span style="display:inline-block" class="icon icon-share-icon-sm ib hand" ng-click="shareModal()"></span> Share</a></li>
             <li><a class="hand" ng-click="addRemoveFavorites(model)"><span style="display:inline-block" class="icon {{isFavorite(model.id)?'icon-remove-icon':'icon-favorite-star-sm'}}"></span> {{isFavorite(model.id)?'Remove From Favorites':'Add To Favorites'}}</a></li>
             <li><a href="#"><span class="icon icon-star-23x21" style="display:inline-block"></span> Go to Stars</a></li>
           </ul>
@@ -29,7 +29,7 @@
           <div class="dots hand dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class='hand icon icon-dots-icon-normal'></div>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
             <li><a ng-if="offer" class="hand" ng-click="addRemoveOffer(model)"><span class="icon icon-{{isSavedOffer(model._id)?'minus-circle-19x19':'plus-circle-19x19'}}" style="display:inline-block"></span> {{isSavedOffer(model._id)?'Unsave Offer':'Save Offer'}}</a></li>
-            <li><a class="hand" ng-click="shareModal()"><span class="icon icon-share-white-19x20 ib"></span> Share <span class="reward"> 50</span></a></li>
+            <li><a class="hand" ng-click="shareModal()"><span class="icon icon-share-icon-sm ib"></span> Share <span class="reward"> 50</span></a></li>
             <li><a class="hand" ng-click="addRemoveFavorites(model)"><span class="icon {{isFavorite(model._id)?'icon-remove-icon':'icon-favorite-star-sm'}}" style="display:inline-block"></span> {{isFavorite(model._id)?'Remove From Favorites':'Add To Favorites'}}</a></li>
           </ul>
         </div>

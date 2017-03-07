@@ -34,8 +34,8 @@
                 <div class="row">
                     <div class="video-details pr col-xs-12 ">
                         <div class="header">
-                            <div class="pic" style="background-image:url({{video.PosterH.url}})"></div>
-                            <div class="title">{{video.artist_name }}</div>
+                            <div class="pic hand" style="background-image:url({{relatedCelebrity.BrandLogo.url?relatedCelebrity.BrandLogo.url:video.PosterH.url}})" ng-click="go('celebrity/'+relatedCelebrity._id)"></div>
+                            <div class="title hand" ng-click="go('celebrity/'+relatedCelebrity._id)">{{relatedCelebrity.title?relatedCelebrity.title:video.artist_name }}</div>
                             <div class="star"><i ng-click="addRemoveFavorites()" class="hand icon {{isFavorite()?'icon-favorite-hover-video-top':'icon-favorite-normal-video-top'}}"></i></div>
                         </div>
                         <div class="social">
@@ -54,7 +54,7 @@
                             <div class="video-brands">
                                 <div class="brands left">
                                     <div class="brands-title">Brands in this series</div>
-                                    <div class="offer pr hand" ng-if="related_offers" ng-repeat="offer in related_offers | limitTo: 4" ng-click="go('/brand/'+offer.title)">
+                                    <div class="offer pr hand" ng-if="related_brands" ng-repeat="offer in related_brands | limitTo: 4" ng-click="go('/brand/'+offer.title)">
                                         <div class="offer-img pr" style="background-image:url({{offer.BrandTransparentLogo.url}})">
                                             <div class="overlay pa"></div>
                                         </div>
@@ -63,7 +63,7 @@
                                 </div>
                                 <div class="brands right">
                                     <div class="brands-title charities">Charity</div>
-                                    <div class="offer charity hand" ng-if="related_offers" ng-repeat="charity in related_offers | limitTo: 1" ng-click="go('/charity/'+charity.title)">
+                                    <div class="offer charity hand" ng-if="related_charities" ng-repeat="charity in related_charities | limitTo: 1" ng-click="go('/charity/'+charity.title)">
                                         <div class="offer-img pr" style="background-image:url({{charity.BrandTransparentLogo.url}})">
                                             <div class="overlay pa"></div>
                                         </div>

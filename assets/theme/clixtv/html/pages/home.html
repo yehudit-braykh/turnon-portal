@@ -16,7 +16,7 @@
                 <div class="span-text">
                     SUPPORT YOUR FAVORITE CAUSES BY WATCHING
                 </div>
-                <div class="signup-btn" ng-click="openLogin()">
+                <div ng-if="!user._id" class="signup-btn" ng-click="openLogin()">
                     SIGN UP FREE
                 </div>
             </div>
@@ -27,7 +27,7 @@
                 <div class="span-text">
                     PREMIUM CONTENT FROM YOUR FAVORITE STARS
                 </div>
-                <div class="signup-btn" ng-click="openLogin()">
+                <div ng-if="!user._id" class="signup-btn" ng-click="openLogin()">
                     SIGN UP FREE
                 </div>
             </div>
@@ -38,7 +38,7 @@
                 <div class="header-text">
                     Your Stars. Their Passions.
                 </div>
-                <div class="signup-btn" ng-click="openLogin()">
+                <div ng-if="!user._id" class="signup-btn" ng-click="openLogin()">
                     SIGN UP FREE
                 </div>
             </div>

@@ -5,7 +5,8 @@ clixApp.directive('clixCarousel', function() {
       scope: {
           videos: '=',
           autoPlay: '=',
-          index: '='
+          index: '=',
+          slides: '@'
       },
       controller: ['$scope', '$rootScope', '$location', 'User', 'brandsFactory', function clixCarouselController($scope, $rootScope, $location, User, brandsFactory) {
           sca = $scope;
@@ -16,17 +17,17 @@ clixApp.directive('clixCarousel', function() {
             //   console.log('slick!');
                $('.clix-carousel-'+$scope.index).slick({
                    nextArrow: '<div class="next"><div class="pr"><i class="icon icon-next-27x65"></i></div></div>',
-                   prevArrow: '<div class="prev"><div class="pr"><i class="icon icon-next-27x65"></i></div></div>',
+                   prevArrow: '<div id="'+$scope.index+'" class="prev hidden"><div class="pr"><i class="icon icon-next-27x65"></i></div></div>',
                    dots: false,
-                   infinite: true,
+                   infinite: false,
                    speed: 300,
-                   centerMode:true,
-                   slidesToShow: 5,
+                //   centerMode:true,
+                   slidesToShow: $scope.slides?$scope.slides:5,
                    slidesToScroll: 1,
-                   initialSlide:2,
+                  // initialSlide:2,
                    autoplay: $scope.autoPlay,
                    autoplaySpeed: 2000,
-                   centerPadding: '40px',
+                //   centerPadding: '40px',
                    responsive: [
                      {
                        breakpoint: 1400,
@@ -59,8 +60,16 @@ clixApp.directive('clixCarousel', function() {
                    }
                    ]
                });
-               $scope.loaded= true;
+               $scope.loaded = true;
+
+                $('.clix-carousel-'+$scope.index).on('afterChange', function(event, slick, currentSlide, nextSlide){
+                   if(currentSlide==0) $('#'+$scope.index).addClass('hidden');
+                   else $('#'+$scope.index).removeClass('hidden');
+                 });
+
           }, 0);
+
+
 
           $scope.addRemoveFavorites = function(item){
               User.addRemoveFavorites(item._id, 'celeb');

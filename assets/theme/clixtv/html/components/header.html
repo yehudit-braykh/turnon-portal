@@ -76,7 +76,7 @@
                                             </span>
                                         </div>
                                         <div class="not-time">
-                                            <span class="icon icon-star-23x21" style="display:inline-block;vertical-align: sub;"></span> {{notification.added | timeago}}
+                                            <span class="icon icon-star-23x21" style="display:inline-block;transform: scale(0.84);"></span> {{notification.added | timeago}}
                                             <span class="not-reward-points">100 Reward Points</span>
                                         </div>
                                     </li>
@@ -85,11 +85,11 @@
                             </div>
                             <div class="dropdown ib">
                                 <div id="dropdownMenu1" class="ib" class="ib dropdown-toggle user-section">
-                                    <span>{{user.firstName}}</span>
-                                    <span ng-click="showAccountDrop='true'" class="hand icon icon-arrow-left-20x33 ml15"></span>
+                                    <span style="float: left;margin-top: 10px;">{{user.firstName}}</span>
+                                    <span style="float: right;margin-top: 17px;transform: rotate(90deg) scale(1.2);" ng-click="showAccountDrop='true'" class="hand icon icon-arrow-thin-white-20x11 ml15"></span>
                                 </div>
                                 <ul class="dropdown-menu account-drop {{showAccountDrop=='true'?'show':''}}" aria-labelledby="dropdownMenu1">
-                                    <span ng-click="showAccountDrop='false'" class="hand icon icon-arrow-right-20x33 pa"  style="left:20px;top:20px;z-index:2"></span>
+                                    <span ng-click="showAccountDrop='false'" class="hand icon icon-arrow-thin-white-20x11 pa"  style="left:20px;top:26px;z-index:2;transform: rotate(-90deg) scale(1.2);"></span>
                                     <div class="image-field">
                             			<div class="overlay-image" style="background-image: url({{user.avatar}})">
 

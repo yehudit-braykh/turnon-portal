@@ -46,13 +46,13 @@
 		<div class="nav-left">
 			<div class="single-tab {{shownView=='account'?'selected':''}}" ng-click="shownView='account'">
 				<div class="ib view-width3">
-					<img src="/assets/theme/clixtv/images/sprite/user-24x31.png" style="padding: 0 0.3vw;">
+					<img src="/assets/theme/clixtv/images/sprite/user-24x31.png">
 				</div>
 				Account
 			</div>
 			<div class="single-tab {{shownView=='watchlist'?'selected':''}}" ng-click="shownView='watchlist'">
 				<div class="ib view-width3">
-					<img src="/assets/theme/clixtv/images/sprite/plus-30x30.png" alt="">
+					<img src="/assets/theme/clixtv/images/sprite/watchlist-icon-left-nav.png" alt="">
 				</div>
 				Watch List
 			</div>
@@ -64,25 +64,25 @@
 			</div>
 			<div class="single-tab {{shownView=='offers'?'selected':''}}" ng-click="shownView='offers'">
 				<div class="ib view-width3">
-					<img src="/assets/theme/clixtv/images/sprite/offers-31x30.png" alt="">
+					<img src="/assets/theme/clixtv/images/sprite/saved-offers-icon-left-nav.png" alt="">
 				</div>
 				Saved Offers
 			</div>
 			<div class="single-tab {{shownView=='rewards'?'selected':''}}" ng-click="shownView='rewards'">
 				<div class="ib view-width3">
-					<img src="/assets/theme/clixtv/images/sprite/cup-27x26.png" alt="">
+					<img src="/assets/theme/clixtv/images/sprite/rewards-icon-left-nav.png" alt="">
 				</div>
 				Rewards
 			</div>
 			<div class="single-tab {{shownView=='notifications'?'selected':''}}" ng-click="shownView='notifications'">
 				<div class="ib view-width3">
-					<img src="/assets/theme/clixtv/images/sprite/bell-25x25.png" alt="">
+					<img src="/assets/theme/clixtv/images/sprite/notifications-icon-left-nav.png" alt="">
 				</div>
 				<span class="pr">Notifications<span class="notifications-number" ng-show="unreadNotificationsCount()">{{unreadNotificationsCount()}}</span></span>
 			</div>
 			<div class="single-tab {{shownView=='settings'?'selected':''}}" ng-click="shownView='settings'">
 				<div class="ib view-width3">
-					<img src="/assets/theme/clixtv/images/sprite/settings-29x29.png" alt="">
+					<img src="/assets/theme/clixtv/images/sprite/settings-icon-left-nav.png" alt="">
 				</div>
 				Settings
 			</div>
@@ -316,7 +316,7 @@
 				</div>
 			</div>
 			<div class="favorites" ng-switch-when="favorites">
-				<div class="tabs-selectors">
+				<div class="tabs-selectors" style="margin:10px 0;">
 			        <div class="tab-selector {{tabs.shownTab=='stars'?'active':''}}" ng-click="tabs.shownTab='stars'">STARS</div>
 			        <div class="tab-selector {{tabs.shownTab=='brands'?'active':''}}" ng-click="tabs.shownTab='brands'">BRANDS</div>
 			        <div class="tab-selector {{tabs.shownTab=='charities'?'active':''}}" ng-click="tabs.shownTab='charities'">CHARITIES</div>
@@ -324,7 +324,7 @@
 			    </div>
 				<div class="" ng-switch="tabs.shownTab">
 					<div class="" ng-switch-when="stars">
-						<div class="filter-search row">
+						<div class="filter-search row" style="margin: 0;">
 							<div class="filter col-sm-4">
 								<i class="icon icon-search-21x22"></i>
 								<input class="search filter-btn" type="text" placeholder="Search Stars">
@@ -360,18 +360,20 @@
 								Like your favorite Stars to appear here!
 							</div>
 							<div class="" ng-if="user.favoriteCelebs">
-								<clix-block class="col-sm-3" ng-repeat="celeb in favoriteCelebs" data-model="celeb" style="margin:15px 0"></clix-block>
+								<div class="row">
+									<clix-block class="col-sm-3" ng-repeat="celeb in favoriteCelebs" data-model="celeb" style="margin:15px 0"></clix-block>
+								</div>
 							</div>
 						</div>
 					</div>
 					<div class="" ng-switch-when="brands">
-						<div class="filter-search row">
-							<div class="col-sm-4">
+						<div class="filter-search row" style="margin:0;">
+							<div class="filter col-sm-4">
 
 								<i class="icon icon-search-21x22"></i>
 								<input class="search filter-btn" type="text" placeholder="Search Brands">
 							</div>
-							<div class="col-sm-4">
+							<div class="filter col-sm-4">
 								<div class="filter-btn hand dropdown-toggle" type="button" id="sortddm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 									{{selectedSort?selectedSort:'FILTER BY'}}
 									<span class="fa fa-angle-down flr" style="font-size:33px;"></span>
@@ -387,7 +389,7 @@
 									<li class="hand filter-menu-row" ng-click="selectedSort='GROCERY, HOUSEHOLD & PETS';sortBy('')">JEWELRY & WATCHES</li>
 								  </ul>
 							</div>
-							<div class="col-sm-4">
+							<div class="filter col-sm-4">
 								<div class="filter-btn hand dropdown-toggle" type="button" id="sortddm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 									{{selectedSort?selectedSort:'SORT BY'}}
 									<span class="fa fa-angle-down flr" style="font-size:33px;"></span>
@@ -404,13 +406,16 @@
 								Like your favorite Stars to appear here!
 							</div>
 							<div class="" ng-if="user.favoriteBrands">
-								<clix-sec-block class="brand col-xs-6 col-sm-4 col-md-3 col-lg-2" data-sub-menu="true" data-brand="true" data-href="brand" data-href-param="title" ng-repeat="brand in favoriteBrands" data-model="brand" style="margin:15px 0"></clix-sec-block>
+								<div class="row">
+									<clix-sec-block class="brand col-xs-6 col-sm-4 col-md-3 col-lg-2" data-sub-menu="true" data-brand="true" data-href="brand" data-href-param="title" ng-repeat="brand in favoriteBrands" data-model="brand" style="margin:15px 0"></clix-sec-block>
+								</div>
+
 							</div>
 						</div>
 					</div>
 					<div class="" ng-switch-when="charities">
-						<div class="filter-search row">
-							<div class="col-sm-4">
+						<div class="filter-search row" style="margin: 0;">
+							<div class="filter col-sm-4">
 								<i class="icon icon-search-21x22"></i>
 								<input class="search filter-btn" type="text" placeholder="Search Charities" ng-model="searchCharities">
 							</div>
@@ -420,8 +425,9 @@
 								Like your favorite Stars to appear here!
 							</div>
 							<div class="" ng-if="user.favoriteCharities">
-								<clix-sec-block class="brand col-xs-6 col-sm-4 col-md-3 col-lg-2" data-sub-menu="true" data-charity="true" data-href="charity" data-href-param="title" ng-repeat="charity in favoriteCharities | filter:searchCharities" data-model="charity" style="margin:15px 0"></clix-sec-block>
-
+								<div class="row">
+									<clix-sec-block class="brand col-xs-6 col-sm-4 col-md-3 col-lg-2" data-sub-menu="true" data-charity="true" data-href="charity" data-href-param="title" ng-repeat="charity in favoriteCharities | filter:searchCharities" data-model="charity" style="margin:15px 0"></clix-sec-block>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -430,7 +436,10 @@
 							Like your favorite Stars to appear here!
 						</div>
 						<div class="" ng-if="user.favoriteCategories">
-							<clix-sec-block ng-repeat="cat in favoriteCategories" data-model="cat" data-href="category" data-href-param="title" data-category="true" class="category col-xs-6 col-sm-4 col-md-3 col-lg-2" style="margin:15px 0"></clix-sec-block>
+							<div class="row">
+									<clix-sec-block ng-repeat="cat in favoriteCategories" data-model="cat" data-href="category" data-href-param="title" data-category="true" class="category col-xs-6 col-sm-4 col-md-3 col-lg-2" style="margin:15px 0"></clix-sec-block>
+							</div>
+
 						</div>
 
 					</div>

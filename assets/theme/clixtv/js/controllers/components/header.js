@@ -88,6 +88,8 @@ clixApp.controller('headerController', function headerController ($scope, $rootS
           $rootScope.$broadcast("show-login-modal", register);
       }
 
+
+
       $scope.$on("points-update", function (){
          knetikFactory.getPoints().then(function(data){
            $scope.user.current_balance = data;

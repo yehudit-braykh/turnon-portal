@@ -10,7 +10,6 @@ clixApp.directive('jwplayer', function() {
       controller: ['$scope', 'knetikFactory', function jwpCtrl($scope, knetikFactory) {
           $scope.setupVideo= function(vid){
               if(vid){
-                  console.log();
                   jwplayer($scope.id).setup({
                      file: vid.HLSStream?vid.HLSStream.url:vid.mainTrailer.url,
                     //  primary: 'html5',
@@ -19,6 +18,7 @@ clixApp.directive('jwplayer', function() {
                      aspectratio: "16:9",
                      controls: true,
                      width: "100%",
+                     //repeat: true,
                      icons: false,
                      image: vid.PosterH?vid.PosterH.url:vid.BackgroundImage.url,
                  });
@@ -29,18 +29,23 @@ clixApp.directive('jwplayer', function() {
 
                  $scope.currentPosition = 0;
                  jwplayer().on('time',function (e) {
-                     var positionDiff = e.position - $scope.currentPosition;
-                       if (Math.abs(e.position - $scope.currentPosition) > 1) {
-                           jwplayer().seek($scope.currentPosition);
-                       } else {
-                           $scope.currentPosition = e.position;
-                       }
+                    //  console.log(e);
+                     if(e.position == e.duration){
+                         jwplayer().seek(0);
+                         $scope.currentPosition = 0;
+                     }else{
+                         var positionDiff = e.position - $scope.currentPosition;
+                           if (Math.abs(e.position - $scope.currentPosition) > 1) {
+                               jwplayer().seek($scope.currentPosition);
+                           } else {
+                               $scope.currentPosition = e.position;
+                           }
+                     }
+
                  });
 
-
-
                  jwplayer().on('complete', function() {
-                     console.log('complete');
+                //     console.log('complete');
                      knetikFactory.updateActivity(vid, 'show');
                  })
              }
@@ -49,7 +54,9 @@ clixApp.directive('jwplayer', function() {
              }
          }
 
-
+         $scope.$on('$routeChangeStart', function(next, current) {
+            $scope.setupVideo(null);
+          });
 
          $scope.playVideo = function(){
              jwplayer().play();

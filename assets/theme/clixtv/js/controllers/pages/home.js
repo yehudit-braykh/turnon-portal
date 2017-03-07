@@ -1,6 +1,12 @@
 var h = null;
-clixApp.controller('homeController', function homeController ($scope, $rootScope, $location, videosFactory, categoryFactory) {
+clixApp.controller('homeController', function homeController ($scope, $rootScope, $location, videosFactory, categoryFactory, User) {
       h = $scope;
+
+      setTimeout(function(){
+          $scope.user = User.getUser();
+      },2000);
+
+
       $scope.videos = {};
       categoryFactory.getCategories().then(function (categories) {
           $scope.categories = categories;
@@ -19,7 +25,7 @@ clixApp.controller('homeController', function homeController ($scope, $rootScope
           }
       }
       $scope.openLogin = function () {
-          $('.singin-btn').click();
+          $rootScope.$broadcast("show-login-modal", true);
       }
 
       $scope.go = function (path) {

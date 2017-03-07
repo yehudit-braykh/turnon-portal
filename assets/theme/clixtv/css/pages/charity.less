@@ -7,8 +7,8 @@
     .charity-header {
         position: relative;
         height: 60vh;
-        background-position: center center;
-        background-size: cover;
+        background-position: 50% 0;
+        background-size: contain;
         background-attachment: fixed;
         .overlay{
             position: absolute;
@@ -38,7 +38,7 @@
             .info{
                 float: left;
                 .title{
-                    font-family: Cabin;
+                    font-family: PTSans;
                     font-size: 56px;
                     letter-spacing: 2.3px;
 
@@ -50,45 +50,7 @@
 
 
 
-                .favorites{
-                    display: inline-block;
-                    border-radius: 30px;
-                    background-image: linear-gradient(to left, #fa0d1b, #911685);
-                    margin: 10px 0;
-                    padding: 2px;
-                    cursor: pointer;
-                    margin-right: 13px;
 
-                    span{
-                        background-color: #0e0e0e;
-                        font-size: 18px;
-                        text-transform: uppercase;
-                        padding: 8px 0px;
-                        letter-spacing: 1.2px;
-                        border-radius: 30px;
-                        position: relative;
-                        display: inline-block;
-                        width: 232px;
-                        text-align: center;
-
-                        .icon{
-                            right: 15px;
-                            top: 7px;
-                            font-size: 25px;
-                            position: absolute;
-                        }
-                    }
-
-                    &:hover span{
-                        background-color: transparent;
-
-                        .icon{
-                            background-position: center;
-                            background-size: cover;
-                            background-image: url('/assets/theme/clixtv/images/sprite/favorite-icon-filled.png');
-                        }
-                    }
-                }
 
                 .icon-share-black-36x37:hover{
                     background-image: url("/assets/theme/clixtv/images/sprite/share-gray-hover-39x40.png");
@@ -111,27 +73,7 @@
 
     }
 
-    .tabs-selectors{
-        border-bottom: 1px solid #636363;
-        margin: 10px 20px 10px 30px;
-        .tab-selector{
-            display: inline-block;
-            padding: 10px 0px;
-            margin: 0 30px 0 0;
-            font-size: 24px;
-            color: #8a8a8a;
-            cursor: pointer;
-            font-family: Cabin;
-            text-transform: uppercase;
-            letter-spacing: 2.5px;
 
-            &:hover, &.active{
-                color: white;
-                border-bottom: 4px solid #fe0000;
-                padding-bottom: 6px;
-            }
-        }
-    }
 
     .tabs{
         margin: 30px;
@@ -140,14 +82,22 @@
 
             &.home{
                 .home-left{
+                    padding-left: 0;
+                    &.col-md-10{
+                        width: 81.5%;
+                    }
                     .info{
                         border-bottom: 1px solid #636363;
                         padding: 30px 0;
                         margin: 0 15px;
                         .player{
+                            padding-left: 0;
 
                         }
                         .details{
+                            position: relative;
+                            min-height: 150px;
+                            overflow: hidden;
                             .title{
                                 color: #898989;
                                 font-size: 26px;
@@ -159,28 +109,38 @@
 
                             .desc{
                                 font-size: 26px;
-                                border-bottom: solid 1px #2d2d2d;
-                                padding: 20px 0 40px;
+                                padding-top: 15px;
                                 letter-spacing: 1.5px;
-                                font-family: Cabin;
+
                             }
 
-                            .donate-btn{
-                                background-image: linear-gradient(to left, #ff14ec, #6b81df);
-                                text-align: center;
-                                padding: 17px;
-                                border-radius: 50px;
-                                font-size: 29px;
-                                margin-top: 40px;
-                                text-transform: uppercase;
-                                letter-spacing: 1.7px;
-                                font-family: Cabin;
+                            .btn-container{
+                                bottom: 0;
+                                position: absolute;
+                                background-color: #0E0E0E;
+                                border-top: 1px solid #636363;
+                                padding-top: 30px;
+                                width: 100%;
+                                .donate-btn{
+                                    border-top: solid 1px #2d2d2d;
+                                    background-image: linear-gradient(to left, #ff14ec, #6b81df);
+                                    text-align: center;
+                                    padding: 17px;
+                                    border-radius: 50px;
+                                    font-size: 29px;
+                                    text-transform: uppercase;
+                                    letter-spacing: 1.7px;
+                                    font-family: Cabin;
+                                    width: ~"calc(100% - 30px)";
 
 
-                                &:hover{
-                                    opacity: 0.8;
+
+                                    &:hover{
+                                        opacity: 0.8;
+                                    }
                                 }
                             }
+
                         }
                     }
 
@@ -188,6 +148,7 @@
 
                     .celebrity-section{
                         margin: 20px 15px;
+                        padding-right: 23px;
                     }
 
                     .all-videos {
@@ -208,6 +169,11 @@
                 .home-right{
                     background-color: #1b1b1b;
                     border: 1px solid #777;
+                    padding: 0 41px;
+
+                    &.col-md-2{
+                        width: 18.5%;
+                    }
                     .celeb{
                         padding: 15px;
                     }
@@ -216,6 +182,7 @@
                         font-size: 25px;
                         text-align: center;
                         padding: 15px 0;
+                        font-family: Cabin;
                     }
 
                     .all-stars {
@@ -248,6 +215,7 @@
                 letter-spacing: 2px;
                 padding: 10px 0px 20px;
                 text-transform: uppercase;
+                font-family: 30px;
 
                 .fa-chevron-right{
                     margin-left: 30px;

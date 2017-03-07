@@ -7,8 +7,8 @@ clixApp.controller('charityController', function charityController ($scope, $roo
       brandsFactory.getCharityByName($routeParams.charityName).then(function(data){
           $scope.charity=data;
 
-          celebrityFactory.getAllCelebrities().then(function(celebs){
-                  $scope.celebrities= celebs;
+          brandsFactory.getBrandCelebs($scope.charity._id).then(function(celebs){
+              $scope.celebrities= celebs;
         });
       })
         .then(function(){
@@ -24,6 +24,12 @@ clixApp.controller('charityController', function charityController ($scope, $roo
             });
 
         });
+
+        setInterval(function () {
+                $(".details").css('height', $(".player").height());
+        },10);
+
+
 
     window.onscroll = function(){
         var windowYOffset = window.pageYOffset,

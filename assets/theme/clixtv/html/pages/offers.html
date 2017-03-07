@@ -2,7 +2,7 @@
     <div class="page-title">
         Brands & Offers
     </div>
-    <div class="tabs-selectors">
+    <div class="tabs-selectors" style="margin:10px 0;">
         <div class="tab-selector {{shownTab=='Brands'?'active':''}}" ng-click="shownTab='Brands'">Brands</div>
         <div class="tab-selector {{shownTab=='Offers'?'active':''}}" ng-click="shownTab='Offers'">Offers</div>
     </div>
@@ -44,6 +44,7 @@
     </div>
     <div class="tabs" ng-switch="shownTab">
         <div class="tab row" ng-switch-when="Brands">
+            
             <clix-sec-block class="brand col-xs-6 col-sm-4 col-md-3 col-lg-2" data-sub-menu="true" data-brand="true" data-href="brand" data-href-param="title" ng-repeat="brand in brands | filter:offersFilter | orderBy:sortField" data-model="brand"></clix-sec-block>
         </div>
         <div class="tab row" ng-switch-when="Offers">

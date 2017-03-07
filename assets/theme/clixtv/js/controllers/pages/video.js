@@ -1,21 +1,33 @@
 var vid = null;
-clixApp.controller('videoController', function videoController ($scope, $rootScope, $location, brandsFactory, videosFactory, $routeParams, User) {
+clixApp.controller('videoController', function videoController ($scope, $rootScope, $location, brandsFactory,celebrityFactory, videosFactory, $routeParams, User) {
       vid = $scope;
       $scope.share;
 
       videosFactory.getVideoById($routeParams.videoId).then(function(data){
           $scope.video=data.data;
 
+          celebrityFactory.getCelebrity($scope.video.celebrities[0]).then(function(data){
+              $scope.relatedCelebrity=data;
+          });
+
+          celebrityFactory.getCelebrityBrands($scope.video.celebrities[0]).then(function(data) {
+              $scope.related_brands = data;
+          });
+
+          celebrityFactory.getCelebrityCharities($scope.video.celebrities[0]).then(function(data) {
+              $scope.related_charities = data;
+          });
+
+
           videosFactory.getVideoByCat('Sports').then(function(data){
               $scope.related_videos= data[0];
               $scope.series= data[0];
 
-              brandsFactory.getAllBrands().then(function(data){
-                  $scope.related_offers = data;
-              });
           });
 
-    });
+      });
+
+
     $scope.showMore = false;
     var totalHeight = 0;
 
@@ -31,6 +43,8 @@ clixApp.controller('videoController', function videoController ($scope, $rootSco
         }
     }
 
+    $scope.detailsHeight();
+
     $(window).on('resize orientationChange', function(event) {
         $scope.detailsHeight();
     });
@@ -41,13 +55,13 @@ clixApp.controller('videoController', function videoController ($scope, $rootSco
       }
 
       $scope.addRemoveFavorites = function(){
-          if($scope.video)
-            User.addRemoveFavorites($scope.video._id,'celeb');
+          if($scope.relatedCelebrity)
+            User.addRemoveFavorites($scope.relatedCelebrity._id,'celeb');
       }
 
       $scope.isFavorite = function(){
-          if($scope.video)
-              return User.isFavorite($scope.video._id,'celeb');
+          if($scope.relatedCelebrity)
+              return User.isFavorite($scope.relatedCelebrity._id,'celeb');
         return false;
       }
 

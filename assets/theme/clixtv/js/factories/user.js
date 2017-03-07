@@ -138,6 +138,8 @@ clixApp.service('User', function ($rootScope, $http, $location, $q) {
 	this.getUser = function(){
 		return this.user;
 	}
+
+
 	this.set = function (user) {
 	//	console.log("Setting User", user);
 		this.user= user;

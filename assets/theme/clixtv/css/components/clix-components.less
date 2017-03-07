@@ -110,10 +110,77 @@
 }
 
 .page-title2 {
-    font-size: 30px;
+    font-size: 27px;
     color: #9c9c9c;
     font-family: Cabin;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     padding: 0px 15px 20px 0;
     text-transform: uppercase;
+}
+
+
+//Favorite Gradient border button
+
+.favorites-border-gradient{
+    float: left;
+    display: inline-block;
+    border-radius: 30px;
+    background-image: linear-gradient(to left, #fa0d1b, #911685);
+    padding: 2px;
+    cursor: pointer;
+    margin-right: 13px;
+    span{
+        background-color: #0e0e0e;
+        font-size: 18px;
+        text-transform: uppercase;
+        padding: 8.5px 33px;
+        letter-spacing: 1.4px;
+        border-radius: 30px;
+        width: 229px;
+        display: inline-block;
+        text-align: center;
+        font-family: Cabin;
+        position: relative;
+
+        .icon{
+            margin-right: -10px;
+            margin-left: 15px;
+            position: absolute;
+        }
+    }
+
+    &:hover span{
+        background-color: transparent;
+
+        .icon-favorite-star-sm{
+            background-position: center;
+            background-size: cover;
+            background-image: url('/assets/theme/clixtv/images/sprite/favorite-icon-filled.png');
+        }
+    }
+
+}
+
+// Tabs Selectores
+
+.tabs-selectors{
+    border-bottom: 1px solid #636363;
+    margin: 10px 30px;
+    .tab-selector{
+        display: inline-block;
+        padding: 10px 0px;
+        margin: 0 60px 0 0;
+        font-size: 24px;
+        color: #8a8a8a;
+        cursor: pointer;
+        font-family: Cabin;
+        text-transform: uppercase;
+        letter-spacing: 2.5px;
+
+        &:hover, &.active{
+            color: white;
+            border-bottom: 4px solid #fe0000;
+            padding-bottom: 6px;
+        }
+    }
 }

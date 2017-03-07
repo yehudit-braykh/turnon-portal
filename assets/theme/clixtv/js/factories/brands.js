@@ -45,20 +45,19 @@ clixApp.factory("brandsFactory", function($http, $q, cacheFactory) {
               return deferred.promise;
           },
          getBrandByName: function(name){
-             var deferred=cacheFactory.defer("brands");
-             var cache=cacheFactory.get("brands",name);
-             if(cache){deferred.resolve(cache);
-             }else if(!deferred.cache){
-                 $http({method:'GET',url:'/api/brands/get_brands_array'
-                      }).success(function(data,status,headers,config){
-                      for(var i=0;i<data.length;i++)
-                           if(data[i].title.toLowerCase()==name.toLowerCase()){
-                               cacheFactory.set("brands",name,data[i]);
-                               deferred.resolve(data[i]);
-                           }
+              var deferred= $q.defer();
+            //  var cache=cacheFactory.get("brands",name);
+            //  if(cache){deferred.resolve(cache);
+            //  }else if(!deferred.cache){
+             $http({method:'GET',url:'/api/brands/get_brands_array'
+                  }).success(function(data,status,headers,config){
+                  for(var i=0;i<data.length;i++)
+                       if(data[i].title.toLowerCase()==name.toLowerCase()){
+                        //    cacheFactory.set("brands",name,data[i]);
+                           deferred.resolve(data[i]);
+                       }
 
-                  }).error(function(data,status,headers,config){})
-              }
+              }).error(function(data,status,headers,config){})
               return deferred.promise;
          },
 

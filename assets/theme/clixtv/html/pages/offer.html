@@ -2,12 +2,12 @@
     <div class="offer-page-header" style="background-image:url('{{offer.BackgroundImage.url}}')">
         <div class="container">
             <div class="overlay">
-                <div class="pic" style="background-image:url({{offer.BrandLogo.url}})"></div>
+                <div class="pic" style="background-image:url({{relatedBrand.BrandLogo.url}})"></div>
                 <div class="info">
                     <div class="title">
                         {{offer.title}}
                     </div>
-                    <div class="favorites hand" ng-click="addRemoveOffer()"><span>{{isSavedOffer()?'- Unsave Offer':'+ Save Offer'}}</span></div>
+                    <div class="favorites-border-gradient hand" ng-click="addRemoveOffer()"><span>{{isSavedOffer()?'- Unsave Offer':'+ Save Offer'}}</span></div>
                     <div class="share">
                         <span class="icon icon-share-black-36x37 hand" ng-click="shareModal()"></span> <span class="reward">50</span>
                     </div>
@@ -29,7 +29,7 @@
                         <div id="myCarousel" class="carousel slide" data-interval="false" data-ride="carousel">
                               <!-- Indicators -->
                               <ol class="carousel-indicators">
-                                <li data-target="#myCarousel" ng-repeat="video in offer.relatedVideos | limitTo:4 track by $index" data-slide-to="{{$index}}" class="{{$index==0?'active':''}}"></li>
+                                <li data-target="#myCarousel" ng-repeat="video in slide | limitTo:4 track by $index" data-slide-to="{{$index}}" class="{{$index==0?'active':''}}"></li>
                               </ol>
                               <!-- Wrapper for slides -->
                               <div class="carousel-inner" role="listbox">
@@ -66,26 +66,26 @@
                 </div>
                 <div class="tab-details">
                     <div class="row">
-                        <div class="title col-xs-12">{{offer.title}}</div>
+                        <div class="title col-xs-12" style="margin-top:40px;">The Revolution Never Ends</div>
                         <div class="desc col-xs-12 col-sm-6">
-                            QuietComfort® 25 headphones are engineered to sound better, be more comfortable and easier to take with you. Put them on, and suddenly everything changes. Your music is deep, powerful and balanced, and so quiet that every note sounds clearer. Even air travel becomes enjoyable, as engine roar gently fades away. No matter how noisy the world is, it's just you and your music—or simply peace and quiet.<br/>
-                            These headphones are designed for iPhone, iPad and iPod models. A version is also available for Samsung and Android devices.
+                            Since 1985, the sneakers carrying Michael Jordan’s name and world-renowned “Jumpman” silhouette have helped to define and shape sneaker culture. It began with a standard Nike high top, and evolved with daring designs implemented into each iteration. From graphic prints to patent leather to fighter planes and Ferrari-inspired designs, Jordan sneakers routinely transcend its basketball roots by refreshing its initial offerings with new looks and color schemes to remain prevalent throughout generations.
                         </div>
                         <div class="desc col-xs-12 col-sm-6">
-                            - Significant noise reduction for travel, work and anywhere in between.</br>
-                            - Deep, powerful sound for the music you love.</br>
-                            - Lightweight around-ear fit you can wear all day long.</br>
-                            - Inline mic/remote for music and calls on Apple devices.
+                            -  Leather upper for a supportive fit</br></br>
+                            -  Full-length Nike Zoom Air unit for responsive cushioning</br></br>
+                            -  Carbon fiber shank helps maximize energy return</br></br>
+                            -  Rubber sole for traction on a variety of surfaces</br></br>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="title col-xs-12">About {{relatedBrand.title}}</div>
+                        <div class="title col-xs-12" style="margin-top:120px;">About {{relatedBrand.title}}</div>
                         <div class="desc col-xs-12">
-                            QuietComfort® 25 headphones are engineered to sound better, be more comfortable and easier to take with you. Put them on, and suddenly everything changes. Your music is deep, powerful and balanced, and so quiet that every note sounds clearer. Even air travel becomes enjoyable, as engine roar gently fades away. No matter how noisy the world is, it's just you and your music—or simply peace and quiet.<br/><br/>
-                            These headphones are designed for iPhone, iPad and iPod models. A version is also available for Samsung and Android devices.
+                            The company was founded on January 25, 1964, as Blue Ribbon Sports, by Bill Bowerman and Phil Knight,[1] and officially became Nike, Inc. on May 30, 1971. The company takes its name from Nike, the Greek goddess of victory. Nike markets its products under its own brand, as well as Nike Golf, Nike Pro, Nike+, Air Jordan, Nike Blazers, Air Force 1, Nike Dunk, Air Max, Foamposite, Nike Skateboarding, and subsidiaries including Brand Jordan, Hurley International and Converse.</br></br>
+                            Nike also owned Bauer Hockey (later renamed Nike Bauer) between 1995 and 2008, and previously owned Cole Haan and Umbro.[7]</br></br>
+                            In addition to manufacturing sportswear and equipment, the company operates retail stores under the Niketown name. Nike sponsors many high-profile athletes and sports teams around the world, with the highly recognized trademarks of "Just Do It" and the Swoosh logo.
                         </div>
                     </div>
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="title col-xs-12">Specifications</div>
                         <div class="desc col-xs-12 col-sm-6">
                             Dimensions/weight without the cable</br><br/>
@@ -103,7 +103,7 @@
                                 AAA battery
                             </span>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="home-right col-md-2">
@@ -114,7 +114,13 @@
         </div>
         <div class="tab offers" ng-switch-when="Related Offers">
             <div class="tab-header row">
-                <div class="title col-md-9">All {{relatedBrand.title}} offers </div>
+                <div class="page-title2 col-md-9">All {{relatedBrand.title}} offers </div>
+            </div>
+            <div class="row">
+                    <clix-sec-block ng-repeat="offer in relatedOffers" data-model="offer" class="offer col-xs-6 col-sm-3 col-md-4 col-lg-2" data-offer="true" data-href="offer" data-href-param="_id"  ></clix-sec-block>
+            </div>
+            <div class="tab-header row">
+                <div class="page-title2 col-md-9">Related offers </div>
             </div>
             <div class="row">
                     <clix-sec-block ng-repeat="offer in relatedOffers" data-model="offer" class="offer col-xs-6 col-sm-3 col-md-4 col-lg-2" data-offer="true" data-href="offer" data-href-param="_id"  ></clix-sec-block>
@@ -123,7 +129,7 @@
         </div>
         <div class="tab" ng-switch-when="Videos">
             <div class="tab-header row">
-                <div class="title col-md-9">All Videos Featuring {{offer.title}}   </div>
+                <div class="page-title2 col-md-9" style="padding-top: 11px;padding-bottom:10px">All Videos Featuring {{relatedBrand.title}}   </div>
                 <div class="filter sort col-md-3">
                     <div class="filter-btn hand dropdown-toggle" type="button" id="sortddm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         {{selectedSort?selectedSort:'SORT BY'}}
@@ -138,7 +144,7 @@
             </div>
 
             <div class="celeb-videos row">
-                <clix-block class="video col-xs-12 col-sm-6 col-md-3" ng-repeat="video in offer.relatedVideos" data-model="video" ></clix-block>
+                <clix-block class="video col-xs-12 col-sm-6 col-md-3 col-lg-15" ng-repeat="video in offer.relatedVideos" data-model="video" ></clix-block>
             </div>
         </div>
     </div>

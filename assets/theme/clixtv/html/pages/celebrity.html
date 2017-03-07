@@ -7,7 +7,7 @@
                     <div class="title">
                         {{celebrity.title}}
                     </div>
-                    <div class="favorites hand" ng-click="addToFavorites()"><span>{{isFavorite()?'-':'+'}}  Favorites<i class="icon {{isFavorite()?'icon-favorite-icon-filled':'icon-favorite-star-sm'}}"></i></span></div>
+                    <div class="favorites-border-gradient hand" ng-click="addToFavorites()"><span>{{isFavorite()?'-':'+'}}  Favorites<i class="icon {{isFavorite()?'icon-favorite-icon-filled':'icon-favorite-star-sm'}}"></i></span></div>
                 </div>
                 <div class="videos">214 Videos</div>
             </div>
@@ -34,20 +34,23 @@
                       </ul>
                 </div>
             </div>
-            <div class="home-left col-md-8">
-                <clix-block class="col-xs-12 col-sm-6 col-md-4" ng-repeat="video in celebrity.related_videos | limitTo:4" data-model="video" ></clix-block>
-            </div>
-            <div class="col-md-4">
-                <div class="home-right row">
-                    <div class="title">Brands in this Series</div>
-                    <clix-sec-block class=" brand col-xs-12 col-sm-6" ng-repeat="brand in celebrity.related_brands | limitTo:4" data-model="brand" data-brand="true" data-href="brand" data-href-param="title" ></clix-sec-block>
-                    <div class="all-stars hand col-xs-8 col-xs-offset-2" ng-click="$parent.shownTab='Stars'">See All Brands</div>
+            <div class="row" style="margin-right: 0;">
+                <div class="home-left col-md-8">
+                    <clix-block class="col-xs-12 col-sm-6 col-md-4" ng-repeat="video in celebrity.related_videos | limitTo:4" data-model="video" ></clix-block>
                 </div>
-                <div class="home-right row">
-                    <div class="title">Charity in this Series</div>
-                    <clix-sec-block class="charity col-xs-12 col-sm-6" ng-repeat="charity in celebrity.related_charities | limitTo:2" data-model="charity" data-charity="true" data-href="charity" data-href-param="title" ></clix-sec-block>
+                <div class="col-md-4">
+                    <div class="home-right row">
+                        <div class="title">Brands in this Series</div>
+                        <clix-sec-block class=" brand col-xs-12 col-sm-6" ng-repeat="brand in celebrity.related_brands | limitTo:4" data-model="brand" data-brand="true" data-href="brand" data-href-param="title" ></clix-sec-block>
+                        <div class="all-stars hand col-xs-8 col-xs-offset-2" ng-click="$parent.shownTab='Stars'">See All Brands</div>
+                    </div>
+                    <div class="home-right row">
+                        <div class="title">Charity in this Series</div>
+                        <clix-sec-block class="charity col-xs-12 col-sm-6" ng-repeat="charity in celebrity.related_charities | limitTo:2" data-model="charity" data-charity="true" data-href="charity" data-href-param="title" ></clix-sec-block>
+                    </div>
                 </div>
             </div>
+
         </div>
         <div class="tab" ng-switch-when="Offers">
             <div class="tab-header row">

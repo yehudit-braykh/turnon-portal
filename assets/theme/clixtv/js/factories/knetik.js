@@ -32,7 +32,7 @@ clixApp.factory("knetikFactory", function($http, $location, $rootScope, User, $q
 	}
 
 	scope.updateActivity = function(item, type){
-		console.log('updateActivity call', item,type);
+		//console.log('updateActivity call', item,type);
 		var deffered = $q.defer();
 		$http({method: 'POST', url: '/api/knetik/save_activity', data:{item_id: item, type: type} }).
 		success(function(data, status, headers, config) {
@@ -49,7 +49,7 @@ clixApp.factory("knetikFactory", function($http, $location, $rootScope, User, $q
 	}
 
     scope.redeemCard = function(card, points) {
-        console.log('redeem Card',card, points);
+    //    console.log('redeem Card',card, points);
         var deffered = $q.defer();
 		$http({method: 'POST', url: '/api/knetik/redeem_card', data:{card: card, points: points} }).
 		success(function(data, status, headers, config) {

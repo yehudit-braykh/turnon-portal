@@ -7,9 +7,10 @@
     .brand-page-header {
         position: relative;
         height: 60vh;
-        background-position: center center;
-        background-size: cover;
+        background-position: 50% 0;
+        background-size: contain;
         background-attachment: fixed;
+        background-repeat: no-repeat;
         .overlay{
             position: absolute;
             background: rgba(0,0,0,0);
@@ -24,7 +25,7 @@
             left: 0;
             right: 0;
             text-align: left;
-            padding: 10px 30px;
+            padding: 10px 30px 40px;
             .pic {
                 background-position: center;
                 background-size: cover;
@@ -38,7 +39,7 @@
             .info{
                 float: left;
                 .title{
-                    font-family: Cabin;
+                    font-family: PTSans;
                     font-size: 56px;
                     letter-spacing: 2.3px;
 
@@ -49,50 +50,34 @@
                 }
 
 
-
-                .favorites{
-
+                .share{
                     display: inline-block;
-                    border-radius: 30px;
-                    background-image: linear-gradient(to left, #fa0d1b, #911685);
-                    margin: 10px 0;
-                    padding: 2px;
-                    cursor: pointer;
-                    margin-right: 13px;
-                    span{
-                        background-color: #0e0e0e;
-                        font-size: 18px;
-                        text-transform: uppercase;
-                        padding: 8px 0px;
-                        letter-spacing: 1.2px;
-                        border-radius: 30px;
-                        position: relative;
-                        display: inline-block;
-                        text-align: center;
-                        width: 232px;
-
-                        .icon{
-                            right: 15px;
-                            top: 7px;
-                            font-size: 25px;
-                            position: absolute;
-                        }
+                    float: left;
+                    margin-top: 5px;
+                    .icon{
+                        font-size: 40px;
+                        float: left;
                     }
 
-                    &:hover span{
-                        background-color: transparent;
-
-                        .icon{
-                            background-position: center;
-                            background-size: cover;
-                            background-image: url('/assets/theme/clixtv/images/sprite/favorite-icon-filled.png');
-                        }
+                    &:hover .icon{
+                        background-image: url("/assets/theme/clixtv/images/sprite/share-gray-hover-39x40.png");
+                        background-size: cover;
+                        background-position: center;
                     }
+                    .reward{
+                        background-color: #fe0000;
+                        border-radius: 50px;
+                        padding: 5px 8px;
+                        float: left;
+                        font-size: 19px;
+                        margin-left: 10px;
+                        margin-top: 3px;
 
-
-
-
+                    }
                 }
+
+
+
                 .fa-share-alt{
                     font-size: 20px;
                     cursor: pointer;
@@ -110,29 +95,6 @@
                 font-family: Cabin;
             }
         }
-
-    }
-
-    .tabs-selectors{
-        border-bottom: 1px solid #636363;
-        margin: 10px 30px;
-        .tab-selector{
-            display: inline-block;
-            padding: 10px 0px;
-            margin: 0 30px 0 0;
-            font-size: 24px;
-            color: #8a8a8a;
-            cursor: pointer;
-            font-family: Cabin;
-            text-transform: uppercase;
-            letter-spacing: 2.5px;
-
-            &:hover, &.active{
-                color: white;
-                border-bottom: 4px solid #fe0000;
-                padding-bottom: 6px;
-            }
-        }
     }
 
     .tabs{
@@ -142,6 +104,9 @@
             margin: 0;
             &.home{
                 .home-left{
+                    &.col-md-10{
+                        width: 81.5%;
+                    }
                     .info{
                         border-bottom: 1px solid #636363;
                         padding: 30px 0;
@@ -159,7 +124,7 @@
                             }
 
                             .desc{
-                                font-size: 26px;
+                                font-size: 27px;
                                 line-height: 30px;
                                 letter-spacing: 0.5px;
                                 border-bottom: 1px solid #303030;
@@ -203,6 +168,10 @@
                     background-color: #1b1b1b;
                     border: 1px solid #777;
                     padding: 0 30px;
+
+                    &.col-md-2{
+                        width: 18.5%;
+                    }
 
                     .offer {
                         margin: 30px 5px;
@@ -256,7 +225,9 @@
             }
 
             .celebrity-section{
-                margin: 20px 0px;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                margin-right: 23px;
             }
 
             .all-videos {
