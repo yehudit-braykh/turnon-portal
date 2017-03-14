@@ -37,8 +37,10 @@
                 </div>
             </div>
             <div class="charities-grid row">
-                <clix-sec-block class="charity col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="charity in charities | filter:offersFilter | orderBy:sortField" data-model="charity" data-href="charity" data-href-param="title" data-charity="true" data-sub-menu="true" style="padding:15px;"></clix-sec-block>
-
+                <clix-sec-block class="charity col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="charity in charities | filter:offersFilter | orderBy:sortField" data-model="charity" data-href="charity" data-href-param="title" data-charity="true" data-sub-menu="true" style="padding:18px 11px;"></clix-sec-block>
+                <div class="more_videos">
+                    <a class="all-video" href="#">Load More</a>
+                </div>    
             </div>
         </div>
     </div>
