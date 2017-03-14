@@ -1,4 +1,4 @@
 <?php
     echo shell_exec("git pull ");
-    echo "<h3 align = center> Succesfully Commited all files.</h3>";
+    echo "<h3> Succesfully Commited all files.</h3>";
  ?>
