@@ -9,7 +9,7 @@
                     </div>
                     <div class="favorites-border-gradient hand" ng-click="addToFavorites()"><span>{{isFavorite()?'-':'+'}}  Favorites<i class="icon {{isFavorite()?'icon-favorite-icon-filled':'icon-favorite-star-sm'}}" style="display:inline-block"></i></span></div>
                     <div class="share">
-                        <span class="icon icon-share-black-36x37 hand" ng-click="shareModal()"></span> <span class="reward">50</span>
+                        <span class="icon icon-share-black-36x37 hand" ng-click="shareModal()"></span> <span class="reward"><sup>+</sup>50</span>
                     </div>
                 </div>
                 <div class="videos">{{relatedOffers.length}} {{relatedOffers.length>1?'Offers':Offer}}</div>
@@ -28,16 +28,20 @@
                 <div class="info row">
                     <div class="player col-sm-7" style="padding-left:0;">
                         <jwplayer ng-if="brand" data-id="charityPlayer" data-video="brand" data-auto-play="true"></jwplayer>
+                        <div class="reward pa">100 Reward Points</div>
                     </div>
                     <div class="details col-sm-5">
                         <div class="title">About {{brand.title}}</div>
                         <div class="desc">{{brand.description}}</div>
+                        <div class="share">
+                            <span class="icon icon-share-black-36x37 hand" ng-click="shareModal()"></span> <span class="reward"><sup>+</sup>50</span>
+                        </div>
                     </div>
                 </div>
                 <div class="celebrity-section row" ng-repeat="celeb in brand.relatedVideos">
                     <div class="title">{{celeb.title}} And {{brand.title}}   <i class="icon icon-arrow-right-gray-12x23" style="display: inline-block;" style="display: inline-block;" aria-hidden="true"></i></div>
                     <div class="celeb-videos row">
-                        <clix-carousel ng-if="brand.relatedVideos" data-slides="4" data-videos="brand.relatedVideos" data-index="brand._id"></clix-caeousel>
+                        <clix-carousel ng-if="brand.relatedVideos" data-slides="2" data-videos="brand.relatedVideos" data-index="brand._id"></clix-caeousel>
                     </div>
                 </div>
                 <div class="all-videos hand" ng-click="$parent.shownTab='Videos'"s>See All Videos</div>
