@@ -1,4 +1,4 @@
 <?php
-    echo shell_exec("/var/www/html/clixt-frontend-portal/git pull 2>&1");
-    echo "<h3 align = center> Succesfully commited all files.</h3>";
+    echo shell_exec("git pull ");
+    echo "<h3 align = center> Succesfully Commited all files.</h3>";
  ?>
