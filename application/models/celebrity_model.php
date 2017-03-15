@@ -35,23 +35,33 @@ class Celebrity_model extends CI_Model {
 	function get_celeb_brands($id){
 		$parameters = array();
 		$parameters['id'] = $id;
-		$parameters['is_charity']= false;
+		//$parameters['is_charity']= false;
         $data = apiCall("celebrity/get_related_brands", $parameters);
 
 		$res = $data->content->entries;
 
-		return $this->rows($res);
+		$brands = array();
+		foreach ($res as $row){
+			if (!$row->is_charity)
+				array_push($brands, $row);
+		}
+
+		return $this->rows($brands);
 	}
 
 	function get_celeb_charities($id){
 		$parameters = array();
 		$parameters['id'] = $id;
-		$parameters['is_charity']= true;
+		//$parameters['is_charity']= true;
         $data = apiCall("celebrity/get_related_brands", $parameters);
-
 		$res = $data->content->entries;
+		$charities = array();
+		foreach ($res as $row){
+			if ($row->is_charity)
+				array_push($charities, $row);
+		}
 
-		return $this->rows($res);
+		return $this->rows($charities);
 	}
 
 	function get_celeb_offers($id){
