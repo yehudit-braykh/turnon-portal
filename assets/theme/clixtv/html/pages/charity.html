@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class="celebrity-section" ng-repeat="celeb in charity.relatedVideos | limitTo:3">
-                    <div class="title">{{celeb.title}} And {{charity.title}}   <i class="fa fa-chevron-right" aria-hidden="true"></i></div>
+                    <div class="title">{{celeb.title}} And {{charity.title}}   <i class="icon icon-arrow-right-gray-12x23" style="display: inline-block;" aria-hidden="true"></i></div>
                     <div class="celeb-videos row">
                         <clix-carousel ng-if="charity.relatedVideos" data-slides="4" data-videos="charity.relatedVideos" data-index="celeb._id"></clix-caeousel>
                     </div>
@@ -52,7 +52,7 @@
         <div class="tab" ng-switch-when="Donate">Donate</div>
         <div class="tab" ng-switch-when="Stars">
             <div class="celebrity-section" ng-repeat="celeb in charity.relatedVideos">
-                <div class="title">{{celeb.artist_name}} And {{charity.title}}   <i class="fa fa-chevron-right" aria-hidden="true"></i></div>
+                <div class="title">{{celeb.artist_name}} And {{charity.title}}   <i class="icon icon-arrow-right-gray-12x23" style="display: inline-block;" aria-hidden="true"></i></div>
                 <div class="celeb-videos row">
                     <clix-block class="video col-xs-12 col-sm-6 col-md-3" ng-repeat="video in charity.relatedVideos | limitTo:4" data-model="video" ></clix-block>
                 </div>
@@ -90,9 +90,9 @@
             <div class="redeem-content {{buyPoints?'buy':''}}">
                 <div class="available-balance">
                     <div class="value">
-                        <span class="control minus"><i class="fa fa-minus"></i></span>
+                        <span class="control minus"><img src="/assets/theme/clixtv/images/minus.png"></span>
                         <span class="value-num">$17.60</span>
-                        <span class="control plus"><i class="fa fa-plus"></i></span>
+                        <span class="control plus"><img src="/assets/theme/clixtv/images/plus.png"></span>
                     </div>
                     <div class="available">Available Cash Balance</div>
                     <div class="balance">1760 Points Balance</div>
