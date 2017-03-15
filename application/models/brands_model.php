@@ -37,7 +37,7 @@ class Brands_model extends CI_Model {
 		if($id)
 			$parameters["id"]= $id;
 
-        return apiCall("brand/get_related_celebs", $parameters)->content->entries;
+        return $this->rows(apiCall("brand/get_related_celebs", $parameters)->content->entries);
     }
 
     public function get_list_brands(){
@@ -82,7 +82,7 @@ class Brands_model extends CI_Model {
 			$data = apiCall("vod/list_media_objects", array("media_type" => 'offer'));
 
 			$res = $data->content->entries;
-			
+
 
 
 			return $this->rows($res);

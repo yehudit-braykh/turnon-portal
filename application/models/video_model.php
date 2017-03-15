@@ -78,6 +78,7 @@ class Video_model extends CI_Model {
                     "description" => $media["description"],
 					"date" => $media["added"],
 					"categories" => $media["categories"],
+					"celebrities" => $media["celebrities"]
                     //"tvSeasonEpisodeNumber" => $media["tvSeasonEpisodeNumber"],
                 //    "brands" => $media["brands"],
             );
@@ -151,7 +152,7 @@ class Video_model extends CI_Model {
                 //    "brands" => $media["brands"],
             );
 
-		
+
             //debug($tmp, $media);
 			if($media["content"]){
 	            foreach ($media["content"] as $file) {

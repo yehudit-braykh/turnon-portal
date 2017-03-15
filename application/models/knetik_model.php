@@ -17,12 +17,12 @@ class Knetik_model extends CI_Model {
 
     public function upload_video($video, $type){
 
-    //    debug($video);
+        //    debug($video);
         $token = $this->authenticate();
         $fields = new stdClass();
 
         $fields->name = $type=="share"?$video->title."- share":$video->title."- watch";
-    //    $fields->unique_key = $video->_id;
+        //    $fields->unique_key = $video->_id;
         $fields->type_hint = "entitlement";
 
         $fields->behaviors = array();
@@ -44,7 +44,7 @@ class Knetik_model extends CI_Model {
         $behaviors->active_only = "true";
         array_push($fields->behaviors, $behavior);
 
-    //    debug(json_encode($fields));
+        //    debug(json_encode($fields));
         $response = $this->post('entitlements/', json_encode($fields), $token);
 
         return $response["result"];
@@ -97,12 +97,14 @@ class Knetik_model extends CI_Model {
     }
 
     public function get_catalog(){
+        $token = $this->authenticate();
+        $catalog=$this->get('store/items?filter_published=true&filter_displayable=true', $token);
 
-        $catalog=$this->get('store/items?filter_published=true&filter_displayable=true', $token, false);
         if($catalog["error"] == "invalid_token"){
             $token = $this->authenticate(true);
-            $catalog=$this->post('users', json_encode($fields), $token, false);
+            $catalog=$this->get('store/items?filter_published=true&filter_displayable=true', $token);
         }
+    //debug($catalog);
         return $catalog["result"]["content"];
     }
 
@@ -112,8 +114,6 @@ class Knetik_model extends CI_Model {
             $invoice = $this->create_invoice($cart_id);
             $this->complete_invoice($invoice);
         }
-
-
     }
 
     private function get_cart(){
@@ -185,6 +185,7 @@ class Knetik_model extends CI_Model {
     }
 
     private function authenticate($re_auth = false){
+        //debug('123',$_SESSION["access_token"]);
         if($_SESSION["access_token"] && !$re_auth) return $_SESSION["access_token"];
 
         $fields = array();
@@ -236,17 +237,19 @@ class Knetik_model extends CI_Model {
     }
 
     private function get($url, $token, $use_token = true){
+        //debug($url, $token, $use_token);
         $ch = curl_init();
+        //debug($ch);
         curl_setopt($ch, CURLOPT_URL, $this->knetik_url."/".$url);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
-
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
         if($use_token)
             curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json','Authorization : Bearer '.$token));
-
+        //debug(curl_getinfo);
         $result = curl_exec($ch);
         curl_close($ch);
+
 
         return json_decode($result, true);
     }
