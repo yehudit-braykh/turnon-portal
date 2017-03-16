@@ -133,7 +133,7 @@
                 .facebook-button {
                     padding: 11px 0px;
                     margin-bottom: 20px;
-                    font-size: 20px;
+                    font-size: 11px;
                     letter-spacing: 2px;
                     cursor: pointer;
                     border-radius: 40px;
@@ -146,14 +146,30 @@
                         background-image: linear-gradient(to left, #2e448b, #1e2a6d);
                     }
                 }
+                .google-button {
+                    padding: 11px 0px;
+                    margin-bottom: 20px;
+                    font-size: 11px;
+                    letter-spacing: 2px;
+                    cursor: pointer;
+                    border-radius: 40px;
+                    font-family: Cabin;
+                    background-image: linear-gradient(to right, #b23e28 , #e35439);
+                    text-transform: uppercase;
+                    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.35);
+
+                    &:hover{
+                        background-image: linear-gradient(to left, #bf3e26, #92301d);
+                    }
+                }                
                 .other {
                     height: 2px;
                     border: 1px solid #5d5d5d;
                     margin: 30px 0;
                     span{
-                        font-size: 20px;
+                        font-size: 14px;
                         background-color: #292929;
-                        margin-top: -15px;
+                        margin-top: -9px;
                         display: inline-block;
                         padding: 0px 20px;
                         color: rgb(147,146,147);
@@ -169,7 +185,7 @@
                     background-color: rgb(28,27,32);
 
                     .field{
-                        padding: 5px 40px;
+                        padding: 6px 40px;
                         &.first{
                             border-bottom: 2px solid rgb(34,34,39);
                         }
@@ -177,13 +193,16 @@
                             color: rgb(151,151,151);
                             font-size: 16px;
                             display: inline-block;
+                            position: relative;
+                            top: 2px;                            
                         }
                         input{
                             border:0;
-                            height: 33px;
+                            height: 25px;
                             background-color: transparent;
-                            padding: 16px;
-                            font-size: 20px;
+                            padding: 0px 0px 0px 11px;
+                            font-size: 14px;
+                            line-height: 14px;
                             outline: none;
                             color: rgb(151,151,151);
                             width: 90%;
@@ -199,7 +218,7 @@
                 }
 
                 .btns{
-                    padding: 30px;
+                    padding: 15px 30px 15px 30px;
                     .login-error , .register-error{
                         font-size: 19px;
                         color: #bababa;
@@ -214,7 +233,7 @@
 
                     .login-btn {
                         padding: 11px 0px;
-                        font-size: 20px;
+                        font-size: 11px;
                         letter-spacing: 2px;
                         cursor: pointer;
                         border-radius: 40px;
@@ -237,22 +256,26 @@
                 text-decoration: underline;
             }
             .forgot-register {
-                font-size: 18px;
+                font-size: 14px;
                 color: white;
-                padding-bottom: 20px;
+                padding-bottom: 15px;
 
 
             }
         }
 
         .modal-footer {
-            padding: 20px 20px 50px;
+            padding: 20px;
             text-align: center;
             border-top: 1px solid #636363;
-            font-size: 20px;
+            font-size: 14px;
             color: rgb(130,130,130);
 
-
+            a{
+               font-size: 14px;
+                color: rgb(130,130,130); 
+                text-decoration: underline;
+            }
             a:hover{
                 text-decoration: underline;
             }
@@ -447,8 +470,9 @@
                     border-radius: 0;
                     right: -396px;
                     font-size: 20px;
-                    background-color: #313131;
-                    width: 350px;
+                    background-color: rgba(0, 0, 0, 0.89);
+                    //width: 350px;
+                    width: 245px;
                     top: -10px;
                     transition: 0.5s;
                     display: block;
@@ -490,13 +514,13 @@
                         }
                         .user-name {
                             font-family: PTsans;
-                            font-weight: bold;
+                            font-weight: normal;
                             margin-top: 0.2em;
-                            font-size: 0.94vw;
+                            font-size: 16px;
                         }
                         .my-clix {
                             font-family: Cabin;
-                            font-size: 0.73vw;
+                            font-size: 13px;
                             color: #8e8e8e;
                         }
                     }
@@ -514,25 +538,34 @@
                             span{
                                 border: 1px solid #a1a1a1;
                                 border-radius: 40px;
-                                padding: 8px 30px;
+                                width: 135px;
+                                height: 36px;
+                                line-height: 36px;
                                 color: #a1a1a1;
-                                font-size:16px;
+                                font-size: 11px;
                                 letter-spacing: 4px;
                                 text-align: center;
                                 text-transform: uppercase;
                                 display: table;
                                 margin: 0 auto;
-                                font-family:Cabin;
+                                font-family: Cabin;
                             }
                         }
                         a {
-                            font-size: 0.95vw;
-                            line-height: 0.95vw;
-                            padding: 0.57vw 0.76vw;
-                            color: white;
+                            //font-size: 0.95vw;
+                            //line-height: 0.95vw;
+                            //padding: 0.57vw 0.76vw;
+                            //color: white;
 
+                            font-size: 13px;
+                            line-height: 25px;
+                            padding: 10px 25px;
+                            color: #bababa;
+                            text-transform: uppercase;
+                            letter-spacing: 2px;
+                            background-color: #171717;                          
 
-                            background-color: rgb(23,23,23);
+                            //background-color: rgb(23,23,23);
                             &:hover {
                                 background-color: #313131;
                             }

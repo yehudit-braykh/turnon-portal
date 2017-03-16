@@ -28,8 +28,8 @@
             .pic {
                 background-position: center;
                 background-size: cover;
-                width: 132px;
-                height: 132px;
+                width: 111px;
+                height: 111px;
                 float: left;
                 border-radius: 50%;
                 margin-right: 20px;
@@ -38,10 +38,10 @@
             .info{
                 float: left;
                 .title{
-                    font-family: PTSans;
-                    font-size: 56px;
-                    letter-spacing: 2.3px;
-
+                      font-size: 35px;
+                        letter-spacing: 1.6px;
+                        line-height: 50px;
+                        margin-bottom: 20px;
                     @media (max-width: @screen-sm-max){
                             font-size: 35px;
                             letter-spacing:1.9px;
@@ -69,13 +69,13 @@
                     .reward{
                         background-color: #fe0000;
                         border-radius: 50px;
-//                      padding: 5px 8px;
-                        padding: 5px 6px;
+                        padding: 8px 3px;
                         float: left;
-                        font-size: 19px;
+                        font-size: 14px;
                         margin-left: 10px;
                         margin-top: 3px;
-
+                        height: 30px;
+                        width: 30px;
                     }
                 }
 
@@ -90,9 +90,9 @@
             .videos{
                 position: absolute;
                 right: 36px;
-                bottom: 43px;
+                bottom: 40px;
                 color: #757575;
-                font-size: 21px;
+                font-size: 14px;
                 letter-spacing: 2px;
                 text-transform: uppercase;
                 font-family: Cabin;
@@ -101,12 +101,13 @@
     }
 
     .tabs{
-        margin: 30px;
+        margin:0px 30px 30px 30px;
 
         .tab{
 
             &.home{
                 margin-right: 0;
+                margin-top: 30px;
                 .home-left{
                     &.col-md-10{
                         width: 81.5%;
@@ -115,6 +116,7 @@
                         //border-bottom: 1px solid #636363;
                         margin-right: 15px;
                         margin-left: 0;
+                        margin-bottom: 90px;
                         .slider{
                             padding: 0;
 
@@ -167,10 +169,18 @@
                             }
 
                             .title{
-                                font-size: 45px;
-                                font-family: PTSans-Bold;
+//                                font-size: 45px;
+//                                font-family: PTSans-Bold;
+//                                padding: 0;
+//                                margin-bottom: 15px;
+                                font-size: 30px;
+                                font-family: PTSans;
                                 padding: 0;
-                                margin-bottom: 15px;
+                                margin-bottom: 20px;
+                                font-weight: normal;
+                                color: #8a8a8a;  
+                                text-transform: capitalize;
+                                    letter-spacing: inherit;
                             }
 
                             .desc{
@@ -178,24 +188,50 @@
                                 line-height: 20px;
                                 letter-spacing: 1.2px;
                                 color: #8b8a8a;
+                                p{
+                                    font-size: 16px;
+                                    margin-bottom: 30px;
+                                    line-height: 20px;
+                                    .paragraph{
+                                        position: absolute;
+                                        margin-left: 25px;
+                                    }
+                                    .round{
+                                        color: white;
+                                        border-radius: 50%;
+                                        border: 1px solid #fe0000;
+                                        height: 37px;
+                                        width: 37px;
+                                        display: inline-block;
+                                        padding: 8px 0px 0px 0px;
+                                        text-align: center;
+                                        position: relative;
+                                        left: 0px;
+                                        font-size: 20px;
+
+                                    }
+                                }
+                             
                             }
 
                             .save-offer-btn{
                                 border-radius: 100px;
                                 background-image: linear-gradient(to left, #fa0d1b, #911685);
-                                margin-top: 30px;
-                                padding: 2px 2px;
+                                margin-top: 40px;
+                                padding: 2px 2px 2px 2px;
                                 cursor: pointer;
                                 text-align: center;
+                                width: 203px;
+                                height: 37px;
                                 .save-offer-btn-content{
                                     background-color: #0e0e0e;
-                                    font-size: 29px;
+                                    font-size: 11px;
                                     text-transform: uppercase;
-                                    padding: 15px 33px;
                                     letter-spacing: 2.3px;
                                     display: inline-block;
                                     border-radius: 100px;
                                     width: 100%;
+                                    line-height: 28px;
                                     font-family: cabin;
                                     font-weight: 400;
                                 }
@@ -209,16 +245,19 @@
                             .donate-btn{
                                 background-image: linear-gradient(to right, #930886, #f4010d), linear-gradient(#fff, #fff);
                                 text-align: center;
-                                padding: 17px 0;
+                                padding: 0;
                                 border-radius: 100px;
-                                font-size: 29px;
-                                margin-top: 24px;
+                                font-size: 11px;
+                                height: 32px;
+                                line-height: 31px;
+                                margin-top: 40px;
                                 margin-bottom: 15px;
                                 transition: 0.5s;
                                 text-transform: uppercase;
                                 letter-spacing: 2.3px;
                                 font-family: Cabin;
                                 font-weight: 400;
+                                width: 205px;
 
                                 &:hover{
                                     opacity: 0.5;
@@ -228,19 +267,25 @@
                             .reward{
                                 background-color: #fe0000;
                                 border-radius: 50px;
-                                line-height: 43px;
-                                font-size: 19px;
-                                position: absolute;
-//                              right: 50px;
-                                right: 19px;
-                                width: 43px;
-                                height: 43px;
-                                text-align: center;
+                                padding: 1px 0px 2px 0px;
+                                float: right;
+                                font-weight: 400;
+                                font-size: 14px;
+                                margin-left: 10px;
+                                margin-top: 0px;
+                                height: 30px;
+                                width: 30px;
+                                position: relative;
+                                left: -2px;
+                                letter-spacing: 0px;
+                                top: 1px;
                             }
 
                             .social{
-                                margin-top: 15px;
-                                padding-left: 20px;
+                                    margin-top: 15px;
+                                    padding-left: 0px;
+                                    position: absolute;
+                                    bottom: 0px;
                                 .icon{
                                     font-size: 40px;
                                     float: left;
@@ -256,7 +301,7 @@
                                     margin-left: 10px;
                                     margin-top: 3px;
                                     right: initial;
-
+                                    padding: 6px 0px 2px 2px;
                                 }
                             }
                         }
@@ -274,16 +319,16 @@
 
                     .title{
                         color: #898989;
-                        font-size: 1.35vw;
+                        font-size: 14px;
                         text-align: center;
                         padding: 30px 0;
                         font-family: Cabin;
                         text-transform: uppercase;
-                        letter-spacing: 2.4px;
+                        letter-spacing: 1.6px;
                     }
 
                     .all-stars {
-                        font-size: 16px;
+                        font-size: 11px;
                         text-align: center;
                         color: #898989;
                         border: 1px solid #979797;
@@ -293,7 +338,7 @@
                         font-family: Cabin;
                         height: 41px;
                         line-height: 41px;
-                        margin: 0px 10px 40px 10px;
+                        margin: 60px 20px 50px 20px;
 
                         &:hover{
                             color: white;
@@ -312,14 +357,19 @@
             .tab-header{
                 border-bottom: 1px solid #a1a1a1;
                 margin: 0;
-                margin-bottom: 30px;
+                margin-bottom: 50px;
+                .page-title2{
+                    padding: 40px 15px 20px 0;
+                }
             }
 
             .title{
-                font-size: 60px;
-                color: white;
-                letter-spacing: 2px;
+                font-size: 24px;
+                color: #aaaaaa;
+                letter-spacing: 3.5px;
                 padding: 0px 15px;
+                text-transform: uppercase;
+                margin-bottom: 0px;
 
                 .fa-chevron-right{
                     margin-left: 30px;
@@ -359,6 +409,9 @@
 
             .tab-details{
                 //margin: 0 15px;
+                   .title{
+                                    margin-bottom: 30px;
+                                }
             }
 
             .celeb-videos{

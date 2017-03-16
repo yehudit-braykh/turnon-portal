@@ -54,9 +54,9 @@
                     <div class="details col-sm-5">
                         <div class="title">Instructions</div>
                         <div class="desc">
-                            1. Click the button below to shop online at {{relatedBrand.title}}. Your Coupon code will be copied your clipboard automatically.<br/>
-                            2. Paste you code during checkout.<br/>
-                            3. Enjoy!
+                            <p><span class="round">1</span> <span class="paragraph">Click the button below to shop online at {{relatedBrand.title}}. Your Coupon code will be copied your clipboard automatically.</span></p>
+                            <p><span class="round">2</span> <span class="paragraph">Paste you code during checkout.</span></p>
+                            <p><span class="round">3</span> <span class="paragraph">Enjoy!</span></p>
                         </div>
 
                         <div class="save-offer-btn hand" ng-click="addRemoveOffer()"><span class="save-offer-btn-content"><span  style="font-size: 23px;">{{isSavedOffer()?'-':'+'}}</span> Save Offer <span class="reward"><sup>+</sup>50</span></span> </div>
@@ -66,24 +66,31 @@
                 </div>
                 <div class="tab-details">
                     <div class="row">
-                        <div class="title col-xs-12" style="margin-top:40px;">The Revolution Never Ends</div>
                         <div class="desc col-xs-12 col-sm-6">
-                            Since 1985, the sneakers carrying Michael Jordan’s name and world-renowned “Jumpman” silhouette have helped to define and shape sneaker culture. It began with a standard Nike high top, and evolved with daring designs implemented into each iteration. From graphic prints to patent leather to fighter planes and Ferrari-inspired designs, Jordan sneakers routinely transcend its basketball roots by refreshing its initial offerings with new looks and color schemes to remain prevalent throughout generations.
+                            <div class="row">
+                                <div class="title col-xs-12">The Revolution Never Ends</div>
+                                <div class="desc col-xs-12">
+                                    Since 1985, the sneakers carrying Michael Jordan’s name and world-renowned “Jumpman” silhouette have helped to define and shape sneaker culture. It began with a standard Nike high top, and evolved with daring designs implemented into each iteration. From graphic prints to patent leather to fighter planes and Ferrari-inspired designs, Jordan sneakers routinely transcend its basketball roots by refreshing its initial offerings with new looks and color schemes to remain prevalent throughout generations.
+
+                                     -  Leather upper for a supportive fit<br><br>
+                                    -  Full-length Nike Zoom Air unit for responsive cushioning<br><br>
+                                    -  Carbon fiber shank helps maximize energy return<br><br>
+                                    -  Rubber sole for traction on a variety of surfaces<br><br>
+                                </div>
+                            </div>
                         </div>
+                    
+                    
                         <div class="desc col-xs-12 col-sm-6">
-                            -  Leather upper for a supportive fit</br></br>
-                            -  Full-length Nike Zoom Air unit for responsive cushioning</br></br>
-                            -  Carbon fiber shank helps maximize energy return</br></br>
-                            -  Rubber sole for traction on a variety of surfaces</br></br>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="title col-xs-12" style="margin-top:120px;">About {{relatedBrand.title}}</div>
-                        <div class="desc col-xs-12">
-                            The company was founded on January 25, 1964, as Blue Ribbon Sports, by Bill Bowerman and Phil Knight,[1] and officially became Nike, Inc. on May 30, 1971. The company takes its name from Nike, the Greek goddess of victory. Nike markets its products under its own brand, as well as Nike Golf, Nike Pro, Nike+, Air Jordan, Nike Blazers, Air Force 1, Nike Dunk, Air Max, Foamposite, Nike Skateboarding, and subsidiaries including Brand Jordan, Hurley International and Converse.</br></br>
-                            Nike also owned Bauer Hockey (later renamed Nike Bauer) between 1995 and 2008, and previously owned Cole Haan and Umbro.[7]</br></br>
-                            In addition to manufacturing sportswear and equipment, the company operates retail stores under the Niketown name. Nike sponsors many high-profile athletes and sports teams around the world, with the highly recognized trademarks of "Just Do It" and the Swoosh logo.
-                        </div>
+                            <div class="row">
+                                <div class="title col-xs-12">About {{relatedBrand.title}}</div>
+                                <div class="desc col-xs-12">
+                                    The company was founded on January 25, 1964, as Blue Ribbon Sports, by Bill Bowerman and Phil Knight,[1] and officially became Nike, Inc. on May 30, 1971. The company takes its name from Nike, the Greek goddess of victory. Nike markets its products under its own brand, as well as Nike Golf, Nike Pro, Nike+, Air Jordan, Nike Blazers, Air Force 1, Nike Dunk, Air Max, Foamposite, Nike Skateboarding, and subsidiaries including Brand Jordan, Hurley International and Converse.</br></br>
+                                    Nike also owned Bauer Hockey (later renamed Nike Bauer) between 1995 and 2008, and previously owned Cole Haan and Umbro.[7]</br></br>
+                                    In addition to manufacturing sportswear and equipment, the company operates retail stores under the Niketown name. Nike sponsors many high-profile athletes and sports teams around the world, with the highly recognized trademarks of "Just Do It" and the Swoosh logo.
+                                </div>
+                            </div>                           
+                        </div>                    
                     </div>
                     <!-- <div class="row">
                         <div class="title col-xs-12">Specifications</div>
@@ -107,7 +114,7 @@
                 </div>
             </div>
             <div class="home-right col-md-2">
-                <div class="title">More offers </br> from {{relatedBrand.title}}</div>
+                <div class="title">More offers from {{relatedBrand.title}}</div>
                 <clix-sec-block ng-repeat="offer in relatedOffers | limitTo:3" data-model="offer"  style="margin-bottom:30px;display:block" data-offer="true" data-href="offer" data-sub-menu="true" data-href-param="_id" ></clix-sec-block>
                 <div class="all-stars hand" ng-click="$parent.shownTab='Stars'"s>See All Offers</div>
             </div>
@@ -129,7 +136,7 @@
         </div>
         <div class="tab" ng-switch-when="Videos">
             <div class="tab-header row">
-                <div class="page-title2 col-md-9" style="padding-top: 11px;padding-bottom:10px">All Videos Featuring {{relatedBrand.title}}   </div>
+                <div class="page-title2 col-md-9">All Videos Featuring {{relatedBrand.title}}   </div>
                 <div class="filter sort col-md-3">
                     <div class="filter-btn hand dropdown-toggle" type="button" id="sortddm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         {{selectedSort?selectedSort:'SORT BY'}}
