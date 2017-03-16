@@ -19,15 +19,20 @@
         padding: 3px 13px;
         min-width: 87px;
         text-align: center;
+        font-size: 14px;
+        span{
+            position: relative;
+            top:2px;
+        }
     }
 
 
    	.navbar-nav {
 
         &.left-nav {
-            padding-left: 24px;
+            padding: 2px 0px 0px 25px;
             border-left: 2px solid white;
-            height: 35px;
+            height: 28px;
             margin-top: 8px;
             @media (max-width: @screen-xs-max) {
                 border-left: 0px;
@@ -43,8 +48,10 @@
     	>li {
             >a {
                 padding: 5px 20px;
-                font-size: 18px;
+                font-size: 13px;
                 line-height: 1.4;
+                text-transform: uppercase;
+                letter-spacing: 2px;
             }
     	}
     }
@@ -283,9 +290,9 @@
         }
 
         .icon{
-            top: 9px;
+            top: 6px;
             position: absolute;
-            left: 28px;
+            left: 25px;
             transform: scale(0.8);
             z-index: 2;
         }
@@ -336,7 +343,7 @@
         height: auto;
         padding: 0;
         padding-bottom: 45px;
-        width: 180px;
+        width: 135.6px;
         background-repeat: no-repeat;
         background-size: contain;
         background-position: left center;
@@ -642,10 +649,8 @@
             line-height: 1.5vw;
         }
         #dropdownMenu1 {
-            font-weight: bold;
-
-            font-size: 18px;
-
+            font-weight: 400;
+            font-size: 16px;
         }
         .arrow-up {
             color: rgba(0,0,0,0.8);
@@ -662,11 +667,13 @@
 
 }
 .footer-clix {
-    font-family: 'PTsans';
+    //font-family: 'PTsans';
+    font-family: 'Cabin';
     color: white;
-    padding-top: 30px;
+    //padding-top: 30px;
+    padding: 90px 0px 40px 0px;
     .links-section {
-        padding-bottom: 70px;
+        //padding: 70px 0px;
         background-color: #000;
         .clix-side {
             width: 45%;
@@ -675,10 +682,12 @@
             width: 54%;
         }
         .links-header {
-            padding: 30px 0px;
+            padding: 0px 0px 60px 0px;
             height: 70px;
             color: white;
-            font-size: 21px;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
             &:first-child {
                 font-family: Cabin;
                 color: #b3b2ae;
@@ -687,15 +696,16 @@
             }
         }
         .link-footer {
-            font-size: 18px;
-            margin-bottom: 10px;
+            font-size: 14px;
+            line-height: 20px;
+            margin-bottom: 20px;
         }
 
         .footer-social{
             float: left;
-            margin-right: 30px;
-            padding-top: 30px;
-            font-size: 28px;
+            margin-right: 25px;
+            padding-top: 0px;
+            font-size: 20px;
             color: #b3b2ae;
         }
 
@@ -712,15 +722,15 @@
     .legal-section {
         background-color: #000;
         color: #848484;
+        margin: 90px 0px 0px 0px;
         .legal-links {
             padding-left:0;
             padding-bottom: 24px;
-            font-size: 16px;
-            float:left;
+            //float:left;
             a {
                 color: #323232;
-                padding: 0px 10px;
-                font-size: 21px;
+                padding: 0px 50px;
+                font-size: 13px;
             }
         }
     }

@@ -5,7 +5,7 @@
         font-family: 'PTsans', arial, 'Lato', sans-serif;
         position: absolute;
         width: 100%;
-        height: ~"calc(60vh - 80px)";
+        height: ~"calc(80vh - 80px)";
         top: 80px;
         z-index: 1;
         color: white;
@@ -45,13 +45,14 @@
             }
         }
         .item {
-            margin-top: ~"calc(30vh - 164px)";
+            margin-top: ~"calc(40vh - 164px)";
             text-align: center;
             .header-text {
-                line-height: 1;
-                font-weight: bold;
-                font-size: 3.12vw;
+                font-weight: normal;
+                font-size: 65px;
                 letter-spacing: 1.2px;
+                margin-bottom: 5px;
+                line-height: 65px;
                 @media (max-width: 800px) {
                     font-size: 50px;
                 }
@@ -64,8 +65,9 @@
             }
             .span-text {
                 font-family: Cabin;
-                letter-spacing: 2px;
-                font-size: 1.16vw;
+                letter-spacing: 3.3px;
+                font-size: 22px;
+                font-weight: normal;
                 @media (max-width: 560px) {
                     font-size: 14px;
                 }
@@ -82,13 +84,17 @@
                 font-family: Cabin;
                 cursor: pointer;
                 margin-top: 34px;
-                padding: 15px 80px;
+                //padding: 15px 80px;
+                width: 176px;
+                height: 36px;
+                line-height: 36px!important;
+                text-align: center;
                 display: inline-block;
                 border-radius: 100px;
                 background-image: linear-gradient(to right, #930887, #f00), linear-gradient(#f00, #f00);
                 color: white;
                 transition: 0.2s;
-                font-size: 18px;
+                font-size: 11px;
                 letter-spacing: 1.4px;
                 line-height: 19px;
                 &:hover {
@@ -98,7 +104,7 @@
         }
     }
     .top-video {
-        height: 60vh;
+        height: 80vh;
         overflow: hidden;
         position: relative;
         .overflow-bg {
