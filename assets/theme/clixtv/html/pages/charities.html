@@ -5,11 +5,11 @@
                 Charities
             </div>
             <div class="filters row" style="border-top:0">
-                <div class="filter col-md-6">
+                <div class="filter col-md-2">
                     <i class="icon icon-search-21x22"></i>
                     <input type="text" class="filter-btn search" placeholder="Search Charities" ng-model="search" />
                 </div>
-                <div class="filter col-md-3">
+                <div class="filter col-md-offset-6 col-md-2">
                     <div class="filter-btn hand dropdown-toggle" type="button" id="filterddm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         {{selectedFilter?selectedFilter:'FILTER BY'}}
                         <span class="fa fa-angle-down flr" style="font-size:33px;"></span>
@@ -24,7 +24,7 @@
                         <li class="hand filter-menu-row" ng-click="selectedFilter='Health'">Health</li>
                       </ul>
                 </div>
-                <div class="filter sort col-md-3">
+                <div class="filter sort col-md-2">
                     <div class="filter-btn hand dropdown-toggle" type="button" id="sortddm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         {{selectedSort?selectedSort:'SORT BY'}}
                         <span class="fa fa-angle-down flr" style="font-size:33px;"></span>
