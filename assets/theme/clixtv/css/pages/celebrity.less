@@ -1,4 +1,10 @@
 .celebrity-page {
+
+    .filter {
+        .filter-btn{
+                margin: 0px 0px 0px 0px;
+        }
+    }
     color: white;
     background-color: #0E0E0E;
     @media (max-width: @screen-xs-max) {
@@ -33,15 +39,16 @@
                 float: left;
                 border-radius: 50%;
                 margin-right: 20px;
-                margin-top: 20px;
+                margin-top: 0px;
             }
 
             .info{
                 float: left;
                 .title{
                     font-family: PTSans;
-                    font-size: 3.75vw;
-                    letter-spacing: 2.3px;
+                    font-size: 35px;
+                    letter-spacing: 1.6px;
+                    margin-bottom: 30px;
 
                     @media (max-width: @screen-sm-max){
                             font-size: 35px;
@@ -65,7 +72,7 @@
                 right: 31px;
                 bottom: 35px;
                 color: #757575;
-                font-size: 21px;
+                font-size: 14px;
                 letter-spacing: 2px;
                 text-transform: uppercase;
             }
@@ -200,28 +207,30 @@
 
                     .title{
                         color: #9c9b9b;
-                        font-size: 33px;
+                        font-size: 14px;
                         line-height: 28px;
                         letter-spacing: 3px;
                         text-align: center;
-                        padding: 37px 0 23px 0px;
+                        padding: 30px 0 15px 0px;
                         text-transform: uppercase;
                     }
 
                     .all-stars {
-                        font-size: 16px;
+                        font-size: 11px;
                         height:41px;
                         line-height: 41px;
                         text-align: center;
                         color: #9c9b9b;
                         border: 1px solid #a1a1a1;
-                        letter-spacing: 4px;
+                        letter-spacing: 0.9px;
                         text-transform: uppercase;
                         border-radius: 40px;
                         margin-bottom: 0px;
-                        margin-top: 62px;
+                        margin-top: 40px;
                         cursor: pointer;
-
+                        font-family: Cabin;
+                        width: 199px;
+                        display: inline-block;
                         &:hover{
                             color: white;
                             border-color: white;
@@ -232,11 +241,12 @@
 
             .tab-header{
                 border-bottom: 1px solid #363636;
-                margin: 52px 0px 30px 0px;
+                margin: 0px 0px 30px 0px;
+                padding:40px 0px 20px 0px;
             }
 
             .page-title2{
-                padding: 40px 15px 20px 0;
+                padding: 0px 15px 0px 0;
                 .fa-chevron-right{
                     margin-left: 30px;
                 }
@@ -276,12 +286,26 @@
             }
 
             .celeb-videos{
-
                 .video{
-                    margin-bottom: 25px;
+                    margin-bottom: 15px 0px 25px 0px;
                 }
             }
         }
+    }
+    
+    
+    .favorites-border-gradient{
+        span{
+            width: 203px;
+            height: 37px;
+            line-height: 37px;
+            .icon{
+                margin-right: -10px;
+                margin-left: 15px;
+                position: absolute;
+                top: 5px;
+            }
+        } 
     }
 
 }

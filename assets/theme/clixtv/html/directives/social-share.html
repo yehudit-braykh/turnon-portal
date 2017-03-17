@@ -10,7 +10,7 @@
           </div>
           <div class="modal-body" ng-if="selectedTab=='post'">
               <div class="item row" ng-if="model.media_type!='video'">
-                  <div class="col-xs-3">
+                  <div class="col-xs-3 social_video">
                       <div class="item-img" style="background-image:url({{model.PosterH.url}})"></div>
                   </div>
                   <div class="item-details col-xs-9">
@@ -19,7 +19,7 @@
                   </div>
               </div>
               <div class="item row" ng-if="model.media_type=='video'">
-                  <div class="col-xs-3">
+                  <div class="col-xs-3 social_video">
                       <div class="item-img pr" style="background-image:url({{model.PosterH.url}})"><div class="play pa"></div></div>
                   </div>
                   <div class="item-details video col-xs-9">
