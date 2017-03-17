@@ -86,7 +86,7 @@
                             <div class="dropdown ib">
                                 <div id="dropdownMenu1" class="ib" class="ib dropdown-toggle user-section">
                                     <span style="float: left;margin-top: 10px;">{{user.firstName}}</span>
-                                    <span style="float: right;margin-top: 17px;transform: rotate(90deg) scale(1.2);" ng-click="showAccountDrop='true'" class="hand icon icon-arrow-thin-white-20x11 ml15"></span>
+                                    <span style="float: right;margin-top: 17px;transform: rotate(90deg) scale(0.9);" ng-click="showAccountDrop='true'" class="hand icon icon-arrow-thin-white-20x11 ml15"></span>
                                 </div>
                                 <ul class="dropdown-menu account-drop {{showAccountDrop=='true'?'show':''}}" aria-labelledby="dropdownMenu1">
                                     <span ng-click="showAccountDrop='false'" class="hand icon icon-arrow-thin-white-20x11 pa"  style="left:20px;top:26px;z-index:2;transform: rotate(-90deg) scale(1.2);"></span>
@@ -232,7 +232,7 @@
                                         <input type="text" name="last-name" ng-model="userRegister.last_name" placeholder="Last Name" required>
                                     </div>
 -->
-                                    <div class="field">
+                                    <div class="field first">
                                         <i class="icon icon-calendar-15x16"></i>
                                         <input type="text" name="dob" ng-model="" placeholder="Date of Birth" required>
                                     </div>
