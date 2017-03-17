@@ -76,11 +76,15 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="right col-xs-12" style="padding-top: 70px;">
+                    <div class="right col-xs-12" style="padding-top: 30px;">
                         <div class="title">Related Videos</div>
                         <div class="right-content row">
                             <clix-block class="video col-xs-6" ng-repeat="video in related_videos | limitTo:4" data-model="video" ></clix-block>
-                            <div class="all-stars col-xs-6 col-xs-offset-3 hand" ng-click="$parent.shownTab='Stars'"s>Show More</div>
+                            <div class="col-xs-12 text-center" >
+                                <div class="all-stars hand" ng-click="$parent.shownTab='Stars'"s>
+                                Show More
+                                </div>
+                            </div>
                         </div>
 
                     </div>

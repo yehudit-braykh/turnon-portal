@@ -30,17 +30,17 @@
                 .modal-tab-selector{
                     float: left;
                     color: #8a8a8a;
-                    letter-spacing: 2.5px;
-                    padding: 15px 0px;
+                    letter-spacing: 2px;
+                    padding: 25px 0px 20px 0px;
                     cursor: pointer;
-                    font-size: 24px;
+                    font-size: 14px;
                     margin: 0 20px;
                     text-transform: uppercase;
                     font-family: Cabin;
 
                     &:hover, &.active{
                         border-bottom: 3px solid #fe0000;
-                        padding-bottom: 12px;
+                        //padding-bottom: 12px;
                         color: white;
                     }
                 }
@@ -82,17 +82,18 @@
 
                     &.video{
                         padding-top: 0;
+                        padding-right:0px;
                     }
                     .video-item-title{
-                        font-size: 35px;
-                        line-height: 36px;
+                        font-size: 30px;
+                        line-height: 32px;
                         color: white;
                     }
 
                     .video-item-subtitle{
                         font-family: Cabin;
-                        font-size: 18px;
-                        line-height: 18px;
+                        font-size: 14px;
+                        line-height: 14px;
                         color: #fe0000;
                         padding-bottom: 6px;
                     }
@@ -109,11 +110,10 @@
 
                     .clixtv{
                         font-family: Cabin;
-                        font-size: 16px;
-                        letter-spacing: 2.7px;
+                        font-size: 13px;
+                        letter-spacing: 2px;
                         color: #8a8a8a;
                         line-height: 16px;
-
                     }
                 }
             }
@@ -122,7 +122,7 @@
                 margin-bottom: 10px;
 
                 input{
-                    font-size: 18px;
+                    font-size: 14px;
                 }
                 .share-text{
                     resize: none;
@@ -130,26 +130,26 @@
                     outline: 0;
                     padding: 10px;
                     border-radius: 5px;
-                    font-size: 18px;
+                    font-size: 14px;
                 }
             }
 
             .social-options {
-                padding: 15px 0;
+                padding: 15px 0 0px 0px;
                 margin: 0;
                 .text{
                     color: #969696;
-                    font-size: 26px;
+                    font-size: 14px;
                     display: inline-block;
-                    height: 50px;
-                    line-height: 50px;
+                    height: auto;
+                    line-height: 40px;
                 }
 
                 .option{
-                    height: 50px;
-                    width: 50px;
+                    height: 40px;
+                    width: 40px;
                     display: inline-block;
-                    margin-left: 25px;
+                    margin-left: 20px;
                     border-radius: 50%;
                     cursor: pointer;
                     background-position: center;
@@ -190,27 +190,29 @@
             padding-top: 0;
 
             .modal-btn{
-                padding: 3px 40px;
                 margin-left: 15px;
                 background: 0;
                 border: 0;
-
+                padding: 0px;
                 border-radius: 30px;
-                font-size: 21px;
                 color: white;
                 cursor: pointer;
                 outline: 0;
-                font-size: 18px;
+                font-size: 14px;
+                height: 36px;
+                line-height: 36px;
+                width: 146px;
+                text-transform: uppercase;
 
                 &.cancel{
                     background-color: #1f1f1f;
-    	            border: solid 1px #ffffff;
+    	            border: solid 1px #8a8a8a;
 
 
                     &:hover{
-	                    border: solid 3px #ffffff;
-                        margin-bottom: -2px;
-                        margin-top: -2px;
+	                    border: solid 1px #ffffff;
+                        margin-bottom: 0px;
+                        margin-top: 0px;
                     }
                 }
 
@@ -229,6 +231,21 @@
         }
 
     }
-
-
+    .social_video{
+        padding-left:0px;
+    }
+    .modal-body {
+        position: relative;
+        padding: 20px 20px 0px 20px;
+    }
+    .modal-dialog {
+        width: 708px;
+        margin: 30px auto;
+    }
+    .modal-footer {
+        padding: 15px 15px 45px 15px;
+        text-align: right;
+        border-top: 1px solid #e5e5e5;
+        margin-top: 30px;
+    }    
 }
