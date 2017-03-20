@@ -1,0 +1,93 @@
+.clix-header {
+    .flex-display;
+    .transition(0.5s ease);
+    .gradient(@color-black, @color-transparent);
+    padding-top: 26px;
+    padding-bottom: 26px;
+    padding-left: 30px;
+    padding-right: 30px;
+    width: 100%;
+    position: fixed;
+    z-index: 2000;
+
+    &.filled {
+        background-color: @color-black;
+    }
+
+    .clix-logo {
+        max-width: 100%;
+    }
+    .logo-container {
+        display: block;
+        width: 135px;
+        margin: 0;
+        margin-right: 38px;
+    }
+    .clix-navigation {
+        .flex-display;
+
+        border-left: 1px solid @color-white;
+        padding-left: 30px;
+    }
+    .navigation-item-container {
+        margin-right: 0;
+        padding-top: 5px;
+        a {
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 2px;
+            padding: 5px 19px;
+            color: @color-light-gray;
+            font-family: @font-secondary;
+        }
+        a:hover, a:focus {
+            color: @color-white;
+            text-decoration: none;
+        }
+
+        .search-icon-container {
+            padding: 0;
+        }
+    }
+
+    .search-item-container {
+        padding: 0;
+    }
+
+    .search-bar.inactive {
+        .search-bar-background {
+            background-color: @color-transparent;
+            border-color: @color-transparent;
+            input {
+                width: 1px;
+                visibility: hidden;
+            }
+        }
+    }
+    .icon-search-icon {
+        font-size: 16px;
+    }
+    .search-bar-background {
+        .transition(all 0.25s ease-out);
+        .border-radius(15px);
+        background-color: @color-black;
+        border: 1px solid @color-light-gray;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        margin-left: 5px;
+        padding-left: 5px;
+        padding-right: 5px;
+        input {
+            .transition(all 0.25s ease-out);
+            width: 200px;
+            outline: none;
+            visibility: visible;
+            background-color: @color-transparent;
+            border-width: 0;
+            color: @color-white;
+        }
+        input::placeholder {
+            color: @color-light-gray;
+        }
+    }
+}

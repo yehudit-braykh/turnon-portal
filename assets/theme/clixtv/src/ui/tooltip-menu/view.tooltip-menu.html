@@ -1,0 +1,9 @@
+<div class="tooltip-menu">
+    <menu class="menu-container" ng-show="menuopen">
+        <menuitem ng-repeat="item in items">
+            <a ng-click="item.onClick()" class="menu-item">
+                <i class="menu-icon {{item.icon}}"></i> {{item.label}}
+            </a>
+        </menuitem>
+    </menu>
+</div>

@@ -1,0 +1,18 @@
+<div class="video-category-scroll-list" ng-show="category.title">
+    <h2>
+        <a href="#">
+            {{category.title}} <i class="icon-right-arrow"></i>
+        </a>
+    </h2>
+    <div class="video-list-container">
+        <div class="video-inner-list-container">
+            <div class="video-container" style="width: {{videoContainerWidth}}px;" ng-repeat="video in category.videos">
+                <clix-video-content-box video="video"></clix-video-content-box>
+            </div>
+        </div>
+
+        <a href="#" class="arrow-container left-arrow-container">
+            <i class="icon-left-tall-arrow"></i>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,169 @@
+.video-content-box {
+    background-color: @color-dark-gray;
+    .header-container {
+        color: @color-white;
+        font-family: @font-primary;
+        font-size: 14px;
+        position: relative;
+    }
+    .header-inner-content {
+        .flex-display;
+        .align-items(center);
+        padding: 15px 5px 15px 10px;
+    }
+    .artist-name {
+        .flex(1);
+        padding-left: 14px;
+    }
+    .artist-avatar {
+        .border-radius(15px);
+        width: 30px;
+        height: 30px;
+        background-size: cover;
+    }
+    .video-thumbnail {
+        background-size: cover;
+        display: block;
+        position: relative;
+        cursor: pointer;
+    }
+    .video-thumbnail-inner-container {
+        .flex-display(flex);
+        .flex-direction(column);
+        height: 198px;
+    }
+    .video-thumbnail:hover {
+        .video-thumbnail-inner-container {
+            background-color: @color-transparent-black;
+        }
+        .play-button, .save-button {
+            display: block;
+        }
+    }
+
+    .play-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -36px;
+        margin-top: -34px;
+        display: none;
+    }
+
+    .save-button {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        display: none;
+    }
+
+    .play-button:hover {
+        .button-normal {
+            display: none;
+        }
+        .button-hover {
+            display: block;
+        }
+    }
+
+    .play-button:focus {
+        .button-normal,
+        .button-hover {
+            display: none;
+        }
+        .button-click {
+            display: block;
+        }
+    }
+
+    .save-button:hover {
+        .button-normal {
+            display: none;
+        }
+        .button-hover {
+            display: block;
+        }
+    }
+
+    .save-button:focus {
+        .button-normal,
+        .button-hover {
+            display: none;
+        }
+        .button-click {
+            display: block;
+        }
+    }
+
+    .button-hover,
+    .button-click {
+        display: none;
+    }
+    .icon-ellipsis {
+        font-size: 20px;
+    }
+    .menu-icon-container {
+        color: @color-gray2;
+        cursor: pointer;
+    }
+    .menu-icon-container:hover {
+        color: @color-white;
+    }
+    .footer-container {
+        padding: 6px 10px;
+        a {
+            display: inline-block;
+        }
+        a:hover {
+            text-decoration: none;
+            .series-title {
+                text-decoration: underline;
+            }
+            .episode-title {
+                text-decoration: underline;
+            }
+        }
+    }
+    .series-title {
+        font-family: @font-primary;
+        font-size: 14px;
+        color: @color-white;
+        padding: 0;
+    }
+    .episode-title {
+        font-family: @font-primary;
+        font-size: 14px;
+        font-weight: bold;
+        color: @color-primary;
+        text-transform: uppercase;
+        padding: 0;
+    }
+    .video-brand-icon-list {
+        .flex-display;
+        .flex(1);
+        .align-content(flex-end);
+        .opacity(0.5);
+        .gradient(rgba(14,14,14,0), #1c1c1c);
+    }
+    .video-brand-icon {
+        .align-self(flex-end);
+        .flex(1);
+        height: 50px;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .violator-container {
+        .flex(1);
+        .align-self(flex-end);
+        padding: 5px 10px;
+    }
+
+    .menu-container {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        padding: 7px;
+    }
+}

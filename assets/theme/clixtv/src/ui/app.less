@@ -1,0 +1,32 @@
+@import (inline) "../../node_modules/normalize.css/normalize.css";
+@import (inline) "sprites/compiled/layout-sprite.css";
+@import (inline) "common/fonts.css";
+
+@import "common/variables";
+@import "common/mixins";
+@import "common/flexbox";
+@import "common/violators";
+
+@import "header/header";
+@import "home/home";
+@import "categories/video-category-scroll-list";
+@import "video-content-box/video-content-box";
+@import "tooltip-menu/tooltip-menu";
+@import "footer/footer";
+
+body {
+    background-color: @color-darker-gray;
+}
+
+a {
+    color: @color-white;
+}
+
+a:hover, a:focus {
+    color: @color-white;
+}
+
+.main-content {
+    padding-left: 30px;
+    padding-right: 30px;
+}

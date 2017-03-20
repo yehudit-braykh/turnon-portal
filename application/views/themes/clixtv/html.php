@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:tp="http://player.theplatform.com/" xml:lang="en" lang="en" ng-app="clixApp">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:tp="http://player.theplatform.com/" xml:lang="en" lang="en">
     <head>
 
         <title>ClixTv Portal</title>
@@ -16,25 +16,25 @@
         <script src="/assets/common/js/bootstrap.min.js" crossorigin="anonymous"></script>
 
         <link rel="stylesheet" href="/assets/common/css/bootstrap.min.css" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="<?php echo asset_url(); ?>dist/main.min.css" />
+
+        <!--
         <link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/less.php" />
         <link rel="stylesheet" href="/assets/common/css/font-awesome.min.css">
         <link rel="stylesheet" href="/assets/common/css/select.min.css">
-
         <script src="<?php echo asset_url(); ?>js/livequery.js"></script>
+        -->
 
         <!-- ANGULAR FILES -->
-        <script src="<?php echo asset_url(); ?>js/angular.min.js"></script>
-        <script src="<?php echo asset_url(); ?>js/angular-touch.min.js"></script>
-        <script src="<?php echo asset_url(); ?>js/angular-route.min.js"></script>
-        <script src="<?php echo asset_url(); ?>js/angular-animate.min.js"></script>
-        <script src="<?php echo asset_url(); ?>/js/ng-file-upload.min.js"></script>
-        <script src="/assets/common/js/select.min.js"></script>
-        <script src="assets/common/js/select-tpls.min.js"></script>
 
 
+
+        <!--
         <script src="<?php echo asset_url(); ?>js/main.js"></script>
 
-        <!-- ANGULAR CONTOLLERS -->
+
         <script src="<?php echo asset_url(); ?>js/controllers/pages/home.js"></script>
         <script src="<?php echo asset_url(); ?>js/controllers/pages/about.js"></script>
         <script src="<?php echo asset_url(); ?>js/controllers/pages/categories.js"></script>
@@ -49,10 +49,10 @@
         <script src="<?php echo asset_url(); ?>js/controllers/pages/account.js"></script>
         <script src="<?php echo asset_url(); ?>js/controllers/pages/video.js"></script>
 
-        <!-- COMPONENTS CONTROLLERS -->
+
         <script src="<?php echo asset_url(); ?>js/controllers/components/header.js"></script>
 
-        <!-- ANGULAR FACTORIES -->
+
         <script src="<?php echo asset_url(); ?>js/factories/cache.js"></script>
         <script src="<?php echo asset_url(); ?>js/factories/user.js"></script>
         <script src="<?php echo asset_url(); ?>js/factories/categories.js"></script>
@@ -64,10 +64,10 @@
         <script src="<?php echo asset_url(); ?>js/factories/social.js"></script>
         <script src="<?php echo asset_url(); ?>js/factories/knetik.js"></script>
 
-        <!-- ANGULAR FILTERS -->
+
         <script src="<?php echo asset_url(); ?>js/filters/filters.js"></script>
 
-        <!-- ANGULAR DIRECTIVES -->
+
         <script src="<?php echo asset_url(); ?>/js/directives/clix-carousel.js"></script>
         <script src="<?php echo asset_url(); ?>js/directives-helpers/slick.min.js"></script>
         <script src="<?php echo asset_url(); ?>/js/directives/jwplayer.js"></script>
@@ -76,6 +76,10 @@
         <script src="<?php echo asset_url(); ?>js/directives/social-share.js"></script>
         <script src="<?php echo asset_url(); ?>js/directives/mentio.js"></script>
         <script src="<?php echo asset_url(); ?>js/directives/count-to.js"></script>
+
+        -->
+
+
 
 
         <!-- END ANGULAR -->
@@ -118,11 +122,22 @@
 
     <body>
 
-        <header ng-include="'/assets/theme/clixtv/html/components/header.html'"></header>
-
+        <clix-header-bar></clix-header-bar>
+        
         <div ng-view autoscroll="true"></div>
 
-        <footer ng-include="'/assets/theme/clixtv/html/components/footer.html'"></footer>
+        <clix-footer></clix-footer>
+
+<!--    <footer ng-include="'/assets/theme/clixtv/html/components/footer.html'"></footer>-->
+
+        <script src="<?php echo asset_url(); ?>js/angular.min.js"></script>
+        <script src="<?php echo asset_url(); ?>js/angular-touch.min.js"></script>
+        <script src="<?php echo asset_url(); ?>js/angular-route.min.js"></script>
+        <script src="<?php echo asset_url(); ?>js/angular-animate.min.js"></script>
+        <script src="<?php echo asset_url(); ?>/js/ng-file-upload.min.js"></script>
+        <script src="/assets/common/js/select.min.js"></script>
+        <script src="assets/common/js/select-tpls.min.js"></script>
+        <script src="<?php echo asset_url(); ?>dist/main.min.js"></script>
 
     </body>
 </html>

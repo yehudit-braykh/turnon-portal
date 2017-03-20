@@ -1,0 +1,38 @@
+.tooltip-menu {
+    position: relative;
+    height: 0;
+    z-index: 2000;
+    width: 100%;
+    .menu-container {
+        .drop-shadow(0, 2px, 5px, 2px, .5);
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 0;
+        margin: 0;
+        background-color: @color-medium-gray3;
+        width: 100%;
+    }
+    .menu-item {
+        display: block;
+        padding-left: 9px;
+        padding-top: 9px;
+        padding-bottom: 9px;
+        cursor: pointer;
+        font-family: @font-primary;
+        font-size: 14px;
+        color: @color-gray2;
+    }
+    .menu-item:hover {
+        text-decoration: none;
+        background-color: @color-medium-gray2;
+    }
+    .menu-icon {
+        font-size: 23px;
+        color: @color-gray2;
+        margin-right: 9px;
+    }
+    .icon-favorite-icon {
+        font-size: 20px;
+    }
+}

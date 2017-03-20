@@ -1,0 +1,54 @@
+.video-category-scroll-list {
+    margin-top: 55px;
+    min-height: 356px;
+    padding-left: 30px;
+
+    h2 {
+        font-family: @font-secondary;
+        font-weight: bold;
+        font-size: 24px;
+        padding: 0;
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 3.5px;
+
+        a {
+            color: @color-gray;
+        }
+        a:hover, a:focus {
+            color: @color-white;
+            text-decoration: none;
+        }
+    }
+    .icon-right-arrow {
+        font-size: 20px;
+    }
+    .video-list-container {
+        .flex-display;
+        .flex(1);
+        overflow: hidden;
+        margin-top: 20px;
+        position: relative;
+    }
+
+    .arrow-container {
+        display: none;
+        position: absolute;
+        top: 0;
+        font-size: 56px;
+        width: 63px;
+        height: 100%;
+        background-color: @color-transparent-black;
+    }
+
+    .arrow:hover {
+        text-decoration: none;
+    }
+
+    .video-inner-list-container {
+        .flex-display;
+    }
+    .video-container {
+        margin-right: 12px;
+    }
+}
