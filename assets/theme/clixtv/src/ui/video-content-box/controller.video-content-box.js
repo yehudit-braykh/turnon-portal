@@ -3,7 +3,8 @@
     var VideoContentBoxController = [
         '$q',
         '$scope',
-        function($q, $scope) {
+        '$location',
+        function($q, $scope, $location) {
 
             $scope.menuVisible = false;
 
@@ -52,6 +53,10 @@
             $scope.onImageLoad = function(event) {
                 $scope.ready = true;
             };
+
+            $scope.go = function(path) {
+                $location.path(path);
+            }
         }
     ];
 

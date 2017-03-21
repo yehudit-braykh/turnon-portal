@@ -1,11 +1,12 @@
 .home-page {
     margin-bottom: 100px;
+    background-color: @color-darker-gray;
 
     .main-video-container {
         position: relative;
         overflow: hidden;
         height: 70vh;
-        min-height: 300px;
+        min-height: 375px;
         video {
             width: 100%;
         }
@@ -64,11 +65,60 @@
         .button-container {
             margin-top: 20px;
         }
+    }
+    .slick-slider {
+        position: static;
+    }
+    .slick-dots {
+        position: absolute;
+        left: 0;
+        bottom: 20px;
+        list-style-type: none;
+        margin: 0 auto;
+        width: 100%;
+        text-align: center;
+        padding: 0;
 
-        .slick-dots {
-            position: absolute;
-            left: 0;
-            bottom: 0;
+        li {
+            display: inline-block;
+            margin: 0 6px;
         }
+
+        button {
+            .border-radius(3px);
+            border-width: 0;
+            background-color: @color-transparent-white;
+            font-size: 0;
+            line-height: 0;
+            width: 6px;
+            height: 6px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .slick-active {
+            button {
+                background-color: @color-white;
+            }
+        }
+    }
+    .slick-slide {
+        outline: 0;
+    }
+
+    .slick-arrow {
+        position: absolute;
+        top: 50%;
+        z-index: 3000;
+    }
+
+    #main-carousel-next {
+        right: 0;
+    }
+
+    .main-carousel-button {
+        font-size: 56px;
+        color: @color-white;
+        cursor: pointer;
     }
 }

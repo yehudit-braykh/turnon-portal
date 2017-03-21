@@ -15,7 +15,7 @@
 <!--        <script src="/assets/common/js/jquery-3.1.1.slim.min.js" crossorigin="anonymous"></script>-->
 <!--        <script src="/assets/common/js/bootstrap.min.js" crossorigin="anonymous"></script>-->
 
-        <link rel="stylesheet" href="/assets/common/css/bootstrap.min.css" crossorigin="anonymous">
+<!--        <link rel="stylesheet" href="/assets/common/css/bootstrap.min.css" crossorigin="anonymous">-->
         <link href="https://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet">
         <link rel="stylesheet" href="<?php echo asset_url(); ?>dist/main.min.css" />
@@ -137,6 +137,7 @@
 <!--        <script src="--><?php //echo asset_url(); ?><!--/js/ng-file-upload.min.js"></script>-->
 <!--        <script src="/assets/common/js/select.min.js"></script>-->
 <!--        <script src="assets/common/js/select-tpls.min.js"></script>-->
+        <script src="<?php echo asset_url(); ?>dist/libs.min.js"></script>
         <script src="<?php echo asset_url(); ?>dist/main.min.js"></script>
 
     </body>

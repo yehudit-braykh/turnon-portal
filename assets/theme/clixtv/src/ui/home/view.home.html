@@ -5,7 +5,7 @@
         <div class="video-overlay"></div>
 
         <div class="carousel-container" id="carousel-container">
-            <slick dots="true">
+            <slick dots="true" autoplay="true" autoplay-speed="5000" prev-arrow="#main-carousel-previous" next-arrow="#main-carousel-next" pause-on-hover="true">
                 <div>
                     <div class="carousel-slide" style="height: {{videoContainerHeight}}px">
                         <div class="carouse-slide-content">
@@ -58,6 +58,16 @@
                     </div>
                 </div>
             </slick>
+        </div>
+        <div id="main-carousel-previous">
+            <div class="main-carousel-button">
+                <i class="icon-left-tall-arrow"></i>
+            </div>
+        </div>
+        <div id="main-carousel-next">
+            <div class="main-carousel-button">
+                <i class="icon-right-tall-arrow"></i>
+            </div>
         </div>
     </div>
     <div ng-repeat="category in categories">

@@ -3,6 +3,10 @@
 @import (inline) "sprites/compiled/layout-sprite.css";
 @import (inline) "common/fonts.css";
 
+@import "../../node_modules/bootstrap-less/bootstrap/bootstrap";
+
+@grid-gutter-width: 60px;
+
 @import "common/variables";
 @import "common/mixins";
 @import "common/flexbox";
@@ -14,10 +18,11 @@
 @import "categories/video-category-scroll-list";
 @import "video-content-box/video-content-box";
 @import "tooltip-menu/tooltip-menu";
+@import "video-permalink/video-permalink";
 @import "footer/footer";
 
 body {
-    background-color: @color-darker-gray;
+    background-color: @color-black;
 }
 
 a {

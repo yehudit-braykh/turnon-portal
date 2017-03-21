@@ -6,6 +6,9 @@
             controller: 'VideoCategoryScrollList',
             scope: {
                 category: '='
+            },
+            link: function(scope, element) {
+                scope.scrollListElement = angular.element(element).find('.video-inner-list-container');
             }
         }
     };

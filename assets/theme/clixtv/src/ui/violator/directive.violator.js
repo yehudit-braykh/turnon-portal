@@ -4,7 +4,7 @@
             restrict: 'AE',
             templateUrl: 'ui/violator/view.violator.html',
             scope: {
-
+                size: '@?'
             }
         }
     };

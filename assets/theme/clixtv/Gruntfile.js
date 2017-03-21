@@ -9,21 +9,31 @@ module.exports = function(grunt) {
                 files: {
                     'dist/main.min.js': ['dist/main.js']
                 }
+            },
+            libs: {
+                files: {
+                    'dist/libs.min.js': ['dist/libs.js']
+                }
             }
         },
         concat: {
             js: {
                 dest: 'dist/main.js',
                 src: [
-                    'bower_components/jquery/dist/jquery.js',
-                    'bower_components/angular/angular.js',
-                    'bower_components/angular-route/angular-route.js',
-                    'bower_components/slick-carousel/slick/slick.js',
-                    'bower_components/angular-slick/dist/slick.js',
                     'src/ui/app.js',
                     'src/ui/views.js',
                     'src/ui/**/*.js',
                     'src/services/*.js'
+                ]
+            },
+            libs: {
+                dest: 'dist/libs.js',
+                src: [
+                    'bower_components/jquery/dist/jquery.js',
+                    'bower_components/angular/angular.js',
+                    'bower_components/angular-route/angular-route.js',
+                    'bower_components/slick-carousel/slick/slick.js',
+                    'bower_components/angular-slick-carousel/dist/angular-slick.min.js'
                 ]
             }
         },
@@ -31,7 +41,7 @@ module.exports = function(grunt) {
             options: {
                 module: 'clixtv',
                 htmlmin: {
-                    collapseBooleanAttributes: true,
+                    collapseBooleanAttributes: false,
                     collapseWhitespace: true,
                     removeAttributeQuotes: true,
                     removeComments: true,
@@ -79,7 +89,7 @@ module.exports = function(grunt) {
         },
         clean: {
             build: {
-                src: ['dist']
+                src: ['dist/font', 'dist/images', 'dist/main*.css', 'dist/main*.js']
             }
         },
         cssmin: {
@@ -130,7 +140,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
 
-    grunt.registerTask('script', ['ngtemplates', 'concat:js', 'uglify']);
+    grunt.registerTask('script', ['ngtemplates', 'concat:js', 'uglify:production']);
+    grunt.registerTask('libs', ['concat:libs', 'uglify:libs']);
     grunt.registerTask('media', ['sprite', 'imagemin']);
     grunt.registerTask('style', ['media', 'less', 'cssmin']);
     grunt.registerTask('default', ['clean', 'script', 'style', 'copy', 'watch']);

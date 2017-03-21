@@ -2,7 +2,7 @@
     var module = angular
         .module('clixtv', [
             'ngRoute',
-            'slick'
+            'slickCarousel'
         ])
         .config([
             '$locationProvider',
@@ -17,6 +17,10 @@
                         templateUrl: 'ui/home/view.home.html',
                         controller: 'HomeController'
                     })
+                    .when('/video/:videoId', {
+                        templateUrl: 'ui/video-permalink/view.video-permalink.html',
+                        controller: 'VideoPermalinkController'
+                    });
             }
         ]);
 

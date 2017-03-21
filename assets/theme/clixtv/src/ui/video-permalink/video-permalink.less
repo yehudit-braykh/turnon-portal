@@ -1,0 +1,107 @@
+@avatar-size: 55px;
+
+.video-permalink-page {
+    padding-top: 120px;
+
+    .video-player-column-container {
+        padding-right: 0;
+    }
+
+    .star-info-column-container {
+        padding-left: 24px;
+    }
+
+    .video-player {
+        height: 684px;
+        background-color: @color-gray;
+    }
+
+    .star-name-container {
+        .flex-display;
+        .align-items(center);
+        .star-avatar {
+            .border-radius(@avatar-size / 2);
+            width: @avatar-size;
+            height: @avatar-size;
+            background-size: cover;
+        }
+        .star-name {
+            .flex(1);
+            font-family: @font-primary;
+            font-weight: bold;
+            font-size: 30px;
+            color: @color-white;
+            margin-left: 21px;
+        }
+        .favorite-icon {
+            font-size: 28px;
+            color: @color-gray2;
+        }
+        .favorite-icon:hover {
+            text-decoration: none;
+            color: @color-white;
+        }
+    }
+    .social-container {
+        .flex-display;
+        .align-items(center);
+        margin-top: 38px;
+        .violator-container {
+            .flex(1);
+        }
+        .social-icon-container {
+            .flex-display;
+            .flex(.5);
+            .justify-content(flex-end);
+            .align-items(center);
+            color: @color-gray2;
+        }
+        .social-icon-container:last-child {
+            padding-right: 0;
+        }
+        .social-icon {
+            font-size: 31px;
+            color: @color-gray2;
+        }
+        .social-icon:hover {
+            text-decoration: none;
+            color: @color-white;
+        }
+        .social-icon-label {
+            font-family: @font-secondary;
+            color: @color-gray2;
+            font-size: 14px;
+            margin-left: 10px;
+            letter-spacing: 1.5px;
+        }
+    }
+
+    .video-info-container {
+        margin-top: 38px;
+        .series-title {
+            font-family: @font-primary;
+            font-size: 35px;
+            color: @color-white;
+            letter-spacing: 1.6px;
+            line-height: 35px;
+            margin-bottom: 5px;
+        }
+        .episode-title {
+            font-family: @font-secondary;
+            font-size: 24px;
+            color: @color-primary;
+            text-transform: uppercase;
+            line-height: 24px;
+            margin-bottom: 5px;
+        }
+        .total-views-available-container {
+            .flex-display;
+            font-family: @font-secondary;
+            text-transform: uppercase;
+            color: @color-gray2;
+            font-size: 14px;
+            letter-spacing: 1.6px;
+            line-height: 14px;
+        }
+    }
+}
