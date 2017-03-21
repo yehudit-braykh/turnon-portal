@@ -2,7 +2,7 @@
     <menu class="menu-container" ng-show="menuopen">
         <menuitem ng-repeat="item in items">
             <a ng-click="item.onClick()" class="menu-item">
-                <i class="menu-icon {{item.icon}}"></i> {{item.label}}
+                <i class="menu-icon {{item.icon}}"></i> <span class="menu-label">{{item.label}}</span>
             </a>
         </menuitem>
     </menu>

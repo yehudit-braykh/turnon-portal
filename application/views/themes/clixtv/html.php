@@ -12,8 +12,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-        <script src="/assets/common/js/jquery-3.1.1.slim.min.js" crossorigin="anonymous"></script>
-        <script src="/assets/common/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<!--        <script src="/assets/common/js/jquery-3.1.1.slim.min.js" crossorigin="anonymous"></script>-->
+<!--        <script src="/assets/common/js/bootstrap.min.js" crossorigin="anonymous"></script>-->
 
         <link rel="stylesheet" href="/assets/common/css/bootstrap.min.css" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet">
@@ -83,8 +83,8 @@
 
 
         <!-- END ANGULAR -->
-        <script type="text/javascript" src="/assets/common/js/jwplayer-7.9.0/jwplayer.js" ></script>
-        <script>jwplayer.key="wldzyhAXC/pV8hrmoKJJUJQUQU7UwoOXl6rN1w==";</script>
+<!--        <script type="text/javascript" src="/assets/common/js/jwplayer-7.9.0/jwplayer.js" ></script>-->
+<!--        <script>jwplayer.key="wldzyhAXC/pV8hrmoKJJUJQUQU7UwoOXl6rN1w==";</script>-->
     <!--    <script>
             (function (i, s, o, g, r, a, m) {
                 i['GoogleAnalyticsObject'] = r;
@@ -130,13 +130,13 @@
 
 <!--    <footer ng-include="'/assets/theme/clixtv/html/components/footer.html'"></footer>-->
 
-        <script src="<?php echo asset_url(); ?>js/angular.min.js"></script>
-        <script src="<?php echo asset_url(); ?>js/angular-touch.min.js"></script>
-        <script src="<?php echo asset_url(); ?>js/angular-route.min.js"></script>
-        <script src="<?php echo asset_url(); ?>js/angular-animate.min.js"></script>
-        <script src="<?php echo asset_url(); ?>/js/ng-file-upload.min.js"></script>
-        <script src="/assets/common/js/select.min.js"></script>
-        <script src="assets/common/js/select-tpls.min.js"></script>
+<!--        <script src="--><?php //echo asset_url(); ?><!--js/angular.min.js"></script>-->
+<!--        <script src="--><?php //echo asset_url(); ?><!--js/angular-touch.min.js"></script>-->
+<!--        <script src="--><?php //echo asset_url(); ?><!--js/angular-route.min.js"></script>-->
+<!--        <script src="--><?php //echo asset_url(); ?><!--js/angular-animate.min.js"></script>-->
+<!--        <script src="--><?php //echo asset_url(); ?><!--/js/ng-file-upload.min.js"></script>-->
+<!--        <script src="/assets/common/js/select.min.js"></script>-->
+<!--        <script src="assets/common/js/select-tpls.min.js"></script>-->
         <script src="<?php echo asset_url(); ?>dist/main.min.js"></script>
 
     </body>

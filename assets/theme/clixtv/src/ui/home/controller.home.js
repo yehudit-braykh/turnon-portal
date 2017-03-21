@@ -3,9 +3,20 @@
     var HomeController = [
         '$q',
         '$scope',
+        '$timeout',
+        '$window',
         'categoryService',
         'brandsService',
-        function($q, $scope, categoryService, brandsService) {
+        function($q, $scope, $timeout, $window, categoryService, brandsService) {
+
+            var carouselElement = angular.element(document.getElementById('carousel-container'));
+
+            function _recalculateHeight() {
+                $scope.videoContainerHeight = carouselElement.innerHeight();
+                $timeout(function() {
+                    $scope.$apply();
+                });
+            }
 
             function _loadVideosForCategoryIndex(index) {
                 var category = $scope.categories[index];
@@ -45,6 +56,13 @@
                         _loadVideosForCategoryIndex(0);
                     }
                 );
+
+
+            angular.element($window).on('resize.doResize', function () {
+                _recalculateHeight();
+            });
+
+            _recalculateHeight();
         }
     ];
 

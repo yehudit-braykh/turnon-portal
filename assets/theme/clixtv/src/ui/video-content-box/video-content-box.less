@@ -27,10 +27,20 @@
         position: relative;
         cursor: pointer;
     }
+    .video-thumbnail-image {
+        width: 100%;
+    }
+    .video-thumbnail-action-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
     .video-thumbnail-inner-container {
         .flex-display(flex);
         .flex-direction(column);
-        height: 198px;
+        height: 100%;
     }
     .video-thumbnail:hover {
         .video-thumbnail-inner-container {
@@ -163,6 +173,7 @@
     .menu-container {
         position: absolute;
         top: 50%;
+        right: 0;
         width: 100%;
         padding: 7px;
     }

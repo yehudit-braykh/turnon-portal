@@ -18,4 +18,57 @@
         right: 0;
         bottom: 0;
     }
+
+    .carousel-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+
+    .carousel-slide {
+        .flex-display;
+        .flex(1);
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+
+        .carouse-slide-content {
+            align-self: center;
+            text-align: center;
+        }
+
+        .carousel-main-header {
+            font-family: @font-primary;
+            font-size: 65px;
+            line-height: 65px;
+            color: @color-white;
+            margin-top: 50px;
+        }
+
+        .carousel-sub-header {
+            font-family: @font-secondary;
+            font-size: 22px;
+            color: @color-white;
+            text-transform: uppercase;
+            letter-spacing: 3.3px;
+            line-height: 22px;
+        }
+
+        .carousel-second-line {
+            margin-top: 10px;
+            margin-bottom: 60px;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .slick-dots {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+    }
 }

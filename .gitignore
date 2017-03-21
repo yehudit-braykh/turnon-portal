@@ -5,3 +5,4 @@ env.ini
 /.project
 .idea
 node_modules/
+bower_components/

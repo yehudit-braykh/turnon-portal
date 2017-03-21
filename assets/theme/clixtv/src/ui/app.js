@@ -1,7 +1,8 @@
 (function() {
     var module = angular
         .module('clixtv', [
-            'ngRoute'
+            'ngRoute',
+            'slick'
         ])
         .config([
             '$locationProvider',

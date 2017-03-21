@@ -460,6 +460,122 @@ template {
   display: none;
 }
 
+/* Slider */
+.slick-slider
+{
+    position: relative;
+
+    display: block;
+
+    -moz-box-sizing: border-box;
+         box-sizing: border-box;
+
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -ms-touch-action: pan-y;
+        touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.slick-list
+{
+    position: relative;
+
+    display: block;
+    overflow: hidden;
+
+    margin: 0;
+    padding: 0;
+}
+.slick-list:focus
+{
+    outline: none;
+}
+.slick-list.dragging
+{
+    cursor: pointer;
+    cursor: hand;
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list
+{
+    -webkit-transform: translate3d(0, 0, 0);
+       -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+         -o-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+
+.slick-track
+{
+    position: relative;
+    top: 0;
+    left: 0;
+
+    display: block;
+}
+.slick-track:before,
+.slick-track:after
+{
+    display: table;
+
+    content: '';
+}
+.slick-track:after
+{
+    clear: both;
+}
+.slick-loading .slick-track
+{
+    visibility: hidden;
+}
+
+.slick-slide
+{
+    display: none;
+    float: left;
+
+    height: 100%;
+    min-height: 1px;
+}
+[dir='rtl'] .slick-slide
+{
+    float: right;
+}
+.slick-slide img
+{
+    display: block;
+}
+.slick-slide.slick-loading img
+{
+    display: none;
+}
+.slick-slide.dragging img
+{
+    pointer-events: none;
+}
+.slick-initialized .slick-slide
+{
+    display: block;
+}
+.slick-loading .slick-slide
+{
+    visibility: hidden;
+}
+.slick-vertical .slick-slide
+{
+    display: block;
+
+    height: auto;
+
+    border: 1px solid transparent;
+}
 /*
 Icon classes can be used entirely standalone. They are named after their original file names.
 
@@ -639,6 +755,35 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
   display: inline-block;
   padding: 3px 13px;
 }
+.primary-button {
+  background-color: #911685;
+  background-image: -webkit-gradient(linear, left top, right top, from(#911685), to(#fa0d1b));
+  background-image: -webkit-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -moz-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -ms-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -o-linear-gradient(left, #911685, #fa0d1b);
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  font-family: 'Cabin', sans-serif;
+  font-size: 11px;
+  color: #FFF;
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+  padding: 10px 46px;
+}
+.primary-button:hover {
+  background-color: #7b1371;
+  background-image: -webkit-gradient(linear, left top, right top, from(#7b1371), to(#e90512));
+  background-image: -webkit-linear-gradient(left, #7b1371, #e90512);
+  background-image: -moz-linear-gradient(left, #7b1371, #e90512);
+  background-image: -ms-linear-gradient(left, #7b1371, #e90512);
+  background-image: -o-linear-gradient(left, #7b1371, #e90512);
+  text-decoration: none;
+}
 .clix-header {
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -770,9 +915,58 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
   right: 0;
   bottom: 0;
 }
+.home-page .carousel-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.home-page .carousel-slide {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.home-page .carousel-slide .carouse-slide-content {
+  align-self: center;
+  text-align: center;
+}
+.home-page .carousel-slide .carousel-main-header {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 65px;
+  line-height: 65px;
+  color: #FFF;
+  margin-top: 50px;
+}
+.home-page .carousel-slide .carousel-sub-header {
+  font-family: 'Cabin', sans-serif;
+  font-size: 22px;
+  color: #FFF;
+  text-transform: uppercase;
+  letter-spacing: 3.3px;
+  line-height: 22px;
+}
+.home-page .carousel-slide .carousel-second-line {
+  margin-top: 10px;
+  margin-bottom: 60px;
+}
+.home-page .carousel-slide .button-container {
+  margin-top: 20px;
+}
+.home-page .carousel-slide .slick-dots {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
 .video-category-scroll-list {
   margin-top: 55px;
-  min-height: 356px;
   padding-left: 30px;
 }
 .video-category-scroll-list h2 {
@@ -870,6 +1064,16 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
   position: relative;
   cursor: pointer;
 }
+.video-content-box .video-thumbnail-image {
+  width: 100%;
+}
+.video-content-box .video-thumbnail-action-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
 .video-content-box .video-thumbnail-inner-container {
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -878,7 +1082,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  height: 198px;
+  height: 100%;
 }
 .video-content-box .video-thumbnail:hover .video-thumbnail-inner-container {
   background-color: rgba(0, 0, 0, 0.8);
@@ -1015,6 +1219,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 .video-content-box .menu-container {
   position: absolute;
   top: 50%;
+  right: 0;
   width: 100%;
   padding: 7px;
 }
@@ -1054,6 +1259,10 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
   font-size: 23px;
   color: #8a8a8a;
   margin-right: 9px;
+}
+.tooltip-menu .menu-label {
+  position: relative;
+  top: -3px;
 }
 .tooltip-menu .icon-favorite-icon {
   font-size: 20px;

@@ -15,6 +15,11 @@ module.exports = function(grunt) {
             js: {
                 dest: 'dist/main.js',
                 src: [
+                    'bower_components/jquery/dist/jquery.js',
+                    'bower_components/angular/angular.js',
+                    'bower_components/angular-route/angular-route.js',
+                    'bower_components/slick-carousel/slick/slick.js',
+                    'bower_components/angular-slick/dist/slick.js',
                     'src/ui/app.js',
                     'src/ui/views.js',
                     'src/ui/**/*.js',
@@ -80,7 +85,9 @@ module.exports = function(grunt) {
         cssmin: {
             production: {
                 files: {
-                    'dist/main.min.css': ['dist/main.css']
+                    'dist/main.min.css': [
+                        'dist/main.css'
+                    ]
                 }
             }
         },

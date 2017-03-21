@@ -40,7 +40,17 @@
 
             $scope.menuClicked = function() {
                 $scope.menuVisible = !$scope.menuVisible;
-                $scope.test = 'fdsa';
+            };
+
+            $scope.bodyClicked = function(event) {
+                if (angular.element(event.target).hasClass('menu-item')) {
+                    return;
+                }
+                $scope.menuVisible = false;
+            };
+
+            $scope.onImageLoad = function(event) {
+                $scope.ready = true;
             };
         }
     ];

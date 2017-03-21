@@ -1,0 +1,15 @@
+.primary-button {
+    .horizontal-gradient(@color-tertiary, @color-secondary);
+    .border-radius(30px);
+    font-family: @font-secondary;
+    font-size: 11px;
+    color: @color-white;
+    text-transform: uppercase;
+    letter-spacing: 0.9px;
+    padding: 10px 46px;
+}
+
+.primary-button:hover {
+    .horizontal-gradient(darken(@color-tertiary, 5%), darken(@color-secondary, 5%));
+    text-decoration: none;
+}
