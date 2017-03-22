@@ -7343,23 +7343,6 @@ button.close {
     display: none !important;
   }
 }
-.violator {
-  background-color: #fe0000;
-  -webkit-border-radius: 100px;
-  -moz-border-radius: 100px;
-  border-radius: 100px;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-  color: #FFF;
-  font-family: 'Cabin', sans-serif;
-  font-size: 11px;
-  display: inline-block;
-  padding: 3px 13px;
-}
-.violator.large {
-  font-size: 15px;
-}
 .primary-button {
   background-color: #911685;
   background-image: -webkit-gradient(linear, left top, right top, from(#911685), to(#fa0d1b));
@@ -7983,6 +7966,10 @@ button.close {
 }
 .video-permalink-page {
   padding-top: 120px;
+  padding-bottom: 100px;
+}
+.video-permalink-page .row {
+  margin: 0;
 }
 .video-permalink-page .video-player-column-container {
   padding-right: 0;
@@ -7991,8 +7978,15 @@ button.close {
   padding-left: 24px;
 }
 .video-permalink-page .video-player {
-  height: 684px;
   background-color: #aaaaaa;
+}
+.video-permalink-page .about-video-inner-container {
+  transition: all 0.25s ease-out;
+  -webkit-transition: all 0.25s ease-out;
+  -moz-transition: all 0.25s ease-out;
+  -ms-transition: all 0.25s ease-out;
+  -o-transition: all 0.25s ease-out;
+  overflow: hidden;
 }
 .video-permalink-page .star-name-container {
   display: -webkit-flex;
@@ -8055,9 +8049,9 @@ button.close {
   -webkit-flex: 0.5;
   -ms-flex: 0.5;
   flex: 0.5;
-  -webkit-justify-content: flex-end;
-  -ms-justify-content: flex-end;
-  justify-content: flex-end;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
   -webkit-align-items: center;
   -ms-align-items: center;
   align-items: center;
@@ -8090,7 +8084,7 @@ button.close {
   color: #FFF;
   letter-spacing: 1.6px;
   line-height: 35px;
-  margin-bottom: 5px;
+  margin-bottom: 2px;
 }
 .video-permalink-page .video-info-container .episode-title {
   font-family: 'Cabin', sans-serif;
@@ -8111,6 +8105,163 @@ button.close {
   font-size: 14px;
   letter-spacing: 1.6px;
   line-height: 14px;
+}
+.video-permalink-page .video-info-container .description {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 14px;
+  color: #FFF;
+  line-height: 20px;
+  margin-top: 20px;
+}
+.video-permalink-page .video-info-container .meta-data {
+  font-family: 'Cabin', sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+  color: #FFF;
+  font-weight: bold;
+  margin-top: 36px;
+}
+.video-permalink-page .video-info-container .meta-data-label {
+  text-transform: uppercase;
+  color: #8a8a8a;
+  font-weight: normal;
+}
+.video-permalink-page .visibility-toggle-button {
+  text-align: center;
+  margin-top: 20px;
+}
+.video-permalink-page .brands-charity-container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #636363;
+}
+.video-permalink-page .brands-charity-container .brands-charity-title {
+  font-family: 'Cabin', sans-serif;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 4.4px;
+  margin-bottom: 6px;
+}
+.video-permalink-page .brands-charity-container .brands-container {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.video-permalink-page .brands-charity-container .charity-container {
+  width: 115px;
+}
+.video-permalink-page .brands-charity-container .logo-list-container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.video-permalink-page .brands-charity-container .charity-logo {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.video-permalink-page .brands-charity-container .brand-logo {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  padding-right: 8px;
+}
+.video-permalink-page .brands-charity-container .brands-title {
+  color: #ae2eff;
+}
+.video-permalink-page .brands-charity-container .charity-title {
+  color: #e52bc4;
+}
+.violator {
+  background-color: #fe0000;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  border-radius: 100px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  color: #FFF;
+  font-family: 'Cabin', sans-serif;
+  font-size: 11px;
+  display: inline-block;
+  padding: 3px 13px;
+}
+.violator.large {
+  font-size: 15px;
+}
+.points-violator {
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  background-color: #fe0000;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  color: #FFF;
+  font-family: 'Cabin', sans-serif;
+  font-size: 14px;
+}
+.points-violator .plus-sign {
+  font-size: 11px;
+  position: relative;
+  top: -4px;
+}
+.clix-secondary-button {
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  border-radius: 100px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid #8a8a8a;
+  font-family: 'Cabin', sans-serif;
+  color: #FFF;
+  font-size: 11px;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 12px 50px;
+}
+.clix-secondary-button:hover {
+  text-decoration: none;
+  border-color: #FFF;
+}
+.clix-logo-container {
+  background-image: -moz-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
+  background-image: -ms-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
+  background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(#c60548), to(#7a0ba8));
+  background-image: -webkit-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
+  background-image: -o-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
+  height: 115px;
+  text-align: center;
+  padding: 20px;
+}
+.clix-logo-container.clix-charity-logo-container {
+  background-image: -moz-radial-gradient(0 100%, circle, #03bcf2, #f700e6 60%);
+  background-image: -ms-radial-gradient(0 100%, circle, #03bcf2, #f700e6 60%);
+  background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(#03bcf2), to(#f700e6));
+  background-image: -webkit-radial-gradient(0 100%, circle, #03bcf2, #f700e6 60%);
+  background-image: -o-radial-gradient(0 100%, circle, #03bcf2, #f700e6 60%);
+}
+.clix-logo-container .logo-image {
+  max-height: 100%;
+  max-width: 100%;
+  margin: 0 auto;
 }
 .clix-footer {
   padding-top: 73px;

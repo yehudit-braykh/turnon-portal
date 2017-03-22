@@ -33,6 +33,11 @@
 angular.module('clixtv').run(['$templateCache', function($templateCache) {
   'use strict';
 
+  $templateCache.put('ui/buttons/view.secondary-button.html',
+    "<a href=# class=clix-secondary-button><div ng-transclude></div></a>"
+  );
+
+
   $templateCache.put('ui/categories/view.video-category-scroll-list.html',
     "<div class=video-category-scroll-list ng-show=category.title><h2><a href=#>{{category.title}} <i class=icon-right-arrow></i></a></h2><div ng-if=category.videos class=category-container><slick slides-to-show=5 slides-to-scroll=5 infinite=false variable-width=true prev-arrow=#carousel-previous-{{$id}} next-arrow=#carousel-next-{{$id}} settings=carouselConfig><div ng-repeat=\"video in category.videos\" class=video-content-container style=\"width: {{videoContainerWidth}}px\"><div clix-video-content-box video=video></div></div></slick><div class=\"arrow-container left-arrow-container\" id=carousel-previous-{{$id}} ng-show=leftArrowVisible><div class=arrow-inner-container><i class=icon-left-tall-arrow></i></div></div><div class=\"arrow-container right-arrow-container\" id=carousel-next-{{$id}}><i class=icon-right-tall-arrow></i></div></div></div>"
   );
@@ -63,6 +68,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('ui/logo/view.logo.html',
+    "<div class=clix-logo-container ng-class=\"{'clix-charity-logo-container': charity}\"><img ng-if=logoUrl ng-src={{logoUrl}} class=logo-image></div>"
+  );
+
+
   $templateCache.put('ui/tooltip-menu/view.tooltip-menu.html',
     "<div class=tooltip-menu><menu class=menu-container ng-show=menuopen><menuitem ng-repeat=\"item in items\"><a ng-click=item.onClick() class=menu-item><i class=\"menu-icon {{item.icon}}\"></i> <span class=menu-label>{{item.label}}</span></a></menuitem></menu></div>"
   );
@@ -74,7 +84,12 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/video-permalink/view.video-permalink.html',
-    "<div class=video-permalink-page><div class=\"col-lg-8 video-player-column-container\"><div class=video-player></div></div><div class=\"col-lg-4 star-info-column-container\"><div class=about-video-container><div class=star-name-container><div class=star-avatar style=\"background-image: url({{video.PosterH.url}})\"></div><div class=star-name>{{video.artist_name}}</div><a href=# class=\"favorite-icon icon-favorite-icon\"></a></div><div class=social-container><div class=violator-container><clix-violator size=large>100 Reward Points</clix-violator></div><div class=social-icon-container><a href=# class=\"social-icon icon-heart-icon\"></a><div class=social-icon-label>256K</div></div><div class=social-icon-container><a href=# class=\"social-icon icon-save-icon\"></a></div><div class=social-icon-container><a href=# class=\"social-icon icon-share-icon\"></a></div></div><div class=video-info-container><div class=series-title>{{video.artist_name}}</div><div class=episode-title>Episode 1: {{video.artist_name}}</div><div class=total-views-available-container><div class=total-views>48,096,110 views</div><div class=available-until>Available Until 2 February 2017</div></div></div></div></div></div>"
+    "<div class=video-permalink-page><div class=row><div class=\"col-lg-8 video-player-column-container\"><div class=video-player><div id=videoPlayer></div><clix-video-player ng-if=video video=video auto-play=true video-id=videoPlayer on-ready=onPlayerReady></clix-video-player></div></div><div class=\"col-lg-4 star-info-column-container\"><div class=about-video-container><div class=about-video-inner-container style=\"height: {{playerHeight || 0}}px\"><div class=star-name-container><div class=star-avatar style=\"background-image: url({{video.PosterH.url}})\"></div><div class=star-name>{{video.artist_name}}</div><a href=# class=\"favorite-icon icon-favorite-icon\"></a></div><div class=social-container><div class=violator-container><clix-violator size=large>100 Reward Points</clix-violator></div><div class=social-icon-container><a href=# class=\"social-icon icon-heart-icon\"></a><div class=social-icon-label>256K</div></div><div class=social-icon-container><a href=# class=\"social-icon icon-save-icon\"></a></div><div class=social-icon-container><a href=# class=\"social-icon icon-share-icon\"></a><clix-points-violator>50</clix-points-violator></div></div><div class=video-info-container><div class=series-title>{{video.title}}</div><div class=episode-title>Episode 1: {{video.title}}</div><div class=total-views-available-container><div class=total-views>48,096,110 views</div><div class=available-until>Available Until 2 February 2017</div></div><div class=description>{{video.description}}</div><div class=meta-data><div class=meta-data-row><span class=meta-data-label>Category: </span><span ng-repeat=\"category in video.categories\"><a href=#>{{category.name}}</a><span ng-if=!$last>,</span></span></div></div></div></div><div id=toggle-button-container><div class=visibility-toggle-button><clix-secondary-button>Show More</clix-secondary-button></div><div class=brands-charity-container><div class=brands-container><div class=\"brands-charity-title brands-title\">Brands in this Series</div><div class=logo-list-container><div class=brand-logo clix-logo logo-url=http://advncedcdn.vo.llnwd.net/clixtv_storage/storage/57cdc2665aad0b6fcf67bb3d/58054a355f7c20000319780f/texaco_logo_white.png></div><div class=brand-logo clix-logo logo-url=http://advncedcdn.vo.llnwd.net/clixtv_storage/storage/57cdc2665aad0b6fcf67bb3d/580549d45f7c20000319780c/cabelas_logo_whtie.png></div></div></div><div class=charity-container><div class=\"brands-charity-title charity-title\">Charity</div><div class=logo-list-container><div class=charity-logo clix-logo charity=true logo-url=http://advncedcdn.vo.llnwd.net/clixtv_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d3ffc801b10003711113/special-olympics-world-games1.png></div></div></div></div></div></div></div></div></div>"
+  );
+
+
+  $templateCache.put('ui/violator/view.points-violator.html',
+    "<div class=points-violator><span class=plus-sign>+</span><span ng-transclude></span></div>"
   );
 
 
@@ -84,6 +99,21 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 }]);
 
+(function() {
+    var secondaryButton = function() {
+        return {
+            restrict: 'AE',
+            transclude: true,
+            templateUrl: 'ui/buttons/view.secondary-button.html',
+            scope: {
+
+            }
+        }
+    };
+
+    angular.module('clixtv')
+        .directive('clixSecondaryButton', secondaryButton);
+}());
 (function() {
 
     var VIDEO_MARGIN_LEFT = 12;
@@ -344,6 +374,21 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         .controller('HomeController', HomeController);
 }());
 (function() {
+    var logo = function() {
+        return {
+            restrict: 'AE',
+            templateUrl: 'ui/logo/view.logo.html',
+            scope: {
+                charity: '@?',
+                logoUrl: '@?'
+            }
+        }
+    };
+
+    angular.module('clixtv')
+        .directive('clixLogo', logo);
+}());
+(function() {
 
     var TooltipMenuController = [
         '$q',
@@ -535,24 +580,102 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
     var VideoPermalinkController = [
         '$q',
         '$scope',
+        '$timeout',
         'videosService',
-        function($q, $scope, videosService) {
+        function($q, $scope, $timeout, videosService) {
 
 
-            videosService.getVideoById('57db028006531d030058084a')
+            //angular.element(document.getElementById('videoPlayer')).innerHeight()
+
+            videosService.getVideoById('57fd596a878adf00033c9570')
                 .then(
                     function onSuccess(data) {
                         $scope.video = data.data;
                         console.log(data.data);
                     }
-                )
+                );
 
+            $scope.onPlayerReady = function(configs) {
+                $scope.playerHeight = configs.height - angular.element(document.getElementById('toggle-button-container')).outerHeight() - 20;
+                $timeout(function() {
+                    $scope.$apply();
+                });
+            };
         }
     ];
 
     angular
         .module('clixtv')
         .controller('VideoPermalinkController', VideoPermalinkController);
+}());
+(function() {
+
+    var VideoPlayerController = [
+        '$q',
+        '$scope',
+        'knetikService',
+        function($q, $scope, knetikService) {
+
+            if ($scope.video) {
+                jwplayer($scope.videoId).setup({
+                    file: $scope.video.HLSStream ? $scope.video.HLSStream.url : $scope.video.mainTrailer.url,
+                    //  primary: 'html5',
+                    androidhls: true,
+                    autostart: $scope.autoPlay,
+                    aspectratio: '16:9',
+                    controls: true,
+                    width: '100%',
+                    //repeat: true,
+                    icons: false,
+                    image: $scope.video.PosterH ? $scope.video.PosterH.url : $scope.video.BackgroundImage.url
+                });
+
+                jwplayer().on('ready', function() {
+                    if ($scope.onReady) {
+                        $scope.onReady({
+                            height: jwplayer().getHeight()
+                        });
+                    }
+                });
+            }
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .controller('VideoPlayerController', VideoPlayerController);
+}());
+(function() {
+    var videoPlayer = function() {
+        return {
+            restrict: 'AE',
+            controller: 'VideoPlayerController',
+            scope: {
+                video: '=',
+                autoPlay: '=',
+                videoId: '@',
+                onReady: '=?'
+            }
+        }
+    };
+
+    angular.module('clixtv')
+        .directive('clixVideoPlayer', videoPlayer);
+}());
+(function() {
+    var pointsViolator = function() {
+        return {
+            restrict: 'AE',
+            transclude: true,
+            templateUrl: 'ui/violator/view.points-violator.html',
+            scope: {
+
+            }
+        }
+    };
+
+    angular.module('clixtv')
+        .directive('clixPointsViolator', pointsViolator);
 }());
 (function() {
     var violator = function() {
@@ -624,6 +747,25 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
     angular
         .module('clixtv')
         .factory('categoryService', categoryService);
+}());
+(function() {
+
+    var knetikService = [
+        '$http',
+        function($http) {
+            return {
+
+                getAllBrands: function() {
+
+                    return $http.get('/api/brands/get_all_brands_and_charities_object');
+                }
+            }
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .factory('knetikService', knetikService);
 }());
 (function() {
 

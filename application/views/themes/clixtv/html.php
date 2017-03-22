@@ -83,8 +83,6 @@
 
 
         <!-- END ANGULAR -->
-<!--        <script type="text/javascript" src="/assets/common/js/jwplayer-7.9.0/jwplayer.js" ></script>-->
-<!--        <script>jwplayer.key="wldzyhAXC/pV8hrmoKJJUJQUQU7UwoOXl6rN1w==";</script>-->
     <!--    <script>
             (function (i, s, o, g, r, a, m) {
                 i['GoogleAnalyticsObject'] = r;
@@ -137,6 +135,10 @@
 <!--        <script src="--><?php //echo asset_url(); ?><!--/js/ng-file-upload.min.js"></script>-->
 <!--        <script src="/assets/common/js/select.min.js"></script>-->
 <!--        <script src="assets/common/js/select-tpls.min.js"></script>-->
+
+        <script type="text/javascript" src="/assets/common/js/jwplayer-7.9.0/jwplayer.js" ></script>
+        <script>jwplayer.key="wldzyhAXC/pV8hrmoKJJUJQUQU7UwoOXl6rN1w==";</script>
+
         <script src="<?php echo asset_url(); ?>dist/libs.min.js"></script>
         <script src="<?php echo asset_url(); ?>dist/main.min.js"></script>
 

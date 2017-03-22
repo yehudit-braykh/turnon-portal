@@ -2,6 +2,11 @@
 
 .video-permalink-page {
     padding-top: 120px;
+    padding-bottom: 100px;
+
+    .row {
+        margin: 0;
+    }
 
     .video-player-column-container {
         padding-right: 0;
@@ -12,8 +17,12 @@
     }
 
     .video-player {
-        height: 684px;
         background-color: @color-gray;
+    }
+
+    .about-video-inner-container {
+        .transition(all 0.25s ease-out);
+        overflow: hidden;
     }
 
     .star-name-container {
@@ -52,7 +61,7 @@
         .social-icon-container {
             .flex-display;
             .flex(.5);
-            .justify-content(flex-end);
+            .justify-content(center);
             .align-items(center);
             color: @color-gray2;
         }
@@ -84,7 +93,7 @@
             color: @color-white;
             letter-spacing: 1.6px;
             line-height: 35px;
-            margin-bottom: 5px;
+            margin-bottom: 2px;
         }
         .episode-title {
             font-family: @font-secondary;
@@ -102,6 +111,73 @@
             font-size: 14px;
             letter-spacing: 1.6px;
             line-height: 14px;
+        }
+        .description {
+            font-family: @font-primary;
+            font-size: 14px;
+            color: @color-white;
+            line-height: 20px;
+            margin-top: 20px;
+        }
+        .meta-data {
+            font-family: @font-secondary;
+            font-size: 14px;
+            line-height: 18px;
+            color: @color-white;
+            font-weight: bold;
+            margin-top: 36px;
+        }
+        .meta-data-label {
+            text-transform: uppercase;
+            color: @color-gray2;
+            font-weight: normal;
+        }
+    }
+    .visibility-toggle-button {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .brands-charity-container {
+        .flex-display;
+        .flex(1);
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid @color-gray3;
+
+        .brands-charity-title {
+            font-family: @font-secondary;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 4.4px;
+            margin-bottom: 6px;
+        }
+        .brands-container {
+            .flex(1);
+        }
+        .charity-container {
+            width: 115px;
+        }
+
+        .logo-list-container {
+            .flex-display;
+            .flex(1);
+        }
+
+        .charity-logo {
+            .flex(1);
+        }
+
+        .brand-logo {
+            .flex(1);
+            padding-right: 8px;
+        }
+
+        .brands-title {
+            color: @color-brand;
+        }
+        .charity-title {
+            color: @color-charity;
         }
     }
 }

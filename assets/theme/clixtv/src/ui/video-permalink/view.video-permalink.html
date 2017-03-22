@@ -1,50 +1,98 @@
 <div class="video-permalink-page">
-    <div class="col-lg-8 video-player-column-container">
-        <div class="video-player">
-
-        </div>
-    </div>
-    <div class="col-lg-4 star-info-column-container">
-
-        <div class="about-video-container">
-
-            <div class="star-name-container">
-                <div class="star-avatar" style="background-image: url({{video.PosterH.url}})"></div>
-                <div class="star-name">{{video.artist_name}}</div>
-                <a href="#" class="favorite-icon icon-favorite-icon"></a>
+    <div class="row">
+        <div class="col-lg-8 video-player-column-container">
+            <div class="video-player">
+                <div id="videoPlayer"></div>
+                <clix-video-player ng-if="video" video="video" auto-play="true" video-id="videoPlayer" on-ready="onPlayerReady"></clix-video-player>
             </div>
+        </div>
+        <div class="col-lg-4 star-info-column-container">
 
-            <div class="social-container">
-                <div class="violator-container">
-                    <clix-violator size="large">100 Reward Points</clix-violator>
-                </div>
-                <div class="social-icon-container">
-                    <a href="#" class="social-icon icon-heart-icon"></a>
-                    <div class="social-icon-label">
-                        256K
+            <div class="about-video-container">
+
+                <div class="about-video-inner-container" style="height: {{playerHeight || 0}}px;">
+                    <div class="star-name-container">
+                        <div class="star-avatar" style="background-image: url({{video.PosterH.url}})"></div>
+                        <div class="star-name">{{video.artist_name}}</div>
+                        <a href="#" class="favorite-icon icon-favorite-icon"></a>
+                    </div>
+
+                    <div class="social-container">
+                        <div class="violator-container">
+                            <clix-violator size="large">100 Reward Points</clix-violator>
+                        </div>
+                        <div class="social-icon-container">
+                            <a href="#" class="social-icon icon-heart-icon"></a>
+                            <div class="social-icon-label">
+                                256K
+                            </div>
+                        </div>
+                        <div class="social-icon-container">
+                            <a href="#" class="social-icon icon-save-icon"></a>
+                        </div>
+                        <div class="social-icon-container">
+                            <a href="#" class="social-icon icon-share-icon"></a>
+                            <clix-points-violator>
+                                50
+                            </clix-points-violator>
+                        </div>
+                    </div>
+
+                    <div class="video-info-container">
+                        <div class="series-title">
+                            {{video.title}}
+                        </div>
+                        <div class="episode-title">
+                            Episode 1: {{video.title}}
+                        </div>
+                        <div class="total-views-available-container">
+                            <div class="total-views">48,096,110 views</div>
+                            <div class="available-until">Available Until 2 February 2017</div>
+                        </div>
+
+                        <div class="description">
+                            {{video.description}}
+                        </div>
+
+                        <div class="meta-data">
+                            <div class="meta-data-row">
+                                <span class="meta-data-label">
+                                    Category:
+                                </span>
+                                <span ng-repeat="category in video.categories">
+                                    <a href="#">{{category.name}}</a><span ng-if="!$last">,</span>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="social-icon-container">
-                    <a href="#" class="social-icon icon-save-icon"></a>
-                </div>
-                <div class="social-icon-container">
-                    <a href="#" class="social-icon icon-share-icon"></a>
+                <div id="toggle-button-container">
+                    <div class="visibility-toggle-button">
+                        <clix-secondary-button>
+                            Show More
+                        </clix-secondary-button>
+                    </div>
+                    <div class="brands-charity-container">
+                        <div class="brands-container">
+                            <div class="brands-charity-title brands-title">
+                                Brands in this Series
+                            </div>
+                            <div class="logo-list-container">
+                                <div class="brand-logo" clix-logo logo-url="http://advncedcdn.vo.llnwd.net/clixtv_storage/storage/57cdc2665aad0b6fcf67bb3d/58054a355f7c20000319780f/texaco_logo_white.png"></div>
+                                <div class="brand-logo" clix-logo logo-url="http://advncedcdn.vo.llnwd.net/clixtv_storage/storage/57cdc2665aad0b6fcf67bb3d/580549d45f7c20000319780c/cabelas_logo_whtie.png"></div>
+                            </div>
+                        </div>
+                        <div class="charity-container">
+                            <div class="brands-charity-title charity-title">
+                                Charity
+                            </div>
+                            <div class="logo-list-container">
+                                <div class="charity-logo" clix-logo charity="true" logo-url="http://advncedcdn.vo.llnwd.net/clixtv_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d3ffc801b10003711113/special-olympics-world-games1.png"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="video-info-container">
-                <div class="series-title">
-                    {{video.artist_name}}
-                </div>
-                <div class="episode-title">
-                    Episode 1: {{video.artist_name}}
-                </div>
-                <div class="total-views-available-container">
-                    <div class="total-views">48,096,110 views</div>
-                    <div class="available-until">Available Until 2 February 2017</div>
-                </div>
-            </div>
-
         </div>
     </div>
 </div>
