@@ -3,8 +3,9 @@
     var HeroBannerController = [
         '$q',
         '$scope',
-        function($q, $scope) {
-
+        'parallaxHelper',
+        function($q, $scope, parallaxHelper) {
+            $scope.background = parallaxHelper.createAnimator(-0.3)
         }
     ];
 

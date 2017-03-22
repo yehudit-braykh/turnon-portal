@@ -7,7 +7,8 @@
     var module = angular
         .module('clixtv', [
             'slickCarousel',
-            'ui.router'
+            'ui.router',
+            'duParallax'
         ])
         .config([
             '$locationProvider',

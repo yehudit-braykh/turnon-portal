@@ -7,7 +7,8 @@
     var module = angular
         .module('clixtv', [
             'slickCarousel',
-            'ui.router'
+            'ui.router',
+            'duParallax'
         ])
         .config([
             '$locationProvider',
@@ -71,7 +72,12 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/hero-banner/view.hero-banner.html',
-    "<div class=clix-hero-banner><img class=hero-background-image ng-src={{backgroundImage}} ng-srcset=\"{{backgroundImage2x}} 2x\" alt=\"\" draggable=false><div class=hero-banner-overlay></div><div class=hero-banner-content-container><div class=hero-banner-content><div class=banner-logo-container><div ng-transclude=logo></div></div><div class=banner-title-content><div class=banner-title>{{titleText}}</div><div class=banner-button><clix-tertiary-button>{{buttonText}} <i class={{buttonIconClass}}></i></clix-tertiary-button><a href=# class=\"icon-share-icon banner-share-icon\"></a><div class=header-points-violator><clix-points-violator>{{points}}</clix-points-violator></div></div></div><div class=banner-subtext-container>{{subtext}}</div></div></div></div>"
+    "<div class=clix-hero-banner><img class=hero-background-image ng-src={{backgroundImage}} ng-srcset=\"{{backgroundImage2x}} 2x\" alt=\"\" draggable=false du-parallax y=background><div class=hero-banner-overlay du-parallax y=background></div><div class=hero-banner-content-container><div class=hero-banner-content><div class=banner-logo-container><div ng-transclude=logo></div></div><div class=banner-title-content><div class=banner-title>{{titleText}}</div><div class=banner-button><clix-tertiary-button>{{buttonText}} <i class={{buttonIconClass}}></i></clix-tertiary-button><a href=# class=\"icon-share-icon banner-share-icon\"></a><div class=header-points-violator><clix-points-violator>{{points}}</clix-points-violator></div></div></div><div class=banner-subtext-container>{{subtext}}</div></div></div></div>"
+  );
+
+
+  $templateCache.put('ui/common/parallax/view.parallax.html',
+    "<div class=clix-parallax id=parallax-container><div ng-transclude></div></div>"
   );
 
 
@@ -300,8 +306,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
     var HeroBannerController = [
         '$q',
         '$scope',
-        function($q, $scope) {
-
+        'parallaxHelper',
+        function($q, $scope, parallaxHelper) {
+            $scope.background = parallaxHelper.createAnimator(-0.3)
         }
     ];
 
@@ -333,6 +340,31 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     angular.module('clixtv')
         .directive('clixHeroBanner', heroBanner);
+}());
+(function() {
+
+    var parallax = [
+        '$window',
+        function($window) {
+            return {
+                restrict: 'AE',
+                templateUrl: 'ui/common/parallax/view.parallax.html',
+                transclude: true,
+                scope: {
+
+                },
+                link: function(scope, element, attributes) {
+                    var parallaxElement = document.getElementById('parallax-container');
+                    angular.element($window).on('scroll', function() {
+                        parallaxElement.style.top = -(this.pageYOffset * .2) + 'px';
+                    });
+                }
+            }
+        }
+    ];
+
+    angular.module('clixtv')
+        .directive('clixParallax', parallax);
 }());
 (function() {
 
