@@ -7945,16 +7945,15 @@ button.close {
   background-color: #404040;
 }
 .tooltip-menu .menu-icon {
-  font-size: 23px;
+  font-size: 18px;
   color: #8a8a8a;
-  margin-right: 9px;
+  margin-right: 1px;
 }
 .tooltip-menu .menu-label {
   position: relative;
-  top: -3px;
 }
 .tooltip-menu .icon-favorite-icon {
-  font-size: 20px;
+  font-size: 17px;
 }
 .video-permalink-page {
   padding-top: 120px;
@@ -8177,7 +8176,7 @@ button.close {
   -ms-flex: 1;
   flex: 1;
 }
-.video-permalink-page .brands-charity-container .brand-logo {
+.video-permalink-page .brands-charity-container .brand-logo-link {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
@@ -8685,6 +8684,7 @@ a {
 a:hover,
 a:focus {
   color: #FFF;
+  outline: 0;
 }
 .main-content {
   padding-left: 30px;
