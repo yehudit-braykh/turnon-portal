@@ -744,6 +744,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 .icon-favorite-icon:before { content: '\e80d'; } /* '' */
 .icon-left-tall-arrow:before { content: '\e80e'; } /* '' */
 .icon-right-tall-arrow:before { content: '\e80f'; } /* '' */
+.icon-down-arrow:before { content: '\e810'; } /* '' */
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
@@ -8183,6 +8184,47 @@ button.close {
 .video-permalink-page .brands-charity-container .charity-title {
   color: #e52bc4;
 }
+.video-permalink-page .up-next-container {
+  margin-top: 31px;
+}
+.video-permalink-page .up-next-container .up-next-header {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  padding-bottom: 17px;
+  border-bottom: 1px solid #636363;
+}
+.video-permalink-page .up-next-container .up-next-label {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  font-family: 'Cabin', sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  color: #aaaaaa;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+}
+.video-permalink-page .related-videos-container {
+  margin-top: 39px;
+}
+.video-permalink-page .related-videos-container .related-videos-header {
+  font-family: 'Cabin', sans-serif;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1.6px;
+  color: #8a8a8a;
+  text-align: center;
+  padding-bottom: 27px;
+}
+.video-permalink-page .related-videos-container .related-videos-list {
+  border: 1px solid #777777;
+  background-color: #1b1b1b;
+}
 .violator {
   background-color: #fe0000;
   -webkit-border-radius: 100px;
@@ -8262,6 +8304,38 @@ button.close {
   max-height: 100%;
   max-width: 100%;
   margin: 0 auto;
+}
+.clix-dropdown .dropdown-trigger {
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  border-radius: 100px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  font-family: 'Cabin', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1.1px;
+  color: #8a8a8a;
+  padding: 8px 22px;
+  border: 1px solid #8a8a8a;
+  cursor: pointer;
+}
+.clix-dropdown .dropdown-trigger:hover {
+  border-color: #FFF;
+  color: #FFF;
+}
+.clix-dropdown .icon-down-arrow {
+  font-size: 15px;
+}
+.clix-dropdown .tooltip-menu .menu-item {
+  padding-top: 13px;
+  padding-bottom: 13px;
+}
+.clix-dropdown .tooltip-menu .menu-label {
+  top: 0;
+  font-family: 'Cabin', sans-serif;
+  text-transform: uppercase;
 }
 .clix-footer {
   padding-top: 73px;

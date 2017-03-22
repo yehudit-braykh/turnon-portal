@@ -1,0 +1,7 @@
+<div class="clix-dropdown" ng-show="options" clix-click-anywhere-else="bodyClicked">
+    <div class="dropdown-trigger" ng-click="triggerClicked()">
+        {{ selected.label }}
+        <i class="icon-down-arrow"></i>
+    </div>
+    <clix-tooltip-menu items="options" menuopen="menuVisible"></clix-tooltip-menu>
+</div>

@@ -4,13 +4,29 @@
         '$q',
         '$scope',
         '$timeout',
+        '$stateParams',
         'videosService',
-        function($q, $scope, $timeout, videosService) {
+        function($q, $scope, $timeout, $stateParams, videosService) {
 
+            $scope.seriesList = [
+                {
+                    label: 'Series 1: Series Name Here...'
+                },
+                {
+                    label: 'Series 2: Series Name Here...'
+                },
+                {
+                    label: 'Series 3: Series Name Here...'
+                },
+                {
+                    label: 'Series 4: Series Name Here...'
+                },
+                {
+                    label: 'Series 5: Series Name Here...'
+                }
+            ];
 
-            //angular.element(document.getElementById('videoPlayer')).innerHeight()
-
-            videosService.getVideoById('57fd596a878adf00033c9570')
+            videosService.getVideoById($stateParams.id)
                 .then(
                     function onSuccess(data) {
                         $scope.video = data.data;

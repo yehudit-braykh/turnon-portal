@@ -229,6 +229,20 @@
       "search": [
         "heart-icon"
       ]
+    },
+    {
+      "uid": "61d49cf6ca63bda24ed0d59710e132a9",
+      "css": "down-arrow",
+      "code": 59408,
+      "src": "custom_icons",
+      "selected": true,
+      "svg": {
+        "path": "M958.3 866.7L316.7 200 391.7 133.3 958.3 725 1525 133.3 1600 200 958.3 866.7Z",
+        "width": 1917
+      },
+      "search": [
+        "down-arrow"
+      ]
     }
   ]
 }

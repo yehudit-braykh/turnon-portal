@@ -5,6 +5,18 @@
                 <div id="videoPlayer"></div>
                 <clix-video-player ng-if="video" video="video" auto-play="true" video-id="videoPlayer" on-ready="onPlayerReady"></clix-video-player>
             </div>
+            <div class="up-next-container">
+                <div class="up-next-header">
+                    <div class="up-next-label">
+                        Up Next in This Series
+                    </div>
+                    <div class="series-dropdown">
+                        <clix-dropdown options="seriesList">
+
+                        </clix-dropdown>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-lg-4 star-info-column-container">
 
@@ -91,6 +103,15 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div class="related-videos-container">
+                <div class="related-videos-header">
+                    Related Videos
+                </div>
+                <div class="related-videos-list">
+
                 </div>
             </div>
         </div>

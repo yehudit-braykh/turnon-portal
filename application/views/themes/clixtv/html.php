@@ -121,8 +121,8 @@
     <body>
 
         <clix-header-bar></clix-header-bar>
-        
-        <div ng-view autoscroll="true"></div>
+
+        <ui-view autoscroll="true"></ui-view>
 
         <clix-footer></clix-footer>
 
