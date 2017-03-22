@@ -1,0 +1,98 @@
+.primary-button {
+    .horizontal-gradient(@color-tertiary, @color-secondary);
+    .border-radius(30px);
+    font-family: @font-secondary;
+    font-size: 11px;
+    color: @color-white;
+    text-transform: uppercase;
+    letter-spacing: 0.9px;
+    padding: 10px 46px;
+}
+
+.primary-button:hover {
+    .horizontal-gradient(darken(@color-tertiary, 5%), darken(@color-secondary, 5%));
+    text-decoration: none;
+}
+
+.clix-secondary-button {
+    .border-radius(100px);
+    border: 1px solid @color-gray2;
+    font-family: @font-secondary;
+    color: @color-white;
+    font-size: 11px;
+    letter-spacing: 0.9px;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 12px 50px;
+    cursor: pointer;
+}
+
+.clix-secondary-button:hover {
+    text-decoration: none;
+    border-color: @color-white;
+}
+
+.clix-tertiary-button {
+    position: relative;
+    height: 36px;
+    display: inline-block;
+    margin-left: 18px;
+    margin-right: 18px;
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    &:before,
+    &:after {
+        .horizontal-gradient(@color-tertiary, @color-secondary);
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        z-index: 9999;
+    }
+    &:before {
+        top: 0;
+    }
+    &:after {
+        bottom: 0;
+    }
+    .button-edge {
+        .rotate(-225deg);
+        position: absolute;
+        top: 0;
+        width: 36px;
+        height: 36px;
+        border-radius: 18px;
+        border: 1px solid transparent;
+        border-right: 1px solid white;
+        border-bottom: 1px solid white;
+    }
+
+    .button-edge.left-edge {
+        left: -18px;
+        border-right: 1px solid @color-tertiary;
+        border-bottom: 1px solid @color-tertiary;
+    }
+
+    .button-edge.right-edge {
+        .rotate(-45deg);
+        right: -18px;
+        border-right: 1px solid @color-secondary;
+        border-bottom: 1px solid @color-secondary;
+    }
+
+    .button-content {
+        font-family: @font-secondary;
+        font-size: 11px;
+        color: @color-white;
+        letter-spacing: 0.9px;
+        text-transform: uppercase;
+        text-align: center;
+        line-height: 36px;
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+}

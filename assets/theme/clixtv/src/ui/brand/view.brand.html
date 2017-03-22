@@ -1,0 +1,15 @@
+<div class="brand-page" ng-if="configs">
+    <clix-hero-banner
+            title-text="{{configs.title}}"
+            button-text="{{'+ Favorites'}}"
+            points="{{'50'}}"
+            subtext="{{'18 Offers'}}"
+            button-icon-class="{{'icon-favorite-icon banner-favorite-icon'}}"
+            background-image="{{configs.backgroundImage}}"
+            background-image2x="{{configs.backgroundImage2x}}"
+    >
+        <hero-banner-logo>
+            <img ng-src="{{configs.logo}}" ng-srcset="{{configs.logo2x}} 2x" />
+        </hero-banner-logo>
+    </clix-hero-banner>
+</div>

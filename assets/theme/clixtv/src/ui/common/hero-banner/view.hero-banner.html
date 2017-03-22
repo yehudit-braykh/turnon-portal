@@ -1,0 +1,30 @@
+<div class="clix-hero-banner">
+    <img class="hero-background-image" ng-src="{{backgroundImage}}" ng-srcset="{{backgroundImage2x}} 2x" alt="" draggable="false" />
+    <div class="hero-banner-overlay"></div>
+    <div class="hero-banner-content-container">
+        <div class="hero-banner-content">
+            <div class="banner-logo-container">
+                <div ng-transclude="logo"></div>
+            </div>
+            <div class="banner-title-content">
+                <div class="banner-title">
+                    {{titleText}}
+                </div>
+                <div class="banner-button">
+                    <clix-tertiary-button>
+                        {{buttonText}} <i class="{{buttonIconClass}}"></i>
+                    </clix-tertiary-button>
+                    <a href="#" class="icon-share-icon banner-share-icon"></a>
+                    <div class="header-points-violator">
+                        <clix-points-violator>
+                            {{points}}
+                        </clix-points-violator>
+                    </div>
+                </div>
+            </div>
+            <div class="banner-subtext-container">
+                {{subtext}}
+            </div>
+        </div>
+    </div>
+</div>

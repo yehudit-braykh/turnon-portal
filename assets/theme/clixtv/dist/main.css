@@ -602,6 +602,18 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
   width: 136px;
   height: 30px;
 }
+.icon-gradient-border-right {
+  background-image: url(images/layout-sprite.png);
+  background-position: -148px -59px;
+  width: 18px;
+  height: 36px;
+}
+.icon-gradient-button-left {
+  background-image: url(images/layout-sprite.png);
+  background-position: -166px -59px;
+  width: 18px;
+  height: 36px;
+}
 .icon-play-button-click {
   background-image: url(images/layout-sprite.png);
   background-position: 0px 0px;
@@ -642,6 +654,14 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 @media (-webkit-min-device-pixel-ratio: 2),
        (min-resolution: 192dpi) {
   .icon-clixtv-footer-logo {
+    background-image: url(images/layout-sprite@2x.png);
+    background-size: 284px 136px;
+  }
+  .icon-gradient-border-right {
+    background-image: url(images/layout-sprite@2x.png);
+    background-size: 284px 136px;
+  }
+  .icon-gradient-button-left {
     background-image: url(images/layout-sprite@2x.png);
     background-size: 284px 136px;
   }
@@ -7344,35 +7364,6 @@ button.close {
     display: none !important;
   }
 }
-.primary-button {
-  background-color: #911685;
-  background-image: -webkit-gradient(linear, left top, right top, from(#911685), to(#fa0d1b));
-  background-image: -webkit-linear-gradient(left, #911685, #fa0d1b);
-  background-image: -moz-linear-gradient(left, #911685, #fa0d1b);
-  background-image: -ms-linear-gradient(left, #911685, #fa0d1b);
-  background-image: -o-linear-gradient(left, #911685, #fa0d1b);
-  -webkit-border-radius: 30px;
-  -moz-border-radius: 30px;
-  border-radius: 30px;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-  font-family: 'Cabin', sans-serif;
-  font-size: 11px;
-  color: #FFF;
-  text-transform: uppercase;
-  letter-spacing: 0.9px;
-  padding: 10px 46px;
-}
-.primary-button:hover {
-  background-color: #7b1371;
-  background-image: -webkit-gradient(linear, left top, right top, from(#7b1371), to(#e90512));
-  background-image: -webkit-linear-gradient(left, #7b1371, #e90512);
-  background-image: -moz-linear-gradient(left, #7b1371, #e90512);
-  background-image: -ms-linear-gradient(left, #7b1371, #e90512);
-  background-image: -o-linear-gradient(left, #7b1371, #e90512);
-  text-decoration: none;
-}
 .clix-header {
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -8297,6 +8288,35 @@ button.close {
   position: relative;
   top: -4px;
 }
+.primary-button {
+  background-color: #911685;
+  background-image: -webkit-gradient(linear, left top, right top, from(#911685), to(#fa0d1b));
+  background-image: -webkit-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -moz-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -ms-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -o-linear-gradient(left, #911685, #fa0d1b);
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  font-family: 'Cabin', sans-serif;
+  font-size: 11px;
+  color: #FFF;
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+  padding: 10px 46px;
+}
+.primary-button:hover {
+  background-color: #7b1371;
+  background-image: -webkit-gradient(linear, left top, right top, from(#7b1371), to(#e90512));
+  background-image: -webkit-linear-gradient(left, #7b1371, #e90512);
+  background-image: -moz-linear-gradient(left, #7b1371, #e90512);
+  background-image: -ms-linear-gradient(left, #7b1371, #e90512);
+  background-image: -o-linear-gradient(left, #7b1371, #e90512);
+  text-decoration: none;
+}
 .clix-secondary-button {
   -webkit-border-radius: 100px;
   -moz-border-radius: 100px;
@@ -8317,6 +8337,78 @@ button.close {
 .clix-secondary-button:hover {
   text-decoration: none;
   border-color: #FFF;
+}
+.clix-tertiary-button {
+  position: relative;
+  height: 36px;
+  display: inline-block;
+  margin-left: 18px;
+  margin-right: 18px;
+}
+.clix-tertiary-button:hover {
+  text-decoration: none;
+}
+.clix-tertiary-button:before,
+.clix-tertiary-button:after {
+  background-color: #911685;
+  background-image: -webkit-gradient(linear, left top, right top, from(#911685), to(#fa0d1b));
+  background-image: -webkit-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -moz-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -ms-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -o-linear-gradient(left, #911685, #fa0d1b);
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  z-index: 9999;
+}
+.clix-tertiary-button:before {
+  top: 0;
+}
+.clix-tertiary-button:after {
+  bottom: 0;
+}
+.clix-tertiary-button .button-edge {
+  transform: rotate(-225deg);
+  -webkit-transform: rotate(-225deg);
+  -moz-transform: rotate(-225deg);
+  -ms-transform: rotate(-225deg);
+  -o-transform: rotate(-225deg);
+  position: absolute;
+  top: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  border: 1px solid transparent;
+  border-right: 1px solid white;
+  border-bottom: 1px solid white;
+}
+.clix-tertiary-button .button-edge.left-edge {
+  left: -18px;
+  border-right: 1px solid #911685;
+  border-bottom: 1px solid #911685;
+}
+.clix-tertiary-button .button-edge.right-edge {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  right: -18px;
+  border-right: 1px solid #fa0d1b;
+  border-bottom: 1px solid #fa0d1b;
+}
+.clix-tertiary-button .button-content {
+  font-family: 'Cabin', sans-serif;
+  font-size: 11px;
+  color: #FFF;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 36px;
+  padding-left: 32px;
+  padding-right: 32px;
 }
 .clix-logo-container {
   background-image: -moz-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
@@ -8371,6 +8463,11 @@ button.close {
   top: 0;
   font-family: 'Cabin', sans-serif;
   text-transform: uppercase;
+}
+.brand-page .banner-favorite-icon {
+  font-size: 20px;
+  position: relative;
+  top: 2px;
 }
 .clix-footer {
   padding-top: 73px;
@@ -8446,6 +8543,133 @@ button.close {
 .clix-footer .footer-legal-column a:focus {
   color: #bababa;
   text-decoration: none;
+}
+.clix-hero-banner {
+  position: relative;
+}
+.clix-hero-banner .hero-background-image {
+  max-width: 100%;
+  max-height: 100%;
+}
+.clix-hero-banner .hero-banner-content-container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.clix-hero-banner .hero-banner-overlay {
+  background-color: rgba(0, 0, 0, 0) 80%;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0) 80%), to(#000));
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 80%, #000);
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 80%, #000);
+  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 80%, #000);
+  background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 80%, #000);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.clix-hero-banner .hero-banner-content {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-align-self: flex-end;
+  -ms-align-self: flex-end;
+  align-self: flex-end;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  padding: 48px 30px;
+}
+.clix-hero-banner .banner-logo-container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-border-radius: 55px;
+  -moz-border-radius: 55px;
+  border-radius: 55px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  background-image: -moz-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
+  background-image: -ms-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
+  background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(#c60548), to(#7a0ba8));
+  background-image: -webkit-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
+  background-image: -o-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  width: 110px;
+  height: 110px;
+  padding: 15px;
+}
+.clix-hero-banner .banner-logo-container img {
+  max-width: 100%;
+  max-height: 100%;
+}
+.clix-hero-banner .banner-title-content {
+  margin-left: 27px;
+}
+.clix-hero-banner .banner-title {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 35px;
+  color: #FFF;
+  letter-spacing: 1.6px;
+  margin-bottom: 20px;
+}
+.clix-hero-banner .banner-button {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+}
+.clix-hero-banner .banner-share-icon {
+  font-size: 38px;
+  margin-left: 22px;
+  color: #8a8a8a;
+}
+.clix-hero-banner .banner-share-icon:hover {
+  text-decoration: none;
+  color: #FFF;
+}
+.clix-hero-banner .header-points-violator {
+  -webkit-align-self: center;
+  -ms-align-self: center;
+  align-self: center;
+}
+.clix-hero-banner .banner-subtext-container {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-align-self: flex-end;
+  -ms-align-self: flex-end;
+  align-self: flex-end;
+  text-align: right;
+  font-family: 'Cabin', sans-serif;
+  font-size: 14px;
+  color: #8a8a8a;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
 }
 body {
   background-color: #0e0e0e;

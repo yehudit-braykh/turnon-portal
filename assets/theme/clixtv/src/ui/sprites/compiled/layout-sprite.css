@@ -22,6 +22,18 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
   width: 136px;
   height: 30px;
 }
+.icon-gradient-border-right {
+  background-image: url(images/layout-sprite.png);
+  background-position: -148px -59px;
+  width: 18px;
+  height: 36px;
+}
+.icon-gradient-button-left {
+  background-image: url(images/layout-sprite.png);
+  background-position: -166px -59px;
+  width: 18px;
+  height: 36px;
+}
 .icon-play-button-click {
   background-image: url(images/layout-sprite.png);
   background-position: 0px 0px;
@@ -62,6 +74,14 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 @media (-webkit-min-device-pixel-ratio: 2),
        (min-resolution: 192dpi) {
   .icon-clixtv-footer-logo {
+    background-image: url(images/layout-sprite@2x.png);
+    background-size: 284px 136px;
+  }
+  .icon-gradient-border-right {
+    background-image: url(images/layout-sprite@2x.png);
+    background-size: 284px 136px;
+  }
+  .icon-gradient-button-left {
     background-image: url(images/layout-sprite@2x.png);
     background-size: 284px 136px;
   }

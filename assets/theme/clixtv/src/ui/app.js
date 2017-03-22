@@ -32,6 +32,11 @@
                         url: '/video/:id',
                         templateUrl: 'ui/video-permalink/view.video-permalink.html',
                         controller: 'VideoPermalinkController'
+                    })
+                    .state('brand', {
+                        url: '/brand/:slug',
+                        templateUrl: 'ui/brand/view.brand.html',
+                        controller: 'BrandController'
                     });
             }
         ]);

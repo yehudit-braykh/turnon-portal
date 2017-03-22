@@ -1,0 +1,87 @@
+.clix-hero-banner {
+    position: relative;
+    .hero-background-image {
+        max-width: 100%;
+        max-height: 100%;
+    }
+    .hero-banner-content-container {
+        .flex-display;
+        .flex(1);
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+    .hero-banner-overlay {
+        .gradient(@color-transparent 80%, @color-black);
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+    .hero-banner-content {
+        .flex-display;
+        .flex(1);
+        .align-self(flex-end);
+        .align-items(center);
+        padding: 48px 30px;
+    }
+    .banner-logo-container {
+        .flex-display;
+        .border-radius(55px);
+        .radial-gradient(@color-brand-start, @color-brand-end, 0 100%);
+        .align-items(center);
+        .justify-content(center);
+        width: 110px;
+        height: 110px;
+        padding: 15px;
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    }
+
+    .banner-title-content {
+        margin-left: 27px;
+    }
+
+    .banner-title {
+        font-family: @font-primary;
+        font-size: 35px;
+        color: @color-white;
+        letter-spacing: 1.6px;
+        margin-bottom: 20px
+    }
+
+    .banner-button {
+        .flex-display;
+        .justify-content(center);
+    }
+
+    .banner-share-icon {
+        font-size: 38px;
+        margin-left: 22px;
+        color: @color-gray2;
+        &:hover {
+            text-decoration: none;
+            color: @color-white;
+        }
+    }
+
+    .header-points-violator {
+        .align-self(center);
+    }
+
+    .banner-subtext-container {
+        .flex(1);
+        .align-self(flex-end);
+        text-align: right;
+        font-family: @font-secondary;
+        font-size: 14px;
+        color: @color-gray2;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+    }
+}
