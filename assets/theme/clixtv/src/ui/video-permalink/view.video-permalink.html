@@ -11,18 +11,22 @@
                         Up Next in This Series
                     </div>
                     <div class="series-dropdown">
-                        <clix-dropdown options="seriesList">
-
-                        </clix-dropdown>
+                        <clix-dropdown options="seriesList"></clix-dropdown>
+                    </div>
+                </div>
+                <div class="row next-video-list">
+                    <div class="col-lg-4 next-video" ng-repeat="nextVideo in nextVideos track by $index">
+                        <clix-video-content-box video="nextVideo"></clix-video-content-box>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-lg-4 star-info-column-container">
 
-            <div class="about-video-container">
+            <div class="about-video-container" id="about-video-container">
 
-                <div class="about-video-inner-container" style="height: {{playerHeight || 0}}px;">
+                <div class="about-video-inner-container" id="about-video-inner-container" style="max-height: {{playerHeight || 0}}px;">
+                    <div class="about-video-overlay" ng-if="!expanded"></div>
                     <div class="star-name-container">
                         <div class="star-avatar" style="background-image: url({{video.PosterH.url}})"></div>
                         <div class="star-name">{{video.artist_name}}</div>
@@ -80,8 +84,8 @@
                 </div>
                 <div id="toggle-button-container">
                     <div class="visibility-toggle-button">
-                        <clix-secondary-button>
-                            Show More
+                        <clix-secondary-button ng-click="onExpandToggle()">
+                            {{expanded ? 'Show Less' : 'Show More'}}
                         </clix-secondary-button>
                     </div>
                     <div class="brands-charity-container">
@@ -110,8 +114,10 @@
                 <div class="related-videos-header">
                     Related Videos
                 </div>
-                <div class="related-videos-list">
-
+                <div class="row related-videos-list">
+                    <div class="col-lg-6 related-video" ng-repeat="relatedVideo in relatedVideos track by $index">
+                        <clix-video-content-box video="relatedVideo"></clix-video-content-box>
+                    </div>
                 </div>
             </div>
         </div>

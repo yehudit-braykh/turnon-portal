@@ -7730,7 +7730,7 @@ button.close {
   -webkit-align-items: center;
   -ms-align-items: center;
   align-items: center;
-  padding: 15px 5px 15px 10px;
+  padding: 7px 5px 12px 10px;
 }
 .video-content-box .artist-name {
   -webkit-flex: 1;
@@ -7988,6 +7988,20 @@ button.close {
   -ms-transition: all 0.25s ease-out;
   -o-transition: all 0.25s ease-out;
   overflow: hidden;
+  position: relative;
+}
+.video-permalink-page .about-video-overlay {
+  background-color: rgba(0, 0, 0, 0);
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(#0e0e0e));
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), #0e0e0e);
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0), #0e0e0e);
+  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0), #0e0e0e);
+  background: -o-linear-gradient(top, rgba(0, 0, 0, 0), #0e0e0e);
+  position: absolute;
+  height: 40px;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 .video-permalink-page .star-name-container {
   display: -webkit-flex;
@@ -8225,6 +8239,26 @@ button.close {
   border: 1px solid #777777;
   background-color: #1b1b1b;
 }
+.video-permalink-page .next-video-list {
+  margin-top: 30px;
+  margin-left: -6px;
+  margin-right: -6px;
+}
+.video-permalink-page .next-video-list .next-video {
+  padding-left: 6px;
+  padding-right: 6px;
+  margin-bottom: 37px;
+}
+.video-permalink-page .related-videos-list {
+  margin-left: -6px;
+  margin-right: -6px;
+  padding: 22px 15px 2px 15px;
+}
+.video-permalink-page .related-videos-list .related-video {
+  padding-left: 6px;
+  padding-right: 6px;
+  margin-bottom: 20px;
+}
 .violator {
   background-color: #fe0000;
   -webkit-border-radius: 100px;
@@ -8278,6 +8312,7 @@ button.close {
   text-transform: uppercase;
   display: inline-block;
   padding: 12px 50px;
+  cursor: pointer;
 }
 .clix-secondary-button:hover {
   text-decoration: none;

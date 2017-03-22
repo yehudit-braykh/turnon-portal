@@ -23,6 +23,16 @@
     .about-video-inner-container {
         .transition(all 0.25s ease-out);
         overflow: hidden;
+        position: relative;
+    }
+
+    .about-video-overlay {
+        .gradient(@color-transparent, @color-darker-gray);
+        position: absolute;
+        height: 40px;
+        left: 0;
+        bottom: 0;
+        right: 0;
     }
 
     .star-name-container {
@@ -214,6 +224,28 @@
         .related-videos-list {
             border: 1px solid @color-gray4;
             background-color: @color-gray5;
+        }
+    }
+
+    .next-video-list {
+        margin-top: 30px;
+        margin-left: -(@common-video-spacing / 2);
+        margin-right: -(@common-video-spacing / 2);
+        .next-video {
+            padding-left: @common-video-spacing / 2;
+            padding-right: @common-video-spacing / 2;
+            margin-bottom: 37px;
+        }
+    }
+
+    .related-videos-list {
+        margin-left: -(@common-video-spacing / 2);
+        margin-right: -(@common-video-spacing / 2);
+        padding: 22px 15px 2px 15px;
+        .related-video {
+            padding-left: @common-video-spacing / 2;
+            padding-right: @common-video-spacing / 2;
+            margin-bottom: 20px;
         }
     }
 }
