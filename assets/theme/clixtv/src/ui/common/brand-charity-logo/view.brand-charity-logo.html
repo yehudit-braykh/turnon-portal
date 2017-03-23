@@ -1,0 +1,15 @@
+<a ui-sref="brand({ slug: (brand.title | slug) })" class="clix-brand-charity-logo">
+    <div class="logo-image" style="background-image: url('{{brand.BrandTransparentLogo.url}}')"></div>
+    <div class="logo-points">
+        <clix-points-violator>
+            50
+        </clix-points-violator>
+    </div>
+    <div class="logo-overlay">
+        <div class="view-button-container">
+            <div class="view-button">
+                <clix-view-button></clix-view-button>
+            </div>
+        </div>
+    </div>
+</a>

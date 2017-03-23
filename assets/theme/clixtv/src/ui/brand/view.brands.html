@@ -1,7 +1,54 @@
 <div class="brands-page">
-    <div class="row brands-list">
-        <div class="brand-container col-lg-2" ng-repeat="(id, brand) in brands">
-            <clix-logo logo-url="{{brand.BrandTransparentLogo.url}}" size="large"></clix-logo>
-        </div>
+    <div class="main-header">
+        <clix-main-header>
+            Brands &amp; Offers
+        </clix-main-header>
+    </div>
+    <div class="clix-tabs">
+        <uib-tabset active="active">
+            <uib-tab index="0" heading="Brands">
+
+                <div class="search-filter-container">
+                    <clix-search-filter
+                            search-placeholder="Search Brands"
+                            filter-placeholder="Filter By"
+                            sort-placeholder="Sort By"
+                            filter-options="filterBrandsOptions"
+                            sort-options="sortBrandsOptions"
+                    ></clix-search-filter>
+                </div>
+
+                <div class="row brands-list">
+                    <div class="brand-outer-container col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="(id, brand) in brands">
+                        <div class="brand-logo-container">
+                            <div class="brand-container">
+                                <clix-brand-charity-logo brand="brand"></clix-brand-charity-logo>
+                            </div>
+                        </div>
+                        <a ui-sref="brand({ slug: (brand.title | slug) })" class="brand-footer">
+                            <span class="brand-title">
+                                {{brand.title}}
+                            </span>
+                            <span class="brand-offers">
+                                30 Offers
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </uib-tab>
+            <uib-tab index="1" heading="Offers">
+
+                <div class="search-filter-container">
+                    <clix-search-filter
+                            search-placeholder="Search Offers"
+                            filter-placeholder="Filter By"
+                            sort-placeholder="Sort By"
+                            filter-options="filterOffersOptions"
+                            sort-options="sortOffersOptions"
+                    ></clix-search-filter>
+                </div>
+
+            </uib-tab>
+        </uib-tabset>
     </div>
 </div>

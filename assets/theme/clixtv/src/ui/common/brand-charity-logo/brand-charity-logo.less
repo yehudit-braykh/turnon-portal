@@ -1,0 +1,58 @@
+@logo-padding: 20px;
+
+.clix-brand-charity-logo {
+    .flex(1);
+    .radial-gradient(@color-brand-start, @color-brand-end, 0 100%);
+    position: relative;
+
+    .logo-image {
+        position: absolute;
+        top: @logo-padding;
+        left: @logo-padding;
+        right: @logo-padding;
+        bottom: @logo-padding;
+        background-size: contain;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+
+    .logo-overlay {
+        .flex-display;
+        .flex(1);
+        .align-items(center);
+        .justify-content(center);
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: @color-transparent-dark-black;
+        visibility: hidden;
+    }
+
+    .logo-points {
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+    }
+
+    .view-button-container {
+        width: 30%;
+        padding-bottom: 30%;
+        position: relative;
+
+        .view-button {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+    }
+
+    &:hover {
+        .logo-overlay {
+            visibility: visible;
+        }
+    }
+}

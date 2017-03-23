@@ -8151,6 +8151,7 @@ button.close {
   height: 115px;
   text-align: center;
   padding: 20px;
+  position: relative;
 }
 .clix-logo-container.clix-charity-logo-container {
   background-image: -moz-radial-gradient(0 100%, circle, #03bcf2, #f700e6 60%);
@@ -8164,16 +8165,20 @@ button.close {
   max-width: 100%;
   margin: 0 auto;
 }
-.clix-logo-container.large {
-  height: 289px;
-}
 .clix-dropdown .dropdown-trigger {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
   -webkit-border-radius: 100px;
   -moz-border-radius: 100px;
   border-radius: 100px;
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
   font-family: 'cabinregular', sans-serif;
   font-size: 14px;
   text-transform: uppercase;
@@ -8186,6 +8191,14 @@ button.close {
 .clix-dropdown .dropdown-trigger:hover {
   border-color: #FFF;
   color: #FFF;
+}
+.clix-dropdown .dropdown-label {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .clix-dropdown .icon-down-arrow {
   font-size: 15px;
@@ -8704,14 +8717,90 @@ button.close {
 }
 .brands-page {
   padding: 120px 30px 100px 30px;
+  /*
+    //padding-bottom: 50%;
+        //
+        //@media (min-width: @screen-sm) {
+        //    padding-bottom: 33.33333333%;
+        //}
+        //
+        //@media (min-width: @screen-md) {
+        //    padding-bottom: 25%;
+        //}
+        //
+        //@media (min-width: @screen-lg) {
+        //    padding-bottom: 16.66666667%;
+        //}
+     */
+}
+.brands-page .main-header {
+  padding-bottom: 40px;
 }
 .brands-page .brands-list {
   margin-left: -12px;
   margin-right: -12px;
+  padding-top: 38px;
+}
+.brands-page .brand-outer-container {
+  padding: 12px;
+}
+.brands-page .brand-logo-container {
+  position: relative;
+  padding-bottom: 100%;
 }
 .brands-page .brand-container {
-  padding-left: 12px;
-  padding-right: 12px;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.brands-page .brand-footer {
+  display: block;
+  background-color: #212121;
+  text-align: center;
+  padding: 29px 20px;
+}
+.brands-page .brand-footer:hover {
+  text-decoration: none;
+}
+.brands-page .brand-footer:hover .brand-title,
+.brands-page .brand-footer:hover .brand-offers {
+  text-decoration: underline;
+}
+.brands-page .brand-title {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 14px;
+  color: #FFF;
+  font-weight: bold;
+  letter-spacing: -0.5px;
+  line-height: 16px;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media (min-width: 768px) {
+  .brands-page .brand-title {
+    font-size: 16px;
+  }
+}
+.brands-page .brand-offers {
+  font-family: 'cabinregular', sans-serif;
+  font-size: 11px;
+  color: #8a8a8a;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  line-height: 11px;
+  margin-top: 5px;
+  display: inline-block;
 }
 .charity-page .banner-favorite-icon {
   font-size: 20px;
@@ -8879,6 +8968,231 @@ button.close {
   color: #8a8a8a;
   padding: 0 0 13px 0;
 }
+.clix-brand-charity-logo {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  background-image: -moz-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
+  background-image: -ms-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
+  background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(#c60548), to(#7a0ba8));
+  background-image: -webkit-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
+  background-image: -o-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
+  position: relative;
+}
+.clix-brand-charity-logo .logo-image {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.clix-brand-charity-logo .logo-overlay {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  visibility: hidden;
+}
+.clix-brand-charity-logo .logo-points {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+.clix-brand-charity-logo .view-button-container {
+  width: 30%;
+  padding-bottom: 30%;
+  position: relative;
+}
+.clix-brand-charity-logo .view-button-container .view-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.clix-brand-charity-logo:hover .logo-overlay {
+  visibility: visible;
+}
+.clix-view-button {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+.clix-view-button .view-button {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  border: 2px solid #8a8a8a;
+}
+.clix-view-button .view-button-text {
+  -webkit-align-self: center;
+  -ms-align-self: center;
+  align-self: center;
+  font-family: 'cabinregular', sans-serif;
+  letter-spacing: 1.2px;
+  font-size: 16px;
+  line-height: 16px;
+  text-align: center;
+  color: #8a8a8a;
+  text-transform: uppercase;
+}
+.clix-view-button:hover .view-button {
+  border-color: #FFF;
+}
+.clix-view-button:hover .view-button-text {
+  color: #FFF;
+}
+.clix-main-header {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 35px;
+  letter-spacing: 1.6px;
+  color: #FFF;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .clix-main-header {
+    text-align: left;
+  }
+}
+.clix-search-filter {
+  margin-top: 34px;
+}
+@media (min-width: 768px) {
+  .clix-search-filter {
+    padding-bottom: 16px;
+    border-bottom: 1px solid #636363;
+  }
+}
+.clix-search-filter .search-bar-container {
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #636363;
+}
+@media (min-width: 768px) {
+  .clix-search-filter .search-bar-container {
+    border-bottom-width: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+}
+.clix-search-filter .filters-container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-align-items: flex-end;
+  -ms-align-items: flex-end;
+  align-items: flex-end;
+  -webkit-justify-content: flex-end;
+  -ms-justify-content: flex-end;
+  justify-content: flex-end;
+  border-bottom: 1px solid #636363;
+  padding-bottom: 30px;
+}
+@media (min-width: 768px) {
+  .clix-search-filter .filters-container {
+    padding-bottom: 0;
+    border-bottom-width: 0;
+  }
+}
+.clix-search-filter .search-bar {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-border-radius: 22px;
+  -moz-border-radius: 22px;
+  border-radius: 22px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  max-width: 886px;
+  background-color: #000;
+  padding: 8px 18px;
+}
+.clix-search-filter .search-icon {
+  font-size: 18px;
+  color: #FFF;
+  padding-right: 18px;
+}
+.clix-search-filter .search-input {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  background-color: rgba(0, 0, 0, 0);
+  border-width: 0;
+  color: #FFF;
+  font-size: 14px;
+  font-family: 'PT Sans', sans-serif;
+}
+.clix-search-filter .search-input::placeholder {
+  color: #bababa;
+}
+.clix-search-filter .filter-bar {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+@media (min-width: 768px) {
+  .clix-search-filter .filter-bar {
+    padding-left: 40px;
+  }
+}
+.clix-search-filter .filter-bar:first-child {
+  padding-right: 19px;
+}
+@media (min-width: 768px) {
+  .clix-search-filter .filter-bar:first-child {
+    padding-right: 0;
+  }
+}
 body {
   background-color: #0e0e0e;
 }
@@ -8888,6 +9202,9 @@ a {
 a:hover,
 a:focus {
   color: #FFF;
+  outline: 0;
+}
+input:focus {
   outline: 0;
 }
 .main-content {

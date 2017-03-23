@@ -1,0 +1,33 @@
+.clix-view-button {
+    .flex-display;
+    .flex-direction(column);
+
+    .view-button {
+        .flex-display;
+        .flex(1);
+        .border-radius(50%);
+        .align-items(center);
+        .justify-content(center);
+        border: 2px solid @color-gray2;
+    }
+
+    .view-button-text {
+        .align-self(center);
+        font-family: @font-secondary;
+        letter-spacing: 1.2px;
+        font-size: 16px;
+        line-height: 16px;
+        text-align: center;
+        color: @color-gray2;
+        text-transform: uppercase;
+    }
+
+    &:hover {
+        .view-button {
+            border-color: @color-white;
+        }
+        .view-button-text {
+            color: @color-white;
+        }
+    }
+}

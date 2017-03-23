@@ -24,7 +24,8 @@ module.exports = function(grunt) {
                     'src/ui/views.js',
                     'src/ui/**/*.js',
                     'src/services/*.js',
-                    'src/utils/*.js'
+                    'src/utils/*.js',
+                    'src/filters/*.js'
                 ]
             },
             libs: {
@@ -114,6 +115,7 @@ module.exports = function(grunt) {
                     'src/ui/**/*.js',
                     'src/services/*.js',
                     'src/utils/*.js',
+                    'src/filters/*.js',
                     'src/ui/**/*.less'
                 ],
                 tasks: ['default'],

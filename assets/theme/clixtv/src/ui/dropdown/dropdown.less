@@ -1,6 +1,8 @@
 .clix-dropdown {
     .dropdown-trigger {
+        .flex-display;
         .border-radius(100px);
+        .align-items(center);
         font-family: @font-secondary;
         font-size: 14px;
         text-transform: uppercase;
@@ -14,6 +16,14 @@
         border-color: @color-white;
         color: @color-white;
     }
+
+    .dropdown-label {
+        .flex(1);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
     .icon-down-arrow {
         font-size: 15px;
     }

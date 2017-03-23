@@ -11,7 +11,7 @@
                     /**
                      * @todo - Cache this call
                      */
-                    return $http.get('/api/brands/get_all_brands_and_charities_object')
+                    return $http.get('/api/brands/get_brands_array')
                         .then(
                             function(data) {
                                 return data.data;
