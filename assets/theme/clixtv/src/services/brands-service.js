@@ -19,6 +19,19 @@
                         );
                 },
 
+                getAllBrandsAndCharities: function() {
+
+                    /**
+                     * @todo - Cache this call
+                     */
+                    return $http.get('/api/brands/get_all_brands_and_charities_object')
+                        .then(
+                            function(data) {
+                                return data.data;
+                            }
+                        );
+                },
+
                 getBrandBySlug: function(slug) {
 
                     /**

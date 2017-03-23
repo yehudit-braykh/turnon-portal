@@ -736,13 +736,13 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             $q.all(
                     [
                         categoryService.getAllCategories(),
-                        brandsService.getAllBrands()
+                        brandsService.getAllBrandsAndCharities()
                     ]
                 )
                 .then(
                     function onSuccess(data) {
                         $scope.categories = data[0].data;
-                        $scope.brands = data[1].data;
+                        $scope.brands = data[1];
                         _loadVideosForCategoryIndex(0);
                     }
                 );
@@ -1126,6 +1126,19 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                      * @todo - Cache this call
                      */
                     return $http.get('/api/brands/get_brands_array')
+                        .then(
+                            function(data) {
+                                return data.data;
+                            }
+                        );
+                },
+
+                getAllBrandsAndCharities: function() {
+
+                    /**
+                     * @todo - Cache this call
+                     */
+                    return $http.get('/api/brands/get_all_brands_and_charities_object')
                         .then(
                             function(data) {
                                 return data.data;

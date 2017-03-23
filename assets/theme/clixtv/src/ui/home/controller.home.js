@@ -46,13 +46,13 @@
             $q.all(
                     [
                         categoryService.getAllCategories(),
-                        brandsService.getAllBrands()
+                        brandsService.getAllBrandsAndCharities()
                     ]
                 )
                 .then(
                     function onSuccess(data) {
                         $scope.categories = data[0].data;
-                        $scope.brands = data[1].data;
+                        $scope.brands = data[1];
                         _loadVideosForCategoryIndex(0);
                     }
                 );
