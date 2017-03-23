@@ -9024,6 +9024,9 @@ button.close {
   text-transform: uppercase;
   margin-bottom: 1px;
 }
+.clix-tabs .nav-tabs a:hover {
+  color: #FFF;
+}
 .clix-tabs .nav-tabs li {
   margin-right: 40px;
 }
