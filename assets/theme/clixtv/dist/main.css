@@ -702,6 +702,23 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
     font-weight: normal;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'cabinbold';
+    src: url('./font/cabin-bold-webfont.woff2') format('woff2'),
+    url('./font/cabin-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'cabinregular';
+    src: url('./font/cabin-regular-webfont.woff2') format('woff2'),
+    url('./font/cabin-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
 /* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
 /*
@@ -7418,7 +7435,7 @@ button.close {
   letter-spacing: 2px;
   padding: 5px 19px;
   color: #bababa;
-  font-family: 'Cabin', sans-serif;
+  font-family: 'cabinregular', sans-serif;
 }
 .clix-header .navigation-item-container a:hover,
 .clix-header .navigation-item-container a:focus {
@@ -7530,7 +7547,7 @@ button.close {
   margin-top: 50px;
 }
 .home-page .carousel-slide .carousel-sub-header {
-  font-family: 'Cabin', sans-serif;
+  font-family: 'cabinregular', sans-serif;
   font-size: 22px;
   color: #FFF;
   text-transform: uppercase;
@@ -7601,7 +7618,7 @@ button.close {
   padding-left: 30px;
 }
 .video-category-scroll-list h2 {
-  font-family: 'Cabin', sans-serif;
+  font-family: 'cabinregular', sans-serif;
   font-size: 24px;
   padding: 0;
   margin: 0 0 20px 0;
@@ -7855,7 +7872,7 @@ button.close {
   padding: 0;
 }
 .video-content-box .episode-title {
-  font-family: 'Cabin', sans-serif;
+  font-family: 'cabinregular', sans-serif;
   font-size: 14px;
   font-weight: bold;
   color: #fe0000;
@@ -8074,7 +8091,7 @@ button.close {
   color: #FFF;
 }
 .video-permalink-page .social-container .social-icon-label {
-  font-family: 'Cabin', sans-serif;
+  font-family: 'cabinregular', sans-serif;
   color: #8a8a8a;
   font-size: 14px;
   margin-left: 10px;
@@ -8092,7 +8109,7 @@ button.close {
   margin-bottom: 2px;
 }
 .video-permalink-page .video-info-container .episode-title {
-  font-family: 'Cabin', sans-serif;
+  font-family: 'cabinregular', sans-serif;
   font-size: 24px;
   color: #fe0000;
   text-transform: uppercase;
@@ -8104,7 +8121,7 @@ button.close {
   display: -ms-flexbox;
   display: -ms-flex;
   display: flex;
-  font-family: 'Cabin', sans-serif;
+  font-family: 'cabinregular', sans-serif;
   text-transform: uppercase;
   color: #8a8a8a;
   font-size: 14px;
@@ -8119,7 +8136,7 @@ button.close {
   margin-top: 20px;
 }
 .video-permalink-page .video-info-container .meta-data {
-  font-family: 'Cabin', sans-serif;
+  font-family: 'cabinregular', sans-serif;
   font-size: 14px;
   line-height: 18px;
   color: #FFF;
@@ -8148,7 +8165,7 @@ button.close {
   border-top: 1px solid #636363;
 }
 .video-permalink-page .brands-charity-container .brands-charity-title {
-  font-family: 'Cabin', sans-serif;
+  font-family: 'cabinregular', sans-serif;
   text-transform: uppercase;
   font-size: 11px;
   letter-spacing: 4.4px;
@@ -8206,7 +8223,7 @@ button.close {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  font-family: 'Cabin', sans-serif;
+  font-family: 'cabinregular', sans-serif;
   font-weight: bold;
   font-size: 24px;
   color: #aaaaaa;
@@ -8217,7 +8234,7 @@ button.close {
   margin-top: 39px;
 }
 .video-permalink-page .related-videos-container .related-videos-header {
-  font-family: 'Cabin', sans-serif;
+  font-family: 'cabinregular', sans-serif;
   text-transform: uppercase;
   font-size: 14px;
   letter-spacing: 1.6px;
@@ -8258,7 +8275,7 @@ button.close {
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
   color: #FFF;
-  font-family: 'Cabin', sans-serif;
+  font-family: 'cabinregular', sans-serif;
   font-size: 11px;
   display: inline-block;
   padding: 3px 13px;
@@ -8279,7 +8296,7 @@ button.close {
   line-height: 30px;
   text-align: center;
   color: #FFF;
-  font-family: 'Cabin', sans-serif;
+  font-family: 'cabinregular', sans-serif;
   font-size: 14px;
 }
 .points-violator .plus-sign {
@@ -8300,7 +8317,7 @@ button.close {
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  font-family: 'Cabin', sans-serif;
+  font-family: 'cabinregular', sans-serif;
   font-size: 11px;
   color: #FFF;
   text-transform: uppercase;
@@ -8324,7 +8341,7 @@ button.close {
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
   border: 1px solid #8a8a8a;
-  font-family: 'Cabin', sans-serif;
+  font-family: 'cabinregular', sans-serif;
   color: #FFF;
   font-size: 11px;
   letter-spacing: 0.9px;
@@ -8398,7 +8415,7 @@ button.close {
   border-bottom: 1px solid #fa0d1b;
 }
 .clix-tertiary-button .button-content {
-  font-family: 'Cabin', sans-serif;
+  font-family: 'cabinregular', sans-serif;
   font-size: 11px;
   color: #FFF;
   letter-spacing: 0.9px;
@@ -8437,7 +8454,7 @@ button.close {
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  font-family: 'Cabin', sans-serif;
+  font-family: 'cabinregular', sans-serif;
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 1.1px;
@@ -8460,7 +8477,7 @@ button.close {
 }
 .clix-dropdown .tooltip-menu .menu-label {
   top: 0;
-  font-family: 'Cabin', sans-serif;
+  font-family: 'cabinregular', sans-serif;
   text-transform: uppercase;
 }
 .brand-page .banner-favorite-icon {
@@ -8489,7 +8506,7 @@ button.close {
   flex: 1;
 }
 .clix-footer .footer-label {
-  font-family: 'Cabin', sans-serif;
+  font-family: 'cabinregular', sans-serif;
   font-size: 13px;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -8534,7 +8551,7 @@ button.close {
   -ms-flex: 1;
   flex: 1;
   color: #323232;
-  font-family: 'Cabin', sans-serif;
+  font-family: 'cabinregular', sans-serif;
   font-size: 13px;
 }
 .clix-footer .footer-legal-column a {
@@ -8667,7 +8684,7 @@ button.close {
   -ms-align-self: flex-end;
   align-self: flex-end;
   text-align: right;
-  font-family: 'Cabin', sans-serif;
+  font-family: 'cabinregular', sans-serif;
   font-size: 14px;
   color: #8a8a8a;
   text-transform: uppercase;
