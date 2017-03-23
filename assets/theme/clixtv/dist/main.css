@@ -7871,9 +7871,8 @@ button.close {
   padding: 0;
 }
 .video-content-box .episode-title {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'cabinbold', sans-serif;
   font-size: 14px;
-  font-weight: bold;
   color: #fe0000;
   text-transform: uppercase;
   padding: 0;
@@ -8573,11 +8572,10 @@ button.close {
   margin-top: 20px;
 }
 .video-permalink-page .video-info-container .meta-data {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'cabinbold', sans-serif;
   font-size: 14px;
   line-height: 18px;
   color: #FFF;
-  font-weight: bold;
   margin-top: 36px;
 }
 .video-permalink-page .video-info-container .meta-data-label {
@@ -8660,8 +8658,7 @@ button.close {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  font-family: 'cabinregular', sans-serif;
-  font-weight: bold;
+  font-family: 'cabinbold', sans-serif;
   font-size: 24px;
   color: #aaaaaa;
   letter-spacing: 3.5px;
