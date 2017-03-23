@@ -7721,7 +7721,7 @@ button.close {
   -webkit-align-items: center;
   -ms-align-items: center;
   align-items: center;
-  padding: 7px 5px 12px 10px;
+  padding: 7px 5px 7px 10px;
 }
 .video-content-box .artist-name {
   -webkit-flex: 1;
@@ -8350,11 +8350,11 @@ button.close {
 .clix-tertiary-button:before,
 .clix-tertiary-button:after {
   background-color: #911685;
-  background-image: -webkit-gradient(linear, left top, right top, from(#911685), to(#fa0d1b));
-  background-image: -webkit-linear-gradient(left, #911685, #fa0d1b);
-  background-image: -moz-linear-gradient(left, #911685, #fa0d1b);
-  background-image: -ms-linear-gradient(left, #911685, #fa0d1b);
-  background-image: -o-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -webkit-gradient(linear, left top, right top, from(#911685), to(#f61628));
+  background-image: -webkit-linear-gradient(left, #911685, #f61628);
+  background-image: -moz-linear-gradient(left, #911685, #f61628);
+  background-image: -ms-linear-gradient(left, #911685, #f61628);
+  background-image: -o-linear-gradient(left, #911685, #f61628);
   content: '';
   position: absolute;
   left: 0;
@@ -8456,6 +8456,7 @@ button.close {
 .clix-dropdown .tooltip-menu .menu-item {
   padding-top: 13px;
   padding-bottom: 13px;
+  padding-left: 21px;
 }
 .clix-dropdown .tooltip-menu .menu-label {
   top: 0;
