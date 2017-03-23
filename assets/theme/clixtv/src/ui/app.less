@@ -1,4 +1,5 @@
 @import (inline) "../../node_modules/normalize.css/normalize.css";
+@import (inline) "../../node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css";
 @import (inline) "../../bower_components/slick-carousel/slick/slick.css";
 @import (inline) "sprites/compiled/layout-sprite.css";
 @import (inline) "common/fonts.css";
@@ -12,20 +13,26 @@
 @import "common/flexbox";
 
 @import "header/header";
-@import "home/home";
 @import "categories/video-category-scroll-list";
 @import "video-content-box/video-content-box";
 @import "tooltip-menu/tooltip-menu";
-@import "video-permalink/video-permalink";
 @import "violator/violator";
 @import "buttons/buttons";
 @import "logo/logo";
 @import "dropdown/dropdown";
-@import "brand/brand";
 @import "footer/footer";
 
+// Pages
+@import "home/home";
+@import "video-permalink/video-permalink";
+@import "brand/brand";
+@import "brand/brands";
+@import "charity/charity";
+
+// Components
 @import "common/hero-banner/hero-banner";
 @import "common/parallax/parallax";
+@import "common/tabs/tabs";
 
 body {
     background-color: @color-darker-gray;

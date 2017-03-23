@@ -37,7 +37,9 @@ module.exports = function(grunt) {
                     'bower_components/angular-slick-carousel/dist/angular-slick.min.js',
                     'node_modules/angular-ui-router/release/angular-ui-router.js',
                     'bower_components/angular-scroll/angular-scroll.js',
-                    'bower_components/ng-parallax/angular-parallax.js'
+                    'bower_components/ng-parallax/angular-parallax.js',
+                    'node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js',
+                    'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js'
                 ]
             }
         },

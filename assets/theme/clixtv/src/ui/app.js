@@ -8,7 +8,8 @@
         .module('clixtv', [
             'slickCarousel',
             'ui.router',
-            'duParallax'
+            'duParallax',
+            'ui.bootstrap'
         ])
         .config([
             '$locationProvider',
@@ -34,10 +35,20 @@
                         templateUrl: 'ui/video-permalink/view.video-permalink.html',
                         controller: 'VideoPermalinkController'
                     })
+                    .state('brands', {
+                        url: '/brands',
+                        templateUrl: 'ui/brand/view.brands.html',
+                        controller: 'BrandsController'
+                    })
                     .state('brand', {
                         url: '/brand/:slug',
                         templateUrl: 'ui/brand/view.brand.html',
                         controller: 'BrandController'
+                    })
+                    .state('charity', {
+                        url: '/charity/:slug',
+                        templateUrl: 'ui/charity/view.charity.html',
+                        controller: 'CharityController'
                     });
             }
         ]);

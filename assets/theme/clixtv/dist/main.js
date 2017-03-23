@@ -8,7 +8,8 @@
         .module('clixtv', [
             'slickCarousel',
             'ui.router',
-            'duParallax'
+            'duParallax',
+            'ui.bootstrap'
         ])
         .config([
             '$locationProvider',
@@ -34,10 +35,20 @@
                         templateUrl: 'ui/video-permalink/view.video-permalink.html',
                         controller: 'VideoPermalinkController'
                     })
+                    .state('brands', {
+                        url: '/brands',
+                        templateUrl: 'ui/brand/view.brands.html',
+                        controller: 'BrandsController'
+                    })
                     .state('brand', {
                         url: '/brand/:slug',
                         templateUrl: 'ui/brand/view.brand.html',
                         controller: 'BrandController'
+                    })
+                    .state('charity', {
+                        url: '/charity/:slug',
+                        templateUrl: 'ui/charity/view.charity.html',
+                        controller: 'CharityController'
                     });
             }
         ]);
@@ -47,7 +58,12 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('ui/brand/view.brand.html',
-    "<div class=brand-page ng-if=configs><clix-hero-banner title-text={{configs.title}} button-text=\"{{'+ Favorites'}}\" points=\"{{'50'}}\" subtext=\"{{'18 Offers'}}\" button-icon-class=\"{{'icon-favorite-icon banner-favorite-icon'}}\" background-image={{configs.backgroundImage}} background-image2x={{configs.backgroundImage2x}}><hero-banner-logo><img ng-src={{configs.logo}} ng-srcset=\"{{configs.logo2x}} 2x\"></hero-banner-logo></clix-hero-banner></div>"
+    "<div class=brand-page ng-if=configs><clix-hero-banner title-text={{configs.title}} button-text=\"{{'+ Favorites'}}\" points=\"{{'50'}}\" subtext=\"{{'18 Offers'}}\" button-icon-class=\"{{'icon-favorite-icon banner-favorite-icon'}}\" background-image={{configs.backgroundImage}} background-image2x={{configs.backgroundImage2x}}><hero-banner-logo><img ng-src={{configs.logo}} ng-srcset=\"{{configs.logo2x}} 2x\"></hero-banner-logo></clix-hero-banner><div class=brand-page-content><div class=clix-tabs><uib-tabset active=active><uib-tab index=0 heading=Home>Static content</uib-tab><uib-tab index=1 heading=Offers>Static content</uib-tab><uib-tab index=2 heading=Stars>Static content</uib-tab><uib-tab index=3 heading=Videos>Static content</uib-tab></uib-tabset></div></div></div>"
+  );
+
+
+  $templateCache.put('ui/brand/view.brands.html',
+    "<div class=brands-page><div class=\"row brands-list\"><div class=\"brand-container col-lg-2\" ng-repeat=\"(id, brand) in brands\"><clix-logo logo-url={{brand.BrandTransparentLogo.url}} size=large></clix-logo></div></div></div>"
   );
 
 
@@ -63,6 +79,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('ui/categories/view.video-category-scroll-list.html',
     "<div class=video-category-scroll-list ng-show=category.title><h2><a href=#>{{category.title}} <i class=icon-right-arrow></i></a></h2><div ng-if=category.videos class=category-container><slick slides-to-show=5 slides-to-scroll=5 infinite=false variable-width=true prev-arrow=#carousel-previous-{{$id}} next-arrow=#carousel-next-{{$id}} settings=carouselConfig><div ng-repeat=\"video in category.videos\" class=video-content-container style=\"width: {{videoContainerWidth}}px\"><div clix-video-content-box video=video></div></div></slick><div class=\"arrow-container left-arrow-container\" id=carousel-previous-{{$id}} ng-show=leftArrowVisible><div class=arrow-inner-container><i class=icon-left-tall-arrow></i></div></div><div class=\"arrow-container right-arrow-container\" id=carousel-next-{{$id}}><i class=icon-right-tall-arrow></i></div></div></div>"
+  );
+
+
+  $templateCache.put('ui/charity/view.charity.html',
+    "<div class=charity-page ng-if=configs><clix-hero-banner title-text={{configs.title}} button-text=\"{{'+ Favorites'}}\" points=\"{{'50'}}\" subtext=\"{{'18 Offers'}}\" button-icon-class=\"{{'icon-favorite-icon banner-favorite-icon'}}\" background-image={{configs.backgroundImage}} background-image2x={{configs.backgroundImage2x}}><hero-banner-logo><img ng-src={{configs.logo}} ng-srcset=\"{{configs.logo2x}} 2x\"></hero-banner-logo></clix-hero-banner><div class=charity-page-content><div class=clix-tabs><uib-tabset active=active><uib-tab index=0 heading=Home>Static content</uib-tab><uib-tab index=1 heading=Donate>Static content</uib-tab><uib-tab index=2 heading=Stars>Static content</uib-tab><uib-tab index=3 heading=Videos>Static content</uib-tab></uib-tabset></div></div></div>"
   );
 
 
@@ -107,7 +128,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/logo/view.logo.html',
-    "<div class=clix-logo-container ng-class=\"{'clix-charity-logo-container': charity}\"><img ng-if=logoUrl ng-src={{logoUrl}} class=logo-image></div>"
+    "<div class=clix-logo-container ng-class=\"{'clix-charity-logo-container': charity, 'large': size === 'large'}\"><img ng-if=logoUrl ng-src={{logoUrl}} class=logo-image></div>"
   );
 
 
@@ -165,6 +186,29 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
     angular
         .module('clixtv')
         .controller('BrandController', BrandController);
+}());
+(function() {
+
+    var BrandsController = [
+        '$q',
+        '$scope',
+        '$stateParams',
+        'brandsService',
+        function($q, $scope, $stateParams, brandsService) {
+
+            brandsService.getAllBrands()
+                .then(
+                    function onSuccess(data) {
+                        $scope.brands = data;
+                    }
+                );
+
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .controller('BrandsController', BrandsController);
 }());
 (function() {
 
@@ -287,6 +331,35 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     angular.module('clixtv')
         .directive('clixVideoCategoryScrollList', videoCategoryScrollList);
+}());
+(function() {
+
+    var CharityController = [
+        '$q',
+        '$scope',
+        '$stateParams',
+        'brandsService',
+        function($q, $scope, $stateParams, brandsService) {
+
+            brandsService.getCharityBySlug($stateParams.slug)
+                .then(
+                    function onSuccess(data) {
+                        console.log(data);
+                        $scope.configs = {
+                            title: data.title,
+                            backgroundImage: '/assets/theme/clixtv/dist/images/nike-header.jpg',
+                            backgroundImage2x: '/assets/theme/clixtv/dist/images/nike-header@2x.jpg',
+                            logo: data.BrandTransparentLogo.url
+                        }
+                    }
+                )
+
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .controller('CharityController', CharityController);
 }());
 (function() {
     var clixSecBlock = function() {
@@ -564,7 +637,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             templateUrl: 'ui/logo/view.logo.html',
             scope: {
                 charity: '@?',
-                logoUrl: '@?'
+                logoUrl: '@?',
+                size: '@?'
             }
         }
     };
@@ -921,7 +995,12 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     /**
                      * @todo - Cache this call
                      */
-                    return $http.get('/api/brands/get_all_brands_and_charities_object');
+                    return $http.get('/api/brands/get_all_brands_and_charities_object')
+                        .then(
+                            function(data) {
+                                return data.data;
+                            }
+                        );
                 },
 
                 getBrandBySlug: function(slug) {
@@ -935,6 +1014,36 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                             function onSuccess(data) {
                                 var found = data.data.filter(function(brand) {
                                     return slug === stringUtils.getSlugForString(brand.title);
+                                });
+                                return found[0];
+                            }
+                        );
+                },
+
+                getAllCharities: function() {
+
+                    /**
+                     * @todo - Cache this call
+                     */
+                    return $http.get('/api/brands/get_charities_array')
+                        .then(
+                            function(data) {
+                                return data.data;
+                            }
+                        );
+                },
+
+                getCharityBySlug: function(slug) {
+
+                    /**
+                     * @todo - Cache this call
+                     * @todo - This loops over all brands and picks the matching one, that's not good...
+                     */
+                    return $http.get('/api/brands/get_charities_array')
+                        .then(
+                            function onSuccess(data) {
+                                var found = data.data.filter(function(charity) {
+                                    return slug === stringUtils.getSlugForString(charity.title);
                                 });
                                 return found[0];
                             }

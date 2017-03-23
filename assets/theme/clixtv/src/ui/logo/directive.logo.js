@@ -5,7 +5,8 @@
             templateUrl: 'ui/logo/view.logo.html',
             scope: {
                 charity: '@?',
-                logoUrl: '@?'
+                logoUrl: '@?',
+                size: '@?'
             }
         }
     };
