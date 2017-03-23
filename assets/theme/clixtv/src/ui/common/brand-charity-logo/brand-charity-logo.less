@@ -89,9 +89,9 @@
         z-index: 10;
     }
 
-    .menu-container {
+    .logo-menu-container {
         position: absolute;
-        top: 12px;
+        top: 25px;
         right: 0;
         width: 100%;
         padding: 7px;
@@ -108,12 +108,18 @@
     background-size: cover;
 
     .logo-overlay-image {
-        .radial-gradient(@color-offer-start, @color-offer-end, 0 100%, 80%);
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
+
+        /**
+         @todo - Make a mixin (3 color radial gradient)
+         */
+        background: -moz-radial-gradient(0 100%, ellipse cover, rgba(200,0,80,1) 0%, rgba(134,0,166,0.5) 50%, rgba(134,0,166,0) 100%);
+        background: -webkit-radial-gradient(0 100%, ellipse cover, rgba(200,0,80,1) 0%,rgba(134,0,166,0.5) 50%,rgba(134,0,166,0) 100%);
+        background: radial-gradient(ellipse at 0 100%, rgba(200,0,80,1) 0%,rgba(134,0,166,0.5) 50%,rgba(134,0,166,0) 100%);
     }
 
     .logo-icon {

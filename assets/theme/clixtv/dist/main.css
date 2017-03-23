@@ -9025,6 +9025,7 @@ button.close {
   font-size: 14px;
   letter-spacing: 1.6px;
   text-transform: uppercase;
+  margin-bottom: 1px;
 }
 .clix-tabs .nav-tabs li {
   margin-right: 40px;
@@ -9148,11 +9149,11 @@ button.close {
   right: 0;
   z-index: 10;
 }
-.clix-brand-charity-logo .menu-container,
-.clix-offer-logo .menu-container,
-.clix-charity-logo .menu-container {
+.clix-brand-charity-logo .logo-menu-container,
+.clix-offer-logo .logo-menu-container,
+.clix-charity-logo .logo-menu-container {
   position: absolute;
-  top: 12px;
+  top: 25px;
   right: 0;
   width: 100%;
   padding: 7px;
@@ -9168,16 +9169,17 @@ button.close {
   background-size: cover;
 }
 .clix-offer-logo .logo-overlay-image {
-  background-image: -moz-radial-gradient(0 100%, circle, #c80050, rgba(0, 0, 0, 0) 80%);
-  background-image: -ms-radial-gradient(0 100%, circle, #c80050, rgba(0, 0, 0, 0) 80%);
-  background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(#c80050), to(rgba(0, 0, 0, 0)));
-  background-image: -webkit-radial-gradient(0 100%, circle, #c80050, rgba(0, 0, 0, 0) 80%);
-  background-image: -o-radial-gradient(0 100%, circle, #c80050, rgba(0, 0, 0, 0) 80%);
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  /**
+         @todo - Make a mixin (3 color radial gradient)
+         */
+  background: -moz-radial-gradient(0 100%, ellipse cover, #c80050 0%, rgba(134, 0, 166, 0.5) 50%, rgba(134, 0, 166, 0) 100%);
+  background: -webkit-radial-gradient(0 100%, ellipse cover, #c80050 0%, rgba(134, 0, 166, 0.5) 50%, rgba(134, 0, 166, 0) 100%);
+  background: radial-gradient(ellipse at 0 100%, #c80050 0%, rgba(134, 0, 166, 0.5) 50%, rgba(134, 0, 166, 0) 100%);
 }
 .clix-offer-logo .logo-icon {
   position: absolute;
