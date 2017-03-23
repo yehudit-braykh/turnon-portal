@@ -7617,7 +7617,7 @@ button.close {
   padding-left: 30px;
 }
 .video-category-scroll-list .slick-arrow {
-  top: 0;
+  top: 0 !important;
 }
 .video-category-scroll-list h2 {
   font-family: 'cabinregular', sans-serif;
