@@ -1,0 +1,34 @@
+<div class="charities-page">
+    <div class="main-header">
+        <clix-main-header>
+            Charities
+        </clix-main-header>
+    </div>
+    <div class="search-filter-container">
+        <clix-search-filter
+                search-placeholder="Search Charities"
+                filter-placeholder="Filter By"
+                sort-placeholder="Sort By"
+                filter-options="filterCharitiesOptions"
+                sort-options="sortCharitiesOptions"
+        ></clix-search-filter>
+    </div>
+
+    <div class="row brands-list">
+        <div class="brand-outer-container col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="(id, charity) in charities">
+            <div class="brand-logo-container">
+                <div class="brand-container">
+                    <clix-charity-logo charity="charity"></clix-charity-logo>
+                </div>
+            </div>
+            <a ui-sref="brand({ slug: (charity.title | slug) })" class="brand-footer">
+                <span class="brand-title">
+                    {{charity.title}}
+                </span>
+                <span class="brand-offers">
+                    Nike
+                </span>
+            </a>
+        </div>
+    </div>
+</div>

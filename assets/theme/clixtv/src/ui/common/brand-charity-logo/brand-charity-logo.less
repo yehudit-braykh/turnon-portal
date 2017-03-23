@@ -1,10 +1,19 @@
 @logo-padding: 20px;
 
 .clix-brand-charity-logo,
-.clix-offer-logo {
+.clix-offer-logo,
+.clix-charity-logo {
 
     .flex(1);
     position: relative;
+
+    .logo-save {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 15;
+        cursor: pointer;
+    }
 
     .logo-image {
         position: absolute;
@@ -92,31 +101,7 @@
 .clix-brand-charity-logo {
 
     .radial-gradient(@color-brand-start, @color-brand-end, 0 100%);
-
-    .logo-save {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        z-index: 15;
-        cursor: pointer;
-    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .clix-offer-logo {
 
@@ -131,14 +116,6 @@
         bottom: 0;
     }
 
-    .logo-save {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        z-index: 15;
-        cursor: pointer;
-    }
-
     .logo-icon {
         position: absolute;
         left: 0;
@@ -149,4 +126,8 @@
         background-position: center center;
         background-repeat: no-repeat;
     }
+}
+
+.clix-charity-logo {
+    .radial-gradient(@color-charity-start, @color-charity-end, 0 100%, 70%);
 }

@@ -49,6 +49,11 @@
                         url: '/charity/:slug',
                         templateUrl: 'ui/charity/view.charity.html',
                         controller: 'CharityController'
+                    })
+                    .state('charities', {
+                        url: '/charities',
+                        templateUrl: 'ui/charity/view.charities.html',
+                        controller: 'CharitiesController'
                     });
             }
         ]);
@@ -82,6 +87,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('ui/charity/view.charities.html',
+    "<div class=charities-page><div class=main-header><clix-main-header>Charities</clix-main-header></div><div class=search-filter-container><clix-search-filter search-placeholder=\"Search Charities\" filter-placeholder=\"Filter By\" sort-placeholder=\"Sort By\" filter-options=filterCharitiesOptions sort-options=sortCharitiesOptions></clix-search-filter></div><div class=\"row brands-list\"><div class=\"brand-outer-container col-xs-6 col-sm-4 col-md-3 col-lg-2\" ng-repeat=\"(id, charity) in charities\"><div class=brand-logo-container><div class=brand-container><clix-charity-logo charity=charity></clix-charity-logo></div></div><a ui-sref=\"brand({ slug: (charity.title | slug) })\" class=brand-footer><span class=brand-title>{{charity.title}} </span><span class=brand-offers>Nike</span></a></div></div></div>"
+  );
+
+
   $templateCache.put('ui/charity/view.charity.html',
     "<div class=charity-page ng-if=configs><clix-hero-banner title-text={{configs.title}} button-text=\"{{'+ Favorites'}}\" points=\"{{'50'}}\" subtext=\"{{'18 Offers'}}\" button-icon-class=\"{{'icon-favorite-icon banner-favorite-icon'}}\" background-image={{configs.backgroundImage}} background-image2x={{configs.backgroundImage2x}}><hero-banner-logo><img ng-src={{configs.logo}} ng-srcset=\"{{configs.logo2x}} 2x\"></hero-banner-logo></clix-hero-banner><div class=charity-page-content><div class=clix-tabs><uib-tabset active=active><uib-tab index=0 heading=Home>Static content</uib-tab><uib-tab index=1 heading=Donate>Static content</uib-tab><uib-tab index=2 heading=Stars>Static content</uib-tab><uib-tab index=3 heading=Videos>Static content</uib-tab></uib-tabset></div></div></div>"
   );
@@ -94,6 +104,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('ui/common/brand-charity-logo/view.brand-charity-logo.html',
     "<div class=clix-brand-charity-logo><clix-tooltip-menu items=items menuopen=menuVisible class=menu-container ng-hide=!menuVisible></clix-tooltip-menu><div class=logo-image style=\"background-image: url('{{brand.BrandTransparentLogo.url}}')\"></div><div class=logo-points><clix-points-violator>50</clix-points-violator></div><div class=logo-overlay><a ui-sref=\"brand({ slug: (brand.title | slug) })\" class=hit-area></a> <a ui-sref=\"brand({ slug: (brand.title | slug) })\" class=view-button-container><div class=view-button><clix-view-button></clix-view-button></div></a><div class=logo-save><clix-favorite-button></clix-favorite-button></div><div class=logo-ellipsis><div class=menu-icon-container ng-click=menuClicked($event) clix-click-anywhere-else=bodyClicked><i class=icon-ellipsis></i></div></div></div></div>"
+  );
+
+
+  $templateCache.put('ui/common/brand-charity-logo/view.charity-logo.html',
+    "<div class=clix-charity-logo><clix-tooltip-menu items=items menuopen=menuVisible class=menu-container ng-hide=!menuVisible></clix-tooltip-menu><div class=logo-image style=\"background-image: url('{{charity.BrandTransparentLogo.url}}')\"></div><div class=logo-overlay><a ui-sref=\"brand({ slug: (charity.title | slug) })\" class=hit-area></a> <a ui-sref=\"brand({ slug: (charity.title | slug) })\" class=view-button-container><div class=view-button><clix-view-button></clix-view-button></div></a><div class=logo-save><clix-favorite-button></clix-favorite-button></div><div class=logo-ellipsis><div class=menu-icon-container ng-click=menuClicked($event) clix-click-anywhere-else=bodyClicked><i class=icon-ellipsis></i></div></div></div></div>"
   );
 
 
@@ -158,7 +173,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/header/view.header.html',
-    "<header class=clix-header clix-scroll-offset-class offset=100 scroll-class=filled><h1 class=logo-container><a href=#><img src=assets/theme/clixtv/dist/images/logo.png class=clix-logo></a></h1><nav class=clix-navigation><div class=navigation-item-container><a href=#>Categories</a></div><div class=navigation-item-container><a href=#>Stars</a></div><div class=navigation-item-container><a ui-sref=brands>Brands</a></div><div class=navigation-item-container><a href=#>Charities</a></div><div class=\"navigation-item-container search-item-container\"><clix-header-search-icon></clix-header-search-icon></div></nav></header>"
+    "<header class=clix-header clix-scroll-offset-class offset=100 scroll-class=filled><h1 class=logo-container><a href=#><img src=assets/theme/clixtv/dist/images/logo.png class=clix-logo></a></h1><nav class=clix-navigation><div class=navigation-item-container><a href=#>Categories</a></div><div class=navigation-item-container><a href=#>Stars</a></div><div class=navigation-item-container><a ui-sref=brands>Brands</a></div><div class=navigation-item-container><a ui-sref=charities>Charities</a></div><div class=\"navigation-item-container search-item-container\"><clix-header-search-icon></clix-header-search-icon></div></nav></header>"
   );
 
 
@@ -413,6 +428,59 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 }());
 (function() {
 
+    var CharitiesController = [
+        '$q',
+        '$scope',
+        '$stateParams',
+        'brandsService',
+        function($q, $scope, $stateParams, brandsService) {
+
+            var defaultFilterOptions = [
+                {
+                    label: 'All'
+                },
+                {
+                    label: 'Home & Auto'
+                },
+                {
+                    label: 'Baby, Kids & Toys'
+                },
+                {
+                    label: 'Electronics'
+                }
+            ];
+
+            var defaultSortOptions = [
+                {
+                    label: 'Expiring Soon'
+                },
+                {
+                    label: 'Most Viewed'
+                },
+                {
+                    label: 'Favorites'
+                }
+            ];
+
+            $scope.filterCharitiesOptions = defaultFilterOptions;
+            $scope.sortCharitiesOptions = defaultSortOptions;
+
+            brandsService.getAllCharities()
+                .then(
+                    function onSuccess(data) {
+                        $scope.charities = data;
+                    }
+                );
+
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .controller('CharitiesController', CharitiesController);
+}());
+(function() {
+
     var CharityController = [
         '$q',
         '$scope',
@@ -513,6 +581,64 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 }());
 (function() {
 
+    var CharityLogoController = [
+        '$q',
+        '$scope',
+        function($q, $scope) {
+
+            $scope.menuVisible = false;
+
+            $scope.items = [
+                {
+                    label: 'Add to Watchlist',
+                    icon: 'icon-save-icon',
+                    onClick: function() {
+                        console.log('SHARE');
+                    }
+                },
+                {
+                    label: 'Share',
+                    icon: 'icon-share-icon',
+                    onClick: function() {
+                        console.log('SHARE');
+                    }
+                },
+                {
+                    label: 'Go to Star Page',
+                    icon: 'icon-stars-icon',
+                    onClick: function() {
+                        console.log('SHARE');
+                    }
+                },
+                {
+                    label: 'Add Star to Favorites',
+                    icon: 'icon-favorite-icon',
+                    onClick: function() {
+                        console.log('SHARE');
+                    }
+                }
+            ];
+
+            $scope.menuClicked = function($event) {
+                $event.stopPropagation();
+                $scope.menuVisible = !$scope.menuVisible;
+            };
+
+            $scope.bodyClicked = function(event) {
+                if (angular.element(event.target).hasClass('menu-item')) {
+                    return;
+                }
+                $scope.menuVisible = false;
+            };
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .controller('CharityLogoController', CharityLogoController);
+}());
+(function() {
+
     var OfferLogoController = [
         '$q',
         '$scope',
@@ -594,9 +720,22 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         }
     };
 
+    var charityLogo = function() {
+        return {
+            restrict: 'AE',
+            controller: 'CharityLogoController',
+            replace: true,
+            templateUrl: 'ui/common/brand-charity-logo/view.charity-logo.html',
+            scope: {
+                charity: '='
+            }
+        }
+    };
+
     angular.module('clixtv')
         .directive('clixBrandCharityLogo', brandCharityLogo)
-        .directive('clixOfferLogo', offerLogo);
+        .directive('clixOfferLogo', offerLogo)
+        .directive('clixCharityLogo', charityLogo);
 }());
 (function() {
 

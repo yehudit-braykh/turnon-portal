@@ -49,6 +49,11 @@
                         url: '/charity/:slug',
                         templateUrl: 'ui/charity/view.charity.html',
                         controller: 'CharityController'
+                    })
+                    .state('charities', {
+                        url: '/charities',
+                        templateUrl: 'ui/charity/view.charities.html',
+                        controller: 'CharitiesController'
                     });
             }
         ]);

@@ -8816,6 +8816,78 @@ button.close {
   padding-left: 30px;
   padding-right: 30px;
 }
+.charities-page {
+  padding: 120px 30px 100px 30px;
+}
+.charities-page .main-header {
+  padding-bottom: 20px;
+}
+.charities-page .brands-list {
+  margin-left: -12px;
+  margin-right: -12px;
+  padding-top: 38px;
+}
+.charities-page .brand-outer-container {
+  padding: 12px;
+}
+.charities-page .brand-logo-container {
+  position: relative;
+  padding-bottom: 100%;
+}
+.charities-page .brand-container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.charities-page .brand-footer {
+  display: block;
+  background-color: #212121;
+  text-align: center;
+  padding: 29px 20px;
+}
+.charities-page .brand-footer:hover {
+  text-decoration: none;
+}
+.charities-page .brand-footer:hover .brand-title,
+.charities-page .brand-footer:hover .brand-offers {
+  text-decoration: underline;
+}
+.charities-page .brand-title {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 14px;
+  color: #FFF;
+  font-weight: bold;
+  letter-spacing: -0.5px;
+  line-height: 16px;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media (min-width: 768px) {
+  .charities-page .brand-title {
+    font-size: 16px;
+  }
+}
+.charities-page .brand-offers {
+  font-family: 'cabinregular', sans-serif;
+  font-size: 11px;
+  color: #8a8a8a;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  line-height: 11px;
+  margin-top: 5px;
+  display: inline-block;
+}
 .clix-hero-banner {
   position: relative;
   z-index: 2000;
@@ -8948,7 +9020,7 @@ button.close {
   position: relative;
 }
 .clix-tabs .nav-tabs {
-  border-bottom-color: #636363;
+  border-bottom-width: 0;
   font-family: 'cabinregular', sans-serif;
   font-size: 14px;
   letter-spacing: 1.6px;
@@ -8970,14 +9042,25 @@ button.close {
   padding: 0 0 13px 0;
 }
 .clix-brand-charity-logo,
-.clix-offer-logo {
+.clix-offer-logo,
+.clix-charity-logo {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
   position: relative;
 }
+.clix-brand-charity-logo .logo-save,
+.clix-offer-logo .logo-save,
+.clix-charity-logo .logo-save {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 15;
+  cursor: pointer;
+}
 .clix-brand-charity-logo .logo-image,
-.clix-offer-logo .logo-image {
+.clix-offer-logo .logo-image,
+.clix-charity-logo .logo-image {
   position: absolute;
   top: 20px;
   left: 20px;
@@ -8988,7 +9071,8 @@ button.close {
   background-repeat: no-repeat;
 }
 .clix-brand-charity-logo .logo-overlay,
-.clix-offer-logo .logo-overlay {
+.clix-offer-logo .logo-overlay,
+.clix-charity-logo .logo-overlay {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: -ms-flex;
@@ -9011,20 +9095,23 @@ button.close {
   visibility: hidden;
 }
 .clix-brand-charity-logo .logo-points,
-.clix-offer-logo .logo-points {
+.clix-offer-logo .logo-points,
+.clix-charity-logo .logo-points {
   position: absolute;
   right: 10px;
   bottom: 10px;
 }
 .clix-brand-charity-logo .view-button-container,
-.clix-offer-logo .view-button-container {
+.clix-offer-logo .view-button-container,
+.clix-charity-logo .view-button-container {
   width: 30%;
   padding-bottom: 30%;
   position: relative;
   z-index: 20;
 }
 .clix-brand-charity-logo .view-button-container .view-button,
-.clix-offer-logo .view-button-container .view-button {
+.clix-offer-logo .view-button-container .view-button,
+.clix-charity-logo .view-button-container .view-button {
   position: absolute;
   top: 0;
   left: 0;
@@ -9032,11 +9119,13 @@ button.close {
   right: 0;
 }
 .clix-brand-charity-logo:hover .logo-overlay,
-.clix-offer-logo:hover .logo-overlay {
+.clix-offer-logo:hover .logo-overlay,
+.clix-charity-logo:hover .logo-overlay {
   visibility: visible;
 }
 .clix-brand-charity-logo .logo-ellipsis,
-.clix-offer-logo .logo-ellipsis {
+.clix-offer-logo .logo-ellipsis,
+.clix-charity-logo .logo-ellipsis {
   position: absolute;
   top: 20px;
   right: 20px;
@@ -9045,11 +9134,13 @@ button.close {
   cursor: pointer;
 }
 .clix-brand-charity-logo .logo-ellipsis:hover,
-.clix-offer-logo .logo-ellipsis:hover {
+.clix-offer-logo .logo-ellipsis:hover,
+.clix-charity-logo .logo-ellipsis:hover {
   color: #FFF;
 }
 .clix-brand-charity-logo .hit-area,
-.clix-offer-logo .hit-area {
+.clix-offer-logo .hit-area,
+.clix-charity-logo .hit-area {
   position: absolute;
   top: 0;
   left: 0;
@@ -9058,7 +9149,8 @@ button.close {
   z-index: 10;
 }
 .clix-brand-charity-logo .menu-container,
-.clix-offer-logo .menu-container {
+.clix-offer-logo .menu-container,
+.clix-charity-logo .menu-container {
   position: absolute;
   top: 12px;
   right: 0;
@@ -9071,13 +9163,6 @@ button.close {
   background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(#c60548), to(#7a0ba8));
   background-image: -webkit-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
   background-image: -o-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
-}
-.clix-brand-charity-logo .logo-save {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 15;
-  cursor: pointer;
 }
 .clix-offer-logo {
   background-size: cover;
@@ -9094,13 +9179,6 @@ button.close {
   right: 0;
   bottom: 0;
 }
-.clix-offer-logo .logo-save {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 15;
-  cursor: pointer;
-}
 .clix-offer-logo .logo-icon {
   position: absolute;
   left: 0;
@@ -9110,6 +9188,13 @@ button.close {
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
+}
+.clix-charity-logo {
+  background-image: -moz-radial-gradient(0 100%, circle, #03bcf2, #f700e6 70%);
+  background-image: -ms-radial-gradient(0 100%, circle, #03bcf2, #f700e6 70%);
+  background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(#03bcf2), to(#f700e6));
+  background-image: -webkit-radial-gradient(0 100%, circle, #03bcf2, #f700e6 70%);
+  background-image: -o-radial-gradient(0 100%, circle, #03bcf2, #f700e6 70%);
 }
 .clix-view-button {
   display: -webkit-flex;
@@ -9207,11 +9292,12 @@ button.close {
   }
 }
 .clix-search-filter {
-  margin-top: 34px;
+  border-top: 1px solid #636363;
+  padding-top: 25px;
 }
 @media (min-width: 768px) {
   .clix-search-filter {
-    padding-bottom: 16px;
+    padding-bottom: 25px;
     border-bottom: 1px solid #636363;
   }
 }

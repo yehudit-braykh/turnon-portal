@@ -1,0 +1,77 @@
+@brand-spacing: 12px;
+
+.charities-page {
+    padding: 120px 30px 100px 30px;
+
+    .main-header {
+        padding-bottom: 20px;
+    }
+
+    .brands-list {
+        margin-left: -@brand-spacing;
+        margin-right: -@brand-spacing;
+        padding-top: 38px;
+    }
+
+    .brand-outer-container {
+        padding: @brand-spacing;
+    }
+
+    .brand-logo-container {
+        position: relative;
+        padding-bottom: 100%;
+    }
+
+    .brand-container {
+        .flex-display;
+        .flex-direction(column);
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    .brand-footer {
+        display: block;
+        background-color: @color-gray6;
+        text-align: center;
+        padding: 29px 20px;
+
+        &:hover {
+            text-decoration: none;
+
+            .brand-title,
+            .brand-offers {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .brand-title {
+        font-family: @font-primary;
+        font-size: 14px;
+        color: @color-white;
+        font-weight: bold;
+        letter-spacing: -0.5px;
+        line-height: 16px;
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        @media (min-width: @screen-sm) {
+            font-size: 16px;
+        }
+    }
+
+    .brand-offers {
+        font-family: @font-secondary;
+        font-size: 11px;
+        color: @color-gray2;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        line-height: 11px;
+        margin-top: 5px;
+        display: inline-block;
+    }
+}

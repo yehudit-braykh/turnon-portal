@@ -1,0 +1,20 @@
+<div class="clix-charity-logo">
+    <clix-tooltip-menu items="items" menuopen="menuVisible" class="menu-container" ng-hide="!menuVisible"></clix-tooltip-menu>
+    <div class="logo-image" style="background-image: url('{{charity.BrandTransparentLogo.url}}')"></div>
+    <div class="logo-overlay">
+        <a ui-sref="brand({ slug: (charity.title | slug) })" class="hit-area"></a>
+        <a ui-sref="brand({ slug: (charity.title | slug) })" class="view-button-container">
+            <div class="view-button">
+                <clix-view-button></clix-view-button>
+            </div>
+        </a>
+        <div class="logo-save">
+            <clix-favorite-button></clix-favorite-button>
+        </div>
+        <div class="logo-ellipsis">
+            <div class="menu-icon-container" ng-click="menuClicked($event)" clix-click-anywhere-else="bodyClicked">
+                <i class="icon-ellipsis"></i>
+            </div>
+        </div>
+    </div>
+</div>
