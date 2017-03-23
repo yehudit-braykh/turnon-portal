@@ -243,6 +243,20 @@
       "search": [
         "down-arrow"
       ]
+    },
+    {
+      "uid": "80e89b54efd40d4ffe8006796ee839a4",
+      "css": "favorite-icon-filled",
+      "code": 59409,
+      "src": "custom_icons",
+      "selected": true,
+      "svg": {
+        "path": "M645.8 379.2H1041.7L720.8 616.7 841.7 1000 520.8 766.7 200 1000 320.8 616.7 0 379.2H395.8L520.8 0",
+        "width": 1042
+      },
+      "search": [
+        "favorite-icon-filled"
+      ]
     }
   ]
 }

@@ -1,6 +1,6 @@
 (function() {
 
-    var BrandCharityLogoController = [
+    var OfferLogoController = [
         '$q',
         '$scope',
         function($q, $scope) {
@@ -54,5 +54,5 @@
 
     angular
         .module('clixtv')
-        .controller('BrandCharityLogoController', BrandCharityLogoController);
+        .controller('OfferLogoController', OfferLogoController);
 }());

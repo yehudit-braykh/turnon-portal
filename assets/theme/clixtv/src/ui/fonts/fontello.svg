@@ -39,6 +39,8 @@
 <glyph glyph-name="right-tall-arrow" unicode="&#xe80f;" d="M9-86l67-56 402 492-402 492-67-56 355-436z" horiz-adv-x="491" />
 
 <glyph glyph-name="down-arrow" unicode="&#xe810;" d="M958-17l-641 667 75 67 566-592 567 592 75-67-642-667z" horiz-adv-x="1917" />
+
+<glyph glyph-name="favorite-icon-filled" unicode="&#xe811;" d="M646 471h396l-321-238 121-383-321 233-321-233 121 383-321 238h396l125 379" horiz-adv-x="1042" />
 </font>
 </defs>
 </svg>

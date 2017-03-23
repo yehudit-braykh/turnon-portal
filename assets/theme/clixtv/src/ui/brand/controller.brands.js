@@ -46,6 +46,13 @@
                     }
                 );
 
+            brandsService.getAllOffers()
+                .then(
+                    function onSuccess(data) {
+                        $scope.offers = data;
+                    }
+                );
+
         }
     ];
 

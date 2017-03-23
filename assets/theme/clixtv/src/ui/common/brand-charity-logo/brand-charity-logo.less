@@ -1,8 +1,9 @@
 @logo-padding: 20px;
 
-.clix-brand-charity-logo {
+.clix-brand-charity-logo,
+.clix-offer-logo {
+
     .flex(1);
-    .radial-gradient(@color-brand-start, @color-brand-end, 0 100%);
     position: relative;
 
     .logo-image {
@@ -40,6 +41,7 @@
         width: 30%;
         padding-bottom: 30%;
         position: relative;
+        z-index: 20;
 
         .view-button {
             position: absolute;
@@ -54,5 +56,97 @@
         .logo-overlay {
             visibility: visible;
         }
+    }
+
+    .logo-ellipsis {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        color: @color-gray2;
+        z-index: 15;
+        cursor: pointer;
+
+        &:hover {
+            color: @color-white;
+        }
+    }
+
+    .hit-area {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 10;
+    }
+
+    .menu-container {
+        position: absolute;
+        top: 12px;
+        right: 0;
+        width: 100%;
+        padding: 7px;
+    }
+}
+
+.clix-brand-charity-logo {
+
+    .radial-gradient(@color-brand-start, @color-brand-end, 0 100%);
+
+    .logo-save {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 15;
+        cursor: pointer;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.clix-offer-logo {
+
+    background-size: cover;
+
+    .logo-overlay-image {
+        .radial-gradient(@color-offer-start, @color-offer-end, 0 100%, 80%);
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    .logo-save {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 15;
+        cursor: pointer;
+    }
+
+    .logo-icon {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 30%;
+        height: 30%;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
     }
 }

@@ -898,6 +898,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 .icon-left-tall-arrow:before { content: '\e80e'; } /* '' */
 .icon-right-tall-arrow:before { content: '\e80f'; } /* '' */
 .icon-down-arrow:before { content: '\e810'; } /* '' */
+.icon-favorite-icon-filled:before { content: '\e811'; } /* '' */
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
@@ -8968,18 +8969,15 @@ button.close {
   color: #8a8a8a;
   padding: 0 0 13px 0;
 }
-.clix-brand-charity-logo {
+.clix-brand-charity-logo,
+.clix-offer-logo {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  background-image: -moz-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
-  background-image: -ms-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
-  background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(#c60548), to(#7a0ba8));
-  background-image: -webkit-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
-  background-image: -o-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
   position: relative;
 }
-.clix-brand-charity-logo .logo-image {
+.clix-brand-charity-logo .logo-image,
+.clix-offer-logo .logo-image {
   position: absolute;
   top: 20px;
   left: 20px;
@@ -8989,7 +8987,8 @@ button.close {
   background-position: center center;
   background-repeat: no-repeat;
 }
-.clix-brand-charity-logo .logo-overlay {
+.clix-brand-charity-logo .logo-overlay,
+.clix-offer-logo .logo-overlay {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: -ms-flex;
@@ -9011,25 +9010,106 @@ button.close {
   background-color: rgba(0, 0, 0, 0.8);
   visibility: hidden;
 }
-.clix-brand-charity-logo .logo-points {
+.clix-brand-charity-logo .logo-points,
+.clix-offer-logo .logo-points {
   position: absolute;
   right: 10px;
   bottom: 10px;
 }
-.clix-brand-charity-logo .view-button-container {
+.clix-brand-charity-logo .view-button-container,
+.clix-offer-logo .view-button-container {
   width: 30%;
   padding-bottom: 30%;
   position: relative;
+  z-index: 20;
 }
-.clix-brand-charity-logo .view-button-container .view-button {
+.clix-brand-charity-logo .view-button-container .view-button,
+.clix-offer-logo .view-button-container .view-button {
   position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
 }
-.clix-brand-charity-logo:hover .logo-overlay {
+.clix-brand-charity-logo:hover .logo-overlay,
+.clix-offer-logo:hover .logo-overlay {
   visibility: visible;
+}
+.clix-brand-charity-logo .logo-ellipsis,
+.clix-offer-logo .logo-ellipsis {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: #8a8a8a;
+  z-index: 15;
+  cursor: pointer;
+}
+.clix-brand-charity-logo .logo-ellipsis:hover,
+.clix-offer-logo .logo-ellipsis:hover {
+  color: #FFF;
+}
+.clix-brand-charity-logo .hit-area,
+.clix-offer-logo .hit-area {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+}
+.clix-brand-charity-logo .menu-container,
+.clix-offer-logo .menu-container {
+  position: absolute;
+  top: 12px;
+  right: 0;
+  width: 100%;
+  padding: 7px;
+}
+.clix-brand-charity-logo {
+  background-image: -moz-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
+  background-image: -ms-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
+  background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(#c60548), to(#7a0ba8));
+  background-image: -webkit-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
+  background-image: -o-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
+}
+.clix-brand-charity-logo .logo-save {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 15;
+  cursor: pointer;
+}
+.clix-offer-logo {
+  background-size: cover;
+}
+.clix-offer-logo .logo-overlay-image {
+  background-image: -moz-radial-gradient(0 100%, circle, #c80050, rgba(0, 0, 0, 0) 80%);
+  background-image: -ms-radial-gradient(0 100%, circle, #c80050, rgba(0, 0, 0, 0) 80%);
+  background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(#c80050), to(rgba(0, 0, 0, 0)));
+  background-image: -webkit-radial-gradient(0 100%, circle, #c80050, rgba(0, 0, 0, 0) 80%);
+  background-image: -o-radial-gradient(0 100%, circle, #c80050, rgba(0, 0, 0, 0) 80%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.clix-offer-logo .logo-save {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 15;
+  cursor: pointer;
+}
+.clix-offer-logo .logo-icon {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 30%;
+  height: 30%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 .clix-view-button {
   display: -webkit-flex;
@@ -9079,6 +9159,40 @@ button.close {
 }
 .clix-view-button:hover .view-button-text {
   color: #FFF;
+}
+.clix-save-button .button-hover,
+.clix-save-button .button-click {
+  display: none;
+}
+.clix-save-button:hover .button-normal {
+  display: none;
+}
+.clix-save-button:hover .button-hover {
+  display: block;
+}
+.clix-save-button:active .button-normal,
+.clix-save-button:active .button-hover {
+  display: none;
+}
+.clix-save-button:active .button-click {
+  display: block;
+}
+.clix-favorite-icon {
+  font-size: 24px;
+  color: #8a8a8a;
+  position: relative;
+}
+.clix-favorite-icon .fill-state {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+}
+.clix-favorite-icon:hover {
+  color: #FFF;
+}
+.clix-favorite-icon:active .fill-state {
+  display: block;
 }
 .clix-main-header {
   font-family: 'PT Sans', sans-serif;

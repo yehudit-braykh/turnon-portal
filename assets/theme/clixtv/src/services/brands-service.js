@@ -77,6 +77,18 @@
                                 return found[0];
                             }
                         );
+                },
+
+                /**
+                 * @todo - Cache this call
+                 */
+                getAllOffers: function() {
+                    return $http.get('/api/brands/get_offers_array')
+                        .then(
+                            function(data) {
+                                return data.data;
+                            }
+                        );
                 }
             }
         }

@@ -31,3 +31,53 @@
         }
     }
 }
+
+.clix-save-button {
+
+    .button-hover,
+    .button-click {
+        display: none;
+    }
+
+    &:hover {
+        .button-normal {
+            display: none;
+        }
+        .button-hover {
+            display: block;
+        }
+    }
+
+    &:active {
+        .button-normal,
+        .button-hover {
+            display: none;
+        }
+        .button-click {
+            display: block;
+        }
+    }
+}
+
+.clix-favorite-icon {
+    font-size: 24px;
+    color: @color-gray2;
+    position: relative;
+
+    .fill-state {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: none;
+    }
+
+    &:hover {
+        color: @color-white;
+    }
+
+    &:active {
+        .fill-state {
+            display: block;
+        }
+    }
+}

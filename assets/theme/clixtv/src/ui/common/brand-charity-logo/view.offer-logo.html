@@ -1,20 +1,21 @@
-<div class="clix-brand-charity-logo">
+<div class="clix-offer-logo" style="background-image: url('{{offer.BrandLogo.url}}')">
     <clix-tooltip-menu items="items" menuopen="menuVisible" class="menu-container" ng-hide="!menuVisible"></clix-tooltip-menu>
-    <div class="logo-image" style="background-image: url('{{brand.BrandTransparentLogo.url}}')"></div>
+    <div class="logo-overlay-image"></div>
+    <div class="logo-icon" style="background-image: url('{{offer.BrandTransparentLogo.url}}')"></div>
     <div class="logo-points">
         <clix-points-violator>
             50
         </clix-points-violator>
     </div>
     <div class="logo-overlay">
-        <a ui-sref="brand({ slug: (brand.title | slug) })" class="hit-area"></a>
-        <a ui-sref="brand({ slug: (brand.title | slug) })" class="view-button-container">
+        <a ui-sref="brand({ slug: (offer.title | slug) })" class="hit-area"></a>
+        <a ui-sref="brand({ slug: (offer.title | slug) })" class="view-button-container">
             <div class="view-button">
                 <clix-view-button></clix-view-button>
             </div>
         </a>
         <div class="logo-save">
-            <clix-favorite-button></clix-favorite-button>
+            <clix-save-button></clix-save-button>
         </div>
         <div class="logo-ellipsis">
             <div class="menu-icon-container" ng-click="menuClicked($event)" clix-click-anywhere-else="bodyClicked">

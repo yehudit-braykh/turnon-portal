@@ -48,6 +48,24 @@
                     ></clix-search-filter>
                 </div>
 
+                <div class="row brands-list">
+                    <div class="brand-outer-container col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="(id, offer) in offers">
+                        <div class="brand-logo-container">
+                            <div class="brand-container">
+                                <clix-offer-logo offer="offer"></clix-offer-logo>
+                            </div>
+                        </div>
+                        <a ui-sref="brand({ slug: (offer.title | slug) })" class="brand-footer">
+                            <span class="brand-title">
+                                {{offer.title}}
+                            </span>
+                            <span class="brand-offers">
+                                Nike<br />
+                                Expires 2/1/2017
+                            </span>
+                        </a>
+                    </div>
+                </div>
             </uib-tab>
         </uib-tabset>
     </div>
