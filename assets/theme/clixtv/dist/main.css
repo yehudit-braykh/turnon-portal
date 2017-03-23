@@ -7616,6 +7616,9 @@ button.close {
   margin-top: 55px;
   padding-left: 30px;
 }
+.video-category-scroll-list .slick-arrow {
+  top: 0;
+}
 .video-category-scroll-list h2 {
   font-family: 'cabinregular', sans-serif;
   font-size: 24px;
@@ -8397,7 +8400,7 @@ button.close {
 }
 .home-page .slick-arrow {
   position: absolute;
-  top: 0;
+  top: 50%;
   z-index: 3000;
 }
 .home-page #main-carousel-next {
@@ -8740,7 +8743,7 @@ button.close {
   padding-top: 38px;
 }
 .brands-page .brand-outer-container {
-  padding: 12px;
+  padding: 12px 12px 38px 12px;
 }
 .brands-page .brand-logo-container {
   position: relative;
@@ -8825,7 +8828,7 @@ button.close {
   padding-top: 38px;
 }
 .charities-page .brand-outer-container {
-  padding: 12px;
+  padding: 12px 12px 38px 12px;
 }
 .charities-page .brand-logo-container {
   position: relative;
