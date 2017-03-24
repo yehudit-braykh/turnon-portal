@@ -1,0 +1,31 @@
+<div class="clix-stars-page">
+    <clix-filter-page ng-if="stars">
+        <page-title>
+            Stars
+        </page-title>
+        <page-search-filter>
+            <clix-search-filter
+                search-placeholder="Search Stars"
+                filter-placeholder="Filter By"
+                sort-placeholder="Sort By"
+                filter-options="filterOptions"
+                sort-options="sortOptions"
+            ></clix-search-filter>
+        </page-search-filter>
+        <page-content>
+            <clix-content-callout-list items="stars">
+                <clix-content-callout sref="brand({ slug: '{{item.title}}' })">
+                    <header-element>
+                        <div class="star-logo" style="background-image: url({{item.BrandLogo.url}})"></div>
+                    </header-element>
+                    <title-content>
+                        {{item.title}}
+                    </title-content>
+                    <subtitle-content>
+                        127 Videos
+                    </subtitle-content>
+                </clix-content-callout>
+            </clix-content-callout-list>
+        </page-content>
+    </clix-filter-page>
+</div>

@@ -4,7 +4,10 @@
         return {
             restrict: 'AE',
             replace: true,
-            templateUrl: 'ui/common/buttons/view.view-button.html'
+            templateUrl: 'ui/common/buttons/view.view-button.html',
+            scope: {
+                text: '@?'
+            }
         }
     };
 

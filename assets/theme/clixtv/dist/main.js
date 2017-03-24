@@ -54,6 +54,11 @@
                         url: '/charities',
                         templateUrl: 'ui/charity/view.charities.html',
                         controller: 'CharitiesController'
+                    })
+                    .state('stars', {
+                        url: '/stars',
+                        templateUrl: 'ui/stars/view.stars.html',
+                        controller: 'StarsController'
                     });
             }
         ]);
@@ -133,7 +138,17 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/buttons/view.view-button.html',
-    "<div class=clix-view-button><div class=view-button><div class=view-button-text>View</div></div></div>"
+    "<div class=clix-view-button><div class=view-button><div class=view-button-text>{{text || 'View'}}</div></div></div>"
+  );
+
+
+  $templateCache.put('ui/common/container/view.content-callout-list.html',
+    "<div class=\"row brands-list\"><div class=\"brand-outer-container col-xs-6 col-sm-4 col-md-3 col-lg-2\" ng-repeat=\"item in items\" clix-transclude-inject><div ng-transclude></div></div></div>"
+  );
+
+
+  $templateCache.put('ui/common/container/view.content-callout.html',
+    "<div class=clix-content-callout><div class=header-callout-container><div class=header-container ng-transclude=headerElement></div><clix-tooltip-menu items=items menuopen=menuVisible class=overlay-menu-container ng-hide=!menuVisible></clix-tooltip-menu><div class=header-overlay><a ui-sref={{sref}} class=hit-area></a> <a ui-sref={{sref}} class=view-button-container><div class=view-button><clix-view-button text=Go></clix-view-button></div></a><div class=header-save><clix-favorite-button></clix-favorite-button></div><div class=header-ellipsis><div class=menu-icon-container ng-click=menuClicked($event) clix-click-anywhere-else=bodyClicked><i class=icon-ellipsis></i></div></div></div></div><a ui-sref={{sref}} class=callout-footer-container><span class=callout-title ng-transclude=titleContent></span> <span class=callout-subtitle ng-transclude=subtitleContent></span></a></div>"
   );
 
 
@@ -144,6 +159,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('ui/common/hero-banner/view.hero-banner.html',
     "<div class=clix-hero-banner><img class=hero-background-image ng-src={{backgroundImage}} ng-srcset=\"{{backgroundImage2x}} 2x\" alt=\"\" draggable=false du-parallax y=background><div class=hero-banner-overlay du-parallax y=background></div><div class=hero-banner-content-container><div class=hero-banner-content><div class=banner-logo-container><div ng-transclude=logo></div></div><div class=banner-title-content><div class=banner-title>{{titleText}}</div><div class=banner-button><clix-tertiary-button>{{buttonText}} <i class={{buttonIconClass}}></i></clix-tertiary-button><a href=# class=\"icon-share-icon banner-share-icon\"></a><div class=header-points-violator><clix-points-violator>{{points}}</clix-points-violator></div></div></div><div class=banner-subtext-container>{{subtext}}</div></div></div></div>"
+  );
+
+
+  $templateCache.put('ui/common/page/view.filter-page.html',
+    "<div class=clix-filter-page><div class=main-header><clix-main-header><div ng-transclude=pageTitle></div></clix-main-header></div><div class=search-filter-container><div ng-transclude=pageSearchFilter></div></div><div ng-transclude=pageContent></div></div>"
   );
 
 
@@ -173,7 +193,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/header/view.header.html',
-    "<header class=clix-header clix-scroll-offset-class offset=100 scroll-class=filled><h1 class=logo-container><a href=#><img src=assets/theme/clixtv/dist/images/logo.png class=clix-logo></a></h1><nav class=clix-navigation><div class=navigation-item-container><a href=#>Categories</a></div><div class=navigation-item-container><a href=#>Stars</a></div><div class=navigation-item-container><a ui-sref=brands>Brands</a></div><div class=navigation-item-container><a ui-sref=charities>Charities</a></div><div class=\"navigation-item-container search-item-container\"><clix-header-search-icon></clix-header-search-icon></div></nav></header>"
+    "<header class=clix-header clix-scroll-offset-class offset=100 scroll-class=filled><h1 class=logo-container><a href=#><img src=assets/theme/clixtv/dist/images/logo.png class=clix-logo></a></h1><nav class=clix-navigation><div class=navigation-item-container><a href=#>Categories</a></div><div class=navigation-item-container><a ui-sref=stars>Stars</a></div><div class=navigation-item-container><a ui-sref=brands>Brands</a></div><div class=navigation-item-container><a ui-sref=charities>Charities</a></div><div class=\"navigation-item-container search-item-container\"><clix-header-search-icon></clix-header-search-icon></div></nav></header>"
   );
 
 
@@ -184,6 +204,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('ui/logo/view.logo.html',
     "<div class=clix-logo-container ng-class=\"{'clix-charity-logo-container': charity, 'large': size === 'large'}\"><img ng-if=logoUrl ng-src={{logoUrl}} class=logo-image></div>"
+  );
+
+
+  $templateCache.put('ui/stars/view.stars.html',
+    "<div class=clix-stars-page><clix-filter-page ng-if=stars><page-title>Stars</page-title><page-search-filter><clix-search-filter search-placeholder=\"Search Stars\" filter-placeholder=\"Filter By\" sort-placeholder=\"Sort By\" filter-options=filterOptions sort-options=sortOptions></clix-search-filter></page-search-filter><page-content><clix-content-callout-list items=stars><clix-content-callout sref=\"brand({ slug: '{{item.title}}' })\"><header-element><div class=star-logo style=\"background-image: url({{item.BrandLogo.url}})\"></div></header-element><title-content>{{item.title}}</title-content><subtitle-content>127 Videos</subtitle-content></clix-content-callout></clix-content-callout-list></page-content></clix-filter-page></div>"
   );
 
 
@@ -743,7 +768,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         return {
             restrict: 'AE',
             replace: true,
-            templateUrl: 'ui/common/buttons/view.view-button.html'
+            templateUrl: 'ui/common/buttons/view.view-button.html',
+            scope: {
+                text: '@?'
+            }
         }
     };
 
@@ -767,6 +795,100 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         .directive('clixViewButton', viewButton)
         .directive('clixSaveButton', saveButton)
         .directive('clixFavoriteButton', favoriteButton);
+}());
+(function() {
+
+    var ContentCalloutController = [
+        '$q',
+        '$scope',
+        function($q, $scope) {
+
+            $scope.menuVisible = false;
+
+            $scope.items = [
+                {
+                    label: 'Add to Watchlist',
+                    icon: 'icon-save-icon',
+                    onClick: function() {
+                        console.log('SHARE');
+                    }
+                },
+                {
+                    label: 'Share',
+                    icon: 'icon-share-icon',
+                    onClick: function() {
+                        console.log('SHARE');
+                    }
+                },
+                {
+                    label: 'Go to Star Page',
+                    icon: 'icon-stars-icon',
+                    onClick: function() {
+                        console.log('SHARE');
+                    }
+                },
+                {
+                    label: 'Add Star to Favorites',
+                    icon: 'icon-favorite-icon',
+                    onClick: function() {
+                        console.log('SHARE');
+                    }
+                }
+            ];
+
+            $scope.menuClicked = function($event) {
+                $event.stopPropagation();
+                $scope.menuVisible = !$scope.menuVisible;
+            };
+
+            $scope.bodyClicked = function(event) {
+                if (angular.element(event.target).hasClass('menu-item')) {
+                    return;
+                }
+                $scope.menuVisible = false;
+            };
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .controller('ContentCalloutController', ContentCalloutController);
+}());
+(function() {
+
+    var calloutCalloutList = function() {
+        return {
+            restrict: 'AE',
+            replace: true,
+            transclude: true,
+            templateUrl: 'ui/common/container/view.content-callout-list.html',
+            scope: {
+                items: '='
+            }
+        }
+    };
+
+    var calloutCallout = function() {
+        return {
+            restrict: 'AE',
+            replace: true,
+            templateUrl: 'ui/common/container/view.content-callout.html',
+            require: '^clixContentCalloutList',
+            controller: 'ContentCalloutController',
+            transclude: {
+                headerElement: 'headerElement',
+                titleContent: 'titleContent',
+                subtitleContent: 'subtitleContent'
+            },
+            scope: {
+                sref: '@'
+            }
+        }
+    };
+
+    angular.module('clixtv')
+        .directive('clixContentCalloutList', calloutCalloutList)
+        .directive('clixContentCallout', calloutCallout);
 }());
 (function() {
 
@@ -821,6 +943,24 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     angular.module('clixtv')
         .directive('clixHeroBanner', heroBanner);
+}());
+(function() {
+
+    var filterPage = function() {
+        return {
+            restrict: 'AE',
+            replace: true,
+            templateUrl: 'ui/common/page/view.filter-page.html',
+            transclude: {
+                pageTitle: 'pageTitle',
+                pageSearchFilter: 'pageSearchFilter',
+                pageContent: 'pageContent'
+            }
+        }
+    };
+
+    angular.module('clixtv')
+        .directive('clixFilterPage', filterPage);
 }());
 (function() {
 
@@ -1077,6 +1217,55 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 }());
 (function() {
 
+    var StarsController = [
+        '$q',
+        '$scope',
+        'celebrityService',
+        function($q, $scope, celebrityService) {
+
+            $scope.filterOptions = [
+                {
+                    label: 'All'
+                },
+                {
+                    label: 'Home & Auto'
+                },
+                {
+                    label: 'Baby, Kids & Toys'
+                },
+                {
+                    label: 'Electronics'
+                }
+            ];
+
+            $scope.sortOptions = [
+                {
+                    label: 'Expiring Soon'
+                },
+                {
+                    label: 'Most Viewed'
+                },
+                {
+                    label: 'Favorites'
+                }
+            ];
+
+            celebrityService.getAllCelebrities()
+                .then(
+                    function onSuccess(data) {
+                        $scope.stars = data;
+                    }
+                )
+
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .controller('StarsController', StarsController);
+}());
+(function() {
+
     var TooltipMenuController = [
         '$q',
         '$scope',
@@ -1180,6 +1369,34 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     angular.module('clixtv')
         .directive('clixScrollOffsetClass', scrollOffsetClass);
+}());
+(function() {
+    var transcludeInject = [
+        function() {
+            return {
+                link: function($scope, $element, $attrs, controller, $transclude) {
+                    if (!$transclude) {
+                        throw minErr('ngTransclude')('orphan',
+                            'Illegal use of ngTransclude directive in the template! ' +
+                            'No parent directive that requires a transclusion found. ' +
+                            'Element: {0}',
+                            startingTag($element));
+                    }
+                    var innerScope = $scope.$new();
+                    $transclude(innerScope, function(clone) {
+                        $element.empty();
+                        $element.append(clone);
+                        $element.on('$destroy', function() {
+                            innerScope.$destroy();
+                        });
+                    });
+                }
+            };
+        }
+    ];
+
+    angular.module('clixtv')
+        .directive('clixTranscludeInject', transcludeInject);
 }());
 (function() {
 
@@ -1545,6 +1762,32 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
     angular
         .module('clixtv')
         .factory('categoryService', categoryService);
+}());
+(function() {
+
+    var celebrityService = [
+        '$http',
+        function($http) {
+            return {
+
+                /**
+                 * @todo - Cache this call
+                 */
+                getAllCelebrities: function() {
+                    return $http.get('/api/celebrity/get_all_celebrities')
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
+                            }
+                        );
+                }
+            }
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .factory('celebrityService', celebrityService);
 }());
 (function() {
 

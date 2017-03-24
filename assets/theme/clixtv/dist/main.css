@@ -8888,6 +8888,13 @@ button.close {
   margin-top: 5px;
   display: inline-block;
 }
+.clix-stars-page .star-logo {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  background-position: center;
+  background-size: cover;
+}
 .clix-hero-banner {
   position: relative;
   z-index: 2000;
@@ -9400,6 +9407,218 @@ button.close {
   .clix-search-filter .filter-bar:first-child {
     padding-right: 0;
   }
+}
+.clix-filter-page {
+  padding: 120px 30px 100px 30px;
+}
+.clix-filter-page .main-header {
+  padding-bottom: 20px;
+}
+.clix-filter-page .brands-list {
+  margin-left: -9px;
+  margin-right: -9px;
+  padding-top: 38px;
+}
+.clix-filter-page .brand-outer-container {
+  padding: 9px 9px 38px 9px;
+}
+.clix-filter-page .brand-logo-container {
+  position: relative;
+  padding-bottom: 100%;
+}
+.clix-filter-page .brand-container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.clix-filter-page .brand-footer {
+  display: block;
+  background-color: #212121;
+  text-align: center;
+  padding: 29px 20px;
+}
+.clix-filter-page .brand-footer:hover {
+  text-decoration: none;
+}
+.clix-filter-page .brand-footer:hover .brand-title,
+.clix-filter-page .brand-footer:hover .brand-offers {
+  text-decoration: underline;
+}
+.clix-filter-page .brand-title {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 14px;
+  color: #FFF;
+  font-weight: bold;
+  letter-spacing: -0.5px;
+  line-height: 16px;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media (min-width: 768px) {
+  .clix-filter-page .brand-title {
+    font-size: 16px;
+  }
+}
+.clix-filter-page .brand-offers {
+  font-family: 'cabinregular', sans-serif;
+  font-size: 11px;
+  color: #8a8a8a;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  line-height: 11px;
+  margin-top: 5px;
+  display: inline-block;
+}
+.clix-content-callout:hover .header-overlay {
+  visibility: visible;
+}
+.clix-content-callout .header-callout-container {
+  position: relative;
+  padding-bottom: 100%;
+}
+.clix-content-callout .header-container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.clix-content-callout .header-container > header-element {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.clix-content-callout .header-overlay {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  visibility: hidden;
+}
+.clix-content-callout .hit-area {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+}
+.clix-content-callout .view-button-container {
+  width: 30%;
+  padding-bottom: 30%;
+  position: relative;
+  z-index: 20;
+}
+.clix-content-callout .view-button-container .view-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.clix-content-callout .header-ellipsis {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #8a8a8a;
+  z-index: 15;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 10px;
+}
+.clix-content-callout .header-ellipsis:hover {
+  color: #FFF;
+}
+.clix-content-callout .overlay-menu-container {
+  position: absolute;
+  top: 25px;
+  right: 0;
+  width: 100%;
+  padding: 7px;
+}
+.clix-content-callout .header-save {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 15;
+  cursor: pointer;
+}
+.clix-content-callout .callout-footer-container {
+  display: block;
+  background-color: #212121;
+  text-align: center;
+  padding: 29px 20px;
+}
+.clix-content-callout .callout-footer-container:hover {
+  text-decoration: none;
+}
+.clix-content-callout .callout-footer-container:hover .callout-title,
+.clix-content-callout .callout-footer-container:hover .callout-subtitle {
+  text-decoration: underline;
+}
+.clix-content-callout .callout-title {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 14px;
+  color: #FFF;
+  font-weight: bold;
+  letter-spacing: -0.5px;
+  line-height: 16px;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media (min-width: 768px) {
+  .clix-content-callout .callout-title {
+    font-size: 16px;
+  }
+}
+.clix-content-callout .callout-subtitle {
+  font-family: 'cabinregular', sans-serif;
+  font-size: 11px;
+  color: #8a8a8a;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  line-height: 11px;
+  margin-top: 5px;
+  display: inline-block;
 }
 body {
   background-color: #0e0e0e;
