@@ -59,6 +59,11 @@
                         url: '/stars',
                         templateUrl: 'ui/stars/view.stars.html',
                         controller: 'StarsController'
+                    })
+                    .state('categories', {
+                        url: '/categories',
+                        templateUrl: 'ui/categories/view.categories.html',
+                        controller: 'CategoriesController'
                     });
             }
         ]);

@@ -8895,6 +8895,13 @@ button.close {
   background-position: center;
   background-size: cover;
 }
+.clix-categories-page .category-logo {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  background-position: center;
+  background-size: cover;
+}
 .clix-hero-banner {
   position: relative;
   z-index: 2000;

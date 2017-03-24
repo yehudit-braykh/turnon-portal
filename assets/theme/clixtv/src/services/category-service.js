@@ -9,7 +9,12 @@
                  * @todo - Cache this call
                  */
                 getAllCategories: function() {
-                    return $http.get('/api/category/get_all_categories');
+                    return $http.get('/api/category/get_all_categories')
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
+                            }
+                        );
                 },
 
                 /**

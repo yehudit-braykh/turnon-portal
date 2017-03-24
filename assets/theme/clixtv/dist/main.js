@@ -59,6 +59,11 @@
                         url: '/stars',
                         templateUrl: 'ui/stars/view.stars.html',
                         controller: 'StarsController'
+                    })
+                    .state('categories', {
+                        url: '/categories',
+                        templateUrl: 'ui/categories/view.categories.html',
+                        controller: 'CategoriesController'
                     });
             }
         ]);
@@ -84,6 +89,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('ui/buttons/view.tertiary-button.html',
     "<a href=# class=clix-tertiary-button><div class=\"button-edge left-edge\"></div><div class=\"button-edge right-edge\"></div><div class=button-content><div ng-transclude></div></div></a>"
+  );
+
+
+  $templateCache.put('ui/categories/view.categories.html',
+    "<div class=clix-categories-page><clix-filter-page ng-if=categories><page-title>Video Categories</page-title><page-search-filter><clix-search-filter search-placeholder=\"Search Categories\" filter-placeholder=\"Filter By\" sort-placeholder=\"Sort By\" filter-options=filterOptions sort-options=sortOptions></clix-search-filter></page-search-filter><page-content><clix-content-callout-list items=categories><clix-content-callout sref=\"brand({ slug: '{{item.title}}' })\"><header-element><div class=category-logo style=\"background-image: url('{{item.BrandLogo.url}}')\"></div></header-element><title-content>{{item.title}}</title-content><subtitle-content>127 Videos</subtitle-content></clix-content-callout></clix-content-callout-list></page-content></clix-filter-page></div>"
   );
 
 
@@ -193,7 +203,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/header/view.header.html',
-    "<header class=clix-header clix-scroll-offset-class offset=100 scroll-class=filled><h1 class=logo-container><a href=#><img src=assets/theme/clixtv/dist/images/logo.png class=clix-logo></a></h1><nav class=clix-navigation><div class=navigation-item-container><a href=#>Categories</a></div><div class=navigation-item-container><a ui-sref=stars>Stars</a></div><div class=navigation-item-container><a ui-sref=brands>Brands</a></div><div class=navigation-item-container><a ui-sref=charities>Charities</a></div><div class=\"navigation-item-container search-item-container\"><clix-header-search-icon></clix-header-search-icon></div></nav></header>"
+    "<header class=clix-header clix-scroll-offset-class offset=100 scroll-class=filled><h1 class=logo-container><a href=#><img src=assets/theme/clixtv/dist/images/logo.png class=clix-logo></a></h1><nav class=clix-navigation><div class=navigation-item-container><a ui-sref=categories>Categories</a></div><div class=navigation-item-container><a ui-sref=stars>Stars</a></div><div class=navigation-item-container><a ui-sref=brands>Brands</a></div><div class=navigation-item-container><a ui-sref=charities>Charities</a></div><div class=\"navigation-item-container search-item-container\"><clix-header-search-icon></clix-header-search-icon></div></nav></header>"
   );
 
 
@@ -356,6 +366,55 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
     angular.module('clixtv')
         .directive('clixSecondaryButton', secondaryButton)
         .directive('clixTertiaryButton', tertiaryButton);
+}());
+(function() {
+
+    var CategoriesController = [
+        '$q',
+        '$scope',
+        'categoryService',
+        function($q, $scope, categoryService) {
+
+            $scope.filterOptions = [
+                {
+                    label: 'All'
+                },
+                {
+                    label: 'Home & Auto'
+                },
+                {
+                    label: 'Baby, Kids & Toys'
+                },
+                {
+                    label: 'Electronics'
+                }
+            ];
+
+            $scope.sortOptions = [
+                {
+                    label: 'Expiring Soon'
+                },
+                {
+                    label: 'Most Viewed'
+                },
+                {
+                    label: 'Favorites'
+                }
+            ];
+
+            categoryService.getAllCategories()
+                .then(
+                    function onSuccess(data) {
+                        $scope.categories = data;
+                    }
+                )
+
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .controller('CategoriesController', CategoriesController);
 }());
 (function() {
 
@@ -1739,7 +1798,12 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                  * @todo - Cache this call
                  */
                 getAllCategories: function() {
-                    return $http.get('/api/category/get_all_categories');
+                    return $http.get('/api/category/get_all_categories')
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
+                            }
+                        );
                 },
 
                 /**
