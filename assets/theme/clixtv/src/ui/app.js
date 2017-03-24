@@ -66,5 +66,11 @@
                         controller: 'CategoriesController'
                     });
             }
+        ])
+        .run([
+            'userService',
+            function(userService) {
+                userService.getLoggedInUser();
+            }
         ]);
 }());

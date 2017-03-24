@@ -14,6 +14,41 @@
     text-decoration: none;
 }
 
+.clix-primary-button {
+    .horizontal-gradient(@color-tertiary, @color-secondary);
+    .border-radius(30px);
+    .drop-shadow(0, 2px, 3px, 0, .35);
+    font-family: @font-secondary;
+    font-size: 11px;
+    color: @color-white;
+    text-transform: uppercase;
+    letter-spacing: 0.9px;
+    padding: 10px 46px;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+        .horizontal-gradient(darken(@color-tertiary, 5%), darken(@color-secondary, 5%));
+        text-decoration: none;
+    }
+
+    &.button-facebook {
+        .horizontal-gradient(@color-facebook-dark, @color-facebook-light);
+        &:hover {
+            .horizontal-gradient(darken(@color-facebook-dark, 5%), darken(@color-facebook-light, 5%));
+            text-decoration: none;
+        }
+    }
+
+    &.button-google{
+        .horizontal-gradient(@color-google-dark, @color-google-light);
+        &:hover {
+            .horizontal-gradient(darken(@color-google-dark, 5%), darken(@color-google-light, 5%));
+            text-decoration: none;
+        }
+    }
+}
+
 .clix-secondary-button {
     .border-radius(100px);
     border: 1px solid @color-gray2;
@@ -94,5 +129,19 @@
         line-height: 36px;
         padding-left: 32px;
         padding-right: 32px;
+    }
+}
+
+.clix-callout-button {
+    .border-radius(100px);
+    background-color: @color-primary;
+    font-family: @font-secondary;
+    font-size: 14px;
+    color: @color-white;
+    padding: 3px 30px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: darken(@color-primary, 5%);
     }
 }

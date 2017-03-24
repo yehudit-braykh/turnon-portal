@@ -1,5 +1,16 @@
 (function() {
 
+    var primaryButton = function() {
+        return {
+            restrict: 'AE',
+            transclude: true,
+            templateUrl: 'ui/buttons/view.primary-button.html',
+            scope: {
+                type: '@?'
+            }
+        }
+    };
+
     var secondaryButton = function() {
         return {
             restrict: 'AE',
@@ -22,7 +33,17 @@
         }
     };
 
+    var calloutButton = function() {
+        return {
+            restrict: 'AE',
+            transclude: true,
+            templateUrl: 'ui/buttons/view.callout-button.html'
+        }
+    };
+
     angular.module('clixtv')
+        .directive('clixPrimaryButton', primaryButton)
         .directive('clixSecondaryButton', secondaryButton)
-        .directive('clixTertiaryButton', tertiaryButton);
+        .directive('clixTertiaryButton', tertiaryButton)
+        .directive('clixCalloutButton', calloutButton);
 }());

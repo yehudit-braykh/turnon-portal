@@ -714,19 +714,25 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 */
 .icon-clixtv-footer-logo {
   background-image: url(images/layout-sprite.png);
-  background-position: -148px 0px;
+  background-position: -148px -31px;
   width: 136px;
   height: 30px;
 }
+.icon-colorful-clix-logo {
+  background-image: url(images/layout-sprite.png);
+  background-position: -148px 0px;
+  width: 136px;
+  height: 31px;
+}
 .icon-gradient-border-right {
   background-image: url(images/layout-sprite.png);
-  background-position: -148px -59px;
+  background-position: -148px -90px;
   width: 18px;
   height: 36px;
 }
 .icon-gradient-button-left {
   background-image: url(images/layout-sprite.png);
-  background-position: -166px -59px;
+  background-position: -166px -90px;
   width: 18px;
   height: 36px;
 }
@@ -750,19 +756,19 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-save-icon-click {
   background-image: url(images/layout-sprite.png);
-  background-position: -148px -30px;
+  background-position: -148px -61px;
   width: 28px;
   height: 29px;
 }
 .icon-save-icon-hover {
   background-image: url(images/layout-sprite.png);
-  background-position: -176px -30px;
+  background-position: -176px -61px;
   width: 28px;
   height: 29px;
 }
 .icon-save-icon-normal {
   background-image: url(images/layout-sprite.png);
-  background-position: -204px -30px;
+  background-position: -204px -61px;
   width: 28px;
   height: 29px;
 }
@@ -770,6 +776,10 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 @media (-webkit-min-device-pixel-ratio: 2),
        (min-resolution: 192dpi) {
   .icon-clixtv-footer-logo {
+    background-image: url(images/layout-sprite@2x.png);
+    background-size: 284px 136px;
+  }
+  .icon-colorful-clix-logo {
     background-image: url(images/layout-sprite@2x.png);
     background-size: 284px 136px;
   }
@@ -899,6 +909,11 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 .icon-right-tall-arrow:before { content: '\e80f'; } /* '' */
 .icon-down-arrow:before { content: '\e810'; } /* '' */
 .icon-favorite-icon-filled:before { content: '\e811'; } /* '' */
+.icon-password-input-icon:before { content: '\e812'; } /* '' */
+.icon-email-input-icon:before { content: '\e813'; } /* '' */
+.icon-dateofbirth-input-icon:before { content: '\e814'; } /* '' */
+.icon-full-name-input-icon:before { content: '\e815'; } /* '' */
+.icon-gender-input-icon:before { content: '\e816'; } /* '' */
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
@@ -7539,6 +7554,9 @@ button.close {
   display: -ms-flexbox;
   display: -ms-flex;
   display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
   border-left: 1px solid #FFF;
   padding-left: 30px;
 }
@@ -7611,6 +7629,98 @@ button.close {
 }
 .clix-header .search-bar-background input::placeholder {
   color: #bababa;
+}
+.clix-header .account-action-container .account-action-label {
+  display: inline-block;
+  font-family: 'cabinregular', sans-serif;
+  font-size: 14px;
+  color: #FFF;
+  letter-spacing: 1px;
+}
+.clix-header .account-action-container a {
+  cursor: pointer;
+}
+.clix-header .account-action-container .login-container:hover {
+  text-decoration: none;
+}
+.clix-header .header-user-container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+.clix-header .header-user-container .header-user-points-container {
+  text-transform: uppercase;
+  font-family: 'cabinregular', sans-serif;
+  font-size: 9px;
+  color: #FFF;
+  letter-spacing: 1px;
+  text-align: center;
+}
+.clix-header .header-user-container .clix-callout-button {
+  margin-bottom: 4px;
+}
+.clix-header .header-user-container .header-avatar-container {
+  margin-left: 20px;
+  position: relative;
+}
+.clix-header .header-user-container .header-avatar {
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  width: 30px;
+  height: 30px;
+  background-size: cover;
+  background-position: center;
+  display: block;
+}
+.clix-header .header-user-container .header-notification-count {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  width: 20px;
+  height: 20px;
+  background-color: #fe0000;
+  text-align: center;
+  color: #FFF;
+  line-height: 20px;
+  font-family: 'cabinregular', sans-serif;
+  font-size: 11px;
+}
+.clix-header .header-user-container .header-name-container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  margin-left: 20px;
+}
+.clix-header .header-user-container .header-name-container:hover {
+  text-decoration: none;
+}
+.clix-header .header-user-container .header-name {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 14px;
+  color: #FFF;
+  letter-spacing: 0.8px;
+}
+.clix-header .header-user-container .header-expand-icon {
+  color: #FFF;
+  font-size: 20px;
 }
 .video-category-scroll-list {
   margin-top: 55px;
@@ -8040,6 +8150,74 @@ button.close {
   background-image: -o-linear-gradient(left, #7b1371, #e90512);
   text-decoration: none;
 }
+.clix-primary-button {
+  background-color: #911685;
+  background-image: -webkit-gradient(linear, left top, right top, from(#911685), to(#fa0d1b));
+  background-image: -webkit-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -moz-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -ms-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -o-linear-gradient(left, #911685, #fa0d1b);
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  -webkit-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.35);
+  -moz-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.35);
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.35);
+  font-family: 'cabinregular', sans-serif;
+  font-size: 11px;
+  color: #FFF;
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+  padding: 10px 46px;
+  text-align: center;
+  cursor: pointer;
+}
+.clix-primary-button:hover {
+  background-color: #7b1371;
+  background-image: -webkit-gradient(linear, left top, right top, from(#7b1371), to(#e90512));
+  background-image: -webkit-linear-gradient(left, #7b1371, #e90512);
+  background-image: -moz-linear-gradient(left, #7b1371, #e90512);
+  background-image: -ms-linear-gradient(left, #7b1371, #e90512);
+  background-image: -o-linear-gradient(left, #7b1371, #e90512);
+  text-decoration: none;
+}
+.clix-primary-button.button-facebook {
+  background-color: #2b3a92;
+  background-image: -webkit-gradient(linear, left top, right top, from(#2b3a92), to(#405ebf));
+  background-image: -webkit-linear-gradient(left, #2b3a92, #405ebf);
+  background-image: -moz-linear-gradient(left, #2b3a92, #405ebf);
+  background-image: -ms-linear-gradient(left, #2b3a92, #405ebf);
+  background-image: -o-linear-gradient(left, #2b3a92, #405ebf);
+}
+.clix-primary-button.button-facebook:hover {
+  background-color: #25327e;
+  background-image: -webkit-gradient(linear, left top, right top, from(#25327e), to(#3a55ac));
+  background-image: -webkit-linear-gradient(left, #25327e, #3a55ac);
+  background-image: -moz-linear-gradient(left, #25327e, #3a55ac);
+  background-image: -ms-linear-gradient(left, #25327e, #3a55ac);
+  background-image: -o-linear-gradient(left, #25327e, #3a55ac);
+  text-decoration: none;
+}
+.clix-primary-button.button-google {
+  background-color: #b23e28;
+  background-image: -webkit-gradient(linear, left top, right top, from(#b23e28), to(#e35439));
+  background-image: -webkit-linear-gradient(left, #b23e28, #e35439);
+  background-image: -moz-linear-gradient(left, #b23e28, #e35439);
+  background-image: -ms-linear-gradient(left, #b23e28, #e35439);
+  background-image: -o-linear-gradient(left, #b23e28, #e35439);
+}
+.clix-primary-button.button-google:hover {
+  background-color: #9d3723;
+  background-image: -webkit-gradient(linear, left top, right top, from(#9d3723), to(#e04123));
+  background-image: -webkit-linear-gradient(left, #9d3723, #e04123);
+  background-image: -moz-linear-gradient(left, #9d3723, #e04123);
+  background-image: -ms-linear-gradient(left, #9d3723, #e04123);
+  background-image: -o-linear-gradient(left, #9d3723, #e04123);
+  text-decoration: none;
+}
 .clix-secondary-button {
   -webkit-border-radius: 100px;
   -moz-border-radius: 100px;
@@ -8131,6 +8309,23 @@ button.close {
   line-height: 36px;
   padding-left: 32px;
   padding-right: 32px;
+}
+.clix-callout-button {
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  border-radius: 100px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  background-color: #fe0000;
+  font-family: 'cabinregular', sans-serif;
+  font-size: 14px;
+  color: #FFF;
+  padding: 3px 30px;
+  cursor: pointer;
+}
+.clix-callout-button:hover {
+  background-color: #e50000;
 }
 .clix-logo-container {
   display: -webkit-flex;
@@ -8292,6 +8487,9 @@ button.close {
 .clix-footer .footer-legal-column a:focus {
   color: #bababa;
   text-decoration: none;
+}
+.clix-footer .clix-logo {
+  width: 135px;
 }
 .home-page {
   margin-bottom: 100px;
@@ -9626,6 +9824,151 @@ button.close {
   line-height: 11px;
   margin-top: 5px;
   display: inline-block;
+}
+.clix-modal-window {
+  z-index: 9000 !important;
+}
+.clix-modal-window .modal-content {
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  background-color: #1f1f1f;
+  overflow: hidden;
+}
+.modal-clix-md {
+  width: 370px;
+}
+.modal-backdrop {
+  bottom: 0;
+  z-index: 8500 !important;
+}
+.signup-modal .signup-modal-header {
+  padding-top: 31px;
+  padding-bottom: 31px;
+  border-bottom: 1px solid #636363;
+}
+.signup-modal .header-logo-icon {
+  margin: 0 auto;
+}
+.signup-modal .signup-modal-social {
+  padding: 20px 38px 25px;
+  background-color: #292929;
+}
+.signup-modal .social-modal-row {
+  margin-bottom: 20px;
+}
+.signup-modal .or-email-container {
+  font-family: 'PT Sans', sans-serif;
+  color: #8a8a8a;
+  font-size: 14px;
+  font-style: italic;
+  text-align: center;
+  position: relative;
+}
+.signup-modal .or-email-container span {
+  display: inline-block;
+  background-color: #292929;
+  padding: 0 20px;
+  position: relative;
+  z-index: 10;
+}
+.signup-modal .or-email-container:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #8a8a8a;
+  z-index: 0;
+}
+.signup-modal .signup-modal-form {
+  background-color: #1c1b20;
+}
+.signup-modal .signup-modal-form-row {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  color: #979797;
+  padding: 10px 38px;
+  border-bottom: 1px solid #212121;
+}
+.signup-modal .signup-modal-input {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  padding-left: 14px;
+}
+.signup-modal .signup-modal-input input {
+  background-color: rgba(0, 0, 0, 0);
+  border-width: 0;
+  font-family: 'PT Sans', sans-serif;
+  font-size: 14px;
+  color: #FFF;
+  width: 100%;
+}
+.signup-modal .signup-modal-input input::placeholder {
+  color: #979797;
+}
+.signup-modal .form-icon {
+  font-size: 14px;
+  width: 18px;
+}
+.signup-modal .form-icon.small {
+  font-size: 10px;
+}
+.signup-modal .form-icon.large {
+  font-size: 16px;
+}
+.signup-modal .signup-modal-submit {
+  padding: 24px 38px;
+  border-bottom: 1px solid #636363;
+}
+.signup-modal .submit-button {
+  margin-bottom: 18px;
+}
+.signup-modal .login-container {
+  text-align: center;
+  color: #FFF;
+  font-family: 'PT Sans', sans-serif;
+  font-size: 14px;
+}
+.signup-modal .login-container a {
+  color: #fe0000;
+  cursor: pointer;
+}
+.signup-modal .login-container .forgot-password {
+  color: #FFF;
+  text-decoration: none;
+}
+.signup-modal .login-container .forgot-password:hover {
+  text-decoration: underline;
+}
+.signup-modal .signup-modal-footer {
+  padding: 16px 38px;
+  text-align: center;
+  color: #8a8a8a;
+  font-family: 'PT Sans', sans-serif;
+  font-size: 14px;
+}
+.signup-modal .signup-modal-footer a {
+  color: #8a8a8a;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.signup-modal input[type="submit"] {
+  visibility: hidden;
+  position: absolute;
 }
 body {
   background-color: #0e0e0e;

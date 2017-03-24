@@ -51,7 +51,7 @@
                 )
                 .then(
                     function onSuccess(data) {
-                        $scope.categories = data[0].data;
+                        $scope.categories = data[0];
                         $scope.brands = data[1];
                         _loadVideosForCategoryIndex(0);
                     }

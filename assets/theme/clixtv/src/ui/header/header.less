@@ -25,7 +25,7 @@
     }
     .clix-navigation {
         .flex-display;
-
+        .flex(1);
         border-left: 1px solid @color-white;
         padding-left: 30px;
     }
@@ -88,6 +88,92 @@
         }
         input::placeholder {
             color: @color-light-gray;
+        }
+    }
+
+    .account-action-container {
+        .account-action-label {
+            display: inline-block;
+            font-family: @font-secondary;
+            font-size: 14px;
+            color: @color-white;
+            letter-spacing: 1px;
+        }
+        a {
+            cursor: pointer;
+        }
+
+        .login-container:hover {
+            text-decoration: none;
+        }
+    }
+
+    .header-user-container {
+        .flex-display;
+        .align-items(center);
+
+        .header-user-points-container {
+            text-transform: uppercase;
+            font-family: @font-secondary;
+            font-size: 9px;
+            color: @color-white;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .clix-callout-button {
+            margin-bottom: 4px;
+        }
+
+        .header-avatar-container {
+            margin-left: 20px;
+            position: relative;
+        }
+
+        .header-avatar {
+            .border-radius(15px);
+            width: 30px;
+            height: 30px;
+            background-size: cover;
+            background-position: center;
+            display: block;
+        }
+
+        .header-notification-count {
+            .border-radius(10px);
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            width: 20px;
+            height: 20px;
+            background-color: @color-primary;
+            text-align: center;
+            color: @color-white;
+            line-height: 20px;
+            font-family: @font-secondary;
+            font-size: 11px;
+        }
+
+        .header-name-container {
+            .flex-display;
+            .align-items(center);
+            margin-left: 20px;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+
+        .header-name {
+            font-family: @font-primary;
+            font-size: 14px;
+            color: @color-white;
+            letter-spacing: 0.8px;
+        }
+
+        .header-expand-icon {
+            color: @color-white;
+            font-size: 20px;
         }
     }
 }

@@ -90,3 +90,8 @@
 .icon-right-tall-arrow:before { content: '\e80f'; } /* '' */
 .icon-down-arrow:before { content: '\e810'; } /* '' */
 .icon-favorite-icon-filled:before { content: '\e811'; } /* '' */
+.icon-password-input-icon:before { content: '\e812'; } /* '' */
+.icon-email-input-icon:before { content: '\e813'; } /* '' */
+.icon-dateofbirth-input-icon:before { content: '\e814'; } /* '' */
+.icon-full-name-input-icon:before { content: '\e815'; } /* '' */
+.icon-gender-input-icon:before { content: '\e816'; } /* '' */
