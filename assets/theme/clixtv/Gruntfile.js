@@ -109,7 +109,7 @@ module.exports = function(grunt) {
             }
         },
         watch: {
-            scripts: {
+            all: {
                 files: [
                     'src/ui/**/*.html',
                     'src/ui/**/*.js',
@@ -153,5 +153,5 @@ module.exports = function(grunt) {
     grunt.registerTask('libs', ['concat:libs', 'uglify:libs']);
     grunt.registerTask('media', ['sprite', 'imagemin']);
     grunt.registerTask('style', ['media', 'less', 'cssmin']);
-    grunt.registerTask('default', ['clean', 'script', 'style', 'copy', 'watch']);
+    grunt.registerTask('default', ['clean', 'script', 'style', 'copy', 'watch:all']);
 };

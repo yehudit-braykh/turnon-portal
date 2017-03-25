@@ -198,6 +198,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('ui/common/navigation/view.right-navigation.html',
+    "<div class=clix-right-navigation ng-class=\"{'active': open}\"><div class=navigation-background-overlay ng-click=onBackgroundPress() ng-class=\"{'active': visible}\"></div><div class=navigation-bar ng-class=\"{'active': visible}\"><div class=navigation-bar-content><a ng-click=onClosePress() class=navigation-close-icon><div class=icon-right-tall-arrow></div></a><div class=avatar-container></div><nav class=navigation-list><a href=# class=navigation-list-item><div class=navigation-list-icon><i class=icon-account-icon></i></div><div class=navigation-list-label>Account</div></a><a href=# class=navigation-list-item><div class=navigation-list-icon><i class=icon-plus-icon></i></div><div class=navigation-list-label>Watchlist</div></a><a href=# class=navigation-list-item><div class=navigation-list-icon><i class=icon-favorite-icon></i></div><div class=navigation-list-label>Favorites</div></a><a href=# class=navigation-list-item><div class=navigation-list-icon><i class=icon-offers-icon></i></div><div class=navigation-list-label>Saved Offers</div></a><a href=# class=navigation-list-item><div class=navigation-list-icon><i class=icon-rewards-icon-left-nav></i></div><div class=navigation-list-label>Rewards</div></a><a href=# class=navigation-list-item><div class=navigation-list-icon><i class=icon-notifications-icon-left-nav></i></div><div class=navigation-list-label>Notifications</div></a><a href=# class=navigation-list-item><div class=navigation-list-icon><i class=icon-settings-icon-left-nav></i></div><div class=navigation-list-label>Settings</div></a></nav><div class=logout-button-container><clix-secondary-button ng-click=onLogoutPress()>Log Out</clix-secondary-button></div></div></div></div>"
+  );
+
+
   $templateCache.put('ui/common/page/view.filter-page.html',
     "<div class=clix-filter-page><div class=main-header><clix-main-header><div ng-transclude=pageTitle></div></clix-main-header></div><div class=search-filter-container><div ng-transclude=pageSearchFilter></div></div><div ng-transclude=pageContent></div></div>"
   );
@@ -1127,6 +1132,63 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 }());
 (function() {
 
+    var RightNavigationController = [
+        '$scope',
+        '$rootScope',
+        '$timeout',
+        'userService',
+        function($scope, $rootScope, $timeout, userService) {
+
+            $scope.open = true;
+            $scope.visible = true;
+
+            $rootScope.$on('rightnav.open', _openNavigation);
+
+            $scope.onBackgroundPress = _closeNavigation;
+            $scope.onClosePress = _closeNavigation;
+
+            $scope.onLogoutPress = function() {
+                userService.logout()
+                    .then(
+                        function onSuccess(data) {
+                            _closeNavigation();
+                        }
+                    );
+            };
+
+            function _closeNavigation() {
+                $scope.visible = false;
+                $timeout(function() {
+                    $scope.open = false;
+                }, 500);
+            }
+
+            function _openNavigation() {
+                $scope.open = true;
+                $scope.visible = true;
+            }
+
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .controller('RightNavigationController', RightNavigationController);
+}());
+(function() {
+    var rightNavigation = function() {
+        return {
+            restrict: 'AE',
+            templateUrl: 'ui/common/navigation/view.right-navigation.html',
+            controller: 'RightNavigationController'
+        }
+    };
+
+    angular.module('clixtv')
+        .directive('clixRightNavigation', rightNavigation);
+}());
+(function() {
+
     var filterPage = function() {
         return {
             restrict: 'AE',
@@ -1281,6 +1343,14 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             $rootScope.$on('user.login', function(event, data) {
                 $scope.loggedInUser = data;
             });
+
+            $rootScope.$on('user.logout', function(event, data) {
+                delete $scope.loggedInUser;
+            });
+
+            $scope.onNamePress = function() {
+                $rootScope.$broadcast('rightnav.open');
+            };
 
             $scope.onLoginSignupPress = function(signup) {
                 var modalInstance = $uibModal.open({
@@ -2047,6 +2117,19 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
                                 $rootScope.$broadcast('user.login', loggedInUser);
                                 return data.data;
+                            }
+                        );
+                },
+
+                logout: function() {
+                    return $http.post('/api/account/logout')
+                        .then(
+                            function onSuccess(data) {
+
+                                loggedInUser = undefined;
+
+                                $rootScope.$broadcast('user.logout');
+                                return data;
                             }
                         );
                 },

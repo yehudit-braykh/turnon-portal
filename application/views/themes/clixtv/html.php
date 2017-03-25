@@ -124,6 +124,8 @@
 
         <ui-view autoscroll="true"></ui-view>
 
+        <clix-right-navigation></clix-right-navigation>
+
         <clix-footer></clix-footer>
 
 <!--    <footer ng-include="'/assets/theme/clixtv/html/components/footer.html'"></footer>-->

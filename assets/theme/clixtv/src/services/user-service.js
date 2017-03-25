@@ -28,6 +28,19 @@
                         );
                 },
 
+                logout: function() {
+                    return $http.post('/api/account/logout')
+                        .then(
+                            function onSuccess(data) {
+
+                                loggedInUser = undefined;
+
+                                $rootScope.$broadcast('user.logout');
+                                return data;
+                            }
+                        );
+                },
+
                 getLoggedInUser: function() {
                     if (loggedInUser) {
                         return loggedInUser;

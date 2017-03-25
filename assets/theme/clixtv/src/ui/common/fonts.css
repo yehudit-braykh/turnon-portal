@@ -95,3 +95,8 @@
 .icon-dateofbirth-input-icon:before { content: '\e814'; } /* '' */
 .icon-full-name-input-icon:before { content: '\e815'; } /* '' */
 .icon-gender-input-icon:before { content: '\e816'; } /* '' */
+.icon-settings-icon-left-nav:before { content: '\e817'; } /* '' */
+.icon-notifications-icon-left-nav:before { content: '\e818'; } /* '' */
+.icon-rewards-icon-left-nav:before { content: '\e819'; } /* '' */
+.icon-account-icon:before { content: '\e81a'; } /* '' */
+.icon-plus-icon:before { content: '\e81b'; } /* '' */

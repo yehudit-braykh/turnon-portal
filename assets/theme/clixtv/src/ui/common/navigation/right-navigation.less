@@ -1,0 +1,101 @@
+@navigation-width: 245px;
+
+.clix-right-navigation {
+    position: fixed;
+    left: -9999px;
+    top: 0;
+    bottom: 0;
+    z-index: 9500;
+
+    &.active {
+        left: 0;
+        right: 0;
+    }
+
+    .navigation-background-overlay {
+        .transition(all 0.25s ease-out);
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: @color-transparent-dark-black;
+        opacity: 0;
+
+        &.active {
+            opacity: 1;
+        }
+    }
+
+    .navigation-bar {
+        .drop-shadow(0, 0, 4px, 0, 0.9);
+        .transition(all 0.25s ease-out);
+        .flex-display;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: -(@navigation-width);
+        width: @navigation-width;
+        background-color: @color-dark-gray;
+
+        &.active {
+            right: 0;
+        }
+    }
+
+    .navigation-bar-content {
+        .flex-display;
+        .flex(1);
+        .flex-direction(column);
+        position: relative;
+        overflow: scroll;
+    }
+
+    .navigation-close-icon {
+        position: absolute;
+        top: 20px;
+        left: 8px;
+        color: @color-white;
+        font-size: 25px;
+        z-index: 1000;
+        cursor: pointer;
+    }
+
+    .avatar-container {
+        height: 199px;
+        min-height: 199px;
+        width: 100%;
+    }
+
+    .navigation-list {
+        .flex(1);
+        .navigation-list-item {
+            .flex-display;
+            .align-items(center);
+            padding: 15px 0;
+            color: @color-light-gray;
+
+            &:hover {
+                background-color: @color-gray9;
+                text-decoration: none;
+            }
+        }
+        .navigation-list-icon {
+            width: 70px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .navigation-list-label {
+            font-family: @font-secondary;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+    }
+
+    .logout-button-container {
+        text-align: center;
+        padding: 15px 0 40px;
+    }
+}

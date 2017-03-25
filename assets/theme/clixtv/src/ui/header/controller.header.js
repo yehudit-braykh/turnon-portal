@@ -10,6 +10,14 @@
                 $scope.loggedInUser = data;
             });
 
+            $rootScope.$on('user.logout', function(event, data) {
+                delete $scope.loggedInUser;
+            });
+
+            $scope.onNamePress = function() {
+                $rootScope.$broadcast('rightnav.open');
+            };
+
             $scope.onLoginSignupPress = function(signup) {
                 var modalInstance = $uibModal.open({
                     animation: true,
