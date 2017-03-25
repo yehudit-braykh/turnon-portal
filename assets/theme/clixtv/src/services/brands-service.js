@@ -89,6 +89,30 @@
                                 return data.data;
                             }
                         );
+                },
+
+                /**
+                 * @todo - Cache this call
+                 */
+                getOffersByBrandId: function(id) {
+                    return $http.get('/api/brands/get_brand_offers/?id=' + id)
+                        .then(
+                            function(data) {
+                                return data.data;
+                            }
+                        );
+                },
+
+                /**
+                 * @todo - Cache this call
+                 */
+                getVideosByBrandId: function(id) {
+                    return $http.get('/api/brands/get_brand_videos/?id=' + id)
+                        .then(
+                            function(data) {
+                                return data.data;
+                            }
+                        );
                 }
             }
         }

@@ -41,6 +41,8 @@
 @import "common/headers/headers";
 @import "common/search/search-filter";
 @import "common/page/filter-page";
+@import "common/page/landing-page";
+@import "common/page/landing/landing-video-content";
 @import "common/container/content-callout";
 @import "common/modal/modal";
 @import "common/modal/login-signup/login-signup";
@@ -66,4 +68,24 @@ input:focus {
 .main-content {
     padding-left: 30px;
     padding-right: 30px;
+}
+
+.clix-block-row {
+    margin-left: -@common-row-item-spacing;
+    margin-right: -@common-row-item-spacing;
+
+    .clix-block-item {
+        padding: @common-row-item-spacing @common-row-item-spacing 38px @common-row-item-spacing;
+    }
+}
+
+// 5 column grid
+.col-lg-2-4 {
+    .make-lg-column(2.4)
+}
+.col-md-2-4 {
+    .make-md-column(2.4)
+}
+.col-sm-2-4 {
+    .make-sm-column(2.4)
 }

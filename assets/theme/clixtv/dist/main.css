@@ -8255,7 +8255,27 @@ button.close {
   margin-right: 18px;
 }
 .clix-tertiary-button:hover {
+  background-color: #911685;
+  background-image: -webkit-gradient(linear, left top, right top, from(#911685), to(#fa0d1b));
+  background-image: -webkit-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -moz-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -ms-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -o-linear-gradient(left, #911685, #fa0d1b);
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
   text-decoration: none;
+  padding: 0 18px;
+  margin-left: 0;
+  margin-right: 0;
+}
+.clix-tertiary-button:hover:before,
+.clix-tertiary-button:hover:after,
+.clix-tertiary-button:hover .button-edge {
+  visibility: hidden;
 }
 .clix-tertiary-button:before,
 .clix-tertiary-button:after {
@@ -8922,6 +8942,21 @@ button.close {
   padding-left: 30px;
   padding-right: 30px;
 }
+.brand-page .nav-tabs {
+  border-bottom: 1px solid #636363 !important;
+}
+.brand-page .brand-offer {
+  margin-bottom: 51px;
+}
+.brand-page .offers-container {
+  margin-top: 41px;
+}
+.brand-page .videos-title {
+  padding-top: 50px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #636363;
+  margin-bottom: 41px;
+}
 .brands-page {
   padding: 120px 30px 100px 30px;
   /*
@@ -9519,6 +9554,13 @@ button.close {
     text-align: left;
   }
 }
+.clix-secondary-header {
+  font-family: 'cabinbold', sans-serif;
+  font-size: 24px;
+  color: #aaaaaa;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+}
 .clix-search-filter {
   border-top: 1px solid #636363;
   padding-top: 25px;
@@ -9692,6 +9734,76 @@ button.close {
   line-height: 11px;
   margin-top: 5px;
   display: inline-block;
+}
+.clix-landing-video-content {
+  padding-top: 31px;
+}
+.clix-landing-video-content .about-landing-video {
+  padding-right: 13px;
+  position: relative;
+}
+.clix-landing-video-content .about-landing-content {
+  padding-left: 13px;
+}
+.clix-landing-video-content .video-violator {
+  position: absolute;
+  top: 33px;
+  right: 43px;
+}
+.clix-landing-video-content .landing-header {
+  font-family: 'cabinbold', sans-serif;
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 3.5px;
+  color: #aaaaaa;
+}
+.clix-landing-video-content .landing-description {
+  margin-top: 27px;
+  font-family: 'PT Sans', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #FFF;
+}
+.clix-landing-video-content .share-container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  margin-top: 39px;
+}
+.clix-landing-video-content .landing-share-icon {
+  font-size: 30px;
+  color: #8a8a8a;
+}
+.clix-landing-video-content .landing-share-icon:hover {
+  text-decoration: none;
+  color: #FFF;
+}
+.clix-landing-video-content .content-points-validator {
+  margin-left: 5px;
+}
+.clix-landing-video-content .video-content-container {
+  padding-right: 0;
+}
+.clix-landing-video-content .video-sidebar-container {
+  padding-left: 26px;
+}
+.clix-landing-video-content .sidebar-container {
+  border: 1px solid #777777;
+  background-color: #1b1b1b;
+  padding: 30px;
+}
+.clix-landing-video-content .sidebar-title {
+  font-family: 'cabinregular', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  color: #8a8a8a;
+  text-align: center;
+  line-height: 22px;
+}
+.clix-landing-video-content .sidebar-content {
+  margin-top: 25px;
 }
 .clix-content-callout:hover .header-overlay {
   visibility: visible;
@@ -10162,4 +10274,47 @@ input:focus {
 .main-content {
   padding-left: 30px;
   padding-right: 30px;
+}
+.clix-block-row {
+  margin-left: -9px;
+  margin-right: -9px;
+}
+.clix-block-row .clix-block-item {
+  padding: 9px 9px 38px 9px;
+}
+.col-lg-2-4 {
+  position: relative;
+  min-height: 1px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+@media (min-width: 1200px) {
+  .col-lg-2-4 {
+    float: left;
+    width: 20%;
+  }
+}
+.col-md-2-4 {
+  position: relative;
+  min-height: 1px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+@media (min-width: 992px) {
+  .col-md-2-4 {
+    float: left;
+    width: 20%;
+  }
+}
+.col-sm-2-4 {
+  position: relative;
+  min-height: 1px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+@media (min-width: 768px) {
+  .col-sm-2-4 {
+    float: left;
+    width: 20%;
+  }
 }

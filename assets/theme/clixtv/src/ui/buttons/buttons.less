@@ -75,7 +75,18 @@
     margin-right: 18px;
 
     &:hover {
+        .horizontal-gradient(@color-tertiary, @color-secondary);
+        .border-radius(30px);
         text-decoration: none;
+        padding: 0 18px;
+        margin-left: 0;
+        margin-right: 0;
+
+        &:before,
+        &:after,
+        .button-edge {
+            visibility: hidden;
+        }
     }
 
     &:before,
