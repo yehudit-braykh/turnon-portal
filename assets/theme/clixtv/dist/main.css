@@ -10050,9 +10050,61 @@ button.close {
   cursor: pointer;
 }
 .clix-right-navigation .avatar-container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
   height: 199px;
   min-height: 199px;
   width: 100%;
+  position: relative;
+}
+.clix-right-navigation .avatar-container .avatar-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+}
+.clix-right-navigation .avatar-container .avatar-background:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.63);
+}
+.clix-right-navigation .avatar-container .avatar-image {
+  -webkit-border-radius: 40px;
+  -moz-border-radius: 40px;
+  border-radius: 40px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  width: 80px;
+  height: 80px;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  z-index: 10;
+}
+.clix-right-navigation .avatar-container.empty-avatar .avatar-background {
+  background-image: -moz-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
+  background-image: -ms-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
+  background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(#c60548), to(#7a0ba8));
+  background-image: -webkit-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
+  background-image: -o-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
 }
 .clix-right-navigation .navigation-list {
   -webkit-flex: 1;

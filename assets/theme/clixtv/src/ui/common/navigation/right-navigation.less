@@ -62,9 +62,49 @@
     }
 
     .avatar-container {
+        .flex-display;
+        .flex(1);
+        .align-items(center);
+        .justify-content(center);
         height: 199px;
         min-height: 199px;
         width: 100%;
+        position: relative;
+
+        .avatar-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 5;
+
+            &:after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: @color-transparent-black;
+            }
+        }
+
+        .avatar-image {
+            .border-radius(40px);
+            width: 80px;
+            height: 80px;
+            background-position: center;
+            background-size: cover;
+            position: relative;
+            z-index: 10;
+        }
+
+        &.empty-avatar {
+            .avatar-background {
+                .radial-gradient(@color-brand-start, @color-brand-end, 0 100%);
+            }
+        }
     }
 
     .navigation-list {
