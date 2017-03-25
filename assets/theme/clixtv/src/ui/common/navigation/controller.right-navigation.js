@@ -7,8 +7,8 @@
         'userService',
         function($scope, $rootScope, $timeout, userService) {
 
-            $scope.open = true;
-            $scope.visible = true;
+            $scope.open = false;
+            $scope.visible = false;
 
             $rootScope.$on('rightnav.open', _openNavigation);
 
