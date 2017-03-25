@@ -10065,6 +10065,7 @@ button.close {
   justify-content: center;
   height: 199px;
   min-height: 199px;
+  max-height: 199px;
   width: 100%;
   position: relative;
 }
