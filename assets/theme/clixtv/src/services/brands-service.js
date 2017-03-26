@@ -6,11 +6,10 @@
         function($http, stringUtils) {
             return {
 
+                /**
+                 * @todo - Cache this call
+                 */
                 getAllBrands: function() {
-
-                    /**
-                     * @todo - Cache this call
-                     */
                     return $http.get('/api/brands/get_brands_array')
                         .then(
                             function(data) {
@@ -19,11 +18,10 @@
                         );
                 },
 
+                /**
+                 * @todo - Cache this call
+                 */
                 getAllBrandsAndCharities: function() {
-
-                    /**
-                     * @todo - Cache this call
-                     */
                     return $http.get('/api/brands/get_all_brands_and_charities_object')
                         .then(
                             function(data) {
@@ -32,10 +30,12 @@
                         );
                 },
 
+                /**
+                 * @todo - Cache this call
+                 */
                 getBrandBySlug: function(slug) {
 
                     /**
-                     * @todo - Cache this call
                      * @todo - This loops over all brands and picks the matching one, that's not good...
                      */
                     return $http.get('/api/brands/get_brands_array')
@@ -49,11 +49,10 @@
                         );
                 },
 
+                /**
+                 * @todo - Cache this call
+                 */
                 getAllCharities: function() {
-
-                    /**
-                     * @todo - Cache this call
-                     */
                     return $http.get('/api/brands/get_charities_array')
                         .then(
                             function(data) {
@@ -62,10 +61,12 @@
                         );
                 },
 
+                /**
+                 * @todo - Cache this call
+                 */
                 getCharityBySlug: function(slug) {
 
                     /**
-                     * @todo - Cache this call
                      * @todo - This loops over all brands and picks the matching one, that's not good...
                      */
                     return $http.get('/api/brands/get_charities_array')
@@ -75,6 +76,18 @@
                                     return slug === stringUtils.getSlugForString(charity.title);
                                 });
                                 return found[0];
+                            }
+                        );
+                },
+
+                /**
+                 * @todo - Cache this call
+                 */
+                getCharityById: function(id) {
+                    return $http.get('/api/brands/get_brand?id=' + id)
+                        .then(
+                            function onSuccess(data) {
+                                return data.data[0];
                             }
                         );
                 },
@@ -108,6 +121,18 @@
                  */
                 getVideosByBrandId: function(id) {
                     return $http.get('/api/brands/get_brand_videos/?id=' + id)
+                        .then(
+                            function(data) {
+                                return data.data;
+                            }
+                        );
+                },
+
+                /**
+                 * @todo - Cache this call
+                 */
+                getCelebritiesByBrandId: function(id) {
+                    return $http.get('/api/brands/get_brand_celebs/?id=' + id)
                         .then(
                             function(data) {
                                 return data.data;

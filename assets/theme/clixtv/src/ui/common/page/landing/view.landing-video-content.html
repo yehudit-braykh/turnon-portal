@@ -3,18 +3,18 @@
         <div class="col-md-9 video-content-container">
             <div class="row">
                 <div class="col-sm-7 about-landing-video">
-                    <div id="videoPlayer"></div>
-                    <clix-video-player ng-if="video" video="video" auto-play="false" video-id="videoPlayer" on-ready="onPlayerReady"></clix-video-player>
-                    <div class="video-violator">
-                        <clix-violator>
-                            100 Reward Points
-                        </clix-violator>
+                    <div ng-show="video">
+                        <div id="videoPlayer"></div>
+                        <clix-video-player ng-if="video" video="video" auto-play="false" video-id="videoPlayer" on-ready="onPlayerReady"></clix-video-player>
+                        <div class="video-violator">
+                            <clix-violator>
+                                100 Reward Points
+                            </clix-violator>
+                        </div>
                     </div>
+                    <div ng-transclude="mainContent"></div>
                 </div>
                 <div class="col-sm-5 about-landing-content">
-                    <div class="landing-header">
-                        About {{contentTitle}}
-                    </div>
                     <div class="landing-description">
                         <div ng-transclude="contentDescription"></div>
                     </div>

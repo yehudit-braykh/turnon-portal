@@ -7738,7 +7738,7 @@ button.close {
   top: 0 !important;
 }
 .video-category-scroll-list h2 {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'cabinbold', sans-serif;
   font-size: 24px;
   padding: 0;
   margin: 0 0 20px 0;
@@ -8938,9 +8938,7 @@ button.close {
   position: relative;
   z-index: 2000;
   background-color: #0e0e0e;
-  padding-top: 13px;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding: 13px 30px 62px;
 }
 .brand-page .nav-tabs {
   border-bottom: 1px solid #636363 !important;
@@ -8951,11 +8949,47 @@ button.close {
 .brand-page .offers-container {
   margin-top: 41px;
 }
-.brand-page .videos-title {
+.brand-page .videos-title-container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
   padding-top: 50px;
   padding-bottom: 16px;
   border-bottom: 1px solid #636363;
   margin-bottom: 41px;
+}
+.brand-page .videos-title {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.brand-page .stars-container .video-category-scroll-list {
+  margin-right: -30px;
+}
+.brand-page .home-container .video-category-scroll-list {
+  margin-top: 45px;
+  padding-left: 0;
+}
+.brand-page .home-container .home-description {
+  margin-top: 27px;
+}
+.brand-page .brand-categories-container {
+  margin-top: 33px;
+  padding-bottom: 39px;
+  border-bottom: 1px solid #636363;
+}
+.brand-page .brand-category-logo-container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+}
+.brand-page .brand-category-logo-container .brand-category-logo {
+  margin-right: 20px;
 }
 .brands-page {
   padding: 120px 30px 100px 30px;
@@ -9136,12 +9170,188 @@ button.close {
   background-position: center;
   background-size: cover;
 }
+.clix-star-page .star-logo {
+  -webkit-border-radius: 55px;
+  -moz-border-radius: 55px;
+  border-radius: 55px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+.clix-star-page .banner-favorite-icon {
+  font-size: 20px;
+  position: relative;
+  top: 2px;
+}
 .clix-categories-page .category-logo {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
   background-position: center;
   background-size: cover;
+}
+.clix-offer-page .main-page-content {
+  position: relative;
+  z-index: 2000;
+  background-color: #0e0e0e;
+  padding: 13px 30px 62px;
+}
+.clix-offer-page .nav-tabs {
+  border-bottom: 1px solid #636363 !important;
+}
+.clix-offer-page .home-header {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  color: #8a8a8a;
+}
+.clix-offer-page .home-instructions {
+  margin-top: 18px;
+}
+.clix-offer-page .home-instructions .instructions-row {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.clix-offer-page .home-instructions .instructions-number {
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  width: 25px;
+  height: 25px;
+  border: 1px solid #fe0000;
+  line-height: 23px;
+  text-align: center;
+  color: #FFF;
+  font-size: 14px;
+  font-family: 'cabinregular', sans-serif;
+}
+.clix-offer-page .home-instructions .instructions-label {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  font-family: 'PT Sans', sans-serif;
+  font-size: 14px;
+  color: #FFF;
+  padding-left: 12px;
+}
+.clix-offer-page .offer-buttons {
+  margin-top: 9px;
+}
+.clix-offer-page .offer-button {
+  margin-bottom: 10px;
+}
+.clix-offer-page .save-offer-button {
+  position: relative;
+  display: inline-block;
+}
+.clix-offer-page .save-offer-button .save-offer-points {
+  position: absolute;
+  top: 50%;
+  right: 3px;
+  margin-top: -15px;
+}
+.clix-offer-page .home-container .share-container {
+  margin-top: 30px;
+}
+.clix-offer-page .home-container .slick-dots {
+  position: absolute;
+  left: 0;
+  bottom: 20px;
+  list-style-type: none;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+  padding: 0;
+}
+.clix-offer-page .home-container .slick-dots li {
+  display: inline-block;
+  margin: 0 18px;
+}
+.clix-offer-page .home-container .slick-dots button {
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  border-radius: 7px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border-width: 0;
+  background-color: #777777;
+  font-size: 0;
+  line-height: 0;
+  width: 13px;
+  height: 13px;
+  padding: 0;
+  margin: 0;
+}
+.clix-offer-page .home-container .slick-dots .slick-active button {
+  background-color: #FFF;
+}
+.clix-offer-page .home-container .offer-slide img {
+  max-width: 100%;
+}
+.clix-offer-page .home-container .slick-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 3000;
+  margin-top: -33px;
+}
+.clix-offer-page .home-container #main-carousel-next {
+  right: 0;
+}
+.clix-offer-page .home-container .main-carousel-button {
+  font-size: 56px;
+  color: #FFF;
+  cursor: pointer;
+}
+.clix-offer-page .home-container .arrow-icon {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+.clix-offer-page .offer-footer-info {
+  margin-top: 90px;
+}
+.clix-offer-page .offer-footer-info .footer-header {
+  margin-bottom: 18px;
+}
+.clix-offer-page .offer-footer-info p {
+  color: #FFF;
+  font-size: 14px;
+  font-family: 'PT Sans', sans-serif;
+  line-height: 20px;
+}
+.clix-offer-page .videos-title-container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  padding-top: 50px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #636363;
+  margin-bottom: 41px;
+}
+.clix-offer-page .videos-title {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }
 .clix-hero-banner {
   position: relative;
@@ -9219,6 +9429,7 @@ button.close {
   width: 110px;
   height: 110px;
   padding: 15px;
+  position: relative;
 }
 .clix-hero-banner .banner-logo-container img {
   max-width: 100%;
@@ -9302,7 +9513,8 @@ button.close {
 }
 .clix-brand-charity-logo,
 .clix-offer-logo,
-.clix-charity-logo {
+.clix-charity-logo,
+.clix-brand-category-logo {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
@@ -9310,7 +9522,8 @@ button.close {
 }
 .clix-brand-charity-logo .logo-save,
 .clix-offer-logo .logo-save,
-.clix-charity-logo .logo-save {
+.clix-charity-logo .logo-save,
+.clix-brand-category-logo .logo-save {
   position: absolute;
   top: 20px;
   left: 20px;
@@ -9319,7 +9532,8 @@ button.close {
 }
 .clix-brand-charity-logo .logo-image,
 .clix-offer-logo .logo-image,
-.clix-charity-logo .logo-image {
+.clix-charity-logo .logo-image,
+.clix-brand-category-logo .logo-image {
   position: absolute;
   top: 20px;
   left: 20px;
@@ -9331,7 +9545,8 @@ button.close {
 }
 .clix-brand-charity-logo .logo-overlay,
 .clix-offer-logo .logo-overlay,
-.clix-charity-logo .logo-overlay {
+.clix-charity-logo .logo-overlay,
+.clix-brand-category-logo .logo-overlay {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: -ms-flex;
@@ -9355,14 +9570,16 @@ button.close {
 }
 .clix-brand-charity-logo .logo-points,
 .clix-offer-logo .logo-points,
-.clix-charity-logo .logo-points {
+.clix-charity-logo .logo-points,
+.clix-brand-category-logo .logo-points {
   position: absolute;
   right: 10px;
   bottom: 10px;
 }
 .clix-brand-charity-logo .view-button-container,
 .clix-offer-logo .view-button-container,
-.clix-charity-logo .view-button-container {
+.clix-charity-logo .view-button-container,
+.clix-brand-category-logo .view-button-container {
   width: 30%;
   padding-bottom: 30%;
   position: relative;
@@ -9370,7 +9587,8 @@ button.close {
 }
 .clix-brand-charity-logo .view-button-container .view-button,
 .clix-offer-logo .view-button-container .view-button,
-.clix-charity-logo .view-button-container .view-button {
+.clix-charity-logo .view-button-container .view-button,
+.clix-brand-category-logo .view-button-container .view-button {
   position: absolute;
   top: 0;
   left: 0;
@@ -9379,12 +9597,14 @@ button.close {
 }
 .clix-brand-charity-logo:hover .logo-overlay,
 .clix-offer-logo:hover .logo-overlay,
-.clix-charity-logo:hover .logo-overlay {
+.clix-charity-logo:hover .logo-overlay,
+.clix-brand-category-logo:hover .logo-overlay {
   visibility: visible;
 }
 .clix-brand-charity-logo .logo-ellipsis,
 .clix-offer-logo .logo-ellipsis,
-.clix-charity-logo .logo-ellipsis {
+.clix-charity-logo .logo-ellipsis,
+.clix-brand-category-logo .logo-ellipsis {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -9396,12 +9616,14 @@ button.close {
 }
 .clix-brand-charity-logo .logo-ellipsis:hover,
 .clix-offer-logo .logo-ellipsis:hover,
-.clix-charity-logo .logo-ellipsis:hover {
+.clix-charity-logo .logo-ellipsis:hover,
+.clix-brand-category-logo .logo-ellipsis:hover {
   color: #FFF;
 }
 .clix-brand-charity-logo .hit-area,
 .clix-offer-logo .hit-area,
-.clix-charity-logo .hit-area {
+.clix-charity-logo .hit-area,
+.clix-brand-category-logo .hit-area {
   position: absolute;
   top: 0;
   left: 0;
@@ -9411,14 +9633,16 @@ button.close {
 }
 .clix-brand-charity-logo .logo-menu-container,
 .clix-offer-logo .logo-menu-container,
-.clix-charity-logo .logo-menu-container {
+.clix-charity-logo .logo-menu-container,
+.clix-brand-category-logo .logo-menu-container {
   position: absolute;
   top: 25px;
   right: 0;
   width: 100%;
   padding: 7px;
 }
-.clix-brand-charity-logo {
+.clix-brand-charity-logo,
+.clix-brand-category-logo {
   background-image: -moz-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
   background-image: -ms-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
   background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(#c60548), to(#7a0ba8));
@@ -9457,6 +9681,31 @@ button.close {
   background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(#03bcf2), to(#f700e6));
   background-image: -webkit-radial-gradient(0 100%, circle, #03bcf2, #f700e6 70%);
   background-image: -o-radial-gradient(0 100%, circle, #03bcf2, #f700e6 70%);
+}
+.clix-brand-category-logo {
+  width: 115px;
+  height: 115px;
+  margin-top: 31px;
+}
+.clix-brand-category-logo .logo-image {
+  top: 0;
+}
+.clix-brand-category-logo .logo-category-title {
+  position: absolute;
+  text-align: center;
+  font-size: 9px;
+  font-family: 'cabinregular', sans-serif;
+  color: #FFF;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  left: 0;
+  right: 0;
+  bottom: 35px;
+}
+.clix-brand-category-logo .logo-category-violator {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
 }
 .clix-view-button {
   display: -webkit-flex;
@@ -9560,6 +9809,9 @@ button.close {
   color: #aaaaaa;
   letter-spacing: 3.5px;
   text-transform: uppercase;
+}
+.clix-secondary-header .icon-right-arrow {
+  font-size: 20px;
 }
 .clix-search-filter {
   border-top: 1px solid #636363;
@@ -9758,7 +10010,6 @@ button.close {
   color: #aaaaaa;
 }
 .clix-landing-video-content .landing-description {
-  margin-top: 27px;
   font-family: 'PT Sans', sans-serif;
   font-size: 14px;
   line-height: 20px;
@@ -10268,7 +10519,8 @@ a:focus {
   color: #FFF;
   outline: 0;
 }
-input:focus {
+input:focus,
+button:focus {
   outline: 0;
 }
 .main-content {

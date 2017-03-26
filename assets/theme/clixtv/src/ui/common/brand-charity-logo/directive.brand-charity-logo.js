@@ -35,8 +35,21 @@
         }
     };
 
+    var brandCategoryLogo = function() {
+        return {
+            restrict: 'AE',
+            replace: true,
+            templateUrl: 'ui/common/brand-charity-logo/view.brand-category-logo.html',
+            scope: {
+                brand: '=',
+                categoryTitle: '@'
+            }
+        }
+    };
+
     angular.module('clixtv')
         .directive('clixBrandCharityLogo', brandCharityLogo)
         .directive('clixOfferLogo', offerLogo)
-        .directive('clixCharityLogo', charityLogo);
+        .directive('clixCharityLogo', charityLogo)
+        .directive('clixBrandCategoryLogo', brandCategoryLogo);
 }());

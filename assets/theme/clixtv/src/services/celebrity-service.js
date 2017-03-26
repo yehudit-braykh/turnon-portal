@@ -15,6 +15,18 @@
                                 return data.data;
                             }
                         );
+                },
+
+                /**
+                 * @todo - Cache this call
+                 */
+                getCelebrityById: function(id) {
+                    return $http.get('/api/celebrity/get_celebrity?id=' + id)
+                        .then(
+                            function onSuccess(data) {
+                                return data.data[0];
+                            }
+                        );
                 }
             }
         }

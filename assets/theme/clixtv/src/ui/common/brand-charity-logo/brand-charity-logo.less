@@ -2,7 +2,8 @@
 
 .clix-brand-charity-logo,
 .clix-offer-logo,
-.clix-charity-logo {
+.clix-charity-logo,
+.clix-brand-category-logo {
 
     .flex(1);
     position: relative;
@@ -100,8 +101,8 @@
     }
 }
 
-.clix-brand-charity-logo {
-
+.clix-brand-charity-logo,
+.clix-brand-category-logo {
     .radial-gradient(@color-brand-start, @color-brand-end, 0 100%);
 }
 
@@ -138,4 +139,33 @@
 
 .clix-charity-logo {
     .radial-gradient(@color-charity-start, @color-charity-end, 0 100%, 70%);
+}
+
+.clix-brand-category-logo {
+    width: 115px;
+    height: 115px;
+    margin-top: 31px;
+
+    .logo-image {
+        top: 0;
+    }
+
+    .logo-category-title {
+        position: absolute;
+        text-align: center;
+        font-size: 9px;
+        font-family: @font-secondary;
+        color: @color-white;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        left: 0;
+        right: 0;
+        bottom: 35px;
+    }
+
+    .logo-category-violator {
+        position: absolute;
+        bottom: 4px;
+        right: 4px;
+    }
 }

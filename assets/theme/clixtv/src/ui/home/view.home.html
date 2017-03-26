@@ -70,7 +70,7 @@
             </div>
         </div>
     </div>
-    <div ng-repeat="category in categories">
-        <clix-video-category-scroll-list category="category"></clix-video-category-scroll-list>
+    <div ng-repeat="category in categories" ng-if="category && category.videos">
+        <clix-video-category-scroll-list category-title="{{category.title}}" category-videos="category.videos"></clix-video-category-scroll-list>
     </div>
 </div>

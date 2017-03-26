@@ -21,7 +21,7 @@
                     <clix-charity-logo charity="charity"></clix-charity-logo>
                 </div>
             </div>
-            <a ui-sref="brand({ slug: (charity.title | slug) })" class="brand-footer">
+            <a ui-sref="charity({ id: '{{charity._id}}' })" class="brand-footer">
                 <span class="brand-title">
                     {{charity.title}}
                 </span>

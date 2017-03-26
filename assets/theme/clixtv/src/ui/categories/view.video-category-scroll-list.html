@@ -1,12 +1,12 @@
-<div class="video-category-scroll-list" ng-show="category.title">
+<div class="video-category-scroll-list" ng-show="categoryTitle">
     <h2>
         <a href="#">
-            {{category.title}} <i class="icon-right-arrow"></i>
+            {{categoryTitle}} <i class="icon-right-arrow"></i>
         </a>
     </h2>
-    <div ng-if="category.videos" class="category-container">
-        <slick slides-to-show="5" slides-to-scroll="5" infinite="false" variable-width="true" prev-arrow="#carousel-previous-{{$id}}" next-arrow="#carousel-next-{{$id}}" settings="carouselConfig"">
-            <div ng-repeat="video in category.videos" class="video-content-container" style="width: {{videoContainerWidth}}px;">
+    <div ng-if="categoryVideos" class="category-container">
+        <slick slides-to-show="5" slides-to-scroll="5" infinite="false" variable-width="true" prev-arrow="#carousel-previous-{{$id}}" next-arrow="#carousel-next-{{$id}}" settings="carouselConfig">
+            <div ng-repeat="video in categoryVideos" class="video-content-container" style="width: {{videoContainerWidth}}px;">
                 <div clix-video-content-box video="video"></div>
             </div>
         </slick>

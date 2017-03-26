@@ -46,7 +46,7 @@
                         controller: 'BrandController'
                     })
                     .state('charity', {
-                        url: '/charity/:slug',
+                        url: '/charity/:id',
                         templateUrl: 'ui/charity/view.charity.html',
                         controller: 'CharityController'
                     })
@@ -60,11 +60,21 @@
                         templateUrl: 'ui/stars/view.stars.html',
                         controller: 'StarsController'
                     })
+                    .state('star', {
+                        url: '/star/:id',
+                        templateUrl: 'ui/stars/view.star.html',
+                        controller: 'StarController'
+                    })
                     .state('categories', {
                         url: '/categories',
                         templateUrl: 'ui/categories/view.categories.html',
                         controller: 'CategoriesController'
-                    });
+                    })
+                    .state('offer', {
+                        url: '/offer/:id',
+                        templateUrl: 'ui/offer/view.offer.html',
+                        controller: 'OfferController'
+                    })
             }
         ])
         .run([

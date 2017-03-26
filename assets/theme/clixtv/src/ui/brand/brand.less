@@ -10,9 +10,7 @@
         position: relative;
         z-index: 2000;
         background-color: @color-darker-gray;
-        padding-top: 13px;
-        padding-left: 30px;
-        padding-right: 30px;
+        padding: 13px 30px 62px;
     }
 
     .nav-tabs {
@@ -27,10 +25,47 @@
         margin-top: 41px;
     }
 
-    .videos-title {
+    .videos-title-container {
+        .flex-display;
+        .flex(1);
         padding-top: 50px;
         padding-bottom: 16px;
         border-bottom: 1px solid @color-gray3;
         margin-bottom: 41px;
+    }
+
+    .videos-title {
+        .flex(1);
+    }
+
+    .stars-container {
+        .video-category-scroll-list {
+            margin-right: -30px;
+        }
+    }
+
+    .home-container {
+        .video-category-scroll-list {
+            margin-top: 45px;
+            padding-left: 0;
+        }
+
+        .home-description {
+            margin-top: 27px;
+        }
+    }
+
+    .brand-categories-container {
+        margin-top: 33px;
+        padding-bottom: 39px;
+        border-bottom: 1px solid @color-gray3;
+    }
+
+    .brand-category-logo-container {
+        .flex-display;
+
+        .brand-category-logo {
+            margin-right: 20px;
+        }
     }
 }

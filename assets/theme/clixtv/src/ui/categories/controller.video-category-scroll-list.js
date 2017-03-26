@@ -44,11 +44,11 @@
                 _resetArrowStates();
             };
 
-            $scope.$watch('category.videos', function() {
-                if (!$scope.category.videos) {
+            $scope.$watch('categoryVideos', function() {
+                if (!$scope.categoryVideos) {
                     return;
                 }
-                $scope.rightArrowVisible = ($scope.videoContainerWidth + VIDEO_MARGIN_LEFT) * $scope.category.videos.length > $window.innerWidth;
+                $scope.rightArrowVisible = ($scope.videoContainerWidth + VIDEO_MARGIN_LEFT) * $scope.categoryVideos.length > $window.innerWidth;
             });
 
             $scope.carouselConfig = {

@@ -7,7 +7,7 @@
         'brandsService',
         function($q, $scope, $stateParams, brandsService) {
 
-            brandsService.getCharityBySlug($stateParams.slug)
+            brandsService.getCharityById($stateParams.id)
                 .then(
                     function onSuccess(data) {
                         console.log(data);

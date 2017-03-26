@@ -92,6 +92,21 @@ module.exports = function(grunt) {
                     ],
                     dest: 'dist/images/'
                 }]
+            },
+            development: {
+                options: {
+                    optimizationLevel: 3
+                },
+                files: [{
+                    expand: true,
+                    flatten: true,
+                    cwd: 'src/ui/',
+                    src: [
+                        'sprites/compiled/images/*.png',
+                        'images/*'
+                    ],
+                    dest: 'dist/images/'
+                }]
             }
         },
         clean: {
@@ -151,7 +166,13 @@ module.exports = function(grunt) {
 
     grunt.registerTask('script', ['ngtemplates', 'concat:js', 'uglify:production']);
     grunt.registerTask('libs', ['concat:libs', 'uglify:libs']);
-    grunt.registerTask('media', ['sprite', 'imagemin']);
-    grunt.registerTask('style', ['media', 'less', 'cssmin']);
-    grunt.registerTask('default', ['clean', 'script', 'style', 'copy', 'watch:all']);
+
+    grunt.registerTask('media:development', ['sprite', 'imagemin:development']);
+    grunt.registerTask('media:production', ['sprite', 'imagemin:production']);
+
+    grunt.registerTask('style:development', ['media:development', 'less', 'cssmin']);
+    grunt.registerTask('style:production', ['media:production', 'less', 'cssmin']);
+
+    grunt.registerTask('default', ['clean', 'script', 'style:development', 'copy']);
+    grunt.registerTask('production', ['clean', 'script', 'style:production', 'copy']);
 };

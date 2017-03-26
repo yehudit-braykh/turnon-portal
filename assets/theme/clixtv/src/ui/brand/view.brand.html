@@ -16,40 +16,67 @@
         <div class="clix-tabs">
             <uib-tabset active="active">
                 <uib-tab index="0" heading="Home">
-                    <clix-landing-video-content video="video" content-title="configs.title">
-                        <content-description>
-                            {{configs.description}}
-                        </content-description>
-                        <sidebar-title>
-                            More Offers From {{configs.title}}
-                        </sidebar-title>
-                        <sidebar-content>
-                            <div ng-repeat="offer in offers | limitTo: 3" ng-if="offers">
-                                <div class="brand-offer">
-                                    <clix-content-callout sref="brand({ slug: (offer.title | slug) })">
-                                        <header-element>
-                                            <clix-offer-logo offer="offer"></clix-offer-logo>
-                                        </header-element>
-                                        <title-content>
-                                            {{offer.title}}
-                                        </title-content>
-                                        <subtitle-content>
-                                            Expires 2/1/2017
-                                        </subtitle-content>
-                                    </clix-content-callout>
+                    <div class="home-container">
+                        <clix-landing-video-content video="video">
+                            <content-description>
+                                <clix-secondary-header>
+                                    About {{configs.title}}
+                                </clix-secondary-header>
+                                <div class="home-description">
+                                    {{configs.description}}
                                 </div>
-                            </div>
-                        </sidebar-content>
-                        <footer-content>
-
-                        </footer-content>
-                    </clix-landing-video-content>
+                            </content-description>
+                            <sidebar-title>
+                                More Offers From {{configs.title}}
+                            </sidebar-title>
+                            <sidebar-content>
+                                <div ng-repeat="offer in offers | limitTo: 3" ng-if="offers">
+                                    <div class="brand-offer">
+                                        <clix-content-callout sref="brand({ slug: (offer.title | slug) })">
+                                            <header-element>
+                                                <clix-offer-logo offer="offer"></clix-offer-logo>
+                                            </header-element>
+                                            <title-content>
+                                                {{offer.title}}
+                                            </title-content>
+                                            <subtitle-content>
+                                                Expires 2/1/2017
+                                            </subtitle-content>
+                                        </clix-content-callout>
+                                    </div>
+                                </div>
+                            </sidebar-content>
+                            <footer-content>
+                                <div class="brand-categories-container">
+                                    <clix-secondary-header>
+                                        Brand Categories <i class="icon-right-arrow"></i>
+                                    </clix-secondary-header>
+                                    <div class="brand-category-logo-container">
+                                        <div class="brand-category-logo">
+                                            <clix-brand-category-logo brand="video" category-title="Sportswear"></clix-brand-category-logo>
+                                        </div>
+                                        <div class="brand-category-logo">
+                                            <clix-brand-category-logo brand="video" category-title="Shoes"></clix-brand-category-logo>
+                                        </div>
+                                        <div class="brand-category-logo">
+                                            <clix-brand-category-logo brand="video" category-title="Swimwear"></clix-brand-category-logo>
+                                        </div>
+                                        <div class="brand-category-logo">
+                                            <clix-brand-category-logo brand="video" category-title="Training & Gym"></clix-brand-category-logo>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-repeat="celebrity in celebrities | limitTo: 3">
+                                    <clix-video-category-scroll-list category-title="{{celebrity.title}} and {{configs.title}}" category-videos="relatedVideos"></clix-video-category-scroll-list>
+                                </div>
+                            </footer-content>
+                        </clix-landing-video-content>
+                    </div>
                 </uib-tab>
                 <uib-tab index="1" heading="Offers">
-
                     <div class="row clix-block-row offers-container">
                         <div class="clix-block-item col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="offer in offers" ng-if="offers">
-                            <clix-content-callout sref="brand({ slug: (offer.title | slug) })">
+                            <clix-content-callout sref="offer({ id: '{{offer._id}}' })">
                                 <header-element>
                                     <clix-offer-logo offer="offer"></clix-offer-logo>
                                 </header-element>
@@ -62,16 +89,25 @@
                             </clix-content-callout>
                         </div>
                     </div>
-
                 </uib-tab>
-                <uib-tab index="2" heading="Stars">Static content</uib-tab>
+                <uib-tab index="2" heading="Stars">
+                    <div class="stars-container">
+                        <div ng-repeat="celebrity in celebrities">
+                            <clix-video-category-scroll-list category-title="{{celebrity.title}} and {{configs.title}}" category-videos="relatedVideos"></clix-video-category-scroll-list>
+                        </div>
+                    </div>
+                </uib-tab>
                 <uib-tab index="3" heading="Videos">
-
                     <div class="videos-container">
-                        <div class="videos-title">
-                            <clix-secondary-header>
-                                All Videos Featuring {{configs.title}}
-                            </clix-secondary-header>
+                        <div class="videos-title-container">
+                            <div class="videos-title">
+                                <clix-secondary-header>
+                                    All Videos Featuring {{configs.title}}
+                                </clix-secondary-header>
+                            </div>
+                            <div class="video-sort-container">
+                                <clix-dropdown options="seriesList"></clix-dropdown>
+                            </div>
                         </div>
                         <div class="row clix-block-row">
                             <div class="clix-block-item col-xs-6 col-sm-4 col-md-3 col-lg-2-4" ng-repeat="video in videos" ng-if="videos">
@@ -79,7 +115,6 @@
                             </div>
                         </div>
                     </div>
-
                 </uib-tab>
             </uib-tabset>
         </div>

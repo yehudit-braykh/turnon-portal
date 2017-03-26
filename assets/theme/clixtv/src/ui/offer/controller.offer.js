@@ -1,11 +1,12 @@
 (function() {
 
-    var BrandController = [
+    var OfferController = [
         '$q',
         '$scope',
         '$stateParams',
+        'offersService',
         'brandsService',
-        function($q, $scope, $stateParams, brandsService) {
+        function($q, $scope, $stateParams, offersService, brandsService) {
 
             $scope.seriesList = [
                 {
@@ -20,41 +21,41 @@
             ];
 
 
-            brandsService.getBrandBySlug($stateParams.slug)
+            offersService.getOfferById($stateParams.id)
                 .then(
                     function onSuccess(data) {
-                        $scope.video = data;
+
+                        var brandId = '5804d1e7a7889d000337f0e2',
+                            brandSlug = 'nike';
+
                         $scope.configs = {
                             title: data.title,
                             description: data.description,
-                            backgroundImage: '/assets/theme/clixtv/dist/images/nike-header.jpg',
-                            backgroundImage2x: '/assets/theme/clixtv/dist/images/nike-header@2x.jpg',
+                            backgroundImage: data.BackgroundImage.url,
                             logo: data.BrandTransparentLogo.url
                         };
                         return $q.all(
                             [
-                                brandsService.getOffersByBrandId(data._id),
-                                brandsService.getVideosByBrandId(data._id),
-                                brandsService.getCelebritiesByBrandId(data._id)
+                                brandsService.getOffersByBrandId(brandId),
+                                brandsService.getBrandBySlug(brandSlug),
+                                brandsService.getVideosByBrandId(brandId)
                             ]
-                        )
+                        );
                     }
                 )
                 .then(
                     function onSuccess(data) {
                         $scope.offers = data[0];
-                        $scope.relatedVideos = data[1];
-                        $scope.videos = data[1];
-                        $scope.celebrities = data[2];
-
-                        console.log(data[2]);
+                        $scope.brand = data[1];
+                        $scope.videos = data[2];
                     }
                 );
-
         }
     ];
 
+
+
     angular
         .module('clixtv')
-        .controller('BrandController', BrandController);
+        .controller('OfferController', OfferController);
 }());
