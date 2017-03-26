@@ -1,0 +1,10 @@
+<div class="clix-account-page">
+    <div class="account-navigation">
+        <clix-navigation-bar active-item="activeItem" on-item-select="onNavigationItemSelect"></clix-navigation-bar>
+    </div>
+    <div class="account-page" ng-switch="activeItem">
+        <div ng-switch-when="overview">
+            <clix-account-overview></clix-account-overview>
+        </div>
+    </div>
+</div>

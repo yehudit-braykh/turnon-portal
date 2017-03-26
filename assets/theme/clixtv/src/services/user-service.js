@@ -1,9 +1,10 @@
 (function() {
 
     var userService = [
+        '$q',
         '$http',
         '$rootScope',
-        function($http, $rootScope) {
+        function($q, $http, $rootScope) {
 
             var loggedInUser;
 
@@ -43,7 +44,7 @@
 
                 getLoggedInUser: function() {
                     if (loggedInUser) {
-                        return loggedInUser;
+                        return $q.when(loggedInUser);
                     }
                     return $http.get('/api/account/get_current')
                         .then(

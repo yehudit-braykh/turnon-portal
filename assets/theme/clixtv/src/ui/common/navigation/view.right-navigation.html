@@ -6,12 +6,17 @@
                 <div class="icon-right-tall-arrow"></div>
             </a>
             <div class="avatar-container empty-avatar">
-                <div class="avatar-background"></div>
-                <div class="avatar-background-overlay"></div>
-                <div class="avatar-image" style="background-image: url('assets/theme/clixtv/dist/images/empty-profile-picture.png')"></div>
+                <div ng-if="loggedInUser.avatar">
+                    <div class="avatar-background-image" style="background-image: url('{{loggedInUser.avatar}}')"></div>
+                    <div class="avatar-image" style="background-image: url('{{loggedInUser.avatar}}')"></div>
+                </div>
+                <div ng-if="!loggedInUser.avatar">
+                    <div class="avatar-background"></div>
+                    <div class="avatar-image" style="background-image: url('assets/theme/clixtv/dist/images/empty-profile-picture.png')"></div>
+                </div>
             </div>
             <nav class="navigation-list">
-                <a href="#" class="navigation-list-item">
+                <a ng-click="goToAccount('overview')" class="navigation-list-item">
                     <div class="navigation-list-icon">
                         <i class="icon-account-icon"></i>
                     </div>
@@ -19,7 +24,7 @@
                         Account
                     </div>
                 </a>
-                <a href="#" class="navigation-list-item">
+                <a ng-click="goToAccount('watchlist')" class="navigation-list-item">
                     <div class="navigation-list-icon">
                         <i class="icon-plus-icon"></i>
                     </div>
@@ -27,7 +32,7 @@
                         Watchlist
                     </div>
                 </a>
-                <a href="#" class="navigation-list-item">
+                <a ng-click="goToAccount('favorites')" class="navigation-list-item">
                     <div class="navigation-list-icon">
                         <i class="icon-favorite-icon"></i>
                     </div>
@@ -35,7 +40,7 @@
                         Favorites
                     </div>
                 </a>
-                <a href="#" class="navigation-list-item">
+                <a ng-click="goToAccount('saved-offers')" class="navigation-list-item">
                     <div class="navigation-list-icon">
                         <i class="icon-offers-icon"></i>
                     </div>
@@ -43,7 +48,7 @@
                         Saved Offers
                     </div>
                 </a>
-                <a href="#" class="navigation-list-item">
+                <a ng-click="goToAccount('rewards')" class="navigation-list-item">
                     <div class="navigation-list-icon">
                         <i class="icon-rewards-icon-left-nav"></i>
                     </div>
@@ -51,7 +56,7 @@
                         Rewards
                     </div>
                 </a>
-                <a href="#" class="navigation-list-item">
+                <a ng-click="goToAccount('notifications')" class="navigation-list-item">
                     <div class="navigation-list-icon">
                         <i class="icon-notifications-icon-left-nav"></i>
                     </div>
@@ -59,7 +64,7 @@
                         Notifications
                     </div>
                 </a>
-                <a href="#" class="navigation-list-item">
+                <a ng-click="goToAccount('settings')" class="navigation-list-item">
                     <div class="navigation-list-icon">
                         <i class="icon-settings-icon-left-nav"></i>
                     </div>

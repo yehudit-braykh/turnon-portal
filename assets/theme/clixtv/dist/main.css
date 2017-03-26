@@ -9353,6 +9353,22 @@ button.close {
   -ms-flex: 1;
   flex: 1;
 }
+.clix-account-page {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  padding-top: 94px;
+}
+.clix-account-page .account-navigation {
+  width: 245px;
+}
+.clix-account-page .account-page {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  background-color: #313131;
+}
 .clix-hero-banner {
   position: relative;
   z-index: 2000;
@@ -10434,6 +10450,7 @@ button.close {
   max-height: 199px;
   width: 100%;
   position: relative;
+  overflow: hidden;
 }
 .clix-right-navigation .avatar-container .avatar-background {
   position: absolute;
@@ -10466,6 +10483,26 @@ button.close {
   position: relative;
   z-index: 10;
 }
+.clix-right-navigation .avatar-container .avatar-background-image {
+  filter: blur(15px);
+  -webkit-filter: blur(15px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: 150%;
+  background-position: center;
+}
+.clix-right-navigation .avatar-container .avatar-background-image:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.63);
+}
 .clix-right-navigation .avatar-container.empty-avatar .avatar-background {
   background-image: -moz-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
   background-image: -ms-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
@@ -10488,6 +10525,7 @@ button.close {
   align-items: center;
   padding: 15px 0;
   color: #bababa;
+  cursor: pointer;
 }
 .clix-right-navigation .navigation-list .navigation-list-item:hover {
   background-color: #313131;
@@ -10505,6 +10543,155 @@ button.close {
   text-transform: uppercase;
 }
 .clix-right-navigation .logout-button-container {
+  text-align: center;
+  padding: 15px 0 40px;
+}
+.clix-navigation-bar .navigation-bar-content {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: relative;
+  overflow: scroll;
+}
+.clix-navigation-bar .navigation-close-icon {
+  position: absolute;
+  top: 20px;
+  left: 8px;
+  color: #FFF;
+  font-size: 25px;
+  z-index: 1000;
+  cursor: pointer;
+}
+.clix-navigation-bar .avatar-container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  height: 199px;
+  min-height: 199px;
+  max-height: 199px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.clix-navigation-bar .avatar-container .avatar-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+}
+.clix-navigation-bar .avatar-container .avatar-background:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.63);
+}
+.clix-navigation-bar .avatar-container .avatar-image {
+  -webkit-border-radius: 40px;
+  -moz-border-radius: 40px;
+  border-radius: 40px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  width: 80px;
+  height: 80px;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  z-index: 10;
+}
+.clix-navigation-bar .avatar-container .avatar-background-image {
+  filter: blur(15px);
+  -webkit-filter: blur(15px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: 150%;
+  background-position: center;
+}
+.clix-navigation-bar .avatar-container .avatar-background-image:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.63);
+}
+.clix-navigation-bar .avatar-container.empty-avatar .avatar-background {
+  background-image: -moz-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
+  background-image: -ms-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
+  background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(#c60548), to(#7a0ba8));
+  background-image: -webkit-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
+  background-image: -o-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
+}
+.clix-navigation-bar .navigation-list {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.clix-navigation-bar .navigation-list .navigation-list-item {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  padding: 15px 0;
+  color: #bababa;
+  cursor: pointer;
+  position: relative;
+}
+.clix-navigation-bar .navigation-list .navigation-list-item:hover,
+.clix-navigation-bar .navigation-list .navigation-list-item.active-item {
+  background-color: #313131;
+  text-decoration: none;
+}
+.clix-navigation-bar .navigation-list .navigation-list-item.active-item:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background-color: #fe0000;
+}
+.clix-navigation-bar .navigation-list .navigation-list-icon {
+  width: 70px;
+  text-align: center;
+  font-size: 20px;
+}
+.clix-navigation-bar .navigation-list .navigation-list-label {
+  font-family: 'cabinregular', sans-serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.clix-navigation-bar .logout-button-container {
   text-align: center;
   padding: 15px 0 40px;
 }

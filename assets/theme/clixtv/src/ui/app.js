@@ -75,6 +75,11 @@
                         templateUrl: 'ui/offer/view.offer.html',
                         controller: 'OfferController'
                     })
+                    .state('account', {
+                        url: '/account/:section',
+                        templateUrl: 'ui/account/view.account.html',
+                        controller: 'AccountController'
+                    })
             }
         ])
         .run([
