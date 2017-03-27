@@ -1789,7 +1789,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 var direction;
                 if (latestOffset > this.pageYOffset) {
                     direction = 'down';
-                } else if (latestOffset < this.pageYOffset) {
+                } else if (latestOffset < this.pageYOffset && this.pageYOffset > 50) {
                     direction = 'up';
                 }
                 latestOffset = this.pageYOffset;
