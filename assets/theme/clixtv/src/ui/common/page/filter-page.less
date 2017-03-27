@@ -1,24 +1,34 @@
 @brand-spacing: 9px;
 
 .clix-filter-page {
-    padding: 120px 30px 100px 30px;
+    padding: 75px @common-mobile-padding 73px @common-mobile-padding;
 
-    .main-header {
-        padding-bottom: 20px;
+    @media (min-width: @screen-sm) {
+        padding: 120px 30px 100px 30px;
     }
 
-
-
-
+    .main-header {
+        padding-bottom: 10px;
+        @media (min-width: @screen-sm) {
+            padding-bottom: 20px;
+        }
+    }
 
     .brands-list {
         margin-left: -@brand-spacing;
         margin-right: -@brand-spacing;
-        padding-top: 38px;
+        padding-top: 11px;
+        @media (min-width: @screen-sm) {
+            padding-top: 38px;
+        }
     }
 
     .brand-outer-container {
-        padding: @brand-spacing @brand-spacing 38px @brand-spacing;
+        padding: @brand-spacing @brand-spacing 11px @brand-spacing;
+
+        @media (min-width: @screen-sm) {
+            padding-bottom: 38px;
+        }
     }
 
     .brand-logo-container {

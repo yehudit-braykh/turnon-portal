@@ -1,6 +1,18 @@
 .clix-modal-window {
     z-index: 9000 !important;
 
+    .clix-modal {
+        position: relative;
+    }
+
+    .clix-modal-close {
+        position: absolute;
+        top: 13px;
+        right: 20px;
+        font-size: 18px;
+        text-decoration: none !important;
+    }
+
     .modal-content {
         .border-radius(8px);
         background-color: @color-medium-gray4;
@@ -9,7 +21,14 @@
 }
 
 .modal-clix-md {
-    width: 370px;
+    width: 100%;
+    margin: 0;
+
+    @media (min-width: @screen-sm) {
+        padding-bottom: 20px;
+        margin: 10px auto;
+        width: 370px;
+    }
 }
 
 .modal-backdrop {

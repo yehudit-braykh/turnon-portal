@@ -1,22 +1,53 @@
 .clix-header {
-    .flex-display;
     .transition(0.5s ease);
     .gradient(@color-black, @color-transparent);
-    .align-items(center);
-    padding-top: 26px;
-    padding-bottom: 26px;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     width: 100%;
     position: fixed;
+    padding-left: @common-mobile-padding;
+    padding-right: @common-mobile-padding;
     z-index: 8000;
+
+    @media (min-width: @screen-sm) {
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 26px;
+        padding-bottom: 26px;
+    }
 
     &.filled {
         background-color: @color-black;
     }
 
+    .points-violator-container,
+    .user-avatar {
+        display: inline-block;
+    }
+
+    .user-avatar-container {
+        .justify-content(flex-end);
+    }
+
+    .mobile-header-block {
+        .flex(1);
+        .flex-display;
+    }
+
+    .clix-header-container {
+        .flex-display;
+
+        @media (min-width: @screen-sm) {
+            .align-items(center);
+        }
+    }
+
     .clix-logo {
         max-width: 100%;
+        max-height: 26px;
+        @media (min-width: @screen-sm) {
+            max-height: none;
+        }
     }
     .logo-container {
         display: block;
@@ -127,17 +158,27 @@
         }
 
         .header-avatar-container {
-            margin-left: 20px;
             position: relative;
+            margin-right: @common-mobile-padding;
+            @media (min-width: @screen-sm) {
+                margin-left: 20px;
+                margin-right: 0;
+            }
         }
 
         .header-avatar {
-            .border-radius(15px);
-            width: 30px;
-            height: 30px;
+            .border-radius(18px);
+            width: 35px;
+            height: 35px;
             background-size: cover;
             background-position: center;
             display: block;
+
+            @media (min-width: @screen-sm) {
+                .border-radius(15px);
+                width: 30px;
+                height: 30px;
+            }
         }
 
         .header-notification-count {
@@ -176,5 +217,10 @@
             color: @color-white;
             font-size: 20px;
         }
+    }
+
+    .mobile-logo {
+        .flex(1);
+        .justify-content(center);
     }
 }

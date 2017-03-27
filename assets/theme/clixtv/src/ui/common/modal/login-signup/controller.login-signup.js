@@ -54,6 +54,10 @@
                 console.log('fdsa111');
             };
 
+            $scope.onCloseIconPress = function() {
+                $uibModalInstance.close();
+            }
+
         }
     ];
 
