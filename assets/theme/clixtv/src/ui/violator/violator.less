@@ -14,13 +14,20 @@
 .points-violator {
     .border-radius(15px);
     background-color: @color-primary;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
     text-align: center;
     color: @color-white;
     font-family: @font-secondary;
-    font-size: 14px;
+    font-size: 11px;
+
+    @media (min-width: @screen-sm) {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 14px;
+    }
 
     .plus-sign {
         font-size: 11px;

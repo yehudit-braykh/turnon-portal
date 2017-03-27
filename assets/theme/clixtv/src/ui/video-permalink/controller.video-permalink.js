@@ -4,10 +4,11 @@
         '$q',
         '$scope',
         '$timeout',
+        '$window',
         '$stateParams',
         'videosService',
         'celebrityService',
-        function($q, $scope, $timeout, $stateParams, videosService, celebrityService) {
+        function($q, $scope, $timeout, $window, $stateParams, videosService, celebrityService) {
 
             $scope.expanded = false;
 
@@ -59,10 +60,13 @@
                         $scope.celebrities = [data[2]];
                         $scope.relatedVideos = data[3];
                         $scope.nextVideos = data[3];
-
-                        console.log($scope.relatedVideos);
                     }
                 );
+
+            if ($window.innerWidth <= 1000) {
+                $scope.playerHeight = 270;
+                $scope.originalPlayerHeight = $scope.playerHeight;
+            }
 
             $scope.onPlayerReady = function(configs) {
                 $scope.playerHeight = (configs.height - angular.element(document.getElementById('toggle-button-container')).outerHeight() - 20);
@@ -73,8 +77,9 @@
             };
 
             $scope.onExpandToggle = function() {
+                var expandedSize = ($window.innerWidth <= 1000) ? 999 : (angular.element(document.getElementById('about-video-container')).outerHeight());
                 $scope.expanded = !$scope.expanded;
-                $scope.playerHeight = ($scope.expanded) ? (angular.element(document.getElementById('about-video-container')).outerHeight()) : ($scope.originalPlayerHeight);
+                $scope.playerHeight = ($scope.expanded) ? expandedSize : ($scope.originalPlayerHeight);
             };
         }
     ];

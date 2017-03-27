@@ -7,7 +7,8 @@
                 video: '=',
                 autoPlay: '=',
                 videoId: '@',
-                onReady: '=?'
+                onReady: '=?',
+                onError: '=?'
             }
         }
     };

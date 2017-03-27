@@ -5,7 +5,33 @@
                 <div id="videoPlayer"></div>
                 <clix-video-player ng-if="video" video="video" auto-play="true" video-id="videoPlayer" on-ready="onPlayerReady"></clix-video-player>
             </div>
-            <div class="up-next-container">
+
+            <div class="visible-sm visible-xs">
+                <div class="brands-charity-container">
+                    <div class="brands-container">
+                        <div class="brands-charity-title">
+                            <div class="brands-title">
+                                Brands in this Series
+                            </div>
+                            <div class="charity-title">
+                                Charity
+                            </div>
+                        </div>
+
+                        <div class="logo-list-container">
+                            <a ng-repeat="brand in brands | limitTo: 4" ui-sref="brand({ slug: '{{brand.title | slug}}' })" class="brand-logo-link">
+                                <clix-brand-charity-logo brand="brand"></clix-brand-charity-logo>
+                            </a>
+                            <div ng-repeat="charity in charities | limitTo: 1" class="brand-logo-link">
+                                <clix-charity-logo charity="charity"></clix-charity-logo>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="up-next-container hidden-sm hidden-xs">
                 <div class="up-next-header">
                     <div class="up-next-label">
                         Up Next in This Series
@@ -29,12 +55,17 @@
                     <div class="about-video-overlay" ng-if="!expanded"></div>
                     <div class="star-name-container">
                         <div class="star-avatar" style="background-image: url({{video.PosterH.url}})"></div>
-                        <div class="star-name">{{video.artist_name}}</div>
+                        <div class="star-name-favorite-container">
+                            <div class="star-name">{{video.artist_name}}</div>
+                            <div class="visible-sm visible-xs">
+                                <clix-violator>100 Reward Points</clix-violator>
+                            </div>
+                        </div>
                         <a href="#" class="favorite-icon icon-favorite-icon"></a>
                     </div>
 
                     <div class="social-container">
-                        <div class="violator-container">
+                        <div class="violator-container hidden-sm hidden-xs">
                             <clix-violator size="large">100 Reward Points</clix-violator>
                         </div>
                         <div class="social-icon-container">
@@ -112,7 +143,7 @@
                             {{expanded ? 'Show Less' : 'Show More'}}
                         </clix-secondary-button>
                     </div>
-                    <div class="brands-charity-container">
+                    <div class="brands-charity-container hidden-sm hidden-xs">
                         <div class="brands-container">
                             <div class="brands-charity-title">
                                 <div class="brands-title">

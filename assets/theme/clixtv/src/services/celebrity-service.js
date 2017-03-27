@@ -51,6 +51,18 @@
                                 return data.data;
                             }
                         );
+                },
+
+                /**
+                 * @todo - Cache this call
+                 */
+                getSeriesByCelebrityId: function(id) {
+                    return $http.get('/api/celebrity/get_celeb_series?id=' + id)
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
+                            }
+                        );
                 }
             }
         }

@@ -10,10 +10,20 @@
 
     .video-player-column-container {
         padding-right: 0;
+
+        @media (max-width: @screen-sm) {
+            padding-left: 0;
+        }
     }
 
     .star-info-column-container {
+
         padding-left: 24px;
+
+        @media (max-width: @screen-sm) {
+            padding-left: @common-mobile-padding;
+            padding-right: @common-mobile-padding;
+        }
     }
 
     .video-player {
@@ -37,24 +47,51 @@
 
     .star-name-container {
         .flex-display;
-        .align-items(center);
-        .star-avatar {
-            .border-radius(@avatar-size / 2);
-            width: @avatar-size;
-            height: @avatar-size;
-            background-size: cover;
+        .align-items(flex-start);
+        @media (min-width: @screen-sm) {
+            .align-items(center);
         }
-        .star-name {
+        .star-avatar {
+            .border-radius(65px / 2);
+            width: 65px;
+            height: 65px;
+            background-size: cover;
+
+            @media (min-width: @screen-sm) {
+                .border-radius(@avatar-size / 2);
+                width: @avatar-size;
+                height: @avatar-size;
+            }
+        }
+        .star-name-favorite-container {
             .flex(1);
-            font-family: @font-primary-bold;
-            font-size: 24px;
-            color: @color-white;
-            margin-left: 21px;
+            margin-left: 11px;
+
+            .star-name {
+                font-family: @font-primary;
+                font-size: 28px;
+                line-height: 28px;
+                color: @color-white;
+
+                @media (min-width: @screen-sm) {
+                    font-family: @font-primary-bold;
+                    font-size: 24px;
+                    line-height: 24px;
+                }
+            }
+
+            @media (min-width: @screen-sm) {
+                margin-left: 21px;
+            }
         }
         .favorite-icon {
-            font-size: 32px;
+            font-size: 23px;
             color: @color-gray2;
-            text-decoration: none!important;
+            text-decoration: none !important;
+
+            @media (min-width: @screen-sm) {
+                font-size: 32px;
+            }
         }
         .favorite-icon:hover {
             text-decoration: none;
@@ -65,22 +102,32 @@
         .flex-display;
         .align-items(center);
         margin-top: 38px;
+
         .violator-container {
             .flex(1);
         }
         .social-icon-container {
             .flex-display;
-            .flex(.5);
-            .justify-content(center);
             .align-items(center);
             color: @color-gray2;
+            padding-right: 14px;
+
+            @media (min-width: @screen-sm) {
+                .flex(.5);
+                .justify-content(center);
+                padding-right: 0;
+            }
         }
         .social-icon-container:last-child {
             padding-right: 0;
         }
         .social-icon {
-            font-size: 31px;
+            font-size: 20px;
             color: @color-gray2;
+
+            @media (min-width: @screen-sm) {
+                font-size: 31px;
+            }
         }
         .social-icon:hover {
             text-decoration: none;
@@ -88,19 +135,32 @@
         }
 
         .save-icon {
-            font-size: 36px;
+            font-size: 24px;
+
+            @media (min-width: @screen-sm) {
+                font-size: 36px;
+            }
         }
 
         .share-icon {
-            font-size: 38px;
+            font-size: 23px;
+
+            @media (min-width: @screen-sm) {
+                font-size: 38px;
+            }
         }
 
         .social-icon-label {
             font-family: @font-secondary;
             color: @color-gray2;
-            font-size: 14px;
-            margin-left: 10px;
+            font-size: 11px;
             letter-spacing: 1.5px;
+            margin-left: 2px;
+
+            @media (min-width: @screen-sm) {
+                margin-left: 10px;
+                font-size: 14px;
+            }
         }
     }
 
@@ -169,7 +229,14 @@
         .flex(1);
         margin-top: 20px;
         padding-top: 20px;
-        border-top: 1px solid @color-gray3;
+        padding-left: @common-mobile-padding;
+        padding-right: @common-mobile-padding;
+
+        @media (min-width: @screen-sm) {
+            padding-left: 0;
+            padding-right: 0;
+            border-top: 1px solid @color-gray3;
+        }
 
         .brands-charity-title {
             .flex-display;
@@ -198,12 +265,21 @@
 
         .brand-logo-link {
             .flex(1);
-            padding-right: 7px;
+            padding-right: 4px;
+            position: relative;
 
             &:before {
                 content: '';
                 float: left;
                 padding-top: 100%;
+            }
+
+            &:last-child {
+                right: 0;
+            }
+
+            @media (min-width: @screen-sm) {
+                padding-right: 7px
             }
         }
 
@@ -217,7 +293,11 @@
 
         .clix-brand-charity-logo,
         .clix-charity-logo {
-            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 7px;
 
             .logo-points {
                 right: 4px;
