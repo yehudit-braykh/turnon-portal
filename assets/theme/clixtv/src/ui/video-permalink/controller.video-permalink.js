@@ -70,7 +70,11 @@
             // }
 
             $scope.onPlayerReady = function(configs) {
-                $scope.playerHeight = (configs.height - angular.element(document.getElementById('toggle-button-container')).outerHeight() - 20);
+                var height = (configs.height - angular.element(document.getElementById('toggle-button-container')).outerHeight() - 20);
+                if ($scope.isMobile) {
+                    height *= 2;
+                }
+                $scope.playerHeight = height;
                 $scope.originalPlayerHeight = $scope.playerHeight;
                 $timeout(function() {
                     $scope.$apply();
@@ -78,7 +82,8 @@
             };
 
             $scope.onExpandToggle = function() {
-                var expandedSize = ($window.innerWidth <= 1000) ? 999 : (angular.element(document.getElementById('about-video-container')).outerHeight());
+                var height = angular.element(document.getElementById('about-video-container')).outerHeight() * 2,
+                    expandedSize = ($window.innerWidth <= 1000) ? 999 : height;
                 $scope.expanded = !$scope.expanded;
                 $scope.playerHeight = ($scope.expanded) ? expandedSize : ($scope.originalPlayerHeight);
             };
