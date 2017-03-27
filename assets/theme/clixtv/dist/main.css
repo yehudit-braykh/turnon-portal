@@ -7531,24 +7531,43 @@ button.close {
   background: -moz-linear-gradient(top, #000, rgba(0, 0, 0, 0));
   background: -ms-linear-gradient(top, #000, rgba(0, 0, 0, 0));
   background: -o-linear-gradient(top, #000, rgba(0, 0, 0, 0));
-  padding-top: 15px;
-  padding-bottom: 15px;
   width: 100%;
   position: fixed;
-  padding-left: 10px;
-  padding-right: 10px;
   z-index: 8000;
+  max-height: 200px;
+  overflow: hidden;
+}
+.clix-header.filled {
+  background-color: #000;
+}
+.clix-header.clix-header-hidden {
+  max-height: 0;
 }
 @media (min-width: 768px) {
-  .clix-header {
+  .clix-header.clix-header-hidden {
+    max-height: 200px;
+  }
+}
+.clix-header .clix-header-container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+@media (min-width: 768px) {
+  .clix-header .clix-header-container {
+    -webkit-align-items: center;
+    -ms-align-items: center;
+    align-items: center;
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 26px;
     padding-bottom: 26px;
   }
-}
-.clix-header.filled {
-  background-color: #000;
 }
 .clix-header .points-violator-container,
 .clix-header .user-avatar {
@@ -7567,19 +7586,6 @@ button.close {
   display: -ms-flexbox;
   display: -ms-flex;
   display: flex;
-}
-.clix-header .clix-header-container {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: -ms-flex;
-  display: flex;
-}
-@media (min-width: 768px) {
-  .clix-header .clix-header-container {
-    -webkit-align-items: center;
-    -ms-align-items: center;
-    align-items: center;
-  }
 }
 .clix-header .clix-logo {
   max-width: 100%;

@@ -3,8 +3,12 @@
     var HeaderController = [
         '$scope',
         '$rootScope',
+        '$window',
+        '$timeout',
         '$uibModal',
-        function($scope, $rootScope, $uibModal) {
+        function($scope, $rootScope, $window, $timeout, $uibModal) {
+
+            var latestOffset = 0;
 
             $rootScope.$on('user.login', function(event, data) {
                 $scope.loggedInUser = data;
@@ -39,6 +43,23 @@
                     }
                 )
             };
+
+            angular.element($window).on('scroll', function() {
+                var direction;
+                if (latestOffset > this.pageYOffset) {
+                    direction = 'down';
+                } else if (latestOffset < this.pageYOffset) {
+                    direction = 'up';
+                }
+                latestOffset = this.pageYOffset;
+                if ($scope.scrollDirection !== direction) {
+                    $scope.scrollDirection = direction;
+                    $timeout(function() {
+                        $scope.$apply();
+                    });
+                }
+            //    this.pageYOffset
+            });
 
         }
     ];

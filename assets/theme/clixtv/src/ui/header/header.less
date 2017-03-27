@@ -1,23 +1,37 @@
 .clix-header {
     .transition(0.5s ease);
     .gradient(@color-black, @color-transparent);
-    padding-top: 15px;
-    padding-bottom: 15px;
     width: 100%;
     position: fixed;
-    padding-left: @common-mobile-padding;
-    padding-right: @common-mobile-padding;
     z-index: 8000;
-
-    @media (min-width: @screen-sm) {
-        padding-left: 30px;
-        padding-right: 30px;
-        padding-top: 26px;
-        padding-bottom: 26px;
-    }
+    max-height: 200px;
+    overflow: hidden;
 
     &.filled {
         background-color: @color-black;
+    }
+
+    &.clix-header-hidden {
+        max-height: 0;
+        @media (min-width: @screen-sm) {
+            max-height: 200px;
+        }
+    }
+
+    .clix-header-container {
+        .flex-display;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        padding-left: @common-mobile-padding;
+        padding-right: @common-mobile-padding;
+
+        @media (min-width: @screen-sm) {
+            .align-items(center);
+            padding-left: 30px;
+            padding-right: 30px;
+            padding-top: 26px;
+            padding-bottom: 26px;
+        }
     }
 
     .points-violator-container,
@@ -32,14 +46,6 @@
     .mobile-header-block {
         .flex(1);
         .flex-display;
-    }
-
-    .clix-header-container {
-        .flex-display;
-
-        @media (min-width: @screen-sm) {
-            .align-items(center);
-        }
     }
 
     .clix-logo {
