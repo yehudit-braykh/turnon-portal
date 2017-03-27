@@ -2343,17 +2343,18 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     }
                 );
 
-            // if ($window.innerWidth <= 1000) {
-            //     $scope.playerHeight = 270;
-            //     $scope.originalPlayerHeight = $scope.playerHeight;
-            // }
+            if ($window.innerWidth <= 1000) {
+                $scope.playerHeight = 270;
+                $scope.originalPlayerHeight = $scope.playerHeight;
+            }
 
             $scope.onPlayerReady = function(configs) {
-                var height = (configs.height - angular.element(document.getElementById('toggle-button-container')).outerHeight() - 20);
+                $scope.playerHeight = (configs.height - angular.element(document.getElementById('toggle-button-container')).outerHeight() - 20);
+
                 if ($scope.isMobile) {
-                    height *= 2;
+                    $scope.playerHeight = 400;
                 }
-                $scope.playerHeight = height;
+
                 $scope.originalPlayerHeight = $scope.playerHeight;
                 $timeout(function() {
                     $scope.$apply();
@@ -2361,8 +2362,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             };
 
             $scope.onExpandToggle = function() {
-                var height = angular.element(document.getElementById('about-video-container')).outerHeight() * 2,
-                    expandedSize = ($window.innerWidth <= 1000) ? 999 : height;
+                var expandedSize = angular.element(document.getElementById('about-video-container')).outerHeight();
                 $scope.expanded = !$scope.expanded;
                 $scope.playerHeight = ($scope.expanded) ? expandedSize : ($scope.originalPlayerHeight);
             };
