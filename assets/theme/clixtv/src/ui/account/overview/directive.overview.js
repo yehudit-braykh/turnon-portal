@@ -3,6 +3,7 @@
         return {
             restrict: 'AE',
             templateUrl: 'ui/account/overview/view.overview.html',
+            controller: 'AccountOverviewController',
             scope: {
                 user: '='
             }

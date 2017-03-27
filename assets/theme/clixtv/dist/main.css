@@ -919,6 +919,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 .icon-rewards-icon-left-nav:before { content: '\e819'; } /* '' */
 .icon-account-icon:before { content: '\e81a'; } /* '' */
 .icon-plus-icon:before { content: '\e81b'; } /* '' */
+.icon-edit-icon:before { content: '\e81c'; } /* '' */
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
@@ -7755,6 +7756,8 @@ button.close {
 }
 .video-category-scroll-list .icon-right-arrow {
   font-size: 20px;
+  position: relative;
+  top: -1px;
 }
 .video-category-scroll-list .video-list-container {
   display: -webkit-flex;
@@ -8969,6 +8972,7 @@ button.close {
 }
 .brand-page .stars-container .video-category-scroll-list {
   margin-right: -30px;
+  padding-left: 0;
 }
 .brand-page .home-container .video-category-scroll-list {
   margin-top: 45px;
@@ -9358,7 +9362,11 @@ button.close {
   display: -ms-flexbox;
   display: -ms-flex;
   display: flex;
-  padding-top: 94px;
+}
+@media (min-width: 768px) {
+  .clix-account-page {
+    padding-top: 94px;
+  }
 }
 .clix-account-page .account-navigation {
   width: 245px;
@@ -9367,7 +9375,214 @@ button.close {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
+  padding-top: 128px;
   background-color: #313131;
+}
+@media (min-width: 768px) {
+  .clix-account-page .account-page {
+    padding-bottom: 110px;
+  }
+}
+.clix-account-page .account-navigation {
+  display: none;
+}
+@media (min-width: 768px) {
+  .clix-account-page .account-navigation {
+    display: block;
+  }
+}
+.clix-account-overview .account-info-sub-header {
+  font-family: 'cabinregular', sans-serif;
+  text-align: center;
+  font-size: 14px;
+  color: #8a8a8a;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  padding-top: 40px;
+  padding-bottom: 14px;
+}
+@media (min-width: 768px) {
+  .clix-account-overview .account-info-sub-header {
+    text-align: left;
+  }
+}
+.clix-account-overview .personal-info-form {
+  background-color: #3d3d3d;
+  padding-top: 32px;
+  padding-bottom: 31px;
+}
+.clix-account-overview .personal-info-form-row {
+  padding-top: 32px;
+  padding-bottom: 23px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-bottom: 1px solid #636363;
+}
+.clix-account-overview .personal-info-form-row:last-child {
+  border-bottom-width: 0;
+}
+@media (min-width: 768px) {
+  .clix-account-overview .personal-info-form-row {
+    margin-left: 45px;
+    margin-right: 45px;
+  }
+}
+.clix-account-overview .form-header {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-align-items: flex-end;
+  -ms-align-items: flex-end;
+  align-items: flex-end;
+  margin-bottom: 9px;
+}
+.clix-account-overview .form-header-label {
+  font-family: 'cabinregular', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #8a8a8a;
+  letter-spacing: 1.6px;
+  margin-right: 36px;
+}
+.clix-account-overview .form-header-edit {
+  font-size: 26px;
+  color: #8a8a8a;
+}
+.clix-account-overview .form-header-edit:hover {
+  color: #FFF;
+  text-decoration: none;
+  cursor: pointer;
+}
+.clix-account-overview input {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 14px;
+  width: 250px;
+}
+.clix-account-overview input:disabled {
+  background-color: rgba(0, 0, 0, 0);
+  border-width: 0;
+  color: #FFF;
+}
+.clix-account-overview .reward-points {
+  padding: 44px 44px 40px 44px;
+  background-color: #3d3d3d;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .clix-account-overview .reward-points {
+    text-align: left;
+    padding-top: 45px;
+  }
+}
+.clix-account-overview .reward-points .points-label {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 35px;
+  color: #FFF;
+  letter-spacing: 1.6px;
+}
+.clix-account-overview .reward-points .available-balance-label {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 14px;
+  color: #FFF;
+  line-height: 20px;
+  margin-top: 10px;
+}
+.clix-account-overview .reward-points .available-balance-label a {
+  color: #fe0000;
+}
+@media (min-width: 768px) {
+  .clix-account-overview .reward-points .available-balance-label {
+    margin-top: 0;
+  }
+}
+.clix-account-overview .reward-points .rewards-button {
+  width: 220px;
+  margin: 0 auto;
+}
+@media (min-width: 768px) {
+  .clix-account-overview .body-content {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+@media (min-width: 768px) {
+  .clix-account-overview .personal-info-container {
+    padding-right: 25px;
+    padding-left: 53px;
+  }
+}
+@media (min-width: 768px) {
+  .clix-account-overview .reward-points-container {
+    padding-left: 25px;
+    padding-right: 53px;
+  }
+}
+.clix-account-overview .reward-points-block {
+  padding-bottom: 5px;
+  margin-bottom: 25px;
+  display: none;
+}
+@media (min-width: 768px) {
+  .clix-account-overview .reward-points-block {
+    border-bottom: 1px solid #636363;
+    display: block;
+    padding-bottom: 37px;
+  }
+}
+.clix-account-overview .reward-points-block.first-block {
+  display: block;
+}
+.clix-account-overview .reward-points-block.last-block {
+  padding-bottom: 50px;
+  border-bottom-width: 0 !important;
+}
+.clix-account-overview .level-label {
+  font-size: 45px;
+  font-family: 'cabinregular', sans-serif;
+  letter-spacing: 2.3px;
+  text-transform: uppercase;
+  color: #fe0000;
+  line-height: 50px;
+  margin-bottom: 5px;
+}
+.clix-account-overview .progress-label {
+  font-family: 'cabinregular', sans-serif;
+  color: #FFF;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  line-height: 22px;
+}
+.clix-account-overview .clix-progress-bar-container {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  background-color: #313131;
+  height: 18px;
+  position: relative;
+  overflow: hidden;
+  margin-top: 18px;
+  margin-bottom: 22px;
+}
+.clix-account-overview .clix-progress-bar-container .clix-progress-bar {
+  background-color: #911685;
+  background-image: -webkit-gradient(linear, left top, right top, from(#911685), to(#fa0d1b));
+  background-image: -webkit-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -moz-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -ms-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -o-linear-gradient(left, #911685, #fa0d1b);
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  width: 100%;
+  height: 100%;
 }
 .clix-hero-banner {
   position: relative;
@@ -10695,6 +10910,26 @@ button.close {
   text-align: center;
   padding: 15px 0 40px;
 }
+.clix-account-header {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 28px;
+  color: #FFF;
+  letter-spacing: 1.6px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #636363;
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+@media (min-width: 768px) {
+  .clix-account-header {
+    padding-left: 53px;
+    font-size: 35px;
+    text-align: left;
+    margin-left: 0;
+    margin-right: 29px;
+  }
+}
 body {
   background-color: #0e0e0e;
 }
@@ -10720,6 +10955,12 @@ button:focus {
 }
 .clix-block-row .clix-block-item {
   padding: 9px 9px 38px 9px;
+}
+.modal-backdrop.in {
+  filter: alpha(opacity=80) !important;
+  -webkit-opacity: 0.8 !important;
+  -moz-opacity: 0.8 !important;
+  opacity: 0.8 !important;
 }
 .col-lg-2-4 {
   position: relative;

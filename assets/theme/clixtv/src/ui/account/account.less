@@ -1,6 +1,9 @@
 .clix-account-page {
     .flex-display;
-    padding-top: 94px;
+
+    @media (min-width: @screen-sm) {
+        padding-top: 94px;
+    }
 
     .account-navigation {
         width: 245px;
@@ -8,6 +11,17 @@
 
     .account-page {
         .flex(1);
+        padding-top: 128px;
         background-color: @color-gray9;
+        @media (min-width: @screen-sm) {
+            padding-bottom: 110px;
+        }
+    }
+
+    .account-navigation {
+        display: none;
+        @media (min-width: @screen-sm) {
+            display: block;
+        }
     }
 }

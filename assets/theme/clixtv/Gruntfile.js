@@ -170,9 +170,9 @@ module.exports = function(grunt) {
     grunt.registerTask('media:development', ['sprite', 'imagemin:development']);
     grunt.registerTask('media:production', ['sprite', 'imagemin:production']);
 
-    grunt.registerTask('style:development', ['media:development', 'less', 'cssmin']);
+    grunt.registerTask('style:development', [/*'media:development',*/ 'less', 'cssmin']);
     grunt.registerTask('style:production', ['media:production', 'less', 'cssmin']);
 
-    grunt.registerTask('default', ['clean', 'script', 'style:development', 'copy']);
+    grunt.registerTask('default', [/*'clean', */'script', 'style:development', 'copy', 'watch:all']);
     grunt.registerTask('production', ['clean', 'script', 'style:production', 'copy']);
 };
