@@ -445,8 +445,14 @@
             padding-bottom: 27px;
         }
         .related-videos-list {
-            border: 1px solid @color-gray4;
             background-color: @color-gray5;
+            border-top: 1px solid @color-gray4;
+            padding-top: 22px;
+
+            @media (min-width: @screen-sm) {
+                padding-top: 0;
+                border: 1px solid @color-gray4;
+            }
         }
     }
 
@@ -462,13 +468,58 @@
     }
 
     .related-videos-list {
-        margin-left: -(@common-video-spacing / 2);
-        margin-right: -(@common-video-spacing / 2);
-        padding: 22px 15px 2px 15px;
+        margin-left: @common-mobile-padding / 2;
+        margin-right: @common-mobile-padding / 2;
+
+        @media (min-width: @screen-sm) {
+            margin-left: -(@common-video-spacing / 2);
+            margin-right: -(@common-video-spacing / 2);
+            padding: 22px 15px 2px 15px;
+        }
+
         .related-video {
-            padding-left: @common-video-spacing / 2;
-            padding-right: @common-video-spacing / 2;
-            margin-bottom: 20px;
+            padding-left: @common-mobile-padding / 2;
+            padding-right: @common-mobile-padding / 2;
+
+            @media (min-width: @screen-sm) {
+                padding-left: @common-video-spacing / 2;
+                padding-right: @common-video-spacing / 2;
+                margin-bottom: 20px;
+            }
+        }
+    }
+
+    .mobile-related-video {
+
+        margin-bottom: 20px;
+
+        .artist-avatar {
+            .border-radius(12px);
+            width: 25px;
+            height: 25px;
+        }
+
+        .artist-name {
+            font-family: @font-primary-bold;
+            font-size: 10px;
+            padding-left: 5px;
+        }
+
+        .violator {
+            font-size: 8px;
+        }
+
+        .series-title {
+            font-size: 10px;
+        }
+
+        .episode-title {
+            font-size: 10px;
+        }
+
+        .menu-container {
+            padding-left: 0;
+            padding-right: 0;
         }
     }
 }

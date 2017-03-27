@@ -5,7 +5,8 @@
             templateUrl: 'ui/video-content-box/view.video-content-box.html',
             controller: 'VideoContentBoxController',
             scope: {
-                video: '='
+                video: '=',
+                extraClass: '@?'
             }
         }
     };

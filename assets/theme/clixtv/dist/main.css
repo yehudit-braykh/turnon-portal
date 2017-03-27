@@ -7964,6 +7964,10 @@ button.close {
   -ms-flex: 1;
   flex: 1;
   padding-left: 14px;
+  padding-right: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .video-content-box .artist-avatar {
   -webkit-border-radius: 15px;
@@ -9341,8 +9345,15 @@ button.close {
   padding-bottom: 27px;
 }
 .video-permalink-page .related-videos-container .related-videos-list {
-  border: 1px solid #777777;
   background-color: #1b1b1b;
+  border-top: 1px solid #777777;
+  padding-top: 22px;
+}
+@media (min-width: 768px) {
+  .video-permalink-page .related-videos-container .related-videos-list {
+    padding-top: 0;
+    border: 1px solid #777777;
+  }
 }
 .video-permalink-page .next-video-list {
   margin-top: 30px;
@@ -9355,14 +9366,57 @@ button.close {
   margin-bottom: 37px;
 }
 .video-permalink-page .related-videos-list {
-  margin-left: -6px;
-  margin-right: -6px;
-  padding: 22px 15px 2px 15px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+@media (min-width: 768px) {
+  .video-permalink-page .related-videos-list {
+    margin-left: -6px;
+    margin-right: -6px;
+    padding: 22px 15px 2px 15px;
+  }
 }
 .video-permalink-page .related-videos-list .related-video {
-  padding-left: 6px;
-  padding-right: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+@media (min-width: 768px) {
+  .video-permalink-page .related-videos-list .related-video {
+    padding-left: 6px;
+    padding-right: 6px;
+    margin-bottom: 20px;
+  }
+}
+.video-permalink-page .mobile-related-video {
   margin-bottom: 20px;
+}
+.video-permalink-page .mobile-related-video .artist-avatar {
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  width: 25px;
+  height: 25px;
+}
+.video-permalink-page .mobile-related-video .artist-name {
+  font-family: 'pt_sansbold', sans-serif;
+  font-size: 10px;
+  padding-left: 5px;
+}
+.video-permalink-page .mobile-related-video .violator {
+  font-size: 8px;
+}
+.video-permalink-page .mobile-related-video .series-title {
+  font-size: 10px;
+}
+.video-permalink-page .mobile-related-video .episode-title {
+  font-size: 10px;
+}
+.video-permalink-page .mobile-related-video .menu-container {
+  padding-left: 0;
+  padding-right: 0;
 }
 .brand-page .banner-favorite-icon {
   font-size: 20px;

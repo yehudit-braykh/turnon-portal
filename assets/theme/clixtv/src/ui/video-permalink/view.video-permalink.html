@@ -192,4 +192,15 @@
             </div>
         </div>
     </div>
+
+    <div class="related-videos-container visible-sm visible-xs">
+        <div class="related-videos-header">
+            Related Videos
+        </div>
+        <div class="row related-videos-list">
+            <div class="col-xs-6 related-video" ng-repeat="relatedVideo in relatedVideos track by $index">
+                <clix-video-content-box video="relatedVideo" extra-class="mobile-related-video"></clix-video-content-box>
+            </div>
+        </div>
+    </div>
 </div>
