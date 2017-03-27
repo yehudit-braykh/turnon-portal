@@ -6,7 +6,8 @@
         '$timeout',
         '$stateParams',
         'videosService',
-        function($q, $scope, $timeout, $stateParams, videosService) {
+        'celebrityService',
+        function($q, $scope, $timeout, $stateParams, videosService, celebrityService) {
 
             $scope.expanded = false;
 
@@ -31,17 +32,35 @@
             videosService.getVideoById($stateParams.id)
                 .then(
                     function onSuccess(data) {
-                        $scope.video = data.data;
-                        $scope.nextVideos = [];
-                        $scope.relatedVideos = [];
+                        $scope.video = data;
 
-                        var i = 0, length = 12;
-                        for (i = 0; i < length; i++) {
-                            $scope.nextVideos.push(data.data);
+                        var celebrityId = (data.celebrities) ? data.celebrities[0] : undefined,
+                            categoryName = (data.categories && data.categories.length > 0) ? data.categories[0].name : 'Sports';
+
+                        if (!celebrityId) {
+                            return $q.when([]);
                         }
-                        for (i = 0; i < length; i++) {
-                            $scope.relatedVideos.push(data.data);
-                        }
+
+                        return $q.all(
+                            [
+                                celebrityService.getBrandsByCelebrityId(celebrityId),
+                                celebrityService.getCharitiesByCelebrityId(celebrityId),
+                                celebrityService.getCelebrityById(celebrityId),
+                                videosService.getVideosByCategory(categoryName)
+                            ]
+                        );
+                    }
+                )
+                .then(
+                    function onSuccess(data) {
+                        $scope.ready = true;
+                        $scope.brands = data[0];
+                        $scope.charities = data[1];
+                        $scope.celebrities = [data[2]];
+                        $scope.relatedVideos = data[3];
+                        $scope.nextVideos = data[3];
+
+                        console.log($scope.relatedVideos);
                     }
                 );
 

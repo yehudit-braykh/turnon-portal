@@ -46,15 +46,15 @@
         }
         .star-name {
             .flex(1);
-            font-family: @font-primary;
-            font-weight: bold;
+            font-family: @font-primary-bold;
             font-size: 24px;
             color: @color-white;
             margin-left: 21px;
         }
         .favorite-icon {
-            font-size: 28px;
+            font-size: 32px;
             color: @color-gray2;
+            text-decoration: none!important;
         }
         .favorite-icon:hover {
             text-decoration: none;
@@ -86,6 +86,15 @@
             text-decoration: none;
             color: @color-white;
         }
+
+        .save-icon {
+            font-size: 36px;
+        }
+
+        .share-icon {
+            font-size: 38px;
+        }
+
         .social-icon-label {
             font-family: @font-secondary;
             color: @color-gray2;
@@ -101,7 +110,7 @@
             font-family: @font-primary;
             font-size: 30px;
             color: @color-white;
-            letter-spacing: 1.6px;
+
             line-height: 35px;
             margin-bottom: 2px;
         }
@@ -121,13 +130,17 @@
             font-size: 14px;
             letter-spacing: 1.6px;
             line-height: 14px;
+
+            .total-views {
+                .flex(1);
+            }
         }
         .description {
             font-family: @font-primary;
             font-size: 14px;
             color: @color-white;
             line-height: 20px;
-            margin-top: 20px;
+            margin-top: 25px;
         }
         .meta-data {
             font-family: @font-secondary-bold;
@@ -137,9 +150,13 @@
             margin-top: 36px;
         }
         .meta-data-label {
+            font-family: @font-secondary;
             text-transform: uppercase;
             color: @color-gray2;
-            font-weight: normal;
+        }
+
+        .meta-data-row {
+            margin-bottom: 10px;
         }
     }
     .visibility-toggle-button {
@@ -155,6 +172,8 @@
         border-top: 1px solid @color-gray3;
 
         .brands-charity-title {
+            .flex-display;
+            .flex(1);
             font-family: @font-secondary;
             text-transform: uppercase;
             font-size: 11px;
@@ -179,14 +198,44 @@
 
         .brand-logo-link {
             .flex(1);
-            padding-right: 8px;
+            padding-right: 7px;
+
+            &:before {
+                content: '';
+                float: left;
+                padding-top: 100%;
+            }
         }
 
         .brands-title {
+            width: 80%;
             color: @color-brand;
         }
         .charity-title {
             color: @color-charity;
+        }
+
+        .clix-brand-charity-logo,
+        .clix-charity-logo {
+            height: 100%;
+
+            .logo-points {
+                right: 4px;
+                bottom: 4px;
+            }
+
+            .logo-image {
+                top: 10px;
+                bottom: 10px;
+                left: 10px;
+                right: 10px;
+            }
+
+            .logo-save,
+            .logo-ellipsis,
+            .view-button-container {
+                display: none;
+            }
         }
     }
 

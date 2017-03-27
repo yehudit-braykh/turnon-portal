@@ -16,8 +16,9 @@
 <!--        <script src="/assets/common/js/bootstrap.min.js" crossorigin="anonymous"></script>-->
 
 <!--        <link rel="stylesheet" href="/assets/common/css/bootstrap.min.css" crossorigin="anonymous">-->
-        <link href="https://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet">
+
+<!--        <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet">-->
+        <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700" rel="stylesheet">
         <link rel="stylesheet" href="<?php echo asset_url(); ?>dist/main.min.css" />
 
         <!--

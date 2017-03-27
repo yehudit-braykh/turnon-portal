@@ -70,6 +70,11 @@
                         templateUrl: 'ui/categories/view.categories.html',
                         controller: 'CategoriesController'
                     })
+                    .state('category', {
+                        url: '/category/:slug',
+                        templateUrl: 'ui/categories/view.category.html',
+                        controller: 'CategoryController'
+                    })
                     .state('offer', {
                         url: '/offer/:id',
                         templateUrl: 'ui/offer/view.offer.html',

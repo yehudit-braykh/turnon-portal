@@ -1,6 +1,6 @@
-<div class="video-permalink-page">
+<div class="video-permalink-page" ng-if="ready">
     <div class="row">
-        <div class="col-lg-8 video-player-column-container">
+        <div class="col-md-7 col-lg-8 video-player-column-container">
             <div class="video-player">
                 <div id="videoPlayer"></div>
                 <clix-video-player ng-if="video" video="video" auto-play="true" video-id="videoPlayer" on-ready="onPlayerReady"></clix-video-player>
@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 star-info-column-container">
+        <div class="col-md-5 col-lg-4 star-info-column-container">
 
             <div class="about-video-container" id="about-video-container">
 
@@ -44,10 +44,10 @@
                             </div>
                         </div>
                         <div class="social-icon-container">
-                            <a href="#" class="social-icon icon-save-icon"></a>
+                            <a href="#" class="social-icon save-icon icon-save-icon"></a>
                         </div>
                         <div class="social-icon-container">
-                            <a href="#" class="social-icon icon-share-icon"></a>
+                            <a href="#" class="social-icon share-icon icon-share-icon"></a>
                             <clix-points-violator>
                                 50
                             </clix-points-violator>
@@ -76,7 +76,31 @@
                                     Category:
                                 </span>
                                 <span ng-repeat="category in video.categories">
-                                    <a href="#">{{category.name}}</a><span ng-if="!$last">,</span>
+                                    <a ui-sref="category({ slug: '{{category.name | slug}}' })">{{category.name}}</a><span ng-if="!$last">,&nbsp;</span>
+                                </span>
+                            </div>
+                            <div class="meta-data-row">
+                                <span class="meta-data-label">
+                                    Stars:
+                                </span>
+                                <span ng-repeat="celebrity in celebrities">
+                                    <a ui-sref="star({ id: '{{celebrity._id}}' })">{{celebrity.title}}</a><span ng-if="!$last">,&nbsp;</span>
+                                </span>
+                            </div>
+                            <div class="meta-data-row">
+                                <span class="meta-data-label">
+                                    Brands:
+                                </span>
+                                <span ng-repeat="brand in brands">
+                                    <a ui-sref="brand({ slug: '{{brand.title | slug}}' })">{{brand.title}}</a><span ng-if="!$last">,&nbsp;</span>
+                                </span>
+                            </div>
+                            <div class="meta-data-row">
+                                <span class="meta-data-label">
+                                    Charity:
+                                </span>
+                                <span ng-repeat="charity in charities">
+                                    <a ui-sref="charity({ id: '{{charity._id}}' })">{{charity.title}}</a><span ng-if="!$last">,&nbsp;</span>
                                 </span>
                             </div>
                         </div>
@@ -90,24 +114,22 @@
                     </div>
                     <div class="brands-charity-container">
                         <div class="brands-container">
-                            <div class="brands-charity-title brands-title">
-                                Brands in this Series
+                            <div class="brands-charity-title">
+                                <div class="brands-title">
+                                    Brands in this Series
+                                </div>
+                                <div class="charity-title">
+                                    Charity
+                                </div>
                             </div>
+
                             <div class="logo-list-container">
-                                <a class="brand-logo-link" ui-sref="brand({ slug: 'nike' })">
-                                    <div class="brand-logo" clix-logo logo-url="http://advncedcdn.vo.llnwd.net/clixtv_storage/storage/57cdc2665aad0b6fcf67bb3d/58054a355f7c20000319780f/texaco_logo_white.png"></div>
+                                <a ng-repeat="brand in brands | limitTo: 4" ui-sref="brand({ slug: '{{brand.title | slug}}' })" class="brand-logo-link">
+                                    <clix-brand-charity-logo brand="brand"></clix-brand-charity-logo>
                                 </a>
-                                <a class="brand-logo-link" ui-sref="brand({ slug: 'nike' })">
-                                    <div class="brand-logo" clix-logo logo-url="http://advncedcdn.vo.llnwd.net/clixtv_storage/storage/57cdc2665aad0b6fcf67bb3d/580549d45f7c20000319780c/cabelas_logo_whtie.png"></div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="charity-container">
-                            <div class="brands-charity-title charity-title">
-                                Charity
-                            </div>
-                            <div class="logo-list-container">
-                                <div class="charity-logo" clix-logo charity="true" logo-url="http://advncedcdn.vo.llnwd.net/clixtv_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d3ffc801b10003711113/special-olympics-world-games1.png"></div>
+                                <div ng-repeat="charity in charities | limitTo: 1" class="brand-logo-link">
+                                    <clix-charity-logo charity="charity"></clix-charity-logo>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -45,10 +45,10 @@
     <div class="footer-container">
         <a ui-sref="video({ id: video._id })">
             <span class="series-title">
-                {{video.title}}
+                {{video.title || '&nbsp;'}}
             </span><br />
             <span class="episode-title">
-                Episode 1: {{video.title}}
+                Episode 1: {{video.title || '&nbsp;'}}
             </span>
         </a>
     </div>

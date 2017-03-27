@@ -845,6 +845,32 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'pt_sansregular';
+    src: url('./font/PTS55F-webfont.eot');
+    src: url('./font/PTS55F-webfont.eot?#iefix') format('embedded-opentype'),
+    url('./font/PTS55F-webfont.woff') format('woff'),
+    url('./font/PTS55F-webfont.ttf') format('truetype'),
+    url('./font/PTS55F-webfont.svg#pt_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+@font-face {
+    font-family: 'pt_sansbold';
+    src: url('./font/PTS75F-webfont.eot');
+    src: url('./font/PTS75F-webfont.eot?#iefix') format('embedded-opentype'),
+    url('./font/PTS75F-webfont.woff') format('woff'),
+    url('./font/PTS75F-webfont.ttf') format('truetype'),
+    url('./font/PTS75F-webfont.svg#pt_sansbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
 /* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
 /* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
 /*
@@ -7784,7 +7810,7 @@ button.close {
   text-decoration: none;
 }
 .clix-header .header-user-container .header-name {
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'pt_sansregular', sans-serif;
   font-size: 14px;
   color: #FFF;
   letter-spacing: 0.8px;
@@ -7919,7 +7945,7 @@ button.close {
 }
 .video-content-box .header-container {
   color: #FFF;
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'pt_sansregular', sans-serif;
   font-size: 14px;
   position: relative;
 }
@@ -8059,7 +8085,7 @@ button.close {
   text-decoration: underline;
 }
 .video-content-box .series-title {
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'pt_sansregular', sans-serif;
   font-size: 14px;
   color: #FFF;
   padding: 0;
@@ -8154,7 +8180,7 @@ button.close {
   padding-top: 9px;
   padding-bottom: 9px;
   cursor: pointer;
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'pt_sansregular', sans-serif;
   font-size: 14px;
   color: #8a8a8a;
 }
@@ -8614,7 +8640,7 @@ button.close {
   margin-right: 10px;
 }
 .clix-footer a {
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'pt_sansregular', sans-serif;
   font-size: 16px;
   color: #bababa;
 }
@@ -8725,7 +8751,7 @@ button.close {
   text-align: center;
 }
 .home-page .carousel-slide .carousel-main-header {
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'pt_sansregular', sans-serif;
   font-size: 65px;
   line-height: 65px;
   color: #FFF;
@@ -8860,15 +8886,15 @@ button.close {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  font-family: 'PT Sans', sans-serif;
-  font-weight: bold;
+  font-family: 'pt_sansbold', sans-serif;
   font-size: 24px;
   color: #FFF;
   margin-left: 21px;
 }
 .video-permalink-page .star-name-container .favorite-icon {
-  font-size: 28px;
+  font-size: 32px;
   color: #8a8a8a;
+  text-decoration: none!important;
 }
 .video-permalink-page .star-name-container .favorite-icon:hover {
   text-decoration: none;
@@ -8916,6 +8942,12 @@ button.close {
   text-decoration: none;
   color: #FFF;
 }
+.video-permalink-page .social-container .save-icon {
+  font-size: 36px;
+}
+.video-permalink-page .social-container .share-icon {
+  font-size: 38px;
+}
 .video-permalink-page .social-container .social-icon-label {
   font-family: 'cabinregular', sans-serif;
   color: #8a8a8a;
@@ -8927,10 +8959,9 @@ button.close {
   margin-top: 38px;
 }
 .video-permalink-page .video-info-container .series-title {
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'pt_sansregular', sans-serif;
   font-size: 30px;
   color: #FFF;
-  letter-spacing: 1.6px;
   line-height: 35px;
   margin-bottom: 2px;
 }
@@ -8954,12 +8985,17 @@ button.close {
   letter-spacing: 1.6px;
   line-height: 14px;
 }
+.video-permalink-page .video-info-container .total-views-available-container .total-views {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
 .video-permalink-page .video-info-container .description {
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'pt_sansregular', sans-serif;
   font-size: 14px;
   color: #FFF;
   line-height: 20px;
-  margin-top: 20px;
+  margin-top: 25px;
 }
 .video-permalink-page .video-info-container .meta-data {
   font-family: 'cabinbold', sans-serif;
@@ -8969,9 +9005,12 @@ button.close {
   margin-top: 36px;
 }
 .video-permalink-page .video-info-container .meta-data-label {
+  font-family: 'cabinregular', sans-serif;
   text-transform: uppercase;
   color: #8a8a8a;
-  font-weight: normal;
+}
+.video-permalink-page .video-info-container .meta-data-row {
+  margin-bottom: 10px;
 }
 .video-permalink-page .visibility-toggle-button {
   text-align: center;
@@ -8990,6 +9029,13 @@ button.close {
   border-top: 1px solid #636363;
 }
 .video-permalink-page .brands-charity-container .brands-charity-title {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
   font-family: 'cabinregular', sans-serif;
   text-transform: uppercase;
   font-size: 11px;
@@ -9022,13 +9068,43 @@ button.close {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  padding-right: 8px;
+  padding-right: 7px;
+}
+.video-permalink-page .brands-charity-container .brand-logo-link:before {
+  content: '';
+  float: left;
+  padding-top: 100%;
 }
 .video-permalink-page .brands-charity-container .brands-title {
+  width: 80%;
   color: #ae2eff;
 }
 .video-permalink-page .brands-charity-container .charity-title {
   color: #e52bc4;
+}
+.video-permalink-page .brands-charity-container .clix-brand-charity-logo,
+.video-permalink-page .brands-charity-container .clix-charity-logo {
+  height: 100%;
+}
+.video-permalink-page .brands-charity-container .clix-brand-charity-logo .logo-points,
+.video-permalink-page .brands-charity-container .clix-charity-logo .logo-points {
+  right: 4px;
+  bottom: 4px;
+}
+.video-permalink-page .brands-charity-container .clix-brand-charity-logo .logo-image,
+.video-permalink-page .brands-charity-container .clix-charity-logo .logo-image {
+  top: 10px;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+}
+.video-permalink-page .brands-charity-container .clix-brand-charity-logo .logo-save,
+.video-permalink-page .brands-charity-container .clix-charity-logo .logo-save,
+.video-permalink-page .brands-charity-container .clix-brand-charity-logo .logo-ellipsis,
+.video-permalink-page .brands-charity-container .clix-charity-logo .logo-ellipsis,
+.video-permalink-page .brands-charity-container .clix-brand-charity-logo .view-button-container,
+.video-permalink-page .brands-charity-container .clix-charity-logo .view-button-container {
+  display: none;
 }
 .video-permalink-page .up-next-container {
   margin-top: 31px;
@@ -9143,6 +9219,7 @@ button.close {
   margin-top: 33px;
   padding-bottom: 39px;
   border-bottom: 1px solid #636363;
+  display: none;
 }
 .brand-page .brand-category-logo-container {
   display: -webkit-flex;
@@ -9214,10 +9291,9 @@ button.close {
   text-decoration: underline;
 }
 .brands-page .brand-title {
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'pt_sansbold', sans-serif;
   font-size: 14px;
   color: #FFF;
-  font-weight: bold;
   letter-spacing: -0.5px;
   line-height: 16px;
   display: block;
@@ -9299,10 +9375,9 @@ button.close {
   text-decoration: underline;
 }
 .charities-page .brand-title {
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'pt_sansbold', sans-serif;
   font-size: 14px;
   color: #FFF;
-  font-weight: bold;
   letter-spacing: -0.5px;
   line-height: 16px;
   display: block;
@@ -9370,9 +9445,8 @@ button.close {
   border-bottom: 1px solid #636363 !important;
 }
 .clix-offer-page .home-header {
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'pt_sansbold', sans-serif;
   font-size: 30px;
-  font-weight: bold;
   color: #8a8a8a;
 }
 .clix-offer-page .home-instructions {
@@ -9408,7 +9482,7 @@ button.close {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'pt_sansregular', sans-serif;
   font-size: 14px;
   color: #FFF;
   padding-left: 12px;
@@ -9494,7 +9568,7 @@ button.close {
 .clix-offer-page .offer-footer-info p {
   color: #FFF;
   font-size: 14px;
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'pt_sansregular', sans-serif;
   line-height: 20px;
 }
 .clix-offer-page .videos-title-container {
@@ -9613,7 +9687,7 @@ button.close {
   cursor: pointer;
 }
 .clix-account-overview input {
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'pt_sansregular', sans-serif;
   font-size: 14px;
   width: 250px;
 }
@@ -9634,13 +9708,13 @@ button.close {
   }
 }
 .clix-account-overview .reward-points .points-label {
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'pt_sansregular', sans-serif;
   font-size: 35px;
   color: #FFF;
   letter-spacing: 1.6px;
 }
 .clix-account-overview .reward-points .available-balance-label {
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'pt_sansregular', sans-serif;
   font-size: 14px;
   color: #FFF;
   line-height: 20px;
@@ -9795,12 +9869,12 @@ button.close {
   bottom: 0;
 }
 .clix-hero-banner .hero-banner-overlay {
-  background-color: rgba(0, 0, 0, 0) 80%;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0) 80%), to(#000));
-  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 80%, #000);
-  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 80%, #000);
-  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 80%, #000);
-  background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 80%, #000);
+  background-color: rgba(0, 0, 0, 0) 30%;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0) 30%), to(#000));
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 30%, #000);
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 30%, #000);
+  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 30%, #000);
+  background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 30%, #000);
   position: absolute;
   top: 0;
   left: 0;
@@ -9858,7 +9932,7 @@ button.close {
   margin-left: 27px;
 }
 .clix-hero-banner .banner-title {
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'pt_sansregular', sans-serif;
   font-size: 35px;
   color: #FFF;
   letter-spacing: 1.6px;
@@ -10211,7 +10285,7 @@ button.close {
   display: block;
 }
 .clix-main-header {
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'pt_sansregular', sans-serif;
   font-size: 28px;
   letter-spacing: 1.6px;
   color: #FFF;
@@ -10310,7 +10384,7 @@ button.close {
   border-width: 0;
   color: #FFF;
   font-size: 14px;
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'pt_sansregular', sans-serif;
 }
 .clix-search-filter .search-input::placeholder {
   color: #bababa;
@@ -10399,10 +10473,9 @@ button.close {
   text-decoration: underline;
 }
 .clix-filter-page .brand-title {
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'pt_sansbold', sans-serif;
   font-size: 14px;
   color: #FFF;
-  font-weight: bold;
   letter-spacing: -0.5px;
   line-height: 16px;
   display: block;
@@ -10448,7 +10521,7 @@ button.close {
   color: #aaaaaa;
 }
 .clix-landing-video-content .landing-description {
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'pt_sansregular', sans-serif;
   font-size: 14px;
   line-height: 20px;
   color: #FFF;
@@ -10613,10 +10686,9 @@ button.close {
   text-decoration: underline;
 }
 .clix-content-callout .callout-title {
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'pt_sansbold', sans-serif;
   font-size: 14px;
   color: #FFF;
-  font-weight: bold;
   letter-spacing: -0.5px;
   line-height: 16px;
   display: block;
@@ -10640,7 +10712,7 @@ button.close {
   display: inline-block;
 }
 .clix-empty-container {
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'pt_sansregular', sans-serif;
   font-size: 14px;
   color: #FFF;
   text-align: center;
@@ -10699,7 +10771,7 @@ button.close {
   margin-bottom: 20px;
 }
 .signup-modal .or-email-container {
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'pt_sansregular', sans-serif;
   color: #8a8a8a;
   font-size: 14px;
   font-style: italic;
@@ -10750,7 +10822,7 @@ button.close {
 .signup-modal .signup-modal-input input {
   background-color: rgba(0, 0, 0, 0);
   border-width: 0;
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'pt_sansregular', sans-serif;
   font-size: 14px;
   color: #FFF;
   width: 100%;
@@ -10778,7 +10850,7 @@ button.close {
 .signup-modal .login-container {
   text-align: center;
   color: #FFF;
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'pt_sansregular', sans-serif;
   font-size: 14px;
 }
 .signup-modal .login-container a {
@@ -10796,7 +10868,7 @@ button.close {
   padding: 16px 38px;
   text-align: center;
   color: #8a8a8a;
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'pt_sansregular', sans-serif;
   font-size: 14px;
 }
 .signup-modal .signup-modal-footer a {
@@ -11153,7 +11225,7 @@ button.close {
   margin-right: 10px;
 }
 .clix-account-header .header-text {
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'pt_sansregular', sans-serif;
   font-size: 28px;
   color: #FFF;
   letter-spacing: 1.6px;
@@ -11258,4 +11330,12 @@ button:focus {
     float: left;
     width: 20%;
   }
+}
+.col-xs-2-4 {
+  position: relative;
+  float: left;
+  width: 20%;
+  min-height: 1px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
