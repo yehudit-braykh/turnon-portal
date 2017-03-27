@@ -2343,10 +2343,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     }
                 );
 
-            if ($window.innerWidth <= 1000) {
-                $scope.playerHeight = 270;
-                $scope.originalPlayerHeight = $scope.playerHeight;
-            }
+            // if ($window.innerWidth <= 1000) {
+            //     $scope.playerHeight = 270;
+            //     $scope.originalPlayerHeight = $scope.playerHeight;
+            // }
 
             $scope.onPlayerReady = function(configs) {
                 $scope.playerHeight = (configs.height - angular.element(document.getElementById('toggle-button-container')).outerHeight() - 20);
