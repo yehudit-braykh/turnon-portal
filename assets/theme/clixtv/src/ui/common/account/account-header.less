@@ -1,18 +1,33 @@
 .clix-account-header {
-    font-family: @font-primary;
-    font-size: 28px;
-    color: @color-white;
-    letter-spacing: 1.6px;
     padding-bottom: 20px;
     border-bottom: 1px solid @color-gray3;
-    text-align: center;
     margin-left: @account-padding-mobile;
     margin-right: @account-padding-mobile;
 
+    .header-text {
+        font-family: @font-primary;
+        font-size: 28px;
+        color: @color-white;
+        letter-spacing: 1.6px;
+        text-align: center;
+        margin-bottom: 30px;
+
+        @media (min-width: @screen-sm) {
+            font-size: 35px;
+            text-align: left;
+            margin-bottom: 0;
+        }
+    }
+
+    .accesory-view {
+        padding-bottom: 20px;
+        @media (min-width: @screen-sm) {
+            padding-bottom: 0;
+        }
+    }
+
     @media (min-width: @screen-sm) {
         padding-left: 53px;
-        font-size: 35px;
-        text-align: left;
         margin-left: 0;
         margin-right: 29px;
     }

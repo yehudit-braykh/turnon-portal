@@ -35,6 +35,7 @@
 @import "offer/offer";
 @import "account/account";
 @import "account/overview/overview";
+@import "account/watchlist/watchlist";
 
 // Components
 @import "common/hero-banner/hero-banner";
@@ -48,6 +49,7 @@
 @import "common/page/landing-page";
 @import "common/page/landing/landing-video-content";
 @import "common/container/content-callout";
+@import "common/container/empty-container";
 @import "common/modal/modal";
 @import "common/modal/login-signup/login-signup";
 @import "common/navigation/right-navigation";
@@ -82,7 +84,15 @@ button:focus {
     margin-right: -@common-row-item-spacing;
 
     .clix-block-item {
-        padding: @common-row-item-spacing @common-row-item-spacing 38px @common-row-item-spacing;
+        padding-top: 0;
+        padding-bottom: 30px;
+        padding-left: @common-row-item-spacing;
+        padding-right: @common-row-item-spacing;
+
+        @media (min-width: @screen-sm) {
+            padding-top: @common-row-item-spacing ;
+            padding-bottom: 38px;
+        }
     }
 }
 

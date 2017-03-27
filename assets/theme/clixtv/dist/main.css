@@ -7977,7 +7977,7 @@ button.close {
   padding: 6px 10px;
 }
 .video-content-box .footer-container a {
-  display: inline-block;
+  display: block;
 }
 .video-content-box .footer-container a:hover {
   text-decoration: none;
@@ -7993,6 +7993,7 @@ button.close {
   font-size: 14px;
   color: #FFF;
   padding: 0;
+  display: inline-block;
 }
 .video-content-box .episode-title {
   font-family: 'cabinbold', sans-serif;
@@ -8000,6 +8001,14 @@ button.close {
   color: #fe0000;
   text-transform: uppercase;
   padding: 0;
+  display: inline-block;
+}
+.video-content-box .series-title,
+.video-content-box .episode-title {
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .video-content-box .video-brand-icon-list {
   display: -webkit-flex;
@@ -9584,6 +9593,36 @@ button.close {
   width: 100%;
   height: 100%;
 }
+.clix-account-watchlist .filter-containers {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+}
+.clix-account-watchlist .filter-container {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.clix-account-watchlist .filter-container:first-child {
+  padding-right: 10px;
+}
+.clix-account-watchlist .filter-container:last-child {
+  padding-left: 10px;
+}
+.clix-account-watchlist .empty-message-container {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.clix-account-watchlist .watchlist-container {
+  padding-top: 30px;
+}
+@media (min-width: 768px) {
+  .clix-account-watchlist .watchlist-container {
+    padding-left: 50px;
+    padding-right: 30px;
+  }
+}
 .clix-hero-banner {
   position: relative;
   z-index: 2000;
@@ -10427,6 +10466,12 @@ button.close {
   margin-top: 5px;
   display: inline-block;
 }
+.clix-empty-container {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 14px;
+  color: #FFF;
+  text-align: center;
+}
 .clix-modal-window {
   z-index: 9000 !important;
 }
@@ -10911,21 +10956,37 @@ button.close {
   padding: 15px 0 40px;
 }
 .clix-account-header {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #636363;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.clix-account-header .header-text {
   font-family: 'PT Sans', sans-serif;
   font-size: 28px;
   color: #FFF;
   letter-spacing: 1.6px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #636363;
   text-align: center;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-bottom: 30px;
+}
+@media (min-width: 768px) {
+  .clix-account-header .header-text {
+    font-size: 35px;
+    text-align: left;
+    margin-bottom: 0;
+  }
+}
+.clix-account-header .accesory-view {
+  padding-bottom: 20px;
+}
+@media (min-width: 768px) {
+  .clix-account-header .accesory-view {
+    padding-bottom: 0;
+  }
 }
 @media (min-width: 768px) {
   .clix-account-header {
     padding-left: 53px;
-    font-size: 35px;
-    text-align: left;
     margin-left: 0;
     margin-right: 29px;
   }
@@ -10954,7 +11015,16 @@ button:focus {
   margin-right: -9px;
 }
 .clix-block-row .clix-block-item {
-  padding: 9px 9px 38px 9px;
+  padding-top: 0;
+  padding-bottom: 30px;
+  padding-left: 9px;
+  padding-right: 9px;
+}
+@media (min-width: 768px) {
+  .clix-block-row .clix-block-item {
+    padding-top: 9px;
+    padding-bottom: 38px;
+  }
 }
 .modal-backdrop.in {
   filter: alpha(opacity=80) !important;

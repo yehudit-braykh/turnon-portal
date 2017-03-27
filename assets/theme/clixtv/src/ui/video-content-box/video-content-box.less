@@ -128,7 +128,7 @@
     .footer-container {
         padding: 6px 10px;
         a {
-            display: inline-block;
+            display: block;
         }
         a:hover {
             text-decoration: none;
@@ -145,6 +145,7 @@
         font-size: 14px;
         color: @color-white;
         padding: 0;
+        display: inline-block;
     }
     .episode-title {
         font-family: @font-secondary-bold;
@@ -152,7 +153,17 @@
         color: @color-primary;
         text-transform: uppercase;
         padding: 0;
+        display: inline-block;
     }
+
+    .series-title,
+    .episode-title {
+        max-width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
     .video-brand-icon-list {
         .flex-display;
         .flex(1);

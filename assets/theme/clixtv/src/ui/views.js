@@ -7,7 +7,12 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/account/view.account.html',
-    "<div class=clix-account-page><div class=account-navigation><clix-navigation-bar active-item=activeItem on-item-select=onNavigationItemSelect></clix-navigation-bar></div><div class=account-page ng-switch=activeItem><div ng-switch-when=overview><clix-account-overview></clix-account-overview></div></div></div>"
+    "<div class=clix-account-page><div class=account-navigation><clix-navigation-bar active-item=activeItem on-item-select=onNavigationItemSelect></clix-navigation-bar></div><div class=account-page ng-switch=activeItem><div ng-switch-when=overview><clix-account-overview></clix-account-overview></div><div ng-switch-when=watchlist><clix-account-watchlist></clix-account-watchlist></div></div></div>"
+  );
+
+
+  $templateCache.put('ui/account/watchlist/view.watchlist.html',
+    "<div class=clix-account-watchlist><clix-account-header><header-text>Watchlist</header-text><accessory-view><div class=filter-containers><div class=filter-container><clix-dropdown options=filterOptions></clix-dropdown></div><div class=filter-container><clix-dropdown options=sortOptions></clix-dropdown></div></div></accessory-view></clix-account-header><div class=watchlist-container><div ng-if=\"!watchlist || watchlist.length === 0\"><div class=empty-message-container><clix-empty-container>Add videos to watchlist and watch them later</clix-empty-container></div></div><div ng-if=\"watchlist && watchlist.length > 0\"><div class=\"row clix-block-row\"><div class=\"clix-block-item col-xs-12 col-sm-6 col-md-4 col-lg-3\" ng-repeat=\"video in watchlist\"><clix-video-content-box video=video></clix-video-content-box></div></div></div></div></div>"
   );
 
 
@@ -67,7 +72,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/account/view.account-header.html',
-    "<div class=clix-account-header><div class=header-text><div ng-transclude=headerText></div></div></div>"
+    "<div class=clix-account-header><div class=row><div class=\"header-text col-sm-6\"><div ng-transclude=headerText></div></div><div class=\"accesory-view col-sm-6\"><div ng-transclude=accessoryView></div></div></div></div>"
   );
 
 
@@ -118,6 +123,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('ui/common/container/view.content-callout.html',
     "<div class=clix-content-callout><div class=header-callout-container><div class=header-container ng-transclude=headerElement></div><clix-tooltip-menu items=items menuopen=menuVisible class=overlay-menu-container ng-hide=!menuVisible></clix-tooltip-menu><div class=header-overlay><a ui-sref={{sref}} class=hit-area></a> <a ui-sref={{sref}} class=view-button-container><div class=view-button><clix-view-button text=Go></clix-view-button></div></a><div class=header-save><clix-favorite-button></clix-favorite-button></div><div class=header-ellipsis><div class=menu-icon-container ng-click=menuClicked($event) clix-click-anywhere-else=bodyClicked><i class=icon-ellipsis></i></div></div></div></div><a ui-sref={{sref}} class=callout-footer-container><span class=callout-title ng-transclude=titleContent></span> <span class=callout-subtitle ng-transclude=subtitleContent></span></a></div>"
+  );
+
+
+  $templateCache.put('ui/common/container/view.empty-container.html',
+    "<div class=clix-empty-container><div ng-transclude></div></div>"
   );
 
 

@@ -1,0 +1,29 @@
+.clix-account-watchlist {
+    .filter-containers {
+        .flex-display;
+    }
+    .filter-container {
+        .flex(1);
+
+        &:first-child {
+            padding-right: 10px;
+        }
+        &:last-child {
+            padding-left: 10px;
+        }
+    }
+
+    .empty-message-container {
+        padding-left: @account-padding-mobile;
+        padding-right: @account-padding-mobile;
+    }
+
+    .watchlist-container {
+        padding-top: 30px;
+
+        @media (min-width: @screen-sm) {
+            padding-left: 50px;
+            padding-right: 30px;
+        }
+    }
+}

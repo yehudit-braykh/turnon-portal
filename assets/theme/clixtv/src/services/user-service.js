@@ -56,6 +56,15 @@
                                 return loggedInUser;
                             }
                         );
+                },
+
+                getWatchlist: function() {
+                    return $http.get('/api/account/get_watchlist')
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
+                            }
+                        );
                 }
             }
         }

@@ -5,7 +5,8 @@
             replace: true,
             templateUrl: 'ui/common/account/view.account-header.html',
             transclude: {
-                headerText: 'headerText'
+                headerText: 'headerText',
+                accessoryView: '?accessoryView'
             }
         }
     };

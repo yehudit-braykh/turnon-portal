@@ -1,0 +1,33 @@
+<div class="clix-account-watchlist">
+    <clix-account-header>
+        <header-text>
+            Watchlist
+        </header-text>
+        <accessory-view>
+            <div class="filter-containers">
+                <div class="filter-container">
+                    <clix-dropdown options="filterOptions"></clix-dropdown>
+                </div>
+                <div class="filter-container">
+                    <clix-dropdown options="sortOptions"></clix-dropdown>
+                </div>
+            </div>
+        </accessory-view>
+    </clix-account-header>
+    <div class="watchlist-container">
+        <div ng-if="!watchlist || watchlist.length === 0">
+            <div class="empty-message-container">
+                <clix-empty-container>
+                    Add videos to watchlist and watch them later
+                </clix-empty-container>
+            </div>
+        </div>
+        <div ng-if="watchlist && watchlist.length > 0">
+            <div class="row clix-block-row">
+                <div class="clix-block-item col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-repeat="video in watchlist">
+                    <clix-video-content-box video="video"></clix-video-content-box>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
