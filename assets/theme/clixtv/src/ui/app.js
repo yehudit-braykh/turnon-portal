@@ -9,8 +9,7 @@
             'slickCarousel',
             'ui.router',
             'duParallax',
-            'ui.bootstrap',
-            'ngTouch'
+            'ui.bootstrap'
         ])
         .config([
             '$locationProvider',

@@ -40,8 +40,7 @@ module.exports = function(grunt) {
                     'bower_components/angular-scroll/angular-scroll.js',
                     'bower_components/ng-parallax/angular-parallax.js',
                     'node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js',
-                    'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
-                    'node_modules/angular-touch/angular-touch.js'
+                    'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js'
                 ]
             }
         },
