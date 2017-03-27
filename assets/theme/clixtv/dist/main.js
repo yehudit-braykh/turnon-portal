@@ -9,7 +9,8 @@
             'slickCarousel',
             'ui.router',
             'duParallax',
-            'ui.bootstrap'
+            'ui.bootstrap',
+            'ngTouch'
         ])
         .config([
             '$locationProvider',
@@ -2108,7 +2109,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         }
                     };
 
-                    $document.on('click', handler);
+                    $document.on('click touch', handler);
                     scope.$on('$destroy', function() {
                         $document.off('click', handler);
                     });

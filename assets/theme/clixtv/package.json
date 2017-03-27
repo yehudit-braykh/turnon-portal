@@ -31,6 +31,7 @@
     "grunt-spritesmith": "^6.4.0"
   },
   "dependencies": {
+    "angular-touch": "^1.6.3",
     "angular-ui-router": "^0.4.2",
     "bootstrap-less": "^3.3.8",
     "ng-parallax": "^1.1.3",
