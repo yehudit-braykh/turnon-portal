@@ -92,9 +92,9 @@
                         <div class="episode-title">
                             Episode 1: {{video.title}}
                         </div>
-                        <div class="total-views-available-container">
-                            <div class="total-views">48,096,110 views</div>
-                            <div class="available-until">Available Until 2 February 2017</div>
+                        <div class="row total-views-available-container">
+                            <div class="col-sm-6 total-views">48,096,110 views</div>
+                            <div class="col-sm-6 available-until">Available Until 2 February 2017</div>
                         </div>
 
                         <div class="description">
@@ -167,7 +167,7 @@
                 </div>
             </div>
 
-            <div class="related-videos-container">
+            <div class="related-videos-container hidden-sm hidden-xs">
                 <div class="related-videos-header">
                     Related Videos
                 </div>
@@ -176,6 +176,19 @@
                         <clix-video-content-box video="relatedVideo"></clix-video-content-box>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="up-next-container visible-sm visible-xs">
+        <div class="series-dropdown">
+            <clix-dropdown options="seriesList"></clix-dropdown>
+        </div>
+        <div class="up-next-label">
+            Up Next in This Series
+        </div>
+        <div class="row next-video-list">
+            <div class="col-lg-4 next-video" ng-repeat="nextVideo in nextVideos track by $index">
+                <clix-video-content-box video="nextVideo"></clix-video-content-box>
             </div>
         </div>
     </div>
