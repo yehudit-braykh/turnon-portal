@@ -3,7 +3,8 @@
         <div class="col-md-7 col-lg-8 video-player-column-container">
             <div class="video-player">
                 <div id="videoPlayer"></div>
-                <clix-video-player ng-if="video" video="video" auto-play="true" video-id="videoPlayer" on-ready="onPlayerReady"></clix-video-player>
+                <clix-video-player ng-if="video && !isMobile" video="video" auto-play="true" video-id="videoPlayer" on-ready="onPlayerReady"></clix-video-player>
+                <clix-video-player ng-if="video && isMobile" video="video" auto-play="false" video-id="videoPlayer" on-ready="onPlayerReady"></clix-video-player>
             </div>
 
             <div class="visible-sm visible-xs">

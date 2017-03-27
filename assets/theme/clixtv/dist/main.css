@@ -9366,8 +9366,8 @@ button.close {
   margin-bottom: 37px;
 }
 .video-permalink-page .related-videos-list {
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 0;
+  margin-right: 0;
 }
 @media (min-width: 768px) {
   .video-permalink-page .related-videos-list {

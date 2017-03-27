@@ -10,6 +10,7 @@
         'celebrityService',
         function($q, $scope, $timeout, $window, $stateParams, videosService, celebrityService) {
 
+            $scope.isMobile = ($window.innerWidth <= 800);
             $scope.expanded = false;
 
             $scope.seriesList = [
