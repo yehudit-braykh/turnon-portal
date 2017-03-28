@@ -6,7 +6,7 @@
                     <div ng-show="video">
                         <div id="videoPlayer"></div>
                         <clix-video-player ng-if="video" video="video" auto-play="false" video-id="videoPlayer" on-ready="onPlayerReady"></clix-video-player>
-                        <div class="video-violator">
+                        <div class="video-violator" ng-show="!charity">
                             <clix-violator>
                                 100 Reward Points
                             </clix-violator>
@@ -18,7 +18,7 @@
                     <div class="landing-description">
                         <div ng-transclude="contentDescription"></div>
                     </div>
-                    <div class="share-container">
+                    <div class="share-container" ng-show="!charity">
                         <a href="#" class="icon-share-icon landing-share-icon"></a>
                         <div class="content-points-validator">
                             <clix-points-violator>

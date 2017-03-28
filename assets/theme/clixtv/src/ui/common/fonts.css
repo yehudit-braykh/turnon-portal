@@ -127,3 +127,14 @@
 .icon-account-icon:before { content: '\e81a'; } /* '' */
 .icon-plus-icon:before { content: '\e81b'; } /* '' */
 .icon-edit-icon:before { content: '\e81c'; } /* '' */
+.icon-categories-icon-bottom-nav:before { content: '\e81d'; } /* '' */
+.icon-star-icon-bottom-nav:before { content: '\e81e'; } /* '' */
+.icon-brands-icon-bottom-nav:before { content: '\e81f'; } /* '' */
+.icon-charities-icon-bottom-nav:before { content: '\e820'; } /* '' */
+.icon-redeem-plus-icon:before { content: '\e821'; } /* '' */
+.icon-redeem-minus-icon:before { content: '\e822'; } /* '' */
+.icon-search-icon-bottom-nav:before { content: '\e823'; } /* '' */
+.icon-home-icon-bottom-nav:before { content: '\e824'; } /* '' */
+.icon-checkmark-icon:before { content: '\e825'; } /* '' */
+.icon-icon-security-lock:before { content: '\e826'; } /* '' */
+.icon-info-icon:before { content: '\e827'; } /* '' */

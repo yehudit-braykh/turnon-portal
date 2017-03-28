@@ -16,6 +16,7 @@
     "angular-route": "^1.6.3",
     "angular-slick-carousel": "^3.1.7",
     "ng-jwplayer": "^0.2.3",
-    "ng-parallax": "^0.1.8"
+    "ng-parallax": "^0.1.8",
+    "angular-elastic-input": "^2.4.0"
   }
 }

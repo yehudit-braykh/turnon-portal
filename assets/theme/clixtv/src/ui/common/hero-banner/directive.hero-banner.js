@@ -15,7 +15,8 @@
                 subtext: '@?',
                 buttonIconClass: '@?',
                 backgroundImage: '@',
-                backgroundImage2x: '@?'
+                backgroundImage2x: '@?',
+                charity: '@?'
             }
         }
     };

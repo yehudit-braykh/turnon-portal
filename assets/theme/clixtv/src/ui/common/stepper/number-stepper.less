@@ -1,0 +1,42 @@
+.clix-number-stepper {
+    .flex-display;
+    .justify-content(center);
+    .align-items(center);
+
+    .button-icon {
+        font-size: 20px;
+        color: @color-white;
+    }
+
+    .value-container {
+        .flex(1);
+        border: 1px solid @color-gray11;
+        background-color: @color-gray12;
+        margin-left: 7px;
+        margin-right: 7px;
+
+        input {
+            font-family: @font-secondary;
+            font-size: 45px;
+            text-align: center;
+            width: 100%;
+            letter-spacing: 1.4px;
+            color: @color-white;
+            background-color: @color-transparent;
+            border-width: 0;
+            padding: 0;
+            line-height: 45px;
+        }
+
+        // Disable the default "spin" arrows
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+    }
+}

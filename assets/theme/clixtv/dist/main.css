@@ -946,6 +946,17 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 .icon-account-icon:before { content: '\e81a'; } /* '' */
 .icon-plus-icon:before { content: '\e81b'; } /* '' */
 .icon-edit-icon:before { content: '\e81c'; } /* '' */
+.icon-categories-icon-bottom-nav:before { content: '\e81d'; } /* '' */
+.icon-star-icon-bottom-nav:before { content: '\e81e'; } /* '' */
+.icon-brands-icon-bottom-nav:before { content: '\e81f'; } /* '' */
+.icon-charities-icon-bottom-nav:before { content: '\e820'; } /* '' */
+.icon-redeem-plus-icon:before { content: '\e821'; } /* '' */
+.icon-redeem-minus-icon:before { content: '\e822'; } /* '' */
+.icon-search-icon-bottom-nav:before { content: '\e823'; } /* '' */
+.icon-home-icon-bottom-nav:before { content: '\e824'; } /* '' */
+.icon-checkmark-icon:before { content: '\e825'; } /* '' */
+.icon-icon-security-lock:before { content: '\e826'; } /* '' */
+.icon-info-icon:before { content: '\e827'; } /* '' */
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
@@ -8308,7 +8319,7 @@ button.close {
   color: #FFF;
   text-transform: uppercase;
   letter-spacing: 0.9px;
-  padding: 10px 46px;
+  padding: 11px 35px;
   text-align: center;
   cursor: pointer;
 }
@@ -8355,6 +8366,36 @@ button.close {
   background-image: -o-linear-gradient(left, #9d3723, #e04123);
   text-decoration: none;
 }
+.clix-primary-button.button-charity {
+  background-color: #7084e0;
+  background-image: -webkit-gradient(linear, left top, right top, from(#7084e0), to(#ff2aed));
+  background-image: -webkit-linear-gradient(left, #7084e0, #ff2aed);
+  background-image: -moz-linear-gradient(left, #7084e0, #ff2aed);
+  background-image: -ms-linear-gradient(left, #7084e0, #ff2aed);
+  background-image: -o-linear-gradient(left, #7084e0, #ff2aed);
+}
+.clix-primary-button.button-charity:hover {
+  background-color: #5b72db;
+  background-image: -webkit-gradient(linear, left top, right top, from(#5b72db), to(#ff11eb));
+  background-image: -webkit-linear-gradient(left, #5b72db, #ff11eb);
+  background-image: -moz-linear-gradient(left, #5b72db, #ff11eb);
+  background-image: -ms-linear-gradient(left, #5b72db, #ff11eb);
+  background-image: -o-linear-gradient(left, #5b72db, #ff11eb);
+  text-decoration: none;
+}
+.clix-primary-button.circle-button {
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  width: 40px;
+  height: 40px;
+  padding: 10px 0;
+  font-size: 20px;
+  color: #FFF;
+}
 .clix-secondary-button {
   -webkit-border-radius: 100px;
   -moz-border-radius: 100px;
@@ -8364,7 +8405,7 @@ button.close {
   background-clip: padding-box;
   border: 1px solid #8a8a8a;
   font-family: 'cabinregular', sans-serif;
-  color: #FFF;
+  color: #8a8a8a;
   font-size: 11px;
   letter-spacing: 0.9px;
   text-transform: uppercase;
@@ -8375,6 +8416,7 @@ button.close {
 .clix-secondary-button:hover {
   text-decoration: none;
   border-color: #FFF;
+  color: #FFF;
 }
 .clix-tertiary-button {
   position: relative;
@@ -9568,6 +9610,9 @@ button.close {
   margin-top: 5px;
   display: block;
 }
+.charity-page {
+  padding-bottom: 100px;
+}
 .charity-page .banner-favorite-icon {
   font-size: 20px;
   position: relative;
@@ -9577,9 +9622,52 @@ button.close {
   position: relative;
   z-index: 2000;
   background-color: #0e0e0e;
-  padding-top: 13px;
+  padding-top: 30px;
   padding-left: 30px;
   padding-right: 30px;
+}
+.charity-page .nav-tabs {
+  border-bottom: 1px solid #636363 !important;
+}
+.charity-page .home-container .video-category-scroll-list {
+  margin-top: 45px;
+  padding-left: 0;
+}
+.charity-page .home-container .charity-description-container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+.charity-page .home-container .home-description {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-top: 27px;
+}
+.charity-page .home-container .star-logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+.charity-page .home-container .star-support-callout {
+  margin-bottom: 33px;
+}
+.charity-page .home-container .donate-button {
+  margin-top: 40px;
+  width: 150px;
+}
+.charity-page .home-container .home-footer-content {
+  margin-top: 47px;
+  border-top: 1px solid #636363;
 }
 .charities-page {
   padding: 120px 30px 100px 30px;
@@ -10179,6 +10267,13 @@ button.close {
 .clix-hero-banner .banner-logo-container img {
   max-width: 100%;
   max-height: 100%;
+}
+.clix-hero-banner .banner-logo-container.charity-logo {
+  background-image: -moz-radial-gradient(0 100%, circle, #03bcf2, #f700e6 70%);
+  background-image: -ms-radial-gradient(0 100%, circle, #03bcf2, #f700e6 70%);
+  background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(#03bcf2), to(#f700e6));
+  background-image: -webkit-radial-gradient(0 100%, circle, #03bcf2, #f700e6 70%);
+  background-image: -o-radial-gradient(0 100%, circle, #03bcf2, #f700e6 70%);
 }
 .clix-hero-banner .banner-title-content {
   margin-left: 27px;
@@ -10819,12 +10914,12 @@ button.close {
 .clix-landing-video-content .sidebar-content {
   margin-top: 25px;
 }
-.clix-content-callout:hover .header-overlay {
-  visibility: visible;
-}
 .clix-content-callout .header-callout-container {
   position: relative;
   padding-bottom: 100%;
+}
+.clix-content-callout .header-callout-container:hover .header-overlay {
+  visibility: visible;
 }
 .clix-content-callout .header-container {
   display: -webkit-flex;
@@ -10992,6 +11087,16 @@ button.close {
   background-color: #1f1f1f;
   overflow: hidden;
 }
+.clix-modal-window .clix-modal-header {
+  font-size: 13px;
+  font-family: 'cabinregular', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #bababa;
+  text-align: center;
+  padding: 27px;
+  border-bottom: 1px solid #636363;
+}
 .modal-clix-md {
   width: 100%;
   margin: 0;
@@ -11003,7 +11108,19 @@ button.close {
     width: 370px;
   }
 }
+.modal-clix-lg {
+  width: 100%;
+  margin: 0;
+}
+@media (min-width: 768px) {
+  .modal-clix-lg {
+    padding-bottom: 20px;
+    margin: 10px auto;
+    width: 707px;
+  }
+}
 .modal-backdrop {
+  position: fixed !important;
   bottom: 0;
   z-index: 8500 !important;
 }
@@ -11131,6 +11248,240 @@ button.close {
 .signup-modal input[type="submit"] {
   visibility: hidden;
   position: absolute;
+}
+.clix-donate-modal {
+  background-color: #292929;
+}
+.clix-donate-modal .stepper-container-container {
+  margin: 0 auto;
+  padding: 53px 0;
+  width: 316px;
+}
+.clix-donate-modal .stepper-container-container.buy-more-points-input-container {
+  padding-top: 39px;
+  padding-bottom: 39px;
+  width: 230px;
+}
+.clix-donate-modal .donate-stepper-label {
+  text-align: center;
+  color: #FFF;
+  font-size: 14px;
+  font-family: 'pt_sansregular', sans-serif;
+  margin-top: 11px;
+}
+.clix-donate-modal .buy-more-points-container {
+  border-bottom: 1px solid #636363;
+  border-top: 1px solid #636363;
+  background-color: #1f1f1f;
+  padding: 90px 0;
+  text-align: center;
+}
+.clix-donate-modal .buy-more-points-container.buy-more-points-credit-card {
+  padding: 45px 0;
+}
+.clix-donate-modal .buy-points-label {
+  font-family: 'pt_sansregular', sans-serif;
+  font-size: 27px;
+  color: #8a8a8a;
+  margin-bottom: 14px;
+}
+@media (min-width: 768px) {
+  .clix-donate-modal .buy-points-label {
+    font-family: 'pt_sansbold', sans-serif;
+    font-size: 30px;
+  }
+}
+.clix-donate-modal .donate-footer {
+  padding: 26px 0;
+}
+@media (min-width: 768px) {
+  .clix-donate-modal .donate-footer {
+    padding: 26px 0 26px 41px;
+  }
+}
+.clix-donate-modal .donate-footer-buttons {
+  margin-left: -13px;
+  margin-right: -13px;
+  margin-top: 50px;
+  padding-left: 13px;
+  padding-right: 13px;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .clix-donate-modal .donate-footer-buttons {
+    width: 475px;
+    margin-left: auto;
+    margin-right: 0;
+  }
+}
+.clix-donate-modal .donate-footer-buttons .donate-footer-button {
+  padding-left: 13px;
+  padding-right: 13px;
+}
+@media (min-width: 768px) {
+  .clix-donate-modal .donate-footer-buttons .donate-footer-button {
+    text-align: right;
+  }
+}
+.clix-donate-modal .donate-footer-buttons.buy-mobile-footer-buttons .donate-footer-button:first-child {
+  margin-bottom: 21px;
+}
+.clix-donate-modal .donate-footer-buttons.buy-mobile-footer-buttons .buy-mobile-footer-button {
+  display: inline-block;
+}
+.clix-donate-modal .donate-cancel-button {
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  border-radius: 100px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  padding: 10px 50px;
+  font-family: 'pt_sansregular', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.9px;
+  color: #8a8a8a;
+  text-transform: uppercase;
+  border: 1px solid #8a8a8a;
+  background-color: #1f1f1f;
+  cursor: pointer;
+  text-align: center;
+  display: block;
+}
+.clix-donate-modal .donate-cancel-button:hover {
+  text-decoration: none;
+  border-color: #FFF;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #FFF;
+}
+@media (min-width: 768px) {
+  .clix-donate-modal .donate-cancel-button {
+    display: inline-block;
+  }
+}
+.clix-donate-modal .buy-points-input-container {
+  border: 1px solid #686868;
+  background-color: #353535;
+  margin-left: 7px;
+  margin-right: 7px;
+}
+.clix-donate-modal .buy-points-input-container input {
+  font-family: 'cabinregular', sans-serif;
+  font-size: 45px;
+  text-align: center;
+  width: 100%;
+  letter-spacing: 1.4px;
+  color: #FFF;
+  background-color: rgba(0, 0, 0, 0);
+  border-width: 0;
+  padding: 0;
+  line-height: 45px;
+}
+.clix-donate-modal .buy-points-input-container input[type="number"]::-webkit-outer-spin-button,
+.clix-donate-modal .buy-points-input-container input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.clix-donate-modal .buy-points-input-container input[type="number"] {
+  -moz-appearance: textfield;
+}
+.clix-donate-modal .buy-points-input-container {
+  text-align: center;
+  color: #FFF;
+  font-family: 'cabinregular', sans-serif;
+  font-size: 45px;
+  margin-bottom: 20px;
+}
+.clix-donate-modal .buy-points-cents {
+  text-decoration: underline;
+  font-size: 24px;
+  position: relative;
+  top: -13px;
+  left: -5px;
+}
+.clix-donate-modal .buy-points-symbol {
+  padding: 0;
+  margin: 0;
+  text-align: right;
+  letter-spacing: -4px;
+}
+.clix-donate-modal .buy-points-input-label {
+  font-family: 'pt_sansregular', sans-serif;
+  font-size: 14px;
+  color: #8a8a8a;
+  text-align: center;
+}
+.clix-donate-modal .buy-points-input-label.buy-points-input-sublabel {
+  font-style: italic;
+}
+.clix-donate-modal .credit-card-form {
+  padding-left: 37px;
+  padding-right: 37px;
+}
+@media (min-width: 768px) {
+  .clix-donate-modal .credit-card-form {
+    padding-left: 63px;
+    padding-right: 63px;
+  }
+}
+.clix-donate-modal .credit-card-form .credit-card-label {
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #FFF;
+  font-family: 'pt_sansregular', sans-serif;
+  text-align: left;
+  margin-bottom: 5px;
+}
+.clix-donate-modal .credit-card-form .credit-card-label .lock-icon {
+  font-size: 16px;
+}
+.clix-donate-modal .credit-card-form .input-container-row {
+  margin-left: -20px;
+  margin-right: -20px;
+}
+@media (min-width: 768px) {
+  .clix-donate-modal .credit-card-form .input-container-row {
+    margin-bottom: 20px;
+  }
+}
+.clix-donate-modal .credit-card-form .input-container-row:last-child {
+  margin-bottom: 0;
+}
+.clix-donate-modal .credit-card-form .input-container {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 20px;
+}
+@media (min-width: 768px) {
+  .clix-donate-modal .credit-card-form .input-container {
+    margin-bottom: 0;
+  }
+}
+.clix-donate-modal .credit-card-form .input-container input {
+  width: 100%;
+  border: 1px solid #686868;
+  background-color: #353535;
+  font-family: 'pt_sansregular', sans-serif;
+  color: #FFF;
+  font-size: 16px;
+  padding: 8px 10px;
+}
+.clix-donate-modal .credit-card-form .input-container-label {
+  display: block;
+  font-size: 14px;
+  font-family: 'pt_sansregular', sans-serif;
+  color: #8a8a8a;
+  text-align: left;
+  margin-top: 3px;
+  position: relative;
+}
+.clix-donate-modal .credit-card-form .input-container-label .info-icon {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #cccccc;
+  font-size: 16px;
 }
 .clix-right-navigation {
   position: fixed;
@@ -11543,6 +11894,103 @@ button.close {
     padding-left: 53px;
     margin-left: 0;
     margin-right: 29px;
+  }
+}
+.clix-number-stepper {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+.clix-number-stepper .button-icon {
+  font-size: 20px;
+  color: #FFF;
+}
+.clix-number-stepper .value-container {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  border: 1px solid #686868;
+  background-color: #353535;
+  margin-left: 7px;
+  margin-right: 7px;
+}
+.clix-number-stepper .value-container input {
+  font-family: 'cabinregular', sans-serif;
+  font-size: 45px;
+  text-align: center;
+  width: 100%;
+  letter-spacing: 1.4px;
+  color: #FFF;
+  background-color: rgba(0, 0, 0, 0);
+  border-width: 0;
+  padding: 0;
+  line-height: 45px;
+}
+.clix-number-stepper .value-container input[type="number"]::-webkit-outer-spin-button,
+.clix-number-stepper .value-container input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.clix-number-stepper .value-container input[type="number"] {
+  -moz-appearance: textfield;
+}
+.clix-checkbox {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  cursor: pointer;
+}
+@media (min-width: 768px) {
+  .clix-checkbox {
+    -webkit-justify-content: flex-start;
+    -ms-justify-content: flex-start;
+    justify-content: flex-start;
+  }
+}
+.clix-checkbox .checkbox-container {
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  border-radius: 7px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  width: 25px;
+  height: 25px;
+  border: 2px solid #FFF;
+  text-align: center;
+  padding-top: 2px;
+}
+.clix-checkbox .checkbox-container .check-icon {
+  visibility: hidden;
+  color: #FFF;
+  font-size: 16px;
+}
+.clix-checkbox .checkbox-container.selected .check-icon {
+  visibility: visible;
+}
+.clix-checkbox .checkbox-label {
+  font-family: 'pt_sansregular', sans-serif;
+  color: #FFF;
+  font-size: 17px;
+  margin-left: 16px;
+}
+@media (min-width: 768px) {
+  .clix-checkbox .checkbox-label {
+    font-size: 14px;
   }
 }
 body {

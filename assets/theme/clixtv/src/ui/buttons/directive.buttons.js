@@ -6,7 +6,8 @@
             transclude: true,
             templateUrl: 'ui/buttons/view.primary-button.html',
             scope: {
-                type: '@?'
+                type: '@?',
+                circle: '@?'
             }
         }
     };

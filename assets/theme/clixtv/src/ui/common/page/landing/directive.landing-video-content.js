@@ -12,7 +12,9 @@
                 footerContent: 'footerContent'
             },
             scope: {
-                video: '=?'
+                video: '=?',
+                charity: '@?',
+                onPlayerReady: '=?'
             }
         }
     };

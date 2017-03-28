@@ -4,7 +4,10 @@
             return {
                 restrict: 'AE',
                 transclude: true,
-                templateUrl: 'ui/common/modal/view.modal.html'
+                templateUrl: 'ui/common/modal/view.modal.html',
+                scope: {
+                    modalTitle: '@?'
+                }
             }
         }
     ];

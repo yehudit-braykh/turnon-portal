@@ -9,7 +9,8 @@
             'slickCarousel',
             'ui.router',
             'duParallax',
-            'ui.bootstrap'
+            'ui.bootstrap',
+            'puElasticInput'
         ])
         .config([
             '$locationProvider',
@@ -129,7 +130,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/buttons/view.primary-button.html',
-    "<div class=clix-primary-button ng-class=\"{'button-facebook': type === 'facebook', 'button-google': type === 'google'}\"><div ng-transclude></div></div>"
+    "<div class=clix-primary-button ng-class=\"{'button-facebook': type === 'facebook', 'button-google': type === 'google', 'button-charity': type === 'charity', 'circle-button': circle === 'true'}\"><div ng-transclude></div></div>"
   );
 
 
@@ -164,7 +165,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/charity/view.charity.html',
-    "<div class=charity-page ng-if=configs><clix-hero-banner title-text={{configs.title}} button-text=\"{{'+ Favorites'}}\" subtext=\"{{'18 Offers'}}\" button-icon-class=\"{{'icon-favorite-icon banner-favorite-icon'}}\" background-image={{configs.backgroundImage}} background-image2x={{configs.backgroundImage2x}}><hero-banner-logo><img ng-src={{configs.logo}} ng-srcset=\"{{configs.logo2x}} 2x\"></hero-banner-logo></clix-hero-banner><div class=charity-page-content><div class=clix-tabs><uib-tabset active=active><uib-tab index=0 heading=Home>Static content</uib-tab><uib-tab index=1 heading=Donate>Static content</uib-tab><uib-tab index=2 heading=Stars>Static content</uib-tab><uib-tab index=3 heading=Videos>Static content</uib-tab></uib-tabset></div></div></div>"
+    "<div class=charity-page ng-if=configs><clix-hero-banner title-text={{configs.title}} button-text=\"{{'+ Favorites'}}\" subtext=\"{{'18 Videos'}}\" button-icon-class=\"{{'icon-favorite-icon banner-favorite-icon'}}\" background-image={{configs.backgroundImage}} background-image2x={{configs.backgroundImage2x}} charity=true><hero-banner-logo><img ng-src={{configs.logo}} ng-srcset=\"{{configs.logo2x}} 2x\"></hero-banner-logo></clix-hero-banner><div class=charity-page-content><div class=clix-tabs><uib-tabset active=active><uib-tab index=0 heading=Home><div class=home-container><clix-landing-video-content video=video charity=true><content-description><div class=charity-description-container><clix-secondary-header>About {{configs.title}}</clix-secondary-header><div class=home-description>{{configs.description}}</div><div class=donate-button><clix-primary-button type=charity ng-click=onDonatePress()>Donate</clix-primary-button></div></div></content-description><sidebar-title>Stars Who Support {{configs.title}}</sidebar-title><sidebar-content><div ng-repeat=\"celebrity in celebrities | limitTo: 3\"><div class=star-support-callout><clix-content-callout sref=\"star({ id: '{{celebrity._id}}' })\"><header-element><div class=star-logo style=\"background-image: url({{celebrity.BrandLogo.url}})\"></div></header-element><title-content>{{celebrity.title}}</title-content><subtitle-content>127 Videos</subtitle-content></clix-content-callout></div></div></sidebar-content><footer-content><div class=home-footer-content><div ng-repeat=\"celebrity in celebrities | limitTo: 3\"><clix-video-category-scroll-list category-title=\"{{celebrity.title}} and {{configs.title}}\" category-videos=relatedVideos></clix-video-category-scroll-list></div></div></footer-content></clix-landing-video-content></div></uib-tab><uib-tab index=1 heading=Donate>Static content</uib-tab><uib-tab index=2 heading=Stars>Static content</uib-tab><uib-tab index=3 heading=Videos>Static content</uib-tab></uib-tabset></div></div></div>"
   );
 
 
@@ -218,6 +219,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('ui/common/checkbox/view.checkbox.html',
+    "<div class=clix-checkbox ng-click=onToggle()><div class=checkbox-container ng-class=\"{'selected': selected}\"><i class=\"check-icon icon-checkmark-icon\"></i></div><div class=checkbox-label>{{labelText}}</div></div>"
+  );
+
+
   $templateCache.put('ui/common/container/view.content-callout-list.html',
     "<div class=\"row brands-list\"><div class=\"brand-outer-container col-xs-6 col-sm-4 col-md-3 col-lg-2\" ng-repeat=\"item in items\" clix-transclude-inject><div ng-transclude></div></div></div>"
   );
@@ -244,7 +250,12 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/hero-banner/view.hero-banner.html',
-    "<div class=clix-hero-banner><img class=hero-background-image ng-src={{backgroundImage}} alt=\"\" draggable=false du-parallax y=background><div class=hero-banner-overlay du-parallax y=background></div><div class=hero-banner-content-container><div class=hero-banner-content><div class=banner-logo-container><div ng-transclude=logo></div></div><div class=banner-title-content><div class=banner-title>{{titleText}}</div><div class=banner-button><clix-tertiary-button>{{buttonText}} <i class={{buttonIconClass}} ng-if=buttonIconClass></i></clix-tertiary-button><a href=# class=\"icon-share-icon banner-share-icon\"></a><div class=header-points-violator ng-if=points><clix-points-violator>{{points}}</clix-points-violator></div></div></div><div class=banner-subtext-container>{{subtext}}</div></div></div></div>"
+    "<div class=clix-hero-banner><img class=hero-background-image ng-src={{backgroundImage}} alt=\"\" draggable=false du-parallax y=background><div class=hero-banner-overlay du-parallax y=background></div><div class=hero-banner-content-container><div class=hero-banner-content><div class=banner-logo-container ng-class=\"{'charity-logo': charity}\"><div ng-transclude=logo></div></div><div class=banner-title-content><div class=banner-title>{{titleText}}</div><div class=banner-button><clix-tertiary-button>{{buttonText}} <i class={{buttonIconClass}} ng-if=buttonIconClass></i></clix-tertiary-button><a href=# class=\"icon-share-icon banner-share-icon\"></a><div class=header-points-violator ng-if=points><clix-points-violator>{{points}}</clix-points-violator></div></div></div><div class=banner-subtext-container>{{subtext}}</div></div></div></div>"
+  );
+
+
+  $templateCache.put('ui/common/modal/donate/view.donate.html',
+    "<clix-modal modal-title=\"{{state === 'buy' ? 'Buy Points' : 'Donate Points'}}\"><div class=clix-donate-modal><div class=stepper-container-container ng-class=\"{'buy-more-points-input-container': state === 'buy'}\"><div ng-show=\"state !== 'buy'\"><clix-number-stepper></clix-number-stepper><div class=donate-stepper-label>Available Cash Balance 1760 Points Balance</div></div><div ng-show=\"state === 'buy'\"><div class=buy-points-input-container ng-click=onBuyPointsContainerPress()><span class=buy-points-symbol>$ </span><input type=number id=buyPointsInput ng-model=buyPointsModel style=\"min-width: 35px; max-width: 200px\" pu-elastic-input> <span class=buy-points-cents>.00</span></div><div class=buy-points-input-label>Input amount to apply to points</div><div class=\"buy-points-input-label buy-points-input-sublabel\">Each dollar equals one point.</div></div></div><div class=buy-more-points-container ng-class=\"{'buy-more-points-credit-card': state === 'buy'}\"><div ng-show=\"state !== 'buy'\"><div class=buy-points-label>Want to buy more points?</div><clix-secondary-button ng-click=onBuyPointsPress()>Buy Points Here</clix-secondary-button></div><div ng-show=\"state === 'buy'\"><div class=credit-card-form><div class=credit-card-label>Credit Card <i class=\"lock-icon icon-icon-security-lock\"></i></div><div class=\"input-container-row row\"><div class=\"input-container col-sm-6\"><input type=text> <span class=input-container-label>Credit card number</span></div><div class=\"input-container col-xs-5 col-sm-3\"><input type=text> <span class=input-container-label>CCV <i class=\"info-icon icon-info-icon\"></i></span></div><div class=\"input-container col-xs-5 col-sm-3\"><input type=text> <span class=input-container-label>Expiration date</span></div></div><div class=\"input-container-row row\"><div class=\"input-container col-sm-8\"><input type=text> <span class=input-container-label>Name (As shown on card)</span></div><div class=\"input-container col-xs-6 col-sm-4\"><input type=text> <span class=input-container-label>Zip/Postal code</span></div></div></div></div></div><div class=donate-footer><clix-checkbox label-text=\"I accept the Terms and Conditions\"></clix-checkbox><div class=\"row donate-footer-buttons hidden-xs hidden-sm\" ng-show=\"state === 'buy'\"><div class=\"col-sm-6 donate-footer-button\"><a ng-click=onBackPress() class=donate-cancel-button>Back</a></div><div class=\"col-sm-6 donate-footer-button\"><clix-primary-button ng-click=onDonatePress()>Complete Purchase</clix-primary-button></div></div><div class=\"row donate-footer-buttons buy-mobile-footer-buttons visible-sm visible-xs\" ng-show=\"state === 'buy'\"><div class=\"col-sm-6 donate-footer-button\"><div class=buy-mobile-footer-button><clix-primary-button ng-click=onDonatePress()>Complete Purchase</clix-primary-button></div></div><div class=\"col-sm-6 donate-footer-button\"><div class=buy-mobile-footer-button><a ng-click=onBackPress() class=donate-cancel-button>Back</a></div></div></div><div class=\"row donate-footer-buttons\" ng-show=\"state !== 'buy'\"><div class=\"col-xs-6 donate-footer-button\"><a ng-click=onCancelPress() class=donate-cancel-button>Cancel</a></div><div class=\"col-xs-6 donate-footer-button\"><clix-primary-button ng-click=onDonatePress()>Donate Now</clix-primary-button></div></div></div></div></clix-modal>"
   );
 
 
@@ -254,12 +265,12 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/modal/view.modal.html',
-    "<div class=clix-modal><div ng-transclude></div></div>"
+    "<div class=clix-modal><div class=clix-modal-header ng-show=modalTitle>{{modalTitle}}</div><div ng-transclude></div></div>"
   );
 
 
   $templateCache.put('ui/common/navigation/view.mobile-navigation.html',
-    "<div class=\"clix-mobile-navigation visible-sm visible-xs\"><div class=mobile-navigation-container><a ui-sref=home class=mobile-navigation-item><div class=\"navigation-icon icon-search-icon\"></div>Home </a><a ui-sref=categories class=mobile-navigation-item><div class=\"navigation-icon icon-search-icon\"></div>Categories </a><a ui-sref=stars class=mobile-navigation-item><div class=\"navigation-icon icon-search-icon\"></div>Stars </a><a ui-sref=brands class=mobile-navigation-item><div class=\"navigation-icon icon-search-icon\"></div>Brands </a><a ui-sref=charities class=mobile-navigation-item><div class=\"navigation-icon icon-search-icon\"></div>Charities </a><a ng-click=onSearchPress class=mobile-navigation-item><div class=\"navigation-icon icon-search-icon\"></div>Search</a></div></div>"
+    "<div class=\"clix-mobile-navigation visible-sm visible-xs\"><div class=mobile-navigation-container><a ui-sref=home class=mobile-navigation-item><div class=\"navigation-icon icon-home-icon-bottom-nav\"></div>Home </a><a ui-sref=categories class=mobile-navigation-item><div class=\"navigation-icon icon-categories-icon-bottom-nav\"></div>Categories </a><a ui-sref=stars class=mobile-navigation-item><div class=\"navigation-icon icon-star-icon-bottom-nav\"></div>Stars </a><a ui-sref=brands class=mobile-navigation-item><div class=\"navigation-icon icon-brands-icon-bottom-nav\"></div>Brands </a><a ui-sref=charities class=mobile-navigation-item><div class=\"navigation-icon icon-charities-icon-bottom-nav\"></div>Charities </a><a ng-click=onSearchPress class=mobile-navigation-item><div class=\"navigation-icon icon-search-icon-bottom-nav\"></div>Search</a></div></div>"
   );
 
 
@@ -274,7 +285,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/page/landing/view.landing-video-content.html',
-    "<div class=clix-landing-video-content><div class=row><div class=\"col-md-9 video-content-container\"><div class=row><div class=\"col-sm-7 about-landing-video\"><div ng-show=video><div id=videoPlayer></div><clix-video-player ng-if=video video=video auto-play=false video-id=videoPlayer on-ready=onPlayerReady></clix-video-player><div class=video-violator><clix-violator>100 Reward Points</clix-violator></div></div><div ng-transclude=mainContent></div></div><div class=\"col-sm-5 about-landing-content\"><div class=landing-description><div ng-transclude=contentDescription></div></div><div class=share-container><a href=# class=\"icon-share-icon landing-share-icon\"></a><div class=content-points-validator><clix-points-violator>50</clix-points-violator></div></div></div></div><div class=landing-footer-content><div ng-transclude=footerContent></div></div></div><div class=\"col-md-3 video-sidebar-container\"><div class=sidebar-container><div class=sidebar-title><div ng-transclude=sidebarTitle></div></div><div class=sidebar-content><div ng-transclude=sidebarContent></div></div></div></div></div></div>"
+    "<div class=clix-landing-video-content><div class=row><div class=\"col-md-9 video-content-container\"><div class=row><div class=\"col-sm-7 about-landing-video\"><div ng-show=video><div id=videoPlayer></div><clix-video-player ng-if=video video=video auto-play=false video-id=videoPlayer on-ready=onPlayerReady></clix-video-player><div class=video-violator ng-show=!charity><clix-violator>100 Reward Points</clix-violator></div></div><div ng-transclude=mainContent></div></div><div class=\"col-sm-5 about-landing-content\"><div class=landing-description><div ng-transclude=contentDescription></div></div><div class=share-container ng-show=!charity><a href=# class=\"icon-share-icon landing-share-icon\"></a><div class=content-points-validator><clix-points-violator>50</clix-points-violator></div></div></div></div><div class=landing-footer-content><div ng-transclude=footerContent></div></div></div><div class=\"col-md-3 video-sidebar-container\"><div class=sidebar-container><div class=sidebar-title><div ng-transclude=sidebarTitle></div></div><div class=sidebar-content><div ng-transclude=sidebarContent></div></div></div></div></div></div>"
   );
 
 
@@ -295,6 +306,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('ui/common/search/view.search-filter.html',
     "<div class=clix-search-filter><div class=row><div class=col-sm-7><div class=search-bar-container><div class=search-bar><i class=\"search-icon icon-search-icon\"></i> <input type=text class=search-input placeholder={{searchPlaceholder}}></div></div></div><div class=col-sm-5><div class=filters-container><div class=filter-bar><clix-dropdown options=filterOptions></clix-dropdown></div><div class=filter-bar><clix-dropdown options=sortOptions></clix-dropdown></div></div></div></div></div>"
+  );
+
+
+  $templateCache.put('ui/common/stepper/view.number-stepper.html',
+    "<div class=clix-number-stepper><clix-primary-button circle=true ng-click=onMinusPress()><i class=\"button-icon icon-redeem-minus-icon\"></i></clix-primary-button><div class=value-container><input type=text ng-model=priceDisplay ng-change=onPriceChange() ng-blur=onPriceBlur()></div><clix-primary-button circle=true ng-click=onPlusPress()><i class=\"button-icon icon-redeem-plus-icon\"></i></clix-primary-button></div>"
   );
 
 
@@ -624,7 +640,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             transclude: true,
             templateUrl: 'ui/buttons/view.primary-button.html',
             scope: {
-                type: '@?'
+                type: '@?',
+                circle: '@?'
             }
         }
     };
@@ -883,22 +900,58 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
     var CharityController = [
         '$q',
         '$scope',
+        '$uibModal',
         '$stateParams',
         'brandsService',
-        function($q, $scope, $stateParams, brandsService) {
+        function($q, $scope, $uibModal, $stateParams, brandsService) {
 
             brandsService.getCharityById($stateParams.id)
                 .then(
                     function onSuccess(data) {
-                        console.log(data);
+                        $scope.video = data;
                         $scope.configs = {
                             title: data.title,
+                            description: data.description,
                             backgroundImage: '/assets/theme/clixtv/dist/images/nike-header.jpg',
                             backgroundImage2x: '/assets/theme/clixtv/dist/images/nike-header@2x.jpg',
                             logo: data.BrandTransparentLogo.url
-                        }
+                        };
+
+                        return $q.all(
+                            [
+                                brandsService.getCelebritiesByBrandId(data._id),
+                                brandsService.getVideosByBrandId(data._id)
+                            ]
+                        )
                     }
                 )
+                .then(
+                    function onSuccess(data) {
+                        console.log(data);
+                        $scope.celebrities = data[0];
+                        $scope.videos = data[1];
+                        $scope.relatedVideos = data[1];
+                    }
+                );
+
+            $scope.onDonatePress = function() {
+                var modalInstance = $uibModal.open({
+                    animation: true,
+                    templateUrl: 'ui/common/modal/donate/view.donate.html',
+                    controller: 'DonateController',
+                    windowClass: 'clix-modal-window',
+                    size: 'clix-lg'
+                });
+
+                modalInstance.result.then(
+                    function onSuccess(data) {
+
+                    },
+                    function onError(error) {
+
+                    }
+                )
+            }
 
         }
     ];
@@ -1201,6 +1254,30 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 }());
 (function() {
 
+    var checkbox = function() {
+        return {
+            restrict: 'AE',
+            replace: true,
+            templateUrl: 'ui/common/checkbox/view.checkbox.html',
+            scope: {
+                labelText: '@'
+            },
+            link: function(scope) {
+
+                scope.selected = true;
+
+                scope.onToggle = function() {
+                    scope.selected = !scope.selected;
+                }
+            }
+        }
+    };
+
+    angular.module('clixtv')
+        .directive('clixCheckbox', checkbox);
+}());
+(function() {
+
     var ContentCalloutController = [
         '$q',
         '$scope',
@@ -1362,7 +1439,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 subtext: '@?',
                 buttonIconClass: '@?',
                 backgroundImage: '@',
-                backgroundImage2x: '@?'
+                backgroundImage2x: '@?',
+                charity: '@?'
             }
         }
     };
@@ -1376,13 +1454,55 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             return {
                 restrict: 'AE',
                 transclude: true,
-                templateUrl: 'ui/common/modal/view.modal.html'
+                templateUrl: 'ui/common/modal/view.modal.html',
+                scope: {
+                    modalTitle: '@?'
+                }
             }
         }
     ];
 
     angular.module('clixtv')
         .directive('clixModal', modal);
+}());
+(function() {
+
+    var DonateController = [
+        '$scope',
+        '$uibModalInstance',
+        function($scope, $uibModalInstance) {
+
+            $scope.buyPointsModel = 0;
+
+            $scope.onBuyPointsPress = function() {
+                $scope.state = 'buy';
+            };
+
+            $scope.onCancelPress = function() {
+                $uibModalInstance.close();
+            };
+
+            $scope.onDonatePress = function() {
+                // todo - API call...
+                $uibModalInstance.close();
+            };
+
+            $scope.onBackPress = function() {
+                $scope.state = 'donate';
+            };
+
+            $scope.onBuyPointsContainerPress = function() {
+                var element = document.getElementById('buyPointsInput');
+                element.focus();
+                element.select();
+            };
+
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .controller('DonateController', DonateController);
 }());
 (function() {
 
@@ -1624,7 +1744,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 footerContent: 'footerContent'
             },
             scope: {
-                video: '=?'
+                video: '=?',
+                charity: '@?',
+                onPlayerReady: '=?'
             }
         }
     };
@@ -1677,6 +1799,57 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     angular.module('clixtv')
         .directive('clixSearchFilter', searchFilter);
+}());
+(function() {
+
+    var numberStepper = function() {
+        return {
+            restrict: 'AE',
+            replace: true,
+            templateUrl: 'ui/common/stepper/view.number-stepper.html',
+            scope: {
+
+            },
+            link: function(scope) {
+
+                var incrementValue = .10;
+
+                scope.currentValue = 17.60;
+                scope.priceDisplay = '';
+
+                function _updatePriceDisplay() {
+                    var value = scope.currentValue;
+                    if (isNaN(value)) {
+                        value = 0;
+                    }
+                    scope.priceDisplay = '$' + value.toFixed(2);
+                }
+
+                scope.onMinusPress = function() {
+                    scope.currentValue -= incrementValue;
+                    _updatePriceDisplay();
+                };
+
+                scope.onPlusPress = function() {
+                    scope.currentValue += incrementValue;
+                    _updatePriceDisplay();
+                };
+
+                scope.onPriceChange = function() {
+                    scope.currentValue = parseFloat(scope.priceDisplay.replace(/[^0-9.]/g, ''));
+                };
+
+                scope.onPriceBlur = function() {
+                    _updatePriceDisplay();
+                };
+
+                _updatePriceDisplay();
+            }
+        }
+    };
+
+    angular.module('clixtv')
+        .directive('clixNumberStepper', numberStepper);
 }());
 (function() {
 
@@ -2139,6 +2312,27 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     angular.module('clixtv')
         .directive('clixClickAnywhereElse', clickAnywhereElse);
+}());
+(function() {
+    var currencyInput = [
+        function() {
+            return {
+                restrict: 'A',
+                require: 'ngModel',
+                link: function(elem, scope, attrs, ngModel) {
+                    ngModel.$formatters.push(function(val){
+                        return '$' + val
+                    });
+                    ngModel.$parsers.push(function(val){
+                        return val.replace(/[$,]/g, '')
+                    });
+                }
+            }
+        }
+    ];
+
+    angular.module('clixtv')
+        .directive('clixCurrencyInput', currencyInput);
 }());
 (function() {
     var onImageLoad = [

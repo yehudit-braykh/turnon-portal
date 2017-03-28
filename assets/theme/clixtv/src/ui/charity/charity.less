@@ -1,4 +1,7 @@
 .charity-page {
+
+    padding-bottom: 100px;
+
     .banner-favorite-icon {
         font-size: 20px;
         position: relative;
@@ -8,8 +11,54 @@
         position: relative;
         z-index: 2000;
         background-color: @color-darker-gray;
-        padding-top: 13px;
+        padding-top: 30px;
         padding-left: 30px;
         padding-right: 30px;
+    }
+
+    .nav-tabs {
+        border-bottom: 1px solid @color-gray3 !important;
+    }
+
+    .home-container {
+        .video-category-scroll-list {
+            margin-top: 45px;
+            padding-left: 0;
+        }
+
+        .charity-description-container {
+            .flex-display;
+            .flex-direction(column);
+        }
+
+        .home-description {
+            .flex(1);
+            margin-top: 27px;
+        }
+
+        .star-logo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+        }
+
+        .star-support-callout {
+            margin-bottom: 33px;
+        }
+
+        .donate-button {
+            margin-top: 40px;
+            width: 150px;
+        }
+
+        .home-footer-content {
+            margin-top: 47px;
+            border-top: 1px solid @color-gray3;
+        }
     }
 }

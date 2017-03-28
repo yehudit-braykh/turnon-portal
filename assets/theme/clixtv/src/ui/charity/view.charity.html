@@ -2,10 +2,11 @@
     <clix-hero-banner
             title-text="{{configs.title}}"
             button-text="{{'+ Favorites'}}"
-            subtext="{{'18 Offers'}}"
+            subtext="{{'18 Videos'}}"
             button-icon-class="{{'icon-favorite-icon banner-favorite-icon'}}"
             background-image="{{configs.backgroundImage}}"
             background-image2x="{{configs.backgroundImage2x}}"
+            charity="true"
     >
         <hero-banner-logo>
             <img ng-src="{{configs.logo}}" ng-srcset="{{configs.logo2x}} 2x" />
@@ -14,7 +15,56 @@
     <div class="charity-page-content">
         <div class="clix-tabs">
             <uib-tabset active="active">
-                <uib-tab index="0" heading="Home">Static content</uib-tab>
+                <uib-tab index="0" heading="Home">
+
+                    <div class="home-container">
+                        <clix-landing-video-content video="video" charity="true">
+                            <content-description>
+                                <div class="charity-description-container">
+                                    <clix-secondary-header>
+                                        About {{configs.title}}
+                                    </clix-secondary-header>
+                                    <div class="home-description">
+                                        {{configs.description}}
+                                    </div>
+                                    <div class="donate-button">
+                                        <clix-primary-button type="charity" ng-click="onDonatePress()">
+                                            Donate
+                                        </clix-primary-button>
+                                    </div>
+                                </div>
+                            </content-description>
+                            <sidebar-title>
+                                Stars Who Support {{configs.title}}
+                            </sidebar-title>
+                            <sidebar-content>
+                                <div ng-repeat="celebrity in celebrities | limitTo: 3">
+                                    <div class="star-support-callout">
+                                        <clix-content-callout sref="star({ id: '{{celebrity._id}}' })">
+                                            <header-element>
+                                                <div class="star-logo" style="background-image: url({{celebrity.BrandLogo.url}})"></div>
+                                            </header-element>
+                                            <title-content>
+                                                {{celebrity.title}}
+                                            </title-content>
+                                            <subtitle-content>
+                                                127 Videos
+                                            </subtitle-content>
+                                        </clix-content-callout>
+                                    </div>
+                                </div>
+                            </sidebar-content>
+                            <footer-content>
+                                <div class="home-footer-content">
+                                    <div ng-repeat="celebrity in celebrities | limitTo: 3">
+                                        <clix-video-category-scroll-list category-title="{{celebrity.title}} and {{configs.title}}" category-videos="relatedVideos"></clix-video-category-scroll-list>
+                                    </div>
+                                </div>
+                            </footer-content>
+                        </clix-landing-video-content>
+                    </div>
+
+                </uib-tab>
                 <uib-tab index="1" heading="Donate">Static content</uib-tab>
                 <uib-tab index="2" heading="Stars">Static content</uib-tab>
                 <uib-tab index="3" heading="Videos">Static content</uib-tab>

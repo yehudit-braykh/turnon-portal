@@ -23,7 +23,7 @@
     color: @color-white;
     text-transform: uppercase;
     letter-spacing: 0.9px;
-    padding: 10px 46px;
+    padding: 11px 35px;
     text-align: center;
     cursor: pointer;
 
@@ -47,24 +47,42 @@
             text-decoration: none;
         }
     }
+
+    &.button-charity {
+        .horizontal-gradient(@color-charity-start2, @color-charity-end2);
+        &:hover {
+            .horizontal-gradient(darken(@color-charity-start2, 5%), darken(@color-charity-end2, 5%));
+            text-decoration: none;
+        }
+    }
+
+    &.circle-button {
+        .border-radius(20px);
+        width: 40px;
+        height: 40px;
+        padding: 10px 0;
+        font-size: 20px;
+        color: @color-white;
+    }
 }
 
 .clix-secondary-button {
     .border-radius(100px);
     border: 1px solid @color-gray2;
     font-family: @font-secondary;
-    color: @color-white;
+    color: @color-gray2;
     font-size: 11px;
     letter-spacing: 0.9px;
     text-transform: uppercase;
     display: inline-block;
     padding: 12px 50px;
     cursor: pointer;
-}
 
-.clix-secondary-button:hover {
-    text-decoration: none;
-    border-color: @color-white;
+    &:hover {
+        text-decoration: none;
+        border-color: @color-white;
+        color: @color-white;
+    }
 }
 
 .clix-tertiary-button {
