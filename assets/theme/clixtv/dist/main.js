@@ -258,6 +258,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('ui/common/navigation/view.mobile-navigation.html',
+    "<div class=\"clix-mobile-navigation visible-sm visible-xs\"><div class=mobile-navigation-container><a ui-sref=home class=mobile-navigation-item><div class=\"navigation-icon icon-search-icon\"></div>Home </a><a ui-sref=categories class=mobile-navigation-item><div class=\"navigation-icon icon-search-icon\"></div>Categories </a><a ui-sref=stars class=mobile-navigation-item><div class=\"navigation-icon icon-search-icon\"></div>Stars </a><a ui-sref=brands class=mobile-navigation-item><div class=\"navigation-icon icon-search-icon\"></div>Brands </a><a ui-sref=charities class=mobile-navigation-item><div class=\"navigation-icon icon-search-icon\"></div>Charities </a><a ng-click=onSearchPress class=mobile-navigation-item><div class=\"navigation-icon icon-search-icon\"></div>Search</a></div></div>"
+  );
+
+
   $templateCache.put('ui/common/navigation/view.navigation-bar.html',
     "<div class=clix-navigation-bar><div class=\"avatar-container empty-avatar\"><div ng-if=loggedInUser.avatar><div class=avatar-background-image style=\"background-image: url('{{loggedInUser.avatar}}')\"></div><div class=avatar-image style=\"background-image: url('{{loggedInUser.avatar}}')\"></div></div><div ng-if=!loggedInUser.avatar><div class=avatar-background></div><div class=avatar-image style=\"background-image: url('assets/theme/clixtv/dist/images/empty-profile-picture.png')\"></div></div></div><nav class=navigation-list><a ng-click=\"onItemSelect('overview')\" class=navigation-list-item ng-class=\"{'active-item': activeItem === 'overview'}\"><div class=navigation-list-icon><i class=icon-account-icon></i></div><div class=navigation-list-label>Account</div></a><a ng-click=\"onItemSelect('watchlist')\" class=navigation-list-item ng-class=\"{'active-item': activeItem === 'watchlist'}\"><div class=navigation-list-icon><i class=icon-plus-icon></i></div><div class=navigation-list-label>Watchlist</div></a><a ng-click=\"onItemSelect('favorites')\" class=navigation-list-item ng-class=\"{'active-item': activeItem === 'favorites'}\"><div class=navigation-list-icon><i class=icon-favorite-icon></i></div><div class=navigation-list-label>Favorites</div></a><a ng-click=\"onItemSelect('saved-offers')\" class=navigation-list-item ng-class=\"{'active-item': activeItem === 'saved-offers'}\"><div class=navigation-list-icon><i class=icon-offers-icon></i></div><div class=navigation-list-label>Saved Offers</div></a><a ng-click=\"onItemSelect('rewards')\" class=navigation-list-item ng-class=\"{'active-item': activeItem === 'rewards'}\"><div class=navigation-list-icon><i class=icon-rewards-icon-left-nav></i></div><div class=navigation-list-label>Rewards</div></a><a ng-click=\"onItemSelect('notifications')\" class=navigation-list-item ng-class=\"{'active-item': activeItem === 'notifications'}\"><div class=navigation-list-icon><i class=icon-notifications-icon-left-nav></i></div><div class=navigation-list-label>Notifications</div></a><a ng-click=\"onItemSelect('settings')\" class=navigation-list-item ng-class=\"{'active-item': activeItem === 'settings'}\"><div class=navigation-list-icon><i class=icon-settings-icon-left-nav></i></div><div class=navigation-list-label>Settings</div></a></nav></div>"
   );
@@ -1529,6 +1534,21 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         .controller('RightNavigationController', RightNavigationController);
 }());
 (function() {
+    var mobileNavigation = function() {
+        return {
+            restrict: 'AE',
+            templateUrl: 'ui/common/navigation/view.mobile-navigation.html',
+            controller: 'NavigationBarController',
+            scope: {
+
+            }
+        }
+    };
+
+    angular.module('clixtv')
+        .directive('clixMobileNavigation', mobileNavigation);
+}());
+(function() {
     var navigationBar = function() {
         return {
             restrict: 'AE',
@@ -2108,9 +2128,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         }
                     };
 
-                    $document.on('click touch', handler);
+                    $document.on('click', handler);
                     scope.$on('$destroy', function() {
-                        $document.off('click touch', handler);
+                        $document.off('click', handler);
                     });
                 }
             }

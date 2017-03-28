@@ -129,6 +129,8 @@
 
         <clix-footer></clix-footer>
 
+        <clix-mobile-navigation></clix-mobile-navigation>
+
 <!--    <footer ng-include="'/assets/theme/clixtv/html/components/footer.html'"></footer>-->
 
 <!--        <script src="--><?php //echo asset_url(); ?><!--js/angular.min.js"></script>-->

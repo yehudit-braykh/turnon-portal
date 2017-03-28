@@ -1,0 +1,33 @@
+.clix-mobile-navigation {
+    position: fixed;
+    background-color: @color-black;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 4000;
+    height: 47px;
+
+    .mobile-navigation-container {
+        .flex-display;
+        .align-items(center);
+        .justify-content(center);
+        height: 100%;
+    }
+
+    .mobile-navigation-item {
+        .flex(1);
+        color: @color-white;
+        text-align: center;
+        font-family: @font-secondary;
+        text-transform: uppercase;
+        font-size: 7px;
+        letter-spacing: 0.8px;
+        text-decoration: none;
+    }
+
+    .navigation-icon {
+        font-size: 18px;
+        height: 18px;
+        margin-bottom: 3px;
+    }
+}

@@ -14,9 +14,9 @@
                         }
                     };
 
-                    $document.on('click touch', handler);
+                    $document.on('click', handler);
                     scope.$on('$destroy', function() {
-                        $document.off('click touch', handler);
+                        $document.off('click', handler);
                     });
                 }
             }
