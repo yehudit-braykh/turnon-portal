@@ -7716,6 +7716,8 @@ button.close {
   background-color: rgba(0, 0, 0, 0);
   border-width: 0;
   color: #FFF;
+  font-family: 'pt_sansregular', sans-serif;
+  font-size: 14px;
 }
 .clix-header .search-bar-background input::placeholder {
   color: #bababa;
@@ -8773,6 +8775,9 @@ button.close {
 .home-page .main-video-container video {
   width: 100%;
 }
+.home-page .main-video-container:hover .slick-arrow {
+  display: block;
+}
 .home-page .video-overlay {
   background: url('images/video-overlay.png') repeat;
   position: absolute;
@@ -8869,6 +8874,7 @@ button.close {
   position: absolute;
   top: 50%;
   z-index: 3000;
+  display: none;
 }
 .home-page #main-carousel-next {
   right: 0;
