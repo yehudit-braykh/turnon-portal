@@ -136,6 +136,7 @@ class Hybrid_Provider_Adapter {
 			$HYBRID_AUTH_URL_BASE = $url;
 		} else {
 			$HYBRID_AUTH_URL_BASE = Hybrid_Auth::$config["base_url"];
+
 		}
 
 		// make sure params is array
@@ -153,11 +154,26 @@ class Hybrid_Provider_Adapter {
 		# for default HybridAuth endpoint url hauth_login_start_url
 		# 	auth.start  required  the IDp ID
 		# 	auth.time   optional  login request timestamp
-		$this->params["login_start"] = $HYBRID_AUTH_URL_BASE . ( strpos($HYBRID_AUTH_URL_BASE, '?') ? '&' : '?' ) . "hauth.start={$this->id}&hauth.time={$this->params["hauth_time"]}";
+		if (!isset($this->params["login_start"]) ) {
+			$this->params["login_start"] = $HYBRID_AUTH_URL_BASE . ( strpos($HYBRID_AUTH_URL_BASE, '?') ? '&' : '?' ) . "hauth.start={$this->id}&hauth.time={$this->params["hauth_time"]}";
+		}
 
 		# for default HybridAuth endpoint url hauth_login_done_url
 		# 	auth.done   required  the IDp ID
-		$this->params["login_done"] = $HYBRID_AUTH_URL_BASE . ( strpos($HYBRID_AUTH_URL_BASE, '?') ? '&' : '?' ) . "hauth.done={$this->id}";
+		if (!isset($this->params["login_done"]) ) {
+			$this->params["login_done"] = $HYBRID_AUTH_URL_BASE . ( strpos($HYBRID_AUTH_URL_BASE, '?') ? '&' : '?' ) . "hauth.done={$this->id}";
+		}
+
+		# workaround to solve windows live authentication since microsoft disallowed redirect urls to contain any parameters
+		# http://mywebsite.com/path_to_hybridauth/?hauth.done=Live will not work
+		if ($this->id=="Live") {
+			$this->params["login_done"] = $HYBRID_AUTH_URL_BASE."live.php";
+		}
+
+		# Workaround to fix broken callback urls for the Facebook OAuth client
+		if ($this->adapter->useSafeUrls) {
+				$this->params['login_done'] = str_replace('hauth.done', 'hauth_done', $this->params['login_done']);
+		}
 
 		if (isset($this->params["hauth_return_to"])) {
 			Hybrid_Auth::storage()->set("hauth_session.{$this->id}.hauth_return_to", $this->params["hauth_return_to"]);
@@ -175,7 +191,7 @@ class Hybrid_Provider_Adapter {
 
 		// redirect
 		if (empty($this->params["redirect_mode"])) {
-			Hybrid_Auth::redirect($this->params["login_start"]);	
+			Hybrid_Auth::redirect($this->params["login_start"]);
 		} else {
 			Hybrid_Auth::redirect($this->params["login_start"],$this->params["redirect_mode"]);
 		}
@@ -224,14 +240,7 @@ class Hybrid_Provider_Adapter {
 			throw new Exception("Call to undefined function Hybrid_Providers_{$this->id}::$name().");
 		}
 
-		$counter = count($arguments);
-		if ($counter == 1) {
-			return $this->adapter->$name($arguments[0]);
-		} elseif ($counter == 2) {
-			return $this->adapter->$name($arguments[0], $arguments[1]);
-		} else {
-			return $this->adapter->$name();
-		}
+    return call_user_func_array(array($this->adapter, $name), $arguments);
 	}
 
 	/**
