@@ -23,10 +23,23 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-sm-9">
+            <div class="col-sm-9 category-content">
 
                 <div class="category-filter-bar">
-                    
+                    <div class="category-filter-container row">
+                        <div class="filter-container col-xs-6">
+                            <clix-dropdown options="filterOptions"></clix-dropdown>
+                        </div>
+                        <div class="filter-container col-xs-6">
+                            <clix-dropdown options="sortOptions"></clix-dropdown>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row clix-block-row">
+                    <div class="clix-block-item col-xs-12 col-sm-12 col-lg-3" ng-repeat="video in videos" ng-if="videos">
+                        <clix-video-content-box video="video"></clix-video-content-box>
+                    </div>
                 </div>
 
             </div>

@@ -9799,6 +9799,29 @@ button.close {
   text-transform: uppercase;
   padding: 6px 0;
 }
+.clix-category-page .category-content {
+  padding-right: 0;
+}
+.clix-category-page .category-filter-bar {
+  padding-bottom: 16px;
+  border-bottom: 1px solid #636363;
+}
+.clix-category-page .category-filter-container {
+  width: 500px;
+  margin-right: 0;
+  margin-left: auto;
+}
+.clix-category-page .filter-container:first-child {
+  padding-right: 20px;
+  padding-left: 0;
+}
+.clix-category-page .filter-container:last-child {
+  padding-left: 20px;
+  padding-right: 0;
+}
+.clix-category-page .clix-block-row {
+  padding-top: 41px;
+}
 .clix-offer-page .main-page-content {
   position: relative;
   z-index: 2000;

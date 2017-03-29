@@ -150,7 +150,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/categories/view.category.html',
-    "<div class=clix-category-page ng-if=configs><clix-hero-banner title-text={{configs.title}} button-text=\"{{'+ Favorites'}}\" subtext=\"{{'217 Videos'}}\" button-icon-class=\"{{'icon-favorite-icon banner-favorite-icon'}}\" background-image={{configs.backgroundImage}} background-image2x={{configs.backgroundImage2x}} shareable=false></clix-hero-banner><div class=category-page-container><div class=\"row category-page-content\"><div class=\"col-sm-3 category-list-container\"><div class=category-list-title>More Categories</div><ul class=category-list><li ng-repeat=\"relatedCategory in categories\" class=category-list-item ng-class=\"{'active-category': relatedCategory.title === category.title}\"><a ui-sref=\"category({ slug: '{{relatedCategory.title | slug}}' })\">{{relatedCategory.title}}</a></li></ul></div><div class=col-sm-9><div class=category-filter-bar></div></div></div></div></div>"
+    "<div class=clix-category-page ng-if=configs><clix-hero-banner title-text={{configs.title}} button-text=\"{{'+ Favorites'}}\" subtext=\"{{'217 Videos'}}\" button-icon-class=\"{{'icon-favorite-icon banner-favorite-icon'}}\" background-image={{configs.backgroundImage}} background-image2x={{configs.backgroundImage2x}} shareable=false></clix-hero-banner><div class=category-page-container><div class=\"row category-page-content\"><div class=\"col-sm-3 category-list-container\"><div class=category-list-title>More Categories</div><ul class=category-list><li ng-repeat=\"relatedCategory in categories\" class=category-list-item ng-class=\"{'active-category': relatedCategory.title === category.title}\"><a ui-sref=\"category({ slug: '{{relatedCategory.title | slug}}' })\">{{relatedCategory.title}}</a></li></ul></div><div class=\"col-sm-9 category-content\"><div class=category-filter-bar><div class=\"category-filter-container row\"><div class=\"filter-container col-xs-6\"><clix-dropdown options=filterOptions></clix-dropdown></div><div class=\"filter-container col-xs-6\"><clix-dropdown options=sortOptions></clix-dropdown></div></div></div><div class=\"row clix-block-row\"><div class=\"clix-block-item col-xs-12 col-sm-12 col-lg-3\" ng-repeat=\"video in videos\" ng-if=videos><clix-video-content-box video=video></clix-video-content-box></div></div></div></div></div></div>"
   );
 
 
@@ -755,11 +755,37 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         'categoryService',
         function($q, $scope, $stateParams, categoryService) {
 
+            $scope.filterOptions = [
+                {
+                    label: 'All'
+                },
+                {
+                    label: 'Home & Auto'
+                },
+                {
+                    label: 'Baby, Kids & Toys'
+                },
+                {
+                    label: 'Electronics'
+                }
+            ];
+
+            $scope.sortOptions = [
+                {
+                    label: 'Expiring Soon'
+                },
+                {
+                    label: 'Most Viewed'
+                },
+                {
+                    label: 'Favorites'
+                }
+            ];
+
             $q.all(
                     [
                         categoryService.getAllCategories(),
-                        categoryService.getCategoryByName($stateParams.slug),
-                        categoryService.getCategoryVideosByName($stateParams.slug)
+                        categoryService.getCategoryByName($stateParams.slug)
                     ]
                 )
                 .then(
@@ -768,14 +794,21 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
                         $scope.categories = data[0];
                         $scope.category = category;
-                        $scope.videos = data[2];
+
                         $scope.configs = {
                             title: category.title,
                             backgroundImage: '/assets/theme/clixtv/dist/images/fun-games-header.jpg',
                             backgroundImage2x: '/assets/theme/clixtv/dist/images/fun-games-header@2x.jpg'
                         };
+
+                        return categoryService.getCategoryVideosByName(category.title);
                     }
-                );
+                )
+                .then(
+                    function onSuccess(data) {
+                        $scope.videos = data;
+                    }
+                )
 
             categoryService.getCategoryByName($stateParams.slug)
                 .then(
