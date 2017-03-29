@@ -11573,6 +11573,9 @@ button.close {
 .clix-share-modal .clix-share-modal-input textarea {
   height: 150px;
 }
+.clix-share-modal .send-textbox textarea {
+  height: 90px;
+}
 .clix-share-modal .share-modal-footer {
   text-align: left;
   margin: 20px 10px 0 10px;
@@ -11596,6 +11599,7 @@ button.close {
   -webkit-justify-content: flex-end;
   -ms-justify-content: flex-end;
   justify-content: flex-end;
+  margin-bottom: 37px;
 }
 .clix-share-modal .share-modal-social-networks {
   display: -webkit-flex;
