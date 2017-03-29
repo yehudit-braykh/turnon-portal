@@ -1,3 +1,31 @@
-<div class="clix-category-page">
-    Boop
+<div class="clix-category-page" ng-if="configs">
+    <clix-hero-banner
+            title-text="{{configs.title}}"
+            button-text="{{'+ Favorites'}}"
+            subtext="{{'217 Videos'}}"
+            button-icon-class="{{'icon-favorite-icon banner-favorite-icon'}}"
+            background-image="{{configs.backgroundImage}}"
+            background-image2x="{{configs.backgroundImage2x}}"
+            shareable="false"
+    >
+    </clix-hero-banner>
+    <div class="category-page-container">
+        <div class="row category-page-content">
+            <div class="col-sm-3 category-list-container">
+                <div class="category-list-title">
+                    More Categories
+                </div>
+                <ul class="category-list">
+                    <li ng-repeat="relatedCategory in categories" class="category-list-item" ng-class="{'active-category': relatedCategory.title === category.title}">
+                        <a ui-sref="category({ slug: '{{relatedCategory.title | slug}}' })">
+                            {{relatedCategory.title}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-9">
+                Boop
+            </div>
+        </div>
+    </div>
 </div>

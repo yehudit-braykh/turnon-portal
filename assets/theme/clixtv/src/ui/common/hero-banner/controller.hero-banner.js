@@ -3,9 +3,14 @@
     var HeroBannerController = [
         '$q',
         '$scope',
+        '$transclude',
         'parallaxHelper',
-        function($q, $scope, parallaxHelper) {
-            $scope.background = parallaxHelper.createAnimator(-0.3)
+        function($q, $scope, $transclude, parallaxHelper) {
+
+            $scope.background = parallaxHelper.createAnimator(-0.3);
+
+            $scope.logoProvided = $transclude.isSlotFilled('logo');
+
         }
     ];
 

@@ -9756,6 +9756,49 @@ button.close {
   background-position: center;
   background-size: cover;
 }
+.clix-category-page .category-page-container {
+  position: relative;
+  z-index: 2000;
+  background-color: #0e0e0e;
+  padding: 13px 30px 62px;
+}
+.clix-category-page .category-page-content {
+  margin: 0;
+}
+.clix-category-page .category-list-container {
+  padding: 20px 12px;
+  background-color: #1b1b1b;
+  border: 1px solid #777777;
+}
+.clix-category-page .category-list-title {
+  font-family: 'cabinregular', sans-serif;
+  font-size: 14px;
+  color: #FFF;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  margin-bottom: 35px;
+}
+.clix-category-page .category-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.clix-category-page .category-list-item {
+  margin: 0;
+  padding: 0;
+}
+.clix-category-page .category-list-item.active-category a {
+  color: #FFF;
+}
+.clix-category-page .category-list-item a {
+  display: inline-block;
+  font-family: 'cabinregular', sans-serif;
+  font-size: 13px;
+  color: #bababa;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 0;
+}
 .clix-offer-page .main-page-content {
   position: relative;
   z-index: 2000;
@@ -10170,6 +10213,7 @@ button.close {
 .clix-hero-banner {
   position: relative;
   z-index: 2000;
+  min-height: 443px;
 }
 .clix-hero-banner .hero-background-image {
   max-width: 100%;
@@ -10256,7 +10300,7 @@ button.close {
   background-image: -webkit-radial-gradient(0 100%, circle, #03bcf2, #f700e6 70%);
   background-image: -o-radial-gradient(0 100%, circle, #03bcf2, #f700e6 70%);
 }
-.clix-hero-banner .banner-title-content {
+.clix-hero-banner .banner-title-content.with-logo {
   margin-left: 27px;
 }
 .clix-hero-banner .banner-title {
@@ -11878,6 +11922,23 @@ button.close {
   position: relative;
   overflow: hidden;
 }
+.clix-right-navigation .avatar-container .name-container {
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+  text-align: center;
+}
+.clix-right-navigation .avatar-container .display-name {
+  font-family: 'pt_sansregular', sans-serif;
+  font-size: 16px;
+  color: #FFF;
+}
+.clix-right-navigation .avatar-container .my-clixtv {
+  font-family: 'pt_sansregular', sans-serif;
+  font-size: 13px;
+  color: #8a8a8a;
+  text-transform: uppercase;
+}
 .clix-right-navigation .avatar-container .avatar-background {
   position: absolute;
   top: 0;
@@ -11908,6 +11969,7 @@ button.close {
   background-size: cover;
   position: relative;
   z-index: 10;
+  top: -25px;
 }
 .clix-right-navigation .avatar-container .avatar-background-image {
   filter: blur(15px);

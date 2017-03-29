@@ -14,7 +14,7 @@
         </page-search-filter>
         <page-content>
             <clix-content-callout-list items="categories">
-                <clix-content-callout sref="brand({ slug: '{{item.title}}' })">
+                <clix-content-callout sref="category({ slug: '{{item.title | slug}}' })">
                     <header-element>
                         <div class="category-logo" style="background-image: url('{{item.BrandLogo.url}}')"></div>
                     </header-element>

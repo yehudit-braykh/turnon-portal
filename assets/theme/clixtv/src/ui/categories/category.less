@@ -1,0 +1,55 @@
+.clix-category-page {
+
+    .category-page-container {
+        position: relative;
+        z-index: 2000;
+        background-color: @color-darker-gray;
+        padding: 13px 30px 62px;
+    }
+
+    .category-page-content {
+        margin: 0;
+    }
+
+    .category-list-container {
+        padding: 20px 12px;
+        background-color: @color-gray5;
+        border: 1px solid @color-gray4;
+    }
+
+    .category-list-title {
+        font-family: @font-secondary;
+        font-size: 14px;
+        color: @color-white;
+        letter-spacing: 1.6px;
+        text-transform: uppercase;
+        margin-bottom: 35px;
+    }
+
+    .category-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .category-list-item {
+        margin: 0;
+        padding: 0;
+
+        &.active-category {
+            a {
+                color: @color-white;
+            }
+        }
+
+        a {
+            display: inline-block;
+            font-family: @font-secondary;
+            font-size: 13px;
+            color: @color-light-gray;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 0;
+        }
+    }
+}

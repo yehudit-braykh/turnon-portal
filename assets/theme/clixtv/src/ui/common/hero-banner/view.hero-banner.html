@@ -3,10 +3,10 @@
     <div class="hero-banner-overlay" du-parallax y="background"></div>
     <div class="hero-banner-content-container">
         <div class="hero-banner-content">
-            <div class="banner-logo-container" ng-class="{'charity-logo': charity}">
+            <div class="banner-logo-container" ng-class="{'charity-logo': charity}" ng-show="logoProvided">
                 <div ng-transclude="logo"></div>
             </div>
-            <div class="banner-title-content">
+            <div class="banner-title-content" ng-class="{'with-logo': logoProvided}">
                 <div class="banner-title">
                     {{titleText}}
                 </div>
@@ -15,7 +15,7 @@
                         {{buttonText}} <i class="{{buttonIconClass}}" ng-if="buttonIconClass"></i>
                     </clix-tertiary-button>
 
-                    <clix-share-button extra-class="banner-share-icon"></clix-share-button>
+                    <clix-share-button extra-class="banner-share-icon" ng-show="shareable !== 'false'"></clix-share-button>
 
                     <div class="header-points-violator" ng-if="points">
                         <clix-points-violator>

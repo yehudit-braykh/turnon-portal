@@ -21,7 +21,12 @@
                  * @todo - Cache this call
                  */
                 getCategoryByName: function(name) {
-                    return $http.get('/api/category/get_category_by_name/?category=' + name);
+                    return $http.get('/api/category/get_category_by_name/?category=' + name)
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
+                            }
+                        );
                 },
 
                 /**
