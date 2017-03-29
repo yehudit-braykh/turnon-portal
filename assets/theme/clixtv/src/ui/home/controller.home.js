@@ -27,7 +27,7 @@
                 categoryService.getCategoryVideosByName(category.title)
                     .then(
                         function onSuccess(data) {
-                            var videos = data.data;
+                            var videos = data;
 
                             // Assign the brands for each video
                             videos.forEach(function(video) {

@@ -150,7 +150,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/categories/view.category.html',
-    "<div class=clix-category-page ng-if=configs><clix-hero-banner title-text={{configs.title}} button-text=\"{{'+ Favorites'}}\" subtext=\"{{'217 Videos'}}\" button-icon-class=\"{{'icon-favorite-icon banner-favorite-icon'}}\" background-image={{configs.backgroundImage}} background-image2x={{configs.backgroundImage2x}} shareable=false></clix-hero-banner><div class=category-page-container><div class=\"row category-page-content\"><div class=\"col-sm-3 category-list-container\"><div class=category-list-title>More Categories</div><ul class=category-list><li ng-repeat=\"relatedCategory in categories\" class=category-list-item ng-class=\"{'active-category': relatedCategory.title === category.title}\"><a ui-sref=\"category({ slug: '{{relatedCategory.title | slug}}' })\">{{relatedCategory.title}}</a></li></ul></div><div class=col-sm-9>Boop</div></div></div></div>"
+    "<div class=clix-category-page ng-if=configs><clix-hero-banner title-text={{configs.title}} button-text=\"{{'+ Favorites'}}\" subtext=\"{{'217 Videos'}}\" button-icon-class=\"{{'icon-favorite-icon banner-favorite-icon'}}\" background-image={{configs.backgroundImage}} background-image2x={{configs.backgroundImage2x}} shareable=false></clix-hero-banner><div class=category-page-container><div class=\"row category-page-content\"><div class=\"col-sm-3 category-list-container\"><div class=category-list-title>More Categories</div><ul class=category-list><li ng-repeat=\"relatedCategory in categories\" class=category-list-item ng-class=\"{'active-category': relatedCategory.title === category.title}\"><a ui-sref=\"category({ slug: '{{relatedCategory.title | slug}}' })\">{{relatedCategory.title}}</a></li></ul></div><div class=col-sm-9><div class=category-filter-bar></div></div></div></div></div>"
   );
 
 
@@ -758,7 +758,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             $q.all(
                     [
                         categoryService.getAllCategories(),
-                        categoryService.getCategoryByName($stateParams.slug)
+                        categoryService.getCategoryByName($stateParams.slug),
+                        categoryService.getCategoryVideosByName($stateParams.slug)
                     ]
                 )
                 .then(
@@ -767,8 +768,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
                         $scope.categories = data[0];
                         $scope.category = category;
+                        $scope.videos = data[2];
                         $scope.configs = {
-                            title: category.title
+                            title: category.title,
+                            backgroundImage: '/assets/theme/clixtv/dist/images/fun-games-header.jpg',
+                            backgroundImage2x: '/assets/theme/clixtv/dist/images/fun-games-header@2x.jpg'
                         };
                     }
                 );
@@ -2249,7 +2253,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 categoryService.getCategoryVideosByName(category.title)
                     .then(
                         function onSuccess(data) {
-                            var videos = data.data;
+                            var videos = data;
 
                             // Assign the brands for each video
                             videos.forEach(function(video) {
@@ -3093,7 +3097,12 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                  * @todo - Cache this call
                  */
                 getCategoryVideosByName: function(name) {
-                    return $http.get('/api/category/get_category_videos?category=' + name);
+                    return $http.get('/api/category/get_category_videos?category=' + name)
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
+                            }
+                        );
                 }
             }
         }

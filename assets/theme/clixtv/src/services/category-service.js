@@ -33,7 +33,12 @@
                  * @todo - Cache this call
                  */
                 getCategoryVideosByName: function(name) {
-                    return $http.get('/api/category/get_category_videos?category=' + name);
+                    return $http.get('/api/category/get_category_videos?category=' + name)
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
+                            }
+                        );
                 }
             }
         }
