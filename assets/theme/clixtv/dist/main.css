@@ -948,7 +948,6 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 .icon-edit-icon:before { content: '\e81c'; } /* '' */
 .icon-categories-icon-bottom-nav:before { content: '\e81d'; } /* '' */
 .icon-star-icon-bottom-nav:before { content: '\e81e'; } /* '' */
-.icon-brands-icon-bottom-nav:before { content: '\e81f'; } /* '' */
 .icon-charities-icon-bottom-nav:before { content: '\e820'; } /* '' */
 .icon-redeem-plus-icon:before { content: '\e821'; } /* '' */
 .icon-redeem-minus-icon:before { content: '\e822'; } /* '' */
@@ -958,6 +957,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 .icon-icon-security-lock:before { content: '\e826'; } /* '' */
 .icon-info-icon:before { content: '\e827'; } /* '' */
 .icon-tumblr-logo:before { content: '\e828'; } /* '' */
+.icon-brands-icon-bottom-nav:before { content: '\e829'; } /* '' */
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
@@ -7572,18 +7572,17 @@ button.close {
   width: 100%;
   position: fixed;
   z-index: 8000;
-  max-height: 200px;
-  overflow: hidden;
+  top: 0;
 }
 .clix-header.filled {
   background-color: #000;
 }
 .clix-header.clix-header-hidden {
-  max-height: 0;
+  top: -75px;
 }
 @media (min-width: 992px) {
   .clix-header.clix-header-hidden {
-    max-height: 200px;
+    top: 0;
   }
 }
 .clix-header .clix-header-container {
@@ -7841,12 +7840,10 @@ button.close {
   -ms-justify-content: center;
   justify-content: center;
 }
-.video-category-scroll-list {
-  margin-top: 55px;
-}
 @media (min-width: 768px) {
   .video-category-scroll-list {
     padding-left: 30px;
+    margin-top: 55px;
   }
 }
 .video-category-scroll-list .slick-arrow {
@@ -7854,11 +7851,19 @@ button.close {
 }
 .video-category-scroll-list h2 {
   font-family: 'cabinbold', sans-serif;
-  font-size: 24px;
+  font-size: 18px;
   padding: 0;
-  margin: 0 0 20px 0;
+  margin: 0 0 30px 0;
   text-transform: uppercase;
   letter-spacing: 3.5px;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .video-category-scroll-list h2 {
+    font-size: 24px;
+    text-align: left;
+    margin-bottom: 30px;
+  }
 }
 .video-category-scroll-list h2 a {
   color: #aaaaaa;
@@ -7869,9 +7874,14 @@ button.close {
   text-decoration: none;
 }
 .video-category-scroll-list .icon-right-arrow {
-  font-size: 20px;
+  font-size: 16px;
   position: relative;
-  top: -1px;
+}
+@media (min-width: 768px) {
+  .video-category-scroll-list .icon-right-arrow {
+    font-size: 20px;
+    top: -1px;
+  }
 }
 .video-category-scroll-list .video-list-container {
   display: -webkit-flex;
@@ -7885,8 +7895,10 @@ button.close {
   margin-top: 20px;
   position: relative;
 }
-.video-category-scroll-list .category-container:hover .arrow-container {
-  width: 63px;
+@media (min-width: 768px) {
+  .video-category-scroll-list .category-container:hover .arrow-container {
+    width: 63px;
+  }
 }
 .video-category-scroll-list .arrow-container {
   display: -webkit-flex;
@@ -7936,9 +7948,13 @@ button.close {
 .video-category-scroll-list .right-arrow-container {
   right: 0;
 }
+.video-category-scroll-list .video-content-container {
+  margin-bottom: 30px;
+}
 @media (min-width: 480px) {
   .video-category-scroll-list .video-content-container {
     margin-right: 12px;
+    margin-bottom: 0;
   }
 }
 .video-category-scroll-list .category-container {
@@ -7959,6 +7975,10 @@ button.close {
   -ms-justify-content: center;
   justify-content: center;
   height: 100%;
+}
+.video-category-scroll-list .more-videos-button-container {
+  text-align: center;
+  margin-bottom: 30px;
 }
 .video-content-box {
   background-color: #171717;
@@ -8770,8 +8790,12 @@ button.close {
   max-width: 100%;
 }
 .home-page {
-  margin-bottom: 100px;
   background-color: #0e0e0e;
+}
+@media (min-width: 480px) {
+  .home-page {
+    margin-bottom: 100px;
+  }
 }
 .home-page .main-video-container {
   position: relative;
@@ -8782,7 +8806,7 @@ button.close {
 .home-page .main-video-container video {
   width: 100%;
 }
-.home-page .main-video-container:hover .slick-arrow {
+.home-page .main-video-container:hover .main-carousel-button {
   display: block;
 }
 .home-page .video-overlay {
@@ -8881,7 +8905,6 @@ button.close {
   position: absolute;
   top: 50%;
   z-index: 3000;
-  display: none;
 }
 .home-page #main-carousel-next {
   right: 0;
@@ -8890,6 +8913,7 @@ button.close {
   font-size: 56px;
   color: #FFF;
   cursor: pointer;
+  display: none;
 }
 .video-permalink-page {
   padding-top: 75px;
@@ -9538,22 +9562,22 @@ button.close {
   margin-right: 20px;
 }
 .brands-page {
-  padding: 120px 30px 100px 30px;
-  /*
-    //padding-bottom: 50%;
-        //
-        //@media (min-width: @screen-sm) {
-        //    padding-bottom: 33.33333333%;
-        //}
-        //
-        //@media (min-width: @screen-md) {
-        //    padding-bottom: 25%;
-        //}
-        //
-        //@media (min-width: @screen-lg) {
-        //    padding-bottom: 16.66666667%;
-        //}
-     */
+  padding: 75px 10px 50px 10px;
+}
+@media (min-width: 768px) {
+  .brands-page {
+    padding: 120px 30px 100px 30px;
+  }
+}
+.brands-page .tab-content {
+  border-top: 1px solid #636363;
+  padding-top: 20px;
+}
+@media (min-width: 768px) {
+  .brands-page .tab-content {
+    border-top-width: 0;
+    padding-top: 0;
+  }
 }
 .brands-page .main-header {
   padding-bottom: 40px;
@@ -9561,10 +9585,20 @@ button.close {
 .brands-page .brands-list {
   margin-left: -9px;
   margin-right: -9px;
-  padding-top: 38px;
+  padding-top: 19px;
+}
+@media (min-width: 768px) {
+  .brands-page .brands-list {
+    padding-top: 38px;
+  }
 }
 .brands-page .brand-outer-container {
-  padding: 9px 9px 38px 9px;
+  padding: 9px 9px 11px 9px;
+}
+@media (min-width: 768px) {
+  .brands-page .brand-outer-container {
+    padding: 9px 9px 38px 9px;
+  }
 }
 .brands-page .brand-logo-container {
   position: relative;
@@ -9588,7 +9622,12 @@ button.close {
   display: block;
   background-color: #212121;
   text-align: center;
-  padding: 29px 20px;
+  padding: 20px;
+}
+@media (min-width: 768px) {
+  .brands-page .brand-footer {
+    padding: 29px 20px;
+  }
 }
 .brands-page .brand-footer:hover {
   text-decoration: none;
@@ -9681,77 +9720,6 @@ button.close {
 .charity-page .home-container .home-footer-content {
   margin-top: 47px;
   border-top: 1px solid #636363;
-}
-.charities-page {
-  padding: 120px 30px 100px 30px;
-}
-.charities-page .main-header {
-  padding-bottom: 20px;
-}
-.charities-page .brands-list {
-  margin-left: -9px;
-  margin-right: -9px;
-  padding-top: 38px;
-}
-.charities-page .brand-outer-container {
-  padding: 9px 9px 38px 9px;
-}
-.charities-page .brand-logo-container {
-  position: relative;
-  padding-bottom: 100%;
-}
-.charities-page .brand-container {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: -ms-flex;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-.charities-page .brand-footer {
-  display: block;
-  background-color: #212121;
-  text-align: center;
-  padding: 29px 20px;
-}
-.charities-page .brand-footer:hover {
-  text-decoration: none;
-}
-.charities-page .brand-footer:hover .brand-title,
-.charities-page .brand-footer:hover .brand-offers {
-  text-decoration: underline;
-}
-.charities-page .brand-title {
-  font-family: 'pt_sansbold', sans-serif;
-  font-size: 14px;
-  color: #FFF;
-  letter-spacing: -0.5px;
-  line-height: 16px;
-  display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-@media (min-width: 768px) {
-  .charities-page .brand-title {
-    font-size: 16px;
-  }
-}
-.charities-page .brand-offers {
-  font-family: 'cabinregular', sans-serif;
-  font-size: 11px;
-  color: #8a8a8a;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  line-height: 11px;
-  margin-top: 5px;
-  display: inline-block;
 }
 .clix-stars-page .star-logo {
   -webkit-flex: 1;
@@ -12191,6 +12159,9 @@ button.close {
   font-size: 18px;
   height: 18px;
   margin-bottom: 3px;
+}
+.clix-mobile-navigation .navigation-icon.brands-navigation-icon:before {
+  margin-right: 0.3em;
 }
 .clix-account-header {
   padding-bottom: 20px;

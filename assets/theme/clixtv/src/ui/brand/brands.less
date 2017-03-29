@@ -1,7 +1,21 @@
 @brand-spacing: 9px;
 
 .brands-page {
-    padding: 120px 30px 100px 30px;
+    padding: 75px 10px 50px 10px;
+
+    @media (min-width: @screen-sm) {
+        padding: 120px 30px 100px 30px;
+    }
+
+    .tab-content {
+        border-top: 1px solid @color-gray3;
+        padding-top: 20px;
+
+        @media (min-width: @screen-sm) {
+            border-top-width: 0;
+            padding-top: 0;
+        }
+    }
 
     .main-header {
         padding-bottom: 40px;
@@ -10,27 +24,19 @@
     .brands-list {
         margin-left: -@brand-spacing;
         margin-right: -@brand-spacing;
-        padding-top: 38px;
+        padding-top: 19px;
+
+        @media (min-width: @screen-sm) {
+            padding-top: 38px;
+        }
     }
 
-    /*
-    //padding-bottom: 50%;
-        //
-        //@media (min-width: @screen-sm) {
-        //    padding-bottom: 33.33333333%;
-        //}
-        //
-        //@media (min-width: @screen-md) {
-        //    padding-bottom: 25%;
-        //}
-        //
-        //@media (min-width: @screen-lg) {
-        //    padding-bottom: 16.66666667%;
-        //}
-     */
-
     .brand-outer-container {
-        padding: @brand-spacing @brand-spacing 38px @brand-spacing;
+        padding: @brand-spacing @brand-spacing 11px @brand-spacing;
+
+        @media (min-width: @screen-sm) {
+            padding: @brand-spacing @brand-spacing 38px @brand-spacing;
+        }
     }
 
     .brand-logo-container {
@@ -52,7 +58,11 @@
         display: block;
         background-color: @color-gray6;
         text-align: center;
-        padding: 29px 20px;
+        padding: 20px;
+
+        @media (min-width: @screen-sm) {
+            padding: 29px 20px;
+        }
 
         &:hover {
             text-decoration: none;

@@ -4,7 +4,8 @@
         '$q',
         '$scope',
         '$location',
-        function($q, $scope, $location) {
+        '$state',
+        function($q, $scope, $location, $state) {
 
             $scope.menuVisible = false;
 
@@ -56,6 +57,21 @@
 
             $scope.go = function(path) {
                 $location.path(path);
+            };
+
+            $scope.onPlayPress = function($event, video) {
+                // Safari has a problem with the ng-click element within the active element, so we'll
+                // just capture the click event of the overlay container and determine what to do from
+                // here.
+
+                var isSaving = angular.element($event.target).parent().hasClass('save-button');
+                if (!isSaving) {
+                    $state.go('video', { id: video._id });
+                }
+            };
+
+            $scope.onSaveButtonPress = function() {
+                console.log('SAVE');
             };
         }
     ];

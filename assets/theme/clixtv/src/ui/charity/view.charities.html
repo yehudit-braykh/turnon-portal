@@ -1,34 +1,32 @@
 <div class="charities-page">
-    <div class="main-header">
-        <clix-main-header>
+    <clix-filter-page ng-if="charities">
+        <page-title>
             Charities
-        </clix-main-header>
-    </div>
-    <div class="search-filter-container">
-        <clix-search-filter
+        </page-title>
+        <page-search-filter>
+            <clix-search-filter
                 search-placeholder="Search Charities"
                 filter-placeholder="Filter By"
                 sort-placeholder="Sort By"
                 filter-options="filterCharitiesOptions"
                 sort-options="sortCharitiesOptions"
-        ></clix-search-filter>
-    </div>
+            ></clix-search-filter>
+        </page-search-filter>
+        <page-content>
+            <clix-content-callout-list items="charities">
+                <clix-content-callout sref="charity({ id: '{{item._id}}' })">
+                    <header-element>
+                        <clix-charity-logo charity="item"></clix-charity-logo>
+                    </header-element>
+                    <title-content>
+                        {{item.title}}
+                    </title-content>
+                    <subtitle-content>
+                        Nike
+                    </subtitle-content>
+                </clix-content-callout>
+            </clix-content-callout-list>
+        </page-content>
+    </clix-filter-page>
 
-    <div class="row brands-list">
-        <div class="brand-outer-container col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="(id, charity) in charities">
-            <div class="brand-logo-container">
-                <div class="brand-container">
-                    <clix-charity-logo charity="charity"></clix-charity-logo>
-                </div>
-            </div>
-            <a ui-sref="charity({ id: '{{charity._id}}' })" class="brand-footer">
-                <span class="brand-title">
-                    {{charity.title}}
-                </span>
-                <span class="brand-offers">
-                    Nike
-                </span>
-            </a>
-        </div>
-    </div>
 </div>

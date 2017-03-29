@@ -4,17 +4,16 @@
     width: 100%;
     position: fixed;
     z-index: 8000;
-    max-height: 200px;
-    overflow: hidden;
+    top: 0;
 
     &.filled {
         background-color: @color-black;
     }
 
     &.clix-header-hidden {
-        max-height: 0;
+        top: -75px;
         @media (min-width: @screen-md) {
-            max-height: 200px;
+            top: 0;
         }
     }
 

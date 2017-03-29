@@ -129,7 +129,6 @@
 .icon-edit-icon:before { content: '\e81c'; } /* '' */
 .icon-categories-icon-bottom-nav:before { content: '\e81d'; } /* '' */
 .icon-star-icon-bottom-nav:before { content: '\e81e'; } /* '' */
-.icon-brands-icon-bottom-nav:before { content: '\e81f'; } /* '' */
 .icon-charities-icon-bottom-nav:before { content: '\e820'; } /* '' */
 .icon-redeem-plus-icon:before { content: '\e821'; } /* '' */
 .icon-redeem-minus-icon:before { content: '\e822'; } /* '' */
@@ -139,3 +138,4 @@
 .icon-icon-security-lock:before { content: '\e826'; } /* '' */
 .icon-info-icon:before { content: '\e827'; } /* '' */
 .icon-tumblr-logo:before { content: '\e828'; } /* '' */
+.icon-brands-icon-bottom-nav:before { content: '\e829'; } /* '' */

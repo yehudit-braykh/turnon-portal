@@ -1,6 +1,9 @@
 .home-page {
-    margin-bottom: 100px;
     background-color: @color-darker-gray;
+
+    @media (min-width: @screen-xs) {
+        margin-bottom: 100px;
+    }
 
     .main-video-container {
         position: relative;
@@ -12,7 +15,7 @@
         }
 
         &:hover {
-            .slick-arrow {
+            .main-carousel-button {
                 display: block;
             }
         }
@@ -116,7 +119,6 @@
         position: absolute;
         top: 50%;
         z-index: 3000;
-        display: none;
     }
 
     #main-carousel-next {
@@ -127,5 +129,6 @@
         font-size: 56px;
         color: @color-white;
         cursor: pointer;
+        display: none;
     }
 }
