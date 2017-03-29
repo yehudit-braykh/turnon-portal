@@ -27,8 +27,23 @@
         }
     };
 
+    var shareButton = function() {
+        return {
+            restrict: 'AE',
+            replace: true,
+            controller: 'ShareButtonController',
+            templateUrl: 'ui/common/buttons/view.share-button.html',
+            scope: {
+                extraClass: '@?',
+                offer: '=?',
+                video: '=?'
+            }
+        }
+    };
+
     angular.module('clixtv')
         .directive('clixViewButton', viewButton)
         .directive('clixSaveButton', saveButton)
-        .directive('clixFavoriteButton', favoriteButton);
+        .directive('clixFavoriteButton', favoriteButton)
+        .directive('clixShareButton', shareButton);
 }());

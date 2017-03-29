@@ -957,6 +957,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 .icon-checkmark-icon:before { content: '\e825'; } /* '' */
 .icon-icon-security-lock:before { content: '\e826'; } /* '' */
 .icon-info-icon:before { content: '\e827'; } /* '' */
+.icon-tumblr-logo:before { content: '\e828'; } /* '' */
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
@@ -7580,7 +7581,7 @@ button.close {
 .clix-header.clix-header-hidden {
   max-height: 0;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-header.clix-header-hidden {
     max-height: 200px;
   }
@@ -7595,7 +7596,7 @@ button.close {
   padding-left: 10px;
   padding-right: 10px;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-header .clix-header-container {
     -webkit-align-items: center;
     -ms-align-items: center;
@@ -7628,7 +7629,7 @@ button.close {
   max-width: 100%;
   max-height: 26px;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-header .clix-logo {
     max-height: none;
   }
@@ -7759,7 +7760,7 @@ button.close {
   position: relative;
   margin-right: 10px;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-header .header-user-container .header-avatar-container {
     margin-left: 20px;
     margin-right: 0;
@@ -7778,7 +7779,7 @@ button.close {
   background-position: center;
   display: block;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-header .header-user-container .header-avatar {
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
@@ -7842,7 +7843,11 @@ button.close {
 }
 .video-category-scroll-list {
   margin-top: 55px;
-  padding-left: 30px;
+}
+@media (min-width: 768px) {
+  .video-category-scroll-list {
+    padding-left: 30px;
+  }
 }
 .video-category-scroll-list .slick-arrow {
   top: 0 !important;
@@ -7931,8 +7936,10 @@ button.close {
 .video-category-scroll-list .right-arrow-container {
   right: 0;
 }
-.video-category-scroll-list .video-content-container {
-  margin-right: 12px;
+@media (min-width: 480px) {
+  .video-category-scroll-list .video-content-container {
+    margin-right: 12px;
+  }
 }
 .video-category-scroll-list .category-container {
   position: relative;
@@ -10637,6 +10644,9 @@ button.close {
 .clix-favorite-icon:active .fill-state {
   display: block;
 }
+.clix-share-icon {
+  cursor: pointer;
+}
 .clix-main-header {
   font-family: 'pt_sansregular', sans-serif;
   font-size: 28px;
@@ -11488,6 +11498,317 @@ button.close {
   top: 0;
   color: #cccccc;
   font-size: 16px;
+}
+.clix-share-modal {
+  text-align: center;
+  padding: 20px 0 53px 0;
+}
+@media (min-width: 768px) {
+  .clix-share-modal {
+    padding: 24px 6px 53px 6px;
+  }
+}
+.clix-share-modal .nav-tabs {
+  display: inline-block;
+  margin: 0 auto;
+}
+.clix-share-modal .nav-tabs li {
+  margin-right: 101px;
+}
+.clix-share-modal .nav-tabs li:last-child {
+  margin-right: 0;
+}
+@media (min-width: 768px) {
+  .clix-share-modal .nav-tabs {
+    margin-right: 139px;
+  }
+}
+@media (max-width: 768px) {
+  .clix-share-modal .share-modal-video-row {
+    margin-right: -10px;
+    margin-left: -10px;
+  }
+}
+.clix-share-modal .modal-post-content,
+.clix-share-modal .modal-send-content {
+  border-top: 1px solid #636363;
+  text-align: left;
+  width: 100%;
+  margin-top: 1px;
+  padding-top: 11px;
+}
+@media (min-width: 768px) {
+  .clix-share-modal .modal-post-content,
+  .clix-share-modal .modal-send-content {
+    padding: 17px 15px 0 15px;
+  }
+}
+.clix-share-modal .clix-share-modal-textbox,
+.clix-share-modal .clix-share-modal-input {
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  background-color: #FFF;
+  margin-top: 16px;
+  padding: 11px 16px;
+}
+.clix-share-modal .clix-share-modal-textbox textarea,
+.clix-share-modal .clix-share-modal-input textarea,
+.clix-share-modal .clix-share-modal-textbox input,
+.clix-share-modal .clix-share-modal-input input {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  border-width: 0;
+  resize: none;
+  font-family: 'pt_sansregular', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #000;
+  outline: none;
+}
+.clix-share-modal .clix-share-modal-textbox textarea,
+.clix-share-modal .clix-share-modal-input textarea {
+  height: 150px;
+}
+.clix-share-modal .share-modal-footer {
+  text-align: left;
+  margin: 20px 10px 0 10px;
+}
+@media (min-width: 768px) {
+  .clix-share-modal .share-modal-footer {
+    margin: 20px 15px 0;
+  }
+}
+.clix-share-modal .share-modal-post-container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.clix-share-modal .share-modal-post-container.share-modal-copy-link-container {
+  -webkit-justify-content: flex-end;
+  -ms-justify-content: flex-end;
+  justify-content: flex-end;
+}
+.clix-share-modal .share-modal-social-networks {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+.clix-share-modal .social-network-icon-container {
+  -webkit-border-radius: 17px;
+  -moz-border-radius: 17px;
+  border-radius: 17px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  width: 35px;
+  height: 35px;
+  background-color: #5f5f5f;
+  margin-left: 20px;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .clix-share-modal .social-network-icon-container {
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    width: 40px;
+    height: 40px;
+  }
+}
+.clix-share-modal .social-network-icon {
+  font-size: 16px;
+  color: #FFF;
+  margin-top: 9px;
+  display: block;
+}
+@media (min-width: 768px) {
+  .clix-share-modal .social-network-icon {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+}
+.clix-share-modal .social-network-icon.icon-twitter-logo {
+  font-size: 16px;
+  margin-left: -3px;
+}
+@media (min-width: 768px) {
+  .clix-share-modal .social-network-icon.icon-twitter-logo {
+    margin-left: -1px;
+    margin-top: 12px;
+  }
+}
+.clix-share-modal .share-modal-post-to-label {
+  font-size: 14px;
+  font-family: 'pt_sansregular', sans-serif;
+  color: #8a8a8a;
+}
+.clix-share-modal .share-modal-settings {
+  font-size: 14px;
+  font-family: 'pt_sansregular', sans-serif;
+  color: #8a8a8a;
+}
+.clix-share-modal .facebook-social-network.active {
+  background-color: #3b5998;
+}
+@media (min-width: 768px) {
+  .clix-share-modal .facebook-social-network:hover {
+    background-color: #3b5998;
+  }
+}
+.clix-share-modal .twitter-social-network.active {
+  background-color: #1da1f2;
+}
+@media (min-width: 768px) {
+  .clix-share-modal .twitter-social-network:hover {
+    background-color: #1da1f2;
+  }
+}
+.clix-share-modal .tumblr-social-network.active {
+  background-color: #36465d;
+}
+@media (min-width: 768px) {
+  .clix-share-modal .tumblr-social-network:hover {
+    background-color: #36465d;
+  }
+}
+.clix-share-modal .share-modal-copy-link {
+  font-size: 13px;
+  font-family: 'cabinregular', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #bababa;
+}
+.clix-share-modal .cancel-button {
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  border-radius: 100px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  padding: 10px 30px;
+  font-family: 'pt_sansregular', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.9px;
+  color: #8a8a8a;
+  text-transform: uppercase;
+  border: 1px solid #8a8a8a;
+  background-color: #1f1f1f;
+  cursor: pointer;
+  text-align: center;
+  display: block;
+}
+.clix-share-modal .cancel-button:hover {
+  text-decoration: none;
+  border-color: #FFF;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #FFF;
+}
+.clix-share-modal .footer-modal-buttons-container {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+  width: 300px;
+}
+@media (min-width: 768px) {
+  .clix-share-modal .footer-modal-buttons-container {
+    margin-top: 15px;
+    margin-right: 0;
+  }
+}
+.clix-share-modal .footer-modal-button {
+  padding: 0;
+}
+.clix-share-modal .footer-modal-button:first-child {
+  padding-right: 12px;
+}
+.clix-share-modal .footer-modal-button:last-child {
+  padding-left: 12px;
+}
+.clix-share-modal-video-content .video-thumbnail-container {
+  padding-right: 0;
+}
+@media (max-width: 768px) {
+  .clix-share-modal-video-content .video-thumbnail-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+@media (max-width: 768px) {
+  .clix-share-modal-video-content .video-info-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+.clix-share-modal-video-content .video-thumbnail {
+  max-width: 100%;
+}
+.clix-share-modal-video-content .series-title {
+  font-family: 'pt_sansregular', sans-serif;
+  font-size: 30px;
+  line-height: 30px;
+  color: #FFF;
+  margin-top: 11px;
+  margin-bottom: 4px;
+}
+@media (min-width: 768px) {
+  .clix-share-modal-video-content .series-title {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+.clix-share-modal-video-content .episode-title {
+  font-family: 'cabinregular', sans-serif;
+  font-size: 14px;
+  line-height: 14px;
+  letter-spacing: 1.6px;
+  color: #fe0000;
+  text-transform: uppercase;
+}
+.clix-share-modal-video-content .celebrity-title {
+  font-family: 'cabinregular', sans-serif;
+  font-size: 13px;
+  line-height: 13px;
+  letter-spacing: 2px;
+  color: #bababa;
+  text-transform: uppercase;
+}
+.clix-share-modal-video-content .video-description {
+  font-family: 'pt_sansregular', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #FFF;
+  margin-top: 20px;
+  margin-bottom: 22px;
+}
+@media (min-width: 768px) {
+  .clix-share-modal-video-content .video-description {
+    margin-top: 11px;
+  }
+}
+.clix-share-modal-video-content .video-clix-tv {
+  font-family: 'pt_sansregular', sans-serif;
+  font-size: 13px;
+  color: #bababa;
+  text-transform: uppercase;
 }
 .clix-right-navigation {
   position: fixed;

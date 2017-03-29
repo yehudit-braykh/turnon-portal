@@ -14,7 +14,9 @@
                     <clix-tertiary-button>
                         {{buttonText}} <i class="{{buttonIconClass}}" ng-if="buttonIconClass"></i>
                     </clix-tertiary-button>
-                    <a href="#" class="icon-share-icon banner-share-icon"></a>
+
+                    <clix-share-button extra-class="banner-share-icon"></clix-share-button>
+
                     <div class="header-points-violator" ng-if="points">
                         <clix-points-violator>
                             {{points}}

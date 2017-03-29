@@ -5,11 +5,20 @@
         </a>
     </h2>
     <div ng-if="categoryVideos" class="category-container">
-        <slick slides-to-show="5" slides-to-scroll="5" infinite="false" variable-width="true" prev-arrow="#carousel-previous-{{$id}}" next-arrow="#carousel-next-{{$id}}" settings="carouselConfig">
-            <div ng-repeat="video in categoryVideos" class="video-content-container" style="width: {{videoContainerWidth}}px;">
-                <div clix-video-content-box video="video"></div>
-            </div>
-        </slick>
+        <div class="visible-lg">
+            <slick slides-to-show="5" slides-to-scroll="4" infinite="false" variable-width="true" prev-arrow="#carousel-previous-{{$id}}" next-arrow="#carousel-next-{{$id}}">
+                <div ng-repeat="video in categoryVideos" class="video-content-container" style="width: {{videoContainerWidth}}px;">
+                    <div clix-video-content-box video="video"></div>
+                </div>
+            </slick>
+        </div>
+        <div class="hidden-lg">
+            <slick prev-arrow="#carousel-previous-{{$id}}" next-arrow="#carousel-next-{{$id}}" settings="carouselConfig">
+                <div ng-repeat="video in categoryVideos" class="video-content-container">
+                    <div clix-video-content-box video="video"></div>
+                </div>
+            </slick>
+        </div>
         <div class="arrow-container left-arrow-container" id="carousel-previous-{{$id}}" ng-show="leftArrowVisible">
             <div class="arrow-inner-container">
                 <i class="icon-left-tall-arrow"></i>

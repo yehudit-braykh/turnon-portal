@@ -17,7 +17,26 @@
             }
 
             function _recalculateWidth() {
-                $scope.videoContainerWidth = $window.innerWidth / 5.7;
+
+                var splitWidth = 1;
+
+                if ($window.innerWidth > 480) {
+                    splitWidth = 2.7;
+                }
+
+                if ($window.innerWidth > 992) {
+                    splitWidth = 3.7;
+                }
+
+                if ($window.innerWidth > 1200) {
+                    splitWidth = 4.7;
+                }
+
+                if ($window.innerWidth > 1400) {
+                    splitWidth = 5.7;
+                }
+
+                $scope.videoContainerWidth = ($window.innerWidth - VIDEO_MARGIN_LEFT) / splitWidth;
                 $scope.arrowScrollWidth = $scope.videoContainerWidth + VIDEO_MARGIN_LEFT;
 
                 $timeout(function() {
@@ -52,6 +71,40 @@
             });
 
             $scope.carouselConfig = {
+                slidesToShow: 5,
+                slidesToScroll: 5,
+                infinite: false,
+                variableWidth: false,
+                responsive: [
+                    {
+                        breakpoint: 1400,
+                        settings: {
+                            slidesToShow: 4,
+                            slidesToScroll: 4
+                        }
+                    },
+                    {
+                        breakpoint: 1200,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 3
+                        }
+                    },
+                    {
+                        breakpoint: 992,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 2
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                ],
                 event: {
                     afterChange: function (event, slick, currentSlide, nextSlide) {
                         $scope.leftArrowVisible = currentSlide !== 0;
