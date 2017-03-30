@@ -1921,7 +1921,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             $scope.onFacebookLoginPress = function() {
 
                 // ...gross
-                window.open('/register/login/Facebook?ref=' + location.hash.substring(3) + '&network=facebook', 'fb', 'left=20,top=20,width=500,height=400,toolbar=1,resizable=0');
+                window.open('/hauth/login/Facebook', 'fb', 'left=20,top=20,width=500,height=400,toolbar=1,resizable=0');
             };
 
             $scope.onGoogleLoginPress = function() {
