@@ -1,0 +1,24 @@
+<div class="clix-account-settings">
+    <clix-account-header>
+        <header-text>
+            Settings
+        </header-text>
+    </clix-account-header>
+    <div class="settings-page-content">
+
+        <div class="setting-row" ng-repeat="setting in generalSettings">
+            <div class="setting-row-info">
+                <div class="setting-row-title">
+                    {{setting.label}}
+                </div>
+                <div class="setting-row-description">
+                    {{setting.description}}
+                </div>
+            </div>
+            <div class="setting-row-trigger">
+
+            </div>
+        </div>
+
+    </div>
+</div>

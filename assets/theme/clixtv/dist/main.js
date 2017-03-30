@@ -110,7 +110,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/account/rewards/view.rewards.html',
-    "<div class=clix-account-rewards><clix-account-header><header-text>Rewards</header-text></clix-account-header></div>"
+    "<div class=clix-account-rewards><clix-account-header><header-text>Rewards</header-text></clix-account-header><div class=rewards-page-content ng-show=ready><div class=clix-tabs><uib-tabset active=active><uib-tab index=0 heading=Summary><div class=rewards-tab-content><div class=\"row rewards-summary-row\"><div class=\"col-xs-6 rewards-summary-column\"><div class=rewards-summary-block><div class=rewards-summary-header>Rewards Summary</div><div class=reward-points><div class=\"reward-points-block first-block\"><div class=points-label>1760</div><div class=available-balance-label>Available Points Balance<br>$17.60 Cash Balance</div></div><div class=rewards-button><clix-primary-button>Redeem</clix-primary-button></div></div></div></div><div class=\"col-xs-6 rewards-summary-column\"><div class=rewards-summary-block><div class=rewards-summary-header>Rewards Activity</div><div class=rewards-activity-container><div class=reward-activity-row><div class=reward-activity-row-icon><div class=reward-activity-row-icon-logo style=\"background-image: url('http://advncedcdn.vo.llnwd.net/clixtv_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d1e7a7889d000337f0e2/Nike-Logo-PNG21.png')\"></div></div><div class=reward-activity-row-info><div class=reward-activity-row-title>Nike</div><div class=reward-activity-row-desc>Coupon Redeemed</div><div class=reward-activity-row-timestamp>2 hours ago</div></div><div class=reward-activity-row-points>+ 50</div></div><div class=reward-activity-row><div class=reward-activity-row-icon><div class=reward-activity-row-icon-logo style=\"background-image: url('http://advncedcdn.vo.llnwd.net/clixtv_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d1e7a7889d000337f0e2/Nike-Logo-PNG21.png')\"></div></div><div class=reward-activity-row-info><div class=reward-activity-row-title>Nike</div><div class=reward-activity-row-desc>Coupon Redeemed</div><div class=reward-activity-row-timestamp>2 hours ago</div></div><div class=reward-activity-row-points>+ 50</div></div><div class=reward-activity-row><div class=reward-activity-row-icon><div class=reward-activity-row-icon-logo style=\"background-image: url('http://advncedcdn.vo.llnwd.net/clixtv_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d1e7a7889d000337f0e2/Nike-Logo-PNG21.png')\"></div></div><div class=reward-activity-row-info><div class=reward-activity-row-title>Nike</div><div class=reward-activity-row-desc>Coupon Redeemed</div><div class=reward-activity-row-timestamp>2 hours ago</div></div><div class=reward-activity-row-points>+ 50</div></div><div class=reward-activity-row><div class=reward-activity-row-icon><div class=reward-activity-row-icon-logo style=\"background-image: url('http://advncedcdn.vo.llnwd.net/clixtv_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d1e7a7889d000337f0e2/Nike-Logo-PNG21.png')\"></div></div><div class=reward-activity-row-info><div class=reward-activity-row-title>Nike</div><div class=reward-activity-row-desc>Coupon Redeemed</div><div class=reward-activity-row-timestamp>2 hours ago</div></div><div class=reward-activity-row-points>+ 50</div></div><div class=reward-activity-row><div class=reward-activity-row-icon><div class=reward-activity-row-icon-logo style=\"background-image: url('http://advncedcdn.vo.llnwd.net/clixtv_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d1e7a7889d000337f0e2/Nike-Logo-PNG21.png')\"></div></div><div class=reward-activity-row-info><div class=reward-activity-row-title>Nike</div><div class=reward-activity-row-desc>Coupon Redeemed</div><div class=reward-activity-row-timestamp>2 hours ago</div></div><div class=reward-activity-row-points>+ 50</div></div><div class=reward-activity-row><div class=reward-activity-row-icon><div class=reward-activity-row-icon-logo style=\"background-image: url('http://advncedcdn.vo.llnwd.net/clixtv_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d1e7a7889d000337f0e2/Nike-Logo-PNG21.png')\"></div></div><div class=reward-activity-row-info><div class=reward-activity-row-title>Nike</div><div class=reward-activity-row-desc>Coupon Redeemed</div><div class=reward-activity-row-timestamp>2 hours ago</div></div><div class=reward-activity-row-points>+ 50</div></div><div class=reward-activity-row><div class=reward-activity-row-icon><div class=reward-activity-row-icon-logo style=\"background-image: url('http://advncedcdn.vo.llnwd.net/clixtv_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d1e7a7889d000337f0e2/Nike-Logo-PNG21.png')\"></div></div><div class=reward-activity-row-info><div class=reward-activity-row-title>Nike</div><div class=reward-activity-row-desc>Coupon Redeemed</div><div class=reward-activity-row-timestamp>2 hours ago</div></div><div class=reward-activity-row-points>+ 50</div></div></div><div class=rewards-activity-footer><clix-tertiary-button>See All Activity</clix-tertiary-button></div></div></div></div></div></uib-tab><uib-tab index=1 heading=Account><div class=rewards-tab-content></div></uib-tab><uib-tab index=2 heading=Redeem><div class=rewards-tab-content></div></uib-tab></uib-tabset></div></div></div>"
   );
 
 
@@ -119,8 +119,13 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('ui/account/settings/view.settings.html',
+    "<div class=clix-account-settings><clix-account-header><header-text>Settings</header-text></clix-account-header><div class=settings-page-content><div class=setting-row ng-repeat=\"setting in generalSettings\"><div class=setting-row-info><div class=setting-row-title>{{setting.label}}</div><div class=setting-row-description>{{setting.description}}</div></div><div class=setting-row-trigger></div></div></div></div>"
+  );
+
+
   $templateCache.put('ui/account/view.account.html',
-    "<div class=clix-account-page><div class=account-navigation><clix-navigation-bar active-item=activeItem on-item-select=onNavigationItemSelect></clix-navigation-bar></div><div class=account-page ng-switch=activeItem><div ng-switch-when=overview><clix-account-overview></clix-account-overview></div><div ng-switch-when=watchlist><clix-account-watchlist></clix-account-watchlist></div><div ng-switch-when=favorites><clix-account-favorites></clix-account-favorites></div><div ng-switch-when=saved-offers><clix-account-saved-offers></clix-account-saved-offers></div><div ng-switch-when=rewards><clix-account-rewards></clix-account-rewards></div></div></div>"
+    "<div class=clix-account-page><div class=account-navigation><clix-navigation-bar active-item=activeItem on-item-select=onNavigationItemSelect></clix-navigation-bar></div><div class=account-page ng-switch=activeItem><div ng-switch-when=overview><clix-account-overview></clix-account-overview></div><div ng-switch-when=watchlist><clix-account-watchlist></clix-account-watchlist></div><div ng-switch-when=favorites><clix-account-favorites></clix-account-favorites></div><div ng-switch-when=saved-offers><clix-account-saved-offers></clix-account-saved-offers></div><div ng-switch-when=rewards><clix-account-rewards></clix-account-rewards></div><div ng-switch-when=settings><clix-account-settings></clix-account-settings></div></div></div>"
   );
 
 
@@ -582,7 +587,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         'userService',
         function($q, $scope, $rootScope, userService) {
 
-
+            $scope.ready = true;
 
         }
     ];
@@ -668,6 +673,50 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     angular.module('clixtv')
         .directive('clixAccountSavedOffers', savedOffers);
+}());
+(function() {
+
+    var AccountSettingsController = [
+        '$q',
+        '$scope',
+        '$rootScope',
+        'userService',
+        function($q, $scope, $rootScope, userService) {
+            $scope.generalSettings = [
+                {
+                    label: 'Offers Updates',
+                    description: 'Get the latest brand updates on ClixTV',
+                    value: true
+                },
+                {
+                    label: 'Video Updates',
+                    description: 'Get notified when new videos are added to ClixTV',
+                    value: true
+                },
+                {
+                    label: 'Charity Updates',
+                    description: 'Get notified when new charities are added to ClixTV',
+                    value: true
+                }
+            ];
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .controller('AccountSettingsController', AccountSettingsController);
+}());
+(function() {
+    var settings = function() {
+        return {
+            restrict: 'AE',
+            templateUrl: 'ui/account/settings/view.settings.html',
+            controller: 'AccountSettingsController'
+        }
+    };
+
+    angular.module('clixtv')
+        .directive('clixAccountSettings', settings);
 }());
 (function() {
 

@@ -7,7 +7,7 @@
         'userService',
         function($q, $scope, $rootScope, userService) {
 
-
+            $scope.ready = true;
 
         }
     ];
