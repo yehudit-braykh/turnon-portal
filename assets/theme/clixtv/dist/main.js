@@ -1874,10 +1874,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     var LoginSignupController = [
         '$scope',
+        '$rootScope',
         '$uibModalInstance',
         'userService',
         'signup',
-        function($scope, $uibModalInstance, userService, signup) {
+        function($scope, $rootScope, $uibModalInstance, userService, signup) {
 
             $scope.signup = signup;
 
@@ -1918,26 +1919,36 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     );
             };
 
+            $scope.onCloseIconPress = function() {
+                $uibModalInstance.close();
+            };
+
+            /**
+             * @fixme - This is legacy "login with social network" code that'll take a much larger effort to refactor
+             */
             $scope.onFacebookLoginPress = function() {
 
                 // ...gross
                 window.open('/hauth/login/Facebook', 'fb', 'left=20,top=20,width=500,height=400,toolbar=1,resizable=0');
             };
 
+            /**
+             * @fixme - This is legacy "login with social network" code that'll take a much larger effort to refactor
+             */
             $scope.onGoogleLoginPress = function() {
 
                 // ...gross again
                 window.open('/hauth/login/Google', 'google', 'left=20,top=20,width=500,height=400,toolbar=1,resizable=0');
             };
 
-            $scope.onCloseIconPress = function() {
+            /**
+             * @fixme - This is legacy "login with social network" code that'll take a much larger effort to refactor
+             */
+            // ...gross again, again
+            window.finished_login = function() {
+                $rootScope.$broadcast('user.login', {});
                 $uibModalInstance.close();
             };
-
-            $scope.finished_login = function(data) {
-                console.log('>>>>', data);
-            }
-
         }
     ];
 
