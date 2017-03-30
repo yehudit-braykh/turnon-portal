@@ -48,7 +48,7 @@
                 var direction;
                 if (latestOffset > this.pageYOffset) {
                     direction = 'down';
-                } else if (latestOffset < this.pageYOffset && this.pageYOffset > 50) {
+                } else if (latestOffset < this.pageYOffset && this.pageYOffset > 250) {
                     direction = 'up';
                 }
                 latestOffset = this.pageYOffset;

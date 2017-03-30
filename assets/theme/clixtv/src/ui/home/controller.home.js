@@ -9,9 +9,11 @@
         'brandsService',
         function($q, $scope, $timeout, $window, categoryService, brandsService) {
 
-            var carouselElement = angular.element(document.getElementById('carousel-container'));
+            $scope.showMobileCarousel = false;
 
             function _recalculateHeight() {
+                var carouselElement = angular.element(document.getElementById('carousel-container'));
+                
                 if (!carouselElement) {
                     return;
                 }
@@ -23,6 +25,7 @@
 
             function _recalculateWidth() {
                 $scope.showMobileCarousel = ($window.innerWidth <= 768);
+                _recalculateHeight();
             }
 
             function _loadVideosForCategoryIndex(index) {
@@ -66,11 +69,8 @@
 
 
             angular.element($window).on('resize.doResize', function () {
-                _recalculateHeight();
                 _recalculateWidth();
             });
-
-            _recalculateHeight();
             _recalculateWidth();
         }
     ];
