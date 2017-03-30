@@ -350,7 +350,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/tooltip/view.tooltip.html',
-    "<div class=clix-tooltip id={{tooltipId}}><div class=clix-tooltip-content><div ng-transclude></div></div></div>"
+    "<div class=clix-tooltip id={{tooltipId}}><div class=clix-tooltip-content><div class=tooltip-arrow></div><div ng-transclude></div></div></div>"
   );
 
 

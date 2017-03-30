@@ -18,13 +18,25 @@
         text-align: center;
         max-width: 198px;
         position: relative;
-        top: 10px;
+        top: 20px;
+    }
+
+    .tooltip-arrow {
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid @color-gray6;
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        margin-left: -5px;
     }
 
     &.active {
         .clix-tooltip-content {
             .opacity(1);
-            top: 0;
+            top: 10px;
         }
     }
 }
