@@ -59,6 +59,12 @@
                     });
                 }
             });
+
+            $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+                if (toState) {
+                    $scope.selectedStateName = toState.name;
+                }
+            })
         }
     ];
 

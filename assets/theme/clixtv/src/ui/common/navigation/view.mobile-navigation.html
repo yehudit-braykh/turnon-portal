@@ -1,22 +1,22 @@
 <div class="clix-mobile-navigation visible-sm visible-xs">
     <div class="mobile-navigation-container">
-        <a ui-sref="home" class="mobile-navigation-item">
+        <a ui-sref="home" class="mobile-navigation-item" ng-class="{'active': selectedStateName === 'home'}">
             <div class="navigation-icon icon-home-icon-bottom-nav"></div>
             Home
         </a>
-        <a ui-sref="categories" class="mobile-navigation-item">
+        <a ui-sref="categories" class="mobile-navigation-item" ng-class="{'active': selectedStateName === 'categories' || selectedStateName === 'category'}">
             <div class="navigation-icon icon-categories-icon-bottom-nav"></div>
             Categories
         </a>
-        <a ui-sref="stars" class="mobile-navigation-item">
+        <a ui-sref="stars" class="mobile-navigation-item" ng-class="{'active': selectedStateName === 'stars' || selectedStateName === 'star'}">
             <div class="navigation-icon icon-star-icon-bottom-nav"></div>
             Stars
         </a>
-        <a ui-sref="brands" class="mobile-navigation-item">
+        <a ui-sref="brands" class="mobile-navigation-item" ng-class="{'active': selectedStateName === 'brands' || selectedStateName === 'brand'}">
             <div class="navigation-icon brands-navigation-icon icon-brands-icon-bottom-nav"></div>
             Brands
         </a>
-        <a ui-sref="charities" class="mobile-navigation-item">
+        <a ui-sref="charities" class="mobile-navigation-item" ng-class="{'active': selectedStateName === 'charities' || selectedStateName === 'charity'}">
             <div class="navigation-icon icon-charities-icon-bottom-nav"></div>
             Charities
         </a>

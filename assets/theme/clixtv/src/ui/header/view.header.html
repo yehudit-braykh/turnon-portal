@@ -8,22 +8,22 @@
             </a>
         </h1>
         <nav class="clix-navigation">
-            <div class="navigation-item-container">
+            <div class="navigation-item-container" ng-class="{'active': selectedStateName === 'categories' || selectedStateName === 'category'}">
                 <a ui-sref="categories">
                     Categories
                 </a>
             </div>
-            <div class="navigation-item-container">
+            <div class="navigation-item-container" ng-class="{'active': selectedStateName === 'stars' || selectedStateName === 'star'}">
                 <a ui-sref="stars">
                     Stars
                 </a>
             </div>
-            <div class="navigation-item-container">
+            <div class="navigation-item-container" ng-class="{'active': selectedStateName === 'brands' || selectedStateName === 'brand'}">
                 <a ui-sref="brands">
                     Brands
                 </a>
             </div>
-            <div class="navigation-item-container">
+            <div class="navigation-item-container" ng-class="{'active': selectedStateName === 'charities' || selectedStateName === 'charity'}">
                 <a ui-sref="charities">
                     Charities
                 </a>
