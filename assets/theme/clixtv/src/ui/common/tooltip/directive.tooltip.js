@@ -31,6 +31,9 @@
 
                     var showTimeout, hideTimeout;
 
+                    /**
+                     * @todo - Prevent tooltip from extending beyond page bounds
+                     */
 
                     angular.element(element).off('mouseenter').on('mouseenter', function() {
 
