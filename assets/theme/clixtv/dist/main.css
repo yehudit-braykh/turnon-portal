@@ -9004,6 +9004,9 @@ button.close {
   margin-bottom: 25px;
   text-align: center;
 }
+.home-page .mobile-header img {
+  width: 100%;
+}
 .home-page .mobile-header .mobile-header-content {
   position: absolute;
   left: 0;
