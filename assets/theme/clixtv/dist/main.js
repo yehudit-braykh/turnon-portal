@@ -109,13 +109,18 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('ui/account/rewards/view.rewards.html',
+    "<div class=clix-account-rewards><clix-account-header><header-text>Rewards</header-text></clix-account-header></div>"
+  );
+
+
   $templateCache.put('ui/account/saved-offers/view.saved-offers.html',
-    "<div class=clix-account-saved-offers><clix-account-header><header-text>Saved Offers</header-text></clix-account-header></div>"
+    "<div class=clix-account-saved-offers><clix-account-header><header-text>Saved Offers</header-text></clix-account-header><div class=saved-offers-page-content ng-show=ready><div ng-if=\"!offers || offers.length === 0\"><clix-empty-container><header-text>Your Saved Offers will appear here.</header-text><body-text>Browse through Brands &amp; Offers and hit the <i class=\"empty-add-icon icon-plus-icon\"></i> to add them to this list.</body-text></clix-empty-container></div><div ng-if=\"offers && offers.length > 0\"><clix-filter-page partial=true><page-search-filter><clix-search-filter search-placeholder=\"Search Brands\" filter-placeholder=\"Filter By\" sort-placeholder=\"Sort By\" filter-options=filterSavedOffersOptions sort-options=sortSavedOffersOptions></clix-search-filter></page-search-filter><page-content><clix-content-callout-list items=offers large-col-class=col-lg-2-4><clix-content-callout sref=\"offer({ id: '{{item._id}}' })\"><header-element><clix-offer-logo offer=item></clix-offer-logo></header-element><title-content>{{item.title}}</title-content><subtitle-content>Expires 2/1/2017</subtitle-content></clix-content-callout></clix-content-callout-list></page-content></clix-filter-page></div></div></div>"
   );
 
 
   $templateCache.put('ui/account/view.account.html',
-    "<div class=clix-account-page><div class=account-navigation><clix-navigation-bar active-item=activeItem on-item-select=onNavigationItemSelect></clix-navigation-bar></div><div class=account-page ng-switch=activeItem><div ng-switch-when=overview><clix-account-overview></clix-account-overview></div><div ng-switch-when=watchlist><clix-account-watchlist></clix-account-watchlist></div><div ng-switch-when=favorites><clix-account-favorites></clix-account-favorites></div><div ng-switch-when=saved-offers><clix-account-saved-offers></clix-account-saved-offers></div></div></div>"
+    "<div class=clix-account-page><div class=account-navigation><clix-navigation-bar active-item=activeItem on-item-select=onNavigationItemSelect></clix-navigation-bar></div><div class=account-page ng-switch=activeItem><div ng-switch-when=overview><clix-account-overview></clix-account-overview></div><div ng-switch-when=watchlist><clix-account-watchlist></clix-account-watchlist></div><div ng-switch-when=favorites><clix-account-favorites></clix-account-favorites></div><div ng-switch-when=saved-offers><clix-account-saved-offers></clix-account-saved-offers></div><div ng-switch-when=rewards><clix-account-rewards></clix-account-rewards></div></div></div>"
   );
 
 
@@ -339,6 +344,16 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('ui/common/tooltip/view.tooltip-templates.html',
+    "<clix-tooltip tooltip-id=rewards-points-tooltip></clix-tooltip>"
+  );
+
+
+  $templateCache.put('ui/common/tooltip/view.tooltip.html',
+    "<div class=clix-tooltip id={{tooltipId}}><div class=clix-tooltip-content><div ng-transclude></div></div></div>"
+  );
+
+
   $templateCache.put('ui/dropdown/view.dropdown.html',
     "<div class=clix-dropdown ng-show=options clix-click-anywhere-else=bodyClicked><div class=dropdown-trigger ng-click=triggerClicked()><div class=dropdown-label>{{ selected.label }}</div><div class=dropdown-icon><i class=icon-down-arrow></i></div></div><clix-tooltip-menu items=options menuopen=menuVisible></clix-tooltip-menu></div>"
   );
@@ -400,7 +415,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/violator/view.header-points-violator.html',
-    "<div class=clix-header-points-violator><clix-callout-button>0</clix-callout-button>Reward Points</div>"
+    "<div class=clix-header-points-violator clix-tooltip-trigger tooltip-id=rewards-points-tooltip-{{$id}}><clix-callout-button>0</clix-callout-button>Reward Points</div><clix-tooltip tooltip-id=rewards-points-tooltip-{{$id}}>ClixTV rewards users for watching videos, engaging with brands & offers, and sharing to social networks. Wherever you see the rewards points badge, points can be earned.</clix-tooltip>"
   );
 
 
@@ -560,6 +575,36 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 }());
 (function() {
 
+    var AccountRewardsController = [
+        '$q',
+        '$scope',
+        '$rootScope',
+        'userService',
+        function($q, $scope, $rootScope, userService) {
+
+
+
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .controller('AccountRewardsController', AccountRewardsController);
+}());
+(function() {
+    var rewards = function() {
+        return {
+            restrict: 'AE',
+            templateUrl: 'ui/account/rewards/view.rewards.html',
+            controller: 'AccountRewardsController'
+        }
+    };
+
+    angular.module('clixtv')
+        .directive('clixAccountRewards', rewards);
+}());
+(function() {
+
     var AccountSavedOffersController = [
         '$q',
         '$scope',
@@ -596,6 +641,14 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
             $scope.filterSavedOffersOptions = defaultFilterOptions;
             $scope.sortSavedOffersOptions = defaultSortOptions;
+
+            userService.getSavedOffers()
+                .then(
+                    function onSuccess(data) {
+                        $scope.offers = data;
+                        $scope.ready = true;
+                    }
+                )
 
         }
     ];
@@ -2260,6 +2313,130 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 }());
 (function() {
 
+    var TooltipController = [
+        '$q',
+        '$scope',
+        function($q, $scope) {
+
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .controller('TooltipController', TooltipController);
+}());
+(function() {
+
+    var SHOW_TOOLTIP_DELAY_MS = 500,
+        HIDE_TOOLTIP_DELAY_MS = 500;
+
+    var tooltip = function() {
+        return {
+            restrict: 'E',
+            replace: true,
+            transclude: true,
+            templateUrl: 'ui/common/tooltip/view.tooltip.html',
+            scope: {
+                tooltipId: '@'
+            },
+            link: function(scope, element) {
+                angular.element(document.body).append(element);
+            }
+        }
+    };
+
+    var tooltipTrigger = [
+        '$timeout',
+        function($timeout) {
+            return {
+                restrict: 'A',
+                controller: 'TooltipController',
+                scope: {
+                    tooltipId: '@'
+                },
+                link: function(scope, element) {
+
+                    var showTimeout, hideTimeout;
+
+
+                    angular.element(element).off('mouseenter').on('mouseenter', function() {
+
+                        if (hideTimeout) {
+                            $timeout.cancel(hideTimeout);
+                        }
+
+                        showTimeout = $timeout(function() {
+
+                            var trigger = angular.element(element),
+                                tooltipElement = document.getElementById(scope.tooltipId),
+                                left = trigger.prop('offsetLeft'),
+                                top = trigger.prop('offsetTop'),
+                                height = trigger[0].offsetHeight,
+                                width = trigger[0].offsetWidth,
+                                tooltipElementWidth = tooltipElement.offsetWidth;
+
+
+                            tooltipElement.style.top = (top + height) + 'px';
+                            tooltipElement.style.left = ((left + (width / 2)) - (tooltipElementWidth / 2)) + 'px';
+                            angular.element(tooltipElement).addClass('active');
+
+
+                            // Don't hide the tooltip if the user hovers over it (since we're mousing off the trigger element)
+                            angular.element(document.getElementById(scope.tooltipId)).off('mouseenter').on('mouseenter', function() {
+                                if (hideTimeout) {
+                                    $timeout.cancel(hideTimeout);
+                                }
+                            });
+
+                            // Hide the tooltip if the user mouses off of it
+                            angular.element(document.getElementById(scope.tooltipId)).off('mouseleave').on('mouseleave', function() {
+                                hideTimeout = $timeout(function() {
+
+                                    angular.element(tooltipElement).removeClass('active');
+
+                                    $timeout(function() {
+                                        tooltipElement.style.top = '-999px';
+                                        tooltipElement.style.left = '-999px';
+                                    }, 250);
+
+                                    if (showTimeout) {
+                                        $timeout.cancel(showTimeout);
+                                    }
+
+                                }, HIDE_TOOLTIP_DELAY_MS);
+                            });
+                        }, SHOW_TOOLTIP_DELAY_MS);
+                    });
+
+                    angular.element(element).on('mouseleave', function() {
+
+                        hideTimeout = $timeout(function() {
+                            var tooltipElement = document.getElementById(scope.tooltipId);
+
+                            angular.element(tooltipElement).removeClass('active');
+
+                            $timeout(function() {
+                                tooltipElement.style.top = '-999px';
+                                tooltipElement.style.left = '-999px';
+                            }, 250);
+
+                            if (showTimeout) {
+                                $timeout.cancel(showTimeout);
+                            }
+
+                        }, HIDE_TOOLTIP_DELAY_MS);
+                    });
+                }
+            }
+        }
+    ];
+
+    angular.module('clixtv')
+        .directive('clixTooltip', tooltip)
+        .directive('clixTooltipTrigger', tooltipTrigger);
+}());
+(function() {
+
     var DropdownController = [
         '$q',
         '$scope',
@@ -3539,6 +3716,15 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
                 getFavoriteCategories: function() {
                     return $http.get('/api/account/get_favorites?type=favoriteCategories')
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
+                            }
+                        );
+                },
+
+                getSavedOffers: function() {
+                    return $http.get('/api/account/get_favorites?type=offersSaved')
                         .then(
                             function onSuccess(data) {
                                 return data.data;

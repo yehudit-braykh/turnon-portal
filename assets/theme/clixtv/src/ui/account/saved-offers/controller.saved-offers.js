@@ -37,6 +37,14 @@
             $scope.filterSavedOffersOptions = defaultFilterOptions;
             $scope.sortSavedOffersOptions = defaultSortOptions;
 
+            userService.getSavedOffers()
+                .then(
+                    function onSuccess(data) {
+                        $scope.offers = data;
+                        $scope.ready = true;
+                    }
+                )
+
         }
     ];
 

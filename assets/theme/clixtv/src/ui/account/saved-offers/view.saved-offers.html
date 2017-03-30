@@ -4,4 +4,44 @@
             Saved Offers
         </header-text>
     </clix-account-header>
+    <div class="saved-offers-page-content" ng-show="ready">
+        <div ng-if="!offers || offers.length === 0">
+            <clix-empty-container>
+                <header-text>
+                    Your Saved Offers will appear here.
+                </header-text>
+                <body-text>
+                    Browse through Brands &amp; Offers and hit the <i class="empty-add-icon icon-plus-icon"></i> to add them to this list.
+                </body-text>
+            </clix-empty-container>
+        </div>
+        <div ng-if="offers && offers.length > 0">
+            <clix-filter-page partial="true">
+                <page-search-filter>
+                    <clix-search-filter
+                        search-placeholder="Search Brands"
+                        filter-placeholder="Filter By"
+                        sort-placeholder="Sort By"
+                        filter-options="filterSavedOffersOptions"
+                        sort-options="sortSavedOffersOptions"
+                    ></clix-search-filter>
+                </page-search-filter>
+                <page-content>
+                    <clix-content-callout-list items="offers" large-col-class="col-lg-2-4">
+                        <clix-content-callout sref="offer({ id: '{{item._id}}' })">
+                            <header-element>
+                                <clix-offer-logo offer="item"></clix-offer-logo>
+                            </header-element>
+                            <title-content>
+                                {{item.title}}
+                            </title-content>
+                            <subtitle-content>
+                                Expires 2/1/2017
+                            </subtitle-content>
+                        </clix-content-callout>
+                    </clix-content-callout-list>
+                </page-content>
+            </clix-filter-page>
+        </div>
+    </div>
 </div>

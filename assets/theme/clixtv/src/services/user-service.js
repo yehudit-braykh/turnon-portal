@@ -101,6 +101,15 @@
                                 return data.data;
                             }
                         );
+                },
+
+                getSavedOffers: function() {
+                    return $http.get('/api/account/get_favorites?type=offersSaved')
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
+                            }
+                        );
                 }
             }
         }
