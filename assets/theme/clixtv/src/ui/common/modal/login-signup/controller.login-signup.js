@@ -74,8 +74,13 @@
              */
             // ...gross again, again
             window.finished_login = function() {
-                $rootScope.$broadcast('user.login', {});
-                $uibModalInstance.close();
+                userService.getLoggedInUser()
+                    .then(
+                        function onSuccess(data) {
+                            $rootScope.$broadcast('user.login', data);
+                            $uibModalInstance.close();
+                        }
+                    );
             };
         }
     ];
