@@ -9002,6 +9002,7 @@ button.close {
 .home-page .mobile-header {
   position: relative;
   margin-bottom: 25px;
+  text-align: center;
 }
 .home-page .mobile-header .mobile-header-content {
   position: absolute;
