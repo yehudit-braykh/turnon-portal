@@ -59,11 +59,6 @@
                     });
                 }
             });
-
-            $scope.finished_login = function(data) {
-                console.log(data);
-            }
-
         }
     ];
 

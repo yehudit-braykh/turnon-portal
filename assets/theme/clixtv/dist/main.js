@@ -1932,6 +1932,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
             $scope.onCloseIconPress = function() {
                 $uibModalInstance.close();
+            };
+
+            $scope.finished_login = function(data) {
+                console.log('>>>>', data);
             }
 
         }
@@ -2584,11 +2588,6 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     });
                 }
             });
-
-            $scope.finished_login = function(data) {
-                console.log(data);
-            }
-
         }
     ];
 
