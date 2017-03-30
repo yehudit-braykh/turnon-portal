@@ -4,7 +4,10 @@
         return {
             restrict: 'AE',
             templateUrl: 'ui/common/container/view.empty-container.html',
-            transclude: true
+            transclude: {
+                headerText: 'headerText',
+                bodyText: 'bodyText'
+            }
         }
     };
 

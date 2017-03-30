@@ -1,5 +1,5 @@
-<div class="clix-filter-page">
-    <div class="main-header">
+<div class="clix-filter-page" ng-class="{'partial-page': partial === 'true'}">
+    <div class="main-header" ng-show="pageTitleProvided">
         <clix-main-header>
             <div ng-transclude="pageTitle"></div>
         </clix-main-header>

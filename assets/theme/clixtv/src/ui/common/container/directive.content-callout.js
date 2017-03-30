@@ -7,7 +7,8 @@
             transclude: true,
             templateUrl: 'ui/common/container/view.content-callout-list.html',
             scope: {
-                items: '='
+                items: '=',
+                largeColClass: '@?'
             }
         }
     };

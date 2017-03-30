@@ -65,6 +65,42 @@
                                 return data.data;
                             }
                         );
+                },
+
+                getFavoriteCelebrities: function() {
+                    return $http.get('/api/account/get_favorites?type=favoriteCelebs')
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
+                            }
+                        );
+                },
+
+                getFavoriteBrands: function() {
+                    return $http.get('/api/account/get_favorites?type=favoriteBrands')
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
+                            }
+                        );
+                },
+
+                getFavoriteCharities: function() {
+                    return $http.get('/api/account/get_favorites?type=favoriteCharities')
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
+                            }
+                        );
+                },
+
+                getFavoriteCategories: function() {
+                    return $http.get('/api/account/get_favorites?type=favoriteCategories')
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
+                            }
+                        );
                 }
             }
         }

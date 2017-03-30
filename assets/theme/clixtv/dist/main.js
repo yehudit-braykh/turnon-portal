@@ -99,18 +99,28 @@
 angular.module('clixtv').run(['$templateCache', function($templateCache) {
   'use strict';
 
+  $templateCache.put('ui/account/favorites/view.favorites.html',
+    "<div class=clix-account-favorites><clix-account-header><header-text>Favorites</header-text></clix-account-header><div class=favorites-page-content ng-show=ready><div class=clix-tabs><uib-tabset active=active><uib-tab index=0 heading=Stars><div class=favorites-tab-content><clix-search-filter search-placeholder=\"Search Stars\" filter-placeholder=\"Filter By\" sort-placeholder=\"Sort By\" filter-options=filterStarsOptions sort-options=sortStarsOptions></clix-search-filter><div ng-if=\"!celebrities || celebrities.length === 0\"><clix-empty-container><header-text>Your favorite Stars will appear here.</header-text><body-text>Browse through Stars and hit the <i class=\"empty-favorite-icon icon-favorite-icon\"></i> to add them to this list.</body-text></clix-empty-container></div></div></uib-tab><uib-tab index=1 heading=Brands><div class=favorites-tab-content><div ng-if=\"!brands || brands.length === 0\"><clix-empty-container><header-text>Your favorite Brands will appear here.</header-text><body-text>Browse through Brands &amp; Offers and hit the <i class=\"empty-favorite-icon icon-favorite-icon\"></i> to add them to this list.</body-text></clix-empty-container></div><div ng-if=\"brands && brands.length > 0\"><clix-filter-page partial=true><page-search-filter><clix-search-filter search-placeholder=\"Search Brands\" filter-placeholder=\"Filter By\" sort-placeholder=\"Sort By\" filter-options=filterBrandsOptions sort-options=sortBrandsOptions></clix-search-filter></page-search-filter><page-content><clix-content-callout-list items=brands large-col-class=col-lg-2-4><clix-content-callout sref=\"brand({ slug: '{{item.title | slug}}' })\"><header-element><clix-brand-charity-logo brand=item></clix-brand-charity-logo></header-element><title-content>{{item.title}}</title-content><subtitle-content>18 Offers</subtitle-content></clix-content-callout></clix-content-callout-list></page-content></clix-filter-page></div></div></uib-tab><uib-tab index=2 heading=Charities><div class=favorites-tab-content><clix-search-filter search-placeholder=\"Search Charities\" filter-placeholder=\"Filter By\" sort-placeholder=\"Sort By\" filter-options=filterCharitiesOptions sort-options=sortCharitiesOptions></clix-search-filter><div ng-if=\"!charities || charities.length === 0\"><clix-empty-container><header-text>Your favorite Charities will appear here.</header-text><body-text>Browse through Charities and hit the <i class=\"empty-favorite-icon icon-favorite-icon\"></i> to add them to this list.</body-text></clix-empty-container></div></div></uib-tab><uib-tab index=3 heading=Categories><div class=favorites-tab-content><clix-search-filter search-placeholder=\"Search Categories\" filter-placeholder=\"Filter By\" sort-placeholder=\"Sort By\" filter-options=filterCategoriesOptions sort-options=sortCategoriesOptions></clix-search-filter><div ng-if=\"!categories || categories.length === 0\"><clix-empty-container><header-text>Your favorite Categories will appear here.</header-text><body-text>Browse through Categories and hit the <i class=\"empty-favorite-icon icon-favorite-icon\"></i> to add them to this list.</body-text></clix-empty-container></div></div></uib-tab></uib-tabset></div></div></div>"
+  );
+
+
   $templateCache.put('ui/account/overview/view.overview.html',
-    "<div class=clix-account-overview><clix-account-header><header-text>Account Overview</header-text></clix-account-header><div class=\"row body-content\"><div class=\"col-md-6 personal-info-container\"><div class=account-info-sub-header>Personal Information</div><div class=personal-info-form><div class=personal-info-form-row><div class=form-header><div class=form-header-label>First Name</div><a ng-click=\"onFieldEdit('firstName')\" class=\"icon-edit-icon form-header-edit\"></a></div><div class=form-value-container><div class=form-value><input ng-model=form.firstName type=text ng-disabled=\"editField !== 'firstName'\"></div></div></div><div class=personal-info-form-row><div class=form-header><div class=form-header-label>Last Name</div><a ng-click=\"onFieldEdit('lastName')\" class=\"icon-edit-icon form-header-edit\"></a></div><div class=form-value-container><div class=form-value><input ng-model=form.lastName type=text ng-disabled=\"editField !== 'lastName'\"></div></div></div><div class=personal-info-form-row><div class=form-header><div class=form-header-label>Email</div><a ng-click=\"onFieldEdit('email')\" class=\"icon-edit-icon form-header-edit\"></a></div><div class=form-value-container><div class=form-value><input ng-model=form.email type=email ng-disabled=\"editField !== 'email'\"></div></div></div><div class=personal-info-form-row><div class=form-header><div class=form-header-label>Password</div><a ng-click=\"onFieldEdit('password')\" class=\"icon-edit-icon form-header-edit\"></a></div><div class=form-value-container><div class=form-value><input ng-model=form.password type=password ng-disabled=\"editField !== 'password'\"></div></div></div><div class=personal-info-form-row><div class=form-header><div class=form-header-label>Date Of Birth</div><a ng-click=\"onFieldEdit('birthdate')\" class=\"icon-edit-icon form-header-edit\"></a></div><div class=form-value-container><div class=form-value><input ng-model=form.birthdate type=text ng-disabled=\"editField !== 'birthdate'\"></div></div></div><div class=personal-info-form-row><div class=form-header><div class=form-header-label>Gender</div><a ng-click=\"onFieldEdit('gender')\" class=\"icon-edit-icon form-header-edit\"></a></div><div class=form-value-container><div class=form-value><input ng-model=form.gender type=text ng-disabled=\"editField !== 'gender'\"></div></div></div><div class=personal-info-form-row><div class=form-header><div class=form-header-label>Phone</div><a ng-click=\"onFieldEdit('phone')\" class=\"icon-edit-icon form-header-edit\"></a></div><div class=form-value-container><div class=form-value><input ng-model=form.phone type=tel ng-disabled=\"editField !== 'phone'\"></div></div></div><div class=personal-info-form-row><div class=form-header><div class=form-header-label>Credit Card</div><a ng-click=\"onFieldEdit('paymentData')\" class=\"icon-edit-icon form-header-edit\"></a></div><div class=form-value-container><div class=form-value><input ng-model=form.paymentData type=tel ng-disabled=\"editField !== 'paymentData'\"></div></div></div></div></div><div class=\"col-md-6 reward-points-container\"><div class=account-info-sub-header>Reward Points</div><div class=reward-points><div class=\"reward-points-block first-block\"><div class=points-label>1760</div><div class=available-balance-label>Available Points Balance<br>$17.60 Cash Balance</div></div><div class=reward-points-block><div class=level-label>Level 2</div><div class=available-balance-label>Reward Status</div></div><div class=\"reward-points-block last-block\"><div class=progress-label>185 of 500 Points</div><div class=clix-progress-bar-container><div class=clix-progress-bar style=\"width: 50%\"></div></div><div class=available-balance-label>Earn 500 points or more this month to stay at <a href=#>Level 2</a></div></div><div class=rewards-button><clix-primary-button ui-sref=\"account({ section: 'rewards' })\" ui-sref-opts={reload:true}>Go To My Rewards</clix-primary-button></div></div></div></div></div>"
+    "<div class=clix-account-overview><clix-account-header><header-text>Account Overview</header-text></clix-account-header><div class=\"row body-content\"><div class=\"col-md-6 personal-info-container\"><div class=account-info-sub-header>Personal Information</div><div class=personal-info-form><div class=personal-info-form-row><div class=form-header><div class=form-header-label>First Name</div><a ng-click=\"onFieldEdit('firstName')\" class=\"icon-edit-icon form-header-edit\"></a></div><div class=form-value-container><div class=form-value><input ng-model=form.firstName type=text ng-disabled=\"editField !== 'firstName'\"></div></div></div><div class=personal-info-form-row><div class=form-header><div class=form-header-label>Last Name</div><a ng-click=\"onFieldEdit('lastName')\" class=\"icon-edit-icon form-header-edit\"></a></div><div class=form-value-container><div class=form-value><input ng-model=form.lastName type=text ng-disabled=\"editField !== 'lastName'\"></div></div></div><div class=personal-info-form-row><div class=form-header><div class=form-header-label>Email</div><a ng-click=\"onFieldEdit('email')\" class=\"icon-edit-icon form-header-edit\"></a></div><div class=form-value-container><div class=form-value><input ng-model=form.email type=email ng-disabled=\"editField !== 'email'\"></div></div></div><div class=personal-info-form-row><div class=form-header><div class=form-header-label>Password</div><a ng-click=\"onFieldEdit('password')\" class=\"icon-edit-icon form-header-edit\"></a></div><div class=form-value-container><div class=form-value><input ng-model=form.password type=password ng-disabled=\"editField !== 'password'\"></div></div></div><div class=personal-info-form-row><div class=form-header><div class=form-header-label>Date Of Birth</div><a ng-click=\"onFieldEdit('birthdate')\" class=\"icon-edit-icon form-header-edit\"></a></div><div class=form-value-container><div class=form-value><input ng-model=form.birthdate type=text ng-disabled=\"editField !== 'birthdate'\"></div></div></div><div class=personal-info-form-row><div class=form-header><div class=form-header-label>Gender</div><a ng-click=\"onFieldEdit('gender')\" class=\"icon-edit-icon form-header-edit\"></a></div><div class=form-value-container><div class=form-value><input ng-model=form.gender type=text ng-disabled=\"editField !== 'gender'\"></div></div></div><div class=personal-info-form-row><div class=form-header><div class=form-header-label>Phone</div><a ng-click=\"onFieldEdit('phone')\" class=\"icon-edit-icon form-header-edit\"></a></div><div class=form-value-container><div class=form-value><input ng-model=form.phone type=tel ng-disabled=\"editField !== 'phone'\"></div></div></div><div class=personal-info-form-row><div class=form-header><div class=form-header-label>Credit Card</div><a ng-click=\"onFieldEdit('paymentData')\" class=\"icon-edit-icon form-header-edit\"></a></div><div class=form-value-container><div class=form-value><input ng-model=form.paymentData type=tel ng-disabled=\"editField !== 'paymentData'\"></div></div></div></div></div><div class=\"col-md-6 reward-points-container\"><div class=account-info-sub-header>Reward Points</div><div class=reward-points><div class=\"reward-points-block first-block\"><div class=points-label>1760</div><div class=available-balance-label>Available Points Balance<br>$17.60 Cash Balance</div></div><div class=rewards-button><clix-primary-button ui-sref=\"account({ section: 'rewards' })\" ui-sref-opts={reload:true}>Go To My Rewards</clix-primary-button></div></div></div></div></div>"
+  );
+
+
+  $templateCache.put('ui/account/saved-offers/view.saved-offers.html',
+    "<div class=clix-account-saved-offers><clix-account-header><header-text>Saved Offers</header-text></clix-account-header></div>"
   );
 
 
   $templateCache.put('ui/account/view.account.html',
-    "<div class=clix-account-page><div class=account-navigation><clix-navigation-bar active-item=activeItem on-item-select=onNavigationItemSelect></clix-navigation-bar></div><div class=account-page ng-switch=activeItem><div ng-switch-when=overview><clix-account-overview></clix-account-overview></div><div ng-switch-when=watchlist><clix-account-watchlist></clix-account-watchlist></div></div></div>"
+    "<div class=clix-account-page><div class=account-navigation><clix-navigation-bar active-item=activeItem on-item-select=onNavigationItemSelect></clix-navigation-bar></div><div class=account-page ng-switch=activeItem><div ng-switch-when=overview><clix-account-overview></clix-account-overview></div><div ng-switch-when=watchlist><clix-account-watchlist></clix-account-watchlist></div><div ng-switch-when=favorites><clix-account-favorites></clix-account-favorites></div><div ng-switch-when=saved-offers><clix-account-saved-offers></clix-account-saved-offers></div></div></div>"
   );
 
 
   $templateCache.put('ui/account/watchlist/view.watchlist.html',
-    "<div class=clix-account-watchlist><clix-account-header><header-text>Watchlist</header-text><accessory-view><div class=filter-containers><div class=filter-container><clix-dropdown options=filterOptions></clix-dropdown></div><div class=filter-container><clix-dropdown options=sortOptions></clix-dropdown></div></div></accessory-view></clix-account-header><div class=watchlist-container><div ng-if=\"!watchlist || watchlist.length === 0\"><div class=empty-message-container><clix-empty-container>Add videos to watchlist and watch them later</clix-empty-container></div></div><div ng-if=\"watchlist && watchlist.length > 0\"><div class=\"row clix-block-row\"><div class=\"clix-block-item col-xs-12 col-sm-6 col-md-4 col-lg-3\" ng-repeat=\"video in watchlist\"><clix-video-content-box video=video></clix-video-content-box></div></div></div></div></div>"
+    "<div class=clix-account-watchlist><clix-account-header><header-text>Watchlist</header-text><accessory-view><div class=filter-containers><div class=filter-container><clix-dropdown options=filterOptions></clix-dropdown></div><div class=filter-container><clix-dropdown options=sortOptions></clix-dropdown></div></div></accessory-view></clix-account-header><div class=watchlist-container><div ng-if=\"!watchlist || watchlist.length === 0\"><div class=empty-message-container></div></div><div ng-if=\"watchlist && watchlist.length > 0\"><div class=\"row clix-block-row\"><div class=\"clix-block-item col-xs-12 col-sm-6 col-md-4 col-lg-3\" ng-repeat=\"video in watchlist\"><clix-video-content-box video=video></clix-video-content-box></div></div></div></div></div>"
   );
 
 
@@ -230,7 +240,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/container/view.content-callout-list.html',
-    "<div class=\"row brands-list\"><div class=\"brand-outer-container col-xs-6 col-sm-4 col-md-3 col-lg-2\" ng-repeat=\"item in items\" clix-transclude-inject><div ng-transclude></div></div></div>"
+    "<div class=\"row brands-list\"><div class=\"brand-outer-container col-xs-6 col-sm-4 col-md-3 {{largeColClass || 'col-lg-2'}}\" ng-repeat=\"item in items\" clix-transclude-inject><div ng-transclude></div></div></div>"
   );
 
 
@@ -240,7 +250,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/container/view.empty-container.html',
-    "<div class=clix-empty-container><div ng-transclude></div></div>"
+    "<div class=clix-empty-container><div class=empty-icon>!</div><div class=header-text><div ng-transclude=headerText></div></div><div class=body-text><div ng-transclude=bodyText></div></div></div>"
   );
 
 
@@ -305,7 +315,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/page/view.filter-page.html',
-    "<div class=clix-filter-page><div class=main-header><clix-main-header><div ng-transclude=pageTitle></div></clix-main-header></div><div class=search-filter-container><div ng-transclude=pageSearchFilter></div></div><div ng-transclude=pageContent></div></div>"
+    "<div class=clix-filter-page ng-class=\"{'partial-page': partial === 'true'}\"><div class=main-header ng-show=pageTitleProvided><clix-main-header><div ng-transclude=pageTitle></div></clix-main-header></div><div class=search-filter-container><div ng-transclude=pageSearchFilter></div></div><div ng-transclude=pageContent></div></div>"
   );
 
 
@@ -427,6 +437,89 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 }());
 (function() {
 
+    var AccountFavoritesController = [
+        '$q',
+        '$scope',
+        '$rootScope',
+        'userService',
+        function($q, $scope, $rootScope, userService) {
+
+            var defaultFilterOptions = [
+                {
+                    label: 'All'
+                },
+                {
+                    label: 'Home & Auto'
+                },
+                {
+                    label: 'Baby, Kids & Toys'
+                },
+                {
+                    label: 'Electronics'
+                }
+            ];
+
+            var defaultSortOptions = [
+                {
+                    label: 'Expiring Soon'
+                },
+                {
+                    label: 'Most Viewed'
+                },
+                {
+                    label: 'Favorites'
+                }
+            ];
+
+            $scope.filterStarsOptions = defaultFilterOptions;
+            $scope.filterBrandsOptions = defaultFilterOptions;
+            $scope.filterCharitiesOptions = defaultFilterOptions;
+            $scope.filterCategoriesOptions = defaultFilterOptions;
+
+            $scope.sortStarsOptions = defaultSortOptions;
+            $scope.sortBrandsOptions = defaultSortOptions;
+            $scope.sortCharitiesOptions = defaultSortOptions;
+            $scope.sortCategoriesOptions = defaultSortOptions;
+
+            $q.all(
+                    [
+                        userService.getFavoriteCelebrities(),
+                        userService.getFavoriteBrands(),
+                        userService.getFavoriteCharities(),
+                        userService.getFavoriteCategories()
+                    ]
+                )
+                .then(
+                    function onSuccess(data) {
+                        $scope.ready = true;
+                        $scope.celebrities = data[0];
+                        $scope.brands = data[1];
+                        $scope.charities = data[2];
+                        $scope.categories = data[3];
+                    }
+                )
+
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .controller('AccountFavoritesController', AccountFavoritesController);
+}());
+(function() {
+    var favorites = function() {
+        return {
+            restrict: 'AE',
+            templateUrl: 'ui/account/favorites/view.favorites.html',
+            controller: 'AccountFavoritesController'
+        }
+    };
+
+    angular.module('clixtv')
+        .directive('clixAccountFavorites', favorites);
+}());
+(function() {
+
     var AccountOverviewController = [
         '$scope',
         '$rootScope',
@@ -464,6 +557,64 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     angular.module('clixtv')
         .directive('clixAccountOverview', overview);
+}());
+(function() {
+
+    var AccountSavedOffersController = [
+        '$q',
+        '$scope',
+        '$rootScope',
+        'userService',
+        function($q, $scope, $rootScope, userService) {
+
+            var defaultFilterOptions = [
+                {
+                    label: 'All'
+                },
+                {
+                    label: 'Home & Auto'
+                },
+                {
+                    label: 'Baby, Kids & Toys'
+                },
+                {
+                    label: 'Electronics'
+                }
+            ];
+
+            var defaultSortOptions = [
+                {
+                    label: 'Expiring Soon'
+                },
+                {
+                    label: 'Most Viewed'
+                },
+                {
+                    label: 'Favorites'
+                }
+            ];
+
+            $scope.filterSavedOffersOptions = defaultFilterOptions;
+            $scope.sortSavedOffersOptions = defaultSortOptions;
+
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .controller('AccountSavedOffersController', AccountSavedOffersController);
+}());
+(function() {
+    var savedOffers = function() {
+        return {
+            restrict: 'AE',
+            templateUrl: 'ui/account/saved-offers/view.saved-offers.html',
+            controller: 'AccountSavedOffersController'
+        }
+    };
+
+    angular.module('clixtv')
+        .directive('clixAccountSavedOffers', savedOffers);
 }());
 (function() {
 
@@ -1495,7 +1646,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             transclude: true,
             templateUrl: 'ui/common/container/view.content-callout-list.html',
             scope: {
-                items: '='
+                items: '=',
+                largeColClass: '@?'
             }
         }
     };
@@ -1528,7 +1680,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         return {
             restrict: 'AE',
             templateUrl: 'ui/common/container/view.empty-container.html',
-            transclude: true
+            transclude: {
+                headerText: 'headerText',
+                bodyText: 'bodyText'
+            }
         }
     };
 
@@ -1929,15 +2084,36 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 }());
 (function() {
 
+    var PageFilterController = [
+        '$q',
+        '$scope',
+        '$transclude',
+        function($q, $scope, $transclude) {
+
+            $scope.pageTitleProvided = $transclude.isSlotFilled('pageTitle');
+
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .controller('PageFilterController', PageFilterController);
+}());
+(function() {
+
     var filterPage = function() {
         return {
             restrict: 'AE',
             replace: true,
             templateUrl: 'ui/common/page/view.filter-page.html',
+            controller: 'PageFilterController',
             transclude: {
-                pageTitle: 'pageTitle',
+                pageTitle: '?pageTitle',
                 pageSearchFilter: 'pageSearchFilter',
                 pageContent: 'pageContent'
+            },
+            scope: {
+                partial: '@?'
             }
         }
     };
@@ -3327,6 +3503,42 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
                 getWatchlist: function() {
                     return $http.get('/api/account/get_watchlist')
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
+                            }
+                        );
+                },
+
+                getFavoriteCelebrities: function() {
+                    return $http.get('/api/account/get_favorites?type=favoriteCelebs')
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
+                            }
+                        );
+                },
+
+                getFavoriteBrands: function() {
+                    return $http.get('/api/account/get_favorites?type=favoriteBrands')
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
+                            }
+                        );
+                },
+
+                getFavoriteCharities: function() {
+                    return $http.get('/api/account/get_favorites?type=favoriteCharities')
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
+                            }
+                        );
+                },
+
+                getFavoriteCategories: function() {
+                    return $http.get('/api/account/get_favorites?type=favoriteCategories')
                         .then(
                             function onSuccess(data) {
                                 return data.data;

@@ -7839,6 +7839,7 @@ button.close {
   -webkit-justify-content: center;
   -ms-justify-content: center;
   justify-content: center;
+  padding-top: 6px;
 }
 @media (min-width: 768px) {
   .video-category-scroll-list {
@@ -10090,14 +10091,13 @@ button.close {
 }
 @media (min-width: 768px) {
   .clix-account-overview .reward-points {
-    text-align: left;
     padding-top: 45px;
   }
 }
 .clix-account-overview .reward-points .points-label {
   font-family: 'pt_sansregular', sans-serif;
-  font-size: 35px;
-  color: #FFF;
+  font-size: 45px;
+  color: #fe0000;
   letter-spacing: 1.6px;
 }
 .clix-account-overview .reward-points .available-balance-label {
@@ -10139,14 +10139,12 @@ button.close {
 }
 .clix-account-overview .reward-points-block {
   padding-bottom: 5px;
-  margin-bottom: 25px;
+  margin-bottom: 37px;
   display: none;
 }
 @media (min-width: 768px) {
   .clix-account-overview .reward-points-block {
-    border-bottom: 1px solid #636363;
     display: block;
-    padding-bottom: 37px;
   }
 }
 .clix-account-overview .reward-points-block.first-block {
@@ -10232,6 +10230,17 @@ button.close {
     padding-left: 50px;
     padding-right: 30px;
   }
+}
+.clix-account-favorites .favorites-page-content {
+  padding: 46px 29px 46px 48px;
+}
+.clix-account-favorites .clix-search-filter {
+  padding-top: 45px;
+}
+.clix-account-favorites .empty-favorite-icon {
+  font-size: 18px;
+  position: relative;
+  top: -1px;
 }
 .clix-hero-banner {
   position: relative;
@@ -10813,6 +10822,9 @@ button.close {
     padding: 120px 30px 100px 30px;
   }
 }
+.clix-filter-page.partial-page {
+  padding: 0;
+}
 .clix-filter-page .main-header {
   padding-bottom: 10px;
 }
@@ -11110,10 +11122,26 @@ button.close {
   display: inline-block;
 }
 .clix-empty-container {
-  font-family: 'pt_sansregular', sans-serif;
-  font-size: 14px;
-  color: #FFF;
+  color: #8a8a8a;
   text-align: center;
+  padding: 50px 0;
+}
+.clix-empty-container .empty-icon {
+  font-size: 64px;
+  font-family: 'pt_sansbold', sans-serif;
+}
+.clix-empty-container .header-text {
+  font-size: 24px;
+  font-family: 'pt_sansbold', sans-serif;
+  line-height: 30px;
+}
+.clix-empty-container .body-text {
+  font-size: 14px;
+  font-family: 'cabinregular', sans-serif;
+  line-height: 22px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  margin-top: 15px;
 }
 .clix-modal-window {
   z-index: 9000 !important;
