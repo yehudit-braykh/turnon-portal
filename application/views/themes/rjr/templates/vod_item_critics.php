@@ -1,1 +1,0 @@
-<div>More info here...</div>
