@@ -10,7 +10,8 @@
             'ui.router',
             'duParallax',
             'ui.bootstrap',
-            'puElasticInput'
+            'puElasticInput',
+            'uiSwitch'
         ])
         .config([
             '$locationProvider',

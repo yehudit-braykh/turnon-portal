@@ -16,9 +16,57 @@
                 </div>
             </div>
             <div class="setting-row-trigger">
-
+                <switch ng-model="setting.value" class="setting-switch"></switch>
             </div>
         </div>
+
+        <div class="settings-subtitle">
+            <clix-account-header>
+                <header-text>
+                    Your ClixTV
+                </header-text>
+            </clix-account-header>
+        </div>
+        <div class="setting-row" ng-repeat="setting in accountSettings">
+            <div class="setting-row-info">
+                <div class="setting-row-title">
+                    {{setting.label}}
+                </div>
+                <div class="setting-row-description">
+                    {{setting.description}}
+                </div>
+            </div>
+            <div class="setting-row-trigger">
+                <switch ng-model="setting.value" class="setting-switch"></switch>
+            </div>
+        </div>
+
+        <div class="settings-subtitle">
+            <clix-account-header>
+                <header-text>
+                    Notifications
+                </header-text>
+            </clix-account-header>
+        </div>
+        <div class="setting-row">
+            <div class="setting-row-info">
+                <div class="setting-row-title">
+                    Send Notifications
+                </div>
+                <div class="setting-row-description">
+                    How we will keep you Up-To-Date
+                </div>
+            </div>
+            <div class="row setting-notification-container">
+                <div class="col-xs-6">
+
+                </div>
+                <div class="col-xs-6">
+
+                </div>
+            </div>
+        </div>
+
 
     </div>
 </div>

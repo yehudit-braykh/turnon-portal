@@ -12,10 +12,17 @@
             var carouselElement = angular.element(document.getElementById('carousel-container'));
 
             function _recalculateHeight() {
+                if (!carouselElement) {
+                    return;
+                }
                 $scope.videoContainerHeight = carouselElement.innerHeight();
                 $timeout(function() {
                     $scope.$apply();
                 });
+            }
+
+            function _recalculateWidth() {
+                $scope.showMobileCarousel = ($window.innerWidth <= 768);
             }
 
             function _loadVideosForCategoryIndex(index) {
@@ -60,9 +67,11 @@
 
             angular.element($window).on('resize.doResize', function () {
                 _recalculateHeight();
+                _recalculateWidth();
             });
 
             _recalculateHeight();
+            _recalculateWidth();
         }
     ];
 

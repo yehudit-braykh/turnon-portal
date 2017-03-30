@@ -694,6 +694,89 @@ template {
     display: none;
 }
 
+.switch {
+  background: #fff;
+  border: 1px solid #dfdfdf;
+  position: relative;
+  display: inline-block;
+  box-sizing: content-box;
+  overflow: visible;
+  width: 52px;
+  height: 30px;
+  padding: 0px;
+  margin: 0px;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: rgb(223, 223, 223) 0px 0px 0px 0px inset;
+  transition: 0.3s ease-out all;
+  -webkit-transition: 0.3s ease-out all;
+  top: -1px;
+}
+/*adding a wide width for larger switch text*/
+.switch.wide {
+  width:80px;
+}
+.switch small {
+  background: #fff;
+  border-radius: 100%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transition: 0.3s ease-out all;
+  -webkit-transition: 0.3s ease-out all;
+}
+.switch.checked {
+  background: rgb(100, 189, 99);
+  border-color: rgb(100, 189, 99);
+}
+.switch.checked small {
+  left: 22px;
+}
+/*wider switch text moves small further to the right*/
+.switch.wide.checked small {
+  left:52px;
+}
+/*styles for switch-text*/
+.switch .switch-text {
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:13px;
+}
+
+.switch .off {
+  display:block;
+  position: absolute;
+  right: 10%;
+  top: 25%;
+  z-index: 0;
+  color:#A9A9A9;
+}
+
+.switch .on {
+  display:none;
+   z-index: 0;
+  color:#fff;
+  position: absolute;
+  top: 25%;
+  left: 9%;
+}
+
+.switch.checked .off {
+  display:none;
+}
+
+.switch.checked .on {
+  display:block;
+
+}
+
+.switch.disabled {
+  opacity: .50;
+  cursor: not-allowed;
+}
+
 /*
 Icon classes can be used entirely standalone. They are named after their original file names.
 
@@ -8916,6 +8999,34 @@ button.close {
   cursor: pointer;
   display: none;
 }
+.home-page .mobile-header {
+  position: relative;
+  margin-bottom: 25px;
+}
+.home-page .mobile-header .mobile-header-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 26px;
+  text-align: center;
+  padding: 0 73px;
+}
+.home-page .mobile-header .header-content-title {
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+  font-family: 'pt_sansregular', sans-serif;
+  font-size: 20px;
+  color: #FFF;
+}
+.home-page .mobile-header .header-content-subtitle {
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+  font-family: 'cabinregular', sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+  line-height: 12px;
+  color: #FFF;
+  margin-bottom: 20px;
+}
 .video-permalink-page {
   padding-top: 75px;
   padding-bottom: 30px;
@@ -10455,6 +10566,16 @@ button.close {
   font-size: 14px;
   line-height: 20px;
   color: #8a8a8a;
+}
+.clix-account-settings .setting-row .setting-switch.checked {
+  border-color: #fe0000;
+  background-color: #fe0000;
+}
+.clix-account-settings .settings-subtitle {
+  margin-top: 40px;
+}
+.clix-account-settings .settings-subtitle .clix-account-header {
+  padding-left: 0;
 }
 .clix-hero-banner {
   position: relative;

@@ -131,4 +131,36 @@
         cursor: pointer;
         display: none;
     }
+    
+    .mobile-header {
+        position: relative;
+        margin-bottom: 25px;
+
+        .mobile-header-content {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 26px;
+            text-align: center;
+            padding: 0 73px;
+        }
+
+        .header-content-title {
+            .text-shadow(0 0 4px rgba(0, 0, 0, 0.5));
+            font-family: @font-primary;
+            font-size: 20px;
+            color: @color-white;
+        }
+
+        .header-content-subtitle {
+            .text-shadow(0 0 4px rgba(0, 0, 0, 0.5));
+            font-family: @font-secondary;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.8px;
+            line-height: 12px;
+            color: @color-white;
+            margin-bottom: 20px;
+        }
+    }
 }

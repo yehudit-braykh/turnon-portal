@@ -10,7 +10,8 @@
             'ui.router',
             'duParallax',
             'ui.bootstrap',
-            'puElasticInput'
+            'puElasticInput',
+            'uiSwitch'
         ])
         .config([
             '$locationProvider',
@@ -120,7 +121,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/account/settings/view.settings.html',
-    "<div class=clix-account-settings><clix-account-header><header-text>Settings</header-text></clix-account-header><div class=settings-page-content><div class=setting-row ng-repeat=\"setting in generalSettings\"><div class=setting-row-info><div class=setting-row-title>{{setting.label}}</div><div class=setting-row-description>{{setting.description}}</div></div><div class=setting-row-trigger></div></div></div></div>"
+    "<div class=clix-account-settings><clix-account-header><header-text>Settings</header-text></clix-account-header><div class=settings-page-content><div class=setting-row ng-repeat=\"setting in generalSettings\"><div class=setting-row-info><div class=setting-row-title>{{setting.label}}</div><div class=setting-row-description>{{setting.description}}</div></div><div class=setting-row-trigger><switch ng-model=setting.value class=setting-switch></switch></div></div><div class=settings-subtitle><clix-account-header><header-text>Your ClixTV</header-text></clix-account-header></div><div class=setting-row ng-repeat=\"setting in accountSettings\"><div class=setting-row-info><div class=setting-row-title>{{setting.label}}</div><div class=setting-row-description>{{setting.description}}</div></div><div class=setting-row-trigger><switch ng-model=setting.value class=setting-switch></switch></div></div><div class=settings-subtitle><clix-account-header><header-text>Notifications</header-text></clix-account-header></div><div class=setting-row><div class=setting-row-info><div class=setting-row-title>Send Notifications</div><div class=setting-row-description>How we will keep you Up-To-Date</div></div><div class=\"row setting-notification-container\"><div class=col-xs-6></div><div class=col-xs-6></div></div></div></div></div>"
   );
 
 
@@ -380,7 +381,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/home/view.home.html',
-    "<div class=home-page><div class=main-video-container><video src=http://advncedcdn.vo.llnwd.net/clixtv_storage/storage/57cdc2665aad0b6fcf67bb3d/5829ca559c56fb0004f1fd6d/file.mp4 autoplay=\"\" loop=\"\" muted=\"\"></video><div class=video-overlay></div><div class=carousel-container id=carousel-container><slick dots=true autoplay=true autoplay-speed=5000 prev-arrow=#main-carousel-previous next-arrow=#main-carousel-next pause-on-hover=true><div><div class=carousel-slide style=\"height: {{videoContainerHeight}}px\"><div class=carouse-slide-content><div class=carousel-main-header>The Network That Gives To All.</div><div class=\"carousel-second-line carousel-sub-header\">Support Your Favorite Causes By Watching</div><div class=button-container><a href=# class=primary-button>Sign Up Free</a></div></div></div></div><div><div class=carousel-slide style=\"height: {{videoContainerHeight}}px\"><div class=carouse-slide-content><div class=carousel-main-header>Your Stars. Their Passions.</div><div class=\"carousel-second-line carousel-sub-header\">Premium content from your favorite stars</div><div class=button-container><a href=# class=primary-button>Sign Up Free</a></div></div></div></div><div><div class=carousel-slide style=\"height: {{videoContainerHeight}}px\"><div class=carouse-slide-content><div class=carousel-main-header>Your Stars. Their Passions.</div><div class=\"carousel-second-line carousel-sub-header\">Premium content from your favorite stars</div><div class=button-container><a href=# class=primary-button>Sign Up Free</a></div></div></div></div></slick></div><div id=main-carousel-previous><div class=main-carousel-button><i class=icon-left-tall-arrow></i></div></div><div id=main-carousel-next><div class=main-carousel-button><i class=icon-right-tall-arrow></i></div></div></div><div ng-repeat=\"category in categories\" ng-if=\"category && category.videos\"><clix-video-category-scroll-list category-title={{category.title}} category-videos=category.videos></clix-video-category-scroll-list></div></div>"
+    "<div class=home-page><div class=mobile-header ng-if=showMobileCarousel><img src=/assets/theme/clixtv/dist/images/redfoo-header.jpg srcset=\"/assets/theme/clixtv/dist/images/redfoo-header@2x.jpg 2x\"><div class=mobile-header-content><div class=header-content-title>Your Stars. Their Passions.</div><div class=header-content-subtitle>Premium content from your favorite stars</div><a href=# class=primary-button>Sign Up Free</a></div></div><div class=main-video-container ng-if=!showMobileCarousel><video src=http://advncedcdn.vo.llnwd.net/clixtv_storage/storage/57cdc2665aad0b6fcf67bb3d/5829ca559c56fb0004f1fd6d/file.mp4 autoplay=\"\" loop=\"\" muted=\"\"></video><div class=video-overlay></div><div class=carousel-container id=carousel-container><slick dots=true autoplay=true autoplay-speed=5000 prev-arrow=#main-carousel-previous next-arrow=#main-carousel-next pause-on-hover=true><div><div class=carousel-slide style=\"height: {{videoContainerHeight}}px\"><div class=carouse-slide-content><div class=carousel-main-header>The Network That Gives To All.</div><div class=\"carousel-second-line carousel-sub-header\">Support Your Favorite Causes By Watching</div><div class=button-container><a href=# class=primary-button>Sign Up Free</a></div></div></div></div><div><div class=carousel-slide style=\"height: {{videoContainerHeight}}px\"><div class=carouse-slide-content><div class=carousel-main-header>Your Stars. Their Passions.</div><div class=\"carousel-second-line carousel-sub-header\">Premium content from your favorite stars</div><div class=button-container><a href=# class=primary-button>Sign Up Free</a></div></div></div></div><div><div class=carousel-slide style=\"height: {{videoContainerHeight}}px\"><div class=carouse-slide-content><div class=carousel-main-header>Your Stars. Their Passions.</div><div class=\"carousel-second-line carousel-sub-header\">Premium content from your favorite stars</div><div class=button-container><a href=# class=primary-button>Sign Up Free</a></div></div></div></div></slick></div><div id=main-carousel-previous><div class=main-carousel-button><i class=icon-left-tall-arrow></i></div></div><div id=main-carousel-next><div class=main-carousel-button><i class=icon-right-tall-arrow></i></div></div></div><div ng-repeat=\"category in categories\" ng-if=\"category && category.videos\"><clix-video-category-scroll-list category-title={{category.title}} category-videos=category.videos></clix-video-category-scroll-list></div></div>"
   );
 
 
@@ -699,6 +700,41 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     value: true
                 }
             ];
+
+            $scope.accountSettings = [
+                {
+                    label: 'Recommended Videos',
+                    description: 'ClixTV videos we think you\'ll like',
+                    value: true
+                },
+                {
+                    label: 'Video Category Updates',
+                    description: 'A favorite video category of yours is updated',
+                    value: true
+                },
+                {
+                    label: 'Star Updates',
+                    description: 'A favorite star of yours is updated',
+                    value: true
+                },
+                {
+                    label: 'Brand Updates',
+                    description: 'A favorite brand of yours is updated',
+                    value: true
+                },
+                {
+                    label: 'Charity Updates',
+                    description: 'A favorite charity of yours is updated',
+                    value: true
+                }
+            ];
+
+            $scope.notifications = [
+                {
+                    label: 'Send Notifications',
+                    description: 'How we will keep you Up-To-Date'
+                }
+            ]
         }
     ];
 
@@ -2698,10 +2734,17 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             var carouselElement = angular.element(document.getElementById('carousel-container'));
 
             function _recalculateHeight() {
+                if (!carouselElement) {
+                    return;
+                }
                 $scope.videoContainerHeight = carouselElement.innerHeight();
                 $timeout(function() {
                     $scope.$apply();
                 });
+            }
+
+            function _recalculateWidth() {
+                $scope.showMobileCarousel = ($window.innerWidth <= 768);
             }
 
             function _loadVideosForCategoryIndex(index) {
@@ -2746,9 +2789,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
             angular.element($window).on('resize.doResize', function () {
                 _recalculateHeight();
+                _recalculateWidth();
             });
 
             _recalculateHeight();
+            _recalculateWidth();
         }
     ];
 

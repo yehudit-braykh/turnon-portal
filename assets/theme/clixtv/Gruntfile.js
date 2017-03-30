@@ -41,7 +41,8 @@ module.exports = function(grunt) {
                     'bower_components/ng-parallax/angular-parallax.js',
                     'node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js',
                     'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
-                    'bower_components/angular-elastic-input/dist/angular-elastic-input.js'
+                    'bower_components/angular-elastic-input/dist/angular-elastic-input.js',
+                    'node_modules/angular-ui-switch/angular-ui-switch.js'
                 ]
             }
         },
