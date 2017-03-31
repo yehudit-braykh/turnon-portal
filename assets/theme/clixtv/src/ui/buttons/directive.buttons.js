@@ -38,7 +38,10 @@
         return {
             restrict: 'AE',
             transclude: true,
-            templateUrl: 'ui/buttons/view.callout-button.html'
+            templateUrl: 'ui/buttons/view.callout-button.html',
+            scope: {
+                colorType: '@?'
+            }
         }
     };
 

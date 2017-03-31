@@ -8332,7 +8332,12 @@ button.close {
   font-size: 17px;
 }
 .violator {
-  background-color: #fe0000;
+  background-color: #0dc73a;
+  background-image: -webkit-gradient(linear, left top, right top, from(#0dc73a), to(#14cf1e));
+  background-image: -webkit-linear-gradient(left, #0dc73a, #14cf1e);
+  background-image: -moz-linear-gradient(left, #0dc73a, #14cf1e);
+  background-image: -ms-linear-gradient(left, #0dc73a, #14cf1e);
+  background-image: -o-linear-gradient(left, #0dc73a, #14cf1e);
   -webkit-border-radius: 100px;
   -moz-border-radius: 100px;
   border-radius: 100px;
@@ -8355,7 +8360,12 @@ button.close {
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  background-color: #fe0000;
+  background-color: #0dc73a;
+  background-image: -webkit-gradient(linear, left top, right top, from(#0dc73a), to(#14cf1e));
+  background-image: -webkit-linear-gradient(left, #0dc73a, #14cf1e);
+  background-image: -moz-linear-gradient(left, #0dc73a, #14cf1e);
+  background-image: -ms-linear-gradient(left, #0dc73a, #14cf1e);
+  background-image: -o-linear-gradient(left, #0dc73a, #14cf1e);
   width: 25px;
   height: 25px;
   line-height: 25px;
@@ -8632,15 +8642,25 @@ button.close {
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  background-color: #fe0000;
+  background-color: #0dc73a;
+  background-image: -webkit-gradient(linear, left top, right top, from(#0dc73a), to(#14cf1e));
+  background-image: -webkit-linear-gradient(left, #0dc73a, #14cf1e);
+  background-image: -moz-linear-gradient(left, #0dc73a, #14cf1e);
+  background-image: -ms-linear-gradient(left, #0dc73a, #14cf1e);
+  background-image: -o-linear-gradient(left, #0dc73a, #14cf1e);
   font-family: 'cabinregular', sans-serif;
   font-size: 14px;
   color: #FFF;
   padding: 3px 30px;
   cursor: pointer;
 }
-.clix-callout-button:hover {
-  background-color: #e50000;
+.clix-callout-button.secondary-callout {
+  background-color: #911685;
+  background-image: -webkit-gradient(linear, left top, right top, from(#911685), to(#fa0d1b));
+  background-image: -webkit-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -moz-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -ms-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -o-linear-gradient(left, #911685, #fa0d1b);
 }
 .clix-logo-container {
   display: -webkit-flex;

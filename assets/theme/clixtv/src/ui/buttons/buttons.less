@@ -163,14 +163,14 @@
 
 .clix-callout-button {
     .border-radius(100px);
-    background-color: @color-primary;
+    .horizontal-gradient(@color-reward-primary, @color-reward-secondary);
     font-family: @font-secondary;
     font-size: 14px;
     color: @color-white;
     padding: 3px 30px;
     cursor: pointer;
 
-    &:hover {
-        background-color: darken(@color-primary, 5%);
+    &.secondary-callout {
+        .horizontal-gradient(@color-tertiary, @color-secondary);
     }
 }
