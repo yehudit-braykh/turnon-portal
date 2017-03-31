@@ -1,8 +1,12 @@
 .clix-tooltip {
-    position: absolute;
+    position: fixed;
     z-index: 8000;
     left: -999px;
     top: -999px;
+
+    @media (max-width: @screen-md) {
+        .opacity(0);
+    }
 
     .clix-tooltip-content {
         .transition(0.25s ease);

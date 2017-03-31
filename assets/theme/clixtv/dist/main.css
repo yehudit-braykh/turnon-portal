@@ -12781,10 +12781,18 @@ button.close {
   }
 }
 .clix-tooltip {
-  position: absolute;
+  position: fixed;
   z-index: 8000;
   left: -999px;
   top: -999px;
+}
+@media (max-width: 992px) {
+  .clix-tooltip {
+    filter: alpha(opacity=0);
+    -webkit-opacity: 0;
+    -moz-opacity: 0;
+    opacity: 0;
+  }
 }
 .clix-tooltip .clix-tooltip-content {
   transition: 0.25s ease;
