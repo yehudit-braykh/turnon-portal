@@ -63,10 +63,22 @@
 
     .play-button {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-left: -36px;
-        margin-top: -34px;
+        top: 0;
+        bottom: 0;
+        left: 38.5%;
+        right: 38.5%;
+
+        .play-button-hit-area {
+            position: relative;
+            top: 50%;
+            margin-top: -33.8%;
+            img {
+                width: 100%;
+            }
+            //.play-button-hover {
+            //    display: none;
+            //}
+        }
         display: none;
     }
 
@@ -77,23 +89,15 @@
         display: none;
     }
 
-    .play-button:hover {
-        .button-normal {
-            display: none;
-        }
-        .button-hover {
-            display: block;
-        }
-    }
-
-    .play-button:focus {
-        .button-normal,
-        .button-hover {
-            display: none;
-        }
-        .button-click {
-            display: block;
-        }
+    .play-button-hit-area:hover {
+        .brightness(0.8);
+        //.play-button-normal {
+        //    display: none;
+        //}
+        //.play-button-hover {
+        //    display: block;
+        //}
+        //background-image: url('/assets/theme/clixtv/dist/images/gradient-clix-icon.svg');
     }
 
     .save-button:hover {
