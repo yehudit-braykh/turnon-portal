@@ -55,7 +55,7 @@
                                 <clix-offer-logo offer="offer"></clix-offer-logo>
                             </div>
                         </div>
-                        <a ui-sref="brand({ slug: (offer.title | slug) })" class="brand-footer">
+                        <a ui-sref="offer({ id: '{{offer._id}}' })" class="brand-footer">
                             <span class="brand-title">
                                 {{offer.title}}
                             </span>

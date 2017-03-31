@@ -8,8 +8,8 @@
         </clix-points-violator>
     </div>
     <div class="logo-overlay">
-        <a ui-sref="brand({ slug: (offer.title | slug) })" class="hit-area"></a>
-        <a ui-sref="brand({ slug: (offer.title | slug) })" class="view-button-container">
+        <a ui-sref="offer({ id: '{{offer._id}}' })" class="hit-area"></a>
+        <a ui-sref="offer({ id: '{{offer._id}}' })" class="view-button-container">
             <div class="view-button">
                 <clix-view-button></clix-view-button>
             </div>
