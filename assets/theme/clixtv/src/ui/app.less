@@ -60,6 +60,7 @@
 @import "common/modal/login-signup/login-signup";
 @import "common/modal/donate/donate";
 @import "common/modal/share/share";
+@import "common/modal/rewards/redeem-rewards";
 @import "common/navigation/right-navigation";
 @import "common/navigation/navigation-bar";
 @import "common/navigation/mobile-navigation";
@@ -94,18 +95,25 @@ button:focus {
 }
 
 .clix-block-row {
-    margin-left: -@common-row-item-spacing;
-    margin-right: -@common-row-item-spacing;
+    margin-left: (@common-mobile-padding / 2);
+    margin-right: (@common-mobile-padding / 2);
+
+    @media (min-width: @screen-sm) {
+        margin-left: -@common-row-item-spacing;
+        margin-right: -@common-row-item-spacing;
+    }
 
     .clix-block-item {
         padding-top: 0;
         padding-bottom: 30px;
-        padding-left: @common-row-item-spacing;
-        padding-right: @common-row-item-spacing;
+        padding-left: (@common-mobile-padding / 2);
+        padding-right: (@common-mobile-padding / 2);
 
         @media (min-width: @screen-sm) {
             padding-top: @common-row-item-spacing ;
             padding-bottom: 38px;
+            padding-left: @common-row-item-spacing;
+            padding-right: @common-row-item-spacing;
         }
     }
 }

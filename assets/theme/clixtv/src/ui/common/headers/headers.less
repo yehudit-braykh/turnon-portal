@@ -13,12 +13,17 @@
 
 .clix-secondary-header {
     font-family: @font-secondary-bold;
-    font-size: 24px;
+    font-size: 18px;
     color: @color-gray;
-    letter-spacing: 3.5px;
+    letter-spacing: 2.6px;
     text-transform: uppercase;
 
     .icon-right-arrow {
         font-size: 20px;
+    }
+
+    @media (min-width: @screen-sm) {
+        font-size: 24px;
+        letter-spacing: 3.5px;
     }
 }

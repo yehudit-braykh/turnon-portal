@@ -56,7 +56,7 @@
             bottom: 0;
             background-color: @color-transparent-black;
         }
-        .play-button, .save-button {
+        .play-button, .plus-icon {
             display: block;
         }
     }
@@ -87,6 +87,19 @@
         top: 10px;
         left: 10px;
         display: none;
+    }
+
+    .plus-icon {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        color: @color-gray2;
+        display: none;
+        font-size: 25px;
+
+        &:hover {
+            color: @color-white;
+        }
     }
 
     .play-button-hit-area:hover {

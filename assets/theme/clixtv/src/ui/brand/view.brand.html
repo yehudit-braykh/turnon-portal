@@ -30,19 +30,21 @@
                                 More Offers From {{configs.title}}
                             </sidebar-title>
                             <sidebar-content>
-                                <div ng-repeat="offer in offers | limitTo: 3" ng-if="offers">
-                                    <div class="brand-offer">
-                                        <clix-content-callout sref="offer({ id: '{{offer._id}}' })" menu-items="offerMenuItems">
-                                            <header-element>
-                                                <clix-offer-logo offer="offer"></clix-offer-logo>
-                                            </header-element>
-                                            <title-content>
-                                                {{offer.title}}
-                                            </title-content>
-                                            <subtitle-content>
-                                                Expires 2/1/2017
-                                            </subtitle-content>
-                                        </clix-content-callout>
+                                <div class="row brand-offer-row">
+                                    <div class="col-xs-6 col-sm-6 col-md-12 col-lg-12 brand-offer-column" ng-repeat="offer in offers | limitTo: 3" ng-if="offers">
+                                        <div class="brand-offer">
+                                            <clix-content-callout sref="offer({ id: '{{offer._id}}' })" menu-items="offerMenuItems">
+                                                <header-element>
+                                                    <clix-offer-logo offer="offer"></clix-offer-logo>
+                                                </header-element>
+                                                <title-content>
+                                                    {{offer.title}}
+                                                </title-content>
+                                                <subtitle-content>
+                                                    Expires 2/1/2017
+                                                </subtitle-content>
+                                            </clix-content-callout>
+                                        </div>
                                     </div>
                                 </div>
                             </sidebar-content>
@@ -66,8 +68,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div ng-repeat="celebrity in celebrities | limitTo: 3">
-                                    <clix-video-category-scroll-list category-title="{{celebrity.title}} and {{configs.title}}" category-videos="relatedVideos"></clix-video-category-scroll-list>
+                                <div class="brand-celebrity-videos">
+                                    <div ng-repeat="celebrity in celebrities | limitTo: 3">
+                                        <clix-video-category-scroll-list category-title="{{celebrity.title}} and {{configs.title}}" category-videos="relatedVideos"></clix-video-category-scroll-list>
+                                    </div>
                                 </div>
                             </footer-content>
                         </clix-landing-video-content>
@@ -110,7 +114,7 @@
                             </div>
                         </div>
                         <div class="row clix-block-row">
-                            <div class="clix-block-item col-xs-6 col-sm-4 col-md-3 col-lg-2-4" ng-repeat="video in videos" ng-if="videos">
+                            <div class="clix-block-item col-xs-12 col-sm-12 col-md-3 col-lg-2-4" ng-repeat="video in videos" ng-if="videos">
                                 <clix-video-content-box video="video"></clix-video-content-box>
                             </div>
                         </div>

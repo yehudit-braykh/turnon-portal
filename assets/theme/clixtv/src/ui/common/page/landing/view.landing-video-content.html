@@ -1,12 +1,12 @@
 <div class="clix-landing-video-content">
-    <div class="row">
+    <div class="row landing-video-content-row">
         <div class="col-md-9 video-content-container">
-            <div class="row">
+            <div class="row about-landing-video-content">
                 <div class="col-sm-7 about-landing-video">
                     <div ng-show="video">
                         <div id="videoPlayer"></div>
                         <clix-video-player ng-if="video" video="video" auto-play="false" video-id="videoPlayer" on-ready="onPlayerReady"></clix-video-player>
-                        <div class="video-violator" ng-show="!charity">
+                        <div class="video-violator hidden-sm hidden-xs" ng-show="!charity">
                             <clix-violator>
                                 100 Reward Points
                             </clix-violator>

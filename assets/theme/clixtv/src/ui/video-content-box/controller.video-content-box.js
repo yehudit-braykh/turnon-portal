@@ -12,7 +12,7 @@
             $scope.items = [
                 {
                     label: 'Add to Watchlist',
-                    icon: 'icon-save-icon',
+                    icon: 'icon-redeem-plus-icon',
                     onClick: function() {
                         console.log('SHARE');
                     }

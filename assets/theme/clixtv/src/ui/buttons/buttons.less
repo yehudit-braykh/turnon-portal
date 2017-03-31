@@ -156,8 +156,11 @@
         text-transform: uppercase;
         text-align: center;
         line-height: 36px;
-        padding-left: 32px;
-        padding-right: 32px;
+
+        @media (min-width: @screen-sm) {
+            padding-left: 32px;
+            padding-right: 32px;
+        }
     }
 }
 

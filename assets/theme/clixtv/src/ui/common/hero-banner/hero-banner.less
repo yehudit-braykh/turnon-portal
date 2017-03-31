@@ -1,10 +1,20 @@
 .clix-hero-banner {
     position: relative;
     z-index: 2000;
-    min-height: 443px;
+    height: 375px;
+
+    @media (min-width: @screen-sm) {
+        height: 443px;
+    }
+
     .hero-background-image {
         max-width: 100%;
-        max-height: 100%;
+
+        @media (max-width: @screen-sm) {
+            max-width: 200%;
+            position: relative;
+            left: -50%;
+        }
     }
     .hero-banner-content-container {
         .flex-display;
@@ -22,13 +32,21 @@
         left: 0;
         right: 0;
         bottom: 0;
+
+        @media (max-width: @screen-sm) {
+            bottom: 140px;
+        }
     }
     .hero-banner-content {
         .flex-display;
         .flex(1);
         .align-self(flex-end);
         .align-items(center);
-        padding: 48px 30px;
+        padding: 48px 10px;
+
+        @media (min-width: @screen-sm) {
+            padding: 48px 30px;
+        }
     }
     .banner-logo-container {
         .flex-display;
@@ -36,10 +54,17 @@
         .radial-gradient(@color-brand-start, @color-brand-end, 0 100%);
         .align-items(center);
         .justify-content(center);
-        width: 110px;
-        height: 110px;
-        padding: 15px;
+        width: 65px;
+        height: 65px;
+        padding: 10px;
         position: relative;
+
+        @media (min-width: @screen-sm) {
+            width: 110px;
+            height: 110px;
+            padding: 15px;
+        }
+
         img {
             max-width: 100%;
             max-height: 100%;
@@ -52,16 +77,25 @@
 
     .banner-title-content {
         &.with-logo {
-            margin-left: 27px;
+            margin-left: 11px;
+
+            @media (min-width: @screen-sm) {
+                margin-left: 27px;
+            }
         }
     }
 
     .banner-title {
         font-family: @font-primary;
-        font-size: 35px;
+        font-size: 28px;
         color: @color-white;
         letter-spacing: 1.6px;
-        margin-bottom: 20px
+        margin-bottom: 8px;
+
+        @media (min-width: @screen-sm) {
+            font-size: 35px;
+            margin-bottom: 20px;
+        }
     }
 
     .banner-button {
@@ -86,11 +120,17 @@
     .banner-subtext-container {
         .flex(1);
         .align-self(flex-end);
-        text-align: right;
+        text-align: center;
         font-family: @font-secondary;
         font-size: 14px;
         color: @color-gray2;
         text-transform: uppercase;
         letter-spacing: 1.5px;
+        margin-bottom: 8px;
+
+        @media (min-width: @screen-sm) {
+            text-align: right;
+            margin-bottom: 0;
+        }
     }
 }

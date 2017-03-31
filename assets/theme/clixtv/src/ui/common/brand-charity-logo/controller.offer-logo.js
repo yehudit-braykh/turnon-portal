@@ -10,7 +10,7 @@
             $scope.items = [
                 {
                     label: 'Save Offer',
-                    icon: 'icon-plus-icon',
+                    icon: 'icon-redeem-plus-icon',
                     onClick: function() {
                         console.log('SHARE');
                     }

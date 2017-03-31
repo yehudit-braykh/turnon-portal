@@ -12,8 +12,12 @@
     }
 
     .banner-favorite-icon {
-        font-size: 20px;
+        font-size: 12px;
         position: relative;
-        top: 2px;
+
+        @media (min-width: @screen-sm) {
+            font-size: 20px;
+            top: 2px;
+        }
     }
 }
