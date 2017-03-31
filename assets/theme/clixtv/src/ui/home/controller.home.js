@@ -3,13 +3,45 @@
     var HomeController = [
         '$q',
         '$scope',
+        '$rootScope',
         '$timeout',
         '$window',
+        '$uibModal',
         'categoryService',
         'brandsService',
-        function($q, $scope, $timeout, $window, categoryService, brandsService) {
+        function($q, $scope, $rootScope, $timeout, $window, $uibModal, categoryService, brandsService) {
 
             $scope.showMobileCarousel = false;
+
+            $rootScope.$on('user.login', function(event, data) {
+                $scope.loggedInUser = data;
+            });
+
+            $rootScope.$on('user.logout', function(event, data) {
+                $scope.loggedInUser = undefined;
+            });
+
+            $scope.onSignupPress = function() {
+                var modalInstance = $uibModal.open({
+                    animation: true,
+                    templateUrl: 'ui/common/modal/login-signup/view.login-signup.html',
+                    controller: 'LoginSignupController',
+                    windowClass: 'clix-modal-window',
+                    size: 'clix-md',
+                    resolve: {
+                        signup: true
+                    }
+                });
+
+                modalInstance.result.then(
+                    function onSuccess(data) {
+
+                    },
+                    function onError(error) {
+
+                    }
+                )
+            };
 
             function _recalculateHeight() {
                 var carouselElement = angular.element(document.getElementById('carousel-container'));

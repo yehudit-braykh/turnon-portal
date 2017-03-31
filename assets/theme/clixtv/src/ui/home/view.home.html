@@ -9,7 +9,7 @@
             <div class="header-content-subtitle">
                 Premium content from your favorite stars
             </div>
-            <a href="#" class="primary-button">
+            <a ng-click="onSignupPress()" class="primary-button" ng-show="!loggedInUser">
                 Sign Up Free
             </a>
         </div>
@@ -31,8 +31,8 @@
                             <div class="carousel-second-line carousel-sub-header">
                                 Support Your Favorite Causes By Watching
                             </div>
-                            <div class="button-container">
-                                <a href="#" class="primary-button">
+                            <div class="button-container" ng-show="!loggedInUser">
+                                <a class="primary-button" ng-click="onSignupPress()">
                                     Sign Up Free
                                 </a>
                             </div>
@@ -48,8 +48,8 @@
                             <div class="carousel-second-line carousel-sub-header">
                                 Premium content from your favorite stars
                             </div>
-                            <div class="button-container">
-                                <a href="#" class="primary-button">
+                            <div class="button-container" ng-show="!loggedInUser">
+                                <a class="primary-button" ng-click="onSignupPress()">
                                     Sign Up Free
                                 </a>
                             </div>
@@ -65,8 +65,8 @@
                             <div class="carousel-second-line carousel-sub-header">
                                 Premium content from your favorite stars
                             </div>
-                            <div class="button-container">
-                                <a href="#" class="primary-button">
+                            <div class="button-container" ng-show="!loggedInUser">
+                                <a class="primary-button" ng-click="onSignupPress()">
                                     Sign Up Free
                                 </a>
                             </div>

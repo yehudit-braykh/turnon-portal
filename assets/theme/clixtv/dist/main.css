@@ -8225,7 +8225,7 @@ button.close {
 .video-content-box .episode-title {
   font-family: 'cabinbold', sans-serif;
   font-size: 14px;
-  color: #fe0000;
+  color: #9b9b9b;
   text-transform: uppercase;
   padding: 0;
   display: inline-block;
@@ -8898,6 +8898,9 @@ button.close {
 }
 .home-page {
   background-color: #0e0e0e;
+}
+.home-page .primary-button {
+  cursor: pointer;
 }
 @media (min-width: 480px) {
   .home-page {
