@@ -55,8 +55,8 @@
                                     ></clix-search-filter>
                                 </page-search-filter>
                                 <page-content>
-                                    <clix-content-callout-list items="brands" large-col-class="col-lg-2-4">
-                                        <clix-content-callout sref="brand({ slug: '{{item.title | slug}}' })">
+                                    <clix-content-callout-list items="brands" large-col-class="col-lg-2-4" menu-items="brandMenuItems">
+                                        <clix-content-callout sref="brand({ slug: '{{item.title | slug}}' })" menu-items="menuItems">
                                             <header-element>
                                                 <clix-brand-charity-logo brand="item"></clix-brand-charity-logo>
                                             </header-element>

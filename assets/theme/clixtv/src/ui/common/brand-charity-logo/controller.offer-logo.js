@@ -9,8 +9,8 @@
 
             $scope.items = [
                 {
-                    label: 'Add to Watchlist',
-                    icon: 'icon-save-icon',
+                    label: 'Save Offer',
+                    icon: 'icon-plus-icon',
                     onClick: function() {
                         console.log('SHARE');
                     }
@@ -23,14 +23,7 @@
                     }
                 },
                 {
-                    label: 'Go to Star Page',
-                    icon: 'icon-stars-icon',
-                    onClick: function() {
-                        console.log('SHARE');
-                    }
-                },
-                {
-                    label: 'Add Star to Favorites',
+                    label: 'Add to Favorites',
                     icon: 'icon-favorite-icon',
                     onClick: function() {
                         console.log('SHARE');

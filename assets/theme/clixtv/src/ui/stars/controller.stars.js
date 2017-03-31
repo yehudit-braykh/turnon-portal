@@ -11,25 +11,58 @@
                     label: 'All'
                 },
                 {
-                    label: 'Home & Auto'
+                    label: 'Athletes'
                 },
                 {
-                    label: 'Baby, Kids & Toys'
+                    label: 'Influencers'
                 },
                 {
-                    label: 'Electronics'
+                    label: 'Movie Stars'
+                },
+                {
+                    label: 'Musicians'
+                },
+                {
+                    label: 'TV Stars'
                 }
             ];
 
             $scope.sortOptions = [
                 {
-                    label: 'Expiring Soon'
+                    label: 'A - Z'
                 },
                 {
-                    label: 'Most Viewed'
+                    label: 'Recently'
                 },
                 {
                     label: 'Favorites'
+                },
+                {
+                    label: 'Most Viewed'
+                }
+            ];
+
+            $scope.menuItems = [
+                {
+                    label: 'Share',
+                    icon: 'icon-share-icon',
+                    onClick: function() {
+                        console.log('SHARE');
+                    }
+                },
+                {
+                    label: 'Add to Favorites',
+                    icon: 'icon-favorite-icon',
+                    onClick: function() {
+                        console.log('SHARE');
+                    }
+                },
+                {
+                    label: 'Go to Stars',
+                    icon: 'icon-stars-icon',
+                    onClick: function() {
+                        console.log('SHARE');
+                    }
                 }
             ];
 

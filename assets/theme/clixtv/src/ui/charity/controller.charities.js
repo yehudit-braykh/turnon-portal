@@ -12,19 +12,28 @@
                     label: 'All'
                 },
                 {
-                    label: 'Home & Auto'
+                    label: 'Animals'
                 },
                 {
-                    label: 'Baby, Kids & Toys'
+                    label: 'Arts & Culture'
                 },
                 {
-                    label: 'Electronics'
+                    label: 'Education'
+                },
+                {
+                    label: 'Environmental'
+                },
+                {
+                    label: 'International non-gov'
+                },
+                {
+                    label: 'Health'
                 }
             ];
 
             var defaultSortOptions = [
                 {
-                    label: 'Expiring Soon'
+                    label: 'A - Z'
                 },
                 {
                     label: 'Most Viewed'
@@ -36,6 +45,23 @@
 
             $scope.filterCharitiesOptions = defaultFilterOptions;
             $scope.sortCharitiesOptions = defaultSortOptions;
+
+            $scope.menuItems = [
+                {
+                    label: 'Share',
+                    icon: 'icon-share-icon',
+                    onClick: function() {
+                        console.log('SHARE');
+                    }
+                },
+                {
+                    label: 'Add to Favorites',
+                    icon: 'icon-favorite-icon',
+                    onClick: function() {
+                        console.log('SHARE');
+                    }
+                }
+            ];
 
             brandsService.getAllCharities()
                 .then(

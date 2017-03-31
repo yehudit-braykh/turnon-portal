@@ -8,7 +8,8 @@
             templateUrl: 'ui/common/container/view.content-callout-list.html',
             scope: {
                 items: '=',
-                largeColClass: '@?'
+                largeColClass: '@?',
+                menuItems: '='
             }
         }
     };
@@ -26,7 +27,8 @@
                 subtitleContent: 'subtitleContent'
             },
             scope: {
-                sref: '@'
+                sref: '@',
+                menuItems: '='
             }
         }
     };

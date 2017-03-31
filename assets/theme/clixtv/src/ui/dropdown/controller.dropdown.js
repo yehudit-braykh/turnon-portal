@@ -4,8 +4,7 @@
         '$q',
         '$scope',
         function($q, $scope) {
-            $scope.selected = $scope.options[0];
-            // console.log($scope.selected);
+            $scope.selected = $scope.placeholderText ? { label: $scope.placeholderText } : $scope.options[0];
 
             $scope.bodyClicked = function(event) {
                 $scope.menuVisible = false;

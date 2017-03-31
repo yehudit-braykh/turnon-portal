@@ -7,7 +7,31 @@
         'userService',
         function($q, $scope, $rootScope, userService) {
 
-            var defaultFilterOptions = [
+            $scope.menuItems = [
+                {
+                    label: 'Save Offer',
+                    icon: 'icon-plus-icon',
+                    onClick: function() {
+                        console.log('SHARE');
+                    }
+                },
+                {
+                    label: 'Share',
+                    icon: 'icon-share-icon',
+                    onClick: function() {
+                        console.log('SHARE');
+                    }
+                },
+                {
+                    label: 'Add to Favorites',
+                    icon: 'icon-favorite-icon',
+                    onClick: function() {
+                        console.log('SHARE');
+                    }
+                }
+            ];
+
+            $scope.filterSavedOffersOptions = [
                 {
                     label: 'All'
                 },
@@ -19,10 +43,27 @@
                 },
                 {
                     label: 'Electronics'
+                },
+                {
+                    label: 'Grocery, HouseHold & Pets'
+                },
+                {
+                    label: 'Health & Beauty'
+                },
+                {
+                    label: 'Jewelry & Watches'
+                },
+                {
+                    label: 'Men\'s Fashion'
+                },
+                {
+                    label: 'Sports & Outdoors'
+                },
+                {
+                    label: 'Women\'s Fashion'
                 }
             ];
-
-            var defaultSortOptions = [
+            $scope.sortSavedOffersOptions = [
                 {
                     label: 'Expiring Soon'
                 },
@@ -33,9 +74,6 @@
                     label: 'Favorites'
                 }
             ];
-
-            $scope.filterSavedOffersOptions = defaultFilterOptions;
-            $scope.sortSavedOffersOptions = defaultSortOptions;
 
             userService.getSavedOffers()
                 .then(

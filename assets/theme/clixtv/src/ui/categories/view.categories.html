@@ -13,8 +13,8 @@
             ></clix-search-filter>
         </page-search-filter>
         <page-content>
-            <clix-content-callout-list items="categories">
-                <clix-content-callout sref="category({ slug: '{{item.title | slug}}' })">
+            <clix-content-callout-list items="categories" menu-items="menuItems">
+                <clix-content-callout sref="category({ slug: '{{item.title | slug}}' })" menu-items="menuItems">
                     <header-element>
                         <div class="category-logo" style="background-image: url('{{item.BrandLogo.url}}')"></div>
                     </header-element>

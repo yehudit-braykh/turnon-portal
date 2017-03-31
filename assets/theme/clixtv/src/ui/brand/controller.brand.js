@@ -9,13 +9,37 @@
 
             $scope.seriesList = [
                 {
-                    label: 'Most Viewed'
+                    label: 'A - Z'
                 },
                 {
                     label: 'Most Viewed'
                 },
                 {
-                    label: 'Most Viewed'
+                    label: 'Favorites'
+                }
+            ];
+
+            $scope.offerMenuItems = [
+                {
+                    label: 'Save Offer',
+                    icon: 'icon-plus-icon',
+                    onClick: function() {
+                        console.log('SHARE');
+                    }
+                },
+                {
+                    label: 'Share',
+                    icon: 'icon-share-icon',
+                    onClick: function() {
+                        console.log('SHARE');
+                    }
+                },
+                {
+                    label: 'Add to Favorites',
+                    icon: 'icon-favorite-icon',
+                    onClick: function() {
+                        console.log('SHARE');
+                    }
                 }
             ];
 
@@ -46,8 +70,6 @@
                         $scope.relatedVideos = data[1];
                         $scope.videos = data[1];
                         $scope.celebrities = data[2];
-
-                        console.log(data[2]);
                     }
                 );
 

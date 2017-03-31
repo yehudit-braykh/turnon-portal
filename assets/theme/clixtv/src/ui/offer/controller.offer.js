@@ -20,6 +20,29 @@
                 }
             ];
 
+            $scope.offerMenuItems = [
+                {
+                    label: 'Save Offer',
+                    icon: 'icon-plus-icon',
+                    onClick: function() {
+                        console.log('SHARE');
+                    }
+                },
+                {
+                    label: 'Share',
+                    icon: 'icon-share-icon',
+                    onClick: function() {
+                        console.log('SHARE');
+                    }
+                },
+                {
+                    label: 'Add to Favorites',
+                    icon: 'icon-favorite-icon',
+                    onClick: function() {
+                        console.log('SHARE');
+                    }
+                }
+            ];
 
             offersService.getOfferById($stateParams.id)
                 .then(

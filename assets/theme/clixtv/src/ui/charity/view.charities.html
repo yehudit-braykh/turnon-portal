@@ -13,8 +13,8 @@
             ></clix-search-filter>
         </page-search-filter>
         <page-content>
-            <clix-content-callout-list items="charities">
-                <clix-content-callout sref="charity({ id: '{{item._id}}' })">
+            <clix-content-callout-list items="charities" menu-items="menuItems">
+                <clix-content-callout sref="charity({ id: '{{item._id}}' })" menu-items="menuItems">
                     <header-element>
                         <clix-charity-logo charity="item"></clix-charity-logo>
                     </header-element>

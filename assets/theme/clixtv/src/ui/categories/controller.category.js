@@ -12,25 +12,34 @@
                     label: 'All'
                 },
                 {
-                    label: 'Home & Auto'
+                    label: 'Athletes'
                 },
                 {
-                    label: 'Baby, Kids & Toys'
+                    label: 'Influencers'
                 },
                 {
-                    label: 'Electronics'
+                    label: 'Movie Stars'
+                },
+                {
+                    label: 'Musicians'
+                },
+                {
+                    label: 'TV Stars'
                 }
             ];
 
             $scope.sortOptions = [
                 {
-                    label: 'Expiring Soon'
+                    label: 'A - Z'
                 },
                 {
-                    label: 'Most Viewed'
+                    label: 'Recently'
                 },
                 {
                     label: 'Favorites'
+                },
+                {
+                    label: 'Most Viewed'
                 }
             ];
 

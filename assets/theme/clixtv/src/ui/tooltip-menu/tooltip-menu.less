@@ -12,16 +12,19 @@
         margin: 0;
         background-color: @color-medium-gray3;
         width: 100%;
+        max-width: 276px;
     }
     .menu-item {
         display: block;
-        padding-left: 9px;
-        padding-top: 9px;
-        padding-bottom: 9px;
+        padding: 9px;
         cursor: pointer;
         font-family: @font-primary;
         font-size: 14px;
         color: @color-gray2;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     .menu-item:hover {
         text-decoration: none;

@@ -6,7 +6,8 @@
             templateUrl: 'ui/dropdown/view.dropdown.html',
             controller: 'DropdownController',
             scope: {
-                options: '='
+                options: '=',
+                placeholderText: '@?'
             }
         }
     };

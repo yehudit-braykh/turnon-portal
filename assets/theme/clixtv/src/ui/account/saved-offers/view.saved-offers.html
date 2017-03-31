@@ -27,8 +27,8 @@
                     ></clix-search-filter>
                 </page-search-filter>
                 <page-content>
-                    <clix-content-callout-list items="offers" large-col-class="col-lg-2-4">
-                        <clix-content-callout sref="offer({ id: '{{item._id}}' })">
+                    <clix-content-callout-list items="offers" large-col-class="col-lg-2-4" menu-items="menuItems">
+                        <clix-content-callout sref="offer({ id: '{{item._id}}' })" menu-items="menuItems">
                             <header-element>
                                 <clix-offer-logo offer="item"></clix-offer-logo>
                             </header-element>

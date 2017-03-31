@@ -19,6 +19,24 @@
                 },
                 {
                     label: 'Electronics'
+                },
+                {
+                    label: 'Grocery, HouseHold & Pets'
+                },
+                {
+                    label: 'Health & Beauty'
+                },
+                {
+                    label: 'Jewelry & Watches'
+                },
+                {
+                    label: 'Men\'s Fashion'
+                },
+                {
+                    label: 'Sports & Outdoors'
+                },
+                {
+                    label: 'Women\'s Fashion'
                 }
             ];
 
