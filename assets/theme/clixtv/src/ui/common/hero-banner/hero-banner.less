@@ -91,6 +91,7 @@
         color: @color-white;
         letter-spacing: 1.6px;
         margin-bottom: 8px;
+        line-height: 33px;
 
         @media (min-width: @screen-sm) {
             font-size: 35px;
@@ -100,13 +101,22 @@
 
     .banner-button {
         .flex-display;
-        .justify-content(center);
+        @media (min-width: @screen-sm) {
+            .justify-content(center);
+        }
     }
 
     .banner-share-icon {
-        font-size: 38px;
+        font-size: 27px;
         margin-left: 22px;
         color: @color-gray2;
+        margin-top: 4px;
+
+        @media (min-width: @screen-sm) {
+            font-size: 38px;
+            margin-top: 0;
+        }
+
         &:hover {
             text-decoration: none;
             color: @color-white;

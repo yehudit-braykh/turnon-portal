@@ -17,25 +17,27 @@
                     <div class="home-container">
                         <clix-landing-video-content>
                             <main-content>
-                                <slick dots="true" prev-arrow="#main-carousel-previous" next-arrow="#main-carousel-next">
-                                    <div class="offer-slide">
-                                        <img ng-src="assets/theme/clixtv/dist/images/nike-offer-demo-1.png" />
+                                <div class="offer-carousel">
+                                    <slick dots="true" prev-arrow="#main-carousel-previous" next-arrow="#main-carousel-next">
+                                        <div class="offer-slide">
+                                            <img ng-src="assets/theme/clixtv/dist/images/nike-offer-demo-1.png" />
+                                        </div>
+                                        <div class="offer-slide">
+                                            <img ng-src="assets/theme/clixtv/dist/images/nike-offer-demo-2.png" />
+                                        </div>
+                                        <div class="offer-slide">
+                                            <img ng-src="assets/theme/clixtv/dist/images/nike-offer-demo-3.png" />
+                                        </div>
+                                    </slick>
+                                    <div id="main-carousel-previous">
+                                        <div class="main-carousel-button">
+                                            <i class="arrow-icon icon-left-tall-arrow"></i>
+                                        </div>
                                     </div>
-                                    <div class="offer-slide">
-                                        <img ng-src="assets/theme/clixtv/dist/images/nike-offer-demo-2.png" />
-                                    </div>
-                                    <div class="offer-slide">
-                                        <img ng-src="assets/theme/clixtv/dist/images/nike-offer-demo-3.png" />
-                                    </div>
-                                </slick>
-                                <div id="main-carousel-previous">
-                                    <div class="main-carousel-button">
-                                        <i class="arrow-icon icon-left-tall-arrow"></i>
-                                    </div>
-                                </div>
-                                <div id="main-carousel-next">
-                                    <div class="main-carousel-button">
-                                        <i class="arrow-icon icon-right-tall-arrow"></i>
+                                    <div id="main-carousel-next">
+                                        <div class="main-carousel-button">
+                                            <i class="arrow-icon icon-right-tall-arrow"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </main-content>
@@ -100,25 +102,27 @@
                                 More Offers From {{brand.title}}
                             </sidebar-title>
                             <sidebar-content>
-                                <div ng-repeat="offer in offers | limitTo: 3" ng-if="offers">
-                                    <div class="brand-offer">
-                                        <clix-content-callout sref="brand({ slug: (offer.title | slug) })" menu-items="offerMenuItems">
-                                            <header-element>
-                                                <clix-offer-logo offer="offer"></clix-offer-logo>
-                                            </header-element>
-                                            <title-content>
-                                                {{offer.title}}
-                                            </title-content>
-                                            <subtitle-content>
-                                                Expires 2/1/2017
-                                            </subtitle-content>
-                                        </clix-content-callout>
+                                <div class="row brand-offer-row">
+                                    <div class="col-xs-6 col-sm-6 col-md-12 col-lg-12 brand-offer-column" ng-repeat="offer in offers | limitTo: 3" ng-if="offers">
+                                        <div class="brand-offer">
+                                            <clix-content-callout sref="brand({ slug: (offer.title | slug) })" menu-items="offerMenuItems">
+                                                <header-element>
+                                                    <clix-offer-logo offer="offer"></clix-offer-logo>
+                                                </header-element>
+                                                <title-content>
+                                                    {{offer.title}}
+                                                </title-content>
+                                                <subtitle-content>
+                                                    Expires 2/1/2017
+                                                </subtitle-content>
+                                            </clix-content-callout>
+                                        </div>
                                     </div>
                                 </div>
                             </sidebar-content>
                             <footer-content>
                                 <div class="offer-footer-info row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 offer-footer-column">
                                         <div class="footer-header">
                                             <clix-secondary-header>
                                                 The Revolution Never Ends
@@ -140,7 +144,7 @@
                                             -  Rubber sole for traction on a variety of surfaces
                                         </p>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 offer-footer-column">
                                         <div class="footer-header">
                                             <clix-secondary-header>
                                                 About {{brand.title}}
@@ -156,7 +160,7 @@
                     </div>
                 </uib-tab>
                 <uib-tab index="1" heading="Related Offers">
-                    <div class="videos-title-container">
+                    <div class="videos-title-container related-offers-title">
                         <div class="videos-title">
                             <clix-secondary-header>
                                 All {{brand.title}} Offers
@@ -192,7 +196,7 @@
                             </div>
                         </div>
                         <div class="row clix-block-row">
-                            <div class="clix-block-item col-xs-6 col-sm-4 col-md-3 col-lg-2-4" ng-repeat="video in videos" ng-if="videos">
+                            <div class="clix-block-item col-xs-12 col-sm-12 col-md-3 col-lg-2-4" ng-repeat="video in videos" ng-if="videos">
                                 <clix-video-content-box video="video"></clix-video-content-box>
                             </div>
                         </div>
