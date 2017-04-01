@@ -20,6 +20,7 @@
                 {
                     label: 'Share',
                     icon: 'icon-share-icon',
+                    points: '50',
                     onClick: function() {
                         console.log('SHARE');
                     }

@@ -23,7 +23,11 @@
                 if (toState) {
                     $scope.selectedStateName = toState.name;
                 }
-            })
+            });
+
+            $scope.go = function(path) {
+                $state.go(path);
+            };
         }
     ];
 

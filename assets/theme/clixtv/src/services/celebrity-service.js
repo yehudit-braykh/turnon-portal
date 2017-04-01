@@ -63,6 +63,18 @@
                                 return data.data;
                             }
                         );
+                },
+
+                /**
+                 * @todo - Cache this call
+                 */
+                getVideosByCelebrityId: function(id) {
+                    return $http.get('/api/celebrity/get_celeb_videos?id=' + id)
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
+                            }
+                        );
                 }
             }
         }

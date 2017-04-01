@@ -3,6 +3,9 @@
         <menuitem ng-repeat="item in items">
             <a ng-click="item.onClick()" class="menu-item">
                 <i class="menu-icon {{item.icon}}"></i> <span class="menu-label">{{item.label}}</span>
+                <clix-points-violator ng-if="item.points">
+                    {{item.points}}
+                </clix-points-violator>
             </a>
         </menuitem>
     </menu>

@@ -8062,9 +8062,9 @@ button.close {
 }
 .video-category-scroll-list .more-videos-button-container {
   text-align: center;
-  margin-bottom: 19px;
+  margin-bottom: 40px;
   border-bottom: 1px solid #212121;
-  padding-bottom: 19px;
+  padding-bottom: 40px;
 }
 .video-content-box {
   background-color: #171717;
@@ -8345,6 +8345,10 @@ button.close {
 .tooltip-menu .icon-favorite-icon {
   font-size: 17px;
 }
+.tooltip-menu .points-violator {
+  display: inline-block;
+  margin-left: 15px;
+}
 .violator {
   background-color: #0dc73a;
   background-image: -webkit-gradient(linear, left top, right top, from(#0dc73a), to(#14cf1e));
@@ -8363,7 +8367,7 @@ button.close {
   font-size: 11px;
   text-transform: uppercase;
   display: inline-block;
-  padding: 3px 13px;
+  padding: 3px 13px 2px;
 }
 @media (min-width: 768px) {
   .violator {
@@ -10200,6 +10204,76 @@ button.close {
   }
 }
 @media (max-width: 768px) {
+  .clix-star-page .videos-container {
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+}
+.clix-star-page .videos-title-container {
+  padding-top: 30px;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .clix-star-page .videos-title-container {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: -ms-flex;
+    display: flex;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    padding-top: 50px;
+    text-align: left;
+    border-bottom: 1px solid #636363;
+    margin-bottom: 41px;
+    padding-bottom: 16px;
+  }
+}
+.clix-star-page .video-sort-container {
+  display: inline-block;
+  margin: 30px auto;
+}
+@media (min-width: 768px) {
+  .clix-star-page .video-sort-container {
+    display: block;
+    margin: 0;
+  }
+}
+.clix-star-page .videos-title {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .clix-star-page .videos-title {
+    text-align: left;
+  }
+}
+.clix-star-page .sidebar-container {
+  background-color: #1b1b1b;
+  padding: 30px 0;
+  border-top: 1px solid #777777;
+}
+@media (min-width: 768px) {
+  .clix-star-page .sidebar-container {
+    border: 1px solid #777777;
+    padding: 30px;
+  }
+}
+.clix-star-page .sidebar-title {
+  font-family: 'cabinregular', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  color: #8a8a8a;
+  text-align: center;
+  line-height: 22px;
+}
+.clix-star-page .sidebar-content {
+  margin-top: 25px;
+}
+@media (max-width: 768px) {
   .clix-star-page .clix-hero-banner .banner-logo-container {
     float: left;
   }
@@ -10242,7 +10316,7 @@ button.close {
   margin: 0;
 }
 .clix-category-page .category-list-container {
-  width: 337px;
+  width: 257px;
 }
 .clix-category-page .category-list-content {
   padding: 20px 12px;

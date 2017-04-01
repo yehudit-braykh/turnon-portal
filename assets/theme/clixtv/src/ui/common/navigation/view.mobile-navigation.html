@@ -1,28 +1,28 @@
 <div class="clix-mobile-navigation visible-sm visible-xs">
     <div class="mobile-navigation-container">
-        <a ui-sref="home" class="mobile-navigation-item" ng-class="{'active': selectedStateName === 'home'}">
+        <div ng-mouseup="go('home')" class="mobile-navigation-item" ng-class="{'active': selectedStateName === 'home'}">
             <div class="navigation-icon icon-home-icon-bottom-nav"></div>
             Home
-        </a>
-        <a ui-sref="categories" class="mobile-navigation-item" ng-class="{'active': selectedStateName === 'categories' || selectedStateName === 'category'}">
+        </div>
+        <div ng-mouseup="go('categories')" class="mobile-navigation-item" ng-class="{'active': selectedStateName === 'categories' || selectedStateName === 'category'}">
             <div class="navigation-icon icon-categories-icon-bottom-nav"></div>
             Categories
-        </a>
-        <a ui-sref="stars" class="mobile-navigation-item" ng-class="{'active': selectedStateName === 'stars' || selectedStateName === 'star'}">
+        </div>
+        <div ng-mouseup="go('stars')" class="mobile-navigation-item" ng-class="{'active': selectedStateName === 'stars' || selectedStateName === 'star'}">
             <div class="navigation-icon icon-stars-icon"></div>
             Stars
-        </a>
-        <a ui-sref="brands" class="mobile-navigation-item" ng-class="{'active': selectedStateName === 'brands' || selectedStateName === 'brand'}">
+        </div>
+        <div ng-mouseup="go('brands')" class="mobile-navigation-item" ng-class="{'active': selectedStateName === 'brands' || selectedStateName === 'brand'}">
             <div class="navigation-icon brands-navigation-icon icon-brands-icon-bottom-nav"></div>
             Brands
-        </a>
-        <a ui-sref="charities" class="mobile-navigation-item" ng-class="{'active': selectedStateName === 'charities' || selectedStateName === 'charity'}">
+        </div>
+        <div ng-mouseup="go('charities')" class="mobile-navigation-item" ng-class="{'active': selectedStateName === 'charities' || selectedStateName === 'charity'}">
             <div class="navigation-icon icon-charities-icon-bottom-nav"></div>
             Charities
-        </a>
-        <a ng-click="onSearchPress()" class="mobile-navigation-item">
+        </div>
+        <div ng-mouseup="onSearchPress()" class="mobile-navigation-item">
             <div class="navigation-icon icon-search-icon-bottom-nav"></div>
             Search
-        </a>
+        </div>
     </div>
 </div>
