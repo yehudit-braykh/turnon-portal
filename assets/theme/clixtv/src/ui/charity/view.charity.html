@@ -38,26 +38,30 @@
                                 Stars Who Support {{configs.title}}
                             </sidebar-title>
                             <sidebar-content>
-                                <div ng-repeat="celebrity in celebrities | limitTo: 3">
-                                    <div class="star-support-callout">
-                                        <clix-content-callout sref="star({ id: '{{celebrity._id}}' })">
-                                            <header-element>
-                                                <div class="star-logo" style="background-image: url({{celebrity.BrandLogo.url}})"></div>
-                                            </header-element>
-                                            <title-content>
-                                                {{celebrity.title}}
-                                            </title-content>
-                                            <subtitle-content>
-                                                127 Videos
-                                            </subtitle-content>
-                                        </clix-content-callout>
+                                <div class="row brand-offer-row">
+                                    <div class="col-xs-6 col-sm-6 col-md-12 col-lg-12 brand-offer-column" ng-repeat="celebrity in celebrities | limitTo: 3">
+                                        <div class="star-support-callout">
+                                            <clix-content-callout sref="star({ id: '{{celebrity._id}}' })">
+                                                <header-element>
+                                                    <div class="star-logo" style="background-image: url({{celebrity.BrandLogo.url}})"></div>
+                                                </header-element>
+                                                <title-content>
+                                                    {{celebrity.title}}
+                                                </title-content>
+                                                <subtitle-content>
+                                                    127 Videos
+                                                </subtitle-content>
+                                            </clix-content-callout>
+                                        </div>
                                     </div>
                                 </div>
                             </sidebar-content>
                             <footer-content>
                                 <div class="home-footer-content">
-                                    <div ng-repeat="celebrity in celebrities | limitTo: 3">
-                                        <clix-video-category-scroll-list category-title="{{celebrity.title}} and {{configs.title}}" category-videos="relatedVideos"></clix-video-category-scroll-list>
+                                    <div class="brand-celebrity-videos">
+                                        <div ng-repeat="celebrity in celebrities | limitTo: 3">
+                                            <clix-video-category-scroll-list category-title="{{celebrity.title}} and {{configs.title}}" category-videos="relatedVideos"></clix-video-category-scroll-list>
+                                        </div>
                                     </div>
                                 </div>
                             </footer-content>
@@ -65,9 +69,32 @@
                     </div>
 
                 </uib-tab>
-                <uib-tab index="1" heading="Donate">Static content</uib-tab>
-                <uib-tab index="2" heading="Stars">Static content</uib-tab>
-                <uib-tab index="3" heading="Videos">Static content</uib-tab>
+                <uib-tab index="2" heading="Stars">
+                    <div class="stars-container">
+                        <div ng-repeat="celebrity in celebrities">
+                            <clix-video-category-scroll-list category-title="{{celebrity.title}} and {{configs.title}}" category-videos="relatedVideos"></clix-video-category-scroll-list>
+                        </div>
+                    </div>
+                </uib-tab>
+                <uib-tab index="3" heading="Videos">
+                    <div class="videos-container">
+                        <div class="videos-title-container">
+                            <div class="videos-title">
+                                <clix-secondary-header>
+                                    All Videos Featuring {{configs.title}}
+                                </clix-secondary-header>
+                            </div>
+                            <div class="video-sort-container">
+                                <clix-dropdown options="seriesList" placeholder-text="Sort By"></clix-dropdown>
+                            </div>
+                        </div>
+                        <div class="row clix-block-row">
+                            <div class="clix-block-item col-xs-12 col-sm-12 col-md-3 col-lg-2-4" ng-repeat="video in videos" ng-if="videos">
+                                <clix-video-content-box video="video"></clix-video-content-box>
+                            </div>
+                        </div>
+                    </div>
+                </uib-tab>
             </uib-tabset>
         </div>
     </div>

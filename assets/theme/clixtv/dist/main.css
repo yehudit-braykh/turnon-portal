@@ -9943,24 +9943,37 @@ button.close {
   margin-top: 5px;
   display: block;
 }
-.charity-page {
-  padding-bottom: 100px;
-}
 .charity-page .banner-favorite-icon {
-  font-size: 20px;
+  font-size: 12px;
   position: relative;
-  top: 2px;
+}
+@media (min-width: 768px) {
+  .charity-page .banner-favorite-icon {
+    font-size: 20px;
+    top: 2px;
+  }
 }
 .charity-page .charity-page-content {
   position: relative;
   z-index: 2000;
   background-color: #0e0e0e;
-  padding-top: 30px;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding: 13px 0 62px;
+}
+@media (min-width: 768px) {
+  .charity-page .charity-page-content {
+    padding: 13px 30px 62px;
+  }
 }
 .charity-page .nav-tabs {
   border-bottom: 1px solid #636363 !important;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+@media (min-width: 768px) {
+  .charity-page .nav-tabs {
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 .charity-page .home-container .video-category-scroll-list {
   margin-top: 45px;
@@ -9992,15 +10005,144 @@ button.close {
   overflow: hidden;
 }
 .charity-page .home-container .star-support-callout {
-  margin-bottom: 33px;
+  margin-bottom: 51px;
+}
+@media (max-width: 768px) {
+  .charity-page .home-container .star-support-callout {
+    padding: 0 5px;
+  }
 }
 .charity-page .home-container .donate-button {
   margin-top: 40px;
   width: 150px;
 }
+@media (max-width: 768px) {
+  .charity-page .home-container .donate-button {
+    margin: 40px auto 0 auto;
+  }
+}
 .charity-page .home-container .home-footer-content {
   margin-top: 47px;
   border-top: 1px solid #636363;
+}
+.charity-page .brand-offer-row {
+  padding: 0 5px;
+  margin: 0;
+}
+.charity-page .brand-offer-column {
+  margin: 0;
+  padding: 0;
+}
+.charity-page .more-videos-button-container {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+@media (max-width: 768px) {
+  .charity-page .video-category-scroll-list {
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+}
+.charity-page .stars-container .video-category-scroll-list {
+  margin-right: 0;
+}
+@media (min-width: 768px) {
+  .charity-page .stars-container .video-category-scroll-list {
+    margin-right: -30px;
+    padding-left: 0;
+  }
+}
+@media (max-width: 768px) {
+  .charity-page .stars-container .video-category-scroll-list {
+    margin-left: 0;
+  }
+}
+@media (max-width: 768px) {
+  .charity-page .stars-container {
+    padding-top: 30px;
+  }
+}
+@media (max-width: 768px) {
+  .charity-page .videos-container {
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+}
+.charity-page .videos-title-container {
+  padding-top: 30px;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .charity-page .videos-title-container {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: -ms-flex;
+    display: flex;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    padding-top: 50px;
+    text-align: left;
+    border-bottom: 1px solid #636363;
+    margin-bottom: 41px;
+    padding-bottom: 16px;
+  }
+}
+.charity-page .video-sort-container {
+  display: inline-block;
+  margin: 30px auto;
+}
+@media (min-width: 768px) {
+  .charity-page .video-sort-container {
+    display: block;
+    margin: 0;
+  }
+}
+.charity-page .videos-title {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .charity-page .videos-title {
+    text-align: left;
+  }
+}
+@media (max-width: 768px) {
+  .charity-page .video-category-scroll-list {
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+}
+.charity-page .brand-celebrity-videos {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+@media (min-width: 768px) {
+  .charity-page .brand-celebrity-videos {
+    margin-top: 0;
+    border-top-width: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+@media (max-width: 768px) {
+  .charity-page .clix-hero-banner .banner-logo-container {
+    float: left;
+  }
+  .charity-page .clix-hero-banner .banner-title-content {
+    display: block;
+    padding-left: 68px;
+  }
+  .charity-page .clix-hero-banner .hero-banner-content {
+    display: block;
+  }
+  .charity-page .clix-hero-banner .banner-subtext-container {
+    text-align: left;
+    padding-left: 81px;
+    margin-top: 10px;
+  }
 }
 .clix-stars-page .star-logo {
   -webkit-flex: 1;
@@ -10033,6 +10175,45 @@ button.close {
   .clix-star-page .banner-favorite-icon {
     font-size: 20px;
     top: 2px;
+  }
+}
+.clix-star-page .brand-page-content {
+  position: relative;
+  z-index: 2000;
+  background-color: #0e0e0e;
+  padding: 13px 0 62px;
+}
+@media (min-width: 768px) {
+  .clix-star-page .brand-page-content {
+    padding: 13px 30px 62px;
+  }
+}
+.clix-star-page .nav-tabs {
+  border-bottom: 1px solid #636363 !important;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+@media (min-width: 768px) {
+  .clix-star-page .nav-tabs {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+@media (max-width: 768px) {
+  .clix-star-page .clix-hero-banner .banner-logo-container {
+    float: left;
+  }
+  .clix-star-page .clix-hero-banner .banner-title-content {
+    display: block;
+    padding-left: 68px;
+  }
+  .clix-star-page .clix-hero-banner .hero-banner-content {
+    display: block;
+  }
+  .clix-star-page .clix-hero-banner .banner-subtext-container {
+    text-align: left;
+    padding-left: 81px;
+    margin-top: 10px;
   }
 }
 .clix-categories-page .category-logo {
@@ -10788,6 +10969,19 @@ button.close {
   font-size: 18px;
   position: relative;
   top: -1px;
+}
+.clix-account-favorites .tab-content {
+  border-top: 1px solid #636363;
+}
+@media (min-width: 768px) {
+  .clix-account-favorites .tab-content {
+    border-top-width: 0;
+  }
+}
+@media (max-width: 768px) {
+  .clix-account-favorites .clix-search-filter {
+    padding-top: 20px;
+  }
 }
 .clix-account-saved-offers .saved-offers-page-content {
   padding: 20px 10px 46px 10px;

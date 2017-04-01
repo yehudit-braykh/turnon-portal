@@ -20,4 +20,48 @@
             top: 2px;
         }
     }
+
+    .brand-page-content {
+        position: relative;
+        z-index: 2000;
+        background-color: @color-darker-gray;
+        padding: 13px 0 62px;
+
+        @media (min-width: @screen-sm) {
+            padding: 13px 30px 62px;
+        }
+    }
+
+    .nav-tabs {
+        border-bottom: 1px solid @color-gray3 !important;
+        margin-left: @common-mobile-padding;
+        margin-right: @common-mobile-padding;
+
+        @media (min-width: @screen-sm) {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+
+    // Banner overrides
+    @media (max-width: @screen-sm) {
+        .clix-hero-banner {
+            .banner-logo-container {
+                float: left;
+            }
+            .banner-title-content {
+                display: block;
+                padding-left: 68px;
+            }
+            .hero-banner-content {
+                display: block;
+            }
+
+            .banner-subtext-container {
+                text-align: left;
+                padding-left: 81px;
+                margin-top: 10px;
+            }
+        }
+    }
 }

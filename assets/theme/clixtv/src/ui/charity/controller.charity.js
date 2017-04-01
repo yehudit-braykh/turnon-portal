@@ -8,6 +8,18 @@
         'brandsService',
         function($q, $scope, $uibModal, $stateParams, brandsService) {
 
+            $scope.seriesList = [
+                {
+                    label: 'A - Z'
+                },
+                {
+                    label: 'Most Viewed'
+                },
+                {
+                    label: 'Favorites'
+                }
+            ];
+
             brandsService.getCharityById($stateParams.id)
                 .then(
                     function onSuccess(data) {
