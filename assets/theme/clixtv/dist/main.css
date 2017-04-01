@@ -8132,18 +8132,20 @@ button.close {
   flex-direction: column;
   height: 100%;
 }
-.video-content-box .video-thumbnail:hover .video-thumbnail-inner-container:after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.63);
-}
-.video-content-box .video-thumbnail:hover .play-button,
-.video-content-box .video-thumbnail:hover .plus-icon {
-  display: block;
+@media (min-width: 768px) {
+  .video-content-box .video-thumbnail:hover .video-thumbnail-inner-container:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.63);
+  }
+  .video-content-box .video-thumbnail:hover .play-button,
+  .video-content-box .video-thumbnail:hover .plus-icon {
+    display: block;
+  }
 }
 .video-content-box .play-button {
   position: absolute;
