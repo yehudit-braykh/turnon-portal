@@ -123,7 +123,9 @@
 
         <clix-header-bar></clix-header-bar>
 
-        <ui-view autoscroll="true"></ui-view>
+        <div class="clix-page-container">
+            <ui-view autoscroll="true"></ui-view>
+        </div>
 
         <clix-right-navigation></clix-right-navigation>
 
