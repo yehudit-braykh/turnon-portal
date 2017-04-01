@@ -62,9 +62,11 @@
         }
     }
 
-    &:hover {
-        .logo-overlay {
-            visibility: visible;
+    @media (min-width: @screen-sm) {
+        &:hover {
+            .logo-overlay {
+                visibility: visible;
+            }
         }
     }
 

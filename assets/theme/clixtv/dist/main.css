@@ -11731,11 +11731,13 @@ button.close {
   bottom: 0;
   right: 0;
 }
-.clix-brand-charity-logo:hover .logo-overlay,
-.clix-offer-logo:hover .logo-overlay,
-.clix-charity-logo:hover .logo-overlay,
-.clix-brand-category-logo:hover .logo-overlay {
-  visibility: visible;
+@media (min-width: 768px) {
+  .clix-brand-charity-logo:hover .logo-overlay,
+  .clix-offer-logo:hover .logo-overlay,
+  .clix-charity-logo:hover .logo-overlay,
+  .clix-brand-category-logo:hover .logo-overlay {
+    visibility: visible;
+  }
 }
 .clix-brand-charity-logo .logo-ellipsis,
 .clix-offer-logo .logo-ellipsis,
@@ -13958,6 +13960,22 @@ button:focus {
   -webkit-opacity: 0.8 !important;
   -moz-opacity: 0.8 !important;
   opacity: 0.8 !important;
+}
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
 }
 .col-lg-2-4 {
   position: relative;
