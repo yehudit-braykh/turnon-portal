@@ -1,6 +1,32 @@
 .clix-account-rewards {
     .rewards-page-content {
-        padding: 46px 29px 46px 48px;
+        padding: 30px 0 46px 0;
+
+        @media (min-width: @screen-sm) {
+            padding: 46px 29px 46px 48px;
+        }
+    }
+
+    .clix-account-header {
+        @media (max-width: @screen-sm) {
+            border-bottom-width: 0;
+        }
+
+        .accesory-view {
+            @media (max-width: @screen-sm) {
+                padding: 0;
+            }
+        }
+    }
+
+    .clix-tabs {
+        margin-left: @common-mobile-padding;
+        margin-right: @common-mobile-padding;
+
+        @media (min-width: @screen-sm) {
+            margin-left: 0;
+            margin-right: 0;
+        }
     }
 
     .rewards-tab-content {
@@ -15,18 +41,36 @@
 
     .rewards-summary-column {
         &:first-child {
-            padding-left: 25px;
-            padding-right: 25px;
+
+            padding-left: 0;
+            padding-right: 0;
+            margin-bottom: 40px;
+
+            @media (min-width: @screen-sm) {
+                padding-left: 25px;
+                padding-right: 25px;
+                margin-bottom: 0;
+            }
         }
         &:last-child {
-            padding-right: 25px;
-            padding-left: 25px;
+
+            padding-left: 0;
+            padding-right: 0;
+
+            @media (min-width: @screen-sm) {
+                padding-right: 25px;
+                padding-left: 25px;
+            }
         }
     }
 
     .rewards-summary-block {
         background-color: @color-dark-gray;
-        padding: 40px 45px;
+        padding: 40px 26px;
+
+        @media (min-width: @screen-sm) {
+            padding: 40px 45px;
+        }
     }
 
     .reward-points {
@@ -96,6 +140,13 @@
         letter-spacing: 1.6px;
         color: @color-gray2;
         text-transform: uppercase;
+        text-align: center;
+        margin-bottom: 15px;
+
+        @media (min-width: @screen-sm) {
+            text-align: left;
+            margin-bottom: 0;
+        }
     }
 
     .rewards-activity-container {
@@ -112,7 +163,10 @@
         padding-top: 18px;
         padding-bottom: 18px;
         border-bottom: 1px solid @color-gray15;
-        margin-right: 21px;
+
+        @media (min-width: @screen-sm) {
+            margin-right: 21px;
+        }
 
         &:last-child {
             border-bottom-width: 0;

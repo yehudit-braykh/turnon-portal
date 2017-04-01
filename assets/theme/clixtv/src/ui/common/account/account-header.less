@@ -1,8 +1,11 @@
 .clix-account-header {
-    padding-bottom: 20px;
     border-bottom: 1px solid @color-gray3;
-    margin-left: @account-padding-mobile;
-    margin-right: @account-padding-mobile;
+
+    @media (min-width: @screen-sm) {
+        margin-left: @account-padding-mobile;
+        margin-right: @account-padding-mobile;
+        padding-bottom: 20px;
+    }
 
     .header-text {
         font-family: @font-primary;
@@ -10,7 +13,6 @@
         color: @color-white;
         letter-spacing: 1.6px;
         text-align: center;
-        margin-bottom: 30px;
 
         @media (min-width: @screen-sm) {
             font-size: 35px;

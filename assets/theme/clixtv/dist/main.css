@@ -10536,12 +10536,13 @@ button.close {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  padding-top: 128px;
+  padding-top: 76px;
   background-color: #313131;
 }
 @media (min-width: 768px) {
   .clix-account-page .account-page {
     padding-bottom: 110px;
+    padding-top: 128px;
   }
 }
 .clix-account-page .account-navigation {
@@ -10795,7 +10796,32 @@ button.close {
   padding-top: 0;
 }
 .clix-account-rewards .rewards-page-content {
-  padding: 46px 29px 46px 48px;
+  padding: 30px 0 46px 0;
+}
+@media (min-width: 768px) {
+  .clix-account-rewards .rewards-page-content {
+    padding: 46px 29px 46px 48px;
+  }
+}
+@media (max-width: 768px) {
+  .clix-account-rewards .clix-account-header {
+    border-bottom-width: 0;
+  }
+}
+@media (max-width: 768px) {
+  .clix-account-rewards .clix-account-header .accesory-view {
+    padding: 0;
+  }
+}
+.clix-account-rewards .clix-tabs {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+@media (min-width: 768px) {
+  .clix-account-rewards .clix-tabs {
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 .clix-account-rewards .rewards-tab-content {
   border-top: 1px solid #636363;
@@ -10806,16 +10832,35 @@ button.close {
   margin-right: -25px;
 }
 .clix-account-rewards .rewards-summary-column:first-child {
-  padding-left: 25px;
-  padding-right: 25px;
+  padding-left: 0;
+  padding-right: 0;
+  margin-bottom: 40px;
+}
+@media (min-width: 768px) {
+  .clix-account-rewards .rewards-summary-column:first-child {
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-bottom: 0;
+  }
 }
 .clix-account-rewards .rewards-summary-column:last-child {
-  padding-right: 25px;
-  padding-left: 25px;
+  padding-left: 0;
+  padding-right: 0;
+}
+@media (min-width: 768px) {
+  .clix-account-rewards .rewards-summary-column:last-child {
+    padding-right: 25px;
+    padding-left: 25px;
+  }
 }
 .clix-account-rewards .rewards-summary-block {
   background-color: #171717;
-  padding: 40px 45px;
+  padding: 40px 26px;
+}
+@media (min-width: 768px) {
+  .clix-account-rewards .rewards-summary-block {
+    padding: 40px 45px;
+  }
 }
 .clix-account-rewards .reward-points {
   text-align: center;
@@ -10879,6 +10924,14 @@ button.close {
   letter-spacing: 1.6px;
   color: #8a8a8a;
   text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 15px;
+}
+@media (min-width: 768px) {
+  .clix-account-rewards .rewards-summary-header {
+    text-align: left;
+    margin-bottom: 0;
+  }
 }
 .clix-account-rewards .rewards-activity-container {
   margin-top: 34px;
@@ -10898,7 +10951,11 @@ button.close {
   padding-top: 18px;
   padding-bottom: 18px;
   border-bottom: 1px solid #494949;
-  margin-right: 21px;
+}
+@media (min-width: 768px) {
+  .clix-account-rewards .reward-activity-row {
+    margin-right: 21px;
+  }
 }
 .clix-account-rewards .reward-activity-row:last-child {
   border-bottom-width: 0;
@@ -13370,10 +13427,14 @@ button.close {
   margin-right: 0.3em;
 }
 .clix-account-header {
-  padding-bottom: 20px;
   border-bottom: 1px solid #636363;
-  margin-left: 10px;
-  margin-right: 10px;
+}
+@media (min-width: 768px) {
+  .clix-account-header {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-bottom: 20px;
+  }
 }
 .clix-account-header .header-text {
   font-family: 'pt_sansregular', sans-serif;
@@ -13381,7 +13442,6 @@ button.close {
   color: #FFF;
   letter-spacing: 1.6px;
   text-align: center;
-  margin-bottom: 30px;
 }
 @media (min-width: 768px) {
   .clix-account-header .header-text {
