@@ -10302,6 +10302,9 @@ button.close {
   background-position: center;
   background-size: cover;
 }
+.clix-category-page {
+  overflow-x: hidden;
+}
 .clix-category-page .category-page-container {
   position: relative;
   z-index: 2000;
