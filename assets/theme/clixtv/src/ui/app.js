@@ -90,9 +90,14 @@
             }
         ])
         .run([
+            '$rootScope',
             'userService',
-            function(userService) {
+            function($rootScope, userService) {
                 userService.getLoggedInUser();
+
+                $rootScope.$on('$stateChangeSuccess',function(){
+                    $("html, body").animate({ scrollTop: 0 }, 200);
+                })
             }
         ]);
 }());
