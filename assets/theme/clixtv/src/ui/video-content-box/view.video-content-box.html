@@ -17,13 +17,13 @@
     </div>
     <div class="video-thumbnail" ng-click="onPlayPress($event, video)">
         <img ng-src="{{video.PosterH.url}}" class="video-thumbnail-image" clix-on-image-load="onImageLoad($event)" />
+        <div class="violator-container">
+            <clix-violator>
+                100 Reward Points
+            </clix-violator>
+        </div>
         <div class="video-thumbnail-action-container">
             <div class="video-thumbnail-inner-container">
-                <div class="violator-container">
-                    <clix-violator>
-                        100 Reward Points
-                    </clix-violator>
-                </div>
                 <div class="video-brand-icon-list">
                     <div class="video-brand-icon" ng-repeat="brand in video.brands | limitTo: 5 track by $index" style="background-image: url({{brand.BrandTransparentLogo.url}});"></div>
                 </div>

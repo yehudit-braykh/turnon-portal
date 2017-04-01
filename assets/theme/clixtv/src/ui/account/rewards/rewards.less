@@ -152,9 +152,11 @@
     .rewards-activity-container {
         margin-top: 34px;
         border-top: 1px solid @color-gray3;
-        max-height: 500px;
         border-bottom: 1px solid @color-gray3;
         overflow: auto;
+        @media (min-width: @screen-sm) {
+            max-height: 500px;
+        }
     }
 
     .reward-activity-row {

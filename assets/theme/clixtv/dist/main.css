@@ -8286,13 +8286,10 @@ button.close {
   background-repeat: no-repeat;
 }
 .video-content-box .violator-container {
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-align-self: flex-end;
-  -ms-align-self: flex-end;
-  align-self: flex-end;
-  padding: 5px 10px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2000;
 }
 .video-content-box .menu-container {
   position: absolute;
@@ -11222,9 +11219,13 @@ button.close {
 .clix-account-rewards .rewards-activity-container {
   margin-top: 34px;
   border-top: 1px solid #636363;
-  max-height: 500px;
   border-bottom: 1px solid #636363;
   overflow: auto;
+}
+@media (min-width: 768px) {
+  .clix-account-rewards .rewards-activity-container {
+    max-height: 500px;
+  }
 }
 .clix-account-rewards .reward-activity-row {
   display: -webkit-flex;
