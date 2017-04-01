@@ -1,7 +1,11 @@
 .clix-account-settings {
 
     .settings-page-content {
-        padding: 46px 29px 46px 48px;
+        padding: 46px @common-mobile-padding 46px @common-mobile-padding;
+
+        @media (min-width: @screen-sm) {
+            padding: 46px 29px 46px 48px;
+        }
     }
 
     .setting-row {
@@ -29,6 +33,7 @@
             font-size: 14px;
             line-height: 20px;
             color: @color-gray2;
+            padding-right: 40px;
         }
 
         .setting-switch.checked {

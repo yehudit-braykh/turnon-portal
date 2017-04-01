@@ -11091,7 +11091,12 @@ button.close {
   cursor: pointer;
 }
 .clix-account-settings .settings-page-content {
-  padding: 46px 29px 46px 48px;
+  padding: 46px 10px 46px 10px;
+}
+@media (min-width: 768px) {
+  .clix-account-settings .settings-page-content {
+    padding: 46px 29px 46px 48px;
+  }
 }
 .clix-account-settings .setting-row {
   display: -webkit-flex;
@@ -11120,6 +11125,7 @@ button.close {
   font-size: 14px;
   line-height: 20px;
   color: #8a8a8a;
+  padding-right: 40px;
 }
 .clix-account-settings .setting-row .setting-switch.checked {
   border-color: #fe0000;
