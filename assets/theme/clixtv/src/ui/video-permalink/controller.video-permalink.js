@@ -55,12 +55,12 @@
                 )
                 .then(
                     function onSuccess(data) {
-                        $scope.ready = true;
                         $scope.brands = data[0];
                         $scope.charities = data[1];
                         $scope.celebrities = [data[2]];
                         $scope.relatedVideos = data[3];
                         $scope.nextVideos = data[3];
+                        $scope.ready = true;
                     }
                 );
 

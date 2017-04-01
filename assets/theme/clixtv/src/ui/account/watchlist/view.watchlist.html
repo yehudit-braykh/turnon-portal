@@ -16,9 +16,14 @@
     </clix-account-header>
     <div class="watchlist-container">
         <div ng-if="!watchlist || watchlist.length === 0">
-            <div class="empty-message-container">
-
-            </div>
+            <clix-empty-container>
+                <header-text>
+                    Videos that you would like to watch later will appear here.
+                </header-text>
+                <body-text>
+                    Browse through videos and hit the <i class="empty-watchlist-icon icon-redeem-plus-icon"></i> to add them to this list.
+                </body-text>
+            </clix-empty-container>
         </div>
         <div ng-if="watchlist && watchlist.length > 0">
             <div class="row clix-block-row">

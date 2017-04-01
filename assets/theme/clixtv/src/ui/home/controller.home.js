@@ -11,6 +11,8 @@
         'brandsService',
         function($q, $scope, $rootScope, $timeout, $window, $uibModal, categoryService, brandsService) {
 
+            var categoriesToLoad = 0;
+
             $scope.showMobileCarousel = false;
 
             $rootScope.$on('user.login', function(event, data) {
@@ -66,6 +68,8 @@
                     return;
                 }
 
+                categoriesToLoad++;
+
                 categoryService.getCategoryVideosByName(category.title)
                     .then(
                         function onSuccess(data) {
@@ -79,10 +83,19 @@
                             });
 
                             $scope.categories[index].videos = videos;
+
+                            categoriesToLoad--;
+                            _checkCategoriesToLoad();
                         }
                     );
 
                 _loadVideosForCategoryIndex(index + 1);
+            }
+
+            function _checkCategoriesToLoad() {
+                if (categoriesToLoad === 0) {
+                    // $scope.ready = true;
+                }
             }
 
             $q.all(

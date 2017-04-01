@@ -1,0 +1,46 @@
+@-webkit-keyframes infinite-spinning {
+    from {
+        .transform(rotate(0deg));
+    }
+    to {
+        .transform(rotate(360deg));
+    }
+}
+
+.clix-loader {
+    .flex-display;
+    .flex(1);
+    .align-items(center);
+    .justify-content(center);
+    text-align: center;
+    
+    .loader-icon {
+        .animation(infinite-spinning, 1s, infinite, linear);
+        margin: 0 auto;
+        background-image: url('/assets/theme/clixtv/dist/images/clix-spinner.png');
+        background-size: contain;
+        background-position: center;
+        
+        &.loader-small {
+            width: 75px;
+            height: 75px;
+        }
+
+        &.loader-medium {
+            width: 150px;
+            height: 150px;
+            margin: 50px 0;
+        }
+
+        &.loader-large {
+            width: 30%;
+            padding-bottom: 30%;
+            max-width: 500px;
+
+            //width: 300px;
+            //height: 300px;
+            margin: 200px 0;
+        }
+    }
+    
+}
