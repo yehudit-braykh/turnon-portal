@@ -46,18 +46,21 @@
         .flex-direction(column);
         height: 100%;
     }
-    .video-thumbnail:hover {
-        .video-thumbnail-inner-container:after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: @color-transparent-black;
-        }
-        .play-button, .plus-icon {
-            display: block;
+    
+    @media (min-width: @screen-sm) {
+        .video-thumbnail:hover {
+            .video-thumbnail-inner-container:after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: @color-transparent-black;
+            }
+            .play-button, .plus-icon {
+                display: block;
+            }
         }
     }
 
