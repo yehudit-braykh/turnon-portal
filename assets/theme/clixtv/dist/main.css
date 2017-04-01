@@ -10774,7 +10774,12 @@ button.close {
   }
 }
 .clix-account-favorites .favorites-page-content {
-  padding: 46px 29px 46px 48px;
+  padding: 20px 10px 46px 10px;
+}
+@media (min-width: 768px) {
+  .clix-account-favorites .favorites-page-content {
+    padding: 46px 29px 46px 48px;
+  }
 }
 .clix-account-favorites .clix-search-filter {
   padding-top: 45px;
