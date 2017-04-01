@@ -9672,6 +9672,9 @@ button.close {
   padding-left: 0;
   padding-right: 0;
 }
+.brand-page {
+  overflow-x: hidden;
+}
 .brand-page .banner-favorite-icon {
   font-size: 12px;
   position: relative;
