@@ -151,6 +151,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('ui/common/container/view.blurrable-container.html',
+    "<div class=clix-blurrable-container ng-class=\"{'active': blurred}\"><div ng-transclude></div></div>"
+  );
+
+
   $templateCache.put('ui/common/container/view.content-callout-list.html',
     "<div class=\"row brands-list\"><div class=\"brand-outer-container col-xs-6 col-sm-4 col-md-3 {{largeColClass || 'col-lg-2'}}\" ng-repeat=\"item in items\" clix-transclude-inject></div></div>"
   );
@@ -282,7 +287,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/header/view.header-search-icon.html',
-    "<div class=search-bar ng-class=\"{'inactive': !searchBarVisible}\" clix-click-anywhere-else=bodyClicked><div class=search-bar-background><a href=# class=search-icon-container ng-click=searchIconClicked($event)><i class=icon-search-icon></i> </a><input type=text placeholder=Search...></div></div>"
+    "<div class=search-bar ng-class=\"{'inactive': !searchBarVisible}\" clix-click-anywhere-else=bodyClicked><div class=search-bar-background><a href=# class=search-icon-container ng-click=searchIconClicked($event)><i class=icon-search-icon-bottom-nav></i> </a><input type=text placeholder=Search...></div></div>"
   );
 
 

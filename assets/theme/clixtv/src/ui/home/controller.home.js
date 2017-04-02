@@ -35,6 +35,18 @@
                     }
                 });
 
+                modalInstance.opened.then(
+                    function onSuccess() {
+                        $rootScope.$broadcast('modal.open');
+                    }
+                );
+
+                modalInstance.closed.then(
+                    function onSuccess() {
+                        $rootScope.$broadcast('modal.close');
+                    }
+                );
+
                 modalInstance.result.then(
                     function onSuccess(data) {
 

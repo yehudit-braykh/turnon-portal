@@ -3,8 +3,9 @@
     var ShareButtonController = [
         '$q',
         '$scope',
+        '$rootScope',
         '$uibModal',
-        function($q, $scope, $uibModal) {
+        function($q, $scope, $rootScope, $uibModal) {
 
             $scope.onShareIconPress = function() {
                 var modalInstance = $uibModal.open({
@@ -18,6 +19,18 @@
                         shareModalOffer: $scope.offer
                     }
                 });
+
+                modalInstance.opened.then(
+                    function onSuccess() {
+                        $rootScope.$broadcast('modal.open');
+                    }
+                );
+
+                modalInstance.closed.then(
+                    function onSuccess() {
+                        $rootScope.$broadcast('modal.close');
+                    }
+                );
 
                 modalInstance.result.then(
                     function onSuccess(data) {

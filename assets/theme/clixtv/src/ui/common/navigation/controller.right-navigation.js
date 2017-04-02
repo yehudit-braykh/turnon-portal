@@ -35,6 +35,7 @@
             };
 
             function _closeNavigation() {
+                $rootScope.$broadcast('rightnav.close');
                 $scope.visible = false;
                 $timeout(function() {
                     $scope.open = false;

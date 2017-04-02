@@ -121,15 +121,18 @@
 
     <body>
 
-        <clix-header-bar></clix-header-bar>
-
-        <div class="clix-page-container">
-            <ui-view autoscroll="true"></ui-view>
-        </div>
+        <clix-blurrable-container>
+            <clix-header-bar></clix-header-bar>
+            <div class="clix-page-container">
+                <ui-view autoscroll="true"></ui-view>
+            </div>
+        </clix-blurrable-container>
 
         <clix-right-navigation></clix-right-navigation>
 
-        <clix-footer></clix-footer>
+        <clix-blurrable-container>
+            <clix-footer></clix-footer>
+        </clix-blurrable-container>
 
         <clix-mobile-navigation></clix-mobile-navigation>
 

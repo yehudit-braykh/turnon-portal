@@ -255,6 +255,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('ui/common/container/view.blurrable-container.html',
+    "<div class=clix-blurrable-container ng-class=\"{'active': blurred}\"><div ng-transclude></div></div>"
+  );
+
+
   $templateCache.put('ui/common/container/view.content-callout-list.html',
     "<div class=\"row brands-list\"><div class=\"brand-outer-container col-xs-6 col-sm-4 col-md-3 {{largeColClass || 'col-lg-2'}}\" ng-repeat=\"item in items\" clix-transclude-inject></div></div>"
   );
@@ -386,7 +391,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/header/view.header-search-icon.html',
-    "<div class=search-bar ng-class=\"{'inactive': !searchBarVisible}\" clix-click-anywhere-else=bodyClicked><div class=search-bar-background><a href=# class=search-icon-container ng-click=searchIconClicked($event)><i class=icon-search-icon></i> </a><input type=text placeholder=Search...></div></div>"
+    "<div class=search-bar ng-class=\"{'inactive': !searchBarVisible}\" clix-click-anywhere-else=bodyClicked><div class=search-bar-background><a href=# class=search-icon-container ng-click=searchIconClicked($event)><i class=icon-search-icon-bottom-nav></i> </a><input type=text placeholder=Search...></div></div>"
   );
 
 
@@ -720,8 +725,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
     var AccountRewardsController = [
         '$q',
         '$scope',
+        '$rootScope',
         '$uibModal',
-        function($q, $scope, $uibModal) {
+        function($q, $scope, $rootScope, $uibModal) {
 
             $scope.ready = true;
 
@@ -738,6 +744,18 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         }
                     }
                 });
+
+                modalInstance.opened.then(
+                    function onSuccess() {
+                        $rootScope.$broadcast('modal.open');
+                    }
+                );
+
+                modalInstance.closed.then(
+                    function onSuccess() {
+                        $rootScope.$broadcast('modal.close');
+                    }
+                );
 
                 modalInstance.result.then(
                     function onSuccess(data) {
@@ -1711,6 +1729,18 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     size: 'clix-lg'
                 });
 
+                modalInstance.opened.then(
+                    function onSuccess() {
+                        $rootScope.$broadcast('modal.open');
+                    }
+                );
+
+                modalInstance.closed.then(
+                    function onSuccess() {
+                        $rootScope.$broadcast('modal.close');
+                    }
+                );
+
                 modalInstance.result.then(
                     function onSuccess(data) {
 
@@ -1970,8 +2000,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
     var ShareButtonController = [
         '$q',
         '$scope',
+        '$rootScope',
         '$uibModal',
-        function($q, $scope, $uibModal) {
+        function($q, $scope, $rootScope, $uibModal) {
 
             $scope.onShareIconPress = function() {
                 var modalInstance = $uibModal.open({
@@ -1985,6 +2016,18 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         shareModalOffer: $scope.offer
                     }
                 });
+
+                modalInstance.opened.then(
+                    function onSuccess() {
+                        $rootScope.$broadcast('modal.open');
+                    }
+                );
+
+                modalInstance.closed.then(
+                    function onSuccess() {
+                        $rootScope.$broadcast('modal.close');
+                    }
+                );
 
                 modalInstance.result.then(
                     function onSuccess(data) {
@@ -2102,6 +2145,41 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
     angular
         .module('clixtv')
         .controller('ContentCalloutController', ContentCalloutController);
+}());
+(function() {
+
+    var blurrableContainer = [
+        '$rootScope',
+        function($rootScope) {
+            return {
+                restrict: 'AE',
+                templateUrl: 'ui/common/container/view.blurrable-container.html',
+                transclude: true,
+                replace: true,
+                link: function(scope) {
+
+                    scope.blurred = false;
+
+                    function _triggerBlurOn() {
+                        scope.blurred = true;
+                    }
+
+                    function _triggerBlurOff() {
+                        scope.blurred = false;
+                    }
+
+                    $rootScope.$on('rightnav.open', _triggerBlurOn);
+                    $rootScope.$on('rightnav.close', _triggerBlurOff);
+
+                    $rootScope.$on('modal.open', _triggerBlurOn);
+                    $rootScope.$on('modal.close', _triggerBlurOff);
+                }
+            }
+        }
+    ];
+
+    angular.module('clixtv')
+        .directive('clixBlurrableContainer', blurrableContainer);
 }());
 (function() {
 
@@ -2588,6 +2666,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             };
 
             function _closeNavigation() {
+                $rootScope.$broadcast('rightnav.close');
                 $scope.visible = false;
                 $timeout(function() {
                     $scope.open = false;
@@ -3098,6 +3177,18 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     }
                 });
 
+                modalInstance.opened.then(
+                    function onSuccess() {
+                        $rootScope.$broadcast('modal.open');
+                    }
+                );
+
+                modalInstance.closed.then(
+                    function onSuccess() {
+                        $rootScope.$broadcast('modal.close');
+                    }
+                );
+
                 modalInstance.result.then(
                     function onSuccess(data) {
 
@@ -3196,6 +3287,18 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         signup: true
                     }
                 });
+
+                modalInstance.opened.then(
+                    function onSuccess() {
+                        $rootScope.$broadcast('modal.open');
+                    }
+                );
+
+                modalInstance.closed.then(
+                    function onSuccess() {
+                        $rootScope.$broadcast('modal.close');
+                    }
+                );
 
                 modalInstance.result.then(
                     function onSuccess(data) {
