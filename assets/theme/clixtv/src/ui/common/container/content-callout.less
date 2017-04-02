@@ -4,9 +4,12 @@
         position: relative;
         padding-bottom: 100%;
 
-        &:hover {
-            .header-overlay {
-                visibility: visible;
+
+        @media (min-width: @screen-sm) {
+            &:hover {
+                .header-overlay {
+                    visibility: visible;
+                }
             }
         }
     }

@@ -3,7 +3,8 @@
     var ContentCalloutController = [
         '$q',
         '$scope',
-        function($q, $scope) {
+        '$state',
+        function($q, $scope, $state) {
 
             $scope.menuVisible = false;
 

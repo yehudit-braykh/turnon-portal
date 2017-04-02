@@ -60,7 +60,7 @@
                         $scope.celebrities = [data[2]];
                         $scope.relatedVideos = data[3];
                         $scope.nextVideos = data[3];
-                        $scope.ready = true;
+                        // $scope.ready = true;
                     }
                 );
 

@@ -8304,7 +8304,7 @@ button.close {
 .tooltip-menu {
   position: relative;
   height: 0;
-  z-index: 2000;
+  z-index: 3000;
   width: 100%;
 }
 .tooltip-menu .menu-container {
@@ -11208,7 +11208,7 @@ button.close {
 .clix-account-rewards .reward-points .points-label {
   font-family: 'pt_sansregular', sans-serif;
   font-size: 45px;
-  color: #fe0000;
+  color: #0dc73a;
   letter-spacing: 1.6px;
 }
 .clix-account-rewards .reward-points .available-balance-label {
@@ -12339,8 +12339,10 @@ button.close {
   position: relative;
   padding-bottom: 100%;
 }
-.clix-content-callout .header-callout-container:hover .header-overlay {
-  visibility: visible;
+@media (min-width: 768px) {
+  .clix-content-callout .header-callout-container:hover .header-overlay {
+    visibility: visible;
+  }
 }
 .clix-content-callout .header-container {
   display: -webkit-flex;
@@ -12482,7 +12484,12 @@ button.close {
 .clix-empty-container {
   color: #8a8a8a;
   text-align: center;
-  padding: 50px 0;
+  padding: 50px 10px;
+}
+@media (min-width: 768px) {
+  .clix-empty-container {
+    padding: 50px 0;
+  }
 }
 .clix-empty-container .empty-icon {
   font-size: 64px;
@@ -13780,6 +13787,8 @@ button.close {
 }
 .clix-account-header {
   border-bottom: 1px solid #636363;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 @media (min-width: 768px) {
   .clix-account-header {
@@ -13804,10 +13813,12 @@ button.close {
 }
 .clix-account-header .accesory-view {
   padding-bottom: 20px;
+  padding-top: 30px;
 }
 @media (min-width: 768px) {
   .clix-account-header .accesory-view {
     padding-bottom: 0;
+    padding-top: 0;
   }
 }
 @media (min-width: 768px) {
@@ -14019,6 +14030,7 @@ button.close {
   background-image: url('/assets/theme/clixtv/dist/images/clix-spinner.png');
   background-size: contain;
   background-position: center;
+  background-repeat: no-repeat;
 }
 .clix-loader .loader-icon.loader-small {
   width: 75px;
@@ -14034,6 +14046,11 @@ button.close {
   padding-bottom: 20%;
   max-width: 500px;
   margin: 200px 0;
+}
+@media (min-width: 768px) {
+  .clix-loader .loader-icon.loader-large {
+    max-width: 200px;
+  }
 }
 body,
 html {
