@@ -47,7 +47,10 @@
                         };
                         return $q.all(
                             [
-                                celebrityService.getVideosByCelebrityId(data._id)
+                                celebrityService.getVideosByCelebrityId(data._id),
+                                celebrityService.getBrandsByCelebrityId(data._id),
+                                celebrityService.getCharitiesByCelebrityId(data._id),
+                                celebrityService.getOffersByCelebrityId(data._id)
                             ]
                         )
                     }
@@ -56,6 +59,9 @@
                     function onSuccess(data) {
                         $scope.relatedVideos = data[0];
                         $scope.videos = data[0];
+                        $scope.brands = data[1];
+                        $scope.charities = data[2];
+                        $scope.offers = data[3];
                     }
                 );
         }

@@ -7,7 +7,7 @@
 
 @import "../../node_modules/bootstrap-less/bootstrap/bootstrap";
 
-@grid-gutter-width: 60px;
+@grid-gutter-width: 30px;
 
 @import "common/variables";
 @import "common/mixins";
@@ -155,3 +155,49 @@ button:focus {
 .col-xs-2-4 {
     .make-xs-column(2.4)
 }
+
+
+// Custom grid
+@sm-gutter: 10px;
+@lg-gutter: 20px;
+
+.clix-row {
+
+    .make-row(@gutter: @sm-gutter);
+
+    @media (min-width: @screen-sm-min) {
+        .make-row(@gutter: @lg-gutter);
+    }
+}
+
+.clix-2-col {
+    margin-bottom: 40px;
+
+    @media (max-width: @screen-sm) {
+        .make-lg-column(6, @sm-gutter);
+    }
+
+    @media (min-width: @screen-sm-min) {
+        .make-lg-column(6, @lg-gutter);
+    }
+}
+
+.clix-6-col {
+    margin-bottom: 40px;
+    @media (min-width: @screen-xs-min) {
+        .make-sm-column(6, @sm-gutter);
+    }
+    @media (min-width: @screen-sm-min) {
+        .make-sm-column(4, @lg-gutter);
+    }
+    @media (min-width: @screen-md-min) {
+        .make-sm-column(3, @lg-gutter);
+    }
+    @media (min-width: @screen-lg-min) {
+        .make-lg-column(2, @lg-gutter);
+    }
+}
+
+//col-xs-6 col-sm-4 col-md-3 col-lg-2
+
+

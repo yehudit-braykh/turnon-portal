@@ -43,6 +43,44 @@
                                     <div class="sidebar-title">
                                         Brands in this Series
                                     </div>
+                                    <div class="row brand-row">
+                                        <div ng-repeat="brand in brands" class="brand-container col-xs-6">
+                                            <clix-content-callout sref="brand({ slug: '{{brand.title | slug}}' })" menu-items="menuItems">
+                                                <header-element>
+                                                    <clix-brand-charity-logo brand="brand"></clix-brand-charity-logo>
+                                                </header-element>
+                                                <title-content>
+                                                    {{brand.title}}
+                                                </title-content>
+                                                <subtitle-content>
+                                                    18 Offers
+                                                </subtitle-content>
+                                            </clix-content-callout>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="sidebar-container">
+                                    <div class="sidebar-title">
+                                        Charities in this Series
+                                    </div>
+                                    <div class="row brand-row">
+                                        <div ng-repeat="charity in charities" class="brand-container col-xs-6">
+                                            <clix-content-callout sref="charity({ slug: '{{charity._id}}' })" menu-items="menuItems">
+                                                <header-element>
+                                                    <clix-charity-logo charity="charity"></clix-charity-logo>
+                                                </header-element>
+                                                <title-content>
+                                                    {{charity.title}}
+                                                </title-content>
+                                                <subtitle-content>
+                                                    30 Videos
+                                                </subtitle-content>
+                                            </clix-content-callout>
+                                        </div>
+                                    </div>
+
                                 </div>
 
                             </div>
@@ -51,9 +89,70 @@
 
                 </uib-tab>
                 <uib-tab index="1" heading="Brands & Offers">
+                    <div class="brands-offers-title">
+                        <clix-secondary-header>
+                            Brands Related To {{configs.title}}
+                        </clix-secondary-header>
+                    </div>
+                    <div class="row brand-row">
+                        <div ng-repeat="brand in brands" class="brand-container col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                            <clix-content-callout sref="brand({ slug: '{{brand.title | slug}}' })" menu-items="menuItems">
+                                <header-element>
+                                    <clix-brand-charity-logo brand="brand"></clix-brand-charity-logo>
+                                </header-element>
+                                <title-content>
+                                    {{brand.title}}
+                                </title-content>
+                                <subtitle-content>
+                                    18 Offers
+                                </subtitle-content>
+                            </clix-content-callout>
+                        </div>
+                    </div>
+                    <div class="brands-offers-title">
+                        <clix-secondary-header>
+                            Offers Related To {{configs.title}}
+                        </clix-secondary-header>
+                    </div>
+                    <div class="row brand-row">
+                        <div ng-repeat="offer in offers" class="brand-container col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                            <clix-content-callout sref="offer({ id: '{{offer._id}}' })" menu-items="offerMenuItems">
+                                <header-element>
+                                    <clix-offer-logo offer="offer"></clix-offer-logo>
+                                </header-element>
+                                <title-content>
+                                    {{offer.title}}
+                                </title-content>
+                                <subtitle-content>
+                                    Expires 2/1/2017
+                                </subtitle-content>
+                            </clix-content-callout>
+                        </div>
+                    </div>
 
                 </uib-tab>
                 <uib-tab index="2" heading="Charity">
+
+                    <div class="brands-offers-title">
+                        <clix-secondary-header>
+                            Charities Related To {{configs.title}}
+                        </clix-secondary-header>
+                    </div>
+                    <div class="row brand-row">
+                        <div ng-repeat="charity in charities" class="brand-container col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                            <clix-content-callout sref="charity({ slug: '{{charity._id}}' })" menu-items="menuItems">
+                                <header-element>
+                                    <clix-charity-logo charity="charity"></clix-charity-logo>
+                                </header-element>
+                                <title-content>
+                                    {{charity.title}}
+                                </title-content>
+                                <subtitle-content>
+                                    30 Videos
+                                </subtitle-content>
+                            </clix-content-callout>
+                        </div>
+                    </div>
 
                 </uib-tab>
             </uib-tabset>
