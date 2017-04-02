@@ -10,14 +10,19 @@
                     {{video.artist_name}}
                 </a>
             </div>
-            <a class="menu-icon-container" ng-click="menuClicked()" clix-click-anywhere-else="bodyClicked">
-                <i class="icon-ellipsis"></i>
-            </a>
+            <div clix-tooltip-trigger tooltip-id="actions-button-{{$id}}">
+                <a class="menu-icon-container" ng-click="menuClicked()" clix-click-anywhere-else="bodyClicked">
+                    <i class="icon-ellipsis"></i>
+                </a>
+            </div>
+            <clix-tooltip tooltip-id="actions-button-{{$id}}">
+                Actions
+            </clix-tooltip>
         </div>
     </div>
     <div class="video-thumbnail" ng-click="onPlayPress($event, video)">
         <img ng-src="{{video.PosterH.url}}" class="video-thumbnail-image" clix-on-image-load="onImageLoad($event)" />
-        <div class="violator-container">
+        <div class="violator-container" clix-tooltip-trigger tooltip-id="signup-watch-points-{{$id}}">
             <clix-violator>
                 100 Reward Points
             </clix-violator>
@@ -29,14 +34,16 @@
                 </div>
             </div>
             <div class="action-buttons-container">
-                <div class="plus-icon icon-redeem-plus-icon"></div>
+                <div class="plus-icon icon-redeem-plus-icon" clix-tooltip-trigger tooltip-id="watchlist-button-{{$id}}"></div>
+
+                <clix-tooltip tooltip-id="watchlist-button-{{$id}}">
+                    Add to your Watchlist
+                </clix-tooltip>
+
                 <div class="play-button">
                     <div class="play-button-hit-area">
                         <img src="/assets/theme/clixtv/dist/images/gradient-clix-icon.svg" />
                     </div>
-                    <!--<div class="icon-play-button-normal button-normal"></div>-->
-                    <!--<div class="icon-play-button-hover button-hover"></div>-->
-                    <!--<div class="icon-play-button-click button-click"></div>-->
                 </div>
             </div>
         </div>
@@ -52,3 +59,12 @@
         </a>
     </div>
 </div>
+
+<clix-tooltip tooltip-id="signup-watch-points-{{$id}}">
+    <div ng-show="!loggedInUser">
+        After you sign up, you will receive 100 Reward Points for watching this video! <a ng-click="">Learn More</a>.
+    </div>
+    <div ng-show="loggedInUser">
+        You will receive 100 Reward Points for watching this video!
+    </div>
+</clix-tooltip>

@@ -9,7 +9,8 @@
                 contentDescription: 'contentDescription',
                 sidebarTitle: 'sidebarTitle',
                 sidebarContent: 'sidebarContent',
-                footerContent: 'footerContent'
+                footerContent: 'footerContent',
+                shareTooltipContent: '?shareTooltipContent'
             },
             scope: {
                 video: '=?',

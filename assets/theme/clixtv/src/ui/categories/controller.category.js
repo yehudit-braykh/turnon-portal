@@ -3,9 +3,26 @@
     var CategoryController = [
         '$q',
         '$scope',
+        '$rootScope',
         '$stateParams',
         'categoryService',
-        function($q, $scope, $stateParams, categoryService) {
+        'userService',
+        function($q, $scope, $rootScope, $stateParams, categoryService, userService) {
+
+            $rootScope.$on('user.login', function(event, data) {
+                $scope.loggedInUser = data;
+            });
+
+            $rootScope.$on('user.logout', function(event, data) {
+                delete $scope.loggedInUser;
+            });
+
+            userService.getLoggedInUser()
+                .then(
+                    function onSuccess(data) {
+                        $scope.loggedInUser = data;
+                    }
+                );
 
             $scope.filterOptions = [
                 {

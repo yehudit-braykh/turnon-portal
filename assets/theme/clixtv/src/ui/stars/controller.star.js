@@ -3,9 +3,26 @@
     var StarController = [
         '$q',
         '$scope',
+        '$rootScope',
         '$stateParams',
         'celebrityService',
-        function($q, $scope, $stateParams, celebrityService) {
+        'userService',
+        function($q, $scope, $rootScope, $stateParams, celebrityService, userService) {
+
+            $rootScope.$on('user.login', function(event, data) {
+                $scope.loggedInUser = data;
+            });
+
+            $rootScope.$on('user.logout', function(event, data) {
+                delete $scope.loggedInUser;
+            });
+
+            userService.getLoggedInUser()
+                .then(
+                    function onSuccess(data) {
+                        $scope.loggedInUser = data;
+                    }
+                );
 
             $scope.seriesList = [
                 {

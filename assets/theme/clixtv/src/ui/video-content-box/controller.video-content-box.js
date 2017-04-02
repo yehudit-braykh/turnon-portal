@@ -3,11 +3,28 @@
     var VideoContentBoxController = [
         '$q',
         '$scope',
+        '$rootScope',
         '$location',
         '$state',
-        function($q, $scope, $location, $state) {
+        'userService',
+        function($q, $scope, $rootScope, $location, $state, userService) {
 
             $scope.menuVisible = false;
+
+            $rootScope.$on('user.login', function(event, data) {
+                $scope.loggedInUser = data;
+            });
+
+            $rootScope.$on('user.logout', function(event, data) {
+                $scope.loggedInUser = undefined;
+            });
+
+            userService.getLoggedInUser()
+                .then(
+                    function onSuccess(data) {
+                        $scope.loggedInUser = data;
+                    }
+                );
 
             $scope.items = [
                 {

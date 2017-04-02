@@ -12,11 +12,14 @@
             <div class="header-save">
                 <clix-favorite-button></clix-favorite-button>
             </div>
-            <div class="header-ellipsis">
+            <div class="header-ellipsis" tooltip-id="actions-button-{{$id}}">
                 <div class="menu-icon-container" ng-click="menuClicked($event)" clix-click-anywhere-else="bodyClicked">
                     <i class="icon-ellipsis"></i>
                 </div>
             </div>
+            <clix-tooltip tooltip-id="actions-button-{{$id}}">
+                Actions
+            </clix-tooltip>
         </div>
 
     </div>

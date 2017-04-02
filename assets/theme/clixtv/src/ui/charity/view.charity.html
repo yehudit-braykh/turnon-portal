@@ -7,6 +7,8 @@
             background-image="{{configs.backgroundImage}}"
             background-image2x="{{configs.backgroundImage2x}}"
             charity="true"
+            button-tooltip-text="{{loggedInUser ? 'Add this charity to your Favorites.' : 'After signing up, you will be able to add this charity to your Favorites.'}}"
+            share-tooltip-text="Share this page."
     >
         <hero-banner-logo>
             <img ng-src="{{configs.logo}}" ng-srcset="{{configs.logo2x}} 2x" />

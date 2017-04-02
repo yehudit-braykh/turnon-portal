@@ -7,6 +7,8 @@
             button-icon-class="{{'icon-favorite-icon banner-favorite-icon'}}"
             background-image="{{configs.backgroundImage}}"
             background-image2x="{{configs.backgroundImage2x}}"
+            button-tooltip-text="{{loggedInUser ? 'Add this brand to your Favorites.' : 'After signing up, you will be able to add this brand to your Favorites.'}}"
+            share-tooltip-text="Share this brand."
     >
         <hero-banner-logo>
             <img ng-src="{{configs.logo}}" ng-srcset="{{configs.logo2x}} 2x" />
@@ -74,6 +76,14 @@
                                     </div>
                                 </div>
                             </footer-content>
+                            <share-tooltip-content>
+                                <div ng-if="loggedInUser">
+                                    You will receive 50 Reward Points for sharing!
+                                </div>
+                                <div ng-if="!loggedInUser">
+                                    After signing up, you will receive 50 Reward Points for sharing! <a ng-click="">Learn more</a>.
+                                </div>
+                            </share-tooltip-content>
                         </clix-landing-video-content>
                     </div>
                 </uib-tab>

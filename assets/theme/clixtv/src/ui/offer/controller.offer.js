@@ -3,10 +3,27 @@
     var OfferController = [
         '$q',
         '$scope',
+        '$rootScope',
         '$stateParams',
         'offersService',
         'brandsService',
-        function($q, $scope, $stateParams, offersService, brandsService) {
+        'userService',
+        function($q, $scope, $rootScope, $stateParams, offersService, brandsService, userService) {
+
+            $rootScope.$on('user.login', function(event, data) {
+                $scope.loggedInUser = data;
+            });
+
+            $rootScope.$on('user.logout', function(event, data) {
+                delete $scope.loggedInUser;
+            });
+
+            userService.getLoggedInUser()
+                .then(
+                    function onSuccess(data) {
+                        $scope.loggedInUser = data;
+                    }
+                );
 
             $scope.seriesList = [
                 {

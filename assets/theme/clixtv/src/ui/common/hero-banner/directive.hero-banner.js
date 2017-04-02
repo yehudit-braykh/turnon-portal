@@ -17,7 +17,9 @@
                 backgroundImage: '@',
                 backgroundImage2x: '@?',
                 charity: '@?',
-                shareable: '@?'
+                shareable: '@?',
+                buttonTooltipText: '@?',
+                shareTooltipText: '@?'
             }
         }
     };

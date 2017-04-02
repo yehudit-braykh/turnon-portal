@@ -3,10 +3,27 @@
     var CharityController = [
         '$q',
         '$scope',
+        '$rootScope',
         '$uibModal',
         '$stateParams',
         'brandsService',
-        function($q, $scope, $uibModal, $stateParams, brandsService) {
+        'userService',
+        function($q, $scope, $rootScope, $uibModal, $stateParams, brandsService, userService) {
+
+            $rootScope.$on('user.login', function(event, data) {
+                $scope.loggedInUser = data;
+            });
+
+            $rootScope.$on('user.logout', function(event, data) {
+                delete $scope.loggedInUser;
+            });
+
+            userService.getLoggedInUser()
+                .then(
+                    function onSuccess(data) {
+                        $scope.loggedInUser = data;
+                    }
+                );
 
             $scope.seriesList = [
                 {
@@ -27,8 +44,8 @@
                         $scope.configs = {
                             title: data.title,
                             description: data.description,
-                            backgroundImage: '/assets/theme/clixtv/dist/images/nike-header.jpg',
-                            backgroundImage2x: '/assets/theme/clixtv/dist/images/nike-header@2x.jpg',
+                            backgroundImage: '/assets/theme/clixtv/dist/images/special-olympics-header.jpg',
+                            backgroundImage2x: '/assets/theme/clixtv/dist/images/special-olympics-header@2x.jpg',
                             logo: data.BrandTransparentLogo.url
                         };
 

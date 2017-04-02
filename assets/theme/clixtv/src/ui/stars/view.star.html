@@ -3,9 +3,11 @@
         title-text="{{configs.title}}"
         button-text="{{'+ Favorites'}}"
         button-icon-class="{{'icon-favorite-icon banner-favorite-icon'}}"
+        button-tooltip-text="{{loggedInUser ? 'Add this star to your Favorites.' : 'After signing up, you will be able to add this star to your Favorites.'}}"
         points="{{'50'}}"
         subtext="{{'217 Videos'}}"
         background-image="{{configs.backgroundImage}}"
+        share-tooltip-text="Share this page."
     >
         <hero-banner-logo>
             <div class="star-logo" style="background-image: url('{{configs.logo}}')"></div>

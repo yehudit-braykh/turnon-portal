@@ -1,7 +1,7 @@
 <div class="clix-brand-charity-logo">
     <clix-tooltip-menu items="items" menuopen="menuVisible" class="logo-menu-container" ng-hide="!menuVisible"></clix-tooltip-menu>
     <a ui-sref="brand({ slug: (brand.title | slug) })" class="logo-image" style="background-image: url('{{brand.BrandTransparentLogo.url}}')"></a>
-    <div class="logo-points">
+    <div class="logo-points" clix-tooltip-trigger tooltip-id="tooltip-{{$id}}">
         <clix-points-violator>
             50
         </clix-points-violator>
@@ -22,4 +22,15 @@
             </div>
         </div>
     </div>
+
+    <clix-tooltip tooltip-id="tooltip-{{$id}}">
+        <clix-is-logged-in>
+            <logged-in>
+                You will receive 50 Reward Points for viewing this brand!
+            </logged-in>
+            <not-logged-in>
+                After you sign up, you will receive 50 Reward Points for viewing this brand! <a ng-click="">Learn more</a>.
+            </not-logged-in>
+        </clix-is-logged-in>
+    </clix-tooltip>
 </div>

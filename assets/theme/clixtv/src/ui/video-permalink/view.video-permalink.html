@@ -65,24 +65,65 @@
                                 <clix-violator>100 Reward Points</clix-violator>
                             </div>
                         </div>
-                        <a href="#" class="favorite-icon icon-favorite-icon"></a>
+                        <a href="#" class="favorite-icon icon-favorite-icon" clix-tooltip-trigger tooltip-id="favorite-button-{{$id}}"></a>
+
+                        <clix-tooltip tooltip-id="favorite-button-{{$id}}">
+                            Add this Star to your Favorites.
+                        </clix-tooltip>
                     </div>
 
                     <div class="social-container">
-                        <div class="violator-container hidden-sm hidden-xs">
+
+                        <div class="violator-container hidden-sm hidden-xs" clix-tooltip-trigger tooltip-id="reward-points-button-{{$id}}">
                             <clix-violator size="large">100 Reward Points</clix-violator>
                         </div>
+
+                        <clix-tooltip tooltip-id="reward-points-button-{{$id}}">
+                            <clix-is-logged-in>
+                                <logged-in>
+                                    You will receive 100 Reward Points for watching this video!
+                                </logged-in>
+                                <not-logged-in>
+                                    After you sign up, you will receive 100 Reward Points for watching this video! <a ng-click="">Learn more</a>.
+                                </not-logged-in>
+                            </clix-is-logged-in>
+                        </clix-tooltip>
+
                         <div class="social-icon-container">
-                            <a href="#" class="social-icon icon-heart-icon"></a>
+                            <a href="#" class="social-icon icon-heart-icon" clix-tooltip-trigger tooltip-id="heart-button-{{$id}}"></a>
+
+                            <clix-tooltip tooltip-id="heart-button-{{$id}}">
+                                Like this video!
+                            </clix-tooltip>
+
                             <div class="social-icon-label">
                                 256K
                             </div>
                         </div>
-                        <div class="social-icon-container">
+                        <div class="social-icon-container" clix-tooltip-trigger tooltip-id="watchlist-button-{{$id}}">
                             <a href="#" class="social-icon save-icon icon-redeem-plus-icon"></a>
                         </div>
+
+                        <clix-tooltip tooltip-id="watchlist-button-{{$id}}">
+                            Add this video to your Watchlist.
+                        </clix-tooltip>
+
                         <div class="social-icon-container">
-                            <clix-share-button extra-class="social-icon share-icon" video="video"></clix-share-button>
+                            <div clix-tooltip-trigger tooltip-id="share-button-{{$id}}">
+                                <clix-share-button extra-class="social-icon share-icon" video="video"></clix-share-button>
+                            </div>
+
+                            <clix-tooltip tooltip-id="share-button-{{$id}}">
+                                <clix-is-logged-in>
+                                    <logged-in>
+                                        You will receive 50 Reward Points for sharing!
+                                    </logged-in>
+                                    <not-logged-in>
+                                        After signing up, you will receive 50 Reward Points for sharing! <a ng-click="">Learn more</a>.
+                                    </not-logged-in>
+                                </clix-is-logged-in>
+                            </clix-tooltip>
+
                             <clix-points-violator>
                                 50
                             </clix-points-violator>

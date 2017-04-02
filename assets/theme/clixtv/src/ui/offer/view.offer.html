@@ -2,6 +2,8 @@
     <clix-hero-banner
         title-text="{{configs.title}}"
         button-text="{{'+ Save Offer'}}"
+        button-tooltip-text="{{loggedInUser ? 'You will receive 50 Reward Points for saving this offer!' : 'After you sign up, you will receive 50 Reward Points for saving this offer!'}}"
+        share-tooltip-text="{{loggedInUser ? 'You will receive 50 Reward Points for sharing!' : 'After signing up, you will receive 50 Reward Points for sharing!'}}"
         points="{{'50'}}"
         subtext="{{'Expires 1 February 2017'}}"
         background-image="{{configs.backgroundImage}}"
@@ -73,7 +75,7 @@
                                 </div>
                                 <div class="offer-buttons">
                                     <div class="offer-button">
-                                        <div class="save-offer-button">
+                                        <div class="save-offer-button" clix-tooltip-trigger tooltip-id="save-offer-button-{{$id}}">
                                             <clix-tertiary-button>
                                                 + Save Offer
                                             </clix-tertiary-button>
@@ -83,9 +85,17 @@
                                                 </clix-points-violator>
                                             </div>
                                         </div>
+                                        <clix-tooltip tooltip-id="save-offer-button-{{$id}}">
+                                            <div ng-if="loggedInUser">
+                                                You will receive 50 Reward Points for saving this offer!
+                                            </div>
+                                            <div ng-if="!loggedInUser">
+                                                After you sign up, you will receive 50 Reward Points for saving this offer! <a ng-click="">Learn more</a>.
+                                            </div>
+                                        </clix-tooltip>
                                     </div>
                                     <div class="offer-button">
-                                        <div class="save-offer-button">
+                                        <div class="save-offer-button" clix-tooltip-trigger tooltip-id="redeem-offer-button-{{$id}}">
                                             <clix-tertiary-button>
                                                 Redeem Now
                                             </clix-tertiary-button>
@@ -95,9 +105,25 @@
                                                 </clix-points-violator>
                                             </div>
                                         </div>
+                                        <clix-tooltip tooltip-id="redeem-offer-button-{{$id}}">
+                                            <div ng-if="loggedInUser">
+                                                You will receive 50 Reward Points for redeeming this offer!
+                                            </div>
+                                            <div ng-if="!loggedInUser">
+                                                After signing up, you will receive 50 Reward Points for redeeming this offer! <a ng-click="">Learn more</a>.
+                                            </div>
+                                        </clix-tooltip>
                                     </div>
                                 </div>
                             </content-description>
+                            <share-tooltip-content>
+                                <div ng-if="loggedInUser">
+                                    You will receive 50 Reward Points for sharing!
+                                </div>
+                                <div ng-if="!loggedInUser">
+                                    After signing up, you will receive 50 Reward Points for sharing! <a ng-click="">Learn more</a>.
+                                </div>
+                            </share-tooltip-content>
                             <sidebar-title>
                                 More Offers From {{brand.title}}
                             </sidebar-title>
@@ -205,4 +231,5 @@
             </uib-tabset>
         </div>
     </div>
+
 </div>

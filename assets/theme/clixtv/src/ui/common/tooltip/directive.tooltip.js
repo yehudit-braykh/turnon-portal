@@ -31,6 +31,35 @@
 
                     var showTimeout, hideTimeout;
 
+
+                    function _getPosition(el) {
+                        var xPos = 0;
+                        var yPos = 0;
+
+                        while (el) {
+                            if (el.tagName == "BODY") {
+                                // deal with browser quirks with body/window/document and page scroll
+                                var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
+                                var yScroll = el.scrollTop || document.documentElement.scrollTop;
+
+                                xPos += (el.offsetLeft - xScroll + el.clientLeft);
+                                yPos += (el.offsetTop - yScroll + el.clientTop);
+                            } else {
+                                // for all other non-BODY elements
+                                xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft);
+                                yPos += (el.offsetTop - el.scrollTop + el.clientTop);
+                            }
+
+                            el = el.offsetParent;
+                        }
+                        return {
+                            x: xPos,
+                            y: yPos
+                        };
+                    }
+
+
+
                     /**
                      * @todo - Prevent tooltip from extending beyond page bounds
                      */
@@ -45,15 +74,14 @@
 
                             var trigger = angular.element(element),
                                 tooltipElement = document.getElementById(scope.tooltipId),
-                                left = trigger.prop('offsetLeft'),
-                                top = trigger.prop('offsetTop'),
                                 height = trigger[0].offsetHeight,
                                 width = trigger[0].offsetWidth,
                                 tooltipElementWidth = tooltipElement.offsetWidth;
 
+                            var position = _getPosition(trigger[0]);
 
-                            tooltipElement.style.top = (top + height) + 'px';
-                            tooltipElement.style.left = ((left + (width / 2)) - (tooltipElementWidth / 2)) + 'px';
+                            tooltipElement.style.top = (position.y + height) + 'px';
+                            tooltipElement.style.left = ((position.x + (width / 2)) - (tooltipElementWidth / 2)) + 'px';
                             angular.element(tooltipElement).addClass('active');
 
 
