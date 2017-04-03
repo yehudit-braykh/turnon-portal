@@ -3766,11 +3766,15 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         function($q, $scope) {
 
             $scope.onMouseover = function(item) {
-
+                if (item.icon === 'icon-favorite-icon') {
+                    item.icon = 'icon-favorite-icon-filled';
+                }
             };
 
             $scope.onMouseleave = function(item) {
-
+                if (item.icon === 'icon-favorite-icon-filled') {
+                    item.icon = 'icon-favorite-icon';
+                }
             };
 
         }

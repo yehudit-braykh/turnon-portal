@@ -8386,6 +8386,9 @@ button.close {
 .tooltip-menu .icon-favorite-icon {
   font-size: 17px;
 }
+.tooltip-menu .icon-favorite-icon-filled {
+  font-size: 17px;
+}
 .tooltip-menu .points-violator {
   display: inline-block;
   margin-left: 15px;
