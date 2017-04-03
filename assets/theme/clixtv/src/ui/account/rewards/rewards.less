@@ -256,6 +256,11 @@
             margin-top: 30px;
             margin-bottom: 54px;
         }
+
+        @media (max-width: @screen-sm) {
+            margin-left: -(@common-mobile-padding);
+            margin-right: -(@common-mobile-padding);
+        }
     }
 
     .redeem-company-callout {
@@ -264,6 +269,11 @@
 
         @media (min-width: @screen-sm) {
             margin-bottom: 0;
+        }
+
+        @media (max-width: @screen-sm) {
+            padding-left: @common-mobile-padding;
+            padding-right: @common-mobile-padding;
         }
 
         img {

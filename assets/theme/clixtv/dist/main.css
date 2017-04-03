@@ -7675,8 +7675,8 @@ button.close {
   display: flex;
   padding-top: 15px;
   padding-bottom: 15px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 9px;
+  padding-right: 9px;
 }
 @media (min-width: 992px) {
   .clix-header .clix-header-container {
@@ -7843,7 +7843,7 @@ button.close {
 }
 .clix-header .header-user-container .header-avatar-container {
   position: relative;
-  margin-right: 10px;
+  margin-right: 9px;
 }
 @media (min-width: 992px) {
   .clix-header .header-user-container .header-avatar-container {
@@ -8375,6 +8375,9 @@ button.close {
   background-color: #404040;
   color: #FFF;
 }
+.tooltip-menu .menu-item:hover .menu-icon {
+  color: #FFF;
+}
 .tooltip-menu .menu-icon {
   font-size: 18px;
   color: #8a8a8a;
@@ -8838,8 +8841,8 @@ button.close {
 }
 @media (max-width: 768px) {
   .clix-footer .footer-column {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 9px;
+    padding-right: 9px;
   }
 }
 .clix-footer .footer-label {
@@ -9158,8 +9161,8 @@ button.close {
 }
 @media (max-width: 768px) {
   .video-permalink-page .star-info-column-container {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 9px;
+    padding-right: 9px;
   }
 }
 .video-permalink-page .video-player {
@@ -9459,8 +9462,8 @@ button.close {
   flex: 1;
   margin-top: 0;
   padding-top: 25px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 9px;
+  padding-right: 9px;
 }
 @media (min-width: 768px) {
   .video-permalink-page .brands-charity-container {
@@ -9673,8 +9676,8 @@ button.close {
   }
 }
 .video-permalink-page .related-videos-list .related-video {
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 4.5px;
+  padding-right: 4.5px;
 }
 @media (min-width: 768px) {
   .video-permalink-page .related-videos-list .related-video {
@@ -9740,8 +9743,8 @@ button.close {
 }
 .brand-page .nav-tabs {
   border-bottom: 1px solid #636363 !important;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 9px;
+  margin-right: 9px;
 }
 @media (min-width: 768px) {
   .brand-page .nav-tabs {
@@ -9770,8 +9773,8 @@ button.close {
 }
 @media (max-width: 768px) {
   .brand-page .videos-container {
-    margin-left: -10px;
-    margin-right: -10px;
+    margin-left: -9px;
+    margin-right: -9px;
   }
 }
 .brand-page .videos-title-container {
@@ -9817,8 +9820,8 @@ button.close {
 }
 @media (max-width: 768px) {
   .brand-page .video-category-scroll-list {
-    margin-left: -10px;
-    margin-right: -10px;
+    margin-left: -9px;
+    margin-right: -9px;
   }
 }
 .brand-page .stars-container .video-category-scroll-list {
@@ -9865,8 +9868,8 @@ button.close {
 .brand-page .brand-celebrity-videos {
   margin-top: 32px;
   border-top: 1px solid #636363;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 9px;
+  margin-right: 9px;
 }
 @media (min-width: 768px) {
   .brand-page .brand-celebrity-videos {
@@ -10017,8 +10020,8 @@ button.close {
 }
 .charity-page .nav-tabs {
   border-bottom: 1px solid #636363 !important;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 9px;
+  margin-right: 9px;
 }
 @media (min-width: 768px) {
   .charity-page .nav-tabs {
@@ -10085,13 +10088,13 @@ button.close {
   padding: 0;
 }
 .charity-page .more-videos-button-container {
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 9px;
+  margin-right: 9px;
 }
 @media (max-width: 768px) {
   .charity-page .video-category-scroll-list {
-    margin-left: -10px;
-    margin-right: -10px;
+    margin-left: -9px;
+    margin-right: -9px;
   }
 }
 .charity-page .stars-container .video-category-scroll-list {
@@ -10115,8 +10118,8 @@ button.close {
 }
 @media (max-width: 768px) {
   .charity-page .videos-container {
-    margin-left: -10px;
-    margin-right: -10px;
+    margin-left: -9px;
+    margin-right: -9px;
   }
 }
 .charity-page .videos-title-container {
@@ -10162,13 +10165,13 @@ button.close {
 }
 @media (max-width: 768px) {
   .charity-page .video-category-scroll-list {
-    margin-left: -10px;
-    margin-right: -10px;
+    margin-left: -9px;
+    margin-right: -9px;
   }
 }
 .charity-page .brand-celebrity-videos {
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 9px;
+  margin-right: 9px;
 }
 @media (min-width: 768px) {
   .charity-page .brand-celebrity-videos {
@@ -10241,8 +10244,8 @@ button.close {
 }
 .clix-star-page .nav-tabs {
   border-bottom: 1px solid #636363 !important;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 9px;
+  margin-right: 9px;
 }
 @media (min-width: 768px) {
   .clix-star-page .nav-tabs {
@@ -10252,8 +10255,8 @@ button.close {
 }
 @media (max-width: 768px) {
   .clix-star-page .videos-container {
-    margin-left: -10px;
-    margin-right: -10px;
+    margin-left: -9px;
+    margin-right: -9px;
   }
 }
 .clix-star-page .videos-title-container {
@@ -10413,6 +10416,7 @@ button.close {
 }
 .clix-category-page .category-list-container {
   width: 257px;
+  margin-top: 54px;
 }
 .clix-category-page .category-list-content {
   padding: 20px 12px;
@@ -10461,8 +10465,8 @@ button.close {
 }
 .clix-category-page .category-filter-bar {
   padding-top: 30px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 9px;
+  margin-right: 9px;
   border-top: 1px solid #636363;
 }
 @media (min-width: 768px) {
@@ -10529,8 +10533,8 @@ button.close {
 }
 .clix-offer-page .nav-tabs {
   border-bottom: 1px solid #636363 !important;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 9px;
+  margin-right: 9px;
 }
 @media (min-width: 768px) {
   .clix-offer-page .nav-tabs {
@@ -10723,8 +10727,8 @@ button.close {
 }
 .clix-offer-page .offer-footer-info {
   margin-top: 31px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 9px;
+  padding-right: 9px;
 }
 @media (min-width: 768px) {
   .clix-offer-page .offer-footer-info {
@@ -10777,8 +10781,8 @@ button.close {
 }
 @media (max-width: 768px) {
   .clix-offer-page .offer-carousel {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 9px;
+    padding-right: 9px;
   }
 }
 .clix-offer-page .brand-offer {
@@ -10807,8 +10811,8 @@ button.close {
 }
 @media (max-width: 768px) {
   .clix-offer-page .videos-container {
-    margin-left: -10px;
-    margin-right: -10px;
+    margin-left: -9px;
+    margin-right: -9px;
   }
 }
 .clix-offer-page .videos-container .videos-title-container {
@@ -10927,8 +10931,8 @@ button.close {
 .clix-account-overview .personal-info-form-row {
   padding-top: 32px;
   padding-bottom: 23px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 9px;
+  margin-right: 9px;
   border-bottom: 1px solid #636363;
 }
 .clix-account-overview .personal-info-form-row:last-child {
@@ -11116,8 +11120,8 @@ button.close {
   top: -1px;
 }
 .clix-account-watchlist .empty-message-container {
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 9px;
+  padding-right: 9px;
 }
 .clix-account-watchlist .watchlist-container {
   padding-top: 30px;
@@ -11129,7 +11133,7 @@ button.close {
   }
 }
 .clix-account-favorites .favorites-page-content {
-  padding: 20px 10px 46px 10px;
+  padding: 20px 9px 46px 9px;
 }
 @media (min-width: 768px) {
   .clix-account-favorites .favorites-page-content {
@@ -11158,7 +11162,7 @@ button.close {
   }
 }
 .clix-account-saved-offers .saved-offers-page-content {
-  padding: 20px 10px 46px 10px;
+  padding: 20px 9px 46px 9px;
 }
 @media (min-width: 768px) {
   .clix-account-saved-offers .saved-offers-page-content {
@@ -11192,8 +11196,8 @@ button.close {
   }
 }
 .clix-account-rewards .clix-tabs {
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 9px;
+  margin-right: 9px;
 }
 @media (min-width: 768px) {
   .clix-account-rewards .clix-tabs {
@@ -11426,6 +11430,12 @@ button.close {
     margin-bottom: 54px;
   }
 }
+@media (max-width: 768px) {
+  .clix-account-rewards .redeem-companies-container {
+    margin-left: -9px;
+    margin-right: -9px;
+  }
+}
 .clix-account-rewards .redeem-company-callout {
   padding: 0 12px 0 0;
   margin-bottom: 40px;
@@ -11433,6 +11443,12 @@ button.close {
 @media (min-width: 768px) {
   .clix-account-rewards .redeem-company-callout {
     margin-bottom: 0;
+  }
+}
+@media (max-width: 768px) {
+  .clix-account-rewards .redeem-company-callout {
+    padding-left: 9px;
+    padding-right: 9px;
   }
 }
 .clix-account-rewards .redeem-company-callout img {
@@ -11508,7 +11524,7 @@ button.close {
   right: 0;
 }
 .clix-account-settings .settings-page-content {
-  padding: 46px 10px 46px 10px;
+  padding: 46px 9px 46px 9px;
 }
 @media (min-width: 768px) {
   .clix-account-settings .settings-page-content {
@@ -12192,7 +12208,7 @@ button.close {
   }
 }
 .clix-filter-page {
-  padding: 75px 10px 73px 10px;
+  padding: 75px 9px 73px 9px;
 }
 @media (min-width: 768px) {
   .clix-filter-page {
@@ -12344,8 +12360,8 @@ button.close {
   font-size: 14px;
   line-height: 20px;
   color: #FFF;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 9px;
+  padding-right: 9px;
   margin-top: 28px;
 }
 @media (min-width: 768px) {
@@ -13035,8 +13051,8 @@ button.close {
 }
 @media (max-width: 768px) {
   .clix-share-modal .share-modal-video-row {
-    margin-right: -10px;
-    margin-left: -10px;
+    margin-right: -9px;
+    margin-left: -9px;
   }
 }
 .clix-share-modal .modal-post-content,
@@ -13088,7 +13104,7 @@ button.close {
 }
 .clix-share-modal .share-modal-footer {
   text-align: left;
-  margin: 20px 10px 0 10px;
+  margin: 20px 9px 0 9px;
 }
 @media (min-width: 768px) {
   .clix-share-modal .share-modal-footer {
@@ -13263,14 +13279,14 @@ button.close {
 }
 @media (max-width: 768px) {
   .clix-share-modal-video-content .video-thumbnail-container {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 18px;
+    padding-right: 18px;
   }
 }
 @media (max-width: 768px) {
   .clix-share-modal-video-content .video-info-container {
     padding-left: 20px;
-    padding-right: 20px;
+    padding-right: 18px;
   }
 }
 .clix-share-modal-video-content .video-thumbnail {
@@ -13650,6 +13666,7 @@ button.close {
 .clix-right-navigation .navigation-list .navigation-list-item:hover {
   background-color: #313131;
   text-decoration: none;
+  color: #FFF;
 }
 .clix-right-navigation .navigation-list .navigation-list-icon {
   width: 70px;
@@ -13884,13 +13901,13 @@ button.close {
 }
 .clix-account-header {
   border-bottom: 1px solid #636363;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 9px;
+  margin-right: 9px;
 }
 @media (min-width: 768px) {
   .clix-account-header {
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 9px;
+    margin-right: 9px;
     padding-bottom: 20px;
   }
 }
@@ -14172,8 +14189,8 @@ button:focus {
   padding-right: 30px;
 }
 .clix-block-row {
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 4.5px;
+  margin-right: 4.5px;
 }
 @media (min-width: 768px) {
   .clix-block-row {
@@ -14184,8 +14201,8 @@ button:focus {
 .clix-block-row .clix-block-item {
   padding-top: 0;
   padding-bottom: 30px;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 4.5px;
+  padding-right: 4.5px;
 }
 @media (min-width: 768px) {
   .clix-block-row .clix-block-item {

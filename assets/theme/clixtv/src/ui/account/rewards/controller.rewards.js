@@ -7,6 +7,7 @@
         '$uibModal',
         function($q, $scope, $rootScope, $uibModal) {
 
+            $scope.active = 0;
             $scope.ready = true;
 
             $scope.onRedeemRewardsPress = function(type) {
@@ -43,6 +44,10 @@
 
                     }
                 )
+            };
+
+            $scope.onRedeemPress = function() {
+                $scope.active = 2;
             };
 
         }
