@@ -1,32 +1,33 @@
 <clix-modal modal-title="{{state === 'buy' ? 'Buy Points' : 'Donate Points'}}">
     <div class="clix-donate-modal">
 
-        <div class="stepper-container-container" ng-class="{'buy-more-points-input-container': state === 'buy'}">
-            <div ng-show="state !== 'buy'">
-                <clix-number-stepper></clix-number-stepper>
-                <div class="donate-stepper-label">
-                    Available Cash Balance 1760 Points Balance
+        <div class="clix-donate-modal-header">
+            <div class="stepper-container-container" ng-class="{'buy-more-points-input-container': state === 'buy'}">
+                <div ng-show="state !== 'buy'">
+                    <clix-number-stepper></clix-number-stepper>
+                    <div class="donate-stepper-label">
+                        Available Cash Balance 1760 Points Balance
+                    </div>
                 </div>
-            </div>
-            <div ng-show="state === 'buy'">
-                <div class="buy-points-input-container" ng-click="onBuyPointsContainerPress()">
-                    <span class="buy-points-symbol">
-                        $
-                    </span>
-                    <input type="number" id="buyPointsInput" ng-model="buyPointsModel" style="min-width: 35px; max-width: 200px;" pu-elastic-input />
-                    <span class="buy-points-cents">
-                        .00
-                    </span>
+                <div ng-show="state === 'buy'">
+                    <div class="buy-points-input-container" ng-click="onBuyPointsContainerPress()">
+                        <span class="buy-points-symbol">
+                            $
+                        </span>
+                        <input type="text" ng-pattern="/^[0-9,]*$/" id="buyPointsInput" ng-model="buyPointsModel" ng-blur="onBuyPointsBlur(buyPointsModel)" style="min-width: 35px;" pu-elastic-input-width-delta="5px" pu-elastic-input clix-max-length="8" />
+                        <span class="buy-points-cents">
+                            .00
+                        </span>
+                    </div>
+                    <div class="buy-points-input-label">
+                        Input amount to apply to points
+                    </div>
+                    <div class="buy-points-input-label buy-points-input-sublabel">
+                        Each dollar equals one point.
+                    </div>
                 </div>
-                <div class="buy-points-input-label">
-                    Input amount to apply to points
-                </div>
-                <div class="buy-points-input-label buy-points-input-sublabel">
-                    Each dollar equals one point.
-                </div>
-            </div>
 
-        </div>
+            </div>
         <div class="buy-more-points-container" ng-class="{'buy-more-points-credit-card': state === 'buy'}">
 
             <div ng-show="state !== 'buy'">

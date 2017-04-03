@@ -20,7 +20,8 @@
 
     var tooltipTrigger = [
         '$timeout',
-        function($timeout) {
+        '$window',
+        function($timeout, $window) {
             return {
                 restrict: 'A',
                 controller: 'TooltipController',
@@ -30,7 +31,6 @@
                 link: function(scope, element) {
 
                     var showTimeout, hideTimeout;
-
 
                     function _getPosition(el) {
                         var xPos = 0;
@@ -58,7 +58,20 @@
                         };
                     }
 
+                    var currentTooltipElement;
 
+                    // Hide tooltip on window scroll
+                    angular.element($window).on('scroll', function() {
+
+                        if (!currentTooltipElement) {
+                            currentTooltipElement = document.getElementById(scope.tooltipId);
+                        }
+
+                        angular.element(currentTooltipElement).removeClass('active');
+
+                        currentTooltipElement.style.top = '-999px';
+                        currentTooltipElement.style.left = '-999px';
+                    });
 
                     /**
                      * @todo - Prevent tooltip from extending beyond page bounds
@@ -127,7 +140,6 @@
                             if (showTimeout) {
                                 $timeout.cancel(showTimeout);
                             }
-
                         }, HIDE_TOOLTIP_DELAY_MS);
                     });
                 }

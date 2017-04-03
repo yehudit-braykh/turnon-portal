@@ -266,7 +266,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/container/view.content-callout.html',
-    "<div class=clix-content-callout><div class=header-callout-container><a ui-sref={{sref}} class=header-container ng-transclude=headerElement></a><clix-tooltip-menu items=menuItems menuopen=menuVisible class=overlay-menu-container ng-hide=!menuVisible></clix-tooltip-menu><div class=header-overlay><a ui-sref={{sref}} class=hit-area></a> <a ui-sref={{sref}} class=view-button-container><div class=view-button><clix-view-button text=Go></clix-view-button></div></a><div class=header-save><clix-favorite-button></clix-favorite-button></div><div class=header-ellipsis tooltip-id=actions-button-{{$id}}><div class=menu-icon-container ng-click=menuClicked($event) clix-click-anywhere-else=bodyClicked><i class=icon-ellipsis></i></div></div><clix-tooltip tooltip-id=actions-button-{{$id}}>Actions</clix-tooltip></div></div><a ui-sref={{sref}} class=callout-footer-container><span class=callout-title ng-transclude=titleContent></span> <span class=callout-subtitle ng-transclude=subtitleContent></span></a></div>"
+    "<div class=clix-content-callout><div class=header-callout-container><a ui-sref={{sref}} class=header-container ng-transclude=headerElement></a><clix-tooltip-menu items=menuItems menuopen=menuVisible class=overlay-menu-container ng-hide=!menuVisible></clix-tooltip-menu><div class=header-overlay><a ui-sref={{sref}} class=hit-area></a> <a ui-sref={{sref}} class=view-button-container><div class=view-button><clix-view-button text=Go></clix-view-button></div></a><div class=header-save clix-tooltip-trigger tooltip-id=favorites-button-{{$id}}><clix-favorite-button></clix-favorite-button></div><div class=header-ellipsis clix-tooltip-trigger tooltip-id=actions-button-{{$id}}><div class=menu-icon-container ng-click=menuClicked($event) clix-click-anywhere-else=bodyClicked><i class=icon-ellipsis></i></div></div><clix-tooltip tooltip-id=favorites-button-{{$id}}>Add to favorites</clix-tooltip><clix-tooltip tooltip-id=actions-button-{{$id}}>Actions</clix-tooltip></div></div><a ui-sref={{sref}} class=callout-footer-container><span class=callout-title ng-transclude=titleContent></span> <span class=callout-subtitle ng-transclude=subtitleContent></span></a></div>"
   );
 
 
@@ -286,7 +286,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/hero-banner/view.hero-banner.html',
-    "<div class=clix-hero-banner><div du-parallax y=background><img class=hero-background-image ng-src={{backgroundImage}} alt=\"\" draggable=false></div><div class=hero-banner-overlay></div><div class=hero-banner-content-container><div class=hero-banner-content><div class=banner-logo-container ng-class=\"{'charity-logo': charity}\" ng-show=logoProvided><div ng-transclude=logo></div></div><div class=banner-title-content ng-class=\"{'with-logo': logoProvided}\"><div class=banner-title>{{titleText}}</div><div class=banner-button><div clix-tooltip-trigger tooltip-id=hero-banner-button-{{$id}}><clix-tertiary-button>{{buttonText}} <i class={{buttonIconClass}} ng-if=buttonIconClass></i></clix-tertiary-button></div><div clix-tooltip-trigger tooltip-id=hero-banner-share-{{$id}}><clix-share-button extra-class=banner-share-icon ng-show=\"shareable !== 'false'\"></clix-share-button></div><div class=header-points-violator ng-if=points><clix-points-violator>{{points}}</clix-points-violator></div></div></div><div class=banner-subtext-container>{{subtext}}</div></div></div></div><clix-tooltip tooltip-id=hero-banner-button-{{$id}}>{{buttonTooltipText}}</clix-tooltip><clix-tooltip tooltip-id=hero-banner-share-{{$id}}>{{shareTooltipText}}</clix-tooltip>"
+    "<div class=clix-hero-banner><img class=hero-background-image id=hero-background-image ng-src={{backgroundImage}} alt=\"\" draggable=false du-parallax y=background clix-on-image-load=onImageLoad()><div class=hero-banner-content-container><div class=hero-banner-content><div class=banner-logo-container ng-class=\"{'charity-logo': charity}\" ng-show=logoProvided><div ng-transclude=logo></div></div><div class=banner-title-content ng-class=\"{'with-logo': logoProvided}\"><div class=banner-title>{{titleText}}</div><div class=banner-button><div clix-tooltip-trigger tooltip-id=hero-banner-button-{{$id}}><clix-tertiary-button>{{buttonText}} <i class={{buttonIconClass}} ng-if=buttonIconClass></i></clix-tertiary-button></div><div clix-tooltip-trigger tooltip-id=hero-banner-share-{{$id}}><clix-share-button extra-class=banner-share-icon ng-show=\"shareable !== 'false'\"></clix-share-button></div><div class=header-points-violator ng-if=points><clix-points-violator>{{points}}</clix-points-violator></div></div></div><div class=banner-subtext-container>{{subtext}}</div></div></div></div><clix-tooltip tooltip-id=hero-banner-button-{{$id}}>{{buttonTooltipText}}</clix-tooltip><clix-tooltip tooltip-id=hero-banner-share-{{$id}}>{{shareTooltipText}}</clix-tooltip>"
   );
 
 
@@ -296,7 +296,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/modal/donate/view.donate.html',
-    "<clix-modal modal-title=\"{{state === 'buy' ? 'Buy Points' : 'Donate Points'}}\"><div class=clix-donate-modal><div class=stepper-container-container ng-class=\"{'buy-more-points-input-container': state === 'buy'}\"><div ng-show=\"state !== 'buy'\"><clix-number-stepper></clix-number-stepper><div class=donate-stepper-label>Available Cash Balance 1760 Points Balance</div></div><div ng-show=\"state === 'buy'\"><div class=buy-points-input-container ng-click=onBuyPointsContainerPress()><span class=buy-points-symbol>$ </span><input type=number id=buyPointsInput ng-model=buyPointsModel style=\"min-width: 35px; max-width: 200px\" pu-elastic-input> <span class=buy-points-cents>.00</span></div><div class=buy-points-input-label>Input amount to apply to points</div><div class=\"buy-points-input-label buy-points-input-sublabel\">Each dollar equals one point.</div></div></div><div class=buy-more-points-container ng-class=\"{'buy-more-points-credit-card': state === 'buy'}\"><div ng-show=\"state !== 'buy'\"><div class=buy-points-label>Want to buy more points?</div><clix-secondary-button ng-click=onBuyPointsPress()>Buy Points Here</clix-secondary-button></div><div ng-show=\"state === 'buy'\"><div class=credit-card-form><div class=credit-card-label>Credit Card <i class=\"lock-icon icon-icon-security-lock\"></i></div><div class=\"input-container-row row\"><div class=\"input-container col-sm-6\"><input type=text> <span class=input-container-label>Credit card number</span></div><div class=\"input-container col-xs-5 col-sm-3\"><input type=text> <span class=input-container-label>CCV <i class=\"info-icon icon-info-icon\"></i></span></div><div class=\"input-container col-xs-5 col-sm-3\"><input type=text> <span class=input-container-label>Expiration date</span></div></div><div class=\"input-container-row row\"><div class=\"input-container col-sm-8\"><input type=text> <span class=input-container-label>Name (As shown on card)</span></div><div class=\"input-container col-xs-6 col-sm-4\"><input type=text> <span class=input-container-label>Zip/Postal code</span></div></div></div></div></div><div class=donate-footer><clix-checkbox label-text=\"I accept the Terms and Conditions\"></clix-checkbox><div class=\"row donate-footer-buttons hidden-xs hidden-sm\" ng-show=\"state === 'buy'\"><div class=\"col-sm-6 donate-footer-button\"><a ng-click=onBackPress() class=donate-cancel-button>Back</a></div><div class=\"col-sm-6 donate-footer-button\"><clix-primary-button ng-click=onDonatePress()>Complete Purchase</clix-primary-button></div></div><div class=\"row donate-footer-buttons buy-mobile-footer-buttons visible-sm visible-xs\" ng-show=\"state === 'buy'\"><div class=\"col-sm-6 donate-footer-button\"><div class=buy-mobile-footer-button><clix-primary-button ng-click=onDonatePress()>Complete Purchase</clix-primary-button></div></div><div class=\"col-sm-6 donate-footer-button\"><div class=buy-mobile-footer-button><a ng-click=onBackPress() class=donate-cancel-button>Back</a></div></div></div><div class=\"row donate-footer-buttons\" ng-show=\"state !== 'buy'\"><div class=\"col-xs-6 donate-footer-button\"><a ng-click=onCancelPress() class=donate-cancel-button>Cancel</a></div><div class=\"col-xs-6 donate-footer-button\"><clix-primary-button ng-click=onDonatePress()>Donate Now</clix-primary-button></div></div></div></div></clix-modal>"
+    "<clix-modal modal-title=\"{{state === 'buy' ? 'Buy Points' : 'Donate Points'}}\"><div class=clix-donate-modal><div class=clix-donate-modal-header><div class=stepper-container-container ng-class=\"{'buy-more-points-input-container': state === 'buy'}\"><div ng-show=\"state !== 'buy'\"><clix-number-stepper></clix-number-stepper><div class=donate-stepper-label>Available Cash Balance 1760 Points Balance</div></div><div ng-show=\"state === 'buy'\"><div class=buy-points-input-container ng-click=onBuyPointsContainerPress()><span class=buy-points-symbol>$ </span><input type=text ng-pattern=/^[0-9,]*$/ id=buyPointsInput ng-model=buyPointsModel ng-blur=onBuyPointsBlur(buyPointsModel) style=\"min-width: 35px\" pu-elastic-input-width-delta=5px pu-elastic-input clix-max-length=8> <span class=buy-points-cents>.00</span></div><div class=buy-points-input-label>Input amount to apply to points</div><div class=\"buy-points-input-label buy-points-input-sublabel\">Each dollar equals one point.</div></div></div><div class=buy-more-points-container ng-class=\"{'buy-more-points-credit-card': state === 'buy'}\"><div ng-show=\"state !== 'buy'\"><div class=buy-points-label>Want to buy more points?</div><clix-secondary-button ng-click=onBuyPointsPress()>Buy Points Here</clix-secondary-button></div><div ng-show=\"state === 'buy'\"><div class=credit-card-form><div class=credit-card-label>Credit Card <i class=\"lock-icon icon-icon-security-lock\"></i></div><div class=\"input-container-row row\"><div class=\"input-container col-sm-6\"><input type=text> <span class=input-container-label>Credit card number</span></div><div class=\"input-container col-xs-5 col-sm-3\"><input type=text> <span class=input-container-label>CCV <i class=\"info-icon icon-info-icon\"></i></span></div><div class=\"input-container col-xs-5 col-sm-3\"><input type=text> <span class=input-container-label>Expiration date</span></div></div><div class=\"input-container-row row\"><div class=\"input-container col-sm-8\"><input type=text> <span class=input-container-label>Name (As shown on card)</span></div><div class=\"input-container col-xs-6 col-sm-4\"><input type=text> <span class=input-container-label>Zip/Postal code</span></div></div></div></div></div><div class=donate-footer><clix-checkbox label-text=\"I accept the Terms and Conditions\"></clix-checkbox><div class=\"row donate-footer-buttons hidden-xs hidden-sm\" ng-show=\"state === 'buy'\"><div class=\"col-sm-6 donate-footer-button\"><a ng-click=onBackPress() class=donate-cancel-button>Back</a></div><div class=\"col-sm-6 donate-footer-button\"><clix-primary-button ng-click=onDonatePress()>Complete Purchase</clix-primary-button></div></div><div class=\"row donate-footer-buttons buy-mobile-footer-buttons visible-sm visible-xs\" ng-show=\"state === 'buy'\"><div class=\"col-sm-6 donate-footer-button\"><div class=buy-mobile-footer-button><clix-primary-button ng-click=onDonatePress()>Complete Purchase</clix-primary-button></div></div><div class=\"col-sm-6 donate-footer-button\"><div class=buy-mobile-footer-button><a ng-click=onBackPress() class=donate-cancel-button>Back</a></div></div></div><div class=\"row donate-footer-buttons\" ng-show=\"state !== 'buy'\"><div class=\"col-xs-6 donate-footer-button\"><a ng-click=onCancelPress() class=donate-cancel-button>Cancel</a></div><div class=\"col-xs-6 donate-footer-button\"><clix-primary-button ng-click=onDonatePress()>Donate Now</clix-primary-button></div></div></div></div></div></clix-modal>"
   );
 
 
@@ -2301,12 +2301,31 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$q',
         '$scope',
         '$transclude',
+        '$window',
         'parallaxHelper',
-        function($q, $scope, $transclude, parallaxHelper) {
+        function($q, $scope, $transclude, $window, parallaxHelper) {
+
+            var backgroundImage;
+
+            function _handleResize() {
+                if (!backgroundImage) {
+                    backgroundImage = document.getElementById('hero-background-image');
+                }
+
+                backgroundImage.style.left = ($window.innerWidth / 2) - (backgroundImage.offsetWidth / 2) + 'px';
+            }
+
+            angular.element($window).on('resize.doResize', function () {
+                _handleResize();
+            });
 
             $scope.background = parallaxHelper.createAnimator(-0.3);
 
             $scope.logoProvided = $transclude.isSlotFilled('logo');
+
+            $scope.onImageLoad = function() {
+                _handleResize();
+            };
 
         }
     ];
@@ -2382,8 +2401,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     var DonateController = [
         '$scope',
+        '$timeout',
+        '$filter',
         '$uibModalInstance',
-        function($scope, $uibModalInstance) {
+        function($scope, $timeout, $filter, $uibModalInstance) {
 
             $scope.buyPointsModel = 0;
 
@@ -2408,6 +2429,18 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 var element = document.getElementById('buyPointsInput');
                 element.focus();
                 element.select();
+            };
+
+            $scope.onBuyPointsChange = function() {
+
+            };
+
+            $scope.onBuyPointsBlur = function(value) {
+                $timeout(function() {
+                    var input = value || '';
+                    input = input.replace(/[0-9]/g, '');
+                    $scope.buyPointsModel = $filter('number')(input);
+                });
             };
 
         }
@@ -2980,7 +3013,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     var tooltipTrigger = [
         '$timeout',
-        function($timeout) {
+        '$window',
+        function($timeout, $window) {
             return {
                 restrict: 'A',
                 controller: 'TooltipController',
@@ -2990,7 +3024,6 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 link: function(scope, element) {
 
                     var showTimeout, hideTimeout;
-
 
                     function _getPosition(el) {
                         var xPos = 0;
@@ -3018,7 +3051,20 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         };
                     }
 
+                    var currentTooltipElement;
 
+                    // Hide tooltip on window scroll
+                    angular.element($window).on('scroll', function() {
+
+                        if (!currentTooltipElement) {
+                            currentTooltipElement = document.getElementById(scope.tooltipId);
+                        }
+
+                        angular.element(currentTooltipElement).removeClass('active');
+
+                        currentTooltipElement.style.top = '-999px';
+                        currentTooltipElement.style.left = '-999px';
+                    });
 
                     /**
                      * @todo - Prevent tooltip from extending beyond page bounds
@@ -3087,7 +3133,6 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                             if (showTimeout) {
                                 $timeout.cancel(showTimeout);
                             }
-
                         }, HIDE_TOOLTIP_DELAY_MS);
                     });
                 }
@@ -3854,6 +3899,29 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     angular.module('clixtv')
         .directive('clixCurrencyInput', currencyInput);
+}());
+(function() {
+    var maxLength = [
+        function() {
+            return {
+                restrict: 'A',
+                require: 'ngModel',
+                link: function (scope, element, attrs, ngModel) {
+                    attrs.$set('ngTrim', 'false');
+                    var limitLength = parseInt(attrs.clixMaxLength, 10);
+                    scope.$watch(attrs.ngModel, function(newValue) {
+                        if(ngModel.$viewValue.length > limitLength){
+                            ngModel.$setViewValue(ngModel.$viewValue.substring(0, limitLength));
+                            ngModel.$render();
+                        }
+                    });
+                }
+            }
+        }
+    ];
+
+    angular.module('clixtv')
+        .directive('clixMaxLength', maxLength);
 }());
 (function() {
     var isLoggedIn = [

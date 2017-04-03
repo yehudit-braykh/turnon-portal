@@ -9,14 +9,17 @@
                     <clix-view-button text="Go"></clix-view-button>
                 </div>
             </a>
-            <div class="header-save">
+            <div class="header-save" clix-tooltip-trigger tooltip-id="favorites-button-{{$id}}">
                 <clix-favorite-button></clix-favorite-button>
             </div>
-            <div class="header-ellipsis" tooltip-id="actions-button-{{$id}}">
+            <div class="header-ellipsis" clix-tooltip-trigger tooltip-id="actions-button-{{$id}}">
                 <div class="menu-icon-container" ng-click="menuClicked($event)" clix-click-anywhere-else="bodyClicked">
                     <i class="icon-ellipsis"></i>
                 </div>
             </div>
+            <clix-tooltip tooltip-id="favorites-button-{{$id}}">
+                Add to favorites
+            </clix-tooltip>
             <clix-tooltip tooltip-id="actions-button-{{$id}}">
                 Actions
             </clix-tooltip>

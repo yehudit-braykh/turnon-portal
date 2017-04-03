@@ -2,8 +2,10 @@
 
     var DonateController = [
         '$scope',
+        '$timeout',
+        '$filter',
         '$uibModalInstance',
-        function($scope, $uibModalInstance) {
+        function($scope, $timeout, $filter, $uibModalInstance) {
 
             $scope.buyPointsModel = 0;
 
@@ -28,6 +30,18 @@
                 var element = document.getElementById('buyPointsInput');
                 element.focus();
                 element.select();
+            };
+
+            $scope.onBuyPointsChange = function() {
+
+            };
+
+            $scope.onBuyPointsBlur = function(value) {
+                $timeout(function() {
+                    var input = value || '';
+                    input = input.replace(/[0-9]/g, '');
+                    $scope.buyPointsModel = $filter('number')(input);
+                });
             };
 
         }

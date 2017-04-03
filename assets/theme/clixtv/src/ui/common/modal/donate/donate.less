@@ -8,7 +8,8 @@
         &.buy-more-points-input-container {
             padding-top: 39px;
             padding-bottom: 39px;
-            width: 230px;
+            width: auto;
+            display: inline-block;
         }
     }
 
@@ -114,23 +115,49 @@
 
     }
 
+    .clix-donate-modal-header {
+        text-align: center;
+    }
+
     .buy-points-input-container {
         border: 1px solid @color-gray11;
         background-color: @color-gray12;
         margin-left: 7px;
         margin-right: 7px;
+        padding: 0 10px;
 
         input {
+            color: @color-white;
+            //color: @color-transparent;
+            background-color: @color-transparent;
+            position: relative;
+            z-index: 20;
+        }
+
+        input,
+        .input-display {
             font-family: @font-secondary;
             font-size: 45px;
             text-align: center;
             width: 100%;
             letter-spacing: 1.4px;
-            color: @color-white;
-            background-color: @color-transparent;
             border-width: 0;
             padding: 0;
             line-height: 45px;
+        }
+
+        .input-container {
+            position: relative;
+            display: inline;
+            padding: 0 5px;
+        }
+
+        .input-display {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            color: @color-white;
         }
 
         // Disable the default "spin" arrows
@@ -158,14 +185,14 @@
         font-size: 24px;
         position: relative;
         top: -13px;
-        left: -5px;
+        left: 0;
     }
 
     .buy-points-symbol {
         padding: 0;
         margin: 0;
         text-align: right;
-        letter-spacing: -4px;
+        letter-spacing: 1px;
     }
 
     .buy-points-input-label {
