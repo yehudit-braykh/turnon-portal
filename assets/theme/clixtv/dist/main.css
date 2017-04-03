@@ -7851,6 +7851,41 @@ button.close {
     margin-right: 0;
   }
 }
+.clix-header .header-user-container .header-avatar-container:before {
+  background-color: #911685;
+  background-image: -webkit-gradient(linear, left top, right top, from(#911685), to(#fa0d1b));
+  background-image: -webkit-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -moz-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -ms-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -o-linear-gradient(left, #911685, #fa0d1b);
+  -webkit-border-radius: 20.5px;
+  -moz-border-radius: 20.5px;
+  border-radius: 20.5px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  top: -3px;
+  left: -3px;
+  width: 41px;
+  height: 41px;
+  content: '';
+  position: absolute;
+  z-index: 5;
+}
+@media (min-width: 992px) {
+  .clix-header .header-user-container .header-avatar-container:before {
+    -webkit-border-radius: 18px;
+    -moz-border-radius: 18px;
+    border-radius: 18px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    top: -3px;
+    left: -3px;
+    width: 36px;
+    height: 36px;
+  }
+}
 .clix-header .header-user-container .header-avatar {
   -webkit-border-radius: 18px;
   -moz-border-radius: 18px;
@@ -7863,6 +7898,8 @@ button.close {
   background-size: cover;
   background-position: center;
   display: block;
+  position: relative;
+  z-index: 10;
 }
 @media (min-width: 992px) {
   .clix-header .header-user-container .header-avatar {
@@ -7894,6 +7931,7 @@ button.close {
   line-height: 20px;
   font-family: 'cabinregular', sans-serif;
   font-size: 11px;
+  z-index: 20;
 }
 .clix-header .header-user-container .header-name-container {
   display: -webkit-flex;
