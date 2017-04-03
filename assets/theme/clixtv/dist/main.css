@@ -10274,13 +10274,15 @@ button.close {
   }
 }
 .clix-star-page .video-sort-container {
-  display: inline-block;
+  display: block;
   margin: 30px auto;
+  padding: 0 20px;
 }
 @media (min-width: 768px) {
   .clix-star-page .video-sort-container {
-    display: block;
     margin: 0;
+    padding: 0;
+    min-width: 300px;
   }
 }
 .clix-star-page .videos-title {
@@ -13700,6 +13702,25 @@ button.close {
   background-size: cover;
   position: relative;
   z-index: 10;
+  top: -25px;
+}
+.clix-navigation-bar .avatar-container .name-container {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+.clix-navigation-bar .avatar-container .display-name {
+  font-family: 'pt_sansregular', sans-serif;
+  font-size: 16px;
+  color: #FFF;
+}
+.clix-navigation-bar .avatar-container .my-clixtv {
+  font-family: 'pt_sansregular', sans-serif;
+  font-size: 13px;
+  color: #8a8a8a;
+  text-transform: uppercase;
 }
 .clix-navigation-bar .avatar-container .avatar-background-image {
   filter: blur(15px);

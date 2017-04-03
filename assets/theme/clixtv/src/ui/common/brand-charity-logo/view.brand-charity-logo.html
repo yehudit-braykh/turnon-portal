@@ -6,22 +6,7 @@
             50
         </clix-points-violator>
     </div>
-    <div class="logo-overlay">
-        <a ui-sref="brand({ slug: (brand.title | slug) })" class="hit-area"></a>
-        <a ui-sref="brand({ slug: (brand.title | slug) })" class="view-button-container">
-            <div class="view-button">
-                <clix-view-button></clix-view-button>
-            </div>
-        </a>
-        <div class="logo-save">
-            <clix-favorite-button></clix-favorite-button>
-        </div>
-        <div class="logo-ellipsis">
-            <div class="menu-icon-container" ng-click="menuClicked($event)" clix-click-anywhere-else="bodyClicked">
-                <i class="icon-ellipsis"></i>
-            </div>
-        </div>
-    </div>
+    <div class="logo-overlay" ng-show="hoverEnabled"></div>
 
     <clix-tooltip tooltip-id="tooltip-{{$id}}">
         <clix-is-logged-in>

@@ -201,7 +201,7 @@
 
                             <div class="logo-list-container">
                                 <a ng-repeat="brand in brands | limitTo: 4" ui-sref="brand({ slug: '{{brand.title | slug}}' })" class="brand-logo-link">
-                                    <clix-brand-charity-logo brand="brand"></clix-brand-charity-logo>
+                                    <clix-brand-charity-logo brand="brand" hover-enabled="true"></clix-brand-charity-logo>
                                 </a>
                                 <div ng-repeat="charity in charities | limitTo: 1" class="brand-logo-link">
                                     <clix-charity-logo charity="charity"></clix-charity-logo>

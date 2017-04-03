@@ -52,6 +52,31 @@
                 }
             ];
 
+            $scope.offerMenuItems = [
+                {
+                    label: 'Save Offer',
+                    icon: 'icon-redeem-plus-icon',
+                    onClick: function() {
+                        console.log('SHARE');
+                    }
+                },
+                {
+                    label: 'Share',
+                    icon: 'icon-share-icon',
+                    points: '50',
+                    onClick: function() {
+                        console.log('SHARE');
+                    }
+                },
+                {
+                    label: 'Add to Favorites',
+                    icon: 'icon-favorite-icon',
+                    onClick: function() {
+                        console.log('SHARE');
+                    }
+                }
+            ];
+
             $scope.filterBrandsOptions = defaultFilterOptions;
             $scope.filterOffersOptions = defaultFilterOptions;
             $scope.sortBrandsOptions = defaultSortOptions;

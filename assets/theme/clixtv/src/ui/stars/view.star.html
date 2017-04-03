@@ -45,7 +45,7 @@
                                     </div>
                                     <div class="row brand-row">
                                         <div ng-repeat="brand in brands" class="brand-container col-xs-6">
-                                            <clix-content-callout sref="brand({ slug: '{{brand.title | slug}}' })" menu-items="menuItems">
+                                            <clix-content-callout sref="brand({ slug: '{{brand.title | slug}}' })" menu-items="brandMenuItems">
                                                 <header-element>
                                                     <clix-brand-charity-logo brand="brand"></clix-brand-charity-logo>
                                                 </header-element>
@@ -67,7 +67,7 @@
                                     </div>
                                     <div class="row brand-row">
                                         <div ng-repeat="charity in charities" class="brand-container col-xs-6">
-                                            <clix-content-callout sref="charity({ slug: '{{charity._id}}' })" menu-items="menuItems">
+                                            <clix-content-callout sref="charity({ id: '{{charity._id}}' })" menu-items="charityMenuItems">
                                                 <header-element>
                                                     <clix-charity-logo charity="charity"></clix-charity-logo>
                                                 </header-element>
@@ -90,13 +90,20 @@
                 </uib-tab>
                 <uib-tab index="1" heading="Brands & Offers">
                     <div class="brands-offers-title">
-                        <clix-secondary-header>
-                            Brands Related To {{configs.title}}
-                        </clix-secondary-header>
+                        <div class="visible-sm visible-xs">
+                            <clix-secondary-header>
+                                Brands Related To<br />{{configs.title}}
+                            </clix-secondary-header>
+                        </div>
+                        <div class="hidden-sm hidden-xs">
+                            <clix-secondary-header>
+                                Brands Related To {{configs.title}}
+                            </clix-secondary-header>
+                        </div>
                     </div>
                     <div class="row brand-row">
                         <div ng-repeat="brand in brands" class="brand-container col-xs-6 col-sm-4 col-md-3 col-lg-2">
-                            <clix-content-callout sref="brand({ slug: '{{brand.title | slug}}' })" menu-items="menuItems">
+                            <clix-content-callout sref="brand({ slug: '{{brand.title | slug}}' })" menu-items="brandMenuItems">
                                 <header-element>
                                     <clix-brand-charity-logo brand="brand"></clix-brand-charity-logo>
                                 </header-element>
@@ -110,9 +117,16 @@
                         </div>
                     </div>
                     <div class="brands-offers-title">
-                        <clix-secondary-header>
-                            Offers Related To {{configs.title}}
-                        </clix-secondary-header>
+                        <div class="visible-sm visible-xs">
+                            <clix-secondary-header>
+                                Offers Related To<br />{{configs.title}}
+                            </clix-secondary-header>
+                        </div>
+                        <div class="hidden-sm hidden-xs">
+                            <clix-secondary-header>
+                                Offers Related To {{configs.title}}
+                            </clix-secondary-header>
+                        </div>
                     </div>
                     <div class="row brand-row">
                         <div ng-repeat="offer in offers" class="brand-container col-xs-6 col-sm-4 col-md-3 col-lg-2">
@@ -134,13 +148,20 @@
                 <uib-tab index="2" heading="Charity">
 
                     <div class="brands-offers-title">
-                        <clix-secondary-header>
-                            Charities Related To {{configs.title}}
-                        </clix-secondary-header>
+                        <div class="visible-sm visible-xs">
+                            <clix-secondary-header>
+                                Charities Related To<br />{{configs.title}}
+                            </clix-secondary-header>
+                        </div>
+                        <div class="hidden-sm hidden-xs">
+                            <clix-secondary-header>
+                                Charities Related To {{configs.title}}
+                            </clix-secondary-header>
+                        </div>
                     </div>
                     <div class="row brand-row">
                         <div ng-repeat="charity in charities" class="brand-container col-xs-6 col-sm-4 col-md-3 col-lg-2">
-                            <clix-content-callout sref="charity({ slug: '{{charity._id}}' })" menu-items="menuItems">
+                            <clix-content-callout sref="charity({ id: '{{charity._id}}' })" menu-items="charityMenuItems">
                                 <header-element>
                                     <clix-charity-logo charity="charity"></clix-charity-logo>
                                 </header-element>

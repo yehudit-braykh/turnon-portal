@@ -6,7 +6,8 @@
             replace: true,
             templateUrl: 'ui/common/brand-charity-logo/view.brand-charity-logo.html',
             scope: {
-                brand: '='
+                brand: '=',
+                hoverEnabled: '@?'
             }
         }
     };
