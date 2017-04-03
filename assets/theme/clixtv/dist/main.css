@@ -1002,6 +1002,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 
 .icon-account-icon:before { content: '\e800'; } /* '' */
 .icon-right-arrow:before { content: '\e801'; } /* '' */
+.icon-share-icon:before { content: '\e802'; } /* '' */
 .icon-facebook-logo:before { content: '\e803'; } /* '' */
 .icon-instagram-logo:before { content: '\e804'; } /* '' */
 .icon-twitter-logo:before { content: '\e805'; } /* '' */
@@ -1035,7 +1036,6 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 .icon-right-tall-arrow:before { content: '\e83e'; } /* '' */
 .icon-search-icon-bottom-nav:before { content: '\e83f'; } /* '' */
 .icon-settings-icon-left-nav:before { content: '\e840'; } /* '' */
-.icon-share-icon:before { content: '\e841'; } /* '' */
 .icon-stars-icon:before { content: '\e842'; } /* '' */
 .icon-ellipsis:before { content: '\e843'; } /* '' */
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
@@ -9379,7 +9379,7 @@ button.close {
 .video-permalink-page .video-info-container .episode-title {
   font-family: 'cabinregular', sans-serif;
   font-size: 18px;
-  color: #fe0000;
+  color: #9b9b9b;
   text-transform: uppercase;
   line-height: 24px;
   margin-bottom: 5px;
@@ -11468,6 +11468,41 @@ button.close {
   margin-top: 5px;
   display: block;
   cursor: pointer;
+}
+.clix-account-rewards .redeem-logo-container {
+  position: relative;
+  cursor: pointer;
+}
+@media (min-width: 768px) {
+  .clix-account-rewards .redeem-logo-container:hover .redeem-action-state {
+    visibility: visible;
+  }
+}
+.clix-account-rewards .redeem-action-state {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  visibility: hidden;
+}
+.clix-account-rewards .view-button-container {
+  width: 30%;
+  padding-bottom: 30%;
+  position: relative;
+  z-index: 20;
+  top: 50%;
+  left: 50%;
+  margin-top: -15%;
+  margin-left: -15%;
+}
+.clix-account-rewards .view-button-container .view-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 .clix-account-settings .settings-page-content {
   padding: 46px 10px 46px 10px;
@@ -14322,4 +14357,10 @@ button:focus {
     float: left;
     width: 16.66666667%;
   }
+}
+.icon-left-tall-arrow:hover:before {
+  font-weight: bold;
+}
+.icon-right-tall-arrow:hover:before {
+  font-weight: bold;
 }

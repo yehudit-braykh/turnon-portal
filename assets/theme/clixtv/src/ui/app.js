@@ -93,7 +93,7 @@
             '$rootScope',
             'userService',
             function($rootScope, userService) {
-                userService.getLoggedInUser();
+                userService.setLoggedInUser();
 
                 $rootScope.$on('$stateChangeSuccess',function(){
                     $("html, body").animate({ scrollTop: 0 }, 200);

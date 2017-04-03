@@ -106,7 +106,7 @@
 
             function _checkCategoriesToLoad() {
                 if (categoriesToLoad === 0) {
-                    // $scope.ready = true;
+                    $scope.ready = true;
                 }
             }
 

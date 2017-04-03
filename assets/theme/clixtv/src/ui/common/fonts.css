@@ -100,6 +100,7 @@
 
 .icon-account-icon:before { content: '\e800'; } /* '' */
 .icon-right-arrow:before { content: '\e801'; } /* '' */
+.icon-share-icon:before { content: '\e802'; } /* '' */
 .icon-facebook-logo:before { content: '\e803'; } /* '' */
 .icon-instagram-logo:before { content: '\e804'; } /* '' */
 .icon-twitter-logo:before { content: '\e805'; } /* '' */
@@ -133,6 +134,5 @@
 .icon-right-tall-arrow:before { content: '\e83e'; } /* '' */
 .icon-search-icon-bottom-nav:before { content: '\e83f'; } /* '' */
 .icon-settings-icon-left-nav:before { content: '\e840'; } /* '' */
-.icon-share-icon:before { content: '\e841'; } /* '' */
 .icon-stars-icon:before { content: '\e842'; } /* '' */
 .icon-ellipsis:before { content: '\e843'; } /* '' */

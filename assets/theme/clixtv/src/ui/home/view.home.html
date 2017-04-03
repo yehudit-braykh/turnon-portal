@@ -87,12 +87,12 @@
         </div>
     </div>
 
-    <!--<div ng-show="!ready">-->
-        <!--<clix-loader size="medium"></clix-loader>-->
-    <!--</div>-->
-    <!--<div ng-show="ready">-->
+    <div ng-if="!ready">
+        <clix-loader size="large"></clix-loader>
+    </div>
+    <div ng-show="ready">
         <div ng-repeat="category in categories" ng-if="category && category.videos">
             <clix-video-category-scroll-list category-title="{{category.title}}" category-videos="category.videos"></clix-video-category-scroll-list>
         </div>
-    <!--</div>-->
+    </div>
 </div>

@@ -1,3 +1,7 @@
+<div ng-if="!configs">
+    <clix-loader size="large"></clix-loader>
+</div>
+
 <div class="charity-page" ng-if="configs">
     <clix-hero-banner
             title-text="{{configs.title}}"

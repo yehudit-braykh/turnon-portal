@@ -15,6 +15,10 @@
                     }
                 );
 
+            $rootScope.$on('user.login', function(event, data) {
+                $scope.loggedInUser = data;
+            });
+
             $scope.changeSection = function(section) {
                 $state.go('account', { section: section });
             };

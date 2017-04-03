@@ -5,6 +5,14 @@
         '$scope',
         function($q, $scope) {
 
+            $scope.onMouseover = function(item) {
+
+            };
+
+            $scope.onMouseleave = function(item) {
+
+            };
+
         }
     ];
 

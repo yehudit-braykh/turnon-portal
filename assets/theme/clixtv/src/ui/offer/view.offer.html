@@ -1,3 +1,7 @@
+<div ng-if="!configs">
+    <clix-loader size="large"></clix-loader>
+</div>
+
 <div class="clix-offer-page" ng-if="configs">
     <clix-hero-banner
         title-text="{{configs.title}}"
@@ -131,7 +135,7 @@
                                 <div class="row brand-offer-row">
                                     <div class="col-xs-6 col-sm-6 col-md-12 col-lg-12 brand-offer-column" ng-repeat="offer in offers | limitTo: 3" ng-if="offers">
                                         <div class="brand-offer">
-                                            <clix-content-callout sref="brand({ slug: (offer.title | slug) })" menu-items="offerMenuItems">
+                                            <clix-content-callout sref="offer({ id: '{{offer._id}}' })" menu-items="offerMenuItems">
                                                 <header-element>
                                                     <clix-offer-logo offer="offer"></clix-offer-logo>
                                                 </header-element>

@@ -85,6 +85,7 @@
             brandsService.getAllBrands()
                 .then(
                     function onSuccess(data) {
+                        $scope.ready = true;
                         $scope.brands = data;
                     }
                 );

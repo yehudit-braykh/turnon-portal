@@ -1,4 +1,8 @@
-<div class="brands-page">
+<div ng-if="!ready">
+    <clix-loader size="large"></clix-loader>
+</div>
+
+<div class="brands-page" ng-if="ready">
     <div class="main-header">
         <clix-main-header>
             Brands &amp; Offers

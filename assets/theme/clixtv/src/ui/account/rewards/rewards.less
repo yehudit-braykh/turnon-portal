@@ -303,4 +303,46 @@
         display: block;
         cursor: pointer;
     }
+
+    .redeem-logo-container {
+        position: relative;
+        cursor: pointer;
+
+        @media (min-width: @screen-sm) {
+            &:hover {
+                .redeem-action-state {
+                    visibility: visible;
+                }
+            }
+        }
+    }
+
+    .redeem-action-state {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: @color-transparent-dark-black;
+        visibility: hidden;
+    }
+
+    .view-button-container {
+        width: 30%;
+        padding-bottom: 30%;
+        position: relative;
+        z-index: 20;
+        top: 50%;
+        left: 50%;
+        margin-top: -15%;
+        margin-left: -15%;
+
+        .view-button {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+    }
 }

@@ -43,9 +43,10 @@
                 },
 
                 getLoggedInUser: function() {
-                    if (loggedInUser) {
-                        return $q.when(loggedInUser);
-                    }
+                    return $q.when(loggedInUser);
+                },
+
+                setLoggedInUser: function() {
                     return $http.get('/api/account/get_current')
                         .then(
                             function onSuccess(data) {
