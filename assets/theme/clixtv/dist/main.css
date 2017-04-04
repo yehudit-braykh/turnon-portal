@@ -10994,7 +10994,7 @@ button.close {
 .clix-account-overview .reward-points .points-label {
   font-family: 'pt_sansregular', sans-serif;
   font-size: 45px;
-  color: #fe0000;
+  color: #0dc73a;
   letter-spacing: 1.6px;
 }
 .clix-account-overview .reward-points .available-balance-label {
@@ -13338,7 +13338,7 @@ button.close {
   font-size: 14px;
   line-height: 14px;
   letter-spacing: 1.6px;
-  color: #fe0000;
+  color: #9b9b9b;
   text-transform: uppercase;
 }
 .clix-share-modal-video-content .celebrity-title {

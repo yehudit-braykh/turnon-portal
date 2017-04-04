@@ -46,8 +46,6 @@
                 } else {
                     $scope.socialNetworks.push(socialNetwork);
                 }
-
-                console.log($scope.socialNetworks);
             };
         }
     ];

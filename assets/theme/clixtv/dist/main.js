@@ -2638,8 +2638,6 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 } else {
                     $scope.socialNetworks.push(socialNetwork);
                 }
-
-                console.log($scope.socialNetworks);
             };
         }
     ];
