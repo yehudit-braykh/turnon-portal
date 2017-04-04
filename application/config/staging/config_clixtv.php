@@ -52,3 +52,6 @@ $config['available_subscription_prices'] = array(
 	'19441019' => '49.95',
 	'19441020' => '99.9'
 );
+
+//IMPORTANT: Leave this line at the end to load all common configs dependent on this one. This is being used for all uvod-platform-api dependent values.
+require_once(__DIR__ . '/../config_commons.php');

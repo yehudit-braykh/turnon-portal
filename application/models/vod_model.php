@@ -1,6 +1,6 @@
 <?php
 
-class Vod_model extends CI_Model {
+class Vod_model extends Uvod_model {
 
     public function __construct() {
         $this->load->helper('uvod_api');

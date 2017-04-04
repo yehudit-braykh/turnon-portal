@@ -10,8 +10,6 @@ class Celebrity extends REST_Controller{
 
     function get_celebrity_get(){
 		$id = $this->get("id");
-		// debug($id);
-        // debug($this->celebrity_model->get_celebrity($id)->content);
 		$this->response($this->celebrity_model->get_celebrity($id),200);
     }
 

@@ -1,59 +1,48 @@
 <?php
-class Brands_model extends CI_Model {
+class Brands_model extends Uvod_model {
 
 	public function __construct(){
 		$this->load->helper('uvod_api');
+		$this->load->model('fastcache_model');
 	}
 
 	public function get_brand($id){
-		$parameters = array();
-		if($id)
-			$parameters["id"]= $id;
-
-		return $this->rows(apiCall("brand/get_item", $parameters)->content->entries);
+		if ($this->fastcache_model->get_cache("get_brand".$id))
+			return $this->fastcache_model->get_cache("get_brand".$id);
+		$data =  $this->apiCall('brand/'.$id)->entries;
+		$this->fastcache_model->set_cache("get_brand".$id,$data);
+		return $data;
 	}
 
-    public function get_brand_offers($id){
-		$parameters = array();
-		if($id)
-			$parameters["id"]= $id;
+	public function get_charity($id){
+		if ($this->fastcache_model->get_cache("get_charity".$id))
+			return $this->fastcache_model->get_cache("get_charity".$id);
+		$data =  $this->apiCall('charity/'.$id)->entries;
+		$this->fastcache_model->set_cache("get_charity".$id,$data);
+		return $data;
+	}
 
-		return $this->rows(apiCall("brand/get_related_offers", $parameters)->content->entries);
-    }
-
-	public function get_brand_videos($id){
-
-		$parameters = array();
-		if($id)
-			$parameters["id"]= $id;
-
-		$data = apiCall("brand/get_related_videos", $parameters);
-		return $this->rows($data->content->entries);
-    }
-
-	public function get_brand_celebs($id){
-
-		$parameters = array();
-		if($id)
-			$parameters["id"]= $id;
-
-        return $this->rows(apiCall("brand/get_related_celebs", $parameters)->content->entries);
-    }
+	public function get_offer($id){
+		if ($this->fastcache_model->get_cache("get_offer".$id))
+			return $this->fastcache_model->get_cache("get_offer".$id);
+		$data =  $this->apiCall('offer/'.$id)->entries;
+		$this->fastcache_model->set_cache("get_offer".$id,$data);
+		return $data;
+	}
 
     public function get_list_brands(){
-        $data = apiCall("brand/list");
-
-		$res = $data->content->entries;
-		$brands = array();
-		foreach ($res as $row){
-			if (!$row->is_charity)
-				array_push($brands, $row);
-		}
-
-		return $this->rows($brands);
+		if ($this->fastcache_model->get_cache("get_list_brands"))
+			return $this->fastcache_model->get_cache("get_list_brands");
+		$data =  $this->apiCall('brand')->entries;
+		$this->fastcache_model->set_cache("get_list_brands",$data);
+		return $data;
     }
 
 	function get_brands_object () {
+
+		if ($this->fastcache_model->get_cache("get_brands_object"))
+			return $this->fastcache_model->get_cache("get_brands_object");
+
 		$data = $this->get_brands_array();
 
 		$charities = array();
@@ -61,34 +50,34 @@ class Brands_model extends CI_Model {
 			$charities[$row["_id"]] = $row;
 		}
 
+		$this->fastcache_model->set_cache("get_brands_object",$charities);
+		return $data;
+
 		return $charities;
 	}
 
 	function get_brands_array () {
-			$data = apiCall("brand/list");
 
-			$res = $data->content->entries;
-			$brands = array();
-			foreach ($res as $row){
-				if (!$row->is_charity)
-					array_push($brands, $row);
-			}
-
-			return $this->rows($brands);
+		if ($this->fastcache_model->get_cache("get_brands_array"))
+			return $this->fastcache_model->get_cache("get_brands_array");
+		$data =  $this->apiCall('brand')->entries;
+		$this->fastcache_model->set_cache("get_brands_array",$data);
+		return $data;
 	}
 
 	function get_offers_array () {
-
-			$data = apiCall("vod/list_media_objects", array("media_type" => 'offer'));
-
-			$res = $data->content->entries;
-
-
-
-			return $this->rows($res);
+		if ($this->fastcache_model->get_cache("get_offers_array"))
+			return $this->fastcache_model->get_cache("get_offers_array");
+		$data =  $this->apiCall('offer')->entries;
+		$this->fastcache_model->set_cache("get_offers_array",$data);
+		return $data;
 	}
 
 	function get_charities_object () {
+
+		if ($this->fastcache_model->get_cache("get_charities_object"))
+			return $this->fastcache_model->get_cache("get_charities_object");
+
 
 		$data = $this->get_charities_array();
 
@@ -97,73 +86,18 @@ class Brands_model extends CI_Model {
 			$charities[$row["_id"]] = $row;
 		}
 
+		$this->fastcache_model->set_cache("get_charities_object",$charities);
 		return $charities;
     }
 
 	function get_charities_array () {
-			$data = apiCall("brand/list");
-			$res = $data->content->entries;
 
-			$charities = array();
-			foreach ($res as $row){
-				if ($row->is_charity)
-					array_push($charities, $row);
-			}
-
-			return $this->rows($charities);
+		if ($this->fastcache_model->get_cache("get_charities_array"))
+			return $this->fastcache_model->get_cache("get_charities_array");
+		$data =  $this->apiCall('charity')->entries;
+		$this->fastcache_model->set_cache("get_charities_array",$data);
+		return $data;
 	}
 
-	function get_all_brands_and_charities_object () {
-			$data = apiCall("brand/list");
-
-			$res = $this->rows($data->content->entries);
-			$brands = array();
-			foreach ($res as $row){
-					$brands[$row["_id"]] = $row;
-			}
-
-			return $brands;
-	}
-
-	function rows($rows){
-		//debug($rows);
-        $medias = array();
-        foreach ($rows as $media) {
-            $media = (array) $media;
-            $tmp = array(
-                    "_id" => $media["_id"],
-                    "title" => 	$media["title"],
-                    "series_id" => 	$media["series_id"],
-                    "description" => $media["description"],
-                    "tvSeasonEpisodeNumber" => $media["tvSeasonEpisodeNumber"],
-                    "brands" => $media["brands"],
-					"keywords" => $media["keywords"],
-					"added" => $media["added"],
-					"brands" => $media["brands"]
-            );
-			if($media["title"]  && $media["media_type"] != "brand")
-            {
-                if (sizeof(explode(" - ", $media["title"]))>1)
-                    $names= explode(" - ", $media["title"]);
-                else
-                    $names= explode(" – ", $media["title"]);
-                //debug(explode(" - ", $media["title"]));
-                $tmp["title"] = $names[1];
-                $tmp["artist_name"] = $names[0];
-				if(sizeof($names)==1)
-					$tmp["title"] = $names[0];
-            } else {
-                    $tmp["title"] = $media["title"];
-            }
-
-            foreach ($media["content"] as $file) {
-                $tmp[str_replace (" ", "", $file->assetTypes[0])] = array(
-                        "url" => $file->downloadUrl
-                );
-            }
-            $medias[] = $tmp;
-        }
-        return $medias;
-    }
 }
 ?>

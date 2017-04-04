@@ -44,7 +44,6 @@ class phpFastCache {
 
             "server"        =>  array(
                 array("127.0.0.1",11211,1),
-                //  array("new.host.ip",11211,1),
             ),
 
             "extensions"    =>  array(),
@@ -258,7 +257,7 @@ class phpFastCache {
         }
 
     }
-    
+
     // Searches though the cache for keys that match the given query.
     // `$query` is a glob-like, which supports these two special characters:
     // - "*" - match 0 or more characters.

@@ -17,10 +17,8 @@ class Account extends REST_Controller{
 	function get_current_get(){
 		$profile_id = $this->session->userdata('profile_id');
 		$token= $this->session->userdata('login_token');
-		if(isset($profile_id->code))
-			$this->response($profile_id,200);
-	//	debug($this->account_model->get_profile($token, $profile_id));
-		$this->response($this->account_model->get_profile($token, $profile_id)->content, 200);
+		// debug($token, $profile_id);
+		$this->response($this->account_model->get_profile($token, $profile_id), 200);
 	}
 
 	function logout_post(){
@@ -47,9 +45,29 @@ class Account extends REST_Controller{
 		$this->response($this->account_model->get_watchlist(),200);
     }
 
-	function get_favorites_get(){
-		$type= $this->get('type');
-		$this->response($this->account_model->get_favorites_by_type($type),200);
+	function get_favorite_celebrities_get(){
+
+		$this->response($this->account_model->get_favorite_celebrities(),200);
+	}
+
+	function get_favorite_charities_get(){
+
+		$this->response($this->account_model->get_favorite_charities(),200);
+	}
+
+	function get_favorite_brands_get(){
+
+		$this->response($this->account_model->get_favorite_brands(),200);
+	}
+
+	function get_favorite_categories_get(){
+
+		$this->response($this->account_model->get_favorite_categories(),200);
+	}
+
+	function get_saved_offers_get(){
+
+		$this->response($this->account_model->get_saved_offers(),200);
 	}
 
 	function subscripe_post(){
@@ -63,7 +81,7 @@ class Account extends REST_Controller{
 	}
 
 	public function get_subscriptions_get() {
-		$this->response($this->account_model->get_subscriptions()->content,200);
+		$this->response($this->account_model->get_subscriptions(),200);
 	}
 
 	function get_billing_information_get(){

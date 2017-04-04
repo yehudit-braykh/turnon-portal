@@ -66,8 +66,7 @@ class UVod_Controller extends CI_Controller {
             $data['sub_section2'] = DEFAULT_SECTION2;
         }
 
-        // get vod categories
-        $data['vod_categories'] = $this->config_model->get_vod_categories()->content;
+        
 
         $this->load->vars($data);
 
@@ -89,7 +88,7 @@ class UVod_Controller extends CI_Controller {
         }
         if ($status) {
             $user = $this->account_model->get_self_id($data->token);
-           
+
             if (!isset($user->content->_id)) {
                 $_SESSION['uvod_user_data'] = null;
                 unset($_SESSION['uvod_user_data']);
@@ -100,4 +99,3 @@ class UVod_Controller extends CI_Controller {
         }
     }
 }
-    

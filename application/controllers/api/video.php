@@ -11,7 +11,7 @@ class Video extends REST_Controller{
     function get_epg_get(){
 		$channel = $this->get("channel");
 
-		$this->response($this->video_model->get_epg($channel)->content->entries,200);
+		$this->response($this->video_model->get_epg($channel)->entries,200);
     }
 
 	function list_channels_get(){
@@ -43,13 +43,13 @@ class Video extends REST_Controller{
 
     public function get_all_series_get(){
 
-		$this->response($this->video_model->get_all_series()->content,200);
+		$this->response($this->video_model->get_all_series(),200);
 	}
 
 	public function get_serie_by_id_get(){
 		$id= $this->get('id');
 
-		$this->response($this->video_model->get_serie_by_id($id)->content,200);
+		$this->response($this->video_model->get_serie_by_id($id),200);
 	}
 
 }

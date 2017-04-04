@@ -2,7 +2,7 @@
 
 require_once 'Mandrill.php';
 
-class Account_model extends CI_Model {
+class Account_model extends Uvod_model {
 
     public function __construct() {
         $this->load->helper('uvod_api');
@@ -13,156 +13,157 @@ class Account_model extends CI_Model {
 
     public function login($user, $pass, $disabled = false) {
 
-        $data = apiPost("user/login_portal", array("username" => $user, "password" => $pass, "disabled" => $disabled));
-		if($data->content){
-			$this->session->set_userdata('login_token', $data->content->token);
-            $user_profile = $this->get_profile($data->content->token, $data->content->id);
-            $this->session->set_userdata('profile_id', $user_profile->content->_id);
+        $data = $this->login_portal($user, $pass);
+        //debug($data);
+		if($data){
+			$this->session->set_userdata('login_token', $data->token);
+            $user_profile = $this->get_profile($data->token, $data->_id);
+            $this->session->set_userdata('profile_id', $user_profile->_id);
             return $user_profile;
         }
         return $data;
-
     }
 
     public function hybrid_login($profile, $provider){
-        //debug($provider);
         $fbLogin = $this->login_by_fb($profile->identifier);
-        if($fbLogin->_id==0){// Facbook Id not in DB try Registering with Email, RandPass and FBID
-            if($provider == "Twitter") $profile->lastName = $profile->firstName;
-            $fbRegister = $this->register($profile->email, $this->randomPassword(), $profile->firstName, $profile->lastName, NULL, $profile->identifier);
-            if (!strpos($fbRegister->message, "User already registered")){  // Success on Registation Saving On session and Updating User Profile
-                $fb_id = $profile->identifier;
-                $fb_login= $this->account_model->login_by_fb($fb_id);
-                $data = array();
-                $data["gender"] = $profile->gender;
-                $data["avatar"] = $profile->photoURL;
-                $data["addressLine1"] = $profile->phone;
-                $data["city"] = $profile->city;
-                $date = date_create($profile->birthYear."-".$profile->birthMonth."-".$profile->birthDay);
-                $data["birthDate"] = date_timestamp_get($date);
-                $user_data = $this->update_profile($fb_login->_id,$data);
-                $this->session->set_userdata('profile', $user_data->content);
-            }else{ // Email Exists in DB, moving To merge function
-                $error = new stdClass();
-                $error->email = $profile->email;
-                if ($provider == "Facebook"){
-                    $this->session->set_userdata('fb_profile', $profile);
-                    $error->message = "Please Login with your Email:".$profile->email.", to link Your Facebook Account";
-                    $error->code = 11;
-                } else {
-                    $error->message = "Please Login with Facebook Or with Your E-mail";
-                    $error->code = 12;
-                }
-                $this->session->set_userdata('profile_id', $error);
-                return ;
-
-
-
-            }
+        //  debug($fbLogin);
+        if(!$fbLogin){// Facbook Id not in DB try Registering with Email, RandPass and FBID
+            return $this->link_facebook($profile);
         }
+        return $fbLogin;
     }
 
-    public function link_facebook($user, $pass) {
-        $login_data = apiPost("user/login_portal", array("username" => $user, "password" => $pass, "disabled" => false));
-        if($login_data->error){
-            $error = new stdClass();
-            $error->message = "Username or Password Wrong, Please check your Credentials";
-            $error->code = 10;
-            return $error;
-        } else
-		if($login_data->content->token){
-            $fb_data  = $this->session->userdata('fb_profile');
-        //    debug($fb_data);
-            if($fb_data){
-                $updated_data = $this->update_user( $login_data->content->id , $fb_data->identifier, $fb_data );
-            //    debug($updated_data);
-                if($updated_data){
-                    $fb_login= $this->login_by_fb($fb_data->identifier);
-            //        debug($fb_login);
-                    $data = array();
-                    $data["firstName"] = $fb_data->firstName;
-                    $data["lastName"] = $fb_data->lastName;
-                    $data["gender"] = $fb_data->gender;
-                    $data["avatar"] = $fb_data->photoURL;
-                    $data["addressLine1"] = $fb_data->phone;
-                    $data["city"] = $fb_data->city;
-                    $date = date_create($fb_data->birthYear."-".$fb_data->birthMonth."-".$fb_data->birthDay);
-                    //debug($date);
-                    $data["birthDate"] = date_timestamp_get($date);
-                    $user = $this->account_model->update_profile($fb_login->_id,$data);
-                    $this->session->unset_userdata('fb_profile');
-                    $this->session->set_userdata('profile_id', $user->content->_id);
-                    return $user;
-                }
-            }
+    public function link_facebook($fb_data) {
+        //  debug($fb_data);
+        $user = $this->get_single_user($fb_data->email);
+        // debug($user);
+        if (!$user){
+            $this->register($fb_data->email, $this->randomPassword(), $fb_data->firstName, $fb_data->lastName, NULL, $fb_data->identifier, $fb_data);
+            $user = $this->get_single_user($fb_data->email);
         }
+        //  debug($user,$fb_data);
+        $updated_user = $this->update_user( $user->_id , $fb_data->identifier, $fb_data );
+        // debug($user,$fb_data);
+        $fb_login= $this->login_by_fb($fb_data->identifier);
+        //debug($fb_login);
+        $data = array();
+        $data["firstName"] = $fb_data->firstName;
+        $data["lastName"] = $fb_data->lastName;
+        $data["gender"] = $fb_data->gender;
+        $data["avatar"] = $fb_data->photoURL;
+        $data["addressLine1"] = $fb_data->phone;
+        $data["city"] = $fb_data->city;
+        $date = date_create($fb_data->birthYear."-".$fb_data->birthMonth."-".$fb_data->birthDay);
+        $data["birthDate"] = date_timestamp_get($date);
+
+        $user = $this->account_model->update_profile($user->_id,$data);
+        return $user;
 
     }
-
 
     public function login_by_fb($fb_id) {
         //debug($fb_id);
-        $fbLogin =  apiPost("user/login_by_fb", array("fb_id" => $fb_id));
-        $token = $fbLogin->content->token;
-        $this->session->set_userdata('login_token', $token);
-        $user_data = $this->account_model->get_profile($fbLogin->content->token, $fbLogin->content->id)->content;
-        $this->session->set_userdata('profile_id', $user_data->_id);
+        $fbLogin =  $this->login_with_fb($fb_id);
+        //debug($fbLogin);
 
+        $token = $fbLogin->token;
+        $this->session->set_userdata('login_token', $token);
+        $this->session->set_userdata('profile_id', $fbLogin->_id);
+        $user_data = $this->account_model->get_profile($fbLogin->token, $fbLogin->_id);
         return $user_data;
+
     }
 
     public function logout() {
-        $data =  apiPost("user/logout", array("token" => $this->session->userdata('login_token')));
+        $data =  apiPost("end/user/signout", array("token" => $this->session->userdata('login_token')));
         $this->session->sess_destroy();
         return $data;
     }
 
-    public function register($email, $password, $first_name, $last_name, $country = NULL, $fb_id = NULL) {
-        $data = apiPost("user/register", array("email" => $email,
-          "password" => $password,
-          "first_name" => $first_name,
-          "last_name" => $last_name,
-          "country" => $country,
-          "fb_id" => $fb_id)
-        );
-        return $data;
+    public function register($email, $password, $first_name, $last_name, $country = NULL, $fb_id = NULL, $fb_data = NULL, $hash = NULL ) {
+        //debug($email, $password, $first_name, $last_name, $country, $fb_id, $fb_data, $hash );
+        $ret = null;
+        if (!$email || !$password || !$first_name || !$last_name) {
+            throw new Exception('You must specify email, password, first & last name');
+        }
+
+        // sets the payload for signup
+        $payload = new stdClass();
+        $payload->userName = $email;
+        $payload->password = $password;
+        $payload->fullName = $first_name . " " . $last_name;
+        $payload->email = $email;
+        $payload->accountId = $this->config->item('account_id');
+        if($fb_id)
+            $payload->fbId = $fb_id;
+        $payload_str = json_encode($payload);
+
+        $url = UVOD_PLATFORM_API_URL.'end/user/signup';
+
+        try {
+            $user_signup = $this->apiPost($url, $payload_str);
+            // debug($user_signup, $user_signup->token, $user_signup->userId);
+            $this->session->set_userdata('login_token', $user_signup->token);
+            $this->session->set_userdata('profile_id', $user_signup->userId);
+
+            return $user_signup;
+
+        } catch (Exception $e) {
+
+            $error = new stdClass();
+            $error->code = 1;
+            $error->message = "User already exists.";
+            // debug($error);
+            return $error;
+        }
+
+        // checks service response
+        if (isset($user_signup->isException) && $user_signup->isException == "true") {
+            if (strripos($user_signup->title, "ConstraintViolationException")) {
+                throw new Exception("User already exists.");
+            } else {
+                throw new Exception($user_signup->title);
+            }
+        }
+    }
+
+    public function get_single_user($email = null, $phone = null) {
+
+        // sets the method parameters
+        $parameters = array();
+
+        $url = $this->config->item('end/user');
+
+        if ($email) {
+            $parameters[] = "byUserName=" . str_replace(" ", "", strtolower($email));
+        }
+        if ($phone) {
+            $parameters[] = "byPhone=" . $phone;
+        }
+
+        return $this->apiCall("end/user", $parameters)->entries[0];
     }
 
     public function get_profile($token, $id) {
-        return apiCall("user/get_profile", array('token' => $token, 'id' => $id));
+        // debug($token,$id);
+        if (!$token)
+            return false;
+
+        return $this->apiCall('userprofile/'.$id, null , 'true', $token);
     }
 
     public function update_profile($id ,$data) {
-        if($data["fbData"]=='')
-            unset($data["fbData"]);
-        if($data["operations"]=='')
-            unset($data["operations"]);
-        if($data["paymentData"]=='')
-            unset($data["paymentData"]);
-        if($data["registeredDevices"]=='')
-            unset($data["registeredDevices"]);
-        if($data["readNotifications"]=='')
-            unset($data["readNotifications"]);
-        if($data["favoriteBrands"]=='')
-            unset($data["favoriteBrands"]);
-        if($data["favoriteCelebs"]=='')
-            unset($data["favoriteCelebs"]);
-        if($data["favoriteVideos"]=='')
-            unset($data["favoriteVideos"]);
-        if($data["favoriteCategories"]=='')
-            unset($data["favoriteCategories"]);
-        if($data["favoriteCharities"]=='')
-            unset($data["favoriteCharities"]);
-        if($data["offersSaved"]=='')
-            unset($data["offersSaved"]);
-
-        $response = apiPost("user/update_profile", array("token" => $this->session->userdata('login_token'), "id" => $id, "data" => $data));
-    //     debug($response);
-        return $response->content;
+        foreach($data as $field=>$value){
+            if(!$value || $value == '' || $value==null)
+                unset($data[$field]);
+        }
+    //    debug($this->session->userdata('login_token'),$id);
+        $response = $this->update_profile_data($this->session->userdata('login_token'), $id, $data);
+             //debug($response);
+        return $response;
     }
 
     public function update_user( $id, $fb_id = NULL, $fb_data = NULL, $first_name = NULL, $last_name = NULL, $address = NULL, $birthDay = NULL) {
-
         $data = new stdClass();
 
         if($first_name)
@@ -178,38 +179,84 @@ class Account_model extends CI_Model {
         if($fb_data)
             $data->fbData = $fb_data;
 
-        return apiPost("user/update_user", array("token" => $this->session->userdata('login_token'),
-          "id" => $id,
-          "data" => $data));
+        return $this->update_user_data($id,$data);
     }
 
     public function get_watchlist(){
-        $data =  apiCall("user/get_watchlist", array("id" => $this->session->userdata('profile_id'), "token" => $this->session->userdata('login_token')));
 
-        $watchlist = $this->rows($data->content);
-        return $watchlist;
-
-    }
-
-    public function get_favorites_by_type($type){
-        //debug($type);
-        $id= $this->session->userdata('profile_id');
+        $id = $this->session->userdata('profile_id');
         $token = $this->session->userdata('login_token');
-        $profile=$this->get_profile($token, $id)->content;
-        $ids= $profile->{$type};
-    //   debug(http_build_query($ids));
-        $data = apiCall("vod/get_items_by_ids", array("ids" => http_build_query($ids),));
-        //debug($data);
 
-        return $this->rows($data->content);
+        $profile= $this->get_profile($token, $id);
+
+        $filters = array();
+		$filters[] = "byId=" . str_replace(' ', '%20', implode("|", $profile->watchlist)) ;
+
+		return $this->apiCall('episode', $filters)->entries;
+
     }
 
-    private function get_favorites_by_id($data){
-        $items= array();
-        for($i; $i< sizeof($data); $i++)
-            array_push($items,$this->vod_item_model->get_item_data($data[$i])->content);
-        return $this->rows($items);
+    public function get_favorite_brands(){
+        $id = $this->session->userdata('profile_id');
+        $token = $this->session->userdata('login_token');
+
+        $profile= $this->get_profile($token, $id);
+
+        $filters = array();
+		$filters[] = "byId=" . str_replace(' ', '%20', implode("|", $profile->favoriteBrands)) ;
+
+		return $this->apiCall('brand', $filters)->entries;
     }
+
+    public function get_favorite_charities(){
+        $id = $this->session->userdata('profile_id');
+        $token = $this->session->userdata('login_token');
+
+        $profile= $this->get_profile($token, $id);
+
+        $filters = array();
+		$filters[] = "byId=" . str_replace(' ', '%20', implode("|", $profile->favoriteCharities)) ;
+
+		return $this->apiCall('charity', $filters)->entries;
+    }
+
+    public function get_favorite_categories(){
+        $id = $this->session->userdata('profile_id');
+        $token = $this->session->userdata('login_token');
+
+        $profile= $this->get_profile($token, $id);
+
+        $filters = array();
+		$filters[] = "byId=" . str_replace(' ', '%20', implode("|", $profile->favoriteCategories)) ;
+        // debug($filters);
+		return $this->apiCall('category', $filters)->entries;
+    }
+
+    public function get_favorite_celebrities(){
+        $id = $this->session->userdata('profile_id');
+        $token = $this->session->userdata('login_token');
+
+        $profile= $this->get_profile($token, $id);
+
+        $filters = array();
+		$filters[] = "byId=" . str_replace(' ', '%20', implode("|", $profile->favoriteCelebs)) ;
+
+		return $this->apiCall('celebrity', $filters)->entries;
+    }
+
+    public function get_saved_offers(){
+        $id = $this->session->userdata('profile_id');
+        $token = $this->session->userdata('login_token');
+
+        $profile= $this->get_profile($token, $id);
+
+        $filters = array();
+		$filters[] = "byId=" . str_replace(' ', '%20', implode("|", $profile->savedOffers)) ;
+
+		return $this->apiCall('offer', $filters)->entries;
+    }
+
+
 
     public function save_merchant_info($user_token, $payment_token, $customer_id) {
         return apiPost("commerce/save_merchant_info", array("user_token" => $user_token,
@@ -217,12 +264,19 @@ class Account_model extends CI_Model {
           "customer_id" => $customer_id));
     }
 
-    public function send_password_email($email) {
+    public function send_password_email($email, $phone=null) {
 
-        $users = apiCall("user/get_single_user", array("email" => $email));
+        $filters = array();
+        if($phone==null)
+		      $filters[] = "byUserName=" . str_replace(' ', '%20', $email) ;
+        else
+            $filters[] = "byPhone=" . str_replace(' ', '%20', $phone) ;
 
-        if (isset($users->content->entryCount) && (intval($users->content->entryCount) > 0)) {
-            $profile = $users->content->entries[0];
+		$users = $this->apiCall('end/user', $filters);
+        //debug($users);
+
+        if (isset($users->entryCount) && (intval($users->entryCount) > 0)) {
+            $profile = $users->entries[0];
             $mandrill = new Mandrill('lwISZr2Z9D-IoPggcDSaOQ');
             $new_password = array();
             $new_password['password'] = rand(10000000, getrandmax());
@@ -239,11 +293,13 @@ class Account_model extends CI_Model {
             $message->from_name = "ClixTv Portal";
             $message->to = array(array('email' => $to));
 
-            $message->track_opens = true;
-            $mandrill->messages->send($message);
-
-            $response = apiPost("user/save_password", array("email" => $email, "password" => $new_password['password']));
-            return true;
+            $response = $this->save_password($new_password['password'], $email);
+            //debug($response);
+            if($response){
+                $message->track_opens = true;
+                $mandrill->messages->send($message);
+                return true;
+            }
         }
         return false;
     }
@@ -265,10 +321,6 @@ class Account_model extends CI_Model {
         } catch (Exception $e) {
             return false;
         }
-    }
-
-    public function save_password($email, $new_password) {
-        return apiPost("user/save_password", array("email" => $email, "password" => $new_password));
     }
 
     public function activate_account($hash, $email) {
@@ -348,29 +400,7 @@ class Account_model extends CI_Model {
 	    return implode($pass); //turn the array into a string
 	}
 
-    function rows($rows){
-        //debug($rows);
-        $medias = array();
-        foreach ($rows as $media) {
-            $media = (array) $media;
-            $tmp = array(
-                    "_id" => $media["_id"],
-                    "title" => 	$media["title"],
-                    "series_id" => 	$media["series_id"],
-                    "description" => $media["description"],
-                    "tvSeasonEpisodeNumber" => $media["tvSeasonEpisodeNumber"],
-                    "brands" => $media["brands"],
-            );
-            //debug($tmp, $media);
-            foreach ($media["content"] as $file) {
-                $tmp[str_replace (" ", "", $file->assetTypes[0])] = array(
-                        "url" => $file->downloadUrl
-                );
-            }
-            $medias[] = $tmp;
-        }
-        return $medias;
-    }
+
 }
 
 ?>

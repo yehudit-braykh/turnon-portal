@@ -358,11 +358,94 @@ $config['rewrite_short_tags'] = FALSE;
 $config['proxy_ips'] = '';
 
 // UVOD Config
-$config['api_user'] = UVOD_API_USER;
-$config['api_password'] = UVOD_API_PASSWORD;
-$config['api_endpoint'] = UVOD_API_ENDPOINT;
+$config['api_user'] = UVOD_PLATFORM_USERNAME;
+$config['api_password'] = UVOD_PLATFORM_PASSWORD;
+$config['api_endpoint'] = UVOD_PLATFORM_API_URL;
 $config['theme'] = UVOD_THEME;
 $config['tumblr_key'] = TUBMLR_APP_ID;
+
+/* End of file config.php */
+/* Location: ./application/config/config.php */
+
+/*
+|--------------------------------------------------------------------------
+| ENVIRONMENT VARIABLES
+|--------------------------------------------------------------------------
+*/
+$config['customer_code'] = UVOD_CUSTOMER_CODE;
+$config['uvod_platform_api_url'] = UVOD_PLATFORM_API_URL;
+$config['tdp_admin_username'] = UVOD_PLATFORM_USERNAME;
+$config['tdp_admin_password'] = UVOD_PLATFORM_PASSWORD;
+$config['account_id'] = UVOD_ACCOUNT_ID;
+$config['akamai_ftp'] = CDN_FTP;
+$config['public_akamai_url'] = CDN_URL;
+
+/*
+|--------------------------------------------------------------------------
+| THEPLATFORM ENDPOINTS - TODO: REMOVE THIS!
+|--------------------------------------------------------------------------
+*/
+$config['url_get_user_id'] = 'https://euid.theplatform.com/idm/web/Self/getSelfId?schema=1.0&form=json';
+$config['url_user_login_portal'] = 'https://euid.theplatform.com/idm/web/Authentication?schema=1.0&form=json';
+$config['url_user_logout'] = 'https://euid.theplatform.com/idm/web/Authentication?schema=1.1&form=json';
+$config['url_token_authentication'] = 'https://euid.theplatform.com/idm/web/Authentication/getTokenCount?schema=1.0&form=json';
+$config['tp_url_admin_login'] = 'https://identity.auth.theplatform.com/idm/web/Authentication/signIn?schema=1.0&form=json';
+$config['tdp_url_station'] = 'http://data.entertainment.tv.theplatform.com/entertainment/data/Station?schema=2.5&form=json';
+$config['tdp_url_order_item'] = 'https://admin.storefront.commerce.theplatform.com/storefront/data/OrderItem?schema=3.3&form=json';
+$config['url_contract_list'] = 'http://admin.storefront.commerce.theplatform.com/storefront/data/Contract?schema=2.7.0&form=json';
+$config['url_fields_list'] = 'http://data.media.theplatform.com/media/data/Media/Field?schema=1.2&form=json';
+$config['tp_url_retrieve_media_object'] = 'http://data.media.theplatform.com/media/data/Media?schema=1.6.0&form=json';
+$config['url_retrieve_events'] = 'http://data.product.theplatform.com/product/data/Product?schema=2.5.0&form=json';
+$config['url_tdp_user_profile'] = 'http://data.userprofile.community.theplatform.com/userprofile/data/UserProfile?schema=1.3&form=json';
+$config['url_checkout_endpoint'] = 'https://storefront.commerce.theplatform.com/storefront/web/Checkout?schema=1.1&form=json';
+$config['url_admin_checkout_endpoint'] = 'https://admin.storefront.commerce.theplatform.com/storefront/web/Checkout?schema=1.5&form=json';
+$config['url_payment_endpoint'] = 'https://storefront.commerce.theplatform.com/storefront/web/Payment?schema=1.1&form=json';
+$config['url_admin_payment_endpoint'] = 'https://admin.storefront.commerce.theplatform.com/storefront/web/Payment?schema=1.1&form=json';
+$config['url_payment_instrument'] = 'https://admin.storefront.commerce.theplatform.com/storefront/data/PaymentInstrumentInfo?schema=2.7.0&form=json';
+$config['url_order_summary_endpoint'] = 'http://admin.storefront.commerce.theplatform.com/storefront/data/OrderSummary?schema=2.7.0&form=json';
+$config['url_subscription_list'] = 'http://data.product.theplatform.com/product/data/Subscription?schema=1.3&form=json';
+$config['subscription_uri']  = 'http://data.product.theplatform.com/product/data/Subscription/';
+$config['url_ad_policy'] = 'http://data.delivery.theplatform.com/delivery/data/AdPolicy?schema=1.1&form=json';
+$config["pla"] = "http://xml.theplatform.com/data/object/admin";
+$config['url_update_media_object'] = 'http://data.media.theplatform.com/media/data/Media/list?schema=1.6.0&form=json';
+$config["plcategory"] = "http://xml.theplatform.com/media/data/Category";
+$config['url_epg_list'] = 'http://data.entertainment.tv.theplatform.com/entertainment/data/Listing?schema=2.2&form=json';
+
+/*
+|--------------------------------------------------------------------------
+| UVOD PLATFORM ENDPOINTS
+|--------------------------------------------------------------------------
+*/
+$config['url_program'] = UVOD_PLATFORM_API_URL.'media/program';
+$config['url_user'] = UVOD_PLATFORM_API_URL.'end/user';
+$config['url_update_user'] = UVOD_PLATFORM_API_URL.'end/user/update/';
+$config['url_user_self'] = UVOD_PLATFORM_API_URL.'end/user/self';
+$config['url_user_login'] = UVOD_PLATFORM_API_URL.'end/user/signin';
+$config['url_user_login_by_fb'] = UVOD_PLATFORM_API_URL.'end/user/signin_fb';
+$config['url_user_singup'] = UVOD_PLATFORM_API_URL.'end/user/signup';
+$config['url_user_singout'] = UVOD_PLATFORM_API_URL.'end/user/signout';
+$config['url_user_change_password'] = UVOD_PLATFORM_API_URL.'admin/end/user/password/';
+$config['url_admin_login'] = UVOD_PLATFORM_API_URL.'admin/user/signin';
+$config['url_station'] = UVOD_PLATFORM_API_URL.'station';
+$config['url_pricing_template'] = UVOD_PLATFORM_API_URL.'pricingtemplate';
+$config['url_listing'] = UVOD_PLATFORM_API_URL.'listing';
+$config['url_tv_season'] = UVOD_PLATFORM_API_URL.'media/tvseason';
+$config['url_product'] = UVOD_PLATFORM_API_URL.'product';
+$config['url_contract'] = UVOD_PLATFORM_API_URL.'contract';
+$config['url_order'] = UVOD_PLATFORM_API_URL.'order';
+$config['url_order_item'] = UVOD_PLATFORM_API_URL.'orderItem';
+$config['url_subscription'] = UVOD_PLATFORM_API_URL.'subscription';
+$config['url_checkout'] = UVOD_PLATFORM_API_URL.'store/onesteporder';
+$config['url_categories'] = UVOD_PLATFORM_API_URL.'media/category';
+$config['url_categories_new_api'] = UVOD_PLATFORM_API_URL.'media/category';
+$config['url_media'] = UVOD_PLATFORM_API_URL.'media/media';
+$config['url_ingest_file'] = UVOD_PLATFORM_API_URL.'media/ingest';
+$config['url_user_profile'] = UVOD_PLATFORM_API_URL.'userprofile';
+$config['url_admin_user_login_platform_api'] = UVOD_PLATFORM_API_URL.'admin/user/signin';
+$config['url_user_login_platform_api'] = UVOD_PLATFORM_API_URL.'end/user/signin';
+$config['url_user_signup_platform_api'] = UVOD_PLATFORM_API_URL.'end/user/signup';
+$config['url_user_password_platform_api'] = UVOD_PLATFORM_API_URL.'end/user/password';
+$config['url_notification'] = UVOD_PLATFORM_API_URL.'notification';
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */

@@ -11,7 +11,17 @@ class Brands extends REST_Controller{
 
 		return $this->response($this->brands_model->get_brand($this->get("id")),200);
     }
-	// get brand related offers
+
+	function get_charity_get(){
+
+		return $this->response($this->brands_model->get_charity($this->get("id")),200);
+    }
+
+	function get_offer_get(){
+
+		return $this->response($this->brands_model->get_offer($this->get("id")),200);
+    }
+
     function get_brand_offers_get(){
 		$id = $this->get("id");
         $this->response($this->brands_model->get_brand_offers($id),200);
