@@ -71,6 +71,7 @@
                             description: data.description,
                             backgroundImage: '/assets/theme/clixtv/dist/images/nike-header.jpg',
                             backgroundImage2x: '/assets/theme/clixtv/dist/images/nike-header@2x.jpg',
+                            backgroundImage3x: '/assets/theme/clixtv/dist/images/nike-header@3x.jpg',
                             logo: data.BrandTransparentLogo.url
                         };
                         return $q.all(
