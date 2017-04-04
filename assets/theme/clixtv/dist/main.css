@@ -11577,11 +11577,11 @@ button.close {
 }
 @media (min-width: 768px) {
   .clix-hero-banner {
-    height: 443px;
+    height: 590px;
   }
 }
 .clix-hero-banner .hero-background-image {
-  height: 443px;
+  height: 590px;
   position: relative;
 }
 @media (max-width: 768px) {
