@@ -76,7 +76,8 @@
                         $scope.configs = {
                             title: category.title,
                             backgroundImage: '/assets/theme/clixtv/dist/images/fun-games-header.jpg',
-                            backgroundImage2x: '/assets/theme/clixtv/dist/images/fun-games-header@2x.jpg'
+                            backgroundImage2x: '/assets/theme/clixtv/dist/images/fun-games-header@2x.jpg',
+                            backgroundImage3x: '/assets/theme/clixtv/dist/images/fun-games-header@3x.jpg'
                         };
 
                         return categoryService.getCategoryVideosByName(category.title);

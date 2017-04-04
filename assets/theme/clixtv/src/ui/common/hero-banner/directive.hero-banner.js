@@ -16,6 +16,7 @@
                 buttonIconClass: '@?',
                 backgroundImage: '@',
                 backgroundImage2x: '@?',
+                backgroundImage3x: '@?',
                 charity: '@?',
                 shareable: '@?',
                 buttonTooltipText: '@?',
