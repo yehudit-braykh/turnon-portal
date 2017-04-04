@@ -74,10 +74,9 @@
              */
             // ...gross again, again
             window.finished_login = function() {
-                userService.getLoggedInUser()
+                userService.setLoggedInUser()
                     .then(
                         function onSuccess(data) {
-                            $rootScope.$broadcast('user.login', data);
                             $uibModalInstance.close();
                         }
                     );
