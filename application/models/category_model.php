@@ -10,7 +10,7 @@ class category_model extends Uvod_model {
 
 		if ($this->fastcache_model->get_cache("get_all_categories"))
 			return $this->fastcache_model->get_cache("get_all_categories");
-		$data =  $this->apiCall('category')->entries;
+		$data =  $this->rows($this->apiCall('category')->entries);
 		$this->fastcache_model->set_cache("get_all_categories",$data);
 		return $data;
     }
@@ -19,9 +19,23 @@ class category_model extends Uvod_model {
 
 		if ($this->fastcache_model->get_cache("get_category_by_id".$id))
 			return $this->fastcache_model->get_cache("get_category_by_id".$id);
-		$data =  $this->apiCall('category/'.$id);
+		$data =  $this->rows($this->apiCall('category/'.$id));
 		$this->fastcache_model->set_cache("get_category_by_id".$id,$data);
 		return $data;
+    }
+
+	function rows($rows){
+        foreach ($rows as $media) {
+            $media = (array) $media;
+			$tmp = array();
+			if($media["content"]){
+	            foreach ($media["content"] as $file) {
+	                $tmp[str_replace (" ", "", $file->assetTypes[0])] = $file;
+	            }
+            	$media["content"] = $tmp;
+			}
+        }
+        return $rows;
     }
 
 }
