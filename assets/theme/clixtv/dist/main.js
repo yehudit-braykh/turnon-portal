@@ -4185,7 +4185,6 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$stateParams',
         'videosService',
         'celebrityService',
-        'catchMediaService',
         function($q, $scope, $timeout, $window, $filter, $stateParams, videosService, celebrityService, catchMediaService) {
 
             $scope.isMobile = ($window.innerWidth <= 800);
@@ -4234,8 +4233,6 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         $scope.relatedVideos = data[3];
                         $scope.nextVideos = data[3];
                         $scope.ready = true;
-
-                        catchMediaService.addWatchByVideoId($scope.video.id);
                     }
                 );
 
@@ -4276,7 +4273,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$scope',
         '$timeout',
         'knetikService',
-        function($q, $scope, $timeout, knetikService) {
+        'catchMediaService',
+        function($q, $scope, $timeout, knetikService, catchMediaService) {
 
             $timeout(function() {
                 var playerInstance;
@@ -4293,7 +4291,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         width: '100%',
                         //repeat: true,
                         icons: false,
-                        image: $scope.video.thumbnail
+                        image: $scope.video.thumbnail,
+                        mediaid: $scope.video.id
                     });
 
                     if (playerInstance) {
@@ -4310,6 +4309,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                                 $scope.onError();
                             }
                         });
+
+                        catchMediaService.addVideoPlayerEvent(playerInstance);
                     }
                 }
             });
@@ -4860,15 +4861,16 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
                 },
 
-                addWatchByVideoId: function(id) {
-                    _reportAppEvent('WATCH_VIDEO', { id: id });
+                addVideoPlayerEvent: function(playerInstance) {
+                    instance.setupJwPlayer(playerInstance, function(mediaId) {
+                        return 'video';
+                    });
                 },
 
                 addFavoriteBrandById: function(id) {
-                    console.log(id);
+
                     // instance.reportAppEvent('FAVORITE_BRAND', { id: id })
                 }
-
             }
         }
     ];

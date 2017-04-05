@@ -9,7 +9,6 @@
         '$stateParams',
         'videosService',
         'celebrityService',
-        'catchMediaService',
         function($q, $scope, $timeout, $window, $filter, $stateParams, videosService, celebrityService, catchMediaService) {
 
             $scope.isMobile = ($window.innerWidth <= 800);
@@ -58,8 +57,6 @@
                         $scope.relatedVideos = data[3];
                         $scope.nextVideos = data[3];
                         $scope.ready = true;
-
-                        catchMediaService.addWatchByVideoId($scope.video.id);
                     }
                 );
 

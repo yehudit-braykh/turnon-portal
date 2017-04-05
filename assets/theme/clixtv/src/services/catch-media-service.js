@@ -42,15 +42,16 @@
 
                 },
 
-                addWatchByVideoId: function(id) {
-                    _reportAppEvent('WATCH_VIDEO', { id: id });
+                addVideoPlayerEvent: function(playerInstance) {
+                    instance.setupJwPlayer(playerInstance, function(mediaId) {
+                        return 'video';
+                    });
                 },
 
                 addFavoriteBrandById: function(id) {
-                    console.log(id);
+
                     // instance.reportAppEvent('FAVORITE_BRAND', { id: id })
                 }
-
             }
         }
     ];

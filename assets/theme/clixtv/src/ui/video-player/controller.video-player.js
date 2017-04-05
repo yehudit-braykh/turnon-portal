@@ -5,7 +5,8 @@
         '$scope',
         '$timeout',
         'knetikService',
-        function($q, $scope, $timeout, knetikService) {
+        'catchMediaService',
+        function($q, $scope, $timeout, knetikService, catchMediaService) {
 
             $timeout(function() {
                 var playerInstance;
@@ -22,7 +23,8 @@
                         width: '100%',
                         //repeat: true,
                         icons: false,
-                        image: $scope.video.thumbnail
+                        image: $scope.video.thumbnail,
+                        mediaid: $scope.video.id
                     });
 
                     if (playerInstance) {
@@ -39,6 +41,8 @@
                                 $scope.onError();
                             }
                         });
+
+                        catchMediaService.addVideoPlayerEvent(playerInstance);
                     }
                 }
             });
