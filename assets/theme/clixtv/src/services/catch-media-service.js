@@ -28,7 +28,8 @@
                             partnerId: 3074,
                             appVersion: '1.0.0',
                             allowGeoLocation: false,
-                            uninterrupedPlayInterval: 5
+                            uninterrupedPlayInterval: 5,
+                            idNamespace: 'clixtv'
                         });
                         instance.register();
                     }

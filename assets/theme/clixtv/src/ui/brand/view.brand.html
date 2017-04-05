@@ -48,7 +48,7 @@
                                                     {{offer.title}}
                                                 </title-content>
                                                 <subtitle-content>
-                                                    Expires 2/1/2017
+                                                    Expires {{offer.expirationDate | clixDate}}
                                                 </subtitle-content>
                                             </clix-content-callout>
                                         </div>
@@ -76,8 +76,8 @@
                                     </div>
                                 </div>
                                 <div class="brand-celebrity-videos">
-                                    <div ng-repeat="celebrity in celebrities | limitTo: 3">
-                                        <clix-video-category-scroll-list category-title="{{celebrity.title}} and {{configs.title}}" category-videos="relatedVideos"></clix-video-category-scroll-list>
+                                    <div ng-repeat="celebrity in brand.celebrities.celebrities | limitTo: 3">
+                                        <clix-video-category-scroll-list category-title="{{celebrity.name}} and {{brand.title}}" category-videos="celebrity.videos.videos"></clix-video-category-scroll-list>
                                     </div>
                                 </div>
                             </footer-content>
@@ -94,8 +94,8 @@
                 </uib-tab>
                 <uib-tab index="1" heading="Offers">
                     <div class="row clix-block-row offers-container">
-                        <div class="clix-block-item col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="offer in offers" ng-if="offers">
-                            <clix-content-callout sref="offer({ id: '{{offer._id}}' })" menu-items="offerMenuItems">
+                        <div class="clix-block-item col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="offer in brand.offers.offers">
+                            <clix-content-callout sref="offer({ id: '{{offer.id}}' })" menu-items="offerMenuItems">
                                 <header-element>
                                     <clix-offer-logo offer="offer"></clix-offer-logo>
                                 </header-element>
@@ -103,7 +103,7 @@
                                     {{offer.title}}
                                 </title-content>
                                 <subtitle-content>
-                                    Expires 2/1/2017
+                                    Expires {{offer.expirationDate | clixDate}}
                                 </subtitle-content>
                             </clix-content-callout>
                         </div>
@@ -111,8 +111,8 @@
                 </uib-tab>
                 <uib-tab index="2" heading="Stars">
                     <div class="stars-container">
-                        <div ng-repeat="celebrity in celebrities">
-                            <clix-video-category-scroll-list category-title="{{celebrity.title}} and {{configs.title}}" category-videos="relatedVideos"></clix-video-category-scroll-list>
+                        <div ng-repeat="celebrity in brand.celebrities.celebrities">
+                            <clix-video-category-scroll-list category-title="{{celebrity.name}} and {{brand.title}}" category-videos="celebrity.videos.videos"></clix-video-category-scroll-list>
                         </div>
                     </div>
                 </uib-tab>
@@ -121,7 +121,7 @@
                         <div class="videos-title-container">
                             <div class="videos-title">
                                 <clix-secondary-header>
-                                    All Videos Featuring {{configs.title}}
+                                    All Videos Featuring {{brand.title}}
                                 </clix-secondary-header>
                             </div>
                             <div class="video-sort-container">
@@ -129,7 +129,7 @@
                             </div>
                         </div>
                         <div class="row clix-block-row">
-                            <div class="clix-block-item col-xs-12 col-sm-12 col-md-3 col-lg-2-4" ng-repeat="video in videos" ng-if="videos">
+                            <div class="clix-block-item col-xs-12 col-sm-12 col-md-3 col-lg-2-4" ng-repeat="video in brand.videos.videos">
                                 <clix-video-content-box video="video"></clix-video-content-box>
                             </div>
                         </div>

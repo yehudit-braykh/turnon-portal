@@ -3,11 +3,21 @@
     angular
         .module('clixtv')
         .factory('CelebrityModel', [
-            function() {
+            '$injector',
+            function($injector) {
                 return function(data) {
                     this.id = data._id;
                     this.name = data.title;
-                    this.thumbnail = data.content.BrandLogo.downloadUrl;
+
+                    if (data.content.BrandLogo) {
+                        this.thumbnail = data.content.BrandLogo.downloadUrl;
+                    }
+
+                    if (data.videos) {
+                        var VideoListModel = $injector.get('VideoListModel');
+                        this.videos = new VideoListModel(data.videos);
+                    }
+
                 }
             }
         ]);

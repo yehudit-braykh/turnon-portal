@@ -43,7 +43,8 @@ module.exports = function(grunt) {
                     'node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js',
                     'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
                     'bower_components/angular-elastic-input/dist/angular-elastic-input.js',
-                    'node_modules/angular-ui-switch/angular-ui-switch.js'
+                    'node_modules/angular-ui-switch/angular-ui-switch.js',
+                    'node_modules/moment/min/moment.min.js'
                 ]
             }
         },

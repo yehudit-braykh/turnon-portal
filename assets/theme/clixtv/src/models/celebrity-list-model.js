@@ -1,16 +1,15 @@
 (function() {
-
     angular
         .module('clixtv')
-        .factory('CharityListModel', [
-            'CharityModel',
-            function(CharityModel) {
+        .factory('CelebrityListModel', [
+            'CelebrityModel',
+            function(CelebrityModel) {
                 return function(data) {
                     if (!(data instanceof Array)) {
                         return [];
                     }
-                    this.charities = data.map(function(charity) {
-                        return new CharityModel(charity);
+                    this.celebrities = data.map(function(celebrity) {
+                        return new CelebrityModel(celebrity);
                     });
                 }
             }
