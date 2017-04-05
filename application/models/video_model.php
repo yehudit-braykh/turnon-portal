@@ -27,7 +27,7 @@ class Video_model extends Uvod_model {
         $filters[] = "sort=aired_date:-1";
         $filters[] = "page=0&size=300";
 
-		return $this->resultsRows($this->apiCall('url_media', $filters)->entries);
+		return $this->rows($this->apiCall('url_media', $filters)->entries);
 	}
 
 

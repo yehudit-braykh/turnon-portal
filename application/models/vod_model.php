@@ -140,6 +140,7 @@ class Vod_model extends Uvod_model {
         $parameters = array("id" => $policy_id);
         return apiCall("vod/get_policy_by_id", $parameters);
     }
+
     function rows($rows){
         //debug($rows);
         $medias = array();

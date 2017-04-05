@@ -9,7 +9,7 @@ class Brands_model extends Uvod_model {
 	public function get_brand($id){
 		if ($this->fastcache_model->get_cache("get_brand".$id))
 			return $this->fastcache_model->get_cache("get_brand".$id);
-		$data =  $this->apiCall('brand/'.$id)->entries;
+		$data =  $this->rows($this->apiCall('brand/'.$id)->entries);
 		$this->fastcache_model->set_cache("get_brand".$id,$data);
 		return $data;
 	}
@@ -17,7 +17,7 @@ class Brands_model extends Uvod_model {
 	public function get_charity($id){
 		if ($this->fastcache_model->get_cache("get_charity".$id))
 			return $this->fastcache_model->get_cache("get_charity".$id);
-		$data =  $this->apiCall('charity/'.$id)->entries;
+		$data =  $this->rows($this->apiCall('charity/'.$id)->entries);
 		$this->fastcache_model->set_cache("get_charity".$id,$data);
 		return $data;
 	}
@@ -25,7 +25,7 @@ class Brands_model extends Uvod_model {
 	public function get_offer($id){
 		if ($this->fastcache_model->get_cache("get_offer".$id))
 			return $this->fastcache_model->get_cache("get_offer".$id);
-		$data =  $this->apiCall('offer/'.$id)->entries;
+		$data =  $this->rows($this->apiCall('offer/'.$id)->entries);
 		$this->fastcache_model->set_cache("get_offer".$id,$data);
 		return $data;
 	}
@@ -33,7 +33,7 @@ class Brands_model extends Uvod_model {
     public function get_list_brands(){
 		if ($this->fastcache_model->get_cache("get_list_brands"))
 			return $this->fastcache_model->get_cache("get_list_brands");
-		$data =  $this->apiCall('brand')->entries;
+		$data =  $this->rows($this->apiCall('brand')->entries);
 		$this->fastcache_model->set_cache("get_list_brands",$data);
 		return $data;
     }
@@ -60,7 +60,7 @@ class Brands_model extends Uvod_model {
 
 		if ($this->fastcache_model->get_cache("get_brands_array"))
 			return $this->fastcache_model->get_cache("get_brands_array");
-		$data =  $this->apiCall('brand')->entries;
+		$data =  $this->rows($this->apiCall('brand')->entries);
 		$this->fastcache_model->set_cache("get_brands_array",$data);
 		return $data;
 	}
@@ -68,7 +68,7 @@ class Brands_model extends Uvod_model {
 	function get_offers_array () {
 		if ($this->fastcache_model->get_cache("get_offers_array"))
 			return $this->fastcache_model->get_cache("get_offers_array");
-		$data =  $this->apiCall('offer')->entries;
+		$data =  $this->rows($this->apiCall('offer')->entries);
 		$this->fastcache_model->set_cache("get_offers_array",$data);
 		return $data;
 	}
@@ -94,10 +94,24 @@ class Brands_model extends Uvod_model {
 
 		if ($this->fastcache_model->get_cache("get_charities_array"))
 			return $this->fastcache_model->get_cache("get_charities_array");
-		$data =  $this->apiCall('charity')->entries;
+		$data =  $this->rows($this->apiCall('charity')->entries);
 		$this->fastcache_model->set_cache("get_charities_array",$data);
 		return $data;
 	}
+
+	function rows($rows){
+        foreach ($rows as $media) {
+            $media = (array) $media;
+			$tmp = array();
+			if($media["content"]){
+	            foreach ($media["content"] as $file) {
+	                $tmp[str_replace (" ", "", $file->assetTypes[0])] = $file;
+	            }
+            	$media["content"] = $tmp;
+			}
+        }
+        return $rows;
+    }
 
 }
 ?>
