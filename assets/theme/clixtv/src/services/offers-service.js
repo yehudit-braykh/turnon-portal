@@ -2,18 +2,18 @@
 
     var offersService = [
         '$http',
-        'stringUtils',
-        function($http, stringUtils) {
+        'OfferModel',
+        function($http, OfferModel) {
             return {
 
                 /**
                  * @todo - Cache this call
                  */
                 getOfferById: function(id) {
-                    return $http.get('api/brands/get_brand/?id=' + id)
+                    return $http.get('api/brands/get_offer?id=' + id)
                         .then(
                             function(data) {
-                                return data.data[0];
+                                return new OfferModel(data.data[0]);
                             }
                         );
                 }

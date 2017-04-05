@@ -5,7 +5,8 @@
                 if (!input) {
                     return input;
                 }
-                return moment(input).format('M/D/YYYY');
+                var format = (type === 'long') ? 'D MMMM YYYY' : 'M/D/YYYY';
+                return moment(input).format(format);
             }
         }
     ];

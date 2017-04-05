@@ -1,5 +1,5 @@
 <div class="row brands-list">
-    <div class="brand-outer-container col-xs-6 col-sm-4 col-md-3 {{largeColClass || 'col-lg-2'}}" ng-repeat="item in items" clix-transclude-inject>
+    <div class="brand-outer-container col-xs-6 col-sm-4 col-md-3 {{largeColClass || 'col-lg-2'}}" ng-repeat="item in items | orderBy: 'order'" clix-transclude-inject>
 
     </div>
 </div>

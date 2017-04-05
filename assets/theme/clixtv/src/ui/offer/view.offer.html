@@ -9,11 +9,11 @@
         button-tooltip-text="{{loggedInUser ? 'You will receive 50 Reward Points for saving this offer!' : 'After you sign up, you will receive 50 Reward Points for saving this offer!'}}"
         share-tooltip-text="{{loggedInUser ? 'You will receive 50 Reward Points for sharing!' : 'After signing up, you will receive 50 Reward Points for sharing!'}}"
         points="{{'50'}}"
-        subtext="{{'Expires 1 February 2017'}}"
+        subtext="Expires {{offer.expirationDate | clixDate: 'long'}}"
         background-image="{{configs.backgroundImage}}"
     >
         <hero-banner-logo>
-            <img ng-src="{{configs.logo}}" ng-srcset="{{configs.logo2x}} 2x" />
+            <img ng-src="{{configs.logo}}" />
         </hero-banner-logo>
     </clix-hero-banner>
     <div class="main-page-content">
@@ -129,13 +129,13 @@
                                 </div>
                             </share-tooltip-content>
                             <sidebar-title>
-                                More Offers From {{brand.title}}
+                                More Offers From {{offer.brand.title}}
                             </sidebar-title>
                             <sidebar-content>
                                 <div class="row brand-offer-row">
-                                    <div class="col-xs-6 col-sm-6 col-md-12 col-lg-12 brand-offer-column" ng-repeat="offer in offers | limitTo: 3" ng-if="offers">
+                                    <div class="col-xs-6 col-sm-6 col-md-12 col-lg-12 brand-offer-column" ng-repeat="offer in offer.brand.offers.offers | limitTo: 3 | filter: { id: '!' + offer.id }">
                                         <div class="brand-offer">
-                                            <clix-content-callout sref="offer({ id: '{{offer._id}}' })" menu-items="offerMenuItems">
+                                            <clix-content-callout sref="offer({ id: '{{offer.id}}' })" menu-items="offerMenuItems">
                                                 <header-element>
                                                     <clix-offer-logo offer="offer"></clix-offer-logo>
                                                 </header-element>
@@ -143,7 +143,7 @@
                                                     {{offer.title}}
                                                 </title-content>
                                                 <subtitle-content>
-                                                    Expires 2/1/2017
+                                                    Expires {{offer.expirationDate | clixDate}}
                                                 </subtitle-content>
                                             </clix-content-callout>
                                         </div>
@@ -177,11 +177,11 @@
                                     <div class="col-md-6 offer-footer-column">
                                         <div class="footer-header">
                                             <clix-secondary-header>
-                                                About {{brand.title}}
+                                                About {{offer.brand.title}}
                                             </clix-secondary-header>
                                         </div>
                                         <p>
-                                            {{brand.description}}
+                                            {{offer.brand.description}}
                                         </p>
                                     </div>
                                 </div>
@@ -193,13 +193,13 @@
                     <div class="videos-title-container related-offers-title">
                         <div class="videos-title">
                             <clix-secondary-header>
-                                All {{brand.title}} Offers
+                                All {{offer.brand.title}} Offers
                             </clix-secondary-header>
                         </div>
                     </div>
                     <div class="row clix-block-row offers-container">
-                        <div class="clix-block-item col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="offer in offers" ng-if="offers">
-                            <clix-content-callout sref="offer({ id: '{{offer._id}}' })" menu-items="offerMenuItems">
+                        <div class="clix-block-item col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="offer in offer.brand.offers.offers | filter: { id: '!' + offer.id }">
+                            <clix-content-callout sref="offer({ id: '{{offer.id}}' })" menu-items="offerMenuItems">
                                 <header-element>
                                     <clix-offer-logo offer="offer"></clix-offer-logo>
                                 </header-element>
@@ -207,7 +207,7 @@
                                     {{offer.title}}
                                 </title-content>
                                 <subtitle-content>
-                                    Expires 2/1/2017
+                                    Expires {{offer.expirationDate | clixDate}}
                                 </subtitle-content>
                             </clix-content-callout>
                         </div>
@@ -218,7 +218,7 @@
                         <div class="videos-title-container">
                             <div class="videos-title">
                                 <clix-secondary-header>
-                                    All Videos Featuring {{brand.title}}
+                                    All Videos Featuring {{offer.brand.title}}
                                 </clix-secondary-header>
                             </div>
                             <div class="video-sort-container">
@@ -226,7 +226,7 @@
                             </div>
                         </div>
                         <div class="row clix-block-row">
-                            <div class="clix-block-item col-xs-12 col-sm-12 col-md-3 col-lg-2-4" ng-repeat="video in videos" ng-if="videos">
+                            <div class="clix-block-item col-xs-12 col-sm-12 col-md-3 col-lg-2-4" ng-repeat="video in offer.videos.videos">
                                 <clix-video-content-box video="video"></clix-video-content-box>
                             </div>
                         </div>

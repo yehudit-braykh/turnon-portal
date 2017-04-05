@@ -48,6 +48,7 @@
                 {
                     label: 'Share',
                     icon: 'icon-share-icon',
+                    points: '50',
                     onClick: function() {
                         console.log('SHARE');
                     }
@@ -64,6 +65,19 @@
             offersService.getOfferById($stateParams.id)
                 .then(
                     function onSuccess(data) {
+
+                        console.log(data);
+
+                        $scope.offer = data;
+
+                        $scope.configs = {
+                            title: data.title,
+                            description: data.description,
+                            backgroundImage: data.headerImage,
+                            logo: data.brand.transparentThumbnail
+                        };
+
+                        return;
 
                         var brandId = '5804d1e7a7889d000337f0e2',
                             brandSlug = 'nike';
@@ -85,9 +99,9 @@
                 )
                 .then(
                     function onSuccess(data) {
-                        $scope.offers = data[0];
-                        $scope.brand = data[1];
-                        $scope.videos = data[2];
+                        // $scope.offers = data[0];
+                        // $scope.brand = data[1];
+                        // $scope.videos = data[2];
                     }
                 );
         }

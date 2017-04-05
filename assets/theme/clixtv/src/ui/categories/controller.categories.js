@@ -37,6 +37,7 @@
                 {
                     label: 'Share',
                     icon: 'icon-share-icon',
+                    points: '50',
                     onClick: function() {
                         console.log('SHARE');
                     }
@@ -60,7 +61,11 @@
             categoryService.getAllCategories()
                 .then(
                     function onSuccess(data) {
-                        $scope.categories = data;
+                        var categories = data;
+                        categories.categories = categories.categories.filter(function(category) {
+                            return category.videos.videos.length > 0;
+                        });
+                        $scope.categories = categories;
                     }
                 )
 

@@ -62,6 +62,21 @@
 
             $q.all(
                     [
+                        categoryService.getCategoryById($stateParams.id),
+                        categoryService.getAllCategories()
+                    ]
+                )
+                .then(
+                    function onSuccess(data) {
+                        $scope.category = data[0];
+                        $scope.categories = data[1];
+                    }
+                );
+
+            return;
+
+            $q.all(
+                    [
                         categoryService.getAllCategories(),
                         categoryService.getCategoryByName($stateParams.slug)
                     ]

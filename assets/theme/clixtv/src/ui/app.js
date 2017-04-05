@@ -73,7 +73,7 @@
                         controller: 'CategoriesController'
                     })
                     .state('category', {
-                        url: '/category/:slug',
+                        url: '/category/:id',
                         templateUrl: 'ui/categories/view.category.html',
                         controller: 'CategoryController'
                     })

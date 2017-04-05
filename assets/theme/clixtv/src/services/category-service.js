@@ -3,7 +3,8 @@
     var categoryService = [
         '$http',
         'CategoryListModel',
-        function($http, CategoryListModel) {
+        'CategoryModel',
+        function($http, CategoryListModel, CategoryModel) {
             return {
 
                 /**
@@ -30,11 +31,18 @@
                         );
                 },
 
+                /**
+                 * @todo - Cache this call
+                 */
                 getCategoryById: function(id) {
                     return $http.get('/api/category/get_category_by_id?id=' + id)
                         .then(
                             function onSuccess(data) {
-                                return data.data;
+                                var categories = data.data.entries,
+                                    category = categories.filter(function(cat) {
+                                        return cat._id === id;
+                                    });
+                                return new CategoryModel(category[0]);
                             }
                         );
                 },
