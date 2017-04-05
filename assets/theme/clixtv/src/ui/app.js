@@ -43,7 +43,7 @@
                         controller: 'BrandsController'
                     })
                     .state('brand', {
-                        url: '/brand/:slug',
+                        url: '/brand/:id',
                         templateUrl: 'ui/brand/view.brand.html',
                         controller: 'BrandController'
                     })
@@ -92,12 +92,15 @@
         .run([
             '$rootScope',
             'userService',
-            function($rootScope, userService) {
+            'catchMediaService',
+            function($rootScope, userService, catchMediaService) {
+
                 userService.setLoggedInUser();
+                catchMediaService.initialize();
 
                 $rootScope.$on('$stateChangeSuccess',function(){
                     $("html, body").animate({ scrollTop: 0 }, 200);
-                })
+                });
             }
         ]);
 }());

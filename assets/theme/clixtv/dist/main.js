@@ -43,7 +43,7 @@
                         controller: 'BrandsController'
                     })
                     .state('brand', {
-                        url: '/brand/:slug',
+                        url: '/brand/:id',
                         templateUrl: 'ui/brand/view.brand.html',
                         controller: 'BrandController'
                     })
@@ -92,12 +92,15 @@
         .run([
             '$rootScope',
             'userService',
-            function($rootScope, userService) {
+            'catchMediaService',
+            function($rootScope, userService, catchMediaService) {
+
                 userService.setLoggedInUser();
+                catchMediaService.initialize();
 
                 $rootScope.$on('$stateChangeSuccess',function(){
                     $("html, body").animate({ scrollTop: 0 }, 200);
-                })
+                });
             }
         ]);
 }());
@@ -146,7 +149,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/brand/view.brands.html',
-    "<div ng-if=!ready><clix-loader size=large></clix-loader></div><div class=brands-page ng-if=ready><div class=main-header><clix-main-header>Brands &amp; Offers</clix-main-header></div><div class=clix-tabs><uib-tabset active=active><uib-tab index=0 heading=Brands><div class=search-filter-container><clix-search-filter search-placeholder=\"Search Brands\" filter-placeholder=\"Filter By\" sort-placeholder=\"Sort By\" filter-options=filterBrandsOptions sort-options=sortBrandsOptions></clix-search-filter></div><div class=\"row brands-list\"><div class=\"brand-outer-container col-xs-6 col-sm-4 col-md-3 col-lg-2\" ng-repeat=\"(id, brand) in brands\"><clix-content-callout sref=\"brand({ slug: '{{brand.title | slug}}' })\" menu-items=menuItems><header-element><clix-brand-charity-logo brand=brand></clix-brand-charity-logo></header-element><title-content>{{brand.title}}</title-content><subtitle-content>18 Offers</subtitle-content></clix-content-callout></div></div></uib-tab><uib-tab index=1 heading=Offers><div class=search-filter-container><clix-search-filter search-placeholder=\"Search Offers\" filter-placeholder=\"Filter By\" sort-placeholder=\"Sort By\" filter-options=filterOffersOptions sort-options=sortOffersOptions></clix-search-filter></div><div class=\"row brands-list\"><div class=\"brand-outer-container col-xs-6 col-sm-4 col-md-3 col-lg-2\" ng-repeat=\"(id, offer) in offers\"><clix-content-callout sref=\"offer({ id: '{{offer._id}}' })\" menu-items=offerMenuItems><header-element><clix-offer-logo offer=offer></clix-offer-logo></header-element><title-content>{{offer.title}}</title-content><subtitle-content>Expires 2/1/2017</subtitle-content></clix-content-callout></div></div></uib-tab></uib-tabset></div></div>"
+    "<div ng-if=!ready><clix-loader size=large></clix-loader></div><div class=brands-page ng-if=ready><div class=main-header><clix-main-header>Brands &amp; Offers</clix-main-header></div><div class=clix-tabs><uib-tabset active=active><uib-tab index=0 heading=Brands><div class=search-filter-container><clix-search-filter search-placeholder=\"Search Brands\" filter-placeholder=\"Filter By\" sort-placeholder=\"Sort By\" filter-options=filterBrandsOptions sort-options=sortBrandsOptions></clix-search-filter></div><div class=\"row brands-list\"><div class=\"brand-outer-container col-xs-6 col-sm-4 col-md-3 col-lg-2\" ng-repeat=\"brand in brands.brands\"><clix-content-callout sref=\"brand({ id: '{{brand.id}}' })\" menu-items=brandMenuItems><header-element><clix-brand-charity-logo brand=brand></clix-brand-charity-logo></header-element><title-content>{{brand.title}}</title-content><subtitle-content>{{brand.offers.offers.length}} {{brand.offers.offers.length === 1 ? 'Offer' : 'Offers'}}</subtitle-content></clix-content-callout></div></div></uib-tab><uib-tab index=1 heading=Offers><div class=search-filter-container><clix-search-filter search-placeholder=\"Search Offers\" filter-placeholder=\"Filter By\" sort-placeholder=\"Sort By\" filter-options=filterOffersOptions sort-options=sortOffersOptions></clix-search-filter></div><div class=\"row brands-list\"><div class=\"brand-outer-container col-xs-6 col-sm-4 col-md-3 col-lg-2\" ng-repeat=\"offer in offers.offers\"><clix-content-callout sref=\"offer({ id: '{{offer.id}}' })\" menu-items=offerMenuItems><header-element><clix-offer-logo offer=offer></clix-offer-logo></header-element><title-content>{{offer.title}}</title-content><subtitle-content>Expires 2/1/2017</subtitle-content></clix-content-callout></div></div></uib-tab></uib-tabset></div></div>"
   );
 
 
@@ -221,7 +224,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/brand-charity-logo/view.offer-logo.html',
-    "<div class=clix-offer-logo style=\"background-image: url('{{offer.BrandLogo.url}}')\"><clix-tooltip-menu items=items menuopen=menuVisible class=logo-menu-container ng-hide=!menuVisible></clix-tooltip-menu><div class=logo-overlay-image></div><div class=logo-icon style=\"background-image: url('{{offer.BrandTransparentLogo.url}}')\"></div><div class=logo-points clix-tooltip-trigger tooltip-id=tooltip-{{$id}}><clix-points-violator>50</clix-points-violator></div><clix-tooltip tooltip-id=tooltip-{{$id}}><clix-is-logged-in><logged-in>You will receive 50 Reward Points for viewing this offer!</logged-in><not-logged-in>After you sign up, you will receive 50 Reward Points for viewing this offer! <a ng-click=\"\">Learn more</a>.</not-logged-in></clix-is-logged-in></clix-tooltip></div>"
+    "<div class=clix-offer-logo style=\"background-image: url('{{offer.thumbnail}}')\"><clix-tooltip-menu items=items menuopen=menuVisible class=logo-menu-container ng-hide=!menuVisible></clix-tooltip-menu><div class=logo-overlay-image></div><div class=logo-icon style=\"background-image: url('{{offer.transparentThumbnail}}')\"></div><div class=logo-points clix-tooltip-trigger tooltip-id=tooltip-{{$id}}><clix-points-violator>50</clix-points-violator></div><clix-tooltip tooltip-id=tooltip-{{$id}}><clix-is-logged-in><logged-in>You will receive 50 Reward Points for viewing this offer!</logged-in><not-logged-in>After you sign up, you will receive 50 Reward Points for viewing this offer! <a ng-click=\"\">Learn more</a>.</not-logged-in></clix-is-logged-in></clix-tooltip></div>"
   );
 
 
@@ -1061,7 +1064,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$stateParams',
         'brandsService',
         'userService',
-        function($q, $scope, $rootScope, $stateParams, brandsService, userService) {
+        'catchMediaService',
+        function($q, $scope, $rootScope, $stateParams, brandsService, userService, catchMediaService) {
 
             $rootScope.$on('user.login', function(event, data) {
                 $scope.loggedInUser = data;
@@ -1115,36 +1119,58 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 }
             ];
 
-
-            brandsService.getBrandBySlug($stateParams.slug)
+            brandsService.getBrandById($stateParams.id)
                 .then(
                     function onSuccess(data) {
-                        $scope.video = data;
+
+                        $scope.video = {
+                            streamUrl: data.trailer,
+                            thumbnail: data.trailerThumbnail
+                        };
                         $scope.configs = {
                             title: data.title,
                             description: data.description,
-                            backgroundImage: '/assets/theme/clixtv/dist/images/nike-header.jpg',
-                            backgroundImage2x: '/assets/theme/clixtv/dist/images/nike-header@2x.jpg',
-                            backgroundImage3x: '/assets/theme/clixtv/dist/images/nike-header@3x.jpg',
-                            logo: data.BrandTransparentLogo.url
+                            backgroundImage: data.headerImage,
+                            backgroundImage2x: data.headerImage,
+                            backgroundImage3x: data.headerImage,
+                            logo: data.logo
                         };
-                        return $q.all(
-                            [
-                                brandsService.getOffersByBrandId(data._id),
-                                brandsService.getVideosByBrandId(data._id),
-                                brandsService.getCelebritiesByBrandId(data._id)
-                            ]
-                        )
-                    }
-                )
-                .then(
-                    function onSuccess(data) {
-                        $scope.offers = data[0];
-                        $scope.relatedVideos = data[1];
-                        $scope.videos = data[1];
-                        $scope.celebrities = data[2];
+
+
+                        // console.log(data);
                     }
                 );
+
+
+            // brandsService.getBrandBySlug($stateParams.slug)
+            //     .then(
+            //         function onSuccess(data) {
+            //             $scope.video = data;
+            //             $scope.configs = {
+            //                 title: data.title,
+            //                 description: data.description,
+            //                 backgroundImage: '/assets/theme/clixtv/dist/images/nike-header.jpg',
+            //                 backgroundImage2x: '/assets/theme/clixtv/dist/images/nike-header@2x.jpg',
+            //                 backgroundImage3x: '/assets/theme/clixtv/dist/images/nike-header@3x.jpg',
+            //                 logo: data.BrandTransparentLogo.url
+            //             };
+            //             return $q.all(
+            //                 [
+            //                     brandsService.getOffersByBrandId(data._id),
+            //                     brandsService.getVideosByBrandId(data._id),
+            //                     brandsService.getCelebritiesByBrandId(data._id)
+            //                 ]
+            //             )
+            //         }
+            //     )
+            //     .then(
+            //         function onSuccess(data) {
+            //             $scope.offers = data[0];
+            //             $scope.relatedVideos = data[1];
+            //             $scope.videos = data[1];
+            //             $scope.celebrities = data[2];
+            //         }
+            //     );
 
         }
     ];
@@ -1232,11 +1258,31 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 }
             ];
 
+            $scope.brandMenuItems = [
+                {
+                    label: 'Share',
+                    points: '50',
+                    icon: 'icon-share-icon',
+                    onClick: function() {
+                        console.log('SHARE');
+                    }
+                },
+                {
+                    label: 'Add to Favorites',
+                    icon: 'icon-favorite-icon',
+                    onClick: function() {
+                        console.log('SHARE');
+                    }
+                }
+            ];
+
             $scope.filterBrandsOptions = defaultFilterOptions;
             $scope.filterOffersOptions = defaultFilterOptions;
             $scope.sortBrandsOptions = defaultSortOptions;
             $scope.sortOffersOptions = defaultSortOptions;
 
+            // Don't wire these 2 calls together in a $q.all(...) because we don't want to have to wait for
+            // the order response to come back if the brands are all ready since it's a tabbed interface.
             brandsService.getAllBrands()
                 .then(
                     function onSuccess(data) {
@@ -4139,7 +4185,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$stateParams',
         'videosService',
         'celebrityService',
-        function($q, $scope, $timeout, $window, $filter, $stateParams, videosService, celebrityService) {
+        'catchMediaService',
+        function($q, $scope, $timeout, $window, $filter, $stateParams, videosService, celebrityService, catchMediaService) {
 
             $scope.isMobile = ($window.innerWidth <= 800);
             $scope.expanded = false;
@@ -4161,8 +4208,6 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                                 }
                             }
                         });
-
-
 
                         var celebrityId = (data.celebrities) ? data.celebrities[0] : undefined,
                             categoryName = (data.categories && data.categories.length > 0) ? data.categories[0].name : 'Sports';
@@ -4189,6 +4234,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         $scope.relatedVideos = data[3];
                         $scope.nextVideos = data[3];
                         $scope.ready = true;
+
+                        catchMediaService.addWatchByVideoId($scope.video.id);
                     }
                 );
 
@@ -4355,11 +4402,27 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
     angular
         .module('clixtv')
         .factory('BrandModel', [
-            function() {
+            'OfferListModel',
+            function(OfferListModel) {
                 return function(data) {
+
                     this.id = data._id;
                     this.title = data.title;
+                    this.description = data.description;
                     this.transparentThumbnail = data.content.BrandTransparentLogo.downloadUrl;
+                    this.headerImage = data.content.BackgroundImage.downloadUrl;
+                    this.logo = data.content.BrandLogo.downloadUrl;
+                    this.offers = new OfferListModel(data.offers);
+
+                    if (data.content.mainTrailer) {
+                        this.trailer = data.content.mainTrailer.downloadUrl;
+                    }
+
+                    if (data.content.PosterH) {
+                        this.trailerThumbnail = data.content.PosterH.downloadUrl;
+                    }
+
+                    // console.log(data);
                 }
             }
         ]);
@@ -4433,6 +4496,34 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     this.id = data._id;
                     this.title = data.title;
                     this.transparentThumbnail = data.content.BrandTransparentLogo.downloadUrl;
+                }
+            }
+        ]);
+}());
+(function() {
+    angular
+        .module('clixtv')
+        .factory('OfferListModel', [
+            'OfferModel',
+            function(OfferModel) {
+                return function(data) {
+                    this.offers = data.map(function(offer) {
+                        return new OfferModel(offer);
+                    });
+                }
+            }
+        ]);
+}());
+(function() {
+    angular
+        .module('clixtv')
+        .factory('OfferModel', [
+            function() {
+                return function(data) {
+                    this.id = data._id;
+                    this.title = data.title;
+                    this.transparentThumbnail = data.content.BrandTransparentLogo.downloadUrl;
+                    this.thumbnail = data.content.BrandLogo.downloadUrl;
                 }
             }
         ]);
@@ -4566,7 +4657,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
     var brandsService = [
         '$http',
         'stringUtils',
-        function($http, stringUtils) {
+        'BrandListModel',
+        'OfferListModel',
+        'BrandModel',
+        function($http, stringUtils, BrandListModel, OfferListModel, BrandModel) {
             return {
 
                 /**
@@ -4576,7 +4670,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     return $http.get('/api/brands/get_brands_array')
                         .then(
                             function(data) {
-                                return data.data;
+                                return new BrandListModel(data.data);
                             }
                         );
                 },
@@ -4608,6 +4702,18 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                                     return slug === stringUtils.getSlugForString(brand.title);
                                 });
                                 return found[0];
+                            }
+                        );
+                },
+
+                /**
+                 * @todo - Cache this call
+                 */
+                getBrandById: function(id) {
+                    return $http.get('/api/brands/get_brand?id=' + id)
+                        .then(
+                            function onSuccess(data) {
+                                return new BrandModel(data.data[0]);
                             }
                         );
                 },
@@ -4662,7 +4768,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     return $http.get('/api/brands/get_offers_array')
                         .then(
                             function(data) {
-                                return data.data;
+                                return new OfferListModel(data.data);
                             }
                         );
                 },
@@ -4709,6 +4815,67 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
     angular
         .module('clixtv')
         .factory('brandsService', brandsService);
+}());
+(function() {
+
+    var catchMediaService = [
+        '$http',
+        '$log',
+        function($http, $log) {
+
+            var instance;
+
+            function _reportAppEvent(event, data) {
+                if (!instance) {
+                    $log.warn('Catch Media service has not been initialized yet');
+                    return;
+                }
+                instance.reportAppEvent(event, data);
+            }
+
+            return {
+
+                initialize: function() {
+                    if (!instance) {
+
+                        /**
+                         * @todo - Pull these from a top level config...
+                         */
+                        instance = new CMSDK({
+                            appCode: 'CLIXTV-WEB',
+                            partnerId: 3074,
+                            appVersion: '1.0.0',
+                            allowGeoLocation: false,
+                            uninterrupedPlayInterval: 5
+                        });
+                        instance.register();
+                    }
+                },
+
+                setUserId: function(id) {
+
+                },
+
+                deleteUserId: function() {
+
+                },
+
+                addWatchByVideoId: function(id) {
+                    _reportAppEvent('WATCH_VIDEO', { id: id });
+                },
+
+                addFavoriteBrandById: function(id) {
+                    console.log(id);
+                    // instance.reportAppEvent('FAVORITE_BRAND', { id: id })
+                }
+
+            }
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .factory('catchMediaService', catchMediaService);
 }());
 (function() {
 

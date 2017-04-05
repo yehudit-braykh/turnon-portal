@@ -9,7 +9,8 @@
         '$stateParams',
         'videosService',
         'celebrityService',
-        function($q, $scope, $timeout, $window, $filter, $stateParams, videosService, celebrityService) {
+        'catchMediaService',
+        function($q, $scope, $timeout, $window, $filter, $stateParams, videosService, celebrityService, catchMediaService) {
 
             $scope.isMobile = ($window.innerWidth <= 800);
             $scope.expanded = false;
@@ -31,8 +32,6 @@
                                 }
                             }
                         });
-
-
 
                         var celebrityId = (data.celebrities) ? data.celebrities[0] : undefined,
                             categoryName = (data.categories && data.categories.length > 0) ? data.categories[0].name : 'Sports';
@@ -59,6 +58,8 @@
                         $scope.relatedVideos = data[3];
                         $scope.nextVideos = data[3];
                         $scope.ready = true;
+
+                        catchMediaService.addWatchByVideoId($scope.video.id);
                     }
                 );
 

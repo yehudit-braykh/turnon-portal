@@ -3,7 +3,10 @@
     var brandsService = [
         '$http',
         'stringUtils',
-        function($http, stringUtils) {
+        'BrandListModel',
+        'OfferListModel',
+        'BrandModel',
+        function($http, stringUtils, BrandListModel, OfferListModel, BrandModel) {
             return {
 
                 /**
@@ -13,7 +16,7 @@
                     return $http.get('/api/brands/get_brands_array')
                         .then(
                             function(data) {
-                                return data.data;
+                                return new BrandListModel(data.data);
                             }
                         );
                 },
@@ -45,6 +48,18 @@
                                     return slug === stringUtils.getSlugForString(brand.title);
                                 });
                                 return found[0];
+                            }
+                        );
+                },
+
+                /**
+                 * @todo - Cache this call
+                 */
+                getBrandById: function(id) {
+                    return $http.get('/api/brands/get_brand?id=' + id)
+                        .then(
+                            function onSuccess(data) {
+                                return new BrandModel(data.data[0]);
                             }
                         );
                 },
@@ -99,7 +114,7 @@
                     return $http.get('/api/brands/get_offers_array')
                         .then(
                             function(data) {
-                                return data.data;
+                                return new OfferListModel(data.data);
                             }
                         );
                 },
