@@ -5,36 +5,34 @@
         '$scope',
         '$timeout',
         '$window',
+        '$filter',
         '$stateParams',
         'videosService',
         'celebrityService',
-        function($q, $scope, $timeout, $window, $stateParams, videosService, celebrityService) {
+        function($q, $scope, $timeout, $window, $filter, $stateParams, videosService, celebrityService) {
 
             $scope.isMobile = ($window.innerWidth <= 800);
             $scope.expanded = false;
-
-            $scope.seriesList = [
-                {
-                    label: 'Series 1: Series Name Here...'
-                },
-                {
-                    label: 'Series 2: Series Name Here...'
-                },
-                {
-                    label: 'Series 3: Series Name Here...'
-                },
-                {
-                    label: 'Series 4: Series Name Here...'
-                },
-                {
-                    label: 'Series 5: Series Name Here...'
-                }
-            ];
 
             videosService.getVideoById($stateParams.id)
                 .then(
                     function onSuccess(data) {
                         $scope.video = data;
+
+                        var seasons = $filter('orderBy')(data.series.seasons.seasons, 'seasonNumber');
+
+                        $scope.seasons = seasons;
+                        $scope.selectedSeason = seasons[0];
+                        $scope.seasonList = seasons.map(function(season) {
+                            return {
+                                label: 'Season ' + season.seasonNumber + ': ' + season.title,
+                                onClick: function() {
+                                    $scope.selectedSeason = season;
+                                }
+                            }
+                        });
+
+
 
                         var celebrityId = (data.celebrities) ? data.celebrities[0] : undefined,
                             categoryName = (data.categories && data.categories.length > 0) ? data.categories[0].name : 'Sports';

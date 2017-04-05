@@ -23,6 +23,7 @@ module.exports = function(grunt) {
                     'src/ui/app.js',
                     'src/ui/views.js',
                     'src/ui/**/*.js',
+                    'src/models/*.js',
                     'src/services/*.js',
                     'src/utils/*.js',
                     'src/filters/*.js'
@@ -130,6 +131,7 @@ module.exports = function(grunt) {
                 files: [
                     'src/ui/**/*.html',
                     'src/ui/**/*.js',
+                    'src/models/*.js',
                     'src/services/*.js',
                     'src/utils/*.js',
                     'src/filters/*.js',

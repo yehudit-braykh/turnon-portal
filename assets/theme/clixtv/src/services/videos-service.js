@@ -2,7 +2,8 @@
 
     var videosService = [
         '$http',
-        function($http) {
+        'VideoModel',
+        function($http, VideoModel) {
             return {
 
                 /**
@@ -12,7 +13,7 @@
                     return $http.get('/api/video/get_video_by_id/?id=' + id)
                         .then(
                             function onSuccess(data) {
-                                return data.data;
+                                return new VideoModel(data.data);
                             }
                         );
                 },

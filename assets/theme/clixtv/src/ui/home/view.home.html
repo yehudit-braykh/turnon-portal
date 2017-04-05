@@ -91,8 +91,8 @@
         <clix-loader size="large"></clix-loader>
     </div>
     <div ng-show="ready">
-        <div ng-repeat="category in categories" ng-if="category && category.videos">
-            <clix-video-category-scroll-list category-title="{{category.title}}" category-videos="category.videos"></clix-video-category-scroll-list>
+        <div ng-repeat="category in categories.categories" ng-if="category && category.videos && category.videos.videos && category.videos.videos.length > 0">
+            <clix-video-category-scroll-list category="category"></clix-video-category-scroll-list>
         </div>
     </div>
 </div>

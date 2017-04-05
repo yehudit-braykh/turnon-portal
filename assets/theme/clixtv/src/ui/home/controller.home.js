@@ -8,10 +8,7 @@
         '$window',
         '$uibModal',
         'categoryService',
-        'brandsService',
-        function($q, $scope, $rootScope, $timeout, $window, $uibModal, categoryService, brandsService) {
-
-            var categoriesToLoad = 0;
+        function($q, $scope, $rootScope, $timeout, $window, $uibModal, categoryService) {
 
             $scope.showMobileCarousel = false;
 
@@ -74,53 +71,12 @@
                 _recalculateHeight();
             }
 
-            function _loadVideosForCategoryIndex(index) {
-                var category = $scope.categories[index];
-                if (!category) {
-                    return;
-                }
 
-                categoriesToLoad++;
-
-                categoryService.getCategoryVideosByName(category.title)
-                    .then(
-                        function onSuccess(data) {
-                            var videos = data;
-
-                            // Assign the brands for each video
-                            videos.forEach(function(video) {
-                                video.brands = (video.brands || []).map(function(brand) {
-                                    return $scope.brands[brand];
-                                });
-                            });
-
-                            $scope.categories[index].videos = videos;
-
-                            categoriesToLoad--;
-                            _checkCategoriesToLoad();
-                        }
-                    );
-
-                _loadVideosForCategoryIndex(index + 1);
-            }
-
-            function _checkCategoriesToLoad() {
-                if (categoriesToLoad === 0) {
-                    $scope.ready = true;
-                }
-            }
-
-            $q.all(
-                    [
-                        categoryService.getAllCategories(),
-                        brandsService.getAllBrandsAndCharities()
-                    ]
-                )
+            categoryService.getAllCategories()
                 .then(
                     function onSuccess(data) {
-                        $scope.categories = data[0];
-                        $scope.brands = data[1];
-                        _loadVideosForCategoryIndex(0);
+                        $scope.categories = data;
+                        $scope.ready = true;
                     }
                 );
 

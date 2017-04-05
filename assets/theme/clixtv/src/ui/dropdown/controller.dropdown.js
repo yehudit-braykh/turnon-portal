@@ -12,7 +12,19 @@
 
             $scope.triggerClicked = function() {
                 $scope.menuVisible = !$scope.menuVisible;
-            }
+            };
+
+            $scope.options = $scope.options.map(function(option) {
+                return {
+                    label: option.label,
+                    // onClickDefault: option.onClick,
+                    onClick: function() {
+                        $scope.selected = option;
+                        $scope.menuVisible = false;
+                        option.onClick();
+                    }
+                }
+            });
         }
     ];
 

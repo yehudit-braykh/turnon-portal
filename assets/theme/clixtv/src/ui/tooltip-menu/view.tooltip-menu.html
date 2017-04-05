@@ -1,7 +1,7 @@
 <div class="tooltip-menu">
     <menu class="menu-container" ng-show="menuopen">
         <menuitem ng-repeat="item in items">
-            <a ng-click="item.onClick()" class="menu-item" ng-mouseover="onMouseover(item)" ng-mouseleave="onMouseleave(item)">
+            <a ng-click="onItemPress(item)" class="menu-item" ng-mouseover="onMouseover(item)" ng-mouseleave="onMouseleave(item)">
                 <i class="menu-icon {{item.icon}}"></i> <span class="menu-label">{{item.label}}</span>
                 <clix-points-violator ng-if="item.points">
                     {{item.points}}

@@ -1,24 +1,24 @@
-<div class="video-category-scroll-list" ng-show="categoryTitle">
+<div class="video-category-scroll-list">
     <h2>
-        <a ui-sref="category({ slug: '{{categoryTitle | slug}}' })">
-            {{categoryTitle}} <i class="icon-right-arrow"></i>
+        <a ui-sref="category({ slug: '{{category.title | slug}}' })">
+            {{category.title}} <i class="icon-right-arrow"></i>
         </a>
     </h2>
-    <div ng-if="categoryVideos" class="category-container">
+    <div class="category-container">
         <div class="visible-lg">
             <slick slides-to-show="5" slides-to-scroll="4" infinite="false" variable-width="true" prev-arrow="#carousel-previous-{{$id}}" next-arrow="#carousel-next-{{$id}}" settings="carouselConfig">
-                <div ng-repeat="video in categoryVideos" class="video-content-container" style="width: {{videoContainerWidth}}px;">
+                <div ng-repeat="video in category.videos.videos" class="video-content-container" style="width: {{videoContainerWidth}}px;">
                     <div clix-video-content-box video="video"></div>
                 </div>
             </slick>
         </div>
         <div class="hidden-lg">
-            <div ng-repeat="video in categoryVideos | limitTo: 4" class="video-content-container">
+            <div ng-repeat="video in category.videos.videos | limitTo: 4" class="video-content-container">
                 <div clix-video-content-box video="video"></div>
             </div>
             <div class="more-videos-button-container">
-                <clix-secondary-button ui-sref="category({ slug: '{{categoryTitle | slug}}' })">
-                    View All {{categoryTitle}}
+                <clix-secondary-button ui-sref="category({ slug: '{{category.title | slug}}' })">
+                    View All {{category.title}}
                 </clix-secondary-button>
             </div>
         </div>
@@ -34,11 +34,4 @@
             </div>
         </div>
     </div>
-    <!--<div class="video-list-container">-->
-        <!--<div class="video-inner-list-container" style="left: {{left}}px">-->
-            <!--<div class="video-container" style="width: {{videoContainerWidth}}px;" ng-repeat="video in category.videos">-->
-                <!--<clix-video-content-box video="video"></clix-video-content-box>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
 </div>

@@ -2,7 +2,8 @@
 
     var categoryService = [
         '$http',
-        function($http) {
+        'CategoryListModel',
+        function($http, CategoryListModel) {
             return {
 
                 /**
@@ -12,7 +13,7 @@
                     return $http.get('/api/category/get_all_categories')
                         .then(
                             function onSuccess(data) {
-                                return data.data;
+                                return new CategoryListModel(data.data);
                             }
                         );
                 },
@@ -22,6 +23,15 @@
                  */
                 getCategoryByName: function(name) {
                     return $http.get('/api/category/get_category_by_name/?category=' + name)
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
+                            }
+                        );
+                },
+
+                getCategoryById: function(id) {
+                    return $http.get('/api/category/get_category_by_id?id=' + id)
                         .then(
                             function onSuccess(data) {
                                 return data.data;

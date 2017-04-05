@@ -9607,6 +9607,7 @@ button.close {
     padding-left: 0;
     padding-right: 0;
     margin-bottom: 0;
+    width: 275px;
   }
 }
 .video-permalink-page .up-next-container .up-next-label {
@@ -14176,6 +14177,7 @@ button.close {
 .clix-loader .loader-icon.loader-small {
   width: 75px;
   height: 75px;
+  margin: 75px 0;
 }
 .clix-loader .loader-icon.loader-medium {
   width: 150px;

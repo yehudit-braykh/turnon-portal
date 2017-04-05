@@ -6,7 +6,8 @@
             controller: 'VideoContentBoxController',
             scope: {
                 video: '=',
-                extraClass: '@?'
+                extraClass: '@?',
+                onContentLoad: '=?'
             }
         }
     };

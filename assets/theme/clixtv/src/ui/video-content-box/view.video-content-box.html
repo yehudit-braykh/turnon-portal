@@ -2,12 +2,12 @@
     <div class="header-container">
         <clix-tooltip-menu items="items" menuopen="menuVisible" class="menu-container" ng-hide="!menuVisible"></clix-tooltip-menu>
         <div class="header-inner-content">
-            <a href="#">
-                <div class="artist-avatar" style="background-image: url({{video.PosterH.url}})"></div>
+            <a ui-sref="star({ id: video.celebrity.id })">
+                <div class="artist-avatar" style="background-image: url({{video.celebrity.thumbnail}})"></div>
             </a>
             <div class="artist-name">
-                <a href="#">
-                    {{video.artist_name}}
+                <a ui-sref="star({ id: video.celebrity.id })">
+                    {{video.celebrity.name}}
                 </a>
             </div>
             <div clix-tooltip-trigger tooltip-id="actions-button-{{$id}}">
@@ -21,7 +21,7 @@
         </div>
     </div>
     <div class="video-thumbnail" ng-click="onPlayPress($event, video)">
-        <img ng-src="{{video.PosterH.url}}" class="video-thumbnail-image" clix-on-image-load="onImageLoad($event)" />
+        <img ng-src="{{video.thumbnail}}" class="video-thumbnail-image" clix-on-image-load="onImageLoad($event)" />
         <div class="violator-container" clix-tooltip-trigger tooltip-id="signup-watch-points-{{$id}}">
             <clix-violator>
                 100 Reward Points
@@ -30,7 +30,7 @@
         <div class="video-thumbnail-action-container">
             <div class="video-thumbnail-inner-container">
                 <div class="video-brand-icon-list">
-                    <div class="video-brand-icon" ng-repeat="brand in video.brands | limitTo: 5 track by $index" style="background-image: url({{brand.BrandTransparentLogo.url}});"></div>
+                    <div class="video-brand-icon" ng-repeat="brand in video.brands.brands | limitTo: 5 track by $index" style="background-image: url({{brand.transparentThumbnail}});"></div>
                 </div>
             </div>
             <div class="action-buttons-container">
@@ -51,10 +51,10 @@
     <div class="footer-container">
         <a ui-sref="video({ id: video._id })">
             <span class="series-title">
-                {{video.title || '&nbsp;'}}
+                {{video.seriesTitle || '&nbsp;'}}
             </span><br />
             <span class="episode-title">
-                Episode 1: {{video.title || '&nbsp;'}}
+                Episode {{video.episodeNumber}}: {{video.title || '&nbsp;'}}
             </span>
         </a>
     </div>

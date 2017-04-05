@@ -17,6 +17,11 @@
                 }
             };
 
+            $scope.onItemPress = function(item) {
+                if (item.onClick) {
+                    item.onClick();
+                }
+            };
         }
     ];
 

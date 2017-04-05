@@ -71,6 +71,9 @@
 
             $scope.onImageLoad = function(event) {
                 $scope.ready = true;
+                if ($scope.onContentLoad) {
+                    $scope.onContentLoad();
+                }
             };
 
             $scope.go = function(path) {
@@ -84,7 +87,7 @@
                 // here.
                 var isSaving = angular.element($event.target).parent().hasClass('save-button');
                 if (!isSaving) {
-                    $state.go('video', { id: video._id });
+                    $state.go('video', { id: video.id });
                 }
             };
 

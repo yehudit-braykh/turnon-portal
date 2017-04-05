@@ -1,9 +1,9 @@
 <div class="clix-charity-logo">
     <clix-tooltip-menu items="items" menuopen="menuVisible" class="logo-menu-container" ng-hide="!menuVisible"></clix-tooltip-menu>
-    <div class="logo-image" style="background-image: url('{{charity.BrandTransparentLogo.url}}')"></div>
+    <div class="logo-image" style="background-image: url('{{charity.transparentThumbnail}}')"></div>
     <div class="logo-overlay">
-        <a ui-sref="charity({ id: '{{charity._id}}' })" class="hit-area"></a>
-        <a ui-sref="charity({ id: '{{charity._id}}' })" class="view-button-container">
+        <a ui-sref="charity({ id: charity.id })" class="hit-area"></a>
+        <a ui-sref="charity({ id: charity.id })" class="view-button-container">
             <div class="view-button">
                 <clix-view-button></clix-view-button>
             </div>

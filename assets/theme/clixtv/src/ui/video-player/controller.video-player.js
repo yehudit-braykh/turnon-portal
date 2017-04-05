@@ -11,8 +11,9 @@
                 var playerInstance;
 
                 if ($scope.video) {
+
                     playerInstance = jwplayer($scope.videoId).setup({
-                        file: $scope.video.HLSStream ? $scope.video.HLSStream.url : $scope.video.mainTrailer.url,
+                        file: $scope.video.streamUrl,
                         // primary: 'html5',
                         androidhls: true,
                         autostart: $scope.autoPlay,
@@ -21,7 +22,7 @@
                         width: '100%',
                         //repeat: true,
                         icons: false,
-                        image: $scope.video.PosterH ? $scope.video.PosterH.url : $scope.video.BackgroundImage.url
+                        image: $scope.video.thumbnail
                     });
 
                     if (playerInstance) {
