@@ -38,9 +38,9 @@
                             </sidebar-title>
                             <sidebar-content>
                                 <div class="row brand-offer-row">
-                                    <div class="col-xs-6 col-sm-6 col-md-12 col-lg-12 brand-offer-column" ng-repeat="offer in offers | limitTo: 3" ng-if="offers">
+                                    <div class="col-xs-6 col-sm-6 col-md-12 col-lg-12 brand-offer-column" ng-repeat="offer in brand.offers.offers | limitTo: 3">
                                         <div class="brand-offer">
-                                            <clix-content-callout sref="offer({ id: '{{offer._id}}' })" menu-items="offerMenuItems">
+                                            <clix-content-callout sref="offer({ id: '{{offer.id}}' })" menu-items="offerMenuItems">
                                                 <header-element>
                                                     <clix-offer-logo offer="offer"></clix-offer-logo>
                                                 </header-element>

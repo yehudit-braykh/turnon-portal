@@ -10,10 +10,19 @@
                     this.id = data._id;
                     this.title = data.title;
                     this.description = data.description;
-                    this.transparentThumbnail = data.content.BrandTransparentLogo.downloadUrl;
-                    this.headerImage = data.content.BackgroundImage.downloadUrl;
-                    this.logo = data.content.BrandLogo.downloadUrl;
                     this.offers = new OfferListModel(data.offers);
+
+                    if (data.content.BrandTransparentLogo) {
+                        this.transparentThumbnail = data.content.BrandTransparentLogo.downloadUrl;
+                    }
+
+                    if (data.content.BackgroundImage) {
+                        this.headerImage = data.content.BackgroundImage.downloadUrl;
+                    }
+
+                    if (data.content.BrandLogo) {
+                        this.logo = data.content.BrandLogo.downloadUrl;
+                    }
 
                     if (data.content.mainTrailer) {
                         this.trailer = data.content.mainTrailer.downloadUrl;

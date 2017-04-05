@@ -66,6 +66,8 @@
                 .then(
                     function onSuccess(data) {
 
+                        $scope.brand = data;
+
                         $scope.video = {
                             streamUrl: data.trailer,
                             thumbnail: data.trailerThumbnail
