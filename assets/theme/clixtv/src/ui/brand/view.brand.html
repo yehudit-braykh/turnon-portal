@@ -7,7 +7,7 @@
             title-text="{{configs.title}}"
             button-text="{{'+ Favorites'}}"
             points="{{'50'}}"
-            subtext="{{'18 Offers'}}"
+            subtext="{{brand.offers.offers.length}} {{brand.offers.offers.length === 1 ? 'Offer' : 'Offers'}}"
             button-icon-class="{{'icon-favorite-icon banner-favorite-icon'}}"
             background-image="{{configs.backgroundImage}}"
             background-image2x="{{configs.backgroundImage2x}}"
@@ -16,7 +16,7 @@
             share-tooltip-text="Share this brand."
     >
         <hero-banner-logo>
-            <img ng-src="{{configs.logo}}" ng-srcset="{{configs.logo2x}} 2x" />
+            <img ng-src="{{brand.transparentThumbnail}}" />
         </hero-banner-logo>
     </clix-hero-banner>
     <div class="brand-page-content">
