@@ -37,6 +37,11 @@
                         this.series = new SeriesListModel(data.series);
                     }
 
+                    if (data.offers) {
+                        var OfferListModel = $injector.get('OfferListModel');
+                        this.series = new OfferListModel(data.offers);
+                    }
+
                 }
             }
         ]);

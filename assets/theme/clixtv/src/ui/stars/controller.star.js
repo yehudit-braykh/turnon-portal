@@ -85,22 +85,32 @@
                 }
             ];
 
+            function _setEpisodeList() {
+
+            }
+
             celebrityService.getCelebrityById($stateParams.id)
                 .then(
                     function onSuccess(data) {
 
                         $scope.celebrity = data;
+
+                        console.log($scope.celebrity);
+
                         $scope.seriesList = data.series.series.map(function(series) {
                             return {
                                 label: series.title,
-                                seasons: series.seasons,
+                                series: series,
                                 onClick: function(option) {
                                     $scope.selectedSeries = option;
+                                    _setEpisodeList();
                                 }
                             }
                         });
 
                         $scope.selectedSeries = $scope.seriesList[0];
+                        _setEpisodeList();
+
 
 
                         return;

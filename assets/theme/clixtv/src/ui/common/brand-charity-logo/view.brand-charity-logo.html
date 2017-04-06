@@ -1,6 +1,6 @@
 <div class="clix-brand-charity-logo">
     <clix-tooltip-menu items="items" menuopen="menuVisible" class="logo-menu-container" ng-hide="!menuVisible"></clix-tooltip-menu>
-    <a ui-sref="brand({ slug: (brand.title | slug) })" class="logo-image" style="background-image: url('{{brand.transparentThumbnail}}')"></a>
+    <a ui-sref="brand({ id: '{{brand.id}}' })" class="logo-image" style="background-image: url('{{brand.transparentThumbnail}}')"></a>
     <div class="logo-points" clix-tooltip-trigger tooltip-id="tooltip-{{$id}}">
         <clix-points-violator>
             50
