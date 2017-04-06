@@ -95,8 +95,6 @@
 
                         $scope.celebrity = data;
 
-                        console.log($scope.celebrity);
-
                         $scope.seriesList = data.series.series.map(function(series) {
                             return {
                                 label: series.title,

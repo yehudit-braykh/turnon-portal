@@ -3747,8 +3747,6 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
                         $scope.celebrity = data;
 
-                        console.log($scope.celebrity);
-
                         $scope.seriesList = data.series.series.map(function(series) {
                             return {
                                 label: series.title,
@@ -5143,11 +5141,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     return $http.get('/api/category/get_category_by_id?id=' + id)
                         .then(
                             function onSuccess(data) {
-                                var categories = data.data.entries,
-                                    category = categories.filter(function(cat) {
-                                        return cat._id === id;
-                                    });
-                                return new CategoryModel(category[0]);
+                                return new CategoryModel(data.data);
                             }
                         );
                 },
