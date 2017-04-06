@@ -34,7 +34,7 @@ class Uvod_model extends CI_Model {
         $url = UVOD_PLATFORM_API_URL.$path;
         //debug($url);
         $json = file_get_contents($url . "?" . implode('&', $parameters));
-        
+
         // checks service response for valid json
         if (!$json || !isJson($json)) {
             throw new Exception('Internal error.');
@@ -42,7 +42,7 @@ class Uvod_model extends CI_Model {
 
         // decode service response
         $json_obj = json_decode($json);
-        //    debug($json_obj);
+            // debug($json_obj);
         // checks service response
         if (isset($json_obj->isException) && ($json_obj->isException == true || $json_obj->isException === "true")) {
             if($json_obj->responseCode == 403){

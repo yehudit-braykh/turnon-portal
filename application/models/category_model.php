@@ -10,7 +10,7 @@ class category_model extends Uvod_model {
 
 		if ($this->fastcache_model->get_cache("get_all_categories"))
 			return $this->fastcache_model->get_cache("get_all_categories");
-		$data =  $this->rows($this->apiCall('category')->entries);
+		$data =  $this->rows($this->apiCall('category/related')->entries);
 		$this->fastcache_model->set_cache("get_all_categories",$data);
 		return $data;
     }
@@ -19,7 +19,7 @@ class category_model extends Uvod_model {
 
 		if ($this->fastcache_model->get_cache("get_category_by_id".$id))
 			return $this->fastcache_model->get_cache("get_category_by_id".$id);
-		$data =  $this->rows($this->apiCall('category/'.$id));
+		$data =  $this->rows($this->apiCall('category/'.$id.'/related'));
 		$this->fastcache_model->set_cache("get_category_by_id".$id,$data);
 		return $data;
     }

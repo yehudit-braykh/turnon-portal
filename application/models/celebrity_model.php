@@ -9,7 +9,7 @@ class Celebrity_model extends Uvod_Model {
 	function get_all_celebrities(){
 		if ($this->fastcache_model->get_cache("get_all_celebrities"))
 			return $this->fastcache_model->get_cache("get_all_celebrities");
-		$data =  $this->rows($this->apiCall('celebrity')->entries);
+		$data =  $this->rows($this->apiCall('celebrity/related')->entries);
 		$this->fastcache_model->set_cache("get_all_celebrities",$data);
 		return $data;
     }
@@ -17,7 +17,7 @@ class Celebrity_model extends Uvod_Model {
 	public function get_celebrity($id){
 		if ($this->fastcache_model->get_cache("get_celebrity".$id))
 			return $this->fastcache_model->get_cache("get_celebrity".$id);
-		$data =  $this->rows($this->apiCall('celebrity/'.$id)->entries)[0];
+		$data =  $this->rows($this->apiCall('celebrity/'.$id.'/related')->entries)[0];
 		$this->fastcache_model->set_cache("get_celebrity".$id,$data);
 		return $data;
 	}
