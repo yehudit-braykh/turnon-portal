@@ -15,7 +15,9 @@ class Category extends REST_Controller{
     }
 
 	function get_category_by_id_get(){
-		$cat = $this->get("category");
+		$cat = $this->get("id");
+		if(!$cat)
+			$this->response("id field is mandatory",400);
 		$category = $this->category_model->get_category_by_id($cat);
 		// debug($category);
 		$this->response($category, 200);

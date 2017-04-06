@@ -24,16 +24,22 @@ class Brands extends REST_Controller{
 
     function get_brand_offers_get(){
 		$id = $this->get("id");
+		if(!$id)
+			$this->response("id field is mandatory",400);
         $this->response($this->brands_model->get_brand_offers($id),200);
     }
 
 	function get_brand_videos_get(){
 		$id = $this->get("id");
+		if(!$id)
+			$this->response("id field is mandatory",400);
         $this->response($this->brands_model->get_brand_videos($id),200);
     }
 
 	function get_brand_celebs_get(){
 		$id = $this->get("id");
+		if(!$id)
+			$this->response("id field is mandatory",400);
         $this->response($this->brands_model->get_brand_celebs($id),200);
     }
 
@@ -64,6 +70,8 @@ class Brands extends REST_Controller{
 	// functions for the related objects
 	function get_related_offers_get () {
 		$id = $this->get("id");
+		if(!$id)
+			$this->response("id field is mandatory",400);
 		$this->response( $this->brands_model->get_related_offers($id), 200);
 	}
 }

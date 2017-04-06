@@ -21,23 +21,31 @@ class Video extends REST_Controller{
 
 	function get_video_by_id_get(){
 		$id = $this->get("id");
+		if(!$id)
+			$this->response("id field is mandatory",400);
 		$this->response($this->video_model->get_video_by_id($id),200);
     }
 
     public function get_videos_by_featured_get(){
         $cat = $this->get("category");
+		if(!$cat)
+			$this->response("category field is mandatory",400);
 
 		$this->response($this->video_model->get_videos_by_featured($cat),200);
 	}
 
 	public function get_videos_by_category_get(){
         $cat = $this->get("category");
+		if(!$cat)
+			$this->response("category field is mandatory",400);
 
 		$this->response($this->video_model->get_videos_by_category($cat),200);
 	}
 
     public function search_get(){
         $txt = $this->get("text");
+		if(!$txt)
+			$this->response("text field is mandatory",400);
 		$this->response($this->video_model->search($txt),200);
 	}
 
@@ -48,7 +56,8 @@ class Video extends REST_Controller{
 
 	public function get_serie_by_id_get(){
 		$id= $this->get('id');
-
+		if(!$id)
+			$this->response("id field is mandatory",400);
 		$this->response($this->video_model->get_serie_by_id($id),200);
 	}
 
