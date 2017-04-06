@@ -17,8 +17,8 @@
             ></clix-search-filter>
         </page-search-filter>
         <page-content>
-            <clix-content-callout-list items="charities" menu-items="menuItems">
-                <clix-content-callout sref="charity({ id: '{{item._id}}' })" menu-items="menuItems">
+            <clix-content-callout-list items="charities.charities" menu-items="menuItems">
+                <clix-content-callout sref="charity({ id: '{{item.id}}' })" menu-items="menuItems">
                     <header-element>
                         <clix-charity-logo charity="item"></clix-charity-logo>
                     </header-element>
@@ -26,7 +26,7 @@
                         {{item.title}}
                     </title-content>
                     <subtitle-content>
-                        Nike
+                        {{item.videos.videos.length}} {{item.videos.videos.length === 1 ? 'Video' : 'Videos'}}
                     </subtitle-content>
                 </clix-content-callout>
             </clix-content-callout-list>

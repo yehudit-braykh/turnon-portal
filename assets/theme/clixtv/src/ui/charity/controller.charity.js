@@ -40,6 +40,17 @@
             brandsService.getCharityById($stateParams.id)
                 .then(
                     function onSuccess(data) {
+                        console.log(data);
+
+                        $scope.charity = data;
+
+                        $scope.video = {
+                            streamUrl: data.trailer,
+                            thumbnail: data.trailerThumbnail
+                        };
+
+                        return;
+
                         $scope.video = data;
                         $scope.configs = {
                             title: data.title,
@@ -60,10 +71,10 @@
                 )
                 .then(
                     function onSuccess(data) {
-                        console.log(data);
-                        $scope.celebrities = data[0];
-                        $scope.videos = data[1];
-                        $scope.relatedVideos = data[1];
+                        // console.log(data);
+                        // $scope.celebrities = data[0];
+                        // $scope.videos = data[1];
+                        // $scope.relatedVideos = data[1];
                     }
                 );
 

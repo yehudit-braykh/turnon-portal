@@ -1,22 +1,22 @@
-<div ng-if="!configs">
+<div ng-if="!charity">
     <clix-loader size="large"></clix-loader>
 </div>
 
-<div class="charity-page" ng-if="configs">
+<div class="charity-page" ng-if="charity">
     <clix-hero-banner
-            title-text="{{configs.title}}"
+            title-text="{{charity.title}}"
             button-text="{{'+ Favorites'}}"
-            subtext="{{'18 Videos'}}"
+            subtext="{{charity.videos.videos.length}} {{charity.videos.videos.length === 1 ? 'Video' : 'Videos'}}"
             button-icon-class="{{'icon-favorite-icon banner-favorite-icon'}}"
-            background-image="{{configs.backgroundImage}}"
-            background-image2x="{{configs.backgroundImage2x}}"
-            background-image3x="{{configs.backgroundImage3x}}"
+            background-image="{{charity.headerImage}}"
+            background-image2x="{{charity.headerImage}}"
+            background-image3x="{{charity.headerImage}}"
             charity="true"
             button-tooltip-text="{{loggedInUser ? 'Add this charity to your Favorites.' : 'After signing up, you will be able to add this charity to your Favorites.'}}"
             share-tooltip-text="Share this page."
     >
         <hero-banner-logo>
-            <img ng-src="{{configs.logo}}" ng-srcset="{{configs.logo2x}} 2x" />
+            <img ng-src="{{charity.transparentThumbnail}}" />
         </hero-banner-logo>
     </clix-hero-banner>
     <div class="charity-page-content">
@@ -29,10 +29,10 @@
                             <content-description>
                                 <div class="charity-description-container">
                                     <clix-secondary-header>
-                                        About {{configs.title}}
+                                        About {{charity.title}}
                                     </clix-secondary-header>
                                     <div class="home-description">
-                                        {{configs.description}}
+                                        {{charity.description}}
                                     </div>
                                     <div class="donate-button">
                                         <clix-primary-button type="charity" ng-click="onDonatePress()">
@@ -42,21 +42,21 @@
                                 </div>
                             </content-description>
                             <sidebar-title>
-                                Stars Who Support {{configs.title}}
+                                Stars Who Support {{charity.title}}
                             </sidebar-title>
                             <sidebar-content>
                                 <div class="row brand-offer-row">
-                                    <div class="col-xs-6 col-sm-6 col-md-12 col-lg-12 brand-offer-column" ng-repeat="celebrity in celebrities | limitTo: 3">
+                                    <div class="col-xs-6 col-sm-6 col-md-12 col-lg-12 brand-offer-column" ng-repeat="celebrity in charity.celebrities.celebrities | limitTo: 3">
                                         <div class="star-support-callout">
-                                            <clix-content-callout sref="star({ id: '{{celebrity._id}}' })">
+                                            <clix-content-callout sref="star({ id: '{{celebrity.id}}' })">
                                                 <header-element>
-                                                    <div class="star-logo" style="background-image: url({{celebrity.BrandLogo.url}})"></div>
+                                                    <div class="star-logo" style="background-image: url({{celebrity.thumbnail}})"></div>
                                                 </header-element>
                                                 <title-content>
-                                                    {{celebrity.title}}
+                                                    {{celebrity.name}}
                                                 </title-content>
                                                 <subtitle-content>
-                                                    127 Videos
+                                                    {{celebrity.videos.videos.length}} {{celebrity.videos.videos.length === 1 ? 'Video' : 'Videos'}}
                                                 </subtitle-content>
                                             </clix-content-callout>
                                         </div>
@@ -66,8 +66,8 @@
                             <footer-content>
                                 <div class="home-footer-content">
                                     <div class="brand-celebrity-videos">
-                                        <div ng-repeat="celebrity in celebrities | limitTo: 3">
-                                            <clix-video-category-scroll-list category-title="{{celebrity.title}} and {{configs.title}}" category-videos="relatedVideos"></clix-video-category-scroll-list>
+                                        <div ng-repeat="celebrity in charity.celebrities.celebrities | limitTo: 3">
+                                            <clix-video-category-scroll-list category-title="{{celebrity.name}} and {{charity.title}}" category-videos="celebrity.videos.videos"></clix-video-category-scroll-list>
                                         </div>
                                     </div>
                                 </div>
@@ -78,8 +78,8 @@
                 </uib-tab>
                 <uib-tab index="2" heading="Stars">
                     <div class="stars-container">
-                        <div ng-repeat="celebrity in celebrities">
-                            <clix-video-category-scroll-list category-title="{{celebrity.title}} and {{configs.title}}" category-videos="relatedVideos"></clix-video-category-scroll-list>
+                        <div ng-repeat="celebrity in charity.celebrities.celebrities">
+                            <clix-video-category-scroll-list category-title="{{celebrity.name}} and {{charity.title}}" category-videos="celebrity.videos.videos"></clix-video-category-scroll-list>
                         </div>
                     </div>
                 </uib-tab>
@@ -88,7 +88,7 @@
                         <div class="videos-title-container">
                             <div class="videos-title">
                                 <clix-secondary-header>
-                                    All Videos Featuring {{configs.title}}
+                                    All Videos Featuring {{charity.title}}
                                 </clix-secondary-header>
                             </div>
                             <div class="video-sort-container">
@@ -96,7 +96,7 @@
                             </div>
                         </div>
                         <div class="row clix-block-row">
-                            <div class="clix-block-item col-xs-12 col-sm-12 col-md-3 col-lg-2-4" ng-repeat="video in videos" ng-if="videos">
+                            <div class="clix-block-item col-xs-12 col-sm-12 col-md-3 col-lg-2-4" ng-repeat="video in charity.videos.videos">
                                 <clix-video-content-box video="video"></clix-video-content-box>
                             </div>
                         </div>

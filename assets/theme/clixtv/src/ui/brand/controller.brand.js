@@ -68,8 +68,6 @@
 
                         $scope.brand = data;
 
-                        console.log(data);
-
                         $scope.video = {
                             streamUrl: data.trailer,
                             thumbnail: data.trailerThumbnail

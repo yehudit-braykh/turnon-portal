@@ -1,8 +1,11 @@
 <div class="video-category-scroll-list">
     <h2>
-        <a ui-sref="category({ id: '{{category.id}}' })">
+        <a ui-sref="category({ id: '{{category.id}}' })" ng-show="category.headerLink !== false">
             {{category.title}} <i class="icon-right-arrow"></i>
         </a>
+        <span ng-show="category.headerLink === false">
+            {{category.title}} <i class="icon-right-arrow"></i>
+        </span>
     </h2>
     <div class="category-container">
         <div class="visible-lg">

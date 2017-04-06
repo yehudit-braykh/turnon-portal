@@ -7990,7 +7990,8 @@ button.close {
     margin-bottom: 30px;
   }
 }
-.video-category-scroll-list h2 a {
+.video-category-scroll-list h2 a,
+.video-category-scroll-list h2 span {
   color: #aaaaaa;
 }
 .video-category-scroll-list h2 a:hover,

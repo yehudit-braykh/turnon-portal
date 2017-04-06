@@ -14,6 +14,7 @@
 
                 if (!scope.category) {
                     scope.category = {
+                        headerLink: false,
                         title: scope.categoryTitle,
                         videos: {
                             videos: scope.categoryVideos

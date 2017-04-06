@@ -5,8 +5,10 @@
         'stringUtils',
         'BrandListModel',
         'OfferListModel',
+        'CharityListModel',
         'BrandModel',
-        function($http, stringUtils, BrandListModel, OfferListModel, BrandModel) {
+        'CharityModel',
+        function($http, stringUtils, BrandListModel, OfferListModel, CharityListModel, BrandModel, CharityModel) {
             return {
 
                 /**
@@ -71,7 +73,7 @@
                     return $http.get('/api/brands/get_charities_array')
                         .then(
                             function(data) {
-                                return data.data;
+                                return new CharityListModel(data.data);
                             }
                         );
                 },
@@ -99,10 +101,10 @@
                  * @todo - Cache this call
                  */
                 getCharityById: function(id) {
-                    return $http.get('/api/brands/get_brand?id=' + id)
+                    return $http.get('/api/brands/get_charity?id=' + id)
                         .then(
                             function onSuccess(data) {
-                                return data.data[0];
+                                return new CharityModel(data.data[0]);
                             }
                         );
                 },
