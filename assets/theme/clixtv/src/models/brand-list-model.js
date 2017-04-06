@@ -10,6 +10,11 @@
                         return [];
                     }
                     this.brands = data.map(function(brand) {
+                        if (typeof brand === 'string') {
+                            return {
+                                id: brand
+                            };
+                        }
                         return new BrandModel(brand);
                     });
                 }

@@ -10,8 +10,6 @@
             function($injector, CelebrityModel, BrandListModel, CharityModel) {
                 return function(data) {
 
-                    // console.log(data);
-
                     this.id = data._id;
                     this.title = data.title;
                     this.description = data.description;

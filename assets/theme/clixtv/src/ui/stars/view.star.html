@@ -1,20 +1,20 @@
-<div ng-if="!configs">
+<div ng-if="!celebrity">
     <clix-loader size="large"></clix-loader>
 </div>
 
-<div class="clix-star-page" ng-if="configs">
+<div class="clix-star-page" ng-if="celebrity">
     <clix-hero-banner
-        title-text="{{configs.title}}"
+        title-text="{{celebrity.name}}"
         button-text="{{'+ Favorites'}}"
         button-icon-class="{{'icon-favorite-icon banner-favorite-icon'}}"
         button-tooltip-text="{{loggedInUser ? 'Add this star to your Favorites.' : 'After signing up, you will be able to add this star to your Favorites.'}}"
         points="{{'50'}}"
-        subtext="{{'217 Videos'}}"
-        background-image="{{configs.backgroundImage}}"
+        subtext="{{celebrity.videos.videos.length}} {{celebrity.videos.videos.length === 1 ? 'Video' : 'Videos'}}"
+        background-image="{{celebrity.headerImage}}"
         share-tooltip-text="Share this page."
     >
         <hero-banner-logo>
-            <div class="star-logo" style="background-image: url('{{configs.logo}}')"></div>
+            <div class="star-logo" style="background-image: url('{{celebrity.thumbnail}}')"></div>
         </hero-banner-logo>
     </clix-hero-banner>
     <div class="brand-page-content">
@@ -26,17 +26,19 @@
                         <div class="videos-title-container">
                             <div class="videos-title">
                                 <clix-secondary-header>
-                                    {{configs.title}}: Series 1
+                                    {{celebrity.name}}: {{selectedSeries.label}}
                                 </clix-secondary-header>
                             </div>
                             <div class="video-sort-container">
                                 <clix-dropdown options="seriesList" placeholder-text="Select Series"></clix-dropdown>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row" ng-repeat="season in selectedSeries.seasons.seasons">
+
                             <div class="col-sm-8">
                                 <div class="row clix-block-row">
-                                    <div class="clix-block-item col-xs-12 col-sm-12 col-md-6 col-lg-4" ng-repeat="video in videos" ng-if="videos">
+                                    <div class="clix-block-item col-xs-12 col-sm-12 col-md-6 col-lg-4" ng-repeat="video in season.videos.videos">
+                                        {{video}}
                                         <clix-video-content-box video="video"></clix-video-content-box>
                                     </div>
                                 </div>

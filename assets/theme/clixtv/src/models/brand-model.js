@@ -39,8 +39,6 @@
                     if (data.content.PosterH) {
                         this.trailerThumbnail = data.content.PosterH.downloadUrl;
                     }
-
-                    // console.log(data);
                 }
             }
         ]);

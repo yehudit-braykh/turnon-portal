@@ -21,7 +21,7 @@
                     onClick: function() {
                         $scope.selected = option;
                         $scope.menuVisible = false;
-                        option.onClick();
+                        option.onClick(option);
                     }
                 }
             });

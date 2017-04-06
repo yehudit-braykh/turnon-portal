@@ -85,21 +85,26 @@
                 }
             ];
 
-            $scope.seriesList = [
-                {
-                    label: 'Series 1'
-                },
-                {
-                    label: 'Series 2'
-                },
-                {
-                    label: 'Series 3'
-                }
-            ];
-
             celebrityService.getCelebrityById($stateParams.id)
                 .then(
                     function onSuccess(data) {
+
+                        $scope.celebrity = data;
+                        $scope.seriesList = data.series.series.map(function(series) {
+                            return {
+                                label: series.title,
+                                seasons: series.seasons,
+                                onClick: function(option) {
+                                    $scope.selectedSeries = option;
+                                }
+                            }
+                        });
+
+                        $scope.selectedSeries = $scope.seriesList[0];
+
+
+                        return;
+
                         $scope.configs = {
                             title: data.title,
                             description: data.description,
@@ -118,11 +123,11 @@
                 )
                 .then(
                     function onSuccess(data) {
-                        $scope.relatedVideos = data[0];
-                        $scope.videos = data[0];
-                        $scope.brands = data[1];
-                        $scope.charities = data[2];
-                        $scope.offers = data[3];
+                        // $scope.relatedVideos = data[0];
+                        // $scope.videos = data[0];
+                        // $scope.brands = data[1];
+                        // $scope.charities = data[2];
+                        // $scope.offers = data[3];
                     }
                 );
         }

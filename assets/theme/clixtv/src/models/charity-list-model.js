@@ -10,6 +10,11 @@
                         return [];
                     }
                     this.charities = data.map(function(charity) {
+                        if (typeof charity === 'string') {
+                            return {
+                                id: charity
+                            };
+                        }
                         return new CharityModel(charity);
                     });
                 }

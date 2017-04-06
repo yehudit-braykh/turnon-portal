@@ -2,7 +2,9 @@
 
     var celebrityService = [
         '$http',
-        function($http) {
+        'CelebrityListModel',
+        'CelebrityModel',
+        function($http, CelebrityListModel, CelebrityModel) {
             return {
 
                 /**
@@ -12,7 +14,7 @@
                     return $http.get('/api/celebrity/get_all_celebrities')
                         .then(
                             function onSuccess(data) {
-                                return data.data;
+                                return new CelebrityListModel(data.data);
                             }
                         );
                 },
@@ -24,7 +26,7 @@
                     return $http.get('/api/celebrity/get_celebrity?id=' + id)
                         .then(
                             function onSuccess(data) {
-                                return data.data[0];
+                                return new CelebrityModel(data.data);
                             }
                         );
                 },

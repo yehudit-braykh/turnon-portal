@@ -17,16 +17,16 @@
             ></clix-search-filter>
         </page-search-filter>
         <page-content>
-            <clix-content-callout-list items="stars" menu-items="menuItems">
-                <clix-content-callout sref="star({ id: '{{item._id}}' })" menu-items="menuItems">
+            <clix-content-callout-list items="stars.celebrities" menu-items="menuItems">
+                <clix-content-callout sref="star({ id: '{{item.id}}' })" menu-items="menuItems">
                     <header-element>
-                        <div class="star-logo" style="background-image: url({{item.BrandLogo.url}})"></div>
+                        <div class="star-logo" style="background-image: url({{item.thumbnail}})"></div>
                     </header-element>
                     <title-content>
-                        {{item.title}}
+                        {{item.name}}
                     </title-content>
                     <subtitle-content>
-                        127 Videos
+                        {{item.videos.videos.length}} {{item.videos.videos.length === 1 ? 'Video' : 'Videos'}}
                     </subtitle-content>
                 </clix-content-callout>
             </clix-content-callout-list>
