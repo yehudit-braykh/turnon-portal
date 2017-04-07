@@ -4411,7 +4411,12 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             };
 
             $scope.onFavoritePress = function() {
-                console.log('FAVORITE');
+                userService.addFavoriteCelebrity($scope.video.celebrity.id)
+                    .then(
+                        function onSuccess(data) {
+                            console.log(data);
+                        }
+                    );
             }
         }
     ];
@@ -5441,12 +5446,69 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
     var userService = [
         '$q',
         '$http',
+        '$log',
         '$rootScope',
-        function($q, $http, $rootScope) {
+        function($q, $http, $log, $rootScope) {
 
             var loggedInUser;
 
-            return {
+            function _getUserFavoritePropertyForType(type) {
+                switch(type) {
+                    case 'celebrity':
+                        return 'favoriteCelebs';
+                    case 'brand':
+                        return 'favoriteBrands';
+                    case 'category':
+                        return 'favoriteCategories';
+                    case 'charity':
+                        return 'favoriteCharities';
+                    default:
+                        return undefined;
+                }
+            }
+
+            function _addFavorite(id, type) {
+                var userFavoriteProperty, favorites;
+
+                if (!loggedInUser) {
+                    $log.error('No logged in user found to add favorite', type);
+                    return;
+                }
+
+                if (!id) {
+                    $log.error('No ID provided to add to favorites');
+                    return;
+                }
+
+                userFavoriteProperty = _getUserFavoritePropertyForType(type);
+
+                if (!userFavoriteProperty) {
+                    throw new Error('Invalid type provided for favorite');
+                }
+
+                favorites = loggedInUser[userFavoriteProperty] || [];
+
+                if (favorites.indexOf(id) !== -1) {
+                    $log.warn(id + ' has already been favorited');
+                    return;
+                }
+
+                favorites.push(id);
+
+                loggedInUser[userFavoriteProperty] = favorites;
+
+                return methods.updateUser(loggedInUser);
+            }
+
+            function _removeFavorite(id, type) {
+                if (!loggedInUser) {
+                    $log.error('No logged in user found to remove favorite', type);
+                    return;
+                }
+
+            }
+
+            var methods = {
 
                 loginWithEmailPassword: function(email, password) {
                     return $http.post('/api/account/login_user', {
@@ -5487,6 +5549,12 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                                 return data.data;
                             }
                         )
+                },
+
+                updateUser: function(user) {
+                    return $http.post('/api/account/update_profile', {
+                        data: user
+                    });
                 },
 
                 logout: function() {
@@ -5571,8 +5639,42 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                                 return data.data;
                             }
                         );
+                },
+
+                addFavoriteCelebrity: function(id) {
+                    return _addFavorite(id, 'celebrity');
+                },
+
+                removeFavoriteCelebrity: function(id) {
+                    _removeFavorite(id, 'celebrity');
+                },
+
+                addFavoriteBrand: function(id) {
+                    _addFavorite(id, 'brand');
+                },
+
+                removeFavoriteBrand: function(id) {
+                    _removeFavorite(id, 'brand');
+                },
+
+                addFavoriteCategory: function(id) {
+                    _addFavorite(id, 'category');
+                },
+
+                removeFavoriteCategory: function(id) {
+                    _removeFavorite(id, 'category');
+                },
+
+                addFavoriteCharity: function(id) {
+                    _addFavorite(id, 'charity');
+                },
+
+                removeFavoriteCharity: function(id) {
+                    _removeFavorite(id, 'charity');
                 }
-            }
+            };
+
+            return methods;
         }
     ];
 

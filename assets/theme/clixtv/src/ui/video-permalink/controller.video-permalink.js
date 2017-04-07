@@ -61,7 +61,12 @@
             };
 
             $scope.onFavoritePress = function() {
-                console.log('FAVORITE');
+                userService.addFavoriteCelebrity($scope.video.celebrity.id)
+                    .then(
+                        function onSuccess(data) {
+                            console.log(data);
+                        }
+                    );
             }
         }
     ];
