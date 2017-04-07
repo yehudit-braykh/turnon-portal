@@ -8,7 +8,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-5">
+        <div class="col-sm-5" ng-if="showFilters !== 'false'">
             <div class="filters-container">
                 <div class="filter-bar">
                     <clix-dropdown options="filterOptions" placeholder-text="{{filterPlaceholder}}"></clix-dropdown>

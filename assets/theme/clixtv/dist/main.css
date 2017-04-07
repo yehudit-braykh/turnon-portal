@@ -8975,6 +8975,49 @@ button.close {
 .clix-footer .clix-logo {
   max-width: 100%;
 }
+.clix-not-found-page {
+  background-color: #313131;
+  padding-top: 93px;
+}
+@media (min-width: 768px) {
+  .clix-not-found-page {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+.clix-not-found-page .clix-search-filter .search-bar {
+  margin: 0 9px;
+}
+@media (min-width: 768px) {
+  .clix-not-found-page .clix-search-filter .search-bar {
+    margin: 0;
+  }
+}
+.clix-not-found-page .clix-search-filter .search-bar-container {
+  margin-bottom: 0;
+}
+.clix-not-found-page .clix-empty-container {
+  margin: 0 10px;
+  padding-top: 130px;
+}
+.clix-not-found-page .footer-links-container {
+  text-align: center;
+  padding-bottom: 50px;
+}
+@media (min-width: 768px) {
+  .clix-not-found-page .footer-links-container {
+    padding-bottom: 100px;
+  }
+}
+.clix-not-found-page .footer-links-container a {
+  font-family: 'pt_sansregular', sans-serif;
+  text-transform: uppercase;
+  color: #8a8a8a;
+  text-decoration: underline;
+  font-size: 14px;
+  letter-spacing: 1.6px;
+  line-height: 22px;
+}
 .home-page {
   background-color: #0e0e0e;
 }
@@ -9307,6 +9350,7 @@ button.close {
   align-items: center;
   color: #8a8a8a;
   padding-right: 14px;
+  cursor: pointer;
 }
 @media (min-width: 768px) {
   .video-permalink-page .social-container .social-icon-container {
@@ -13680,6 +13724,26 @@ button.close {
   background-image: -webkit-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
   background-image: -o-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
 }
+.clix-right-navigation .avatar-container .camera-icon-container {
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  position: absolute;
+  z-index: 2000;
+  top: 94px;
+  right: 82px;
+  width: 23px;
+  height: 23px;
+  background-color: #171717;
+  border: 1px solid #7e7c7d;
+  color: #828282;
+  font-size: 15px;
+  padding-top: 2px;
+  text-align: center;
+}
 .clix-right-navigation .navigation-list {
   -webkit-flex: 1;
   -ms-flex: 1;
@@ -14131,7 +14195,7 @@ button.close {
   position: absolute;
   top: -12px;
   left: 50%;
-  margin-left: -5px;
+  margin-left: -10px;
 }
 .clix-tooltip.active .clix-tooltip-content {
   filter: alpha(opacity=100);

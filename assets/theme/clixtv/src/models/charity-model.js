@@ -8,9 +8,9 @@
                 return function(data) {
 
                     if (typeof data === 'string') {
-                        this.id = data;
                         return;
                     }
+
                     this.id = data._id;
                     this.title = data.title;
                     this.description = data.description;

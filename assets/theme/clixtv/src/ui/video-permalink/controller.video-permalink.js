@@ -67,7 +67,16 @@
                             console.log(data);
                         }
                     );
-            }
+            };
+
+            $scope.onWatchlistPress = function() {
+                userService.addVideoToWatchlist($scope.video.id)
+                    .then(
+                        function onSuccess(data) {
+                            console.log(data);
+                        }
+                    );
+            };
         }
     ];
 

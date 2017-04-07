@@ -2,12 +2,14 @@
 
     var StarController = [
         '$q',
+        '$log',
         '$scope',
         '$rootScope',
+        '$state',
         '$stateParams',
         'celebrityService',
         'userService',
-        function($q, $scope, $rootScope, $stateParams, celebrityService, userService) {
+        function($q, $log, $scope, $rootScope, $state, $stateParams, celebrityService, userService) {
 
             $rootScope.$on('user.login', function(event, data) {
                 $scope.loggedInUser = data;
@@ -108,34 +110,12 @@
 
                         $scope.selectedSeries = $scope.seriesList[0];
                         _setEpisodeList();
-
-
-
-                        return;
-
-                        $scope.configs = {
-                            title: data.title,
-                            description: data.description,
-                            backgroundImage: data.BackgroundImage.url,
-                            logo: data.BrandLogo.url
-                        };
-                        return $q.all(
-                            [
-                                celebrityService.getVideosByCelebrityId(data._id),
-                                celebrityService.getBrandsByCelebrityId(data._id),
-                                celebrityService.getCharitiesByCelebrityId(data._id),
-                                celebrityService.getOffersByCelebrityId(data._id)
-                            ]
-                        )
                     }
                 )
-                .then(
-                    function onSuccess(data) {
-                        // $scope.relatedVideos = data[0];
-                        // $scope.videos = data[0];
-                        // $scope.brands = data[1];
-                        // $scope.charities = data[2];
-                        // $scope.offers = data[3];
+                .catch(
+                    function onError(error) {
+                        $log.error(error);
+                        $state.go('404');
                     }
                 );
         }

@@ -11,7 +11,8 @@
                 filterPlaceholder: '@',
                 sortPlaceholder: '@',
                 filterOptions: '=',
-                sortOptions: '='
+                sortOptions: '=',
+                showFilters: '@?'
             }
         }
     };

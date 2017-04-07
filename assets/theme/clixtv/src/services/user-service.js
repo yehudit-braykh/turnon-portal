@@ -19,6 +19,8 @@
                         return 'favoriteCategories';
                     case 'charity':
                         return 'favoriteCharities';
+                    case 'watchlist':
+                        return 'watchlist';
                     default:
                         return undefined;
                 }
@@ -228,6 +230,14 @@
 
                 removeFavoriteCharity: function(id) {
                     _removeFavorite(id, 'charity');
+                },
+
+                addVideoToWatchlist: function(id) {
+                    _addFavorite(id, 'watchlist');
+                },
+
+                removeVideoFromWatchlist: function(id) {
+                    _removeFavorite(id, 'watchlist');
                 }
             };
 

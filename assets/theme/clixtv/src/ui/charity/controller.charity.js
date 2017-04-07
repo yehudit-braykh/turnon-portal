@@ -2,13 +2,15 @@
 
     var CharityController = [
         '$q',
+        '$log',
         '$scope',
         '$rootScope',
         '$uibModal',
+        '$state',
         '$stateParams',
         'brandsService',
         'userService',
-        function($q, $scope, $rootScope, $uibModal, $stateParams, brandsService, userService) {
+        function($q, $log, $scope, $rootScope, $uibModal, $state, $stateParams, brandsService, userService) {
 
             $rootScope.$on('user.login', function(event, data) {
                 $scope.loggedInUser = data;
@@ -40,7 +42,10 @@
             brandsService.getCharityById($stateParams.id)
                 .then(
                     function onSuccess(data) {
-                        console.log(data);
+
+                        if (!data || !data.id) {
+                            throw new Error('Invalid data returned');
+                        }
 
                         $scope.charity = data;
 
@@ -48,33 +53,12 @@
                             streamUrl: data.trailer,
                             thumbnail: data.trailerThumbnail
                         };
-
-                        return;
-
-                        $scope.video = data;
-                        $scope.configs = {
-                            title: data.title,
-                            description: data.description,
-                            backgroundImage: '/assets/theme/clixtv/dist/images/special-olympics-header.jpg',
-                            backgroundImage2x: '/assets/theme/clixtv/dist/images/special-olympics-header@2x.jpg',
-                            backgroundImage3x: '/assets/theme/clixtv/dist/images/special-olympics-header@3x.jpg',
-                            logo: data.BrandTransparentLogo.url
-                        };
-
-                        return $q.all(
-                            [
-                                brandsService.getCelebritiesByBrandId(data._id),
-                                brandsService.getVideosByBrandId(data._id)
-                            ]
-                        )
                     }
                 )
-                .then(
-                    function onSuccess(data) {
-                        // console.log(data);
-                        // $scope.celebrities = data[0];
-                        // $scope.videos = data[1];
-                        // $scope.relatedVideos = data[1];
+                .catch(
+                    function onError(error) {
+                        $log.error(error);
+                        $state.go('404');
                     }
                 );
 

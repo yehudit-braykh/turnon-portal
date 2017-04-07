@@ -25,8 +25,14 @@
 
                 // $locationProvider.html5Mode(true);
                 $urlRouterProvider.when('', '/');
+                $urlRouterProvider.otherwise('/404');
 
                 $stateProvider
+                    .state('404', {
+                        url: '/404',
+                        templateUrl: 'ui/notfound/view.not-found.html',
+                        controller: 'NotFoundController'
+                    })
                     .state('home', {
                         url: '/',
                         templateUrl: 'ui/home/view.home.html',

@@ -103,7 +103,7 @@
                             </div>
                         </div>
                         <div class="social-icon-container" clix-tooltip-trigger tooltip-id="watchlist-button-{{$id}}">
-                            <a href="#" class="social-icon save-icon icon-redeem-plus-icon"></a>
+                            <a clix-required-login-click="onWatchlistPress()" class="social-icon save-icon icon-redeem-plus-icon"></a>
                         </div>
 
                         <clix-tooltip tooltip-id="watchlist-button-{{$id}}">
