@@ -17,17 +17,17 @@
                             <div class="brands-title">
                                 Brands in this Series
                             </div>
-                            <div class="charity-title">
+                            <div class="charity-title" ng-if="video.charity">
                                 Charity
                             </div>
                         </div>
 
                         <div class="logo-list-container">
-                            <a ng-repeat="brand in brands | limitTo: 4" ui-sref="brand({ slug: '{{brand.title | slug}}' })" class="brand-logo-link">
+                            <a ng-repeat="brand in brands | limitTo: 4" ui-sref="brand({ id: '{{brand.id}}' })" class="brand-logo-link">
                                 <clix-brand-charity-logo brand="brand"></clix-brand-charity-logo>
                             </a>
-                            <div ng-repeat="charity in charities | limitTo: 1" class="brand-logo-link">
-                                <clix-charity-logo charity="charity"></clix-charity-logo>
+                            <div class="brand-logo-link" ng-if="video.charity">
+                                <clix-charity-logo charity="video.charity"></clix-charity-logo>
                             </div>
                         </div>
                     </div>
@@ -35,21 +35,21 @@
             </div>
 
 
-            <div class="up-next-container hidden-sm hidden-xs">
-                <div class="up-next-header">
-                    <div class="up-next-label">
-                        Up Next in This Series
-                    </div>
-                    <div class="series-dropdown">
-                        <clix-dropdown options="seasonList"></clix-dropdown>
-                    </div>
-                </div>
-                <div class="row next-video-list" ng-repeat="season in seasons" ng-show="selectedSeason.id === season.id">
-                    <div class="col-lg-4 next-video" ng-repeat="nextVideo in season.episodes track by $index">
-                        <clix-video-content-box video="nextVideo"></clix-video-content-box>
-                    </div>
-                </div>
-            </div>
+            <!--<div class="up-next-container hidden-sm hidden-xs">-->
+                <!--<div class="up-next-header">-->
+                    <!--<div class="up-next-label">-->
+                        <!--Up Next in This Series-->
+                    <!--</div>-->
+                    <!--<div class="series-dropdown">-->
+                        <!--<clix-dropdown options="seasonList"></clix-dropdown>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="row next-video-list" ng-repeat="season in seasons" ng-show="selectedSeason.id === season.id">-->
+                    <!--<div class="col-lg-4 next-video" ng-repeat="nextVideo in season.episodes track by $index">-->
+                        <!--<clix-video-content-box video="nextVideo"></clix-video-content-box>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
         </div>
         <div class="col-md-5 col-lg-4 star-info-column-container">
 
@@ -65,7 +65,9 @@
                                 <clix-violator>100 Reward Points</clix-violator>
                             </div>
                         </div>
-                        <a href="#" class="favorite-icon icon-favorite-icon" clix-tooltip-trigger tooltip-id="favorite-button-{{$id}}"></a>
+                        <div clix-tooltip-trigger tooltip-id="favorite-button-{{$id}}">
+                            <a clix-required-login-click="onFavoritePress()" class="favorite-icon icon-favorite-icon"></a>
+                        </div>
 
                         <clix-tooltip tooltip-id="favorite-button-{{$id}}">
                             Add this Star to your Favorites.
@@ -139,7 +141,7 @@
                         </div>
                         <div class="row total-views-available-container">
                             <div class="col-sm-6 total-views">48,096,110 views</div>
-                            <div class="col-sm-6 available-until">Available Until 2 February 2017</div>
+                            <div class="col-sm-6 available-until" ng-if="video.expirationDate">Available Until {{video.expirationDate | clixDate: 'long'}}</div>
                         </div>
 
                         <div class="description">
@@ -147,7 +149,7 @@
                         </div>
 
                         <div class="meta-data">
-                            <div class="meta-data-row">
+                            <div class="meta-data-row" ng-if="video.categories">
                                 <span class="meta-data-label">
                                     Category:
                                 </span>
@@ -155,21 +157,21 @@
                                     <a ui-sref="category({ slug: '{{category.name | slug}}' })">{{category.name}}</a><span ng-if="!$last">,&nbsp;</span>
                                 </span>
                             </div>
-                            <div class="meta-data-row">
+                            <div class="meta-data-row" ng-if="video.celebrity">
                                 <span class="meta-data-label">
                                     Stars:
                                 </span>
                                 <a ui-sref="star({ id: '{{video.celebrity.id}}' })">{{video.celebrity.name}}</a>
                             </div>
-                            <div class="meta-data-row">
+                            <div class="meta-data-row" ng-if="video.brands">
                                 <span class="meta-data-label">
                                     Brands:
                                 </span>
                                 <span ng-repeat="brand in video.brands.brands">
-                                    <a ui-sref="brand({ slug: '{{brand.title | slug}}' })">{{brand.title}}</a><span ng-if="!$last">,&nbsp;</span>
+                                    <a ui-sref="brand({ id: '{{brand.id}}' })">{{brand.title}}</a><span ng-if="!$last">,&nbsp;</span>
                                 </span>
                             </div>
-                            <div class="meta-data-row">
+                            <div class="meta-data-row" ng-if="video.charity">
                                 <span class="meta-data-label">
                                     Charity:
                                 </span>
@@ -190,16 +192,16 @@
                                 <div class="brands-title">
                                     Brands in this Series
                                 </div>
-                                <div class="charity-title">
+                                <div class="charity-title" ng-if="video.charity">
                                     Charity
                                 </div>
                             </div>
 
                             <div class="logo-list-container">
-                                <a ng-repeat="brand in video.brands.brands | limitTo: 4" ui-sref="brand({ slug: '{{brand.title | slug}}' })" class="brand-logo-link">
+                                <a ng-repeat="brand in video.brands.brands | limitTo: 4" ui-sref="brand({ id: '{{brand.id}}' })" class="brand-logo-link">
                                     <clix-brand-charity-logo brand="brand" hover-enabled="true"></clix-brand-charity-logo>
                                 </a>
-                                <div class="brand-logo-link">
+                                <div class="brand-logo-link" ng-if="video.charity">
                                     <clix-charity-logo charity="video.charity"></clix-charity-logo>
                                 </div>
                             </div>
@@ -220,19 +222,19 @@
             </div>
         </div>
     </div>
-    <div class="up-next-container visible-sm visible-xs">
-        <div class="series-dropdown">
-            <clix-dropdown options="seasonList"></clix-dropdown>
-        </div>
-        <div class="up-next-label">
-            Up Next in This Series
-        </div>
-        <div class="row next-video-list">
-            <div class="col-lg-4 next-video" ng-repeat="nextVideo in nextVideos track by $index">
-                <clix-video-content-box video="nextVideo"></clix-video-content-box>
-            </div>
-        </div>
-    </div>
+    <!--<div class="up-next-container visible-sm visible-xs">-->
+        <!--<div class="series-dropdown">-->
+            <!--<clix-dropdown options="seasonList"></clix-dropdown>-->
+        <!--</div>-->
+        <!--<div class="up-next-label">-->
+            <!--Up Next in This Series-->
+        <!--</div>-->
+        <!--<div class="row next-video-list">-->
+            <!--<div class="col-lg-4 next-video" ng-repeat="nextVideo in nextVideos track by $index">-->
+                <!--<clix-video-content-box video="nextVideo"></clix-video-content-box>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
 
     <div class="related-videos-container visible-sm visible-xs">
         <div class="related-videos-header">

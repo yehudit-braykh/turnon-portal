@@ -9,7 +9,8 @@
         '$stateParams',
         'videosService',
         'celebrityService',
-        function($q, $scope, $timeout, $window, $filter, $stateParams, videosService, celebrityService, catchMediaService) {
+        'userService',
+        function($q, $scope, $timeout, $window, $filter, $stateParams, videosService, celebrityService, userService) {
 
             $scope.isMobile = ($window.innerWidth <= 800);
             $scope.expanded = false;
@@ -18,45 +19,20 @@
                 .then(
                     function onSuccess(data) {
                         $scope.video = data;
-
-                        var seasons = $filter('orderBy')(data.series.seasons.seasons, 'seasonNumber');
-
-                        $scope.seasons = seasons;
-                        $scope.selectedSeason = seasons[0];
-                        $scope.seasonList = seasons.map(function(season) {
-                            return {
-                                label: 'Season ' + season.seasonNumber + ': ' + season.title,
-                                onClick: function() {
-                                    $scope.selectedSeason = season;
-                                }
-                            }
-                        });
-
-                        var celebrityId = (data.celebrities) ? data.celebrities[0] : undefined,
-                            categoryName = (data.categories && data.categories.length > 0) ? data.categories[0].name : 'Sports';
-
-                        if (!celebrityId) {
-                            return $q.when([]);
-                        }
-
-                        return $q.all(
-                            [
-                                celebrityService.getBrandsByCelebrityId(celebrityId),
-                                celebrityService.getCharitiesByCelebrityId(celebrityId),
-                                celebrityService.getCelebrityById(celebrityId),
-                                videosService.getVideosByCategory(categoryName)
-                            ]
-                        );
-                    }
-                )
-                .then(
-                    function onSuccess(data) {
-                        $scope.brands = data[0];
-                        $scope.charities = data[1];
-                        $scope.celebrities = [data[2]];
-                        $scope.relatedVideos = data[3];
-                        $scope.nextVideos = data[3];
                         $scope.ready = true;
+
+                        // var seasons = $filter('orderBy')(data.series.seasons.seasons, 'seasonNumber');
+                        //
+                        // $scope.seasons = seasons;
+                        // $scope.selectedSeason = seasons[0];
+                        // $scope.seasonList = seasons.map(function(season) {
+                        //     return {
+                        //         label: 'Season ' + season.seasonNumber + ': ' + season.title,
+                        //         onClick: function() {
+                        //             $scope.selectedSeason = season;
+                        //         }
+                        //     }
+                        // });
                     }
                 );
 
@@ -83,6 +59,10 @@
                 $scope.expanded = !$scope.expanded;
                 $scope.playerHeight = ($scope.expanded) ? expandedSize : ($scope.originalPlayerHeight);
             };
+
+            $scope.onFavoritePress = function() {
+                console.log('FAVORITE');
+            }
         }
     ];
 

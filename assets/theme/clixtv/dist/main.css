@@ -9263,6 +9263,7 @@ button.close {
   color: #8a8a8a;
   text-decoration: none !important;
   padding: 5px 13px;
+  cursor: pointer;
 }
 @media (min-width: 768px) {
   .video-permalink-page .star-name-container .favorite-icon {
@@ -9301,6 +9302,9 @@ button.close {
   display: -ms-flexbox;
   display: -ms-flex;
   display: flex;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
   color: #8a8a8a;
   padding-right: 14px;
 }
@@ -13604,6 +13608,7 @@ button.close {
   left: 0;
   width: 100%;
   text-align: center;
+  z-index: 1000;
 }
 .clix-right-navigation .avatar-container .display-name {
   font-family: 'pt_sansregular', sans-serif;

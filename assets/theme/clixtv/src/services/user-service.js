@@ -17,16 +17,38 @@
                         })
                         .then(
                             function onSuccess(data) {
+
                                 if (!data || !data.data || data.data.error) {
                                     throw new Error(data.data);
                                 }
 
-                                loggedInUser = data.data.content;
+                                loggedInUser = data.data;
 
                                 $rootScope.$broadcast('user.login', loggedInUser);
                                 return data.data;
                             }
                         );
+                },
+
+                signupUser: function(email, password, firstName, lastName, birthdate, gender) {
+                    return $http.post('/api/account/register', {
+                            email: email,
+                            password: password,
+                            first_name: firstName,
+                            last_name: lastName
+                        })
+                        .then(
+                            function onSuccess(data) {
+                                if (!data || !data.data || data.data.error) {
+                                    throw new Error(data.data);
+                                }
+
+                                loggedInUser = data.data;
+
+                                $rootScope.$broadcast('user.login', loggedInUser);
+                                return data.data;
+                            }
+                        )
                 },
 
                 logout: function() {

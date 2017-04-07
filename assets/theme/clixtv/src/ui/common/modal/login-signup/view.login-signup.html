@@ -19,53 +19,63 @@
                 <span>or with email</span>
             </div>
         </div>
-        <div class="signup-modal-form">
-            <div class="signup-modal-form-row">
-                <i class="form-icon small icon-email-input-icon"></i>
-                <div class="signup-modal-input">
-                    <input type="email" placeholder="Email" name="email" />
+        <form ng-submit="onSignupSubmit()">
+            <div class="signup-modal-form">
+                <div class="signup-modal-form-row">
+                    <i class="form-icon small icon-email-input-icon"></i>
+                    <div class="signup-modal-input">
+                        <input type="email" placeholder="Email" name="email" ng-model="signupModel.email" />
+                    </div>
                 </div>
-            </div>
-            <div class="signup-modal-form-row">
-                <i class="form-icon small icon-email-input-icon"></i>
-                <div class="signup-modal-input">
-                    <input type="email" placeholder="Re-Enter Email" name="email-confirm" />
+                <div class="signup-modal-form-row">
+                    <i class="form-icon small icon-email-input-icon"></i>
+                    <div class="signup-modal-input">
+                        <input type="email" placeholder="Re-Enter Email" name="email-confirm" ng-model="signupModel.emailConfirm" />
+                    </div>
                 </div>
-            </div>
-            <div class="signup-modal-form-row">
-                <i class="form-icon icon-password-input-icon"></i>
-                <div class="signup-modal-input">
-                    <input type="password" placeholder="Choose Password" name="password" />
+                <div class="signup-modal-form-row">
+                    <i class="form-icon icon-password-input-icon"></i>
+                    <div class="signup-modal-input">
+                        <input type="password" placeholder="Choose Password" name="password" ng-model="signupModel.password" />
+                    </div>
                 </div>
-            </div>
-            <div class="signup-modal-form-row">
-                <i class="form-icon icon-password-input-icon"></i>
-                <div class="signup-modal-input">
-                    <input type="password" placeholder="Re-Enter Password" name="password-confirm" />
+                <div class="signup-modal-form-row">
+                    <i class="form-icon icon-password-input-icon"></i>
+                    <div class="signup-modal-input">
+                        <input type="password" placeholder="Re-Enter Password" name="password-confirm" ng-model="signupModel.passwordConfirm" />
+                    </div>
                 </div>
-            </div>
-            <div class="signup-modal-form-row">
-                <i class="form-icon large icon-full-name-input-icon"></i>
-                <div class="signup-modal-input">
-                    <input type="text" placeholder="Full Name" name="name" />
+                <div class="signup-modal-form-row">
+                    <i class="form-icon large icon-full-name-input-icon"></i>
+                    <div class="signup-modal-input">
+                        <input type="text" placeholder="First Name" name="first-name" ng-model="signupModel.firstName" />
+                    </div>
                 </div>
-            </div>
-            <div class="signup-modal-form-row">
-                <i class="form-icon icon-dateofbirth-input-icon"></i>
-                <div class="signup-modal-input">
-                    <input type="text" placeholder="Date of Birth" name="birthdate" />
+                <div class="signup-modal-form-row">
+                    <i class="form-icon large icon-full-name-input-icon"></i>
+                    <div class="signup-modal-input">
+                        <input type="text" placeholder="Last Name" name="last-name" ng-model="signupModel.lastName" />
+                    </div>
                 </div>
-            </div>
-            <div class="signup-modal-form-row">
-                <i class="form-icon icon-gender-input-icon"></i>
-                <div class="signup-modal-input">
-                    <input type="text" placeholder="Gender" name="gender" />
+                <!--
+                <div class="signup-modal-form-row">
+                    <i class="form-icon icon-dateofbirth-input-icon"></i>
+                    <div class="signup-modal-input">
+                        <input type="text" placeholder="Date of Birth" name="birthdate" ng-model="signupModel.birthdate" />
+                    </div>
                 </div>
+                <div class="signup-modal-form-row">
+                    <i class="form-icon icon-gender-input-icon"></i>
+                    <div class="signup-modal-input">
+                        <input type="text" placeholder="Gender" name="gender"ng-model="signupModel.gender" />
+                    </div>
+                </div>
+                -->
             </div>
-        </div>
+        </form>
         <div class="signup-modal-submit">
             <div class="submit-button">
-                <clix-primary-button type="normal">
+                <clix-primary-button type="normal" ng-click="onSignupSubmit()">
                     Sign Up
                 </clix-primary-button>
             </div>
@@ -80,6 +90,9 @@
             By signing in, you agree to our <a ng-click="onTermsPress()">Terms of Service</a> and <a ng-click="onPrivacyPress()">Privacy Policy</a>
         </div>
     </div>
+
+
+
 
     <div class="signup-modal" ng-hide="signup">
         <div class="signup-modal-header">

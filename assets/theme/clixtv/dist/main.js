@@ -304,7 +304,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/modal/login-signup/view.login-signup.html',
-    "<clix-modal><a ng-click=onCloseIconPress() class=\"hidden-md hidden-lg icon-remove-icon clix-modal-close\"></a><div class=signup-modal ng-show=signup><div class=signup-modal-header><div class=\"header-logo-icon icon-colorful-clix-logo\"></div></div><div class=signup-modal-social><div class=social-modal-row><clix-primary-button type=facebook>Sign Up With Facebook</clix-primary-button></div><div class=social-modal-row><clix-primary-button type=google>Sign Up With Google</clix-primary-button></div><div class=or-email-container><span>or with email</span></div></div><div class=signup-modal-form><div class=signup-modal-form-row><i class=\"form-icon small icon-email-input-icon\"></i><div class=signup-modal-input><input type=email placeholder=Email name=email></div></div><div class=signup-modal-form-row><i class=\"form-icon small icon-email-input-icon\"></i><div class=signup-modal-input><input type=email placeholder=\"Re-Enter Email\" name=email-confirm></div></div><div class=signup-modal-form-row><i class=\"form-icon icon-password-input-icon\"></i><div class=signup-modal-input><input type=password placeholder=\"Choose Password\" name=password></div></div><div class=signup-modal-form-row><i class=\"form-icon icon-password-input-icon\"></i><div class=signup-modal-input><input type=password placeholder=\"Re-Enter Password\" name=password-confirm></div></div><div class=signup-modal-form-row><i class=\"form-icon large icon-full-name-input-icon\"></i><div class=signup-modal-input><input type=text placeholder=\"Full Name\" name=name></div></div><div class=signup-modal-form-row><i class=\"form-icon icon-dateofbirth-input-icon\"></i><div class=signup-modal-input><input type=text placeholder=\"Date of Birth\" name=birthdate></div></div><div class=signup-modal-form-row><i class=\"form-icon icon-gender-input-icon\"></i><div class=signup-modal-input><input type=text placeholder=Gender name=gender></div></div></div><div class=signup-modal-submit><div class=submit-button><clix-primary-button type=normal>Sign Up</clix-primary-button></div><div class=login-container>Have an account? <a ng-click=onLoginPress()>Log in</a></div></div><div class=signup-modal-footer>By signing in, you agree to our <a ng-click=onTermsPress()>Terms of Service</a> and <a ng-click=onPrivacyPress()>Privacy Policy</a></div></div><div class=signup-modal ng-hide=signup><div class=signup-modal-header><div class=\"header-logo-icon icon-colorful-clix-logo\"></div></div><div class=signup-modal-social><div class=social-modal-row><clix-primary-button type=facebook ng-click=onFacebookLoginPress()>Log In With Facebook</clix-primary-button></div><div class=social-modal-row><clix-primary-button type=google ng-click=onGoogleLoginPress()>Log In With Google</clix-primary-button></div><div class=or-email-container><span>or with email</span></div></div><form ng-submit=onLoginSubmit() class=signup-modal-form><div class=signup-modal-form-row><i class=\"form-icon small icon-email-input-icon\"></i><div class=signup-modal-input><input type=email placeholder=Email ng-model=loginModel.email></div></div><div class=signup-modal-form-row><i class=\"form-icon icon-password-input-icon\"></i><div class=signup-modal-input><input type=password placeholder=Password ng-model=loginModel.password></div></div><input type=submit></form><div class=signup-modal-submit><div class=submit-button><clix-primary-button type=normal ng-click=onLoginSubmit()>Log In</clix-primary-button></div><div class=login-container><a ng-click=onForgotPasswordPress() class=forgot-password>Forgot Password?</a><br>Don't have an account? <a ng-click=onSignupPress()>Sign up</a></div></div><div class=signup-modal-footer>By signing in, you agree to our <a ng-click=onTermsPress()>Terms of Service</a> and <a ng-click=onPrivacyPress()>Privacy Policy</a></div></div></clix-modal>"
+    "<clix-modal><a ng-click=onCloseIconPress() class=\"hidden-md hidden-lg icon-remove-icon clix-modal-close\"></a><div class=signup-modal ng-show=signup><div class=signup-modal-header><div class=\"header-logo-icon icon-colorful-clix-logo\"></div></div><div class=signup-modal-social><div class=social-modal-row><clix-primary-button type=facebook>Sign Up With Facebook</clix-primary-button></div><div class=social-modal-row><clix-primary-button type=google>Sign Up With Google</clix-primary-button></div><div class=or-email-container><span>or with email</span></div></div><form ng-submit=onSignupSubmit()><div class=signup-modal-form><div class=signup-modal-form-row><i class=\"form-icon small icon-email-input-icon\"></i><div class=signup-modal-input><input type=email placeholder=Email name=email ng-model=signupModel.email></div></div><div class=signup-modal-form-row><i class=\"form-icon small icon-email-input-icon\"></i><div class=signup-modal-input><input type=email placeholder=\"Re-Enter Email\" name=email-confirm ng-model=signupModel.emailConfirm></div></div><div class=signup-modal-form-row><i class=\"form-icon icon-password-input-icon\"></i><div class=signup-modal-input><input type=password placeholder=\"Choose Password\" name=password ng-model=signupModel.password></div></div><div class=signup-modal-form-row><i class=\"form-icon icon-password-input-icon\"></i><div class=signup-modal-input><input type=password placeholder=\"Re-Enter Password\" name=password-confirm ng-model=signupModel.passwordConfirm></div></div><div class=signup-modal-form-row><i class=\"form-icon large icon-full-name-input-icon\"></i><div class=signup-modal-input><input type=text placeholder=\"First Name\" name=first-name ng-model=signupModel.firstName></div></div><div class=signup-modal-form-row><i class=\"form-icon large icon-full-name-input-icon\"></i><div class=signup-modal-input><input type=text placeholder=\"Last Name\" name=last-name ng-model=signupModel.lastName></div></div></div></form><div class=signup-modal-submit><div class=submit-button><clix-primary-button type=normal ng-click=onSignupSubmit()>Sign Up</clix-primary-button></div><div class=login-container>Have an account? <a ng-click=onLoginPress()>Log in</a></div></div><div class=signup-modal-footer>By signing in, you agree to our <a ng-click=onTermsPress()>Terms of Service</a> and <a ng-click=onPrivacyPress()>Privacy Policy</a></div></div><div class=signup-modal ng-hide=signup><div class=signup-modal-header><div class=\"header-logo-icon icon-colorful-clix-logo\"></div></div><div class=signup-modal-social><div class=social-modal-row><clix-primary-button type=facebook ng-click=onFacebookLoginPress()>Log In With Facebook</clix-primary-button></div><div class=social-modal-row><clix-primary-button type=google ng-click=onGoogleLoginPress()>Log In With Google</clix-primary-button></div><div class=or-email-container><span>or with email</span></div></div><form ng-submit=onLoginSubmit() class=signup-modal-form><div class=signup-modal-form-row><i class=\"form-icon small icon-email-input-icon\"></i><div class=signup-modal-input><input type=email placeholder=Email ng-model=loginModel.email></div></div><div class=signup-modal-form-row><i class=\"form-icon icon-password-input-icon\"></i><div class=signup-modal-input><input type=password placeholder=Password ng-model=loginModel.password></div></div><input type=submit></form><div class=signup-modal-submit><div class=submit-button><clix-primary-button type=normal ng-click=onLoginSubmit()>Log In</clix-primary-button></div><div class=login-container><a ng-click=onForgotPasswordPress() class=forgot-password>Forgot Password?</a><br>Don't have an account? <a ng-click=onSignupPress()>Sign up</a></div></div><div class=signup-modal-footer>By signing in, you agree to our <a ng-click=onTermsPress()>Terms of Service</a> and <a ng-click=onPrivacyPress()>Privacy Policy</a></div></div></clix-modal>"
   );
 
 
@@ -439,7 +439,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/video-permalink/view.video-permalink.html',
-    "<div ng-if=!ready><clix-loader size=large></clix-loader></div><div class=video-permalink-page ng-if=ready><div class=row><div class=\"col-md-7 col-lg-8 video-player-column-container\"><div class=video-player><div id=videoPlayer></div><clix-video-player ng-if=\"video && !isMobile\" video=video auto-play=true video-id=videoPlayer on-ready=onPlayerReady></clix-video-player><clix-video-player ng-if=\"video && isMobile\" video=video auto-play=false video-id=videoPlayer on-ready=onPlayerReady></clix-video-player></div><div class=\"visible-sm visible-xs\"><div class=brands-charity-container><div class=brands-container><div class=brands-charity-title><div class=brands-title>Brands in this Series</div><div class=charity-title>Charity</div></div><div class=logo-list-container><a ng-repeat=\"brand in brands | limitTo: 4\" ui-sref=\"brand({ slug: '{{brand.title | slug}}' })\" class=brand-logo-link><clix-brand-charity-logo brand=brand></clix-brand-charity-logo></a><div ng-repeat=\"charity in charities | limitTo: 1\" class=brand-logo-link><clix-charity-logo charity=charity></clix-charity-logo></div></div></div></div></div><div class=\"up-next-container hidden-sm hidden-xs\"><div class=up-next-header><div class=up-next-label>Up Next in This Series</div><div class=series-dropdown><clix-dropdown options=seasonList></clix-dropdown></div></div><div class=\"row next-video-list\" ng-repeat=\"season in seasons\" ng-show=\"selectedSeason.id === season.id\"><div class=\"col-lg-4 next-video\" ng-repeat=\"nextVideo in season.episodes track by $index\"><clix-video-content-box video=nextVideo></clix-video-content-box></div></div></div></div><div class=\"col-md-5 col-lg-4 star-info-column-container\"><div class=about-video-container id=about-video-container><div class=about-video-inner-container id=about-video-inner-container style=\"max-height: {{playerHeight || 0}}px\"><div class=about-video-overlay ng-if=!expanded></div><div class=star-name-container><div class=star-avatar style=\"background-image: url({{video.celebrity.thumbnail}})\"></div><div class=star-name-favorite-container><div class=star-name>{{video.celebrity.name}}</div><div class=\"visible-sm visible-xs\"><clix-violator>100 Reward Points</clix-violator></div></div><a href=# class=\"favorite-icon icon-favorite-icon\" clix-tooltip-trigger tooltip-id=favorite-button-{{$id}}></a><clix-tooltip tooltip-id=favorite-button-{{$id}}>Add this Star to your Favorites.</clix-tooltip></div><div class=social-container><div class=\"violator-container hidden-sm hidden-xs\" clix-tooltip-trigger tooltip-id=reward-points-button-{{$id}}><clix-violator size=large>100 Reward Points</clix-violator></div><clix-tooltip tooltip-id=reward-points-button-{{$id}}><clix-is-logged-in><logged-in>You will receive 100 Reward Points for watching this video!</logged-in><not-logged-in>After you sign up, you will receive 100 Reward Points for watching this video! <a ng-click=\"\">Learn more</a>.</not-logged-in></clix-is-logged-in></clix-tooltip><div class=social-icon-container><a href=# class=\"social-icon icon-heart-icon\" clix-tooltip-trigger tooltip-id=heart-button-{{$id}}></a><clix-tooltip tooltip-id=heart-button-{{$id}}>Like this video!</clix-tooltip><div class=social-icon-label>256K</div></div><div class=social-icon-container clix-tooltip-trigger tooltip-id=watchlist-button-{{$id}}><a href=# class=\"social-icon save-icon icon-redeem-plus-icon\"></a></div><clix-tooltip tooltip-id=watchlist-button-{{$id}}>Add this video to your Watchlist.</clix-tooltip><div class=social-icon-container><div clix-tooltip-trigger tooltip-id=share-button-{{$id}}><clix-share-button extra-class=\"social-icon share-icon\" video=video></clix-share-button></div><clix-tooltip tooltip-id=share-button-{{$id}}><clix-is-logged-in><logged-in>You will receive 50 Reward Points for sharing!</logged-in><not-logged-in>After signing up, you will receive 50 Reward Points for sharing! <a ng-click=\"\">Learn more</a>.</not-logged-in></clix-is-logged-in></clix-tooltip><clix-points-violator>50</clix-points-violator></div></div><div class=video-info-container><div class=series-title>{{video.series.title}}</div><div class=episode-title>Episode {{video.episodeNumber}}: {{video.title}}</div><div class=\"row total-views-available-container\"><div class=\"col-sm-6 total-views\">48,096,110 views</div><div class=\"col-sm-6 available-until\">Available Until 2 February 2017</div></div><div class=description>{{video.description}}</div><div class=meta-data><div class=meta-data-row><span class=meta-data-label>Category: </span><span ng-repeat=\"category in video.categories\"><a ui-sref=\"category({ slug: '{{category.name | slug}}' })\">{{category.name}}</a><span ng-if=!$last>,&nbsp;</span></span></div><div class=meta-data-row><span class=meta-data-label>Stars: </span><a ui-sref=\"star({ id: '{{video.celebrity.id}}' })\">{{video.celebrity.name}}</a></div><div class=meta-data-row><span class=meta-data-label>Brands: </span><span ng-repeat=\"brand in video.brands.brands\"><a ui-sref=\"brand({ slug: '{{brand.title | slug}}' })\">{{brand.title}}</a><span ng-if=!$last>,&nbsp;</span></span></div><div class=meta-data-row><span class=meta-data-label>Charity: </span><a ui-sref=\"charity({ id: video.charity.id })\">{{video.charity.title}}</a></div></div></div></div><div id=toggle-button-container><div class=visibility-toggle-button><clix-secondary-button ng-click=onExpandToggle()>{{expanded ? 'Show Less' : 'Show More'}}</clix-secondary-button></div><div class=\"brands-charity-container hidden-sm hidden-xs\"><div class=brands-container><div class=brands-charity-title><div class=brands-title>Brands in this Series</div><div class=charity-title>Charity</div></div><div class=logo-list-container><a ng-repeat=\"brand in video.brands.brands | limitTo: 4\" ui-sref=\"brand({ slug: '{{brand.title | slug}}' })\" class=brand-logo-link><clix-brand-charity-logo brand=brand hover-enabled=true></clix-brand-charity-logo></a><div class=brand-logo-link><clix-charity-logo charity=video.charity></clix-charity-logo></div></div></div></div></div></div><div class=\"related-videos-container hidden-sm hidden-xs\"><div class=related-videos-header>Related Videos</div><div class=\"row related-videos-list\"><div class=\"col-lg-6 related-video\" ng-repeat=\"relatedVideo in relatedVideos track by $index\"><clix-video-content-box video=relatedVideo></clix-video-content-box></div></div></div></div></div><div class=\"up-next-container visible-sm visible-xs\"><div class=series-dropdown><clix-dropdown options=seasonList></clix-dropdown></div><div class=up-next-label>Up Next in This Series</div><div class=\"row next-video-list\"><div class=\"col-lg-4 next-video\" ng-repeat=\"nextVideo in nextVideos track by $index\"><clix-video-content-box video=nextVideo></clix-video-content-box></div></div></div><div class=\"related-videos-container visible-sm visible-xs\"><div class=related-videos-header>Related Videos</div><div class=\"row related-videos-list\"><div class=\"col-xs-6 related-video\" ng-repeat=\"relatedVideo in relatedVideos track by $index\"><clix-video-content-box video=relatedVideo extra-class=mobile-related-video></clix-video-content-box></div></div></div></div>"
+    "<div ng-if=!ready><clix-loader size=large></clix-loader></div><div class=video-permalink-page ng-if=ready><div class=row><div class=\"col-md-7 col-lg-8 video-player-column-container\"><div class=video-player><div id=videoPlayer></div><clix-video-player ng-if=\"video && !isMobile\" video=video auto-play=true video-id=videoPlayer on-ready=onPlayerReady></clix-video-player><clix-video-player ng-if=\"video && isMobile\" video=video auto-play=false video-id=videoPlayer on-ready=onPlayerReady></clix-video-player></div><div class=\"visible-sm visible-xs\"><div class=brands-charity-container><div class=brands-container><div class=brands-charity-title><div class=brands-title>Brands in this Series</div><div class=charity-title ng-if=video.charity>Charity</div></div><div class=logo-list-container><a ng-repeat=\"brand in brands | limitTo: 4\" ui-sref=\"brand({ id: '{{brand.id}}' })\" class=brand-logo-link><clix-brand-charity-logo brand=brand></clix-brand-charity-logo></a><div class=brand-logo-link ng-if=video.charity><clix-charity-logo charity=video.charity></clix-charity-logo></div></div></div></div></div></div><div class=\"col-md-5 col-lg-4 star-info-column-container\"><div class=about-video-container id=about-video-container><div class=about-video-inner-container id=about-video-inner-container style=\"max-height: {{playerHeight || 0}}px\"><div class=about-video-overlay ng-if=!expanded></div><div class=star-name-container><div class=star-avatar style=\"background-image: url({{video.celebrity.thumbnail}})\"></div><div class=star-name-favorite-container><div class=star-name>{{video.celebrity.name}}</div><div class=\"visible-sm visible-xs\"><clix-violator>100 Reward Points</clix-violator></div></div><div clix-tooltip-trigger tooltip-id=favorite-button-{{$id}}><a clix-required-login-click=onFavoritePress() class=\"favorite-icon icon-favorite-icon\"></a></div><clix-tooltip tooltip-id=favorite-button-{{$id}}>Add this Star to your Favorites.</clix-tooltip></div><div class=social-container><div class=\"violator-container hidden-sm hidden-xs\" clix-tooltip-trigger tooltip-id=reward-points-button-{{$id}}><clix-violator size=large>100 Reward Points</clix-violator></div><clix-tooltip tooltip-id=reward-points-button-{{$id}}><clix-is-logged-in><logged-in>You will receive 100 Reward Points for watching this video!</logged-in><not-logged-in>After you sign up, you will receive 100 Reward Points for watching this video! <a ng-click=\"\">Learn more</a>.</not-logged-in></clix-is-logged-in></clix-tooltip><div class=social-icon-container><a href=# class=\"social-icon icon-heart-icon\" clix-tooltip-trigger tooltip-id=heart-button-{{$id}}></a><clix-tooltip tooltip-id=heart-button-{{$id}}>Like this video!</clix-tooltip><div class=social-icon-label>256K</div></div><div class=social-icon-container clix-tooltip-trigger tooltip-id=watchlist-button-{{$id}}><a href=# class=\"social-icon save-icon icon-redeem-plus-icon\"></a></div><clix-tooltip tooltip-id=watchlist-button-{{$id}}>Add this video to your Watchlist.</clix-tooltip><div class=social-icon-container><div clix-tooltip-trigger tooltip-id=share-button-{{$id}}><clix-share-button extra-class=\"social-icon share-icon\" video=video></clix-share-button></div><clix-tooltip tooltip-id=share-button-{{$id}}><clix-is-logged-in><logged-in>You will receive 50 Reward Points for sharing!</logged-in><not-logged-in>After signing up, you will receive 50 Reward Points for sharing! <a ng-click=\"\">Learn more</a>.</not-logged-in></clix-is-logged-in></clix-tooltip><clix-points-violator>50</clix-points-violator></div></div><div class=video-info-container><div class=series-title>{{video.series.title}}</div><div class=episode-title>Episode {{video.episodeNumber}}: {{video.title}}</div><div class=\"row total-views-available-container\"><div class=\"col-sm-6 total-views\">48,096,110 views</div><div class=\"col-sm-6 available-until\" ng-if=video.expirationDate>Available Until {{video.expirationDate | clixDate: 'long'}}</div></div><div class=description>{{video.description}}</div><div class=meta-data><div class=meta-data-row ng-if=video.categories><span class=meta-data-label>Category: </span><span ng-repeat=\"category in video.categories\"><a ui-sref=\"category({ slug: '{{category.name | slug}}' })\">{{category.name}}</a><span ng-if=!$last>,&nbsp;</span></span></div><div class=meta-data-row ng-if=video.celebrity><span class=meta-data-label>Stars: </span><a ui-sref=\"star({ id: '{{video.celebrity.id}}' })\">{{video.celebrity.name}}</a></div><div class=meta-data-row ng-if=video.brands><span class=meta-data-label>Brands: </span><span ng-repeat=\"brand in video.brands.brands\"><a ui-sref=\"brand({ id: '{{brand.id}}' })\">{{brand.title}}</a><span ng-if=!$last>,&nbsp;</span></span></div><div class=meta-data-row ng-if=video.charity><span class=meta-data-label>Charity: </span><a ui-sref=\"charity({ id: video.charity.id })\">{{video.charity.title}}</a></div></div></div></div><div id=toggle-button-container><div class=visibility-toggle-button><clix-secondary-button ng-click=onExpandToggle()>{{expanded ? 'Show Less' : 'Show More'}}</clix-secondary-button></div><div class=\"brands-charity-container hidden-sm hidden-xs\"><div class=brands-container><div class=brands-charity-title><div class=brands-title>Brands in this Series</div><div class=charity-title ng-if=video.charity>Charity</div></div><div class=logo-list-container><a ng-repeat=\"brand in video.brands.brands | limitTo: 4\" ui-sref=\"brand({ id: '{{brand.id}}' })\" class=brand-logo-link><clix-brand-charity-logo brand=brand hover-enabled=true></clix-brand-charity-logo></a><div class=brand-logo-link ng-if=video.charity><clix-charity-logo charity=video.charity></clix-charity-logo></div></div></div></div></div></div><div class=\"related-videos-container hidden-sm hidden-xs\"><div class=related-videos-header>Related Videos</div><div class=\"row related-videos-list\"><div class=\"col-lg-6 related-video\" ng-repeat=\"relatedVideo in relatedVideos track by $index\"><clix-video-content-box video=relatedVideo></clix-video-content-box></div></div></div></div></div><div class=\"related-videos-container visible-sm visible-xs\"><div class=related-videos-header>Related Videos</div><div class=\"row related-videos-list\"><div class=\"col-xs-6 related-video\" ng-repeat=\"relatedVideo in relatedVideos track by $index\"><clix-video-content-box video=relatedVideo extra-class=mobile-related-video></clix-video-content-box></div></div></div></div>"
   );
 
 
@@ -2562,7 +2562,13 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
             $scope.signupModel = {
                 email: '',
-                password: ''
+                emailConfirm: '',
+                password: '',
+                passwordConfirm: '',
+                firstName: '',
+                lastName: '',
+                birthdate: '',
+                gender: ''
             };
 
             $scope.onLoginPress = function() {
@@ -2592,32 +2598,60 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     );
             };
 
+            $scope.onSignupSubmit = function() {
+
+                if (
+                    !$scope.signupModel.email ||
+                    !$scope.signupModel.password ||
+                    !$scope.signupModel.firstName ||
+                    !$scope.signupModel.lastName/* ||
+                    !$scope.signupModel.birthdate ||
+                    !$scope.signupModel.gender*/
+                ) {
+                    // todo - Error state for validation...
+                    return;
+                }
+
+                if ($scope.signupModel.email !== $scope.signupModel.emailConfirm) {
+                    // todo - Error state for validation...
+                    return;
+                }
+
+                if ($scope.signupModel.password !== $scope.signupModel.passwordConfirm) {
+                    // todo - Error state for validation...
+                    return;
+                }
+
+                userService.signupUser($scope.signupModel.email, $scope.signupModel.password, $scope.signupModel.firstName, $scope.signupModel.lastName)
+                    .then(
+                        function onSuccess(data) {
+                            $uibModalInstance.close();
+                        }
+                    )
+                    .catch(
+                        function onError(error) {
+                            // todo - Error state...
+                            console.log(error);
+                        }
+                    );
+            };
+
             $scope.onCloseIconPress = function() {
                 $uibModalInstance.close();
             };
 
-            /**
-             * @fixme - This is legacy "login with social network" code that'll take a much larger effort to refactor
-             */
             $scope.onFacebookLoginPress = function() {
-
-                // ...gross
                 window.open('/hauth/login/Facebook', 'fb', 'left=20,top=20,width=500,height=400,toolbar=1,resizable=0');
             };
 
-            /**
-             * @fixme - This is legacy "login with social network" code that'll take a much larger effort to refactor
-             */
             $scope.onGoogleLoginPress = function() {
-
-                // ...gross again
                 window.open('/hauth/login/Google', 'google', 'left=20,top=20,width=500,height=400,toolbar=1,resizable=0');
             };
 
             /**
              * @fixme - This is legacy "login with social network" code that'll take a much larger effort to refactor
              */
-            // ...gross again, again
+            // gross...
             window.finished_login = function() {
                 userService.setLoggedInUser()
                     .then(
@@ -4073,6 +4107,74 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         .directive('clixOnImageLoad', onImageLoad);
 }());
 (function() {
+    var requiredLoginClick = [
+        '$rootScope',
+        '$uibModal',
+        'userService',
+        function($rootScope, $uibModal, userService) {
+            return {
+                restrict: 'A',
+                scope: {
+                    clixRequiredLoginClick: '&'
+                },
+                link: function (scope, elem, attrs) {
+
+                    function _openLoginModal() {
+                        var modalInstance = $uibModal.open({
+                            animation: true,
+                            templateUrl: 'ui/common/modal/login-signup/view.login-signup.html',
+                            controller: 'LoginSignupController',
+                            windowClass: 'clix-modal-window',
+                            size: 'clix-md',
+                            resolve: {
+                                signup: false
+                            }
+                        });
+
+                        modalInstance.opened.then(
+                            function onSuccess() {
+                                $rootScope.$broadcast('modal.open');
+                            }
+                        );
+
+                        modalInstance.closed.then(
+                            function onSuccess() {
+                                $rootScope.$broadcast('modal.close');
+                            }
+                        );
+
+                        modalInstance.result.then(
+                            function onSuccess(data) {
+
+                            },
+                            function onError(error) {
+
+                            }
+                        )
+                    }
+
+                    elem.bind('click', function(e) {
+                        e.preventDefault();
+                        userService.getLoggedInUser()
+                            .then(
+                                function onSuccess(data) {
+                                    if (data) {
+                                        scope.clixRequiredLoginClick();
+                                    } else {
+                                        _openLoginModal();
+                                    }
+                                }
+                            );
+                    });
+                }
+            };
+        }
+    ];
+
+    angular.module('clixtv')
+        .directive('clixRequiredLoginClick', requiredLoginClick);
+}());
+(function() {
     var scrollOffsetClass = [
         '$window',
         function($window) {
@@ -4257,7 +4359,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$stateParams',
         'videosService',
         'celebrityService',
-        function($q, $scope, $timeout, $window, $filter, $stateParams, videosService, celebrityService, catchMediaService) {
+        'userService',
+        function($q, $scope, $timeout, $window, $filter, $stateParams, videosService, celebrityService, userService) {
 
             $scope.isMobile = ($window.innerWidth <= 800);
             $scope.expanded = false;
@@ -4266,45 +4369,20 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 .then(
                     function onSuccess(data) {
                         $scope.video = data;
-
-                        var seasons = $filter('orderBy')(data.series.seasons.seasons, 'seasonNumber');
-
-                        $scope.seasons = seasons;
-                        $scope.selectedSeason = seasons[0];
-                        $scope.seasonList = seasons.map(function(season) {
-                            return {
-                                label: 'Season ' + season.seasonNumber + ': ' + season.title,
-                                onClick: function() {
-                                    $scope.selectedSeason = season;
-                                }
-                            }
-                        });
-
-                        var celebrityId = (data.celebrities) ? data.celebrities[0] : undefined,
-                            categoryName = (data.categories && data.categories.length > 0) ? data.categories[0].name : 'Sports';
-
-                        if (!celebrityId) {
-                            return $q.when([]);
-                        }
-
-                        return $q.all(
-                            [
-                                celebrityService.getBrandsByCelebrityId(celebrityId),
-                                celebrityService.getCharitiesByCelebrityId(celebrityId),
-                                celebrityService.getCelebrityById(celebrityId),
-                                videosService.getVideosByCategory(categoryName)
-                            ]
-                        );
-                    }
-                )
-                .then(
-                    function onSuccess(data) {
-                        $scope.brands = data[0];
-                        $scope.charities = data[1];
-                        $scope.celebrities = [data[2]];
-                        $scope.relatedVideos = data[3];
-                        $scope.nextVideos = data[3];
                         $scope.ready = true;
+
+                        // var seasons = $filter('orderBy')(data.series.seasons.seasons, 'seasonNumber');
+                        //
+                        // $scope.seasons = seasons;
+                        // $scope.selectedSeason = seasons[0];
+                        // $scope.seasonList = seasons.map(function(season) {
+                        //     return {
+                        //         label: 'Season ' + season.seasonNumber + ': ' + season.title,
+                        //         onClick: function() {
+                        //             $scope.selectedSeason = season;
+                        //         }
+                        //     }
+                        // });
                     }
                 );
 
@@ -4331,6 +4409,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 $scope.expanded = !$scope.expanded;
                 $scope.playerHeight = ($scope.expanded) ? expandedSize : ($scope.originalPlayerHeight);
             };
+
+            $scope.onFavoritePress = function() {
+                console.log('FAVORITE');
+            }
         }
     ];
 
@@ -4661,6 +4743,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             '$injector',
             function($injector) {
                 return function(data) {
+
+                    if (typeof data === 'string') {
+                        this.id = data;
+                        return;
+                    }
                     this.id = data._id;
                     this.title = data.title;
                     this.description = data.description;
@@ -4868,6 +4955,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             'CharityModel',
             function($injector, CelebrityModel, BrandListModel, CharityModel) {
                 return function(data) {
+
+                    console.log(data);
 
                     this.id = data._id;
                     this.title = data.title;
@@ -5366,16 +5455,38 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         })
                         .then(
                             function onSuccess(data) {
+
                                 if (!data || !data.data || data.data.error) {
                                     throw new Error(data.data);
                                 }
 
-                                loggedInUser = data.data.content;
+                                loggedInUser = data.data;
 
                                 $rootScope.$broadcast('user.login', loggedInUser);
                                 return data.data;
                             }
                         );
+                },
+
+                signupUser: function(email, password, firstName, lastName, birthdate, gender) {
+                    return $http.post('/api/account/register', {
+                            email: email,
+                            password: password,
+                            first_name: firstName,
+                            last_name: lastName
+                        })
+                        .then(
+                            function onSuccess(data) {
+                                if (!data || !data.data || data.data.error) {
+                                    throw new Error(data.data);
+                                }
+
+                                loggedInUser = data.data;
+
+                                $rootScope.$broadcast('user.login', loggedInUser);
+                                return data.data;
+                            }
+                        )
                 },
 
                 logout: function() {

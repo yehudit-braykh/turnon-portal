@@ -17,7 +17,13 @@
 
             $scope.signupModel = {
                 email: '',
-                password: ''
+                emailConfirm: '',
+                password: '',
+                passwordConfirm: '',
+                firstName: '',
+                lastName: '',
+                birthdate: '',
+                gender: ''
             };
 
             $scope.onLoginPress = function() {
@@ -47,32 +53,60 @@
                     );
             };
 
+            $scope.onSignupSubmit = function() {
+
+                if (
+                    !$scope.signupModel.email ||
+                    !$scope.signupModel.password ||
+                    !$scope.signupModel.firstName ||
+                    !$scope.signupModel.lastName/* ||
+                    !$scope.signupModel.birthdate ||
+                    !$scope.signupModel.gender*/
+                ) {
+                    // todo - Error state for validation...
+                    return;
+                }
+
+                if ($scope.signupModel.email !== $scope.signupModel.emailConfirm) {
+                    // todo - Error state for validation...
+                    return;
+                }
+
+                if ($scope.signupModel.password !== $scope.signupModel.passwordConfirm) {
+                    // todo - Error state for validation...
+                    return;
+                }
+
+                userService.signupUser($scope.signupModel.email, $scope.signupModel.password, $scope.signupModel.firstName, $scope.signupModel.lastName)
+                    .then(
+                        function onSuccess(data) {
+                            $uibModalInstance.close();
+                        }
+                    )
+                    .catch(
+                        function onError(error) {
+                            // todo - Error state...
+                            console.log(error);
+                        }
+                    );
+            };
+
             $scope.onCloseIconPress = function() {
                 $uibModalInstance.close();
             };
 
-            /**
-             * @fixme - This is legacy "login with social network" code that'll take a much larger effort to refactor
-             */
             $scope.onFacebookLoginPress = function() {
-
-                // ...gross
                 window.open('/hauth/login/Facebook', 'fb', 'left=20,top=20,width=500,height=400,toolbar=1,resizable=0');
             };
 
-            /**
-             * @fixme - This is legacy "login with social network" code that'll take a much larger effort to refactor
-             */
             $scope.onGoogleLoginPress = function() {
-
-                // ...gross again
                 window.open('/hauth/login/Google', 'google', 'left=20,top=20,width=500,height=400,toolbar=1,resizable=0');
             };
 
             /**
              * @fixme - This is legacy "login with social network" code that'll take a much larger effort to refactor
              */
-            // ...gross again, again
+            // gross...
             window.finished_login = function() {
                 userService.setLoggedInUser()
                     .then(
