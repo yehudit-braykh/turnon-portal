@@ -29,6 +29,11 @@ class Account extends REST_Controller{
 		$data = $this->post();
 		$this->response($this->account_model->login($data['email'], $data['password']), 200);
     }
+	// for testing purboses .. shouldn't be user by the portal
+	function login_with_fb_post(){
+		$data = $this->post();
+		$this->response($this->account_model->login_by_fb($data['fbid']), 200);
+    }
 
 	function link_facebook_post(){
 		$data = $this->post();
@@ -37,6 +42,7 @@ class Account extends REST_Controller{
 
 	function update_profile_post(){
 		$data = $this->post();
+		//debug($data);
 		$profile_id= $this->session->userdata('profile_id');
 		$this->response($this->account_model->update_profile($profile_id,$data),200);
 	}

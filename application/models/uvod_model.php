@@ -346,7 +346,7 @@ class Uvod_model extends CI_Model {
         $parameters[] = "token=" . $admin_token;
         $parameters[] = "password=" . $password;
 
-        $curl = curl_init($this->config->item('url_user_change_password') . "/". $id . "?" . implode("&", $parameters));
+        $curl = curl_init($this->config->item('url_user_change_password') . $id . "?" . implode("&", $parameters));
 
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");

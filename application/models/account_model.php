@@ -293,7 +293,7 @@ class Account_model extends Uvod_model {
             $message->from_name = "ClixTv Portal";
             $message->to = array(array('email' => $to));
 
-            $response = $this->save_password($new_password['password'], $email);
+            $response = $this->save_password($new_password['password'], $email, $profile->_id);
             //debug($response);
             if($response){
                 $message->track_opens = true;
