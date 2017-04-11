@@ -10941,14 +10941,12 @@ button.close {
   }
   .clix-offer-page .clix-hero-banner .banner-title-content {
     display: block;
-    padding-left: 68px;
   }
   .clix-offer-page .clix-hero-banner .hero-banner-content {
     display: block;
   }
   .clix-offer-page .clix-hero-banner .banner-subtext-container {
     text-align: left;
-    padding-left: 81px;
     margin-top: 10px;
   }
 }
@@ -11771,6 +11769,9 @@ button.close {
   background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(#03bcf2), to(#f700e6));
   background-image: -webkit-radial-gradient(0 100%, circle, #03bcf2, #f700e6 70%);
   background-image: -o-radial-gradient(0 100%, circle, #03bcf2, #f700e6 70%);
+}
+.clix-hero-banner .banner-title-content {
+  width: 100%;
 }
 .clix-hero-banner .banner-title-content.with-logo {
   margin-left: 11px;
