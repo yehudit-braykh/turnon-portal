@@ -10,29 +10,19 @@
         'videosService',
         'celebrityService',
         'userService',
-        function($q, $scope, $timeout, $window, $filter, $stateParams, videosService, celebrityService, userService) {
+        'catchMediaService',
+        function($q, $scope, $timeout, $window, $filter, $stateParams, videosService, celebrityService, userService, catchMediaService) {
 
             $scope.isMobile = ($window.innerWidth <= 800);
             $scope.expanded = false;
+
+            catchMediaService.trackVideoPageEvent($stateParams.id);
 
             videosService.getVideoById($stateParams.id)
                 .then(
                     function onSuccess(data) {
                         $scope.video = data;
                         $scope.ready = true;
-
-                        // var seasons = $filter('orderBy')(data.series.seasons.seasons, 'seasonNumber');
-                        //
-                        // $scope.seasons = seasons;
-                        // $scope.selectedSeason = seasons[0];
-                        // $scope.seasonList = seasons.map(function(season) {
-                        //     return {
-                        //         label: 'Season ' + season.seasonNumber + ': ' + season.title,
-                        //         onClick: function() {
-                        //             $scope.selectedSeason = season;
-                        //         }
-                        //     }
-                        // });
                     }
                 );
 

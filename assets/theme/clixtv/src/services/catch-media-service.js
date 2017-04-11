@@ -12,6 +12,7 @@
                     $log.warn('Catch Media service has not been initialized yet');
                     return;
                 }
+                $log.log('Tracking', '"' + event + '"', 'event with data', data);
                 instance.reportAppEvent(event, data);
             }
 
@@ -43,15 +44,30 @@
 
                 },
 
-                addVideoPlayerEvent: function(playerInstance) {
+                trackVideoPlayerEvent: function(playerInstance) {
                     instance.setupJwPlayer(playerInstance, function(mediaId) {
                         return 'video';
                     });
                 },
 
-                addFavoriteBrandById: function(id) {
+                trackBrandPageEvent: function(id) {
+                    _reportAppEvent('campaign', { id: id });
+                },
 
-                    // instance.reportAppEvent('FAVORITE_BRAND', { id: id })
+                trackCelebrityPageEvent: function(id) {
+                    _reportAppEvent('person', { id: id });
+                },
+
+                trackCharityPageEvent: function(id) {
+                    _reportAppEvent('organization', { id: id });
+                },
+
+                trackOfferPageEvent: function(id) {
+                    _reportAppEvent('offer', { id: id });
+                },
+
+                trackVideoPageEvent: function(id) {
+                    _reportAppEvent('episode', { id: id });
                 }
             }
         }

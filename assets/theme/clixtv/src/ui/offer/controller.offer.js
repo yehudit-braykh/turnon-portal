@@ -8,7 +8,8 @@
         'offersService',
         'brandsService',
         'userService',
-        function($q, $scope, $rootScope, $stateParams, offersService, brandsService, userService) {
+        'catchMediaService',
+        function($q, $scope, $rootScope, $stateParams, offersService, brandsService, userService, catchMediaService) {
 
             $rootScope.$on('user.login', function(event, data) {
                 $scope.loggedInUser = data;
@@ -66,8 +67,6 @@
                 .then(
                     function onSuccess(data) {
 
-                        console.log(data);
-
                         $scope.offer = data;
 
                         $scope.configs = {
@@ -76,34 +75,10 @@
                             backgroundImage: data.headerImage,
                             logo: data.brand.transparentThumbnail
                         };
-
-                        return;
-
-                        var brandId = '5804d1e7a7889d000337f0e2',
-                            brandSlug = 'nike';
-
-                        $scope.configs = {
-                            title: data.title,
-                            description: data.description,
-                            backgroundImage: data.BackgroundImage.url,
-                            logo: data.BrandTransparentLogo.url
-                        };
-                        return $q.all(
-                            [
-                                brandsService.getOffersByBrandId(brandId),
-                                brandsService.getBrandBySlug(brandSlug),
-                                brandsService.getVideosByBrandId(brandId)
-                            ]
-                        );
-                    }
-                )
-                .then(
-                    function onSuccess(data) {
-                        // $scope.offers = data[0];
-                        // $scope.brand = data[1];
-                        // $scope.videos = data[2];
                     }
                 );
+
+            catchMediaService.trackOfferPageEvent($stateParams.id);
         }
     ];
 

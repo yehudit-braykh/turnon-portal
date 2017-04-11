@@ -9,7 +9,8 @@
         '$stateParams',
         'celebrityService',
         'userService',
-        function($q, $log, $scope, $rootScope, $state, $stateParams, celebrityService, userService) {
+        'catchMediaService',
+        function($q, $log, $scope, $rootScope, $state, $stateParams, celebrityService, userService, catchMediaService) {
 
             $rootScope.$on('user.login', function(event, data) {
                 $scope.loggedInUser = data;
@@ -118,6 +119,8 @@
                         $state.go('404');
                     }
                 );
+
+            catchMediaService.trackCelebrityPageEvent($stateParams.id);
 
             switch($stateParams.tab) {
                 case 'brands':

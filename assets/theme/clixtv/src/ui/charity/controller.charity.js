@@ -10,7 +10,8 @@
         '$stateParams',
         'brandsService',
         'userService',
-        function($q, $log, $scope, $rootScope, $uibModal, $state, $stateParams, brandsService, userService) {
+        'catchMediaService',
+        function($q, $log, $scope, $rootScope, $uibModal, $state, $stateParams, brandsService, userService, catchMediaService) {
 
             $rootScope.$on('user.login', function(event, data) {
                 $scope.loggedInUser = data;
@@ -61,6 +62,8 @@
                         $state.go('404');
                     }
                 );
+
+            catchMediaService.trackCharityPageEvent($stateParams.id);
 
             $scope.onDonatePress = function() {
                 var modalInstance = $uibModal.open({

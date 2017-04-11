@@ -90,6 +90,8 @@
                         $state.go('404');
                     }
                 );
+
+            catchMediaService.trackBrandPageEvent($stateParams.id);
         }
     ];
 

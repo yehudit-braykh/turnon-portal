@@ -20,7 +20,8 @@
                 charity: '@?',
                 shareable: '@?',
                 buttonTooltipText: '@?',
-                shareTooltipText: '@?'
+                shareTooltipText: '@?',
+                bannerType: '@'
             }
         }
     };

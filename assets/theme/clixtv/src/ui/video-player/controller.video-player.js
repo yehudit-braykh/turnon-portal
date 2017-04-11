@@ -42,7 +42,7 @@
                             }
                         });
 
-                        catchMediaService.addVideoPlayerEvent(playerInstance);
+                        catchMediaService.trackVideoPlayerEvent(playerInstance);
                     }
                 }
             });

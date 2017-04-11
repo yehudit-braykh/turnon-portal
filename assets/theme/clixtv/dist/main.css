@@ -9965,7 +9965,6 @@ button.close {
   }
   .brand-page .clix-hero-banner .banner-title-content {
     display: block;
-    padding-left: 68px;
   }
   .brand-page .clix-hero-banner .hero-banner-content {
     display: block;
@@ -11781,8 +11780,15 @@ button.close {
     margin-left: 27px;
   }
 }
-.clix-hero-banner .banner-title {
+.clix-hero-banner .banner-type {
   font-family: 'montserratregular', sans-serif;
+  font-size: 29px;
+  letter-spacing: 1.9px;
+  color: #9b9b9b;
+  margin-bottom: 14px;
+}
+.clix-hero-banner .banner-title {
+  font-family: 'montserratbold', sans-serif;
   font-size: 28px;
   color: #FFF;
   letter-spacing: 1.6px;
@@ -11791,8 +11797,9 @@ button.close {
 }
 @media (min-width: 768px) {
   .clix-hero-banner .banner-title {
-    font-size: 35px;
-    margin-bottom: 20px;
+    font-size: 100px;
+    line-height: 100px;
+    margin-bottom: 26px;
   }
 }
 .clix-hero-banner .banner-button {
