@@ -14,8 +14,9 @@
                 if (!backgroundImage) {
                     backgroundImage = document.getElementById('hero-background-image');
                 }
-
-                backgroundImage.style.left = ($window.innerWidth / 2) - (backgroundImage.offsetWidth / 2) + 'px';
+                if (backgroundImage) {
+                    backgroundImage.style.left = ($window.innerWidth / 2) - (backgroundImage.offsetWidth / 2) + 'px';
+                }
             }
 
             angular.element($window).on('resize.doResize', function () {

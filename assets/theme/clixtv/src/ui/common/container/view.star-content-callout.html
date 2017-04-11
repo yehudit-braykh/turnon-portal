@@ -1,0 +1,11 @@
+<clix-content-callout sref="star({ id: '{{star.id}}' })" menu-items="menuItems">
+    <header-element>
+        <div class="star-logo" style="background-image: url({{star.thumbnail}})"></div>
+    </header-element>
+    <title-content>
+        {{star.name}}
+    </title-content>
+    <subtitle-content>
+        {{star.videos.videos.length}} {{star.videos.videos.length === 1 ? 'Video' : 'Videos'}}
+    </subtitle-content>
+</clix-content-callout>

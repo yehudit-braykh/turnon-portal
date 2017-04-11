@@ -7,6 +7,9 @@
             transclude: {
                 headerText: 'headerText',
                 accessoryView: '?accessoryView'
+            },
+            link: function(scope, element, attrs, ctrl, transclude) {
+                scope.accessoryViewFilled = transclude.isSlotFilled('accessoryView');
             }
         }
     };

@@ -952,6 +952,24 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'montserratbold';
+    src: url('./font/montserrat-bold-webfont.woff2') format('woff2'),
+    url('./font/montserrat-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'montserratregular';
+    src: url('./font/montserrat-regular-webfont.woff2') format('woff2'),
+    url('./font/montserrat-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 
 
 /* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
@@ -7743,7 +7761,7 @@ button.close {
   letter-spacing: 2px;
   padding: 5px 19px;
   color: #bababa;
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
 }
 .clix-header .navigation-item-container a:hover,
 .clix-header .navigation-item-container a:focus {
@@ -7755,6 +7773,7 @@ button.close {
 }
 .clix-header .navigation-item-container .search-icon-container {
   padding: 0;
+  font-size: 15px;
 }
 .clix-header .search-item-container {
   padding: 0;
@@ -7802,16 +7821,19 @@ button.close {
   background-color: rgba(0, 0, 0, 0);
   border-width: 0;
   color: #FFF;
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 14px;
 }
 .clix-header .search-bar-background input::placeholder {
   color: #bababa;
 }
+.clix-header .account-action-container {
+  text-align: center;
+}
 .clix-header .account-action-container .account-action-label {
   display: inline-block;
-  font-family: 'cabinregular', sans-serif;
-  font-size: 14px;
+  font-family: 'montserratregular', sans-serif;
+  font-size: 11px;
   color: #FFF;
   letter-spacing: 1px;
 }
@@ -7947,7 +7969,7 @@ button.close {
   text-decoration: none;
 }
 .clix-header .header-user-container .header-name {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   color: #FFF;
   letter-spacing: 0.8px;
@@ -7975,7 +7997,7 @@ button.close {
   top: 0 !important;
 }
 .video-category-scroll-list h2 {
-  font-family: 'cabinbold', sans-serif;
+  font-family: 'montserratbold', sans-serif;
   font-size: 18px;
   padding: 0;
   margin: 0 0 30px 0;
@@ -8113,7 +8135,7 @@ button.close {
 }
 .video-content-box .header-container {
   color: #FFF;
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   position: relative;
 }
@@ -8272,14 +8294,14 @@ button.close {
   text-decoration: underline;
 }
 .video-content-box .series-title {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   color: #FFF;
   padding: 0;
   display: inline-block;
 }
 .video-content-box .episode-title {
-  font-family: 'cabinbold', sans-serif;
+  font-family: 'montserratbold', sans-serif;
   font-size: 14px;
   color: #9b9b9b;
   text-transform: uppercase;
@@ -8364,12 +8386,16 @@ button.close {
   display: block;
   padding: 9px;
   cursor: pointer;
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   color: #8a8a8a;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.tooltip-menu .menu-item.with-points {
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 .tooltip-menu .menu-item:hover {
   text-decoration: none;
@@ -8480,7 +8506,7 @@ button.close {
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 11px;
   color: #FFF;
   text-transform: uppercase;
@@ -8512,7 +8538,7 @@ button.close {
   -webkit-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.35);
   -moz-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.35);
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.35);
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 11px;
   color: #FFF;
   text-transform: uppercase;
@@ -8602,7 +8628,7 @@ button.close {
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
   border: 1px solid #8a8a8a;
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   color: #8a8a8a;
   font-size: 11px;
   letter-spacing: 0.9px;
@@ -8724,7 +8750,7 @@ button.close {
   background-image: -moz-linear-gradient(left, #0dc73a, #14cf1e);
   background-image: -ms-linear-gradient(left, #0dc73a, #14cf1e);
   background-image: -o-linear-gradient(left, #0dc73a, #14cf1e);
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   color: #FFF;
   padding: 3px 30px;
@@ -8788,7 +8814,7 @@ button.close {
   -webkit-align-items: center;
   -ms-align-items: center;
   align-items: center;
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 1.1px;
@@ -8909,7 +8935,7 @@ button.close {
   margin-right: 10px;
 }
 .clix-footer a {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 16px;
   color: #bababa;
 }
@@ -9010,7 +9036,7 @@ button.close {
   }
 }
 .clix-not-found-page .footer-links-container a {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   text-transform: uppercase;
   color: #8a8a8a;
   text-decoration: underline;
@@ -9076,9 +9102,9 @@ button.close {
   text-align: center;
 }
 .home-page .carousel-slide .carousel-main-header {
-  font-family: 'pt_sansregular', sans-serif;
-  font-size: 65px;
-  line-height: 65px;
+  font-family: 'montserratbold', sans-serif;
+  font-size: 80px;
+  line-height: 80px;
   color: #FFF;
   margin-top: 50px;
 }
@@ -9168,7 +9194,7 @@ button.close {
 }
 .home-page .mobile-header .header-content-title {
   text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 20px;
   color: #FFF;
 }
@@ -9285,7 +9311,7 @@ button.close {
   margin-left: 11px;
 }
 .video-permalink-page .star-name-container .star-name-favorite-container .star-name {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 28px;
   line-height: 28px;
   color: #FFF;
@@ -9293,9 +9319,9 @@ button.close {
 }
 @media (min-width: 768px) {
   .video-permalink-page .star-name-container .star-name-favorite-container .star-name {
-    font-family: 'pt_sansbold', sans-serif;
-    font-size: 24px;
-    line-height: 24px;
+    font-family: 'montserratbold', sans-serif;
+    font-size: 30px;
+    line-height: 30px;
     margin-bottom: 0;
   }
 }
@@ -9402,7 +9428,7 @@ button.close {
   }
 }
 .video-permalink-page .social-container .social-icon-label {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   color: #8a8a8a;
   font-size: 11px;
   letter-spacing: 1.5px;
@@ -9423,7 +9449,7 @@ button.close {
   }
 }
 .video-permalink-page .video-info-container .series-title {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratbold', sans-serif;
   font-size: 28px;
   color: #FFF;
   line-height: 35px;
@@ -9431,11 +9457,12 @@ button.close {
 }
 @media (min-width: 768px) {
   .video-permalink-page .video-info-container .series-title {
-    font-size: 30px;
+    font-size: 65px;
+    line-height: 65px;
   }
 }
 .video-permalink-page .video-info-container .episode-title {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 18px;
   color: #9b9b9b;
   text-transform: uppercase;
@@ -9453,7 +9480,7 @@ button.close {
   }
 }
 .video-permalink-page .video-info-container .total-views-available-container {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   text-transform: uppercase;
   color: #8a8a8a;
   font-size: 14px;
@@ -9479,21 +9506,21 @@ button.close {
   }
 }
 .video-permalink-page .video-info-container .description {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   color: #FFF;
   line-height: 20px;
   margin-top: 25px;
 }
 .video-permalink-page .video-info-container .meta-data {
-  font-family: 'cabinbold', sans-serif;
+  font-family: 'montserratbold', sans-serif;
   font-size: 14px;
   line-height: 18px;
   color: #FFF;
   margin-top: 36px;
 }
 .video-permalink-page .video-info-container .meta-data-label {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   text-transform: uppercase;
   color: #8a8a8a;
 }
@@ -9534,7 +9561,7 @@ button.close {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   text-transform: uppercase;
   font-size: 10px;
   letter-spacing: 4px;
@@ -9688,7 +9715,7 @@ button.close {
   margin-top: 39px;
 }
 .video-permalink-page .related-videos-container .related-videos-header {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   text-transform: uppercase;
   font-size: 14px;
   letter-spacing: 1.6px;
@@ -9753,7 +9780,7 @@ button.close {
   height: 25px;
 }
 .video-permalink-page .mobile-related-video .artist-name {
-  font-family: 'pt_sansbold', sans-serif;
+  font-family: 'montserratbold', sans-serif;
   font-size: 10px;
   padding-left: 5px;
 }
@@ -10025,7 +10052,7 @@ button.close {
   text-decoration: underline;
 }
 .brands-page .brand-title {
-  font-family: 'pt_sansbold', sans-serif;
+  font-family: 'montserratbold', sans-serif;
   font-size: 14px;
   color: #FFF;
   letter-spacing: -0.5px;
@@ -10596,14 +10623,14 @@ button.close {
   }
 }
 .clix-offer-page .home-header {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 24px;
   color: #8a8a8a;
 }
 @media (min-width: 768px) {
   .clix-offer-page .home-header {
     font-size: 30px;
-    font-family: 'pt_sansbold', sans-serif;
+    font-family: 'montserratbold', sans-serif;
   }
 }
 .clix-offer-page .home-instructions {
@@ -10639,7 +10666,7 @@ button.close {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   color: #FFF;
   padding-left: 12px;
@@ -10796,7 +10823,7 @@ button.close {
 .clix-offer-page .offer-footer-info p {
   color: #FFF;
   font-size: 14px;
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   line-height: 20px;
 }
 .clix-offer-page .offer-footer-column {
@@ -11025,7 +11052,7 @@ button.close {
   cursor: pointer;
 }
 .clix-account-overview input {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   width: 250px;
 }
@@ -11045,13 +11072,13 @@ button.close {
   }
 }
 .clix-account-overview .reward-points .points-label {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 45px;
   color: #0dc73a;
   letter-spacing: 1.6px;
 }
 .clix-account-overview .reward-points .available-balance-label {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   color: #FFF;
   line-height: 20px;
@@ -11306,13 +11333,13 @@ button.close {
   }
 }
 .clix-account-rewards .reward-points .points-label {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 45px;
   color: #0dc73a;
   letter-spacing: 1.6px;
 }
 .clix-account-rewards .reward-points .available-balance-label {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   color: #FFF;
   line-height: 20px;
@@ -11432,13 +11459,13 @@ button.close {
   padding-left: 22px;
 }
 .clix-account-rewards .reward-activity-row .reward-activity-row-desc {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 16px;
   color: #FFF;
   line-height: 18px;
 }
 .clix-account-rewards .reward-activity-row .reward-activity-row-timestamp {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 13px;
   color: #bababa;
   text-transform: uppercase;
@@ -11446,7 +11473,7 @@ button.close {
   margin-top: 2px;
 }
 .clix-account-rewards .reward-activity-row .reward-activity-row-title {
-  font-family: 'cabinbold', sans-serif;
+  font-family: 'montserratbold', sans-serif;
   font-size: 24px;
   text-transform: uppercase;
   letter-spacing: 3.5px;
@@ -11454,7 +11481,7 @@ button.close {
   color: #aaaaaa;
 }
 .clix-account-rewards .reward-activity-row .reward-activity-row-points {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 24px;
   color: #FFF;
 }
@@ -11463,13 +11490,13 @@ button.close {
   text-align: center;
 }
 .clix-account-rewards .redeem-intro {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   color: #FFF;
   line-height: 20px;
 }
 .clix-account-rewards .redeem-legal {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   color: #8a8a8a;
   line-height: 20px;
@@ -11518,11 +11545,11 @@ button.close {
   }
 }
 .clix-account-rewards .redeem-callout-company {
-  font-family: 'pt_sansbold', sans-serif;
+  font-family: 'montserratbold', sans-serif;
   font-size: 14px;
   color: #FFF;
   letter-spacing: -0.5px;
-  line-height: 16px;
+  line-height: 20px;
   display: block;
 }
 @media (min-width: 768px) {
@@ -11531,7 +11558,7 @@ button.close {
   }
 }
 .clix-account-rewards .redeem-now-link {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 11px;
   color: #8a8a8a;
   text-transform: uppercase;
@@ -11600,14 +11627,14 @@ button.close {
   flex: 1;
 }
 .clix-account-settings .setting-row .setting-row-title {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   letter-spacing: 1.6px;
   color: #FFF;
   text-transform: uppercase;
 }
 .clix-account-settings .setting-row .setting-row-description {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   line-height: 20px;
   color: #8a8a8a;
@@ -11755,7 +11782,7 @@ button.close {
   }
 }
 .clix-hero-banner .banner-title {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 28px;
   color: #FFF;
   letter-spacing: 1.6px;
@@ -11776,9 +11803,9 @@ button.close {
 }
 @media (min-width: 768px) {
   .clix-hero-banner .banner-button {
-    -webkit-justify-content: center;
-    -ms-justify-content: center;
-    justify-content: center;
+    -webkit-justify-content: flex-start;
+    -ms-justify-content: flex-start;
+    justify-content: flex-start;
   }
 }
 .clix-hero-banner .banner-share-icon {
@@ -11828,7 +11855,7 @@ button.close {
 }
 .clix-tabs .nav-tabs {
   border-bottom-width: 0;
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   letter-spacing: 1.6px;
   text-transform: uppercase;
@@ -12137,7 +12164,7 @@ button.close {
   cursor: pointer;
 }
 .clix-main-header {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratbold', sans-serif;
   font-size: 28px;
   letter-spacing: 1.6px;
   color: #FFF;
@@ -12146,11 +12173,11 @@ button.close {
 @media (min-width: 768px) {
   .clix-main-header {
     text-align: left;
-    font-size: 35px;
+    font-size: 65px;
   }
 }
 .clix-secondary-header {
-  font-family: 'cabinbold', sans-serif;
+  font-family: 'montserratbold', sans-serif;
   font-size: 18px;
   color: #aaaaaa;
   letter-spacing: 2.6px;
@@ -12242,7 +12269,7 @@ button.close {
   border-width: 0;
   color: #FFF;
   font-size: 14px;
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
 }
 .clix-search-filter .search-input::placeholder {
   color: #bababa;
@@ -12334,7 +12361,7 @@ button.close {
   text-decoration: underline;
 }
 .clix-filter-page .brand-title {
-  font-family: 'pt_sansbold', sans-serif;
+  font-family: 'montserratbold', sans-serif;
   font-size: 14px;
   color: #FFF;
   letter-spacing: -0.5px;
@@ -12414,7 +12441,7 @@ button.close {
   color: #aaaaaa;
 }
 .clix-landing-video-content .landing-description {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   line-height: 20px;
   color: #FFF;
@@ -12476,7 +12503,7 @@ button.close {
   }
 }
 .clix-landing-video-content .sidebar-title {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 1.6px;
@@ -12608,7 +12635,7 @@ button.close {
   text-decoration: underline;
 }
 .clix-content-callout .callout-title {
-  font-family: 'pt_sansbold', sans-serif;
+  font-family: 'montserratbold', sans-serif;
   font-size: 14px;
   color: #FFF;
   letter-spacing: -0.5px;
@@ -12620,11 +12647,11 @@ button.close {
 }
 @media (min-width: 768px) {
   .clix-content-callout .callout-title {
-    font-size: 16px;
+    font-size: 18px;
   }
 }
 .clix-content-callout .callout-subtitle {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 11px;
   color: #8a8a8a;
   text-transform: uppercase;
@@ -12645,11 +12672,11 @@ button.close {
 }
 .clix-empty-container .empty-icon {
   font-size: 64px;
-  font-family: 'pt_sansbold', sans-serif;
+  font-family: 'montserratbold', sans-serif;
 }
 .clix-empty-container .header-text {
   font-size: 24px;
-  font-family: 'pt_sansbold', sans-serif;
+  font-family: 'montserratbold', sans-serif;
   line-height: 30px;
 }
 .clix-empty-container .body-text {
@@ -12689,7 +12716,7 @@ button.close {
 }
 .clix-modal-window .clix-modal-header {
   font-size: 13px;
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
   color: #bababa;
@@ -12740,7 +12767,7 @@ button.close {
   margin-bottom: 20px;
 }
 .signup-modal .or-email-container {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   color: #8a8a8a;
   font-size: 14px;
   font-style: italic;
@@ -12791,7 +12818,7 @@ button.close {
 .signup-modal .signup-modal-input input {
   background-color: rgba(0, 0, 0, 0);
   border-width: 0;
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   color: #FFF;
   width: 100%;
@@ -12819,7 +12846,7 @@ button.close {
 .signup-modal .login-container {
   text-align: center;
   color: #FFF;
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 14px;
 }
 .signup-modal .login-container a {
@@ -12837,7 +12864,7 @@ button.close {
   padding: 16px 38px;
   text-align: center;
   color: #8a8a8a;
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 14px;
 }
 .signup-modal .signup-modal-footer a {
@@ -12867,7 +12894,7 @@ button.close {
   text-align: center;
   color: #FFF;
   font-size: 14px;
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   margin-top: 11px;
 }
 .clix-donate-modal .buy-more-points-container {
@@ -12881,14 +12908,14 @@ button.close {
   padding: 45px 0;
 }
 .clix-donate-modal .buy-points-label {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 27px;
   color: #8a8a8a;
   margin-bottom: 14px;
 }
 @media (min-width: 768px) {
   .clix-donate-modal .buy-points-label {
-    font-family: 'pt_sansbold', sans-serif;
+    font-family: 'montserratbold', sans-serif;
     font-size: 30px;
   }
 }
@@ -12910,7 +12937,7 @@ button.close {
 }
 @media (min-width: 768px) {
   .clix-donate-modal .donate-footer-buttons {
-    width: 475px;
+    width: 505px;
     margin-left: auto;
     margin-right: 0;
   }
@@ -12938,7 +12965,7 @@ button.close {
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
   padding: 10px 50px;
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 11px;
   letter-spacing: 0.9px;
   color: #8a8a8a;
@@ -12978,7 +13005,7 @@ button.close {
 }
 .clix-donate-modal .buy-points-input-container input,
 .clix-donate-modal .buy-points-input-container .input-display {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 45px;
   text-align: center;
   width: 100%;
@@ -13010,7 +13037,7 @@ button.close {
 .clix-donate-modal .buy-points-input-container {
   text-align: center;
   color: #FFF;
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 45px;
   margin-bottom: 20px;
 }
@@ -13028,7 +13055,7 @@ button.close {
   letter-spacing: 1px;
 }
 .clix-donate-modal .buy-points-input-label {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   color: #8a8a8a;
   text-align: center;
@@ -13051,7 +13078,7 @@ button.close {
   text-transform: uppercase;
   font-size: 14px;
   color: #FFF;
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   text-align: left;
   margin-bottom: 5px;
 }
@@ -13084,7 +13111,7 @@ button.close {
   width: 100%;
   border: 1px solid #686868;
   background-color: #353535;
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   color: #FFF;
   font-size: 16px;
   padding: 8px 10px;
@@ -13092,7 +13119,7 @@ button.close {
 .clix-donate-modal .credit-card-form .input-container-label {
   display: block;
   font-size: 14px;
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   color: #8a8a8a;
   text-align: left;
   margin-top: 3px;
@@ -13123,11 +13150,6 @@ button.close {
 }
 .clix-share-modal .nav-tabs li:last-child {
   margin-right: 0;
-}
-@media (min-width: 768px) {
-  .clix-share-modal .nav-tabs {
-    margin-right: 139px;
-  }
 }
 @media (max-width: 768px) {
   .clix-share-modal .share-modal-video-row {
@@ -13169,7 +13191,7 @@ button.close {
   background-color: rgba(0, 0, 0, 0);
   border-width: 0;
   resize: none;
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   line-height: 20px;
   color: #000;
@@ -13269,12 +13291,12 @@ button.close {
 }
 .clix-share-modal .share-modal-post-to-label {
   font-size: 14px;
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   color: #8a8a8a;
 }
 .clix-share-modal .share-modal-settings {
   font-size: 14px;
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   color: #8a8a8a;
 }
 .clix-share-modal .facebook-social-network.active {
@@ -13316,7 +13338,7 @@ button.close {
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
   padding: 10px 30px;
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 11px;
   letter-spacing: 0.9px;
   color: #8a8a8a;
@@ -13373,9 +13395,9 @@ button.close {
   max-width: 100%;
 }
 .clix-share-modal-video-content .series-title {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 30px;
-  line-height: 30px;
+  line-height: 32px;
   color: #FFF;
   margin-top: 11px;
   margin-bottom: 4px;
@@ -13387,15 +13409,15 @@ button.close {
   }
 }
 .clix-share-modal-video-content .episode-title {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 14px;
-  line-height: 14px;
+  line-height: 12px;
   letter-spacing: 1.6px;
   color: #9b9b9b;
   text-transform: uppercase;
 }
 .clix-share-modal-video-content .celebrity-title {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 13px;
   line-height: 13px;
   letter-spacing: 2px;
@@ -13403,7 +13425,7 @@ button.close {
   text-transform: uppercase;
 }
 .clix-share-modal-video-content .video-description {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   line-height: 20px;
   color: #FFF;
@@ -13416,7 +13438,7 @@ button.close {
   }
 }
 .clix-share-modal-video-content .video-clix-tv {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 13px;
   color: #bababa;
   text-transform: uppercase;
@@ -13455,13 +13477,13 @@ button.close {
   padding-left: 36px;
 }
 .clix-redeem-rewards-modal .reward-title {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   color: #FFF;
   font-size: 30px;
   line-height: 32px;
 }
 .clix-redeem-rewards-modal .reward-subtitle {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 13px;
   letter-spacing: 2px;
   color: #bababa;
@@ -13482,7 +13504,7 @@ button.close {
   text-align: center;
   color: #FFF;
   font-size: 14px;
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   margin-top: 11px;
 }
 .clix-redeem-rewards-modal .redeem-rewards-footer {
@@ -13492,7 +13514,7 @@ button.close {
   padding: 43px 10px 50px;
   text-align: center;
   line-height: 20px;
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   color: #8a8a8a;
 }
 @media (min-width: 768px) {
@@ -13532,7 +13554,7 @@ button.close {
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
   padding: 10px 50px;
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 11px;
   letter-spacing: 0.9px;
   color: #8a8a8a;
@@ -13658,12 +13680,12 @@ button.close {
   z-index: 1000;
 }
 .clix-right-navigation .avatar-container .display-name {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 16px;
   color: #FFF;
 }
 .clix-right-navigation .avatar-container .my-clixtv {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 13px;
   color: #8a8a8a;
   text-transform: uppercase;
@@ -13775,7 +13797,7 @@ button.close {
   font-size: 20px;
 }
 .clix-right-navigation .navigation-list .navigation-list-label {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 13px;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -13866,14 +13888,15 @@ button.close {
   left: 0;
   width: 100%;
   text-align: center;
+  z-index: 2000;
 }
 .clix-navigation-bar .avatar-container .display-name {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 16px;
   color: #FFF;
 }
 .clix-navigation-bar .avatar-container .my-clixtv {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 13px;
   color: #8a8a8a;
   text-transform: uppercase;
@@ -13943,7 +13966,7 @@ button.close {
   font-size: 20px;
 }
 .clix-navigation-bar .navigation-list .navigation-list-label {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 13px;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -14013,7 +14036,7 @@ button.close {
   }
 }
 .clix-account-header .header-text {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratbold', sans-serif;
   font-size: 28px;
   color: #FFF;
   letter-spacing: 1.6px;
@@ -14021,7 +14044,7 @@ button.close {
 }
 @media (min-width: 768px) {
   .clix-account-header .header-text {
-    font-size: 35px;
+    font-size: 45px;
     text-align: left;
     margin-bottom: 0;
   }
@@ -14034,6 +14057,7 @@ button.close {
   .clix-account-header .accesory-view {
     padding-bottom: 0;
     padding-top: 0;
+    margin-top: 20px;
   }
 }
 @media (min-width: 768px) {
@@ -14069,7 +14093,7 @@ button.close {
   margin-right: 7px;
 }
 .clix-number-stepper .value-container input {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 45px;
   text-align: center;
   width: 100%;
@@ -14130,7 +14154,7 @@ button.close {
   visibility: visible;
 }
 .clix-checkbox .checkbox-label {
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   color: #FFF;
   font-size: 17px;
   margin-left: 16px;
@@ -14175,7 +14199,7 @@ button.close {
   opacity: 0;
   background-color: #212121;
   padding: 8px;
-  font-family: 'pt_sansregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 11px;
   line-height: 13px;
   color: #8a8a8a;

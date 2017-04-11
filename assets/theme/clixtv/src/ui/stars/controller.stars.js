@@ -42,35 +42,9 @@
                 }
             ];
 
-            $scope.menuItems = [
-                {
-                    label: 'Share',
-                    icon: 'icon-share-icon',
-                    points: '50',
-                    onClick: function() {
-                        console.log('SHARE');
-                    }
-                },
-                {
-                    label: 'Add to Favorites',
-                    icon: 'icon-favorite-icon',
-                    onClick: function() {
-                        console.log('SHARE');
-                    }
-                },
-                {
-                    label: 'Go to Stars',
-                    icon: 'icon-stars-icon',
-                    onClick: function() {
-                        console.log('SHARE');
-                    }
-                }
-            ];
-
             celebrityService.getAllCelebrities()
                 .then(
                     function onSuccess(data) {
-                        console.log(data);
                         $scope.stars = data;
                     }
                 )

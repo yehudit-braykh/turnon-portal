@@ -1,9 +1,9 @@
 <div class="clix-account-header">
     <div class="row">
-        <div class="header-text col-sm-6">
+        <div class="header-text" ng-class="{'col-sm-6': accessoryViewFilled, 'col-sm-12': !accessoryViewFilled}">
             <div ng-transclude="headerText"></div>
         </div>
-        <div class="accesory-view col-sm-6">
+        <div class="accesory-view col-sm-6" ng-if="accessoryViewFilled">
             <div ng-transclude="accessoryView"></div>
         </div>
     </div>

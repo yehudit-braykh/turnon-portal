@@ -118,6 +118,18 @@
                         $state.go('404');
                     }
                 );
+
+            switch($stateParams.tab) {
+                case 'brands':
+                    $scope.active = 1;
+                    break;
+                case 'charities':
+                    $scope.active = 2;
+                    break;
+                default:
+                    $scope.active = 0;
+                    break;
+            }
         }
     ];
 

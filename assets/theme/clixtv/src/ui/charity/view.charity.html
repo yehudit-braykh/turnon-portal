@@ -48,17 +48,7 @@
                                 <div class="row brand-offer-row">
                                     <div class="col-xs-6 col-sm-6 col-md-12 col-lg-12 brand-offer-column" ng-repeat="celebrity in charity.celebrities.celebrities | limitTo: 3">
                                         <div class="star-support-callout">
-                                            <clix-content-callout sref="star({ id: '{{celebrity.id}}' })">
-                                                <header-element>
-                                                    <div class="star-logo" style="background-image: url({{celebrity.thumbnail}})"></div>
-                                                </header-element>
-                                                <title-content>
-                                                    {{celebrity.name}}
-                                                </title-content>
-                                                <subtitle-content>
-                                                    {{celebrity.videos.videos.length}} {{celebrity.videos.videos.length === 1 ? 'Video' : 'Videos'}}
-                                                </subtitle-content>
-                                            </clix-content-callout>
+                                            <clix-star-content-callout star="celebrity"></clix-star-content-callout>
                                         </div>
                                     </div>
                                 </div>

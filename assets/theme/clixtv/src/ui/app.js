@@ -71,7 +71,10 @@
                     .state('star', {
                         url: '/star/:id',
                         templateUrl: 'ui/stars/view.star.html',
-                        controller: 'StarController'
+                        controller: 'StarController',
+                        params: {
+                            tab: 'video'
+                        }
                     })
                     .state('categories', {
                         url: '/categories',
