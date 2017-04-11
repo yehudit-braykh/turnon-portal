@@ -11786,28 +11786,19 @@ button.close {
   font-size: 29px;
   letter-spacing: 1.9px;
   color: #9b9b9b;
-  margin-bottom: 14px;
+  padding-bottom: 24px;
 }
 .clix-hero-banner .banner-title {
   font-family: 'montserratbold', sans-serif;
-  font-size: 28px;
   color: #FFF;
   letter-spacing: 1.6px;
-  margin-bottom: 8px;
-  line-height: 33px;
-}
-@media (min-width: 768px) {
-  .clix-hero-banner .banner-title {
-    font-size: 100px;
-    line-height: 100px;
-    margin-bottom: 26px;
-  }
 }
 .clix-hero-banner .banner-button {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: -ms-flex;
   display: flex;
+  padding-top: 44px;
 }
 @media (min-width: 768px) {
   .clix-hero-banner .banner-button {

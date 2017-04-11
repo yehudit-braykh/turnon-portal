@@ -10,16 +10,18 @@
                     this.expirationDate = data.expirationDate;
                     this.description = data.description;
 
-                    if (data.content.BrandTransparentLogo) {
-                        this.transparentThumbnail = data.content.BrandTransparentLogo.downloadUrl;
-                    }
+                    if (data.content) {
+                        if (data.content.BrandTransparentLogo) {
+                            this.transparentThumbnail = data.content.BrandTransparentLogo.downloadUrl;
+                        }
 
-                    if (data.content.BrandLogo) {
-                        this.thumbnail = data.content.BrandLogo.downloadUrl;
-                    }
+                        if (data.content.BrandLogo) {
+                            this.thumbnail = data.content.BrandLogo.downloadUrl;
+                        }
 
-                    if (data.content.BackgroundImage) {
-                        this.headerImage = data.content.BackgroundImage.downloadUrl;
+                        if (data.content.BackgroundImage) {
+                            this.headerImage = data.content.BackgroundImage.downloadUrl;
+                        }
                     }
 
                     if (data.brand) {

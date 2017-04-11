@@ -11,7 +11,8 @@
             'duParallax',
             'ui.bootstrap',
             'puElasticInput',
-            'uiSwitch'
+            'uiSwitch',
+            'ngFitText'
         ])
         .config([
             '$locationProvider',

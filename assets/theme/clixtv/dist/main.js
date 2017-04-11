@@ -11,7 +11,8 @@
             'duParallax',
             'ui.bootstrap',
             'puElasticInput',
-            'uiSwitch'
+            'uiSwitch',
+            'ngFitText'
         ])
         .config([
             '$locationProvider',
@@ -303,7 +304,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/hero-banner/view.hero-banner.html',
-    "<div class=clix-hero-banner><img class=hero-background-image id=hero-background-image ng-src={{backgroundImage}} ng-srcset=\"{{backgroundImage2x}} 2x, {{backgroundImage3x}} 3x\" alt=\"\" draggable=false du-parallax y=background clix-on-image-load=onImageLoad()><div class=hero-banner-content-container><div class=hero-banner-content><div class=banner-logo-container ng-class=\"{'charity-logo': charity}\" ng-show=logoProvided><div ng-transclude=logo></div></div><div class=banner-title-content ng-class=\"{'with-logo': logoProvided}\"><div class=banner-type>{{bannerType}}</div><div class=banner-title>{{titleText}}</div><div class=banner-button><div clix-tooltip-trigger tooltip-id=hero-banner-button-{{$id}}><clix-tertiary-button>{{buttonText}} <i class={{buttonIconClass}} ng-if=buttonIconClass></i></clix-tertiary-button></div><div clix-tooltip-trigger tooltip-id=hero-banner-share-{{$id}}><clix-share-button extra-class=banner-share-icon ng-show=\"shareable !== 'false'\"></clix-share-button></div><div class=header-points-violator ng-if=points><clix-points-violator>{{points}}</clix-points-violator></div><div class=banner-subtext-container>{{subtext}}</div></div></div></div></div></div><clix-tooltip tooltip-id=hero-banner-button-{{$id}}>{{buttonTooltipText}}</clix-tooltip><clix-tooltip tooltip-id=hero-banner-share-{{$id}}>{{shareTooltipText}}</clix-tooltip>"
+    "<div class=clix-hero-banner><img class=hero-background-image id=hero-background-image ng-src={{backgroundImage}} ng-srcset=\"{{backgroundImage2x}} 2x, {{backgroundImage3x}} 3x\" alt=\"\" draggable=false du-parallax y=background clix-on-image-load=onImageLoad()><div class=hero-banner-content-container><div class=hero-banner-content><div class=banner-logo-container ng-class=\"{'charity-logo': charity}\" ng-show=logoProvided><div ng-transclude=logo></div></div><div class=banner-title-content ng-class=\"{'with-logo': logoProvided}\"><div class=banner-type>{{bannerType}}</div><div class=banner-title><div data-fittext>{{titleText}}</div></div><div class=banner-button><div clix-tooltip-trigger tooltip-id=hero-banner-button-{{$id}}><clix-tertiary-button>{{buttonText}} <i class={{buttonIconClass}} ng-if=buttonIconClass></i></clix-tertiary-button></div><div clix-tooltip-trigger tooltip-id=hero-banner-share-{{$id}}><clix-share-button extra-class=banner-share-icon ng-show=\"shareable !== 'false'\"></clix-share-button></div><div class=header-points-violator ng-if=points><clix-points-violator>{{points}}</clix-points-violator></div><div class=banner-subtext-container>{{subtext}}</div></div></div></div></div></div><clix-tooltip tooltip-id=hero-banner-button-{{$id}}>{{buttonTooltipText}}</clix-tooltip><clix-tooltip tooltip-id=hero-banner-share-{{$id}}>{{shareTooltipText}}</clix-tooltip>"
   );
 
 
@@ -4777,16 +4778,18 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     this.expirationDate = data.expirationDate;
                     this.description = data.description;
 
-                    if (data.content.BrandTransparentLogo) {
-                        this.transparentThumbnail = data.content.BrandTransparentLogo.downloadUrl;
-                    }
+                    if (data.content) {
+                        if (data.content.BrandTransparentLogo) {
+                            this.transparentThumbnail = data.content.BrandTransparentLogo.downloadUrl;
+                        }
 
-                    if (data.content.BrandLogo) {
-                        this.thumbnail = data.content.BrandLogo.downloadUrl;
-                    }
+                        if (data.content.BrandLogo) {
+                            this.thumbnail = data.content.BrandLogo.downloadUrl;
+                        }
 
-                    if (data.content.BackgroundImage) {
-                        this.headerImage = data.content.BackgroundImage.downloadUrl;
+                        if (data.content.BackgroundImage) {
+                            this.headerImage = data.content.BackgroundImage.downloadUrl;
+                        }
                     }
 
                     if (data.brand) {
