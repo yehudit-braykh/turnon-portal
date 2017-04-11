@@ -38,21 +38,21 @@
                     <clix-header-points-violator></clix-header-points-violator>
                     <div class="header-avatar-container">
                         <div ng-if="loggedInUser.avatar">
-                            <a href="#" class="header-avatar" style="background-image: url('{{loggedInUser.avatar}}')"></a>
+                            <a ng-click="onNamePress()" class="header-avatar" style="background-image: url('{{loggedInUser.avatar}}')"></a>
                         </div>
                         <div ng-if="!loggedInUser.avatar">
-                            <a href="#" class="header-avatar" style="background-image: url('assets/theme/clixtv/dist/images/empty-profile-picture.png')"></a>
+                            <a ng-click="onNamePress()" class="header-avatar" style="background-image: url('assets/theme/clixtv/dist/images/empty-profile-picture.png')"></a>
                         </div>
                         <div class="header-notification-count">&nbsp;20</div>
                     </div>
-                    <a ng-click="onNamePress()" class="header-name-container">
-                        <div class="header-name">
-                            {{loggedInUser.firstName}}
-                        </div>
-                        <div class="header-expand-icon">
+                    <div class="header-name-container">
+                        <a ng-click="onNamePress()" class="header-name">
+                            {{loggedInUser.firstName}} FFF
+                        </a>
+                        <a ng-click="onArrowPress()" class="header-expand-icon">
                             <div class="icon-left-tall-arrow"></div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div ng-if="!loggedInUser">

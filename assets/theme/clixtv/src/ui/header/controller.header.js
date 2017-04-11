@@ -18,7 +18,7 @@
                 delete $scope.loggedInUser;
             });
 
-            $scope.onNamePress = function() {
+            $scope.onArrowPress = function() {
                 $rootScope.$broadcast('rightnav.open');
             };
 

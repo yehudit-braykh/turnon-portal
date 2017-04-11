@@ -7984,6 +7984,9 @@ button.close {
   color: #FFF;
   letter-spacing: 0.8px;
 }
+.clix-header .header-user-container .header-name:hover {
+  text-decoration: none;
+}
 .clix-header .header-user-container .header-expand-icon {
   color: #FFF;
   font-size: 20px;
@@ -8379,9 +8382,9 @@ button.close {
   width: 100%;
 }
 .tooltip-menu .menu-container {
-  -webkit-box-shadow: 0 2px 5px 2px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 0 2px 5px 2px rgba(0, 0, 0, 0.5);
-  box-shadow: 0 2px 5px 2px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 2px 5px 2px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 2px 5px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 5px 2px rgba(0, 0, 0, 0.2);
   position: absolute;
   top: 0;
   right: 0;
@@ -11608,6 +11611,30 @@ button.close {
   bottom: 0;
   right: 0;
 }
+@media (min-width: 768px) {
+  .clix-account-notifications .notifications-container {
+    background-color: #171717;
+    margin: 50px 29px 0 50px;
+    padding: 37px 45px;
+  }
+}
+.clix-account-notifications .notifications-header {
+  font-family: 'montserratregular', sans-serif;
+  font-size: 14px;
+  color: #FFF;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  padding-bottom: 30px;
+  margin-top: 33px;
+  padding-left: 9px;
+  border-bottom: 2px solid #636363;
+}
+@media (min-width: 768px) {
+  .clix-account-notifications .notifications-header {
+    margin-top: 0;
+    padding-left: 0;
+  }
+}
 .clix-account-settings .settings-page-content {
   padding: 46px 9px 46px 9px;
 }
@@ -14044,7 +14071,7 @@ button.close {
   .clix-account-header {
     margin-left: 9px;
     margin-right: 9px;
-    padding-bottom: 20px;
+    padding-bottom: 8px;
   }
 }
 .clix-account-header .header-text {
@@ -14178,7 +14205,7 @@ button.close {
 }
 .clix-tooltip {
   position: fixed;
-  z-index: 8000;
+  z-index: 2500;
   left: -999px;
   top: -999px;
 }
@@ -14303,6 +14330,123 @@ button.close {
   .clix-loader .loader-icon.loader-large {
     max-width: 200px;
   }
+}
+.clix-notifications {
+  background-color: #232323;
+}
+.clix-notifications .notification-item-container {
+  border-bottom: 1px solid #494949;
+}
+.clix-notifications .notification-item-container:last-child {
+  border-bottom-width: 0;
+}
+.clix-notifications .notification-item {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  padding: 20px 9px;
+  position: relative;
+}
+.clix-notifications .notification-thumbnail {
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  -webkit-align-self: flex-start;
+  -ms-align-self: flex-start;
+  align-self: flex-start;
+  width: 40px;
+  height: 40px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+@media (min-width: 768px) {
+  .clix-notifications .notification-thumbnail {
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    -webkit-align-self: center;
+    -ms-align-self: center;
+    align-self: center;
+    width: 60px;
+    height: 60px;
+  }
+}
+.clix-notifications .notification-content-container {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  padding-left: 11px;
+  color: #FFF;
+  font-size: 16px;
+  line-height: 18px;
+  font-family: 'montserratregular', sans-serif;
+}
+.clix-notifications .notification-author-name {
+  font-family: 'montserratsemibold', sans-serif;
+}
+.clix-notifications .notification-timestamp-container {
+  color: #bababa;
+  font-size: 11px;
+  margin-top: 6px;
+}
+@media (min-width: 768px) {
+  .clix-notifications .notification-timestamp-container {
+    font-size: 13px;
+  }
+}
+.clix-notifications .notification-icon {
+  font-size: 18px;
+  position: relative;
+  top: 2px;
+}
+@media (min-width: 768px) {
+  .clix-notifications .notification-icon {
+    font-size: 25px;
+  }
+}
+.clix-notifications .notification-timestamp {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: inline-block;
+}
+.clix-notifications .notification-points-container {
+  display: inline-block;
+  margin-top: 13px;
+}
+@media (min-width: 768px) {
+  .clix-notifications .notification-points-container {
+    margin-top: 0;
+    margin-left: 20px;
+  }
+}
+.clix-notifications .notification-more-icon-container {
+  cursor: pointer;
+  color: #8a8a8a;
+}
+.clix-notifications .notification-more-icon-container:hover {
+  color: #FFF;
+}
+.clix-notifications .notification-more-icon {
+  font-size: 30px;
+  padding: 10px 0;
+}
+.clix-notifications .menu-container {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 100%;
+  margin-top: 7px;
 }
 body,
 html {
