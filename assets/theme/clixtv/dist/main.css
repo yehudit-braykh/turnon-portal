@@ -10266,7 +10266,6 @@ button.close {
   }
   .charity-page .clix-hero-banner .banner-title-content {
     display: block;
-    padding-left: 68px;
   }
   .charity-page .clix-hero-banner .hero-banner-content {
     display: block;
@@ -10454,7 +10453,6 @@ button.close {
   }
   .clix-star-page .clix-hero-banner .banner-title-content {
     display: block;
-    padding-left: 68px;
   }
   .clix-star-page .clix-hero-banner .hero-banner-content {
     display: block;
@@ -11786,19 +11784,20 @@ button.close {
   font-size: 29px;
   letter-spacing: 1.9px;
   color: #9b9b9b;
-  padding-bottom: 24px;
+  position: relative;
+  top: 20px;
 }
 .clix-hero-banner .banner-title {
   font-family: 'montserratbold', sans-serif;
   color: #FFF;
   letter-spacing: 1.6px;
+  line-height: normal;
 }
 .clix-hero-banner .banner-button {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: -ms-flex;
   display: flex;
-  padding-top: 44px;
 }
 @media (min-width: 768px) {
   .clix-hero-banner .banner-button {
