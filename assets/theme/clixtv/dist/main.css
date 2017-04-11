@@ -7854,7 +7854,7 @@ button.close {
 }
 .clix-header .header-user-container .header-user-points-container {
   text-transform: uppercase;
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 9px;
   color: #FFF;
   letter-spacing: 1px;
@@ -7951,7 +7951,7 @@ button.close {
   text-align: center;
   color: #FFF;
   line-height: 20px;
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 11px;
   z-index: 20;
 }
@@ -8437,7 +8437,7 @@ button.close {
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
   color: #FFF;
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 11px;
   text-transform: uppercase;
   display: inline-block;
@@ -8469,7 +8469,7 @@ button.close {
   line-height: 25px;
   text-align: center;
   color: #FFF;
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 11px;
 }
 @media (min-width: 768px) {
@@ -8487,7 +8487,7 @@ button.close {
 }
 .clix-header-points-violator {
   text-transform: uppercase;
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 9px;
   color: #FFF;
   letter-spacing: 1px;
@@ -8723,7 +8723,7 @@ button.close {
   border-bottom: 1px solid #fa0d1b;
 }
 .clix-tertiary-button .button-content {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 11px;
   color: #FFF;
   letter-spacing: 0.9px;
@@ -8845,7 +8845,7 @@ button.close {
 }
 .clix-dropdown .tooltip-menu .menu-label {
   top: 0;
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   text-transform: uppercase;
 }
 .clix-dropdown .menu-container {
@@ -8873,7 +8873,7 @@ button.close {
   }
 }
 .clix-footer .footer-label {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 16px;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -8967,7 +8967,7 @@ button.close {
   -ms-flex: 1;
   flex: 1;
   color: #323232;
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 16px;
 }
 @media (min-width: 768px) {
@@ -9109,7 +9109,7 @@ button.close {
   margin-top: 50px;
 }
 .home-page .carousel-slide .carousel-sub-header {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 22px;
   color: #FFF;
   text-transform: uppercase;
@@ -9200,7 +9200,7 @@ button.close {
 }
 .home-page .mobile-header .header-content-subtitle {
   text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 1.8px;
@@ -9693,7 +9693,7 @@ button.close {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  font-family: 'cabinbold', sans-serif;
+  font-family: 'montserratbold', sans-serif;
   font-size: 18px;
   color: #aaaaaa;
   letter-spacing: 2.6px;
@@ -10067,7 +10067,7 @@ button.close {
   }
 }
 .brands-page .brand-offers {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 11px;
   color: #8a8a8a;
   text-transform: uppercase;
@@ -10436,7 +10436,7 @@ button.close {
   }
 }
 .clix-star-page .sidebar-title {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 1.6px;
@@ -10503,7 +10503,7 @@ button.close {
   border: 1px solid #777777;
 }
 .clix-category-page .category-list-title {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   color: #FFF;
   letter-spacing: 1.6px;
@@ -10524,7 +10524,7 @@ button.close {
 }
 .clix-category-page .category-list-item a {
   display: inline-block;
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 13px;
   color: #bababa;
   letter-spacing: 2px;
@@ -10659,7 +10659,7 @@ button.close {
   text-align: center;
   color: #FFF;
   font-size: 14px;
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
 }
 .clix-offer-page .home-instructions .instructions-label {
   -webkit-flex: 1;
@@ -10988,7 +10988,7 @@ button.close {
   }
 }
 .clix-account-overview .account-info-sub-header {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   text-align: center;
   font-size: 14px;
   color: #8a8a8a;
@@ -11034,7 +11034,7 @@ button.close {
   margin-bottom: 9px;
 }
 .clix-account-overview .form-header-label {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   text-transform: uppercase;
   color: #8a8a8a;
@@ -11132,7 +11132,7 @@ button.close {
 }
 .clix-account-overview .level-label {
   font-size: 45px;
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   letter-spacing: 2.3px;
   text-transform: uppercase;
   color: #fe0000;
@@ -11140,7 +11140,7 @@ button.close {
   margin-bottom: 5px;
 }
 .clix-account-overview .progress-label {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   color: #FFF;
   font-size: 14px;
   text-transform: uppercase;
@@ -11380,7 +11380,7 @@ button.close {
   border-bottom-width: 0 !important;
 }
 .clix-account-rewards .rewards-summary-header {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   letter-spacing: 1.6px;
   color: #8a8a8a;
@@ -11844,7 +11844,7 @@ button.close {
   -ms-align-self: flex-end;
   align-self: flex-end;
   text-align: center;
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   color: #8a8a8a;
   text-transform: uppercase;
@@ -12080,7 +12080,7 @@ button.close {
   position: absolute;
   text-align: center;
   font-size: 9px;
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   color: #FFF;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -12128,7 +12128,7 @@ button.close {
   -webkit-align-self: center;
   -ms-align-self: center;
   align-self: center;
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   letter-spacing: 1.2px;
   font-size: 16px;
   line-height: 16px;
@@ -12384,7 +12384,7 @@ button.close {
   }
 }
 .clix-filter-page .brand-offers {
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   font-size: 11px;
   color: #8a8a8a;
   text-transform: uppercase;
@@ -12441,7 +12441,7 @@ button.close {
   right: 43px;
 }
 .clix-landing-video-content .landing-header {
-  font-family: 'cabinbold', sans-serif;
+  font-family: 'montserratbold', sans-serif;
   font-size: 24px;
   text-transform: uppercase;
   letter-spacing: 3.5px;
@@ -12688,7 +12688,7 @@ button.close {
 }
 .clix-empty-container .body-text {
   font-size: 14px;
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   line-height: 22px;
   letter-spacing: 1.6px;
   text-transform: uppercase;
@@ -13332,7 +13332,7 @@ button.close {
 }
 .clix-share-modal .share-modal-copy-link {
   font-size: 13px;
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
   color: #bababa;
@@ -14013,7 +14013,7 @@ button.close {
   flex: 1;
   color: #bababa;
   text-align: center;
-  font-family: 'cabinregular', sans-serif;
+  font-family: 'montserratregular', sans-serif;
   text-transform: uppercase;
   font-size: 7px;
   letter-spacing: 0.8px;
