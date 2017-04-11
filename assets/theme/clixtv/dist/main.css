@@ -958,7 +958,14 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
     url('./font/montserrat-bold-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+}
 
+@font-face {
+    font-family: 'montserratsemibold';
+    src: url('./font/montserrat-semibold-webfont.woff2') format('woff2'),
+    url('./font/montserrat-semibold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {
@@ -967,7 +974,6 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
     url('./font/montserrat-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-
 }
 
 
@@ -8001,7 +8007,7 @@ button.close {
   top: 0 !important;
 }
 .video-category-scroll-list h2 {
-  font-family: 'montserratbold', sans-serif;
+  font-family: 'montserratsemibold', sans-serif;
   font-size: 18px;
   padding: 0;
   margin: 0 0 30px 0;
@@ -8305,7 +8311,7 @@ button.close {
   display: inline-block;
 }
 .video-content-box .episode-title {
-  font-family: 'montserratbold', sans-serif;
+  font-family: 'montserratsemibold', sans-serif;
   font-size: 14px;
   color: #9b9b9b;
   text-transform: uppercase;
@@ -9106,7 +9112,7 @@ button.close {
   text-align: center;
 }
 .home-page .carousel-slide .carousel-main-header {
-  font-family: 'montserratbold', sans-serif;
+  font-family: 'montserratsemibold', sans-serif;
   font-size: 80px;
   line-height: 80px;
   color: #FFF;
@@ -9323,7 +9329,7 @@ button.close {
 }
 @media (min-width: 768px) {
   .video-permalink-page .star-name-container .star-name-favorite-container .star-name {
-    font-family: 'montserratbold', sans-serif;
+    font-family: 'montserratsemibold', sans-serif;
     font-size: 30px;
     line-height: 30px;
     margin-bottom: 0;
@@ -9453,7 +9459,7 @@ button.close {
   }
 }
 .video-permalink-page .video-info-container .series-title {
-  font-family: 'montserratbold', sans-serif;
+  font-family: 'montserratsemibold', sans-serif;
   font-size: 28px;
   color: #FFF;
   line-height: 35px;
@@ -9517,7 +9523,7 @@ button.close {
   margin-top: 25px;
 }
 .video-permalink-page .video-info-container .meta-data {
-  font-family: 'montserratbold', sans-serif;
+  font-family: 'montserratsemibold', sans-serif;
   font-size: 14px;
   line-height: 18px;
   color: #FFF;
@@ -9697,7 +9703,7 @@ button.close {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  font-family: 'montserratbold', sans-serif;
+  font-family: 'montserratsemibold', sans-serif;
   font-size: 18px;
   color: #aaaaaa;
   letter-spacing: 2.6px;
@@ -9784,7 +9790,7 @@ button.close {
   height: 25px;
 }
 .video-permalink-page .mobile-related-video .artist-name {
-  font-family: 'montserratbold', sans-serif;
+  font-family: 'montserratsemibold', sans-serif;
   font-size: 10px;
   padding-left: 5px;
 }
@@ -10055,7 +10061,7 @@ button.close {
   text-decoration: underline;
 }
 .brands-page .brand-title {
-  font-family: 'montserratbold', sans-serif;
+  font-family: 'montserratsemibold', sans-serif;
   font-size: 14px;
   color: #FFF;
   letter-spacing: -0.5px;
@@ -10631,7 +10637,7 @@ button.close {
 @media (min-width: 768px) {
   .clix-offer-page .home-header {
     font-size: 30px;
-    font-family: 'montserratbold', sans-serif;
+    font-family: 'montserratsemibold', sans-serif;
   }
 }
 .clix-offer-page .home-instructions {
@@ -11472,7 +11478,7 @@ button.close {
   margin-top: 2px;
 }
 .clix-account-rewards .reward-activity-row .reward-activity-row-title {
-  font-family: 'montserratbold', sans-serif;
+  font-family: 'montserratsemibold', sans-serif;
   font-size: 24px;
   text-transform: uppercase;
   letter-spacing: 3.5px;
@@ -11544,7 +11550,7 @@ button.close {
   }
 }
 .clix-account-rewards .redeem-callout-company {
-  font-family: 'montserratbold', sans-serif;
+  font-family: 'montserratsemibold', sans-serif;
   font-size: 14px;
   color: #FFF;
   letter-spacing: -0.5px;
@@ -11790,9 +11796,10 @@ button.close {
   color: #9b9b9b;
   position: relative;
   top: 20px;
+  text-transform: uppercase;
 }
 .clix-hero-banner .banner-title {
-  font-family: 'montserratbold', sans-serif;
+  font-family: 'montserratsemibold', sans-serif;
   color: #FFF;
   letter-spacing: 1.6px;
   line-height: normal;
@@ -12166,7 +12173,7 @@ button.close {
   cursor: pointer;
 }
 .clix-main-header {
-  font-family: 'montserratbold', sans-serif;
+  font-family: 'montserratsemibold', sans-serif;
   font-size: 28px;
   letter-spacing: 1.6px;
   color: #FFF;
@@ -12179,7 +12186,7 @@ button.close {
   }
 }
 .clix-secondary-header {
-  font-family: 'montserratbold', sans-serif;
+  font-family: 'montserratsemibold', sans-serif;
   font-size: 18px;
   color: #aaaaaa;
   letter-spacing: 2.6px;
@@ -12363,7 +12370,7 @@ button.close {
   text-decoration: underline;
 }
 .clix-filter-page .brand-title {
-  font-family: 'montserratbold', sans-serif;
+  font-family: 'montserratsemibold', sans-serif;
   font-size: 14px;
   color: #FFF;
   letter-spacing: -0.5px;
@@ -12436,7 +12443,7 @@ button.close {
   right: 43px;
 }
 .clix-landing-video-content .landing-header {
-  font-family: 'montserratbold', sans-serif;
+  font-family: 'montserratsemibold', sans-serif;
   font-size: 24px;
   text-transform: uppercase;
   letter-spacing: 3.5px;
@@ -12637,7 +12644,7 @@ button.close {
   text-decoration: underline;
 }
 .clix-content-callout .callout-title {
-  font-family: 'montserratbold', sans-serif;
+  font-family: 'montserratsemibold', sans-serif;
   font-size: 14px;
   color: #FFF;
   letter-spacing: -0.5px;
@@ -12674,11 +12681,11 @@ button.close {
 }
 .clix-empty-container .empty-icon {
   font-size: 64px;
-  font-family: 'montserratbold', sans-serif;
+  font-family: 'montserratsemibold', sans-serif;
 }
 .clix-empty-container .header-text {
   font-size: 24px;
-  font-family: 'montserratbold', sans-serif;
+  font-family: 'montserratsemibold', sans-serif;
   line-height: 30px;
 }
 .clix-empty-container .body-text {
@@ -12917,7 +12924,7 @@ button.close {
 }
 @media (min-width: 768px) {
   .clix-donate-modal .buy-points-label {
-    font-family: 'montserratbold', sans-serif;
+    font-family: 'montserratsemibold', sans-serif;
     font-size: 30px;
   }
 }
@@ -14038,7 +14045,7 @@ button.close {
   }
 }
 .clix-account-header .header-text {
-  font-family: 'montserratbold', sans-serif;
+  font-family: 'montserratsemibold', sans-serif;
   font-size: 28px;
   color: #FFF;
   letter-spacing: 1.6px;
