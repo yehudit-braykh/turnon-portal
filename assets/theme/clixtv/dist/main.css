@@ -11801,7 +11801,7 @@ button.close {
   font-family: 'montserratsemibold', sans-serif;
   color: #FFF;
   letter-spacing: 1.6px;
-  line-height: normal;
+  line-height: 100px;
 }
 .clix-hero-banner .banner-button {
   display: -webkit-flex;
@@ -12657,6 +12657,7 @@ button.close {
 @media (min-width: 768px) {
   .clix-content-callout .callout-title {
     font-size: 18px;
+    line-height: 18px;
   }
 }
 .clix-content-callout .callout-subtitle {
