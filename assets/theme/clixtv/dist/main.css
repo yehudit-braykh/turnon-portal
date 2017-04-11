@@ -11791,11 +11791,10 @@ button.close {
 }
 .clix-hero-banner .banner-type {
   font-family: 'montserratregular', sans-serif;
-  font-size: 29px;
+  font-size: 24px;
   letter-spacing: 1.9px;
   color: #9b9b9b;
   position: relative;
-  top: 20px;
   text-transform: uppercase;
 }
 .clix-hero-banner .banner-title {
@@ -11809,6 +11808,7 @@ button.close {
   display: -ms-flexbox;
   display: -ms-flex;
   display: flex;
+  margin-top: 10px;
 }
 @media (min-width: 768px) {
   .clix-hero-banner .banner-button {
