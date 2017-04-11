@@ -56,12 +56,17 @@
                 </div>
             </div>
             <div ng-if="!loggedInUser">
-                <clix-callout-button color-type="secondary" ng-click="onLoginSignupPress(false)">
-                    Login
-                </clix-callout-button>
-                <a ng-click="onLoginSignupPress(true)" class="account-action-label">
-                    Register Now
-                </a>
+                <div class="header-user-container">
+                    <clix-header-points-violator></clix-header-points-violator>
+                    <div class="header-login-action-container">
+                        <clix-callout-button color-type="secondary" ng-click="onLoginSignupPress(false)">
+                            Login
+                        </clix-callout-button>
+                        <a ng-click="onLoginSignupPress(true)" class="account-action-label">
+                            Register Now
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
