@@ -36,7 +36,11 @@
             scope: {
                 extraClass: '@?',
                 offer: '=?',
-                video: '=?'
+                video: '=?',
+                celebrity: '=?',
+                brand: '=?',
+                charity: '=?',
+                category: '=?'
             }
         }
     };

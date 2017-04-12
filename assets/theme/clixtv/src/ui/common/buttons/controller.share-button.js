@@ -16,7 +16,11 @@
                     size: 'clix-lg',
                     resolve: {
                         shareModalVideo: $scope.video,
-                        shareModalOffer: $scope.offer
+                        shareModalOffer: $scope.offer,
+                        shareModalCelebrity: $scope.celebrity,
+                        shareModalBrand: $scope.brand,
+                        shareModalCharity: $scope.charity,
+                        shareModalCategory: $scope.category
                     }
                 });
 

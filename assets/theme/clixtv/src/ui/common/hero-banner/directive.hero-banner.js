@@ -6,7 +6,8 @@
             templateUrl: 'ui/common/hero-banner/view.hero-banner.html',
             controller: 'HeroBannerController',
             transclude: {
-                logo: '?heroBannerLogo'
+                logo: '?heroBannerLogo',
+                shareIcon: '?shareIcon'
             },
             scope: {
                 titleText: '@',

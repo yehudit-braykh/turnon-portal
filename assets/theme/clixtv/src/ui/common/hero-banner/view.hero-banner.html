@@ -22,9 +22,7 @@
                         </clix-tertiary-button>
                     </div>
 
-                    <div clix-tooltip-trigger tooltip-id="hero-banner-share-{{$id}}">
-                        <clix-share-button extra-class="banner-share-icon" ng-show="shareable !== 'false'"></clix-share-button>
-                    </div>
+                    <div clix-tooltip-trigger tooltip-id="hero-banner-share-{{$id}}" ng-transclude="shareIcon"></div>
 
                     <div class="header-points-violator" ng-if="points">
                         <clix-points-violator>
