@@ -34,7 +34,7 @@
         </nav>
         <div class="account-action-container">
             <div ng-if="loggedInUser">
-                <div class="header-user-container">
+                <div class="header-user-container" clix-click-anywhere-else="hideNotificationMenu">
                     <clix-header-points-violator></clix-header-points-violator>
                     <div class="header-avatar-container">
                         <div ng-if="loggedInUser.avatar">
@@ -52,6 +52,9 @@
                         <a ng-click="onArrowPress()" class="header-expand-icon">
                             <div class="icon-left-tall-arrow"></div>
                         </a>
+                    </div>
+                    <div class="notification-tooltip-container" ng-show="tooltipsShown">
+                        <clix-notification-tooltip notifications="notifications"></clix-notification-tooltip>
                     </div>
                 </div>
             </div>

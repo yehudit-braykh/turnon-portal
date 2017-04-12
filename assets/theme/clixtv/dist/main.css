@@ -7974,9 +7974,16 @@ button.close {
   -ms-align-items: center;
   align-items: center;
   margin-left: 20px;
+  position: relative;
 }
 .clix-header .header-user-container .header-name-container:hover {
   text-decoration: none;
+}
+.clix-header .header-user-container .notification-tooltip-container {
+  position: absolute;
+  top: 70px;
+  right: 89px;
+  z-index: 1000;
 }
 .clix-header .header-user-container .header-name {
   font-family: 'montserratregular', sans-serif;
@@ -14447,6 +14454,45 @@ button.close {
   right: 0;
   width: 100%;
   margin-top: 7px;
+}
+.clix-notifications .minimal-notification-item {
+  padding-top: 16px;
+  padding-bottom: 8px;
+}
+.clix-notifications .minimal-notification-item .notification-thumbnail,
+.clix-notifications .minimal-notification-item .notification-more-icon-container {
+  display: none;
+}
+.clix-notifications .minimal-notification-item .notification-content-container {
+  font-size: 14px;
+}
+.clix-notifications .minimal-notification-item .notification-author-name {
+  font-family: 'montserratregular', sans-serif;
+}
+.clix-notifications .minimal-notification-item .notification-icon {
+  font-size: 20px;
+}
+.clix-notifications .minimal-notification-item .notification-timestamp-container {
+  font-size: 11px;
+}
+.clix-notification-tooltip {
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  text-align: left;
+  background-color: #232323;
+  color: #FFF;
+  width: 375px;
+  overflow: hidden;
+}
+.clix-notification-tooltip .notification-tooltip-header {
+  font-family: 'montserratsemibold', sans-serif;
+  font-size: 16px;
+  border-bottom: 1px solid #494949;
+  padding: 10px 23px;
 }
 body,
 html {

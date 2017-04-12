@@ -4,7 +4,8 @@
             restrict: 'AE',
             templateUrl: 'ui/common/notifications/view.notifications.html',
             scope: {
-                notifications: '='
+                notifications: '=',
+                minify: '@?'
             }
         }
     };
@@ -15,12 +16,24 @@
             templateUrl: 'ui/common/notifications/view.notification-item.html',
             controller: 'NotificationsController',
             scope: {
-                notification: '='
+                notification: '=',
+                minify: '@?'
+            }
+        }
+    };
+
+    var notificationTooltip = function() {
+        return {
+            restrict: 'AE',
+            templateUrl: 'ui/common/notifications/view.notification-tooltip.html',
+            scope: {
+                notifications: '='
             }
         }
     };
 
     angular.module('clixtv')
         .directive('clixNotifications', notifications)
-        .directive('clixNotificationItem', notificationItem);
+        .directive('clixNotificationItem', notificationItem)
+        .directive('clixNotificationTooltip', notificationTooltip);
 }());

@@ -6,12 +6,23 @@
         '$window',
         '$timeout',
         '$uibModal',
-        function($scope, $rootScope, $window, $timeout, $uibModal) {
+        'notificationsService',
+        function($scope, $rootScope, $window, $timeout, $uibModal, notificationsService) {
 
             var latestOffset = 0;
 
+            function _populateNotifications() {
+                notificationsService.getNotifications()
+                    .then(
+                        function onSuccess(data) {
+                            $scope.notifications = data;
+                        }
+                    )
+            }
+
             $rootScope.$on('user.login', function(event, data) {
                 $scope.loggedInUser = data;
+                _populateNotifications();
             });
 
             $rootScope.$on('user.logout', function(event, data) {
@@ -20,6 +31,14 @@
 
             $scope.onArrowPress = function() {
                 $rootScope.$broadcast('rightnav.open');
+            };
+
+            $scope.onNamePress = function() {
+                $scope.tooltipsShown = !$scope.tooltipsShown;
+            };
+
+            $scope.hideNotificationMenu = function(event) {
+                $scope.tooltipsShown = false;
             };
 
             $scope.onLoginSignupPress = function(signup) {

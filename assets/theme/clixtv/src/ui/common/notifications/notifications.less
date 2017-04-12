@@ -103,4 +103,47 @@
         width: 100%;
         margin-top: 7px;
     }
+
+    .minimal-notification-item {
+
+        padding-top: 16px;
+        padding-bottom: 8px;
+
+        .notification-thumbnail,
+        .notification-more-icon-container {
+            display: none;
+        }
+
+        .notification-content-container {
+            font-size: 14px;
+        }
+
+        .notification-author-name {
+            font-family: @font-primary;
+        }
+
+        .notification-icon {
+            font-size: 20px;
+        }
+
+        .notification-timestamp-container {
+            font-size: 11px;
+        }
+    }
+}
+
+.clix-notification-tooltip {
+    .border-radius(8px);
+    text-align: left;
+    background-color: @color-gray20;
+    color: @color-white;
+    width: 375px;
+    overflow: hidden;
+
+    .notification-tooltip-header {
+        font-family: @font-primary-bold;
+        font-size: 16px;
+        border-bottom: 1px solid @color-gray15;
+        padding: 10px 23px;
+    }
 }
