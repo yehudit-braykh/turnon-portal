@@ -23,7 +23,7 @@ class Celebrity_model extends Uvod_Model {
 	}
 
 	function rows($rows){
-        foreach ($rows as $media) {
+        foreach ($rows as &$media) {
             $media = (array) $media;
 			$tmp = array();
 			if($media["content"]){
