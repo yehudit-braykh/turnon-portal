@@ -1,28 +1,36 @@
 (function() {
 
     var HeaderController = [
+        '$q',
         '$scope',
         '$rootScope',
         '$window',
         '$timeout',
         '$uibModal',
         'notificationsService',
-        function($scope, $rootScope, $window, $timeout, $uibModal, notificationsService) {
+        'knetikService',
+        function($q, $scope, $rootScope, $window, $timeout, $uibModal, notificationsService, knetikService) {
 
             var latestOffset = 0;
 
-            function _populateNotifications() {
-                notificationsService.getNotifications()
+            function _populateHeaderData() {
+                $q.all(
+                        [
+                            notificationsService.getNotifications(),
+                            knetikService.getPoints()
+                        ]
+                    )
                     .then(
                         function onSuccess(data) {
-                            $scope.notifications = data;
+                            $scope.notifications = data[0];
+                            $scope.points = data[1];
                         }
-                    )
+                    );
             }
 
             $rootScope.$on('user.login', function(event, data) {
                 $scope.loggedInUser = data;
-                _populateNotifications();
+                _populateHeaderData();
             });
 
             $rootScope.$on('user.logout', function(event, data) {

@@ -5,7 +5,7 @@
             transclude: true,
             templateUrl: 'ui/violator/view.header-points-violator.html',
             scope: {
-
+                points: '='
             }
         }
     };

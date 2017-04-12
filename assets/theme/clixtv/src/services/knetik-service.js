@@ -1,13 +1,15 @@
 (function() {
-
     var knetikService = [
         '$http',
         function($http) {
             return {
-
-                getAllBrands: function() {
-
-                    return $http.get('/api/brands/get_all_brands_and_charities_object');
+                getPoints: function() {
+                    return $http.get('/api/knetik/get_balance')
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
+                            }
+                        );
                 }
             }
         }

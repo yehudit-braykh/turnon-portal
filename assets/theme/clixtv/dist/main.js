@@ -434,7 +434,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/header/view.header.html',
-    "<header class=clix-header clix-scroll-offset-class offset=100 scroll-class=filled ng-class=\"{'clix-header-hidden': scrollDirection === 'up'}\"><div class=\"clix-header-container hidden-sm hidden-xs\"><h1 class=logo-container><a href=/ ><img src=assets/theme/clixtv/dist/images/gradient-logo.svg class=clix-logo></a></h1><nav class=clix-navigation><div class=navigation-item-container ng-class=\"{'active': selectedStateName === 'categories' || selectedStateName === 'category'}\"><a ui-sref=categories>Categories</a></div><div class=navigation-item-container ng-class=\"{'active': selectedStateName === 'stars' || selectedStateName === 'star'}\"><a ui-sref=stars>Stars</a></div><div class=navigation-item-container ng-class=\"{'active': selectedStateName === 'brands' || selectedStateName === 'brand'}\"><a ui-sref=brands>Brands</a></div><div class=navigation-item-container ng-class=\"{'active': selectedStateName === 'charities' || selectedStateName === 'charity'}\"><a ui-sref=charities>Charities</a></div><div class=\"navigation-item-container search-item-container\"><clix-header-search-icon></clix-header-search-icon></div></nav><div class=account-action-container><div ng-if=loggedInUser><div class=header-user-container clix-click-anywhere-else=hideNotificationMenu><clix-header-points-violator></clix-header-points-violator><div class=header-avatar-container><div ng-if=loggedInUser.avatar><a ng-click=onNamePress() class=header-avatar style=\"background-image: url('{{loggedInUser.avatar}}')\"></a></div><div ng-if=!loggedInUser.avatar><a ng-click=onNamePress() class=header-avatar style=\"background-image: url('assets/theme/clixtv/dist/images/empty-profile-picture.png')\"></a></div><div class=header-notification-count ng-show=\"notifications.notifications.length > 0\">&nbsp;{{notifications.notifications.length}}</div></div><div class=header-name-container><a ng-click=onNamePress() class=header-name>{{loggedInUser.firstName}} </a><a ng-click=onArrowPress() class=header-expand-icon><div class=icon-left-tall-arrow></div></a></div><div class=notification-tooltip-container ng-show=tooltipsShown><clix-notification-tooltip notifications=notifications></clix-notification-tooltip></div></div></div><div ng-if=!loggedInUser><div class=header-user-container><clix-header-points-violator></clix-header-points-violator><div class=header-login-action-container><clix-callout-button color-type=secondary ng-click=onLoginSignupPress(false)>Login</clix-callout-button><a ng-click=onLoginSignupPress(true) class=account-action-label>Register Now</a></div></div></div></div></div><div class=\"clix-header-container hidden-lg hidden-md\"><div class=mobile-header-block><div class=points-violator-container><clix-header-points-violator></clix-header-points-violator></div></div><a href=/ class=\"mobile-logo mobile-header-block\"><img src=assets/theme/clixtv/dist/images/color-logo-light.svg class=clix-logo></a><div class=\"user-avatar-container mobile-header-block\"><div class=user-avatar><div ng-if=!loggedInUser><clix-callout-button color-type=secondary ng-click=onLoginSignupPress(false)>Login</clix-callout-button></div><div class=header-user-container ng-if=loggedInUser><div class=header-avatar-container><div ng-if=loggedInUser.avatar><a ng-click=onNamePress() class=header-avatar style=\"background-image: url('{{loggedInUser.avatar}}')\"></a></div><div ng-if=!loggedInUser.avatar><a ng-click=onNamePress() class=header-avatar style=\"background-image: url('assets/theme/clixtv/dist/images/empty-profile-picture.png')\"></a></div><div class=header-notification-count>&nbsp;20</div></div></div></div></div></div></header>"
+    "<header class=clix-header clix-scroll-offset-class offset=100 scroll-class=filled ng-class=\"{'clix-header-hidden': scrollDirection === 'up'}\"><div class=\"clix-header-container hidden-sm hidden-xs\"><h1 class=logo-container><a href=/ ><img src=assets/theme/clixtv/dist/images/gradient-logo.svg class=clix-logo></a></h1><nav class=clix-navigation><div class=navigation-item-container ng-class=\"{'active': selectedStateName === 'categories' || selectedStateName === 'category'}\"><a ui-sref=categories>Categories</a></div><div class=navigation-item-container ng-class=\"{'active': selectedStateName === 'stars' || selectedStateName === 'star'}\"><a ui-sref=stars>Stars</a></div><div class=navigation-item-container ng-class=\"{'active': selectedStateName === 'brands' || selectedStateName === 'brand'}\"><a ui-sref=brands>Brands</a></div><div class=navigation-item-container ng-class=\"{'active': selectedStateName === 'charities' || selectedStateName === 'charity'}\"><a ui-sref=charities>Charities</a></div><div class=\"navigation-item-container search-item-container\"><clix-header-search-icon></clix-header-search-icon></div></nav><div class=account-action-container><div ng-if=loggedInUser><div class=header-user-container clix-click-anywhere-else=hideNotificationMenu><clix-header-points-violator points=points></clix-header-points-violator><div class=header-avatar-container><div ng-if=loggedInUser.avatar><a ng-click=onNamePress() class=header-avatar style=\"background-image: url('{{loggedInUser.avatar}}')\"></a></div><div ng-if=!loggedInUser.avatar><a ng-click=onNamePress() class=header-avatar style=\"background-image: url('assets/theme/clixtv/dist/images/empty-profile-picture.png')\"></a></div><div class=header-notification-count ng-show=\"notifications.notifications.length > 0\">&nbsp;{{notifications.notifications.length}}</div></div><div class=header-name-container><a ng-click=onNamePress() class=header-name>{{loggedInUser.firstName}} </a><a ng-click=onArrowPress() class=header-expand-icon><div class=icon-left-tall-arrow></div></a></div><div class=notification-tooltip-container ng-show=tooltipsShown><clix-notification-tooltip notifications=notifications></clix-notification-tooltip></div></div></div><div ng-if=!loggedInUser><div class=header-user-container><clix-header-points-violator></clix-header-points-violator><div class=header-login-action-container><clix-callout-button color-type=secondary ng-click=onLoginSignupPress(false)>Login</clix-callout-button><a ng-click=onLoginSignupPress(true) class=account-action-label>Register Now</a></div></div></div></div></div><div class=\"clix-header-container hidden-lg hidden-md\"><div class=mobile-header-block><div class=points-violator-container><clix-header-points-violator></clix-header-points-violator></div></div><a href=/ class=\"mobile-logo mobile-header-block\"><img src=assets/theme/clixtv/dist/images/color-logo-light.svg class=clix-logo></a><div class=\"user-avatar-container mobile-header-block\"><div class=user-avatar><div ng-if=!loggedInUser><clix-callout-button color-type=secondary ng-click=onLoginSignupPress(false)>Login</clix-callout-button></div><div class=header-user-container ng-if=loggedInUser><div class=header-avatar-container><div ng-if=loggedInUser.avatar><a ng-click=onNamePress() class=header-avatar style=\"background-image: url('{{loggedInUser.avatar}}')\"></a></div><div ng-if=!loggedInUser.avatar><a ng-click=onNamePress() class=header-avatar style=\"background-image: url('assets/theme/clixtv/dist/images/empty-profile-picture.png')\"></a></div><div class=header-notification-count>&nbsp;20</div></div></div></div></div></div></header>"
   );
 
 
@@ -484,7 +484,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/violator/view.header-points-violator.html',
-    "<div class=clix-header-points-violator clix-tooltip-trigger tooltip-id=rewards-points-tooltip-{{$id}}><clix-callout-button>0</clix-callout-button>Reward Points</div><clix-tooltip tooltip-id=rewards-points-tooltip-{{$id}}>ClixTV rewards users for watching videos, engaging with brands & offers, and sharing to social networks. Wherever you see the rewards points badge, points can be earned.</clix-tooltip>"
+    "<div class=clix-header-points-violator clix-tooltip-trigger tooltip-id=rewards-points-tooltip-{{$id}}><clix-callout-button>{{points ? points : 0}}</clix-callout-button>Reward Points</div><clix-tooltip tooltip-id=rewards-points-tooltip-{{$id}}>ClixTV rewards users for watching videos, engaging with brands & offers, and sharing to social networks. Wherever you see the rewards points badge, points can be earned.</clix-tooltip>"
   );
 
 
@@ -3510,28 +3510,36 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 (function() {
 
     var HeaderController = [
+        '$q',
         '$scope',
         '$rootScope',
         '$window',
         '$timeout',
         '$uibModal',
         'notificationsService',
-        function($scope, $rootScope, $window, $timeout, $uibModal, notificationsService) {
+        'knetikService',
+        function($q, $scope, $rootScope, $window, $timeout, $uibModal, notificationsService, knetikService) {
 
             var latestOffset = 0;
 
-            function _populateNotifications() {
-                notificationsService.getNotifications()
+            function _populateHeaderData() {
+                $q.all(
+                        [
+                            notificationsService.getNotifications(),
+                            knetikService.getPoints()
+                        ]
+                    )
                     .then(
                         function onSuccess(data) {
-                            $scope.notifications = data;
+                            $scope.notifications = data[0];
+                            $scope.points = data[1];
                         }
-                    )
+                    );
             }
 
             $rootScope.$on('user.login', function(event, data) {
                 $scope.loggedInUser = data;
-                _populateNotifications();
+                _populateHeaderData();
             });
 
             $rootScope.$on('user.logout', function(event, data) {
@@ -4627,7 +4635,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             transclude: true,
             templateUrl: 'ui/violator/view.header-points-violator.html',
             scope: {
-
+                points: '='
             }
         }
     };
@@ -5568,15 +5576,17 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         .factory('celebrityService', celebrityService);
 }());
 (function() {
-
     var knetikService = [
         '$http',
         function($http) {
             return {
-
-                getAllBrands: function() {
-
-                    return $http.get('/api/brands/get_all_brands_and_charities_object');
+                getPoints: function() {
+                    return $http.get('/api/knetik/get_balance')
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
+                            }
+                        );
                 }
             }
         }

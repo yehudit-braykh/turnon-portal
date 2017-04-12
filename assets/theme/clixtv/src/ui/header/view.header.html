@@ -35,7 +35,7 @@
         <div class="account-action-container">
             <div ng-if="loggedInUser">
                 <div class="header-user-container" clix-click-anywhere-else="hideNotificationMenu">
-                    <clix-header-points-violator></clix-header-points-violator>
+                    <clix-header-points-violator points="points"></clix-header-points-violator>
                     <div class="header-avatar-container">
                         <div ng-if="loggedInUser.avatar">
                             <a ng-click="onNamePress()" class="header-avatar" style="background-image: url('{{loggedInUser.avatar}}')"></a>
