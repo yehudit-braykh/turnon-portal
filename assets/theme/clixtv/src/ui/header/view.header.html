@@ -94,12 +94,12 @@
                 <div class="header-user-container" ng-if="loggedInUser">
                     <div class="header-avatar-container">
                         <div ng-if="loggedInUser.avatar">
-                            <a ng-click="onNamePress()" class="header-avatar" style="background-image: url('{{loggedInUser.avatar}}')"></a>
+                            <a ng-click="onArrowPress()" class="header-avatar" style="background-image: url('{{loggedInUser.avatar}}')"></a>
                         </div>
                         <div ng-if="!loggedInUser.avatar">
-                            <a ng-click="onNamePress()" class="header-avatar" style="background-image: url('assets/theme/clixtv/dist/images/empty-profile-picture.png')"></a>
+                            <a ng-click="onArrowPress()" class="header-avatar" style="background-image: url('assets/theme/clixtv/dist/images/empty-profile-picture.png')"></a>
                         </div>
-                        <div class="header-notification-count">&nbsp;20</div>
+                        <div class="header-notification-count" ng-show="notifications.notifications.length > 0">&nbsp;{{notifications.notifications.length}}</div>
                     </div>
                 </div>
             </div>

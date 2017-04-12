@@ -28,7 +28,7 @@
             };
 
             $scope.onFavoritePress = function(type, item) {
-                
+
                 console.log('FAVORITE', type, item);
             };
         }
