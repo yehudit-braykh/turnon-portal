@@ -8,6 +8,7 @@
                 return function(data) {
                     this.id = data._id;
                     this.name = data.title;
+                    this.description = data.description;
 
                     if (data.content) {
                         if (data.content.BrandLogo) {

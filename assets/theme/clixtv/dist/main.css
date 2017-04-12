@@ -13489,6 +13489,65 @@ button.close {
   color: #bababa;
   text-transform: uppercase;
 }
+.clix-share-modal-celebrity-content .celebrity-thumbnail {
+  width: 160px;
+  height: 160px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.clix-share-modal-offer-content .clix-offer-logo {
+  width: 160px;
+  height: 160px;
+}
+.clix-share-modal-offer-content .logo-points {
+  display: none;
+}
+.clix-share-modal-brand-content .clix-brand-charity-logo {
+  width: 160px;
+  height: 160px;
+}
+.clix-share-modal-brand-content .logo-points {
+  display: none;
+}
+.clix-share-modal-charity-content .clix-charity-logo {
+  width: 160px;
+  height: 160px;
+}
+.clix-share-modal-charity-content .logo-overlay {
+  display: none;
+}
+.clix-generic-share-content {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  color: #FFF;
+}
+.clix-generic-share-content .share-content-container {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  padding-left: 22px;
+}
+.clix-generic-share-content .share-content-title {
+  font-family: 'montserratregular', sans-serif;
+  font-size: 30px;
+  margin-bottom: 3px;
+}
+.clix-generic-share-content .share-content-description {
+  font-family: 'montserratregular', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 12px;
+}
+.clix-generic-share-content .share-content-footer {
+  font-family: 'montserratregular', sans-serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #bababa;
+  text-transform: uppercase;
+}
 .clix-redeem-rewards-modal .reward-callout {
   background-color: #1f1f1f;
   padding: 22px 10px;

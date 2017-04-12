@@ -30,6 +30,26 @@
                 shareContent += shareModalVideo.title + ' ' + currentUrl;
             }
 
+            if (shareModalOffer) {
+                shareContent = 'Here\'s an offer I thought you\'d enjoy from #ClixTV - ';
+                shareContent += shareModalOffer.title + ' ' + currentUrl;
+            }
+
+            if (shareModalCelebrity) {
+                shareContent = 'I thought you\'d like to check out ' + shareModalCelebrity.name + ' on #ClixTV - ';
+                shareContent += currentUrl;
+            }
+
+            if (shareModalBrand) {
+                shareContent = 'I thought you\'d enjoy visiting ' + shareModalBrand.title + ' on #ClixTV - ';
+                shareContent += currentUrl;
+            }
+
+            if (shareModalCharity) {
+                shareContent = 'I thought you\'d enjoy visiting the charity page for ' + shareModalCharity.title + ' on #ClixTV - ';
+                shareContent += currentUrl;
+            }
+
             $scope.shareContent = shareContent;
 
             $scope.onTabPress = function(tab) {

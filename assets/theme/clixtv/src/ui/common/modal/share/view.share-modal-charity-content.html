@@ -1,13 +1,15 @@
-<div class="clix-share-modal-celebrity-content">
+<div class="clix-share-modal-charity-content">
     <clix-generic-share-content>
         <share-icon-container>
-            <div class="celebrity-thumbnail" style="background-image:url('{{celebrity.thumbnail}}')"></div>
+            <div class="clix-thumbnail-logo">
+                <clix-charity-logo charity="charity"></clix-charity-logo>
+            </div>
         </share-icon-container>
         <share-title>
-            {{celebrity.name}}
+            {{charity.title}}
         </share-title>
         <share-description>
-            {{celebrity.description | wordTruncate : 275}}
+            {{charity.description | wordTruncate : 275}}
         </share-description>
         <share-footer-title>
             ClixTV
