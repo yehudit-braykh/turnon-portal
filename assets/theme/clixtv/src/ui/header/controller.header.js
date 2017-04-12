@@ -34,6 +34,9 @@
             };
 
             $scope.onNamePress = function() {
+                if ($scope.notifications.notifications.length === 0) {
+                    return;
+                }
                 $scope.tooltipsShown = !$scope.tooltipsShown;
             };
 

@@ -43,7 +43,7 @@
                         <div ng-if="!loggedInUser.avatar">
                             <a ng-click="onNamePress()" class="header-avatar" style="background-image: url('assets/theme/clixtv/dist/images/empty-profile-picture.png')"></a>
                         </div>
-                        <div class="header-notification-count">&nbsp;20</div>
+                        <div class="header-notification-count" ng-show="notifications.notifications.length > 0">&nbsp;{{notifications.notifications.length}}</div>
                     </div>
                     <div class="header-name-container">
                         <a ng-click="onNamePress()" class="header-name">
