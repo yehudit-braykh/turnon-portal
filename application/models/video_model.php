@@ -10,7 +10,7 @@ class Video_model extends Uvod_model {
 
 		if ($this->fastcache_model->get_cache("get_video_by_id".$id))
 			return $this->fastcache_model->get_cache("get_video_by_id".$id);
-		$data =  $this->apiCall('episode/'.$id.'/related', $filters)->entries[0];
+		$data =  $this->videos_rows($this->apiCall('episode/'.$id.'/related', $filters)->entries)[0];
 		$this->fastcache_model->set_cache("get_video_by_id".$id,$data);
 		return $data;
 	}
@@ -45,6 +45,44 @@ class Video_model extends Uvod_model {
 		return $this->rows($this->apiCall('url_media', $filters)->entries);
         $parameters = array();
 
+    }
+
+
+	function videos_rows($items){
+		foreach ($items as &$item) {
+			//debug($cat);
+			if($item->brands)
+				$item->brands = $this->rows($item->brands);
+			if($item->celebrity){
+				$arr = array();
+				array_push($arr, $item->celebrity);
+				$item->celebrity = $this->rows($arr)[0];
+			}
+
+			if($item->charity){
+				$arr = array();
+				array_push($arr, $item->charity);
+				$item->charity = $this->rows($arr)[0];
+			}
+
+		}
+
+		return $this->rows($items);
+	}
+
+	function rows($rows){
+		$rows = (array)$rows;
+        foreach ($rows as &$media) {
+            $media = (array) $media;
+			$tmp = array();
+			if($media["content"]){
+	            foreach ($media["content"] as $file) {
+	                $tmp[str_replace (" ", "", $file->assetTypes[0])] = $file;
+	            }
+            	$media["content"] = $tmp;
+			}
+        }
+        return $rows;
     }
 
 

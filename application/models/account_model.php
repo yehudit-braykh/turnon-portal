@@ -153,11 +153,14 @@ class Account_model extends Uvod_model {
     }
 
     public function update_profile($id ,$data) {
-        foreach($data as $field=>$value){
-            if(!$value || $value == '' || $value==null)
-                unset($data[$field]);
+        // debug($data);
+        if(count($data)>1){
+            foreach($data as $field=>$value){
+                if(!$value || $value == '' || $value==null)
+                    unset($data[$field]);
+            }
         }
-    //    debug($this->session->userdata('login_token'),$id);
+        //    debug($this->session->userdata('login_token'),$id);
         $response = $this->update_profile_data($this->session->userdata('login_token'), $id, $data);
              //debug($response);
         return $response;
@@ -254,6 +257,44 @@ class Account_model extends Uvod_model {
 		$filters[] = "byId=" . str_replace(' ', '%20', implode("|", $profile->savedOffers)) ;
 
 		return $this->apiCall('offer', $filters)->entries;
+    }
+
+    public function add_favorite($id, $type){
+        $profile_id = $this->session->userdata('profile_id');
+		$token = $this->session->userdata('login_token');
+        if($profile_id && $token){
+            $profile = $this->get_profile($token, $profile_id);
+            if (!isset($profile->{$type}) || !$profile->{$type} || $profile->{$type} == null)
+                $favoriteCelebs = array();
+            $data = $profile->{$type};
+            if(in_array($id,$data))
+                return $profile;
+            else{
+                array_push($data, $id);
+                return $this->update_profile($profile->_id, array( $type => $data));
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public function remove_favorite($id, $type){
+        $profile_id = $this->session->userdata('profile_id');
+		$token = $this->session->userdata('login_token');
+        if($profile_id && $token){
+            $profile = $this->get_profile($token, $profile_id);
+            if (!isset($profile->{$type}) || !$profile->{$type} || $profile->{$type} == null || !in_array($id,$profile->{$type}))
+                return $profile;
+            else{
+                $data = $profile->{$type};
+                if(count($data)==1)
+                    $data = array();
+                else
+                    unset($data[array_search($id, $data)]);
+                return $this->update_profile($profile->_id, array($type => array_values($data)));
+            }
+        } else
+            return false;
     }
 
 

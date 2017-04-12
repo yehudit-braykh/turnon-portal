@@ -367,14 +367,13 @@ class Uvod_model extends CI_Model {
     }
 
     public function update_profile_data($token, $id, $data) {
-        //debug($token, $id, $data);
         $parameters = array();
         $parameters[] = "token=" . $token;
 
         $payload_str = json_encode($data);
 
         $curl = curl_init(UVOD_PLATFORM_API_URL.'userprofile/' . $id . "?" . implode("&", $parameters));
-    //    debug($payload_str);
+        //    debug($payload_str);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Content-Length: ' . strlen($payload_str)));
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");

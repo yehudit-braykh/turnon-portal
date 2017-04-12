@@ -42,7 +42,6 @@ class Account extends REST_Controller{
 
 	function update_profile_post(){
 		$data = $this->post();
-		//debug($data);
 		$profile_id= $this->session->userdata('profile_id');
 		$this->response($this->account_model->update_profile($profile_id,$data),200);
 	}
@@ -51,9 +50,37 @@ class Account extends REST_Controller{
 		$this->response($this->account_model->get_watchlist(),200);
     }
 
+	function add_watchlist_item_post(){
+		$id = $this->post('id');
+		if(!$id)
+			$this->response("id field is mandatory",400);
+		$this->response($this->account_model->add_favorite($id, "watchlist"),200);
+    }
+
+	function remove_watchlist_item_post(){
+		$id = $this->post('id');
+		if(!$id)
+			$this->response("id field is mandatory",400);
+		$this->response($this->account_model->remove_favorite($id, "watchlist"),200);
+	}
+
 	function get_favorite_celebrities_get(){
 
 		$this->response($this->account_model->get_favorite_celebrities(),200);
+	}
+
+	function add_favorite_celebrity_post(){
+		$id = $this->post('id');
+		if(!$id)
+			$this->response("id field is mandatory",400);
+		$this->response($this->account_model->add_favorite($id, "favoriteCelebs"),200);
+    }
+
+	function remove_favorite_celebrity_post(){
+		$id = $this->post('id');
+		if(!$id)
+			$this->response("id field is mandatory",400);
+		$this->response($this->account_model->remove_favorite($id, "favoriteCelebs"),200);
 	}
 
 	function get_favorite_charities_get(){
@@ -61,9 +88,37 @@ class Account extends REST_Controller{
 		$this->response($this->account_model->get_favorite_charities(),200);
 	}
 
+	function add_favorite_charity_post(){
+		$id = $this->post('id');
+		if(!$id)
+			$this->response("id field is mandatory",400);
+		$this->response($this->account_model->add_favorite($id, "favoriteCharities"),200);
+    }
+
+	function remove_favorite_charity_post(){
+		$id = $this->post('id');
+		if(!$id)
+			$this->response("id field is mandatory",400);
+		$this->response($this->account_model->remove_favorite($id, "favoriteCharities"),200);
+	}
+
 	function get_favorite_brands_get(){
 
 		$this->response($this->account_model->get_favorite_brands(),200);
+	}
+
+	function add_favorite_brand_post(){
+		$id = $this->post('id');
+		if(!$id)
+			$this->response("id field is mandatory",400);
+		$this->response($this->account_model->add_favorite($id, "favoriteBrands"),200);
+    }
+
+	function remove_favorite_brand_post(){
+		$id = $this->post('id');
+		if(!$id)
+			$this->response("id field is mandatory",400);
+		$this->response($this->account_model->remove_favorite($id, "favoriteBrands"),200);
 	}
 
 	function get_favorite_categories_get(){
@@ -71,9 +126,37 @@ class Account extends REST_Controller{
 		$this->response($this->account_model->get_favorite_categories(),200);
 	}
 
+	function add_favorite_category_post(){
+		$id = $this->post('id');
+		if(!$id)
+			$this->response("id field is mandatory",400);
+		$this->response($this->account_model->add_favorite($id, "favoriteCategories"),200);
+    }
+
+	function remove_favorite_category_post(){
+		$id = $this->post('id');
+		if(!$id)
+			$this->response("id field is mandatory",400);
+		$this->response($this->account_model->remove_favorite($id, "favoriteCategories"),200);
+	}
+
 	function get_saved_offers_get(){
 
 		$this->response($this->account_model->get_saved_offers(),200);
+	}
+
+	function save_offer_post(){
+		$id = $this->post('id');
+		if(!$id)
+			$this->response("id field is mandatory",400);
+		$this->response($this->account_model->add_favorite($id, "offersSaved"),200);
+    }
+
+	function unsave_offer_post(){
+		$id = $this->post('id');
+		if(!$id)
+			$this->response("id field is mandatory",400);
+		$this->response($this->account_model->remove_favorite($id, "offersSaved"),200);
 	}
 
 	function subscripe_post(){
