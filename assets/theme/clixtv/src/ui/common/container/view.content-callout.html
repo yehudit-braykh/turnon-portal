@@ -9,7 +9,7 @@
                     <clix-view-button text="Go"></clix-view-button>
                 </div>
             </a>
-            <div class="header-save" clix-tooltip-trigger tooltip-id="favorites-button-{{$id}}">
+            <div class="header-save" ng-click="onFavorite()" clix-tooltip-trigger tooltip-id="favorites-button-{{$id}}">
                 <clix-favorite-button></clix-favorite-button>
             </div>
             <div class="header-ellipsis" clix-tooltip-trigger tooltip-id="actions-button-{{$id}}">

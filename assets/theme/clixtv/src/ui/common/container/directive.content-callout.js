@@ -26,7 +26,8 @@
             },
             scope: {
                 sref: '@',
-                menuItems: '='
+                menuItems: '=',
+                onFavorite: '&'
             }
         }
     };
@@ -55,7 +56,7 @@
                             label: 'Add to Favorites',
                             icon: 'icon-favorite-icon',
                             onClick: function() {
-                                console.log('SHARE');
+                                scope.onFavoritePress('celebrity', scope.star);
                             }
                         },
                         {
@@ -109,7 +110,7 @@
                             label: 'Add to Favorites',
                             icon: 'icon-favorite-icon',
                             onClick: function() {
-                                console.log('SHARE');
+                                scope.onFavoritePress('brand', scope.brand);
                             }
                         }
                     ];
@@ -142,7 +143,7 @@
                             label: 'Add to Favorites',
                             icon: 'icon-favorite-icon',
                             onClick: function() {
-                                console.log('SHARE');
+                                scope.onFavoritePress('charity', scope.charity);
                             }
                         }
                     ];
@@ -182,7 +183,7 @@
                             label: 'Add to Favorites',
                             icon: 'icon-favorite-icon',
                             onClick: function() {
-                                console.log('SHARE');
+                                scope.onFavoritePress('offer', scope.offer);
                             }
                         }
                     ];
@@ -204,17 +205,10 @@
                 link: function(scope) {
                     scope.menuItems = [
                         {
-                            label: 'Share',
-                            icon: 'icon-share-icon',
-                            onClick: function() {
-                                scope.onSharePress('category', scope.category);
-                            }
-                        },
-                        {
                             label: 'Add to Favorites',
                             icon: 'icon-favorite-icon',
                             onClick: function() {
-                                console.log('SHARE');
+                                scope.onFavoritePress('category', scope.category);
                             }
                         }
                     ];

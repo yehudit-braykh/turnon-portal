@@ -162,17 +162,17 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/container/view.brand-content-callout.html',
-    "<clix-content-callout sref=\"brand({ id: '{{brand.id}}' })\" menu-items=menuItems><header-element><clix-brand-charity-logo brand=brand></clix-brand-charity-logo></header-element><title-content>{{brand.title}}</title-content><subtitle-content>{{brand.offers.offers.length}} {{brand.offers.offers.length === 1 ? 'Offer' : 'Offers'}}</subtitle-content></clix-content-callout>"
+    "<clix-content-callout sref=\"brand({ id: '{{brand.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('brand', brand)\"><header-element><clix-brand-charity-logo brand=brand></clix-brand-charity-logo></header-element><title-content>{{brand.title}}</title-content><subtitle-content>{{brand.offers.offers.length}} {{brand.offers.offers.length === 1 ? 'Offer' : 'Offers'}}</subtitle-content></clix-content-callout>"
   );
 
 
   $templateCache.put('ui/common/container/view.category-content-callout.html',
-    "<clix-content-callout sref=\"category({ id: '{{category.id}}' })\" menu-items=menuItems><header-element><div class=category-logo style=\"background-image: url('{{category.logo}}')\"></div></header-element><title-content>{{category.title}}</title-content><subtitle-content>{{category.videos.videos.length}} {{category.videos.videos.length === 1 ? 'Video' : 'Videos'}}</subtitle-content></clix-content-callout>"
+    "<clix-content-callout sref=\"category({ id: '{{category.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('category', category)\"><header-element><div class=category-logo style=\"background-image: url('{{category.logo}}')\"></div></header-element><title-content>{{category.title}}</title-content><subtitle-content>{{category.videos.videos.length}} {{category.videos.videos.length === 1 ? 'Video' : 'Videos'}}</subtitle-content></clix-content-callout>"
   );
 
 
   $templateCache.put('ui/common/container/view.charity-content-callout.html',
-    "<clix-content-callout sref=\"charity({ id: '{{charity.id}}' })\" menu-items=menuItems><header-element><clix-charity-logo charity=charity></clix-charity-logo></header-element><title-content>{{charity.title}}</title-content><subtitle-content>{{charity.videos.videos.length}} {{charity.videos.videos.length === 1 ? 'Video' : 'Videos'}}</subtitle-content></clix-content-callout>"
+    "<clix-content-callout sref=\"charity({ id: '{{charity.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('charity', charity)\"><header-element><clix-charity-logo charity=charity></clix-charity-logo></header-element><title-content>{{charity.title}}</title-content><subtitle-content>{{charity.videos.videos.length}} {{charity.videos.videos.length === 1 ? 'Video' : 'Videos'}}</subtitle-content></clix-content-callout>"
   );
 
 
@@ -182,7 +182,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/container/view.content-callout.html',
-    "<div class=clix-content-callout><div class=header-callout-container><a ui-sref={{sref}} class=header-container ng-transclude=headerElement></a><clix-tooltip-menu items=menuItems menuopen=menuVisible class=overlay-menu-container ng-hide=!menuVisible></clix-tooltip-menu><div class=header-overlay><a ui-sref={{sref}} class=hit-area></a> <a ui-sref={{sref}} class=view-button-container><div class=view-button><clix-view-button text=Go></clix-view-button></div></a><div class=header-save clix-tooltip-trigger tooltip-id=favorites-button-{{$id}}><clix-favorite-button></clix-favorite-button></div><div class=header-ellipsis clix-tooltip-trigger tooltip-id=actions-button-{{$id}}><div class=menu-icon-container ng-click=menuClicked($event) clix-click-anywhere-else=bodyClicked><i class=icon-ellipsis></i></div></div><clix-tooltip tooltip-id=favorites-button-{{$id}}>Add to favorites</clix-tooltip><clix-tooltip tooltip-id=actions-button-{{$id}}>Actions</clix-tooltip></div></div><a ui-sref={{sref}} class=callout-footer-container><span class=callout-title ng-transclude=titleContent></span> <span class=callout-subtitle ng-transclude=subtitleContent></span></a></div>"
+    "<div class=clix-content-callout><div class=header-callout-container><a ui-sref={{sref}} class=header-container ng-transclude=headerElement></a><clix-tooltip-menu items=menuItems menuopen=menuVisible class=overlay-menu-container ng-hide=!menuVisible></clix-tooltip-menu><div class=header-overlay><a ui-sref={{sref}} class=hit-area></a> <a ui-sref={{sref}} class=view-button-container><div class=view-button><clix-view-button text=Go></clix-view-button></div></a><div class=header-save ng-click=onFavorite() clix-tooltip-trigger tooltip-id=favorites-button-{{$id}}><clix-favorite-button></clix-favorite-button></div><div class=header-ellipsis clix-tooltip-trigger tooltip-id=actions-button-{{$id}}><div class=menu-icon-container ng-click=menuClicked($event) clix-click-anywhere-else=bodyClicked><i class=icon-ellipsis></i></div></div><clix-tooltip tooltip-id=favorites-button-{{$id}}>Add to favorites</clix-tooltip><clix-tooltip tooltip-id=actions-button-{{$id}}>Actions</clix-tooltip></div></div><a ui-sref={{sref}} class=callout-footer-container><span class=callout-title ng-transclude=titleContent></span> <span class=callout-subtitle ng-transclude=subtitleContent></span></a></div>"
   );
 
 
@@ -192,12 +192,12 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/container/view.offer-content-callout.html',
-    "<clix-content-callout sref=\"offer({ id: '{{offer.id}}' })\" menu-items=menuItems><header-element><clix-offer-logo offer=offer></clix-offer-logo></header-element><title-content>{{offer.title}}</title-content><subtitle-content>Expires 2/1/2017</subtitle-content></clix-content-callout>"
+    "<clix-content-callout sref=\"offer({ id: '{{offer.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('offer', offer)\"><header-element><clix-offer-logo offer=offer></clix-offer-logo></header-element><title-content>{{offer.title}}</title-content><subtitle-content>Expires 2/1/2017</subtitle-content></clix-content-callout>"
   );
 
 
   $templateCache.put('ui/common/container/view.star-content-callout.html',
-    "<clix-content-callout sref=\"star({ id: '{{star.id}}' })\" menu-items=menuItems><header-element><div class=star-logo style=\"background-image: url({{star.thumbnail}})\"></div></header-element><title-content>{{star.name}}</title-content><subtitle-content>{{star.videos.videos.length}} {{star.videos.videos.length === 1 ? 'Video' : 'Videos'}}</subtitle-content></clix-content-callout>"
+    "<clix-content-callout sref=\"star({ id: '{{star.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('celebrity', star)\"><header-element><div class=star-logo style=\"background-image: url({{star.thumbnail}})\"></div></header-element><title-content>{{star.name}}</title-content><subtitle-content>{{star.videos.videos.length}} {{star.videos.videos.length === 1 ? 'Video' : 'Videos'}}</subtitle-content></clix-content-callout>"
   );
 
 

@@ -6,7 +6,8 @@
         '$rootScope',
         '$uibModal',
         'shareModalService',
-        function($q, $scope, $rootScope, $uibModal, shareModalService) {
+        'userService',
+        function($q, $scope, $rootScope, $uibModal, shareModalService, userService) {
 
             $scope.menuVisible = false;
 
@@ -24,7 +25,12 @@
 
             $scope.onSharePress = function(type, item) {
                 shareModalService.launchShareModal(type, item);
-            }
+            };
+
+            $scope.onFavoritePress = function(type, item) {
+                
+                console.log('FAVORITE', type, item);
+            };
         }
     ];
 
