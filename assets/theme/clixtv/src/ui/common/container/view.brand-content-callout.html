@@ -1,0 +1,11 @@
+<clix-content-callout sref="brand({ id: '{{brand.id}}' })" menu-items="menuItems">
+    <header-element>
+        <clix-brand-charity-logo brand="brand"></clix-brand-charity-logo>
+    </header-element>
+    <title-content>
+        {{brand.title}}
+    </title-content>
+    <subtitle-content>
+        {{brand.offers.offers.length}} {{brand.offers.offers.length === 1 ? 'Offer' : 'Offers'}}
+    </subtitle-content>
+</clix-content-callout>

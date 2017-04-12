@@ -7,7 +7,8 @@
         '$location',
         '$state',
         'userService',
-        function($q, $scope, $rootScope, $location, $state, userService) {
+        'shareModalService',
+        function($q, $scope, $rootScope, $location, $state, userService, shareModalService) {
 
             $scope.menuVisible = false;
 
@@ -39,7 +40,7 @@
                     icon: 'icon-share-icon',
                     points: '50',
                     onClick: function() {
-                        console.log('SHARE');
+                        shareModalService.launchVideoShareModal($scope.video);
                     }
                 },
                 {

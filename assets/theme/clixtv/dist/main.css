@@ -13226,7 +13226,7 @@ button.close {
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
   background-color: #FFF;
-  margin-top: 16px;
+  margin-top: 21px;
   padding: 11px 16px;
 }
 .clix-share-modal .clix-share-modal-textbox textarea,
@@ -13248,7 +13248,7 @@ button.close {
   height: 150px;
 }
 .clix-share-modal .send-textbox textarea {
-  height: 90px;
+  height: 85px;
 }
 .clix-share-modal .share-modal-footer {
   text-align: left;
@@ -13523,30 +13523,60 @@ button.close {
   display: -ms-flex;
   display: flex;
   color: #FFF;
+  padding-left: 9px;
+  padding-right: 9px;
+}
+@media (min-width: 768px) {
+  .clix-generic-share-content {
+    padding: 0;
+  }
 }
 .clix-generic-share-content .share-content-container {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  padding-left: 22px;
+  padding-left: 10px;
+}
+@media (min-width: 768px) {
+  .clix-generic-share-content .share-content-container {
+    padding-left: 22px;
+  }
 }
 .clix-generic-share-content .share-content-title {
   font-family: 'montserratregular', sans-serif;
-  font-size: 30px;
+  font-size: 24px;
+  line-height: 26px;
   margin-bottom: 3px;
+}
+@media (min-width: 768px) {
+  .clix-generic-share-content .share-content-title {
+    font-size: 30px;
+    line-height: 30px;
+  }
 }
 .clix-generic-share-content .share-content-description {
   font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   line-height: 20px;
   margin-bottom: 12px;
+  display: none;
+}
+@media (min-width: 768px) {
+  .clix-generic-share-content .share-content-description {
+    display: block;
+  }
 }
 .clix-generic-share-content .share-content-footer {
   font-family: 'montserratregular', sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   letter-spacing: 2px;
   color: #bababa;
   text-transform: uppercase;
+}
+@media (min-width: 768px) {
+  .clix-generic-share-content .share-content-footer {
+    font-size: 13px;
+  }
 }
 .clix-redeem-rewards-modal .reward-callout {
   background-color: #1f1f1f;

@@ -24,17 +24,7 @@
 
                 <div class="row brands-list">
                     <div class="brand-outer-container col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="brand in brands.brands">
-                        <clix-content-callout sref="brand({ id: '{{brand.id}}' })" menu-items="brandMenuItems">
-                            <header-element>
-                                <clix-brand-charity-logo brand="brand"></clix-brand-charity-logo>
-                            </header-element>
-                            <title-content>
-                                {{brand.title}}
-                            </title-content>
-                            <subtitle-content>
-                                {{brand.offers.offers.length}} {{brand.offers.offers.length === 1 ? 'Offer' : 'Offers'}}
-                            </subtitle-content>
-                        </clix-content-callout>
+                        <clix-brand-content-callout brand="brand"></clix-brand-content-callout>
                     </div>
                 </div>
             </uib-tab>
@@ -52,35 +42,7 @@
 
                 <div class="row brands-list">
                     <div class="brand-outer-container col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="offer in offers.offers">
-                        <clix-content-callout sref="offer({ id: '{{offer.id}}' })" menu-items="offerMenuItems">
-                            <header-element>
-                                <clix-offer-logo offer="offer"></clix-offer-logo>
-                            </header-element>
-                            <title-content>
-                                {{offer.title}}
-                            </title-content>
-                            <subtitle-content>
-                                Expires 2/1/2017
-                            </subtitle-content>
-                        </clix-content-callout>
-
-
-                        <!--<div class="brand-logo-container">-->
-                            <!--<div class="brand-container">-->
-                                <!--<clix-offer-logo offer="offer"></clix-offer-logo>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<a ui-sref="offer({ id: '{{offer._id}}' })" class="brand-footer">-->
-                            <!--<span class="brand-title">-->
-                                <!--{{offer.title}}-->
-                            <!--</span>-->
-                            <!--<span class="brand-offers">-->
-                                <!--Nike-->
-                            <!--</span>-->
-                            <!--<span class="brand-offers">-->
-                                <!--Expires 2/1/2017-->
-                            <!--</span>-->
-                        <!--</a>-->
+                        <clix-offer-content-callout offer="offer"></clix-offer-content-callout>
                     </div>
                 </div>
             </uib-tab>

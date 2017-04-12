@@ -37,6 +37,7 @@
             return {
                 restrict: 'AE',
                 templateUrl: 'ui/common/container/view.star-content-callout.html',
+                controller: 'ContentCalloutController',
                 scope: {
                     star: '='
                 },
@@ -47,7 +48,7 @@
                             icon: 'icon-share-icon',
                             points: '50',
                             onClick: function() {
-                                console.log('SHARE');
+                                scope.onSharePress('celebrity', scope.star);
                             }
                         },
                         {
@@ -84,8 +85,150 @@
         }
     ];
 
+    var brandContentCallout = [
+        '$state',
+        function($state) {
+            return {
+                restrict: 'AE',
+                templateUrl: 'ui/common/container/view.brand-content-callout.html',
+                controller: 'ContentCalloutController',
+                scope: {
+                    brand: '='
+                },
+                link: function(scope) {
+                    scope.menuItems = [
+                        {
+                            label: 'Share',
+                            icon: 'icon-share-icon',
+                            points: '50',
+                            onClick: function() {
+                                scope.onSharePress('brand', scope.brand);
+                            }
+                        },
+                        {
+                            label: 'Add to Favorites',
+                            icon: 'icon-favorite-icon',
+                            onClick: function() {
+                                console.log('SHARE');
+                            }
+                        }
+                    ];
+                }
+            }
+        }
+    ];
+
+    var charityContentCallout = [
+        '$state',
+        function($state) {
+            return {
+                restrict: 'AE',
+                templateUrl: 'ui/common/container/view.charity-content-callout.html',
+                controller: 'ContentCalloutController',
+                scope: {
+                    charity: '='
+                },
+                link: function(scope) {
+                    scope.menuItems = [
+                        {
+                            label: 'Share',
+                            icon: 'icon-share-icon',
+                            points: '50',
+                            onClick: function() {
+                                scope.onSharePress('charity', scope.charity);
+                            }
+                        },
+                        {
+                            label: 'Add to Favorites',
+                            icon: 'icon-favorite-icon',
+                            onClick: function() {
+                                console.log('SHARE');
+                            }
+                        }
+                    ];
+                }
+            }
+        }
+    ];
+
+    var offerContentCallout = [
+        '$state',
+        function($state) {
+            return {
+                restrict: 'AE',
+                templateUrl: 'ui/common/container/view.offer-content-callout.html',
+                controller: 'ContentCalloutController',
+                scope: {
+                    offer: '='
+                },
+                link: function(scope) {
+                    scope.menuItems = [
+                        {
+                            label: 'Save Offer',
+                            icon: 'icon-redeem-plus-icon',
+                            onClick: function() {
+                                console.log('SHARE');
+                            }
+                        },
+                        {
+                            label: 'Share',
+                            icon: 'icon-share-icon',
+                            points: '50',
+                            onClick: function() {
+                                scope.onSharePress('offer', scope.offer);
+                            }
+                        },
+                        {
+                            label: 'Add to Favorites',
+                            icon: 'icon-favorite-icon',
+                            onClick: function() {
+                                console.log('SHARE');
+                            }
+                        }
+                    ];
+                }
+            }
+        }
+    ];
+
+    var categoryContentCallout = [
+        '$state',
+        function($state) {
+            return {
+                restrict: 'AE',
+                templateUrl: 'ui/common/container/view.category-content-callout.html',
+                controller: 'ContentCalloutController',
+                scope: {
+                    category: '='
+                },
+                link: function(scope) {
+                    scope.menuItems = [
+                        {
+                            label: 'Share',
+                            icon: 'icon-share-icon',
+                            onClick: function() {
+                                scope.onSharePress('category', scope.category);
+                            }
+                        },
+                        {
+                            label: 'Add to Favorites',
+                            icon: 'icon-favorite-icon',
+                            onClick: function() {
+                                console.log('SHARE');
+                            }
+                        }
+                    ];
+                }
+            }
+        }
+    ];
+
     angular.module('clixtv')
         .directive('clixContentCalloutList', calloutCalloutList)
         .directive('clixContentCallout', calloutCallout)
-        .directive('clixStarContentCallout', starContentCallout);
+        .directive('clixStarContentCallout', starContentCallout)
+        .directive('clixBrandContentCallout', brandContentCallout)
+        .directive('clixCharityContentCallout', charityContentCallout)
+        .directive('clixOfferContentCallout', offerContentCallout)
+        .directive('clixCategoryContentCallout', categoryContentCallout);
 }());

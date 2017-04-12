@@ -10,7 +10,8 @@
                 sidebarTitle: 'sidebarTitle',
                 sidebarContent: 'sidebarContent',
                 footerContent: 'footerContent',
-                shareTooltipContent: '?shareTooltipContent'
+                shareTooltipContent: '?shareTooltipContent',
+                shareIcon: '?shareIcon'
             },
             scope: {
                 video: '=?',

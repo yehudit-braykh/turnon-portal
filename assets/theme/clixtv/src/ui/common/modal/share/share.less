@@ -43,7 +43,7 @@
     .clix-share-modal-input {
         .border-radius(6px);
         background-color: @color-white;
-        margin-top: 16px;
+        margin-top: 21px;
         padding: 11px 16px;
 
         textarea,
@@ -70,7 +70,7 @@
 
     .send-textbox {
         textarea {
-            height: 90px;
+            height: 85px;
         }
     }
 
@@ -357,16 +357,32 @@
 .clix-generic-share-content {
     .flex-display;
     color: @color-white;
+    padding-left: @common-mobile-padding;
+    padding-right: @common-mobile-padding;
+
+    @media (min-width: @screen-sm) {
+        padding: 0;
+    }
 
     .share-content-container {
         .flex(1);
-        padding-left: 22px;
+        padding-left: 10px;
+
+        @media (min-width: @screen-sm) {
+            padding-left: 22px;
+        }
     }
 
     .share-content-title {
         font-family: @font-primary;
-        font-size: 30px;
+        font-size: 24px;
+        line-height: 26px;
         margin-bottom: 3px;
+
+        @media (min-width: @screen-sm) {
+            font-size: 30px;
+            line-height: 30px;
+        }
     }
 
     .share-content-description {
@@ -374,13 +390,22 @@
         font-size: 14px;
         line-height: 20px;
         margin-bottom: 12px;
+        display: none;
+
+        @media (min-width: @screen-sm) {
+            display: block;
+        }
     }
 
     .share-content-footer {
         font-family: @font-primary;
-        font-size: 13px;
+        font-size: 12px;
         letter-spacing: 2px;
         color: @color-light-gray;
         text-transform: uppercase;
+
+        @media (min-width: @screen-sm) {
+            font-size: 13px;
+        }
     }
 }

@@ -1,0 +1,11 @@
+<clix-content-callout sref="charity({ id: '{{charity.id}}' })" menu-items="menuItems">
+    <header-element>
+        <clix-charity-logo charity="charity"></clix-charity-logo>
+    </header-element>
+    <title-content>
+        {{charity.title}}
+    </title-content>
+    <subtitle-content>
+        {{charity.videos.videos.length}} {{charity.videos.videos.length === 1 ? 'Video' : 'Videos'}}
+    </subtitle-content>
+</clix-content-callout>

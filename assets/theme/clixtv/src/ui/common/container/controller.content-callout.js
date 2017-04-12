@@ -3,8 +3,10 @@
     var ContentCalloutController = [
         '$q',
         '$scope',
-        '$state',
-        function($q, $scope, $state) {
+        '$rootScope',
+        '$uibModal',
+        'shareModalService',
+        function($q, $scope, $rootScope, $uibModal, shareModalService) {
 
             $scope.menuVisible = false;
 
@@ -19,6 +21,10 @@
                 }
                 $scope.menuVisible = false;
             };
+
+            $scope.onSharePress = function(type, item) {
+                shareModalService.launchShareModal(type, item);
+            }
         }
     ];
 

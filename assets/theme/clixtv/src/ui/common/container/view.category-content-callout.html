@@ -1,0 +1,11 @@
+<clix-content-callout sref="category({ id: '{{category.id}}' })" menu-items="menuItems">
+    <header-element>
+        <div class="category-logo" style="background-image: url('{{category.logo}}')"></div>
+    </header-element>
+    <title-content>
+        {{category.title}}
+    </title-content>
+    <subtitle-content>
+        {{category.videos.videos.length}} {{category.videos.videos.length === 1 ? 'Video' : 'Videos'}}
+    </subtitle-content>
+</clix-content-callout>

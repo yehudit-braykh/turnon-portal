@@ -50,17 +50,7 @@
                                     </div>
                                     <div class="row brand-row">
                                         <div ng-repeat="brand in series.brands.brands" class="brand-container col-xs-6">
-                                            <clix-content-callout sref="brand({ id: '{{brand.id}}' })" menu-items="brandMenuItems">
-                                                <header-element>
-                                                    <clix-brand-charity-logo brand="brand"></clix-brand-charity-logo>
-                                                </header-element>
-                                                <title-content>
-                                                    {{brand.title}}
-                                                </title-content>
-                                                <subtitle-content>
-                                                    {{brand.offers.offers.length}} {{brand.offers.offers.length === 1 ? 'Offer' : 'Offers'}}
-                                                </subtitle-content>
-                                            </clix-content-callout>
+                                            <clix-brand-content-callout brand="brand"></clix-brand-content-callout>
                                         </div>
                                     </div>
 
@@ -72,17 +62,7 @@
                                     </div>
                                     <div class="row brand-row">
                                         <div class="brand-container col-xs-6">
-                                            <clix-content-callout sref="charity({ id: '{{series.charity.id}}' })" menu-items="charityMenuItems">
-                                                <header-element>
-                                                    <clix-charity-logo charity="series.charity"></clix-charity-logo>
-                                                </header-element>
-                                                <title-content>
-                                                    {{series.charity.title}}
-                                                </title-content>
-                                                <subtitle-content>
-                                                    {{series.charity.videos.videos.length}} {{series.charity.videos.videos.length === 1 ? 'Video' : 'Videos'}}
-                                                </subtitle-content>
-                                            </clix-content-callout>
+                                            <clix-charity-content-callout charity="series.charity"></clix-charity-content-callout>
                                         </div>
                                     </div>
 
@@ -108,17 +88,7 @@
                     </div>
                     <div class="row brand-row">
                         <div ng-repeat="brand in celebrity.brands.brands" class="brand-container col-xs-6 col-sm-4 col-md-3 col-lg-2">
-                            <clix-content-callout sref="brand({ id: '{{brand.id}}' })" menu-items="brandMenuItems">
-                                <header-element>
-                                    <clix-brand-charity-logo brand="brand"></clix-brand-charity-logo>
-                                </header-element>
-                                <title-content>
-                                    {{brand.title}}
-                                </title-content>
-                                <subtitle-content>
-                                    {{brand.offers.offers.length}} {{brand.offers.offers.length === 1 ? 'Offer' : 'Offers'}}
-                                </subtitle-content>
-                            </clix-content-callout>
+                            <clix-brand-content-callout brand="brand"></clix-brand-content-callout>
                         </div>
                     </div>
                     <div class="brands-offers-title" ng-show="celebrity.offers">
@@ -135,17 +105,7 @@
                     </div>
                     <div class="row brand-row">
                         <div ng-repeat="offer in celebrity.offers.offers" class="brand-container col-xs-6 col-sm-4 col-md-3 col-lg-2">
-                            <clix-content-callout sref="offer({ id: '{{offer.id}}' })" menu-items="offerMenuItems">
-                                <header-element>
-                                    <clix-offer-logo offer="offer"></clix-offer-logo>
-                                </header-element>
-                                <title-content>
-                                    {{offer.title}}
-                                </title-content>
-                                <subtitle-content>
-                                    Expires {{offer.expirationDate}}
-                                </subtitle-content>
-                            </clix-content-callout>
+                            <clix-offer-content-callout offer="offer"></clix-offer-content-callout>
                         </div>
                     </div>
 
@@ -166,17 +126,7 @@
                     </div>
                     <div class="row brand-row">
                         <div ng-repeat="charity in celebrity.charities.charities" class="brand-container col-xs-6 col-sm-4 col-md-3 col-lg-2">
-                            <clix-content-callout sref="charity({ id: '{{charity.id}}' })" menu-items="charityMenuItems">
-                                <header-element>
-                                    <clix-charity-logo charity="charity"></clix-charity-logo>
-                                </header-element>
-                                <title-content>
-                                    {{charity.title}}
-                                </title-content>
-                                <subtitle-content>
-                                    {{charity.videos.videos.length}} {{charity.videos.videos.length === 1 ? 'Video' : 'Videos'}}
-                                </subtitle-content>
-                            </clix-content-callout>
+                            <clix-charity-content-callout charity="charity"></clix-charity-content-callout>
                         </div>
                     </div>
 

@@ -18,17 +18,7 @@
         </page-search-filter>
         <page-content>
             <clix-content-callout-list items="charities.charities" menu-items="menuItems">
-                <clix-content-callout sref="charity({ id: '{{item.id}}' })" menu-items="menuItems">
-                    <header-element>
-                        <clix-charity-logo charity="item"></clix-charity-logo>
-                    </header-element>
-                    <title-content>
-                        {{item.title}}
-                    </title-content>
-                    <subtitle-content>
-                        {{item.videos.videos.length}} {{item.videos.videos.length === 1 ? 'Video' : 'Videos'}}
-                    </subtitle-content>
-                </clix-content-callout>
+                <clix-charity-content-callout charity="item"></clix-charity-content-callout>
             </clix-content-callout-list>
         </page-content>
     </clix-filter-page>

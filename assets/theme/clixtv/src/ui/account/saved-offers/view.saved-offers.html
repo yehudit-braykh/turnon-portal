@@ -28,17 +28,7 @@
                 </page-search-filter>
                 <page-content>
                     <clix-content-callout-list items="offers" large-col-class="col-lg-2-4" menu-items="menuItems">
-                        <clix-content-callout sref="offer({ id: '{{item._id}}' })" menu-items="menuItems">
-                            <header-element>
-                                <clix-offer-logo offer="item"></clix-offer-logo>
-                            </header-element>
-                            <title-content>
-                                {{item.title}}
-                            </title-content>
-                            <subtitle-content>
-                                Expires 2/1/2017
-                            </subtitle-content>
-                        </clix-content-callout>
+                        <clix-offer-content-callout offer="item"></clix-offer-content-callout>
                     </clix-content-callout-list>
                 </page-content>
             </clix-filter-page>

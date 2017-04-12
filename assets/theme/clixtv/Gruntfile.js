@@ -24,7 +24,7 @@ module.exports = function(grunt) {
                     'src/ui/views.js',
                     'src/ui/**/*.js',
                     'src/models/*.js',
-                    'src/services/*.js',
+                    'src/services/**/*.js',
                     'src/utils/*.js',
                     'src/filters/*.js'
                 ]
@@ -134,7 +134,7 @@ module.exports = function(grunt) {
                     'src/ui/**/*.html',
                     'src/ui/**/*.js',
                     'src/models/*.js',
-                    'src/services/*.js',
+                    'src/services/**/*.js',
                     'src/utils/*.js',
                     'src/filters/*.js',
                     'src/ui/**/*.less'

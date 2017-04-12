@@ -19,7 +19,7 @@
                         <div ng-transclude="contentDescription"></div>
                     </div>
                     <div class="share-container" ng-show="!charity">
-                        <a href="#" class="icon-share-icon landing-share-icon" clix-tooltip-trigger tooltip-id="share-button-{{$id}}"></a>
+                        <div clix-tooltip-trigger tooltip-id="share-button-{{$id}}" ng-transclude="shareIcon"></div>
                         <div class="content-points-validator">
                             <clix-points-violator>
                                 50

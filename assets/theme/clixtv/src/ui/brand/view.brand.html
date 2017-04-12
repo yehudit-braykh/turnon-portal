@@ -41,17 +41,7 @@
                                 <div class="row brand-offer-row">
                                     <div class="col-xs-6 col-sm-6 col-md-12 col-lg-12 brand-offer-column" ng-repeat="offer in brand.offers.offers | limitTo: 3">
                                         <div class="brand-offer">
-                                            <clix-content-callout sref="offer({ id: '{{offer.id}}' })" menu-items="offerMenuItems">
-                                                <header-element>
-                                                    <clix-offer-logo offer="offer"></clix-offer-logo>
-                                                </header-element>
-                                                <title-content>
-                                                    {{offer.title}}
-                                                </title-content>
-                                                <subtitle-content>
-                                                    Expires {{offer.expirationDate | clixDate}}
-                                                </subtitle-content>
-                                            </clix-content-callout>
+                                            <clix-offer-content-callout offer="offer"></clix-offer-content-callout>
                                         </div>
                                     </div>
                                 </div>
@@ -90,23 +80,16 @@
                                     After signing up, you will receive 50 Reward Points for sharing! <a ng-click="">Learn more</a>.
                                 </div>
                             </share-tooltip-content>
+                            <share-icon>
+                                <clix-share-button extra-class="landing-share-icon" brand="brand"></clix-share-button>
+                            </share-icon>
                         </clix-landing-video-content>
                     </div>
                 </uib-tab>
                 <uib-tab index="1" heading="Offers">
                     <div class="row clix-block-row offers-container">
                         <div class="clix-block-item col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="offer in brand.offers.offers">
-                            <clix-content-callout sref="offer({ id: '{{offer.id}}' })" menu-items="offerMenuItems">
-                                <header-element>
-                                    <clix-offer-logo offer="offer"></clix-offer-logo>
-                                </header-element>
-                                <title-content>
-                                    {{offer.title}}
-                                </title-content>
-                                <subtitle-content>
-                                    Expires {{offer.expirationDate | clixDate}}
-                                </subtitle-content>
-                            </clix-content-callout>
+                            <clix-offer-content-callout offer="offer"></clix-offer-content-callout>
                         </div>
                     </div>
                 </uib-tab>

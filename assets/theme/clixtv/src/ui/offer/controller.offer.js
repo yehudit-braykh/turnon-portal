@@ -73,7 +73,7 @@
                             title: data.title,
                             description: data.description,
                             backgroundImage: data.headerImage,
-                            logo: data.brand.transparentThumbnail
+                            logo: data.brand ? data.brand.transparentThumbnail : undefined
                         };
                     }
                 );
