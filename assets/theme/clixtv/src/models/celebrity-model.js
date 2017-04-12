@@ -9,12 +9,14 @@
                     this.id = data._id;
                     this.name = data.title;
 
-                    if (data.content.BrandLogo) {
-                        this.thumbnail = data.content.BrandLogo.downloadUrl;
-                    }
+                    if (data.content) {
+                        if (data.content.BrandLogo) {
+                            this.thumbnail = data.content.BrandLogo.downloadUrl;
+                        }
 
-                    if (data.content.BackgroundImage) {
-                        this.headerImage = data.content.BackgroundImage.downloadUrl;
+                        if (data.content.BackgroundImage) {
+                            this.headerImage = data.content.BackgroundImage.downloadUrl;
+                        }
                     }
 
                     if (data.videos) {
