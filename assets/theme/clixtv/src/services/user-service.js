@@ -9,25 +9,23 @@
 
             var loggedInUser;
 
-            function _getUserFavoritePropertyForType(type) {
+            function _getFavoriteMethodForType(type, isDelete) {
                 switch(type) {
                     case 'celebrity':
-                        return 'favoriteCelebs';
+                        return isDelete ? 'remove_favorite_celebrity' : 'add_favorite_celebrity';
                     case 'brand':
-                        return 'favoriteBrands';
+                        return isDelete ? 'remove_favorite_brand' : 'add_favorite_brand';
                     case 'category':
-                        return 'favoriteCategories';
+                        return isDelete ? 'remove_favorite_category' : 'add_favorite_category';
                     case 'charity':
-                        return 'favoriteCharities';
-                    case 'watchlist':
-                        return 'watchlist';
+                        return isDelete ? 'remove_favorite_charity' : 'add_favorite_charity';
                     default:
                         return undefined;
                 }
             }
 
             function _addFavorite(id, type) {
-                var userFavoriteProperty, favorites;
+                var userFavoriteMethod, favorites;
 
                 if (!loggedInUser) {
                     $log.error('No logged in user found to add favorite', type);
@@ -39,24 +37,29 @@
                     return;
                 }
 
-                userFavoriteProperty = _getUserFavoritePropertyForType(type);
+                userFavoriteMethod = _getFavoriteMethodForType(type, false);
 
-                if (!userFavoriteProperty) {
+                if (!userFavoriteMethod) {
                     throw new Error('Invalid type provided for favorite');
                 }
 
-                favorites = loggedInUser[userFavoriteProperty] || [];
+                return $http.post('/api/account/' + userFavoriteMethod, {
+                    id: id
+                });
 
-                if (favorites.indexOf(id) !== -1) {
-                    $log.warn(id + ' has already been favorited');
-                    return;
-                }
-
-                favorites.push(id);
-
-                loggedInUser[userFavoriteProperty] = favorites;
-
-                return methods.updateUser(loggedInUser);
+                //
+                // favorites = loggedInUser[userFavoriteProperty] || [];
+                //
+                // if (favorites.indexOf(id) !== -1) {
+                //     $log.warn(id + ' has already been favorited');
+                //     return;
+                // }
+                //
+                // favorites.push(id);
+                //
+                // loggedInUser[userFavoriteProperty] = favorites;
+                //
+                // return methods.updateUser(loggedInUser);
             }
 
             function _removeFavorite(id, type) {
@@ -205,39 +208,39 @@
                 },
 
                 removeFavoriteCelebrity: function(id) {
-                    _removeFavorite(id, 'celebrity');
+                    return _removeFavorite(id, 'celebrity');
                 },
 
                 addFavoriteBrand: function(id) {
-                    _addFavorite(id, 'brand');
+                    return _addFavorite(id, 'brand');
                 },
 
                 removeFavoriteBrand: function(id) {
-                    _removeFavorite(id, 'brand');
+                    return _removeFavorite(id, 'brand');
                 },
 
                 addFavoriteCategory: function(id) {
-                    _addFavorite(id, 'category');
+                    return _addFavorite(id, 'category');
                 },
 
                 removeFavoriteCategory: function(id) {
-                    _removeFavorite(id, 'category');
+                    return _removeFavorite(id, 'category');
                 },
 
                 addFavoriteCharity: function(id) {
-                    _addFavorite(id, 'charity');
+                    return _addFavorite(id, 'charity');
                 },
 
                 removeFavoriteCharity: function(id) {
-                    _removeFavorite(id, 'charity');
+                    return _removeFavorite(id, 'charity');
                 },
 
                 addVideoToWatchlist: function(id) {
-                    _addFavorite(id, 'watchlist');
+                    // _addFavorite(id, 'watchlist');
                 },
 
                 removeVideoFromWatchlist: function(id) {
-                    _removeFavorite(id, 'watchlist');
+                    // _removeFavorite(id, 'watchlist');
                 }
             };
 

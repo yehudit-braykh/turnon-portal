@@ -5,7 +5,7 @@
 <div class="clix-star-page" ng-if="celebrity">
     <clix-hero-banner
         title-text="{{celebrity.name}}"
-        button-text="{{'+ Favorites'}}"
+        button-text="{{'Favorites'}}"
         button-icon-class="{{'icon-favorite-icon banner-favorite-icon'}}"
         button-tooltip-text="{{loggedInUser ? 'Add this star to your Favorites.' : 'After signing up, you will be able to add this star to your Favorites.'}}"
         subtext="{{celebrity.videos.videos.length}} {{celebrity.videos.videos.length === 1 ? 'Video' : 'Videos'}}"

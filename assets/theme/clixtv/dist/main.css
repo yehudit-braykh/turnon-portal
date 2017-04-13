@@ -10728,6 +10728,9 @@ button.close {
   .clix-offer-page .save-offer-button {
     display: inline-block;
   }
+  .clix-offer-page .save-offer-button .clix-tertiary-button {
+    width: 160px;
+  }
 }
 .clix-offer-page .save-offer-button .save-offer-points {
   position: absolute;

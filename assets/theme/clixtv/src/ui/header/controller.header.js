@@ -23,7 +23,7 @@
                     .then(
                         function onSuccess(data) {
                             $scope.notifications = data[0];
-                            $scope.points = data[1];
+                            $scope.points = isNaN(data[1]) ? 0 : data[1];
                         }
                     );
             }

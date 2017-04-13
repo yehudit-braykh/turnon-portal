@@ -28,8 +28,23 @@
             };
 
             $scope.onFavoritePress = function(type, item) {
-
-                console.log('FAVORITE', type, item);
+                switch(type) {
+                    case 'brand':
+                        userService.addFavoriteBrand(item.id);
+                        break;
+                    case 'category':
+                        userService.addFavoriteCategory(item.id);
+                        break;
+                    case 'offer':
+                        // userService.addFavoriteOffer(item.id);
+                        break;
+                    case 'celebrity':
+                        userService.addFavoriteCelebrity(item.id);
+                        break;
+                    case 'charity':
+                        userService.addFavoriteCharity(item.id);
+                        break;
+                }
             };
         }
     ];
