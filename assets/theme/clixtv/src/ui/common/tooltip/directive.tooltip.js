@@ -1,7 +1,7 @@
 (function() {
 
     var SHOW_TOOLTIP_DELAY_MS = 500,
-        HIDE_TOOLTIP_DELAY_MS = 500;
+        HIDE_TOOLTIP_DELAY_MS = 0;
 
     var tooltip = function() {
         return {
@@ -114,7 +114,7 @@
                                     $timeout(function() {
                                         tooltipElement.style.top = '-999px';
                                         tooltipElement.style.left = '-999px';
-                                    }, 250);
+                                    }, 0);
 
                                     if (showTimeout) {
                                         $timeout.cancel(showTimeout);

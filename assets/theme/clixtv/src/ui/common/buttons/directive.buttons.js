@@ -23,7 +23,10 @@
         return {
             restrict: 'AE',
             replace: true,
-            templateUrl: 'ui/common/buttons/view.favorite-button.html'
+            templateUrl: 'ui/common/buttons/view.favorite-button.html',
+            scope: {
+                isFavorite: '='
+            }
         }
     };
 

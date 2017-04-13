@@ -2,12 +2,15 @@
 
     var ContentCalloutController = [
         '$q',
+        '$log',
         '$scope',
         '$rootScope',
         '$uibModal',
         'shareModalService',
         'userService',
-        function($q, $scope, $rootScope, $uibModal, shareModalService, userService) {
+        function($q, $log, $scope, $rootScope, $uibModal, shareModalService, userService) {
+
+            var isUpdating = false;
 
             $scope.menuVisible = false;
 
@@ -28,24 +31,64 @@
             };
 
             $scope.onFavoritePress = function(type, item) {
+                var serviceMethod,
+                    isFavorited = $scope.isFavoriteContent(type, item);
+
+                if (isUpdating) {
+                    $log.warn('Content is currently being updated from previous favorite, ignoring action');
+                    return;
+                }
+
+                isUpdating = true;
+
                 switch(type) {
                     case 'brand':
-                        userService.addFavoriteBrand(item.id);
+                        serviceMethod = (isFavorited) ? 'removeFavoriteBrand' : 'addFavoriteBrand';
                         break;
                     case 'category':
-                        userService.addFavoriteCategory(item.id);
-                        break;
-                    case 'offer':
-                        // userService.addFavoriteOffer(item.id);
+                        serviceMethod = (isFavorited) ? 'removeFavoriteCategory' : 'addFavoriteCategory';
                         break;
                     case 'celebrity':
-                        userService.addFavoriteCelebrity(item.id);
+                        serviceMethod = (isFavorited) ? 'removeFavoriteCelebrity' : 'addFavoriteCelebrity';
                         break;
                     case 'charity':
-                        userService.addFavoriteCharity(item.id);
+                        serviceMethod = (isFavorited) ? 'removeFavoriteCharity' : 'addFavoriteCharity';
                         break;
                 }
+                if (!serviceMethod) {
+                    return;
+                }
+                userService[serviceMethod](item.id);
             };
+
+            $scope.isFavoriteContent = function(type, item) {
+                switch(type) {
+                    case 'brand':
+                        return userService.isFavoriteBrand(item.id);
+                    case 'category':
+                        return userService.isFavoriteCategory(item.id);
+                    case 'celebrity':
+                        return userService.isFavoriteCelebrity(item.id);
+                    case 'charity':
+                        return userService.isFavoriteCharity(item.id);
+                }
+                return false;
+            };
+
+            $rootScope.$on('favorite.added', function(event, data) {
+                $scope.loggedInUser = data.user;
+                isUpdating = false;
+            });
+
+            $rootScope.$on('favorite.removed', function(event, data) {
+                $scope.loggedInUser = data.user;
+                isUpdating = false;
+            });
+
+            $rootScope.$on('user.login', function(event, data) {
+                $scope.loggedInUser = data;
+                isUpdating = false;
+            });
         }
     ];
 

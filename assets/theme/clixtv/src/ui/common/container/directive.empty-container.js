@@ -6,7 +6,8 @@
             templateUrl: 'ui/common/container/view.empty-container.html',
             transclude: {
                 headerText: 'headerText',
-                bodyText: '?bodyText'
+                bodyText: '?bodyText',
+                callToActionButton: '?callToActionButton'
             }
         }
     };

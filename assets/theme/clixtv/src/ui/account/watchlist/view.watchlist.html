@@ -4,7 +4,7 @@
             Watchlist
         </header-text>
         <accessory-view>
-            <div class="filter-containers">
+            <div class="filter-containers" ng-show="watchlist && watchlist.length > 0">
                 <div class="filter-container">
                     <clix-dropdown options="filterOptions" placeholder-text="Filter By"></clix-dropdown>
                 </div>
@@ -21,8 +21,13 @@
                     Videos that you would like to watch later will appear here.
                 </header-text>
                 <body-text>
-                    Browse through videos and hit the <i class="empty-watchlist-icon icon-redeem-plus-icon"></i> to add them to this list.
+                    Browse through videos and hit the <i class="empty-watchlist-icon icon-redeem-plus-icon"></i> to add them to this list.<br />
                 </body-text>
+                <call-to-action-button>
+                    <clix-primary-button ui-sref="home">
+                        Go to Home Page
+                    </clix-primary-button>
+                </call-to-action-button>
             </clix-empty-container>
         </div>
         <div ng-if="watchlist && watchlist.length > 0">

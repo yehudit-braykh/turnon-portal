@@ -11259,6 +11259,11 @@ button.close {
     padding-top: 20px;
   }
 }
+@media (min-width: 768px) {
+  .clix-account-favorites .clix-empty-container {
+    border-top: 1px solid #636363;
+  }
+}
 .clix-account-saved-offers .saved-offers-page-content {
   padding: 20px 9px 46px 9px;
 }
@@ -12205,7 +12210,8 @@ button.close {
 .clix-favorite-icon:hover {
   color: #FFF;
 }
-.clix-favorite-icon:active .fill-state {
+.clix-favorite-icon:active .fill-state,
+.clix-favorite-icon.active .fill-state {
   display: block;
 }
 .clix-share-icon {
@@ -12735,6 +12741,10 @@ button.close {
   letter-spacing: 1.6px;
   text-transform: uppercase;
   margin-top: 15px;
+}
+.clix-empty-container .call-to-action-container {
+  display: inline-block;
+  margin-top: 20px;
 }
 .clix-blurrable-container.active {
   filter: blur(4px);

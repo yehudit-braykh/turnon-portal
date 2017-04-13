@@ -5,7 +5,12 @@
         '$http',
         '$log',
         '$rootScope',
-        function($q, $http, $log, $rootScope) {
+        'BrandListModel',
+        'OfferListModel',
+        'CharityListModel',
+        'CelebrityListModel',
+        'CategoryListModel',
+        function($q, $http, $log, $rootScope, BrandListModel, OfferListModel, CharityListModel, CelebrityListModel, CategoryListModel) {
 
             var loggedInUser;
 
@@ -19,13 +24,26 @@
                         return isDelete ? 'remove_favorite_category' : 'add_favorite_category';
                     case 'charity':
                         return isDelete ? 'remove_favorite_charity' : 'add_favorite_charity';
-                    default:
-                        return undefined;
                 }
+                return undefined;
+            }
+
+            function _getFavoritePropertyForType(type) {
+                switch(type) {
+                    case 'celebrity':
+                        return 'favoriteCelebs';
+                    case 'brand':
+                        return 'favoriteBrands';
+                    case 'category':
+                        return 'favoriteCategories';
+                    case 'charity':
+                        return 'favoriteCharities';
+                }
+                return undefined;
             }
 
             function _addFavorite(id, type) {
-                var userFavoriteMethod, favorites;
+                var userFavoriteMethod, favoriteProperty, favorites;
 
                 if (!loggedInUser) {
                     $log.error('No logged in user found to add favorite', type);
@@ -38,36 +56,92 @@
                 }
 
                 userFavoriteMethod = _getFavoriteMethodForType(type, false);
+                favoriteProperty = _getFavoritePropertyForType(type);
 
                 if (!userFavoriteMethod) {
                     throw new Error('Invalid type provided for favorite');
+                }
+                if (favoriteProperty) {
+                    favorites = loggedInUser[favoriteProperty];
+                    if (!favorites) {
+                        favorites = [];
+                    }
+                    if (favorites.indexOf(id) === -1) {
+                        favorites.push(id);
+                        loggedInUser[favoriteProperty] = favorites;
+                        $rootScope.$broadcast('favorite.added', {
+                            user: loggedInUser,
+                            type: type,
+                            id: id
+                        });
+                    }
                 }
 
                 return $http.post('/api/account/' + userFavoriteMethod, {
                     id: id
                 });
-
-                //
-                // favorites = loggedInUser[userFavoriteProperty] || [];
-                //
-                // if (favorites.indexOf(id) !== -1) {
-                //     $log.warn(id + ' has already been favorited');
-                //     return;
-                // }
-                //
-                // favorites.push(id);
-                //
-                // loggedInUser[userFavoriteProperty] = favorites;
-                //
-                // return methods.updateUser(loggedInUser);
             }
 
             function _removeFavorite(id, type) {
+                var userFavoriteMethod, favoriteProperty, favorites;
+
                 if (!loggedInUser) {
                     $log.error('No logged in user found to remove favorite', type);
                     return;
                 }
 
+                if (!id) {
+                    $log.error('No ID provided to remove from favorites');
+                    return;
+                }
+
+                userFavoriteMethod = _getFavoriteMethodForType(type, true);
+                favoriteProperty = _getFavoritePropertyForType(type);
+
+                if (!userFavoriteMethod) {
+                    throw new Error('Invalid type provided for favorite');
+                }
+                if (favoriteProperty) {
+                    favorites = loggedInUser[favoriteProperty];
+                    if (!favorites) {
+                        favorites = [];
+                    }
+                    if (favorites.indexOf(id) !== -1) {
+
+                        favorites.splice(favorites.indexOf(id), 1);
+                        loggedInUser[favoriteProperty] = favorites;
+                        $rootScope.$broadcast('favorite.removed', {
+                            user: loggedInUser,
+                            type: type,
+                            id: id
+                        });
+                    }
+                }
+
+                return $http.post('/api/account/' + userFavoriteMethod, {
+                    id: id
+                });
+            }
+
+            function _isFavorite(id, type) {
+                var favoriteProperty, favorites;
+                if (!loggedInUser) {
+                    return false;
+                }
+
+                favoriteProperty = _getFavoritePropertyForType(type);
+
+                if (!favoriteProperty) {
+                    throw new Error('Invalid property defined to look up favorite: ' + type);
+                }
+
+                favorites = loggedInUser[favoriteProperty];
+
+                if (!favorites) {
+                    favorites = [];
+                }
+
+                return favorites.indexOf(id) !== -1;
             }
 
             var methods = {
@@ -140,6 +214,7 @@
                     return $http.get('/api/account/get_current')
                         .then(
                             function onSuccess(data) {
+
                                 loggedInUser = data.data;
 
                                 $rootScope.$broadcast('user.login', loggedInUser);
@@ -159,37 +234,37 @@
                 },
 
                 getFavoriteCelebrities: function() {
-                    return $http.get('/api/account/get_favorites?type=favoriteCelebs')
+                    return $http.get('/api/account/get_favorite_celebrities')
                         .then(
                             function onSuccess(data) {
-                                return data.data;
+                                return new CelebrityListModel(data.data);
                             }
                         );
                 },
 
                 getFavoriteBrands: function() {
-                    return $http.get('/api/account/get_favorites?type=favoriteBrands')
+                    return $http.get('/api/account/get_favorite_brands')
                         .then(
                             function onSuccess(data) {
-                                return data.data;
+                                return new BrandListModel(data.data);
                             }
                         );
                 },
 
                 getFavoriteCharities: function() {
-                    return $http.get('/api/account/get_favorites?type=favoriteCharities')
+                    return $http.get('/api/account/get_favorite_charities')
                         .then(
                             function onSuccess(data) {
-                                return data.data;
+                                return new CharityListModel(data.data);
                             }
                         );
                 },
 
                 getFavoriteCategories: function() {
-                    return $http.get('/api/account/get_favorites?type=favoriteCategories')
+                    return $http.get('/api/account/get_favorite_categories')
                         .then(
                             function onSuccess(data) {
-                                return data.data;
+                                return new CategoryListModel(data.data);
                             }
                         );
                 },
@@ -203,12 +278,20 @@
                         );
                 },
 
+                isFavoriteCelebrity: function(id) {
+                    return _isFavorite(id, 'celebrity');
+                },
+
                 addFavoriteCelebrity: function(id) {
                     return _addFavorite(id, 'celebrity');
                 },
 
                 removeFavoriteCelebrity: function(id) {
                     return _removeFavorite(id, 'celebrity');
+                },
+
+                isFavoriteBrand: function(id) {
+                    return _isFavorite(id, 'brand');
                 },
 
                 addFavoriteBrand: function(id) {
@@ -219,12 +302,20 @@
                     return _removeFavorite(id, 'brand');
                 },
 
+                isFavoriteCategory: function(id) {
+                    return _isFavorite(id, 'category');
+                },
+
                 addFavoriteCategory: function(id) {
                     return _addFavorite(id, 'category');
                 },
 
                 removeFavoriteCategory: function(id) {
                     return _removeFavorite(id, 'category');
+                },
+
+                isFavoriteCharity: function(id) {
+                    return _isFavorite(id, 'charity');
                 },
 
                 addFavoriteCharity: function(id) {

@@ -10,7 +10,7 @@
                 </div>
             </a>
             <div class="header-save" ng-click="onFavorite()" clix-tooltip-trigger tooltip-id="favorites-button-{{$id}}">
-                <clix-favorite-button></clix-favorite-button>
+                <clix-favorite-button is-favorite="isFavorited"></clix-favorite-button>
             </div>
             <div class="header-ellipsis" clix-tooltip-trigger tooltip-id="actions-button-{{$id}}">
                 <div class="menu-icon-container" ng-click="menuClicked($event)" clix-click-anywhere-else="bodyClicked">
@@ -18,7 +18,7 @@
                 </div>
             </div>
             <clix-tooltip tooltip-id="favorites-button-{{$id}}">
-                Add to favorites
+                {{isFavorited ? 'Remove from favorites' : 'Add to favorites'}}
             </clix-tooltip>
             <clix-tooltip tooltip-id="actions-button-{{$id}}">
                 Actions

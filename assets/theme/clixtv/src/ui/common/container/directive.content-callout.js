@@ -27,14 +27,17 @@
             scope: {
                 sref: '@',
                 menuItems: '=',
-                onFavorite: '&'
+                onFavorite: '&',
+                isFavorited: '='
             }
         }
     };
 
     var starContentCallout = [
         '$state',
-        function($state) {
+        '$rootScope',
+        'userService',
+        function($state, $rootScope, userService) {
             return {
                 restrict: 'AE',
                 templateUrl: 'ui/common/container/view.star-content-callout.html',
@@ -43,44 +46,55 @@
                     star: '='
                 },
                 link: function(scope) {
-                    scope.menuItems = [
-                        {
-                            label: 'Share',
-                            icon: 'icon-share-icon',
-                            points: '50',
-                            onClick: function() {
-                                scope.onSharePress('celebrity', scope.star);
+
+                    function _resetMenuItems() {
+                        var isFavorite = userService.isFavoriteCelebrity(scope.star.id);
+                        scope.menuItems = [
+                            {
+                                label: 'Share',
+                                icon: 'icon-share-icon',
+                                points: '50',
+                                onClick: function() {
+                                    scope.onSharePress('celebrity', scope.star);
+                                }
+                            },
+                            {
+                                label: isFavorite ? 'Remove from Favorites' : 'Add to Favorites',
+                                icon: isFavorite ? 'icon-remove-icon' : 'icon-favorite-icon',
+                                onClick: function() {
+                                    scope.onFavoritePress('celebrity', scope.star);
+                                }
+                            },
+                            {
+                                label: 'Go to Star Page',
+                                icon: 'icon-stars-icon',
+                                onClick: function() {
+                                    $state.go('star', { id: scope.star.id })
+                                }
+                            },
+                            {
+                                label: 'Go to Offers',
+                                icon: 'icon-offers-icon',
+                                onClick: function() {
+                                    $state.go('star', { id: scope.star.id, tab: 'brands' })
+                                }
+                            },
+                            {
+                                label: 'Go to Charities',
+                                icon: 'icon-charities-icon-bottom-nav',
+                                onClick: function() {
+                                    $state.go('star', { id: scope.star.id, tab: 'charities' })
+                                }
                             }
-                        },
-                        {
-                            label: 'Add to Favorites',
-                            icon: 'icon-favorite-icon',
-                            onClick: function() {
-                                scope.onFavoritePress('celebrity', scope.star);
-                            }
-                        },
-                        {
-                            label: 'Go to Stars Page',
-                            icon: 'icon-stars-icon',
-                            onClick: function() {
-                                $state.go('star', { id: scope.star.id })
-                            }
-                        },
-                        {
-                            label: 'Go to Offers',
-                            icon: 'icon-offers-icon',
-                            onClick: function() {
-                                $state.go('star', { id: scope.star.id, tab: 'brands' })
-                            }
-                        },
-                        {
-                            label: 'Go to Charities',
-                            icon: 'icon-charities-icon-bottom-nav',
-                            onClick: function() {
-                                $state.go('star', { id: scope.star.id, tab: 'charities' })
-                            }
-                        }
-                    ];
+                        ];
+                    }
+
+                    $rootScope.$on('user.login', _resetMenuItems);
+                    $rootScope.$on('favorite.added', _resetMenuItems);
+                    $rootScope.$on('favorite.removed', _resetMenuItems);
+
+                    _resetMenuItems();
+
                 }
             }
         }
@@ -88,7 +102,9 @@
 
     var brandContentCallout = [
         '$state',
-        function($state) {
+        '$rootScope',
+        'userService',
+        function($state, $rootScope, userService) {
             return {
                 restrict: 'AE',
                 templateUrl: 'ui/common/container/view.brand-content-callout.html',
@@ -97,23 +113,33 @@
                     brand: '='
                 },
                 link: function(scope) {
-                    scope.menuItems = [
-                        {
-                            label: 'Share',
-                            icon: 'icon-share-icon',
-                            points: '50',
-                            onClick: function() {
-                                scope.onSharePress('brand', scope.brand);
+
+                    function _resetMenuItems() {
+                        var isFavorite = userService.isFavoriteBrand(scope.brand.id);
+                        scope.menuItems = [
+                            {
+                                label: 'Share',
+                                icon: 'icon-share-icon',
+                                points: '50',
+                                onClick: function() {
+                                    scope.onSharePress('brand', scope.brand);
+                                }
+                            },
+                            {
+                                label: isFavorite ? 'Remove from Favorites' : 'Add to Favorites',
+                                icon: isFavorite ? 'icon-remove-icon' : 'icon-favorite-icon',
+                                onClick: function() {
+                                    scope.onFavoritePress('brand', scope.brand);
+                                }
                             }
-                        },
-                        {
-                            label: 'Add to Favorites',
-                            icon: 'icon-favorite-icon',
-                            onClick: function() {
-                                scope.onFavoritePress('brand', scope.brand);
-                            }
-                        }
-                    ];
+                        ];
+                    }
+
+                    $rootScope.$on('user.login', _resetMenuItems);
+                    $rootScope.$on('favorite.added', _resetMenuItems);
+                    $rootScope.$on('favorite.removed', _resetMenuItems);
+
+                    _resetMenuItems();
                 }
             }
         }
@@ -121,7 +147,9 @@
 
     var charityContentCallout = [
         '$state',
-        function($state) {
+        '$rootScope',
+        'userService',
+        function($state, $rootScope, userService) {
             return {
                 restrict: 'AE',
                 templateUrl: 'ui/common/container/view.charity-content-callout.html',
@@ -130,23 +158,33 @@
                     charity: '='
                 },
                 link: function(scope) {
-                    scope.menuItems = [
-                        {
-                            label: 'Share',
-                            icon: 'icon-share-icon',
-                            points: '50',
-                            onClick: function() {
-                                scope.onSharePress('charity', scope.charity);
+
+                    function _resetMenuItems() {
+                        var isFavorite = userService.isFavoriteCharity(scope.charity.id);
+                        scope.menuItems = [
+                            {
+                                label: 'Share',
+                                icon: 'icon-share-icon',
+                                points: '50',
+                                onClick: function() {
+                                    scope.onSharePress('charity', scope.charity);
+                                }
+                            },
+                            {
+                                label: isFavorite ? 'Remove from Favorites' : 'Add to Favorites',
+                                icon: isFavorite ? 'icon-remove-icon' : 'icon-favorite-icon',
+                                onClick: function() {
+                                    scope.onFavoritePress('charity', scope.charity);
+                                }
                             }
-                        },
-                        {
-                            label: 'Add to Favorites',
-                            icon: 'icon-favorite-icon',
-                            onClick: function() {
-                                scope.onFavoritePress('charity', scope.charity);
-                            }
-                        }
-                    ];
+                        ];
+                    }
+
+                    $rootScope.$on('user.login', _resetMenuItems);
+                    $rootScope.$on('favorite.added', _resetMenuItems);
+                    $rootScope.$on('favorite.removed', _resetMenuItems);
+
+                    _resetMenuItems();
                 }
             }
         }
@@ -154,7 +192,9 @@
 
     var offerContentCallout = [
         '$state',
-        function($state) {
+        '$rootScope',
+        'userService',
+        function($state, $rootScope, userService) {
             return {
                 restrict: 'AE',
                 templateUrl: 'ui/common/container/view.offer-content-callout.html',
@@ -163,30 +203,41 @@
                     offer: '='
                 },
                 link: function(scope) {
-                    scope.menuItems = [
-                        {
-                            label: 'Save Offer',
-                            icon: 'icon-redeem-plus-icon',
-                            onClick: function() {
-                                console.log('SHARE');
+                    function _resetMenuItems() {
+
+                        // TODO - Wire this up...
+                        var isFavorite = false;
+                        scope.menuItems = [
+                            {
+                                label: 'Save Offer',
+                                icon: 'icon-redeem-plus-icon',
+                                onClick: function() {
+                                    console.log('SHARE');
+                                }
+                            },
+                            {
+                                label: 'Share',
+                                icon: 'icon-share-icon',
+                                points: '50',
+                                onClick: function() {
+                                    scope.onSharePress('offer', scope.offer);
+                                }
+                            },
+                            {
+                                label: isFavorite ? 'Remove from Favorites' : 'Add to Favorites',
+                                icon: isFavorite ? 'icon-remove-icon' : 'icon-favorite-icon',
+                                onClick: function() {
+                                    scope.onFavoritePress('offer', scope.offer);
+                                }
                             }
-                        },
-                        {
-                            label: 'Share',
-                            icon: 'icon-share-icon',
-                            points: '50',
-                            onClick: function() {
-                                scope.onSharePress('offer', scope.offer);
-                            }
-                        },
-                        {
-                            label: 'Add to Favorites',
-                            icon: 'icon-favorite-icon',
-                            onClick: function() {
-                                scope.onFavoritePress('offer', scope.offer);
-                            }
-                        }
-                    ];
+                        ];
+                    }
+
+                    $rootScope.$on('user.login', _resetMenuItems);
+                    $rootScope.$on('favorite.added', _resetMenuItems);
+                    $rootScope.$on('favorite.removed', _resetMenuItems);
+
+                    _resetMenuItems();
                 }
             }
         }
@@ -194,7 +245,9 @@
 
     var categoryContentCallout = [
         '$state',
-        function($state) {
+        '$rootScope',
+        'userService',
+        function($state, $rootScope, userService) {
             return {
                 restrict: 'AE',
                 templateUrl: 'ui/common/container/view.category-content-callout.html',
@@ -203,15 +256,24 @@
                     category: '='
                 },
                 link: function(scope) {
-                    scope.menuItems = [
-                        {
-                            label: 'Add to Favorites',
-                            icon: 'icon-favorite-icon',
-                            onClick: function() {
-                                scope.onFavoritePress('category', scope.category);
+                    function _resetMenuItems() {
+                        var isFavorite = userService.isFavoriteCategory(scope.category.id);
+                        scope.menuItems = [
+                            {
+                                label: isFavorite ? 'Remove from Favorites' : 'Add to Favorites',
+                                icon: isFavorite ? 'icon-remove-icon' : 'icon-favorite-icon',
+                                onClick: function() {
+                                    scope.onFavoritePress('category', scope.category);
+                                }
                             }
-                        }
-                    ];
+                        ];
+                    }
+
+                    $rootScope.$on('user.login', _resetMenuItems);
+                    $rootScope.$on('favorite.added', _resetMenuItems);
+                    $rootScope.$on('favorite.removed', _resetMenuItems);
+
+                    _resetMenuItems();
                 }
             }
         }

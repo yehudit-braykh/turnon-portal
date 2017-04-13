@@ -7,23 +7,6 @@
         'userService',
         function($q, $scope, $rootScope, userService) {
 
-            $scope.brandMenuItems = [
-                {
-                    label: 'Share',
-                    icon: 'icon-share-icon',
-                    onClick: function() {
-                        console.log('SHARE');
-                    }
-                },
-                {
-                    label: 'Add to Favorites',
-                    icon: 'icon-favorite-icon',
-                    onClick: function() {
-                        console.log('SHARE');
-                    }
-                }
-            ];
-
             $scope.filterStarsOptions = [
                 {
                     label: 'All'
@@ -181,7 +164,68 @@
                         $scope.charities = data[2];
                         $scope.categories = data[3];
                     }
-                )
+                );
+
+            function _onCelebrityRemoved(id) {
+                if (!$scope.celebrities || !$scope.celebrities.celebrities) {
+                    $scope.celebrities = {
+                        celebrities: []
+                    }
+                }
+                $scope.celebrities.celebrities = $scope.celebrities.celebrities.filter(function(item) {
+                    return item.id !== id;
+                });
+            }
+
+            function _onBrandRemoved(id) {
+                if (!$scope.brands || !$scope.brands.brands) {
+                    $scope.brands = {
+                        brands: []
+                    }
+                }
+                $scope.brands.brands = $scope.brands.brands.filter(function(item) {
+                    return item.id !== id;
+                });
+            }
+
+            function _onCharityRemoved(id) {
+                if (!$scope.charities || !$scope.charities.charities) {
+                    $scope.charities = {
+                        charities: []
+                    }
+                }
+                $scope.charities.charities = $scope.charities.charities.filter(function(item) {
+                    return item.id !== id;
+                });
+            }
+
+            function _onCategoryRemoved(id) {
+                if (!$scope.categories || !$scope.categories.categories) {
+                    $scope.categories = {
+                        categories: []
+                    }
+                }
+                $scope.categories.categories = $scope.categories.categories.filter(function(item) {
+                    return item.id !== id;
+                });
+            }
+
+            $rootScope.$on('favorite.removed', function(event, data) {
+                switch(data.type) {
+                    case 'celebrity':
+                        _onCelebrityRemoved(data.id);
+                        break;
+                    case 'brand':
+                        _onBrandRemoved(data.id);
+                        break;
+                    case 'charity':
+                        _onCharityRemoved(data.id);
+                        break;
+                    case 'category':
+                        _onCategoryRemoved(data.id);
+                        break;
+                }
+            });
 
         }
     ];

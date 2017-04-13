@@ -119,7 +119,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('ui/account/favorites/view.favorites.html',
-    "<div class=clix-account-favorites><clix-account-header><header-text>Favorites</header-text></clix-account-header><div class=favorites-page-content ng-show=ready><div class=clix-tabs><uib-tabset active=active><uib-tab index=0 heading=Stars><div class=favorites-tab-content><clix-search-filter search-placeholder=\"Search Stars\" filter-placeholder=\"Filter By\" sort-placeholder=\"Sort By\" filter-options=filterStarsOptions sort-options=sortStarsOptions></clix-search-filter><div ng-if=\"!celebrities || celebrities.length === 0\"><clix-empty-container><header-text>Your favorite Stars will appear here.</header-text><body-text>Browse through Stars and hit the <i class=\"empty-favorite-icon icon-favorite-icon\"></i> to add them to this list.</body-text></clix-empty-container></div></div></uib-tab><uib-tab index=1 heading=Brands><div class=favorites-tab-content><div ng-if=\"!brands || brands.length === 0\"><clix-empty-container><header-text>Your favorite Brands will appear here.</header-text><body-text>Browse through Brands &amp; Offers and hit the <i class=\"empty-favorite-icon icon-favorite-icon\"></i> to add them to this list.</body-text></clix-empty-container></div><div ng-if=\"brands && brands.length > 0\"><clix-filter-page partial=true><page-search-filter><clix-search-filter search-placeholder=\"Search Brands\" filter-placeholder=\"Filter By\" sort-placeholder=\"Sort By\" filter-options=filterBrandsOptions sort-options=sortBrandsOptions></clix-search-filter></page-search-filter><page-content><clix-content-callout-list items=brands large-col-class=col-lg-2-4 menu-items=brandMenuItems><clix-brand-content-callout brand=item></clix-brand-content-callout></clix-content-callout-list></page-content></clix-filter-page></div></div></uib-tab><uib-tab index=2 heading=Charities><div class=favorites-tab-content><clix-search-filter search-placeholder=\"Search Charities\" filter-placeholder=\"Filter By\" sort-placeholder=\"Sort By\" filter-options=filterCharitiesOptions sort-options=sortCharitiesOptions></clix-search-filter><div ng-if=\"!charities || charities.length === 0\"><clix-empty-container><header-text>Your favorite Charities will appear here.</header-text><body-text>Browse through Charities and hit the <i class=\"empty-favorite-icon icon-favorite-icon\"></i> to add them to this list.</body-text></clix-empty-container></div></div></uib-tab><uib-tab index=3 heading=Categories><div class=favorites-tab-content><clix-search-filter search-placeholder=\"Search Categories\" filter-placeholder=\"Filter By\" sort-placeholder=\"Sort By\" filter-options=filterCategoriesOptions sort-options=sortCategoriesOptions></clix-search-filter><div ng-if=\"!categories || categories.length === 0\"><clix-empty-container><header-text>Your favorite Categories will appear here.</header-text><body-text>Browse through Categories and hit the <i class=\"empty-favorite-icon icon-favorite-icon\"></i> to add them to this list.</body-text></clix-empty-container></div></div></uib-tab></uib-tabset></div></div></div>"
+    "<div class=clix-account-favorites><clix-account-header><header-text>Favorites</header-text></clix-account-header><div ng-if=!ready><clix-loader size=large></clix-loader></div><div class=favorites-page-content ng-show=ready><div class=clix-tabs><uib-tabset active=active><uib-tab index=0 heading=Stars><div class=favorites-tab-content><div ng-if=\"!celebrities || !celebrities.celebrities || celebrities.celebrities.length === 0\"><clix-empty-container><header-text>Your favorite Stars will appear here.</header-text><body-text>Browse through Stars and hit the <i class=\"empty-favorite-icon icon-favorite-icon\"></i> to add them to this list.</body-text><call-to-action-button><clix-primary-button ui-sref=stars>Go to Stars</clix-primary-button></call-to-action-button></clix-empty-container></div><div ng-if=\"celebrities && celebrities.celebrities && celebrities.celebrities.length > 0\"><clix-filter-page partial=true><page-search-filter><clix-search-filter search-placeholder=\"Search Stars\" filter-placeholder=\"Filter By\" sort-placeholder=\"Sort By\" filter-options=filterStarsOptions sort-options=sortStarsOptions></clix-search-filter></page-search-filter><page-content><clix-content-callout-list items=celebrities.celebrities large-col-class=col-lg-2-4><clix-star-content-callout star=item></clix-star-content-callout></clix-content-callout-list></page-content></clix-filter-page></div></div></uib-tab><uib-tab index=1 heading=Brands><div class=favorites-tab-content><div ng-if=\"!brands || !brands.brands || brands.brands.length === 0\"><clix-empty-container><header-text>Your favorite Brands will appear here.</header-text><body-text>Browse through Brands &amp; Offers and hit the <i class=\"empty-favorite-icon icon-favorite-icon\"></i> to add them to this list.</body-text><call-to-action-button><clix-primary-button ui-sref=brands>Go to Brands & Offers</clix-primary-button></call-to-action-button></clix-empty-container></div><div ng-if=\"brands && brands.brands && brands.brands.length > 0\"><clix-filter-page partial=true><page-search-filter><clix-search-filter search-placeholder=\"Search Brands\" filter-placeholder=\"Filter By\" sort-placeholder=\"Sort By\" filter-options=filterBrandsOptions sort-options=sortBrandsOptions></clix-search-filter></page-search-filter><page-content><clix-content-callout-list items=brands.brands large-col-class=col-lg-2-4><clix-brand-content-callout brand=item></clix-brand-content-callout></clix-content-callout-list></page-content></clix-filter-page></div></div></uib-tab><uib-tab index=2 heading=Charities><div class=favorites-tab-content><div ng-if=\"!charities || !charities.charities || charities.charities.length === 0\"><clix-empty-container><header-text>Your favorite Charities will appear here.</header-text><body-text>Browse through Charities and hit the <i class=\"empty-favorite-icon icon-favorite-icon\"></i> to add them to this list.</body-text><call-to-action-button><clix-primary-button ui-sref=charities>Go to Charities</clix-primary-button></call-to-action-button></clix-empty-container></div><div ng-if=\"charities && charities.charities && charities.charities.length > 0\"><clix-filter-page partial=true><page-search-filter><clix-search-filter search-placeholder=\"Search Charities\" filter-placeholder=\"Filter By\" sort-placeholder=\"Sort By\" filter-options=filterCharitiesOptions sort-options=sortCharitiesOptions></clix-search-filter></page-search-filter><page-content><clix-content-callout-list items=charities.charities large-col-class=col-lg-2-4><clix-charity-content-callout charity=item></clix-charity-content-callout></clix-content-callout-list></page-content></clix-filter-page></div></div></uib-tab><uib-tab index=3 heading=Categories><div class=favorites-tab-content><div ng-if=\"!categories || !categories.categories || categories.categories.length === 0\"><clix-empty-container><header-text>Your favorite Categories will appear here.</header-text><body-text>Browse through Categories and hit the <i class=\"empty-favorite-icon icon-favorite-icon\"></i> to add them to this list.</body-text><call-to-action-button><clix-primary-button ui-sref=categories>Go to Categories</clix-primary-button></call-to-action-button></clix-empty-container></div><div ng-if=\"categories && categories.categories && categories.categories.length > 0\"><clix-filter-page partial=true><page-search-filter><clix-search-filter search-placeholder=\"Search Categories\" filter-placeholder=\"Filter By\" sort-placeholder=\"Sort By\" filter-options=filterCategoriesOptions sort-options=sortCategoriesOptions></clix-search-filter></page-search-filter><page-content><clix-content-callout-list items=categories.categories large-col-class=col-lg-2-4><clix-category-content-callout category=item></clix-category-content-callout></clix-content-callout-list></page-content></clix-filter-page></div></div></uib-tab></uib-tabset></div></div></div>"
   );
 
 
@@ -154,7 +154,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/account/watchlist/view.watchlist.html',
-    "<div class=clix-account-watchlist><clix-account-header><header-text>Watchlist</header-text><accessory-view><div class=filter-containers><div class=filter-container><clix-dropdown options=filterOptions placeholder-text=\"Filter By\"></clix-dropdown></div><div class=filter-container><clix-dropdown options=sortOptions placeholder-text=\"Sort By\"></clix-dropdown></div></div></accessory-view></clix-account-header><div class=watchlist-container><div ng-if=\"!watchlist || watchlist.length === 0\"><clix-empty-container><header-text>Videos that you would like to watch later will appear here.</header-text><body-text>Browse through videos and hit the <i class=\"empty-watchlist-icon icon-redeem-plus-icon\"></i> to add them to this list.</body-text></clix-empty-container></div><div ng-if=\"watchlist && watchlist.length > 0\"><div class=\"row clix-block-row\"><div class=\"clix-block-item col-xs-12 col-sm-6 col-md-4 col-lg-3\" ng-repeat=\"video in watchlist\"><clix-video-content-box video=video></clix-video-content-box></div></div></div></div></div>"
+    "<div class=clix-account-watchlist><clix-account-header><header-text>Watchlist</header-text><accessory-view><div class=filter-containers ng-show=\"watchlist && watchlist.length > 0\"><div class=filter-container><clix-dropdown options=filterOptions placeholder-text=\"Filter By\"></clix-dropdown></div><div class=filter-container><clix-dropdown options=sortOptions placeholder-text=\"Sort By\"></clix-dropdown></div></div></accessory-view></clix-account-header><div class=watchlist-container><div ng-if=\"!watchlist || watchlist.length === 0\"><clix-empty-container><header-text>Videos that you would like to watch later will appear here.</header-text><body-text>Browse through videos and hit the <i class=\"empty-watchlist-icon icon-redeem-plus-icon\"></i> to add them to this list.<br></body-text><call-to-action-button><clix-primary-button ui-sref=home>Go to Home Page</clix-primary-button></call-to-action-button></clix-empty-container></div><div ng-if=\"watchlist && watchlist.length > 0\"><div class=\"row clix-block-row\"><div class=\"clix-block-item col-xs-12 col-sm-6 col-md-4 col-lg-3\" ng-repeat=\"video in watchlist\"><clix-video-content-box video=video></clix-video-content-box></div></div></div></div></div>"
   );
 
 
@@ -249,7 +249,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/buttons/view.favorite-button.html',
-    "<div class=clix-favorite-icon><i class=icon-favorite-icon></i> <i class=\"icon-favorite-icon-filled fill-state\"></i></div>"
+    "<div class=clix-favorite-icon ng-class=\"{'active': isFavorite}\"><i class=icon-favorite-icon></i> <i class=\"icon-favorite-icon-filled fill-state\"></i></div>"
   );
 
 
@@ -279,17 +279,17 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/container/view.brand-content-callout.html',
-    "<clix-content-callout sref=\"brand({ id: '{{brand.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('brand', brand)\"><header-element><clix-brand-charity-logo brand=brand></clix-brand-charity-logo></header-element><title-content>{{brand.title}}</title-content><subtitle-content>{{brand.offers.offers.length}} {{brand.offers.offers.length === 1 ? 'Offer' : 'Offers'}}</subtitle-content></clix-content-callout>"
+    "<clix-content-callout sref=\"brand({ id: '{{brand.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('brand', brand)\" is-favorited=\"isFavoriteContent('brand', brand)\"><header-element><clix-brand-charity-logo brand=brand></clix-brand-charity-logo></header-element><title-content>{{brand.title}}</title-content><subtitle-content>{{brand.offers.offers.length}} {{brand.offers.offers.length === 1 ? 'Offer' : 'Offers'}}</subtitle-content></clix-content-callout>"
   );
 
 
   $templateCache.put('ui/common/container/view.category-content-callout.html',
-    "<clix-content-callout sref=\"category({ id: '{{category.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('category', category)\"><header-element><div class=category-logo style=\"background-image: url('{{category.logo}}')\"></div></header-element><title-content>{{category.title}}</title-content><subtitle-content>{{category.videos.videos.length}} {{category.videos.videos.length === 1 ? 'Video' : 'Videos'}}</subtitle-content></clix-content-callout>"
+    "<clix-content-callout sref=\"category({ id: '{{category.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('category', category)\" is-favorited=\"isFavoriteContent('category', category)\"><header-element><div class=category-logo style=\"background-image: url('{{category.logo}}')\"></div></header-element><title-content>{{category.title}}</title-content><subtitle-content>{{category.videos.videos.length}} {{category.videos.videos.length === 1 ? 'Video' : 'Videos'}}</subtitle-content></clix-content-callout>"
   );
 
 
   $templateCache.put('ui/common/container/view.charity-content-callout.html',
-    "<clix-content-callout sref=\"charity({ id: '{{charity.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('charity', charity)\"><header-element><clix-charity-logo charity=charity></clix-charity-logo></header-element><title-content>{{charity.title}}</title-content><subtitle-content>{{charity.videos.videos.length}} {{charity.videos.videos.length === 1 ? 'Video' : 'Videos'}}</subtitle-content></clix-content-callout>"
+    "<clix-content-callout sref=\"charity({ id: '{{charity.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('charity', charity)\" is-favorited=\"isFavoriteContent('charity', charity)\"><header-element><clix-charity-logo charity=charity></clix-charity-logo></header-element><title-content>{{charity.title}}</title-content><subtitle-content>{{charity.videos.videos.length}} {{charity.videos.videos.length === 1 ? 'Video' : 'Videos'}}</subtitle-content></clix-content-callout>"
   );
 
 
@@ -299,22 +299,22 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/container/view.content-callout.html',
-    "<div class=clix-content-callout><div class=header-callout-container><a ui-sref={{sref}} class=header-container ng-transclude=headerElement></a><clix-tooltip-menu items=menuItems menuopen=menuVisible class=overlay-menu-container ng-hide=!menuVisible></clix-tooltip-menu><div class=header-overlay><a ui-sref={{sref}} class=hit-area></a> <a ui-sref={{sref}} class=view-button-container><div class=view-button><clix-view-button text=Go></clix-view-button></div></a><div class=header-save ng-click=onFavorite() clix-tooltip-trigger tooltip-id=favorites-button-{{$id}}><clix-favorite-button></clix-favorite-button></div><div class=header-ellipsis clix-tooltip-trigger tooltip-id=actions-button-{{$id}}><div class=menu-icon-container ng-click=menuClicked($event) clix-click-anywhere-else=bodyClicked><i class=icon-ellipsis></i></div></div><clix-tooltip tooltip-id=favorites-button-{{$id}}>Add to favorites</clix-tooltip><clix-tooltip tooltip-id=actions-button-{{$id}}>Actions</clix-tooltip></div></div><a ui-sref={{sref}} class=callout-footer-container><span class=callout-title ng-transclude=titleContent></span> <span class=callout-subtitle ng-transclude=subtitleContent></span></a></div>"
+    "<div class=clix-content-callout><div class=header-callout-container><a ui-sref={{sref}} class=header-container ng-transclude=headerElement></a><clix-tooltip-menu items=menuItems menuopen=menuVisible class=overlay-menu-container ng-hide=!menuVisible></clix-tooltip-menu><div class=header-overlay><a ui-sref={{sref}} class=hit-area></a> <a ui-sref={{sref}} class=view-button-container><div class=view-button><clix-view-button text=Go></clix-view-button></div></a><div class=header-save ng-click=onFavorite() clix-tooltip-trigger tooltip-id=favorites-button-{{$id}}><clix-favorite-button is-favorite=isFavorited></clix-favorite-button></div><div class=header-ellipsis clix-tooltip-trigger tooltip-id=actions-button-{{$id}}><div class=menu-icon-container ng-click=menuClicked($event) clix-click-anywhere-else=bodyClicked><i class=icon-ellipsis></i></div></div><clix-tooltip tooltip-id=favorites-button-{{$id}}>{{isFavorited ? 'Remove from favorites' : 'Add to favorites'}}</clix-tooltip><clix-tooltip tooltip-id=actions-button-{{$id}}>Actions</clix-tooltip></div></div><a ui-sref={{sref}} class=callout-footer-container><span class=callout-title ng-transclude=titleContent></span> <span class=callout-subtitle ng-transclude=subtitleContent></span></a></div>"
   );
 
 
   $templateCache.put('ui/common/container/view.empty-container.html',
-    "<div class=clix-empty-container><div class=empty-icon>!</div><div class=header-text><div ng-transclude=headerText></div></div><div class=body-text><div ng-transclude=bodyText></div></div></div>"
+    "<div class=clix-empty-container><div class=empty-icon>!</div><div class=header-text><div ng-transclude=headerText></div></div><div class=body-text><div ng-transclude=bodyText></div></div><div class=call-to-action-container><div ng-transclude=callToActionButton></div></div></div>"
   );
 
 
   $templateCache.put('ui/common/container/view.offer-content-callout.html',
-    "<clix-content-callout sref=\"offer({ id: '{{offer.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('offer', offer)\"><header-element><clix-offer-logo offer=offer></clix-offer-logo></header-element><title-content>{{offer.title}}</title-content><subtitle-content>Expires 2/1/2017</subtitle-content></clix-content-callout>"
+    "<clix-content-callout sref=\"offer({ id: '{{offer.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('offer', offer)\" is-favorited=\"isFavoriteContent('offer', offer)\"><header-element><clix-offer-logo offer=offer></clix-offer-logo></header-element><title-content>{{offer.title}}</title-content><subtitle-content>Expires 2/1/2017</subtitle-content></clix-content-callout>"
   );
 
 
   $templateCache.put('ui/common/container/view.star-content-callout.html',
-    "<clix-content-callout sref=\"star({ id: '{{star.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('celebrity', star)\"><header-element><div class=star-logo style=\"background-image: url({{star.thumbnail}})\"></div></header-element><title-content>{{star.name}}</title-content><subtitle-content>{{star.videos.videos.length}} {{star.videos.videos.length === 1 ? 'Video' : 'Videos'}}</subtitle-content></clix-content-callout>"
+    "<clix-content-callout sref=\"star({ id: '{{star.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('celebrity', star)\" is-favorited=\"isFavoriteContent('celebrity', star)\"><header-element><div class=star-logo style=\"background-image: url({{star.thumbnail}})\"></div></header-element><title-content>{{star.name}}</title-content><subtitle-content>{{star.videos.videos.length}} {{star.videos.videos.length === 1 ? 'Video' : 'Videos'}}</subtitle-content></clix-content-callout>"
   );
 
 
@@ -573,23 +573,6 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         'userService',
         function($q, $scope, $rootScope, userService) {
 
-            $scope.brandMenuItems = [
-                {
-                    label: 'Share',
-                    icon: 'icon-share-icon',
-                    onClick: function() {
-                        console.log('SHARE');
-                    }
-                },
-                {
-                    label: 'Add to Favorites',
-                    icon: 'icon-favorite-icon',
-                    onClick: function() {
-                        console.log('SHARE');
-                    }
-                }
-            ];
-
             $scope.filterStarsOptions = [
                 {
                     label: 'All'
@@ -747,7 +730,68 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         $scope.charities = data[2];
                         $scope.categories = data[3];
                     }
-                )
+                );
+
+            function _onCelebrityRemoved(id) {
+                if (!$scope.celebrities || !$scope.celebrities.celebrities) {
+                    $scope.celebrities = {
+                        celebrities: []
+                    }
+                }
+                $scope.celebrities.celebrities = $scope.celebrities.celebrities.filter(function(item) {
+                    return item.id !== id;
+                });
+            }
+
+            function _onBrandRemoved(id) {
+                if (!$scope.brands || !$scope.brands.brands) {
+                    $scope.brands = {
+                        brands: []
+                    }
+                }
+                $scope.brands.brands = $scope.brands.brands.filter(function(item) {
+                    return item.id !== id;
+                });
+            }
+
+            function _onCharityRemoved(id) {
+                if (!$scope.charities || !$scope.charities.charities) {
+                    $scope.charities = {
+                        charities: []
+                    }
+                }
+                $scope.charities.charities = $scope.charities.charities.filter(function(item) {
+                    return item.id !== id;
+                });
+            }
+
+            function _onCategoryRemoved(id) {
+                if (!$scope.categories || !$scope.categories.categories) {
+                    $scope.categories = {
+                        categories: []
+                    }
+                }
+                $scope.categories.categories = $scope.categories.categories.filter(function(item) {
+                    return item.id !== id;
+                });
+            }
+
+            $rootScope.$on('favorite.removed', function(event, data) {
+                switch(data.type) {
+                    case 'celebrity':
+                        _onCelebrityRemoved(data.id);
+                        break;
+                    case 'brand':
+                        _onBrandRemoved(data.id);
+                        break;
+                    case 'charity':
+                        _onCharityRemoved(data.id);
+                        break;
+                    case 'category':
+                        _onCategoryRemoved(data.id);
+                        break;
+                }
+            });
 
         }
     ];
@@ -2252,7 +2296,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         return {
             restrict: 'AE',
             replace: true,
-            templateUrl: 'ui/common/buttons/view.favorite-button.html'
+            templateUrl: 'ui/common/buttons/view.favorite-button.html',
+            scope: {
+                isFavorite: '='
+            }
         }
     };
 
@@ -2308,12 +2355,15 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     var ContentCalloutController = [
         '$q',
+        '$log',
         '$scope',
         '$rootScope',
         '$uibModal',
         'shareModalService',
         'userService',
-        function($q, $scope, $rootScope, $uibModal, shareModalService, userService) {
+        function($q, $log, $scope, $rootScope, $uibModal, shareModalService, userService) {
+
+            var isUpdating = false;
 
             $scope.menuVisible = false;
 
@@ -2334,24 +2384,64 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             };
 
             $scope.onFavoritePress = function(type, item) {
+                var serviceMethod,
+                    isFavorited = $scope.isFavoriteContent(type, item);
+
+                if (isUpdating) {
+                    $log.warn('Content is currently being updated from previous favorite, ignoring action');
+                    return;
+                }
+
+                isUpdating = true;
+
                 switch(type) {
                     case 'brand':
-                        userService.addFavoriteBrand(item.id);
+                        serviceMethod = (isFavorited) ? 'removeFavoriteBrand' : 'addFavoriteBrand';
                         break;
                     case 'category':
-                        userService.addFavoriteCategory(item.id);
-                        break;
-                    case 'offer':
-                        // userService.addFavoriteOffer(item.id);
+                        serviceMethod = (isFavorited) ? 'removeFavoriteCategory' : 'addFavoriteCategory';
                         break;
                     case 'celebrity':
-                        userService.addFavoriteCelebrity(item.id);
+                        serviceMethod = (isFavorited) ? 'removeFavoriteCelebrity' : 'addFavoriteCelebrity';
                         break;
                     case 'charity':
-                        userService.addFavoriteCharity(item.id);
+                        serviceMethod = (isFavorited) ? 'removeFavoriteCharity' : 'addFavoriteCharity';
                         break;
                 }
+                if (!serviceMethod) {
+                    return;
+                }
+                userService[serviceMethod](item.id);
             };
+
+            $scope.isFavoriteContent = function(type, item) {
+                switch(type) {
+                    case 'brand':
+                        return userService.isFavoriteBrand(item.id);
+                    case 'category':
+                        return userService.isFavoriteCategory(item.id);
+                    case 'celebrity':
+                        return userService.isFavoriteCelebrity(item.id);
+                    case 'charity':
+                        return userService.isFavoriteCharity(item.id);
+                }
+                return false;
+            };
+
+            $rootScope.$on('favorite.added', function(event, data) {
+                $scope.loggedInUser = data.user;
+                isUpdating = false;
+            });
+
+            $rootScope.$on('favorite.removed', function(event, data) {
+                $scope.loggedInUser = data.user;
+                isUpdating = false;
+            });
+
+            $rootScope.$on('user.login', function(event, data) {
+                $scope.loggedInUser = data;
+                isUpdating = false;
+            });
         }
     ];
 
@@ -2423,14 +2513,17 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             scope: {
                 sref: '@',
                 menuItems: '=',
-                onFavorite: '&'
+                onFavorite: '&',
+                isFavorited: '='
             }
         }
     };
 
     var starContentCallout = [
         '$state',
-        function($state) {
+        '$rootScope',
+        'userService',
+        function($state, $rootScope, userService) {
             return {
                 restrict: 'AE',
                 templateUrl: 'ui/common/container/view.star-content-callout.html',
@@ -2439,44 +2532,55 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     star: '='
                 },
                 link: function(scope) {
-                    scope.menuItems = [
-                        {
-                            label: 'Share',
-                            icon: 'icon-share-icon',
-                            points: '50',
-                            onClick: function() {
-                                scope.onSharePress('celebrity', scope.star);
+
+                    function _resetMenuItems() {
+                        var isFavorite = userService.isFavoriteCelebrity(scope.star.id);
+                        scope.menuItems = [
+                            {
+                                label: 'Share',
+                                icon: 'icon-share-icon',
+                                points: '50',
+                                onClick: function() {
+                                    scope.onSharePress('celebrity', scope.star);
+                                }
+                            },
+                            {
+                                label: isFavorite ? 'Remove from Favorites' : 'Add to Favorites',
+                                icon: isFavorite ? 'icon-remove-icon' : 'icon-favorite-icon',
+                                onClick: function() {
+                                    scope.onFavoritePress('celebrity', scope.star);
+                                }
+                            },
+                            {
+                                label: 'Go to Star Page',
+                                icon: 'icon-stars-icon',
+                                onClick: function() {
+                                    $state.go('star', { id: scope.star.id })
+                                }
+                            },
+                            {
+                                label: 'Go to Offers',
+                                icon: 'icon-offers-icon',
+                                onClick: function() {
+                                    $state.go('star', { id: scope.star.id, tab: 'brands' })
+                                }
+                            },
+                            {
+                                label: 'Go to Charities',
+                                icon: 'icon-charities-icon-bottom-nav',
+                                onClick: function() {
+                                    $state.go('star', { id: scope.star.id, tab: 'charities' })
+                                }
                             }
-                        },
-                        {
-                            label: 'Add to Favorites',
-                            icon: 'icon-favorite-icon',
-                            onClick: function() {
-                                scope.onFavoritePress('celebrity', scope.star);
-                            }
-                        },
-                        {
-                            label: 'Go to Stars Page',
-                            icon: 'icon-stars-icon',
-                            onClick: function() {
-                                $state.go('star', { id: scope.star.id })
-                            }
-                        },
-                        {
-                            label: 'Go to Offers',
-                            icon: 'icon-offers-icon',
-                            onClick: function() {
-                                $state.go('star', { id: scope.star.id, tab: 'brands' })
-                            }
-                        },
-                        {
-                            label: 'Go to Charities',
-                            icon: 'icon-charities-icon-bottom-nav',
-                            onClick: function() {
-                                $state.go('star', { id: scope.star.id, tab: 'charities' })
-                            }
-                        }
-                    ];
+                        ];
+                    }
+
+                    $rootScope.$on('user.login', _resetMenuItems);
+                    $rootScope.$on('favorite.added', _resetMenuItems);
+                    $rootScope.$on('favorite.removed', _resetMenuItems);
+
+                    _resetMenuItems();
+
                 }
             }
         }
@@ -2484,7 +2588,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     var brandContentCallout = [
         '$state',
-        function($state) {
+        '$rootScope',
+        'userService',
+        function($state, $rootScope, userService) {
             return {
                 restrict: 'AE',
                 templateUrl: 'ui/common/container/view.brand-content-callout.html',
@@ -2493,23 +2599,33 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     brand: '='
                 },
                 link: function(scope) {
-                    scope.menuItems = [
-                        {
-                            label: 'Share',
-                            icon: 'icon-share-icon',
-                            points: '50',
-                            onClick: function() {
-                                scope.onSharePress('brand', scope.brand);
+
+                    function _resetMenuItems() {
+                        var isFavorite = userService.isFavoriteBrand(scope.brand.id);
+                        scope.menuItems = [
+                            {
+                                label: 'Share',
+                                icon: 'icon-share-icon',
+                                points: '50',
+                                onClick: function() {
+                                    scope.onSharePress('brand', scope.brand);
+                                }
+                            },
+                            {
+                                label: isFavorite ? 'Remove from Favorites' : 'Add to Favorites',
+                                icon: isFavorite ? 'icon-remove-icon' : 'icon-favorite-icon',
+                                onClick: function() {
+                                    scope.onFavoritePress('brand', scope.brand);
+                                }
                             }
-                        },
-                        {
-                            label: 'Add to Favorites',
-                            icon: 'icon-favorite-icon',
-                            onClick: function() {
-                                scope.onFavoritePress('brand', scope.brand);
-                            }
-                        }
-                    ];
+                        ];
+                    }
+
+                    $rootScope.$on('user.login', _resetMenuItems);
+                    $rootScope.$on('favorite.added', _resetMenuItems);
+                    $rootScope.$on('favorite.removed', _resetMenuItems);
+
+                    _resetMenuItems();
                 }
             }
         }
@@ -2517,7 +2633,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     var charityContentCallout = [
         '$state',
-        function($state) {
+        '$rootScope',
+        'userService',
+        function($state, $rootScope, userService) {
             return {
                 restrict: 'AE',
                 templateUrl: 'ui/common/container/view.charity-content-callout.html',
@@ -2526,23 +2644,33 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     charity: '='
                 },
                 link: function(scope) {
-                    scope.menuItems = [
-                        {
-                            label: 'Share',
-                            icon: 'icon-share-icon',
-                            points: '50',
-                            onClick: function() {
-                                scope.onSharePress('charity', scope.charity);
+
+                    function _resetMenuItems() {
+                        var isFavorite = userService.isFavoriteCharity(scope.charity.id);
+                        scope.menuItems = [
+                            {
+                                label: 'Share',
+                                icon: 'icon-share-icon',
+                                points: '50',
+                                onClick: function() {
+                                    scope.onSharePress('charity', scope.charity);
+                                }
+                            },
+                            {
+                                label: isFavorite ? 'Remove from Favorites' : 'Add to Favorites',
+                                icon: isFavorite ? 'icon-remove-icon' : 'icon-favorite-icon',
+                                onClick: function() {
+                                    scope.onFavoritePress('charity', scope.charity);
+                                }
                             }
-                        },
-                        {
-                            label: 'Add to Favorites',
-                            icon: 'icon-favorite-icon',
-                            onClick: function() {
-                                scope.onFavoritePress('charity', scope.charity);
-                            }
-                        }
-                    ];
+                        ];
+                    }
+
+                    $rootScope.$on('user.login', _resetMenuItems);
+                    $rootScope.$on('favorite.added', _resetMenuItems);
+                    $rootScope.$on('favorite.removed', _resetMenuItems);
+
+                    _resetMenuItems();
                 }
             }
         }
@@ -2550,7 +2678,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     var offerContentCallout = [
         '$state',
-        function($state) {
+        '$rootScope',
+        'userService',
+        function($state, $rootScope, userService) {
             return {
                 restrict: 'AE',
                 templateUrl: 'ui/common/container/view.offer-content-callout.html',
@@ -2559,30 +2689,41 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     offer: '='
                 },
                 link: function(scope) {
-                    scope.menuItems = [
-                        {
-                            label: 'Save Offer',
-                            icon: 'icon-redeem-plus-icon',
-                            onClick: function() {
-                                console.log('SHARE');
+                    function _resetMenuItems() {
+
+                        // TODO - Wire this up...
+                        var isFavorite = false;
+                        scope.menuItems = [
+                            {
+                                label: 'Save Offer',
+                                icon: 'icon-redeem-plus-icon',
+                                onClick: function() {
+                                    console.log('SHARE');
+                                }
+                            },
+                            {
+                                label: 'Share',
+                                icon: 'icon-share-icon',
+                                points: '50',
+                                onClick: function() {
+                                    scope.onSharePress('offer', scope.offer);
+                                }
+                            },
+                            {
+                                label: isFavorite ? 'Remove from Favorites' : 'Add to Favorites',
+                                icon: isFavorite ? 'icon-remove-icon' : 'icon-favorite-icon',
+                                onClick: function() {
+                                    scope.onFavoritePress('offer', scope.offer);
+                                }
                             }
-                        },
-                        {
-                            label: 'Share',
-                            icon: 'icon-share-icon',
-                            points: '50',
-                            onClick: function() {
-                                scope.onSharePress('offer', scope.offer);
-                            }
-                        },
-                        {
-                            label: 'Add to Favorites',
-                            icon: 'icon-favorite-icon',
-                            onClick: function() {
-                                scope.onFavoritePress('offer', scope.offer);
-                            }
-                        }
-                    ];
+                        ];
+                    }
+
+                    $rootScope.$on('user.login', _resetMenuItems);
+                    $rootScope.$on('favorite.added', _resetMenuItems);
+                    $rootScope.$on('favorite.removed', _resetMenuItems);
+
+                    _resetMenuItems();
                 }
             }
         }
@@ -2590,7 +2731,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     var categoryContentCallout = [
         '$state',
-        function($state) {
+        '$rootScope',
+        'userService',
+        function($state, $rootScope, userService) {
             return {
                 restrict: 'AE',
                 templateUrl: 'ui/common/container/view.category-content-callout.html',
@@ -2599,15 +2742,24 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     category: '='
                 },
                 link: function(scope) {
-                    scope.menuItems = [
-                        {
-                            label: 'Add to Favorites',
-                            icon: 'icon-favorite-icon',
-                            onClick: function() {
-                                scope.onFavoritePress('category', scope.category);
+                    function _resetMenuItems() {
+                        var isFavorite = userService.isFavoriteCategory(scope.category.id);
+                        scope.menuItems = [
+                            {
+                                label: isFavorite ? 'Remove from Favorites' : 'Add to Favorites',
+                                icon: isFavorite ? 'icon-remove-icon' : 'icon-favorite-icon',
+                                onClick: function() {
+                                    scope.onFavoritePress('category', scope.category);
+                                }
                             }
-                        }
-                    ];
+                        ];
+                    }
+
+                    $rootScope.$on('user.login', _resetMenuItems);
+                    $rootScope.$on('favorite.added', _resetMenuItems);
+                    $rootScope.$on('favorite.removed', _resetMenuItems);
+
+                    _resetMenuItems();
                 }
             }
         }
@@ -2630,7 +2782,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             templateUrl: 'ui/common/container/view.empty-container.html',
             transclude: {
                 headerText: 'headerText',
-                bodyText: '?bodyText'
+                bodyText: '?bodyText',
+                callToActionButton: '?callToActionButton'
             }
         }
     };
@@ -3571,7 +3724,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 (function() {
 
     var SHOW_TOOLTIP_DELAY_MS = 500,
-        HIDE_TOOLTIP_DELAY_MS = 500;
+        HIDE_TOOLTIP_DELAY_MS = 0;
 
     var tooltip = function() {
         return {
@@ -3684,7 +3837,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                                     $timeout(function() {
                                         tooltipElement.style.top = '-999px';
                                         tooltipElement.style.left = '-999px';
-                                    }, 250);
+                                    }, 0);
 
                                     if (showTimeout) {
                                         $timeout.cancel(showTimeout);
@@ -6052,7 +6205,12 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$http',
         '$log',
         '$rootScope',
-        function($q, $http, $log, $rootScope) {
+        'BrandListModel',
+        'OfferListModel',
+        'CharityListModel',
+        'CelebrityListModel',
+        'CategoryListModel',
+        function($q, $http, $log, $rootScope, BrandListModel, OfferListModel, CharityListModel, CelebrityListModel, CategoryListModel) {
 
             var loggedInUser;
 
@@ -6066,13 +6224,26 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         return isDelete ? 'remove_favorite_category' : 'add_favorite_category';
                     case 'charity':
                         return isDelete ? 'remove_favorite_charity' : 'add_favorite_charity';
-                    default:
-                        return undefined;
                 }
+                return undefined;
+            }
+
+            function _getFavoritePropertyForType(type) {
+                switch(type) {
+                    case 'celebrity':
+                        return 'favoriteCelebs';
+                    case 'brand':
+                        return 'favoriteBrands';
+                    case 'category':
+                        return 'favoriteCategories';
+                    case 'charity':
+                        return 'favoriteCharities';
+                }
+                return undefined;
             }
 
             function _addFavorite(id, type) {
-                var userFavoriteMethod, favorites;
+                var userFavoriteMethod, favoriteProperty, favorites;
 
                 if (!loggedInUser) {
                     $log.error('No logged in user found to add favorite', type);
@@ -6085,36 +6256,92 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 }
 
                 userFavoriteMethod = _getFavoriteMethodForType(type, false);
+                favoriteProperty = _getFavoritePropertyForType(type);
 
                 if (!userFavoriteMethod) {
                     throw new Error('Invalid type provided for favorite');
+                }
+                if (favoriteProperty) {
+                    favorites = loggedInUser[favoriteProperty];
+                    if (!favorites) {
+                        favorites = [];
+                    }
+                    if (favorites.indexOf(id) === -1) {
+                        favorites.push(id);
+                        loggedInUser[favoriteProperty] = favorites;
+                        $rootScope.$broadcast('favorite.added', {
+                            user: loggedInUser,
+                            type: type,
+                            id: id
+                        });
+                    }
                 }
 
                 return $http.post('/api/account/' + userFavoriteMethod, {
                     id: id
                 });
-
-                //
-                // favorites = loggedInUser[userFavoriteProperty] || [];
-                //
-                // if (favorites.indexOf(id) !== -1) {
-                //     $log.warn(id + ' has already been favorited');
-                //     return;
-                // }
-                //
-                // favorites.push(id);
-                //
-                // loggedInUser[userFavoriteProperty] = favorites;
-                //
-                // return methods.updateUser(loggedInUser);
             }
 
             function _removeFavorite(id, type) {
+                var userFavoriteMethod, favoriteProperty, favorites;
+
                 if (!loggedInUser) {
                     $log.error('No logged in user found to remove favorite', type);
                     return;
                 }
 
+                if (!id) {
+                    $log.error('No ID provided to remove from favorites');
+                    return;
+                }
+
+                userFavoriteMethod = _getFavoriteMethodForType(type, true);
+                favoriteProperty = _getFavoritePropertyForType(type);
+
+                if (!userFavoriteMethod) {
+                    throw new Error('Invalid type provided for favorite');
+                }
+                if (favoriteProperty) {
+                    favorites = loggedInUser[favoriteProperty];
+                    if (!favorites) {
+                        favorites = [];
+                    }
+                    if (favorites.indexOf(id) !== -1) {
+
+                        favorites.splice(favorites.indexOf(id), 1);
+                        loggedInUser[favoriteProperty] = favorites;
+                        $rootScope.$broadcast('favorite.removed', {
+                            user: loggedInUser,
+                            type: type,
+                            id: id
+                        });
+                    }
+                }
+
+                return $http.post('/api/account/' + userFavoriteMethod, {
+                    id: id
+                });
+            }
+
+            function _isFavorite(id, type) {
+                var favoriteProperty, favorites;
+                if (!loggedInUser) {
+                    return false;
+                }
+
+                favoriteProperty = _getFavoritePropertyForType(type);
+
+                if (!favoriteProperty) {
+                    throw new Error('Invalid property defined to look up favorite: ' + type);
+                }
+
+                favorites = loggedInUser[favoriteProperty];
+
+                if (!favorites) {
+                    favorites = [];
+                }
+
+                return favorites.indexOf(id) !== -1;
             }
 
             var methods = {
@@ -6187,6 +6414,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     return $http.get('/api/account/get_current')
                         .then(
                             function onSuccess(data) {
+
                                 loggedInUser = data.data;
 
                                 $rootScope.$broadcast('user.login', loggedInUser);
@@ -6206,37 +6434,37 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 },
 
                 getFavoriteCelebrities: function() {
-                    return $http.get('/api/account/get_favorites?type=favoriteCelebs')
+                    return $http.get('/api/account/get_favorite_celebrities')
                         .then(
                             function onSuccess(data) {
-                                return data.data;
+                                return new CelebrityListModel(data.data);
                             }
                         );
                 },
 
                 getFavoriteBrands: function() {
-                    return $http.get('/api/account/get_favorites?type=favoriteBrands')
+                    return $http.get('/api/account/get_favorite_brands')
                         .then(
                             function onSuccess(data) {
-                                return data.data;
+                                return new BrandListModel(data.data);
                             }
                         );
                 },
 
                 getFavoriteCharities: function() {
-                    return $http.get('/api/account/get_favorites?type=favoriteCharities')
+                    return $http.get('/api/account/get_favorite_charities')
                         .then(
                             function onSuccess(data) {
-                                return data.data;
+                                return new CharityListModel(data.data);
                             }
                         );
                 },
 
                 getFavoriteCategories: function() {
-                    return $http.get('/api/account/get_favorites?type=favoriteCategories')
+                    return $http.get('/api/account/get_favorite_categories')
                         .then(
                             function onSuccess(data) {
-                                return data.data;
+                                return new CategoryListModel(data.data);
                             }
                         );
                 },
@@ -6250,12 +6478,20 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         );
                 },
 
+                isFavoriteCelebrity: function(id) {
+                    return _isFavorite(id, 'celebrity');
+                },
+
                 addFavoriteCelebrity: function(id) {
                     return _addFavorite(id, 'celebrity');
                 },
 
                 removeFavoriteCelebrity: function(id) {
                     return _removeFavorite(id, 'celebrity');
+                },
+
+                isFavoriteBrand: function(id) {
+                    return _isFavorite(id, 'brand');
                 },
 
                 addFavoriteBrand: function(id) {
@@ -6266,12 +6502,20 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     return _removeFavorite(id, 'brand');
                 },
 
+                isFavoriteCategory: function(id) {
+                    return _isFavorite(id, 'category');
+                },
+
                 addFavoriteCategory: function(id) {
                     return _addFavorite(id, 'category');
                 },
 
                 removeFavoriteCategory: function(id) {
                     return _removeFavorite(id, 'category');
+                },
+
+                isFavoriteCharity: function(id) {
+                    return _isFavorite(id, 'charity');
                 },
 
                 addFavoriteCharity: function(id) {
