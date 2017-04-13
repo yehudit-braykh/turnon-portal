@@ -59,6 +59,42 @@ class Video_model extends Uvod_model {
 				$item->celebrity = $this->rows($arr)[0];
 			}
 
+			if($item->serie){
+
+				if($item->serie->seasons){
+
+
+					foreach ($item->serie->seasons as &$season) {
+						foreach ($season->episodes as &$episode) {
+							$episode->brands = $this->rows($episode->brands);
+
+							$arr = array();
+							array_push($arr, $episode->celebrity);
+							$episode->celebrity = $this->rows($arr)[0];
+						}
+						$season->episodes = $this->rows($season->episodes);
+					}
+					if($item->serie->brands)
+						$item->serie->brands = $this->rows($item->serie->brands);
+
+					if($item->serie->charity){
+						$data = array();
+						array_push($data, $item->serie->charity);
+						$item->serie->charity = $this->rows($data)[0];
+					}
+
+					if($item->serie->celebrity){
+						$data = array();
+						array_push($data, $item->serie->celebrity);
+						$item->serie->celebrity = $this->rows($data)[0];
+					}
+
+
+
+				}
+
+			}
+
 			if($item->charity){
 				$arr = array();
 				array_push($arr, $item->charity);
