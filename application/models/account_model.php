@@ -265,8 +265,9 @@ class Account_model extends Uvod_model {
         if($profile_id && $token){
             $profile = $this->get_profile($token, $profile_id);
             if (!isset($profile->{$type}) || !$profile->{$type} || $profile->{$type} == null)
-                $favoriteCelebs = array();
-            $data = $profile->{$type};
+                $data = array();
+            else
+                $data = $profile->{$type};
             if(in_array($id,$data))
                 return $profile;
             else{

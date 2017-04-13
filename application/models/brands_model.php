@@ -9,7 +9,7 @@ class Brands_model extends Uvod_model {
 	public function get_brand($id){
 		if ($this->fastcache_model->get_cache("get_brand".$id))
 			return $this->fastcache_model->get_cache("get_brand".$id);
-		$data =  $this->rows($this->apiCall('brand/'.$id.'/related')->entries);
+		$data =  $this->brands_rows($this->apiCall('brand/'.$id.'/related')->entries);
 		$this->fastcache_model->set_cache("get_brand".$id,$data);
 		return $data;
 	}
@@ -17,7 +17,7 @@ class Brands_model extends Uvod_model {
 	public function get_charity($id){
 		if ($this->fastcache_model->get_cache("get_charity".$id))
 			return $this->fastcache_model->get_cache("get_charity".$id);
-		$data =  $this->rows($this->apiCall('charity/'.$id.'/related')->entries);
+		$data =  $this->brands_rows($this->apiCall('charity/'.$id.'/related')->entries);
 		$this->fastcache_model->set_cache("get_charity".$id,$data);
 		return $data;
 	}
@@ -99,7 +99,32 @@ class Brands_model extends Uvod_model {
 		return $data;
 	}
 
+	function brands_rows($items){
+		foreach ($items as &$item) {
+			//debug($cat);
+			if($item->celebrities){
+				foreach ($item->celebrities as &$celeb) {
+					foreach ($celeb->videos as &$video) {
+						$celebrity = array();
+						array_push($celebrity, $video->celebrity);
+						$video->celebrity = $this->rows($celebrity)[0];
+					}
+					$celeb->videos = $this->rows($celeb->videos);
+				}
+				$item->celebrities = $this->rows($item->celebrities);
+			}
+			// debug($item->videos);
+			if($item->videos)
+				$item->videos = $this->rows($item->videos);
+			if($item->offers)
+				$item->offers = $this->rows($item->offers);
+		}
+
+		return $this->rows($items);
+	}
+
 	function rows($rows){
+		// debug($rows);
         foreach ($rows as &$media) {
             $media = (array) $media;
 			$tmp = array();

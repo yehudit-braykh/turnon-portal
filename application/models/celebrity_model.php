@@ -17,9 +17,24 @@ class Celebrity_model extends Uvod_Model {
 	public function get_celebrity($id){
 		if ($this->fastcache_model->get_cache("get_celebrity".$id))
 			return $this->fastcache_model->get_cache("get_celebrity".$id);
-		$data =  $this->rows($this->apiCall('celebrity/'.$id.'/related')->entries)[0];
+		$data =  $this->celebrity_rows($this->apiCall('celebrity/'.$id.'/related')->entries)[0];
 		$this->fastcache_model->set_cache("get_celebrity".$id,$data);
 		return $data;
+	}
+
+	function celebrity_rows($items){
+		foreach ($items as &$item) {
+			//debug($cat);
+			if($item->brands)
+				$item->brands = $this->rows($item->brands);
+			if($item->charities)
+				$item->charities = $this->rows($item->charities);
+			if($item->videos)
+				$item->videos = $this->rows($item->videos);
+
+		}
+
+		return $this->rows($items);
 	}
 
 	function rows($rows){
