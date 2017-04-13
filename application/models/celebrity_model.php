@@ -28,6 +28,10 @@ class Celebrity_model extends Uvod_Model {
 
 			if($item->series){
 				foreach ($item->series as &$serie) {
+					$serie->brands = $this->rows($serie->brands);
+					foreach ($serie->brands as &$brand) {
+						$brand->offers = $this->rows($brand->offers);
+					}
 					if($serie->seasons)
 						foreach ($serie->seasons as &$season) {
 							foreach ($season->episodes as &$episode) {
