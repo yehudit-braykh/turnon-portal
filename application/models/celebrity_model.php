@@ -25,6 +25,22 @@ class Celebrity_model extends Uvod_Model {
 	function celebrity_rows($items){
 		foreach ($items as &$item) {
 			//debug($cat);
+
+			if($item->series){
+				foreach ($item->series as &$serie) {
+					if($serie->seasons)
+						foreach ($serie->seasons as &$season) {
+							foreach ($season->episodes as &$episode) {
+								$episode->brands = $this->rows($episode->brands);
+
+								$arr = array();
+								array_push($arr, $episode->celebrity);
+								$episode->celebrity = $this->rows($arr)[0];
+							}
+							$season->episodes = $this->rows($season->episodes);
+						}
+				}
+			}
 			if($item->brands)
 				$item->brands = $this->rows($item->brands);
 			if($item->charities)

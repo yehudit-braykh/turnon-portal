@@ -24,23 +24,34 @@ class category_model extends Uvod_model {
 		return $data;
     }
 
-	function categories_rows($cats){
-		// debug($cats);
-		foreach ($cats as &$cat) {
+	function categories_rows($items){
+		foreach ($items as &$item) {
 			//debug($cat);
-			if($cat->videos)
-				$cat->videos = $this->rows($cat->videos);
+			if($item->videos){
+				foreach ($item->videos as &$vid) {
+					$vid->brands = $this->rows($vid->brands);
+					$data = array();
+					array_push($data,$vid->charity);
+					$vid->charity = $this->rows($data)[0];
+
+					$data = array();
+					array_push($data,$vid->celebrity);
+					$vid->celebrity = $this->rows($data)[0];
+
+					//$celeb->videos = $this->rows($celeb->videos);
+				}
+				$item->videos = $this->rows($item->videos);
+			}
+			// debug($item->videos);
 		}
 
-		return $this->rows($cats);
+		return $this->rows($items);
 	}
 
 	function category_rows($cat){
-		if($cat->videos)
-			$cat->videos = $this->rows($cat->videos);
 		$data = array();
 		array_push($data,$cat);
-		return $this->rows($data)[0];
+		return $this->categories_rows($data)[0];
 	}
 
 	function rows($rows){
