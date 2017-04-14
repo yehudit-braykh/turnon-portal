@@ -1,4 +1,12 @@
-<clix-content-callout sref="offer({ id: '{{offer.id}}' })" menu-items="menuItems" on-favorite="onFavoritePress('offer', offer)" is-favorited="isFavoriteContent('offer', offer)">
+<clix-content-callout
+        sref="offer({ id: '{{offer.id}}' })"
+        menu-items="menuItems"
+        on-favorite="onFavoritePress('offer', offer)"
+        is-favorited="isFavoriteContent('offer', offer)"
+        add-button="true"
+        add-favorite-tooltip="Add to saved offers"
+        remove-favorite-tooltip="Remove from saved offers"
+>
     <header-element>
         <clix-offer-logo offer="offer"></clix-offer-logo>
     </header-element>

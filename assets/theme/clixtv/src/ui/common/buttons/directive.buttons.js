@@ -15,7 +15,10 @@
         return {
             restrict: 'AE',
             replace: true,
-            templateUrl: 'ui/common/buttons/view.save-button.html'
+            templateUrl: 'ui/common/buttons/view.save-button.html',
+            scope: {
+                isSaved: '='
+            }
         }
     };
 

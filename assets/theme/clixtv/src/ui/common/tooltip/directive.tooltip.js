@@ -97,7 +97,6 @@
                             tooltipElement.style.left = ((position.x + (width / 2)) - (tooltipElementWidth / 2)) + 'px';
                             angular.element(tooltipElement).addClass('active');
 
-
                             // Don't hide the tooltip if the user hovers over it (since we're mousing off the trigger element)
                             angular.element(document.getElementById(scope.tooltipId)).off('mouseenter').on('mouseenter', function() {
                                 if (hideTimeout) {

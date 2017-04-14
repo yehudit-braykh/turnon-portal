@@ -54,6 +54,9 @@
                     case 'charity':
                         serviceMethod = (isFavorited) ? 'removeFavoriteCharity' : 'addFavoriteCharity';
                         break;
+                    case 'offer':
+                        serviceMethod = (isFavorited) ? 'removeSavedOffer' : 'addSavedOffer';
+                        break;
                 }
                 if (!serviceMethod) {
                     return;
@@ -71,6 +74,8 @@
                         return userService.isFavoriteCelebrity(item.id);
                     case 'charity':
                         return userService.isFavoriteCharity(item.id);
+                    case 'offer':
+                        return userService.isSavedOffer(item.id);
                 }
                 return false;
             };

@@ -34,7 +34,11 @@
                 </div>
             </div>
             <div class="action-buttons-container">
-                <div class="plus-icon icon-redeem-plus-icon" clix-tooltip-trigger tooltip-id="watchlist-button-{{$id}}"></div>
+                <div class="plus-icon icon-redeem-plus-icon"
+                     clix-tooltip-trigger
+                     tooltip-id="watchlist-button-{{$id}}"
+                     ng-click="onWatchlistPress()"
+                ></div>
 
                 <clix-tooltip tooltip-id="watchlist-button-{{$id}}">
                     Add to your Watchlist
@@ -54,7 +58,7 @@
                 Episode {{video.episodeNumber}}: {{video.title || '&nbsp;'}}
             </span><br />
             <span class="episode-title">
-                {{video.seriesTitle || '&nbsp;'}} Series
+                {{video.seriesTitle || '&nbsp;'}}
             </span>
         </a>
     </div>

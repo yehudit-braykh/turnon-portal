@@ -24,6 +24,10 @@
                         return isDelete ? 'remove_favorite_category' : 'add_favorite_category';
                     case 'charity':
                         return isDelete ? 'remove_favorite_charity' : 'add_favorite_charity';
+                    case 'offer':
+                        return isDelete ? 'unsave_offer' : 'save_offer';
+                    case 'watchlist':
+                        return isDelete ? 'remove_watchlist_item' : 'add_watchlist_item';
                 }
                 return undefined;
             }
@@ -38,6 +42,8 @@
                         return 'favoriteCategories';
                     case 'charity':
                         return 'favoriteCharities';
+                    case 'offer':
+                        return 'offersSaved';
                 }
                 return undefined;
             }
@@ -270,12 +276,24 @@
                 },
 
                 getSavedOffers: function() {
-                    return $http.get('/api/account/get_favorites?type=offersSaved')
+                    return $http.get('/api/account/get_saved_offers')
                         .then(
                             function onSuccess(data) {
-                                return data.data;
+                                return new OfferListModel(data.data);
                             }
                         );
+                },
+
+                isSavedOffer: function(id) {
+                    return _isFavorite(id, 'offer');
+                },
+
+                addSavedOffer: function(id) {
+                    return _addFavorite(id, 'offer');
+                },
+
+                removeSavedOffer: function(id) {
+                    return _removeFavorite(id, 'offer');
                 },
 
                 isFavoriteCelebrity: function(id) {
@@ -327,11 +345,11 @@
                 },
 
                 addVideoToWatchlist: function(id) {
-                    // _addFavorite(id, 'watchlist');
+                    _addFavorite(id, 'watchlist');
                 },
 
                 removeVideoFromWatchlist: function(id) {
-                    // _removeFavorite(id, 'watchlist');
+                    _removeFavorite(id, 'watchlist');
                 }
             };
 

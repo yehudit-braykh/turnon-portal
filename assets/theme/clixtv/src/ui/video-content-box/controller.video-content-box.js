@@ -110,6 +110,10 @@
             $scope.onSaveButtonPress = function() {
                 console.log('SAVE');
             };
+
+            $scope.onWatchlistPress = function() {
+                userService.addVideoToWatchlist($scope.video.id);
+            };
         }
     ];
 

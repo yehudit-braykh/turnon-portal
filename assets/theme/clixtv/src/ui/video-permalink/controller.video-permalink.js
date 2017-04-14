@@ -60,12 +60,12 @@
             };
 
             $scope.onWatchlistPress = function() {
-                userService.addVideoToWatchlist($scope.video.id)
-                    .then(
-                        function onSuccess(data) {
-                            console.log(data);
-                        }
-                    );
+                // userService.addVideoToWatchlist($scope.video.id)
+                //     .then(
+                //         function onSuccess(data) {
+                //             console.log(data);
+                //         }
+                //     );
             };
         }
     ];

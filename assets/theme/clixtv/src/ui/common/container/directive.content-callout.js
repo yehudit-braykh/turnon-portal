@@ -27,8 +27,11 @@
             scope: {
                 sref: '@',
                 menuItems: '=',
+                addButton: '@?',
                 onFavorite: '&',
-                isFavorited: '='
+                isFavorited: '=',
+                addFavoriteTooltip: '@?',
+                removeFavoriteTooltip: '@?'
             }
         }
     };
@@ -205,14 +208,13 @@
                 link: function(scope) {
                     function _resetMenuItems() {
 
-                        // TODO - Wire this up...
-                        var isFavorite = false;
+                        var isFavorite = userService.isSavedOffer(scope.offer.id);
                         scope.menuItems = [
                             {
-                                label: 'Save Offer',
-                                icon: 'icon-redeem-plus-icon',
+                                label: isFavorite ? 'Remove from saved offers' : 'Save Offer',
+                                icon: isFavorite ? 'icon-remove-icon' : 'icon-redeem-plus-icon',
                                 onClick: function() {
-                                    console.log('SHARE');
+                                    scope.onFavoritePress('offer', scope.offer);
                                 }
                             },
                             {
@@ -221,13 +223,6 @@
                                 points: '50',
                                 onClick: function() {
                                     scope.onSharePress('offer', scope.offer);
-                                }
-                            },
-                            {
-                                label: isFavorite ? 'Remove from Favorites' : 'Add to Favorites',
-                                icon: isFavorite ? 'icon-remove-icon' : 'icon-favorite-icon',
-                                onClick: function() {
-                                    scope.onFavoritePress('offer', scope.offer);
                                 }
                             }
                         ];

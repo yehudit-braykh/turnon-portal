@@ -10741,9 +10741,6 @@ button.close {
   .clix-offer-page .save-offer-button {
     display: inline-block;
   }
-  .clix-offer-page .save-offer-button .clix-tertiary-button {
-    width: 160px;
-  }
 }
 .clix-offer-page .save-offer-button .save-offer-points {
   position: absolute;
@@ -12205,6 +12202,9 @@ button.close {
 .clix-save-button {
   color: #8a8a8a;
   font-size: 25px;
+}
+.clix-save-button .remove-icon {
+  font-size: 22px;
 }
 .clix-save-button:hover {
   color: #FFF;
