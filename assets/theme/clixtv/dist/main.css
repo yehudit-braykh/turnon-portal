@@ -8264,6 +8264,9 @@ button.close {
 .video-content-box .plus-icon:hover {
   color: #FFF;
 }
+.video-content-box .plus-icon.remove-icon {
+  font-size: 22px;
+}
 .video-content-box .play-button-hit-area:hover {
   -webkit-filter: brightness(0.8);
   -moz-filter: brightness(0.8);

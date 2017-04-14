@@ -34,14 +34,15 @@
                 </div>
             </div>
             <div class="action-buttons-container">
-                <div class="plus-icon icon-redeem-plus-icon"
+                <div class="plus-icon save-button"
+                     ng-class="{'icon-redeem-plus-icon': !isOnWatchlist, 'icon-remove-icon remove-icon': isOnWatchlist}"
                      clix-tooltip-trigger
                      tooltip-id="watchlist-button-{{$id}}"
                      ng-click="onWatchlistPress()"
                 ></div>
 
                 <clix-tooltip tooltip-id="watchlist-button-{{$id}}">
-                    Add to your Watchlist
+                    {{isOnWatchlist ? 'Remove from your watchlist' : 'Add to your Watchlist'}}
                 </clix-tooltip>
 
                 <div class="play-button">

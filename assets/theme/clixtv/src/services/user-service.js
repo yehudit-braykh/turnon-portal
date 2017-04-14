@@ -10,7 +10,8 @@
         'CharityListModel',
         'CelebrityListModel',
         'CategoryListModel',
-        function($q, $http, $log, $rootScope, BrandListModel, OfferListModel, CharityListModel, CelebrityListModel, CategoryListModel) {
+        'VideoListModel',
+        function($q, $http, $log, $rootScope, BrandListModel, OfferListModel, CharityListModel, CelebrityListModel, CategoryListModel, VideoListModel) {
 
             var loggedInUser;
 
@@ -44,6 +45,8 @@
                         return 'favoriteCharities';
                     case 'offer':
                         return 'offersSaved';
+                    case 'watchlist':
+                        return 'watchlist';
                 }
                 return undefined;
             }
@@ -234,7 +237,7 @@
                     return $http.get('/api/account/get_watchlist')
                         .then(
                             function onSuccess(data) {
-                                return data.data;
+                                return new VideoListModel(data.data);
                             }
                         );
                 },
@@ -342,6 +345,10 @@
 
                 removeFavoriteCharity: function(id) {
                     return _removeFavorite(id, 'charity');
+                },
+
+                isVideoOnWatchlist: function(id) {
+                    return _isFavorite(id, 'watchlist');
                 },
 
                 addVideoToWatchlist: function(id) {

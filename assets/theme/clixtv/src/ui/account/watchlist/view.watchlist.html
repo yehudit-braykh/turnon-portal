@@ -4,7 +4,7 @@
             Watchlist
         </header-text>
         <accessory-view>
-            <div class="filter-containers" ng-show="watchlist && watchlist.length > 0">
+            <div class="filter-containers" ng-show="watchlist && watchlist.videos && watchlist.videos.length > 0">
                 <div class="filter-container">
                     <clix-dropdown options="filterOptions" placeholder-text="Filter By"></clix-dropdown>
                 </div>
@@ -14,8 +14,11 @@
             </div>
         </accessory-view>
     </clix-account-header>
-    <div class="watchlist-container">
-        <div ng-if="!watchlist || watchlist.length === 0">
+    <div ng-if="!ready">
+        <clix-loader size="large"></clix-loader>
+    </div>
+    <div class="watchlist-container" ng-show="ready">
+        <div ng-if="!watchlist || !watchlist.videos || watchlist.videos.length === 0">
             <clix-empty-container>
                 <header-text>
                     Videos that you would like to watch later will appear here.
@@ -30,9 +33,9 @@
                 </call-to-action-button>
             </clix-empty-container>
         </div>
-        <div ng-if="watchlist && watchlist.length > 0">
+        <div ng-if="watchlist && watchlist.videos && watchlist.videos.length > 0">
             <div class="row clix-block-row">
-                <div class="clix-block-item col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-repeat="video in watchlist">
+                <div class="clix-block-item col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-repeat="video in watchlist.videos">
                     <clix-video-content-box video="video"></clix-video-content-box>
                 </div>
             </div>

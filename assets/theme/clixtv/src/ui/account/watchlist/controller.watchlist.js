@@ -55,6 +55,7 @@
                 .then(
                     function onSuccess(data) {
                         $scope.watchlist = data;
+                        $scope.ready = true;
                     }
                 )
         }

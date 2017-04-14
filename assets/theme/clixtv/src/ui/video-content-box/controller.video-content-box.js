@@ -35,14 +35,21 @@
 
             function _resetMenuItems() {
 
-                var isFavoriteStar = userService.isFavoriteCelebrity($scope.video.celebrity.id);
+                $scope.isOnWatchlist = userService.isVideoOnWatchlist($scope.video.id);
+
+                var isFavoriteStar = ($scope.video.celebrity) ? userService.isFavoriteCelebrity($scope.video.celebrity.id) : false;
 
                 $scope.items = [
                     {
-                        label: 'Add to Watchlist',
-                        icon: 'icon-redeem-plus-icon',
+                        label: $scope.isOnWatchlist ? 'Remove from watchlist' : 'Add to watchlist',
+                        icon: $scope.isOnWatchlist ? 'icon-remove-icon' : 'icon-redeem-plus-icon',
                         onClick: function() {
-                            console.log('SHARE');
+                            if ($scope.isOnWatchlist) {
+                                userService.removeVideoFromWatchlist($scope.video.id);
+                            } else {
+                                userService.addVideoToWatchlist($scope.video.id);
+                            }
+                            $scope.menuVisible = false;
                         }
                     },
                     {
@@ -51,6 +58,7 @@
                         points: '50',
                         onClick: function() {
                             shareModalService.launchVideoShareModal($scope.video);
+                            $scope.menuVisible = false;
                         }
                     },
                     {
@@ -69,6 +77,7 @@
                             } else {
                                 userService.addFavoriteCelebrity($scope.video.celebrity.id);
                             }
+                            $scope.menuVisible = false;
                         }
                     }
                 ];
@@ -101,7 +110,7 @@
                 // Safari has a problem with the ng-click element within the active element, so we'll
                 // just capture the click event of the overlay container and determine what to do from
                 // here.
-                var isSaving = angular.element($event.target).parent().hasClass('save-button');
+                var isSaving = angular.element($event.target).hasClass('save-button');
                 if (!isSaving) {
                     $state.go('video', { id: video.id });
                 }
@@ -112,7 +121,11 @@
             };
 
             $scope.onWatchlistPress = function() {
-                userService.addVideoToWatchlist($scope.video.id);
+                if ($scope.isOnWatchlist) {
+                    userService.removeVideoFromWatchlist($scope.video.id);
+                } else {
+                    userService.addVideoToWatchlist($scope.video.id);
+                }
             };
         }
     ];
