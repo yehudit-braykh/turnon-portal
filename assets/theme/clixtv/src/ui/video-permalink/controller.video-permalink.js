@@ -3,6 +3,7 @@
     var VideoPermalinkController = [
         '$q',
         '$scope',
+        '$rootScope',
         '$timeout',
         '$window',
         '$filter',
@@ -11,20 +12,45 @@
         'celebrityService',
         'userService',
         'catchMediaService',
-        function($q, $scope, $timeout, $window, $filter, $stateParams, videosService, celebrityService, userService, catchMediaService) {
+        function($q, $scope, $rootScope, $timeout, $window, $filter, $stateParams, videosService, celebrityService, userService, catchMediaService) {
 
             $scope.isMobile = ($window.innerWidth <= 800);
             $scope.expanded = false;
 
-            catchMediaService.trackVideoPageEvent($stateParams.id);
+            function _resetPageState() {
+                $scope.isOnWatchlist = userService.isVideoOnWatchlist($scope.video.id);
+                $scope.isFavoriteCelebrity = userService.isFavoriteCelebrity($scope.video.celebrity.id);
+            }
 
-            videosService.getVideoById($stateParams.id)
+            $rootScope.$on('user.login', function(event, data) {
+                $scope.loggedInUser = data;
+                _resetPageState();
+            });
+
+            $rootScope.$on('user.logout', function(event, data) {
+                $scope.loggedInUser = undefined;
+                _resetPageState();
+            });
+
+            $rootScope.$on('favorite.added', _resetPageState);
+            $rootScope.$on('favorite.removed', _resetPageState);
+
+            $q.all(
+                    [
+                        userService.getLoggedInUser(),
+                        videosService.getVideoById($stateParams.id)
+                    ]
+                )
                 .then(
                     function onSuccess(data) {
-                        $scope.video = data;
+                        $scope.loggedInUser = data[0];
+                        $scope.video = data[1];
                         $scope.ready = true;
+                        _resetPageState();
                     }
                 );
+
+            catchMediaService.trackVideoPageEvent($stateParams.id);
 
             if ($window.innerWidth <= 1000) {
                 $scope.playerHeight = 270;
@@ -60,12 +86,19 @@
             };
 
             $scope.onWatchlistPress = function() {
-                // userService.addVideoToWatchlist($scope.video.id)
-                //     .then(
-                //         function onSuccess(data) {
-                //             console.log(data);
-                //         }
-                //     );
+                if ($scope.isOnWatchlist) {
+                    userService.removeVideoFromWatchlist($scope.video.id);
+                } else {
+                    userService.addVideoToWatchlist($scope.video.id);
+                }
+            };
+
+            $scope.onFavoriteCelebrityPress = function() {
+                if ($scope.isFavoriteCelebrity) {
+                    userService.removeFavoriteCelebrity($scope.video.celebrity.id);
+                } else {
+                    userService.addFavoriteCelebrity($scope.video.celebrity.id);
+                }
             };
         }
     ];

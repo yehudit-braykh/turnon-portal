@@ -9383,6 +9383,9 @@ button.close {
   text-decoration: none;
   color: #FFF;
 }
+.video-permalink-page .favorite-button {
+  cursor: pointer;
+}
 .video-permalink-page .social-container {
   display: -webkit-flex;
   display: -ms-flexbox;
