@@ -16,11 +16,7 @@
                     </div>
                 </div>
                 <div class="banner-button">
-                    <div clix-tooltip-trigger tooltip-id="hero-banner-button-{{$id}}">
-                        <clix-tertiary-button>
-                            {{buttonText}}
-                        </clix-tertiary-button>
-                    </div>
+                    <div clix-tooltip-trigger tooltip-id="hero-banner-button-{{$id}}" ng-transclude="favoriteButton"></div>
 
                     <div clix-tooltip-trigger tooltip-id="hero-banner-share-{{$id}}" ng-transclude="shareIcon"></div>
 

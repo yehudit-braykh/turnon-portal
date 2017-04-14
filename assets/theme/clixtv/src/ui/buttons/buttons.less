@@ -91,8 +91,10 @@
     display: inline-block;
     margin-left: 18px;
     margin-right: 18px;
+    cursor: pointer;
 
-    &:hover {
+    &:hover,
+    &.active {
         .horizontal-gradient(@color-tertiary, @color-secondary);
         .border-radius(30px);
         text-decoration: none;
@@ -105,6 +107,10 @@
         .button-edge {
             visibility: hidden;
         }
+    }
+
+    &.active:hover {
+        .horizontal-gradient(darken(@color-tertiary, 5%), darken(@color-secondary, 5%));
     }
 
     &:before,

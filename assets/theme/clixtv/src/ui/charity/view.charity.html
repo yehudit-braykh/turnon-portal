@@ -12,10 +12,15 @@
             background-image2x="{{charity.headerImage}}"
             background-image3x="{{charity.headerImage}}"
             charity="true"
-            button-tooltip-text="{{loggedInUser ? 'Add this charity to your Favorites.' : 'After signing up, you will be able to add this charity to your Favorites.'}}"
+            button-tooltip-text="{{loggedInUser ? (isFavorite ? 'Remove this charity from your Favorites.' : 'Add this charity to your Favorites.') : 'After signing up, you will be able to add this charity to your Favorites.'}}"
             share-tooltip-text="Share this page."
             banner-type="Charity"
     >
+        <favorite-button>
+            <clix-tertiary-button ng-click="onFavoritePress()" is-active="isFavorite">
+                {{isFavorite ? 'Remove from Favorites' : 'Favorite'}}
+            </clix-tertiary-button>
+        </favorite-button>
         <share-icon>
             <clix-share-button extra-class="banner-share-icon" charity="charity"></clix-share-button>
         </share-icon>

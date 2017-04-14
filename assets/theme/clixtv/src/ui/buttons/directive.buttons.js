@@ -29,7 +29,7 @@
             transclude: true,
             templateUrl: 'ui/buttons/view.tertiary-button.html',
             scope: {
-
+                isActive: '=?'
             }
         }
     };

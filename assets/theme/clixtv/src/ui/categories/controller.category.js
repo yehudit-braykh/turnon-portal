@@ -11,20 +11,38 @@
         'userService',
         function($q, $log, $scope, $rootScope, $state, $stateParams, categoryService, userService) {
 
+            function _resetIsFavorite() {
+                $scope.isFavorite = userService.isFavoriteCategory($stateParams.id);
+            }
+
             $rootScope.$on('user.login', function(event, data) {
                 $scope.loggedInUser = data;
+                _resetIsFavorite();
             });
 
             $rootScope.$on('user.logout', function(event, data) {
                 delete $scope.loggedInUser;
+                _resetIsFavorite();
             });
+
+            $rootScope.$on('favorite.added', _resetIsFavorite);
+            $rootScope.$on('favorite.removed', _resetIsFavorite);
 
             userService.getLoggedInUser()
                 .then(
                     function onSuccess(data) {
                         $scope.loggedInUser = data;
+                        _resetIsFavorite();
                     }
                 );
+
+            $scope.onFavoritePress = function() {
+                if ($scope.isFavorite) {
+                    userService.removeFavoriteCategory($stateParams.id);
+                } else {
+                    userService.addFavoriteCategory($stateParams.id);
+                }
+            };
 
             $scope.filterOptions = [
                 {

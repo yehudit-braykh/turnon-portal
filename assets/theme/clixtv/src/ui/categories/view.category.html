@@ -12,10 +12,15 @@
             background-image2x="{{category.headerImage}}"
             background-image3x="{{category.headerImage}}"
             shareable="false"
-            button-tooltip-text="{{loggedInUser ? 'Add this category to your Favorites.' : 'After signing up, you will be able to add this category to your Favorites.'}}"
+            button-tooltip-text="{{loggedInUser ? (isFavorite ? 'Remove this category from your Favorites' : 'Add this category to your Favorites.') : 'After signing up, you will be able to add this category to your Favorites.'}}"
             share-tooltip-text="Share this category."
             banner-type="Category"
     >
+        <favorite-button>
+            <clix-tertiary-button ng-click="onFavoritePress()" is-active="isFavorite">
+                {{isFavorite ? 'Remove from Favorites' : 'Favorite'}}
+            </clix-tertiary-button>
+        </favorite-button>
     </clix-hero-banner>
     <div class="category-page-container">
         <div class="category-page-content">

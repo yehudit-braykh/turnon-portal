@@ -12,20 +12,38 @@
         'catchMediaService',
         function($q, $log, $scope, $rootScope, $state, $stateParams, celebrityService, userService, catchMediaService) {
 
+            function _resetIsFavorite() {
+                $scope.isFavorite = userService.isFavoriteCelebrity($stateParams.id);
+            }
+
             $rootScope.$on('user.login', function(event, data) {
                 $scope.loggedInUser = data;
+                _resetIsFavorite();
             });
 
             $rootScope.$on('user.logout', function(event, data) {
                 delete $scope.loggedInUser;
+                _resetIsFavorite();
             });
+
+            $rootScope.$on('favorite.added', _resetIsFavorite);
+            $rootScope.$on('favorite.removed', _resetIsFavorite);
 
             userService.getLoggedInUser()
                 .then(
                     function onSuccess(data) {
                         $scope.loggedInUser = data;
+                        _resetIsFavorite();
                     }
                 );
+
+            $scope.onFavoritePress = function() {
+                if ($scope.isFavorite) {
+                    userService.removeFavoriteCelebrity($stateParams.id);
+                } else {
+                    userService.addFavoriteCelebrity($stateParams.id);
+                }
+            };
 
             $scope.offerMenuItems = [
                 {

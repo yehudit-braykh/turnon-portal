@@ -7,7 +7,8 @@
             controller: 'HeroBannerController',
             transclude: {
                 logo: '?heroBannerLogo',
-                shareIcon: '?shareIcon'
+                shareIcon: '?shareIcon',
+                favoriteButton: '?favoriteButton'
             },
             scope: {
                 titleText: '@',

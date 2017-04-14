@@ -5,14 +5,19 @@
 <div class="clix-star-page" ng-if="celebrity">
     <clix-hero-banner
         title-text="{{celebrity.name}}"
-        button-text="{{'Favorites'}}"
+        button-text="{{isFavorite ? 'Remove from Favorites' : 'Favorite'}}"
         button-icon-class="{{'icon-favorite-icon banner-favorite-icon'}}"
-        button-tooltip-text="{{loggedInUser ? 'Add this star to your Favorites.' : 'After signing up, you will be able to add this star to your Favorites.'}}"
+        button-tooltip-text="{{loggedInUser ? ((isFavorite) ? 'Remove this star from your Favorites' : 'Add this star to your Favorites.') : 'After signing up, you will be able to add this star to your Favorites.'}}"
         subtext="{{celebrity.videos.videos.length}} {{celebrity.videos.videos.length === 1 ? 'Video' : 'Videos'}}"
         background-image="{{celebrity.headerImage}}"
         share-tooltip-text="Share this page."
         banner-type="Star"
     >
+        <favorite-button>
+            <clix-tertiary-button ng-click="onFavoritePress()" is-active="isFavorite">
+                {{isFavorite ? 'Remove from Favorites' : 'Favorite'}}
+            </clix-tertiary-button>
+        </favorite-button>
         <share-icon>
             <clix-share-button extra-class="banner-share-icon" celebrity="celebrity"></clix-share-button>
         </share-icon>

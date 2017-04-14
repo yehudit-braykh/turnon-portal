@@ -69,21 +69,21 @@
                                 label: 'Go to Star Page',
                                 icon: 'icon-stars-icon',
                                 onClick: function() {
-                                    $state.go('star', { id: scope.star.id })
+                                    $state.go('star', { id: scope.star.id });
                                 }
                             },
                             {
                                 label: 'Go to Offers',
                                 icon: 'icon-offers-icon',
                                 onClick: function() {
-                                    $state.go('star', { id: scope.star.id, tab: 'brands' })
+                                    $state.go('star', { id: scope.star.id, tab: 'brands' });
                                 }
                             },
                             {
                                 label: 'Go to Charities',
                                 icon: 'icon-charities-icon-bottom-nav',
                                 onClick: function() {
-                                    $state.go('star', { id: scope.star.id, tab: 'charities' })
+                                    $state.go('star', { id: scope.star.id, tab: 'charities' });
                                 }
                             }
                         ];

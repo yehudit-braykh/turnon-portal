@@ -14,50 +14,65 @@
 
             $rootScope.$on('user.login', function(event, data) {
                 $scope.loggedInUser = data;
+                _resetMenuItems();
             });
 
             $rootScope.$on('user.logout', function(event, data) {
                 $scope.loggedInUser = undefined;
+                _resetMenuItems();
             });
+
+            $rootScope.$on('favorite.added', _resetMenuItems);
+            $rootScope.$on('favorite.removed', _resetMenuItems);
 
             userService.getLoggedInUser()
                 .then(
                     function onSuccess(data) {
                         $scope.loggedInUser = data;
+                        _resetMenuItems();
                     }
                 );
 
-            $scope.items = [
-                {
-                    label: 'Add to Watchlist',
-                    icon: 'icon-redeem-plus-icon',
-                    onClick: function() {
-                        console.log('SHARE');
+            function _resetMenuItems() {
+
+                var isFavoriteStar = userService.isFavoriteCelebrity($scope.video.celebrity.id);
+
+                $scope.items = [
+                    {
+                        label: 'Add to Watchlist',
+                        icon: 'icon-redeem-plus-icon',
+                        onClick: function() {
+                            console.log('SHARE');
+                        }
+                    },
+                    {
+                        label: 'Share',
+                        icon: 'icon-share-icon',
+                        points: '50',
+                        onClick: function() {
+                            shareModalService.launchVideoShareModal($scope.video);
+                        }
+                    },
+                    {
+                        label: 'Go to Star Page',
+                        icon: 'icon-stars-icon',
+                        onClick: function() {
+                            $state.go('star', { id: $scope.video.celebrity.id })
+                        }
+                    },
+                    {
+                        label: isFavoriteStar ? 'Remove Star from Favorites' : 'Add Star to Favorites',
+                        icon: isFavoriteStar ? 'icon-remove-icon' : 'icon-favorite-icon',
+                        onClick: function() {
+                            if (isFavoriteStar) {
+                                userService.removeFavoriteCelebrity($scope.video.celebrity.id);
+                            } else {
+                                userService.addFavoriteCelebrity($scope.video.celebrity.id);
+                            }
+                        }
                     }
-                },
-                {
-                    label: 'Share',
-                    icon: 'icon-share-icon',
-                    points: '50',
-                    onClick: function() {
-                        shareModalService.launchVideoShareModal($scope.video);
-                    }
-                },
-                {
-                    label: 'Go to Star Page',
-                    icon: 'icon-stars-icon',
-                    onClick: function() {
-                        console.log('SHARE');
-                    }
-                },
-                {
-                    label: 'Add Star to Favorites',
-                    icon: 'icon-favorite-icon',
-                    onClick: function() {
-                        console.log('SHARE');
-                    }
-                }
-            ];
+                ];
+            }
 
             $scope.menuClicked = function() {
                 $scope.menuVisible = !$scope.menuVisible;
