@@ -208,7 +208,7 @@ class Account_model extends Uvod_model {
         $filters = array();
 		$filters[] = "byId=" . str_replace(' ', '%20', implode("|", $profile->favoriteBrands)) ;
 
-		return $this->rows($this->apiCall('brand', $filters)->entries);
+		return $this->rows($this->apiCall('brand/related', $filters)->entries);
     }
 
     public function get_favorite_charities(){
@@ -220,7 +220,7 @@ class Account_model extends Uvod_model {
         $filters = array();
 		$filters[] = "byId=" . str_replace(' ', '%20', implode("|", $profile->favoriteCharities)) ;
 
-		return $this->rows($this->apiCall('charity', $filters)->entries);
+		return $this->rows($this->apiCall('charity/related', $filters)->entries);
     }
 
     public function get_favorite_categories(){
@@ -232,7 +232,7 @@ class Account_model extends Uvod_model {
         $filters = array();
 		$filters[] = "byId=" . str_replace(' ', '%20', implode("|", $profile->favoriteCategories)) ;
         // debug($filters);
-		return $this->rows($this->apiCall('category', $filters)->entries);
+		return $this->rows($this->apiCall('category/related', $filters)->entries);
     }
 
     public function get_favorite_celebrities(){
@@ -244,7 +244,7 @@ class Account_model extends Uvod_model {
         $filters = array();
 		$filters[] = "byId=" . str_replace(' ', '%20', implode("|", $profile->favoriteCelebs)) ;
 
-		return $this->rows($this->apiCall('celebrity', $filters)->entries);
+		return $this->rows($this->apiCall('celebrity/related', $filters)->entries);
     }
 
     public function get_saved_offers(){
@@ -254,9 +254,9 @@ class Account_model extends Uvod_model {
         $profile= $this->get_profile($token, $id);
 
         $filters = array();
-		$filters[] = "byId=" . str_replace(' ', '%20', implode("|", $profile->savedOffers)) ;
+		$filters[] = "byId=" . str_replace(' ', '%20', implode("|", $profile->offersSaved)) ;
 
-		return $this->rows($this->apiCall('offer', $filters)->entries);
+		return $this->rows($this->apiCall('offer/related', $filters)->entries);
     }
 
     public function add_favorite($id, $type){
