@@ -4,8 +4,9 @@
         '$q',
         '$scope',
         '$rootScope',
+        '$stateParams',
         'userService',
-        function($q, $scope, $rootScope, userService) {
+        function($q, $scope, $rootScope, $stateParams, userService) {
 
             $scope.filterStarsOptions = [
                 {
@@ -147,6 +148,22 @@
                     label: 'Favorites'
                 }
             ];
+
+            switch($stateParams.tab) {
+                default:
+                case 'star':
+                    $scope.active = 0;
+                    break;
+                case 'brand':
+                    $scope.active = 1;
+                    break;
+                case 'charity':
+                    $scope.active = 2;
+                    break;
+                case 'category':
+                    $scope.active = 3;
+                    break;
+            }
 
             $q.all(
                     [

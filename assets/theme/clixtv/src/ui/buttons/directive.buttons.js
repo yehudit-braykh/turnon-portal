@@ -18,7 +18,7 @@
             transclude: true,
             templateUrl: 'ui/buttons/view.secondary-button.html',
             scope: {
-
+                alternate: '@?'
             }
         }
     };

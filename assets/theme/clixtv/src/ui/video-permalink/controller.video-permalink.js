@@ -18,6 +18,9 @@
             $scope.expanded = false;
 
             function _resetPageState() {
+                if (!$scope.video) {
+                    return;
+                }
                 $scope.isOnWatchlist = userService.isVideoOnWatchlist($scope.video.id);
                 $scope.isFavoriteCelebrity = userService.isFavoriteCelebrity($scope.video.celebrity.id);
             }

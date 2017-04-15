@@ -8665,6 +8665,18 @@ button.close {
   border-color: #FFF;
   color: #FFF;
 }
+.clix-secondary-button.alternate {
+  padding: 11px 35px;
+  color: #8a8a8a;
+  border: 1px solid #8a8a8a;
+  background-color: #1f1f1f;
+}
+.clix-secondary-button.alternate:hover {
+  text-decoration: none;
+  border-color: #FFF;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #FFF;
+}
 .clix-tertiary-button {
   position: relative;
   height: 36px;
@@ -13744,6 +13756,35 @@ button.close {
     display: inline-block;
   }
 }
+.clix-education-modal .education-modal-message {
+  padding: 37px 116px;
+  background-color: #1f1f1f;
+  font-size: 14px;
+  color: #FFF;
+  text-transform: uppercase;
+  font-family: 'montserratregular', sans-serif;
+  line-height: 22px;
+  letter-spacing: 1.7px;
+  text-align: center;
+  position: relative;
+}
+.clix-education-modal .education-modal-icon {
+  position: absolute;
+  top: -21px;
+  left: 50%;
+  margin-left: -21px;
+}
+.clix-education-modal .education-modal-footer {
+  padding: 50px 20px;
+  border-top: 1px solid #636363;
+}
+.clix-education-modal .buttons-container {
+  text-align: right;
+}
+.clix-education-modal .left-button-container,
+.clix-education-modal .right-button-container {
+  display: inline-block;
+}
 .clix-right-navigation {
   position: fixed;
   left: -9999px;
@@ -14618,6 +14659,34 @@ button.close {
   font-size: 16px;
   border-bottom: 1px solid #494949;
   padding: 10px 23px;
+}
+.clix-circle-container-icon {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-border-radius: 21px;
+  -moz-border-radius: 21px;
+  border-radius: 21px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  color: #FFF;
+  font-size: 20px;
+}
+.clix-circle-container-icon.clix-trophy-indicator-icon {
+  background-color: #0dc73a;
+}
+.clix-circle-container-icon.clix-error-indicator-icon {
+  background-color: #fb0d1b;
 }
 body,
 html {

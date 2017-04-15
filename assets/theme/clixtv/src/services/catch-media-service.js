@@ -21,6 +21,8 @@
                 initialize: function() {
                     if (!instance) {
 
+                        $log.debug('Initializing Catch Media service');
+
                         /**
                          * @todo - Pull these from a top level config...
                          */

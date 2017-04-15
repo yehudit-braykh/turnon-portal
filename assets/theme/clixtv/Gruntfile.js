@@ -45,7 +45,8 @@ module.exports = function(grunt) {
                     'bower_components/angular-elastic-input/dist/angular-elastic-input.js',
                     'node_modules/angular-ui-switch/angular-ui-switch.js',
                     'node_modules/moment/min/moment.min.js',
-                    'bower_components/ngFitText/dist/ng-FitText.min.js'
+                    'bower_components/ngFitText/dist/ng-FitText.min.js',
+                    'bower_components/angular-modal-service/dst/angular-modal-service.min.js'
                 ]
             }
         },

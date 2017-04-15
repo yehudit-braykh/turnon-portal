@@ -55,7 +55,13 @@
                 var userFavoriteMethod, favoriteProperty, favorites;
 
                 if (!loggedInUser) {
-                    $log.error('No logged in user found to add favorite', type);
+
+                    $rootScope.$broadcast('favorite.added.anonymous', {
+                        type: type,
+                        id: id
+                    });
+
+                    $log.warn('No logged in user found to add favorite', type);
                     return;
                 }
 

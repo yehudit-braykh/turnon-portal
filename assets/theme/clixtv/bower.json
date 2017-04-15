@@ -18,6 +18,10 @@
     "ng-jwplayer": "^0.2.3",
     "ng-parallax": "^0.1.8",
     "angular-elastic-input": "^2.4.0",
-    "ngFitText": "^4.2.3"
+    "ngFitText": "^4.2.3",
+    "angular-modal-service": "^0.11.1"
+  },
+  "resolutions": {
+    "angular": "1.6.3"
   }
 }

@@ -12,7 +12,8 @@
             'ui.bootstrap',
             'puElasticInput',
             'uiSwitch',
-            'ngFitText'
+            'ngFitText',
+            'angularModalService'
         ])
         .config([
             '$locationProvider',
@@ -95,7 +96,10 @@
                     .state('account', {
                         url: '/account/:section',
                         templateUrl: 'ui/account/view.account.html',
-                        controller: 'AccountController'
+                        controller: 'AccountController',
+                        params: {
+                            tab: ''
+                        }
                     })
             }
         ])
@@ -103,10 +107,12 @@
             '$rootScope',
             'userService',
             'catchMediaService',
-            function($rootScope, userService, catchMediaService) {
+            'educationModalService',
+            function($rootScope, userService, catchMediaService, educationModalService) {
 
                 userService.setLoggedInUser();
                 catchMediaService.initialize();
+                educationModalService.initialize();
 
                 $rootScope.$on('$stateChangeSuccess',function(){
                     $("html, body").animate({ scrollTop: 0 }, 200);
