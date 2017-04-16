@@ -195,7 +195,7 @@ class Account_model extends Uvod_model {
         $filters = array();
 		$filters[] = "byId=" . str_replace(' ', '%20', implode("|", $profile->watchlist)) ;
 
-		return $this->apiCall('episode', $filters)->entries;
+		return $this->watchlist_rows($this->apiCall('episode/related', $filters)->entries);
 
     }
 
@@ -208,7 +208,7 @@ class Account_model extends Uvod_model {
         $filters = array();
 		$filters[] = "byId=" . str_replace(' ', '%20', implode("|", $profile->favoriteBrands)) ;
 
-		return $this->apiCall('brand', $filters)->entries;
+		return $this->rows($this->apiCall('brand/related', $filters)->entries);
     }
 
     public function get_favorite_charities(){
@@ -220,7 +220,7 @@ class Account_model extends Uvod_model {
         $filters = array();
 		$filters[] = "byId=" . str_replace(' ', '%20', implode("|", $profile->favoriteCharities)) ;
 
-		return $this->apiCall('charity', $filters)->entries;
+		return $this->rows($this->apiCall('charity/related', $filters)->entries);
     }
 
     public function get_favorite_categories(){
@@ -232,7 +232,7 @@ class Account_model extends Uvod_model {
         $filters = array();
 		$filters[] = "byId=" . str_replace(' ', '%20', implode("|", $profile->favoriteCategories)) ;
         // debug($filters);
-		return $this->apiCall('category', $filters)->entries;
+		return $this->rows($this->apiCall('category/related', $filters)->entries);
     }
 
     public function get_favorite_celebrities(){
@@ -244,7 +244,7 @@ class Account_model extends Uvod_model {
         $filters = array();
 		$filters[] = "byId=" . str_replace(' ', '%20', implode("|", $profile->favoriteCelebs)) ;
 
-		return $this->apiCall('celebrity', $filters)->entries;
+		return $this->rows($this->apiCall('celebrity/related', $filters)->entries);
     }
 
     public function get_saved_offers(){
@@ -254,9 +254,9 @@ class Account_model extends Uvod_model {
         $profile= $this->get_profile($token, $id);
 
         $filters = array();
-		$filters[] = "byId=" . str_replace(' ', '%20', implode("|", $profile->savedOffers)) ;
+		$filters[] = "byId=" . str_replace(' ', '%20', implode("|", $profile->offersSaved)) ;
 
-		return $this->apiCall('offer', $filters)->entries;
+		return $this->rows($this->apiCall('offer/related', $filters)->entries);
     }
 
     public function add_favorite($id, $type){
@@ -441,6 +441,79 @@ class Account_model extends Uvod_model {
 
 	    return implode($pass); //turn the array into a string
 	}
+
+    function watchlist_rows($items){
+        foreach ($items as &$item) {
+            //debug($cat);
+            if($item->brands)
+                $item->brands = $this->rows($item->brands);
+            if($item->celebrity){
+                $arr = array();
+                array_push($arr, $item->celebrity);
+                $item->celebrity = $this->rows($arr)[0];
+            }
+
+            if($item->serie){
+
+                if($item->serie->seasons){
+
+
+                    foreach ($item->serie->seasons as &$season) {
+                        foreach ($season->episodes as &$episode) {
+                            $episode->brands = $this->rows($episode->brands);
+
+                            $arr = array();
+                            array_push($arr, $episode->celebrity);
+                            $episode->celebrity = $this->rows($arr)[0];
+                        }
+                        $season->episodes = $this->rows($season->episodes);
+                    }
+                    if($item->serie->brands)
+                        $item->serie->brands = $this->rows($item->serie->brands);
+
+                    if($item->serie->charity){
+                        $data = array();
+                        array_push($data, $item->serie->charity);
+                        $item->serie->charity = $this->rows($data)[0];
+                    }
+
+                    if($item->serie->celebrity){
+                        $data = array();
+                        array_push($data, $item->serie->celebrity);
+                        $item->serie->celebrity = $this->rows($data)[0];
+                    }
+
+
+
+                }
+
+            }
+
+            if($item->charity){
+                $arr = array();
+                array_push($arr, $item->charity);
+                $item->charity = $this->rows($arr)[0];
+            }
+
+        }
+
+        return $this->rows($items);
+    }
+
+    function rows($rows){
+		//  debug($rows);
+        foreach ($rows as &$media) {
+            $media = (array) $media;
+			$tmp = array();
+			if($media["content"]){
+	            foreach ($media["content"] as $file) {
+	                $tmp[str_replace (" ", "", $file->assetTypes[0])] = $file;
+	            }
+            	$media["content"] = $tmp;
+			}
+        }
+        return $rows;
+    }
 
 
 }
