@@ -58,3 +58,34 @@
     bottom: 0;
     z-index: 8500 !important;
 }
+
+.clix-message-modal {
+    .message-modal-body {
+        padding: 37px 63px;
+        background-color: @color-medium-gray4;
+        font-size: 14px;
+        color: @color-white;
+        text-transform: uppercase;
+        font-family: @font-primary;
+        line-height: 22px;
+        letter-spacing: 1.7px;
+        text-align: center;
+        position: relative;
+    }
+
+    .message-modal-footer {
+        padding: 30px 20px;
+        border-top: 1px solid @color-gray3;
+    }
+
+    .buttons-container {
+        text-align: right;
+    }
+
+    .button-container {
+        display: inline-block;
+        &:last-child {
+            margin-left: 22px;
+        }
+    }
+}

@@ -6,14 +6,13 @@
             replace: true,
             templateUrl: 'ui/common/checkbox/view.checkbox.html',
             scope: {
-                labelText: '@'
+                labelText: '@',
+                ngModel: '='
             },
             link: function(scope) {
 
-                scope.selected = true;
-
                 scope.onToggle = function() {
-                    scope.selected = !scope.selected;
+                    scope.ngModel = !scope.ngModel;
                 }
             }
         }

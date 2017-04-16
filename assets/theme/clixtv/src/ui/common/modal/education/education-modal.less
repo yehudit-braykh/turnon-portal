@@ -28,8 +28,27 @@
         text-align: right;
     }
 
-    .left-button-container,
-    .right-button-container {
+    .button-container {
         display: inline-block;
+        vertical-align: top;
+        &:last-child {
+            margin-left: 30px;
+        }
+    }
+
+    .save-preference-checkbox-container {
+        margin-top: 6px;
+    }
+
+    .login-button {
+        text-transform: uppercase;
+        color: @color-white;
+        text-align: center;
+        text-decoration: underline;
+        cursor: pointer;
+        display: block;
+        font-size: 11px;
+        font-family: @font-primary;
+        margin-top: 17px;
     }
 }

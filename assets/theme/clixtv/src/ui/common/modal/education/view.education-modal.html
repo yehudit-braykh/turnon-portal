@@ -76,17 +76,36 @@
         </div>
         <div class="row education-modal-footer">
 
-            <div class="col-sm-5">
-                <clix-checkbox label-text="Don't show this type again"></clix-checkbox>
+            <div class="col-sm-5 save-preference-checkbox-container">
+                <clix-is-logged-in>
+                    <logged-in>
+                        <clix-checkbox ng-model="showAgainModel" label-text="Don't show this type again"></clix-checkbox>
+                    </logged-in>
+                    <not-logged-in>
+                        <div ng-switch="type">
+                            <div ng-switch-when="watchlist">
+
+                            </div>
+                        </div>
+                    </not-logged-in>
+                </clix-is-logged-in>
             </div>
             <div class="col-sm-7 buttons-container">
-                <div class="left-button-container">
-                    <clix-secondary-button alternate="true">
+                <div class="button-container left-button-container">
+                    <clix-secondary-button alternate="true" ng-click="onCloseButtonPress()">
                         Got it!
                     </clix-secondary-button>
                 </div>
-                <div class="right-button-container">
+                <div class="button-container right-button-container">
                     <clix-is-logged-in>
+                        <not-logged-in>
+                            <clix-primary-button ng-click="onSignUpPress()">
+                                Sign Up Now
+                            </clix-primary-button>
+                            <a class="login-button" ng-click="onLoginPress()">
+                                Log In Now
+                            </a>
+                        </not-logged-in>
                         <logged-in>
                             <div ng-switch="type">
                                 <div ng-switch-when="watchlist">

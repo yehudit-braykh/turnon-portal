@@ -11,7 +11,8 @@
         'CelebrityListModel',
         'CategoryListModel',
         'VideoListModel',
-        function($q, $http, $log, $rootScope, BrandListModel, OfferListModel, CharityListModel, CelebrityListModel, CategoryListModel, VideoListModel) {
+        'modalService',
+        function($q, $http, $log, $rootScope, BrandListModel, OfferListModel, CharityListModel, CelebrityListModel, CategoryListModel, VideoListModel, modalService) {
 
             var loggedInUser;
 
@@ -97,6 +98,37 @@
                 });
             }
 
+            function _getRemoveConfirmationModalData(type) {
+                var title, message;
+                switch(type) {
+                    case 'celebrity':
+                    case 'brand':
+                    case 'category':
+                    case 'charity':
+                        var attribute = type;
+                        if (attribute === 'celebrity') {
+                            attribute = 'star';
+                        }
+                        title = 'Remove From Favorites?';
+                        message = 'Are you sure you want to remove this ' + attribute + ' from your favorites? You will no longer receive notifications when new content or any special offers are added.';
+                        break;
+
+                    case 'watchlist':
+                        title = 'Remove From Watchlist?';
+                        message = 'Are you sure you want to remove this video from your watchlist?';
+                        break;
+
+                    case 'offer':
+                        title = 'Remove From Saved Offer?';
+                        message = 'Are you sure you want to remove this offer from your list of saved offers?';
+                        break;
+                }
+                return {
+                    title: title,
+                    message: message
+                }
+            }
+
             function _removeFavorite(id, type) {
                 var userFavoriteMethod, favoriteProperty, favorites;
 
@@ -116,26 +148,34 @@
                 if (!userFavoriteMethod) {
                     throw new Error('Invalid type provided for favorite');
                 }
-                if (favoriteProperty) {
-                    favorites = loggedInUser[favoriteProperty];
-                    if (!favorites) {
-                        favorites = [];
-                    }
-                    if (favorites.indexOf(id) !== -1) {
 
-                        favorites.splice(favorites.indexOf(id), 1);
-                        loggedInUser[favoriteProperty] = favorites;
-                        $rootScope.$broadcast('favorite.removed', {
-                            user: loggedInUser,
-                            type: type,
-                            id: id
-                        });
-                    }
-                }
+                var modalData = _getRemoveConfirmationModalData(type);
+                return modalService.showConfirmationModal(modalData.title, modalData.message)
+                    .then(
+                        function onSuccess() {
 
-                return $http.post('/api/account/' + userFavoriteMethod, {
-                    id: id
-                });
+                            if (favoriteProperty) {
+                                favorites = loggedInUser[favoriteProperty];
+                                if (!favorites) {
+                                    favorites = [];
+                                }
+                                if (favorites.indexOf(id) !== -1) {
+
+                                    favorites.splice(favorites.indexOf(id), 1);
+                                    loggedInUser[favoriteProperty] = favorites;
+                                    $rootScope.$broadcast('favorite.removed', {
+                                        user: loggedInUser,
+                                        type: type,
+                                        id: id
+                                    });
+                                }
+                            }
+
+                            return $http.post('/api/account/' + userFavoriteMethod, {
+                                id: id
+                            });
+                        }
+                    );
             }
 
             function _isFavorite(id, type) {

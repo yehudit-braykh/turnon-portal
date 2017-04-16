@@ -12,6 +12,22 @@
         }
     ];
 
+    var messageModal = [
+        function() {
+            return {
+                restrict: 'AE',
+                templateUrl: 'ui/common/modal/view.message-modal.html',
+                transclude: {
+                    modalTitle: 'modalTitle',
+                    modalBody: 'modalBody',
+                    modalConfirmButton: '?modalConfirmButton',
+                    modalCancelButton: '?modalCancelButton'
+                }
+            }
+        }
+    ];
+
     angular.module('clixtv')
-        .directive('clixModal', modal);
+        .directive('clixModal', modal)
+        .directive('clixMessageModal', messageModal);
 }());

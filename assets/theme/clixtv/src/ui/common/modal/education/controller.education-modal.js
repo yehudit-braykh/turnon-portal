@@ -4,6 +4,7 @@
         '$q',
         '$scope',
         '$rootScope',
+        '$timeout',
         '$uibModalInstance',
         'itemData',
         'userService',
@@ -12,7 +13,10 @@
         'celebrityService',
         'categoryService',
         'offersService',
-        function($q, $scope, $rootScope, $uibModalInstance, itemData, userService, videosService, brandsService, celebrityService, categoryService, offersService) {
+        'modalService',
+        function($q, $scope, $rootScope, $timeout, $uibModalInstance, itemData, userService, videosService, brandsService, celebrityService, categoryService, offersService, modalService) {
+
+            $scope.showAgainModel = false;
 
             function _getModalTitle() {
                 var title,
@@ -70,6 +74,20 @@
 
             $scope.onCloseButtonPress = function() {
                 $uibModalInstance.close();
+            };
+
+            $scope.onSignUpPress = function() {
+                $uibModalInstance.close();
+                $timeout(function() {
+                    modalService.showSignUpModal();
+                }, 100);
+            };
+
+            $scope.onLoginPress = function() {
+                $uibModalInstance.close();
+                $timeout(function() {
+                    modalService.showLogInModal();
+                }, 100);
             };
 
             $q.all(
