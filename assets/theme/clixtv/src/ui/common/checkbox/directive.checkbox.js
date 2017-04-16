@@ -7,14 +7,24 @@
             templateUrl: 'ui/common/checkbox/view.checkbox.html',
             scope: {
                 labelText: '@',
-                ngModel: '='
+                ngModel: '=',
+                onCheckboxChange: '&'
             },
-            link: function(scope) {
+            controller: [
+                '$scope',
+                '$timeout',
+                function($scope, $timeout) {
+                    $scope.onToggle = function() {
 
-                scope.onToggle = function() {
-                    scope.ngModel = !scope.ngModel;
+                        $scope.ngModel = !$scope.ngModel;
+                        $timeout(function() {
+                            if ($scope.onCheckboxChange) {
+                                $scope.onCheckboxChange();
+                            }
+                        });
+                    };
                 }
-            }
+            ]
         }
     };
 

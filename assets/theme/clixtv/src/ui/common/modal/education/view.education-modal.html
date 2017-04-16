@@ -79,7 +79,7 @@
             <div class="col-sm-5 save-preference-checkbox-container">
                 <clix-is-logged-in>
                     <logged-in>
-                        <clix-checkbox ng-model="showAgainModel" label-text="Don't show this type again"></clix-checkbox>
+                        <clix-checkbox ng-model="showAgainModel" on-checkbox-change="onShowAgainChange(showAgainModel)" label-text="Don't show this type again"></clix-checkbox>
                     </logged-in>
                     <not-logged-in>
                         <div ng-switch="type">

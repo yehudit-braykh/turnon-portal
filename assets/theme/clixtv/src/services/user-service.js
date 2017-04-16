@@ -11,8 +11,9 @@
         'CelebrityListModel',
         'CategoryListModel',
         'VideoListModel',
+        'UserModel',
         'modalService',
-        function($q, $http, $log, $rootScope, BrandListModel, OfferListModel, CharityListModel, CelebrityListModel, CategoryListModel, VideoListModel, modalService) {
+        function($q, $http, $log, $rootScope, BrandListModel, OfferListModel, CharityListModel, CelebrityListModel, CategoryListModel, VideoListModel, UserModel, modalService) {
 
             var loggedInUser;
 
@@ -213,10 +214,10 @@
                                     throw new Error(data.data);
                                 }
 
-                                loggedInUser = data.data;
+                                loggedInUser = new UserModel(data.data);
 
                                 $rootScope.$broadcast('user.login', loggedInUser);
-                                return data.data;
+                                return loggedInUser;
                             }
                         );
                 },
@@ -234,10 +235,10 @@
                                     throw new Error(data.data);
                                 }
 
-                                loggedInUser = data.data;
+                                loggedInUser = new UserModel(data.data);
 
                                 $rootScope.$broadcast('user.login', loggedInUser);
-                                return data.data;
+                                return loggedInUser;
                             }
                         )
                 },
@@ -262,7 +263,7 @@
                 },
 
                 getLoggedInUser: function() {
-                    return $q.when(loggedInUser);
+                    return $q.when(new UserModel(loggedInUser));
                 },
 
                 setLoggedInUser: function() {
@@ -274,7 +275,7 @@
 
                                 $rootScope.$broadcast('user.login', loggedInUser);
 
-                                return loggedInUser;
+                                return new UserModel(loggedInUser);
                             }
                         );
                 },

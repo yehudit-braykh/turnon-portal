@@ -14,7 +14,8 @@
         'categoryService',
         'offersService',
         'modalService',
-        function($q, $scope, $rootScope, $timeout, $uibModalInstance, itemData, userService, videosService, brandsService, celebrityService, categoryService, offersService, modalService) {
+        'preferencesService',
+        function($q, $scope, $rootScope, $timeout, $uibModalInstance, itemData, userService, videosService, brandsService, celebrityService, categoryService, offersService, modalService, preferencesService) {
 
             $scope.showAgainModel = false;
 
@@ -88,6 +89,10 @@
                 $timeout(function() {
                     modalService.showLogInModal();
                 }, 100);
+            };
+
+            $scope.onShowAgainChange = function(model) {
+                preferencesService.setShowEducationModalPreference(itemData.type, model);
             };
 
             $q.all(

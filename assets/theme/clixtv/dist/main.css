@@ -13803,6 +13803,7 @@ button.close {
 }
 .clix-education-modal .buttons-container {
   text-align: right;
+  padding-left: 0;
 }
 .clix-education-modal .button-container {
   display: inline-block;

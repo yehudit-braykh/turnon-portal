@@ -61,7 +61,7 @@
                     var currentTooltipElement;
 
                     // Hide tooltip on window scroll
-                    angular.element($window).on('scroll', function() {
+                    angular.element($window).on('scroll click', function() {
 
                         if (!currentTooltipElement) {
                             currentTooltipElement = document.getElementById(scope.tooltipId);

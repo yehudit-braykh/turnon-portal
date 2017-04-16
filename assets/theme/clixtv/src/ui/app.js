@@ -13,19 +13,17 @@
             'puElasticInput',
             'uiSwitch',
             'ngFitText',
-            'angularModalService'
+            'angularModalService',
+            'LocalStorageModule'
         ])
         .config([
             '$locationProvider',
             '$httpProvider',
             '$stateProvider',
             '$urlRouterProvider',
-            function($locationProvider, $httpProvider, $stateProvider, $urlRouterProvider) {
-                // $locationProvider.hashPrefix('!');
-                // $httpProvider.defaults.useXDomain = true;
-                // delete $httpProvider.defaults.headers.common['X-Requested-With'];
-
-                // $locationProvider.html5Mode(true);
+            'localStorageServiceProvider',
+            function($locationProvider, $httpProvider, $stateProvider, $urlRouterProvider, localStorageServiceProvider) {
+                localStorageServiceProvider.setPrefix('clix');
                 $urlRouterProvider.when('', '/');
                 $urlRouterProvider.otherwise('/404');
 
