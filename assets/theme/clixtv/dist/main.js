@@ -2466,8 +2466,6 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         'userService',
         function($q, $log, $scope, $rootScope, $uibModal, shareModalService, userService) {
 
-            var isUpdating = false;
-
             $scope.menuVisible = false;
 
             $scope.menuClicked = function($event) {
@@ -2489,13 +2487,6 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             $scope.onFavoritePress = function(type, item) {
                 var serviceMethod,
                     isFavorited = $scope.isFavoriteContent(type, item);
-
-                if (isUpdating) {
-                    $log.warn('Content is currently being updated from previous favorite, ignoring action');
-                    return;
-                }
-
-                isUpdating = true;
 
                 switch(type) {
                     case 'brand':
@@ -2538,17 +2529,14 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
             $rootScope.$on('favorite.added', function(event, data) {
                 $scope.loggedInUser = data.user;
-                isUpdating = false;
             });
 
             $rootScope.$on('favorite.removed', function(event, data) {
                 $scope.loggedInUser = data.user;
-                isUpdating = false;
             });
 
             $rootScope.$on('user.login', function(event, data) {
                 $scope.loggedInUser = data;
-                isUpdating = false;
             });
         }
     ];
@@ -6537,7 +6525,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 return userService.getLoggedInUser()
                     .then(
                         function onSuccess(data) {
-                            var userId = (data && data.id) ? data.id : '';
+                            var userId = (data && data._id) ? data._id : '';
                             return 'hide-' + type + '-' + userId;
                         }
                     )
@@ -7061,10 +7049,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                                     throw new Error(data.data);
                                 }
 
-                                loggedInUser = new UserModel(data.data);
+                                loggedInUser = data.data;
 
                                 $rootScope.$broadcast('user.login', loggedInUser);
-                                return loggedInUser;
+                                return data.data;
                             }
                         );
                 },
@@ -7082,10 +7070,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                                     throw new Error(data.data);
                                 }
 
-                                loggedInUser = new UserModel(data.data);
+                                loggedInUser = data.data;
 
                                 $rootScope.$broadcast('user.login', loggedInUser);
-                                return loggedInUser;
+                                return data.data;
                             }
                         )
                 },
@@ -7110,7 +7098,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 },
 
                 getLoggedInUser: function() {
-                    return $q.when(new UserModel(loggedInUser));
+                    return $q.when(loggedInUser);
                 },
 
                 setLoggedInUser: function() {
@@ -7122,7 +7110,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
                                 $rootScope.$broadcast('user.login', loggedInUser);
 
-                                return new UserModel(loggedInUser);
+                                return loggedInUser;
                             }
                         );
                 },

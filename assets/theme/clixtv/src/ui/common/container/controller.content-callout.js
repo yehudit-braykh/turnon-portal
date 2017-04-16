@@ -10,8 +10,6 @@
         'userService',
         function($q, $log, $scope, $rootScope, $uibModal, shareModalService, userService) {
 
-            var isUpdating = false;
-
             $scope.menuVisible = false;
 
             $scope.menuClicked = function($event) {
@@ -33,13 +31,6 @@
             $scope.onFavoritePress = function(type, item) {
                 var serviceMethod,
                     isFavorited = $scope.isFavoriteContent(type, item);
-
-                if (isUpdating) {
-                    $log.warn('Content is currently being updated from previous favorite, ignoring action');
-                    return;
-                }
-
-                isUpdating = true;
 
                 switch(type) {
                     case 'brand':
@@ -82,17 +73,14 @@
 
             $rootScope.$on('favorite.added', function(event, data) {
                 $scope.loggedInUser = data.user;
-                isUpdating = false;
             });
 
             $rootScope.$on('favorite.removed', function(event, data) {
                 $scope.loggedInUser = data.user;
-                isUpdating = false;
             });
 
             $rootScope.$on('user.login', function(event, data) {
                 $scope.loggedInUser = data;
-                isUpdating = false;
             });
         }
     ];

@@ -9,7 +9,7 @@
                 return userService.getLoggedInUser()
                     .then(
                         function onSuccess(data) {
-                            var userId = (data && data.id) ? data.id : '';
+                            var userId = (data && data._id) ? data._id : '';
                             return 'hide-' + type + '-' + userId;
                         }
                     )

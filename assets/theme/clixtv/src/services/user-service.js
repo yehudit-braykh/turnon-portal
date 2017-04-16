@@ -214,10 +214,10 @@
                                     throw new Error(data.data);
                                 }
 
-                                loggedInUser = new UserModel(data.data);
+                                loggedInUser = data.data;
 
                                 $rootScope.$broadcast('user.login', loggedInUser);
-                                return loggedInUser;
+                                return data.data;
                             }
                         );
                 },
@@ -235,10 +235,10 @@
                                     throw new Error(data.data);
                                 }
 
-                                loggedInUser = new UserModel(data.data);
+                                loggedInUser = data.data;
 
                                 $rootScope.$broadcast('user.login', loggedInUser);
-                                return loggedInUser;
+                                return data.data;
                             }
                         )
                 },
@@ -263,7 +263,7 @@
                 },
 
                 getLoggedInUser: function() {
-                    return $q.when(new UserModel(loggedInUser));
+                    return $q.when(loggedInUser);
                 },
 
                 setLoggedInUser: function() {
@@ -275,7 +275,7 @@
 
                                 $rootScope.$broadcast('user.login', loggedInUser);
 
-                                return new UserModel(loggedInUser);
+                                return loggedInUser;
                             }
                         );
                 },
