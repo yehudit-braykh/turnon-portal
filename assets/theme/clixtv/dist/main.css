@@ -13826,6 +13826,16 @@ button.close {
   font-family: 'montserratregular', sans-serif;
   margin-top: 17px;
 }
+.clix-education-modal .learn-more-violators-container {
+  margin: 20px 0;
+}
+.clix-education-modal .learn-more-violator {
+  margin: 11px auto;
+  text-align: center;
+}
+.clix-education-modal .learn-more-violator .points-violator {
+  margin: 0 auto;
+}
 .clix-right-navigation {
   position: fixed;
   left: -9999px;

@@ -86,16 +86,54 @@
                 </clix-is-logged-in>
             </div>
 
+            <div ng-switch-when="learn-more">
+                <clix-is-logged-in>
+                    <logged-in>
+                        <div class="education-modal-icon" clix-trophy-indicator-icon></div>
+                        ClixTV will reward you for watching videos, engaging with brands & offers, and sharing to social networks. Wherever you see the rewards points badges, points can be earned.
+                    </logged-in>
+                    <not-logged-in>
+                        <div class="education-modal-icon" clix-error-indicator-icon></div>
+                        After you sign up, ClixTV will reward you for watching videos, engaging with brands & offers, and sharing to social networks. Wherever you see the rewards points badges, points can be earned.
+                    </not-logged-in>
+                </clix-is-logged-in>
+                <div class="learn-more-violators-container">
+                    <div class="learn-more-violator">
+                        <clix-points-violator>
+                            50
+                        </clix-points-violator>
+                    </div>
+                    <div class="learn-more-violator">
+                        <clix-violator>
+                            100 Reward Points
+                        </clix-violator>
+                    </div>
+                </div>
+                <p>
+                    ClixTV reward points have a cash value that you can use toward goods and services.
+                </p>
+            </div>
+
         </div>
         <div class="row education-modal-footer">
 
             <div class="col-sm-5 save-preference-checkbox-container">
                 <clix-is-logged-in>
                     <logged-in>
-                        <clix-checkbox ng-model="showAgainModel" on-checkbox-change="onShowAgainChange(showAgainModel)" label-text="Don't show this type again"></clix-checkbox>
+                        <div ng-switch="type">
+                            <div ng-switch-when="learn-more">
+                                <!-- Empty... -->
+                            </div>
+                            <div ng-switch-default>
+                                <clix-checkbox ng-model="showAgainModel" on-checkbox-change="onShowAgainChange(showAgainModel)" label-text="Don't show this type again"></clix-checkbox>
+                            </div>
+                        </div>
                     </logged-in>
                     <not-logged-in>
                         <div ng-switch="type">
+                            <div ng-switch-when="learn-more">
+                                <!-- Empty... -->
+                            </div>
                             <div ng-switch-when="offer-view">
                                 <clix-checkbox ng-model="showAgainModel" on-checkbox-change="onShowAgainChange(showAgainModel)" label-text="Don't show this type again"></clix-checkbox>
                             </div>

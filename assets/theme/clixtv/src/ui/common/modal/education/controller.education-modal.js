@@ -39,6 +39,10 @@
                     case 'offer':
                         title = (isLoggedIn) ? 'Reward Points Earned' : 'Reward Points Missed!';
                         break;
+
+                    case 'learn-more':
+                        title = (isLoggedIn) ? 'Earn Rewards!' : 'Earn Reward Points!';
+                        break;
                 }
 
                 return title;
@@ -46,6 +50,9 @@
 
             function _getItem() {
                 var id = itemData.id;
+                if (!itemData.id) {
+                    return $q.when();
+                }
                 switch(itemData.type) {
 
                     case 'watchlist':

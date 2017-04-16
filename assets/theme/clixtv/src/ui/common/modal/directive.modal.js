@@ -27,7 +27,23 @@
         }
     ];
 
+    var learnMoreModalTrigger = [
+        'educationModalService',
+        function(educationModalService) {
+            return {
+                restrict: 'AE',
+                link: function(scope, element) {
+                    element.bind('click', function(e) {
+                        e.preventDefault();
+                        educationModalService.showLearnMoreModal();
+                    })
+                }
+            }
+        }
+    ];
+
     angular.module('clixtv')
         .directive('clixModal', modal)
-        .directive('clixMessageModal', messageModal);
+        .directive('clixMessageModal', messageModal)
+        .directive('clixLearnMoreModalTrigger', learnMoreModalTrigger);
 }());

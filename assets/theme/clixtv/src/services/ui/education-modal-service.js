@@ -76,6 +76,10 @@
 
                 showOfferViewedModal: function(id) {
                     _launchEducationModal('offer-view', id);
+                },
+
+                showLearnMoreModal: function() {
+                    _launchEducationModal('learn-more');
                 }
             }
         }
