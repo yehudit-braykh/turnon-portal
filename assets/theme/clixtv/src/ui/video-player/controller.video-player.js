@@ -42,6 +42,12 @@
                             }
                         });
 
+                        jwplayer().on('complete', function() {
+                            if ($scope.onComplete) {
+                                $scope.onComplete();
+                            }
+                        });
+
                         catchMediaService.trackVideoPlayerEvent(playerInstance);
                     }
                 }

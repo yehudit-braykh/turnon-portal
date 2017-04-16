@@ -9,7 +9,8 @@
         'brandsService',
         'userService',
         'catchMediaService',
-        function($q, $scope, $rootScope, $stateParams, offersService, brandsService, userService, catchMediaService) {
+        'educationModalService',
+        function($q, $scope, $rootScope, $stateParams, offersService, brandsService, userService, catchMediaService, educationModalService) {
 
             function _resetIsFavorite() {
                 $scope.isFavorite = userService.isSavedOffer($stateParams.id);
@@ -97,6 +98,7 @@
                 );
 
             catchMediaService.trackOfferPageEvent($stateParams.id);
+            educationModalService.showOfferViewedModal($stateParams.id);
         }
     ];
 

@@ -1,17 +1,24 @@
 (function() {
 
     var educationModalService = [
+        '$q',
         '$log',
         '$rootScope',
         '$uibModal',
+        'userService',
         'preferencesService',
-        function($log, $rootScope, $uibModal, preferencesService) {
+        function($q, $log, $rootScope, $uibModal, userService, preferencesService) {
 
-            function _launchFavoriteEducationModal(event, data) {
-
-                preferencesService.getShowEducationModalPreference(data.type)
+            function _launchEducationModal(type, id) {
+                $q.all(
+                        [
+                            userService.getLoggedInUser(),
+                            preferencesService.getShowEducationModalPreference(type)
+                        ]
+                    )
                     .then(
-                        function onSuccess(hide) {
+                        function onSuccess(data) {
+                            var hide = data[1];
                             if (hide === true || hide === 'true') {
                                 return;
                             }
@@ -23,9 +30,9 @@
                                 size: 'clix-lg',
                                 resolve: {
                                     itemData: {
-                                        loggedInUser: data.user,
-                                        type: data.type,
-                                        id: data.id
+                                        loggedInUser: data[0],
+                                        type: type,
+                                        id: id
                                     }
                                 }
                             });
@@ -52,6 +59,11 @@
                             );
                         }
                     );
+
+            }
+
+            function _launchFavoriteEducationModal(event, data) {
+                _launchEducationModal(data.type, data.id);
             }
 
             return {
@@ -60,6 +72,10 @@
 
                     $rootScope.$on('favorite.added', _launchFavoriteEducationModal);
                     $rootScope.$on('favorite.added.anonymous', _launchFavoriteEducationModal);
+                },
+
+                showOfferViewedModal: function(id) {
+                    _launchEducationModal('offer-view', id);
                 }
             }
         }

@@ -35,6 +35,7 @@
                         title = (isLoggedIn) ? 'Success!' : 'Saving to Favorites';
                         break;
 
+                    case 'offer-view':
                     case 'offer':
                         title = (isLoggedIn) ? 'Reward Points Earned' : 'Reward Points Missed!';
                         break;
@@ -62,6 +63,7 @@
                     case 'charity':
                         return brandsService.getCharityById(id);
 
+                    case 'offer-view':
                     case 'offer':
                         return offersService.getOfferById(id);
                 }

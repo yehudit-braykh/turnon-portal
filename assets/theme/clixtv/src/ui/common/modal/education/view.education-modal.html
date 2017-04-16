@@ -73,6 +73,19 @@
                 </clix-is-logged-in>
             </div>
 
+            <div ng-switch-when="offer-view">
+                <clix-is-logged-in>
+                    <logged-in>
+                        <div class="education-modal-icon" clix-trophy-indicator-icon></div>
+                        You received 50 Reward Points, just for visiting this offer. Save the offer to receive even more!
+                    </logged-in>
+                    <not-logged-in>
+                        <div class="education-modal-icon" clix-error-indicator-icon></div>
+                        You missed out on 50 reward points! To earn rewards for watching, saving, clicking and sharing, sign up for a free ClixTV account!
+                    </not-logged-in>
+                </clix-is-logged-in>
+            </div>
+
         </div>
         <div class="row education-modal-footer">
 
@@ -83,8 +96,8 @@
                     </logged-in>
                     <not-logged-in>
                         <div ng-switch="type">
-                            <div ng-switch-when="watchlist">
-
+                            <div ng-switch-when="offer-view">
+                                <clix-checkbox ng-model="showAgainModel" on-checkbox-change="onShowAgainChange(showAgainModel)" label-text="Don't show this type again"></clix-checkbox>
                             </div>
                         </div>
                     </not-logged-in>

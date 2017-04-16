@@ -8,7 +8,8 @@
                 autoPlay: '=',
                 videoId: '@',
                 onReady: '=?',
-                onError: '=?'
+                onError: '=?',
+                onComplete: '=?'
             }
         }
     };
