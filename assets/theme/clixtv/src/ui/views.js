@@ -427,7 +427,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/violator/view.header-points-violator.html',
-    "<div class=clix-header-points-violator clix-tooltip-trigger tooltip-id=rewards-points-tooltip-{{$id}}><clix-callout-button>{{points ? points : 0}}</clix-callout-button>Reward Points</div><clix-tooltip tooltip-id=rewards-points-tooltip-{{$id}}>ClixTV rewards users for watching videos, engaging with brands & offers, and sharing to social networks. Wherever you see the rewards points badge, points can be earned.<br><br><a clix-learn-more-modal-trigger>Learn More</a>.</clix-tooltip>"
+    "<div class=clix-header-points-violator ng-click=onRewardPointsPress() clix-tooltip-trigger tooltip-id=rewards-points-tooltip-{{$id}}><clix-callout-button>{{points ? points : 0}}</clix-callout-button>Reward Points</div><clix-tooltip tooltip-id=rewards-points-tooltip-{{$id}}>ClixTV rewards users for watching videos, engaging with brands & offers, and sharing to social networks. Wherever you see the rewards points badge, points can be earned.<br><br><a clix-learn-more-modal-trigger>Learn More</a>.</clix-tooltip>"
   );
 
 

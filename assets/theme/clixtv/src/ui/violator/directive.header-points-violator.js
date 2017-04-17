@@ -1,14 +1,30 @@
 (function() {
-    var headerPointsViolator = function() {
-        return {
-            restrict: 'AE',
-            transclude: true,
-            templateUrl: 'ui/violator/view.header-points-violator.html',
-            scope: {
-                points: '='
+    var headerPointsViolator = [
+        'userService',
+        '$state',
+        function(userService, $state) {
+            return {
+                restrict: 'AE',
+                transclude: true,
+                templateUrl: 'ui/violator/view.header-points-violator.html',
+                scope: {
+                    points: '='
+                },
+                link: function(scope) {
+                    scope.onRewardPointsPress = function() {
+                        userService.getLoggedInUser()
+                            .then(
+                                function onSuccess(data) {
+                                    if (data && data._id) {
+                                        $state.go('account', { section: 'rewards' });
+                                    }
+                                }
+                            )
+                    };
+                }
             }
         }
-    };
+        ];
 
     angular.module('clixtv')
         .directive('clixHeaderPointsViolator', headerPointsViolator);

@@ -14572,6 +14572,9 @@ button.close {
   padding: 20px 9px;
   position: relative;
 }
+.clix-notifications .notification-item:hover {
+  background-color: #404040;
+}
 .clix-notifications .notification-thumbnail {
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
