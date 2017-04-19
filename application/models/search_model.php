@@ -26,6 +26,8 @@ class Search_model extends Uvod_model {
 			$parameters[] = "byKeyword=".$tags;
 		$parameters[] = "page=".$page;
 		$parameters[]= "size=".$page_size;
+		$parameters[] = 'sort=title:1';
+
 
 		return $this->apiCall('charity/search/related', $parameters);
 	}

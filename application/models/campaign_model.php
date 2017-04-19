@@ -20,7 +20,8 @@ class Campaign_model extends Uvod_model {
 		$parameters[] = "size=".$page_size;
 		if($sort_field)
 			$parameters[] = 'sort='.$sort_field.':'.($descending?"-1":"1");
-
+		else
+			$parameters[] = 'sort=title:1';
 		if ($this->fastcache_model->get_cache("get_campaigns".$page."size".$page_size."order".$descending))
 			return $this->fastcache_model->get_cache("get_campaigns".$page."size".$page_size."order".$descending);
 		$data =  $this->rows($this->apiCall('campaign/related', $parameters)->entries);

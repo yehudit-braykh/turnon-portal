@@ -11,9 +11,8 @@ class Category extends REST_Controller{
     function get_all_categories_get(){
 		$page = $this->get('page');
 		$page_size = $this->get("page_size");
-		$sort_field = $this->get("sort_field");
-		$descending = $this->get("descending");
-		$categories = $this->category_model->get_all_categories($page, $page_size, $sort_field, $descending);
+
+		$categories = $this->category_model->get_all_categories($page, $page_size);
 		// debug($categories);
 		$this->response($categories, 200);
     }

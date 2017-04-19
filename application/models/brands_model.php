@@ -36,6 +36,8 @@ class Brands_model extends Uvod_model {
 		$parameters[] = "size=".$page_size;
 		if($sort_field)
 			$parameters[] = 'sort='.$sort_field.':'.($descending?"-1":"1");
+		else
+			$parameters[] = 'sort=title:1';
 
 		if ($this->fastcache_model->get_cache("get_brands_array".$page."size".$page_size."order".$descending))
 			return $this->fastcache_model->get_cache("get_brands_array".$page."size".$page_size."order".$descending);
@@ -48,7 +50,11 @@ class Brands_model extends Uvod_model {
 		$parameters = array();
 		$parameters[] = "page=".$page;
 		$parameters[] = "size=".$page_size;
-		$parameters[] = 'sort='.$sort_field.':'.($descending?'-1':'1');
+		if($sort_field)
+			$parameters[] = 'sort='.$sort_field.':'.($descending?"-1":"1");
+		else
+			$parameters[] = 'sort=added:-1';
+
 		if ($this->fastcache_model->get_cache("get_offers_array".$page."size".$page_size."order".$descending))
 			return $this->fastcache_model->get_cache("get_offers_array".$page."size".$page_size."order".$descending);
 		$data =  $this->rows($this->apiCall('offer/related', $parameters)->entries);
@@ -60,7 +66,10 @@ class Brands_model extends Uvod_model {
 		$parameters = array();
 		$parameters[] = "page=".$page;
 		$parameters[] = "size=".$page_size;
-		$parameters[] = 'sort='.$sort_field.':'.($descending?'-1':'1');
+		if($sort_field)
+			$parameters[] = 'sort='.$sort_field.':'.($descending?"-1":"1");
+		else
+			$parameters[] = 'sort=title:1';
 
 		if ($this->fastcache_model->get_cache("get_charities_array".$page."size".$page_size."order".$descending))
 			return $this->fastcache_model->get_cache("get_charities_array".$page."size".$page_size."order".$descending);
