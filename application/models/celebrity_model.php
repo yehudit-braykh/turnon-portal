@@ -17,7 +17,7 @@ class Celebrity_model extends Uvod_Model {
 
 		if ($this->fastcache_model->get_cache("get_all_celebrities".$page."size".$page_size."order".$descending))
 			return $this->fastcache_model->get_cache("get_all_celebrities".$page."size".$page_size."order".$descending);
-		$data =  $this->rows($this->apiCall('celebrity/related')->entries);
+		$data =  $this->rows($this->apiCall('celebrity/related', $parameters)->entries);
 		$this->fastcache_model->set_cache("get_all_celebrities".$page."size".$page_size."order".$descending,$data);
 		return $data;
     }
