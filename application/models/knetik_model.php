@@ -47,25 +47,30 @@ class Knetik_model extends CI_Model {
         //    debug(json_encode($fields));
         $response = $this->post('entitlements/', json_encode($fields), $token);
 
-        return $response["result"];
+        return $response;
     }
 
     public function get_balance() {
-        $profile = $this->account_model->get_profile($this->session->userdata("login_token"), $this->session->userdata("profile_id"))->content;
+        $profile = $this->account_model->get_profile($this->session->userdata("login_token"), $this->session->userdata("profile_id"));
         $token = $this->authenticate();
+
+        //debug($profile, $token);
         if(isset($profile->_id)){
             if(isset($profile->knetikId) && $profile->knetikId)
                 $knetikId = $profile->knetikId;
             else
                 $knetikId = $this->link_user($profile);
 
+                // debug($knetikId);
+
             $balance = $this->get('users/'.$knetikId.'/wallets/PTS', $token);
+            //debug($balance);
             if($balance["error"] == "invalid_token"){
                 $token = $this->authenticate(true);
                 $balance = $this->get('users/'.$knetikId.'/wallets/PTS', $token);
             }
 
-            return $balance["result"]["balance"];
+            return $balance["balance"];
         }
         return false;
     }
@@ -99,13 +104,13 @@ class Knetik_model extends CI_Model {
     public function get_catalog(){
         $token = $this->authenticate();
         $catalog=$this->get('store/items?filter_published=true&filter_displayable=true', $token);
-
+debug($catalog);
         if($catalog["error"] == "invalid_token"){
             $token = $this->authenticate(true);
             $catalog=$this->get('store/items?filter_published=true&filter_displayable=true', $token);
         }
-    //debug($catalog);
-        return $catalog["result"]["content"];
+        debug($catalog);
+        return $catalog["content"];
     }
 
     public function redeem_card($card, $points){
@@ -123,7 +128,7 @@ class Knetik_model extends CI_Model {
 
 
         $cart = $this->post('carts?owner='.$profile->knetikId.'&currency_code=PTS', null, $token);
-        return $cart["result"];
+        return $cart;
     }
 
     private function add_item_to_cart($cart_id, $item){
@@ -146,7 +151,7 @@ class Knetik_model extends CI_Model {
         $data->cart_guid = $cart_id;
 
         $invoice = $this->post('invoices',json_encode($data), $token);
-        return $invoice["result"][0]["id"];
+        return $invoice[0]["id"];
     }
 
     private function complete_invoice($invoice_id){
@@ -157,30 +162,51 @@ class Knetik_model extends CI_Model {
 
 
         $invoice = $this->put('invoices/'.$invoice_id.'/payment-status',json_encode($data), $token);
-        return $item["result"];
+        return $item;
+    }
+
+    private function get_user_by_email($email){
+
+        // $fields = new stdClass();
+        $token = $this->authenticate();
+        // $fields->filter_email = $email;
+        // debug($email);
+        $result=$this->get("users?filter_email=".$email, $token);
+        if($result["error"] == "invalid_token"){
+            $token = $this->authenticate(true);
+            $result=$this->get('users?filter_email='.$email, $token);
+        }
+        if(!$result["code"] && $result["number_of_elements"]>0 ){
+            $user_id= $result["content"][0]["id"];
+        }
+        return $user_id;
+
     }
 
     private function link_user($profile){
 
-        $fields = new stdClass();
-        $token = $this->authenticate();
-        $fields->email = $profile->email;
-        $fields->first_name = $profile->firstName;
-        $fields->last_name = $profile->firstName;
-        $fields->username = $profile->firstName." ".$profile->lastName;
-        $fields->password = $profile->_id;
-        $fields->currency_code ="PTS";
+        $user_id = $this->get_user_by_email($profile->email);
+        if(!$user_id){
+            $fields = new stdClass();
+            $token = $this->authenticate();
+            $fields->email = $profile->email;
+            $fields->first_name = $profile->firstName;
+            $fields->last_name = $profile->firstName;
+            $fields->username = $profile->firstName." ".$profile->lastName;
+            $fields->password = $profile->_id;
+            $fields->currency_code ="PTS";
 
-        $result=$this->post('users', json_encode($fields), $token);
-        if($catalog["error"] == "invalid_token"){
-            $token = $this->authenticate(true);
             $result=$this->post('users', json_encode($fields), $token);
+            if($result["error"] == "invalid_token"){
+                $token = $this->authenticate(true);
+                $result=$this->post('users', json_encode($fields), $token);
+            }
+            if(!$result->code){
+                $user_id= $resul->result->id;
+            }
         }
+        $this->account_model->update_profile($profile->_id,array('knetikId' => (string)$user_id));
 
-        if(!$result->code){
-            $user_id= $resul->result->id;
-            $this->account_model->update_profile($profile->_id,array('knetikId' => $user_id));
-        }
         return $user_id;
     }
 
@@ -237,7 +263,7 @@ class Knetik_model extends CI_Model {
     }
 
     private function get($url, $token, $use_token = true){
-        //debug($url, $token, $use_token);
+        // debug($url, $token, $use_token);
         $ch = curl_init();
         //debug($ch);
         curl_setopt($ch, CURLOPT_URL, $this->knetik_url."/".$url);

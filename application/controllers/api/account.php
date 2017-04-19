@@ -159,24 +159,11 @@ class Account extends REST_Controller{
 		$this->response($this->account_model->remove_favorite($id, "offersSaved"),200);
 	}
 
-	function subscripe_post(){
-		$data = $this->post();
-		$this->response($this->account_model->subscripe($data),200);
-	}
-
 	function send_password_email_get(){
 		$email = $this->get('email');
 		$this->response($this->account_model->send_password_email($email),200);
 	}
 
-	public function get_subscriptions_get() {
-		$this->response($this->account_model->get_subscriptions(),200);
-	}
-
-	function get_billing_information_get(){
-		$id = $this->get('id');
-		$this->response($this->account_model->get_billing_information($id),200);
-	}
 
 
 }

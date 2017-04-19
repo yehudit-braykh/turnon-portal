@@ -30,72 +30,42 @@ class Brands_model extends Uvod_model {
 		return $data;
 	}
 
-    public function get_list_brands(){
-		if ($this->fastcache_model->get_cache("get_list_brands"))
-			return $this->fastcache_model->get_cache("get_list_brands");
-		$data =  $this->rows($this->apiCall('brand/related')->entries);
-		$this->fastcache_model->set_cache("get_list_brands",$data);
-		return $data;
-    }
+	function get_brands_array ($page = 0, $page_size = 20, $sort_field = null, $descending = false) {
+		$parameters = array();
+		$parameters[] = "page=".$page;
+		$parameters[] = "size=".$page_size;
+		if($sort_field)
+			$parameters[] = 'sort='.$sort_field.':'.($descending?"-1":"1");
 
-	function get_brands_object () {
-
-		if ($this->fastcache_model->get_cache("get_brands_object"))
-			return $this->fastcache_model->get_cache("get_brands_object");
-
-		$data = $this->get_brands_array();
-
-		$charities = array();
-		foreach ($data as $row) {
-			$charities[$row["_id"]] = $row;
-		}
-
-		$this->fastcache_model->set_cache("get_brands_object",$charities);
-		return $data;
-
-		return $charities;
-	}
-
-	function get_brands_array () {
-
-		if ($this->fastcache_model->get_cache("get_brands_array"))
-			return $this->fastcache_model->get_cache("get_brands_array");
-		$data =  $this->rows($this->apiCall('brand/related')->entries);
-		$this->fastcache_model->set_cache("get_brands_array",$data);
+		if ($this->fastcache_model->get_cache("get_brands_array".$page."size".$page_size."order".$descending))
+			return $this->fastcache_model->get_cache("get_brands_array".$page."size".$page_size."order".$descending);
+		$data =  $this->rows($this->apiCall('brand/related', $parameters)->entries);
+		$this->fastcache_model->set_cache("get_brands_array".$page."size".$page_size."order".$descending,$data);
 		return $data;
 	}
 
-	function get_offers_array () {
-		if ($this->fastcache_model->get_cache("get_offers_array"))
-			return $this->fastcache_model->get_cache("get_offers_array");
-		$data =  $this->rows($this->apiCall('offer/related')->entries);
-		$this->fastcache_model->set_cache("get_offers_array",$data);
+	function get_offers_array ($page = 0, $page_size = 20, $sort_field = null, $descending = false) {
+		$parameters = array();
+		$parameters[] = "page=".$page;
+		$parameters[] = "size=".$page_size;
+		$parameters[] = 'sort='.$sort_field.':'.($descending?'-1':'1');
+		if ($this->fastcache_model->get_cache("get_offers_array".$page."size".$page_size."order".$descending))
+			return $this->fastcache_model->get_cache("get_offers_array".$page."size".$page_size."order".$descending);
+		$data =  $this->rows($this->apiCall('offer/related', $parameters)->entries);
+		$this->fastcache_model->set_cache("get_offers_array".$page."size".$page_size."order".$descending,$data);
 		return $data;
 	}
 
-	function get_charities_object () {
+	function get_charities_array ($page = 0, $page_size = 20, $sort_field = null, $descending = false) {
+		$parameters = array();
+		$parameters[] = "page=".$page;
+		$parameters[] = "size=".$page_size;
+		$parameters[] = 'sort='.$sort_field.':'.($descending?'-1':'1');
 
-		if ($this->fastcache_model->get_cache("get_charities_object"))
-			return $this->fastcache_model->get_cache("get_charities_object");
-
-
-		$data = $this->get_charities_array();
-
-		$charities = array();
-		foreach ($data as $row) {
-			$charities[$row["_id"]] = $row;
-		}
-
-		$this->fastcache_model->set_cache("get_charities_object",$charities);
-		return $charities;
-    }
-
-	function get_charities_array () {
-
-		if ($this->fastcache_model->get_cache("get_charities_array"))
-			return $this->fastcache_model->get_cache("get_charities_array");
-		$data =  $this->rows($this->apiCall('charity/related')->entries);
-		$this->fastcache_model->set_cache("get_charities_array",$data);
+		if ($this->fastcache_model->get_cache("get_charities_array".$page."size".$page_size."order".$descending))
+			return $this->fastcache_model->get_cache("get_charities_array".$page."size".$page_size."order".$descending);
+		$data =  $this->rows($this->apiCall('charity/related', $parameters)->entries);
+		$this->fastcache_model->set_cache("get_charities_array".$page."size".$page_size."order".$descending,$data);
 		return $data;
 	}
 

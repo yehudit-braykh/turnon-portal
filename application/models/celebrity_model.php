@@ -6,11 +6,18 @@ class Celebrity_model extends Uvod_Model {
 		$this->load->model('fastcache_model');
 	}
 
-	function get_all_celebrities(){
-		if ($this->fastcache_model->get_cache("get_all_celebrities"))
-			return $this->fastcache_model->get_cache("get_all_celebrities");
+	function get_all_celebrities($page = 0, $page_size = 20, $sort_field = null, $descending = false){
+		$parameters = array();
+		$parameters[] = "page=".$page;
+		$parameters[] = "size=".$page_size;
+		if($sort_field)
+			$parameters[] = 'sort='.$sort_field.':'.($descending?"-1":"1");
+
+
+		if ($this->fastcache_model->get_cache("get_all_celebrities".$page."size".$page_size."order".$descending))
+			return $this->fastcache_model->get_cache("get_all_celebrities".$page."size".$page_size."order".$descending);
 		$data =  $this->rows($this->apiCall('celebrity/related')->entries);
-		$this->fastcache_model->set_cache("get_all_celebrities",$data);
+		$this->fastcache_model->set_cache("get_all_celebrities".$page."size".$page_size."order".$descending,$data);
 		return $data;
     }
 

@@ -8,7 +8,6 @@ class Account_model extends Uvod_model {
         $this->load->helper('uvod_api');
         $this->load->library('HybridAuthLib');
         $this->load->library('session');
-        $this->load->model('vod_item_model');
     }
 
     public function login($user, $pass, $disabled = false) {
@@ -153,16 +152,16 @@ class Account_model extends Uvod_model {
     }
 
     public function update_profile($id ,$data) {
-        // debug($data);
+        //  debug($id, $data);
         if(count($data)>1){
             foreach($data as $field=>$value){
                 if(!$value || $value == '' || $value==null)
                     unset($data[$field]);
             }
         }
-        //    debug($this->session->userdata('login_token'),$id);
+            // debug($this->session->userdata('login_token'),$id);
         $response = $this->update_profile_data($this->session->userdata('login_token'), $id, $data);
-             //debug($response);
+            //  debug($response);
         return $response;
     }
 
@@ -298,14 +297,6 @@ class Account_model extends Uvod_model {
             return false;
     }
 
-
-
-    public function save_merchant_info($user_token, $payment_token, $customer_id) {
-        return apiPost("commerce/save_merchant_info", array("user_token" => $user_token,
-          "payment_token" => $payment_token,
-          "customer_id" => $customer_id));
-    }
-
     public function send_password_email($email, $phone=null) {
 
         $filters = array();
@@ -365,48 +356,6 @@ class Account_model extends Uvod_model {
         }
     }
 
-    public function activate_account($hash, $email) {
-
-        return apiPost("user/activate_account", array("hash" => $hash, "email" => $email));
-    }
-
-    public function subscription_checkout($token, $nonce, $first_name, $last_name, $email, $country, $pi_month, $pi_year, $pi_type, $pi_number, $pi_security_code, $subscription_id, $auto_renew) {
-
-        return apiPost("commerce/subscription_checkout", array('token' => $token, 'nonce' => $nonce, 'first_name' => $first_name, 'last_name' => $last_name,
-          'email' => $email, 'country' => $country, 'pi_month' => $pi_month, 'pi_year' => $pi_year, 'pi_type' => $pi_type, 'pi_number' => $pi_number,
-          'pi_security_code' => $pi_security_code, 'subscription_id' => $subscription_id, 'auto_renew' => $auto_renew));
-    }
-
-    public function get_contract($id, $user_active = null) {
-
-        return apiPost("commerce/get_contract", array('id' => $id, 'user_active' => $user_active));
-    }
-
-    public function cancel_subscription($id) {
-
-        return apiPost("commerce/cancel_subscription", array('id' => $id));
-    }
-
-    public function update_subscription($id, $auto_renew) {
-
-        return apiPost("commerce/update_contract", array('id' => $id, 'auto_renew' => $auto_renew));
-    }
-
-    public function get_subscriptions($id = null) {
-
-        return apiPost("commerce/get_subscriptions", array('id' => $id));
-    }
-
-    public function get_billing_information($id) {
-
-        return apiPost("commerce/get_billing_information", array('id' => $id));
-    }
-
-    public function update_billing_information($id, $nonce) {
-
-        return apiPost("commerce/update_billing_information", array('id' => $id, 'nonce' => $nonce));
-    }
-
     public function exists_user_email($email) {
 
         $ret = false;
@@ -417,18 +366,6 @@ class Account_model extends Uvod_model {
     public function get_profile_by_email($email) {
         return apiPost("user/get_profile_by_email", array('email' => $email));
     }
-
-    function subscripe($data){
-		$data = array();
-        $profile = $this->get_profile($this->session->userdata('login_token'), $this->session->userdata('profile_id'));
-        $data['token'] = $this->session->userdata('login_token');
-
-        $data['first_name'] = $profile->firstName;
-        $data['last_name'] = $profile->lastName;
-        $data['email'] = $profile->email;
-
-        return apiPost("commerce/subscription_checkout", $data);
-	}
 
     private function randomPassword() {
 	    $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#.';

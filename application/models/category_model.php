@@ -6,12 +6,15 @@ class category_model extends Uvod_model {
 		$this->load->model('fastcache_model');
 	}
 
-	public function get_all_categories() {
-
-		if ($this->fastcache_model->get_cache("get_all_categories"))
-			return $this->fastcache_model->get_cache("get_all_categories");
+	public function get_all_categories($page = 0, $page_size = 20, $sort_field = null, $descending = false) {
+		$parameters = array();
+		$parameters[] = "page=".$page;
+		$parameters[] = "size=".$page_size;
+		$parameters[] = 'sort='.$sort_field.':'.($descending?'-1':'1');
+		if ($this->fastcache_model->get_cache("get_all_categories".$page."size".$page_size."order".$descending))
+			return $this->fastcache_model->get_cache("get_all_categories".$page."size".$page_size."order".$descending);
 		$data =  $this->categories_rows($this->apiCall('category/related')->entries);
-		$this->fastcache_model->set_cache("get_all_categories",$data);
+		$this->fastcache_model->set_cache("get_all_categories".$page."size".$page_size."order".$descending,$data);
 		return $data;
     }
 
