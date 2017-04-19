@@ -53,7 +53,7 @@ class Brands_model extends Uvod_model {
 		if($sort_field)
 			$parameters[] = 'sort='.$sort_field.':'.($descending?"-1":"1");
 		else
-			$parameters[] = 'sort=added:-1';
+			$parameters[] = 'sort=expirationDate:-1';
 
 		if ($this->fastcache_model->get_cache("get_offers_array".$page."size".$page_size."order".$descending))
 			return $this->fastcache_model->get_cache("get_offers_array".$page."size".$page_size."order".$descending);
