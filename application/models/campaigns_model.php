@@ -1,5 +1,5 @@
 <?php
-class Campaign_model extends Uvod_model {
+class Campaigns_model extends Uvod_model {
 
 	public function __construct(){
 		$this->load->helper('uvod_api');
@@ -9,7 +9,7 @@ class Campaign_model extends Uvod_model {
 	public function get_campaign_by_id($id){
 		if ($this->fastcache_model->get_cache("get_campaign_by_id".$id))
 			return $this->fastcache_model->get_cache("get_campaign_by_id".$id);
-		$data =  $this->campaings_rows($this->apiCall('campaign/'.$id.'/related')->entries[0])[0];
+		$data =  $this->campaing_rows($this->apiCall('campaign/'.$id.'/related')->entries[0])[0];
 		$this->fastcache_model->set_cache("get_campaign_by_id".$id,$data);
 		return $data;
 	}
@@ -24,12 +24,12 @@ class Campaign_model extends Uvod_model {
 			$parameters[] = 'sort=title:1';
 		if ($this->fastcache_model->get_cache("get_campaigns".$page."size".$page_size."order".$descending))
 			return $this->fastcache_model->get_cache("get_campaigns".$page."size".$page_size."order".$descending);
-		$data =  $this->rows($this->apiCall('campaign/related', $parameters)->entries);
+		$data =  $this->campaings_rows($this->apiCall('campaign/related', $parameters)->entries);
 		$this->fastcache_model->set_cache("get_campaigns".$page."size".$page_size."order".$descending,$data);
 		return $data;
 	}
 
-	function campaings_rows($items){
+	function campaing_rows($items){
 		foreach ($items as &$item) {
 			// $item = (array)$item;
 						// debug($item);
@@ -72,6 +72,15 @@ class Campaign_model extends Uvod_model {
 				$item->brand = $this->rows($brand)[0];
 			}
 
+			if($item->offers)
+				$item->offers = $this->rows($item->offers);
+		}
+
+		return $this->rows($items);
+	}
+
+	function campaings_rows($items){
+		foreach ($items as &$item) {
 			if($item->offers)
 				$item->offers = $this->rows($item->offers);
 		}
