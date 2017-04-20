@@ -9,7 +9,7 @@ class Campaign_model extends Uvod_model {
 	public function get_campaign_by_id($id){
 		if ($this->fastcache_model->get_cache("get_campaign_by_id".$id))
 			return $this->fastcache_model->get_cache("get_campaign_by_id".$id);
-		$data =  $this->brands_rows($this->apiCall('campaign/'.$id.'/related')->entries);
+		$data =  $this->campaings_rows($this->apiCall('campaign/'.$id.'/related')->entries[0])[0];
 		$this->fastcache_model->set_cache("get_campaign_by_id".$id,$data);
 		return $data;
 	}
@@ -29,9 +29,10 @@ class Campaign_model extends Uvod_model {
 		return $data;
 	}
 
-	function brands_rows($items){
+	function campaings_rows($items){
 		foreach ($items as &$item) {
-			//debug($cat);
+			// $item = (array)$item;
+						// debug($item);
 			if($item->celebrities){
 				foreach ($item->celebrities as &$celeb) {
 					foreach ($celeb->videos as &$video) {
@@ -43,6 +44,7 @@ class Campaign_model extends Uvod_model {
 						array_push($data, $video->charity);
 						$video->charity = $this->rows($data)[0];
 						$video->brands= $this->rows($video->brands);
+						$video->campaigns= $this->rows($video->campaigns);
 					}
 					$celeb->videos = $this->rows($celeb->videos);
 				}
@@ -59,8 +61,15 @@ class Campaign_model extends Uvod_model {
 					array_push($data, $video->charity);
 					$video->charity = $this->rows($data)[0];
 					$video->brands= $this->rows($video->brands);
+					$video->campaigns= $this->rows($video->campaigns);
 				}
 				$item->videos = $this->rows($item->videos);
+			}
+
+			if($item->brand){
+				$brand = array();
+				array_push($brand, $item->brand);
+				$item->brand = $this->rows($brand)[0];
 			}
 
 			if($item->offers)
