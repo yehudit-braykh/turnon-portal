@@ -15,6 +15,12 @@ class Video_model extends Uvod_model {
 		return $data;
 	}
 
+	public function add_view($id){
+
+		$data =  $this->apiPut('episode/'.$id.'/views', array());
+		return $data;
+	}
+
 	function videos_rows($items){
 		foreach ($items as &$item) {
 			//debug($cat);

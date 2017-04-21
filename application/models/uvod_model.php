@@ -64,7 +64,11 @@ class Uvod_model extends CI_Model {
             $method = $custom_method;
         }
 
-        $curl = curl_init($url);
+        if (!$login || ($login && $login !== "false")) {
+            $token = $this->login_admin();
+        }
+
+        $curl = curl_init(UVOD_PLATFORM_API_URL.$url.'?token='.$token);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Content-Length: ' . strlen($payload)));
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
@@ -100,9 +104,13 @@ class Uvod_model extends CI_Model {
         return $json_obj;
     }
 
-    public function apiPut($url, $payload) {
+    public function apiPut($url, $payload ) {
 
-        $curl = curl_init($url);
+        if (!$login || ($login && $login !== "false")) {
+            $token = $this->login_admin();
+        }
+
+        $curl = curl_init(UVOD_PLATFORM_API_URL.$url.'?token='.$token);
 
         $payload_str = json_encode($payload);
 
@@ -120,9 +128,9 @@ class Uvod_model extends CI_Model {
         }
 
         $json_obj = json_decode($curl_response);
-
+        // debug($json_obj);
         // checks service response
-        if (isset($json_obj->isException) && ($json_obj->isException == true || $json_obj->isException === "true")) {
+        if (isset($json_obj->isException) && ($json_obj->isException == true || $json_obj->isException === "true" || $json_obj->isException === "1")) {
             if($json_obj->responseCode == 403){
                 $this->login_admin(true);
                 unset($parameters[array_search("token=" . $token,$parameters)]);
