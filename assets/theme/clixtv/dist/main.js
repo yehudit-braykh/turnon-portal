@@ -493,7 +493,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/header/view.header-search-icon.html',
-    "<div class=search-bar ng-class=\"{'inactive': !searchBarVisible}\" clix-click-anywhere-else=bodyClicked><div class=search-bar-background><a href=# class=search-icon-container ng-click=searchIconClicked($event)><i class=icon-search-icon-bottom-nav></i> </a><input type=text placeholder=Search...></div></div>"
+    "<div class=navigation-search-container><div class=search-icon-container><i class=\"search-icon icon-search-icon-bottom-nav\"></i></div><div class=search-results-container><div class=search-input-field-container><input class=search-input-field type=text placeholder=Search ng-model=term ng-change=onTermChange()></div><div class=search-results></div></div></div>"
   );
 
 
@@ -4239,20 +4239,29 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$scope',
         '$window',
         '$timeout',
-        function($scope, $window, $timeout) {
+        'searchService',
+        function($scope, $window, $timeout, searchService) {
 
-            $scope.searchBarVisible = false;
+            $scope.term = '';
 
-            $scope.searchIconClicked = function($event) {
-                $event.preventDefault();
-                $scope.searchBarVisible = !$scope.searchBarVisible;
-            };
+            function _hideSearchResults() {
 
-            $scope.bodyClicked = function() {
-                $scope.searchBarVisible = false;
-                $timeout(function() {
-                    $scope.$apply();
-                });
+            }
+
+            function _performSearch() {
+                searchService.getSearchResults($scope.term, 0, 10)
+                    .then(
+                        function onSuccess(data) {
+                            console.log(data);
+                        }
+                    );
+            }
+
+            $scope.onTermChange = function() {
+                if ($scope.term.length < 3) {
+                    return _hideSearchResults();
+                }
+                _performSearch();
             };
         }
     ];
@@ -5894,6 +5903,28 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         ]);
 }());
 (function() {
+    angular
+        .module('clixtv')
+        .factory('SearchResultsModel', [
+            'BrandListModel',
+            'CelebrityListModel',
+            'SeriesListModel',
+            'VideoListModel',
+            'OfferListModel',
+            'CharityListModel',
+            function(BrandListModel, CelebrityListModel, SeriesListModel, VideoListModel, OfferListModel, CharityListModel) {
+                return function(data) {
+                    this.brands = new BrandListModel(data.brands);
+                    this.celebrities = new CelebrityListModel(data.celebrities);
+                    this.series = new SeriesListModel(data.series);
+                    this.videos = new VideoListModel(data.videos);
+                    this.offers = new OfferListModel(data.offers);
+                    this.charities = new CharityListModel(data.charities);
+                }
+            }
+        ]);
+}());
+(function() {
 
     angular
         .module('clixtv')
@@ -6607,6 +6638,30 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
     angular
         .module('clixtv')
         .factory('preferencesService', preferencesService);
+}());
+(function() {
+
+    var searchService = [
+        '$http',
+        'SearchResultsModel',
+        function($http, SearchResultsModel) {
+            return {
+
+                getSearchResults: function(term, offset, limit) {
+                    return $http.get('/api/search?keyword=' + term)
+                        .then(
+                            function onSuccess(data) {
+                                return new SearchResultsModel(data.data);
+                            }
+                        );
+                }
+            }
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .factory('searchService', searchService);
 }());
 (function() {
 

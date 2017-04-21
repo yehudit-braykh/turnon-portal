@@ -372,7 +372,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/header/view.header-search-icon.html',
-    "<div class=search-bar ng-class=\"{'inactive': !searchBarVisible}\" clix-click-anywhere-else=bodyClicked><div class=search-bar-background><a href=# class=search-icon-container ng-click=searchIconClicked($event)><i class=icon-search-icon-bottom-nav></i> </a><input type=text placeholder=Search...></div></div>"
+    "<div class=navigation-search-container><div class=search-icon-container><i class=\"search-icon icon-search-icon-bottom-nav\"></i></div><div class=search-results-container><div class=search-input-field-container><input class=search-input-field type=text placeholder=Search ng-model=term ng-change=onTermChange()></div><div class=search-results></div></div></div>"
   );
 
 
