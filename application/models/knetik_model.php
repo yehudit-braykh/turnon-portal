@@ -1,7 +1,5 @@
 <?php
 
-require_once 'Mandrill.php';
-
 
 
 class Knetik_model extends CI_Model {
@@ -54,14 +52,11 @@ class Knetik_model extends CI_Model {
         $profile = $this->account_model->get_profile($this->session->userdata("login_token"), $this->session->userdata("profile_id"));
         $token = $this->authenticate();
 
-        //debug($profile, $token);
         if(isset($profile->_id)){
             if(isset($profile->knetikId) && $profile->knetikId)
                 $knetikId = $profile->knetikId;
             else
                 $knetikId = $this->link_user($profile);
-
-                // debug($knetikId);
 
             $balance = $this->get('users/'.$knetikId.'/wallets/PTS', $token);
             //debug($balance);
@@ -74,12 +69,35 @@ class Knetik_model extends CI_Model {
         }
         return false;
     }
-
-    public function save_activity($data) {
-        $profile = $this->account_model->get_profile($this->session->userdata("login_token"), $this->session->userdata("profile_id"))->content;
-
+//GET /users/{user_id}/wallets/{currency_code}/transactions
+    public function get_user_objects(){
+        $profile = $this->account_model->get_profile($this->session->userdata("login_token"), $this->session->userdata("profile_id"));
         $token = $this->authenticate();
 
+        if(isset($profile->_id)){
+            if(isset($profile->knetikId) && $profile->knetikId)
+                $knetikId = $profile->knetikId;
+            else
+                $knetikId = $this->link_user($profile);
+
+            $response = $this->get('users/'.$knetikId.'/inventory', $token);
+            //debug($balance);
+            if($response["error"] == "invalid_token"){
+                $token = $this->authenticate(true);
+                $response = $this->get('users/'.$knetikId.'/wallets/PTS/transactions', $token);
+            }
+            debug($response);
+
+            return $balance["balance"];
+        }
+        return false;
+    }
+
+    public function save_activity($id, $points, $wallets) {
+        $profile = $this->account_model->get_profile($this->session->userdata("login_token"), $this->session->userdata("profile_id"));
+        // debug($id, $points, $wallets);
+        $token = $this->authenticate();
+        //debug($profile);
         if(isset($profile->_id)){
             if(isset($profile->knetikId) && $profile->knetikId)
                     $knetikId = $profile->knetikId;
@@ -87,16 +105,15 @@ class Knetik_model extends CI_Model {
                 $knetikId = $this->link_user($profile);
 
             $fields = new stdClass();
-            $fields->entitlement_id = 4; /*$data->entitlement_id*/;
+            $fields->entitlement_id = $id;
 
             $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
-            if($response->error){
+            if($response["error"]){
                 $token = $this->authenticate(true);
                 $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
             }
 
-            if(!$response->code)
-                return true;
+            return $response;
         }
         return false;
     }
@@ -104,12 +121,12 @@ class Knetik_model extends CI_Model {
     public function get_catalog(){
         $token = $this->authenticate();
         $catalog=$this->get('store/items?filter_published=true&filter_displayable=true', $token);
-debug($catalog);
+        //debug($catalog);
         if($catalog["error"] == "invalid_token"){
             $token = $this->authenticate(true);
             $catalog=$this->get('store/items?filter_published=true&filter_displayable=true', $token);
         }
-        debug($catalog);
+        //debug($catalog);
         return $catalog["content"];
     }
 

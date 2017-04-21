@@ -11,9 +11,17 @@ class Knetik extends REST_Controller{
          return $this->response($this->knetik_model->get_balance(),200);
     }
 
+	function get_used_objects_get(){
+         return $this->response($this->knetik_model->get_user_objects(),200);
+    }
+
     function save_activity_post(){
-        $data = $this->post();
-        return $this->response($this->knetik_model->save_activity($data),200);
+		$id = $this->post('id');
+		$points = $this->post('points');
+		$wallets = $this->post('wallets');
+		if(!$id || !$points || !$wallets)
+			$this->response("id,points,wallets fields are mandatory", 400);
+        return $this->response($this->knetik_model->save_activity($id, $points, $wallets),200);
     }
 
 	function get_catalog_get(){
