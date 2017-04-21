@@ -18,7 +18,20 @@
         }
     };
 
+    var headerSearchRow = function() {
+        return {
+            restrict: 'AE',
+            transclude: {
+                logoContainer: 'logoContainer',
+                titleText: 'titleText',
+                subtitleText: 'subtitleText'
+            },
+            templateUrl: 'ui/header/view.header-search-icon-row.html'
+        }
+    };
+
     angular.module('clixtv')
         .directive('clixHeaderBar', header)
-        .directive('clixHeaderSearchIcon', headerSearchIcon);
+        .directive('clixHeaderSearchIcon', headerSearchIcon)
+        .directive('clixHeaderSearchRow', headerSearchRow);
 }());

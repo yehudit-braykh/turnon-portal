@@ -492,8 +492,13 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('ui/header/view.header-search-icon-row.html',
+    "<div class=header-search-row><div class=search-image-container ng-transclude=logoContainer></div><div class=search-content-container><div class=search-title-text ng-transclude=titleText></div><div class=search-subtitle-text ng-transclude=subtitleText></div></div></div>"
+  );
+
+
   $templateCache.put('ui/header/view.header-search-icon.html',
-    "<div class=navigation-search-container><div class=search-icon-container><i class=\"search-icon icon-search-icon-bottom-nav\"></i></div><div class=search-results-container><div class=search-input-field-container><input class=search-input-field type=text placeholder=Search ng-model=term ng-change=onTermChange()></div><div class=search-results></div></div></div>"
+    "<div class=navigation-search-container ng-class=\"{'active': searchVisible}\"><div class=search-icon-container ng-click=onSearchIconPress() clix-click-anywhere-else=bodyClicked><i class=\"search-icon icon-search-icon-bottom-nav\"></i></div><div class=search-results-container><div class=search-input-field-container><input class=search-input-field type=text placeholder=Search ng-model=term ng-change=onTermChange()></div><div class=search-results><div class=search-results-loader ng-if=loading><clix-loader size=small></clix-loader></div><div ng-if=results><div class=search-results-block ng-if=\"results.celebrities && results.celebrities.celebrities && results.celebrities.celebrities.length > 0\"><div class=search-results-title>Stars</div><clix-header-search-row ng-repeat=\"celebrity in results.celebrities.celebrities\" ui-sref=\"star({ id: celebrity.id })\"><logo-container><div class=search-results-circle-image style=\"background-image: url('{{celebrity.thumbnail}}')\"></div></logo-container><title-text>{{celebrity.name}}</title-text><subtitle-text>Star</subtitle-text></clix-header-search-row></div><div class=search-results-block ng-if=\"results.series && results.series.series && results.series.series.length > 0\"><div class=search-results-title>Series</div><clix-header-search-row ng-repeat=\"series in results.series.series\"><logo-container><div class=search-results-circle-image style=\"background-image: url('{{series.thumbnail}}')\"></div></logo-container><title-text>{{series.title}}</title-text><subtitle-text>Series</subtitle-text></clix-header-search-row></div><div class=search-results-block ng-if=\"results.brands && results.brands.brands && results.brands.brands.length > 0\"><div class=search-results-title>Brands Related To {{term}}</div><clix-header-search-row ng-repeat=\"brand in results.brands.brands\" ui-sref=\"brand({ id: brand.id })\"><logo-container><div class=search-results-circle-image style=\"background-image: url('{{brand.thumbnail}}')\"></div></logo-container><title-text>{{brand.title}}</title-text><subtitle-text>Brand</subtitle-text></clix-header-search-row></div><div class=search-results-block ng-if=\"results.charities && results.charities.charities && results.charities.charities.length > 0\"><div class=search-results-title>Charities Related To {{term}}</div><clix-header-search-row ng-repeat=\"charity in results.charities.charities\" ui-sref=\"charity({ id: charity.id })\"><logo-container><div class=search-results-circle-image style=\"background-image: url('{{charity.thumbnail}}')\"></div></logo-container><title-text>{{charity.title}}</title-text><subtitle-text>Charity</subtitle-text></clix-header-search-row></div><div class=search-results-block ng-if=\"results.videos && results.videos.videos && results.videos.videos.length > 0\"><div class=search-results-title>Videos</div><clix-header-search-row ng-repeat=\"video in results.videos.videos\" ui-sref=\"video({ id: video.id })\"><logo-container><div class=search-results-circle-image style=\"background-image: url('{{video.thumbnail}}')\"></div></logo-container><title-text>{{video.title}}</title-text><subtitle-text>Video</subtitle-text></clix-header-search-row></div></div></div></div></div>"
   );
 
 
@@ -4242,26 +4247,56 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         'searchService',
         function($scope, $window, $timeout, searchService) {
 
+            var searchTimeout;
+
             $scope.term = '';
 
-            function _hideSearchResults() {
+            $scope.searchVisible = false;
 
+            function _hideSearchResults() {
+                $scope.loading = false;
+                $scope.results = undefined;
             }
 
             function _performSearch() {
-                searchService.getSearchResults($scope.term, 0, 10)
-                    .then(
-                        function onSuccess(data) {
-                            console.log(data);
-                        }
-                    );
+                $scope.loading = true;
+                $scope.results = undefined;
+
+                if (searchTimeout) {
+                    $timeout.cancel(searchTimeout);
+                }
+
+                searchTimeout = $timeout(function() {
+                    searchService.getSearchResults($scope.term, 0, 10)
+                        .then(
+                            function onSuccess(data) {
+                                $scope.results = data;
+                            }
+                        )
+                        .finally(
+                            function onFinally() {
+                                $scope.loading = false;
+                            }
+                        )
+                }, 250);
             }
 
             $scope.onTermChange = function() {
-                if ($scope.term.length < 3) {
+                $scope.searchVisible = true;
+                if ($scope.term.length < 2) {
                     return _hideSearchResults();
                 }
                 _performSearch();
+            };
+
+            $scope.bodyClicked = function(event) {
+                $scope.term = '';
+                $scope.searchVisible = false;
+                _hideSearchResults();
+            };
+
+            $scope.onSearchIconPress = function() {
+                $scope.searchVisible = !$scope.searchVisible;
             };
         }
     ];
@@ -4406,9 +4441,22 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         }
     };
 
+    var headerSearchRow = function() {
+        return {
+            restrict: 'AE',
+            transclude: {
+                logoContainer: 'logoContainer',
+                titleText: 'titleText',
+                subtitleText: 'subtitleText'
+            },
+            templateUrl: 'ui/header/view.header-search-icon-row.html'
+        }
+    };
+
     angular.module('clixtv')
         .directive('clixHeaderBar', header)
-        .directive('clixHeaderSearchIcon', headerSearchIcon);
+        .directive('clixHeaderSearchIcon', headerSearchIcon)
+        .directive('clixHeaderSearchRow', headerSearchRow);
 }());
 (function() {
 

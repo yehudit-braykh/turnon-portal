@@ -7,26 +7,56 @@
         'searchService',
         function($scope, $window, $timeout, searchService) {
 
+            var searchTimeout;
+
             $scope.term = '';
 
-            function _hideSearchResults() {
+            $scope.searchVisible = false;
 
+            function _hideSearchResults() {
+                $scope.loading = false;
+                $scope.results = undefined;
             }
 
             function _performSearch() {
-                searchService.getSearchResults($scope.term, 0, 10)
-                    .then(
-                        function onSuccess(data) {
-                            console.log(data);
-                        }
-                    );
+                $scope.loading = true;
+                $scope.results = undefined;
+
+                if (searchTimeout) {
+                    $timeout.cancel(searchTimeout);
+                }
+
+                searchTimeout = $timeout(function() {
+                    searchService.getSearchResults($scope.term, 0, 10)
+                        .then(
+                            function onSuccess(data) {
+                                $scope.results = data;
+                            }
+                        )
+                        .finally(
+                            function onFinally() {
+                                $scope.loading = false;
+                            }
+                        )
+                }, 250);
             }
 
             $scope.onTermChange = function() {
-                if ($scope.term.length < 3) {
+                $scope.searchVisible = true;
+                if ($scope.term.length < 2) {
                     return _hideSearchResults();
                 }
                 _performSearch();
+            };
+
+            $scope.bodyClicked = function(event) {
+                $scope.term = '';
+                $scope.searchVisible = false;
+                _hideSearchResults();
+            };
+
+            $scope.onSearchIconPress = function() {
+                $scope.searchVisible = !$scope.searchVisible;
             };
         }
     ];

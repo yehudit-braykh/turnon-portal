@@ -1,5 +1,5 @@
-<div class="navigation-search-container">
-    <div class="search-icon-container">
+<div class="navigation-search-container" ng-class="{'active': searchVisible}">
+    <div class="search-icon-container" ng-click="onSearchIconPress()" clix-click-anywhere-else="bodyClicked">
         <i class="search-icon icon-search-icon-bottom-nav"></i>
     </div>
     <div class="search-results-container">
@@ -7,7 +7,102 @@
             <input class="search-input-field" type="text" placeholder="Search" ng-model="term" ng-change="onTermChange()" />
         </div>
         <div class="search-results">
+            <div class="search-results-loader" ng-if="loading">
+                <clix-loader size="small"></clix-loader>
+            </div>
+            <div ng-if="results">
 
+                <!-- STARS -->
+                <div class="search-results-block" ng-if="results.celebrities && results.celebrities.celebrities && results.celebrities.celebrities.length > 0">
+                    <div class="search-results-title">
+                        Stars
+                    </div>
+                    <clix-header-search-row ng-repeat="celebrity in results.celebrities.celebrities" ui-sref="star({ id: celebrity.id })">
+                        <logo-container>
+                            <div class="search-results-circle-image" style="background-image: url('{{celebrity.thumbnail}}')"></div>
+                        </logo-container>
+                        <title-text>
+                            {{celebrity.name}}
+                        </title-text>
+                        <subtitle-text>
+                            Star
+                        </subtitle-text>
+                    </clix-header-search-row>
+                </div>
+
+                <!-- SERIES -->
+                <div class="search-results-block" ng-if="results.series && results.series.series && results.series.series.length > 0">
+                    <div class="search-results-title">
+                        Series
+                    </div>
+                    <clix-header-search-row ng-repeat="series in results.series.series">
+                        <logo-container>
+                            <div class="search-results-circle-image" style="background-image: url('{{series.thumbnail}}')"></div>
+                        </logo-container>
+                        <title-text>
+                            {{series.title}}
+                        </title-text>
+                        <subtitle-text>
+                            Series
+                        </subtitle-text>
+                    </clix-header-search-row>
+                </div>
+
+                <!-- BRANDS -->
+                <div class="search-results-block" ng-if="results.brands && results.brands.brands && results.brands.brands.length > 0">
+                    <div class="search-results-title">
+                        Brands Related To {{term}}
+                    </div>
+                    <clix-header-search-row ng-repeat="brand in results.brands.brands" ui-sref="brand({ id: brand.id })">
+                        <logo-container>
+                            <div class="search-results-circle-image" style="background-image: url('{{brand.thumbnail}}')"></div>
+                        </logo-container>
+                        <title-text>
+                            {{brand.title}}
+                        </title-text>
+                        <subtitle-text>
+                            Brand
+                        </subtitle-text>
+                    </clix-header-search-row>
+                </div>
+
+                <!-- CHARITIES -->
+                <div class="search-results-block" ng-if="results.charities && results.charities.charities && results.charities.charities.length > 0">
+                    <div class="search-results-title">
+                        Charities Related To {{term}}
+                    </div>
+                    <clix-header-search-row ng-repeat="charity in results.charities.charities" ui-sref="charity({ id: charity.id })">
+                        <logo-container>
+                            <div class="search-results-circle-image" style="background-image: url('{{charity.thumbnail}}')"></div>
+                        </logo-container>
+                        <title-text>
+                            {{charity.title}}
+                        </title-text>
+                        <subtitle-text>
+                            Charity
+                        </subtitle-text>
+                    </clix-header-search-row>
+                </div>
+
+                <!-- Videos -->
+                <div class="search-results-block" ng-if="results.videos && results.videos.videos && results.videos.videos.length > 0">
+                    <div class="search-results-title">
+                        Videos
+                    </div>
+                    <clix-header-search-row ng-repeat="video in results.videos.videos" ui-sref="video({ id: video.id })">
+                        <logo-container>
+                            <div class="search-results-circle-image" style="background-image: url('{{video.thumbnail}}')"></div>
+                        </logo-container>
+                        <title-text>
+                            {{video.title}}
+                        </title-text>
+                        <subtitle-text>
+                            Video
+                        </subtitle-text>
+                    </clix-header-search-row>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>
