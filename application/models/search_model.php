@@ -9,7 +9,7 @@ class Search_model extends Uvod_model {
 	public function search($keyword, $tags = null, $page = 0 , $page_size = 20){
 		$results = new stdClass;
 		$results->celebrities = $this->celebrity_rows($this->search_celebrities($keyword, $tags, $page , $page_size )->entries)[0];
-		$results->series = $this->rows($this->search_series($keyword, $tags, $page , $page_size )->entries[0])[0];
+		$results->series = $this->rows($this->search_series($keyword, $tags, $page , $page_size )->entries[0]);
 		$results->videos = $this->videos_rows($this->search_videos($keyword, $tags, $page , $page_size )->entries)[0];
 		$results->brands= $this->brands_rows($this->search_brands($keyword, $tags, $page , $page_size )->entries)[0];
 		$results->offers= $this->offers_rows($this->search_offers($keyword, $tags, $page , $page_size )->entries)[0];
