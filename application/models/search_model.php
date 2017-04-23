@@ -8,12 +8,12 @@ class Search_model extends Uvod_model {
 
 	public function search($keyword, $tags = null, $page = 0 , $page_size = 20){
 		$results = new stdClass;
-		$results->celebrities = $this->celebrity_rows($this->search_celebrities($keyword, $tags, $page , $page_size )->entries)[0];
+		$results->celebrities = $this->celebrity_rows($this->search_celebrities($keyword, $tags, $page , $page_size )->entries[0]);
 		$results->series = $this->rows($this->search_series($keyword, $tags, $page , $page_size )->entries[0]);
-		$results->videos = $this->videos_rows($this->search_videos($keyword, $tags, $page , $page_size )->entries)[0];
-		$results->brands= $this->brands_rows($this->search_brands($keyword, $tags, $page , $page_size )->entries)[0];
-		$results->offers= $this->offers_rows($this->search_offers($keyword, $tags, $page , $page_size )->entries)[0];
-		$results->charities= $this->charities_rows($this->search_charities($keyword, $tags, $page , $page_size )->entries)[0];
+		$results->videos = $this->videos_rows($this->search_videos($keyword, $tags, $page , $page_size )->entries[0]);
+		$results->brands= $this->brands_rows($this->search_brands($keyword, $tags, $page , $page_size )->entries[0]);
+		$results->offers= $this->offers_rows($this->search_offers($keyword, $tags, $page , $page_size )->entries[0]);
+		$results->charities= $this->charities_rows($this->search_charities($keyword, $tags, $page , $page_size )->entries[0]);
 
 		return $results;
 	}
@@ -21,9 +21,9 @@ class Search_model extends Uvod_model {
 	private function search_charities($keyword, $tags, $page , $page_size ){
 
 		$parameters = array();
-		$parameters[] = "byTitle=".$keyword;
+		$parameters[] = "byTitle=".str_replace(' ',"%20",$keyword);
 		if($tags)
-			$parameters[] = "byKeyword=".$tags;
+			$parameters[] = "byKeyword=".str_replace(' ',"|",$tags);
 		$parameters[] = "page=".$page;
 		$parameters[]= "size=".$page_size;
 		$parameters[] = 'sort=title:1';
@@ -35,9 +35,9 @@ class Search_model extends Uvod_model {
 	private function search_brands($keyword, $tags, $page , $page_size){
 
 		$parameters = array();
-		$parameters[] = "byTitle=".$keyword;
+		$parameters[] = "byTitle=".str_replace(' ',"%20",$keyword);
 		if($tags)
-			$parameters[] = "byKeyword=".$tags;
+			$parameters[] = "byKeyword=".str_replace(' ',"|",$tags);
 		$parameters[] = "page=".$page;
 		$parameters[]= "size=".$page_size;
 
@@ -47,9 +47,9 @@ class Search_model extends Uvod_model {
 	private function search_offers($keyword, $tags, $page , $page_size){
 
 		$parameters = array();
-		$parameters[] = "byTitle=".$keyword;
+		$parameters[] = "byTitle=".str_replace(' ',"%20",$keyword);
 		if($tags)
-			$parameters[] = "byKeyword=".$tags;
+			$parameters[] = "byKeyword=".str_replace(' ',"|",$tags);
 		$parameters[] = "page=".$page;
 		$parameters[]= "size=".$page_size;
 
@@ -59,9 +59,10 @@ class Search_model extends Uvod_model {
 	private function search_celebrities($keyword, $tags, $page , $page_size){
 
 		$parameters = array();
-		$parameters[] = "byTitle=".$keyword;
+		$parameters[] = "byTitle=".str_replace(' ',"%20",$keyword);
+	//	debug($parameters);
 		if($tags)
-			$parameters[] = "byKeyword=".$tags;
+			$parameters[] = "byKeyword=".str_replace(' ',"|",$tags);
 		$parameters[] = "page=".$page;
 		$parameters[]= "size=".$page_size;
 
@@ -71,9 +72,9 @@ class Search_model extends Uvod_model {
 	private function search_series($keyword, $tags, $page , $page_size){
 
 		$parameters = array();
-		$parameters[] = "byTitle=".$keyword;
+		$parameters[] = "byTitle=".str_replace(' ',"%20",$keyword);
 		if($tags)
-			$parameters[] = "byKeyword=".$tags;
+			$parameters[] = "byKeyword=".str_replace(' ',"|",$tags);
 		$parameters[] = "page=".$page;
 		$parameters[]= "size=".$page_size;
 
@@ -83,9 +84,9 @@ class Search_model extends Uvod_model {
 	private function search_videos($keyword, $tags, $page , $page_size){
 
 		$parameters = array();
-		$parameters[] = "byTitle=".$keyword;
+		$parameters[] = "byTitle=".str_replace(' ',"%20",$keyword);
 		if($tags)
-			$parameters[] = "byKeyword=".$tags;
+			$parameters[] = "byKeyword=".str_replace(' ',"|",$tags);
 		$parameters[] = "page=".$page;
 		$parameters[]= "size=".$page_size;
 
@@ -94,9 +95,15 @@ class Search_model extends Uvod_model {
 
 	function videos_rows($items){
 		foreach ($items as &$item) {
-			//debug($cat);
-			if($item->brands)
+			if($item->brands){
+				foreach ($item->brands as &$brand) {
+					$brand->offers = $this->rows($brand->offers);
+				}
 				$item->brands = $this->rows($item->brands);
+			}
+
+			$item->campaigns = $this->rows($item->campaigns);
+
 			if($item->celebrity){
 				$arr = array();
 				array_push($arr, $item->celebrity);
@@ -106,8 +113,6 @@ class Search_model extends Uvod_model {
 			if($item->serie){
 
 				if($item->serie->seasons){
-
-
 					foreach ($item->serie->seasons as &$season) {
 						foreach ($season->episodes as &$episode) {
 							$episode->brands = $this->rows($episode->brands);
@@ -137,6 +142,10 @@ class Search_model extends Uvod_model {
 
 				}
 
+				$arr = array();
+				array_push($arr, $item->serie);
+				$item->serie = $this->rows($arr)[0];
+
 			}
 
 			if($item->charity){
@@ -151,6 +160,7 @@ class Search_model extends Uvod_model {
 	}
 
 	function celebrity_rows($items){
+		// debug($items);
 		foreach ($items as &$item) {
 			//debug($cat);
 
@@ -284,6 +294,8 @@ class Search_model extends Uvod_model {
 				foreach ($item->videos as &$vid) {
 
 					$vid->brands = $this->rows($vid->brands);
+					$vid->campaigns = $this->rows($vid->campaigns);
+
 					// debug($vid->brands);
 					$data = array();
 					array_push($data,$vid->charity);
@@ -298,6 +310,7 @@ class Search_model extends Uvod_model {
 				// debug($item->videos);
 				$item->videos = $this->rows($item->videos);
 			}
+
 		}
 
 		return $this->rows($items);
