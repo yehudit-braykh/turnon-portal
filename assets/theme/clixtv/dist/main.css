@@ -9433,7 +9433,7 @@ button.close {
 @media (min-width: 768px) {
   .video-permalink-page .star-name-container .star-name-favorite-container .star-name {
     margin-bottom: 0;
-    font-size: 28px;
+    font-size: 25px;
     line-height: 28px;
   }
 }
