@@ -132,8 +132,13 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('ui/account/overview/view.overview-input.html',
+    "<div class=personal-info-form-row><div class=form-header><div class=form-header-label ng-transclude=inputLabel></div><a ng-click=\"onFieldEdit('firstName')\" class=\"icon-edit-icon form-header-edit\"></a></div><div class=form-value-container><div class=form-value><input ng-model=ngModel id=firstName type=text ng-disabled=\"editField !== 'firstName'\"></div></div></div>"
+  );
+
+
   $templateCache.put('ui/account/overview/view.overview.html',
-    "<div class=clix-account-overview><clix-account-header><header-text>Account Overview</header-text></clix-account-header><div class=\"row body-content\"><div class=\"col-md-6 personal-info-container\"><div class=account-info-sub-header>Personal Information</div><div class=personal-info-form><div class=personal-info-form-row><div class=form-header><div class=form-header-label>First Name</div><a ng-click=\"onFieldEdit('firstName')\" class=\"icon-edit-icon form-header-edit\"></a></div><div class=form-value-container><div class=form-value><input ng-model=form.firstName type=text ng-disabled=\"editField !== 'firstName'\"></div></div></div><div class=personal-info-form-row><div class=form-header><div class=form-header-label>Last Name</div><a ng-click=\"onFieldEdit('lastName')\" class=\"icon-edit-icon form-header-edit\"></a></div><div class=form-value-container><div class=form-value><input ng-model=form.lastName type=text ng-disabled=\"editField !== 'lastName'\"></div></div></div><div class=personal-info-form-row><div class=form-header><div class=form-header-label>Email</div><a ng-click=\"onFieldEdit('email')\" class=\"icon-edit-icon form-header-edit\"></a></div><div class=form-value-container><div class=form-value><input ng-model=form.email type=email ng-disabled=\"editField !== 'email'\"></div></div></div><div class=personal-info-form-row><div class=form-header><div class=form-header-label>Password</div><a ng-click=\"onFieldEdit('password')\" class=\"icon-edit-icon form-header-edit\"></a></div><div class=form-value-container><div class=form-value><input ng-model=form.password type=password ng-disabled=\"editField !== 'password'\"></div></div></div><div class=personal-info-form-row><div class=form-header><div class=form-header-label>Date Of Birth</div><a ng-click=\"onFieldEdit('birthdate')\" class=\"icon-edit-icon form-header-edit\"></a></div><div class=form-value-container><div class=form-value><input ng-model=form.birthdate type=text ng-disabled=\"editField !== 'birthdate'\"></div></div></div><div class=personal-info-form-row><div class=form-header><div class=form-header-label>Gender</div><a ng-click=\"onFieldEdit('gender')\" class=\"icon-edit-icon form-header-edit\"></a></div><div class=form-value-container><div class=form-value><input ng-model=form.gender type=text ng-disabled=\"editField !== 'gender'\"></div></div></div><div class=personal-info-form-row><div class=form-header><div class=form-header-label>Phone</div><a ng-click=\"onFieldEdit('phone')\" class=\"icon-edit-icon form-header-edit\"></a></div><div class=form-value-container><div class=form-value><input ng-model=form.phone type=tel ng-disabled=\"editField !== 'phone'\"></div></div></div><div class=personal-info-form-row><div class=form-header><div class=form-header-label>Credit Card</div><a ng-click=\"onFieldEdit('paymentData')\" class=\"icon-edit-icon form-header-edit\"></a></div><div class=form-value-container><div class=form-value><input ng-model=form.paymentData type=tel ng-disabled=\"editField !== 'paymentData'\"></div></div></div></div></div><div class=\"col-md-6 reward-points-container\"><div class=account-info-sub-header>Reward Points</div><div class=reward-points><div class=\"reward-points-block first-block\"><div class=points-label>1760</div><div class=available-balance-label>Available Points Balance<br>$17.60 Cash Balance</div></div><div class=rewards-button><clix-primary-button ui-sref=\"account({ section: 'rewards' })\" ui-sref-opts={reload:true}>Go To My Rewards</clix-primary-button></div></div></div></div></div>"
+    "<div class=clix-account-overview><clix-account-header><header-text>Account Overview</header-text></clix-account-header><div class=\"row body-content\"><div class=\"col-md-6 personal-info-container\"><div class=account-info-sub-header>Personal Information</div><div class=personal-info-form><clix-account-overview-input ng-model=form.firstName><input-label>First Name</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.lastName><input-label>Last Name</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.email><input-label>Email</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.password><input-label>Password</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.birthdate><input-label>Date of Birth</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.gender><input-label>Gender</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.phone><input-label>Phone</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.paymentData><input-label>Credit Card</input-label></clix-account-overview-input></div></div><div class=\"col-md-6 reward-points-container\"><div class=account-info-sub-header>Reward Points</div><div class=reward-points><div class=\"reward-points-block first-block\"><div class=points-label>1760</div><div class=available-balance-label>Available Points Balance<br>$17.60 Cash Balance</div></div><div class=rewards-button><clix-primary-button ui-sref=\"account({ section: 'rewards' })\" ui-sref-opts={reload:true}>Go To My Rewards</clix-primary-button></div></div></div></div></div>"
   );
 
 
@@ -153,7 +158,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/account/view.account.html',
-    "<div class=clix-account-page><div class=account-navigation><clix-navigation-bar active-item=activeItem on-item-select=onNavigationItemSelect></clix-navigation-bar></div><div class=account-page ng-switch=activeItem><div ng-switch-when=overview><clix-account-overview></clix-account-overview></div><div ng-switch-when=watchlist><clix-account-watchlist></clix-account-watchlist></div><div ng-switch-when=favorites><clix-account-favorites></clix-account-favorites></div><div ng-switch-when=saved-offers><clix-account-saved-offers></clix-account-saved-offers></div><div ng-switch-when=rewards><clix-account-rewards></clix-account-rewards></div><div ng-switch-when=notifications><clix-account-notifications></clix-account-notifications></div><div ng-switch-when=settings><clix-account-settings></clix-account-settings></div></div></div>"
+    "<div class=clix-account-page><div class=account-navigation><clix-navigation-bar active-item=activeItem on-item-select=onNavigationItemSelect></clix-navigation-bar></div><div class=account-page ng-switch=activeItem ng-if=ready><div ng-switch-when=overview><clix-account-overview></clix-account-overview></div><div ng-switch-when=watchlist><clix-account-watchlist></clix-account-watchlist></div><div ng-switch-when=favorites><clix-account-favorites></clix-account-favorites></div><div ng-switch-when=saved-offers><clix-account-saved-offers></clix-account-saved-offers></div><div ng-switch-when=rewards><clix-account-rewards></clix-account-rewards></div><div ng-switch-when=notifications><clix-account-notifications></clix-account-notifications></div><div ng-switch-when=settings><clix-account-settings></clix-account-settings></div></div></div>"
   );
 
 
@@ -573,14 +578,42 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
     var AccountController = [
         '$q',
         '$scope',
+        '$rootScope',
         '$stateParams',
-        function($q, $scope, $stateParams) {
+        'userService',
+        function($q, $scope, $rootScope, $stateParams, userService) {
+
+            var loggedInUserChecked = false;
 
             $scope.activeItem = $stateParams.section;
 
             $scope.onNavigationItemSelect = function(item) {
                 $scope.activeItem = item;
+            };
+
+            function _setLoggedInUser(user) {
+                if (!user && loggedInUserChecked) {
+                    // 404
+                    return;
+                }
+                loggedInUserChecked = true;
+                $scope.loggedInUser = user;
+                if (user) {
+                    $scope.ready = true;
+                }
             }
+
+            $rootScope.$on('user.login', function(event, data) {
+                _setLoggedInUser(data);
+            });
+
+            userService.getLoggedInUser()
+                .then(
+                    function onSuccess(data) {
+                        _setLoggedInUser(data);
+                    }
+                );
+
         }
     ];
 
@@ -889,6 +922,22 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 }());
 (function() {
 
+    var AccountOverviewInputController = [
+        '$scope',
+        function($scope) {
+
+            $scope.onFieldEdit = function(field) {
+
+            }
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .controller('AccountOverviewInputController', AccountOverviewInputController);
+}());
+(function() {
+
     var AccountOverviewController = [
         '$scope',
         '$rootScope',
@@ -907,7 +956,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                             phone: data.phone
                         }
                     }
-                )
+                );
+
+            $scope.onFieldEdit = function(field) {
+
+            }
         }
     ];
 
@@ -916,6 +969,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         .controller('AccountOverviewController', AccountOverviewController);
 }());
 (function() {
+
     var overview = function() {
         return {
             restrict: 'AE',
@@ -924,8 +978,24 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         }
     };
 
+    var overviewInput = function() {
+        return {
+            restrict: 'AE',
+            replace: true,
+            templateUrl: 'ui/account/overview/view.overview-input.html',
+            controller: 'AccountOverviewInputController',
+            transclude: {
+                inputLabel: 'inputLabel'
+            },
+            scope: {
+                ngModel: '='
+            }
+        }
+    };
+
     angular.module('clixtv')
-        .directive('clixAccountOverview', overview);
+        .directive('clixAccountOverview', overview)
+        .directive('clixAccountOverviewInput', overviewInput)
 }());
 (function() {
 
@@ -5658,24 +5728,26 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         this.videos = new VideoListModel(data.videos);
                     }
 
-                    if (data.content.BrandTransparentLogo) {
-                        this.transparentThumbnail = data.content.BrandTransparentLogo.downloadUrl;
-                    }
+                    if (data.content) {
+                        if (data.content.BrandTransparentLogo) {
+                            this.transparentThumbnail = data.content.BrandTransparentLogo.downloadUrl;
+                        }
 
-                    if (data.content.BackgroundImage) {
-                        this.headerImage = data.content.BackgroundImage.downloadUrl;
-                    }
+                        if (data.content.BackgroundImage) {
+                            this.headerImage = data.content.BackgroundImage.downloadUrl;
+                        }
 
-                    if (data.content.BrandLogo) {
-                        this.logo = data.content.BrandLogo.downloadUrl;
-                    }
+                        if (data.content.BrandLogo) {
+                            this.logo = data.content.BrandLogo.downloadUrl;
+                        }
 
-                    if (data.content.mainTrailer) {
-                        this.trailer = data.content.mainTrailer.downloadUrl;
-                    }
+                        if (data.content.mainTrailer) {
+                            this.trailer = data.content.mainTrailer.downloadUrl;
+                        }
 
-                    if (data.content.PosterH) {
-                        this.trailerThumbnail = data.content.PosterH.downloadUrl;
+                        if (data.content.PosterH) {
+                            this.trailerThumbnail = data.content.PosterH.downloadUrl;
+                        }
                     }
                 }
             }
@@ -5831,24 +5903,26 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     this.title = data.title;
                     this.description = data.description;
 
-                    if (data.content.BrandTransparentLogo) {
-                        this.transparentThumbnail = data.content.BrandTransparentLogo.downloadUrl;
-                    }
+                    if (data.content) {
+                        if (data.content.BrandTransparentLogo) {
+                            this.transparentThumbnail = data.content.BrandTransparentLogo.downloadUrl;
+                        }
 
-                    if (data.content.BackgroundImage) {
-                        this.headerImage = data.content.BackgroundImage.downloadUrl;
-                    }
+                        if (data.content.BackgroundImage) {
+                            this.headerImage = data.content.BackgroundImage.downloadUrl;
+                        }
 
-                    if (data.content.BrandLogo) {
-                        this.logo = data.content.BrandLogo.downloadUrl;
-                    }
+                        if (data.content.BrandLogo) {
+                            this.logo = data.content.BrandLogo.downloadUrl;
+                        }
 
-                    if (data.content.mainTrailer) {
-                        this.trailer = data.content.mainTrailer.downloadUrl;
-                    }
+                        if (data.content.mainTrailer) {
+                            this.trailer = data.content.mainTrailer.downloadUrl;
+                        }
 
-                    if (data.content.PosterH) {
-                        this.trailerThumbnail = data.content.PosterH.downloadUrl;
+                        if (data.content.PosterH) {
+                            this.trailerThumbnail = data.content.PosterH.downloadUrl;
+                        }
                     }
 
                     if (data.celebrities) {

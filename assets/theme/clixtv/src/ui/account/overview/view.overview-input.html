@@ -1,0 +1,11 @@
+<div class="personal-info-form-row">
+    <div class="form-header">
+        <div class="form-header-label" ng-transclude="inputLabel"></div>
+        <a ng-click="onFieldEdit('firstName')" class="icon-edit-icon form-header-edit"></a>
+    </div>
+    <div class="form-value-container">
+        <div class="form-value">
+            <input ng-model="ngModel" id="firstName" type="text" ng-disabled="editField !== 'firstName'" />
+        </div>
+    </div>
+</div>

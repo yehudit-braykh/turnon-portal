@@ -1,4 +1,5 @@
 (function() {
+
     var overview = function() {
         return {
             restrict: 'AE',
@@ -7,6 +8,22 @@
         }
     };
 
+    var overviewInput = function() {
+        return {
+            restrict: 'AE',
+            replace: true,
+            templateUrl: 'ui/account/overview/view.overview-input.html',
+            controller: 'AccountOverviewInputController',
+            transclude: {
+                inputLabel: 'inputLabel'
+            },
+            scope: {
+                ngModel: '='
+            }
+        }
+    };
+
     angular.module('clixtv')
-        .directive('clixAccountOverview', overview);
+        .directive('clixAccountOverview', overview)
+        .directive('clixAccountOverviewInput', overviewInput)
 }());

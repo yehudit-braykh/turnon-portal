@@ -18,7 +18,11 @@
                             phone: data.phone
                         }
                     }
-                )
+                );
+
+            $scope.onFieldEdit = function(field) {
+
+            }
         }
     ];
 
