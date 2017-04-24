@@ -56,7 +56,7 @@
             catchMediaService.trackVideoPageEvent($stateParams.id);
 
             if ($window.innerWidth <= 1000) {
-                $scope.playerHeight = 270;
+                $scope.playerHeight = 9999;
                 $scope.originalPlayerHeight = $scope.playerHeight;
             }
 
