@@ -133,12 +133,12 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/account/overview/view.overview-input.html',
-    "<div class=personal-info-form-row><div class=form-header><div class=form-header-label ng-transclude=inputLabel></div><a ng-click=\"onFieldEdit('firstName')\" class=\"icon-edit-icon form-header-edit\"></a></div><div class=form-value-container><div class=form-value><input ng-model=ngModel id=firstName type=text ng-disabled=\"editField !== 'firstName'\"></div></div></div>"
+    "<div class=personal-info-form-row><div class=form-header><div class=form-header-label ng-transclude=inputLabel></div><a ng-click=onFieldEdit() class=\"icon-edit-icon form-header-edit\"></a></div><div class=form-value-container><div class=form-value><input ng-model=ngModel type=text ng-disabled=!editing></div><div class=form-value-buttons ng-show=editing><div class=form-value-button clix-secondary-button alternate=true ng-click=onCancelPress()>Cancel</div><div class=form-value-button clix-secondary-button alternate=true ng-click=onSavePress()>Save</div></div></div></div>"
   );
 
 
   $templateCache.put('ui/account/overview/view.overview.html',
-    "<div class=clix-account-overview><clix-account-header><header-text>Account Overview</header-text></clix-account-header><div class=\"row body-content\"><div class=\"col-md-6 personal-info-container\"><div class=account-info-sub-header>Personal Information</div><div class=personal-info-form><clix-account-overview-input ng-model=form.firstName><input-label>First Name</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.lastName><input-label>Last Name</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.email><input-label>Email</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.password><input-label>Password</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.birthdate><input-label>Date of Birth</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.gender><input-label>Gender</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.phone><input-label>Phone</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.paymentData><input-label>Credit Card</input-label></clix-account-overview-input></div></div><div class=\"col-md-6 reward-points-container\"><div class=account-info-sub-header>Reward Points</div><div class=reward-points><div class=\"reward-points-block first-block\"><div class=points-label>1760</div><div class=available-balance-label>Available Points Balance<br>$17.60 Cash Balance</div></div><div class=rewards-button><clix-primary-button ui-sref=\"account({ section: 'rewards' })\" ui-sref-opts={reload:true}>Go To My Rewards</clix-primary-button></div></div></div></div></div>"
+    "<div class=clix-account-overview><clix-account-header><header-text>Account Overview</header-text></clix-account-header><div class=\"row body-content\"><div class=\"col-md-6 personal-info-container\"><div class=account-info-sub-header>Personal Information</div><div class=personal-info-form><clix-account-overview-input ng-model=form.firstName on-save=onSaveField><input-label>First Name</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.lastName on-save=onSaveField><input-label>Last Name</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.email on-save=onSaveField><input-label>Email</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.password on-save=onSaveField><input-label>Password</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.birthdate on-save=onSaveField><input-label>Date of Birth</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.gender on-save=onSaveField><input-label>Gender</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.phone on-save=onSaveField><input-label>Phone</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.paymentData on-save=onSaveField><input-label>Credit Card</input-label></clix-account-overview-input></div></div><div class=\"col-md-6 reward-points-container\"><div class=account-info-sub-header>Reward Points</div><div class=reward-points><div class=\"reward-points-block first-block\"><div class=points-label>1760</div><div class=available-balance-label>Available Points Balance<br>$17.60 Cash Balance</div></div><div class=rewards-button><clix-primary-button ui-sref=\"account({ section: 'rewards' })\" ui-sref-opts={reload:true}>Go To My Rewards</clix-primary-button></div></div></div></div></div>"
   );
 
 
@@ -579,9 +579,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$q',
         '$scope',
         '$rootScope',
+        '$state',
         '$stateParams',
         'userService',
-        function($q, $scope, $rootScope, $stateParams, userService) {
+        function($q, $scope, $rootScope, $state, $stateParams, userService) {
 
             var loggedInUserChecked = false;
 
@@ -593,7 +594,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
             function _setLoggedInUser(user) {
                 if (!user && loggedInUserChecked) {
-                    // 404
+                    $state.go('home');
                     return;
                 }
                 loggedInUserChecked = true;
@@ -924,11 +925,34 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     var AccountOverviewInputController = [
         '$scope',
-        function($scope) {
+        '$rootScope',
+        function($scope, $rootScope) {
 
-            $scope.onFieldEdit = function(field) {
+            $scope.editing = false;
 
-            }
+            var oldValue;
+
+            $scope.onFieldEdit = function() {
+                $rootScope.$broadcast('account.edit');
+                oldValue = $scope.ngModel;
+                $scope.editing = true;
+            };
+
+            $scope.onCancelPress = function() {
+                $scope.editing = false;
+                $scope.ngModel = oldValue;
+            };
+
+            $scope.onSavePress = function() {
+                $scope.editing = false;
+                $scope.onSave();
+            };
+
+            $rootScope.$on('account.edit', function() {
+                if ($scope.editing) {
+                    $scope.onCancelPress();
+                }
+            });
         }
     ];
 
@@ -947,6 +971,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             userService.getLoggedInUser()
                 .then(
                     function onSuccess(data) {
+                        $scope.loggedInUser = data;
                         $scope.form = {
                             firstName: data.firstName,
                             lastName: data.lastName,
@@ -958,8 +983,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     }
                 );
 
-            $scope.onFieldEdit = function(field) {
-
+            $scope.onSaveField = function() {
+                userService.updateUser({
+                    firstName: $scope.form.firstName
+                });
             }
         }
     ];
@@ -988,7 +1015,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 inputLabel: 'inputLabel'
             },
             scope: {
-                ngModel: '='
+                ngModel: '=',
+                onSave: '='
             }
         }
     };

@@ -22,8 +22,8 @@
     }
 
     .personal-info-form-row {
-        padding-top: 32px;
-        padding-bottom: 23px;
+        padding-top: 25px;
+        padding-bottom: 5px;
         margin-left: @account-padding-mobile;
         margin-right: @account-padding-mobile;
         border-bottom: 1px solid @color-gray3;
@@ -50,11 +50,11 @@
         text-transform: uppercase;
         color: @color-gray2;
         letter-spacing: 1.6px;
-        margin-right: 36px;
+        margin-right: 25px;
     }
 
     .form-header-edit {
-        font-size: 26px;
+        font-size: 24px;
         color: @color-gray2;
         
         &:hover {
@@ -64,15 +64,29 @@
         }
     }
 
+    .form-value-buttons {
+        margin: 15px 0;
+    }
+
+    .form-value-button {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+
     input {
         font-family: @font-primary;
-        font-size: 14px;
-        width: 250px;
+        font-size: 16px;
+        background-color: @color-gray12;
+        border: 1px solid @color-gray11;
+        padding: 8px 10px;
+        color: @color-white;
+        width: 100%;
 
         &:disabled {
             background-color: @color-transparent;
-            border-width: 0;
-            color: @color-white;
+            border-color: @color-transparent;
+            padding-left: 0;
         }
     }
 

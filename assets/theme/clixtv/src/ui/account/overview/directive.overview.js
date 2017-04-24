@@ -18,7 +18,8 @@
                 inputLabel: 'inputLabel'
             },
             scope: {
-                ngModel: '='
+                ngModel: '=',
+                onSave: '='
             }
         }
     };

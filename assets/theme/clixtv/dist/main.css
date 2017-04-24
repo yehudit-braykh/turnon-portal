@@ -11119,8 +11119,8 @@ button.close {
   padding-bottom: 31px;
 }
 .clix-account-overview .personal-info-form-row {
-  padding-top: 32px;
-  padding-bottom: 23px;
+  padding-top: 25px;
+  padding-bottom: 5px;
   margin-left: 9px;
   margin-right: 9px;
   border-bottom: 1px solid #636363;
@@ -11150,10 +11150,10 @@ button.close {
   text-transform: uppercase;
   color: #8a8a8a;
   letter-spacing: 1.6px;
-  margin-right: 36px;
+  margin-right: 25px;
 }
 .clix-account-overview .form-header-edit {
-  font-size: 26px;
+  font-size: 24px;
   color: #8a8a8a;
 }
 .clix-account-overview .form-header-edit:hover {
@@ -11161,15 +11161,26 @@ button.close {
   text-decoration: none;
   cursor: pointer;
 }
+.clix-account-overview .form-value-buttons {
+  margin: 15px 0;
+}
+.clix-account-overview .form-value-button {
+  display: inline-block;
+  margin-right: 10px;
+}
 .clix-account-overview input {
   font-family: 'montserratregular', sans-serif;
-  font-size: 14px;
-  width: 250px;
+  font-size: 16px;
+  background-color: #353535;
+  border: 1px solid #686868;
+  padding: 8px 10px;
+  color: #FFF;
+  width: 100%;
 }
 .clix-account-overview input:disabled {
   background-color: rgba(0, 0, 0, 0);
-  border-width: 0;
-  color: #FFF;
+  border-color: rgba(0, 0, 0, 0);
+  padding-left: 0;
 }
 .clix-account-overview .reward-points {
   padding: 44px 44px 40px 44px;

@@ -9,6 +9,7 @@
             userService.getLoggedInUser()
                 .then(
                     function onSuccess(data) {
+                        $scope.loggedInUser = data;
                         $scope.form = {
                             firstName: data.firstName,
                             lastName: data.lastName,
@@ -20,8 +21,10 @@
                     }
                 );
 
-            $scope.onFieldEdit = function(field) {
-
+            $scope.onSaveField = function() {
+                userService.updateUser({
+                    firstName: $scope.form.firstName
+                });
             }
         }
     ];

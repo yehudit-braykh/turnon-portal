@@ -11,158 +11,46 @@
             </div>
             <div class="personal-info-form">
 
-                <clix-account-overview-input ng-model="form.firstName">
+                <clix-account-overview-input ng-model="form.firstName" on-save="onSaveField">
                     <input-label>
                         First Name
                     </input-label>
                 </clix-account-overview-input>
-                <clix-account-overview-input ng-model="form.lastName">
+                <clix-account-overview-input ng-model="form.lastName" on-save="onSaveField">
                     <input-label>
                         Last Name
                     </input-label>
                 </clix-account-overview-input>
-                <clix-account-overview-input ng-model="form.email">
+                <clix-account-overview-input ng-model="form.email" on-save="onSaveField">
                     <input-label>
                         Email
                     </input-label>
                 </clix-account-overview-input>
-                <clix-account-overview-input ng-model="form.password">
+                <clix-account-overview-input ng-model="form.password" on-save="onSaveField">
                     <input-label>
                         Password
                     </input-label>
                 </clix-account-overview-input>
-                <clix-account-overview-input ng-model="form.birthdate">
+                <clix-account-overview-input ng-model="form.birthdate" on-save="onSaveField">
                     <input-label>
                         Date of Birth
                     </input-label>
                 </clix-account-overview-input>
-                <clix-account-overview-input ng-model="form.gender">
+                <clix-account-overview-input ng-model="form.gender" on-save="onSaveField">
                     <input-label>
                         Gender
                     </input-label>
                 </clix-account-overview-input>
-                <clix-account-overview-input ng-model="form.phone">
+                <clix-account-overview-input ng-model="form.phone" on-save="onSaveField">
                     <input-label>
                         Phone
                     </input-label>
                 </clix-account-overview-input>
-                <clix-account-overview-input ng-model="form.paymentData">
+                <clix-account-overview-input ng-model="form.paymentData" on-save="onSaveField">
                     <input-label>
                         Credit Card
                     </input-label>
                 </clix-account-overview-input>
-
-                <!--<div class="personal-info-form-row">-->
-                    <!--<div class="form-header">-->
-                        <!--<div class="form-header-label">-->
-                            <!--First Name-->
-                        <!--</div>-->
-                        <!--<a ng-click="onFieldEdit('firstName')" class="icon-edit-icon form-header-edit"></a>-->
-                    <!--</div>-->
-                    <!--<div class="form-value-container">-->
-                        <!--<div class="form-value">-->
-                            <!--<input ng-model="form.firstName" id="firstName" type="text" ng-disabled="editField !== 'firstName'" />-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-                <!--<div class="personal-info-form-row">-->
-                    <!--<div class="form-header">-->
-                        <!--<div class="form-header-label">-->
-                            <!--Last Name-->
-                        <!--</div>-->
-                        <!--<a ng-click="onFieldEdit('lastName')" class="icon-edit-icon form-header-edit"></a>-->
-                    <!--</div>-->
-                    <!--<div class="form-value-container">-->
-                        <!--<div class="form-value">-->
-                            <!--<input ng-model="form.lastName" id="lastName" type="text" ng-disabled="editField !== 'lastName'" />-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-                <!--<div class="personal-info-form-row">-->
-                    <!--<div class="form-header">-->
-                        <!--<div class="form-header-label">-->
-                            <!--Email-->
-                        <!--</div>-->
-                        <!--<a ng-click="onFieldEdit('email')" class="icon-edit-icon form-header-edit"></a>-->
-                    <!--</div>-->
-                    <!--<div class="form-value-container">-->
-                        <!--<div class="form-value">-->
-                            <!--<input ng-model="form.email" id="email" type="email" ng-disabled="editField !== 'email'" />-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-                <!--<div class="personal-info-form-row">-->
-                    <!--<div class="form-header">-->
-                        <!--<div class="form-header-label">-->
-                            <!--Password-->
-                        <!--</div>-->
-                        <!--<a ng-click="onFieldEdit('password')" class="icon-edit-icon form-header-edit"></a>-->
-                    <!--</div>-->
-                    <!--<div class="form-value-container">-->
-                        <!--<div class="form-value">-->
-                            <!--<input ng-model="form.password" id="password" type="password" ng-disabled="editField !== 'password'" />-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-                <!--<div class="personal-info-form-row">-->
-                    <!--<div class="form-header">-->
-                        <!--<div class="form-header-label">-->
-                            <!--Date Of Birth-->
-                        <!--</div>-->
-                        <!--<a ng-click="onFieldEdit('birthdate')" class="icon-edit-icon form-header-edit"></a>-->
-                    <!--</div>-->
-                    <!--<div class="form-value-container">-->
-                        <!--<div class="form-value">-->
-                            <!--<input ng-model="form.birthdate" id="birthdate" type="text" ng-disabled="editField !== 'birthdate'" />-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-                <!--<div class="personal-info-form-row">-->
-                    <!--<div class="form-header">-->
-                        <!--<div class="form-header-label">-->
-                            <!--Gender-->
-                        <!--</div>-->
-                        <!--<a ng-click="onFieldEdit('gender')" class="icon-edit-icon form-header-edit"></a>-->
-                    <!--</div>-->
-                    <!--<div class="form-value-container">-->
-                        <!--<div class="form-value">-->
-                            <!--<input ng-model="form.gender" id="gender" type="text" ng-disabled="editField !== 'gender'" />-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-                <!--<div class="personal-info-form-row">-->
-                    <!--<div class="form-header">-->
-                        <!--<div class="form-header-label">-->
-                            <!--Phone-->
-                        <!--</div>-->
-                        <!--<a ng-click="onFieldEdit('phone')" class="icon-edit-icon form-header-edit"></a>-->
-                    <!--</div>-->
-                    <!--<div class="form-value-container">-->
-                        <!--<div class="form-value">-->
-                            <!--<input ng-model="form.phone" id="phone" type="tel" ng-disabled="editField !== 'phone'" />-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-                <!--<div class="personal-info-form-row">-->
-                    <!--<div class="form-header">-->
-                        <!--<div class="form-header-label">-->
-                            <!--Credit Card-->
-                        <!--</div>-->
-                        <!--<a ng-click="onFieldEdit('paymentData')" class="icon-edit-icon form-header-edit"></a>-->
-                    <!--</div>-->
-                    <!--<div class="form-value-container">-->
-                        <!--<div class="form-value">-->
-                            <!--<input ng-model="form.paymentData" id="paymentData" type="tel" ng-disabled="editField !== 'paymentData'" />-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
 
             </div>
         </div>

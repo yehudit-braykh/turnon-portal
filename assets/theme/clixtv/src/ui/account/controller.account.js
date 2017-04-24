@@ -4,9 +4,10 @@
         '$q',
         '$scope',
         '$rootScope',
+        '$state',
         '$stateParams',
         'userService',
-        function($q, $scope, $rootScope, $stateParams, userService) {
+        function($q, $scope, $rootScope, $state, $stateParams, userService) {
 
             var loggedInUserChecked = false;
 
@@ -18,7 +19,7 @@
 
             function _setLoggedInUser(user) {
                 if (!user && loggedInUserChecked) {
-                    // 404
+                    $state.go('home');
                     return;
                 }
                 loggedInUserChecked = true;
