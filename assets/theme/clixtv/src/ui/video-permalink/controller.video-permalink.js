@@ -46,6 +46,7 @@
                 )
                 .then(
                     function onSuccess(data) {
+                        console.log(data);
                         $scope.loggedInUser = data[0];
                         $scope.video = data[1];
                         $scope.ready = true;
@@ -54,11 +55,6 @@
                 );
 
             catchMediaService.trackVideoPageEvent($stateParams.id);
-
-            // if ($window.innerWidth <= 1000) {
-            //     $scope.playerHeight = 9999;
-            //     $scope.originalPlayerHeight = $scope.playerHeight;
-            // }
 
             $scope.onPlayerReady = function(configs) {
                 var infoContainerElement = angular.element(document.getElementById('about-video-inner-container')),

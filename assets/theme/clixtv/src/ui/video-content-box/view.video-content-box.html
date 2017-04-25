@@ -31,6 +31,7 @@
             <div class="video-thumbnail-inner-container">
                 <div class="video-brand-icon-list">
                     <div class="video-brand-icon" ng-repeat="brand in video.brands.brands | limitTo: 5 track by $index" style="background-image: url({{brand.transparentThumbnail}});"></div>
+                    <div class="video-brand-icon" style="background-image: url({{video.charity.transparentThumbnail}});"></div>
                 </div>
             </div>
             <div class="action-buttons-container">
