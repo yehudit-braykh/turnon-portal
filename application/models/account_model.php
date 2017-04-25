@@ -152,15 +152,15 @@ class Account_model extends Uvod_model {
     }
 
     public function update_profile($id ,$data) {
-        //  debug($id, $data);
+        //   debug($id, $data);
         if(count($data)>1){
             foreach($data as $field=>$value){
                 if(!$value || $value == '' || $value==null)
                     unset($data[$field]);
             }
         }
-            // debug($this->session->userdata('login_token'),$id);
-        $response = $this->update_profile_data($this->session->userdata('login_token'), $id, $data);
+            //  debug($this->session->userdata('login_token'),$id,$data);
+        $response = $this->update_profile_data($this->session->userdata('login_token'), $id, (array)$data);
             //  debug($response);
         return $response;
     }
