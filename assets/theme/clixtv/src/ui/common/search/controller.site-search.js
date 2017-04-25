@@ -1,11 +1,12 @@
 (function() {
 
-    var HeaderSearchIconController = [
+    var SiteSearchController = [
         '$scope',
+        '$rootScope',
         '$window',
         '$timeout',
         'searchService',
-        function($scope, $window, $timeout, searchService) {
+        function($scope, $rootScope, $window, $timeout, searchService) {
 
             var searchTimeout;
 
@@ -67,10 +68,16 @@
                     $window.document.getElementById('search-input-field').focus();
                 }
             };
+
+            $rootScope.$on('$stateChangeSuccess',function(){
+                $scope.term = '';
+                $scope.searchVisible = false;
+                _hideSearchResults();
+            });
         }
     ];
 
     angular
         .module('clixtv')
-        .controller('HeaderSearchIconController', HeaderSearchIconController);
+        .controller('SiteSearchController', SiteSearchController);
 }());

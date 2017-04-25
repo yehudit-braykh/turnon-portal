@@ -26,12 +26,32 @@
             $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                 if (toState) {
                     $scope.selectedStateName = toState.name;
+                    $scope.searchVisible = false;
+                    $rootScope.$broadcast('mobilesearch.close');
                 }
             });
 
             $scope.go = function(path) {
                 $state.go(path);
             };
+
+            $scope.onSearchPress = function() {
+                $scope.searchVisible = !$scope.searchVisible;
+                $rootScope.$broadcast(($scope.searchVisible) ? 'mobilesearch.open' : 'mobilesearch.close');
+            };
+
+            $scope.onMobileBackgroundPress = function() {
+                $scope.searchVisible = false;
+                $rootScope.$broadcast('mobilesearch.close');
+            };
+
+            // $scope.bodyClicked = function(event) {
+            //     if (angular.element(event.target).hasClass('mobile-search-container')) {
+            //         return;
+            //     }
+            //     $scope.searchVisible = !$scope.searchVisible;
+            //     $rootScope.$broadcast('mobilesearch.close');
+            // };
         }
     ];
 

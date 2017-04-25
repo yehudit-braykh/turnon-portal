@@ -11,9 +11,7 @@
                     {{bannerType}}
                 </div>
                 <div class="banner-title">
-                    <div data-fittext data-fittext-max="100" data-fittext-min="20">
-                        {{titleText}}
-                    </div>
+                    {{titleText}}
                 </div>
                 <div class="banner-button">
                     <div clix-tooltip-trigger tooltip-id="hero-banner-button-{{$id}}" ng-transclude="favoriteButton"></div>
@@ -25,9 +23,12 @@
                             {{points}}
                         </clix-points-violator>
                     </div>
-                    <div class="banner-subtext-container">
+                    <div class="banner-subtext-container hidden-sm hidden-xs">
                         {{subtext}}
                     </div>
+                </div>
+                <div class="banner-subtext-container visible-sm visible-xs">
+                    {{subtext}}
                 </div>
             </div>
         </div>

@@ -8307,11 +8307,13 @@ button.close {
 }
 .video-content-box .play-button .play-button-hit-area {
   position: relative;
-  top: 50%;
-  margin-top: -33.8%;
+  height: 100%;
 }
 .video-content-box .play-button .play-button-hit-area img {
   width: 100%;
+  top: 50%;
+  margin-top: -33.8%;
+  position: relative;
 }
 .video-content-box .save-button {
   position: absolute;
@@ -9303,7 +9305,6 @@ button.close {
   right: 0;
   bottom: 26px;
   text-align: center;
-  padding: 0 73px;
 }
 .home-page .mobile-header .header-content-title {
   text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
@@ -9642,7 +9643,7 @@ button.close {
   .video-permalink-page .video-info-container .episode-title {
     margin-top: 0;
     font-size: 65px;
-    line-height: 60px;
+    line-height: 70px;
   }
 }
 .video-permalink-page .video-info-container .total-views-available-container {
@@ -10135,7 +10136,6 @@ button.close {
   }
   .brand-page .clix-hero-banner .banner-subtext-container {
     text-align: left;
-    padding-left: 81px;
     margin-top: 10px;
   }
 }
@@ -10436,7 +10436,6 @@ button.close {
   }
   .charity-page .clix-hero-banner .banner-subtext-container {
     text-align: left;
-    padding-left: 81px;
     margin-top: 10px;
   }
 }
@@ -10623,7 +10622,6 @@ button.close {
   }
   .clix-star-page .clix-hero-banner .banner-subtext-container {
     text-align: left;
-    padding-left: 81px;
     margin-top: 10px;
   }
 }
@@ -11988,25 +11986,40 @@ button.close {
 }
 .clix-hero-banner .banner-type {
   font-family: 'montserratregular', sans-serif;
-  font-size: 24px;
+  font-size: 14px;
   letter-spacing: 1.9px;
   color: #9b9b9b;
   position: relative;
   text-transform: uppercase;
 }
+@media (min-width: 768px) {
+  .clix-hero-banner .banner-type {
+    font-size: 24px;
+  }
+}
 .clix-hero-banner .banner-title {
   font-family: 'montserratsemibold', sans-serif;
   color: #FFF;
   letter-spacing: 1.6px;
-  line-height: 110px;
   position: relative;
-  margin-left: -5px;
+  font-size: 32px;
+  line-height: 32px;
+}
+@media (min-width: 768px) {
+  .clix-hero-banner .banner-title {
+    margin-left: -5px;
+    font-size: 100px;
+    line-height: 100px;
+  }
 }
 .clix-hero-banner .banner-button {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: -ms-flex;
   display: flex;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
   margin-top: 10px;
 }
 @media (min-width: 768px) {
@@ -12503,6 +12516,103 @@ button.close {
   .clix-search-filter .filter-bar:first-child {
     padding-right: 0;
   }
+}
+@media (max-width: 768px) {
+  .clix-site-search {
+    max-height: 100%;
+  }
+}
+.clix-site-search .search-results-container {
+  background-color: #000;
+  width: 100%;
+  height: 100%;
+}
+.clix-site-search .search-input-container {
+  padding: 9px 7px;
+}
+.clix-site-search .search-input-field-container {
+  -webkit-border-radius: 13px;
+  -moz-border-radius: 13px;
+  border-radius: 13px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid #bababa;
+  padding: 3px 13px;
+}
+.clix-site-search .search-input-field {
+  background-color: rgba(0, 0, 0, 0);
+  border-width: 0;
+  color: #FFF;
+  font-family: 'montserratregular', sans-serif;
+  font-size: 14px;
+  width: 100%;
+}
+.clix-site-search .search-input-field::placeholder {
+  color: #bababa;
+}
+.clix-site-search .search-results {
+  background-color: #202020;
+}
+.clix-site-search .search-results-block {
+  padding: 15px 0;
+}
+.clix-site-search .search-results-title {
+  padding-left: 20px;
+  font-family: 'montserratregular', sans-serif;
+  text-transform: uppercase;
+  color: #8a8a8a;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  margin-bottom: 2px;
+}
+.clix-site-search .header-search-row {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  padding: 8px 20px;
+  cursor: pointer;
+}
+@media (min-width: 768px) {
+  .clix-site-search .header-search-row:hover {
+    background-color: #363636;
+  }
+}
+.clix-site-search .header-search-row .search-results-circle-image {
+  -webkit-border-radius: 22px;
+  -moz-border-radius: 22px;
+  border-radius: 22px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  width: 44px;
+  height: 44px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.clix-site-search .header-search-row .search-content-container {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  padding-left: 10px;
+}
+.clix-site-search .header-search-row .search-title-text {
+  font-family: 'montserratregular', sans-serif;
+  font-size: 14px;
+  color: #FFF;
+  line-height: 20px;
+}
+.clix-site-search .header-search-row .search-subtitle-text {
+  font-family: 'montserratregular', sans-serif;
+  text-transform: uppercase;
+  color: #8a8a8a;
+  font-size: 10px;
+  letter-spacing: 1.5px;
 }
 .clix-filter-page {
   padding: 75px 9px 73px 9px;
@@ -14363,6 +14473,26 @@ button.close {
 .clix-navigation-bar .logout-button-container {
   text-align: center;
   padding: 15px 0 40px;
+}
+.mobile-search-container {
+  position: fixed;
+  top: 0;
+  z-index: 9000;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+}
+.mobile-search-container .mobile-search {
+  position: relative;
+  z-index: 200;
+}
+.mobile-search-container .mobile-search-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 100;
 }
 .clix-mobile-navigation {
   -webkit-box-shadow: 0 -1px 4px 0 rgba(0, 0, 0, 0.5);

@@ -88,25 +88,36 @@
 
     .banner-type {
         font-family: @font-primary;
-        font-size: 24px;
+        font-size: 14px;
         letter-spacing: 1.9px;
         color: @color-gray16;
         position: relative;
         //top: 10px;
         text-transform: uppercase;
+
+        @media (min-width: @screen-sm) {
+            font-size: 24px;
+        }
     }
 
     .banner-title {
         font-family: @font-primary-bold;
         color: @color-white;
         letter-spacing: 1.6px;
-        line-height: 110px;
         position: relative;
-        margin-left: -5px;
+        font-size: 32px;
+        line-height: 32px;
+
+        @media (min-width: @screen-sm) {
+            margin-left: -5px;
+            font-size: 100px;
+            line-height: 100px;
+        }
     }
 
     .banner-button {
         .flex-display;
+        .align-items(center);
         margin-top: 10px;
         @media (min-width: @screen-sm) {
             .justify-content(flex-start);

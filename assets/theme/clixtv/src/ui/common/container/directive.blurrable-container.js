@@ -25,6 +25,9 @@
 
                     $rootScope.$on('modal.open', _triggerBlurOn);
                     $rootScope.$on('modal.close', _triggerBlurOff);
+
+                    $rootScope.$on('mobilesearch.open', _triggerBlurOn);
+                    $rootScope.$on('mobilesearch.close', _triggerBlurOff);
                 }
             }
         }
