@@ -55,28 +55,35 @@
 
             catchMediaService.trackVideoPageEvent($stateParams.id);
 
-            if ($window.innerWidth <= 1000) {
-                $scope.playerHeight = 9999;
-                $scope.originalPlayerHeight = $scope.playerHeight;
-            }
+            // if ($window.innerWidth <= 1000) {
+            //     $scope.playerHeight = 9999;
+            //     $scope.originalPlayerHeight = $scope.playerHeight;
+            // }
 
             $scope.onPlayerReady = function(configs) {
-                $scope.playerHeight = (configs.height - angular.element(document.getElementById('toggle-button-container')).outerHeight() - 20);
+                var infoContainerElement = angular.element(document.getElementById('about-video-inner-container')),
+                    infoContainerHeight = infoContainerElement.outerHeight(),
+                    buttonContainerHeight = angular.element(document.getElementById('toggle-button-container')).outerHeight(),
+                    buttonHeight = angular.element(document.getElementById('toggle-button')).outerHeight(),
+                    newHeight = (configs.height - buttonContainerHeight - 20);
 
-                if ($scope.isMobile) {
-                    $scope.playerHeight = 400;
+                if (infoContainerHeight < newHeight || $scope.isMobile) {
+                    $scope.forceFullHeight = true;
+                    $timeout(function() {
+                        $scope.$apply();
+                    });
+                    infoContainerElement[0].style.height = (newHeight + buttonHeight + 20) + 'px';
+                } else {
+                    $scope.originalPlayerHeight = newHeight;
+                    infoContainerElement[0].style.maxHeight = newHeight + 'px';
                 }
-
-                $scope.originalPlayerHeight = $scope.playerHeight;
-                $timeout(function() {
-                    $scope.$apply();
-                });
             };
 
             $scope.onExpandToggle = function() {
-                var expandedSize = angular.element(document.getElementById('about-video-container')).outerHeight();
+                var expandedSize = angular.element(document.getElementById('about-video-container')).outerHeight(),
+                    infoContainerElement = angular.element(document.getElementById('about-video-inner-container'));
                 $scope.expanded = !$scope.expanded;
-                $scope.playerHeight = ($scope.expanded) ? expandedSize : ($scope.originalPlayerHeight);
+                infoContainerElement[0].style.maxHeight = ($scope.expanded) ? (expandedSize + 'px') : ($scope.originalPlayerHeight + 'px');
             };
 
             $scope.onFavoritePress = function() {

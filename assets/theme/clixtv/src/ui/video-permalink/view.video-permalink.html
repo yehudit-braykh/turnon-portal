@@ -103,7 +103,7 @@
 
             <div class="about-video-container" id="about-video-container">
 
-                <div class="about-video-inner-container" id="about-video-inner-container" style="max-height: {{playerHeight || 0}}px;">
+                <div class="about-video-inner-container" id="about-video-inner-container">
                     <div class="about-video-overlay hidden-xs hidden-sm" ng-if="!expanded"></div>
 
                     <div class="video-info-container">
@@ -158,7 +158,7 @@
                     </div>
                 </div>
                 <div id="toggle-button-container">
-                    <div class="visibility-toggle-button hidden-xs hidden-sm">
+                    <div class="visibility-toggle-button hidden-xs hidden-sm" id="toggle-button" ng-show="!forceFullHeight">
                         <clix-secondary-button ng-click="onExpandToggle()">
                             {{expanded ? 'Show Less' : 'Show More'}}
                         </clix-secondary-button>
