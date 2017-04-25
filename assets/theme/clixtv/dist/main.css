@@ -9460,12 +9460,12 @@ button.close {
   color: #FFF;
 }
 .video-permalink-page .star-meta-info {
-  padding-bottom: 7px;
+  padding-bottom: 16px;
   border-bottom: 1px solid #636363;
 }
 @media (min-width: 768px) {
   .video-permalink-page .star-meta-info {
-    padding-top: 25px;
+    padding-top: 16px;
   }
 }
 .video-permalink-page .favorite-button {
@@ -9636,7 +9636,6 @@ button.close {
   font-size: 32px;
   line-height: 32px;
   color: #FFF;
-  text-transform: uppercase;
   margin-top: 5px;
 }
 @media (min-width: 768px) {
@@ -9896,7 +9895,6 @@ button.close {
 }
 @media (min-width: 768px) {
   .video-permalink-page .related-videos-container .related-videos-list {
-    padding-top: 0;
     border: 1px solid #777777;
   }
 }
