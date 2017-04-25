@@ -159,8 +159,8 @@ class Account_model extends Uvod_model {
                     unset($data[$field]);
             }
         }
-            //  debug($this->session->userdata('login_token'),$id,$data);
-        $response = $this->update_profile_data($this->session->userdata('login_token'), $id, (array)$data);
+            //   debug($this->session->userdata('login_token'),$id,(array)$data);
+        $response = $this->update_profile_data($this->session->userdata('login_token'), $id, $data);
             //  debug($response);
         return $response;
     }

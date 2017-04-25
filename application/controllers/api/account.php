@@ -41,7 +41,7 @@ class Account extends REST_Controller{
     }
 
 	function update_profile_post(){
-		$data = $this->post();
+		$data = $this->post('data');
 		$profile_id= $this->session->userdata('profile_id');
 		$this->response($this->account_model->update_profile($profile_id,$data),200);
 	}
