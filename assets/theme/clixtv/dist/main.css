@@ -11162,6 +11162,9 @@ button.close {
     text-align: left;
   }
 }
+.clix-account-overview .form-value-container {
+  max-width: 360px;
+}
 .clix-account-overview .personal-info-form {
   background-color: #3d3d3d;
   padding-top: 32px;

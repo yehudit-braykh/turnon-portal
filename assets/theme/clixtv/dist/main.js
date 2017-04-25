@@ -133,7 +133,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/account/overview/view.overview-input.html',
-    "<div class=personal-info-form-row><div class=form-header><div class=form-header-label ng-transclude=inputLabel></div><a ng-click=onFieldEdit() class=\"icon-edit-icon form-header-edit\"></a></div><div class=form-value-container><div class=form-value><input ng-model=ngModel type=text ng-disabled=!editing></div><div class=form-value-buttons ng-show=editing><div class=form-value-button clix-secondary-button alternate=true ng-click=onCancelPress()>Cancel</div><div class=form-value-button clix-secondary-button alternate=true ng-click=onSavePress()>Save</div></div></div></div>"
+    "<div class=personal-info-form-row><div class=form-header><div class=form-header-label ng-transclude=inputLabel></div><a ng-click=onFieldEdit() class=\"icon-edit-icon form-header-edit\" ng-hide=editing></a></div><div class=form-value-container><div class=form-value><input ng-model=ngModel type=text ng-disabled=!editing></div><div class=form-value-buttons ng-show=editing><div class=form-value-button clix-secondary-button alternate=true ng-click=onCancelPress()>Cancel</div><div class=form-value-button clix-secondary-button alternate=true ng-click=onSavePress()>Save</div></div></div></div>"
   );
 
 
