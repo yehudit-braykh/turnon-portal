@@ -29,10 +29,19 @@
 
             <div ng-switch-when="birthdate">
                 <div class="form-value" ng-show="!editing">
-                    <input ng-model="$parent.ngModel"type="text" disabled />
+                    <input ng-model="$parent.birthdateLabel"type="text" disabled />
                 </div>
                 <div class="form-value" ng-show="editing">
                     <clix-datepicker-dropdowns ng-model="$parent.birthdate"></clix-datepicker-dropdowns>
+                </div>
+            </div>
+
+            <div ng-switch-when="gender">
+                <div class="form-value" ng-show="!editing">
+                    <input ng-model="$parent.gender.label" type="text" disabled />
+                </div>
+                <div class="form-value" ng-show="editing">
+                    <clix-radio-button-group options="genders" ng-model="$parent.gender"></clix-radio-button-group>
                 </div>
             </div>
 

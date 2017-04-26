@@ -1,0 +1,8 @@
+<div class="clix-radio-button-group">
+    <div ng-repeat="option in options" class="radio-button-select-container" ng-class="{'active': selected === $index}" ng-click="setSelected($index)">
+        <div class="radio-button-select"></div>
+        <div class="radio-button-label">
+            {{option.label}}
+        </div>
+    </div>
+</div>

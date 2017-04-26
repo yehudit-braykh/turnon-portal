@@ -15022,6 +15022,49 @@ button.close {
 .clix-datepicker-dropdowns .datepicker-dropdown-container:last-child {
   margin-right: 0;
 }
+.clix-radio-button-group {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+}
+.clix-radio-button-group .radio-button-select-container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 10px 25px 10px 0;
+}
+.clix-radio-button-group .radio-button-select-container.active .radio-button-select {
+  border-width: 6px;
+}
+.clix-radio-button-group .radio-button-select-container:last-child {
+  margin-right: 0;
+}
+.clix-radio-button-group .radio-button-select {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #979797;
+}
+.clix-radio-button-group .radio-button-label {
+  font-family: 'montserratregular', sans-serif;
+  color: #FFF;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
 body,
 html {
   background-color: #0e0e0e;

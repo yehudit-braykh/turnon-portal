@@ -22,6 +22,21 @@
             $scope.months = _getRangeDropdownOptions(1, 12);
             $scope.years = _getRangeDropdownOptions(1900, 2000);
 
+            $scope.genders = [
+                {
+                    label: 'Male',
+                    value: 'male'
+                },
+                {
+                    label: 'Female',
+                    value: 'female'
+                },
+                {
+                    label: 'Other',
+                    value: 'other'
+                }
+            ];
+
             $scope.onFieldEdit = function() {
                 oldValue = $scope.ngModel;
                 $rootScope.$broadcast('account.edit');
@@ -35,10 +50,15 @@
 
             $scope.onSavePress = function() {
                 $scope.editing = false;
+
                 if ($scope.type === 'birthdate' && $scope.birthdate) {
                     $scope.ngModel = $scope.birthdate;
                 }
-                // $scope.onSave();
+
+                if ($scope.type === 'gender' && $scope.gender) {
+                    $scope.ngModel = $scope.gender.value;
+                }
+                $scope.onSave();
             };
 
             $rootScope.$on('account.edit', function() {
@@ -49,7 +69,7 @@
 
             $scope.$watch('ngModel', function() {
                 if ($scope.type === 'birthdate' && ($scope.ngModel instanceof Date)) {
-                    $scope.ngModel = moment($scope.ngModel).format('M/D/YY')
+                    $scope.birthdateLabel = moment($scope.ngModel).format('M/D/YY')
                 }
             });
         }

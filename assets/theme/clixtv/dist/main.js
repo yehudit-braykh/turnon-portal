@@ -133,7 +133,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/account/overview/view.overview-input.html',
-    "<div class=personal-info-form-row><div class=form-header><div class=form-header-label ng-transclude=inputLabel></div><a ng-click=onFieldEdit() class=\"icon-edit-icon form-header-edit\" ng-hide=editing></a></div><div class=form-value-container><div ng-switch=type><div ng-switch-when=email><div class=form-value><input ng-model=$parent.ngModel type=email ng-disabled=!editing></div><div class=form-value ng-show=editing><input ng-model=$parent.emailConfirm type=email placeholder=\"Re-enter email address\"></div></div><div ng-switch-when=password><div class=form-value><input ng-model=$parent.ngModel type=password ng-disabled=!editing placeholder=Current></div><div class=form-value ng-show=editing><input ng-model=$parent.newPassword type=password placeholder=New></div><div class=form-value ng-show=editing><input ng-model=$parent.newPasswordConfirm type=password placeholder=\"Re-enter new\"></div></div><div ng-switch-when=birthdate><div class=form-value ng-show=!editing><input ng-model=$parent.ngModel type=text disabled=disabled></div><div class=form-value ng-show=editing><clix-datepicker-dropdowns ng-model=$parent.birthdate></clix-datepicker-dropdowns></div></div><div ng-switch-default><div class=form-value><input ng-model=$parent.ngModel type=text ng-disabled=!editing></div></div></div><div class=form-value-buttons ng-show=editing><div class=form-value-button clix-secondary-button alternate=true ng-click=onCancelPress()>Cancel</div><div class=form-value-button clix-secondary-button alternate=true ng-click=onSavePress()>Save</div></div></div></div>"
+    "<div class=personal-info-form-row><div class=form-header><div class=form-header-label ng-transclude=inputLabel></div><a ng-click=onFieldEdit() class=\"icon-edit-icon form-header-edit\" ng-hide=editing></a></div><div class=form-value-container><div ng-switch=type><div ng-switch-when=email><div class=form-value><input ng-model=$parent.ngModel type=email ng-disabled=!editing></div><div class=form-value ng-show=editing><input ng-model=$parent.emailConfirm type=email placeholder=\"Re-enter email address\"></div></div><div ng-switch-when=password><div class=form-value><input ng-model=$parent.ngModel type=password ng-disabled=!editing placeholder=Current></div><div class=form-value ng-show=editing><input ng-model=$parent.newPassword type=password placeholder=New></div><div class=form-value ng-show=editing><input ng-model=$parent.newPasswordConfirm type=password placeholder=\"Re-enter new\"></div></div><div ng-switch-when=birthdate><div class=form-value ng-show=!editing><input ng-model=$parent.birthdateLabel type=text disabled=disabled></div><div class=form-value ng-show=editing><clix-datepicker-dropdowns ng-model=$parent.birthdate></clix-datepicker-dropdowns></div></div><div ng-switch-when=gender><div class=form-value ng-show=!editing><input ng-model=$parent.gender.label type=text disabled=disabled></div><div class=form-value ng-show=editing><clix-radio-button-group options=genders ng-model=$parent.gender></clix-radio-button-group></div></div><div ng-switch-default><div class=form-value><input ng-model=$parent.ngModel type=text ng-disabled=!editing></div></div></div><div class=form-value-buttons ng-show=editing><div class=form-value-button clix-secondary-button alternate=true ng-click=onCancelPress()>Cancel</div><div class=form-value-button clix-secondary-button alternate=true ng-click=onSavePress()>Save</div></div></div></div>"
   );
 
 
@@ -469,6 +469,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('ui/common/parallax/view.parallax.html',
     "<div class=clix-parallax id=parallax-container><div ng-transclude></div></div>"
+  );
+
+
+  $templateCache.put('ui/common/radio-buttons/view.radio-button-group.html',
+    "<div class=clix-radio-button-group><div ng-repeat=\"option in options\" class=radio-button-select-container ng-class=\"{'active': selected === $index}\" ng-click=setSelected($index)><div class=radio-button-select></div><div class=radio-button-label>{{option.label}}</div></div></div>"
   );
 
 
@@ -955,6 +960,21 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             $scope.months = _getRangeDropdownOptions(1, 12);
             $scope.years = _getRangeDropdownOptions(1900, 2000);
 
+            $scope.genders = [
+                {
+                    label: 'Male',
+                    value: 'male'
+                },
+                {
+                    label: 'Female',
+                    value: 'female'
+                },
+                {
+                    label: 'Other',
+                    value: 'other'
+                }
+            ];
+
             $scope.onFieldEdit = function() {
                 oldValue = $scope.ngModel;
                 $rootScope.$broadcast('account.edit');
@@ -968,10 +988,15 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
             $scope.onSavePress = function() {
                 $scope.editing = false;
+
                 if ($scope.type === 'birthdate' && $scope.birthdate) {
                     $scope.ngModel = $scope.birthdate;
                 }
-                // $scope.onSave();
+
+                if ($scope.type === 'gender' && $scope.gender) {
+                    $scope.ngModel = $scope.gender.value;
+                }
+                $scope.onSave();
             };
 
             $rootScope.$on('account.edit', function() {
@@ -982,7 +1007,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
             $scope.$watch('ngModel', function() {
                 if ($scope.type === 'birthdate' && ($scope.ngModel instanceof Date)) {
-                    $scope.ngModel = moment($scope.ngModel).format('M/D/YY')
+                    $scope.birthdateLabel = moment($scope.ngModel).format('M/D/YY')
                 }
             });
         }
@@ -4197,6 +4222,43 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     angular.module('clixtv')
         .directive('clixParallax', parallax);
+}());
+(function() {
+
+    var RadioButtonGroupController = [
+        '$scope',
+        function($scope) {
+
+            $scope.setSelected = function(index) {
+                $scope.selected = index;
+                $scope.ngModel = $scope.options[index];
+            }
+
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .controller('RadioButtonGroupController', RadioButtonGroupController);
+}());
+(function() {
+
+    var radioButtonGroup = [
+        function() {
+            return {
+                restrict: 'AE',
+                templateUrl: 'ui/common/radio-buttons/view.radio-button-group.html',
+                controller: 'RadioButtonGroupController',
+                scope: {
+                    ngModel: '=',
+                    options: '='
+                }
+            }
+        }
+    ];
+
+    angular.module('clixtv')
+        .directive('clixRadioButtonGroup', radioButtonGroup);
 }());
 (function() {
 
