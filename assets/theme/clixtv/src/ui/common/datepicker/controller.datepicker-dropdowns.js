@@ -83,6 +83,8 @@
             $scope.days = _getDayOptions();
             $scope.years = _getYearOptions();
 
+            console.log($scope.ngModel);
+
         }
     ];
 

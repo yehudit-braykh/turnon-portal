@@ -14,7 +14,7 @@
             'uiSwitch',
             'angularModalService',
             'LocalStorageModule',
-            'datetime'
+            'ngMask'
         ])
         .config([
             '$locationProvider',
@@ -133,7 +133,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/account/overview/view.overview-input.html',
-    "<div class=personal-info-form-row><div class=form-header><div class=form-header-label ng-transclude=inputLabel></div><a ng-click=onFieldEdit() class=\"icon-edit-icon form-header-edit\" ng-hide=editing></a></div><div class=form-value-container><div ng-switch=type><div ng-switch-when=email><div class=form-value><input ng-model=$parent.ngModel type=email ng-disabled=!editing></div><div class=form-value ng-show=editing><input ng-model=$parent.emailConfirm type=email placeholder=\"Re-enter email address\"></div></div><div ng-switch-when=password><div class=form-value><input ng-model=$parent.ngModel type=password ng-disabled=!editing placeholder=Current></div><div class=form-value ng-show=editing><input ng-model=$parent.newPassword type=password placeholder=New></div><div class=form-value ng-show=editing><input ng-model=$parent.newPasswordConfirm type=password placeholder=\"Re-enter new\"></div></div><div ng-switch-when=birthdate><div class=form-value ng-show=!editing><input ng-model=$parent.birthdateLabel type=text disabled=disabled></div><div class=form-value ng-show=editing><clix-datepicker-dropdowns ng-model=$parent.birthdate></clix-datepicker-dropdowns></div></div><div ng-switch-when=gender><div class=form-value ng-show=!editing><input ng-model=$parent.gender.label type=text disabled=disabled></div><div class=form-value ng-show=editing><clix-radio-button-group options=genders ng-model=$parent.gender></clix-radio-button-group></div></div><div ng-switch-default><div class=form-value><input ng-model=$parent.ngModel type=text ng-disabled=!editing></div></div></div><div class=form-value-buttons ng-show=editing><div class=form-value-button clix-secondary-button alternate=true ng-click=onCancelPress()>Cancel</div><div class=form-value-button clix-secondary-button alternate=true ng-click=onSavePress()>Save</div></div></div></div>"
+    "<div class=personal-info-form-row><div class=form-header><div class=form-header-label ng-transclude=inputLabel></div><a ng-click=onFieldEdit() class=\"icon-edit-icon form-header-edit\" ng-hide=editing></a></div><div class=form-value-container><div ng-switch=type><div ng-switch-when=email><div class=form-value><input ng-model=$parent.ngModel type=email ng-disabled=!editing></div><div class=form-value ng-show=editing><input ng-model=$parent.emailConfirm type=email placeholder=\"Re-enter email address\"></div></div><div ng-switch-when=password><div class=form-value><input ng-model=$parent.ngModel type=password ng-disabled=!editing placeholder=Current></div><div class=form-value ng-show=editing><input ng-model=$parent.newPassword type=password placeholder=New></div><div class=form-value ng-show=editing><input ng-model=$parent.newPasswordConfirm type=password placeholder=\"Re-enter new\"></div></div><div ng-switch-when=birthdate><div class=form-value ng-show=!editing><input ng-model=$parent.birthdateLabel type=text disabled=disabled></div><div class=form-value ng-show=editing><clix-datepicker-dropdowns ng-model=$parent.ngModel></clix-datepicker-dropdowns></div></div><div ng-switch-when=gender><div class=form-value ng-show=!editing><input ng-model=$parent.gender.label type=text disabled=disabled></div><div class=form-value ng-show=editing><clix-radio-button-group options=genders ng-model=$parent.gender></clix-radio-button-group></div></div><div ng-switch-when=phone><div class=form-value><input ng-model=$parent.ngModel mask=\"(999) 999-9999\" restrict=reject type=text ng-disabled=!editing></div></div><div ng-switch-default><div class=form-value><input ng-model=$parent.ngModel type=text ng-disabled=!editing></div></div></div><div class=form-value-buttons ng-show=editing><div class=form-value-button clix-secondary-button alternate=true ng-click=onCancelPress()>Cancel</div><div class=form-value-button clix-secondary-button alternate=true ng-click=onSavePress()>Save</div></div></div></div>"
   );
 
 
@@ -941,7 +941,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
     var AccountOverviewInputController = [
         '$scope',
         '$rootScope',
-        function($scope, $rootScope) {
+        '$timeout',
+        function($scope, $rootScope, $timeout) {
 
             var oldValue;
 
@@ -996,7 +997,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 if ($scope.type === 'gender' && $scope.gender) {
                     $scope.ngModel = $scope.gender.value;
                 }
-                $scope.onSave();
+
+                $timeout(function() {
+                    $scope.onSave();
+                });
             };
 
             $rootScope.$on('account.edit', function() {
@@ -1035,14 +1039,19 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                             email: data.email,
                             password: '*********',
                             gender: (data.gender) ? data.gender.charAt(0).toUpperCase() + data.gender.slice(1) : undefined,
-                            phone: data.phone
-                        }
+                            phone: data.phone,
+                            birthdate: (data.birthdate) ? new Date(parseFloat(data.birthdate) * 1000) : undefined
+                        };
                     }
                 );
 
             $scope.onSaveField = function() {
                 userService.updateUser({
-                    firstName: $scope.form.firstName
+                    firstName: $scope.form.firstName,
+                    lastName: $scope.form.lastName,
+                    birthdate: ($scope.form.birthdate instanceof Date) ? ($scope.form.birthdate.getTime() / 1000) : null,
+                    gender: ($scope.form.gender) ? $scope.form.gender.toLowerCase() : null,
+                    phone: ($scope.form.phone) ? $scope.form.phone.replace(/[^0-9]/g, '') : null
                 });
             }
         }
@@ -3130,6 +3139,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             $scope.months = _getMonthOptions();
             $scope.days = _getDayOptions();
             $scope.years = _getYearOptions();
+
+            console.log($scope.ngModel);
 
         }
     ];

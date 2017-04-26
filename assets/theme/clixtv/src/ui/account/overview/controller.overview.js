@@ -16,14 +16,19 @@
                             email: data.email,
                             password: '*********',
                             gender: (data.gender) ? data.gender.charAt(0).toUpperCase() + data.gender.slice(1) : undefined,
-                            phone: data.phone
-                        }
+                            phone: data.phone,
+                            birthdate: (data.birthdate) ? new Date(parseFloat(data.birthdate) * 1000) : undefined
+                        };
                     }
                 );
 
             $scope.onSaveField = function() {
                 userService.updateUser({
-                    firstName: $scope.form.firstName
+                    firstName: $scope.form.firstName,
+                    lastName: $scope.form.lastName,
+                    birthdate: ($scope.form.birthdate instanceof Date) ? ($scope.form.birthdate.getTime() / 1000) : null,
+                    gender: ($scope.form.gender) ? $scope.form.gender.toLowerCase() : null,
+                    phone: ($scope.form.phone) ? $scope.form.phone.replace(/[^0-9]/g, '') : null
                 });
             }
         }

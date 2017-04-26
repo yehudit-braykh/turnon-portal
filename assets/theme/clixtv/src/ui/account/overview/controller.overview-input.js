@@ -3,7 +3,8 @@
     var AccountOverviewInputController = [
         '$scope',
         '$rootScope',
-        function($scope, $rootScope) {
+        '$timeout',
+        function($scope, $rootScope, $timeout) {
 
             var oldValue;
 
@@ -58,7 +59,10 @@
                 if ($scope.type === 'gender' && $scope.gender) {
                     $scope.ngModel = $scope.gender.value;
                 }
-                $scope.onSave();
+
+                $timeout(function() {
+                    $scope.onSave();
+                });
             };
 
             $rootScope.$on('account.edit', function() {
