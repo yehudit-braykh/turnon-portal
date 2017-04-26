@@ -12,9 +12,9 @@
             'ui.bootstrap',
             'puElasticInput',
             'uiSwitch',
-            'ngFitText',
             'angularModalService',
-            'LocalStorageModule'
+            'LocalStorageModule',
+            'datetime'
         ])
         .config([
             '$locationProvider',

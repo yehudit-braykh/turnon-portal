@@ -12,9 +12,9 @@
             'ui.bootstrap',
             'puElasticInput',
             'uiSwitch',
-            'ngFitText',
             'angularModalService',
-            'LocalStorageModule'
+            'LocalStorageModule',
+            'datetime'
         ])
         .config([
             '$locationProvider',
@@ -968,13 +968,21 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
             $scope.onSavePress = function() {
                 $scope.editing = false;
-                console.log($scope.birthdate);
+                if ($scope.type === 'birthdate' && $scope.birthdate) {
+                    $scope.ngModel = $scope.birthdate;
+                }
                 // $scope.onSave();
             };
 
             $rootScope.$on('account.edit', function() {
                 if ($scope.editing) {
                     $scope.onCancelPress();
+                }
+            });
+
+            $scope.$watch('ngModel', function() {
+                if ($scope.type === 'birthdate' && ($scope.ngModel instanceof Date)) {
+                    $scope.ngModel = moment($scope.ngModel).format('M/D/YY')
                 }
             });
         }
