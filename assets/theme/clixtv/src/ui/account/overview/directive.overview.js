@@ -19,7 +19,8 @@
             },
             scope: {
                 ngModel: '=',
-                onSave: '='
+                onSave: '=',
+                type: '@'
             }
         }
     };

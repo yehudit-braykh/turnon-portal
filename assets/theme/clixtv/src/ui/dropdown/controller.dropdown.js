@@ -4,7 +4,6 @@
         '$q',
         '$scope',
         function($q, $scope) {
-            $scope.selected = $scope.placeholderText ? { label: $scope.placeholderText } : $scope.options[0];
 
             $scope.bodyClicked = function(event) {
                 $scope.menuVisible = false;
@@ -14,16 +13,19 @@
                 $scope.menuVisible = !$scope.menuVisible;
             };
 
-            $scope.options = $scope.options.map(function(option) {
-                return {
-                    label: option.label,
-                    // onClickDefault: option.onClick,
-                    onClick: function() {
-                        $scope.selected = option;
-                        $scope.menuVisible = false;
-                        option.onClick(option);
+            $scope.$watch('options', function() {
+                $scope.selected = $scope.placeholderText ? { label: $scope.placeholderText } : $scope.options[0];
+                $scope.dropdownOptions = $scope.options.map(function(option) {
+                    return {
+                        label: option.label,
+                        // onClickDefault: option.onClick,
+                        onClick: function() {
+                            $scope.selected = option;
+                            $scope.menuVisible = false;
+                            option.onClick(option);
+                        }
                     }
-                }
+                });
             });
         }
     ];

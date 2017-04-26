@@ -4,8 +4,43 @@
         <a ng-click="onFieldEdit()" class="icon-edit-icon form-header-edit" ng-hide="editing"></a>
     </div>
     <div class="form-value-container">
-        <div class="form-value">
-            <input ng-model="ngModel" type="text" ng-disabled="!editing" />
+        <div ng-switch="type">
+
+            <div ng-switch-when="email">
+                <div class="form-value">
+                    <input ng-model="$parent.ngModel" type="email" ng-disabled="!editing" />
+                </div>
+                <div class="form-value" ng-show="editing">
+                    <input ng-model="$parent.emailConfirm" type="email" placeholder="Re-enter email address" />
+                </div>
+            </div>
+
+            <div ng-switch-when="password">
+                <div class="form-value">
+                    <input ng-model="$parent.ngModel" type="password" ng-disabled="!editing" placeholder="Current" />
+                </div>
+                <div class="form-value" ng-show="editing">
+                    <input ng-model="$parent.newPassword" type="password" placeholder="New" />
+                </div>
+                <div class="form-value" ng-show="editing">
+                    <input ng-model="$parent.newPasswordConfirm" type="password" placeholder="Re-enter new" />
+                </div>
+            </div>
+
+            <div ng-switch-when="birthdate">
+                <div class="form-value" ng-show="!editing">
+                    <input ng-model="$parent.ngModel" type="text" disabled />
+                </div>
+                <div class="form-value" ng-show="editing">
+                    <clix-datepicker-dropdowns ng-model="$parent.birthdate"></clix-datepicker-dropdowns>
+                </div>
+            </div>
+
+            <div ng-switch-default>
+                <div class="form-value">
+                    <input ng-model="$parent.ngModel" type="text" ng-disabled="!editing" />
+                </div>
+            </div>
         </div>
         <div class="form-value-buttons" ng-show="editing">
             <div class="form-value-button" clix-secondary-button alternate="true" ng-click="onCancelPress()">

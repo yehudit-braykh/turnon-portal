@@ -133,12 +133,12 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/account/overview/view.overview-input.html',
-    "<div class=personal-info-form-row><div class=form-header><div class=form-header-label ng-transclude=inputLabel></div><a ng-click=onFieldEdit() class=\"icon-edit-icon form-header-edit\" ng-hide=editing></a></div><div class=form-value-container><div class=form-value><input ng-model=ngModel type=text ng-disabled=!editing></div><div class=form-value-buttons ng-show=editing><div class=form-value-button clix-secondary-button alternate=true ng-click=onCancelPress()>Cancel</div><div class=form-value-button clix-secondary-button alternate=true ng-click=onSavePress()>Save</div></div></div></div>"
+    "<div class=personal-info-form-row><div class=form-header><div class=form-header-label ng-transclude=inputLabel></div><a ng-click=onFieldEdit() class=\"icon-edit-icon form-header-edit\" ng-hide=editing></a></div><div class=form-value-container><div ng-switch=type><div ng-switch-when=email><div class=form-value><input ng-model=$parent.ngModel type=email ng-disabled=!editing></div><div class=form-value ng-show=editing><input ng-model=$parent.emailConfirm type=email placeholder=\"Re-enter email address\"></div></div><div ng-switch-when=password><div class=form-value><input ng-model=$parent.ngModel type=password ng-disabled=!editing placeholder=Current></div><div class=form-value ng-show=editing><input ng-model=$parent.newPassword type=password placeholder=New></div><div class=form-value ng-show=editing><input ng-model=$parent.newPasswordConfirm type=password placeholder=\"Re-enter new\"></div></div><div ng-switch-when=birthdate><div class=form-value ng-show=!editing><input ng-model=$parent.ngModel type=text disabled=disabled></div><div class=form-value ng-show=editing><clix-datepicker-dropdowns ng-model=$parent.birthdate></clix-datepicker-dropdowns></div></div><div ng-switch-default><div class=form-value><input ng-model=$parent.ngModel type=text ng-disabled=!editing></div></div></div><div class=form-value-buttons ng-show=editing><div class=form-value-button clix-secondary-button alternate=true ng-click=onCancelPress()>Cancel</div><div class=form-value-button clix-secondary-button alternate=true ng-click=onSavePress()>Save</div></div></div></div>"
   );
 
 
   $templateCache.put('ui/account/overview/view.overview.html',
-    "<div class=clix-account-overview><clix-account-header><header-text>Account Overview</header-text></clix-account-header><div class=\"row body-content\"><div class=\"col-md-6 personal-info-container\"><div class=account-info-sub-header>Personal Information</div><div class=personal-info-form><clix-account-overview-input ng-model=form.firstName on-save=onSaveField><input-label>First Name</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.lastName on-save=onSaveField><input-label>Last Name</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.email on-save=onSaveField><input-label>Email</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.password on-save=onSaveField><input-label>Password</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.birthdate on-save=onSaveField><input-label>Date of Birth</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.gender on-save=onSaveField><input-label>Gender</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.phone on-save=onSaveField><input-label>Phone</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.paymentData on-save=onSaveField><input-label>Credit Card</input-label></clix-account-overview-input></div></div><div class=\"col-md-6 reward-points-container\"><div class=account-info-sub-header>Reward Points</div><div class=reward-points><div class=\"reward-points-block first-block\"><div class=points-label>1760</div><div class=available-balance-label>Available Points Balance<br>$17.60 Cash Balance</div></div><div class=rewards-button><clix-primary-button ui-sref=\"account({ section: 'rewards' })\" ui-sref-opts={reload:true}>Go To My Rewards</clix-primary-button></div></div></div></div></div>"
+    "<div class=clix-account-overview><clix-account-header><header-text>Account Overview</header-text></clix-account-header><div class=\"row body-content\"><div class=\"col-md-6 personal-info-container\"><div class=account-info-sub-header>Personal Information</div><div class=personal-info-form><clix-account-overview-input ng-model=form.firstName on-save=onSaveField><input-label>First Name</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.lastName on-save=onSaveField><input-label>Last Name</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.email on-save=onSaveField type=email><input-label>Email</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.password on-save=onSaveField type=password><input-label>Password</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.birthdate on-save=onSaveField type=birthdate><input-label>Date of Birth</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.gender on-save=onSaveField type=gender><input-label>Gender</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.phone on-save=onSaveField type=phone><input-label>Phone</input-label></clix-account-overview-input><clix-account-overview-input ng-model=form.paymentData on-save=onSaveField type=creditcard><input-label>Credit Card</input-label></clix-account-overview-input></div></div><div class=\"col-md-6 reward-points-container\"><div class=account-info-sub-header>Reward Points</div><div class=reward-points><div class=\"reward-points-block first-block\"><div class=points-label>1760</div><div class=available-balance-label>Available Points Balance<br>$17.60 Cash Balance</div></div><div class=rewards-button><clix-primary-button ui-sref=\"account({ section: 'rewards' })\" ui-sref-opts={reload:true}>Go To My Rewards</clix-primary-button></div></div></div></div></div>"
   );
 
 
@@ -327,6 +327,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('ui/common/datepicker/view.datepicker-dropdowns.html',
+    "<div class=clix-datepicker-dropdowns><div class=datepicker-dropdown-container><clix-dropdown placeholder-text=Month options=months></clix-dropdown></div><div class=datepicker-dropdown-container><clix-dropdown placeholder-text=Day options=days></clix-dropdown></div><div class=datepicker-dropdown-container><clix-dropdown placeholder-text=Year options=years></clix-dropdown></div></div>"
+  );
+
+
   $templateCache.put('ui/common/headers/view.main-header.html',
     "<div class=clix-main-header><div ng-transclude></div></div>"
   );
@@ -493,7 +498,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/dropdown/view.dropdown.html',
-    "<div class=clix-dropdown ng-show=options clix-click-anywhere-else=bodyClicked><div class=dropdown-trigger ng-click=triggerClicked()><div class=dropdown-label>{{ selected.label }}</div><div class=dropdown-icon><i class=icon-down-arrow></i></div></div><clix-tooltip-menu items=options menuopen=menuVisible></clix-tooltip-menu></div>"
+    "<div class=clix-dropdown ng-show=options clix-click-anywhere-else=bodyClicked><div class=dropdown-trigger ng-click=triggerClicked()><div class=dropdown-label>{{ selected.label }}</div><div class=dropdown-icon><i class=icon-down-arrow></i></div></div><clix-tooltip-menu items=dropdownOptions menuopen=menuVisible></clix-tooltip-menu></div>"
   );
 
 
@@ -933,13 +938,26 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$rootScope',
         function($scope, $rootScope) {
 
-            $scope.editing = false;
-
             var oldValue;
 
+            function _getRangeDropdownOptions(from, to) {
+                var options = [];
+                for(var i = from, length = to; i <= length; i++) {
+                    options.push({
+                        label: i
+                    });
+                }
+                return options;
+            }
+
+            $scope.editing = false;
+            $scope.days = _getRangeDropdownOptions(1, 31);
+            $scope.months = _getRangeDropdownOptions(1, 12);
+            $scope.years = _getRangeDropdownOptions(1900, 2000);
+
             $scope.onFieldEdit = function() {
-                $rootScope.$broadcast('account.edit');
                 oldValue = $scope.ngModel;
+                $rootScope.$broadcast('account.edit');
                 $scope.editing = true;
             };
 
@@ -950,7 +968,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
             $scope.onSavePress = function() {
                 $scope.editing = false;
-                $scope.onSave();
+                console.log($scope.birthdate);
+                // $scope.onSave();
             };
 
             $rootScope.$on('account.edit', function() {
@@ -1021,7 +1040,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             },
             scope: {
                 ngModel: '=',
-                onSave: '='
+                onSave: '=',
+                type: '@'
             }
         }
     };
@@ -2995,6 +3015,116 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 }());
 (function() {
 
+    var DatepickerDropdowns = [
+        '$scope',
+        function($scope) {
+
+            function _getMonthOptions() {
+                return moment.monthsShort().map(function(month, i) {
+                    return {
+                        label: month,
+                        value: (i + 1),
+                        onClick: function() {
+                            $scope.selectedMonth = (i + 1);
+                            $scope.days = _getDayOptions();
+                            _updateModelDate();
+                        }
+                    }
+                });
+            }
+
+            function _getDayOptions() {
+                var numberOfDays,
+                    options = [];
+                if (!$scope.selectedMonth) {
+                    $scope.selectedMonth = 1;
+                }
+
+                // Set the current selected day back to undefined since changing the
+                // month will update the possible number of days to choose from
+                $scope.selectedDay = undefined;
+
+                // Force set the year to a leap year to give Feb the max possible
+                // amount of days to choose from
+                numberOfDays = moment('2016-' + $scope.selectedMonth, 'YYYY-M').daysInMonth();
+                for (var i = 1, length = numberOfDays; i <= length; i++) {
+                    (function(day) {
+                        options.push({
+                            label: i,
+                            value: i,
+                            onClick: function () {
+                                $scope.selectedDay = day;
+                                _updateModelDate();
+                            }
+                        })
+                    }(i));
+                }
+                return options;
+            }
+
+            function _getYearOptions() {
+                var options = [],
+                    currentYear = new Date().getFullYear(),
+                    minimumYear = currentYear - 100;
+                for (var i = minimumYear, length = currentYear; i <= length; i++) {
+                    (function(year) {
+                        options.push({
+                            label: i,
+                            value: i,
+                            onClick: function() {
+                                $scope.selectedYear = year;
+                                _updateModelDate();
+                            }
+                        })
+                    }(i));
+                }
+                return options.reverse();
+            }
+
+            function _updateModelDate() {
+                var month = $scope.selectedMonth,
+                    day = $scope.selectedDay,
+                    year = $scope.selectedYear;
+
+                if (!month || !day || !year) {
+                    $scope.ngModel = undefined;
+                    return;
+                }
+
+                $scope.ngModel = moment(month + '-' + day + '-' + year, 'M-D-YYYY').toDate();
+            }
+
+            $scope.months = _getMonthOptions();
+            $scope.days = _getDayOptions();
+            $scope.years = _getYearOptions();
+
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .controller('DatepickerDropdowns', DatepickerDropdowns);
+}());
+(function() {
+
+    var datepickerDropdowns = [
+        function() {
+            return {
+                restrict: 'AE',
+                templateUrl: 'ui/common/datepicker/view.datepicker-dropdowns.html',
+                controller: 'DatepickerDropdowns',
+                scope: {
+                    ngModel: '='
+                }
+            }
+        }
+    ];
+
+    angular.module('clixtv')
+        .directive('clixDatepickerDropdowns', datepickerDropdowns);
+}());
+(function() {
+
     var mainHeader = function() {
         return {
             restrict: 'AE',
@@ -4404,7 +4534,6 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$q',
         '$scope',
         function($q, $scope) {
-            $scope.selected = $scope.placeholderText ? { label: $scope.placeholderText } : $scope.options[0];
 
             $scope.bodyClicked = function(event) {
                 $scope.menuVisible = false;
@@ -4414,16 +4543,19 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 $scope.menuVisible = !$scope.menuVisible;
             };
 
-            $scope.options = $scope.options.map(function(option) {
-                return {
-                    label: option.label,
-                    // onClickDefault: option.onClick,
-                    onClick: function() {
-                        $scope.selected = option;
-                        $scope.menuVisible = false;
-                        option.onClick(option);
+            $scope.$watch('options', function() {
+                $scope.selected = $scope.placeholderText ? { label: $scope.placeholderText } : $scope.options[0];
+                $scope.dropdownOptions = $scope.options.map(function(option) {
+                    return {
+                        label: option.label,
+                        // onClickDefault: option.onClick,
+                        onClick: function() {
+                            $scope.selected = option;
+                            $scope.menuVisible = false;
+                            option.onClick(option);
+                        }
                     }
-                }
+                });
             });
         }
     ];

@@ -8966,6 +8966,8 @@ button.close {
 }
 .clix-dropdown .menu-container {
   max-width: none;
+  max-height: 250px;
+  overflow: scroll;
 }
 .clix-footer {
   padding-top: 73px;
@@ -11161,6 +11163,9 @@ button.close {
     text-align: left;
   }
 }
+.clix-account-overview .form-value {
+  margin-bottom: 10px;
+}
 .clix-account-overview .form-value-container {
   max-width: 360px;
 }
@@ -11213,7 +11218,7 @@ button.close {
   cursor: pointer;
 }
 .clix-account-overview .form-value-buttons {
-  margin: 15px 0;
+  margin-bottom: 15px;
 }
 .clix-account-overview .form-value-button {
   display: inline-block;
@@ -15001,6 +15006,21 @@ button.close {
 }
 .clix-circle-container-icon.clix-error-indicator-icon {
   background-color: #fb0d1b;
+}
+.clix-datepicker-dropdowns {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+}
+.clix-datepicker-dropdowns .datepicker-dropdown-container {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-right: 10px;
+}
+.clix-datepicker-dropdowns .datepicker-dropdown-container:last-child {
+  margin-right: 0;
 }
 body,
 html {
