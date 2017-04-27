@@ -1,6 +1,6 @@
 (function() {
 
-    var HIDE_NOTIFICATION_BAR_DELAY = 1500;
+    var HIDE_NOTIFICATION_BAR_DELAY = 3000;
 
     var SiteNotificationBarController = [
         '$scope',

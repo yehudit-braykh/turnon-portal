@@ -140,11 +140,13 @@ module.exports = function(grunt) {
                     'src/services/**/*.js',
                     'src/utils/*.js',
                     'src/filters/*.js',
-                    'src/ui/**/*.less'
+                    'src/ui/**/*.less',
+                    '!src/ui/views.js'
                 ],
                 tasks: ['default'],
                 options: {
-                    spawn: false
+                    spawn: false,
+                    interrupt: true
                 }
             }
         },

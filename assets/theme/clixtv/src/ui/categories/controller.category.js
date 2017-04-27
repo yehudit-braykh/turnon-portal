@@ -15,6 +15,8 @@
                 $scope.isFavorite = userService.isFavoriteCategory($stateParams.id);
             }
 
+            $scope.notify = false;
+
             $rootScope.$on('user.login', function(event, data) {
                 $scope.loggedInUser = data;
                 _resetIsFavorite();
