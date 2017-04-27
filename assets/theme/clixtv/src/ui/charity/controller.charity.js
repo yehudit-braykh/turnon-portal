@@ -67,6 +67,7 @@
                         }
 
                         $scope.charity = data;
+                        $scope.active = 0;
 
                         $scope.video = {
                             streamUrl: data.trailer,

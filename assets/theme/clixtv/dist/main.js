@@ -1521,6 +1521,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     function onSuccess(data) {
 
                         $scope.brand = data;
+                        $scope.active = 0;
 
                         $scope.video = {
                             streamUrl: data.trailer,
@@ -2190,6 +2191,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         }
 
                         $scope.charity = data;
+                        $scope.active = 0;
 
                         $scope.video = {
                             streamUrl: data.trailer,
@@ -5247,6 +5249,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     function onSuccess(data) {
 
                         $scope.offer = data;
+                        $scope.active = 0;
 
                         $scope.configs = {
                             title: data.title,
@@ -5385,6 +5388,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     function onSuccess(data) {
 
                         $scope.celebrity = data;
+                        $scope.active = 0;
 
                         $scope.seriesList = data.series.series.map(function(series) {
                             return {

@@ -87,6 +87,7 @@
                     function onSuccess(data) {
 
                         $scope.brand = data;
+                        $scope.active = 0;
 
                         $scope.video = {
                             streamUrl: data.trailer,

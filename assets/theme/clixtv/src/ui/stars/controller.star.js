@@ -115,6 +115,7 @@
                     function onSuccess(data) {
 
                         $scope.celebrity = data;
+                        $scope.active = 0;
 
                         $scope.seriesList = data.series.series.map(function(series) {
                             return {

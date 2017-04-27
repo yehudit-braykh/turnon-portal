@@ -87,6 +87,7 @@
                     function onSuccess(data) {
 
                         $scope.offer = data;
+                        $scope.active = 0;
 
                         $scope.configs = {
                             title: data.title,
