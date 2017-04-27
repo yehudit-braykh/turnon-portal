@@ -9,7 +9,8 @@
         '$stateParams',
         'categoryService',
         'userService',
-        function($q, $log, $scope, $rootScope, $state, $stateParams, categoryService, userService) {
+        'modalService',
+        function($q, $log, $scope, $rootScope, $state, $stateParams, categoryService, userService, modalService) {
 
             function _resetIsFavorite() {
                 $scope.isFavorite = userService.isFavoriteCategory($stateParams.id);
@@ -81,6 +82,14 @@
                     label: 'Most Viewed'
                 }
             ];
+
+            $scope.onSignupPress = function() {
+                modalService.showSignUpModal();
+            };
+
+            $scope.onLoginPress = function() {
+                modalService.showLogInModal();
+            };
 
             $q.all(
                     [

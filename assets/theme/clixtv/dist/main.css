@@ -10855,6 +10855,21 @@ button.close {
   color: #8a8a8a;
   text-decoration: underline;
 }
+.clix-category-page .empty-category-container .authentication-container {
+  width: 170px;
+  margin: 45px auto 0 auto;
+}
+.clix-category-page .empty-category-container .log-in-button {
+  margin-top: 17px;
+}
+.clix-category-page .empty-category-container .log-in-button a {
+  font-family: 'montserratregular', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #FFF;
+  text-decoration: underline;
+  cursor: pointer;
+}
 .clix-offer-page .main-page-content {
   position: relative;
   z-index: 2000;
