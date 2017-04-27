@@ -44,7 +44,7 @@
                             );
 
                             modalInstance.closed.then(
-                                function onSuccess() {
+                                function onSuccess(data) {
                                     $rootScope.$broadcast('modal.close');
                                 }
                             );

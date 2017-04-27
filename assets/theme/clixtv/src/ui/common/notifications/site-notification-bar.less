@@ -1,0 +1,33 @@
+@bar-height: 70px;
+
+.clix-site-notification-bar {
+    .transition(0.25s ease);
+    .horizontal-gradient(@color-tertiary, @color-secondary);
+    .drop-shadow(0, 2px, 4px, 0, 0.5);
+    position: fixed;
+    top: -@bar-height;
+    left: 0;
+    height: @bar-height;
+    width: 100%;
+    z-index: 9000;
+    text-align: center;
+    line-height: 70px;
+    font-family: @font-primary;
+    color: @color-white;
+    font-size: 14px;
+    letter-spacing: 1.6px;
+
+    &.active {
+        top: 0;
+    }
+
+    a {
+        text-decoration: underline;
+    }
+
+    .notification-bar-icon {
+        display: inline-block;
+        margin-right: 8px;
+        font-size: 18px;
+    }
+}

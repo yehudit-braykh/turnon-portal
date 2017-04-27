@@ -14979,6 +14979,45 @@ button.close {
   border-bottom: 1px solid #494949;
   padding: 10px 23px;
 }
+.clix-site-notification-bar {
+  transition: 0.25s ease;
+  -webkit-transition: 0.25s ease;
+  -moz-transition: 0.25s ease;
+  -ms-transition: 0.25s ease;
+  -o-transition: 0.25s ease;
+  background-color: #911685;
+  background-image: -webkit-gradient(linear, left top, right top, from(#911685), to(#fa0d1b));
+  background-image: -webkit-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -moz-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -ms-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -o-linear-gradient(left, #911685, #fa0d1b);
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: -70px;
+  left: 0;
+  height: 70px;
+  width: 100%;
+  z-index: 9000;
+  text-align: center;
+  line-height: 70px;
+  font-family: 'montserratregular', sans-serif;
+  color: #FFF;
+  font-size: 14px;
+  letter-spacing: 1.6px;
+}
+.clix-site-notification-bar.active {
+  top: 0;
+}
+.clix-site-notification-bar a {
+  text-decoration: underline;
+}
+.clix-site-notification-bar .notification-bar-icon {
+  display: inline-block;
+  margin-right: 8px;
+  font-size: 18px;
+}
 .clix-circle-container-icon {
   display: -webkit-flex;
   display: -ms-flexbox;

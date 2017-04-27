@@ -143,7 +143,7 @@
             </div>
             <div class="col-sm-7 buttons-container">
                 <div class="button-container left-button-container">
-                    <clix-secondary-button alternate="true" ng-click="onCloseButtonPress()">
+                    <clix-secondary-button alternate="true" ng-click="onCloseButtonPress(false)">
                         Got it!
                     </clix-secondary-button>
                 </div>
@@ -160,32 +160,32 @@
                         <logged-in>
                             <div ng-switch="type">
                                 <div ng-switch-when="watchlist">
-                                    <clix-primary-button ui-sref="account({ section: 'watchlist' })" ng-click="onCloseButtonPress()">
+                                    <clix-primary-button ui-sref="account({ section: 'watchlist' })" ng-click="onCloseButtonPress(true)">
                                         Go to my Watchlist
                                     </clix-primary-button>
                                 </div>
                                 <div ng-switch-when="brand">
-                                    <clix-primary-button ui-sref="account({ section: 'favorites', tab: 'brand' })" ng-click="onCloseButtonPress()">
+                                    <clix-primary-button ui-sref="account({ section: 'favorites', tab: 'brand' })" ng-click="onCloseButtonPress(true)">
                                         Go to my Favorites
                                     </clix-primary-button>
                                 </div>
                                 <div ng-switch-when="charity">
-                                    <clix-primary-button ui-sref="account({ section: 'favorites', tab: 'charity' })" ng-click="onCloseButtonPress()">
+                                    <clix-primary-button ui-sref="account({ section: 'favorites', tab: 'charity' })" ng-click="onCloseButtonPress(true)">
                                         Go to my Favorites
                                     </clix-primary-button>
                                 </div>
                                 <div ng-switch-when="category">
-                                    <clix-primary-button ui-sref="account({ section: 'favorites', tab: 'category' })" ng-click="onCloseButtonPress()">
+                                    <clix-primary-button ui-sref="account({ section: 'favorites', tab: 'category' })" ng-click="onCloseButtonPress(true)">
                                         Go to my Favorites
                                     </clix-primary-button>
                                 </div>
                                 <div ng-switch-when="celebrity">
-                                    <clix-primary-button ui-sref="account({ section: 'favorites', tab: 'star' })" ng-click="onCloseButtonPress()">
+                                    <clix-primary-button ui-sref="account({ section: 'favorites', tab: 'star' })" ng-click="onCloseButtonPress(true)">
                                         Go to my Favorites
                                     </clix-primary-button>
                                 </div>
                                 <div ng-switch-when="offer">
-                                    <clix-primary-button ui-sref="account({ section: 'saved-offers' })" ng-click="onCloseButtonPress()">
+                                    <clix-primary-button ui-sref="account({ section: 'saved-offers' })" ng-click="onCloseButtonPress(true)">
                                         Go to my Saved Offers
                                     </clix-primary-button>
                                 </div>

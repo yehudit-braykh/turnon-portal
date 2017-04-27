@@ -82,8 +82,10 @@
             $scope.title = _getModalTitle();
             $scope.type = itemData.type;
 
-            $scope.onCloseButtonPress = function() {
-                $uibModalInstance.close();
+            $scope.onCloseButtonPress = function(navigation) {
+                $uibModalInstance.close({
+                    navigation: navigation
+                });
             };
 
             $scope.onSignUpPress = function() {

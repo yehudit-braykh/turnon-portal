@@ -8,6 +8,8 @@
         'userService',
         function($q, $scope, $rootScope, $stateParams, userService) {
 
+            $scope.ready = false;
+
             $scope.filterStarsOptions = [
                 {
                     label: 'All'

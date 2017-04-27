@@ -106,6 +106,7 @@
                 .then(
                     function onSuccess(data) {
                         $scope.ready = true;
+                        $scope.active = 0;
                         $scope.brands = data;
                     }
                 );

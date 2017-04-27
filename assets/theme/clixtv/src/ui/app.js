@@ -112,7 +112,7 @@
                 catchMediaService.initialize();
                 educationModalService.initialize();
 
-                $rootScope.$on('$stateChangeSuccess',function(){
+                $rootScope.$on('$stateChangeSuccess', function() {
                     $("html, body").animate({ scrollTop: 0 }, 200);
                 });
             }
