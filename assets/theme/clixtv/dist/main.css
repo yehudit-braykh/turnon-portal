@@ -15007,6 +15007,14 @@ button.close {
   font-size: 14px;
   letter-spacing: 1.6px;
 }
+.clix-site-notification-bar.points-bar {
+  background-color: #0dc73a;
+  background-image: -webkit-gradient(linear, left top, right top, from(#0dc73a), to(#14cf1e));
+  background-image: -webkit-linear-gradient(left, #0dc73a, #14cf1e);
+  background-image: -moz-linear-gradient(left, #0dc73a, #14cf1e);
+  background-image: -ms-linear-gradient(left, #0dc73a, #14cf1e);
+  background-image: -o-linear-gradient(left, #0dc73a, #14cf1e);
+}
 .clix-site-notification-bar.active {
   top: 0;
 }

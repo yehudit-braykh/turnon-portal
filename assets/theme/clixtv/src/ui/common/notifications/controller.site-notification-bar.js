@@ -26,6 +26,7 @@
                 $scope.type = data.type;
                 $scope.favorite = isFavorite;
                 $scope.data = data;
+                $scope.receivedPoints = false;
 
                 switch (data.type) {
                     case 'celebrity':
@@ -49,6 +50,9 @@
                         break;
                     case 'offer':
                         $scope.type = 'offer';
+                        if (isFavorite) {
+                            $scope.receivedPoints = true;
+                        }
                         break;
                 }
 
