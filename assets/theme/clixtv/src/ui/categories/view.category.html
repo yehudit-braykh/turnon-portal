@@ -53,6 +53,7 @@
 
                 <div class="empty-videos" ng-if="!category.videos || !category.videos.videos || category.videos.videos.length === 0">
                     <div class="empty-category-container">
+                        <div class="category-icon icon-lifestyle-icon"></div>
                         <div class="empty-category-title">
                             {{category.title}} videos are coming soon!
                         </div>
@@ -70,6 +71,9 @@
                                             <clix-switch ng-model="notify"></clix-switch>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="manage-settings-container">
+                                    <a ui-sref="account({ section: 'settings' })">Manage notification settings</a>
                                 </div>
                             </logged-in>
                             <not-logged-in>

@@ -79,6 +79,13 @@ module.exports = function(grunt) {
                 dest: 'src/ui/sprites/compiled/images/layout-sprite.png',
                 retinaDest: 'src/ui/sprites/compiled/images/layout-sprite@2x.png',
                 destCss: 'src/ui/sprites/compiled/layout-sprite.css'
+            },
+            category: {
+                src: 'src/ui/sprites/category/*.png',
+                retinaSrcFilter: 'src/ui/sprites/category/*@2x.png',
+                dest: 'src/ui/sprites/compiled/images/category-sprite.png',
+                retinaDest: 'src/ui/sprites/compiled/images/category-sprite@2x.png',
+                destCss: 'src/ui/sprites/compiled/category-sprite.css'
             }
         },
         less: {

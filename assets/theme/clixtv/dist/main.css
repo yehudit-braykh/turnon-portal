@@ -900,6 +900,39 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
   }
 }
 
+/*
+Icon classes can be used entirely standalone. They are named after their original file names.
+
+Example usage in HTML:
+
+`display: block` sprite:
+<div class="icon-home"></div>
+
+To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+
+// CSS
+.icon {
+  display: inline-block;
+}
+
+// HTML
+<i class="icon icon-home"></i>
+*/
+.icon-lifestyle-icon {
+  background-image: url(images/category-sprite.png);
+  background-position: 0px 0px;
+  width: 92px;
+  height: 41px;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+       (min-resolution: 192dpi) {
+  .icon-lifestyle-icon {
+    background-image: url(images/category-sprite@2x.png);
+    background-size: 92px 41px;
+  }
+}
+
 @font-face {
     font-family: 'fontello';
     src: url('./font/fontello.eot?57066863');
@@ -10773,6 +10806,9 @@ button.close {
   margin: 100px auto 0;
   display: inline-block;
 }
+.clix-category-page .empty-category-container .category-icon {
+  margin: 0 auto 34px auto;
+}
 .clix-category-page .empty-category-container .empty-category-title {
   font-family: 'montserratsemibold', sans-serif;
   font-size: 30px;
@@ -10790,7 +10826,7 @@ button.close {
 .clix-category-page .empty-category-container .empty-category-notify-container {
   display: inline-block;
   margin: 33px auto;
-  padding: 27px 20px;
+  padding: 23px 20px;
   border-top: 1px solid #636363;
   border-bottom: 1px solid #636363;
 }
@@ -10812,6 +10848,12 @@ button.close {
 }
 .clix-category-page .empty-category-container .empty-category-switch {
   margin-left: 30px;
+}
+.clix-category-page .empty-category-container .manage-settings-container a {
+  font-family: 'montserratregular', sans-serif;
+  font-size: 14px;
+  color: #8a8a8a;
+  text-decoration: underline;
 }
 .clix-offer-page .main-page-content {
   position: relative;
@@ -15162,6 +15204,9 @@ button.close {
   letter-spacing: 1px;
   padding-left: 10px;
   padding-right: 10px;
+}
+.clix-switch {
+  background-color: rgba(0, 0, 0, 0);
 }
 .clix-switch.checked {
   border-color: #fe0000;
