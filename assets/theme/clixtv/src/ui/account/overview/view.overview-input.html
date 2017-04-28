@@ -7,12 +7,26 @@
         <div ng-switch="type">
 
             <div ng-switch-when="email">
-                <div class="form-value">
-                    <input ng-model="$parent.ngModel" type="email" ng-disabled="!editing" />
-                </div>
-                <div class="form-value" ng-show="editing">
-                    <input ng-model="$parent.emailConfirm" type="email" placeholder="Re-enter email address" />
-                </div>
+                <clix-form-input-error-field show-error="showEmailError">
+                    <form-field>
+                        <div class="form-value">
+                            <input ng-model="$parent.$parent.ngModel" type="email" ng-disabled="!editing" />
+                        </div>
+                    </form-field>
+                    <error-message>
+                        {{$parent.$parent.emailErrorMessage}}
+                    </error-message>
+                </clix-form-input-error-field>
+                <clix-form-input-error-field show-error="showEmailConfirmationError">
+                    <form-field>
+                        <div class="form-value" ng-show="editing">
+                            <input ng-model="$parent.$parent.emailConfirm" type="email" placeholder="Re-enter email address" />
+                        </div>
+                    </form-field>
+                    <error-message>
+                        {{$parent.$parent.emailConfirmationErrorMessage}}
+                    </error-message>
+                </clix-form-input-error-field>
             </div>
 
             <div ng-switch-when="password">

@@ -133,7 +133,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/account/overview/view.overview-input.html',
-    "<div class=personal-info-form-row><div class=form-header><div class=form-header-label ng-transclude=inputLabel></div><a ng-click=onFieldEdit() class=\"icon-edit-icon form-header-edit\" ng-hide=editing></a></div><div class=form-value-container><div ng-switch=type><div ng-switch-when=email><div class=form-value><input ng-model=$parent.ngModel type=email ng-disabled=!editing></div><div class=form-value ng-show=editing><input ng-model=$parent.emailConfirm type=email placeholder=\"Re-enter email address\"></div></div><div ng-switch-when=password><div class=form-value><input ng-model=$parent.ngModel type=password ng-disabled=!editing placeholder=Current></div><div class=form-value ng-show=editing><input ng-model=$parent.newPassword type=password placeholder=New></div><div class=form-value ng-show=editing><input ng-model=$parent.newPasswordConfirm type=password placeholder=\"Re-enter new\"></div></div><div ng-switch-when=birthdate><div class=form-value ng-show=!editing><input ng-model=$parent.birthdateLabel type=text disabled=disabled></div><div class=form-value ng-show=editing><clix-datepicker-dropdowns ng-model=$parent.ngModel></clix-datepicker-dropdowns></div></div><div ng-switch-when=gender><div class=form-value ng-show=!editing><input ng-model=$parent.gender.label type=text disabled=disabled></div><div class=form-value ng-show=editing><clix-radio-button-group options=genders ng-model=$parent.gender></clix-radio-button-group></div></div><div ng-switch-when=phone><div class=form-value><input ng-model=$parent.ngModel mask=\"(999) 999-9999\" restrict=reject type=text ng-disabled=!editing></div></div><div ng-switch-default><div class=form-value><input ng-model=$parent.ngModel type=text ng-disabled=!editing></div></div></div><div class=form-value-buttons ng-show=editing><div class=form-value-button clix-secondary-button alternate=true ng-click=onCancelPress()>Cancel</div><div class=form-value-button clix-secondary-button alternate=true ng-click=onSavePress()>Save</div></div></div></div>"
+    "<div class=personal-info-form-row><div class=form-header><div class=form-header-label ng-transclude=inputLabel></div><a ng-click=onFieldEdit() class=\"icon-edit-icon form-header-edit\" ng-hide=editing></a></div><div class=form-value-container><div ng-switch=type><div ng-switch-when=email><clix-form-input-error-field show-error=showEmailError><form-field><div class=form-value><input ng-model=$parent.$parent.ngModel type=email ng-disabled=!editing></div></form-field><error-message>{{$parent.$parent.emailErrorMessage}}</error-message></clix-form-input-error-field><clix-form-input-error-field show-error=showEmailConfirmationError><form-field><div class=form-value ng-show=editing><input ng-model=$parent.$parent.emailConfirm type=email placeholder=\"Re-enter email address\"></div></form-field><error-message>{{$parent.$parent.emailConfirmationErrorMessage}}</error-message></clix-form-input-error-field></div><div ng-switch-when=password><div class=form-value><input ng-model=$parent.ngModel type=password ng-disabled=!editing placeholder=Current></div><div class=form-value ng-show=editing><input ng-model=$parent.newPassword type=password placeholder=New></div><div class=form-value ng-show=editing><input ng-model=$parent.newPasswordConfirm type=password placeholder=\"Re-enter new\"></div></div><div ng-switch-when=birthdate><div class=form-value ng-show=!editing><input ng-model=$parent.birthdateLabel type=text disabled=disabled></div><div class=form-value ng-show=editing><clix-datepicker-dropdowns ng-model=$parent.ngModel></clix-datepicker-dropdowns></div></div><div ng-switch-when=gender><div class=form-value ng-show=!editing><input ng-model=$parent.gender.label type=text disabled=disabled></div><div class=form-value ng-show=editing><clix-radio-button-group options=genders ng-model=$parent.gender></clix-radio-button-group></div></div><div ng-switch-when=phone><div class=form-value><input ng-model=$parent.ngModel mask=\"(999) 999-9999\" restrict=reject type=text ng-disabled=!editing></div></div><div ng-switch-default><div class=form-value><input ng-model=$parent.ngModel type=text ng-disabled=!editing></div></div></div><div class=form-value-buttons ng-show=editing><div class=form-value-button clix-secondary-button alternate=true ng-click=onCancelPress()>Cancel</div><div class=form-value-button clix-secondary-button alternate=true ng-click=onSavePress()>Save</div></div></div></div>"
   );
 
 
@@ -329,6 +329,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('ui/common/datepicker/view.datepicker-dropdowns.html',
     "<div class=clix-datepicker-dropdowns><div class=datepicker-dropdown-container><clix-dropdown placeholder-text=Month options=months></clix-dropdown></div><div class=datepicker-dropdown-container><clix-dropdown placeholder-text=Day options=days></clix-dropdown></div><div class=datepicker-dropdown-container><clix-dropdown placeholder-text=Year options=years></clix-dropdown></div></div>"
+  );
+
+
+  $templateCache.put('ui/common/form/view.form-input.html',
+    "<div class=clix-form-input id=clix-form-input-{{$id}}><div ng-transclude=formField></div><div class=clix-form-error id=clix-form-input-error-{{$id}} ng-class=\"{'active': showError}\"><div class=error-message-container><div ng-transclude=errorMessage></div></div></div></div>"
   );
 
 
@@ -963,6 +968,18 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 return options;
             }
 
+            function _isEmailValid() {
+                $scope.showEmailError = false;
+                $scope.showEmailConfirmationError = false;
+
+                if (!$scope.ngModel) {
+                    $scope.showEmailError = true;
+                    $scope.emailErrorMessage = 'Email is required';
+                    return false;
+                }
+                return true;
+            }
+
             $scope.editing = false;
             $scope.days = _getRangeDropdownOptions(1, 31);
             $scope.months = _getRangeDropdownOptions(1, 12);
@@ -995,7 +1012,12 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             };
 
             $scope.onSavePress = function() {
+                var isValid = true;
                 $scope.editing = false;
+
+                if ($scope.type === 'email') {
+                    isValid = _isEmailValid();
+                }
 
                 if ($scope.type === 'birthdate' && $scope.birthdate) {
                     $scope.ngModel = $scope.birthdate;
@@ -1005,9 +1027,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     $scope.ngModel = $scope.gender.value;
                 }
 
-                $timeout(function() {
-                    $scope.onSave();
-                });
+                if (isValid) {
+                    $timeout(function() {
+                        $scope.onSave();
+                    });
+                }
             };
 
             $rootScope.$on('account.edit', function() {
@@ -3181,6 +3205,83 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     angular.module('clixtv')
         .directive('clixDatepickerDropdowns', datepickerDropdowns);
+}());
+(function() {
+
+    var FormInputController = [
+        '$scope',
+        function($scope) {
+
+            function _getErrorContainer() {
+                return angular.element(document.getElementById('clix-form-input-error-' + $scope.$id));
+            }
+
+            function _getTriggerCoordinates() {
+                var trigger = angular.element(document.getElementById('clix-form-input-' + $scope.$id)),
+                    triggerRect = trigger[0].getBoundingClientRect(),
+                    bodyRect = document.body.getBoundingClientRect();
+                return {
+                    top: triggerRect.top - bodyRect.top,
+                    left: triggerRect.left,
+                    height: trigger[0].offsetHeight,
+                    width: trigger[0].offsetWidth
+                };
+            }
+
+            function _repositionError() {
+                var errorContainer = _getErrorContainer(),
+                    coordinates = _getTriggerCoordinates(),
+                    triggerVerticalMiddle = (coordinates.top + (coordinates.height / 2)),
+                    errorContainerHeight = errorContainer[0].offsetHeight,
+                    errorContainerWidth = errorContainer[0].offsetWidth;
+
+                errorContainer[0].style.top = (triggerVerticalMiddle - (errorContainerHeight / 2)) + 'px';
+                errorContainer[0].style.left = ((coordinates.left + coordinates.width) - errorContainerWidth) + 'px';
+            }
+
+            $scope.init = function() {
+                _repositionError();
+            };
+
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .controller('FormInputController', FormInputController);
+}());
+(function() {
+
+    var clixFormInputErrorField = [
+        '$timeout',
+        function($timeout) {
+            return {
+                restrict: 'AE',
+                transclude: {
+                    formField: 'formField',
+                    errorMessage: 'errorMessage'
+                },
+                templateUrl: 'ui/common/form/view.form-input.html',
+                controller: 'FormInputController',
+                scope: {
+                    showError: '='
+                },
+                link: function(scope, element) {
+
+                    // Move the error message to the end of the <body /> so as to
+                    // not disrupt the page flow
+                    $timeout(function() {
+                        var errorMessageContainer = angular.element(document.getElementById('clix-form-input-error-' + scope.$id));
+                        angular.element(document.body).append(errorMessageContainer);
+                        scope.init();
+                    });
+                }
+            }
+        }
+    ];
+
+    angular.module('clixtv')
+        .directive('clixFormInputErrorField', clixFormInputErrorField);
 }());
 (function() {
 
@@ -6254,7 +6355,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             'CelebrityListModel',
             function($injector, OfferListModel, CelebrityListModel) {
                 return function(data) {
-
+                    if (!data) {
+                        return;
+                    }
                     this.id = data._id;
                     this.title = data.title;
                     this.description = data.description;
@@ -6786,7 +6889,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                  * @todo - Cache this call
                  */
                 getAllBrands: function() {
-                    return $http.get('/api/brands/get_brands_array')
+                    return $http.get('/api/campaigns')
                         .then(
                             function(data) {
                                 return new BrandListModel(data.data);
@@ -6829,10 +6932,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                  * @todo - Cache this call
                  */
                 getBrandById: function(id) {
-                    return $http.get('/api/brands/get_brand?id=' + id)
+                    return $http.get('/api/campaigns/get_campaign_by_id?id=' + id)
                         .then(
                             function onSuccess(data) {
-                                return new BrandModel(data.data[0]);
+                                return new BrandModel(data.data);
                             }
                         );
                 },

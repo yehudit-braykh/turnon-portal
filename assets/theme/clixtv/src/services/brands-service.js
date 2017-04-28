@@ -15,7 +15,7 @@
                  * @todo - Cache this call
                  */
                 getAllBrands: function() {
-                    return $http.get('/api/brands/get_brands_array')
+                    return $http.get('/api/campaigns')
                         .then(
                             function(data) {
                                 return new BrandListModel(data.data);
@@ -58,10 +58,10 @@
                  * @todo - Cache this call
                  */
                 getBrandById: function(id) {
-                    return $http.get('/api/brands/get_brand?id=' + id)
+                    return $http.get('/api/campaigns/get_campaign_by_id?id=' + id)
                         .then(
                             function onSuccess(data) {
-                                return new BrandModel(data.data[0]);
+                                return new BrandModel(data.data);
                             }
                         );
                 },

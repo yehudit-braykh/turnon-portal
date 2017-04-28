@@ -8,7 +8,9 @@
             'CelebrityListModel',
             function($injector, OfferListModel, CelebrityListModel) {
                 return function(data) {
-
+                    if (!data) {
+                        return;
+                    }
                     this.id = data._id;
                     this.title = data.title;
                     this.description = data.description;

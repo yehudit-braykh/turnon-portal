@@ -15160,7 +15160,7 @@ button.close {
   background-color: #0dc73a;
 }
 .clix-circle-container-icon.clix-error-indicator-icon {
-  background-color: #fb0d1b;
+  background-color: #fe0000;
 }
 .clix-datepicker-dropdowns {
   display: -webkit-flex;
@@ -15226,6 +15226,55 @@ button.close {
 .clix-switch.checked {
   border-color: #fe0000;
   background-color: #fe0000;
+}
+.clix-form-error {
+  position: absolute;
+}
+.clix-form-error.active .error-message-container {
+  filter: alpha(opacity=100);
+  -webkit-opacity: 1;
+  -moz-opacity: 1;
+  opacity: 1;
+}
+.clix-form-error .error-message-container {
+  transition: 0.5s ease;
+  -webkit-transition: 0.5s ease;
+  -moz-transition: 0.5s ease;
+  -ms-transition: 0.5s ease;
+  -o-transition: 0.5s ease;
+  filter: alpha(opacity=0);
+  -webkit-opacity: 0;
+  -moz-opacity: 0;
+  opacity: 0;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  position: relative;
+  background-color: #fe0000;
+  color: #FFF;
+  font-family: 'montserratregular', sans-serif;
+  font-size: 11px;
+  line-height: 13px;
+  width: 147px;
+  padding: 6px 10px;
+}
+.clix-form-error .error-message-container:before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  margin-top: -8px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 8px solid #fe0000;
 }
 body,
 html {

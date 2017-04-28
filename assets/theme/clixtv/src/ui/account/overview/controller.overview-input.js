@@ -18,6 +18,18 @@
                 return options;
             }
 
+            function _isEmailValid() {
+                $scope.showEmailError = false;
+                $scope.showEmailConfirmationError = false;
+
+                if (!$scope.ngModel) {
+                    $scope.showEmailError = true;
+                    $scope.emailErrorMessage = 'Email is required';
+                    return false;
+                }
+                return true;
+            }
+
             $scope.editing = false;
             $scope.days = _getRangeDropdownOptions(1, 31);
             $scope.months = _getRangeDropdownOptions(1, 12);
@@ -50,7 +62,12 @@
             };
 
             $scope.onSavePress = function() {
+                var isValid = true;
                 $scope.editing = false;
+
+                if ($scope.type === 'email') {
+                    isValid = _isEmailValid();
+                }
 
                 if ($scope.type === 'birthdate' && $scope.birthdate) {
                     $scope.ngModel = $scope.birthdate;
@@ -60,9 +77,11 @@
                     $scope.ngModel = $scope.gender.value;
                 }
 
-                $timeout(function() {
-                    $scope.onSave();
-                });
+                if (isValid) {
+                    $timeout(function() {
+                        $scope.onSave();
+                    });
+                }
             };
 
             $rootScope.$on('account.edit', function() {

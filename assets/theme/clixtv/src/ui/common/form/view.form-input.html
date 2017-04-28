@@ -1,0 +1,8 @@
+<div class="clix-form-input" id="clix-form-input-{{$id}}">
+    <div ng-transclude="formField"></div>
+    <div class="clix-form-error" id="clix-form-input-error-{{$id}}" ng-class="{'active': showError}">
+        <div class="error-message-container">
+            <div ng-transclude="errorMessage"></div>
+        </div>
+    </div>
+</div>
