@@ -112,7 +112,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/brand-charity-logo/view.brand-category-logo.html',
-    "<div class=clix-brand-category-logo><div class=logo-image style=\"background-image: url('{{brand.BrandTransparentLogo.url}}')\"></div><div class=logo-category-title>{{categoryTitle}}</div><div class=logo-category-violator clix-tooltip-trigger tooltip-id=tooltip-{{$id}}><clix-points-violator>50</clix-points-violator></div><clix-tooltip tooltip-id=tooltip-{{$id}}><clix-is-logged-in><logged-in>You will receive 50 Reward Points for viewing this category!</logged-in><not-logged-in>After you sign up, you will receive 50 Reward Points for viewing this category! <a ng-click=\"\">Learn more</a>.</not-logged-in></clix-is-logged-in></clix-tooltip></div>"
+    "<div class=clix-brand-category-logo><div class=logo-image style=\"background-image: url('{{brand.ProfilePicture.url}}')\"></div><div class=logo-category-title>{{categoryTitle}}</div><div class=logo-category-violator clix-tooltip-trigger tooltip-id=tooltip-{{$id}}><clix-points-violator>50</clix-points-violator></div><clix-tooltip tooltip-id=tooltip-{{$id}}><clix-is-logged-in><logged-in>You will receive 50 Reward Points for viewing this category!</logged-in><not-logged-in>After you sign up, you will receive 50 Reward Points for viewing this category! <a ng-click=\"\">Learn more</a>.</not-logged-in></clix-is-logged-in></clix-tooltip></div>"
   );
 
 

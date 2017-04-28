@@ -31,8 +31,8 @@
                             this.headerImage = data.content.BackgroundImage.downloadUrl;
                         }
 
-                        if (data.content.BrandLogo) {
-                            this.logo = data.content.BrandLogo.downloadUrl;
+                        if (data.content.ProfilePicture) {
+                            this.logo = data.content.ProfilePicture.downloadUrl;
                         }
 
                         if (data.content.mainTrailer) {

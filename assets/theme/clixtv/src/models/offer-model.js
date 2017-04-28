@@ -15,8 +15,8 @@
                             this.transparentThumbnail = data.content.BrandTransparentLogo.downloadUrl;
                         }
 
-                        if (data.content.BrandLogo) {
-                            this.thumbnail = data.content.BrandLogo.downloadUrl;
+                        if (data.content.OfferImage) {
+                            this.thumbnail = data.content.OfferImage.downloadUrl;
                         }
 
                         if (data.content.BackgroundImage) {

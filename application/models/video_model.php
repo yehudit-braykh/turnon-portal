@@ -21,6 +21,12 @@ class Video_model extends Uvod_model {
 		return $data;
 	}
 
+	public function add_like($id){
+
+		$data =  $this->apiPut('episode/'.$id.'/likes', array());
+		return $data;
+	}
+
 	function videos_rows($items){
 		foreach ($items as &$item) {
 			//debug($cat);
