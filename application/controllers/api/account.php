@@ -159,6 +159,25 @@ class Account extends REST_Controller{
 		$this->response($this->account_model->remove_favorite($id, "offersSaved"),200);
 	}
 
+	function get_settings_get(){
+
+		$this->response($this->account_model->get_settings(),200);
+	}
+
+	function enable_setting_post(){
+		$id = $this->post('id');
+		if(!$id)
+			$this->response("id field is mandatory",400);
+		$this->response($this->account_model->remove_favorite($id, "disabledSettings"),200);
+    }
+
+	function disable_setting_post(){
+		$id = $this->post('id');
+		if(!$id)
+			$this->response("id field is mandatory",400);
+		$this->response($this->account_model->add_favorite($id, "disabledSettings"),200);
+	}
+
 	function send_password_email_get(){
 		$email = $this->get('email');
 		$this->response($this->account_model->send_password_email($email),200);

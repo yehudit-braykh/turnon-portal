@@ -258,6 +258,26 @@ class Account_model extends Uvod_model {
 		return $this->rows($this->apiCall('offer/related', $filters)->entries);
     }
 
+    public function get_settings(){
+        $id = $this->session->userdata('profile_id');
+        $token = $this->session->userdata('login_token');
+
+        if($id && $token)
+            $profile = $this->get_profile($token, $id);
+
+        if($profile){
+            $settings = $this->apiCall('userSetting', $filters)->entries;
+            foreach ($settings as &$setting) {
+                $setting->enabled = !in_array($setting->_id,$profile->disabledSettings);
+            }
+        }
+
+
+        debug($settings);
+
+		return $settings;
+    }
+
     public function add_favorite($id, $type){
         $profile_id = $this->session->userdata('profile_id');
 		$token = $this->session->userdata('login_token');
