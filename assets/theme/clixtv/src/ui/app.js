@@ -109,7 +109,7 @@
             function($rootScope, userService, catchMediaService, educationModalService) {
 
                 userService.setLoggedInUser();
-                catchMediaService.initialize();
+                // catchMediaService.initialize();
                 educationModalService.initialize();
 
                 $rootScope.$on('$stateChangeSuccess', function() {

@@ -18,7 +18,7 @@
         font-family: @font-primary;
         font-size: 11px;
         line-height: 13px;
-        width: 147px;
+        max-width: 165px;
         padding: 6px 10px;
 
         &:before {
@@ -37,5 +37,7 @@
 }
 
 .clix-form-input {
-
+    &.input-error {
+        border: 1px solid @color-error;
+    }
 }

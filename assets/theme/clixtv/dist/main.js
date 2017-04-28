@@ -109,7 +109,7 @@
             function($rootScope, userService, catchMediaService, educationModalService) {
 
                 userService.setLoggedInUser();
-                catchMediaService.initialize();
+                // catchMediaService.initialize();
                 educationModalService.initialize();
 
                 $rootScope.$on('$stateChangeSuccess', function() {
@@ -133,7 +133,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/account/overview/view.overview-input.html',
-    "<div class=personal-info-form-row><div class=form-header><div class=form-header-label ng-transclude=inputLabel></div><a ng-click=onFieldEdit() class=\"icon-edit-icon form-header-edit\" ng-hide=editing></a></div><div class=form-value-container><div ng-switch=type><div ng-switch-when=email><clix-form-input-error-field show-error=showEmailError><form-field><div class=form-value><input ng-model=$parent.$parent.ngModel type=email ng-disabled=!editing></div></form-field><error-message>{{$parent.$parent.emailErrorMessage}}</error-message></clix-form-input-error-field><clix-form-input-error-field show-error=showEmailConfirmationError><form-field><div class=form-value ng-show=editing><input ng-model=$parent.$parent.emailConfirm type=email placeholder=\"Re-enter email address\"></div></form-field><error-message>{{$parent.$parent.emailConfirmationErrorMessage}}</error-message></clix-form-input-error-field></div><div ng-switch-when=password><div class=form-value><input ng-model=$parent.ngModel type=password ng-disabled=!editing placeholder=Current></div><div class=form-value ng-show=editing><input ng-model=$parent.newPassword type=password placeholder=New></div><div class=form-value ng-show=editing><input ng-model=$parent.newPasswordConfirm type=password placeholder=\"Re-enter new\"></div></div><div ng-switch-when=birthdate><div class=form-value ng-show=!editing><input ng-model=$parent.birthdateLabel type=text disabled=disabled></div><div class=form-value ng-show=editing><clix-datepicker-dropdowns ng-model=$parent.ngModel></clix-datepicker-dropdowns></div></div><div ng-switch-when=gender><div class=form-value ng-show=!editing><input ng-model=$parent.gender.label type=text disabled=disabled></div><div class=form-value ng-show=editing><clix-radio-button-group options=genders ng-model=$parent.gender></clix-radio-button-group></div></div><div ng-switch-when=phone><div class=form-value><input ng-model=$parent.ngModel mask=\"(999) 999-9999\" restrict=reject type=text ng-disabled=!editing></div></div><div ng-switch-default><div class=form-value><input ng-model=$parent.ngModel type=text ng-disabled=!editing></div></div></div><div class=form-value-buttons ng-show=editing><div class=form-value-button clix-secondary-button alternate=true ng-click=onCancelPress()>Cancel</div><div class=form-value-button clix-secondary-button alternate=true ng-click=onSavePress()>Save</div></div></div></div>"
+    "<div class=personal-info-form-row><div class=form-header><div class=form-header-label ng-transclude=inputLabel></div><a ng-click=onFieldEdit() class=\"icon-edit-icon form-header-edit\" ng-hide=editing></a></div><div class=form-value-container><div ng-switch=type><div ng-switch-when=email><clix-form-input-error-field show-error=showEmailError><form-field><div class=form-value><input id=account-email ng-model=$parent.$parent.$parent.ngModel type=email ng-disabled=!editing placeholder=\"Enter email address\"></div></form-field><error-message>{{$parent.$parent.emailErrorMessage}}</error-message></clix-form-input-error-field><clix-form-input-error-field show-error=showEmailConfirmationError><form-field><div class=form-value ng-show=editing><input ng-model=$parent.$parent.$parent.emailConfirm type=email placeholder=\"Re-enter email address\"></div></form-field><error-message>{{$parent.$parent.emailConfirmationErrorMessage}}</error-message></clix-form-input-error-field></div><div ng-switch-when=password><clix-form-input-error-field show-error=showOldPasswordError><form-field><div class=form-value><input ng-model=$parent.$parent.$parent.ngModel type=password ng-disabled=!editing placeholder=\"Current password\"></div></form-field><error-message>{{$parent.$parent.oldPasswordErrorMessage}}</error-message></clix-form-input-error-field><clix-form-input-error-field show-error=showNewPasswordError><form-field><div class=form-value ng-show=editing><input ng-model=$parent.$parent.$parent.newPassword type=password placeholder=\"New password\"></div></form-field><error-message>{{$parent.$parent.newPasswordErrorMessage}}</error-message></clix-form-input-error-field><clix-form-input-error-field show-error=showNewPasswordConfirmError><form-field><div class=form-value ng-show=editing><input ng-model=$parent.$parent.$parent.newPasswordConfirm type=password placeholder=\"Re-enter new password\"></div></form-field><error-message>{{$parent.$parent.newPasswordConfirmErrorMessage}}</error-message></clix-form-input-error-field></div><div ng-switch-when=birthdate><div class=form-value ng-show=!editing><input ng-model=$parent.birthdateLabel type=text disabled=disabled></div><div class=form-value ng-show=editing><clix-datepicker-dropdowns ng-model=$parent.ngModel></clix-datepicker-dropdowns></div></div><div ng-switch-when=gender><div class=form-value ng-show=!editing><input ng-model=$parent.gender.label type=text disabled=disabled></div><div class=form-value ng-show=editing><clix-radio-button-group options=genders ng-model=$parent.gender></clix-radio-button-group></div></div><div ng-switch-when=phone><clix-form-input-error-field show-error=showPhoneError><form-field><div class=form-value><input ng-model=$parent.$parent.$parent.ngModel mask=\"(999) 999-9999\" restrict=reject type=text ng-disabled=!editing></div></form-field><error-message>{{$parent.$parent.phoneErrorMessage}}</error-message></clix-form-input-error-field></div><div ng-switch-default><div class=form-value><input ng-model=$parent.ngModel type=text ng-disabled=!editing></div></div></div><div class=form-error-message ng-class=\"{'active': formHasErrors}\">Please fix the errors in the highlighted fields above.</div><div class=form-value-buttons ng-show=editing><div class=form-value-button clix-secondary-button alternate=true ng-click=onCancelPress()>Cancel</div><div class=form-value-button ng-class=\"{'has-errors': formHasErrors}\" clix-secondary-button alternate=true ng-click=onSavePress()><span class=save-button-label>Save</span> <span class=\"save-button-error-label icon-remove-icon\"></span></div></div></div></div>"
   );
 
 
@@ -333,7 +333,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/form/view.form-input.html',
-    "<div class=clix-form-input id=clix-form-input-{{$id}}><div ng-transclude=formField></div><div class=clix-form-error id=clix-form-input-error-{{$id}} ng-class=\"{'active': showError}\"><div class=error-message-container><div ng-transclude=errorMessage></div></div></div></div>"
+    "<div class=clix-form-input id=clix-form-input-{{$id}} ng-class=\"{'input-error': showError}\"><div ng-transclude=formField></div><div class=clix-form-error id=clix-form-input-error-{{$id}} ng-class=\"{'active': showError}\"><div class=error-message-container><div ng-transclude=errorMessage></div></div></div></div>"
   );
 
 
@@ -619,8 +619,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
             function _setLoggedInUser(user) {
                 if (!user && loggedInUserChecked) {
-                    $state.go('home');
-                    return;
+                    // $state.go('home');
+                    // return;
+                    $scope.ready = true;
                 }
                 loggedInUserChecked = true;
                 $scope.loggedInUser = user;
@@ -968,15 +969,103 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 return options;
             }
 
-            function _isEmailValid() {
-                $scope.showEmailError = false;
-                $scope.showEmailConfirmationError = false;
+            function _disableAllErrorStates() {
+                [
+                    'showEmailError',
+                    'showEmailConfirmationError',
+                    'showOldPasswordError',
+                    'showNewPasswordError',
+                    'showNewPasswordConfirmError',
+                    'showPhoneError'
+                ].forEach(function(key) {
+                    $scope[key] = false;
+                });
+                $scope.formHasErrors = false;
+            }
 
-                if (!$scope.ngModel) {
-                    $scope.showEmailError = true;
-                    $scope.emailErrorMessage = 'Email is required';
+            function _isEmailValid() {
+                _disableAllErrorStates();
+
+                // Invalid email...
+                if ($scope.ngModel === undefined || $scope.ngModel === null) {
+                    $scope.emailErrorMessage = 'Invalid email address';
+                    $timeout(function() {
+                        $scope.showEmailError = true;
+                    });
                     return false;
                 }
+
+                // Empty email...
+                if ($scope.ngModel.length === 0) {
+                    $scope.emailErrorMessage = 'Email is required';
+                    $timeout(function() {
+                        $scope.showEmailError = true;
+                    });
+                    return false;
+                }
+
+                // Matching email confirmation...
+                if ($scope.ngModel !== $scope.emailConfirm) {
+                    $scope.emailConfirmationErrorMessage = 'Email does not match';
+                    $timeout(function() {
+                        $scope.showEmailConfirmationError = true;
+                    });
+                    return false;
+                }
+
+                return true;
+            }
+
+            function _isPasswordValid() {
+                _disableAllErrorStates();
+
+                // Invalid old password...
+                if ($scope.ngModel === undefined || $scope.ngModel === '') {
+                    $scope.oldPasswordErrorMessage = 'Password is required';
+                    $timeout(function() {
+                        $scope.showOldPasswordError = true;
+                    });
+                    return false;
+                }
+
+                // Invalid new password...
+                if ($scope.newPassword === undefined || $scope.newPassword === '') {
+                    $scope.newPasswordErrorMessage = 'Password is required';
+                    $timeout(function() {
+                        $scope.showNewPasswordError = true;
+                    });
+                    return false;
+                }
+
+                // Matching password confirmation...
+                if ($scope.newPassword !== $scope.newPasswordConfirm) {
+                    $scope.newPasswordConfirmErrorMessage = 'Password does not match';
+                    $timeout(function() {
+                        $scope.showNewPasswordConfirmError = true;
+                    });
+                    return false;
+                }
+
+                return true;
+            }
+
+            function _isPhoneNumberValid() {
+                var phoneNumber;
+                _disableAllErrorStates();
+                if (!$scope.ngModel) {
+                    return true;
+                }
+
+                phoneNumber = $scope.ngModel.replace(/[^0-9]/g, '');
+
+                if (phoneNumber.length !== 10) {
+                    $scope.phoneErrorMessage = 'Not a valid phone number';
+                    $timeout(function() {
+                        $scope.showPhoneError = true;
+                    });
+                    return false;
+                }
+
                 return true;
             }
 
@@ -1004,19 +1093,40 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 oldValue = $scope.ngModel;
                 $rootScope.$broadcast('account.edit');
                 $scope.editing = true;
+
+                if ($scope.type === 'email') {
+                    $scope.ngModel = '';
+                    $scope.emailConfirm = '';
+                }
+
+                if ($scope.type === 'password') {
+                    $scope.ngModel = '';
+                    $scope.newPassword = '';
+                    $scope.newPasswordConfirm = '';
+                }
             };
 
             $scope.onCancelPress = function() {
                 $scope.editing = false;
                 $scope.ngModel = oldValue;
+                _disableAllErrorStates();
             };
 
             $scope.onSavePress = function() {
                 var isValid = true;
-                $scope.editing = false;
+
+                $scope.formHasErrors = false;
 
                 if ($scope.type === 'email') {
                     isValid = _isEmailValid();
+                }
+
+                if ($scope.type === 'password') {
+                    isValid = _isPasswordValid();
+                }
+
+                if ($scope.type === 'phone') {
+                    isValid = _isPhoneNumberValid();
                 }
 
                 if ($scope.type === 'birthdate' && $scope.birthdate) {
@@ -1029,8 +1139,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
                 if (isValid) {
                     $timeout(function() {
+                        $scope.editing = false;
                         $scope.onSave();
                     });
+                } else {
+                    $scope.formHasErrors = true;
                 }
             };
 
@@ -1067,7 +1180,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         $scope.form = {
                             firstName: data.firstName,
                             lastName: data.lastName,
-                            email: data.email,
+                            email: /*data.email*/ 'justin.podzimek@gmail.com',
                             password: '*********',
                             gender: (data.gender) ? data.gender.charAt(0).toUpperCase() + data.gender.slice(1) : undefined,
                             phone: data.phone,
@@ -3235,12 +3348,28 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     errorContainerHeight = errorContainer[0].offsetHeight,
                     errorContainerWidth = errorContainer[0].offsetWidth;
 
-                errorContainer[0].style.top = (triggerVerticalMiddle - (errorContainerHeight / 2)) + 'px';
-                errorContainer[0].style.left = ((coordinates.left + coordinates.width) - errorContainerWidth) + 'px';
+                errorContainer[0].style.top = ((triggerVerticalMiddle) - (errorContainerHeight / 2)) + 'px';
+                errorContainer[0].style.left = ((coordinates.left + coordinates.width) - errorContainerWidth - 7) + 'px';
             }
+
+            function _hideError() {
+                var errorContainer = _getErrorContainer();
+                if (errorContainer && errorContainer[0]) {
+                    errorContainer[0].style.left = '-9999px';
+                }
+            }
+
+            $scope.$watch('showError', function() {
+                if ($scope.showError) {
+                    _repositionError();
+                } else {
+                    _hideError();
+                }
+            });
 
             $scope.init = function() {
                 _repositionError();
+                _hideError();
             };
 
         }

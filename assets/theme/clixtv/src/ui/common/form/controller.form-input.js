@@ -27,12 +27,28 @@
                     errorContainerHeight = errorContainer[0].offsetHeight,
                     errorContainerWidth = errorContainer[0].offsetWidth;
 
-                errorContainer[0].style.top = (triggerVerticalMiddle - (errorContainerHeight / 2)) + 'px';
-                errorContainer[0].style.left = ((coordinates.left + coordinates.width) - errorContainerWidth) + 'px';
+                errorContainer[0].style.top = ((triggerVerticalMiddle) - (errorContainerHeight / 2)) + 'px';
+                errorContainer[0].style.left = ((coordinates.left + coordinates.width) - errorContainerWidth - 7) + 'px';
             }
+
+            function _hideError() {
+                var errorContainer = _getErrorContainer();
+                if (errorContainer && errorContainer[0]) {
+                    errorContainer[0].style.left = '-9999px';
+                }
+            }
+
+            $scope.$watch('showError', function() {
+                if ($scope.showError) {
+                    _repositionError();
+                } else {
+                    _hideError();
+                }
+            });
 
             $scope.init = function() {
                 _repositionError();
+                _hideError();
             };
 
         }
