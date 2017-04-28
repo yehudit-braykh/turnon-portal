@@ -16,16 +16,16 @@
                     this.description = data.description;
 
                     if (data.content) {
-                        if (data.content.BrandTransparentLogo) {
-                            this.transparentThumbnail = data.content.BrandTransparentLogo.downloadUrl;
+                        if (data.content.ProfilePicture) {
+                            this.transparentThumbnail = data.content.ProfilePicture.downloadUrl;
                         }
 
                         if (data.content.BackgroundImage) {
                             this.headerImage = data.content.BackgroundImage.downloadUrl;
                         }
 
-                        if (data.content.BrandLogo) {
-                            this.logo = data.content.BrandLogo.downloadUrl;
+                        if (data.content.ProfilePicture) {
+                            this.logo = data.content.ProfilePicture.downloadUrl;
                         }
 
                         if (data.content.mainTrailer) {

@@ -11,8 +11,8 @@
                     this.order = data.order;
                     this.videos = new VideoListModel(data.videos);
 
-                    if (data.content.BrandLogo) {
-                        this.logo = data.content.BrandLogo.downloadUrl;
+                    if (data.content.ProfilePicture) {
+                        this.logo = data.content.ProfilePicture.downloadUrl;
                     }
 
                     if (data.content.BackgroundImage) {

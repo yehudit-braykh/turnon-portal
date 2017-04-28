@@ -11,8 +11,8 @@
                     this.description = data.description;
 
                     if (data.content) {
-                        if (data.content.BrandLogo) {
-                            this.thumbnail = data.content.BrandLogo.downloadUrl;
+                        if (data.content.ProfilePicture) {
+                            this.thumbnail = data.content.ProfilePicture.downloadUrl;
                         }
 
                         if (data.content.BackgroundImage) {
