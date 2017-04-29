@@ -18,14 +18,11 @@
                     if (data.content) {
                         if (data.content.ProfilePicture) {
                             this.transparentThumbnail = data.content.ProfilePicture.downloadUrl;
+                            this.logo = data.content.ProfilePicture.downloadUrl;
                         }
 
                         if (data.content.BackgroundImage) {
                             this.headerImage = data.content.BackgroundImage.downloadUrl;
-                        }
-
-                        if (data.content.ProfilePicture) {
-                            this.logo = data.content.ProfilePicture.downloadUrl;
                         }
 
                         if (data.content.mainTrailer) {

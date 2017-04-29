@@ -109,7 +109,7 @@
             function($rootScope, userService, catchMediaService, educationModalService) {
 
                 userService.setLoggedInUser();
-                // catchMediaService.initialize();
+                catchMediaService.initialize();
                 educationModalService.initialize();
 
                 $rootScope.$on('$stateChangeSuccess', function() {
@@ -619,9 +619,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
             function _setLoggedInUser(user) {
                 if (!user && loggedInUserChecked) {
-                    // $state.go('home');
-                    // return;
-                    $scope.ready = true;
+                    $state.go('home');
+                    return;
                 }
                 loggedInUserChecked = true;
                 $scope.loggedInUser = user;
@@ -6676,14 +6675,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     if (data.content) {
                         if (data.content.ProfilePicture) {
                             this.transparentThumbnail = data.content.ProfilePicture.downloadUrl;
+                            this.logo = data.content.ProfilePicture.downloadUrl;
                         }
 
                         if (data.content.BackgroundImage) {
                             this.headerImage = data.content.BackgroundImage.downloadUrl;
-                        }
-
-                        if (data.content.ProfilePicture) {
-                            this.logo = data.content.ProfilePicture.downloadUrl;
                         }
 
                         if (data.content.mainTrailer) {
@@ -6779,6 +6775,22 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
                         if (data.content.BackgroundImage) {
                             this.headerImage = data.content.BackgroundImage.downloadUrl;
+                        }
+
+                        if (data.content.CouponImage) {
+                            this.couponImage = data.content.CouponImage.downloadUrl;
+                        }
+
+                        if (data.content.CarouselPic1) {
+                            this.carouselPic1 = data.content.CarouselPic1.downloadUrl;
+                        }
+
+                        if (data.content.CarouselPic2) {
+                            this.carouselPic2 = data.content.CarouselPic2.downloadUrl;
+                        }
+
+                        if (data.content.CarouselPic3) {
+                            this.carouselPic3 = data.content.CarouselPic3.downloadUrl;
                         }
                     }
 

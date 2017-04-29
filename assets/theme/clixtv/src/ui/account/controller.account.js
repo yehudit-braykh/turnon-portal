@@ -19,9 +19,8 @@
 
             function _setLoggedInUser(user) {
                 if (!user && loggedInUserChecked) {
-                    // $state.go('home');
-                    // return;
-                    $scope.ready = true;
+                    $state.go('home');
+                    return;
                 }
                 loggedInUserChecked = true;
                 $scope.loggedInUser = user;

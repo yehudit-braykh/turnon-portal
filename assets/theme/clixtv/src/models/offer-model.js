@@ -22,6 +22,22 @@
                         if (data.content.BackgroundImage) {
                             this.headerImage = data.content.BackgroundImage.downloadUrl;
                         }
+
+                        if (data.content.CouponImage) {
+                            this.couponImage = data.content.CouponImage.downloadUrl;
+                        }
+
+                        if (data.content.CarouselPic1) {
+                            this.carouselPic1 = data.content.CarouselPic1.downloadUrl;
+                        }
+
+                        if (data.content.CarouselPic2) {
+                            this.carouselPic2 = data.content.CarouselPic2.downloadUrl;
+                        }
+
+                        if (data.content.CarouselPic3) {
+                            this.carouselPic3 = data.content.CarouselPic3.downloadUrl;
+                        }
                     }
 
                     if (data.brand) {

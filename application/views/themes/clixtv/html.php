@@ -147,7 +147,7 @@
 <!--        <script src="/assets/common/js/select.min.js"></script>-->
 <!--        <script src="assets/common/js/select-tpls.min.js"></script>-->
 
-<!--        <script type="text/javascript" src="https://1115282512.rsc.cdn77.org/plinks/jssdk/CMSDK-qa-latest.min.js"></script>-->
+        <script type="text/javascript" src="https://1115282512.rsc.cdn77.org/plinks/jssdk/CMSDK-qa-latest.min.js"></script>
         <script type="text/javascript" src="/assets/common/js/jwplayer-7.9.0/jwplayer.js" ></script>
         <script>jwplayer.key="wldzyhAXC/pV8hrmoKJJUJQUQU7UwoOXl6rN1w==";</script>
 
