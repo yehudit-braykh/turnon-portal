@@ -15,6 +15,13 @@ class Video extends REST_Controller{
 		$this->response($this->video_model->get_video_by_id($id),200);
     }
 
+	function get_related_videos_get(){
+		$id = $this->get("id");
+		if(!$id)
+			$this->response("id field is mandatory",400);
+		$this->response($this->video_model->get_related_videos($id),200);
+    }
+
 	function add_view_put(){
 		$id = $this->put("id");
 		if(!$id)

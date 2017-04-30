@@ -15,6 +15,15 @@ class Video_model extends Uvod_model {
 		return $data;
 	}
 
+	public function get_related_videos($id){
+
+		if ($this->fastcache_model->get_cache("get_related_videos".$id))
+			return $this->fastcache_model->get_cache("get_related_videos".$id);
+		$data =  $this->videos_rows($this->apiCall('episode/'.$id.'/related/videos', $filters)->entries[0]);
+		$this->fastcache_model->set_cache("get_related_videos".$id,$data);
+		return $data;
+	}
+
 	public function get_serie_by_id($id){
 
 		if ($this->fastcache_model->get_cache("get_serie_by_id".$id))
