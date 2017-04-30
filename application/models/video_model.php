@@ -15,6 +15,24 @@ class Video_model extends Uvod_model {
 		return $data;
 	}
 
+	public function get_serie_by_id($id){
+
+		if ($this->fastcache_model->get_cache("get_serie_by_id".$id))
+			return $this->fastcache_model->get_cache("get_serie_by_id".$id);
+		$data =  $this->videos_rows($this->apiCall('series/'.$id.'/related', $filters)->entries)[0];
+		$this->fastcache_model->set_cache("get_serie_by_id".$id,$data);
+		return $data;
+	}
+
+	public function get_all_series(){
+
+		if ($this->fastcache_model->get_cache("get_all_series"))
+			return $this->fastcache_model->get_cache("get_all_series");
+		$data =  $this->videos_rows($this->apiCall('series/related', $filters)->entries);
+		$this->fastcache_model->set_cache("get_all_series",$data);
+		return $data;
+	}
+
 	public function add_view($id){
 
 		$data =  $this->apiPut('episode/'.$id.'/views', array());
@@ -30,8 +48,17 @@ class Video_model extends Uvod_model {
 	function videos_rows($items){
 		foreach ($items as &$item) {
 			//debug($cat);
-			if($item->brands)
+			if($item->brands){
+				foreach ($item->brands as &$brand) {
+					if($brand->offers)
+						$brand->offers = $this->rows($brand->offers);
+				}
+			}
 				$item->brands = $this->rows($item->brands);
+
+			if($item->campaigns)
+				$item->campaigns = $this->rows($item->campaigns);
+
 			if($item->celebrity){
 				$arr = array();
 				array_push($arr, $item->celebrity);
@@ -78,6 +105,12 @@ class Video_model extends Uvod_model {
 				$arr = array();
 				array_push($arr, $item->charity);
 				$item->charity = $this->rows($arr)[0];
+			}
+
+			if($item->seasons){
+				foreach ($item->seasons as &$season) {
+					$season->episodes = $this->videos_rows($season->episodes);
+				}
 			}
 
 		}

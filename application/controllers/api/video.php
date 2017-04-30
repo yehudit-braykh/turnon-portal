@@ -30,11 +30,15 @@ class Video extends REST_Controller{
     }
 
 
-	// public function get_serie_by_id_get(){
-	// 	$id= $this->get('id');
-	// 	if(!$id)
-	// 		$this->response("id field is mandatory",400);
-	// 	$this->response($this->video_model->get_serie_by_id($id),200);
-	// }
+	public function get_serie_by_id_get(){
+		$id= $this->get('id');
+		if(!$id)
+			$this->response("id field is mandatory",400);
+		$this->response($this->video_model->get_serie_by_id($id),200);
+	}
+
+	public function get_all_series_get(){
+		$this->response($this->video_model->get_all_series($id),200);
+	}
 
 }

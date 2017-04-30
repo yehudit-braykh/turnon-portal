@@ -22,7 +22,7 @@ class category_model extends Uvod_model {
 
 		if ($this->fastcache_model->get_cache("get_category_by_id".$id))
 			return $this->fastcache_model->get_cache("get_category_by_id".$id);
-		$data =  $this->category_rows($this->apiCall('category/'.$id.'/related'));
+		$data =  $this->category_rows($this->apiCall('category/'.$id.'/related')[0]);
 		$this->fastcache_model->set_cache("get_category_by_id".$id,$data);
 		return $data;
     }

@@ -74,9 +74,9 @@ class Account_model extends Uvod_model {
     }
 
     public function logout() {
-        $data =  apiPost("end/user/signout", array("token" => $this->session->userdata('login_token')));
-        $this->session->sess_destroy();
-        return $data;
+            $this->session->sess_destroy();
+            $this->hybridauthlib->logoutAllProviders();
+        return true;
     }
 
     public function register($email, $password, $first_name, $last_name, $country = NULL, $fb_id = NULL, $fb_data = NULL, $hash = NULL ) {
@@ -97,7 +97,7 @@ class Account_model extends Uvod_model {
             $payload->fbId = $fb_id;
         $payload_str = json_encode($payload);
 
-        $url = UVOD_PLATFORM_API_URL.'end/user/signup';
+        $url = 'end/user/signup';
 
         try {
             $user_signup = $this->apiPost($url, $payload_str);
@@ -105,7 +105,9 @@ class Account_model extends Uvod_model {
             $this->session->set_userdata('login_token', $user_signup->token);
             $this->session->set_userdata('profile_id', $user_signup->userId);
 
-            return $user_signup;
+            $user_data = $this->account_model->get_profile($user_signup->token, $user_signup->userId);
+
+            return $user_data;
 
         } catch (Exception $e) {
 
