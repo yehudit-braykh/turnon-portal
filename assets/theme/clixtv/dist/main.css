@@ -8490,7 +8490,7 @@ button.close {
 .tooltip-menu {
   position: relative;
   height: 0;
-  z-index: 3000;
+  z-index: 3500;
   width: 100%;
 }
 .tooltip-menu .menu-container {
@@ -8999,7 +8999,7 @@ button.close {
 }
 .clix-dropdown .menu-container {
   max-width: none;
-  max-height: 250px;
+  max-height: 600px;
   overflow: scroll;
 }
 .clix-footer {
