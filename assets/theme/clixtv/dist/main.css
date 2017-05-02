@@ -11242,7 +11242,7 @@ button.close {
   color: #0dc73a;
 }
 .clix-printable-redeem-offer .redeem-offer-sub-title {
-  margin-top: 10px;
+  margin: 10px 9px 0;
   font-family: 'montserratregular', sans-serif;
   color: #8a8a8a;
   font-size: 14px;
@@ -11257,14 +11257,23 @@ button.close {
   font-family: 'montserratregular', sans-serif;
   color: #8a8a8a;
   font-size: 14px;
-  width: 500px;
+  max-width: 500px;
   margin: 0 auto;
 }
 .clix-printable-redeem-offer .redeem-offer-legal {
   font-family: 'montserratregular', sans-serif;
   color: #8a8a8a;
   font-size: 14px;
-  margin: 0 30px 30px;
+  margin: 0 9px 30px;
+}
+@media (min-width: 768px) {
+  .clix-printable-redeem-offer .redeem-offer-legal {
+    margin: 0 30px 30px;
+  }
+}
+.clix-printable-redeem-offer .redeem-offer-copyright {
+  text-align: center;
+  margin-top: 65px;
 }
 .clix-account-page {
   display: -webkit-flex;
@@ -15395,7 +15404,8 @@ body.printable {
 }
 body.printable .clix-header,
 body.printable .clix-footer,
-body.printable .clix-site-notification-bar {
+body.printable .clix-site-notification-bar,
+body.printable .clix-mobile-navigation {
   display: none;
 }
 a {

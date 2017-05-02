@@ -20,7 +20,7 @@
         color: @color-reward-primary;
     }
     .redeem-offer-sub-title {
-        margin-top: 10px;
+        margin: 10px @common-mobile-padding 0;
         font-family: @font-primary;
         color: @color-gray2;
         font-size: 14px;
@@ -37,7 +37,7 @@
         font-family: @font-primary;
         color: @color-gray2;
         font-size: 14px;
-        width: 500px;
+        max-width: 500px;
         margin: 0 auto;
     }
 
@@ -45,6 +45,14 @@
         font-family: @font-primary;
         color: @color-gray2;
         font-size: 14px;
-        margin: 0 30px 30px;
+        margin: 0 @common-mobile-padding 30px;
+
+        @media (min-width: @screen-sm) {
+            margin: 0 30px 30px;
+        }
+    }
+    .redeem-offer-copyright {
+        text-align: center;
+        margin-top: 65px;
     }
 }

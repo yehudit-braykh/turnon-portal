@@ -2,31 +2,33 @@
     <div class="mobile-search" clix-site-search is-visible="searchVisible"></div>
     <div class="mobile-search-background" ng-click="onMobileBackgroundPress()"></div>
 </div>
-<div class="clix-mobile-navigation visible-sm visible-xs">
-    <div class="mobile-navigation-container">
-        <div ng-mouseup="go('home')" class="mobile-navigation-item" ng-class="{'active': selectedStateName === 'home'}">
-            <div class="navigation-icon icon-home-icon-bottom-nav"></div>
-            Home
-        </div>
-        <div ng-mouseup="go('categories')" class="mobile-navigation-item" ng-class="{'active': selectedStateName === 'categories' || selectedStateName === 'category'}">
-            <div class="navigation-icon icon-categories-icon-bottom-nav"></div>
-            Categories
-        </div>
-        <div ng-mouseup="go('stars')" class="mobile-navigation-item" ng-class="{'active': selectedStateName === 'stars' || selectedStateName === 'star'}">
-            <div class="navigation-icon icon-stars-icon"></div>
-            Stars
-        </div>
-        <div ng-mouseup="go('brands')" class="mobile-navigation-item" ng-class="{'active': selectedStateName === 'brands' || selectedStateName === 'brand'}">
-            <div class="navigation-icon brands-navigation-icon icon-brands-icon-bottom-nav"></div>
-            Brands
-        </div>
-        <div ng-mouseup="go('charities')" class="mobile-navigation-item" ng-class="{'active': selectedStateName === 'charities' || selectedStateName === 'charity'}">
-            <div class="navigation-icon icon-charities-icon-bottom-nav"></div>
-            Charities
-        </div>
-        <div ng-mouseup="onSearchPress()" class="mobile-navigation-item">
-            <div class="navigation-icon icon-search-icon-bottom-nav"></div>
-            Search
+<div class="visible-sm visible-xs">
+    <div class="clix-mobile-navigation">
+        <div class="mobile-navigation-container">
+            <div ng-mouseup="go('home')" class="mobile-navigation-item" ng-class="{'active': selectedStateName === 'home'}">
+                <div class="navigation-icon icon-home-icon-bottom-nav"></div>
+                Home
+            </div>
+            <div ng-mouseup="go('categories')" class="mobile-navigation-item" ng-class="{'active': selectedStateName === 'categories' || selectedStateName === 'category'}">
+                <div class="navigation-icon icon-categories-icon-bottom-nav"></div>
+                Categories
+            </div>
+            <div ng-mouseup="go('stars')" class="mobile-navigation-item" ng-class="{'active': selectedStateName === 'stars' || selectedStateName === 'star'}">
+                <div class="navigation-icon icon-stars-icon"></div>
+                Stars
+            </div>
+            <div ng-mouseup="go('brands')" class="mobile-navigation-item" ng-class="{'active': selectedStateName === 'brands' || selectedStateName === 'brand'}">
+                <div class="navigation-icon brands-navigation-icon icon-brands-icon-bottom-nav"></div>
+                Brands
+            </div>
+            <div ng-mouseup="go('charities')" class="mobile-navigation-item" ng-class="{'active': selectedStateName === 'charities' || selectedStateName === 'charity'}">
+                <div class="navigation-icon icon-charities-icon-bottom-nav"></div>
+                Charities
+            </div>
+            <div ng-mouseup="onSearchPress()" class="mobile-navigation-item">
+                <div class="navigation-icon icon-search-icon-bottom-nav"></div>
+                Search
+            </div>
         </div>
     </div>
 </div>
