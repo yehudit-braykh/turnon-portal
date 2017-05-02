@@ -96,11 +96,11 @@
             };
 
             $scope.onFacebookLoginPress = function() {
-                window.open('/hauth/login/Facebook', 'fb', 'left=20,top=20,width=600,height=400,toolbar=1,resizable=0');
+                window.open('/hauth/login/Facebook', 'fb', 'left=20,top=20,width=600,height=500,toolbar=1,resizable=0');
             };
 
             $scope.onGoogleLoginPress = function() {
-                window.open('/hauth/login/Google', 'google', 'left=20,top=20,width=600,height=400,toolbar=1,resizable=0');
+                window.open('/hauth/login/Google', 'google', 'left=20,top=20,width=600,height=500,toolbar=1,resizable=0');
             };
 
             /**
