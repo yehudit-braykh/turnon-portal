@@ -33,6 +33,10 @@
                 _setLoggedInUser(data);
             });
 
+            $rootScope.$on('user.logout', function(event, data) {
+                $state.go('home');
+            });
+
             userService.getLoggedInUser()
                 .then(
                     function onSuccess(data) {
