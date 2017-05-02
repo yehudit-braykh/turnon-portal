@@ -8592,7 +8592,7 @@ button.close {
   background-image: -o-linear-gradient(left, #0dc73a, #14cf1e);
   width: 25px;
   height: 25px;
-  line-height: 25px;
+  line-height: 27px;
   text-align: center;
   color: #FFF;
   font-family: 'montserratregular', sans-serif;
@@ -8602,7 +8602,7 @@ button.close {
   .points-violator {
     width: 30px;
     height: 30px;
-    line-height: 30px;
+    line-height: 32px;
     font-size: 14px;
   }
 }
