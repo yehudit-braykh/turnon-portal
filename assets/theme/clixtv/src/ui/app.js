@@ -91,6 +91,14 @@
                         templateUrl: 'ui/offer/view.offer.html',
                         controller: 'OfferController'
                     })
+                    .state('print-redeem-offer', {
+                        url: '/offer/:id/redeem/print',
+                        templateUrl: 'ui/offer/view.printable-redeem-offer.html',
+                        controller: 'PrintableRedeemOfferController',
+                        data: {
+                            print: true
+                        }
+                    })
                     .state('account', {
                         url: '/account/:section',
                         templateUrl: 'ui/account/view.account.html',
@@ -112,8 +120,9 @@
                 catchMediaService.initialize();
                 educationModalService.initialize();
 
-                $rootScope.$on('$stateChangeSuccess', function() {
-                    $("html, body").animate({ scrollTop: 0 }, 200);
+                $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
+                    $('html, body').animate({ scrollTop: 0 }, 200);
+                    $rootScope.printable = to.data && to.data.print;
                 });
             }
         ]);

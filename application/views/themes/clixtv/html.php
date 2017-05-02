@@ -119,7 +119,7 @@
 
     </head>
 
-    <body>
+    <body ng-class="{'printable': printable}">
 
         <clix-blurrable-container>
             <clix-site-notification-bar></clix-site-notification-bar>

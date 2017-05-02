@@ -117,19 +117,21 @@
                         $scope.celebrity = data;
                         $scope.active = 0;
 
-                        $scope.seriesList = data.series.series.map(function(series) {
-                            return {
-                                label: series.title,
-                                series: series,
-                                onClick: function(option) {
-                                    $scope.selectedSeries = option;
-                                    _setEpisodeList();
+                        if (data.series && data.series.series) {
+                            $scope.seriesList = data.series.series.map(function(series) {
+                                return {
+                                    label: series.title,
+                                    series: series,
+                                    onClick: function(option) {
+                                        $scope.selectedSeries = option;
+                                        _setEpisodeList();
+                                    }
                                 }
-                            }
-                        });
+                            });
 
-                        $scope.selectedSeries = $scope.seriesList[0];
-                        _setEpisodeList();
+                            $scope.selectedSeries = $scope.seriesList[0];
+                            _setEpisodeList();
+                        }
                     }
                 )
                 .catch(

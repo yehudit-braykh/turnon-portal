@@ -106,7 +106,7 @@
                 if (toState) {
                     $scope.selectedStateName = toState.name;
                 }
-            })
+            });
         }
     ];
 
