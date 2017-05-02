@@ -4077,7 +4077,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             $scope.onSocialNetworkPress = function(socialNetwork) {
                 var index = $scope.socialNetworks.indexOf(socialNetwork);
                 if (index !== -1) {
-                    $scope.socialNetworks.splice(index);
+                    $scope.socialNetworks.splice(index, 1);
                 } else {
                     $scope.socialNetworks.push(socialNetwork);
                 }
@@ -5058,6 +5058,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             };
 
             $scope.$watch('options', function() {
+                if (!$scope.options) {
+                    return;
+                }
                 $scope.selected = $scope.placeholderText ? { label: $scope.placeholderText } : $scope.options[0];
                 $scope.dropdownOptions = $scope.options.map(function(option) {
                     return {

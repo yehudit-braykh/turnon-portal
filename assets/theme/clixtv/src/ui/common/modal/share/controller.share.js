@@ -72,7 +72,7 @@
             $scope.onSocialNetworkPress = function(socialNetwork) {
                 var index = $scope.socialNetworks.indexOf(socialNetwork);
                 if (index !== -1) {
-                    $scope.socialNetworks.splice(index);
+                    $scope.socialNetworks.splice(index, 1);
                 } else {
                     $scope.socialNetworks.push(socialNetwork);
                 }

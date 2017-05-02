@@ -14,6 +14,9 @@
             };
 
             $scope.$watch('options', function() {
+                if (!$scope.options) {
+                    return;
+                }
                 $scope.selected = $scope.placeholderText ? { label: $scope.placeholderText } : $scope.options[0];
                 $scope.dropdownOptions = $scope.options.map(function(option) {
                     return {
