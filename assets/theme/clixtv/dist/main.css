@@ -12923,6 +12923,12 @@ button.close {
   margin-top: 5px;
   display: inline-block;
 }
+.clix-filter-page .search-filter-container {
+  border-top: 1px solid #636363;
+}
+.clix-filter-page .search-filter-container.with-search-filter {
+  border-top-width: 0;
+}
 .clix-landing-video-content {
   padding-top: 31px;
 }

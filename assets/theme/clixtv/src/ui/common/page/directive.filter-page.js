@@ -8,11 +8,14 @@
             controller: 'PageFilterController',
             transclude: {
                 pageTitle: '?pageTitle',
-                pageSearchFilter: 'pageSearchFilter',
+                pageSearchFilter: '?pageSearchFilter',
                 pageContent: 'pageContent'
             },
             scope: {
                 partial: '@?'
+            },
+            link: function(scope, element, attributes, ctrl, transclude) {
+                scope.searchFilterProvided = transclude.isSlotFilled('pageSearchFilter');
             }
         }
     };

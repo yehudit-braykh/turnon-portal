@@ -40,18 +40,6 @@
                 }
             ];
 
-            var defaultSortOptions = [
-                {
-                    label: 'Expiring Soon'
-                },
-                {
-                    label: 'Most Viewed'
-                },
-                {
-                    label: 'Favorites'
-                }
-            ];
-
             $scope.offerMenuItems = [
                 {
                     label: 'Save Offer',
@@ -97,8 +85,30 @@
 
             $scope.filterBrandsOptions = defaultFilterOptions;
             $scope.filterOffersOptions = defaultFilterOptions;
-            $scope.sortBrandsOptions = defaultSortOptions;
-            $scope.sortOffersOptions = defaultSortOptions;
+
+            $scope.sortBrandsOptions = [
+                {
+                    label: 'A-Z'
+                },
+                {
+                    label: 'Recently Added'
+                },
+                {
+                    label: 'Most Viewed'
+                }
+            ];
+
+            $scope.sortOffersOptions = [
+                {
+                    label: 'Recently Added'
+                },
+                {
+                    label: 'Expiring Soon'
+                },
+                {
+                    label: 'Most Viewed'
+                }
+            ];
 
             // Don't wire these 2 calls together in a $q.all(...) because we don't want to have to wait for
             // the order response to come back if the brands are all ready since it's a tabbed interface.

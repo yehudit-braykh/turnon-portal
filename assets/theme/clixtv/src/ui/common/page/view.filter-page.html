@@ -4,7 +4,7 @@
             <div ng-transclude="pageTitle"></div>
         </clix-main-header>
     </div>
-    <div class="search-filter-container">
+    <div class="search-filter-container" ng-class="{'with-search-filter': searchFilterProvided}">
         <div ng-transclude="pageSearchFilter"></div>
     </div>
     <div ng-transclude="pageContent"></div>

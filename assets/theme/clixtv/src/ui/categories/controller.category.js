@@ -73,10 +73,7 @@
                     label: 'A - Z'
                 },
                 {
-                    label: 'Recently'
-                },
-                {
-                    label: 'Favorites'
+                    label: 'Recently Added'
                 },
                 {
                     label: 'Most Viewed'

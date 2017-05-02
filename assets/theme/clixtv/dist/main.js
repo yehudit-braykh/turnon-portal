@@ -207,7 +207,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/categories/view.categories.html',
-    "<div ng-if=!categories><clix-loader size=large></clix-loader></div><div class=clix-categories-page><clix-filter-page ng-if=categories><page-title>Video Categories</page-title><page-search-filter><clix-search-filter search-placeholder=\"Search Categories\" filter-placeholder=\"Filter By\" sort-placeholder=\"Sort By\" filter-options=filterOptions sort-options=sortOptions></clix-search-filter></page-search-filter><page-content><clix-content-callout-list items=categories.categories menu-items=menuItems><clix-category-content-callout category=item></clix-category-content-callout></clix-content-callout-list></page-content></clix-filter-page></div>"
+    "<div ng-if=!categories><clix-loader size=large></clix-loader></div><div class=clix-categories-page><clix-filter-page ng-if=categories><page-title>Video Categories</page-title><page-content><clix-content-callout-list items=categories.categories menu-items=menuItems><clix-category-content-callout category=item></clix-category-content-callout></clix-content-callout-list></page-content></clix-filter-page></div>"
   );
 
 
@@ -477,7 +477,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/page/view.filter-page.html',
-    "<div class=clix-filter-page ng-class=\"{'partial-page': partial === 'true'}\"><div class=main-header ng-show=pageTitleProvided><clix-main-header><div ng-transclude=pageTitle></div></clix-main-header></div><div class=search-filter-container><div ng-transclude=pageSearchFilter></div></div><div ng-transclude=pageContent></div></div>"
+    "<div class=clix-filter-page ng-class=\"{'partial-page': partial === 'true'}\"><div class=main-header ng-show=pageTitleProvided><clix-main-header><div ng-transclude=pageTitle></div></clix-main-header></div><div class=search-filter-container ng-class=\"{'with-search-filter': searchFilterProvided}\"><div ng-transclude=pageSearchFilter></div></div><div ng-transclude=pageContent></div></div>"
   );
 
 
@@ -582,7 +582,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/stars/view.stars.html',
-    "<div ng-if=!stars><clix-loader size=large></clix-loader></div><div class=clix-stars-page><clix-filter-page ng-if=stars><page-title>Stars</page-title><page-search-filter><clix-search-filter search-placeholder=\"Search Stars\" filter-placeholder=\"Filter By\" sort-placeholder=\"Sort By\" filter-options=filterOptions sort-options=sortOptions></clix-search-filter></page-search-filter><page-content><clix-content-callout-list items=stars.celebrities><clix-star-content-callout star=item></clix-star-content-callout></clix-content-callout-list></page-content></clix-filter-page></div>"
+    "<div ng-if=!stars><clix-loader size=large></clix-loader></div><div class=clix-stars-page><clix-filter-page ng-if=stars><page-title>Stars</page-title><page-content><clix-content-callout-list items=stars.celebrities><clix-star-content-callout star=item></clix-star-content-callout></clix-content-callout-list></page-content></clix-filter-page></div>"
   );
 
 
@@ -776,10 +776,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     label: 'A - Z'
                 },
                 {
-                    label: 'Recently'
-                },
-                {
-                    label: 'Favorites'
+                    label: 'Recently Added'
                 },
                 {
                     label: 'Most Viewed'
@@ -787,13 +784,13 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             ];
             $scope.sortBrandsOptions = [
                 {
-                    label: 'Expiring Soon'
+                    label: 'A - Z'
+                },
+                {
+                    label: 'Recently Added'
                 },
                 {
                     label: 'Most Viewed'
-                },
-                {
-                    label: 'Favorites'
                 }
             ];
             $scope.sortCharitiesOptions = [
@@ -802,9 +799,6 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 },
                 {
                     label: 'Most Viewed'
-                },
-                {
-                    label: 'Favorites'
                 }
             ];
             $scope.sortCategoriesOptions = [
@@ -813,9 +807,6 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 },
                 {
                     label: 'Most Viewed'
-                },
-                {
-                    label: 'Favorites'
                 }
             ];
 
@@ -1396,9 +1387,6 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 },
                 {
                     label: 'Most Viewed'
-                },
-                {
-                    label: 'Favorites'
                 }
             ];
 
@@ -1555,9 +1543,6 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 },
                 {
                     label: 'Most Viewed'
-                },
-                {
-                    label: 'Favorites'
                 }
             ];
 
@@ -1640,9 +1625,6 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 },
                 {
                     label: 'Most Viewed'
-                },
-                {
-                    label: 'Favorites'
                 }
             ];
 
@@ -1749,18 +1731,6 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 }
             ];
 
-            var defaultSortOptions = [
-                {
-                    label: 'Expiring Soon'
-                },
-                {
-                    label: 'Most Viewed'
-                },
-                {
-                    label: 'Favorites'
-                }
-            ];
-
             $scope.offerMenuItems = [
                 {
                     label: 'Save Offer',
@@ -1806,8 +1776,30 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
             $scope.filterBrandsOptions = defaultFilterOptions;
             $scope.filterOffersOptions = defaultFilterOptions;
-            $scope.sortBrandsOptions = defaultSortOptions;
-            $scope.sortOffersOptions = defaultSortOptions;
+
+            $scope.sortBrandsOptions = [
+                {
+                    label: 'A-Z'
+                },
+                {
+                    label: 'Recently Added'
+                },
+                {
+                    label: 'Most Viewed'
+                }
+            ];
+
+            $scope.sortOffersOptions = [
+                {
+                    label: 'Recently Added'
+                },
+                {
+                    label: 'Expiring Soon'
+                },
+                {
+                    label: 'Most Viewed'
+                }
+            ];
 
             // Don't wire these 2 calls together in a $q.all(...) because we don't want to have to wait for
             // the order response to come back if the brands are all ready since it's a tabbed interface.
@@ -1916,9 +1908,6 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 },
                 {
                     label: 'Most Viewed'
-                },
-                {
-                    label: 'Favorites'
                 }
             ];
 
@@ -2036,10 +2025,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     label: 'A - Z'
                 },
                 {
-                    label: 'Recently'
-                },
-                {
-                    label: 'Favorites'
+                    label: 'Recently Added'
                 },
                 {
                     label: 'Most Viewed'
@@ -2243,9 +2229,6 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 },
                 {
                     label: 'Most Viewed'
-                },
-                {
-                    label: 'Favorites'
                 }
             ];
 
@@ -2338,9 +2321,6 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 },
                 {
                     label: 'Most Viewed'
-                },
-                {
-                    label: 'Favorites'
                 }
             ];
 
@@ -4558,11 +4538,14 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             controller: 'PageFilterController',
             transclude: {
                 pageTitle: '?pageTitle',
-                pageSearchFilter: 'pageSearchFilter',
+                pageSearchFilter: '?pageSearchFilter',
                 pageContent: 'pageContent'
             },
             scope: {
                 partial: '@?'
+            },
+            link: function(scope, element, attributes, ctrl, transclude) {
+                scope.searchFilterProvided = transclude.isSlotFilled('pageSearchFilter');
             }
         }
     };
@@ -5802,10 +5785,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     label: 'A - Z'
                 },
                 {
-                    label: 'Recently'
-                },
-                {
-                    label: 'Favorites'
+                    label: 'Recently Added'
                 },
                 {
                     label: 'Most Viewed'

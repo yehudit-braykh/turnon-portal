@@ -77,7 +77,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/categories/view.categories.html',
-    "<div ng-if=!categories><clix-loader size=large></clix-loader></div><div class=clix-categories-page><clix-filter-page ng-if=categories><page-title>Video Categories</page-title><page-search-filter><clix-search-filter search-placeholder=\"Search Categories\" filter-placeholder=\"Filter By\" sort-placeholder=\"Sort By\" filter-options=filterOptions sort-options=sortOptions></clix-search-filter></page-search-filter><page-content><clix-content-callout-list items=categories.categories menu-items=menuItems><clix-category-content-callout category=item></clix-category-content-callout></clix-content-callout-list></page-content></clix-filter-page></div>"
+    "<div ng-if=!categories><clix-loader size=large></clix-loader></div><div class=clix-categories-page><clix-filter-page ng-if=categories><page-title>Video Categories</page-title><page-content><clix-content-callout-list items=categories.categories menu-items=menuItems><clix-category-content-callout category=item></clix-category-content-callout></clix-content-callout-list></page-content></clix-filter-page></div>"
   );
 
 
@@ -347,7 +347,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/page/view.filter-page.html',
-    "<div class=clix-filter-page ng-class=\"{'partial-page': partial === 'true'}\"><div class=main-header ng-show=pageTitleProvided><clix-main-header><div ng-transclude=pageTitle></div></clix-main-header></div><div class=search-filter-container><div ng-transclude=pageSearchFilter></div></div><div ng-transclude=pageContent></div></div>"
+    "<div class=clix-filter-page ng-class=\"{'partial-page': partial === 'true'}\"><div class=main-header ng-show=pageTitleProvided><clix-main-header><div ng-transclude=pageTitle></div></clix-main-header></div><div class=search-filter-container ng-class=\"{'with-search-filter': searchFilterProvided}\"><div ng-transclude=pageSearchFilter></div></div><div ng-transclude=pageContent></div></div>"
   );
 
 
@@ -452,7 +452,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/stars/view.stars.html',
-    "<div ng-if=!stars><clix-loader size=large></clix-loader></div><div class=clix-stars-page><clix-filter-page ng-if=stars><page-title>Stars</page-title><page-search-filter><clix-search-filter search-placeholder=\"Search Stars\" filter-placeholder=\"Filter By\" sort-placeholder=\"Sort By\" filter-options=filterOptions sort-options=sortOptions></clix-search-filter></page-search-filter><page-content><clix-content-callout-list items=stars.celebrities><clix-star-content-callout star=item></clix-star-content-callout></clix-content-callout-list></page-content></clix-filter-page></div>"
+    "<div ng-if=!stars><clix-loader size=large></clix-loader></div><div class=clix-stars-page><clix-filter-page ng-if=stars><page-title>Stars</page-title><page-content><clix-content-callout-list items=stars.celebrities><clix-star-content-callout star=item></clix-star-content-callout></clix-content-callout-list></page-content></clix-filter-page></div>"
   );
 
 

@@ -37,9 +37,6 @@
                 },
                 {
                     label: 'Most Viewed'
-                },
-                {
-                    label: 'Favorites'
                 }
             ];
 

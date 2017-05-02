@@ -108,10 +108,7 @@
                     label: 'A - Z'
                 },
                 {
-                    label: 'Recently'
-                },
-                {
-                    label: 'Favorites'
+                    label: 'Recently Added'
                 },
                 {
                     label: 'Most Viewed'
@@ -119,13 +116,13 @@
             ];
             $scope.sortBrandsOptions = [
                 {
-                    label: 'Expiring Soon'
+                    label: 'A - Z'
+                },
+                {
+                    label: 'Recently Added'
                 },
                 {
                     label: 'Most Viewed'
-                },
-                {
-                    label: 'Favorites'
                 }
             ];
             $scope.sortCharitiesOptions = [
@@ -134,9 +131,6 @@
                 },
                 {
                     label: 'Most Viewed'
-                },
-                {
-                    label: 'Favorites'
                 }
             ];
             $scope.sortCategoriesOptions = [
@@ -145,9 +139,6 @@
                 },
                 {
                     label: 'Most Viewed'
-                },
-                {
-                    label: 'Favorites'
                 }
             ];
 
