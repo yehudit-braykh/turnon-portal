@@ -491,6 +491,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('ui/common/printable/view.printable-page.html',
+    "<div class=clix-printable-page><div class=printable-logo-container><img src=assets/theme/clixtv/dist/images/clixtv-logo-blk.svg class=clix-logo></div><div ng-transclude></div></div>"
+  );
+
+
   $templateCache.put('ui/common/radio-buttons/view.radio-button-group.html',
     "<div class=clix-radio-button-group><div ng-repeat=\"option in options\" class=radio-button-select-container ng-class=\"{'active': selected === $index}\" ng-click=setSelected($index)><div class=radio-button-select></div><div class=radio-button-label>{{option.label}}</div></div></div>"
   );
@@ -567,7 +572,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/offer/view.printable-redeem-offer.html',
-    "<div>Boop...</div>"
+    "<div clix-printable-page><div class=clix-printable-redeem-offer><div class=redeem-offer-header>Use the Coupon Code Below</div><div class=redeem-offer-details><div class=coupon-code>VPBC500</div><div class=redeem-offer-sub-title>Shop online at Nike</div><div class=redeem-offer-qr></div><div class=redeem-offer-desc><p>Get 20% off when you buy at nike.com. Restrictions apply. See merchant website for more details.</p><p>Offer expires 2/1/2017</p></div></div><div class=redeem-offer-legal><p>ClixTV Legal copy here...</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis odio in ipsum vestibulum aliquet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam ac augue eget metus posuere suscipit. Nunc aliquet iaculis est eu sagittis. Nunc blandit facilisis lorem vel laoreet. In vel ex ligula. Donec justo neque, porta id faucibus id, lobortis vitae enim. Sed a venenatis diam. Quisque ullamcorper ac massa a interdum. Donec venenatis lobortis nulla quis volutpat. Fusce at neque libero.</p><p>Phasellus condimentum elementum nunc, ut laoreet elit convallis et. Morbi viverra, neque nec faucibus aliquet, nulla diam pharetra purus, sed semper elit orci ac nisi. Donec iaculis id mauris vel imperdiet. Donec consectetur felis fringilla eros tristique, at dapibus turpis blandit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam efficitur tellus mollis ex gravida vestibulum vel eget lacus. Ut ornare varius nunc, malesuada blandit dui consequat at. Curabitur pretium laoreet velit nec ultrices. Donec tincidunt mauris fringilla egestas vehicula. Phasellus molestie justo et efficitur ornare. Phasellus sodales diam eget purus imperdiet aliquam. Cras lobortis ex a eros convallis ultrices.</p><p>Duis imperdiet, tortor vitae posuere cursus, arcu erat luctus sapien, a finibus orci tellus eu nulla. Pellentesque leo libero, egestas sed mattis ut, mollis a nibh. Praesent mattis neque vitae erat facilisis, elementum malesuada est blandit. Etiam erat neque, commodo eget mattis ac, posuere sit amet mi. Morbi vitae tortor quis sapien congue tempus a quis est. Curabitur laoreet molestie tempus. Pellentesque quis elit libero. Nulla felis urna, scelerisque in faucibus at, fringilla in massa.</p><p>Fusce id massa mauris. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed et erat eu urna posuere eleifend in mattis tortor. Etiam semper vel ante quis lacinia. Integer sodales tellus a justo tincidunt, in pellentesque odio fringilla. Pellentesque et scelerisque sapien, vel dignissim tortor. Donec a diam gravida, dignissim lacus quis, dictum est. Vivamus ac purus viverra, pretium nulla ut, pellentesque dui. Sed vel magna iaculis, rhoncus tortor sed, condimentum dolor. Sed lacinia, neque in ullamcorper condimentum, lectus erat volutpat magna, id sodales lacus nunc ac orci. Morbi tincidunt, justo ut cursus faucibus, odio risus finibus libero, sed vestibulum nisi leo quis libero. Fusce in urna nibh. Phasellus dolor velit, fermentum ac diam id, dictum feugiat ligula. Curabitur eget augue blandit, rutrum purus sit amet, pulvinar massa. Sed lacinia iaculis velit sed laoreet. Aliquam elementum elementum mauris, et iaculis ipsum mattis faucibus.</p><p>Suspendisse purus sem, consequat in nibh eget, lobortis viverra turpis. Morbi orci dui, sagittis nec viverra sit amet, iaculis vel tortor. Nulla malesuada imperdiet orci quis scelerisque. Aliquam sit amet nulla aliquet, mattis purus quis, sagittis augue. Maecenas facilisis, sem nec volutpat fermentum, metus sapien malesuada tortor, eu placerat libero purus eget erat. Pellentesque pellentesque, tortor quis laoreet porttitor, odio augue eleifend nibh, sed sodales odio ligula in enim. Quisque urna lacus, faucibus eget sapien sit amet, tristique aliquet nunc. Donec consectetur urna leo, non aliquam sapien placerat quis. Nullam vehicula odio a mauris bibendum, eu fermentum felis efficitur. Integer faucibus pellentesque urna non cursus. Morbi risus nisl, sodales quis porttitor et, aliquet a ligula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque purus ante, tincidunt ornare risus vel, imperdiet dictum nunc. Etiam ultricies turpis eget felis dignissim, sit amet aliquet mi feugiat.</p><p>Duis dignissim massa augue, ut tincidunt est fermentum sit amet. Curabitur eu purus vel lorem viverra iaculis. Duis sit amet molestie ex, vel sodales enim. Aenean sollicitudin augue in congue facilisis. Fusce consectetur a sapien ut pretium. Proin id fringilla augue. Sed sodales purus ut erat elementum, et viverra nisi ultrices. Praesent et fermentum leo. Nam ante sem, molestie dignissim laoreet at, fermentum sit amet est. Sed pharetra arcu vitae neque sagittis aliquam.</p><p>Donec ac elementum est, id blandit lorem. Nam aliquet tincidunt massa, eget tincidunt justo interdum eget. Curabitur quis porta orci. Phasellus sagittis nisi augue. Phasellus tortor velit, pulvinar ut felis a, tempus convallis urna. Proin faucibus condimentum finibus. In hac habitasse platea dictumst. Pellentesque convallis eros eros, sit amet vehicula arcu auctor sit amet. Integer at efficitur dolor, id pretium nunc. Mauris ultrices sollicitudin augue, et ultrices quam convallis nec. Fusce nulla nibh, interdum id eleifend quis, faucibus a enim.</p></div></div></div>"
   );
 
 
@@ -4617,6 +4622,21 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     angular.module('clixtv')
         .directive('clixParallax', parallax);
+}());
+(function() {
+
+    var printablePage = [
+        function() {
+            return {
+                restrict: 'AE',
+                templateUrl: 'ui/common/printable/view.printable-page.html',
+                transclude: true
+            }
+        }
+    ];
+
+    angular.module('clixtv')
+        .directive('clixPrintablePage', printablePage);
 }());
 (function() {
 

@@ -11221,6 +11221,51 @@ button.close {
     margin-top: 10px;
   }
 }
+.clix-printable-redeem-offer .redeem-offer-header {
+  font-family: 'montserratregular', sans-serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #bababa;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 60px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #636363;
+}
+.clix-printable-redeem-offer .redeem-offer-details {
+  margin: 73px 0 140px;
+  text-align: center;
+}
+.clix-printable-redeem-offer .coupon-code {
+  font-family: 'montserratregular', sans-serif;
+  font-size: 36px;
+  color: #0dc73a;
+}
+.clix-printable-redeem-offer .redeem-offer-sub-title {
+  margin-top: 10px;
+  font-family: 'montserratregular', sans-serif;
+  color: #8a8a8a;
+  font-size: 14px;
+}
+.clix-printable-redeem-offer .redeem-offer-qr {
+  width: 80px;
+  height: 80px;
+  background-color: #bababa;
+  margin: 25px auto 40px;
+}
+.clix-printable-redeem-offer .redeem-offer-desc {
+  font-family: 'montserratregular', sans-serif;
+  color: #8a8a8a;
+  font-size: 14px;
+  width: 500px;
+  margin: 0 auto;
+}
+.clix-printable-redeem-offer .redeem-offer-legal {
+  font-family: 'montserratregular', sans-serif;
+  color: #8a8a8a;
+  font-size: 14px;
+  margin: 0 30px 30px;
+}
 .clix-account-page {
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -15325,6 +15370,17 @@ button.close {
 }
 .clix-form-input.input-error {
   border: 1px solid #fe0000;
+}
+.clix-printable-page {
+  padding-top: 93px;
+}
+.clix-printable-page .printable-logo-container {
+  text-align: center;
+  margin: 0 auto;
+  width: 300px;
+}
+.clix-printable-page .printable-logo-container img {
+  max-width: 100%;
 }
 body,
 html {
