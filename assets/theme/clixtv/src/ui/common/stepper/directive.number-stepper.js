@@ -25,6 +25,9 @@
 
                 scope.onMinusPress = function() {
                     scope.currentValue -= incrementValue;
+                    if (scope.currentValue < 0) {
+                        scope.currentValue = 0;
+                    }
                     _updatePriceDisplay();
                 };
 
