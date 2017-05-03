@@ -19,7 +19,7 @@
 
 <!--        <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet">-->
 <!--        <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700" rel="stylesheet">-->
-        <link rel="stylesheet" href="<?php echo asset_url(); ?>dist/main.min.css" />
+        <link rel="stylesheet" href="/assets/theme/clixtv/dist/main.min.css" />
 
         <!--
         <link rel="stylesheet" type="text/css" href="<?php echo asset_url(); ?>css/less.php" />
@@ -151,8 +151,8 @@
         <script type="text/javascript" src="/assets/common/js/jwplayer-7.9.0/jwplayer.js" ></script>
         <script>jwplayer.key="wldzyhAXC/pV8hrmoKJJUJQUQU7UwoOXl6rN1w==";</script>
 
-        <script src="<?php echo asset_url(); ?>dist/libs.min.js"></script>
-        <script src="<?php echo asset_url(); ?>dist/main.min.js"></script>
+        <script src="/assets/theme/clixtv/dist/libs.min.js"></script>
+        <script src="/assets/theme/clixtv/dist/main.min.js"></script>
 
     </body>
 </html>
