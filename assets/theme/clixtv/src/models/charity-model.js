@@ -25,8 +25,8 @@
                             this.headerImage = data.content.BackgroundImage.downloadUrl;
                         }
 
-                        if (data.content.mainTrailer) {
-                            this.trailer = data.content.mainTrailer.downloadUrl;
+                        if (data.content.Video) {
+                            this.trailer = data.content.Video.downloadUrl;
                         }
 
                         if (data.content.PosterH) {

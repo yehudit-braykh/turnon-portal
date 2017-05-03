@@ -6623,8 +6623,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                             this.logo = data.content.ProfilePicture.downloadUrl;
                         }
 
-                        if (data.content.mainTrailer) {
-                            this.trailer = data.content.mainTrailer.downloadUrl;
+                        if (data.content.Video) {
+                            this.trailer = data.content.Video.downloadUrl;
                         }
 
                         if (data.content.PosterH) {
@@ -6635,6 +6635,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             }
         ]);
 }());
+
 (function() {
 
     angular
@@ -6795,8 +6796,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                             this.headerImage = data.content.BackgroundImage.downloadUrl;
                         }
 
-                        if (data.content.mainTrailer) {
-                            this.trailer = data.content.mainTrailer.downloadUrl;
+                        if (data.content.Video) {
+                            this.trailer = data.content.Video.downloadUrl;
                         }
 
                         if (data.content.PosterH) {

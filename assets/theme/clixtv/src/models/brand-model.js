@@ -35,8 +35,8 @@
                             this.logo = data.content.ProfilePicture.downloadUrl;
                         }
 
-                        if (data.content.mainTrailer) {
-                            this.trailer = data.content.mainTrailer.downloadUrl;
+                        if (data.content.Video) {
+                            this.trailer = data.content.Video.downloadUrl;
                         }
 
                         if (data.content.PosterH) {
