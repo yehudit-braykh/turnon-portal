@@ -53,6 +53,9 @@ class Celebrity_model extends Uvod_Model {
 						}
 				}
 			}
+			if($item->offers)
+				$item->offers = $this->rows($item->offers)[0];
+			if($item->charities)
 			if($item->brands)
 				$item->brands = $this->rows($item->brands);
 			if($item->charities)
