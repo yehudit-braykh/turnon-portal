@@ -14,12 +14,13 @@
         function($q, $scope, $rootScope, $stateParams, offersService, brandsService, userService, catchMediaService, educationModalService, modalService) {
 
 
-            // modalService.showModal({
-            //     controller: 'OfferModalController',
-            //     templateUrl: 'ui/common/modal/offer/view.offer-modal.html'
-            // });
-
-
+            modalService.showModal({
+                controller: 'OfferModalController',
+                templateUrl: 'ui/common/modal/offer/view.offer-modal.html',
+                data: {
+                    offerId: $stateParams.id
+                }
+            });
 
 
             function _resetIsFavorite() {

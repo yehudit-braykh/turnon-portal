@@ -6,8 +6,9 @@
         '$rootScope',
         '$uibModal',
         'userService',
+        'modalService',
         'preferencesService',
-        function($q, $log, $rootScope, $uibModal, userService, preferencesService) {
+        function($q, $log, $rootScope, $uibModal, userService, modalService, preferencesService) {
 
             function _launchEducationModal(type, id) {
                 $q.all(
@@ -22,41 +23,16 @@
                             if (hide === true || hide === 'true') {
                                 return;
                             }
-                            var modalInstance = $uibModal.open({
-                                animation: true,
+
+                            modalService.showModal({
                                 templateUrl: 'ui/common/modal/education/view.education-modal.html',
                                 controller: 'EducationModalController',
-                                windowClass: 'clix-modal-window',
-                                size: 'clix-lg',
-                                resolve: {
-                                    itemData: {
-                                        loggedInUser: data[0],
-                                        type: type,
-                                        id: id
-                                    }
+                                data: {
+                                    loggedInUser: data[0],
+                                    type: type,
+                                    id: id
                                 }
                             });
-
-                            modalInstance.opened.then(
-                                function onSuccess() {
-                                    $rootScope.$broadcast('modal.open');
-                                }
-                            );
-
-                            modalInstance.closed.then(
-                                function onSuccess(data) {
-                                    $rootScope.$broadcast('modal.close');
-                                }
-                            );
-
-                            modalInstance.result.then(
-                                function onSuccess(data) {
-
-                                },
-                                function onError(error) {
-
-                                }
-                            );
                         }
                     );
 
@@ -76,6 +52,10 @@
 
                 showOfferViewedModal: function(id) {
                     _launchEducationModal('offer-view', id);
+                },
+
+                showOfferSavedModal: function (id) {
+                    _launchEducationModal('offer', id);
                 },
 
                 showLearnMoreModal: function() {

@@ -53,6 +53,11 @@
                         templateUrl: 'ui/brand/view.brand.html',
                         controller: 'BrandController'
                     })
+                    .state('brand-offer', {
+                        url: '/brand/:id/offer/:offerId',
+                        templateUrl: 'ui/brand/view.brand.html',
+                        controller: 'BrandController'
+                    })
                     .state('charity', {
                         url: '/charity/:id',
                         templateUrl: 'ui/charity/view.charity.html',

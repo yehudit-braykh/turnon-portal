@@ -4,9 +4,11 @@
             return {
                 restrict: 'AE',
                 transclude: true,
+                controller: 'ModalController',
                 templateUrl: 'ui/common/modal/view.modal.html',
                 scope: {
-                    modalTitle: '@?'
+                    modalTitle: '@?',
+                    extraModalClass: '@?'
                 }
             }
         }

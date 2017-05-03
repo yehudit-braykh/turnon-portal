@@ -6,7 +6,7 @@
         '$rootScope',
         '$timeout',
         '$uibModalInstance',
-        'itemData',
+        'data',
         'userService',
         'videosService',
         'brandsService',
@@ -15,13 +15,16 @@
         'offersService',
         'modalService',
         'preferencesService',
-        function($q, $scope, $rootScope, $timeout, $uibModalInstance, itemData, userService, videosService, brandsService, celebrityService, categoryService, offersService, modalService, preferencesService) {
+        function($q, $scope, $rootScope, $timeout, $uibModalInstance, data, userService, videosService, brandsService, celebrityService, categoryService, offersService, modalService, preferencesService) {
 
             $scope.showAgainModel = false;
 
+            var itemData = data;
+
             function _getModalTitle() {
                 var title,
-                    isLoggedIn = ($scope.loggedInUser !== undefined);
+                    isLoggedIn = ($scope.loggedInUser !== undefined && $scope.loggedInUser);
+
                 switch(itemData.type) {
 
                     case 'watchlist':
@@ -83,23 +86,36 @@
             $scope.type = itemData.type;
 
             $scope.onCloseButtonPress = function(navigation) {
-                $uibModalInstance.close({
-                    navigation: navigation
-                });
+                if (modalService.getNumberOfModalsInStack() >= 2 && !navigation) {
+                    modalService.pop();
+                } else {
+                    $uibModalInstance.close({
+                        navigation: navigation
+                    });
+                    modalService.close();
+                }
             };
 
             $scope.onSignUpPress = function() {
-                $uibModalInstance.close();
-                $timeout(function() {
+                if (modalService.getNumberOfModalsInStack() >= 2) {
                     modalService.showSignUpModal();
-                }, 100);
+                } else {
+                    $uibModalInstance.close();
+                    $timeout(function() {
+                        modalService.showSignUpModal();
+                    }, 100);
+                }
             };
 
             $scope.onLoginPress = function() {
-                $uibModalInstance.close();
-                $timeout(function() {
+                if (modalService.getNumberOfModalsInStack() >= 2) {
                     modalService.showLogInModal();
-                }, 100);
+                } else {
+                    $uibModalInstance.close();
+                    $timeout(function() {
+                        modalService.showLogInModal();
+                    }, 100);
+                }
             };
 
             $scope.onShowAgainChange = function(model) {

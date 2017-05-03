@@ -5,10 +5,19 @@
             '$injector',
             function($injector) {
                 return function(data) {
+                    var BrandModel;
                     this.id = data._id;
                     this.title = data.title;
                     this.expirationDate = data.expirationDate;
                     this.description = data.description;
+                    this.longDescription = data.long_description;
+
+                    if (typeof data.campaign === 'string') {
+                        this.campaign = data.campaign;
+                    } else {
+                        BrandModel = $injector.get('BrandModel');
+                        this.campaign = new BrandModel(data.campaign);
+                    }
 
                     if (data.content) {
                         if (data.content.BrandTransparentLogo) {
@@ -41,7 +50,7 @@
                     }
 
                     if (data.brand) {
-                        var BrandModel = $injector.get('BrandModel');
+                        BrandModel = $injector.get('BrandModel');
                         this.brand = new BrandModel(data.brand);
                     }
 

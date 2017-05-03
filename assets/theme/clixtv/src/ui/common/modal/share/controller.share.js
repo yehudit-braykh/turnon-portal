@@ -5,50 +5,46 @@
         '$location',
         '$uibModalInstance',
         '$state',
-        'shareModalVideo',
-        'shareModalOffer',
-        'shareModalCelebrity',
-        'shareModalBrand',
-        'shareModalCharity',
-        'shareModalCategory',
-        function($scope, $location, $uibModalInstance, $state, shareModalVideo, shareModalOffer, shareModalCelebrity, shareModalBrand, shareModalCharity, shareModalCategory) {
+        'data',
+        'modalService',
+        function($scope, $location, $uibModalInstance, $state, data, modalService) {
 
             $scope.tab = 'post';
             $scope.socialNetworks = [];
 
-            $scope.video = shareModalVideo;
-            $scope.offer = shareModalOffer;
-            $scope.celebrity = shareModalCelebrity;
-            $scope.brand = shareModalBrand;
-            $scope.charity = shareModalCharity;
-            $scope.category = shareModalCategory;
+            $scope.video = data.shareModalVideo;
+            $scope.offer = data.shareModalOffer;
+            $scope.celebrity = data.shareModalCelebrity;
+            $scope.brand = data.shareModalBrand;
+            $scope.charity = data.shareModalCharity;
+            $scope.category = data.shareModalCategory;
 
             var currentUrl = $location.absUrl(),
                 shareContent = '';
 
-            if (shareModalVideo) {
+            if (data.shareModalVideo) {
                 shareContent = 'Here\'s a video I thought you\'d enjoy from #ClixTV - ';
-                shareContent += shareModalVideo.title + ' ' + $state.href('video', { id: shareModalVideo.id }, {absolute: true});
+                shareContent += data.shareModalVideo.title + ' ' + $state.href('video', { id: data.shareModalVideo.id }, {absolute: true});
             }
 
-            if (shareModalOffer) {
+            if (data.shareModalOffer) {
                 shareContent = 'Here\'s an offer I thought you\'d enjoy from #ClixTV - ';
-                shareContent += shareModalOffer.title + ' ' + $state.href('offer', { id: shareModalOffer.id }, {absolute: true});
+                shareContent += data.shareModalOffer.title + ' ' + $state.href('brand-offer', { id: data.shareModalOffer.campaign.id, offerId: data.shareModalOffer.id }, {absolute: true});
             }
 
-            if (shareModalCelebrity) {
-                shareContent = 'I thought you\'d like to check out ' + shareModalCelebrity.name + ' on #ClixTV - ';
-                shareContent += $state.href('star', { id: shareModalCelebrity.id }, {absolute: true});
+            if (data.shareModalCelebrity) {
+                shareContent = 'I thought you\'d like to check out ' + data.shareModalCelebrity.name + ' on #ClixTV - ';
+                shareContent += $state.href('star', { id: data.shareModalCelebrity.id }, {absolute: true});
             }
 
-            if (shareModalBrand) {
-                shareContent = 'I thought you\'d enjoy visiting ' + shareModalBrand.title + ' on #ClixTV - ';
-                shareContent += $state.href('brand', { id: shareModalBrand.id }, {absolute: true});
+            if (data.shareModalBrand) {
+                shareContent = 'I thought you\'d enjoy visiting ' + data.shareModalBrand.title + ' on #ClixTV - ';
+                shareContent += $state.href('brand', { id: data.shareModalBrand.id }, {absolute: true});
             }
 
-            if (shareModalCharity) {
-                shareContent = 'I thought you\'d enjoy visiting the charity page for ' + shareModalCharity.title + ' on #ClixTV - ';
-                shareContent += $state.href('charity', { id: shareModalCharity.id }, {absolute: true});
+            if (data.shareModalCharity) {
+                shareContent = 'I thought you\'d enjoy visiting the charity page for ' + data.shareModalCharity.title + ' on #ClixTV - ';
+                shareContent += $state.href('charity', { id: data.shareModalCharity.id }, {absolute: true});
             }
 
             $scope.shareContent = shareContent;
@@ -58,7 +54,11 @@
             };
 
             $scope.onCancelPress = function() {
-                $uibModalInstance.close();
+                if ($scope.showBackButton) {
+                    modalService.pop();
+                } else {
+                    $uibModalInstance.close();
+                }
             };
 
             $scope.onSendPress = function() {
@@ -81,6 +81,8 @@
             $scope.onSettingsPress = function() {
                 console.log('fda');
             };
+
+            $scope.showBackButton = modalService.getNumberOfModalsInStack() >= 2;
         }
     ];
 

@@ -4,7 +4,8 @@
         '$log',
         '$rootScope',
         '$uibModal',
-        function($log, $rootScope, $uibModal) {
+        'modalService',
+        function($log, $rootScope, $uibModal, modalService) {
 
             function _showModalForType(type, item) {
 
@@ -17,35 +18,11 @@
                     shareModalCategory: (type === 'category') ? item : undefined
                 };
 
-                var modalInstance = $uibModal.open({
-                    animation: true,
+                modalService.showModal({
                     templateUrl: 'ui/common/modal/share/view.share.html',
                     controller: 'ShareController',
-                    windowClass: 'clix-modal-window',
-                    size: 'clix-lg',
-                    resolve: resolve
+                    data: resolve
                 });
-
-                modalInstance.opened.then(
-                    function onSuccess() {
-                        $rootScope.$broadcast('modal.open');
-                    }
-                );
-
-                modalInstance.closed.then(
-                    function onSuccess() {
-                        $rootScope.$broadcast('modal.close');
-                    }
-                );
-
-                modalInstance.result.then(
-                    function onSuccess(data) {
-
-                    },
-                    function onError(error) {
-
-                    }
-                )
             }
 
             return {

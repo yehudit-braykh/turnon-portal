@@ -53,6 +53,11 @@
                         templateUrl: 'ui/brand/view.brand.html',
                         controller: 'BrandController'
                     })
+                    .state('brand-offer', {
+                        url: '/brand/:id/offer/:offerId',
+                        templateUrl: 'ui/brand/view.brand.html',
+                        controller: 'BrandController'
+                    })
                     .state('charity', {
                         url: '/charity/:id',
                         templateUrl: 'ui/charity/view.charity.html',
@@ -177,7 +182,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/brand/view.brand.html',
-    "<div ng-if=!configs><clix-loader size=large></clix-loader></div><div class=brand-page ng-if=configs><clix-hero-banner title-text={{configs.title}} button-text=\"{{'Favorites'}}\" points=\"{{'50'}}\" subtext=\"{{brand.offers.offers.length}} {{brand.offers.offers.length === 1 ? 'Offer' : 'Offers'}}\" button-icon-class=\"{{'icon-favorite-icon banner-favorite-icon'}}\" background-image={{configs.backgroundImage}} background-image2x={{configs.backgroundImage2x}} background-image3x={{configs.backgroundImage3x}} button-tooltip-text=\"{{loggedInUser ? (isFavorite ? 'Remove this brand from your Favorites.' : 'Add this brand to your Favorites.') : 'After signing up, you will be able to add this brand to your Favorites.'}}\" share-tooltip-text=\"Share this brand.\" banner-type=Brand><favorite-button><clix-tertiary-button ng-click=onFavoritePress() is-active=isFavorite>{{isFavorite ? 'Remove from Favorites' : 'Favorite'}}</clix-tertiary-button></favorite-button><share-icon><clix-share-button extra-class=banner-share-icon brand=brand></clix-share-button></share-icon></clix-hero-banner><div class=brand-page-content><div class=clix-tabs><uib-tabset active=active><uib-tab index=0 heading=Home><div class=home-container><clix-landing-video-content video=video><content-description><clix-secondary-header>About {{configs.title}}</clix-secondary-header><div class=home-description>{{configs.description}}</div></content-description><sidebar-title>More Offers From {{configs.title}}</sidebar-title><sidebar-content><div class=\"row brand-offer-row\"><div class=\"col-xs-6 col-sm-6 col-md-12 col-lg-12 brand-offer-column\" ng-repeat=\"offer in brand.offers.offers | limitTo: 3\"><div class=brand-offer><clix-offer-content-callout offer=offer></clix-offer-content-callout></div></div></div></sidebar-content><footer-content><div class=brand-categories-container><clix-secondary-header>Brand Categories <i class=icon-right-arrow></i></clix-secondary-header><div class=brand-category-logo-container><div class=brand-category-logo><clix-brand-category-logo brand=video category-title=Sportswear></clix-brand-category-logo></div><div class=brand-category-logo><clix-brand-category-logo brand=video category-title=Shoes></clix-brand-category-logo></div><div class=brand-category-logo><clix-brand-category-logo brand=video category-title=Swimwear></clix-brand-category-logo></div><div class=brand-category-logo><clix-brand-category-logo brand=video category-title=\"Training & Gym\"></clix-brand-category-logo></div></div></div><div class=brand-celebrity-videos><div ng-repeat=\"celebrity in brand.celebrities.celebrities | limitTo: 3\"><clix-video-category-scroll-list category-title=\"{{celebrity.name}} and {{brand.title}}\" category-videos=celebrity.videos.videos></clix-video-category-scroll-list></div></div></footer-content><share-tooltip-content><div ng-if=loggedInUser>You will receive 50 Reward Points for sharing!</div><div ng-if=!loggedInUser>After signing up, you will receive 50 Reward Points for sharing! <a ng-click=\"\">Learn more</a>.</div></share-tooltip-content><share-icon><clix-share-button extra-class=landing-share-icon brand=brand></clix-share-button></share-icon></clix-landing-video-content></div></uib-tab><uib-tab index=1 heading=Offers><div class=\"row clix-block-row offers-container\"><div class=\"clix-block-item col-xs-6 col-sm-4 col-md-3 col-lg-2\" ng-repeat=\"offer in brand.offers.offers\"><clix-offer-content-callout offer=offer></clix-offer-content-callout></div></div></uib-tab><uib-tab index=2 heading=Stars><div class=stars-container><div ng-repeat=\"celebrity in brand.celebrities.celebrities\"><clix-video-category-scroll-list category-title=\"{{celebrity.name}} and {{brand.title}}\" category-videos=celebrity.videos.videos></clix-video-category-scroll-list></div></div></uib-tab><uib-tab index=3 heading=Videos><div class=videos-container><div class=videos-title-container><div class=videos-title><clix-secondary-header>All Videos Featuring {{brand.title}}</clix-secondary-header></div><div class=video-sort-container><clix-dropdown options=seriesList placeholder-text=\"Sort By\"></clix-dropdown></div></div><div class=\"row clix-block-row\"><div class=\"clix-block-item col-xs-12 col-sm-12 col-md-3 col-lg-2-4\" ng-repeat=\"video in brand.videos.videos\"><clix-video-content-box video=video></clix-video-content-box></div></div></div></uib-tab></uib-tabset></div></div></div>"
+    "<div ng-if=!configs><clix-loader size=large></clix-loader></div><div class=brand-page ng-if=configs><clix-hero-banner title-text={{configs.title}} button-text=\"{{'Favorites'}}\" points=\"{{'50'}}\" subtext=\"{{brand.offers.offers.length}} {{brand.offers.offers.length === 1 ? 'Offer' : 'Offers'}}\" button-icon-class=\"{{'icon-favorite-icon banner-favorite-icon'}}\" background-image={{configs.backgroundImage}} background-image2x={{configs.backgroundImage2x}} background-image3x={{configs.backgroundImage3x}} button-tooltip-text=\"{{loggedInUser ? (isFavorite ? 'Remove this brand from your Favorites.' : 'Add this brand to your Favorites.') : 'After signing up, you will be able to add this brand to your Favorites.'}}\" share-tooltip-text=\"Share this brand.\" banner-type=Brand><favorite-button><clix-tertiary-button ng-click=onFavoritePress() is-active=isFavorite>{{isFavorite ? 'Remove from Favorites' : 'Favorite'}}</clix-tertiary-button></favorite-button><share-icon><clix-share-button extra-class=banner-share-icon brand=brand></clix-share-button></share-icon></clix-hero-banner><div class=brand-page-content><div class=clix-tabs><uib-tabset active=active><uib-tab index=0 heading=Home><div class=home-container><clix-landing-video-content video=video><content-description><clix-secondary-header>About {{configs.title}}</clix-secondary-header><div class=home-description>{{configs.description}}</div></content-description><sidebar-title>More Offers From {{configs.title}}</sidebar-title><sidebar-content><div class=\"row brand-offer-row\"><div class=\"col-xs-6 col-sm-6 col-md-12 col-lg-12 brand-offer-column\" ng-repeat=\"offer in brand.offers.offers | limitTo: 3\"><div class=brand-offer><clix-offer-content-callout offer=offer></clix-offer-content-callout></div></div></div></sidebar-content><footer-content><div class=brand-categories-container><clix-secondary-header>Brand Categories <i class=icon-right-arrow></i></clix-secondary-header><div class=brand-category-logo-container><div class=brand-category-logo><clix-brand-category-logo brand=video category-title=Sportswear></clix-brand-category-logo></div><div class=brand-category-logo><clix-brand-category-logo brand=video category-title=Shoes></clix-brand-category-logo></div><div class=brand-category-logo><clix-brand-category-logo brand=video category-title=Swimwear></clix-brand-category-logo></div><div class=brand-category-logo><clix-brand-category-logo brand=video category-title=\"Training & Gym\"></clix-brand-category-logo></div></div></div><div class=brand-celebrity-videos><div ng-repeat=\"celebrity in brand.celebrities.celebrities | limitTo: 3\"><clix-video-category-scroll-list category-title=\"{{celebrity.name}} and {{brand.title}}\" category-videos=celebrity.videos.videos></clix-video-category-scroll-list></div></div></footer-content><share-tooltip-content><div ng-if=loggedInUser>You will receive 50 Reward Points for sharing!</div><div ng-if=!loggedInUser>After signing up, you will receive 50 Reward Points for sharing! <a ng-click=\"\">Learn more</a>.</div></share-tooltip-content><share-icon><clix-share-button extra-class=landing-share-icon brand=brand></clix-share-button></share-icon></clix-landing-video-content></div></uib-tab><uib-tab index=1 heading=Offers><div class=\"row clix-block-row offers-container\"><div class=\"clix-block-item col-xs-6 col-sm-4 col-md-3 col-lg-2\" ng-repeat=\"offer in brand.offers.offers\"><clix-offer-content-callout offer=offer ng-click=onOfferPress(offer)></clix-offer-content-callout></div></div></uib-tab><uib-tab index=2 heading=Stars><div class=stars-container><div ng-repeat=\"celebrity in brand.celebrities.celebrities\"><clix-video-category-scroll-list category-title=\"{{celebrity.name}} and {{brand.title}}\" category-videos=celebrity.videos.videos></clix-video-category-scroll-list></div></div></uib-tab><uib-tab index=3 heading=Videos><div class=videos-container><div class=videos-title-container><div class=videos-title><clix-secondary-header>All Videos Featuring {{brand.title}}</clix-secondary-header></div><div class=video-sort-container><clix-dropdown options=seriesList placeholder-text=\"Sort By\"></clix-dropdown></div></div><div class=\"row clix-block-row\"><div class=\"clix-block-item col-xs-12 col-sm-12 col-md-3 col-lg-2-4\" ng-repeat=\"video in brand.videos.videos\"><clix-video-content-box video=video></clix-video-content-box></div></div></div></uib-tab></uib-tabset></div></div></div>"
   );
 
 
@@ -327,7 +332,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/container/view.offer-content-callout.html',
-    "<clix-content-callout sref=\"offer({ id: '{{offer.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('offer', offer)\" is-favorited=\"isFavoriteContent('offer', offer)\" add-button=true add-favorite-tooltip=\"Add to saved offers\" remove-favorite-tooltip=\"Remove from saved offers\"><header-element><clix-offer-logo offer=offer></clix-offer-logo></header-element><title-content>{{offer.title}}</title-content><subtitle-content>Expires 2/1/2017</subtitle-content></clix-content-callout>"
+    "<clix-content-callout sref=\"brand-offer({ id: '{{offer.campaign}}', offerId: '{{offer.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('offer', offer)\" is-favorited=\"isFavoriteContent('offer', offer)\" add-button=true add-favorite-tooltip=\"Add to saved offers\" remove-favorite-tooltip=\"Remove from saved offers\"><header-element><clix-offer-logo offer=offer></clix-offer-logo></header-element><title-content>{{offer.title}}</title-content><subtitle-content>Expires 2/1/2017</subtitle-content></clix-content-callout>"
   );
 
 
@@ -387,7 +392,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/modal/offer/view.offer-modal.html',
-    "<div><button ng-click=onBackPress()>Back</button> <button ng-click=onNextPress()>Next</button></div>"
+    "<div class=clix-offer-modal><a ng-click=onClosePress() class=close-modal-icon><div class=icon-remove-icon></div></a><div ng-if=!offer><clix-loader size=small></clix-loader></div><div ng-if=offer><div class=offer-title>{{offer.title}}</div><div class=\"offer-image-info-container row\"><div class=col-xs-6><img ng-if=offer.carouselPic1 ng-src={{offer.carouselPic1}} class=offer-image></div><div class=col-xs-6><div class=instructions-title>Instructions</div><div class=instructions-container><div class=instruction-row><div class=instruction-step-container><div class=instruction-step>1</div></div><div class=instruction-info>Click the button below to shop online at {{offer.brand.title}}. Your Coupon code will be copied to your clipboard automatically.</div></div><div class=instruction-row><div class=instruction-step-container><div class=instruction-step>2</div></div><div class=instruction-info>Paste your code during checkout.</div></div><div class=instruction-row><div class=instruction-step-container><div class=instruction-step>3</div></div><div class=instruction-info>Enjoy!</div></div></div></div></div><div class=\"offer-buttons-container row\"><div class=col-xs-4><div class=offer-button><clix-tertiary-button ng-click=onSaveOfferPress()>{{isSavedOffer ? 'Offer Saved' : 'Save Offer'}}</clix-tertiary-button><div class=violator-container><clix-points-violator>50</clix-points-violator></div></div></div><div class=col-xs-4><div class=offer-button><clix-tertiary-button>Redeem Offer</clix-tertiary-button><div class=violator-container><clix-points-violator>50</clix-points-violator></div></div></div><div class=col-xs-4><div class=offer-share><clix-share-button offer=offer></clix-share-button><clix-points-violator>50</clix-points-violator></div></div></div><div class=offer-description-container><div class=offer-description-header>The Revolution Never Ends</div><div class=offer-description ng-bind-html=\"offer.longDescription || offer.description | clixNewLineBreak\"></div></div></div></div>"
   );
 
 
@@ -427,17 +432,17 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/modal/share/view.share.html',
-    "<div class=clix-share-modal><div class=clix-tabs><uib-tabset active=active><uib-tab index=0 heading=\"Post To\" select=\"onTabPress('post')\"><div class=modal-post-content><div ng-if=video><clix-share-modal-video-content video=video></clix-share-modal-video-content></div><div ng-if=celebrity><clix-share-modal-celebrity-content celebrity=celebrity></clix-share-modal-celebrity-content></div><div ng-if=offer><clix-share-modal-offer-content offer=offer></clix-share-modal-offer-content></div><div ng-if=brand><clix-share-modal-brand-content brand=brand></clix-share-modal-brand-content></div><div ng-if=charity><clix-share-modal-charity-content charity=charity></clix-share-modal-charity-content></div></div></uib-tab><uib-tab index=1 heading=\"Send To...\" select=\"onTabPress('send')\"><div class=modal-send-content><div ng-if=video><clix-share-modal-video-content video=video></clix-share-modal-video-content></div><div ng-if=celebrity><clix-share-modal-celebrity-content celebrity=celebrity></clix-share-modal-celebrity-content></div><div ng-if=offer><clix-share-modal-offer-content offer=offer></clix-share-modal-offer-content></div><div ng-if=brand><clix-share-modal-brand-content brand=brand></clix-share-modal-brand-content></div><div ng-if=charity><clix-share-modal-charity-content charity=charity></clix-share-modal-charity-content></div></div></uib-tab></uib-tabset><div class=share-modal-footer><div ng-show=\"tab === 'post'\"><div class=clix-share-modal-textbox><textarea>{{shareContent}}</textarea></div><div class=share-modal-post-container><div class=share-modal-social-networks><div class=share-modal-post-to-label>Post to</div><a class=\"social-network-icon-container facebook-social-network\" ng-click=\"onSocialNetworkPress('facebook')\" ng-class=\"{'active': socialNetworks.indexOf('facebook') !== -1}\"><i class=\"icon-facebook-logo social-network-icon\"></i> </a><a class=\"social-network-icon-container twitter-social-network\" ng-click=\"onSocialNetworkPress('twitter')\" ng-class=\"{'active': socialNetworks.indexOf('twitter') !== -1}\"><i class=\"icon-twitter-logo social-network-icon\"></i> </a><a class=\"social-network-icon-container tumblr-social-network\" ng-click=\"onSocialNetworkPress('tumblr')\" ng-class=\"{'active': socialNetworks.indexOf('tumblr') !== -1}\"><i class=\"icon-tumblr-logo social-network-icon\"></i></a></div><a ng-click=onSettingsPress() class=share-modal-settings>Settings</a></div></div><div ng-show=\"tab === 'send'\"><div class=clix-share-modal-input><input placeholder=\"Search Friends\"></div><div class=\"clix-share-modal-textbox send-textbox\"><textarea>{{shareContent}}</textarea></div><div class=\"share-modal-post-container share-modal-copy-link-container\"><a href=# class=share-modal-copy-link>Copy Video Link</a></div></div><div class=\"row footer-modal-buttons-container\"><div class=\"col-xs-6 footer-modal-button\"><a class=cancel-button ng-click=onCancelPress()>Cancel</a></div><div class=\"col-xs-6 footer-modal-button\"><clix-primary-button ng-show=\"tab === 'send'\" ng-click=onSendPress()>Send</clix-primary-button><clix-primary-button ng-show=\"tab === 'post'\" ng-click=onPostPress()>Post</clix-primary-button></div></div></div></div></div>"
+    "<clix-modal><div class=clix-share-modal><div class=clix-tabs><uib-tabset active=active><uib-tab index=0 heading=\"Post To\" select=\"onTabPress('post')\"><div class=modal-post-content><div ng-if=video><clix-share-modal-video-content video=video></clix-share-modal-video-content></div><div ng-if=celebrity><clix-share-modal-celebrity-content celebrity=celebrity></clix-share-modal-celebrity-content></div><div ng-if=offer><clix-share-modal-offer-content offer=offer></clix-share-modal-offer-content></div><div ng-if=brand><clix-share-modal-brand-content brand=brand></clix-share-modal-brand-content></div><div ng-if=charity><clix-share-modal-charity-content charity=charity></clix-share-modal-charity-content></div></div></uib-tab><uib-tab index=1 heading=\"Send To...\" select=\"onTabPress('send')\"><div class=modal-send-content><div ng-if=video><clix-share-modal-video-content video=video></clix-share-modal-video-content></div><div ng-if=celebrity><clix-share-modal-celebrity-content celebrity=celebrity></clix-share-modal-celebrity-content></div><div ng-if=offer><clix-share-modal-offer-content offer=offer></clix-share-modal-offer-content></div><div ng-if=brand><clix-share-modal-brand-content brand=brand></clix-share-modal-brand-content></div><div ng-if=charity><clix-share-modal-charity-content charity=charity></clix-share-modal-charity-content></div></div></uib-tab></uib-tabset><div class=share-modal-footer><div ng-show=\"tab === 'post'\"><div class=clix-share-modal-textbox><textarea>{{shareContent}}</textarea></div><div class=share-modal-post-container><div class=share-modal-social-networks><div class=share-modal-post-to-label>Post to</div><a class=\"social-network-icon-container facebook-social-network\" ng-click=\"onSocialNetworkPress('facebook')\" ng-class=\"{'active': socialNetworks.indexOf('facebook') !== -1}\"><i class=\"icon-facebook-logo social-network-icon\"></i> </a><a class=\"social-network-icon-container twitter-social-network\" ng-click=\"onSocialNetworkPress('twitter')\" ng-class=\"{'active': socialNetworks.indexOf('twitter') !== -1}\"><i class=\"icon-twitter-logo social-network-icon\"></i> </a><a class=\"social-network-icon-container tumblr-social-network\" ng-click=\"onSocialNetworkPress('tumblr')\" ng-class=\"{'active': socialNetworks.indexOf('tumblr') !== -1}\"><i class=\"icon-tumblr-logo social-network-icon\"></i></a></div><a ng-click=onSettingsPress() class=share-modal-settings>Settings</a></div></div><div ng-show=\"tab === 'send'\"><div class=clix-share-modal-input><input placeholder=\"Search Friends\"></div><div class=\"clix-share-modal-textbox send-textbox\"><textarea>{{shareContent}}</textarea></div><div class=\"share-modal-post-container share-modal-copy-link-container\"><a href=# class=share-modal-copy-link>Copy Video Link</a></div></div><div class=\"row footer-modal-buttons-container\"><div class=\"col-xs-6 footer-modal-button\"><a class=cancel-button ng-click=onCancelPress()>{{showBackButton ? 'Back' : 'Cancel'}}</a></div><div class=\"col-xs-6 footer-modal-button\"><clix-primary-button ng-show=\"tab === 'send'\" ng-click=onSendPress()>Send</clix-primary-button><clix-primary-button ng-show=\"tab === 'post'\" ng-click=onPostPress()>Post</clix-primary-button></div></div></div></div></div></clix-modal>"
   );
 
 
   $templateCache.put('ui/common/modal/view.message-modal.html',
-    "<div class=\"clix-modal clix-message-modal\"><div class=clix-modal-header ng-transclude=modalTitle></div><div class=message-modal-body><div ng-transclude=modalBody></div></div><div class=message-modal-footer><div class=buttons-container><div class=button-container><div ng-transclude=modalCancelButton></div></div><div class=button-container><div ng-transclude=modalConfirmButton></div></div></div></div></div>"
+    "<clix-modal extra-modal-class=clix-message-modal><div class=clix-modal-header ng-transclude=modalTitle></div><div class=message-modal-body><div ng-transclude=modalBody></div></div><div class=message-modal-footer><div class=buttons-container><div class=button-container><div ng-transclude=modalCancelButton></div></div><div class=button-container><div ng-transclude=modalConfirmButton></div></div></div></div></clix-modal>"
   );
 
 
   $templateCache.put('ui/common/modal/view.modal.html',
-    "<div class=clix-modal><div class=clix-modal-header ng-show=modalTitle>{{modalTitle}}</div><div ng-transclude></div></div>"
+    "<div class=\"clix-modal {{extraModalClass}}\"><a ng-click=onBackButtonPress() ng-show=showBackButton class=modal-back-button><div class=icon-left-tall-arrow></div></a><div class=clix-modal-header ng-show=modalTitle>{{modalTitle}}</div><div ng-transclude></div></div>"
   );
 
 
@@ -1592,8 +1597,29 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$stateParams',
         'brandsService',
         'userService',
+        'modalService',
         'catchMediaService',
-        function($q, $log, $scope, $rootScope, $state, $stateParams, brandsService, userService, catchMediaService) {
+        function($q, $log, $scope, $rootScope, $state, $stateParams, brandsService, userService, modalService, catchMediaService) {
+
+            if ($stateParams.offerId) {
+                modalService.showModal({
+                    controller: 'OfferModalController',
+                    templateUrl: 'ui/common/modal/offer/view.offer-modal.html',
+                    data: {
+                        offerId: $stateParams.offerId
+                    }
+                });
+            }
+
+            $scope.onOfferPress = function(offer) {
+                modalService.showModal({
+                    controller: 'OfferModalController',
+                    templateUrl: 'ui/common/modal/offer/view.offer-modal.html',
+                    data: {
+                        offerId: $stateParams.offerId
+                    }
+                });
+            }
 
             function _resetIsFavorite() {
                 $scope.isFavorite = userService.isFavoriteBrand($stateParams.id);
@@ -2645,45 +2671,25 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$scope',
         '$rootScope',
         '$uibModal',
-        function($q, $scope, $rootScope, $uibModal) {
+        'shareModalService',
+        function($q, $scope, $rootScope, $uibModal, shareModalService) {
 
             $scope.onShareIconPress = function() {
-                var modalInstance = $uibModal.open({
-                    animation: true,
-                    templateUrl: 'ui/common/modal/share/view.share.html',
-                    controller: 'ShareController',
-                    windowClass: 'clix-modal-window',
-                    size: 'clix-lg',
-                    resolve: {
-                        shareModalVideo: $scope.video,
-                        shareModalOffer: $scope.offer,
-                        shareModalCelebrity: $scope.celebrity,
-                        shareModalBrand: $scope.brand,
-                        shareModalCharity: $scope.charity,
-                        shareModalCategory: $scope.category
-                    }
-                });
 
-                modalInstance.opened.then(
-                    function onSuccess() {
-                        $rootScope.$broadcast('modal.open');
-                    }
-                );
+                if ($scope.video) {
+                    shareModalService.launchVideoShareModal($scope.video);
+                } else if ($scope.offer) {
+                    shareModalService.launchOfferShareModal($scope.offer);
+                } else if ($scope.celebrity) {
+                    shareModalService.launchCelebrityShareModal($scope.celebrity);
+                } else if ($scope.brand) {
+                    shareModalService.launchBrandShareModal($scope.brand);
+                } else if ($scope.charity) {
+                    shareModalService.launchCharityShareModal($scope.charity);
+                } else if ($scope.category) {
+                    shareModalService.launchCategoryShareModal($scope.category);
+                }
 
-                modalInstance.closed.then(
-                    function onSuccess() {
-                        $rootScope.$broadcast('modal.close');
-                    }
-                );
-
-                modalInstance.result.then(
-                    function onSuccess(data) {
-
-                    },
-                    function onError(error) {
-
-                    }
-                )
             };
 
         }
@@ -3574,18 +3580,24 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     var ConfirmationModalController = [
         '$scope',
-        'modalData',
+        '$rootScope',
+        'data',
         '$uibModalInstance',
-        function($scope, modalData, $uibModalInstance) {
-            $scope.title = modalData.title;
-            $scope.message = modalData.message;
+        'modalService',
+        function($scope, $rootScope, data, $uibModalInstance, modalService) {
+            $scope.key = data.key;
+            $scope.title = data.title;
+            $scope.message = data.message;
 
             $scope.onCloseButtonPress = function() {
-                $uibModalInstance.dismiss();
+                modalService.dismissOrPop();
             };
 
             $scope.onConfirmButtonPress = function() {
-                $uibModalInstance.close();
+                modalService.closeOrPop();
+                $rootScope.$broadcast('modal.confirm', {
+                    key: data.key
+                })
             };
         }
     ];
@@ -3595,14 +3607,38 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         .controller('ConfirmationModalController', ConfirmationModalController);
 }());
 (function() {
+
+    var ModalController = [
+        '$q',
+        '$log',
+        '$scope',
+        'modalService',
+        function($q, $log, $scope, modalService) {
+            if (modalService.getNumberOfModalsInStack() >= 2) {
+                $scope.showBackButton = true;
+            }
+
+            $scope.onBackButtonPress = function() {
+                modalService.pop();
+            }
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .controller('ModalController', ModalController);
+}());
+(function() {
     var modal = [
         function() {
             return {
                 restrict: 'AE',
                 transclude: true,
+                controller: 'ModalController',
                 templateUrl: 'ui/common/modal/view.modal.html',
                 scope: {
-                    modalTitle: '@?'
+                    modalTitle: '@?',
+                    extraModalClass: '@?'
                 }
             }
         }
@@ -3704,7 +3740,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$rootScope',
         '$timeout',
         '$uibModalInstance',
-        'itemData',
+        'data',
         'userService',
         'videosService',
         'brandsService',
@@ -3713,13 +3749,16 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         'offersService',
         'modalService',
         'preferencesService',
-        function($q, $scope, $rootScope, $timeout, $uibModalInstance, itemData, userService, videosService, brandsService, celebrityService, categoryService, offersService, modalService, preferencesService) {
+        function($q, $scope, $rootScope, $timeout, $uibModalInstance, data, userService, videosService, brandsService, celebrityService, categoryService, offersService, modalService, preferencesService) {
 
             $scope.showAgainModel = false;
 
+            var itemData = data;
+
             function _getModalTitle() {
                 var title,
-                    isLoggedIn = ($scope.loggedInUser !== undefined);
+                    isLoggedIn = ($scope.loggedInUser !== undefined && $scope.loggedInUser);
+
                 switch(itemData.type) {
 
                     case 'watchlist':
@@ -3781,23 +3820,36 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             $scope.type = itemData.type;
 
             $scope.onCloseButtonPress = function(navigation) {
-                $uibModalInstance.close({
-                    navigation: navigation
-                });
+                if (modalService.getNumberOfModalsInStack() >= 2 && !navigation) {
+                    modalService.pop();
+                } else {
+                    $uibModalInstance.close({
+                        navigation: navigation
+                    });
+                    modalService.close();
+                }
             };
 
             $scope.onSignUpPress = function() {
-                $uibModalInstance.close();
-                $timeout(function() {
+                if (modalService.getNumberOfModalsInStack() >= 2) {
                     modalService.showSignUpModal();
-                }, 100);
+                } else {
+                    $uibModalInstance.close();
+                    $timeout(function() {
+                        modalService.showSignUpModal();
+                    }, 100);
+                }
             };
 
             $scope.onLoginPress = function() {
-                $uibModalInstance.close();
-                $timeout(function() {
+                if (modalService.getNumberOfModalsInStack() >= 2) {
                     modalService.showLogInModal();
-                }, 100);
+                } else {
+                    $uibModalInstance.close();
+                    $timeout(function() {
+                        modalService.showLogInModal();
+                    }, 100);
+                }
             };
 
             $scope.onShowAgainChange = function(model) {
@@ -3829,10 +3881,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$rootScope',
         '$uibModalInstance',
         'userService',
-        'signup',
-        function($scope, $rootScope, $uibModalInstance, userService, signup) {
+        'data',
+        function($scope, $rootScope, $uibModalInstance, userService, data) {
 
-            $scope.signup = signup;
+            $scope.signup = data.signup;
 
             $scope.loginModel = {
                 email: '',
@@ -3951,19 +4003,43 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
     var OfferModalController = [
         '$q',
         '$scope',
+        '$rootScope',
         'modalService',
-        function($q, $scope, modalService) {
+        'educationModalService',
+        'offersService',
+        'userService',
+        'data',
+        function($q, $scope, $rootScope, modalService, educationModalService, offersService, userService, data) {
 
-            $scope.onNextPress = function() {
-                modalService.showModal({
-                    controller: 'OfferModalController',
-                    templateUrl: 'ui/common/modal/offer/view.offer-modal.html'
-                });
+            function _setIsSaved() {
+                $scope.isSavedOffer = userService.isSavedOffer(data.offerId);
+            }
+
+            $rootScope.$on('user.login', _setIsSaved);
+
+            offersService.getOfferById(data.offerId)
+                .then(
+                    function onSuccess(data) {
+                        $scope.offer = data;
+                        console.log(data);
+                    }
+                );
+
+            $scope.onSaveOfferPress = function() {
+                if ($scope.isSavedOffer) {
+                    userService.removeSavedOffer($scope.offer.id)
+                        .then(
+                            function onSuccess() {
+                                $scope.isSavedOffer = false;
+                            }
+                        );
+                } else {
+                    userService.addSavedOffer($scope.offer.id);
+                    $scope.isSavedOffer = true;
+                }
             };
 
-            $scope.onBackPress = function() {
-                modalService.pop();
-            };
+            _setIsSaved();
         }
     ];
 
@@ -4026,50 +4102,46 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$location',
         '$uibModalInstance',
         '$state',
-        'shareModalVideo',
-        'shareModalOffer',
-        'shareModalCelebrity',
-        'shareModalBrand',
-        'shareModalCharity',
-        'shareModalCategory',
-        function($scope, $location, $uibModalInstance, $state, shareModalVideo, shareModalOffer, shareModalCelebrity, shareModalBrand, shareModalCharity, shareModalCategory) {
+        'data',
+        'modalService',
+        function($scope, $location, $uibModalInstance, $state, data, modalService) {
 
             $scope.tab = 'post';
             $scope.socialNetworks = [];
 
-            $scope.video = shareModalVideo;
-            $scope.offer = shareModalOffer;
-            $scope.celebrity = shareModalCelebrity;
-            $scope.brand = shareModalBrand;
-            $scope.charity = shareModalCharity;
-            $scope.category = shareModalCategory;
+            $scope.video = data.shareModalVideo;
+            $scope.offer = data.shareModalOffer;
+            $scope.celebrity = data.shareModalCelebrity;
+            $scope.brand = data.shareModalBrand;
+            $scope.charity = data.shareModalCharity;
+            $scope.category = data.shareModalCategory;
 
             var currentUrl = $location.absUrl(),
                 shareContent = '';
 
-            if (shareModalVideo) {
+            if (data.shareModalVideo) {
                 shareContent = 'Here\'s a video I thought you\'d enjoy from #ClixTV - ';
-                shareContent += shareModalVideo.title + ' ' + $state.href('video', { id: shareModalVideo.id }, {absolute: true});
+                shareContent += data.shareModalVideo.title + ' ' + $state.href('video', { id: data.shareModalVideo.id }, {absolute: true});
             }
 
-            if (shareModalOffer) {
+            if (data.shareModalOffer) {
                 shareContent = 'Here\'s an offer I thought you\'d enjoy from #ClixTV - ';
-                shareContent += shareModalOffer.title + ' ' + $state.href('offer', { id: shareModalOffer.id }, {absolute: true});
+                shareContent += data.shareModalOffer.title + ' ' + $state.href('brand-offer', { id: data.shareModalOffer.campaign.id, offerId: data.shareModalOffer.id }, {absolute: true});
             }
 
-            if (shareModalCelebrity) {
-                shareContent = 'I thought you\'d like to check out ' + shareModalCelebrity.name + ' on #ClixTV - ';
-                shareContent += $state.href('star', { id: shareModalCelebrity.id }, {absolute: true});
+            if (data.shareModalCelebrity) {
+                shareContent = 'I thought you\'d like to check out ' + data.shareModalCelebrity.name + ' on #ClixTV - ';
+                shareContent += $state.href('star', { id: data.shareModalCelebrity.id }, {absolute: true});
             }
 
-            if (shareModalBrand) {
-                shareContent = 'I thought you\'d enjoy visiting ' + shareModalBrand.title + ' on #ClixTV - ';
-                shareContent += $state.href('brand', { id: shareModalBrand.id }, {absolute: true});
+            if (data.shareModalBrand) {
+                shareContent = 'I thought you\'d enjoy visiting ' + data.shareModalBrand.title + ' on #ClixTV - ';
+                shareContent += $state.href('brand', { id: data.shareModalBrand.id }, {absolute: true});
             }
 
-            if (shareModalCharity) {
-                shareContent = 'I thought you\'d enjoy visiting the charity page for ' + shareModalCharity.title + ' on #ClixTV - ';
-                shareContent += $state.href('charity', { id: shareModalCharity.id }, {absolute: true});
+            if (data.shareModalCharity) {
+                shareContent = 'I thought you\'d enjoy visiting the charity page for ' + data.shareModalCharity.title + ' on #ClixTV - ';
+                shareContent += $state.href('charity', { id: data.shareModalCharity.id }, {absolute: true});
             }
 
             $scope.shareContent = shareContent;
@@ -4079,7 +4151,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             };
 
             $scope.onCancelPress = function() {
-                $uibModalInstance.close();
+                if ($scope.showBackButton) {
+                    modalService.pop();
+                } else {
+                    $uibModalInstance.close();
+                }
             };
 
             $scope.onSendPress = function() {
@@ -4102,6 +4178,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             $scope.onSettingsPress = function() {
                 console.log('fda');
             };
+
+            $scope.showBackButton = modalService.getNumberOfModalsInStack() >= 2;
         }
     ];
 
@@ -5504,12 +5582,13 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         function($q, $scope, $rootScope, $stateParams, offersService, brandsService, userService, catchMediaService, educationModalService, modalService) {
 
 
-            // modalService.showModal({
-            //     controller: 'OfferModalController',
-            //     templateUrl: 'ui/common/modal/offer/view.offer-modal.html'
-            // });
-
-
+            modalService.showModal({
+                controller: 'OfferModalController',
+                templateUrl: 'ui/common/modal/offer/view.offer-modal.html',
+                data: {
+                    offerId: $stateParams.id
+                }
+            });
 
 
             function _resetIsFavorite() {
@@ -6873,10 +6952,19 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             '$injector',
             function($injector) {
                 return function(data) {
+                    var BrandModel;
                     this.id = data._id;
                     this.title = data.title;
                     this.expirationDate = data.expirationDate;
                     this.description = data.description;
+                    this.longDescription = data.long_description;
+
+                    if (typeof data.campaign === 'string') {
+                        this.campaign = data.campaign;
+                    } else {
+                        BrandModel = $injector.get('BrandModel');
+                        this.campaign = new BrandModel(data.campaign);
+                    }
 
                     if (data.content) {
                         if (data.content.BrandTransparentLogo) {
@@ -6909,7 +6997,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     }
 
                     if (data.brand) {
-                        var BrandModel = $injector.get('BrandModel');
+                        BrandModel = $injector.get('BrandModel');
                         this.brand = new BrandModel(data.brand);
                     }
 
@@ -7713,8 +7801,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$rootScope',
         '$uibModal',
         'userService',
+        'modalService',
         'preferencesService',
-        function($q, $log, $rootScope, $uibModal, userService, preferencesService) {
+        function($q, $log, $rootScope, $uibModal, userService, modalService, preferencesService) {
 
             function _launchEducationModal(type, id) {
                 $q.all(
@@ -7729,41 +7818,16 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                             if (hide === true || hide === 'true') {
                                 return;
                             }
-                            var modalInstance = $uibModal.open({
-                                animation: true,
+
+                            modalService.showModal({
                                 templateUrl: 'ui/common/modal/education/view.education-modal.html',
                                 controller: 'EducationModalController',
-                                windowClass: 'clix-modal-window',
-                                size: 'clix-lg',
-                                resolve: {
-                                    itemData: {
-                                        loggedInUser: data[0],
-                                        type: type,
-                                        id: id
-                                    }
+                                data: {
+                                    loggedInUser: data[0],
+                                    type: type,
+                                    id: id
                                 }
                             });
-
-                            modalInstance.opened.then(
-                                function onSuccess() {
-                                    $rootScope.$broadcast('modal.open');
-                                }
-                            );
-
-                            modalInstance.closed.then(
-                                function onSuccess(data) {
-                                    $rootScope.$broadcast('modal.close');
-                                }
-                            );
-
-                            modalInstance.result.then(
-                                function onSuccess(data) {
-
-                                },
-                                function onError(error) {
-
-                                }
-                            );
                         }
                     );
 
@@ -7785,6 +7849,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     _launchEducationModal('offer-view', id);
                 },
 
+                showOfferSavedModal: function (id) {
+                    _launchEducationModal('offer', id);
+                },
+
                 showLearnMoreModal: function() {
                     _launchEducationModal('learn-more');
                 }
@@ -7803,89 +7871,56 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$log',
         '$rootScope',
         '$timeout',
+        '$injector',
         '$uibModal',
-        function($q, $log, $rootScope, $timeout, $uibModal) {
+        function($q, $log, $rootScope, $timeout, $injector, $uibModal) {
 
             var _modalStack = [];
 
-            function _showLoginSignupModal(signup) {
-                var modalInstance = $uibModal.open({
-                    animation: true,
-                    templateUrl: 'ui/common/modal/login-signup/view.login-signup.html',
-                    controller: 'LoginSignupController',
-                    windowClass: 'clix-modal-window',
-                    size: 'clix-md',
-                    resolve: {
-                        signup: (signup !== false)
-                    }
-                });
-
-                modalInstance.opened.then(
-                    function onSuccess() {
-                        $rootScope.$broadcast('modal.open');
-                    }
-                );
-
-                modalInstance.closed.then(
-                    function onSuccess() {
-                        $rootScope.$broadcast('modal.close');
-                    }
-                );
-
-                modalInstance.result.then(
-                    function onSuccess(data) {
-
-                    },
-                    function onError(error) {
-
-                    }
-                )
-            }
-
             return {
                 showSignUpModal: function() {
-                    _showLoginSignupModal(true);
+                    this.showModal({
+                        templateUrl: 'ui/common/modal/login-signup/view.login-signup.html',
+                        controller: 'LoginSignupController',
+                        size: 'clix-md',
+                        data: {
+                            signup: true
+                        }
+                    });
                 },
 
                 showLogInModal: function() {
-                    _showLoginSignupModal(false);
+                    this.showModal({
+                        templateUrl: 'ui/common/modal/login-signup/view.login-signup.html',
+                        controller: 'LoginSignupController',
+                        size: 'clix-md',
+                        data: {
+                            signup: false
+                        }
+                    });
                 },
 
                 showConfirmationModal: function(title, message) {
-                    var deferred = $q.defer();
-                    var modalInstance = $uibModal.open({
-                        animation: true,
+                    var deregisterListener,
+                        deferred = $q.defer(),
+                        key = new Date().getTime();
+                    this.showModal({
                         controller: 'ConfirmationModalController',
                         templateUrl: 'ui/common/modal/confirmation/view.confirmation-modal.html',
-                        windowClass: 'clix-modal-window',
-                        size: 'clix-lg',
-                        resolve: {
-                            modalData: {
-                                title: title,
-                                message: message
-                            }
+                        data: {
+                            key: key,
+                            title: title,
+                            message: message
                         }
                     });
-                    modalInstance.opened.then(
-                        function onSuccess() {
-                            $rootScope.$broadcast('modal.open');
-                        }
-                    );
 
-                    modalInstance.closed.then(
-                        function onSuccess() {
-                            $rootScope.$broadcast('modal.close');
+                    deregisterListener = $rootScope.$on('modal.confirm', function(event, data) {
+                        if (data.key === key) {
+                            deregisterListener();
+                            deferred.resolve();
                         }
-                    );
+                    });
 
-                    modalInstance.result.then(
-                        function onSuccess(data) {
-                            deferred.resolve(data);
-                        },
-                        function onError(error) {
-                            // deferred.reject(error);
-                        }
-                    );
                     return deferred.promise;
                 },
 
@@ -7907,7 +7942,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         controller: options.controller,
                         templateUrl: options.templateUrl,
                         windowClass: 'clix-modal-window ' + ((_modalStack.length > 0) ? 'slide-in' : ''),
-                        size: 'clix-lg'
+                        size: options.size || 'clix-lg',
+                        resolve: {
+                            data: options.data
+                        }
                     });
 
                     _modalStack.push(modalInstance);
@@ -7964,8 +8002,35 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
                 },
 
-                numberOfModalsInStack: function() {
+                getNumberOfModalsInStack: function() {
                     return _modalStack.length;
+                },
+
+                closeOrPop: function() {
+                    if (_modalStack.length >= 2) {
+                        this.pop();
+                    } else {
+                        var $uibModalInstance = $injector.get('$uibModalInstance');
+                        $uibModalInstance.resolve();
+                    }
+                },
+
+                dismissOrPop: function() {
+                    if (_modalStack.length >= 2) {
+                        this.pop();
+                    } else {
+                        var $uibModalInstance = $injector.get('$uibModalInstance');
+                        $uibModalInstance.resolve();
+                    }
+                },
+
+                close: function() {
+
+                    var $uibModalStack = $injector.get('$uibModalStack');
+
+                    $uibModalStack.dismissAll();
+
+                    _modalStack = [];
                 }
 
             }
@@ -7982,7 +8047,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$log',
         '$rootScope',
         '$uibModal',
-        function($log, $rootScope, $uibModal) {
+        'modalService',
+        function($log, $rootScope, $uibModal, modalService) {
 
             function _showModalForType(type, item) {
 
@@ -7995,35 +8061,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     shareModalCategory: (type === 'category') ? item : undefined
                 };
 
-                var modalInstance = $uibModal.open({
-                    animation: true,
+                modalService.showModal({
                     templateUrl: 'ui/common/modal/share/view.share.html',
                     controller: 'ShareController',
-                    windowClass: 'clix-modal-window',
-                    size: 'clix-lg',
-                    resolve: resolve
+                    data: resolve
                 });
-
-                modalInstance.opened.then(
-                    function onSuccess() {
-                        $rootScope.$broadcast('modal.open');
-                    }
-                );
-
-                modalInstance.closed.then(
-                    function onSuccess() {
-                        $rootScope.$broadcast('modal.close');
-                    }
-                );
-
-                modalInstance.result.then(
-                    function onSuccess(data) {
-
-                    },
-                    function onError(error) {
-
-                    }
-                )
             }
 
             return {
@@ -8184,7 +8226,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         break;
 
                     case 'offer':
-                        title = 'Remove From Saved Offer?';
+                        title = 'Remove From Saved Offers?';
                         message = 'Are you sure you want to remove this offer from your list of saved offers?';
                         break;
                 }
@@ -8550,6 +8592,25 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
     angular
         .module('clixtv')
         .filter('clixDate', dateFilter);
+}());
+(function() {
+    var newLineBreakFilter = [
+        '$sce',
+        function($sce) {
+            return function (input) {
+                if (!input) {
+                    return input;
+                }
+                var breakTag = '<br />';
+                var msg = (input + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
+                return $sce.trustAsHtml(msg);
+            }
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .filter('clixNewLineBreak', newLineBreakFilter);
 }());
 (function() {
 

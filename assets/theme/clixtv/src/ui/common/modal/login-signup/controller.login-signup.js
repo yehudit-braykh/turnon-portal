@@ -5,10 +5,10 @@
         '$rootScope',
         '$uibModalInstance',
         'userService',
-        'signup',
-        function($scope, $rootScope, $uibModalInstance, userService, signup) {
+        'data',
+        function($scope, $rootScope, $uibModalInstance, userService, data) {
 
-            $scope.signup = signup;
+            $scope.signup = data.signup;
 
             $scope.loginModel = {
                 email: '',

@@ -9,8 +9,29 @@
         '$stateParams',
         'brandsService',
         'userService',
+        'modalService',
         'catchMediaService',
-        function($q, $log, $scope, $rootScope, $state, $stateParams, brandsService, userService, catchMediaService) {
+        function($q, $log, $scope, $rootScope, $state, $stateParams, brandsService, userService, modalService, catchMediaService) {
+
+            if ($stateParams.offerId) {
+                modalService.showModal({
+                    controller: 'OfferModalController',
+                    templateUrl: 'ui/common/modal/offer/view.offer-modal.html',
+                    data: {
+                        offerId: $stateParams.offerId
+                    }
+                });
+            }
+
+            $scope.onOfferPress = function(offer) {
+                modalService.showModal({
+                    controller: 'OfferModalController',
+                    templateUrl: 'ui/common/modal/offer/view.offer-modal.html',
+                    data: {
+                        offerId: $stateParams.offerId
+                    }
+                });
+            }
 
             function _resetIsFavorite() {
                 $scope.isFavorite = userService.isFavoriteBrand($stateParams.id);

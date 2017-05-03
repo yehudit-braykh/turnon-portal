@@ -120,7 +120,7 @@
                         break;
 
                     case 'offer':
-                        title = 'Remove From Saved Offer?';
+                        title = 'Remove From Saved Offers?';
                         message = 'Are you sure you want to remove this offer from your list of saved offers?';
                         break;
                 }

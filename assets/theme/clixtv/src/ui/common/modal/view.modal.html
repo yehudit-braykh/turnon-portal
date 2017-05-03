@@ -1,4 +1,7 @@
-<div class="clix-modal">
+<div class="clix-modal {{extraModalClass}}">
+    <a ng-click="onBackButtonPress()" ng-show="showBackButton" class="modal-back-button">
+        <div class="icon-left-tall-arrow"></div>
+    </a>
     <div class="clix-modal-header" ng-show="modalTitle">
         {{modalTitle}}
     </div>

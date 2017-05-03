@@ -5,89 +5,56 @@
         '$log',
         '$rootScope',
         '$timeout',
+        '$injector',
         '$uibModal',
-        function($q, $log, $rootScope, $timeout, $uibModal) {
+        function($q, $log, $rootScope, $timeout, $injector, $uibModal) {
 
             var _modalStack = [];
 
-            function _showLoginSignupModal(signup) {
-                var modalInstance = $uibModal.open({
-                    animation: true,
-                    templateUrl: 'ui/common/modal/login-signup/view.login-signup.html',
-                    controller: 'LoginSignupController',
-                    windowClass: 'clix-modal-window',
-                    size: 'clix-md',
-                    resolve: {
-                        signup: (signup !== false)
-                    }
-                });
-
-                modalInstance.opened.then(
-                    function onSuccess() {
-                        $rootScope.$broadcast('modal.open');
-                    }
-                );
-
-                modalInstance.closed.then(
-                    function onSuccess() {
-                        $rootScope.$broadcast('modal.close');
-                    }
-                );
-
-                modalInstance.result.then(
-                    function onSuccess(data) {
-
-                    },
-                    function onError(error) {
-
-                    }
-                )
-            }
-
             return {
                 showSignUpModal: function() {
-                    _showLoginSignupModal(true);
+                    this.showModal({
+                        templateUrl: 'ui/common/modal/login-signup/view.login-signup.html',
+                        controller: 'LoginSignupController',
+                        size: 'clix-md',
+                        data: {
+                            signup: true
+                        }
+                    });
                 },
 
                 showLogInModal: function() {
-                    _showLoginSignupModal(false);
+                    this.showModal({
+                        templateUrl: 'ui/common/modal/login-signup/view.login-signup.html',
+                        controller: 'LoginSignupController',
+                        size: 'clix-md',
+                        data: {
+                            signup: false
+                        }
+                    });
                 },
 
                 showConfirmationModal: function(title, message) {
-                    var deferred = $q.defer();
-                    var modalInstance = $uibModal.open({
-                        animation: true,
+                    var deregisterListener,
+                        deferred = $q.defer(),
+                        key = new Date().getTime();
+                    this.showModal({
                         controller: 'ConfirmationModalController',
                         templateUrl: 'ui/common/modal/confirmation/view.confirmation-modal.html',
-                        windowClass: 'clix-modal-window',
-                        size: 'clix-lg',
-                        resolve: {
-                            modalData: {
-                                title: title,
-                                message: message
-                            }
+                        data: {
+                            key: key,
+                            title: title,
+                            message: message
                         }
                     });
-                    modalInstance.opened.then(
-                        function onSuccess() {
-                            $rootScope.$broadcast('modal.open');
-                        }
-                    );
 
-                    modalInstance.closed.then(
-                        function onSuccess() {
-                            $rootScope.$broadcast('modal.close');
+                    deregisterListener = $rootScope.$on('modal.confirm', function(event, data) {
+                        if (data.key === key) {
+                            deregisterListener();
+                            deferred.resolve();
                         }
-                    );
+                    });
 
-                    modalInstance.result.then(
-                        function onSuccess(data) {
-                            deferred.resolve(data);
-                        },
-                        function onError(error) {
-                            // deferred.reject(error);
-                        }
-                    );
                     return deferred.promise;
                 },
 
@@ -109,7 +76,10 @@
                         controller: options.controller,
                         templateUrl: options.templateUrl,
                         windowClass: 'clix-modal-window ' + ((_modalStack.length > 0) ? 'slide-in' : ''),
-                        size: 'clix-lg'
+                        size: options.size || 'clix-lg',
+                        resolve: {
+                            data: options.data
+                        }
                     });
 
                     _modalStack.push(modalInstance);
@@ -166,8 +136,35 @@
 
                 },
 
-                numberOfModalsInStack: function() {
+                getNumberOfModalsInStack: function() {
                     return _modalStack.length;
+                },
+
+                closeOrPop: function() {
+                    if (_modalStack.length >= 2) {
+                        this.pop();
+                    } else {
+                        var $uibModalInstance = $injector.get('$uibModalInstance');
+                        $uibModalInstance.resolve();
+                    }
+                },
+
+                dismissOrPop: function() {
+                    if (_modalStack.length >= 2) {
+                        this.pop();
+                    } else {
+                        var $uibModalInstance = $injector.get('$uibModalInstance');
+                        $uibModalInstance.resolve();
+                    }
+                },
+
+                close: function() {
+
+                    var $uibModalStack = $injector.get('$uibModalStack');
+
+                    $uibModalStack.dismissAll();
+
+                    _modalStack = [];
                 }
 
             }

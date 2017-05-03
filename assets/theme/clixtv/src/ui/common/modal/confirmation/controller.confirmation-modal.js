@@ -2,18 +2,24 @@
 
     var ConfirmationModalController = [
         '$scope',
-        'modalData',
+        '$rootScope',
+        'data',
         '$uibModalInstance',
-        function($scope, modalData, $uibModalInstance) {
-            $scope.title = modalData.title;
-            $scope.message = modalData.message;
+        'modalService',
+        function($scope, $rootScope, data, $uibModalInstance, modalService) {
+            $scope.key = data.key;
+            $scope.title = data.title;
+            $scope.message = data.message;
 
             $scope.onCloseButtonPress = function() {
-                $uibModalInstance.dismiss();
+                modalService.dismissOrPop();
             };
 
             $scope.onConfirmButtonPress = function() {
-                $uibModalInstance.close();
+                modalService.closeOrPop();
+                $rootScope.$broadcast('modal.confirm', {
+                    key: data.key
+                })
             };
         }
     ];
