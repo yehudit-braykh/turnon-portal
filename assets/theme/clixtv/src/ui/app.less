@@ -170,6 +170,18 @@ button:focus {
     vertical-align: middle;
 }
 
+.modal.slide-in:not(.in) .modal-dialog {
+    .translate3d(25%, 0, 0);
+}
+
+.modal.slide-out .modal-dialog {
+    .translate3d(-125%, 0, 0);
+}
+
+.modal.slide-out-right .modal-dialog {
+    .translate3d(125%, 0, 0);
+}
+
 // 5 column grid
 .col-lg-2-4 {
     .make-lg-column(2.4)

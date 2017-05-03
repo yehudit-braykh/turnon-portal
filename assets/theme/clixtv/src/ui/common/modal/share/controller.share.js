@@ -77,6 +77,10 @@
                     $scope.socialNetworks.push(socialNetwork);
                 }
             };
+
+            $scope.onSettingsPress = function() {
+                console.log('fda');
+            };
         }
     ];
 

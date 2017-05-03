@@ -13239,9 +13239,6 @@ button.close {
   filter: blur(4px);
   -webkit-filter: blur(4px);
 }
-.clix-modal-window {
-  z-index: 9000 !important;
-}
 .clix-modal-window .clix-modal {
   position: relative;
 }
@@ -13297,7 +13294,6 @@ button.close {
 .modal-backdrop {
   position: fixed !important;
   bottom: 0;
-  z-index: 8500 !important;
 }
 .clix-message-modal .message-modal-body {
   padding: 37px 63px;
@@ -13871,6 +13867,7 @@ button.close {
   font-size: 14px;
   font-family: 'montserratregular', sans-serif;
   color: #8a8a8a;
+  cursor: pointer;
 }
 .clix-share-modal .facebook-social-network.active {
   background-color: #3b5998;
@@ -14443,8 +14440,8 @@ button.close {
   top: -25px;
 }
 .clix-right-navigation .avatar-container .avatar-background-image {
-  filter: blur(15px);
-  -webkit-filter: blur(15px);
+  filter: blur(30px);
+  -webkit-filter: blur(30px);
   position: absolute;
   top: 0;
   left: 0;
@@ -14622,8 +14619,8 @@ button.close {
   text-transform: uppercase;
 }
 .clix-navigation-bar .avatar-container .avatar-background-image {
-  filter: blur(15px);
-  -webkit-filter: blur(15px);
+  filter: blur(30px);
+  -webkit-filter: blur(30px);
   position: absolute;
   top: 0;
   left: 0;
@@ -15475,6 +15472,27 @@ button:focus {
   display: inline-block;
   text-align: left;
   vertical-align: middle;
+}
+.modal.slide-in:not(.in) .modal-dialog {
+  transform: translate3d(25%, 0, 0);
+  -webkit-transform: translate3d(25%, 0, 0);
+  -moz-transform: translate3d(25%, 0, 0);
+  -ms-transform: translate3d(25%, 0, 0);
+  -o-transform: translate3d(25%, 0, 0);
+}
+.modal.slide-out .modal-dialog {
+  transform: translate3d(-125%, 0, 0);
+  -webkit-transform: translate3d(-125%, 0, 0);
+  -moz-transform: translate3d(-125%, 0, 0);
+  -ms-transform: translate3d(-125%, 0, 0);
+  -o-transform: translate3d(-125%, 0, 0);
+}
+.modal.slide-out-right .modal-dialog {
+  transform: translate3d(125%, 0, 0);
+  -webkit-transform: translate3d(125%, 0, 0);
+  -moz-transform: translate3d(125%, 0, 0);
+  -ms-transform: translate3d(125%, 0, 0);
+  -o-transform: translate3d(125%, 0, 0);
 }
 .col-lg-2-4 {
   position: relative;

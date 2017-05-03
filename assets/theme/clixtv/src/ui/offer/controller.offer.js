@@ -10,7 +10,17 @@
         'userService',
         'catchMediaService',
         'educationModalService',
-        function($q, $scope, $rootScope, $stateParams, offersService, brandsService, userService, catchMediaService, educationModalService) {
+        'modalService',
+        function($q, $scope, $rootScope, $stateParams, offersService, brandsService, userService, catchMediaService, educationModalService, modalService) {
+
+
+            // modalService.showModal({
+            //     controller: 'OfferModalController',
+            //     templateUrl: 'ui/common/modal/offer/view.offer-modal.html'
+            // });
+
+
+
 
             function _resetIsFavorite() {
                 $scope.isFavorite = userService.isSavedOffer($stateParams.id);
