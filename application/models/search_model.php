@@ -11,9 +11,10 @@ class Search_model extends Uvod_model {
 		$results->celebrities = $this->celebrity_rows($this->search_celebrities($keyword, $tags, $page , $page_size )->entries[0]);
 		$results->series = $this->rows($this->search_series($keyword, $tags, $page , $page_size )->entries[0]);
 		$results->videos = $this->videos_rows($this->search_videos($keyword, $tags, $page , $page_size )->entries[0]);
-		$results->brands= $this->brands_rows($this->search_brands($keyword, $tags, $page , $page_size )->entries[0]);
-		$results->offers= $this->offers_rows($this->search_offers($keyword, $tags, $page , $page_size )->entries[0]);
-		$results->charities= $this->charities_rows($this->search_charities($keyword, $tags, $page , $page_size )->entries[0]);
+		$results->brands = $this->brands_rows($this->search_brands($keyword, $tags, $page , $page_size )->entries[0]);
+		$results->campaigns = $this->rows($this->search_campaigns($keyword, $tags, $page , $page_size )->entries);
+		$results->offers = $this->offers_rows($this->search_offers($keyword, $tags, $page , $page_size )->entries[0]);
+		$results->charities = $this->charities_rows($this->search_charities($keyword, $tags, $page , $page_size )->entries[0]);
 
 		return $results;
 	}
@@ -42,6 +43,17 @@ class Search_model extends Uvod_model {
 		$parameters[]= "size=".$page_size;
 
 		return $this->apiCall('brand/search/related', $parameters);
+	}
+
+	private function search_campaigns($keyword, $tags, $page , $page_size){
+
+		$parameters = array();
+		$parameters[] = "byTitle=".str_replace(' ',"%20",$keyword);
+		if($tags)
+			$parameters[] = "byKeyword=".str_replace(' ',"|",$tags);
+		$parameters[] = "page=".$page;
+		$parameters[]= "size=".$page_size;
+		return $this->apiCall('campaign/search/related', $parameters);
 	}
 
 	private function search_offers($keyword, $tags, $page , $page_size){
@@ -317,16 +329,15 @@ class Search_model extends Uvod_model {
 	}
 
 	function rows($rows){
-		//debug($rows);
         foreach ($rows as &$media) {
 
-            $media = (array) $media;
+            $media = $media;
 			$tmp = array();
-			if($media["content"]){
-	            foreach ($media["content"] as $file) {
+			if($media->content){
+	            foreach ((array)$media->content as $file) {
 	                $tmp[str_replace (" ", "", $file->assetTypes[0])] = $file;
 	            }
-            	$media["content"] = $tmp;
+            	$media->content = $tmp;
 			}
 
         }

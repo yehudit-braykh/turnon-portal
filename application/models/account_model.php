@@ -274,9 +274,6 @@ class Account_model extends Uvod_model {
             }
         }
 
-
-        debug($settings);
-
 		return $settings;
     }
 
