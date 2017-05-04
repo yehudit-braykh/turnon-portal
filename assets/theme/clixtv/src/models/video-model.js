@@ -20,12 +20,17 @@
                         this.celebrity = new CelebrityModel(data.celebrity);
                     }
 
-                    if (data.brands) {
-                        this.brands = new BrandListModel(data.brands);
+                    if (data.campaigns) {
+                        this.brands = new BrandListModel(data.campaigns);
                     }
 
                     if (data.charity) {
                         this.charity = new CharityModel(data.charity);
+                    }
+
+                    if (data.categories) {
+                        var CategoryListModel = $injector.get('CategoryListModel');
+                        this.categories = new CategoryListModel(data.categories);
                     }
 
                     if (data.serie) { // ...spelling?

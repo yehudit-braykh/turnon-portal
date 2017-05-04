@@ -130,8 +130,8 @@
                                 <span class="meta-data-label">
                                     Category:
                                 </span>
-                                <span ng-repeat="category in video.categories">
-                                    <a ui-sref="category({ slug: '{{category.name | slug}}' })">{{category.name}}</a><span ng-if="!$last">,&nbsp;</span>
+                                <span ng-repeat="category in video.categories.categories">
+                                    <a ui-sref="category({ id: '{{category.id}}' })">{{category.title}}</a><span ng-if="!$last">,&nbsp;</span>
                                 </span>
                             </div>
                             <div class="meta-data-row" ng-if="video.celebrity">
