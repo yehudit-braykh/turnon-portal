@@ -9,7 +9,8 @@
         '$uibModal',
         'notificationsService',
         'knetikService',
-        function($q, $scope, $rootScope, $window, $timeout, $uibModal, notificationsService, knetikService) {
+        'modalService',
+        function($q, $scope, $rootScope, $window, $timeout, $uibModal, notificationsService, knetikService, modalService) {
 
             var latestOffset = 0;
 
@@ -53,37 +54,11 @@
             };
 
             $scope.onLoginSignupPress = function(signup) {
-                var modalInstance = $uibModal.open({
-                    animation: true,
-                    templateUrl: 'ui/common/modal/login-signup/view.login-signup.html',
-                    controller: 'LoginSignupController',
-                    windowClass: 'clix-modal-window',
-                    size: 'clix-md',
-                    resolve: {
-                        signup: (signup !== false)
-                    }
-                });
-
-                modalInstance.opened.then(
-                    function onSuccess() {
-                        $rootScope.$broadcast('modal.open');
-                    }
-                );
-
-                modalInstance.closed.then(
-                    function onSuccess() {
-                        $rootScope.$broadcast('modal.close');
-                    }
-                );
-
-                modalInstance.result.then(
-                    function onSuccess(data) {
-
-                    },
-                    function onError(error) {
-
-                    }
-                )
+                if (signup) {
+                    modalService.showSignUpModal();
+                } else {
+                    modalService.showLogInModal();
+                }
             };
 
             angular.element($window).on('scroll', function() {

@@ -11,6 +11,10 @@
 
             var _modalStack = [];
 
+            $rootScope.$on('modal.close', function() {
+                _modalStack = [];
+            });
+
             return {
                 showSignUpModal: function() {
                     this.showModal({
@@ -121,7 +125,7 @@
                         previousInstance = modalInstances[1];
 
                     var currentBackdropInstance = backdropInstances[0],
-                        backdropZIndex = parseFloat(currentBackdropInstance.style.zIndex);
+                        backdropZIndex = currentBackdropInstance ? parseFloat(currentBackdropInstance.style.zIndex) : 0;
 
                     angular.element(currentInstance).removeClass('in');
                     angular.element(previousInstance).removeClass('slide-out');
@@ -145,7 +149,9 @@
                         this.pop();
                     } else {
                         var $uibModalInstance = $injector.get('$uibModalInstance');
-                        $uibModalInstance.resolve();
+                        if ($uibModalInstance) {
+                            $uibModalInstance.resolve();
+                        }
                     }
                 },
 
@@ -154,7 +160,9 @@
                         this.pop();
                     } else {
                         var $uibModalInstance = $injector.get('$uibModalInstance');
-                        $uibModalInstance.resolve();
+                        if ($uibModalInstance) {
+                            $uibModalInstance.resolve();
+                        }
                     }
                 },
 

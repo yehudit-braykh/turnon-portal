@@ -3590,11 +3590,19 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             $scope.message = data.message;
 
             $scope.onCloseButtonPress = function() {
-                modalService.dismissOrPop();
+                if (modalService.getNumberOfModalsInStack() >= 2) {
+                    modalService.pop();
+                } else {
+                    $uibModalInstance.close();
+                }
             };
 
             $scope.onConfirmButtonPress = function() {
-                modalService.closeOrPop();
+                if (modalService.getNumberOfModalsInStack() >= 2) {
+                    modalService.pop();
+                } else {
+                    $uibModalInstance.close();
+                }
                 $rootScope.$broadcast('modal.confirm', {
                     key: data.key
                 })
@@ -4017,6 +4025,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
             $rootScope.$on('user.login', _setIsSaved);
 
+
             offersService.getOfferById(data.offerId)
                 .then(
                     function onSuccess(data) {
@@ -4024,6 +4033,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         console.log(data);
                     }
                 );
+
+            $scope.onClosePress = function() {
+                modalService.close();
+            };
 
             $scope.onSaveOfferPress = function() {
                 if ($scope.isSavedOffer) {
@@ -5303,7 +5316,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$uibModal',
         'notificationsService',
         'knetikService',
-        function($q, $scope, $rootScope, $window, $timeout, $uibModal, notificationsService, knetikService) {
+        'modalService',
+        function($q, $scope, $rootScope, $window, $timeout, $uibModal, notificationsService, knetikService, modalService) {
 
             var latestOffset = 0;
 
@@ -5347,37 +5361,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             };
 
             $scope.onLoginSignupPress = function(signup) {
-                var modalInstance = $uibModal.open({
-                    animation: true,
-                    templateUrl: 'ui/common/modal/login-signup/view.login-signup.html',
-                    controller: 'LoginSignupController',
-                    windowClass: 'clix-modal-window',
-                    size: 'clix-md',
-                    resolve: {
-                        signup: (signup !== false)
-                    }
-                });
-
-                modalInstance.opened.then(
-                    function onSuccess() {
-                        $rootScope.$broadcast('modal.open');
-                    }
-                );
-
-                modalInstance.closed.then(
-                    function onSuccess() {
-                        $rootScope.$broadcast('modal.close');
-                    }
-                );
-
-                modalInstance.result.then(
-                    function onSuccess(data) {
-
-                    },
-                    function onError(error) {
-
-                    }
-                )
+                if (signup) {
+                    modalService.showSignUpModal();
+                } else {
+                    modalService.showLogInModal();
+                }
             };
 
             angular.element($window).on('scroll', function() {
@@ -7877,6 +7865,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
             var _modalStack = [];
 
+            $rootScope.$on('modal.close', function() {
+                _modalStack = [];
+            });
+
             return {
                 showSignUpModal: function() {
                     this.showModal({
@@ -7987,7 +7979,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         previousInstance = modalInstances[1];
 
                     var currentBackdropInstance = backdropInstances[0],
-                        backdropZIndex = parseFloat(currentBackdropInstance.style.zIndex);
+                        backdropZIndex = currentBackdropInstance ? parseFloat(currentBackdropInstance.style.zIndex) : 0;
 
                     angular.element(currentInstance).removeClass('in');
                     angular.element(previousInstance).removeClass('slide-out');
@@ -8011,7 +8003,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         this.pop();
                     } else {
                         var $uibModalInstance = $injector.get('$uibModalInstance');
-                        $uibModalInstance.resolve();
+                        if ($uibModalInstance) {
+                            $uibModalInstance.resolve();
+                        }
                     }
                 },
 
@@ -8020,7 +8014,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         this.pop();
                     } else {
                         var $uibModalInstance = $injector.get('$uibModalInstance');
-                        $uibModalInstance.resolve();
+                        if ($uibModalInstance) {
+                            $uibModalInstance.resolve();
+                        }
                     }
                 },
 

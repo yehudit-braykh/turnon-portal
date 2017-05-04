@@ -12,11 +12,19 @@
             $scope.message = data.message;
 
             $scope.onCloseButtonPress = function() {
-                modalService.dismissOrPop();
+                if (modalService.getNumberOfModalsInStack() >= 2) {
+                    modalService.pop();
+                } else {
+                    $uibModalInstance.close();
+                }
             };
 
             $scope.onConfirmButtonPress = function() {
-                modalService.closeOrPop();
+                if (modalService.getNumberOfModalsInStack() >= 2) {
+                    modalService.pop();
+                } else {
+                    $uibModalInstance.close();
+                }
                 $rootScope.$broadcast('modal.confirm', {
                     key: data.key
                 })

@@ -17,6 +17,7 @@
 
             $rootScope.$on('user.login', _setIsSaved);
 
+
             offersService.getOfferById(data.offerId)
                 .then(
                     function onSuccess(data) {
@@ -24,6 +25,10 @@
                         console.log(data);
                     }
                 );
+
+            $scope.onClosePress = function() {
+                modalService.close();
+            };
 
             $scope.onSaveOfferPress = function() {
                 if ($scope.isSavedOffer) {
