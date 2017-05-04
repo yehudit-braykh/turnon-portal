@@ -30,9 +30,9 @@
                         this.charities = new CharityListModel(data.charities);
                     }
 
-                    if (data.brands) {
+                    if (data.campaigns) {
                         var BrandListModel = $injector.get('BrandListModel');
-                        this.brands = new BrandListModel(data.brands);
+                        this.brands = new BrandListModel(data.campaigns);
                     }
 
                     if (data.series) {
@@ -42,7 +42,7 @@
 
                     if (data.offers) {
                         var OfferListModel = $injector.get('OfferListModel');
-                        this.series = new OfferListModel(data.offers);
+                        this.offers = new OfferListModel(data.offers);
                     }
 
                 }

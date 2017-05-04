@@ -6794,9 +6794,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         this.charities = new CharityListModel(data.charities);
                     }
 
-                    if (data.brands) {
+                    if (data.campaigns) {
                         var BrandListModel = $injector.get('BrandListModel');
-                        this.brands = new BrandListModel(data.brands);
+                        this.brands = new BrandListModel(data.campaigns);
                     }
 
                     if (data.series) {
@@ -6806,7 +6806,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
                     if (data.offers) {
                         var OfferListModel = $injector.get('OfferListModel');
-                        this.series = new OfferListModel(data.offers);
+                        this.offers = new OfferListModel(data.offers);
                     }
 
                 }
@@ -7095,9 +7095,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         this.seasons = new SeasonListModel(data.seasons);
                     }
 
-                    if (data.brands) {
+                    if (data.campaigns) {
                         var BrandListModel = $injector.get('BrandListModel');
-                        this.brands = new BrandListModel(data.brands);
+                        this.brands = new BrandListModel(data.campaigns);
                     }
 
                     if (data.charity) {

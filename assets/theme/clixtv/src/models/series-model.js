@@ -15,9 +15,9 @@
                         this.seasons = new SeasonListModel(data.seasons);
                     }
 
-                    if (data.brands) {
+                    if (data.campaigns) {
                         var BrandListModel = $injector.get('BrandListModel');
-                        this.brands = new BrandListModel(data.brands);
+                        this.brands = new BrandListModel(data.campaigns);
                     }
 
                     if (data.charity) {
