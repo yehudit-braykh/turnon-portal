@@ -12377,7 +12377,7 @@ button.close {
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.63);
   visibility: hidden;
 }
 .clix-brand-charity-logo .logo-points,
@@ -12482,12 +12482,12 @@ button.close {
 }
 .clix-offer-logo .logo-icon {
   position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 30%;
-  height: 30%;
-  background-size: cover;
-  background-position: center center;
+  left: 15px;
+  bottom: 15px;
+  width: 40%;
+  height: 40%;
+  background-size: contain;
+  background-position: bottom center;
   background-repeat: no-repeat;
 }
 .clix-charity-logo {
@@ -13208,6 +13208,14 @@ button.close {
   line-height: 11px;
   margin-top: 5px;
   display: inline-block;
+}
+.clix-content-callout .star-logo,
+.clix-content-callout .category-logo {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  background-position: center;
+  background-size: cover;
 }
 .clix-empty-container {
   color: #8a8a8a;

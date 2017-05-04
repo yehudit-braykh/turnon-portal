@@ -332,7 +332,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/container/view.offer-content-callout.html',
-    "<clix-content-callout sref=\"brand-offer({ id: '{{offer.campaign}}', offerId: '{{offer.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('offer', offer)\" is-favorited=\"isFavoriteContent('offer', offer)\" add-button=true add-favorite-tooltip=\"Add to saved offers\" remove-favorite-tooltip=\"Remove from saved offers\"><header-element><clix-offer-logo offer=offer></clix-offer-logo></header-element><title-content>{{offer.title}}</title-content><subtitle-content>Expires 2/1/2017</subtitle-content></clix-content-callout>"
+    "<clix-content-callout sref=\"brand-offer({ id: '{{offer.campaign}}', offerId: '{{offer.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('offer', offer)\" is-favorited=\"isFavoriteContent('offer', offer)\" add-button=true add-favorite-tooltip=\"Add to saved offers\" remove-favorite-tooltip=\"Remove from saved offers\"><header-element><clix-offer-logo offer=offer></clix-offer-logo></header-element><title-content>{{offer.title}}</title-content><subtitle-content>Expires {{offer.expirationDate | clixDate}}</subtitle-content></clix-content-callout>"
   );
 
 
@@ -5819,6 +5819,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 .then(
                     function onSuccess(data) {
 
+                        console.log(data);
+
                         $scope.celebrity = data;
                         $scope.active = 0;
 
@@ -6423,7 +6425,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 )
                 .then(
                     function onSuccess(data) {
-                        console.log(data);
+
                         $scope.loggedInUser = data[0];
                         $scope.video = data[1];
                         $scope.ready = true;
@@ -7010,7 +7012,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             'CharityListModel',
             function(BrandListModel, CelebrityListModel, SeriesListModel, VideoListModel, OfferListModel, CharityListModel) {
                 return function(data) {
-                    this.brands = new BrandListModel(data.brands);
+                    this.brands = new BrandListModel(data.campaigns);
                     this.celebrities = new CelebrityListModel(data.celebrities);
                     this.series = new SeriesListModel(data.series);
                     this.videos = new VideoListModel(data.videos);

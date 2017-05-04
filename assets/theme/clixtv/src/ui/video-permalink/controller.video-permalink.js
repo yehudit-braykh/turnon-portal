@@ -46,7 +46,7 @@
                 )
                 .then(
                     function onSuccess(data) {
-                        console.log(data);
+
                         $scope.loggedInUser = data[0];
                         $scope.video = data[1];
                         $scope.ready = true;
