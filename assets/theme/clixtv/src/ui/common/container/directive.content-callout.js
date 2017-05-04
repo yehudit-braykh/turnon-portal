@@ -31,7 +31,9 @@
                 onFavorite: '&',
                 isFavorited: '=',
                 addFavoriteTooltip: '@?',
-                removeFavoriteTooltip: '@?'
+                removeFavoriteTooltip: '@?',
+                type: '@',
+                entity: '='
             }
         }
     };

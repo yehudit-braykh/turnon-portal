@@ -45,6 +45,10 @@
                 }
             };
 
+            $scope.onTabSelect = function(tab) {
+                catchMediaService.trackCelebrityPageEvent($stateParams.id, tab);
+            };
+
             $scope.offerMenuItems = [
                 {
                     label: 'Save Offer',

@@ -13,7 +13,8 @@
         'VideoListModel',
         'UserModel',
         'modalService',
-        function($q, $http, $log, $rootScope, BrandListModel, OfferListModel, CharityListModel, CelebrityListModel, CategoryListModel, VideoListModel, UserModel, modalService) {
+        'catchMediaService',
+        function($q, $http, $log, $rootScope, BrandListModel, OfferListModel, CharityListModel, CelebrityListModel, CategoryListModel, VideoListModel, UserModel, modalService, catchMediaService) {
 
             var loggedInUser;
 
@@ -93,6 +94,8 @@
                         });
                     }
                 }
+
+                catchMediaService.trackFavoriteEvent(type, id);
 
                 return $http.post('/api/account/' + userFavoriteMethod, {
                     id: id

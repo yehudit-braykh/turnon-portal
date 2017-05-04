@@ -10,7 +10,8 @@
         'categoryService',
         'userService',
         'modalService',
-        function($q, $log, $scope, $rootScope, $state, $stateParams, categoryService, userService, modalService) {
+        'catchMediaService',
+        function($q, $log, $scope, $rootScope, $state, $stateParams, categoryService, userService, modalService, catchMediaService) {
 
             function _resetIsFavorite() {
                 $scope.isFavorite = userService.isFavoriteCategory($stateParams.id);

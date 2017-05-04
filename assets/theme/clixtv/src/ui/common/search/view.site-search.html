@@ -16,7 +16,7 @@
                     <div class="search-results-title">
                         Stars
                     </div>
-                    <clix-header-search-row ng-repeat="celebrity in results.celebrities.celebrities" ui-sref="star({ id: celebrity.id })">
+                    <clix-header-search-row ng-repeat="celebrity in results.celebrities.celebrities" ui-sref="star({ id: celebrity.id })" ng-click="onResultPress('star', celebrity)">
                         <logo-container>
                             <div class="search-results-circle-image" style="background-image: url('{{celebrity.thumbnail}}')"></div>
                         </logo-container>
@@ -34,7 +34,7 @@
                     <div class="search-results-title">
                         Series
                     </div>
-                    <clix-header-search-row ng-repeat="series in results.series.series">
+                    <clix-header-search-row ng-repeat="series in results.series.series" ng-click="onResultPress('series', series)">
                         <logo-container>
                             <div class="search-results-circle-image" style="background-image: url('{{series.thumbnail}}')"></div>
                         </logo-container>
@@ -52,7 +52,7 @@
                     <div class="search-results-title">
                         Brands Related To {{term}}
                     </div>
-                    <clix-header-search-row ng-repeat="brand in results.brands.brands" ui-sref="brand({ id: brand.id })">
+                    <clix-header-search-row ng-repeat="brand in results.brands.brands" ui-sref="brand({ id: brand.id })" ng-click="onResultPress('brand', brand)">
                         <logo-container>
                             <div class="search-results-circle-image" style="background-image: url('{{brand.thumbnail}}')"></div>
                         </logo-container>
@@ -70,7 +70,7 @@
                     <div class="search-results-title">
                         Charities Related To {{term}}
                     </div>
-                    <clix-header-search-row ng-repeat="charity in results.charities.charities" ui-sref="charity({ id: charity.id })">
+                    <clix-header-search-row ng-repeat="charity in results.charities.charities" ui-sref="charity({ id: charity.id })" ng-click="onResultPress('charity', charity)">
                         <logo-container>
                             <div class="search-results-circle-image" style="background-image: url('{{charity.thumbnail}}')"></div>
                         </logo-container>
@@ -88,7 +88,7 @@
                     <div class="search-results-title">
                         Videos
                     </div>
-                    <clix-header-search-row ng-repeat="video in results.videos.videos" ui-sref="video({ id: video.id })">
+                    <clix-header-search-row ng-repeat="video in results.videos.videos" ui-sref="video({ id: video.id })" ng-click="onResultPress('video', video)">
                         <logo-container>
                             <div class="search-results-circle-image" style="background-image: url('{{video.thumbnail}}')"></div>
                         </logo-container>

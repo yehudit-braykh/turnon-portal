@@ -7,7 +7,8 @@
         '$state',
         'data',
         'modalService',
-        function($scope, $location, $uibModalInstance, $state, data, modalService) {
+        'catchMediaService',
+        function($scope, $location, $uibModalInstance, $state, data, modalService, catchMediaService) {
 
             $scope.tab = 'post';
             $scope.socialNetworks = [];
@@ -19,32 +20,43 @@
             $scope.charity = data.shareModalCharity;
             $scope.category = data.shareModalCategory;
 
-            var currentUrl = $location.absUrl(),
+            var type, entity,
+                currentUrl = $location.absUrl(),
                 shareContent = '';
 
             if (data.shareModalVideo) {
                 shareContent = 'Here\'s a video I thought you\'d enjoy from #ClixTV - ';
                 shareContent += data.shareModalVideo.title + ' ' + $state.href('video', { id: data.shareModalVideo.id }, {absolute: true});
+                type = 'video';
+                entity = data.shareModalVideo;
             }
 
             if (data.shareModalOffer) {
                 shareContent = 'Here\'s an offer I thought you\'d enjoy from #ClixTV - ';
                 shareContent += data.shareModalOffer.title + ' ' + $state.href('brand-offer', { id: data.shareModalOffer.campaign.id, offerId: data.shareModalOffer.id }, {absolute: true});
+                type = 'offer';
+                entity = data.shareModalOffer;
             }
 
             if (data.shareModalCelebrity) {
                 shareContent = 'I thought you\'d like to check out ' + data.shareModalCelebrity.name + ' on #ClixTV - ';
                 shareContent += $state.href('star', { id: data.shareModalCelebrity.id }, {absolute: true});
+                type = 'star';
+                entity = data.shareModalCelebrity;
             }
 
             if (data.shareModalBrand) {
                 shareContent = 'I thought you\'d enjoy visiting ' + data.shareModalBrand.title + ' on #ClixTV - ';
                 shareContent += $state.href('brand', { id: data.shareModalBrand.id }, {absolute: true});
+                type = 'brand';
+                entity = data.shareModalBrand;
             }
 
             if (data.shareModalCharity) {
                 shareContent = 'I thought you\'d enjoy visiting the charity page for ' + data.shareModalCharity.title + ' on #ClixTV - ';
                 shareContent += $state.href('charity', { id: data.shareModalCharity.id }, {absolute: true});
+                type = 'charity';
+                entity = data.shareModalCharity;
             }
 
             $scope.shareContent = shareContent;
@@ -63,10 +75,12 @@
 
             $scope.onSendPress = function() {
                 $uibModalInstance.close();
+                catchMediaService.trackShareEvent(type, entity);
             };
 
             $scope.onPostPress = function() {
                 $uibModalInstance.close();
+                catchMediaService.trackShareEvent(type, entity);
             };
 
             $scope.onSocialNetworkPress = function(socialNetwork) {

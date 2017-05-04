@@ -28,7 +28,7 @@
     <div class="brand-page-content">
         <div class="clix-tabs">
             <uib-tabset active="active">
-                <uib-tab index="0" heading="Home">
+                <uib-tab index="0" heading="Home" select="onTabSelect('home')">
                     <div class="home-container">
                         <clix-landing-video-content video="video">
                             <content-description>
@@ -91,21 +91,21 @@
                         </clix-landing-video-content>
                     </div>
                 </uib-tab>
-                <uib-tab index="1" heading="Offers">
+                <uib-tab index="1" heading="Offers" select="onTabSelect('offers')">
                     <div class="row clix-block-row offers-container">
                         <div class="clix-block-item col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="offer in brand.offers.offers">
                             <clix-offer-content-callout offer="offer" ng-click="onOfferPress(offer)"></clix-offer-content-callout>
                         </div>
                     </div>
                 </uib-tab>
-                <uib-tab index="2" heading="Stars">
+                <uib-tab index="2" heading="Stars" select="onTabSelect('stars')">
                     <div class="stars-container">
                         <div ng-repeat="celebrity in brand.celebrities.celebrities">
                             <clix-video-category-scroll-list category-title="{{celebrity.name}} and {{brand.title}}" category-videos="celebrity.videos.videos"></clix-video-category-scroll-list>
                         </div>
                     </div>
                 </uib-tab>
-                <uib-tab index="3" heading="Videos">
+                <uib-tab index="3" heading="Videos" select="onTabSelect('videos')">
                     <div class="videos-container">
                         <div class="videos-title-container">
                             <div class="videos-title">

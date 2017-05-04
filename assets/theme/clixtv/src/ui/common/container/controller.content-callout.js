@@ -8,7 +8,8 @@
         '$uibModal',
         'shareModalService',
         'userService',
-        function($q, $log, $scope, $rootScope, $uibModal, shareModalService, userService) {
+        'catchMediaService',
+        function($q, $log, $scope, $rootScope, $uibModal, shareModalService, userService, catchMediaService) {
 
             $scope.menuVisible = false;
 

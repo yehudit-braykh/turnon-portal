@@ -100,6 +100,10 @@
                 }
             ];
 
+            $scope.onTabSelect = function(tab) {
+                catchMediaService.trackBrandPageEvent($stateParams.id, tab);
+            };
+
             brandsService.getBrandById($stateParams.id)
                 .then(
                     function onSuccess(data) {

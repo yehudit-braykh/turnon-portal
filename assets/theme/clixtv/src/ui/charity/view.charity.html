@@ -28,7 +28,7 @@
     <div class="charity-page-content">
         <div class="clix-tabs">
             <uib-tabset active="active">
-                <uib-tab index="0" heading="Home">
+                <uib-tab index="0" heading="Home" select="onTabSelect('home')">
 
                     <div class="home-container">
                         <clix-landing-video-content video="video" charity="true">
@@ -72,14 +72,14 @@
                     </div>
 
                 </uib-tab>
-                <uib-tab index="2" heading="Stars">
+                <uib-tab index="2" heading="Stars" select="onTabSelect('stars')">
                     <div class="stars-container">
                         <div ng-repeat="celebrity in charity.celebrities.celebrities">
                             <clix-video-category-scroll-list category-title="{{celebrity.name}} and {{charity.title}}" category-videos="celebrity.videos.videos"></clix-video-category-scroll-list>
                         </div>
                     </div>
                 </uib-tab>
-                <uib-tab index="3" heading="Videos">
+                <uib-tab index="3" heading="Videos" select="onTabSelect('videos')">
                     <div class="videos-container">
                         <div class="videos-title-container">
                             <div class="videos-title">

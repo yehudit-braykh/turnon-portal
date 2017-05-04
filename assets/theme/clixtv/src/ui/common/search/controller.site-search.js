@@ -6,7 +6,8 @@
         '$window',
         '$timeout',
         'searchService',
-        function($scope, $rootScope, $window, $timeout, searchService) {
+        'catchMediaService',
+        function($scope, $rootScope, $window, $timeout, searchService, catchMediaService) {
 
             var searchTimeout;
 
@@ -69,11 +70,15 @@
                 }
             };
 
-            $rootScope.$on('$stateChangeSuccess',function(){
+            $rootScope.$on('$stateChangeSuccess', function(){
                 $scope.term = '';
                 $scope.searchVisible = false;
                 _hideSearchResults();
             });
+
+            $scope.onResultPress = function(event, entity) {
+                catchMediaService.trackSearchEvent(event, entity);
+            }
         }
     ];
 

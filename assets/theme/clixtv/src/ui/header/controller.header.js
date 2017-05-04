@@ -10,7 +10,8 @@
         'notificationsService',
         'knetikService',
         'modalService',
-        function($q, $scope, $rootScope, $window, $timeout, $uibModal, notificationsService, knetikService, modalService) {
+        'catchMediaService',
+        function($q, $scope, $rootScope, $window, $timeout, $uibModal, notificationsService, knetikService, modalService, catchMediaService) {
 
             var latestOffset = 0;
 

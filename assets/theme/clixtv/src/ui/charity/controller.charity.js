@@ -81,6 +81,10 @@
 
             catchMediaService.trackCharityPageEvent($stateParams.id);
 
+            $scope.onTabSelect = function(tab) {
+                catchMediaService.trackCharityPageEvent($stateParams.id, tab);
+            };
+
             $scope.onDonatePress = function() {
                 var modalInstance = $uibModal.open({
                     animation: true,

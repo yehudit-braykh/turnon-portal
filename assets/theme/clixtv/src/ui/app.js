@@ -129,6 +129,16 @@
                     $('html, body').animate({ scrollTop: 0 }, 200);
                     $rootScope.printable = to.data && to.data.print;
                 });
+
+                $rootScope.$on('user.login', function(event, data) {
+                    if (data && data.id) {
+                        catchMediaService.setUser(data.email, 'default', data);
+                    }
+                });
+
+                $rootScope.$on('user.logout', function(event, data) {
+                    catchMediaService.deleteUser();
+                });
             }
         ]);
 }());

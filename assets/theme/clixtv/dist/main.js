@@ -129,6 +129,16 @@
                     $('html, body').animate({ scrollTop: 0 }, 200);
                     $rootScope.printable = to.data && to.data.print;
                 });
+
+                $rootScope.$on('user.login', function(event, data) {
+                    if (data && data.id) {
+                        catchMediaService.setUser(data.email, 'default', data);
+                    }
+                });
+
+                $rootScope.$on('user.logout', function(event, data) {
+                    catchMediaService.deleteUser();
+                });
             }
         ]);
 }());
@@ -182,7 +192,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/brand/view.brand.html',
-    "<div ng-if=!configs><clix-loader size=large></clix-loader></div><div class=brand-page ng-if=configs><clix-hero-banner title-text={{configs.title}} button-text=\"{{'Favorites'}}\" points=\"{{'50'}}\" subtext=\"{{brand.offers.offers.length}} {{brand.offers.offers.length === 1 ? 'Offer' : 'Offers'}}\" button-icon-class=\"{{'icon-favorite-icon banner-favorite-icon'}}\" background-image={{configs.backgroundImage}} background-image2x={{configs.backgroundImage2x}} background-image3x={{configs.backgroundImage3x}} button-tooltip-text=\"{{loggedInUser ? (isFavorite ? 'Remove this brand from your Favorites.' : 'Add this brand to your Favorites.') : 'After signing up, you will be able to add this brand to your Favorites.'}}\" share-tooltip-text=\"Share this brand.\" banner-type=Brand><favorite-button><clix-tertiary-button ng-click=onFavoritePress()>{{isFavorite ? 'Added to Favorites' : 'Favorite'}}</clix-tertiary-button></favorite-button><share-icon><clix-share-button extra-class=banner-share-icon brand=brand></clix-share-button></share-icon></clix-hero-banner><div class=brand-page-content><div class=clix-tabs><uib-tabset active=active><uib-tab index=0 heading=Home><div class=home-container><clix-landing-video-content video=video><content-description><clix-secondary-header>About {{configs.title}}</clix-secondary-header><div class=home-description>{{configs.description}}</div></content-description><sidebar-title>More Offers From {{configs.title}}</sidebar-title><sidebar-content><div class=\"row brand-offer-row\"><div class=\"col-xs-6 col-sm-6 col-md-12 col-lg-12 brand-offer-column\" ng-repeat=\"offer in brand.offers.offers | limitTo: 3\"><div class=brand-offer><clix-offer-content-callout offer=offer></clix-offer-content-callout></div></div></div></sidebar-content><footer-content><div class=brand-categories-container><clix-secondary-header>Brand Categories <i class=icon-right-arrow></i></clix-secondary-header><div class=brand-category-logo-container><div class=brand-category-logo><clix-brand-category-logo brand=video category-title=Sportswear></clix-brand-category-logo></div><div class=brand-category-logo><clix-brand-category-logo brand=video category-title=Shoes></clix-brand-category-logo></div><div class=brand-category-logo><clix-brand-category-logo brand=video category-title=Swimwear></clix-brand-category-logo></div><div class=brand-category-logo><clix-brand-category-logo brand=video category-title=\"Training & Gym\"></clix-brand-category-logo></div></div></div><div class=brand-celebrity-videos><div ng-repeat=\"celebrity in brand.celebrities.celebrities | limitTo: 3\"><clix-video-category-scroll-list category-title=\"{{celebrity.name}} and {{brand.title}}\" category-videos=celebrity.videos.videos></clix-video-category-scroll-list></div></div></footer-content><share-tooltip-content><div ng-if=loggedInUser>You will receive 50 Reward Points for sharing!</div><div ng-if=!loggedInUser>After signing up, you will receive 50 Reward Points for sharing! <a ng-click=\"\">Learn more</a>.</div></share-tooltip-content><share-icon><clix-share-button extra-class=landing-share-icon brand=brand></clix-share-button></share-icon></clix-landing-video-content></div></uib-tab><uib-tab index=1 heading=Offers><div class=\"row clix-block-row offers-container\"><div class=\"clix-block-item col-xs-6 col-sm-4 col-md-3 col-lg-2\" ng-repeat=\"offer in brand.offers.offers\"><clix-offer-content-callout offer=offer ng-click=onOfferPress(offer)></clix-offer-content-callout></div></div></uib-tab><uib-tab index=2 heading=Stars><div class=stars-container><div ng-repeat=\"celebrity in brand.celebrities.celebrities\"><clix-video-category-scroll-list category-title=\"{{celebrity.name}} and {{brand.title}}\" category-videos=celebrity.videos.videos></clix-video-category-scroll-list></div></div></uib-tab><uib-tab index=3 heading=Videos><div class=videos-container><div class=videos-title-container><div class=videos-title><clix-secondary-header>All Videos Featuring {{brand.title}}</clix-secondary-header></div><div class=video-sort-container><clix-dropdown options=seriesList placeholder-text=\"Sort By\"></clix-dropdown></div></div><div class=\"row clix-block-row\"><div class=\"clix-block-item col-xs-12 col-sm-12 col-md-3 col-lg-2-4\" ng-repeat=\"video in brand.videos.videos\"><clix-video-content-box video=video></clix-video-content-box></div></div></div></uib-tab></uib-tabset></div></div></div>"
+    "<div ng-if=!configs><clix-loader size=large></clix-loader></div><div class=brand-page ng-if=configs><clix-hero-banner title-text={{configs.title}} button-text=\"{{'Favorites'}}\" points=\"{{'50'}}\" subtext=\"{{brand.offers.offers.length}} {{brand.offers.offers.length === 1 ? 'Offer' : 'Offers'}}\" button-icon-class=\"{{'icon-favorite-icon banner-favorite-icon'}}\" background-image={{configs.backgroundImage}} background-image2x={{configs.backgroundImage2x}} background-image3x={{configs.backgroundImage3x}} button-tooltip-text=\"{{loggedInUser ? (isFavorite ? 'Remove this brand from your Favorites.' : 'Add this brand to your Favorites.') : 'After signing up, you will be able to add this brand to your Favorites.'}}\" share-tooltip-text=\"Share this brand.\" banner-type=Brand><favorite-button><clix-tertiary-button ng-click=onFavoritePress()>{{isFavorite ? 'Added to Favorites' : 'Favorite'}}</clix-tertiary-button></favorite-button><share-icon><clix-share-button extra-class=banner-share-icon brand=brand></clix-share-button></share-icon></clix-hero-banner><div class=brand-page-content><div class=clix-tabs><uib-tabset active=active><uib-tab index=0 heading=Home select=\"onTabSelect('home')\"><div class=home-container><clix-landing-video-content video=video><content-description><clix-secondary-header>About {{configs.title}}</clix-secondary-header><div class=home-description>{{configs.description}}</div></content-description><sidebar-title>More Offers From {{configs.title}}</sidebar-title><sidebar-content><div class=\"row brand-offer-row\"><div class=\"col-xs-6 col-sm-6 col-md-12 col-lg-12 brand-offer-column\" ng-repeat=\"offer in brand.offers.offers | limitTo: 3\"><div class=brand-offer><clix-offer-content-callout offer=offer></clix-offer-content-callout></div></div></div></sidebar-content><footer-content><div class=brand-categories-container><clix-secondary-header>Brand Categories <i class=icon-right-arrow></i></clix-secondary-header><div class=brand-category-logo-container><div class=brand-category-logo><clix-brand-category-logo brand=video category-title=Sportswear></clix-brand-category-logo></div><div class=brand-category-logo><clix-brand-category-logo brand=video category-title=Shoes></clix-brand-category-logo></div><div class=brand-category-logo><clix-brand-category-logo brand=video category-title=Swimwear></clix-brand-category-logo></div><div class=brand-category-logo><clix-brand-category-logo brand=video category-title=\"Training & Gym\"></clix-brand-category-logo></div></div></div><div class=brand-celebrity-videos><div ng-repeat=\"celebrity in brand.celebrities.celebrities | limitTo: 3\"><clix-video-category-scroll-list category-title=\"{{celebrity.name}} and {{brand.title}}\" category-videos=celebrity.videos.videos></clix-video-category-scroll-list></div></div></footer-content><share-tooltip-content><div ng-if=loggedInUser>You will receive 50 Reward Points for sharing!</div><div ng-if=!loggedInUser>After signing up, you will receive 50 Reward Points for sharing! <a ng-click=\"\">Learn more</a>.</div></share-tooltip-content><share-icon><clix-share-button extra-class=landing-share-icon brand=brand></clix-share-button></share-icon></clix-landing-video-content></div></uib-tab><uib-tab index=1 heading=Offers select=\"onTabSelect('offers')\"><div class=\"row clix-block-row offers-container\"><div class=\"clix-block-item col-xs-6 col-sm-4 col-md-3 col-lg-2\" ng-repeat=\"offer in brand.offers.offers\"><clix-offer-content-callout offer=offer ng-click=onOfferPress(offer)></clix-offer-content-callout></div></div></uib-tab><uib-tab index=2 heading=Stars select=\"onTabSelect('stars')\"><div class=stars-container><div ng-repeat=\"celebrity in brand.celebrities.celebrities\"><clix-video-category-scroll-list category-title=\"{{celebrity.name}} and {{brand.title}}\" category-videos=celebrity.videos.videos></clix-video-category-scroll-list></div></div></uib-tab><uib-tab index=3 heading=Videos select=\"onTabSelect('videos')\"><div class=videos-container><div class=videos-title-container><div class=videos-title><clix-secondary-header>All Videos Featuring {{brand.title}}</clix-secondary-header></div><div class=video-sort-container><clix-dropdown options=seriesList placeholder-text=\"Sort By\"></clix-dropdown></div></div><div class=\"row clix-block-row\"><div class=\"clix-block-item col-xs-12 col-sm-12 col-md-3 col-lg-2-4\" ng-repeat=\"video in brand.videos.videos\"><clix-video-content-box video=video></clix-video-content-box></div></div></div></uib-tab></uib-tabset></div></div></div>"
   );
 
 
@@ -232,7 +242,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/charity/view.charity.html',
-    "<div ng-if=!charity><clix-loader size=large></clix-loader></div><div class=charity-page ng-if=charity><clix-hero-banner title-text={{charity.title}} button-text=\"{{'Favorites'}}\" subtext=\"{{charity.videos.videos.length}} {{charity.videos.videos.length === 1 ? 'Video' : 'Videos'}}\" button-icon-class=\"{{'icon-favorite-icon banner-favorite-icon'}}\" background-image={{charity.headerImage}} background-image2x={{charity.headerImage}} background-image3x={{charity.headerImage}} charity=true button-tooltip-text=\"{{loggedInUser ? (isFavorite ? 'Remove this charity from your Favorites.' : 'Add this charity to your Favorites.') : 'After signing up, you will be able to add this charity to your Favorites.'}}\" share-tooltip-text=\"Share this page.\" banner-type=Charity><favorite-button><clix-tertiary-button ng-click=onFavoritePress()>{{isFavorite ? 'Added to Favorites' : 'Favorite'}}</clix-tertiary-button></favorite-button><share-icon><clix-share-button extra-class=banner-share-icon charity=charity></clix-share-button></share-icon></clix-hero-banner><div class=charity-page-content><div class=clix-tabs><uib-tabset active=active><uib-tab index=0 heading=Home><div class=home-container><clix-landing-video-content video=video charity=true><content-description><div class=charity-description-container><clix-secondary-header>About {{charity.title}}</clix-secondary-header><div class=home-description>{{charity.description}}</div><div class=donate-button><clix-primary-button type=charity ng-click=onDonatePress()>Donate</clix-primary-button></div></div></content-description><sidebar-title>Stars Who Support {{charity.title}}</sidebar-title><sidebar-content><div class=\"row brand-offer-row\"><div class=\"col-xs-6 col-sm-6 col-md-12 col-lg-12 brand-offer-column\" ng-repeat=\"celebrity in charity.celebrities.celebrities | limitTo: 3\"><div class=star-support-callout><clix-star-content-callout star=celebrity></clix-star-content-callout></div></div></div></sidebar-content><footer-content><div class=home-footer-content><div class=brand-celebrity-videos><div ng-repeat=\"celebrity in charity.celebrities.celebrities | limitTo: 3\"><clix-video-category-scroll-list category-title=\"{{celebrity.name}} and {{charity.title}}\" category-videos=celebrity.videos.videos></clix-video-category-scroll-list></div></div></div></footer-content></clix-landing-video-content></div></uib-tab><uib-tab index=2 heading=Stars><div class=stars-container><div ng-repeat=\"celebrity in charity.celebrities.celebrities\"><clix-video-category-scroll-list category-title=\"{{celebrity.name}} and {{charity.title}}\" category-videos=celebrity.videos.videos></clix-video-category-scroll-list></div></div></uib-tab><uib-tab index=3 heading=Videos><div class=videos-container><div class=videos-title-container><div class=videos-title><clix-secondary-header>All Videos Featuring {{charity.title}}</clix-secondary-header></div><div class=video-sort-container><clix-dropdown options=seriesList placeholder-text=\"Sort By\"></clix-dropdown></div></div><div class=\"row clix-block-row\"><div class=\"clix-block-item col-xs-12 col-sm-12 col-md-3 col-lg-2-4\" ng-repeat=\"video in charity.videos.videos\"><clix-video-content-box video=video></clix-video-content-box></div></div></div></uib-tab></uib-tabset></div></div></div>"
+    "<div ng-if=!charity><clix-loader size=large></clix-loader></div><div class=charity-page ng-if=charity><clix-hero-banner title-text={{charity.title}} button-text=\"{{'Favorites'}}\" subtext=\"{{charity.videos.videos.length}} {{charity.videos.videos.length === 1 ? 'Video' : 'Videos'}}\" button-icon-class=\"{{'icon-favorite-icon banner-favorite-icon'}}\" background-image={{charity.headerImage}} background-image2x={{charity.headerImage}} background-image3x={{charity.headerImage}} charity=true button-tooltip-text=\"{{loggedInUser ? (isFavorite ? 'Remove this charity from your Favorites.' : 'Add this charity to your Favorites.') : 'After signing up, you will be able to add this charity to your Favorites.'}}\" share-tooltip-text=\"Share this page.\" banner-type=Charity><favorite-button><clix-tertiary-button ng-click=onFavoritePress()>{{isFavorite ? 'Added to Favorites' : 'Favorite'}}</clix-tertiary-button></favorite-button><share-icon><clix-share-button extra-class=banner-share-icon charity=charity></clix-share-button></share-icon></clix-hero-banner><div class=charity-page-content><div class=clix-tabs><uib-tabset active=active><uib-tab index=0 heading=Home select=\"onTabSelect('home')\"><div class=home-container><clix-landing-video-content video=video charity=true><content-description><div class=charity-description-container><clix-secondary-header>About {{charity.title}}</clix-secondary-header><div class=home-description>{{charity.description}}</div><div class=donate-button><clix-primary-button type=charity ng-click=onDonatePress()>Donate</clix-primary-button></div></div></content-description><sidebar-title>Stars Who Support {{charity.title}}</sidebar-title><sidebar-content><div class=\"row brand-offer-row\"><div class=\"col-xs-6 col-sm-6 col-md-12 col-lg-12 brand-offer-column\" ng-repeat=\"celebrity in charity.celebrities.celebrities | limitTo: 3\"><div class=star-support-callout><clix-star-content-callout star=celebrity></clix-star-content-callout></div></div></div></sidebar-content><footer-content><div class=home-footer-content><div class=brand-celebrity-videos><div ng-repeat=\"celebrity in charity.celebrities.celebrities | limitTo: 3\"><clix-video-category-scroll-list category-title=\"{{celebrity.name}} and {{charity.title}}\" category-videos=celebrity.videos.videos></clix-video-category-scroll-list></div></div></div></footer-content></clix-landing-video-content></div></uib-tab><uib-tab index=2 heading=Stars select=\"onTabSelect('stars')\"><div class=stars-container><div ng-repeat=\"celebrity in charity.celebrities.celebrities\"><clix-video-category-scroll-list category-title=\"{{celebrity.name}} and {{charity.title}}\" category-videos=celebrity.videos.videos></clix-video-category-scroll-list></div></div></uib-tab><uib-tab index=3 heading=Videos select=\"onTabSelect('videos')\"><div class=videos-container><div class=videos-title-container><div class=videos-title><clix-secondary-header>All Videos Featuring {{charity.title}}</clix-secondary-header></div><div class=video-sort-container><clix-dropdown options=seriesList placeholder-text=\"Sort By\"></clix-dropdown></div></div><div class=\"row clix-block-row\"><div class=\"clix-block-item col-xs-12 col-sm-12 col-md-3 col-lg-2-4\" ng-repeat=\"video in charity.videos.videos\"><clix-video-content-box video=video></clix-video-content-box></div></div></div></uib-tab></uib-tabset></div></div></div>"
   );
 
 
@@ -302,17 +312,17 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/container/view.brand-content-callout.html',
-    "<clix-content-callout sref=\"brand({ id: '{{brand.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('brand', brand)\" is-favorited=\"isFavoriteContent('brand', brand)\"><header-element><clix-brand-charity-logo brand=brand></clix-brand-charity-logo></header-element><title-content>{{brand.title}}</title-content><subtitle-content>{{brand.offers.offers.length}} {{brand.offers.offers.length === 1 ? 'Offer' : 'Offers'}}</subtitle-content></clix-content-callout>"
+    "<clix-content-callout sref=\"brand({ id: '{{brand.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('brand', brand)\" is-favorited=\"isFavoriteContent('brand', brand)\" type=brand entity=brand><header-element><clix-brand-charity-logo brand=brand></clix-brand-charity-logo></header-element><title-content>{{brand.title}}</title-content><subtitle-content>{{brand.offers.offers.length}} {{brand.offers.offers.length === 1 ? 'Offer' : 'Offers'}}</subtitle-content></clix-content-callout>"
   );
 
 
   $templateCache.put('ui/common/container/view.category-content-callout.html',
-    "<clix-content-callout sref=\"category({ id: '{{category.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('category', category)\" is-favorited=\"isFavoriteContent('category', category)\"><header-element><div class=category-logo style=\"background-image: url('{{category.logo}}')\"></div></header-element><title-content>{{category.title}}</title-content><subtitle-content>{{category.videos.videos.length}} {{category.videos.videos.length === 1 ? 'Video' : 'Videos'}}</subtitle-content></clix-content-callout>"
+    "<clix-content-callout sref=\"category({ id: '{{category.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('category', category)\" is-favorited=\"isFavoriteContent('category', category)\" type=category entity=category><header-element><div class=category-logo style=\"background-image: url('{{category.logo}}')\"></div></header-element><title-content>{{category.title}}</title-content><subtitle-content>{{category.videos.videos.length}} {{category.videos.videos.length === 1 ? 'Video' : 'Videos'}}</subtitle-content></clix-content-callout>"
   );
 
 
   $templateCache.put('ui/common/container/view.charity-content-callout.html',
-    "<clix-content-callout sref=\"charity({ id: '{{charity.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('charity', charity)\" is-favorited=\"isFavoriteContent('charity', charity)\"><header-element><clix-charity-logo charity=charity></clix-charity-logo></header-element><title-content>{{charity.title}}</title-content><subtitle-content>{{charity.videos.videos.length}} {{charity.videos.videos.length === 1 ? 'Video' : 'Videos'}}</subtitle-content></clix-content-callout>"
+    "<clix-content-callout sref=\"charity({ id: '{{charity.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('charity', charity)\" is-favorited=\"isFavoriteContent('charity', charity)\" type=charity entity=charity><header-element><clix-charity-logo charity=charity></clix-charity-logo></header-element><title-content>{{charity.title}}</title-content><subtitle-content>{{charity.videos.videos.length}} {{charity.videos.videos.length === 1 ? 'Video' : 'Videos'}}</subtitle-content></clix-content-callout>"
   );
 
 
@@ -332,12 +342,12 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/container/view.offer-content-callout.html',
-    "<clix-content-callout sref=\"brand-offer({ id: '{{offer.campaign}}', offerId: '{{offer.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('offer', offer)\" is-favorited=\"isFavoriteContent('offer', offer)\" add-button=true add-favorite-tooltip=\"Add to saved offers\" remove-favorite-tooltip=\"Remove from saved offers\"><header-element><clix-offer-logo offer=offer></clix-offer-logo></header-element><title-content>{{offer.title}}</title-content><subtitle-content>Expires {{offer.expirationDate | clixDate}}</subtitle-content></clix-content-callout>"
+    "<clix-content-callout sref=\"brand-offer({ id: '{{offer.campaign}}', offerId: '{{offer.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('offer', offer)\" is-favorited=\"isFavoriteContent('offer', offer)\" add-button=true add-favorite-tooltip=\"Add to saved offers\" remove-favorite-tooltip=\"Remove from saved offers\" type=offer entity=offer><header-element><clix-offer-logo offer=offer></clix-offer-logo></header-element><title-content>{{offer.title}}</title-content><subtitle-content>Expires {{offer.expirationDate | clixDate}}</subtitle-content></clix-content-callout>"
   );
 
 
   $templateCache.put('ui/common/container/view.star-content-callout.html',
-    "<clix-content-callout sref=\"star({ id: '{{star.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('celebrity', star)\" is-favorited=\"isFavoriteContent('celebrity', star)\"><header-element><div class=star-logo style=\"background-image: url({{star.thumbnail}})\"></div></header-element><title-content>{{star.name}}</title-content><subtitle-content>{{star.videos.videos.length}} {{star.videos.videos.length === 1 ? 'Video' : 'Videos'}}</subtitle-content></clix-content-callout>"
+    "<clix-content-callout sref=\"star({ id: '{{star.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('celebrity', star)\" is-favorited=\"isFavoriteContent('celebrity', star)\" type=star entity=star><header-element><div class=star-logo style=\"background-image: url({{star.thumbnail}})\"></div></header-element><title-content>{{star.name}}</title-content><subtitle-content>{{star.videos.videos.length}} {{star.videos.videos.length === 1 ? 'Video' : 'Videos'}}</subtitle-content></clix-content-callout>"
   );
 
 
@@ -517,7 +527,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/search/view.site-search.html',
-    "<div class=clix-site-search ng-if=isVisible clix-click-anywhere-else=bodyClicked><div class=search-results-container><div class=search-input-container><div class=search-input-field-container><input class=search-input-field id=search-input-field type=text placeholder=Search ng-model=$parent.term ng-change=onTermChange()></div></div><div class=search-results><div class=search-results-loader ng-if=loading><clix-loader size=small></clix-loader></div><div ng-if=results><div class=search-results-block ng-if=\"results.celebrities && results.celebrities.celebrities && results.celebrities.celebrities.length > 0\"><div class=search-results-title>Stars</div><clix-header-search-row ng-repeat=\"celebrity in results.celebrities.celebrities\" ui-sref=\"star({ id: celebrity.id })\"><logo-container><div class=search-results-circle-image style=\"background-image: url('{{celebrity.thumbnail}}')\"></div></logo-container><title-text>{{celebrity.name}}</title-text><subtitle-text>Star</subtitle-text></clix-header-search-row></div><div class=search-results-block ng-if=\"results.series && results.series.series && results.series.series.length > 0\"><div class=search-results-title>Series</div><clix-header-search-row ng-repeat=\"series in results.series.series\"><logo-container><div class=search-results-circle-image style=\"background-image: url('{{series.thumbnail}}')\"></div></logo-container><title-text>{{series.title}}</title-text><subtitle-text>Series</subtitle-text></clix-header-search-row></div><div class=search-results-block ng-if=\"results.brands && results.brands.brands && results.brands.brands.length > 0\"><div class=search-results-title>Brands Related To {{term}}</div><clix-header-search-row ng-repeat=\"brand in results.brands.brands\" ui-sref=\"brand({ id: brand.id })\"><logo-container><div class=search-results-circle-image style=\"background-image: url('{{brand.thumbnail}}')\"></div></logo-container><title-text>{{brand.title}}</title-text><subtitle-text>Brand</subtitle-text></clix-header-search-row></div><div class=search-results-block ng-if=\"results.charities && results.charities.charities && results.charities.charities.length > 0\"><div class=search-results-title>Charities Related To {{term}}</div><clix-header-search-row ng-repeat=\"charity in results.charities.charities\" ui-sref=\"charity({ id: charity.id })\"><logo-container><div class=search-results-circle-image style=\"background-image: url('{{charity.thumbnail}}')\"></div></logo-container><title-text>{{charity.title}}</title-text><subtitle-text>Charity</subtitle-text></clix-header-search-row></div><div class=search-results-block ng-if=\"results.videos && results.videos.videos && results.videos.videos.length > 0\"><div class=search-results-title>Videos</div><clix-header-search-row ng-repeat=\"video in results.videos.videos\" ui-sref=\"video({ id: video.id })\"><logo-container><div class=search-results-circle-image style=\"background-image: url('{{video.thumbnail}}')\"></div></logo-container><title-text>{{video.title}}</title-text><subtitle-text>Video</subtitle-text></clix-header-search-row></div></div></div></div></div>"
+    "<div class=clix-site-search ng-if=isVisible clix-click-anywhere-else=bodyClicked><div class=search-results-container><div class=search-input-container><div class=search-input-field-container><input class=search-input-field id=search-input-field type=text placeholder=Search ng-model=$parent.term ng-change=onTermChange()></div></div><div class=search-results><div class=search-results-loader ng-if=loading><clix-loader size=small></clix-loader></div><div ng-if=results><div class=search-results-block ng-if=\"results.celebrities && results.celebrities.celebrities && results.celebrities.celebrities.length > 0\"><div class=search-results-title>Stars</div><clix-header-search-row ng-repeat=\"celebrity in results.celebrities.celebrities\" ui-sref=\"star({ id: celebrity.id })\" ng-click=\"onResultPress('star', celebrity)\"><logo-container><div class=search-results-circle-image style=\"background-image: url('{{celebrity.thumbnail}}')\"></div></logo-container><title-text>{{celebrity.name}}</title-text><subtitle-text>Star</subtitle-text></clix-header-search-row></div><div class=search-results-block ng-if=\"results.series && results.series.series && results.series.series.length > 0\"><div class=search-results-title>Series</div><clix-header-search-row ng-repeat=\"series in results.series.series\" ng-click=\"onResultPress('series', series)\"><logo-container><div class=search-results-circle-image style=\"background-image: url('{{series.thumbnail}}')\"></div></logo-container><title-text>{{series.title}}</title-text><subtitle-text>Series</subtitle-text></clix-header-search-row></div><div class=search-results-block ng-if=\"results.brands && results.brands.brands && results.brands.brands.length > 0\"><div class=search-results-title>Brands Related To {{term}}</div><clix-header-search-row ng-repeat=\"brand in results.brands.brands\" ui-sref=\"brand({ id: brand.id })\" ng-click=\"onResultPress('brand', brand)\"><logo-container><div class=search-results-circle-image style=\"background-image: url('{{brand.thumbnail}}')\"></div></logo-container><title-text>{{brand.title}}</title-text><subtitle-text>Brand</subtitle-text></clix-header-search-row></div><div class=search-results-block ng-if=\"results.charities && results.charities.charities && results.charities.charities.length > 0\"><div class=search-results-title>Charities Related To {{term}}</div><clix-header-search-row ng-repeat=\"charity in results.charities.charities\" ui-sref=\"charity({ id: charity.id })\" ng-click=\"onResultPress('charity', charity)\"><logo-container><div class=search-results-circle-image style=\"background-image: url('{{charity.thumbnail}}')\"></div></logo-container><title-text>{{charity.title}}</title-text><subtitle-text>Charity</subtitle-text></clix-header-search-row></div><div class=search-results-block ng-if=\"results.videos && results.videos.videos && results.videos.videos.length > 0\"><div class=search-results-title>Videos</div><clix-header-search-row ng-repeat=\"video in results.videos.videos\" ui-sref=\"video({ id: video.id })\" ng-click=\"onResultPress('video', video)\"><logo-container><div class=search-results-circle-image style=\"background-image: url('{{video.thumbnail}}')\"></div></logo-container><title-text>{{video.title}}</title-text><subtitle-text>Video</subtitle-text></clix-header-search-row></div></div></div></div></div>"
   );
 
 
@@ -587,7 +597,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/stars/view.star.html',
-    "<div ng-if=!celebrity><clix-loader size=large></clix-loader></div><div class=clix-star-page ng-if=celebrity><clix-hero-banner title-text={{celebrity.name}} button-text=\"{{isFavorite ? 'Remove from Favorites' : 'Favorite'}}\" button-icon-class=\"{{'icon-favorite-icon banner-favorite-icon'}}\" button-tooltip-text=\"{{loggedInUser ? ((isFavorite) ? 'Remove this star from your Favorites' : 'Add this star to your Favorites.') : 'After signing up, you will be able to add this star to your Favorites.'}}\" subtext=\"{{celebrity.videos.videos.length}} {{celebrity.videos.videos.length === 1 ? 'Video' : 'Videos'}}\" background-image={{celebrity.headerImage}} share-tooltip-text=\"Share this page.\" banner-type=Star><favorite-button><clix-tertiary-button ng-click=onFavoritePress()>{{isFavorite ? 'Added to Favorites' : 'Favorite'}}</clix-tertiary-button></favorite-button><share-icon><clix-share-button extra-class=banner-share-icon celebrity=celebrity></clix-share-button></share-icon></clix-hero-banner><div class=brand-page-content><div class=clix-tabs><uib-tabset active=active><uib-tab index=0 heading=Video><div class=videos-container><div class=videos-title-container><div class=videos-title><clix-secondary-header>{{celebrity.name}}: {{selectedSeries.label}}</clix-secondary-header></div><div class=video-sort-container><clix-dropdown options=seriesList placeholder-text=\"Select Series\"></clix-dropdown></div></div><div class=row ng-repeat=\"series in celebrity.series.series\" ng-show=\"series.title === selectedSeries.label\"><div class=col-sm-8><div class=\"row clix-block-row\"><div class=\"clix-block-item col-xs-12 col-sm-12 col-md-6 col-lg-4\" ng-repeat=\"video in series.seasons.seasons[0].episodes\"><clix-video-content-box video=video></clix-video-content-box></div></div></div><div class=col-sm-4><div class=sidebar-container><div class=sidebar-title>Brands in this Series</div><div class=\"row brand-row\"><div ng-repeat=\"brand in series.brands.brands\" class=\"brand-container col-xs-6\"><clix-brand-content-callout brand=brand></clix-brand-content-callout></div></div></div><div class=sidebar-container><div class=sidebar-title>Charities in this Series</div><div class=\"row brand-row\"><div class=\"brand-container col-xs-6\"><clix-charity-content-callout charity=series.charity></clix-charity-content-callout></div></div></div></div></div></div></uib-tab><uib-tab index=1 heading=\"Brands & Offers\"><div class=brands-offers-title><div class=\"visible-sm visible-xs\"><clix-secondary-header>Brands Related To<br>{{celebrity.name}}</clix-secondary-header></div><div class=\"hidden-sm hidden-xs\"><clix-secondary-header>Brands Related To {{celebrity.name}}</clix-secondary-header></div></div><div class=\"row brand-row\"><div ng-repeat=\"brand in celebrity.brands.brands\" class=\"brand-container col-xs-6 col-sm-4 col-md-3 col-lg-2\"><clix-brand-content-callout brand=brand></clix-brand-content-callout></div></div><div class=brands-offers-title ng-show=celebrity.offers><div class=\"visible-sm visible-xs\"><clix-secondary-header>Offers Related To<br>{{celebrity.name}}</clix-secondary-header></div><div class=\"hidden-sm hidden-xs\"><clix-secondary-header>Offers Related To {{celebrity.name}}</clix-secondary-header></div></div><div class=\"row brand-row\"><div ng-repeat=\"offer in celebrity.offers.offers\" class=\"brand-container col-xs-6 col-sm-4 col-md-3 col-lg-2\"><clix-offer-content-callout offer=offer></clix-offer-content-callout></div></div></uib-tab><uib-tab index=2 heading=Charity><div class=brands-offers-title><div class=\"visible-sm visible-xs\"><clix-secondary-header>Charities Related To<br>{{celebrity.name}}</clix-secondary-header></div><div class=\"hidden-sm hidden-xs\"><clix-secondary-header>Charities Related To {{celebrity.name}}</clix-secondary-header></div></div><div class=\"row brand-row\"><div ng-repeat=\"charity in celebrity.charities.charities\" class=\"brand-container col-xs-6 col-sm-4 col-md-3 col-lg-2\"><clix-charity-content-callout charity=charity></clix-charity-content-callout></div></div></uib-tab></uib-tabset></div></div></div>"
+    "<div ng-if=!celebrity><clix-loader size=large></clix-loader></div><div class=clix-star-page ng-if=celebrity><clix-hero-banner title-text={{celebrity.name}} button-text=\"{{isFavorite ? 'Remove from Favorites' : 'Favorite'}}\" button-icon-class=\"{{'icon-favorite-icon banner-favorite-icon'}}\" button-tooltip-text=\"{{loggedInUser ? ((isFavorite) ? 'Remove this star from your Favorites' : 'Add this star to your Favorites.') : 'After signing up, you will be able to add this star to your Favorites.'}}\" subtext=\"{{celebrity.videos.videos.length}} {{celebrity.videos.videos.length === 1 ? 'Video' : 'Videos'}}\" background-image={{celebrity.headerImage}} share-tooltip-text=\"Share this page.\" banner-type=Star><favorite-button><clix-tertiary-button ng-click=onFavoritePress()>{{isFavorite ? 'Added to Favorites' : 'Favorite'}}</clix-tertiary-button></favorite-button><share-icon><clix-share-button extra-class=banner-share-icon celebrity=celebrity></clix-share-button></share-icon></clix-hero-banner><div class=brand-page-content><div class=clix-tabs><uib-tabset active=active><uib-tab index=0 heading=Video select=\"onTabSelect('video')\"><div class=videos-container><div class=videos-title-container><div class=videos-title><clix-secondary-header>{{celebrity.name}}: {{selectedSeries.label}}</clix-secondary-header></div><div class=video-sort-container><clix-dropdown options=seriesList placeholder-text=\"Select Series\"></clix-dropdown></div></div><div class=row ng-repeat=\"series in celebrity.series.series\" ng-show=\"series.title === selectedSeries.label\"><div class=col-sm-8><div class=\"row clix-block-row\"><div class=\"clix-block-item col-xs-12 col-sm-12 col-md-6 col-lg-4\" ng-repeat=\"video in series.seasons.seasons[0].episodes\"><clix-video-content-box video=video></clix-video-content-box></div></div></div><div class=col-sm-4><div class=sidebar-container><div class=sidebar-title>Brands in this Series</div><div class=\"row brand-row\"><div ng-repeat=\"brand in series.brands.brands\" class=\"brand-container col-xs-6\"><clix-brand-content-callout brand=brand></clix-brand-content-callout></div></div></div><div class=sidebar-container><div class=sidebar-title>Charities in this Series</div><div class=\"row brand-row\"><div class=\"brand-container col-xs-6\"><clix-charity-content-callout charity=series.charity></clix-charity-content-callout></div></div></div></div></div></div></uib-tab><uib-tab index=1 heading=\"Brands & Offers\" select=\"onTabSelect('brands_offers')\"><div class=brands-offers-title><div class=\"visible-sm visible-xs\"><clix-secondary-header>Brands Related To<br>{{celebrity.name}}</clix-secondary-header></div><div class=\"hidden-sm hidden-xs\"><clix-secondary-header>Brands Related To {{celebrity.name}}</clix-secondary-header></div></div><div class=\"row brand-row\"><div ng-repeat=\"brand in celebrity.brands.brands\" class=\"brand-container col-xs-6 col-sm-4 col-md-3 col-lg-2\"><clix-brand-content-callout brand=brand></clix-brand-content-callout></div></div><div class=brands-offers-title ng-show=celebrity.offers><div class=\"visible-sm visible-xs\"><clix-secondary-header>Offers Related To<br>{{celebrity.name}}</clix-secondary-header></div><div class=\"hidden-sm hidden-xs\"><clix-secondary-header>Offers Related To {{celebrity.name}}</clix-secondary-header></div></div><div class=\"row brand-row\"><div ng-repeat=\"offer in celebrity.offers.offers\" class=\"brand-container col-xs-6 col-sm-4 col-md-3 col-lg-2\"><clix-offer-content-callout offer=offer></clix-offer-content-callout></div></div></uib-tab><uib-tab index=2 heading=Charity select=\"onTabSelect('charity')\"><div class=brands-offers-title><div class=\"visible-sm visible-xs\"><clix-secondary-header>Charities Related To<br>{{celebrity.name}}</clix-secondary-header></div><div class=\"hidden-sm hidden-xs\"><clix-secondary-header>Charities Related To {{celebrity.name}}</clix-secondary-header></div></div><div class=\"row brand-row\"><div ng-repeat=\"charity in celebrity.charities.charities\" class=\"brand-container col-xs-6 col-sm-4 col-md-3 col-lg-2\"><clix-charity-content-callout charity=charity></clix-charity-content-callout></div></div></uib-tab></uib-tabset></div></div></div>"
   );
 
 
@@ -1688,6 +1698,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 }
             ];
 
+            $scope.onTabSelect = function(tab) {
+                catchMediaService.trackBrandPageEvent($stateParams.id, tab);
+            };
+
             brandsService.getBrandById($stateParams.id)
                 .then(
                     function onSuccess(data) {
@@ -1997,7 +2011,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         'categoryService',
         'userService',
         'modalService',
-        function($q, $log, $scope, $rootScope, $state, $stateParams, categoryService, userService, modalService) {
+        'catchMediaService',
+        function($q, $log, $scope, $rootScope, $state, $stateParams, categoryService, userService, modalService, catchMediaService) {
 
             function _resetIsFavorite() {
                 $scope.isFavorite = userService.isFavoriteCategory($stateParams.id);
@@ -2384,6 +2399,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 );
 
             catchMediaService.trackCharityPageEvent($stateParams.id);
+
+            $scope.onTabSelect = function(tab) {
+                catchMediaService.trackCharityPageEvent($stateParams.id, tab);
+            };
 
             $scope.onDonatePress = function() {
                 var modalInstance = $uibModal.open({
@@ -2801,7 +2820,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$uibModal',
         'shareModalService',
         'userService',
-        function($q, $log, $scope, $rootScope, $uibModal, shareModalService, userService) {
+        'catchMediaService',
+        function($q, $log, $scope, $rootScope, $uibModal, shareModalService, userService, catchMediaService) {
 
             $scope.menuVisible = false;
 
@@ -2953,7 +2973,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 onFavorite: '&',
                 isFavorited: '=',
                 addFavoriteTooltip: '@?',
-                removeFavoriteTooltip: '@?'
+                removeFavoriteTooltip: '@?',
+                type: '@',
+                entity: '='
             }
         }
     };
@@ -4117,7 +4139,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$state',
         'data',
         'modalService',
-        function($scope, $location, $uibModalInstance, $state, data, modalService) {
+        'catchMediaService',
+        function($scope, $location, $uibModalInstance, $state, data, modalService, catchMediaService) {
 
             $scope.tab = 'post';
             $scope.socialNetworks = [];
@@ -4129,32 +4152,43 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             $scope.charity = data.shareModalCharity;
             $scope.category = data.shareModalCategory;
 
-            var currentUrl = $location.absUrl(),
+            var type, entity,
+                currentUrl = $location.absUrl(),
                 shareContent = '';
 
             if (data.shareModalVideo) {
                 shareContent = 'Here\'s a video I thought you\'d enjoy from #ClixTV - ';
                 shareContent += data.shareModalVideo.title + ' ' + $state.href('video', { id: data.shareModalVideo.id }, {absolute: true});
+                type = 'video';
+                entity = data.shareModalVideo;
             }
 
             if (data.shareModalOffer) {
                 shareContent = 'Here\'s an offer I thought you\'d enjoy from #ClixTV - ';
                 shareContent += data.shareModalOffer.title + ' ' + $state.href('brand-offer', { id: data.shareModalOffer.campaign.id, offerId: data.shareModalOffer.id }, {absolute: true});
+                type = 'offer';
+                entity = data.shareModalOffer;
             }
 
             if (data.shareModalCelebrity) {
                 shareContent = 'I thought you\'d like to check out ' + data.shareModalCelebrity.name + ' on #ClixTV - ';
                 shareContent += $state.href('star', { id: data.shareModalCelebrity.id }, {absolute: true});
+                type = 'star';
+                entity = data.shareModalCelebrity;
             }
 
             if (data.shareModalBrand) {
                 shareContent = 'I thought you\'d enjoy visiting ' + data.shareModalBrand.title + ' on #ClixTV - ';
                 shareContent += $state.href('brand', { id: data.shareModalBrand.id }, {absolute: true});
+                type = 'brand';
+                entity = data.shareModalBrand;
             }
 
             if (data.shareModalCharity) {
                 shareContent = 'I thought you\'d enjoy visiting the charity page for ' + data.shareModalCharity.title + ' on #ClixTV - ';
                 shareContent += $state.href('charity', { id: data.shareModalCharity.id }, {absolute: true});
+                type = 'charity';
+                entity = data.shareModalCharity;
             }
 
             $scope.shareContent = shareContent;
@@ -4173,10 +4207,12 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
             $scope.onSendPress = function() {
                 $uibModalInstance.close();
+                catchMediaService.trackShareEvent(type, entity);
             };
 
             $scope.onPostPress = function() {
                 $uibModalInstance.close();
+                catchMediaService.trackShareEvent(type, entity);
             };
 
             $scope.onSocialNetworkPress = function(socialNetwork) {
@@ -4811,7 +4847,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$window',
         '$timeout',
         'searchService',
-        function($scope, $rootScope, $window, $timeout, searchService) {
+        'catchMediaService',
+        function($scope, $rootScope, $window, $timeout, searchService, catchMediaService) {
 
             var searchTimeout;
 
@@ -4874,11 +4911,15 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 }
             };
 
-            $rootScope.$on('$stateChangeSuccess',function(){
+            $rootScope.$on('$stateChangeSuccess', function(){
                 $scope.term = '';
                 $scope.searchVisible = false;
                 _hideSearchResults();
             });
+
+            $scope.onResultPress = function(event, entity) {
+                catchMediaService.trackSearchEvent(event, entity);
+            }
         }
     ];
 
@@ -5317,7 +5358,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         'notificationsService',
         'knetikService',
         'modalService',
-        function($q, $scope, $rootScope, $window, $timeout, $uibModal, notificationsService, knetikService, modalService) {
+        'catchMediaService',
+        function($q, $scope, $rootScope, $window, $timeout, $uibModal, notificationsService, knetikService, modalService, catchMediaService) {
 
             var latestOffset = 0;
 
@@ -5748,6 +5790,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 } else {
                     userService.addFavoriteCelebrity($stateParams.id);
                 }
+            };
+
+            $scope.onTabSelect = function(tab) {
+                catchMediaService.trackCelebrityPageEvent($stateParams.id, tab);
             };
 
             $scope.offerMenuItems = [
@@ -7392,8 +7438,44 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     $log.warn('Catch Media service has not been initialized yet');
                     return;
                 }
-                $log.log('Tracking', '"' + event + '"', 'event with data', data);
+                $log.log('Tracking', '"' + event + '"', 'app event with data', data);
                 instance.reportAppEvent(event, data);
+            }
+
+            function _reportMediaEvent(type, event, data) {
+                if (!instance) {
+                    $log.warn('Catch Media service has not been initialized yet');
+                    return;
+                }
+                $log.log('Tracking media event with type', '"' + type + '"', ', event', '"' + event + '"', ', and data', data);
+                instance.reportMediaEvent(new Date().getTime(), type, event, data);
+            }
+
+            function _getEventNameForType(type) {
+                switch (type) {
+                    case 'categories':
+                    case 'category':
+                        return '';
+
+                    case 'offers':
+                    case 'offer':
+                        return 'offer';
+
+                    case 'stars':
+                    case 'star':
+                        return 'person';
+
+                    case 'campaigns':
+                    case 'brands':
+                    case 'campaign':
+                    case 'brand':
+                        return 'campaign';
+
+                    case 'charities':
+                    case 'charity':
+                        return 'organization';
+                }
+                return undefined;
             }
 
             return {
@@ -7418,12 +7500,12 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     }
                 },
 
-                setUserId: function(id) {
-
+                setUser: function(email, type, extra) {
+                    instance.setUser(email, type, extra);
                 },
 
-                deleteUserId: function() {
-
+                deleteUser: function() {
+                    instance.unsetUser();
                 },
 
                 trackVideoPlayerEvent: function(playerInstance) {
@@ -7432,24 +7514,42 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     });
                 },
 
-                trackBrandPageEvent: function(id) {
-                    _reportAppEvent('campaign', { id: id });
+                trackBrandPageEvent: function(id, tab) {
+                    _reportAppEvent('campaign', { id: id, tab: tab });
                 },
 
-                trackCelebrityPageEvent: function(id) {
-                    _reportAppEvent('person', { id: id });
+                trackCelebrityPageEvent: function(id, tab) {
+                    _reportAppEvent('person', { id: id, tab: tab });
                 },
 
-                trackCharityPageEvent: function(id) {
-                    _reportAppEvent('organization', { id: id });
+                trackCharityPageEvent: function(id, tab) {
+                    _reportAppEvent('organization', { id: id, tab: tab });
                 },
 
-                trackOfferPageEvent: function(id) {
-                    _reportAppEvent('offer', { id: id });
+                trackOfferPageEvent: function(id, tab) {
+                    _reportAppEvent('offer', { id: id, tab: tab });
                 },
 
-                trackVideoPageEvent: function(id) {
-                    _reportAppEvent('episode', { id: id });
+                trackVideoPageEvent: function(id, tab) {
+                    _reportAppEvent('episode', { id: id, tab: tab });
+                },
+
+                trackSearchEvent: function(type, entity) {
+                    _reportMediaEvent(_getEventNameForType(type), 'search', {
+                        id: entity.id
+                    })
+                },
+
+                trackShareEvent: function(type, entity) {
+                    _reportMediaEvent(_getEventNameForType(type), 'share', {
+                        id: entity.id
+                    })
+                },
+
+                trackFavoriteEvent: function(type, id) {
+                    _reportMediaEvent(_getEventNameForType(type), 'favorite', {
+                        id: id
+                    })
                 }
             }
         }
@@ -8122,7 +8222,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         'VideoListModel',
         'UserModel',
         'modalService',
-        function($q, $http, $log, $rootScope, BrandListModel, OfferListModel, CharityListModel, CelebrityListModel, CategoryListModel, VideoListModel, UserModel, modalService) {
+        'catchMediaService',
+        function($q, $http, $log, $rootScope, BrandListModel, OfferListModel, CharityListModel, CelebrityListModel, CategoryListModel, VideoListModel, UserModel, modalService, catchMediaService) {
 
             var loggedInUser;
 
@@ -8202,6 +8303,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         });
                     }
                 }
+
+                catchMediaService.trackFavoriteEvent(type, id);
 
                 return $http.post('/api/account/' + userFavoriteMethod, {
                     id: id

@@ -12,8 +12,44 @@
                     $log.warn('Catch Media service has not been initialized yet');
                     return;
                 }
-                $log.log('Tracking', '"' + event + '"', 'event with data', data);
+                $log.log('Tracking', '"' + event + '"', 'app event with data', data);
                 instance.reportAppEvent(event, data);
+            }
+
+            function _reportMediaEvent(type, event, data) {
+                if (!instance) {
+                    $log.warn('Catch Media service has not been initialized yet');
+                    return;
+                }
+                $log.log('Tracking media event with type', '"' + type + '"', ', event', '"' + event + '"', ', and data', data);
+                instance.reportMediaEvent(new Date().getTime(), type, event, data);
+            }
+
+            function _getEventNameForType(type) {
+                switch (type) {
+                    case 'categories':
+                    case 'category':
+                        return '';
+
+                    case 'offers':
+                    case 'offer':
+                        return 'offer';
+
+                    case 'stars':
+                    case 'star':
+                        return 'person';
+
+                    case 'campaigns':
+                    case 'brands':
+                    case 'campaign':
+                    case 'brand':
+                        return 'campaign';
+
+                    case 'charities':
+                    case 'charity':
+                        return 'organization';
+                }
+                return undefined;
             }
 
             return {
@@ -38,12 +74,12 @@
                     }
                 },
 
-                setUserId: function(id) {
-
+                setUser: function(email, type, extra) {
+                    instance.setUser(email, type, extra);
                 },
 
-                deleteUserId: function() {
-
+                deleteUser: function() {
+                    instance.unsetUser();
                 },
 
                 trackVideoPlayerEvent: function(playerInstance) {
@@ -52,24 +88,42 @@
                     });
                 },
 
-                trackBrandPageEvent: function(id) {
-                    _reportAppEvent('campaign', { id: id });
+                trackBrandPageEvent: function(id, tab) {
+                    _reportAppEvent('campaign', { id: id, tab: tab });
                 },
 
-                trackCelebrityPageEvent: function(id) {
-                    _reportAppEvent('person', { id: id });
+                trackCelebrityPageEvent: function(id, tab) {
+                    _reportAppEvent('person', { id: id, tab: tab });
                 },
 
-                trackCharityPageEvent: function(id) {
-                    _reportAppEvent('organization', { id: id });
+                trackCharityPageEvent: function(id, tab) {
+                    _reportAppEvent('organization', { id: id, tab: tab });
                 },
 
-                trackOfferPageEvent: function(id) {
-                    _reportAppEvent('offer', { id: id });
+                trackOfferPageEvent: function(id, tab) {
+                    _reportAppEvent('offer', { id: id, tab: tab });
                 },
 
-                trackVideoPageEvent: function(id) {
-                    _reportAppEvent('episode', { id: id });
+                trackVideoPageEvent: function(id, tab) {
+                    _reportAppEvent('episode', { id: id, tab: tab });
+                },
+
+                trackSearchEvent: function(type, entity) {
+                    _reportMediaEvent(_getEventNameForType(type), 'search', {
+                        id: entity.id
+                    })
+                },
+
+                trackShareEvent: function(type, entity) {
+                    _reportMediaEvent(_getEventNameForType(type), 'share', {
+                        id: entity.id
+                    })
+                },
+
+                trackFavoriteEvent: function(type, id) {
+                    _reportMediaEvent(_getEventNameForType(type), 'favorite', {
+                        id: id
+                    })
                 }
             }
         }
