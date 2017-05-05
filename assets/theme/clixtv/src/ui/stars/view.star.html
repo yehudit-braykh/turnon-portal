@@ -42,8 +42,8 @@
 
                             <div class="col-sm-8">
                                 <div class="row clix-block-row">
-                                    <div class="clix-block-item col-xs-12 col-sm-12 col-md-6 col-lg-4" ng-repeat="video in series.seasons.seasons[0].episodes">
-                                        <clix-video-content-box video="video"></clix-video-content-box>
+                                    <div class="clix-block-item col-xs-12 col-sm-12 col-md-6 col-lg-4" ng-repeat="video in series.seasons.seasons[0].episodes | orderBy: 'episodeNumber'">
+                                        <clix-video-content-callout video="video"></clix-video-content-callout>
                                     </div>
                                 </div>
                             </div>

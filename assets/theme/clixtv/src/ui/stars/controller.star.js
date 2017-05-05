@@ -118,8 +118,6 @@
                 .then(
                     function onSuccess(data) {
 
-                        console.log(data);
-
                         $scope.celebrity = data;
                         $scope.active = 0;
 

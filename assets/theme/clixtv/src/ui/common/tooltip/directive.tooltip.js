@@ -21,7 +21,8 @@
     var tooltipTrigger = [
         '$timeout',
         '$window',
-        function($timeout, $window) {
+        '$rootScope',
+        function($timeout, $window, $rootScope) {
             return {
                 restrict: 'A',
                 controller: 'TooltipController',
@@ -69,6 +70,8 @@
 
                         angular.element(currentTooltipElement).removeClass('active');
 
+                        $rootScope.$broadcast('tooltip.closed');
+
                         currentTooltipElement.style.top = '-999px';
                         currentTooltipElement.style.left = '-999px';
                     });
@@ -97,6 +100,8 @@
                             tooltipElement.style.left = ((position.x + (width / 2)) - (tooltipElementWidth / 2)) + 'px';
                             angular.element(tooltipElement).addClass('active');
 
+                            $rootScope.$broadcast('tooltip.open');
+
                             // Don't hide the tooltip if the user hovers over it (since we're mousing off the trigger element)
                             angular.element(document.getElementById(scope.tooltipId)).off('mouseenter').on('mouseenter', function() {
                                 if (hideTimeout) {
@@ -109,6 +114,8 @@
                                 hideTimeout = $timeout(function() {
 
                                     angular.element(tooltipElement).removeClass('active');
+
+                                    $rootScope.$broadcast('tooltip.closed');
 
                                     $timeout(function() {
                                         tooltipElement.style.top = '-999px';
@@ -130,6 +137,8 @@
                             var tooltipElement = document.getElementById(scope.tooltipId);
 
                             angular.element(tooltipElement).removeClass('active');
+
+                            $rootScope.$broadcast('tooltip.closed');
 
                             $timeout(function() {
                                 tooltipElement.style.top = '-999px';

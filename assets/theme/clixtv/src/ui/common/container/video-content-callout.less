@@ -1,0 +1,174 @@
+@star-container-height: 50px;
+
+.clix-video-content-callout {
+
+    position: relative;
+
+    .video-thumbnail {
+        width: 100%;
+    }
+
+    .video-content-container {
+        .gradient(@color-transparent, @color-black);
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        overflow: hidden;
+    }
+
+    .star-info-container {
+        height: @star-container-height;
+        position: relative;
+        z-index: 200;
+        overflow: hidden;
+
+        .star-info-background {
+            .blur(4px);
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background-position: top center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .star-info {
+            .flex-display;
+            .align-items(center);
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background-color: fade(@color-dark-gray, 70%);
+            padding: 10px;
+        }
+
+        .star-avatar {
+            .border-radius(15px);
+            width: 30px;
+            height: 30px;
+            background-size: cover;
+        }
+
+        .star-name {
+            .flex(1);
+            font-family: @font-primary;
+            font-size: 14px;
+            color: @color-white;
+            margin-left: 14px;
+        }
+
+        .video-menu-icon {
+            font-size: 20px;
+            color: @color-gray2;
+            cursor: pointer;
+            padding: 10px;
+
+            &:hover {
+                color: @color-white;
+            }
+        }
+    }
+
+    .video-info-container {
+        position: absolute;
+        bottom: 0;
+        padding: 10px 10px 0;
+        color: @color-white;
+        font-family: @font-primary-bold;
+
+        .video-episode-number {
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .video-episode-title {
+            font-size: 64px;
+            line-height: 65px;
+            margin: 5px 0 8px -4px;
+        }
+
+        .video-series-title {
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .brands-container {
+            .flex-display;
+            border-top: 1px solid @color-gray23;
+            margin-top: 20px;
+            height: 45px;
+
+            .brand-icon {
+                .flex(1);
+                .opacity(.5);
+                background-size: contain;
+                background-position: center center;
+                background-repeat: no-repeat;
+            }
+        }
+    }
+
+    .video-content-overlay {
+        .opacity(0);
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 100;
+        background-color: @color-transparent-black;
+        cursor: pointer;
+
+        &.active {
+            .opacity(1);
+        }
+
+        .video-play-button {
+            position: absolute;
+            left: 38.5%;
+            right: 38.5%;
+            top: 50%;
+            margin-top: -33.8%;
+
+            &:hover {
+                .brightness(0.8);
+            }
+        }
+
+        .video-watchlist-button {
+            position: absolute;
+            color: @color-gray2;
+            font-size: 25px;
+            top: @star-container-height + 10px;
+            left: 10px;
+            cursor: pointer;
+            text-decoration: none;
+
+            &:hover {
+                color: @color-white;
+            }
+        }
+    }
+
+    .video-points-container {
+        position: absolute;
+        z-index: 300;
+        top: @star-container-height + 10px;
+        right: 10px;
+        display: inline-block;
+    }
+
+    .video-menu-container {
+        position: absolute;
+        right: 0;
+        top: 25px;
+        width: 100%;
+        padding: 7px;
+    }
+}
