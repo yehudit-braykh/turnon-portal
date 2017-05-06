@@ -8216,11 +8216,11 @@ button.close {
 .video-category-scroll-list .right-arrow-container {
   right: 0;
 }
-.video-category-scroll-list .video-content-container {
+.video-category-scroll-list .clix-video-content-callout {
   margin-bottom: 30px;
 }
 @media (min-width: 480px) {
-  .video-category-scroll-list .video-content-container {
+  .video-category-scroll-list .clix-video-content-callout {
     margin-right: 12px;
     margin-bottom: 0;
   }
@@ -13219,6 +13219,7 @@ button.close {
 }
 .clix-video-content-callout {
   position: relative;
+  min-height: 520px;
 }
 .clix-video-content-callout .video-thumbnail {
   width: 100%;
@@ -13306,6 +13307,7 @@ button.close {
   padding: 10px 10px 0;
   color: #FFF;
   font-family: 'montserratsemibold', sans-serif;
+  width: 100%;
 }
 .clix-video-content-callout .video-info-container .video-episode-number {
   font-size: 14px;
@@ -13315,10 +13317,15 @@ button.close {
   font-size: 64px;
   line-height: 65px;
   margin: 5px 0 8px -4px;
+  max-height: 133px;
+  overflow: hidden;
 }
 .clix-video-content-callout .video-info-container .video-series-title {
   font-size: 14px;
   text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .clix-video-content-callout .video-info-container .brands-container {
   display: -webkit-flex;
@@ -13340,6 +13347,7 @@ button.close {
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
+  margin: 5px 0;
 }
 .clix-video-content-callout .video-content-overlay {
   filter: alpha(opacity=0);
