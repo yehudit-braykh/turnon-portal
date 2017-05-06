@@ -80,7 +80,7 @@
         bottom: 0;
         padding: 10px 10px 0;
         color: @color-white;
-        font-family: @font-primary-bold;
+        font-family: @font-primary;
         width: 100%;
 
         .video-episode-number {
@@ -89,11 +89,18 @@
         }
 
         .video-episode-title {
-            font-size: 64px;
-            line-height: 65px;
-            margin: 5px 0 8px -4px;
+            font-size: 32px;
+            line-height: 32px;
+            margin: 5px 0 8px -2px;
             max-height: 133px;
             overflow: hidden;
+            font-family: @font-primary-bold;
+
+            @media (min-width: @screen-xl) {
+                font-size: 64px;
+                line-height: 64px;
+                margin-left: -4px;
+            }
         }
 
         .video-series-title {
