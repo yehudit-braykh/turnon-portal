@@ -35,9 +35,7 @@
                                 <clix-secondary-header>
                                     About {{configs.title}}
                                 </clix-secondary-header>
-                                <div class="home-description">
-                                    {{configs.description}}
-                                </div>
+                                <div class="home-description" ng-bind-html="configs.description | clixNewLineBreak"></div>
                             </content-description>
                             <sidebar-title>
                                 More Offers From {{configs.title}}

@@ -4,6 +4,7 @@
         return {
             restrict: 'AE',
             templateUrl: 'ui/common/page/landing/view.landing-video-content.html',
+            controller: 'LandingVideoContentController',
             transclude: {
                 mainContent: '?mainContent',
                 contentDescription: 'contentDescription',

@@ -3,10 +3,11 @@
     var VideoPlayerController = [
         '$q',
         '$scope',
+        '$rootScope',
         '$timeout',
         'knetikService',
         'catchMediaService',
-        function($q, $scope, $timeout, knetikService, catchMediaService) {
+        function($q, $scope, $rootScope, $timeout, knetikService, catchMediaService) {
 
             $timeout(function() {
                 var playerInstance;
@@ -46,6 +47,18 @@
                             if ($scope.onComplete) {
                                 $scope.onComplete();
                             }
+                        });
+
+                        jwplayer().on('play', function() {
+                            $rootScope.$broadcast('video.play');
+                        });
+
+                        jwplayer().on('pause', function() {
+                            $rootScope.$broadcast('video.pause');
+                        });
+
+                        jwplayer().on('complete', function() {
+                            $rootScope.$broadcast('video.complete');
                         });
 
                         catchMediaService.trackVideoPlayerEvent(playerInstance);

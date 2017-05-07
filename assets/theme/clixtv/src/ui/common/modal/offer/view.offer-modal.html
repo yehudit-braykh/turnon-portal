@@ -12,6 +12,9 @@
         <div class="offer-image-info-container row">
             <div class="col-xs-6">
                 <img ng-if="offer.carouselPic1" ng-src="{{offer.carouselPic1}}" class="offer-image" />
+                <div class="offer-expiration-date">
+                    Expires {{offer.expirationDate | clixDate : 'long'}}
+                </div>
             </div>
             <div class="col-xs-6">
                 <div class="instructions-title">

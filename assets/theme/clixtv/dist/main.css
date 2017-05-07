@@ -13219,7 +13219,6 @@ button.close {
 }
 .clix-video-content-callout {
   position: relative;
-  min-height: 520px;
 }
 .clix-video-content-callout .video-thumbnail {
   width: 100%;
@@ -13269,7 +13268,7 @@ button.close {
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: rgba(23, 23, 23, 0.7);
+  background-color: rgba(23, 23, 23, 0.8);
   padding: 10px;
 }
 .clix-video-content-callout .star-info-container .star-avatar {
@@ -14537,6 +14536,13 @@ button.close {
 }
 .clix-offer-modal .offer-image-info-container .offer-image {
   max-width: 100%;
+}
+.clix-offer-modal .offer-image-info-container .offer-expiration-date {
+  font-family: 'montserratregular', sans-serif;
+  font-size: 10px;
+  color: #8a8a8a;
+  text-transform: uppercase;
+  margin-top: 15px;
 }
 .clix-offer-modal .offer-image-info-container .instructions-title {
   font-size: 30px;

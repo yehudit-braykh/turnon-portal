@@ -37,9 +37,7 @@
                                     <clix-secondary-header>
                                         About {{charity.title}}
                                     </clix-secondary-header>
-                                    <div class="home-description">
-                                        {{charity.description}}
-                                    </div>
+                                    <div class="home-description" ng-bind-html="charity.description | clixNewLineBreak"></div>
                                     <div class="donate-button">
                                         <clix-primary-button type="charity" ng-click="onDonatePress()">
                                             Donate

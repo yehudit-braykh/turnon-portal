@@ -8,7 +8,7 @@
                     var BrandModel;
                     this.id = data._id;
                     this.title = data.title;
-                    this.expirationDate = data.expirationDate;
+                    this.expirationDate = data.expiration_date;
                     this.description = data.description;
                     this.longDescription = data.long_description;
 
