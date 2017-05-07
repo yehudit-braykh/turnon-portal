@@ -14,7 +14,8 @@
             'uiSwitch',
             'angularModalService',
             'LocalStorageModule',
-            'ngMask'
+            'ngMask',
+            'angular.filter'
         ])
         .config([
             '$locationProvider',
@@ -177,7 +178,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/account/settings/view.settings.html',
-    "<div class=clix-account-settings><clix-account-header><header-text>Settings</header-text></clix-account-header><div class=settings-page-content><div class=setting-row ng-repeat=\"setting in generalSettings\"><div class=setting-row-info><div class=setting-row-title>{{setting.label}}</div><div class=setting-row-description>{{setting.description}}</div></div><div class=setting-row-trigger><switch ng-model=setting.value class=setting-switch></switch></div></div><div class=settings-subtitle><clix-account-header><header-text>Your ClixTV</header-text></clix-account-header></div><div class=setting-row ng-repeat=\"setting in accountSettings\"><div class=setting-row-info><div class=setting-row-title>{{setting.label}}</div><div class=setting-row-description>{{setting.description}}</div></div><div class=setting-row-trigger><switch ng-model=setting.value class=setting-switch></switch></div></div><div class=settings-subtitle><clix-account-header><header-text>Notifications</header-text></clix-account-header></div><div class=setting-row><div class=setting-row-info><div class=setting-row-title>Send Notifications</div><div class=setting-row-description>How we will keep you Up-To-Date</div></div><div class=\"row setting-notification-container\"><div class=col-xs-6></div><div class=col-xs-6></div></div></div></div></div>"
+    "<div class=clix-account-settings><clix-account-header><header-text>Settings</header-text></clix-account-header><div class=settings-page-content><div ng-if=!ready><clix-loader size=large></clix-loader></div><div ng-id=ready><div class=setting-row ng-repeat=\"setting in generalSettings | orderBy: 'order'\"><div class=setting-row-info><div class=setting-row-title>{{setting.title}}</div><div class=setting-row-description>{{setting.description}}</div></div><div class=setting-row-trigger><switch ng-model=setting.enabled class=setting-switch ng-change=settingChange(setting)></switch></div></div><div class=settings-subtitle><clix-account-header><header-text>Your ClixTV</header-text></clix-account-header></div><div class=setting-row ng-repeat=\"setting in accountSettings | orderBy: 'order'\"><div class=setting-row-info><div class=setting-row-title>{{setting.title}}</div><div class=setting-row-description>{{setting.description}}</div></div><div class=setting-row-trigger><switch ng-model=setting.enabled class=setting-switch ng-change=settingChange(setting)></switch></div></div><div class=settings-subtitle><clix-account-header><header-text>Notifications</header-text></clix-account-header></div><div class=setting-row><div class=setting-row-info><div class=setting-row-title>Send Notifications</div><div class=setting-row-description>How we will keep you Up-To-Date</div></div><div class=\"row setting-notification-container\"><div class=col-xs-6></div><div class=col-xs-6></div></div></div></div></div></div>"
   );
 
 
@@ -1454,58 +1455,82 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$rootScope',
         'userService',
         function($q, $scope, $rootScope, userService) {
-            $scope.generalSettings = [
-                {
-                    label: 'Offers Updates',
-                    description: 'Get the latest brand updates on ClixTV',
-                    value: true
-                },
-                {
-                    label: 'Video Updates',
-                    description: 'Get notified when new videos are added to ClixTV',
-                    value: true
-                },
-                {
-                    label: 'Charity Updates',
-                    description: 'Get notified when new charities are added to ClixTV',
-                    value: true
-                }
-            ];
 
-            $scope.accountSettings = [
-                {
-                    label: 'Recommended Videos',
-                    description: 'ClixTV videos we think you\'ll like',
-                    value: true
-                },
-                {
-                    label: 'Video Category Updates',
-                    description: 'A favorite video category of yours is updated',
-                    value: true
-                },
-                {
-                    label: 'Star Updates',
-                    description: 'A favorite star of yours is updated',
-                    value: true
-                },
-                {
-                    label: 'Brand Updates',
-                    description: 'A favorite brand of yours is updated',
-                    value: true
-                },
-                {
-                    label: 'Charity Updates',
-                    description: 'A favorite charity of yours is updated',
-                    value: true
-                }
-            ];
+            $scope.ready = false;
+            userService.getAccountSettings()
+                .then(
+                    function onSuccess(data) {
+                        $scope.settings = data;
+                        $scope.generalSettings = data.settings.filter(function(setting) {
+                            return setting.type === 'general';
+                        });
+                        $scope.accountSettings = data.settings.filter(function(setting) {
+                            return setting.type === 'myClix';
+                        });
+                        $scope.ready = true;
+                    }
+                );
 
-            $scope.notifications = [
-                {
-                    label: 'Send Notifications',
-                    description: 'How we will keep you Up-To-Date'
+            $scope.settingChange = function(setting) {
+                if (setting.enabled) {
+                    userService.enableAccountSetting(setting.id);
+                } else {
+                    userService.disableAccountSetting(setting.id);
                 }
-            ]
+            };
+
+            // $scope.generalSettings = [
+            //     {
+            //         label: 'Offers Updates',
+            //         description: 'Get the latest brand updates on ClixTV',
+            //         value: true
+            //     },
+            //     {
+            //         label: 'Video Updates',
+            //         description: 'Get notified when new videos are added to ClixTV',
+            //         value: true
+            //     },
+            //     {
+            //         label: 'Charity Updates',
+            //         description: 'Get notified when new charities are added to ClixTV',
+            //         value: true
+            //     }
+            // ];
+            //
+            // $scope.accountSettings = [
+            //     {
+            //         label: 'Recommended Videos',
+            //         description: 'ClixTV videos we think you\'ll like',
+            //         value: true
+            //     },
+            //     {
+            //         label: 'Video Category Updates',
+            //         description: 'A favorite video category of yours is updated',
+            //         value: true
+            //     },
+            //     {
+            //         label: 'Star Updates',
+            //         description: 'A favorite star of yours is updated',
+            //         value: true
+            //     },
+            //     {
+            //         label: 'Brand Updates',
+            //         description: 'A favorite brand of yours is updated',
+            //         value: true
+            //     },
+            //     {
+            //         label: 'Charity Updates',
+            //         description: 'A favorite charity of yours is updated',
+            //         value: true
+            //     }
+            // ];
+            //
+            // $scope.notifications = [
+            //     {
+            //         label: 'Send Notifications',
+            //         description: 'How we will keep you Up-To-Date'
+            //     }
+            // ]
         }
     ];
 
@@ -6879,6 +6904,45 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     angular
         .module('clixtv')
+        .factory('AccountSettingListModel', [
+            'AccountSettingModel',
+            function(AccountSettingModel) {
+                return function(data) {
+                    if (!(data instanceof Array)) {
+                        return [];
+                    }
+                    this.settings = data.map(function(setting) {
+                        return new AccountSettingModel(setting);
+                    });
+                }
+            }
+        ]);
+}());
+(function() {
+
+    angular
+        .module('clixtv')
+        .factory('AccountSettingModel', [
+            function() {
+                return function(data) {
+                    if (!data) {
+                        return;
+                    }
+                    this.id = data._id;
+                    this.type = data.type;
+                    this.enabled = data.enabled;
+                    this.description = data.description;
+                    this.title = data.title;
+                    this.order = data.order;
+                }
+            }
+        ]);
+}());
+
+(function() {
+
+    angular
+        .module('clixtv')
         .factory('BrandListModel', [
             'BrandModel',
             function(BrandModel) {
@@ -8420,10 +8484,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         'CelebrityListModel',
         'CategoryListModel',
         'VideoListModel',
+        'AccountSettingListModel',
         'UserModel',
         'modalService',
         'catchMediaService',
-        function($q, $http, $log, $rootScope, BrandListModel, OfferListModel, CharityListModel, CelebrityListModel, CategoryListModel, VideoListModel, UserModel, modalService, catchMediaService) {
+        function($q, $http, $log, $rootScope, BrandListModel, OfferListModel, CharityListModel, CelebrityListModel, CategoryListModel, VideoListModel, AccountSettingListModel, UserModel, modalService, catchMediaService) {
 
             var loggedInUser;
 
@@ -8744,6 +8809,27 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                                 return new OfferListModel(data.data);
                             }
                         );
+                },
+
+                getAccountSettings: function() {
+                    return $http.get('/api/account/get_settings')
+                        .then(
+                            function onSuccess(data) {
+                                return new AccountSettingListModel(data.data);
+                            }
+                        );
+                },
+
+                enableAccountSetting: function(id) {
+                    return $http.post('/api/account/enable_setting', {
+                        id: id
+                    });
+                },
+
+                disableAccountSetting: function(id) {
+                    return $http.post('/api/account/disable_setting', {
+                        id: id
+                    });
                 },
 
                 isSavedOffer: function(id) {

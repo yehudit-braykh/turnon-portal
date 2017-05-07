@@ -14,7 +14,8 @@
             'uiSwitch',
             'angularModalService',
             'LocalStorageModule',
-            'ngMask'
+            'ngMask',
+            'angular.filter'
         ])
         .config([
             '$locationProvider',

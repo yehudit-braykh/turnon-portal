@@ -48,7 +48,8 @@ module.exports = function(grunt) {
                     'bower_components/ngFitText/dist/ng-FitText.min.js',
                     'bower_components/angular-modal-service/dst/angular-modal-service.min.js',
                     'node_modules/angular-local-storage/dist/angular-local-storage.js',
-                    'bower_components/ngMask/dist/ngMask.min.js'
+                    'bower_components/ngMask/dist/ngMask.min.js',
+                    'node_modules/angular-filter/dist/angular-filter.min.js'
                 ]
             }
         },

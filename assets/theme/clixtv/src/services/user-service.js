@@ -11,10 +11,11 @@
         'CelebrityListModel',
         'CategoryListModel',
         'VideoListModel',
+        'AccountSettingListModel',
         'UserModel',
         'modalService',
         'catchMediaService',
-        function($q, $http, $log, $rootScope, BrandListModel, OfferListModel, CharityListModel, CelebrityListModel, CategoryListModel, VideoListModel, UserModel, modalService, catchMediaService) {
+        function($q, $http, $log, $rootScope, BrandListModel, OfferListModel, CharityListModel, CelebrityListModel, CategoryListModel, VideoListModel, AccountSettingListModel, UserModel, modalService, catchMediaService) {
 
             var loggedInUser;
 
@@ -335,6 +336,27 @@
                                 return new OfferListModel(data.data);
                             }
                         );
+                },
+
+                getAccountSettings: function() {
+                    return $http.get('/api/account/get_settings')
+                        .then(
+                            function onSuccess(data) {
+                                return new AccountSettingListModel(data.data);
+                            }
+                        );
+                },
+
+                enableAccountSetting: function(id) {
+                    return $http.post('/api/account/enable_setting', {
+                        id: id
+                    });
+                },
+
+                disableAccountSetting: function(id) {
+                    return $http.post('/api/account/disable_setting', {
+                        id: id
+                    });
                 },
 
                 isSavedOffer: function(id) {
