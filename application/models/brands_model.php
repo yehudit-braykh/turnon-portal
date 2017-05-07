@@ -130,6 +130,15 @@ class Brands_model extends Uvod_model {
 				array_push($arr, $item->brand);
 				$item->brand = $this->rows($arr)[0];
 			}
+
+			if($item->campaign){
+				if($item->campaign->offers)
+					$item->campaign->offers = $this->rows($item->campaign->offers);
+
+				$arr = array();
+				array_push($arr, $item->campaign);
+				$item->campaign = $this->rows($arr)[0];
+			}
 			// debug($item->videos);
 			if($item->videos){
 				foreach ($item->videos as &$video) {

@@ -4,7 +4,7 @@
         function($http) {
             return {
                 getPoints: function() {
-                    return $http.get('/api/knetik/get_balance')
+                    return $http.get('/api/knetik/balance')
                         .then(
                             function onSuccess(data) {
                                 return data.data;

@@ -7,25 +7,66 @@ class Knetik extends REST_Controller{
         $this->load->library('HybridAuthLib');
         $this->load->model('knetik_model');
 	}
-    function get_balance_get(){
-         return $this->response($this->knetik_model->get_balance(),200);
+
+	function balance_get(){
+         return $this->response($this->knetik_model->balance(),200);
     }
 
-	function get_used_objects_get(){
-         return $this->response($this->knetik_model->get_user_objects(),200);
+	function activity_get(){
+         return $this->response($this->knetik_model->activity(),200);
     }
 
-    function save_activity_post(){
+	function save_offer_post(){
 		$id = $this->post('id');
-		$points = $this->post('points');
-		$wallets = $this->post('wallets');
-		if(!$id || !$points || !$wallets)
-			$this->response("id,points,wallets fields are mandatory", 400);
-        return $this->response($this->knetik_model->save_activity($id, $points, $wallets),200);
+		if(!$id)
+			$this->response("id field is mandatory", 400);
+        return $this->response($this->knetik_model->save_offer($id),200);
     }
 
-	function get_catalog_get(){
-         return $this->response($this->knetik_model->get_catalog(),200);
+	function view_offer_post(){
+		$id = $this->post('id');
+		if(!$id)
+			$this->response("id field is mandatory", 400);
+        return $this->response($this->knetik_model->view_offer($id),200);
+    }
+
+	function redeem_offer_post(){
+		$id = $this->post('id');
+		if(!$id)
+			$this->response("id field is mandatory", 400);
+        return $this->response($this->knetik_model->redeem_offer($id),200);
+    }
+
+	function campaign_share_post(){
+		$id = $this->post('id');
+		if(!$id)
+			$this->response("id field is mandatory", 400);
+        return $this->response($this->knetik_model->campaign_share($id),200);
+    }
+
+	function video_share_post(){
+		$id = $this->post('id');
+		if(!$id)
+			$this->response("id field is mandatory", 400);
+        return $this->response($this->knetik_model->video_share($id),200);
+    }
+
+	function view_post(){
+		$id = $this->post('id');
+		if(!$id)
+			$this->response("id field is mandatory", 400);
+        return $this->response($this->knetik_model->view($id),200);
+    }
+
+	function ad_video_view_post(){
+		$id = $this->post('id');
+		if(!$id)
+			$this->response("id field is mandatory", 400);
+        return $this->response($this->knetik_model->ad_video_view($id),200);
+    }
+
+	function catalog_get(){
+         return $this->response($this->knetik_model->catalog(),200);
     }
 
 	function redeem_card_post(){
@@ -34,18 +75,5 @@ class Knetik extends REST_Controller{
 
 		return $this->response($this->knetik_model->redeem_card($data, $points),200);
 	}
-
-	function upload_video_get(){
-
-		$video = new stdClass();
-
-        $video->title = "test video 1";
-        $video->_id= "2133423241";
-		$video->share_pts = "100";
-		$video->watch_pts = "50";
-
-		return $this->response($this->knetik_model->upload_video($video, "watch"),200);
-	}
-
 
 }
