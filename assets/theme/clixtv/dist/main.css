@@ -13382,7 +13382,7 @@ button.close {
   left: 38.5%;
   right: 38.5%;
   top: 50%;
-  margin-top: -33.8%;
+  margin-top: -15%;
 }
 .clix-video-content-callout .video-content-overlay .video-play-button:hover {
   -webkit-filter: brightness(0.8);
