@@ -7857,9 +7857,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 },
 
                 trackSearchEvent: function(type, entity) {
-                    _reportMediaEvent(_getEventNameForType(type), 'search', {
+                    _reportAppEvent('search', {
+                        type: _getEventNameForType(type),
                         id: entity.id
-                    })
+                    });
                 },
 
                 trackShareEvent: function(type, entity) {

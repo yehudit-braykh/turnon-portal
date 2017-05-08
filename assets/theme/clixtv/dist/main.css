@@ -9242,7 +9242,6 @@ button.close {
   display: block;
 }
 .home-page .video-overlay {
-  background: url('images/video-overlay.png') repeat;
   position: absolute;
   top: 0;
   left: 0;
