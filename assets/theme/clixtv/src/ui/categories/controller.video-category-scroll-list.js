@@ -18,7 +18,7 @@
 
             function _recalculateWidth() {
 
-                var splitWidth = 1;
+                var splitWidth = 2;
 
                 if ($window.innerWidth > 480) {
                     splitWidth = 2.7;

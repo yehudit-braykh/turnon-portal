@@ -15,8 +15,8 @@
                 </div>
             </slick>
         </div>
-        <div class="hidden-lg">
-            <div ng-repeat="video in category.videos.videos | limitTo: 4" class="video-content-container">
+        <div class="hidden-lg row video-list-content-container">
+            <div ng-repeat="video in category.videos.videos | limitTo: 4" class="video-thumbnail-container col-xs-6">
                 <clix-video-content-callout video="video"></clix-video-content-callout>
             </div>
             <div class="more-videos-button-container">

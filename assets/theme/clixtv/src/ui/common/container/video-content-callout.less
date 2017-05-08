@@ -52,14 +52,23 @@
             width: 30px;
             height: 30px;
             background-size: cover;
+            display: none;
+
+            @media (min-width: @screen-sm) {
+                display: block;
+            }
         }
 
         .star-name {
             .flex(1);
-            font-family: @font-primary;
+            font-family: @font-primary-bold;
             font-size: 14px;
             color: @color-white;
-            margin-left: 14px;
+
+            @media (min-width: @screen-sm) {
+                margin-left: 14px;
+                font-family: @font-primary;
+            }
         }
 
         .video-menu-icon {
@@ -83,17 +92,25 @@
         width: 100%;
 
         .video-episode-number {
-            font-size: 14px;
+            font-size: 8px;
             text-transform: uppercase;
+            @media (min-width: @screen-sm) {
+                font-size: 14px;
+            }
         }
 
         .video-episode-title {
-            font-size: 32px;
-            line-height: 32px;
-            margin: 5px 0 8px -2px;
+            font-size: 18px;
+            line-height: 18px;
             max-height: 133px;
             overflow: hidden;
             font-family: @font-primary-bold;
+
+            @media (min-width: @screen-sm) {
+                font-size: 32px;
+                line-height: 32px;
+                margin: 5px 0 8px -2px;
+            }
 
             @media (min-width: @screen-xl) {
                 font-size: 64px;
@@ -103,11 +120,14 @@
         }
 
         .video-series-title {
-            font-size: 14px;
+            font-size: 8px;
             text-transform: uppercase;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            @media (min-width: @screen-sm) {
+                font-size: 14px;
+            }
         }
 
         .brands-container {
@@ -139,7 +159,9 @@
         cursor: pointer;
 
         &.active {
-            .opacity(1);
+            @media (min-width: @screen-sm) {
+                .opacity(1);
+            }
         }
 
         .video-play-button {
@@ -183,5 +205,11 @@
         top: 25px;
         width: 100%;
         padding: 7px;
+    }
+
+    .violator {
+        @media (max-width: @screen-sm) {
+            font-size: 6px;
+        }
     }
 }
