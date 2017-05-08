@@ -7714,7 +7714,8 @@ button.close {
   z-index: 8000;
   top: 0;
 }
-.clix-header.filled {
+.clix-header.filled,
+.clix-header.solid-navigation {
   background-color: #000;
 }
 .clix-header.clix-header-hidden {

@@ -42,7 +42,10 @@
                     .state('video', {
                         url: '/video/:id',
                         templateUrl: 'ui/video-permalink/view.video-permalink.html',
-                        controller: 'VideoPermalinkController'
+                        controller: 'VideoPermalinkController',
+                        data: {
+                            solidNavigation: true
+                        }
                     })
                     .state('brands', {
                         url: '/brands',
@@ -111,6 +114,9 @@
                         controller: 'AccountController',
                         params: {
                             tab: ''
+                        },
+                        data: {
+                            solidNavigation: true
                         }
                     })
             }
@@ -128,7 +134,8 @@
 
                 $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
                     $('html, body').animate({ scrollTop: 0 }, 200);
-                    $rootScope.printable = to.data && to.data.print;
+                    $rootScope.printable = (to.data && to.data.print);
+                    $rootScope.solidNavigation = (to.data && to.data.solidNavigation);
                 });
 
                 $rootScope.$on('user.login', function(event, data) {
