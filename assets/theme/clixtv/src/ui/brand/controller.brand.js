@@ -11,7 +11,8 @@
         'userService',
         'modalService',
         'catchMediaService',
-        function($q, $log, $scope, $rootScope, $state, $stateParams, brandsService, userService, modalService, catchMediaService) {
+        'knetikService',
+        function($q, $log, $scope, $rootScope, $state, $stateParams, brandsService, userService, modalService, catchMediaService, knetikService) {
 
             if ($stateParams.offerId) {
                 modalService.showModal({
@@ -31,7 +32,7 @@
                         offerId: $stateParams.offerId
                     }
                 });
-            }
+            };
 
             function _resetIsFavorite() {
                 $scope.isFavorite = userService.isFavoriteBrand($stateParams.id);
@@ -49,6 +50,10 @@
 
             $rootScope.$on('favorite.added', _resetIsFavorite);
             $rootScope.$on('favorite.removed', _resetIsFavorite);
+
+            $rootScope.$on('video.complete', function() {
+                knetikService.viewCampaignVideo($stateParams.id);
+            });
 
             userService.getLoggedInUser()
                 .then(

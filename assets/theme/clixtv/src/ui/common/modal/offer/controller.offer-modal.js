@@ -9,7 +9,8 @@
         'offersService',
         'userService',
         'data',
-        function($q, $scope, $rootScope, modalService, educationModalService, offersService, userService, data) {
+        'knetikService',
+        function($q, $scope, $rootScope, modalService, educationModalService, offersService, userService, data, knetikService) {
 
             function _setIsSaved() {
                 $scope.isSavedOffer = userService.isSavedOffer(data.offerId);
@@ -17,12 +18,11 @@
 
             $rootScope.$on('user.login', _setIsSaved);
 
-
             offersService.getOfferById(data.offerId)
                 .then(
                     function onSuccess(data) {
                         $scope.offer = data;
-                        console.log(data);
+                        knetikService.viewOffer($scope.offer.id);
                     }
                 );
 
@@ -40,6 +40,7 @@
                         );
                 } else {
                     userService.addSavedOffer($scope.offer.id);
+                    knetikService.saveOffer($scope.offer.id);
                     $scope.isSavedOffer = true;
                 }
             };

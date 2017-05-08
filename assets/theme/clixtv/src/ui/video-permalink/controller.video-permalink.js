@@ -12,7 +12,8 @@
         'celebrityService',
         'userService',
         'catchMediaService',
-        function($q, $scope, $rootScope, $timeout, $window, $filter, $stateParams, videosService, celebrityService, userService, catchMediaService) {
+        'knetikService',
+        function($q, $scope, $rootScope, $timeout, $window, $filter, $stateParams, videosService, celebrityService, userService, catchMediaService, knetikService) {
 
             $scope.isMobile = ($window.innerWidth <= 800);
             $scope.expanded = false;
@@ -24,6 +25,10 @@
                 $scope.isOnWatchlist = userService.isVideoOnWatchlist($scope.video.id);
                 $scope.isFavoriteCelebrity = userService.isFavoriteCelebrity($scope.video.celebrity.id);
             }
+
+            $rootScope.$on('video.complete', function() {
+                knetikService.viewEpisode($scope.video.id);
+            });
 
             $rootScope.$on('user.login', function(event, data) {
                 $scope.loggedInUser = data;

@@ -1648,7 +1648,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         'userService',
         'modalService',
         'catchMediaService',
-        function($q, $log, $scope, $rootScope, $state, $stateParams, brandsService, userService, modalService, catchMediaService) {
+        'knetikService',
+        function($q, $log, $scope, $rootScope, $state, $stateParams, brandsService, userService, modalService, catchMediaService, knetikService) {
 
             if ($stateParams.offerId) {
                 modalService.showModal({
@@ -1668,7 +1669,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         offerId: $stateParams.offerId
                     }
                 });
-            }
+            };
 
             function _resetIsFavorite() {
                 $scope.isFavorite = userService.isFavoriteBrand($stateParams.id);
@@ -1686,6 +1687,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
             $rootScope.$on('favorite.added', _resetIsFavorite);
             $rootScope.$on('favorite.removed', _resetIsFavorite);
+
+            $rootScope.$on('video.complete', function() {
+                knetikService.viewCampaignVideo($stateParams.id);
+            });
 
             userService.getLoggedInUser()
                 .then(
@@ -4236,7 +4241,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         'offersService',
         'userService',
         'data',
-        function($q, $scope, $rootScope, modalService, educationModalService, offersService, userService, data) {
+        'knetikService',
+        function($q, $scope, $rootScope, modalService, educationModalService, offersService, userService, data, knetikService) {
 
             function _setIsSaved() {
                 $scope.isSavedOffer = userService.isSavedOffer(data.offerId);
@@ -4244,12 +4250,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
             $rootScope.$on('user.login', _setIsSaved);
 
-
             offersService.getOfferById(data.offerId)
                 .then(
                     function onSuccess(data) {
                         $scope.offer = data;
-                        console.log(data);
+                        knetikService.viewOffer($scope.offer.id);
                     }
                 );
 
@@ -4267,6 +4272,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         );
                 } else {
                     userService.addSavedOffer($scope.offer.id);
+                    knetikService.saveOffer($scope.offer.id);
                     $scope.isSavedOffer = true;
                 }
             };
@@ -6690,7 +6696,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         'celebrityService',
         'userService',
         'catchMediaService',
-        function($q, $scope, $rootScope, $timeout, $window, $filter, $stateParams, videosService, celebrityService, userService, catchMediaService) {
+        'knetikService',
+        function($q, $scope, $rootScope, $timeout, $window, $filter, $stateParams, videosService, celebrityService, userService, catchMediaService, knetikService) {
 
             $scope.isMobile = ($window.innerWidth <= 800);
             $scope.expanded = false;
@@ -6702,6 +6709,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 $scope.isOnWatchlist = userService.isVideoOnWatchlist($scope.video.id);
                 $scope.isFavoriteCelebrity = userService.isFavoriteCelebrity($scope.video.celebrity.id);
             }
+
+            $rootScope.$on('video.complete', function() {
+                knetikService.viewEpisode($scope.video.id);
+            });
 
             $rootScope.$on('user.login', function(event, data) {
                 $scope.loggedInUser = data;
@@ -8048,6 +8059,42 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                                 return data.data;
                             }
                         );
+                },
+
+                saveOffer: function(id) {
+                    return $http.post('/api/knetik/save_offer', {
+                        id: id
+                    });
+                },
+
+                viewOffer: function(id) {
+                    return $http.post('/api/knetik/view_offer', {
+                        id: id
+                    });
+                },
+
+                shareCampaign: function(id) {
+                    return $http.post('/api/knetik/share', {
+                        id: id
+                    });
+                },
+
+                shareEpisode: function(id) {
+                    return $http.post('/api/knetik/video_share', {
+                        id: id
+                    });
+                },
+
+                viewEpisode: function(id) {
+                    return $http.post('/api/knetik/view', {
+                        id: id
+                    });
+                },
+
+                viewCampaignVideo: function(id) {
+                    return $http.post('/api/knetik/ad_video_view', {
+                        id: id
+                    });
                 }
             }
         }
