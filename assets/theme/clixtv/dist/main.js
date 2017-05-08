@@ -4537,6 +4537,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 .then(
                     function onSuccess(data) {
                         $scope.loggedInUser = data;
+                        if ($scope.loggedInUser) {
+                            $scope.loggedInUser.displayName = $scope.loggedInUser.firstName + ' ' + $scope.loggedInUser.lastName;
+                        }
                     }
                 );
 
@@ -4601,6 +4604,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
             $rootScope.$on('user.login', function(event, data) {
                 $scope.loggedInUser = data;
+                if ($scope.loggedInUser) {
+                    $scope.loggedInUser.displayName = $scope.loggedInUser.firstName + ' ' + $scope.loggedInUser.lastName;
+                }
             });
 
             $scope.onBackgroundPress = _closeNavigation;

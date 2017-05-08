@@ -14963,6 +14963,11 @@ button.close {
   font-family: 'montserratregular', sans-serif;
   font-size: 16px;
   color: #FFF;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 10px;
 }
 .clix-right-navigation .avatar-container .my-clixtv {
   font-family: 'montserratregular', sans-serif;
@@ -15174,6 +15179,11 @@ button.close {
   font-family: 'montserratregular', sans-serif;
   font-size: 16px;
   color: #FFF;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 10px;
 }
 .clix-navigation-bar .avatar-container .my-clixtv {
   font-family: 'montserratregular', sans-serif;
