@@ -8,19 +8,69 @@
         function($q, $scope, $rootScope, userService) {
 
             $scope.ready = false;
-            userService.getAccountSettings()
+
+            var userSaving = false;
+
+            function _saveUser() {
+                if (userSaving) {
+                    return;
+                }
+                userSaving = true;
+                userService.updateUser($scope.loggedInUser)
+                    .finally(
+                        function onFinally() {
+                            userSaving = false;
+                        }
+                    )
+            }
+
+            $q.all(
+                    [
+                        userService.getLoggedInUser(),
+                        userService.getAccountSettings()
+                    ]
+                )
                 .then(
                     function onSuccess(data) {
-                        $scope.settings = data;
-                        $scope.generalSettings = data.settings.filter(function(setting) {
+                        $scope.loggedInUser = data[0];
+                        $scope.settings = data[1];
+                        $scope.generalSettings = data[1].settings.filter(function(setting) {
                             return setting.type === 'general';
                         });
-                        $scope.accountSettings = data.settings.filter(function(setting) {
+                        $scope.accountSettings = data[1].settings.filter(function(setting) {
                             return setting.type === 'myClix';
                         });
+                        $scope.enableEmailNotifications = ($scope.loggedInUser.enableEmailNotifications !== false);
+                        $scope.enableTextNotifications = ($scope.loggedInUser.enableTextNotifications !== false);
+                        $scope.enablePushNotifications = ($scope.loggedInUser.enablePushNotifications !== false);
                         $scope.ready = true;
                     }
                 );
+
+            $scope.$watch('enableEmailNotifications', function(newValue) {
+                if ($scope.loggedInUser.enableEmailNotifications !== newValue) {
+                    $scope.loggedInUser.enableEmailNotifications = newValue;
+                    _saveUser();
+                }
+            });
+
+            $scope.$watch('enableTextNotifications', function(newValue) {
+                if ($scope.loggedInUser.enableTextNotifications !== newValue) {
+                    $scope.loggedInUser.enableTextNotifications = newValue;
+                    _saveUser();
+                }
+            });
+
+            $scope.$watch('enablePushNotifications', function(newValue) {
+                if ($scope.loggedInUser.enablePushNotifications !== newValue) {
+                    $scope.loggedInUser.enablePushNotifications = newValue;
+                    _saveUser();
+                }
+            });
+
+            $scope.onSaveField = function() {
+                _saveUser();
+            };
 
             $scope.settingChange = function(setting) {
                 if (setting.enabled) {

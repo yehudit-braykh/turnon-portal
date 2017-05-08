@@ -11311,7 +11311,8 @@ button.close {
     display: block;
   }
 }
-.clix-account-overview .account-info-sub-header {
+.clix-account-overview .account-info-sub-header,
+.clix-account-settings .account-info-sub-header {
   font-family: 'montserratregular', sans-serif;
   text-align: center;
   font-size: 14px;
@@ -11322,11 +11323,13 @@ button.close {
   padding-bottom: 14px;
 }
 @media (min-width: 768px) {
-  .clix-account-overview .account-info-sub-header {
+  .clix-account-overview .account-info-sub-header,
+  .clix-account-settings .account-info-sub-header {
     text-align: left;
   }
 }
-.clix-account-overview .form-error-message {
+.clix-account-overview .form-error-message,
+.clix-account-settings .form-error-message {
   filter: alpha(opacity=0);
   -webkit-opacity: 0;
   -moz-opacity: 0;
@@ -11335,40 +11338,48 @@ button.close {
   font-family: 'montserratregular', sans-serif;
   color: #fe0000;
 }
-.clix-account-overview .form-error-message.active {
+.clix-account-overview .form-error-message.active,
+.clix-account-settings .form-error-message.active {
   filter: alpha(opacity=100);
   -webkit-opacity: 1;
   -moz-opacity: 1;
   opacity: 1;
 }
-.clix-account-overview .clix-form-input {
+.clix-account-overview .clix-form-input,
+.clix-account-settings .clix-form-input {
   margin-bottom: 10px;
 }
-.clix-account-overview .form-value-container {
+.clix-account-overview .form-value-container,
+.clix-account-settings .form-value-container {
   max-width: 360px;
 }
-.clix-account-overview .personal-info-form {
+.clix-account-overview .personal-info-form,
+.clix-account-settings .personal-info-form {
   background-color: #3d3d3d;
   padding-top: 32px;
   padding-bottom: 31px;
 }
-.clix-account-overview .personal-info-form-row {
+.clix-account-overview .personal-info-form-row,
+.clix-account-settings .personal-info-form-row {
   padding-top: 25px;
   padding-bottom: 5px;
   margin-left: 9px;
   margin-right: 9px;
   border-bottom: 1px solid #636363;
 }
-.clix-account-overview .personal-info-form-row:last-child {
+.clix-account-overview .personal-info-form-row:last-child,
+.clix-account-settings .personal-info-form-row:last-child {
   border-bottom-width: 0;
 }
 @media (min-width: 768px) {
-  .clix-account-overview .personal-info-form-row {
+  .clix-account-overview .personal-info-form-row,
+  .clix-account-settings .personal-info-form-row {
     margin-left: 45px;
     margin-right: 45px;
   }
 }
-.clix-account-overview .form-header {
+.clix-account-overview .form-header,
+.clix-account-settings .form-header {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: -ms-flex;
@@ -11378,7 +11389,8 @@ button.close {
   align-items: flex-end;
   margin-bottom: 9px;
 }
-.clix-account-overview .form-header-label {
+.clix-account-overview .form-header-label,
+.clix-account-settings .form-header-label {
   font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   text-transform: uppercase;
@@ -11386,24 +11398,29 @@ button.close {
   letter-spacing: 1.6px;
   margin-right: 25px;
 }
-.clix-account-overview .form-header-edit {
+.clix-account-overview .form-header-edit,
+.clix-account-settings .form-header-edit {
   font-size: 24px;
   color: #8a8a8a;
 }
-.clix-account-overview .form-header-edit:hover {
+.clix-account-overview .form-header-edit:hover,
+.clix-account-settings .form-header-edit:hover {
   color: #FFF;
   text-decoration: none;
   cursor: pointer;
 }
-.clix-account-overview .form-value-buttons {
+.clix-account-overview .form-value-buttons,
+.clix-account-settings .form-value-buttons {
   margin-bottom: 15px;
   margin-top: 10px;
 }
-.clix-account-overview .form-value-button {
+.clix-account-overview .form-value-button,
+.clix-account-settings .form-value-button {
   display: inline-block;
   margin-right: 10px;
 }
-.clix-account-overview input {
+.clix-account-overview input,
+.clix-account-settings input {
   font-family: 'montserratregular', sans-serif;
   font-size: 16px;
   background-color: #353535;
@@ -11412,85 +11429,102 @@ button.close {
   color: #FFF;
   width: 100%;
 }
-.clix-account-overview input:disabled {
+.clix-account-overview input:disabled,
+.clix-account-settings input:disabled {
   background-color: rgba(0, 0, 0, 0);
   border-color: rgba(0, 0, 0, 0);
   padding-left: 0;
 }
-.clix-account-overview .input-error input {
+.clix-account-overview .input-error input,
+.clix-account-settings .input-error input {
   border-width: 0;
 }
-.clix-account-overview .reward-points {
+.clix-account-overview .reward-points,
+.clix-account-settings .reward-points {
   padding: 44px 44px 40px 44px;
   background-color: #3d3d3d;
   text-align: center;
 }
 @media (min-width: 768px) {
-  .clix-account-overview .reward-points {
+  .clix-account-overview .reward-points,
+  .clix-account-settings .reward-points {
     padding-top: 45px;
   }
 }
-.clix-account-overview .reward-points .points-label {
+.clix-account-overview .reward-points .points-label,
+.clix-account-settings .reward-points .points-label {
   font-family: 'montserratregular', sans-serif;
   font-size: 45px;
   color: #0dc73a;
   letter-spacing: 1.6px;
 }
-.clix-account-overview .reward-points .available-balance-label {
+.clix-account-overview .reward-points .available-balance-label,
+.clix-account-settings .reward-points .available-balance-label {
   font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   color: #FFF;
   line-height: 20px;
   margin-top: 10px;
 }
-.clix-account-overview .reward-points .available-balance-label a {
+.clix-account-overview .reward-points .available-balance-label a,
+.clix-account-settings .reward-points .available-balance-label a {
   color: #fe0000;
 }
 @media (min-width: 768px) {
-  .clix-account-overview .reward-points .available-balance-label {
+  .clix-account-overview .reward-points .available-balance-label,
+  .clix-account-settings .reward-points .available-balance-label {
     margin-top: 0;
   }
 }
-.clix-account-overview .reward-points .rewards-button {
+.clix-account-overview .reward-points .rewards-button,
+.clix-account-settings .reward-points .rewards-button {
   width: 220px;
   margin: 0 auto;
 }
 @media (min-width: 768px) {
-  .clix-account-overview .body-content {
+  .clix-account-overview .body-content,
+  .clix-account-settings .body-content {
     margin-left: 0;
     margin-right: 0;
   }
 }
 @media (min-width: 768px) {
-  .clix-account-overview .personal-info-container {
+  .clix-account-overview .personal-info-container,
+  .clix-account-settings .personal-info-container {
     padding-right: 25px;
     padding-left: 53px;
   }
 }
 @media (min-width: 768px) {
-  .clix-account-overview .reward-points-container {
+  .clix-account-overview .reward-points-container,
+  .clix-account-settings .reward-points-container {
     padding-left: 25px;
     padding-right: 53px;
   }
 }
-.clix-account-overview .reward-points-block {
+.clix-account-overview .reward-points-block,
+.clix-account-settings .reward-points-block {
   padding-bottom: 5px;
   margin-bottom: 37px;
   display: none;
 }
 @media (min-width: 768px) {
-  .clix-account-overview .reward-points-block {
+  .clix-account-overview .reward-points-block,
+  .clix-account-settings .reward-points-block {
     display: block;
   }
 }
-.clix-account-overview .reward-points-block.first-block {
+.clix-account-overview .reward-points-block.first-block,
+.clix-account-settings .reward-points-block.first-block {
   display: block;
 }
-.clix-account-overview .reward-points-block.last-block {
+.clix-account-overview .reward-points-block.last-block,
+.clix-account-settings .reward-points-block.last-block {
   padding-bottom: 50px;
   border-bottom-width: 0 !important;
 }
-.clix-account-overview .level-label {
+.clix-account-overview .level-label,
+.clix-account-settings .level-label {
   font-size: 45px;
   font-family: 'montserratregular', sans-serif;
   letter-spacing: 2.3px;
@@ -11499,7 +11533,8 @@ button.close {
   line-height: 50px;
   margin-bottom: 5px;
 }
-.clix-account-overview .progress-label {
+.clix-account-overview .progress-label,
+.clix-account-settings .progress-label {
   font-family: 'montserratregular', sans-serif;
   color: #FFF;
   font-size: 14px;
@@ -11507,7 +11542,8 @@ button.close {
   letter-spacing: 1.6px;
   line-height: 22px;
 }
-.clix-account-overview .clix-progress-bar-container {
+.clix-account-overview .clix-progress-bar-container,
+.clix-account-settings .clix-progress-bar-container {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
@@ -11521,7 +11557,8 @@ button.close {
   margin-top: 18px;
   margin-bottom: 22px;
 }
-.clix-account-overview .clix-progress-bar-container .clix-progress-bar {
+.clix-account-overview .clix-progress-bar-container .clix-progress-bar,
+.clix-account-settings .clix-progress-bar-container .clix-progress-bar {
   background-color: #911685;
   background-image: -webkit-gradient(linear, left top, right top, from(#911685), to(#fa0d1b));
   background-image: -webkit-linear-gradient(left, #911685, #fa0d1b);
@@ -11537,22 +11574,26 @@ button.close {
   width: 100%;
   height: 100%;
 }
-.clix-account-overview .form-value-button {
+.clix-account-overview .form-value-button,
+.clix-account-settings .form-value-button {
   position: relative;
 }
-.clix-account-overview .form-value-button.has-errors .save-button-label {
+.clix-account-overview .form-value-button.has-errors .save-button-label,
+.clix-account-settings .form-value-button.has-errors .save-button-label {
   filter: alpha(opacity=0);
   -webkit-opacity: 0;
   -moz-opacity: 0;
   opacity: 0;
 }
-.clix-account-overview .form-value-button.has-errors .save-button-error-label {
+.clix-account-overview .form-value-button.has-errors .save-button-error-label,
+.clix-account-settings .form-value-button.has-errors .save-button-error-label {
   filter: alpha(opacity=100);
   -webkit-opacity: 1;
   -moz-opacity: 1;
   opacity: 1;
 }
-.clix-account-overview .form-value-button .save-button-error-label {
+.clix-account-overview .form-value-button .save-button-error-label,
+.clix-account-settings .form-value-button .save-button-error-label {
   filter: alpha(opacity=0);
   -webkit-opacity: 0;
   -moz-opacity: 0;
@@ -12034,6 +12075,11 @@ button.close {
   display: flex;
   padding: 38px 0;
 }
+@media (max-width: 768px) {
+  .clix-account-settings .setting-row.notifications-setting-row {
+    display: block;
+  }
+}
 .clix-account-settings .setting-row:first-child {
   padding-top: 0;
 }
@@ -12065,6 +12111,71 @@ button.close {
 }
 .clix-account-settings .settings-subtitle .clix-account-header {
   padding-left: 0;
+  margin-right: 0;
+}
+.clix-account-settings .setting-notification-container {
+  -webkit-flex: 2;
+  -ms-flex: 2;
+  flex: 2;
+  margin: 0;
+}
+.clix-account-settings .setting-notification-container .row {
+  margin: 0;
+}
+.clix-account-settings .setting-notification-container .setting-text-container,
+.clix-account-settings .setting-notification-container .setting-push-container {
+  padding: 0;
+}
+.clix-account-settings .setting-notification-container .setting-text-push-container,
+.clix-account-settings .setting-notification-container .setting-email-container {
+  padding-right: 0;
+  padding-left: 0;
+}
+@media (min-width: 768px) {
+  .clix-account-settings .setting-notification-container .setting-text-push-container,
+  .clix-account-settings .setting-notification-container .setting-email-container {
+    padding-left: 60px;
+  }
+}
+.clix-account-settings .notification-label {
+  font-family: 'montserratregular', sans-serif;
+  font-size: 14px;
+  letter-spacing: 1.6px;
+  color: #FFF;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  margin-top: 40px;
+}
+@media (min-width: 768px) {
+  .clix-account-settings .notification-label {
+    margin-top: 0;
+  }
+}
+.clix-account-settings .setting-email-container {
+  border-bottom: 1px solid #636363;
+  padding-bottom: 40px;
+}
+@media (min-width: 768px) {
+  .clix-account-settings .setting-email-container {
+    border-right: 1px solid #636363;
+    border-bottom-width: 0;
+    padding-bottom: 0;
+  }
+}
+.clix-account-settings .personal-info-form-row {
+  margin-left: 0;
+  margin-right: 10px;
+}
+.clix-account-settings .setting-notification-profile-desc {
+  font-family: 'montserratregular', sans-serif;
+  font-size: 14px;
+  color: #8a8a8a;
+  margin-right: 50px;
+}
+@media (max-width: 768px) {
+  .clix-account-settings .clix-checkbox {
+    display: inline;
+  }
 }
 .clix-hero-banner {
   position: relative;

@@ -185,7 +185,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/account/settings/view.settings.html',
-    "<div class=clix-account-settings><clix-account-header><header-text>Settings</header-text></clix-account-header><div class=settings-page-content><div ng-if=!ready><clix-loader size=large></clix-loader></div><div ng-id=ready><div class=setting-row ng-repeat=\"setting in generalSettings | orderBy: 'order'\"><div class=setting-row-info><div class=setting-row-title>{{setting.title}}</div><div class=setting-row-description>{{setting.description}}</div></div><div class=setting-row-trigger><switch ng-model=setting.enabled class=setting-switch ng-change=settingChange(setting)></switch></div></div><div class=settings-subtitle><clix-account-header><header-text>Your ClixTV</header-text></clix-account-header></div><div class=setting-row ng-repeat=\"setting in accountSettings | orderBy: 'order'\"><div class=setting-row-info><div class=setting-row-title>{{setting.title}}</div><div class=setting-row-description>{{setting.description}}</div></div><div class=setting-row-trigger><switch ng-model=setting.enabled class=setting-switch ng-change=settingChange(setting)></switch></div></div><div class=settings-subtitle><clix-account-header><header-text>Notifications</header-text></clix-account-header></div><div class=setting-row><div class=setting-row-info><div class=setting-row-title>Send Notifications</div><div class=setting-row-description>How we will keep you Up-To-Date</div></div><div class=\"row setting-notification-container\"><div class=col-xs-6></div><div class=col-xs-6></div></div></div></div></div></div>"
+    "<div class=clix-account-settings><clix-account-header><header-text>Settings</header-text></clix-account-header><div class=settings-page-content><div ng-if=!ready><clix-loader size=large></clix-loader></div><div ng-id=ready><div class=setting-row ng-repeat=\"setting in generalSettings | orderBy: 'order'\"><div class=setting-row-info><div class=setting-row-title>{{setting.title}}</div><div class=setting-row-description>{{setting.description}}</div></div><div class=setting-row-trigger><switch ng-model=setting.enabled class=setting-switch ng-change=settingChange(setting)></switch></div></div><div class=settings-subtitle><clix-account-header><header-text>Your ClixTV</header-text></clix-account-header></div><div class=setting-row ng-repeat=\"setting in accountSettings | orderBy: 'order'\"><div class=setting-row-info><div class=setting-row-title>{{setting.title}}</div><div class=setting-row-description>{{setting.description}}</div></div><div class=setting-row-trigger><switch ng-model=setting.enabled class=setting-switch ng-change=settingChange(setting)></switch></div></div><div class=settings-subtitle><clix-account-header><header-text>Notifications</header-text></clix-account-header></div><div class=\"setting-row notifications-setting-row\"><div class=setting-row-info><div class=setting-row-title>Send Notifications</div><div class=setting-row-description>How we will keep you Up-To-Date</div></div><div class=\"row setting-notification-container\"><div class=\"col-sm-6 setting-email-container\"><div class=notification-label>Email</div><clix-checkbox ng-model=enableEmailNotifications></clix-checkbox><div class=setting-notification-profile-container><div class=setting-notification-profile-label><clix-account-overview-input ng-model=loggedInUser.email on-save=onSaveField type=email><input-label>Email</input-label></clix-account-overview-input></div><div class=setting-notification-profile-desc>Modifying your email address here will change the email address for your account.</div></div></div><div class=\"col-sm-6 setting-text-push-container\"><div class=row><div class=\"col-xs-6 setting-text-container\"><div class=notification-label>Text</div><clix-checkbox ng-model=enableTextNotifications></clix-checkbox></div><div class=\"col-xs-6 setting-push-container\"><div class=notification-label>Push</div><clix-checkbox ng-model=enablePushNotifications></clix-checkbox></div></div><div class=setting-notification-profile-container><div class=setting-notification-profile-label><clix-account-overview-input ng-model=loggedInUser.phone on-save=onSaveField type=phone><input-label>Phone</input-label></clix-account-overview-input></div></div><div class=setting-notification-profile-desc>Modifying your phone number here will change the phone number for your account.</div></div></div></div></div></div></div>"
   );
 
 
@@ -1469,19 +1469,69 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         function($q, $scope, $rootScope, userService) {
 
             $scope.ready = false;
-            userService.getAccountSettings()
+
+            var userSaving = false;
+
+            function _saveUser() {
+                if (userSaving) {
+                    return;
+                }
+                userSaving = true;
+                userService.updateUser($scope.loggedInUser)
+                    .finally(
+                        function onFinally() {
+                            userSaving = false;
+                        }
+                    )
+            }
+
+            $q.all(
+                    [
+                        userService.getLoggedInUser(),
+                        userService.getAccountSettings()
+                    ]
+                )
                 .then(
                     function onSuccess(data) {
-                        $scope.settings = data;
-                        $scope.generalSettings = data.settings.filter(function(setting) {
+                        $scope.loggedInUser = data[0];
+                        $scope.settings = data[1];
+                        $scope.generalSettings = data[1].settings.filter(function(setting) {
                             return setting.type === 'general';
                         });
-                        $scope.accountSettings = data.settings.filter(function(setting) {
+                        $scope.accountSettings = data[1].settings.filter(function(setting) {
                             return setting.type === 'myClix';
                         });
+                        $scope.enableEmailNotifications = ($scope.loggedInUser.enableEmailNotifications !== false);
+                        $scope.enableTextNotifications = ($scope.loggedInUser.enableTextNotifications !== false);
+                        $scope.enablePushNotifications = ($scope.loggedInUser.enablePushNotifications !== false);
                         $scope.ready = true;
                     }
                 );
+
+            $scope.$watch('enableEmailNotifications', function(newValue) {
+                if ($scope.loggedInUser.enableEmailNotifications !== newValue) {
+                    $scope.loggedInUser.enableEmailNotifications = newValue;
+                    _saveUser();
+                }
+            });
+
+            $scope.$watch('enableTextNotifications', function(newValue) {
+                if ($scope.loggedInUser.enableTextNotifications !== newValue) {
+                    $scope.loggedInUser.enableTextNotifications = newValue;
+                    _saveUser();
+                }
+            });
+
+            $scope.$watch('enablePushNotifications', function(newValue) {
+                if ($scope.loggedInUser.enablePushNotifications !== newValue) {
+                    $scope.loggedInUser.enablePushNotifications = newValue;
+                    _saveUser();
+                }
+            });
+
+            $scope.onSaveField = function() {
+                _saveUser();
+            };
 
             $scope.settingChange = function(setting) {
                 if (setting.enabled) {
