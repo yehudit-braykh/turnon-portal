@@ -139,7 +139,7 @@
                 });
 
                 $rootScope.$on('user.login', function(event, data) {
-                    if (data && data.id) {
+                    if (data && (data.id || data._id)) {
                         catchMediaService.setUser(data.email, 'default', data);
                     }
                 });

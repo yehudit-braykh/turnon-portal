@@ -5,7 +5,8 @@
         '$scope',
         '$stateParams',
         'brandsService',
-        function($q, $scope, $stateParams, brandsService) {
+        'catchMediaService',
+        function($q, $scope, $stateParams, brandsService, catchMediaService) {
 
             var defaultFilterOptions = [
                 {
@@ -127,6 +128,8 @@
                         $scope.offers = data;
                     }
                 );
+
+            catchMediaService.trackBrandPageEvent();
 
         }
     ];

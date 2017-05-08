@@ -5,7 +5,8 @@
         '$scope',
         '$stateParams',
         'brandsService',
-        function($q, $scope, $stateParams, brandsService) {
+        'catchMediaService',
+        function($q, $scope, $stateParams, brandsService, catchMediaService) {
 
             var defaultFilterOptions = [
                 {
@@ -68,6 +69,7 @@
                     }
                 );
 
+            catchMediaService.trackCharityPageEvent();
         }
     ];
 

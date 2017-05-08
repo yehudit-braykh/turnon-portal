@@ -29,7 +29,7 @@
                 switch (type) {
                     case 'categories':
                     case 'category':
-                        return '';
+                        return 'category';
 
                     case 'offers':
                     case 'offer':
@@ -88,6 +88,10 @@
                     });
                 },
 
+                trackCategoryPageEvent: function(id) {
+                    _reportAppEvent('category', { id: id });
+                },
+
                 trackBrandPageEvent: function(id, tab) {
                     _reportAppEvent('campaign', { id: id, tab: tab });
                 },
@@ -115,15 +119,17 @@
                 },
 
                 trackShareEvent: function(type, entity) {
-                    _reportMediaEvent(_getEventNameForType(type), 'share', {
-                        id: entity.id
-                    })
+                    _reportAppEvent('share', {
+                        id: entity.id,
+                        type: _getEventNameForType(type)
+                    });
                 },
 
                 trackFavoriteEvent: function(type, id) {
-                    _reportMediaEvent(_getEventNameForType(type), 'favorite', {
-                        id: id
-                    })
+                    _reportAppEvent('favorite', {
+                        id: id,
+                        type: _getEventNameForType(type)
+                    });
                 }
             }
         }

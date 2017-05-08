@@ -139,7 +139,7 @@
                 });
 
                 $rootScope.$on('user.login', function(event, data) {
-                    if (data && data.id) {
+                    if (data && (data.id || data._id)) {
                         catchMediaService.setUser(data.email, 'default', data);
                     }
                 });
@@ -1231,7 +1231,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         $scope.form = {
                             firstName: data.firstName,
                             lastName: data.lastName,
-                            email: /*data.email*/ 'justin.podzimek@gmail.com',
+                            email: data.email,
                             password: '*********',
                             gender: (data.gender) ? data.gender.charAt(0).toUpperCase() + data.gender.slice(1) : undefined,
                             phone: data.phone,
@@ -1734,7 +1734,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$scope',
         '$stateParams',
         'brandsService',
-        function($q, $scope, $stateParams, brandsService) {
+        'catchMediaService',
+        function($q, $scope, $stateParams, brandsService, catchMediaService) {
 
             var defaultFilterOptions = [
                 {
@@ -1857,6 +1858,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     }
                 );
 
+            catchMediaService.trackBrandPageEvent();
+
         }
     ];
 
@@ -1923,7 +1926,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$q',
         '$scope',
         'categoryService',
-        function($q, $scope, categoryService) {
+        'catchMediaService',
+        function($q, $scope, categoryService, catchMediaService) {
 
             $scope.filterOptions = [
                 {
@@ -1979,8 +1983,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     function onSuccess(data) {
                         $scope.categories = data;
                     }
-                )
+                );
 
+            catchMediaService.trackCategoryPageEvent();
         }
     ];
 
@@ -2097,6 +2102,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         $state.go('404');
                     }
                 );
+
+            catchMediaService.trackCategoryPageEvent($stateParams.id);
         }
     ];
 
@@ -2233,7 +2240,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$scope',
         '$stateParams',
         'brandsService',
-        function($q, $scope, $stateParams, brandsService) {
+        'catchMediaService',
+        function($q, $scope, $stateParams, brandsService, catchMediaService) {
 
             var defaultFilterOptions = [
                 {
@@ -2296,6 +2304,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     }
                 );
 
+            catchMediaService.trackCharityPageEvent();
         }
     ];
 
@@ -6107,7 +6116,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$q',
         '$scope',
         'celebrityService',
-        function($q, $scope, celebrityService) {
+        'catchMediaService',
+        function($q, $scope, celebrityService, catchMediaService) {
 
             $scope.filterOptions = [
                 {
@@ -6147,7 +6157,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     function onSuccess(data) {
                         $scope.stars = data;
                     }
-                )
+                );
+
+            catchMediaService.trackCelebrityPageEvent();
 
         }
     ];
@@ -7694,7 +7706,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 switch (type) {
                     case 'categories':
                     case 'category':
-                        return '';
+                        return 'category';
 
                     case 'offers':
                     case 'offer':
@@ -7753,6 +7765,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     });
                 },
 
+                trackCategoryPageEvent: function(id) {
+                    _reportAppEvent('category', { id: id });
+                },
+
                 trackBrandPageEvent: function(id, tab) {
                     _reportAppEvent('campaign', { id: id, tab: tab });
                 },
@@ -7780,15 +7796,17 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 },
 
                 trackShareEvent: function(type, entity) {
-                    _reportMediaEvent(_getEventNameForType(type), 'share', {
-                        id: entity.id
-                    })
+                    _reportAppEvent('share', {
+                        id: entity.id,
+                        type: _getEventNameForType(type)
+                    });
                 },
 
                 trackFavoriteEvent: function(type, id) {
-                    _reportMediaEvent(_getEventNameForType(type), 'favorite', {
-                        id: id
-                    })
+                    _reportAppEvent('favorite', {
+                        id: id,
+                        type: _getEventNameForType(type)
+                    });
                 }
             }
         }

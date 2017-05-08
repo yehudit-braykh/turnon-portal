@@ -4,7 +4,8 @@
         '$q',
         '$scope',
         'categoryService',
-        function($q, $scope, categoryService) {
+        'catchMediaService',
+        function($q, $scope, categoryService, catchMediaService) {
 
             $scope.filterOptions = [
                 {
@@ -60,8 +61,9 @@
                     function onSuccess(data) {
                         $scope.categories = data;
                     }
-                )
+                );
 
+            catchMediaService.trackCategoryPageEvent();
         }
     ];
 

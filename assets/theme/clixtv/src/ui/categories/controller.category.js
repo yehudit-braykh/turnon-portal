@@ -107,6 +107,8 @@
                         $state.go('404');
                     }
                 );
+
+            catchMediaService.trackCategoryPageEvent($stateParams.id);
         }
     ];
 

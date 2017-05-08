@@ -4,7 +4,8 @@
         '$q',
         '$scope',
         'celebrityService',
-        function($q, $scope, celebrityService) {
+        'catchMediaService',
+        function($q, $scope, celebrityService, catchMediaService) {
 
             $scope.filterOptions = [
                 {
@@ -44,7 +45,9 @@
                     function onSuccess(data) {
                         $scope.stars = data;
                     }
-                )
+                );
+
+            catchMediaService.trackCelebrityPageEvent();
 
         }
     ];
