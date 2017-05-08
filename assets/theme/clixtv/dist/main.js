@@ -447,6 +447,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('ui/common/modal/share/view.share-settings.html',
+    "<clix-modal modal-title=\"Share Settings\"><div class=clix-share-settings-modal><div class=share-settings-row><div class=\"social-network-icon-container facebook-social-network\"><i class=\"icon-facebook-logo social-network-icon\"></i></div><div class=\"social-network-info-container row\"><div class=\"social-network-description col-sm-8\">Connect your Facebook account</div><div class=\"social-network-connect-button col-sm-4\"><clix-tertiary-button>Connect</clix-tertiary-button></div></div></div><div class=share-settings-row><div class=\"social-network-icon-container twitter-social-network\"><i class=\"icon-twitter-logo social-network-icon\"></i></div><div class=\"social-network-info-container row\"><div class=\"social-network-description col-sm-8\">Connect your Twitter account</div><div class=\"social-network-connect-button col-sm-4\"><clix-tertiary-button>Connect</clix-tertiary-button></div></div></div><div class=share-settings-row><div class=\"social-network-icon-container tumblr-social-network\"><i class=\"icon-tumblr-logo social-network-icon\"></i></div><div class=\"social-network-info-container row\"><div class=\"social-network-description col-sm-8\">Connect your Tumblr account</div><div class=\"social-network-connect-button col-sm-4\"><clix-tertiary-button>Connect</clix-tertiary-button></div></div></div><div class=share-settings-footer>We will never store your password.</div></div></clix-modal>"
+  );
+
+
   $templateCache.put('ui/common/modal/share/view.share.html',
     "<clix-modal><div class=clix-share-modal><div class=clix-tabs><uib-tabset active=active><uib-tab index=0 heading=\"Post To\" select=\"onTabPress('post')\"><div class=modal-post-content><div ng-if=video><clix-share-modal-video-content video=video></clix-share-modal-video-content></div><div ng-if=celebrity><clix-share-modal-celebrity-content celebrity=celebrity></clix-share-modal-celebrity-content></div><div ng-if=offer><clix-share-modal-offer-content offer=offer></clix-share-modal-offer-content></div><div ng-if=brand><clix-share-modal-brand-content brand=brand></clix-share-modal-brand-content></div><div ng-if=charity><clix-share-modal-charity-content charity=charity></clix-share-modal-charity-content></div></div></uib-tab><uib-tab index=1 heading=\"Send To...\" select=\"onTabPress('send')\"><div class=modal-send-content><div ng-if=video><clix-share-modal-video-content video=video></clix-share-modal-video-content></div><div ng-if=celebrity><clix-share-modal-celebrity-content celebrity=celebrity></clix-share-modal-celebrity-content></div><div ng-if=offer><clix-share-modal-offer-content offer=offer></clix-share-modal-offer-content></div><div ng-if=brand><clix-share-modal-brand-content brand=brand></clix-share-modal-brand-content></div><div ng-if=charity><clix-share-modal-charity-content charity=charity></clix-share-modal-charity-content></div></div></uib-tab></uib-tabset><div class=share-modal-footer><div ng-show=\"tab === 'post'\"><div class=clix-share-modal-textbox><textarea>{{shareContent}}</textarea></div><div class=share-modal-post-container><div class=share-modal-social-networks><div class=share-modal-post-to-label>Post to</div><a class=\"social-network-icon-container facebook-social-network\" ng-click=\"onSocialNetworkPress('facebook')\" ng-class=\"{'active': socialNetworks.indexOf('facebook') !== -1}\"><i class=\"icon-facebook-logo social-network-icon\"></i> </a><a class=\"social-network-icon-container twitter-social-network\" ng-click=\"onSocialNetworkPress('twitter')\" ng-class=\"{'active': socialNetworks.indexOf('twitter') !== -1}\"><i class=\"icon-twitter-logo social-network-icon\"></i> </a><a class=\"social-network-icon-container tumblr-social-network\" ng-click=\"onSocialNetworkPress('tumblr')\" ng-class=\"{'active': socialNetworks.indexOf('tumblr') !== -1}\"><i class=\"icon-tumblr-logo social-network-icon\"></i></a></div><a ng-click=onSettingsPress() class=share-modal-settings>Settings</a></div></div><div ng-show=\"tab === 'send'\"><div class=clix-share-modal-input><input placeholder=\"Search Friends\"></div><div class=\"clix-share-modal-textbox send-textbox\"><textarea>{{shareContent}}</textarea></div><div class=\"share-modal-post-container share-modal-copy-link-container\"><a href=# class=share-modal-copy-link>Copy Video Link</a></div></div><div class=\"row footer-modal-buttons-container\"><div class=\"col-xs-6 footer-modal-button\"><a class=cancel-button ng-click=onCancelPress()>{{showBackButton ? 'Back' : 'Cancel'}}</a></div><div class=\"col-xs-6 footer-modal-button\"><clix-primary-button ng-show=\"tab === 'send'\" ng-click=onSendPress()>Send</clix-primary-button><clix-primary-button ng-show=\"tab === 'post'\" ng-click=onPostPress()>Post</clix-primary-button></div></div></div></div></div></clix-modal>"
   );
@@ -1478,59 +1483,6 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     userService.disableAccountSetting(setting.id);
                 }
             };
-
-            // $scope.generalSettings = [
-            //     {
-            //         label: 'Offers Updates',
-            //         description: 'Get the latest brand updates on ClixTV',
-            //         value: true
-            //     },
-            //     {
-            //         label: 'Video Updates',
-            //         description: 'Get notified when new videos are added to ClixTV',
-            //         value: true
-            //     },
-            //     {
-            //         label: 'Charity Updates',
-            //         description: 'Get notified when new charities are added to ClixTV',
-            //         value: true
-            //     }
-            // ];
-            //
-            // $scope.accountSettings = [
-            //     {
-            //         label: 'Recommended Videos',
-            //         description: 'ClixTV videos we think you\'ll like',
-            //         value: true
-            //     },
-            //     {
-            //         label: 'Video Category Updates',
-            //         description: 'A favorite video category of yours is updated',
-            //         value: true
-            //     },
-            //     {
-            //         label: 'Star Updates',
-            //         description: 'A favorite star of yours is updated',
-            //         value: true
-            //     },
-            //     {
-            //         label: 'Brand Updates',
-            //         description: 'A favorite brand of yours is updated',
-            //         value: true
-            //     },
-            //     {
-            //         label: 'Charity Updates',
-            //         description: 'A favorite charity of yours is updated',
-            //         value: true
-            //     }
-            // ];
-            //
-            // $scope.notifications = [
-            //     {
-            //         label: 'Send Notifications',
-            //         description: 'How we will keep you Up-To-Date'
-            //     }
-            // ]
         }
     ];
 
@@ -4311,6 +4263,20 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 }());
 (function() {
 
+    var ShareSettingsController = [
+        '$scope',
+        'modalService',
+        function($scope, modalService) {
+
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .controller('ShareSettingsController', ShareSettingsController);
+}());
+(function() {
+
     var ShareController = [
         '$scope',
         '$location',
@@ -4404,7 +4370,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             };
 
             $scope.onSettingsPress = function() {
-                console.log('fda');
+                modalService.showModal({
+                    templateUrl: 'ui/common/modal/share/view.share-settings.html',
+                    controller: 'ShareSettingsController'
+                })
             };
 
             $scope.showBackButton = modalService.getNumberOfModalsInStack() >= 2;

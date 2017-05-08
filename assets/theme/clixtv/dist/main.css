@@ -14322,6 +14322,124 @@ button.close {
     font-size: 13px;
   }
 }
+.clix-share-settings-modal .share-settings-row {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  padding: 30px 0;
+  border-top: 1px solid #636363;
+  margin: 0 10px;
+}
+@media (min-width: 768px) {
+  .clix-share-settings-modal .share-settings-row {
+    padding: 35px 30px;
+    margin: 0;
+  }
+}
+.clix-share-settings-modal .share-settings-row:first-child {
+  border-top-width: 0;
+}
+.clix-share-settings-modal .share-settings-row .social-network-info-container {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin: 0;
+}
+.clix-share-settings-modal .share-settings-row .social-network-connect-button,
+.clix-share-settings-modal .share-settings-row .social-network-description {
+  padding: 0;
+}
+.clix-share-settings-modal .share-settings-row .social-network-connect-button {
+  text-align: right;
+  margin-top: 11px;
+}
+@media (min-width: 768px) {
+  .clix-share-settings-modal .share-settings-row .social-network-connect-button {
+    margin-top: 0;
+  }
+}
+.clix-share-settings-modal .share-settings-row .social-network-icon-container {
+  -webkit-border-radius: 23px;
+  -moz-border-radius: 23px;
+  border-radius: 23px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  color: #FFF;
+  padding-top: 12px;
+}
+.clix-share-settings-modal .share-settings-row .social-network-icon-container.twitter-social-network {
+  padding-top: 14px;
+}
+@media (min-width: 768px) {
+  .clix-share-settings-modal .share-settings-row .social-network-icon-container.twitter-social-network {
+    padding-top: 11px;
+  }
+}
+@media (min-width: 768px) {
+  .clix-share-settings-modal .share-settings-row .social-network-icon-container {
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    width: 40px;
+    height: 40px;
+    padding-top: 8px;
+  }
+}
+.clix-share-settings-modal .share-settings-row .facebook-social-network {
+  background-color: #3b5998;
+}
+.clix-share-settings-modal .share-settings-row .twitter-social-network {
+  background-color: #1da1f2;
+}
+.clix-share-settings-modal .share-settings-row .tumblr-social-network {
+  background-color: #36465d;
+}
+.clix-share-settings-modal .share-settings-row .social-network-icon {
+  font-size: 20px;
+}
+.clix-share-settings-modal .share-settings-row .social-network-icon.icon-twitter-logo {
+  font-size: 18px;
+}
+.clix-share-settings-modal .share-settings-row .social-network-description {
+  font-family: 'montserratregular', sans-serif;
+  color: #FFF;
+  font-size: 13px;
+  text-transform: uppercase;
+  padding-left: 15px;
+  margin-top: 10px;
+  letter-spacing: 2px;
+}
+@media (min-width: 768px) {
+  .clix-share-settings-modal .share-settings-row .clix-tertiary-button .left-edge {
+    top: 1px;
+  }
+}
+@media (min-width: 768px) {
+  .clix-share-settings-modal .share-settings-row .clix-tertiary-button .right-edge {
+    right: -17px;
+    top: -1px;
+  }
+}
+.clix-share-settings-modal .share-settings-footer {
+  font-family: 'montserratregular', sans-serif;
+  color: #FFF;
+  font-size: 13px;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 2px;
+  padding-bottom: 50px;
+}
 .clix-redeem-rewards-modal .reward-callout {
   background-color: #1f1f1f;
   padding: 22px 10px;

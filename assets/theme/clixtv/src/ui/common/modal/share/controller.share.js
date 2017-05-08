@@ -93,7 +93,10 @@
             };
 
             $scope.onSettingsPress = function() {
-                console.log('fda');
+                modalService.showModal({
+                    templateUrl: 'ui/common/modal/share/view.share-settings.html',
+                    controller: 'ShareSettingsController'
+                })
             };
 
             $scope.showBackButton = modalService.getNumberOfModalsInStack() >= 2;
