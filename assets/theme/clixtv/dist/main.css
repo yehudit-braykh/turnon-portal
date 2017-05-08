@@ -8549,6 +8549,12 @@ button.close {
   color: #8a8a8a;
   margin-right: 1px;
 }
+@media (max-width: 768px) {
+  .tooltip-menu .menu-icon.icon-remove-icon {
+    font-size: 15px;
+    margin: 0 2px;
+  }
+}
 .tooltip-menu .menu-label {
   position: relative;
 }
