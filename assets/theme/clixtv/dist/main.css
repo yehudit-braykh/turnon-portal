@@ -12479,10 +12479,10 @@ button.close {
 .clix-charity-logo .logo-image,
 .clix-brand-category-logo .logo-image {
   position: absolute;
-  top: 20px;
-  left: 20px;
-  right: 20px;
-  bottom: 20px;
+  top: 50px;
+  left: 50px;
+  right: 50px;
+  bottom: 50px;
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
