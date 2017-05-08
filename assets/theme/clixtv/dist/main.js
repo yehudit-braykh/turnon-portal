@@ -50,7 +50,10 @@
                     .state('brands', {
                         url: '/brands',
                         templateUrl: 'ui/brand/view.brands.html',
-                        controller: 'BrandsController'
+                        controller: 'BrandsController',
+                        data: {
+                            solidNavigation: true
+                        }
                     })
                     .state('brand', {
                         url: '/brand/:id',
@@ -70,12 +73,18 @@
                     .state('charities', {
                         url: '/charities',
                         templateUrl: 'ui/charity/view.charities.html',
-                        controller: 'CharitiesController'
+                        controller: 'CharitiesController',
+                        data: {
+                            solidNavigation: true
+                        }
                     })
                     .state('stars', {
                         url: '/stars',
                         templateUrl: 'ui/stars/view.stars.html',
-                        controller: 'StarsController'
+                        controller: 'StarsController',
+                        data: {
+                            solidNavigation: true
+                        }
                     })
                     .state('star', {
                         url: '/star/:id',
@@ -88,7 +97,10 @@
                     .state('categories', {
                         url: '/categories',
                         templateUrl: 'ui/categories/view.categories.html',
-                        controller: 'CategoriesController'
+                        controller: 'CategoriesController',
+                        data: {
+                            solidNavigation: true
+                        }
                     })
                     .state('category', {
                         url: '/category/:id',
