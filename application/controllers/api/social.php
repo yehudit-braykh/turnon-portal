@@ -10,14 +10,14 @@ class Social extends REST_Controller{
         $this->load->library('HybridAuthLib');
 		// $this->load->library('session');
 	}
-    function google_post(){
+    function twitter_post(){
 
 		$message = $this->post("message");
 		$link = $this->post("link");
 		$picture = $this->post("picture");
 
 
-		$adapter = $this->hybridauthlib->authenticate( "Google" );
+		$adapter = $this->hybridauthlib->authenticate( "Twitter" );
 
 	  	$adapter->setUserStatus(
 	    	array(
