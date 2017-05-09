@@ -13551,6 +13551,9 @@ button.close {
   -ms-filter: brightness(0.8);
   filter: brightness(0.8);
 }
+.clix-video-content-callout .video-content-overlay .video-play-button img {
+  max-width: 100%;
+}
 .clix-video-content-callout .video-content-overlay .video-watchlist-button {
   position: absolute;
   color: #8a8a8a;
