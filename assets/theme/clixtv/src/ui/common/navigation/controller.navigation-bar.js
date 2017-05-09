@@ -40,13 +40,10 @@
             };
 
             $scope.onSearchPress = function($event) {
-                $event.preventDefault();
                 $scope.searchVisible = !$scope.searchVisible;
                 $rootScope.$broadcast(($scope.searchVisible) ? 'mobilesearch.open' : 'mobilesearch.close');
                 if ($scope.searchVisible) {
-                    $timeout(function() {
-                        $window.document.getElementById('site-search-input-field').focus();
-                    });
+                    $window.document.getElementById('site-search-input-field').focus();
                 }
             };
 
