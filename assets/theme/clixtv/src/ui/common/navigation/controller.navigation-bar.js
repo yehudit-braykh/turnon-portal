@@ -39,7 +39,8 @@
                 $state.go(path);
             };
 
-            $scope.onSearchPress = function() {
+            $scope.onSearchPress = function($event) {
+                $event.preventDefault();
                 $scope.searchVisible = !$scope.searchVisible;
                 $rootScope.$broadcast(($scope.searchVisible) ? 'mobilesearch.open' : 'mobilesearch.close');
                 if ($scope.searchVisible) {
