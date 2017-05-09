@@ -8,34 +8,64 @@ class Social extends REST_Controller{
 	function __construct(){
 		parent::__construct();
         $this->load->library('HybridAuthLib');
-        $this->load->library('HybridAuthLib');
 		// $this->load->library('session');
 	}
-    function post_twitter_status_post(){
-        $data= $this->post();
-    //    debug($data);
-        $service = $this->hybridauthlib->authenticate("Twitter");
+    function google_post(){
 
-        debug($service->getAccessToken());
+		$message = $this->post("message");
+		$link = $this->post("link");
+		$picture = $this->post("picture");
 
-        $accessToken = $service->getAccessToken();
-        $service->setUserStatus($data);
+
+		$adapter = $this->hybridauthlib->authenticate( "Google" );
+
+	  	$adapter->setUserStatus(
+	    	array(
+	       		"message" => $message,
+	       		"link"    => $link,
+	       		"picture" => $picture
+	    	)
+	  	);
+
+		return $adapter;
 
     }
 
-    function post_tumblr_status_post(){
-        $data= array();
+	function facebook_post(){
+    	$message = $this->post("message");
+		$link = $this->post("link");
+		$picture = $this->post("picture");
 
-		$service = $this->hybridauthlib->authenticate("Tumblr");
+	  	$adapter = $this->hybridauthlib->authenticate( "Facebook" );
 
-        debug($service->getUserProfile());
+	  	$adapter->setUserStatus(
+	    	array(
+	       		"message" => $message,
+	       		"link"    => $link,
+	       		"picture" => $picture
+	    	)
+	  	);
 
-        $accessToken = $service->getAccessToken();
-        $service->setUserStatus($data);
+		return $adapter;
 
+    }
 
+    function tumblr_post(){
+		$message = $this->post("message");
+		$link = $this->post("link");
+		$picture = $this->post("picture");
 
-        debug($accessToken);
+	  	$adapter = $this->hybridauthlib->authenticate( "Tumblr" );
+
+	  	$adapter->setUserStatus(
+	    	array(
+	       		"message" => $message,
+	       		"link"    => $link,
+	       		"picture" => $picture
+	    	)
+	  	);
+
+		return $adapter;
 
     }
 

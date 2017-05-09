@@ -15,19 +15,6 @@ $config =
 		'base_url' => 'hauth/endpoint/',
 
 		"providers" => array (
-			// openid providers
-			/*"OpenID" => array (
-				"enabled" => true
-			),
-
-			"Yahoo" => array (
-				"enabled" => true,
-				"keys"    => array ( "id" => "", "secret" => "" ),
-			),
-
-			"AOL"  => array (
-				"enabled" => true
-			),*/
 
 			"Google" => array (
 				"enabled" => true,
@@ -44,52 +31,11 @@ $config =
 				"trustForwarded" => true
 			),
 
-			"Twitter" => array (
-				"enabled" => true,
-				"keys"    => array ( "key" => getenv("twitter_stage_id"), "secret" => getenv("twitter_stage_secret") ),
-				"includeEmail" => true,
-				"display" => "popup"
-			),
-
 			"Tumblr" => array (
 				"enabled" => true,
 				"keys"    => array ( "key" => getenv("tumblr_id"), "secret" => getenv("tumblr_secret") ),
 				"display" => "popup"
-			),
-
-
-			"Instagram" => array (
-					"enabled" => true,
-					"keys"    => array ( "id" => getenv("insta_id"), "secret" => getenv("insta_secret")),
-					//"keys"    => array ( "id" => "e591d939f2a04a04ac8c4139b2b38ffc", "secret" => "d54935fe5a574df48022d601fdb7105c" ),
-			),
-
-			// windows live
-			"Live" => array (
-				"enabled" => true,
-				"keys"    => array ( "id" => "", "secret" => "" )
-			),
-			"Vkontakte" => array (
-				"enabled" => true,
-				"keys"    => array ( "id" => getenv("vk_app_id"), "secret" => getenv("vk_app_secret") )
-			),
-
-			/*
-			"MySpace" => array (
-				"enabled" => true,
-				"keys"    => array ( "key" => "", "secret" => "" )
-			),*/
-
-			"LinkedIn" => array (
-				"enabled" => true,
-				"keys"    => array ( "key" => "77sqm96fybf4ip", "secret" => "szE2Yu4vuXMHHngO"),
-				"scope" => 'r_basicprofile, r_emailaddress, w_share'
-			),
-			/*
-			"Foursquare" => array (
-				"enabled" => true,
-				"keys"    => array ( "id" => "", "secret" => "" )
-			),*/
+			)
 		),
 
 		// if you want to enable logging, set 'debug_mode' to true  then provide a writable file by the web server on "debug_file"

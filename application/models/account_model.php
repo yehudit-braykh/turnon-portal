@@ -154,7 +154,7 @@ class Account_model extends Uvod_model {
     }
 
     public function update_profile($id ,$data) {
-        //   debug($id, $data);
+        //    debug($id, $data);
         if(count($data)>1){
             foreach($data as $field=>$value){
                 if(!$value || $value == '' || $value==null)
