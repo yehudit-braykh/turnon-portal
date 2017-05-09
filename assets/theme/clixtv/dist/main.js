@@ -557,7 +557,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/search/view.site-search.html',
-    "<div class=clix-site-search ng-if=isVisible clix-click-anywhere-else=bodyClicked><div class=search-results-container><div class=search-input-container><div class=search-input-field-container><input class=search-input-field id=search-input-field type=text placeholder=Search ng-model=$parent.term ng-change=onTermChange()></div></div><div class=search-results><div class=search-results-loader ng-if=loading><clix-loader size=small></clix-loader></div><div ng-if=results><div class=search-results-block ng-if=\"results.celebrities && results.celebrities.celebrities && results.celebrities.celebrities.length > 0\"><div class=search-results-title>Stars</div><clix-header-search-row ng-repeat=\"celebrity in results.celebrities.celebrities\" ui-sref=\"star({ id: celebrity.id })\" ng-click=\"onResultPress('star', celebrity)\"><logo-container><div class=search-results-circle-image style=\"background-image: url('{{celebrity.thumbnail}}')\"></div></logo-container><title-text>{{celebrity.name}}</title-text><subtitle-text>Star</subtitle-text></clix-header-search-row></div><div class=search-results-block ng-if=\"results.series && results.series.series && results.series.series.length > 0\"><div class=search-results-title>Series</div><clix-header-search-row ng-repeat=\"series in results.series.series\" ng-click=\"onResultPress('series', series)\"><logo-container><div class=search-results-circle-image style=\"background-image: url('{{series.thumbnail}}')\"></div></logo-container><title-text>{{series.title}}</title-text><subtitle-text>Series</subtitle-text></clix-header-search-row></div><div class=search-results-block ng-if=\"results.brands && results.brands.brands && results.brands.brands.length > 0\"><div class=search-results-title>Brands Related To {{term}}</div><clix-header-search-row ng-repeat=\"brand in results.brands.brands\" ui-sref=\"brand({ id: brand.id })\" ng-click=\"onResultPress('brand', brand)\"><logo-container><div class=search-results-circle-image style=\"background-image: url('{{brand.thumbnail}}')\"></div></logo-container><title-text>{{brand.title}}</title-text><subtitle-text>Brand</subtitle-text></clix-header-search-row></div><div class=search-results-block ng-if=\"results.charities && results.charities.charities && results.charities.charities.length > 0\"><div class=search-results-title>Charities Related To {{term}}</div><clix-header-search-row ng-repeat=\"charity in results.charities.charities\" ui-sref=\"charity({ id: charity.id })\" ng-click=\"onResultPress('charity', charity)\"><logo-container><div class=search-results-circle-image style=\"background-image: url('{{charity.thumbnail}}')\"></div></logo-container><title-text>{{charity.title}}</title-text><subtitle-text>Charity</subtitle-text></clix-header-search-row></div><div class=search-results-block ng-if=\"results.videos && results.videos.videos && results.videos.videos.length > 0\"><div class=search-results-title>Videos</div><clix-header-search-row ng-repeat=\"video in results.videos.videos\" ui-sref=\"video({ id: video.id })\" ng-click=\"onResultPress('video', video)\"><logo-container><div class=search-results-circle-image style=\"background-image: url('{{video.thumbnail}}')\"></div></logo-container><title-text>{{video.title}}</title-text><subtitle-text>Video</subtitle-text></clix-header-search-row></div></div></div></div></div>"
+    "<div class=clix-site-search ng-if=isVisible clix-click-anywhere-else=bodyClicked><div class=search-results-container><div class=search-input-container><div class=search-input-field-container><input class=search-input-field id=site-search-input-field type=text placeholder=Search ng-model=$parent.term ng-change=onTermChange()></div></div><div class=search-results><div class=search-results-loader ng-if=loading><clix-loader size=small></clix-loader></div><div ng-if=results><div class=search-results-block ng-if=\"results.celebrities && results.celebrities.celebrities && results.celebrities.celebrities.length > 0\"><div class=search-results-title>Stars</div><clix-header-search-row ng-repeat=\"celebrity in results.celebrities.celebrities\" ui-sref=\"star({ id: celebrity.id })\" ng-click=\"onResultPress('star', celebrity)\"><logo-container><div class=search-results-circle-image style=\"background-image: url('{{celebrity.thumbnail}}')\"></div></logo-container><title-text>{{celebrity.name}}</title-text><subtitle-text>Star</subtitle-text></clix-header-search-row></div><div class=search-results-block ng-if=\"results.series && results.series.series && results.series.series.length > 0\"><div class=search-results-title>Series</div><clix-header-search-row ng-repeat=\"series in results.series.series\" ng-click=\"onResultPress('series', series)\"><logo-container><div class=search-results-circle-image style=\"background-image: url('{{series.thumbnail}}')\"></div></logo-container><title-text>{{series.title}}</title-text><subtitle-text>Series</subtitle-text></clix-header-search-row></div><div class=search-results-block ng-if=\"results.brands && results.brands.brands && results.brands.brands.length > 0\"><div class=search-results-title>Brands Related To {{term}}</div><clix-header-search-row ng-repeat=\"brand in results.brands.brands\" ui-sref=\"brand({ id: brand.id })\" ng-click=\"onResultPress('brand', brand)\"><logo-container><div class=search-results-circle-image style=\"background-image: url('{{brand.thumbnail}}')\"></div></logo-container><title-text>{{brand.title}}</title-text><subtitle-text>Brand</subtitle-text></clix-header-search-row></div><div class=search-results-block ng-if=\"results.charities && results.charities.charities && results.charities.charities.length > 0\"><div class=search-results-title>Charities Related To {{term}}</div><clix-header-search-row ng-repeat=\"charity in results.charities.charities\" ui-sref=\"charity({ id: charity.id })\" ng-click=\"onResultPress('charity', charity)\"><logo-container><div class=search-results-circle-image style=\"background-image: url('{{charity.thumbnail}}')\"></div></logo-container><title-text>{{charity.title}}</title-text><subtitle-text>Charity</subtitle-text></clix-header-search-row></div><div class=search-results-block ng-if=\"results.videos && results.videos.videos && results.videos.videos.length > 0\"><div class=search-results-title>Videos</div><clix-header-search-row ng-repeat=\"video in results.videos.videos\" ui-sref=\"video({ id: video.id })\" ng-click=\"onResultPress('video', video)\"><logo-container><div class=search-results-circle-image style=\"background-image: url('{{video.thumbnail}}')\"></div></logo-container><title-text>{{video.title}}</title-text><subtitle-text>Video</subtitle-text></clix-header-search-row></div></div></div></div></div>"
   );
 
 
@@ -4547,9 +4547,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$scope',
         '$rootScope',
         '$timeout',
+        '$window',
         '$state',
         'userService',
-        function($scope, $rootScope, $timeout, $state, userService) {
+        function($scope, $rootScope, $timeout, $window, $state, userService) {
 
             userService.getLoggedInUser()
                 .then(
@@ -4584,6 +4585,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             $scope.onSearchPress = function() {
                 $scope.searchVisible = !$scope.searchVisible;
                 $rootScope.$broadcast(($scope.searchVisible) ? 'mobilesearch.open' : 'mobilesearch.close');
+                if ($scope.searchVisible) {
+                    $timeout(function() {
+                        $window.document.getElementById('site-search-input-field').focus();
+                    });
+                }
             };
 
             $scope.onMobileBackgroundPress = function() {
@@ -5168,7 +5174,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             $scope.onSearchIconPress = function() {
                 $scope.searchVisible = !$scope.searchVisible;
                 if ($scope.searchVisible) {
-                    $window.document.getElementById('search-input-field').focus();
+                    $timeout(function() {
+                        $window.document.getElementById('site-search-input-field').focus();
+                    });
                 }
             };
 
@@ -5606,7 +5614,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             $scope.onSearchIconPress = function() {
                 $scope.searchVisible = !$scope.searchVisible;
                 if ($scope.searchVisible) {
-                    $window.document.getElementById('search-input-field').focus();
+                    $timeout(function() {
+                        $window.document.getElementById('search-input-field').focus();
+                    });
                 }
             };
         }

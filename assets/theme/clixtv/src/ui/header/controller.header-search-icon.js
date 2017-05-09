@@ -64,7 +64,9 @@
             $scope.onSearchIconPress = function() {
                 $scope.searchVisible = !$scope.searchVisible;
                 if ($scope.searchVisible) {
-                    $window.document.getElementById('search-input-field').focus();
+                    $timeout(function() {
+                        $window.document.getElementById('search-input-field').focus();
+                    });
                 }
             };
         }

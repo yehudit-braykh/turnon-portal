@@ -4,9 +4,10 @@
         '$scope',
         '$rootScope',
         '$timeout',
+        '$window',
         '$state',
         'userService',
-        function($scope, $rootScope, $timeout, $state, userService) {
+        function($scope, $rootScope, $timeout, $window, $state, userService) {
 
             userService.getLoggedInUser()
                 .then(
@@ -41,6 +42,11 @@
             $scope.onSearchPress = function() {
                 $scope.searchVisible = !$scope.searchVisible;
                 $rootScope.$broadcast(($scope.searchVisible) ? 'mobilesearch.open' : 'mobilesearch.close');
+                if ($scope.searchVisible) {
+                    $timeout(function() {
+                        $window.document.getElementById('site-search-input-field').focus();
+                    });
+                }
             };
 
             $scope.onMobileBackgroundPress = function() {
