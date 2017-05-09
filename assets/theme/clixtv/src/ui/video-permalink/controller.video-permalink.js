@@ -56,8 +56,23 @@
                         $scope.video = data[1];
                         $scope.ready = true;
                         _resetPageState();
+
+                        return $q.all(
+                            [
+                                videosService.getRelatedVideos($stateParams.id),
+                                videosService.getSeriesById($scope.video.series.id)
+                            ]
+                        );
+                    }
+                )
+                .then(
+                    function onSuccess(data) {
+                        $scope.relatedVideos = data[0];
+                        $scope.series = data[1];
+                        console.log($scope.series);
                     }
                 );
+
 
             catchMediaService.trackVideoPageEvent($stateParams.id);
 

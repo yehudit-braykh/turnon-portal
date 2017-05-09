@@ -3,7 +3,9 @@
     var videosService = [
         '$http',
         'VideoModel',
-        function($http, VideoModel) {
+        'VideoListModel',
+        'SeriesModel',
+        function($http, VideoModel, VideoListModel, SeriesModel) {
             return {
 
                 /**
@@ -14,6 +16,24 @@
                         .then(
                             function onSuccess(data) {
                                 return new VideoModel(data.data);
+                            }
+                        );
+                },
+
+                getRelatedVideos: function(id) {
+                    return $http.get('/api/video/get_related_videos?id=' + id)
+                        .then(
+                            function onSuccess(data) {
+                                return new VideoListModel(data.data);
+                            }
+                        );
+                },
+
+                getSeriesById: function(id) {
+                    return $http.get('/api/video/get_serie_by_id?id=' + id)
+                        .then(
+                            function onSuccess(data) {
+                                return new SeriesModel(data.data);
                             }
                         );
                 },
