@@ -1,3 +1,8 @@
-<div class="points-violator">
-    <span class="plus-sign">+</span><span ng-transclude></span>
+<div class="points-violator" ng-class="{'points-disabled': !pointsEnabled}">
+    <span ng-if="pointsEnabled">
+        <span class="plus-sign">+</span><span ng-transclude></span>
+    </span>
+    <span ng-if="!pointsEnabled">
+        <div class="trophy-icon icon-rewards-icon-left-nav"></div>
+    </span>
 </div>

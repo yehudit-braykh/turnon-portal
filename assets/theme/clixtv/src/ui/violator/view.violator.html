@@ -1,3 +1,8 @@
-<div class="violator {{size}}">
-    100 Reward Points
+<div class="violator {{size}}" ng-class="{'points-disabled': !pointsEnabled}">
+    <span ng-if="pointsEnabled">
+        100 Reward Points
+    </span>
+    <span ng-if="!pointsEnabled">
+        <div class="trophy-icon icon-rewards-icon-left-nav"></div> Rewards Coming Soon!
+    </span>
 </div>

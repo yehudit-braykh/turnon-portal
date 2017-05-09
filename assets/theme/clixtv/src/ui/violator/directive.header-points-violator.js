@@ -6,6 +6,7 @@
             return {
                 restrict: 'AE',
                 transclude: true,
+                controller: 'PointsViolatorController',
                 templateUrl: 'ui/violator/view.header-points-violator.html',
                 scope: {
                     points: '='

@@ -5,9 +5,11 @@
         '$scope',
         '$rootScope',
         '$uibModal',
-        function($q, $scope, $rootScope, $uibModal) {
+        'clixConfig',
+        function($q, $scope, $rootScope, $uibModal, clixConfig) {
 
             $scope.active = 0;
+            $scope.pointsEnabled = clixConfig.pointsEnabled;
             $scope.ready = true;
 
             $scope.onRedeemRewardsPress = function(type) {

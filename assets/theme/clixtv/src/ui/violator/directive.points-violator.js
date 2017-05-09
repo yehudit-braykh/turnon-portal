@@ -4,6 +4,7 @@
             restrict: 'AE',
             transclude: true,
             templateUrl: 'ui/violator/view.points-violator.html',
+            controller: 'PointsViolatorController',
             scope: {
 
             }

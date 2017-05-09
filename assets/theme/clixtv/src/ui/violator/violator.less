@@ -12,10 +12,22 @@
         font-size: 8px;
         padding: 3px 13px 2px;
     }
+
+    &.points-disabled {
+        @media (min-width: @screen-sm) {
+            padding: 3px 8px 2px;
+        }
+    }
+
+    .trophy-icon {
+        font-size: 10px;
+        display: inline-block;
+        margin-right: 3px;
+        vertical-align: middle;
+    }
 }
 .violator.large {
     font-size: 13px;
-
 }
 
 .points-violator {
@@ -36,6 +48,22 @@
         font-size: 14px;
     }
 
+    &.points-disabled {
+        padding-top: 5px;
+        @media (min-width: @screen-sm) {
+            padding-top: 6px;
+        }
+    }
+
+    .trophy-icon {
+        display: block;
+        font-size: 15px;
+        @media (min-width: @screen-sm) {
+            font-size: 18px;
+        }
+
+    }
+
     .plus-sign {
         font-size: 11px;
         position: relative;
@@ -50,4 +78,10 @@
     color: @color-white;
     letter-spacing: 1px;
     text-align: center;
+
+    .coming-soon-label {
+        font-size: 10px;
+        display: block;
+        padding: 2px 0;
+    }
 }

@@ -17,6 +17,9 @@
             'ngMask',
             'angular.filter'
         ])
+        .constant('clixConfig', {
+            pointsEnabled: false
+        })
         .config([
             '$locationProvider',
             '$httpProvider',

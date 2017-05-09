@@ -8594,6 +8594,17 @@ button.close {
     padding: 3px 13px 2px;
   }
 }
+@media (min-width: 768px) {
+  .violator.points-disabled {
+    padding: 3px 8px 2px;
+  }
+}
+.violator .trophy-icon {
+  font-size: 10px;
+  display: inline-block;
+  margin-right: 3px;
+  vertical-align: middle;
+}
 .violator.large {
   font-size: 13px;
 }
@@ -8626,6 +8637,23 @@ button.close {
     font-size: 14px;
   }
 }
+.points-violator.points-disabled {
+  padding-top: 5px;
+}
+@media (min-width: 768px) {
+  .points-violator.points-disabled {
+    padding-top: 6px;
+  }
+}
+.points-violator .trophy-icon {
+  display: block;
+  font-size: 15px;
+}
+@media (min-width: 768px) {
+  .points-violator .trophy-icon {
+    font-size: 18px;
+  }
+}
 .points-violator .plus-sign {
   font-size: 11px;
   position: relative;
@@ -8638,6 +8666,11 @@ button.close {
   color: #FFF;
   letter-spacing: 1px;
   text-align: center;
+}
+.clix-header-points-violator .coming-soon-label {
+  font-size: 10px;
+  display: block;
+  padding: 2px 0;
 }
 .primary-button {
   background-color: #911685;
@@ -8765,6 +8798,11 @@ button.close {
   padding: 10px 0;
   font-size: 20px;
   color: #FFF;
+}
+.clix-primary-button.disabled-button {
+  background-color: #9b9b9b;
+  background-image: none;
+  cursor: default;
 }
 .clix-secondary-button {
   -webkit-border-radius: 100px;
@@ -8922,8 +8960,10 @@ button.close {
   font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   color: #FFF;
-  padding: 3px 30px;
+  padding: 3px 12px;
+  text-align: center;
   cursor: pointer;
+  min-width: 110px;
 }
 .clix-callout-button.secondary-callout {
   background-color: #911685;
@@ -8932,6 +8972,7 @@ button.close {
   background-image: -moz-linear-gradient(left, #911685, #fa0d1b);
   background-image: -ms-linear-gradient(left, #911685, #fa0d1b);
   background-image: -o-linear-gradient(left, #911685, #fa0d1b);
+  padding: 3px 30px;
 }
 .clix-logo-container {
   display: -webkit-flex;
@@ -11794,20 +11835,21 @@ button.close {
   color: #0dc73a;
   letter-spacing: 1.6px;
 }
+.clix-account-rewards .reward-points .points-coming-soon-label {
+  font-family: 'montserratsemibold', sans-serif;
+  font-size: 30px;
+  color: #FFF;
+}
 .clix-account-rewards .reward-points .available-balance-label {
   font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   color: #FFF;
   line-height: 20px;
-  margin-top: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .clix-account-rewards .reward-points .available-balance-label a {
   color: #fe0000;
-}
-@media (min-width: 768px) {
-  .clix-account-rewards .reward-points .available-balance-label {
-    margin-top: 0;
-  }
 }
 .clix-account-rewards .reward-points .rewards-button {
   width: 220px;

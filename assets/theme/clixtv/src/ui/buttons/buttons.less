@@ -64,6 +64,12 @@
         font-size: 20px;
         color: @color-white;
     }
+
+    &.disabled-button {
+        background-color: @color-gray16;
+        background-image: none;
+        cursor: default;
+    }
 }
 
 .clix-secondary-button {
@@ -188,10 +194,13 @@
     font-family: @font-primary;
     font-size: 14px;
     color: @color-white;
-    padding: 3px 30px;
+    padding: 3px 12px;
+    text-align: center;
     cursor: pointer;
+    min-width: 110px;
 
     &.secondary-callout {
         .horizontal-gradient(@color-tertiary, @color-secondary);
+        padding: 3px 30px;
     }
 }

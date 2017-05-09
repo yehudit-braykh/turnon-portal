@@ -16,7 +16,7 @@
                                         Rewards Summary
                                     </div>
                                     <div class="reward-points">
-                                        <div class="reward-points-block first-block">
+                                        <div class="reward-points-block first-block" ng-show="pointsEnabled">
                                             <div class="points-label">
                                                 1760
                                             </div>
@@ -24,11 +24,25 @@
                                                 Available Points Balance<br />
                                                 $17.60 Cash Balance
                                             </div>
+                                            <div class="rewards-button">
+                                                <clix-primary-button ng-click="onRedeemPress()">
+                                                    Redeem
+                                                </clix-primary-button>
+                                            </div>
                                         </div>
-                                        <div class="rewards-button">
-                                            <clix-primary-button ng-click="onRedeemPress()">
-                                                Redeem
-                                            </clix-primary-button>
+                                        <div ng-show="!pointsEnabled">
+                                            <div class="points-coming-soon-label">
+                                                Rewards Points are Coming! Please check back soon!
+                                            </div>
+                                            <div class="available-balance-label">
+                                                Available Points Balance<br />
+                                                $0.00 Cash Balance
+                                            </div>
+                                            <div class="rewards-button">
+                                                <clix-primary-button type="disabled">
+                                                    Redeem
+                                                </clix-primary-button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
