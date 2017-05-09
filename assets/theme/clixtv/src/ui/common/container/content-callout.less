@@ -1,14 +1,29 @@
 .clix-content-callout {
 
+    .logo-image,
+    .offer-background-image,
+    .star-logo,
+    .category-logo {
+        .transition(0.5s ease);
+        .transition-delay(0.2s);
+        .scale(1);
+    }
+
     .header-callout-container {
         position: relative;
         padding-bottom: 100%;
-
+        overflow: hidden;
 
         @media (min-width: @screen-sm) {
             &:hover {
                 .header-overlay {
                     visibility: visible;
+                }
+                .logo-image,
+                .offer-background-image,
+                .star-logo,
+                .category-logo {
+                    .scale(1.1);
                 }
             }
         }

@@ -98,6 +98,14 @@
     -ms-transition:     @transition;
     -o-transition:      @transition;
 }
+
+
+.transition-delay(@delay: 0.2s) {
+    -moz-transition-delay: @delay;
+    -webkit-transition-delay: @delay;
+    transition-delay: @delay;
+}
+
 .transform(@string){
     -webkit-transform: @string;
     -moz-transform: 	 @string;

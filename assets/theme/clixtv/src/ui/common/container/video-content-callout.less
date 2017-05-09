@@ -6,7 +6,21 @@
     &.active {
         .star-info-background,
         .video-thumbnail-background {
-            background-size: 110% !important;
+            @media (min-width: @screen-md) {
+                background-size: 110% !important;
+            }
+        }
+
+        .star-info-background {
+            @media (min-width: @screen-md) {
+                background-position: center 5% !important;
+            }
+            @media (min-width: @screen-lg) {
+                background-position: center 5% !important;
+            }
+            @media (min-width: @screen-xl) {
+                background-position: center 3% !important;
+            }
         }
     }
 
@@ -20,7 +34,7 @@
         .transition(0.5s ease);
         position: absolute;
         background-size: 100%;
-        background-position: top center;
+        background-position: center center;
         top: 0;
         left: 0;
         right: 0;
@@ -51,7 +65,7 @@
             left: 0;
             bottom: 0;
             right: 0;
-            background-position: top center;
+            background-position: center top;
             background-size: 100%;
             background-repeat: no-repeat;
         }
@@ -180,7 +194,7 @@
         cursor: pointer;
 
         &.active {
-            @media (min-width: @screen-sm) {
+            @media (min-width: @screen-md) {
                 .opacity(1);
             }
         }
