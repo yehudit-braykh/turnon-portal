@@ -166,6 +166,12 @@ module.exports = function(grunt) {
                         flatten: true,
                         src: ['src/ui/fonts/*'],
                         dest: 'dist/font/'
+                    },
+                    {
+                        expand: true,
+                        flatten: true,
+                        src: ['src/ui/videos/*'],
+                        dest: 'dist/videos/'
                     }
                 ]
             }
