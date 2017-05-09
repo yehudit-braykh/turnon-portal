@@ -3,8 +3,28 @@
 .clix-video-content-callout {
     position: relative;
 
+    &.active {
+        .star-info-background,
+        .video-thumbnail-background {
+            background-size: 110% !important;
+        }
+    }
+
+    // Keep the img tag for dimensions
     .video-thumbnail {
         width: 100%;
+        visibility: hidden;
+    }
+
+    .video-thumbnail-background {
+        .transition(0.5s ease);
+        position: absolute;
+        background-size: 100%;
+        background-position: top center;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
     }
 
     .video-content-container {
@@ -24,6 +44,7 @@
         overflow: hidden;
 
         .star-info-background {
+            .transition(0.5s ease);
             .blur(4px);
             position: absolute;
             top: 0;
@@ -31,7 +52,7 @@
             bottom: 0;
             right: 0;
             background-position: top center;
-            background-size: cover;
+            background-size: 100%;
             background-repeat: no-repeat;
         }
 

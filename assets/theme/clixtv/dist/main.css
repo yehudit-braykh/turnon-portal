@@ -13352,8 +13352,27 @@ button.close {
 .clix-video-content-callout {
   position: relative;
 }
+.clix-video-content-callout.active .star-info-background,
+.clix-video-content-callout.active .video-thumbnail-background {
+  background-size: 110% !important;
+}
 .clix-video-content-callout .video-thumbnail {
   width: 100%;
+  visibility: hidden;
+}
+.clix-video-content-callout .video-thumbnail-background {
+  transition: 0.5s ease;
+  -webkit-transition: 0.5s ease;
+  -moz-transition: 0.5s ease;
+  -ms-transition: 0.5s ease;
+  -o-transition: 0.5s ease;
+  position: absolute;
+  background-size: 100%;
+  background-position: top center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 .clix-video-content-callout .video-content-container {
   background-color: rgba(0, 0, 0, 0);
@@ -13376,6 +13395,11 @@ button.close {
   overflow: hidden;
 }
 .clix-video-content-callout .star-info-container .star-info-background {
+  transition: 0.5s ease;
+  -webkit-transition: 0.5s ease;
+  -moz-transition: 0.5s ease;
+  -ms-transition: 0.5s ease;
+  -o-transition: 0.5s ease;
   filter: blur(4px);
   -webkit-filter: blur(4px);
   position: absolute;
@@ -13384,7 +13408,7 @@ button.close {
   bottom: 0;
   right: 0;
   background-position: top center;
-  background-size: cover;
+  background-size: 100%;
   background-repeat: no-repeat;
 }
 .clix-video-content-callout .star-info-container .star-info {
