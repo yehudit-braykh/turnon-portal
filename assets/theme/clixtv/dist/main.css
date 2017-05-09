@@ -9237,6 +9237,9 @@ button.close {
 }
 .home-page .main-video-container video {
   width: 100%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .home-page .main-video-container:hover .main-carousel-button {
   display: block;
