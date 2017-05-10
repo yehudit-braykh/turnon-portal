@@ -3,6 +3,7 @@
         return {
             restrict: 'E',
             templateUrl: 'ui/footer/view.footer.html',
+            controller: 'FooterController',
             scope: {
 
             }

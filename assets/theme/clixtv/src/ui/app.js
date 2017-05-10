@@ -18,6 +18,7 @@
             'angular.filter'
         ])
         .constant('clixConfig', {
+            beta: true,
             pointsEnabled: false
         })
         .config([

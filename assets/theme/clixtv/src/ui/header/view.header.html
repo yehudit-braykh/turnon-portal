@@ -4,7 +4,8 @@
     <div class="clix-header-container hidden-sm hidden-xs">
         <h1 class="logo-container">
             <a href="/">
-                <img src="assets/theme/clixtv/dist/images/gradient-logo.svg" class="clix-logo" />
+                <img src="assets/theme/clixtv/dist/images/gradient-logo.svg" class="clix-logo" ng-if="!isBeta" />
+                <img src="assets/theme/clixtv/dist/images/clixtv-logo-horizontal-beta.svg" class="clix-logo" ng-if="isBeta" />
             </a>
         </h1>
         <nav class="clix-navigation">

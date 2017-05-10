@@ -11,9 +11,12 @@
         'knetikService',
         'modalService',
         'catchMediaService',
-        function($q, $scope, $rootScope, $window, $timeout, $uibModal, notificationsService, knetikService, modalService, catchMediaService) {
+        'clixConfig',
+        function($q, $scope, $rootScope, $window, $timeout, $uibModal, notificationsService, knetikService, modalService, catchMediaService, clixConfig) {
 
             var latestOffset = 0;
+
+            $scope.isBeta = (clixConfig.beta === true);
 
             function _populateHeaderData() {
                 $q.all(

@@ -9313,7 +9313,7 @@ button.close {
   position: absolute;
   top: 0;
   left: 0;
-  bottom: 250px;
+  bottom: 220px;
   right: 0;
 }
 .home-page .carousel-slide {
@@ -13766,6 +13766,11 @@ button.close {
   right: 20px;
   font-size: 18px;
   text-decoration: none !important;
+  cursor: pointer;
+  color: #8a8a8a;
+}
+.clix-modal-window .clix-modal-close:hover {
+  color: #FFF;
 }
 .clix-modal-window .modal-content {
   -webkit-border-radius: 8px;
@@ -13845,10 +13850,22 @@ button.close {
 .clix-message-modal .button-container:last-child {
   margin-left: 22px;
 }
+.signup-modal .close-modal-icon {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #8a8a8a;
+}
+.signup-modal .close-modal-icon:hover {
+  color: #FFF;
+}
 .signup-modal .signup-modal-header {
   padding-top: 31px;
   padding-bottom: 31px;
   border-bottom: 1px solid #636363;
+  text-align: center;
 }
 .signup-modal .header-logo-icon {
   margin: 0 auto;
