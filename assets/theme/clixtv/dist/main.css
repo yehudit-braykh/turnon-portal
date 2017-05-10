@@ -8222,7 +8222,7 @@ button.close {
   position: relative;
 }
 .video-category-scroll-list .video-container {
-  margin-right: 12px;
+  margin-right: 6px;
 }
 .video-category-scroll-list .video-list-container:hover .arrow-container {
   width: 63px;
@@ -8235,7 +8235,7 @@ button.close {
 }
 @media (min-width: 480px) {
   .video-category-scroll-list .clix-video-content-callout {
-    margin-right: 12px;
+    margin-right: 6px;
     margin-bottom: 0;
   }
 }
@@ -9273,7 +9273,7 @@ button.close {
 @media (min-width: 1200px) {
   .home-page .home-page-content {
     position: relative;
-    top: -250px;
+    top: -235px;
   }
 }
 .home-page .main-video-container {

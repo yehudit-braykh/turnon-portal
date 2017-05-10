@@ -1,6 +1,6 @@
 (function() {
 
-    var VIDEO_MARGIN_LEFT = 12;
+    var VIDEO_MARGIN_LEFT = 6;
 
     var VideoCategoryScrollList = [
         '$scope',
