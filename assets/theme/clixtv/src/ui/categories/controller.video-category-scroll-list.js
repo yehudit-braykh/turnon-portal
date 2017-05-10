@@ -29,7 +29,7 @@
                 }
 
                 if ($window.innerWidth > 1200) {
-                    splitWidth = 4.7;
+                    splitWidth = 5.7;
                 }
 
 

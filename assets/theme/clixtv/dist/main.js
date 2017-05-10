@@ -2214,7 +2214,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 }
 
                 if ($window.innerWidth > 1200) {
-                    splitWidth = 4.7;
+                    splitWidth = 5.7;
                 }
 
 
