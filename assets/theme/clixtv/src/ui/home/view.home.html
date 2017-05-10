@@ -87,12 +87,14 @@
         </div>
     </div>
 
-    <div ng-if="!ready">
-        <clix-loader size="large"></clix-loader>
-    </div>
-    <div ng-show="ready">
-        <div ng-repeat="category in categories.categories | orderBy: 'order'" ng-if="category && category.videos && category.videos.videos && category.videos.videos.length > 0">
-            <clix-video-category-scroll-list category="category"></clix-video-category-scroll-list>
+    <div class="home-page-content">
+        <div ng-if="!ready">
+            <clix-loader size="large"></clix-loader>
+        </div>
+        <div ng-show="ready">
+            <div ng-repeat="category in categories.categories | orderBy: 'order'" ng-if="category && category.videos && category.videos.videos && category.videos.videos.length > 0">
+                <clix-video-category-scroll-list category="category"></clix-video-category-scroll-list>
+            </div>
         </div>
     </div>
 </div>

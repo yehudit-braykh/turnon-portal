@@ -9270,11 +9270,28 @@ button.close {
     margin-bottom: 100px;
   }
 }
+@media (min-width: 1200px) {
+  .home-page .home-page-content {
+    position: relative;
+    top: -250px;
+  }
+}
 .home-page .main-video-container {
+  background-color: rgba(0, 0, 0, 0);
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(#000));
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), #000);
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0), #000);
+  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0), #000);
+  background: -o-linear-gradient(top, rgba(0, 0, 0, 0), #000);
   position: relative;
   overflow: hidden;
-  height: 70vh;
-  min-height: 375px;
+  height: 100vh;
+  min-height: 700px;
+}
+@media (min-width: 1200px) {
+  .home-page .main-video-container {
+    height: 90vh;
+  }
 }
 .home-page .main-video-container video {
   width: 100%;
@@ -9291,13 +9308,18 @@ button.close {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.17);
+  background-color: rgba(14, 14, 14, 0.17);
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(14, 14, 14, 0.17)), to(#0e0e0e));
+  background: -webkit-linear-gradient(top, rgba(14, 14, 14, 0.17), #0e0e0e);
+  background: -moz-linear-gradient(top, rgba(14, 14, 14, 0.17), #0e0e0e);
+  background: -ms-linear-gradient(top, rgba(14, 14, 14, 0.17), #0e0e0e);
+  background: -o-linear-gradient(top, rgba(14, 14, 14, 0.17), #0e0e0e);
 }
 .home-page .carousel-container {
   position: absolute;
   top: 0;
   left: 0;
-  bottom: 0;
+  bottom: 250px;
   right: 0;
 }
 .home-page .carousel-slide {
@@ -9379,7 +9401,7 @@ button.close {
 }
 .home-page .slick-arrow {
   position: absolute;
-  top: 50%;
+  top: 40%;
   z-index: 3000;
 }
 .home-page #main-carousel-next {

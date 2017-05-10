@@ -9,11 +9,24 @@
         margin-bottom: 100px;
     }
 
+    .home-page-content {
+        @media (min-width: @screen-lg) {
+            position: relative;
+            top: -250px;
+        }
+    }
+
     .main-video-container {
+        .gradient(@color-transparent, @color-black);
         position: relative;
         overflow: hidden;
-        height: 70vh;
-        min-height: 375px;
+        height: 100vh;
+        min-height: 700px;
+
+        @media (min-width: @screen-lg) {
+            height: 90vh;
+        }
+
         video {
             width: 100%;
             position: relative;
@@ -34,14 +47,15 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: fade(@color-black, 17%);
+        //background-color: fade(@color-black, 17%);
+        .gradient(fade(@color-darker-gray, 17%), @color-darker-gray);
     }
 
     .carousel-container {
         position: absolute;
         top: 0;
         left: 0;
-        bottom: 0;
+        bottom: 250px;
         right: 0;
     }
 
@@ -125,7 +139,7 @@
 
     .slick-arrow {
         position: absolute;
-        top: 50%;
+        top: 40%;
         z-index: 3000;
     }
 
