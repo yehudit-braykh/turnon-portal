@@ -67,7 +67,7 @@
             }
 
             function _recalculateWidth() {
-                $scope.showMobileCarousel = ($window.innerWidth <= 768);
+                $scope.showMobileCarousel = ($window.innerWidth < 768);
                 _recalculateHeight();
             }
 

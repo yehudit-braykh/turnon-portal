@@ -3,7 +3,7 @@
     .settings-page-content {
         padding: 46px @common-mobile-padding 46px @common-mobile-padding;
 
-        @media (min-width: @screen-sm) {
+        @media (min-width: @screen-md) {
             padding: 46px 29px 46px 48px;
         }
     }
@@ -73,7 +73,7 @@
         .setting-email-container {
             padding-right: 0;
             padding-left: 0;
-            @media (min-width: @screen-sm) {
+            @media (min-width: @screen-md) {
                 padding-left: 60px;
             }
         }
@@ -87,7 +87,7 @@
         text-transform: uppercase;
         margin-bottom: 5px;
         margin-top: 40px;
-        @media (min-width: @screen-sm) {
+        @media (min-width: @screen-md) {
             margin-top: 0;
         }
     }
@@ -96,8 +96,10 @@
         border-bottom: 1px solid @color-gray3;
         padding-bottom: 40px;
         @media (min-width: @screen-sm) {
-            border-right: 1px solid @color-gray3;
             border-bottom-width: 0;
+        }
+        @media (min-width: @screen-md) {
+            border-right: 1px solid @color-gray3;
             padding-bottom: 0;
         }
     }
@@ -115,7 +117,7 @@
     }
 
     .clix-checkbox {
-        @media (max-width: @screen-sm) {
+        @media (max-width: @screen-md) {
             display: inline;
         }
     }

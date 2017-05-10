@@ -42,7 +42,7 @@
                             </sidebar-title>
                             <sidebar-content>
                                 <div class="row brand-offer-row">
-                                    <div class="col-xs-6 col-sm-6 col-md-12 col-lg-12 brand-offer-column" ng-repeat="offer in brand.offers.offers | limitTo: 3">
+                                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-12 brand-offer-column" ng-repeat="offer in brand.offers.offers | limitTo: 3">
                                         <div class="brand-offer">
                                             <clix-offer-content-callout offer="offer"></clix-offer-content-callout>
                                         </div>
@@ -71,7 +71,7 @@
                                 </div>
                                 <div class="brand-celebrity-videos">
                                     <div ng-repeat="celebrity in brand.celebrities.celebrities | limitTo: 3">
-                                        <clix-video-category-scroll-list category-title="{{celebrity.name}} and {{brand.title}}" category-videos="celebrity.videos.videos"></clix-video-category-scroll-list>
+                                        <clix-video-category-scroll-list category-title="{{celebrity.name}} and {{brand.title}}" category-videos="celebrity.videos.videos" enable-show-more="false"></clix-video-category-scroll-list>
                                     </div>
                                 </div>
                             </footer-content>
@@ -99,7 +99,7 @@
                 <uib-tab index="2" heading="Stars" select="onTabSelect('stars')">
                     <div class="stars-container">
                         <div ng-repeat="celebrity in brand.celebrities.celebrities">
-                            <clix-video-category-scroll-list category-title="{{celebrity.name}} and {{brand.title}}" category-videos="celebrity.videos.videos"></clix-video-category-scroll-list>
+                            <clix-video-category-scroll-list category-title="{{celebrity.name}} and {{brand.title}}" category-videos="celebrity.videos.videos" enable-show-more="false"></clix-video-category-scroll-list>
                         </div>
                     </div>
                 </uib-tab>
@@ -116,7 +116,7 @@
                             </div>
                         </div>
                         <div class="row clix-block-row">
-                            <div class="clix-block-item col-xs-6 col-md-3 col-lg-2-4" ng-repeat="video in brand.videos.videos">
+                            <div class="clix-block-item col-xs-6 col-sm-4 col-md-4 col-lg-2-4" ng-repeat="video in brand.videos.videos">
                                 <clix-video-content-callout video="video"></clix-video-content-callout>
                             </div>
                         </div>

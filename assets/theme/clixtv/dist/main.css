@@ -7736,7 +7736,7 @@ button.close {
   padding-left: 9px;
   padding-right: 9px;
 }
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .clix-header .clix-header-container {
     -webkit-align-items: center;
     -ms-align-items: center;
@@ -7769,7 +7769,7 @@ button.close {
   max-width: 100%;
   max-height: 26px;
 }
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .clix-header .clix-logo {
     max-height: none;
   }
@@ -7988,6 +7988,11 @@ button.close {
   justify-content: center;
   padding-top: 6px;
 }
+@media (min-width: 992px) {
+  .clix-header .mobile-logo {
+    max-width: 100px;
+  }
+}
 .navigation-search-container {
   position: relative;
   padding-left: 20px;
@@ -8110,17 +8115,22 @@ button.close {
 }
 @media (min-width: 768px) {
   .video-category-scroll-list {
-    padding-left: 30px;
+    padding-left: 5px;
     margin-top: 55px;
   }
 }
-@media (max-width: 768px) {
+@media (min-width: 992px) {
+  .video-category-scroll-list {
+    padding-left: 30px;
+  }
+}
+@media (max-width: 992px) {
   .video-category-scroll-list .video-list-content-container {
     margin-left: -5px;
     margin-right: -5px;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .video-category-scroll-list .video-thumbnail-container {
     padding-left: 5px;
     padding-right: 5px;
@@ -9072,8 +9082,9 @@ button.close {
 }
 .clix-footer .footer-content {
   margin: 0 auto;
+  width: 100%;
 }
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .clix-footer .footer-content {
     width: 1170px;
   }
@@ -9282,6 +9293,12 @@ button.close {
   height: 100vh;
   min-height: 700px;
 }
+@media (min-width: 768px) {
+  .home-page .main-video-container {
+    height: 40vh;
+    min-height: 0;
+  }
+}
 @media (min-width: 1200px) {
   .home-page .main-video-container {
     height: 90vh;
@@ -9313,8 +9330,13 @@ button.close {
   position: absolute;
   top: 0;
   left: 0;
-  bottom: 220px;
+  bottom: 0;
   right: 0;
+}
+@media (min-width: 1200px) {
+  .home-page .carousel-container {
+    bottom: 220px;
+  }
 }
 .home-page .carousel-slide {
   display: -webkit-flex;
@@ -9334,18 +9356,30 @@ button.close {
 }
 .home-page .carousel-slide .carousel-main-header {
   font-family: 'montserratsemibold', sans-serif;
-  font-size: 80px;
-  line-height: 80px;
   color: #FFF;
   margin-top: 50px;
+  font-size: 40px;
+  line-height: 40px;
+}
+@media (min-width: 1200px) {
+  .home-page .carousel-slide .carousel-main-header {
+    font-size: 80px;
+    line-height: 80px;
+  }
 }
 .home-page .carousel-slide .carousel-sub-header {
   font-family: 'montserratregular', sans-serif;
-  font-size: 22px;
+  font-size: 18px;
+  line-height: 18px;
   color: #FFF;
   text-transform: uppercase;
   letter-spacing: 3.3px;
-  line-height: 22px;
+}
+@media (min-width: 1200px) {
+  .home-page .carousel-slide .carousel-sub-header {
+    font-size: 22px;
+    line-height: 22px;
+  }
 }
 .home-page .carousel-slide .carousel-second-line {
   margin-top: 10px;
@@ -9360,12 +9394,17 @@ button.close {
 .home-page .slick-dots {
   position: absolute;
   left: 0;
-  bottom: 20px;
+  bottom: 70px;
   list-style-type: none;
   margin: 0 auto;
   width: 100%;
   text-align: center;
   padding: 0;
+}
+@media (min-width: 1200px) {
+  .home-page .slick-dots {
+    bottom: 20px;
+  }
 }
 .home-page .slick-dots li {
   display: inline-block;
@@ -10099,6 +10138,11 @@ button.close {
 }
 @media (min-width: 768px) {
   .brand-page .brand-page-content {
+    padding: 13px 10px 62px;
+  }
+}
+@media (min-width: 1200px) {
+  .brand-page .brand-page-content {
     padding: 13px 30px 62px;
   }
 }
@@ -10132,7 +10176,7 @@ button.close {
 .brand-page .offers-container {
   margin-top: 41px;
 }
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .brand-page .videos-container {
     margin-left: -9px;
     margin-right: -9px;
@@ -10179,10 +10223,14 @@ button.close {
     text-align: left;
   }
 }
-@media (max-width: 768px) {
+.brand-page .video-category-scroll-list {
+  margin-left: -9px;
+  margin-right: -9px;
+}
+@media (min-width: 768px) {
   .brand-page .video-category-scroll-list {
-    margin-left: -9px;
-    margin-right: -9px;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 .brand-page .stars-container .video-category-scroll-list {
@@ -10374,6 +10422,11 @@ button.close {
 }
 @media (min-width: 768px) {
   .charity-page .charity-page-content {
+    padding: 13px 10px 62px;
+  }
+}
+@media (min-width: 1200px) {
+  .charity-page .charity-page-content {
     padding: 13px 30px 62px;
   }
 }
@@ -10475,7 +10528,7 @@ button.close {
     padding-top: 30px;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .charity-page .videos-container {
     margin-left: -9px;
     margin-right: -9px;
@@ -10588,6 +10641,18 @@ button.close {
     top: 2px;
   }
 }
+@media (min-width: 768px) {
+  .clix-star-page .star-sidebar-container {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+@media (min-width: 992px) {
+  .clix-star-page .star-sidebar-container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
 .clix-star-page .brand-page-content {
   position: relative;
   z-index: 2000;
@@ -10595,6 +10660,11 @@ button.close {
   padding: 13px 0 62px;
 }
 @media (min-width: 768px) {
+  .clix-star-page .brand-page-content {
+    padding: 13px 10px 62px;
+  }
+}
+@media (min-width: 1200px) {
   .clix-star-page .brand-page-content {
     padding: 13px 30px 62px;
   }
@@ -10610,7 +10680,7 @@ button.close {
     margin-right: 0;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .clix-star-page .videos-container {
     margin-left: -9px;
     margin-right: -9px;
@@ -10632,8 +10702,13 @@ button.close {
     padding-top: 50px;
     text-align: left;
     border-bottom: 1px solid #636363;
-    margin-bottom: 41px;
     padding-bottom: 16px;
+    margin-bottom: 20px;
+  }
+}
+@media (min-width: 1200px) {
+  .clix-star-page .videos-title-container {
+    margin-bottom: 41px;
   }
 }
 .clix-star-page .video-sort-container {
@@ -10681,7 +10756,7 @@ button.close {
   padding-left: 9px;
   padding-right: 9px;
 }
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .clix-star-page .brand-container {
     padding-left: 5px;
     padding-right: 5px;
@@ -10691,7 +10766,13 @@ button.close {
   margin-left: -9px;
   margin-right: -9px;
 }
-@media (max-width: 768px) {
+@media (min-width: 768px) {
+  .clix-star-page .brand-row {
+    margin-left: -5px;
+    margin-right: -5px;
+  }
+}
+@media (min-width: 1200px) {
   .clix-star-page .brand-row {
     margin-left: 5px;
     margin-right: 5px;
@@ -10708,9 +10789,20 @@ button.close {
 @media (min-width: 768px) {
   .clix-star-page .sidebar-container {
     border: 1px solid #777777;
-    padding: 30px;
     margin-left: 0;
     margin-right: 0;
+    margin-top: 9px;
+  }
+}
+@media (min-width: 992px) {
+  .clix-star-page .sidebar-container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+@media (min-width: 1200px) {
+  .clix-star-page .sidebar-container {
+    padding: 30px;
     margin-top: 8px;
   }
 }
@@ -10759,6 +10851,11 @@ button.close {
   padding: 0 0;
 }
 @media (min-width: 768px) {
+  .clix-category-page .category-page-container {
+    padding: 13px 10px 62px;
+  }
+}
+@media (min-width: 1200px) {
   .clix-category-page .category-page-container {
     padding: 13px 30px 62px;
   }
@@ -10814,7 +10911,7 @@ button.close {
   flex: 1;
   padding-right: 0;
 }
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .clix-category-page .category-content {
     padding-left: 31px;
   }
@@ -11362,7 +11459,7 @@ button.close {
   display: -ms-flex;
   display: flex;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-page {
     padding-top: 94px;
   }
@@ -11377,7 +11474,7 @@ button.close {
   padding-top: 76px;
   background-color: #313131;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-page .account-page {
     padding-bottom: 110px;
     padding-top: 128px;
@@ -11386,7 +11483,7 @@ button.close {
 .clix-account-page .account-navigation {
   display: none;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-page .account-navigation {
     display: block;
   }
@@ -11402,7 +11499,7 @@ button.close {
   padding-top: 40px;
   padding-bottom: 14px;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-overview .account-info-sub-header,
   .clix-account-settings .account-info-sub-header {
     text-align: left;
@@ -11451,7 +11548,7 @@ button.close {
 .clix-account-settings .personal-info-form-row:last-child {
   border-bottom-width: 0;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-overview .personal-info-form-row,
   .clix-account-settings .personal-info-form-row {
     margin-left: 45px;
@@ -11525,7 +11622,7 @@ button.close {
   background-color: #3d3d3d;
   text-align: center;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-overview .reward-points,
   .clix-account-settings .reward-points {
     padding-top: 45px;
@@ -11550,7 +11647,7 @@ button.close {
 .clix-account-settings .reward-points .available-balance-label a {
   color: #fe0000;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-overview .reward-points .available-balance-label,
   .clix-account-settings .reward-points .available-balance-label {
     margin-top: 0;
@@ -11561,21 +11658,21 @@ button.close {
   width: 220px;
   margin: 0 auto;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-overview .body-content,
   .clix-account-settings .body-content {
     margin-left: 0;
     margin-right: 0;
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-overview .personal-info-container,
   .clix-account-settings .personal-info-container {
     padding-right: 25px;
     padding-left: 53px;
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-overview .reward-points-container,
   .clix-account-settings .reward-points-container {
     padding-left: 25px;
@@ -11588,7 +11685,7 @@ button.close {
   margin-bottom: 37px;
   display: none;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-overview .reward-points-block,
   .clix-account-settings .reward-points-block {
     display: block;
@@ -11714,7 +11811,7 @@ button.close {
 .clix-account-watchlist .watchlist-container {
   padding-top: 30px;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-watchlist .watchlist-container {
     padding-left: 50px;
     padding-right: 30px;
@@ -11723,7 +11820,7 @@ button.close {
 .clix-account-favorites .favorites-page-content {
   padding: 20px 9px 46px 9px;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-favorites .favorites-page-content {
     padding: 46px 29px 46px 48px;
   }
@@ -11739,17 +11836,17 @@ button.close {
 .clix-account-favorites .tab-content {
   border-top: 1px solid #636363;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-favorites .tab-content {
     border-top-width: 0;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .clix-account-favorites .clix-search-filter {
     padding-top: 20px;
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-favorites .clix-empty-container {
     border-top: 1px solid #636363;
   }
@@ -11757,7 +11854,7 @@ button.close {
 .clix-account-saved-offers .saved-offers-page-content {
   padding: 20px 9px 46px 9px;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-saved-offers .saved-offers-page-content {
     padding: 46px 29px 46px 48px;
   }
@@ -11773,7 +11870,7 @@ button.close {
 .clix-account-rewards .rewards-page-content {
   padding: 30px 0 46px 0;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-rewards .rewards-page-content {
     padding: 46px 29px 46px 48px;
   }
@@ -11792,7 +11889,7 @@ button.close {
   margin-left: 9px;
   margin-right: 9px;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-rewards .clix-tabs {
     margin-left: 0;
     margin-right: 0;
@@ -11811,7 +11908,7 @@ button.close {
   padding-right: 0;
   margin-bottom: 40px;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-rewards .rewards-summary-column:first-child {
     padding-left: 25px;
     padding-right: 25px;
@@ -11822,7 +11919,7 @@ button.close {
   padding-left: 0;
   padding-right: 0;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-rewards .rewards-summary-column:last-child {
     padding-right: 25px;
     padding-left: 25px;
@@ -11832,7 +11929,7 @@ button.close {
   background-color: #171717;
   padding: 40px 26px;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-rewards .rewards-summary-block {
     padding: 40px 45px;
   }
@@ -11840,7 +11937,7 @@ button.close {
 .clix-account-rewards .reward-points {
   text-align: center;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-rewards .reward-points {
     padding-top: 28px;
   }
@@ -11871,7 +11968,7 @@ button.close {
   width: 220px;
   margin: 0 auto;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-rewards .reward-points-container {
     padding-left: 25px;
     padding-right: 53px;
@@ -11882,7 +11979,7 @@ button.close {
   margin-bottom: 37px;
   display: none;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-rewards .reward-points-block {
     display: block;
   }
@@ -11903,7 +12000,7 @@ button.close {
   text-align: center;
   margin-bottom: 15px;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-rewards .rewards-summary-header {
     text-align: left;
     margin-bottom: 0;
@@ -11915,7 +12012,7 @@ button.close {
   border-bottom: 1px solid #636363;
   overflow: auto;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-rewards .rewards-activity-container {
     max-height: 500px;
   }
@@ -11932,7 +12029,7 @@ button.close {
   padding-bottom: 18px;
   border-bottom: 1px solid #494949;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-rewards .reward-activity-row {
     margin-right: 21px;
   }
@@ -12018,13 +12115,13 @@ button.close {
 .clix-account-rewards .redeem-companies-container {
   margin: 20px 0 34px;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-rewards .redeem-companies-container {
     margin-top: 30px;
     margin-bottom: 54px;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .clix-account-rewards .redeem-companies-container {
     margin-left: -9px;
     margin-right: -9px;
@@ -12034,12 +12131,12 @@ button.close {
   padding: 0 12px 0 0;
   margin-bottom: 40px;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-rewards .redeem-company-callout {
     margin-bottom: 0;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .clix-account-rewards .redeem-company-callout {
     padding-left: 9px;
     padding-right: 9px;
@@ -12053,7 +12150,7 @@ button.close {
   text-align: center;
   background-color: #212121;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-rewards .redeem-callout-footer {
     padding: 29px 0;
   }
@@ -12066,7 +12163,7 @@ button.close {
   line-height: 20px;
   display: block;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-rewards .redeem-callout-company {
     font-size: 16px;
   }
@@ -12086,7 +12183,7 @@ button.close {
   position: relative;
   cursor: pointer;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-rewards .redeem-logo-container:hover .redeem-action-state {
     visibility: visible;
   }
@@ -12117,7 +12214,7 @@ button.close {
   bottom: 0;
   right: 0;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-notifications .notifications-container {
     background-color: #171717;
     margin: 50px 29px 0 50px;
@@ -12135,16 +12232,15 @@ button.close {
   padding-left: 9px;
   border-bottom: 2px solid #636363;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-notifications .notifications-header {
-    margin-top: 0;
     padding-left: 0;
   }
 }
 .clix-account-settings .settings-page-content {
   padding: 46px 9px 46px 9px;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-settings .settings-page-content {
     padding: 46px 29px 46px 48px;
   }
@@ -12212,7 +12308,7 @@ button.close {
   padding-right: 0;
   padding-left: 0;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-settings .setting-notification-container .setting-text-push-container,
   .clix-account-settings .setting-notification-container .setting-email-container {
     padding-left: 60px;
@@ -12227,7 +12323,7 @@ button.close {
   margin-bottom: 5px;
   margin-top: 40px;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-settings .notification-label {
     margin-top: 0;
   }
@@ -12238,8 +12334,12 @@ button.close {
 }
 @media (min-width: 768px) {
   .clix-account-settings .setting-email-container {
-    border-right: 1px solid #636363;
     border-bottom-width: 0;
+  }
+}
+@media (min-width: 992px) {
+  .clix-account-settings .setting-email-container {
+    border-right: 1px solid #636363;
     padding-bottom: 0;
   }
 }
@@ -12253,7 +12353,7 @@ button.close {
   color: #8a8a8a;
   margin-right: 50px;
 }
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .clix-account-settings .clix-checkbox {
     display: inline;
   }
@@ -12263,7 +12363,7 @@ button.close {
   z-index: 2000;
   height: 375px;
 }
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .clix-hero-banner {
     height: 590px;
   }
@@ -12272,7 +12372,7 @@ button.close {
   height: 590px;
   position: relative;
 }
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .clix-hero-banner .hero-background-image {
     height: 375px;
   }
@@ -12310,7 +12410,7 @@ button.close {
   right: 0;
   bottom: 0;
 }
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .clix-hero-banner .hero-banner-overlay {
     bottom: 140px;
   }
@@ -12331,7 +12431,7 @@ button.close {
   align-items: center;
   padding: 48px 10px 20px;
 }
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .clix-hero-banner .hero-banner-content {
     padding: 48px 30px;
   }
@@ -12363,7 +12463,7 @@ button.close {
   padding: 10px;
   position: relative;
 }
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .clix-hero-banner .banner-logo-container {
     width: 110px;
     height: 110px;
@@ -12387,7 +12487,7 @@ button.close {
 .clix-hero-banner .banner-title-content.with-logo {
   margin-left: 11px;
 }
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .clix-hero-banner .banner-title-content.with-logo {
     margin-left: 27px;
   }
@@ -12400,7 +12500,7 @@ button.close {
   position: relative;
   text-transform: uppercase;
 }
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .clix-hero-banner .banner-type {
     font-size: 24px;
   }
@@ -12414,6 +12514,12 @@ button.close {
   line-height: 32px;
 }
 @media (min-width: 768px) {
+  .clix-hero-banner .banner-title {
+    font-size: 45px;
+    line-height: 45px;
+  }
+}
+@media (min-width: 1200px) {
   .clix-hero-banner .banner-title {
     margin-left: -5px;
     font-size: 100px;
@@ -12472,6 +12578,7 @@ button.close {
   text-transform: uppercase;
   letter-spacing: 1.5px;
   margin-bottom: 8px;
+  margin-top: 8px;
 }
 @media (min-width: 768px) {
   .clix-hero-banner .banner-subtext-container {
@@ -12601,7 +12708,7 @@ button.close {
   bottom: 0;
   right: 0;
 }
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .clix-brand-charity-logo:hover .logo-overlay,
   .clix-offer-logo:hover .logo-overlay,
   .clix-charity-logo:hover .logo-overlay,
@@ -12836,6 +12943,7 @@ button.close {
 @media (min-width: 768px) {
   .clix-secondary-header {
     font-size: 24px;
+    line-height: 30px;
     letter-spacing: 3.5px;
   }
 }
@@ -12926,9 +13034,14 @@ button.close {
   -ms-flex: 1;
   flex: 1;
 }
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .clix-search-filter .filter-bar {
     padding-left: 40px;
+  }
+}
+@media (min-width: 768px) {
+  .clix-search-filter .filter-bar {
+    padding-left: 10px;
   }
 }
 .clix-search-filter .filter-bar:first-child {
@@ -13149,7 +13262,7 @@ button.close {
   padding-right: 0;
   position: relative;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-landing-video-content .about-landing-video {
     padding-right: 13px;
   }
@@ -13162,7 +13275,7 @@ button.close {
 .clix-landing-video-content .about-landing-content {
   padding-left: 0;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-landing-video-content .about-landing-content {
     padding-left: 13px;
   }
@@ -13203,6 +13316,10 @@ button.close {
   .clix-landing-video-content .landing-description {
     padding-left: 0;
     padding-right: 0;
+  }
+}
+@media (min-width: 992px) {
+  .clix-landing-video-content .landing-description {
     margin-top: 0;
   }
 }
@@ -13224,21 +13341,25 @@ button.close {
 .clix-landing-video-content .content-points-validator {
   margin-left: 5px;
 }
-.clix-landing-video-content .video-content-container {
-  padding-right: 0;
-}
 @media (max-width: 768px) {
   .clix-landing-video-content .video-content-container {
     padding-left: 0;
+    padding-right: 0;
   }
 }
 .clix-landing-video-content .video-sidebar-container {
-  padding-left: 26px;
+  padding: 0;
+  margin-top: 10px;
 }
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .clix-landing-video-content .video-sidebar-container {
-    padding: 0;
-    margin-top: 10px;
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+}
+@media (min-width: 1200px) {
+  .clix-landing-video-content .video-sidebar-container {
+    padding-left: 26px;
   }
 }
 .clix-landing-video-content .sidebar-container {
@@ -13246,7 +13367,7 @@ button.close {
   padding: 30px 0;
   border-top: 1px solid #777777;
 }
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .clix-landing-video-content .sidebar-container {
     border: 1px solid #777777;
     padding: 30px;
@@ -13600,8 +13721,6 @@ button.close {
 .clix-video-content-callout .video-info-container .video-episode-title {
   font-size: 18px;
   line-height: 18px;
-  max-height: 133px;
-  overflow: hidden;
   font-family: 'montserratsemibold', sans-serif;
 }
 @media (min-width: 768px) {
@@ -13613,8 +13732,8 @@ button.close {
 }
 @media (min-width: 1600px) {
   .clix-video-content-callout .video-info-container .video-episode-title {
-    font-size: 64px;
-    line-height: 64px;
+    font-size: 45px;
+    line-height: 45px;
     margin-left: -4px;
   }
 }
@@ -13650,7 +13769,7 @@ button.close {
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
-  margin: 5px 0;
+  margin: 12px 5px;
 }
 .clix-video-content-callout .video-content-overlay {
   filter: alpha(opacity=0);
@@ -15549,7 +15668,7 @@ button.close {
   margin-left: 9px;
   margin-right: 9px;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-header {
     margin-left: 9px;
     margin-right: 9px;
@@ -15563,7 +15682,7 @@ button.close {
   letter-spacing: 1.6px;
   text-align: center;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-header .header-text {
     font-size: 45px;
     text-align: left;
@@ -15574,14 +15693,14 @@ button.close {
   padding-bottom: 20px;
   padding-top: 30px;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-header .accesory-view {
     padding-bottom: 0;
     padding-top: 0;
     margin-top: 20px;
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-account-header {
     padding-left: 53px;
     margin-left: 0;

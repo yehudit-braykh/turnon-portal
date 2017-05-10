@@ -3,7 +3,7 @@
     z-index: 2000;
     height: 375px;
 
-    @media (min-width: @screen-sm) {
+    @media (min-width: @screen-lg) {
         height: 590px;
     }
 
@@ -11,7 +11,7 @@
         height: 590px;
         position: relative;
 
-        @media (max-width: @screen-sm) {
+        @media (max-width: @screen-lg) {
             height: 375px;
         }
     }
@@ -33,7 +33,7 @@
         right: 0;
         bottom: 0;
 
-        @media (max-width: @screen-sm) {
+        @media (max-width: @screen-lg) {
             bottom: 140px;
         }
     }
@@ -44,7 +44,7 @@
         .align-items(center);
         padding: 48px 10px 20px;
 
-        @media (min-width: @screen-sm) {
+        @media (min-width: @screen-lg) {
             padding: 48px 30px;
         }
     }
@@ -59,7 +59,7 @@
         padding: 10px;
         position: relative;
 
-        @media (min-width: @screen-sm) {
+        @media (min-width: @screen-lg) {
             width: 110px;
             height: 110px;
             padding: 15px;
@@ -80,7 +80,7 @@
         &.with-logo {
             margin-left: 11px;
 
-            @media (min-width: @screen-sm) {
+            @media (min-width: @screen-lg) {
                 margin-left: 27px;
             }
         }
@@ -95,7 +95,7 @@
         //top: 10px;
         text-transform: uppercase;
 
-        @media (min-width: @screen-sm) {
+        @media (min-width: @screen-lg) {
             font-size: 24px;
         }
     }
@@ -109,6 +109,11 @@
         line-height: 32px;
 
         @media (min-width: @screen-sm) {
+            font-size: 45px;
+            line-height: 45px;
+        }
+
+        @media (min-width: @screen-lg) {
             margin-left: -5px;
             font-size: 100px;
             line-height: 100px;
@@ -155,6 +160,7 @@
         text-transform: uppercase;
         letter-spacing: 1.5px;
         margin-bottom: 8px;
+        margin-top: 8px;
 
         @media (min-width: @screen-sm) {
             text-align: right;

@@ -40,21 +40,21 @@
                         </div>
                         <div class="row" ng-repeat="series in celebrity.series.series" ng-show="series.title === selectedSeries.label">
 
-                            <div class="col-sm-8">
+                            <div class="col-md-8">
                                 <div class="row clix-block-row">
-                                    <div class="clix-block-item col-xs-6 col-md-6 col-lg-4" ng-repeat="video in series.seasons.seasons[0].episodes | orderBy: 'episodeNumber'">
+                                    <div class="clix-block-item col-xs-6 col-sm-4 col-md-4 col-lg-4" ng-repeat="video in series.seasons.seasons[0].episodes | orderBy: 'episodeNumber'">
                                         <clix-video-content-callout video="video"></clix-video-content-callout>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-md-4 star-sidebar-container">
 
                                 <div class="sidebar-container">
                                     <div class="sidebar-title">
                                         Brands in this Series
                                     </div>
                                     <div class="row brand-row">
-                                        <div ng-repeat="brand in series.brands.brands" class="brand-container col-xs-6">
+                                        <div ng-repeat="brand in series.brands.brands" class="brand-container col-xs-6 col-sm-3 col-md-6">
                                             <clix-brand-content-callout brand="brand"></clix-brand-content-callout>
                                         </div>
                                     </div>
@@ -66,7 +66,7 @@
                                         Charities in this Series
                                     </div>
                                     <div class="row brand-row">
-                                        <div class="brand-container col-xs-6">
+                                        <div class="brand-container col-xs-6 col-sm-3 col-md-6">
                                             <clix-charity-content-callout charity="series.charity"></clix-charity-content-callout>
                                         </div>
                                     </div>
@@ -80,36 +80,36 @@
                 </uib-tab>
                 <uib-tab index="1" heading="Brands & Offers" select="onTabSelect('brands_offers')">
                     <div class="brands-offers-title">
-                        <div class="visible-sm visible-xs">
+                        <div class="visible-xs">
                             <clix-secondary-header>
                                 Brands Related To<br />{{celebrity.name}}
                             </clix-secondary-header>
                         </div>
-                        <div class="hidden-sm hidden-xs">
+                        <div class="hidden-xs">
                             <clix-secondary-header>
                                 Brands Related To {{celebrity.name}}
                             </clix-secondary-header>
                         </div>
                     </div>
                     <div class="row brand-row">
-                        <div ng-repeat="brand in celebrity.brands.brands" class="brand-container col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                        <div ng-repeat="brand in celebrity.brands.brands" class="brand-container col-xs-6 col-sm-3 col-md-3 col-lg-2">
                             <clix-brand-content-callout brand="brand"></clix-brand-content-callout>
                         </div>
                     </div>
                     <div class="brands-offers-title" ng-show="celebrity.offers">
-                        <div class="visible-sm visible-xs">
+                        <div class="visible-xs">
                             <clix-secondary-header>
                                 Offers Related To<br />{{celebrity.name}}
                             </clix-secondary-header>
                         </div>
-                        <div class="hidden-sm hidden-xs">
+                        <div class="hidden-xs">
                             <clix-secondary-header>
                                 Offers Related To {{celebrity.name}}
                             </clix-secondary-header>
                         </div>
                     </div>
                     <div class="row brand-row">
-                        <div ng-repeat="offer in celebrity.offers.offers" class="brand-container col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                        <div ng-repeat="offer in celebrity.offers.offers" class="brand-container col-xs-6 col-sm-3 col-md-3 col-lg-2">
                             <clix-offer-content-callout offer="offer"></clix-offer-content-callout>
                         </div>
                     </div>
@@ -118,19 +118,19 @@
                 <uib-tab index="2" heading="Charity" select="onTabSelect('charity')">
 
                     <div class="brands-offers-title">
-                        <div class="visible-sm visible-xs">
+                        <div class="visible-xs">
                             <clix-secondary-header>
                                 Charities Related To<br />{{celebrity.name}}
                             </clix-secondary-header>
                         </div>
-                        <div class="hidden-sm hidden-xs">
+                        <div class="hidden-xs">
                             <clix-secondary-header>
                                 Charities Related To {{celebrity.name}}
                             </clix-secondary-header>
                         </div>
                     </div>
                     <div class="row brand-row">
-                        <div ng-repeat="charity in celebrity.charities.charities" class="brand-container col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                        <div ng-repeat="charity in celebrity.charities.charities" class="brand-container col-xs-6 col-sm-3 col-md-3 col-lg-2">
                             <clix-charity-content-callout charity="charity"></clix-charity-content-callout>
                         </div>
                     </div>

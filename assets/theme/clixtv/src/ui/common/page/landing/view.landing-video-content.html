@@ -1,8 +1,8 @@
 <div class="clix-landing-video-content">
     <div class="row landing-video-content-row">
-        <div class="col-md-9 video-content-container">
+        <div class="col-lg-9 video-content-container">
             <div class="row about-landing-video-content">
-                <div class="col-sm-7 about-landing-video">
+                <div class="col-md-7 about-landing-video">
                     <div ng-show="video">
                         <div id="videoPlayer"></div>
                         <clix-video-player ng-if="video" video="video" auto-play="false" video-id="videoPlayer" on-ready="onPlayerReady"></clix-video-player>
@@ -14,7 +14,7 @@
                     </div>
                     <div ng-transclude="mainContent"></div>
                 </div>
-                <div class="col-sm-5 about-landing-content">
+                <div class="col-md-5 about-landing-content">
                     <div class="landing-description">
                         <div ng-transclude="contentDescription"></div>
                     </div>
@@ -32,7 +32,7 @@
                 <div ng-transclude="footerContent"></div>
             </div>
         </div>
-        <div class="col-md-3 video-sidebar-container">
+        <div class="col-lg-3 video-sidebar-container">
 
             <div class="sidebar-container">
                 <div class="sidebar-title">

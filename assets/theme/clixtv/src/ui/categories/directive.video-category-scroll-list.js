@@ -7,7 +7,8 @@
             scope: {
                 category: '=?',
                 categoryTitle: '@?',
-                categoryVideos: '=?'
+                categoryVideos: '=?',
+                enableShowMore: '@?'
             },
             link: function(scope, element) {
                 scope.scrollListElement = angular.element(element).find('.video-inner-list-container');

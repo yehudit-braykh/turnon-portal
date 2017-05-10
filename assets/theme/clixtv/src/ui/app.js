@@ -142,7 +142,8 @@
             'userService',
             'catchMediaService',
             'educationModalService',
-            function($rootScope, userService, catchMediaService, educationModalService) {
+            'modalService',
+            function($rootScope, userService, catchMediaService, educationModalService, modalService) {
 
                 userService.setLoggedInUser();
                 catchMediaService.initialize();
@@ -150,6 +151,7 @@
 
                 $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
                     $('html, body').animate({ scrollTop: 0 }, 200);
+                    modalService.close();
                     $rootScope.printable = (to.data && to.data.print);
                     $rootScope.solidNavigation = (to.data && to.data.solidNavigation);
                 });

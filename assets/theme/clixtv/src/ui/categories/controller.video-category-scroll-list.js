@@ -21,7 +21,7 @@
                 var splitWidth = 2;
 
                 if ($window.innerWidth > 480) {
-                    splitWidth = 2.7;
+                    splitWidth = 3.7;
                 }
 
                 if ($window.innerWidth > 992) {
