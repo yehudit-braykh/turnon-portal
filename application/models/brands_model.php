@@ -30,7 +30,7 @@ class Brands_model extends Uvod_model {
 		return $data;
 	}
 
-	function get_brands_array ($page = 0, $page_size = 20, $sort_field = null, $descending = false) {
+	function get_brands_array ($page = 0, $page_size = 20, $sort_field = null, $descending = false, $keyword = null) {
 		$parameters = array();
 		$parameters[] = "page=".$page;
 		$parameters[] = "size=".$page_size;
@@ -38,15 +38,17 @@ class Brands_model extends Uvod_model {
 			$parameters[] = 'sort='.$sort_field.':'.($descending?"-1":"1");
 		else
 			$parameters[] = 'sort=title:1';
+		if($keyword)
+			$parameters[] = 'byKeywords='.$keyword;
 
-		if ($this->fastcache_model->get_cache("get_brands_array".$page."size".$page_size."order".$descending))
-			return $this->fastcache_model->get_cache("get_brands_array".$page."size".$page_size."order".$descending);
+		if ($this->fastcache_model->get_cache("get_brands_array".$page."size".$page_size."order".$descending."keyword".$keyword))
+			return $this->fastcache_model->get_cache("get_brands_array".$page."size".$page_size."order".$descending."keyword".$keyword);
 		$data =  $this->rows($this->apiCall('brand/related', $parameters)->entries);
-		$this->fastcache_model->set_cache("get_brands_array".$page."size".$page_size."order".$descending,$data);
+		$this->fastcache_model->set_cache("get_brands_array".$page."size".$page_size."order".$descending."keyword".$keyword,$data);
 		return $data;
 	}
 
-	function get_offers_array ($page = 0, $page_size = 20, $sort_field = null, $descending = false) {
+	function get_offers_array ($page = 0, $page_size = 20, $sort_field = null, $descending = false, $keyword = null) {
 		$parameters = array();
 		$parameters[] = "page=".$page;
 		$parameters[] = "size=".$page_size;
@@ -54,15 +56,17 @@ class Brands_model extends Uvod_model {
 			$parameters[] = 'sort='.$sort_field.':'.($descending?"-1":"1");
 		else
 			$parameters[] = 'sort=expirationDate:-1';
+		if($keyword)
+			$parameters[] = 'byKeywords='.$keyword;
 
-		if ($this->fastcache_model->get_cache("get_offers_array".$page."size".$page_size."order".$descending))
-			return $this->fastcache_model->get_cache("get_offers_array".$page."size".$page_size."order".$descending);
+		if ($this->fastcache_model->get_cache("get_offers_array".$page."size".$page_size."order".$descending."keyword".$keyword))
+			return $this->fastcache_model->get_cache("get_offers_array".$page."size".$page_size."order".$descending."keyword".$keyword);
 		$data =  $this->rows($this->apiCall('offer/related', $parameters)->entries);
-		$this->fastcache_model->set_cache("get_offers_array".$page."size".$page_size."order".$descending,$data);
+		$this->fastcache_model->set_cache("get_offers_array".$page."size".$page_size."order".$descending."keyword".$keyword,$data);
 		return $data;
 	}
 
-	function get_charities_array ($page = 0, $page_size = 20, $sort_field = null, $descending = false) {
+	function get_charities_array ($page = 0, $page_size = 20, $sort_field = null, $descending = false, $keyword = null) {
 		$parameters = array();
 		$parameters[] = "page=".$page;
 		$parameters[] = "size=".$page_size;
@@ -71,10 +75,13 @@ class Brands_model extends Uvod_model {
 		else
 			$parameters[] = 'sort=title:1';
 
-		if ($this->fastcache_model->get_cache("get_charities_array".$page."size".$page_size."order".$descending))
-			return $this->fastcache_model->get_cache("get_charities_array".$page."size".$page_size."order".$descending);
+		if($keyword)
+			$parameters[] = 'byKeywords='.$keyword;
+
+		if ($this->fastcache_model->get_cache("get_charities_array".$page."size".$page_size."order".$descending."keyword".$keyword))
+			return $this->fastcache_model->get_cache("get_charities_array".$page."size".$page_size."order".$descending."keyword".$keyword);
 		$data =  $this->rows($this->apiCall('charity/related', $parameters)->entries);
-		$this->fastcache_model->set_cache("get_charities_array".$page."size".$page_size."order".$descending,$data);
+		$this->fastcache_model->set_cache("get_charities_array".$page."size".$page_size."order".$descending."keyword".$keyword,$data);
 		return $data;
 	}
 
