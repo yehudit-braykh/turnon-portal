@@ -6,7 +6,7 @@ class Celebrity_model extends Uvod_Model {
 		$this->load->model('fastcache_model');
 	}
 
-	function get_all_celebrities($page = 0, $page_size = 20, $sort_field = null, $descending = false){
+	function get_all_celebrities($page = 0, $page_size = 20, $sort_field = null, $descending = false, $keyword = null){
 		$parameters = array();
 		$parameters[] = "page=".$page;
 		$parameters[] = "size=".$page_size;
@@ -15,10 +15,13 @@ class Celebrity_model extends Uvod_Model {
 		else
 			$parameters[] = 'sort=title:1';
 
-		if ($this->fastcache_model->get_cache("get_all_celebrities".$page."size".$page_size."order".$descending))
-			return $this->fastcache_model->get_cache("get_all_celebrities".$page."size".$page_size."order".$descending);
+		if($keyword)
+			$parameters[] = 'byKeywords='.$keyword;
+
+		if ($this->fastcache_model->get_cache("get_all_celebrities".$page."size".$page_size."order".$descending."keyword".$keyword))
+			return $this->fastcache_model->get_cache("get_all_celebrities".$page."size".$page_size."order".$descending."keyword".$keyword);
 		$data =  $this->rows($this->apiCall('celebrity/related', $parameters)->entries);
-		$this->fastcache_model->set_cache("get_all_celebrities".$page."size".$page_size."order".$descending,$data);
+		$this->fastcache_model->set_cache("get_all_celebrities".$page."size".$page_size."order".$descending."keyword".$keyword,$data);
 		return $data;
     }
 

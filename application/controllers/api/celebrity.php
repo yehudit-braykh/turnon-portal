@@ -13,8 +13,9 @@ class Celebrity extends REST_Controller{
 		$page_size = $this->get("page_size");
 		$sort_field = $this->get("sort_field");
 		$descending = $this->get("descending");
+		$keyword = $this->get("keyword");
 
-		$this->response($this->celebrity_model->get_all_celebrities($page, $page_size, $sort_field, $descending),200);
+		$this->response($this->celebrity_model->get_all_celebrities($page, $page_size, $sort_field, $descending, $keyword),200);
     }
 
     function get_celebrity_get(){

@@ -11,8 +11,9 @@ class Campaigns extends REST_Controller{
 		$page_size = $this->get("page_size");
 		$sort_field = $this->get("sort_field");
 		$descending = $this->get("descending");
+		$keyword = $this->get("keyword");
 
-		return $this->response($this->campaigns_model->get_campaigns($page, $page_size, $sort_field, $descending),200);
+		return $this->response($this->campaigns_model->get_campaigns($page, $page_size, $sort_field, $descending, $keyword),200);
     }
 
 	function get_campaign_by_id_get(){
