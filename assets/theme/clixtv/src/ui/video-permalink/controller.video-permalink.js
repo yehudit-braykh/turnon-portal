@@ -96,7 +96,7 @@
             };
 
             $scope.onExpandToggle = function() {
-                var expandedSize = angular.element(document.getElementById('about-video-container')).outerHeight(),
+                var expandedSize = angular.element(document.getElementById('about-video-container')).outerHeight() * 3,
                     infoContainerElement = angular.element(document.getElementById('about-video-inner-container'));
                 $scope.expanded = !$scope.expanded;
                 infoContainerElement[0].style.maxHeight = ($scope.expanded) ? (expandedSize + 'px') : ($scope.originalPlayerHeight + 'px');

@@ -8,7 +8,8 @@
         '$window',
         '$uibModal',
         'categoryService',
-        function($q, $scope, $rootScope, $timeout, $window, $uibModal, categoryService) {
+        'modalService',
+        function($q, $scope, $rootScope, $timeout, $window, $uibModal, categoryService, modalService) {
 
             $scope.showMobileCarousel = false;
 
@@ -21,37 +22,7 @@
             });
 
             $scope.onSignupPress = function() {
-                var modalInstance = $uibModal.open({
-                    animation: true,
-                    templateUrl: 'ui/common/modal/login-signup/view.login-signup.html',
-                    controller: 'LoginSignupController',
-                    windowClass: 'clix-modal-window',
-                    size: 'clix-md',
-                    resolve: {
-                        signup: true
-                    }
-                });
-
-                modalInstance.opened.then(
-                    function onSuccess() {
-                        $rootScope.$broadcast('modal.open');
-                    }
-                );
-
-                modalInstance.closed.then(
-                    function onSuccess() {
-                        $rootScope.$broadcast('modal.close');
-                    }
-                );
-
-                modalInstance.result.then(
-                    function onSuccess(data) {
-
-                    },
-                    function onError(error) {
-
-                    }
-                )
+                modalService.showSignUpModal();
             };
 
             function _recalculateHeight() {

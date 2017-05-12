@@ -35,7 +35,7 @@
             </div>
 
             <div class="star-meta-info row">
-                <div class="col-sm-6 star-name-container">
+                <div class="col-lg-4 star-name-container">
                     <div class="star-avatar" style="background-image: url({{video.celebrity.thumbnail}})"></div>
                     <div class="star-name-favorite-container">
                         <div class="star-name">{{video.celebrity.name}}</div>
@@ -47,7 +47,7 @@
                         {{isFavoriteCelebrity ? 'Remove this Star from your Favorites.' : 'Add this Star to your Favorites.'}}
                     </clix-tooltip>
                 </div>
-                <div class="col-sm-6 social-container">
+                <div class="col-lg-8 social-container">
                     <div class="violator-container" clix-tooltip-trigger tooltip-id="reward-points-button-{{$id}}">
                         <clix-violator size="large">100 Reward Points</clix-violator>
                     </div>
@@ -109,7 +109,7 @@
                     <clix-loader size="small"></clix-loader>
                 </div>
                 <div class="row next-video-list">
-                    <div class="col-lg-4 next-video" ng-repeat="nextVideo in series.seasons.seasons[0].episodes track by $index" ng-show="nextVideo.id !== video.id">
+                    <div class="col-md-6 col-lg-4 next-video" ng-repeat="nextVideo in series.seasons.seasons[0].episodes track by $index" ng-show="nextVideo.id !== video.id">
                         <clix-video-content-callout video="nextVideo"></clix-video-content-callout>
                     </div>
                 </div>
@@ -211,8 +211,8 @@
                     <div ng-if="!relatedVideos">
                         <clix-loader size="small"></clix-loader>
                     </div>
-                    <div class="col-lg-6 related-video" ng-repeat="relatedVideo in relatedVideos.videos | limitTo: 6 track by $index">
-                        <clix-video-content-callout video="relatedVideo"></clix-video-content-callout>
+                    <div class="col-md-6 col-lg-6 related-video" ng-repeat="relatedVideo in relatedVideos.videos | limitTo: 6 track by $index">
+                        <clix-video-content-callout video="relatedVideo" minimized="true"></clix-video-content-callout>
                     </div>
                 </div>
             </div>

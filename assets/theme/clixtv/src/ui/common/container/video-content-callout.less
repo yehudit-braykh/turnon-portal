@@ -3,6 +3,28 @@
 .clix-video-content-callout {
     position: relative;
 
+    &.minimized {
+        .star-avatar {
+            display: none !important;
+        }
+        .star-name {
+            margin-left: 0 !important;
+        }
+        .video-episode-title {
+            font-size: 18px !important;
+            line-height: 18px !important;
+        }
+        .video-series-title {
+            font-size: 8px !important;
+        }
+        .video-episode-number {
+            font-size: 8px !important;
+        }
+        .brands-container {
+            margin-top: 10px !important;
+        }
+    }
+
     &.active {
         .star-info-background,
         .video-thumbnail-background {

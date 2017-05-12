@@ -38,15 +38,14 @@
                         });
 
                         jwplayer().on('error', function() {
+                            $rootScope.$broadcast('video.error');
                             if ($scope.onError) {
                                 $scope.onError();
                             }
                         });
 
-                        jwplayer().on('complete', function() {
-                            if ($scope.onComplete) {
-                                $scope.onComplete();
-                            }
+                        jwplayer().on('setupError', function() {
+                            $rootScope.$broadcast('video.setupError');
                         });
 
                         jwplayer().on('play', function() {
@@ -59,6 +58,9 @@
 
                         jwplayer().on('complete', function() {
                             $rootScope.$broadcast('video.complete');
+                            if ($scope.onComplete) {
+                                $scope.onComplete();
+                            }
                         });
 
                         catchMediaService.trackVideoPlayerEvent(playerInstance);

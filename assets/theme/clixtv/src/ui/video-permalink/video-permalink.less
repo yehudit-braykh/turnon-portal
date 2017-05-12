@@ -23,11 +23,17 @@
 
     .star-info-column-container {
 
-        padding-left: 24px;
+        padding-left: @common-mobile-padding;
+        padding-right: @common-mobile-padding;
 
-        @media (max-width: @screen-sm) {
-            padding-left: @common-mobile-padding;
-            padding-right: @common-mobile-padding;
+        @media (min-width: @screen-sm) {
+
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        @media (min-width: @screen-md) {
+            padding-left: 24px;
         }
     }
 
@@ -116,9 +122,16 @@
     .star-meta-info {
         padding-bottom: 16px;
         border-bottom: 1px solid @color-gray3;
+        padding-left: 20px;
+        padding-right: 20px;
 
         @media (min-width: @screen-sm) {
             padding-top: 16px;
+        }
+
+        @media (min-width: @screen-md) {
+            padding-left: 0;
+            padding-right: 0;
         }
     }
 
@@ -154,16 +167,14 @@
     .social-container {
         .flex-display;
         .align-items(center);
-        padding-right: 0;
+        padding-left: @common-mobile-padding;
+        padding-right: @common-mobile-padding;
         padding-bottom: 10px;
-
-        @media (max-width: @screen-sm) {
-            padding-left: @common-mobile-padding;
-            padding-right: @common-mobile-padding;
-        }
 
         @media (min-width: @screen-sm) {
             height: 55px;
+            padding-right: 0;
+            padding-left: 0;
             padding-bottom: 0;
         }
 
@@ -241,6 +252,12 @@
     }
 
     .video-info-container {
+
+        margin-top: 27px;
+
+        @media (min-width: @screen-sm) {
+            margin-top: 0;
+        }
 
         .episode-number {
             font-family: @font-primary;
@@ -370,6 +387,13 @@
         }
         .brands-container {
             .flex(1);
+            padding-left: 20px;
+            padding-right: 20px;
+
+            @media (min-width: @screen-md) {
+                padding-left: 0;
+                padding-right: 0;
+            }
         }
         .charity-container {
             width: 115px;
@@ -434,8 +458,15 @@
             .logo-image {
                 top: 25px;
                 bottom: 25px;
-                left: 25px;
-                right: 25px;
+                left: 20px;
+                right: 20px;
+
+                @media (min-width: @screen-md) and (max-width: @screen-lg) {
+                    top: 20px;
+                    bottom: 20px;
+                    left: 15px;
+                    right: 15px;
+                }
             }
 
             .logo-save,
@@ -485,6 +516,7 @@
             text-align: center;
             border-bottom: 1px solid @color-gray3;
             padding-bottom: 21px;
+            padding-left: 20px;
 
             @media (min-width: @screen-sm) {
                 font-size: 24px;
@@ -492,6 +524,10 @@
                 text-align: left;
                 border-bottom-width: 0;
                 padding-bottom: 0;
+            }
+
+            @media (min-width: @screen-md) {
+                padding-left: 0;
             }
         }
     }

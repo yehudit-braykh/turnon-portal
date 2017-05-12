@@ -9072,6 +9072,8 @@ button.close {
   max-width: none;
   max-height: 600px;
   overflow: scroll;
+  width: auto;
+  min-width: 100%;
 }
 .clix-footer {
   padding-top: 73px;
@@ -9319,12 +9321,12 @@ button.close {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(14, 14, 14, 0.17) 70%;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(14, 14, 14, 0.17) 70%), to(#0e0e0e));
-  background: -webkit-linear-gradient(top, rgba(14, 14, 14, 0.17) 70%, #0e0e0e);
-  background: -moz-linear-gradient(top, rgba(14, 14, 14, 0.17) 70%, #0e0e0e);
-  background: -ms-linear-gradient(top, rgba(14, 14, 14, 0.17) 70%, #0e0e0e);
-  background: -o-linear-gradient(top, rgba(14, 14, 14, 0.17) 70%, #0e0e0e);
+  background-color: rgba(14, 14, 14, 0.17) 30%;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(14, 14, 14, 0.17) 30%), to(#0e0e0e));
+  background: -webkit-linear-gradient(top, rgba(14, 14, 14, 0.17) 30%, #0e0e0e);
+  background: -moz-linear-gradient(top, rgba(14, 14, 14, 0.17) 30%, #0e0e0e);
+  background: -ms-linear-gradient(top, rgba(14, 14, 14, 0.17) 30%, #0e0e0e);
+  background: -o-linear-gradient(top, rgba(14, 14, 14, 0.17) 30%, #0e0e0e);
 }
 .home-page .carousel-container {
   position: absolute;
@@ -9499,12 +9501,18 @@ button.close {
   }
 }
 .video-permalink-page .star-info-column-container {
-  padding-left: 24px;
+  padding-left: 9px;
+  padding-right: 9px;
 }
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .video-permalink-page .star-info-column-container {
-    padding-left: 9px;
-    padding-right: 9px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+@media (min-width: 992px) {
+  .video-permalink-page .star-info-column-container {
+    padding-left: 24px;
   }
 }
 .video-permalink-page .video-player {
@@ -9618,10 +9626,18 @@ button.close {
 .video-permalink-page .star-meta-info {
   padding-bottom: 16px;
   border-bottom: 1px solid #636363;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 @media (min-width: 768px) {
   .video-permalink-page .star-meta-info {
     padding-top: 16px;
+  }
+}
+@media (min-width: 992px) {
+  .video-permalink-page .star-meta-info {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 .video-permalink-page .favorite-button {
@@ -9660,18 +9676,15 @@ button.close {
   -webkit-align-items: center;
   -ms-align-items: center;
   align-items: center;
-  padding-right: 0;
+  padding-left: 9px;
+  padding-right: 9px;
   padding-bottom: 10px;
-}
-@media (max-width: 768px) {
-  .video-permalink-page .social-container {
-    padding-left: 9px;
-    padding-right: 9px;
-  }
 }
 @media (min-width: 768px) {
   .video-permalink-page .social-container {
     height: 55px;
+    padding-right: 0;
+    padding-left: 0;
     padding-bottom: 0;
   }
 }
@@ -9754,6 +9767,14 @@ button.close {
   .video-permalink-page .social-container .social-icon-label {
     margin-left: 10px;
     font-size: 14px;
+  }
+}
+.video-permalink-page .video-info-container {
+  margin-top: 27px;
+}
+@media (min-width: 768px) {
+  .video-permalink-page .video-info-container {
+    margin-top: 0;
   }
 }
 .video-permalink-page .video-info-container .episode-number {
@@ -9897,6 +9918,14 @@ button.close {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+@media (min-width: 992px) {
+  .video-permalink-page .brands-charity-container .brands-container {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 .video-permalink-page .brands-charity-container .charity-container {
   width: 115px;
@@ -9964,8 +9993,17 @@ button.close {
 .video-permalink-page .brands-charity-container .clix-charity-logo .logo-image {
   top: 25px;
   bottom: 25px;
-  left: 25px;
-  right: 25px;
+  left: 20px;
+  right: 20px;
+}
+@media (min-width: 992px) and (max-width: 1200px) {
+  .video-permalink-page .brands-charity-container .clix-brand-charity-logo .logo-image,
+  .video-permalink-page .brands-charity-container .clix-charity-logo .logo-image {
+    top: 20px;
+    bottom: 20px;
+    left: 15px;
+    right: 15px;
+  }
 }
 .video-permalink-page .brands-charity-container .clix-brand-charity-logo .logo-save,
 .video-permalink-page .brands-charity-container .clix-charity-logo .logo-save,
@@ -10022,6 +10060,7 @@ button.close {
   text-align: center;
   border-bottom: 1px solid #636363;
   padding-bottom: 21px;
+  padding-left: 20px;
 }
 @media (min-width: 768px) {
   .video-permalink-page .up-next-container .up-next-label {
@@ -10030,6 +10069,11 @@ button.close {
     text-align: left;
     border-bottom-width: 0;
     padding-bottom: 0;
+  }
+}
+@media (min-width: 992px) {
+  .video-permalink-page .up-next-container .up-next-label {
+    padding-left: 0;
   }
 }
 .video-permalink-page .related-videos-container {
@@ -12947,7 +12991,7 @@ button.close {
     letter-spacing: 3.5px;
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-search-filter {
     padding-top: 25px;
     padding-bottom: 25px;
@@ -12960,7 +13004,7 @@ button.close {
   margin-bottom: 30px;
   border-bottom: 1px solid #636363;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-search-filter .search-bar-container {
     border-bottom-width: 0;
     padding-bottom: 0;
@@ -12981,7 +13025,7 @@ button.close {
   border-bottom: 1px solid #636363;
   padding-bottom: 30px;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-search-filter .filters-container {
     padding-bottom: 0;
     border-bottom-width: 0;
@@ -13034,20 +13078,20 @@ button.close {
   -ms-flex: 1;
   flex: 1;
 }
+@media (min-width: 992px) {
+  .clix-search-filter .filter-bar {
+    padding-left: 10px;
+  }
+}
 @media (min-width: 1200px) {
   .clix-search-filter .filter-bar {
     padding-left: 40px;
   }
 }
-@media (min-width: 768px) {
-  .clix-search-filter .filter-bar {
-    padding-left: 10px;
-  }
-}
 .clix-search-filter .filter-bar:first-child {
   padding-right: 19px;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-search-filter .filter-bar:first-child {
     padding-right: 0;
   }
@@ -13405,7 +13449,7 @@ button.close {
   padding-bottom: 100%;
   overflow: hidden;
 }
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .clix-content-callout .header-callout-container:hover .header-overlay {
     visibility: visible;
   }
@@ -13568,6 +13612,25 @@ button.close {
 }
 .clix-video-content-callout {
   position: relative;
+}
+.clix-video-content-callout.minimized .star-avatar {
+  display: none !important;
+}
+.clix-video-content-callout.minimized .star-name {
+  margin-left: 0 !important;
+}
+.clix-video-content-callout.minimized .video-episode-title {
+  font-size: 18px !important;
+  line-height: 18px !important;
+}
+.clix-video-content-callout.minimized .video-series-title {
+  font-size: 8px !important;
+}
+.clix-video-content-callout.minimized .video-episode-number {
+  font-size: 8px !important;
+}
+.clix-video-content-callout.minimized .brands-container {
+  margin-top: 10px !important;
 }
 @media (min-width: 992px) {
   .clix-video-content-callout.active .star-info-background,
@@ -15614,6 +15677,7 @@ button.close {
   bottom: 0;
   right: 0;
   z-index: 100;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 .clix-mobile-navigation {
   -webkit-box-shadow: 0 -1px 4px 0 rgba(0, 0, 0, 0.5);

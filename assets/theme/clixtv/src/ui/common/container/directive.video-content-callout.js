@@ -6,7 +6,8 @@
             templateUrl: 'ui/common/container/view.video-content-callout.html',
             controller: 'VideoContentCalloutController',
             scope: {
-                video: '='
+                video: '=',
+                minimized: '@'
             }
         }
     };
