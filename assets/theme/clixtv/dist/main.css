@@ -9321,12 +9321,12 @@ button.close {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(14, 14, 14, 0.17) 30%;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(14, 14, 14, 0.17) 30%), to(#0e0e0e));
-  background: -webkit-linear-gradient(top, rgba(14, 14, 14, 0.17) 30%, #0e0e0e);
-  background: -moz-linear-gradient(top, rgba(14, 14, 14, 0.17) 30%, #0e0e0e);
-  background: -ms-linear-gradient(top, rgba(14, 14, 14, 0.17) 30%, #0e0e0e);
-  background: -o-linear-gradient(top, rgba(14, 14, 14, 0.17) 30%, #0e0e0e);
+  background-color: rgba(0, 0, 0, 0.6) 30%;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.6) 30%), to(#0e0e0e));
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.6) 30%, #0e0e0e);
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.6) 30%, #0e0e0e);
+  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.6) 30%, #0e0e0e);
+  background: -o-linear-gradient(top, rgba(0, 0, 0, 0.6) 30%, #0e0e0e);
 }
 .home-page .carousel-container {
   position: absolute;
