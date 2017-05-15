@@ -21,5 +21,57 @@ class Search extends REST_Controller{
 		$this->response($results, 200);
     }
 
+	function brand_get(){
+		$keyword = $this->get("keyword");
+		$tag = $this->get("tag");
+		if(!$keyword && !$tag)
+			$this->response("tag or keyword field is mandatory",400);
+        $page = $this->get("page")?$this->get("page"):'0';
+        $page_size = $this->get("page_size")?$this->get("page_size"):'2';
+
+        $results = $this->search_model->search_brands($keyword, $tag,$page, $page_size);
+
+		$this->response($results, 200);
+	}
+
+	function campaign_get(){
+		$keyword = $this->get("keyword");
+		$tag = $this->get("tag");
+		if(!$keyword && !$tag)
+			$this->response("tag or keyword field is mandatory",400);
+		$page = $this->get("page")?$this->get("page"):'0';
+        $page_size = $this->get("page_size")?$this->get("page_size"):'2';
+
+        $results = $this->search_model->search_campaigns($keyword, $tag,$page, $page_size);
+
+		$this->response($results, 200);
+	}
+
+	function offer_get(){
+		$keyword = $this->get("keyword");
+		$tag = $this->get("tag");
+		if(!$keyword && !$tag)
+			$this->response("tag or keyword field is mandatory",400);
+		$page = $this->get("page")?$this->get("page"):'0';
+        $page_size = $this->get("page_size")?$this->get("page_size"):'2';
+
+        $results = $this->search_model->search_offers($keyword, $tag,$page, $page_size);
+
+		$this->response($results, 200);
+	}
+
+	function charity_get(){
+		$keyword = $this->get("keyword");
+		$tag = $this->get("tag");
+		if(!$keyword && !$tag)
+			$this->response("tag or keyword field is mandatory",400);
+		$page = $this->get("page")?$this->get("page"):'0';
+        $page_size = $this->get("page_size")?$this->get("page_size"):'2';
+
+        $results = $this->search_model->search_charities($keyword, $tag,$page, $page_size);
+
+		$this->response($results, 200);
+	}
+
 
 }

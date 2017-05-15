@@ -6,20 +6,21 @@ class Search_model extends Uvod_model {
 		$this->load->helper('uvod_api');
 	}
 
-	public function search($keyword, $tags = null, $page = 0 , $page_size = 20){
+	public function search($keyword, $tags = null, $page = 0 , $page_size = 2){
 		$results = new stdClass;
-		$results->celebrities = $this->celebrity_rows($this->search_celebrities($keyword, $tags, $page , $page_size )->entries[0]);
-		$results->series = $this->rows($this->search_series($keyword, $tags, $page , $page_size )->entries[0]);
-		$results->videos = $this->videos_rows($this->search_videos($keyword, $tags, $page , $page_size )->entries[0]);
-		$results->brands = $this->brands_rows($this->search_brands($keyword, $tags, $page , $page_size )->entries[0]);
-		$results->campaigns = $this->rows($this->search_campaigns($keyword, $tags, $page , $page_size )->entries);
-		$results->offers = $this->offers_rows($this->search_offers($keyword, $tags, $page , $page_size )->entries[0]);
-		$results->charities = $this->charities_rows($this->search_charities($keyword, $tags, $page , $page_size )->entries[0]);
+		$results->celebrities = $this->celebrity_rows($this->search_celebrities($keyword, $tags, $page , $page_size )->entries);
+		// $results->series = $this->rows($this->search_series($keyword, $tags, $page , $page_size )->entries[0]);
+		// $results->videos = $this->videos_rows($this->search_videos($keyword, $tags, $page , $page_size )->entries[0]);
+		$results->brands = $this->search_brands($keyword, $tags, $page , $page_size);
+		$results->categories = $this->search_categories($keyword, $tags, $page , $page_size);
+		$results->campaigns = $this->search_campaigns($keyword, $tags, $page , $page_size );
+		// $results->offers = $this->search_offers($keyword, $tags, $page , $page_size );
+		$results->charities = $this->search_charities($keyword, $tags, $page , $page_size );
 
 		return $results;
 	}
 
-	private function search_charities($keyword, $tags, $page , $page_size ){
+	public function search_charities($keyword, $tags, $page , $page_size ){
 
 		$parameters = array();
 		$parameters[] = "byTitle=".str_replace(' ',"%20",$keyword);
@@ -30,10 +31,47 @@ class Search_model extends Uvod_model {
 		$parameters[] = 'sort=title:1';
 
 
-		return $this->apiCall('charity/search/related', $parameters);
+		return $this->charities_rows($this->apiCall('charity/search/related', $parameters)->entries);
 	}
 
-	private function search_brands($keyword, $tags, $page , $page_size){
+	public function search_categories($keyword, $tags, $page , $page_size ){
+
+		$parameters = array();
+		$parameters[] = "byTitle=".str_replace(' ',"%20",$keyword);
+		if($tags)
+			$parameters[] = "byKeyword=".str_replace(' ',"|",$tags);
+		$parameters[] = "page=".$page;
+		$parameters[]= "size=".$page_size;
+		$parameters[] = 'sort=title:1';
+
+
+		return $this->rows($this->apiCall('category/search/related', $parameters)->entries);
+	}
+
+	public function search_brands($keyword, $tags, $page , $page_size){
+
+		$parameters = array();
+		$parameters[] = "byTitle=".str_replace(' ',"%20",$keyword);
+		if($tags)
+			$parameters[] = "byKeyword=".str_replace(' ',"|",$tags);
+		$parameters[] = "page=".$page;
+		$parameters[]= "size=".$page_size;
+		//  debug($this->apiCall('brand/search/related', $parameters)->entries);
+		return $this->brands_rows($this->apiCall('brand/search/related', $parameters)->entries);
+	}
+
+	public function search_campaigns($keyword, $tags, $page , $page_size){
+
+		$parameters = array();
+		$parameters[] = "byTitle=".str_replace(' ',"%20",$keyword);
+		if($tags)
+			$parameters[] = "byKeyword=".str_replace(' ',"|",$tags);
+		$parameters[] = "page=".$page;
+		$parameters[]= "size=".$page_size;
+		return $this->rows($this->apiCall('campaign/search/related', $parameters)->entries);
+	}
+
+	public function search_offers($keyword, $tags, $page , $page_size){
 
 		$parameters = array();
 		$parameters[] = "byTitle=".str_replace(' ',"%20",$keyword);
@@ -42,30 +80,7 @@ class Search_model extends Uvod_model {
 		$parameters[] = "page=".$page;
 		$parameters[]= "size=".$page_size;
 
-		return $this->apiCall('brand/search/related', $parameters);
-	}
-
-	private function search_campaigns($keyword, $tags, $page , $page_size){
-
-		$parameters = array();
-		$parameters[] = "byTitle=".str_replace(' ',"%20",$keyword);
-		if($tags)
-			$parameters[] = "byKeyword=".str_replace(' ',"|",$tags);
-		$parameters[] = "page=".$page;
-		$parameters[]= "size=".$page_size;
-		return $this->apiCall('campaign/search/related', $parameters);
-	}
-
-	private function search_offers($keyword, $tags, $page , $page_size){
-
-		$parameters = array();
-		$parameters[] = "byTitle=".str_replace(' ',"%20",$keyword);
-		if($tags)
-			$parameters[] = "byKeyword=".str_replace(' ',"|",$tags);
-		$parameters[] = "page=".$page;
-		$parameters[]= "size=".$page_size;
-
-		return $this->apiCall('offer/search/related', $parameters);
+		return $this->offers_rows($this->apiCall('offer/search/related', $parameters)->entries);
 	}
 
 	private function search_celebrities($keyword, $tags, $page , $page_size){
