@@ -63,7 +63,10 @@
                     }
                 );
 
-            catchMediaService.trackCategoryPageEvent();
+            catchMediaService.trackAppEvent('navigation', {
+                target_cm: 'entity',
+                target_type: 'category'
+            });
         }
     ];
 

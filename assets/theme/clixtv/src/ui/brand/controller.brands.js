@@ -111,6 +111,17 @@
                 }
             ];
 
+            $scope.onTabSelect = function(tab) {
+                switch (tab) {
+                    case 'offers':
+                        catchMediaService.trackAppEvent('navigation', {
+                            target_cm: 'media',
+                            target_type: 'offer'
+                        });
+                        break;
+                }
+            };
+
             // Don't wire these 2 calls together in a $q.all(...) because we don't want to have to wait for
             // the order response to come back if the brands are all ready since it's a tabbed interface.
             brandsService.getAllBrands()
@@ -129,7 +140,10 @@
                     }
                 );
 
-            catchMediaService.trackBrandPageEvent();
+            catchMediaService.trackAppEvent('navigation', {
+                target_cm: 'media',
+                target_type: 'campaign'
+            });
 
         }
     ];

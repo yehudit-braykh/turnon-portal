@@ -99,6 +99,12 @@
                     function onSuccess(data) {
                         $scope.category = data[0];
                         $scope.categories = data[1];
+
+                        catchMediaService.trackAppEvent('navigation_item', {
+                            target_cm: 'entity',
+                            target_type: 'category',
+                            target_name: $scope.category.title
+                        });
                     }
                 )
                 .catch(
@@ -107,8 +113,6 @@
                         $state.go('404');
                     }
                 );
-
-            catchMediaService.trackCategoryPageEvent($stateParams.id);
         }
     ];
 

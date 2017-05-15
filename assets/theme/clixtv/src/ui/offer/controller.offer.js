@@ -109,7 +109,6 @@
                     }
                 );
 
-            catchMediaService.trackOfferPageEvent($stateParams.id);
             educationModalService.showOfferViewedModal($stateParams.id);
         }
     ];

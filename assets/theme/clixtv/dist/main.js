@@ -223,7 +223,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/brand/view.brands.html',
-    "<div ng-if=!ready><clix-loader size=large></clix-loader></div><div class=brands-page ng-if=ready><div class=main-header><clix-main-header>Brands &amp; Offers</clix-main-header></div><div class=clix-tabs><uib-tabset active=active><uib-tab index=0 heading=Brands><div class=search-filter-container><clix-search-filter search-placeholder=\"Search Brands\" filter-placeholder=\"Filter By\" sort-placeholder=\"Sort By\" filter-options=filterBrandsOptions sort-options=sortBrandsOptions></clix-search-filter></div><div class=\"row brands-list\"><div class=\"brand-outer-container col-xs-6 col-sm-4 col-md-3 col-lg-2\" ng-repeat=\"brand in brands.brands\"><clix-brand-content-callout brand=brand></clix-brand-content-callout></div></div></uib-tab><uib-tab index=1 heading=Offers><div class=search-filter-container><clix-search-filter search-placeholder=\"Search Offers\" filter-placeholder=\"Filter By\" sort-placeholder=\"Sort By\" filter-options=filterOffersOptions sort-options=sortOffersOptions></clix-search-filter></div><div class=\"row brands-list\"><div class=\"brand-outer-container col-xs-6 col-sm-4 col-md-3 col-lg-2\" ng-repeat=\"offer in offers.offers\"><clix-offer-content-callout offer=offer></clix-offer-content-callout></div></div></uib-tab></uib-tabset></div></div>"
+    "<div ng-if=!ready><clix-loader size=large></clix-loader></div><div class=brands-page ng-if=ready><div class=main-header><clix-main-header>Brands &amp; Offers</clix-main-header></div><div class=clix-tabs><uib-tabset active=active><uib-tab index=0 heading=Brands select=\"onTabSelect('brands')\"><div class=search-filter-container><clix-search-filter search-placeholder=\"Search Brands\" filter-placeholder=\"Filter By\" sort-placeholder=\"Sort By\" filter-options=filterBrandsOptions sort-options=sortBrandsOptions></clix-search-filter></div><div class=\"row brands-list\"><div class=\"brand-outer-container col-xs-6 col-sm-4 col-md-3 col-lg-2\" ng-repeat=\"brand in brands.brands\"><clix-brand-content-callout brand=brand></clix-brand-content-callout></div></div></uib-tab><uib-tab index=1 heading=Offers select=\"onTabSelect('offers')\"><div class=search-filter-container><clix-search-filter search-placeholder=\"Search Offers\" filter-placeholder=\"Filter By\" sort-placeholder=\"Sort By\" filter-options=filterOffersOptions sort-options=sortOffersOptions></clix-search-filter></div><div class=\"row brands-list\"><div class=\"brand-outer-container col-xs-6 col-sm-4 col-md-3 col-lg-2\" ng-repeat=\"offer in offers.offers\"><clix-offer-content-callout offer=offer></clix-offer-content-callout></div></div></uib-tab></uib-tabset></div></div>"
   );
 
 
@@ -1763,7 +1763,39 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             ];
 
             $scope.onTabSelect = function(tab) {
-                catchMediaService.trackBrandPageEvent($stateParams.id, tab);
+
+                switch(tab) {
+
+                    case 'offers':
+                        catchMediaService.trackAppEvent('navigation', {
+                            target_cm: 'media',
+                            target_type: 'offer',
+                            source_cm: 'media',
+                            source_type: 'campaign',
+                            source_id: $stateParams.id
+                        });
+                        break;
+
+                    case 'stars':
+                        catchMediaService.trackAppEvent('navigation', {
+                            target_cm: 'media',
+                            target_type: 'person',
+                            source_cm: 'media',
+                            source_type: 'campaign',
+                            source_id: $stateParams.id
+                        });
+                        break;
+
+                    case 'videos':
+                        catchMediaService.trackAppEvent('navigation', {
+                            target_cm: 'media',
+                            target_type: 'episode',
+                            source_cm: 'media',
+                            source_type: 'campaign',
+                            source_id: $stateParams.id
+                        });
+                        break;
+                }
             };
 
             brandsService.getBrandById($stateParams.id)
@@ -1785,6 +1817,12 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                             backgroundImage3x: data.headerImage,
                             logo: data.logo
                         };
+
+                        catchMediaService.trackAppEvent('navigation_item', {
+                            target_cm: 'media',
+                            target_type: 'campaign',
+                            target_id: $stateParams.id
+                        });
                     }
                 )
                 .catch(
@@ -1793,8 +1831,6 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         $state.go('404');
                     }
                 );
-
-            catchMediaService.trackBrandPageEvent($stateParams.id);
         }
     ];
 
@@ -1915,6 +1951,17 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 }
             ];
 
+            $scope.onTabSelect = function(tab) {
+                switch (tab) {
+                    case 'offers':
+                        catchMediaService.trackAppEvent('navigation', {
+                            target_cm: 'media',
+                            target_type: 'offer'
+                        });
+                        break;
+                }
+            };
+
             // Don't wire these 2 calls together in a $q.all(...) because we don't want to have to wait for
             // the order response to come back if the brands are all ready since it's a tabbed interface.
             brandsService.getAllBrands()
@@ -1933,7 +1980,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     }
                 );
 
-            catchMediaService.trackBrandPageEvent();
+            catchMediaService.trackAppEvent('navigation', {
+                target_cm: 'media',
+                target_type: 'campaign'
+            });
 
         }
     ];
@@ -2060,7 +2110,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     }
                 );
 
-            catchMediaService.trackCategoryPageEvent();
+            catchMediaService.trackAppEvent('navigation', {
+                target_cm: 'entity',
+                target_type: 'category'
+            });
         }
     ];
 
@@ -2169,6 +2222,12 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     function onSuccess(data) {
                         $scope.category = data[0];
                         $scope.categories = data[1];
+
+                        catchMediaService.trackAppEvent('navigation_item', {
+                            target_cm: 'entity',
+                            target_type: 'category',
+                            target_name: $scope.category.title
+                        });
                     }
                 )
                 .catch(
@@ -2177,8 +2236,6 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         $state.go('404');
                     }
                 );
-
-            catchMediaService.trackCategoryPageEvent($stateParams.id);
         }
     ];
 
@@ -2380,7 +2437,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     }
                 );
 
-            catchMediaService.trackCharityPageEvent();
+            catchMediaService.trackAppEvent('navigation', {
+                target_cm: 'media',
+                target_type: 'organization'
+            });
         }
     ];
 
@@ -2453,6 +2513,12 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                             throw new Error('Invalid data returned');
                         }
 
+                        catchMediaService.trackAppEvent('navigation_item', {
+                            target_cm: 'media',
+                            target_type: 'organization',
+                            target_id: $stateParams.id
+                        });
+
                         $scope.charity = data;
                         $scope.active = 0;
 
@@ -2469,10 +2535,30 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     }
                 );
 
-            catchMediaService.trackCharityPageEvent($stateParams.id);
-
             $scope.onTabSelect = function(tab) {
-                catchMediaService.trackCharityPageEvent($stateParams.id, tab);
+
+                switch (tab) {
+
+                    case 'stars':
+                        catchMediaService.trackAppEvent('navigation', {
+                            target_cm: 'media',
+                            target_type: 'person',
+                            source_cm: 'media',
+                            source_type: 'organization',
+                            source_id: $stateParams.id
+                        });
+                        break;
+
+                    case 'videos':
+                        catchMediaService.trackAppEvent('navigation', {
+                            target_cm: 'media',
+                            target_type: 'episode',
+                            source_cm: 'media',
+                            source_type: 'organization',
+                            source_id: $stateParams.id
+                        });
+                        break;
+                }
             };
 
             $scope.onDonatePress = function() {
@@ -4267,7 +4353,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         'userService',
         'data',
         'knetikService',
-        function($q, $scope, $rootScope, modalService, educationModalService, offersService, userService, data, knetikService) {
+        'catchMediaService',
+        function($q, $scope, $rootScope, modalService, educationModalService, offersService, userService, data, knetikService, catchMediaService) {
 
             function _setIsSaved() {
                 $scope.isSavedOffer = userService.isSavedOffer(data.offerId);
@@ -4280,6 +4367,12 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     function onSuccess(data) {
                         $scope.offer = data;
                         knetikService.viewOffer($scope.offer.id);
+
+                        catchMediaService.trackAppEvent('navigation', {
+                            target_cm: 'media',
+                            target_type: 'offer',
+                            target_id: $scope.offer.id
+                        });
                     }
                 );
 
@@ -4299,6 +4392,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     userService.addSavedOffer($scope.offer.id);
                     knetikService.saveOffer($scope.offer.id);
                     $scope.isSavedOffer = true;
+
+                    catchMediaService.trackMediaEvent('offer', 'offer_saved', {
+                        media_kind: 'offer',
+                        media_id: $scope.offer.id
+                    })
                 }
             };
 
@@ -5198,7 +5296,33 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             });
 
             $scope.onResultPress = function(event, entity) {
-                catchMediaService.trackSearchEvent(event, entity);
+                switch(event) {
+                    case 'star':
+                        catchMediaService.trackAppEvent('search', {
+                            target_cm: 'media',
+                            target_type: 'person'
+                        });
+                        break;
+                    case 'brand':
+                        catchMediaService.trackAppEvent('search', {
+                            target_cm: 'media',
+                            target_type: 'campaign'
+                        });
+                        break;
+                    case 'charity':
+                        catchMediaService.trackAppEvent('search', {
+                            target_cm: 'media',
+                            target_type: 'organization'
+                        });
+                        break;
+                    case 'category':
+                        catchMediaService.trackAppEvent('search', {
+                            target_cm: 'entity',
+                            target_type: 'category'
+                        });
+                        break;
+
+                }
             }
         }
     ];
@@ -5987,7 +6111,6 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     }
                 );
 
-            catchMediaService.trackOfferPageEvent($stateParams.id);
             educationModalService.showOfferViewedModal($stateParams.id);
         }
     ];
@@ -6073,7 +6196,29 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             };
 
             $scope.onTabSelect = function(tab) {
-                catchMediaService.trackCelebrityPageEvent($stateParams.id, tab);
+
+                switch (tab) {
+
+                    case 'brands_offers':
+                        catchMediaService.trackAppEvent('navigation', {
+                            target_cm: 'media',
+                            target_type: 'offer',
+                            source_cm: 'media',
+                            source_type: 'person',
+                            source_id: $stateParams.id
+                        });
+                        break;
+
+                    case 'charity':
+                        catchMediaService.trackAppEvent('navigation', {
+                            target_cm: 'media',
+                            target_type: 'organization',
+                            source_cm: 'media',
+                            source_type: 'person',
+                            source_id: $stateParams.id
+                        });
+                        break;
+                }
             };
 
             $scope.offerMenuItems = [
@@ -6148,6 +6293,12 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         $scope.celebrity = data;
                         $scope.active = 0;
 
+                        catchMediaService.trackAppEvent('navigation_item', {
+                            target_cm: 'media',
+                            target_type: 'person',
+                            target_id: $stateParams.id
+                        });
+
                         if (data.series && data.series.series) {
                             $scope.seriesList = data.series.series.map(function(series) {
                                 return {
@@ -6171,8 +6322,6 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         $state.go('404');
                     }
                 );
-
-            catchMediaService.trackCelebrityPageEvent($stateParams.id);
 
             switch($stateParams.tab) {
                 case 'brands':
@@ -6243,7 +6392,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     }
                 );
 
-            catchMediaService.trackCelebrityPageEvent();
+            catchMediaService.trackAppEvent('navigation', {
+                target_cm: 'media',
+                target_type: 'person'
+            });
 
         }
     ];
@@ -6780,8 +6932,6 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 );
 
 
-            catchMediaService.trackVideoPageEvent($stateParams.id);
-
             $scope.onPlayerReady = function(configs) {
                 var infoContainerElement = angular.element(document.getElementById('about-video-inner-container')),
                     infoContainerHeight = infoContainerElement.outerHeight(),
@@ -6806,6 +6956,15 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     infoContainerElement = angular.element(document.getElementById('about-video-inner-container'));
                 $scope.expanded = !$scope.expanded;
                 infoContainerElement[0].style.maxHeight = ($scope.expanded) ? (expandedSize + 'px') : ($scope.originalPlayerHeight + 'px');
+
+                if ($scope.expanded) {
+                    catchMediaService.trackAppEvent('navigation_item', {
+                        click_action: 'show_more',
+                        target_cm: 'media',
+                        target_type: 'episode',
+                        target_id: $stateParams.id
+                    });
+                }
             };
 
             $scope.onFavoritePress = function() {
@@ -7888,37 +8047,6 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     });
                 },
 
-                trackCategoryPageEvent: function(id) {
-                    _reportAppEvent('category', { id: id });
-                },
-
-                trackBrandPageEvent: function(id, tab) {
-                    _reportAppEvent('campaign', { id: id, tab: tab });
-                },
-
-                trackCelebrityPageEvent: function(id, tab) {
-                    _reportAppEvent('person', { id: id, tab: tab });
-                },
-
-                trackCharityPageEvent: function(id, tab) {
-                    _reportAppEvent('organization', { id: id, tab: tab });
-                },
-
-                trackOfferPageEvent: function(id, tab) {
-                    _reportAppEvent('offer', { id: id, tab: tab });
-                },
-
-                trackVideoPageEvent: function(id, tab) {
-                    _reportAppEvent('episode', { id: id, tab: tab });
-                },
-
-                trackSearchEvent: function(type, entity) {
-                    _reportAppEvent('search', {
-                        type: _getEventNameForType(type),
-                        id: entity.id
-                    });
-                },
-
                 trackShareEvent: function(type, entity) {
                     _reportAppEvent('share', {
                         id: entity.id,
@@ -7926,11 +8054,12 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     });
                 },
 
-                trackFavoriteEvent: function(type, id) {
-                    _reportAppEvent('favorite', {
-                        id: id,
-                        type: _getEventNameForType(type)
-                    });
+                trackAppEvent: function(type, data) {
+                    _reportAppEvent(type, data);
+                },
+
+                trackMediaEvent: function(contentType, eventType, data) {
+                    _reportMediaEvent(contentType, eventType, data);
                 }
             }
         }
@@ -8723,7 +8852,45 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     }
                 }
 
-                catchMediaService.trackFavoriteEvent(type, id);
+                switch(type) {
+                    case 'celebrity':
+                        catchMediaService.trackAppEvent('favorite', {
+                            target_cm: 'media',
+                            target_type: 'person',
+                            target_id: id
+                        });
+                        break;
+                    case 'brand':
+                        catchMediaService.trackAppEvent('favorite', {
+                            target_cm: 'media',
+                            target_type: 'campaign',
+                            target_id: id
+                        });
+                        break;
+                    case 'category':
+                        catchMediaService.trackAppEvent('favorite', {
+                            target_cm: 'entity',
+                            target_type: 'category',
+                            target_id: id
+                        });
+                        break;
+                    case 'charity':
+                        catchMediaService.trackAppEvent('favorite', {
+                            target_cm: 'media',
+                            target_type: 'organization',
+                            target_id: id
+                        });
+                        break;
+                    case 'offer':
+
+                        break;
+                    case 'watchlist':
+                        catchMediaService.trackMediaEvent('episode', 'watchlist_add', {
+                            media_kind: 'episode',
+                            media_id: id
+                        });
+                        break;
+                }
 
                 return $http.post('/api/account/' + userFavoriteMethod, {
                     id: id

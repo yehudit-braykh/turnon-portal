@@ -10,7 +10,8 @@
         'userService',
         'data',
         'knetikService',
-        function($q, $scope, $rootScope, modalService, educationModalService, offersService, userService, data, knetikService) {
+        'catchMediaService',
+        function($q, $scope, $rootScope, modalService, educationModalService, offersService, userService, data, knetikService, catchMediaService) {
 
             function _setIsSaved() {
                 $scope.isSavedOffer = userService.isSavedOffer(data.offerId);
@@ -23,6 +24,12 @@
                     function onSuccess(data) {
                         $scope.offer = data;
                         knetikService.viewOffer($scope.offer.id);
+
+                        catchMediaService.trackAppEvent('navigation', {
+                            target_cm: 'media',
+                            target_type: 'offer',
+                            target_id: $scope.offer.id
+                        });
                     }
                 );
 
@@ -42,6 +49,11 @@
                     userService.addSavedOffer($scope.offer.id);
                     knetikService.saveOffer($scope.offer.id);
                     $scope.isSavedOffer = true;
+
+                    catchMediaService.trackMediaEvent('offer', 'offer_saved', {
+                        media_kind: 'offer',
+                        media_id: $scope.offer.id
+                    })
                 }
             };
 

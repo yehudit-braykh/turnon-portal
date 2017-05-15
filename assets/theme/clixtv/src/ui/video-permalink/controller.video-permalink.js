@@ -74,8 +74,6 @@
                 );
 
 
-            catchMediaService.trackVideoPageEvent($stateParams.id);
-
             $scope.onPlayerReady = function(configs) {
                 var infoContainerElement = angular.element(document.getElementById('about-video-inner-container')),
                     infoContainerHeight = infoContainerElement.outerHeight(),
@@ -100,6 +98,15 @@
                     infoContainerElement = angular.element(document.getElementById('about-video-inner-container'));
                 $scope.expanded = !$scope.expanded;
                 infoContainerElement[0].style.maxHeight = ($scope.expanded) ? (expandedSize + 'px') : ($scope.originalPlayerHeight + 'px');
+
+                if ($scope.expanded) {
+                    catchMediaService.trackAppEvent('navigation_item', {
+                        click_action: 'show_more',
+                        target_cm: 'media',
+                        target_type: 'episode',
+                        target_id: $stateParams.id
+                    });
+                }
             };
 
             $scope.onFavoritePress = function() {

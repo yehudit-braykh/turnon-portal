@@ -96,7 +96,45 @@
                     }
                 }
 
-                catchMediaService.trackFavoriteEvent(type, id);
+                switch(type) {
+                    case 'celebrity':
+                        catchMediaService.trackAppEvent('favorite', {
+                            target_cm: 'media',
+                            target_type: 'person',
+                            target_id: id
+                        });
+                        break;
+                    case 'brand':
+                        catchMediaService.trackAppEvent('favorite', {
+                            target_cm: 'media',
+                            target_type: 'campaign',
+                            target_id: id
+                        });
+                        break;
+                    case 'category':
+                        catchMediaService.trackAppEvent('favorite', {
+                            target_cm: 'entity',
+                            target_type: 'category',
+                            target_id: id
+                        });
+                        break;
+                    case 'charity':
+                        catchMediaService.trackAppEvent('favorite', {
+                            target_cm: 'media',
+                            target_type: 'organization',
+                            target_id: id
+                        });
+                        break;
+                    case 'offer':
+
+                        break;
+                    case 'watchlist':
+                        catchMediaService.trackMediaEvent('episode', 'watchlist_add', {
+                            media_kind: 'episode',
+                            media_id: id
+                        });
+                        break;
+                }
 
                 return $http.post('/api/account/' + userFavoriteMethod, {
                     id: id

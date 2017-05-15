@@ -106,7 +106,39 @@
             ];
 
             $scope.onTabSelect = function(tab) {
-                catchMediaService.trackBrandPageEvent($stateParams.id, tab);
+
+                switch(tab) {
+
+                    case 'offers':
+                        catchMediaService.trackAppEvent('navigation', {
+                            target_cm: 'media',
+                            target_type: 'offer',
+                            source_cm: 'media',
+                            source_type: 'campaign',
+                            source_id: $stateParams.id
+                        });
+                        break;
+
+                    case 'stars':
+                        catchMediaService.trackAppEvent('navigation', {
+                            target_cm: 'media',
+                            target_type: 'person',
+                            source_cm: 'media',
+                            source_type: 'campaign',
+                            source_id: $stateParams.id
+                        });
+                        break;
+
+                    case 'videos':
+                        catchMediaService.trackAppEvent('navigation', {
+                            target_cm: 'media',
+                            target_type: 'episode',
+                            source_cm: 'media',
+                            source_type: 'campaign',
+                            source_id: $stateParams.id
+                        });
+                        break;
+                }
             };
 
             brandsService.getBrandById($stateParams.id)
@@ -128,6 +160,12 @@
                             backgroundImage3x: data.headerImage,
                             logo: data.logo
                         };
+
+                        catchMediaService.trackAppEvent('navigation_item', {
+                            target_cm: 'media',
+                            target_type: 'campaign',
+                            target_id: $stateParams.id
+                        });
                     }
                 )
                 .catch(
@@ -136,8 +174,6 @@
                         $state.go('404');
                     }
                 );
-
-            catchMediaService.trackBrandPageEvent($stateParams.id);
         }
     ];
 

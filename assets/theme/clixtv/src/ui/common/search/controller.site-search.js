@@ -79,7 +79,33 @@
             });
 
             $scope.onResultPress = function(event, entity) {
-                catchMediaService.trackSearchEvent(event, entity);
+                switch(event) {
+                    case 'star':
+                        catchMediaService.trackAppEvent('search', {
+                            target_cm: 'media',
+                            target_type: 'person'
+                        });
+                        break;
+                    case 'brand':
+                        catchMediaService.trackAppEvent('search', {
+                            target_cm: 'media',
+                            target_type: 'campaign'
+                        });
+                        break;
+                    case 'charity':
+                        catchMediaService.trackAppEvent('search', {
+                            target_cm: 'media',
+                            target_type: 'organization'
+                        });
+                        break;
+                    case 'category':
+                        catchMediaService.trackAppEvent('search', {
+                            target_cm: 'entity',
+                            target_type: 'category'
+                        });
+                        break;
+
+                }
             }
         }
     ];

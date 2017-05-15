@@ -63,6 +63,12 @@
                             throw new Error('Invalid data returned');
                         }
 
+                        catchMediaService.trackAppEvent('navigation_item', {
+                            target_cm: 'media',
+                            target_type: 'organization',
+                            target_id: $stateParams.id
+                        });
+
                         $scope.charity = data;
                         $scope.active = 0;
 
@@ -79,10 +85,30 @@
                     }
                 );
 
-            catchMediaService.trackCharityPageEvent($stateParams.id);
-
             $scope.onTabSelect = function(tab) {
-                catchMediaService.trackCharityPageEvent($stateParams.id, tab);
+
+                switch (tab) {
+
+                    case 'stars':
+                        catchMediaService.trackAppEvent('navigation', {
+                            target_cm: 'media',
+                            target_type: 'person',
+                            source_cm: 'media',
+                            source_type: 'organization',
+                            source_id: $stateParams.id
+                        });
+                        break;
+
+                    case 'videos':
+                        catchMediaService.trackAppEvent('navigation', {
+                            target_cm: 'media',
+                            target_type: 'episode',
+                            source_cm: 'media',
+                            source_type: 'organization',
+                            source_id: $stateParams.id
+                        });
+                        break;
+                }
             };
 
             $scope.onDonatePress = function() {

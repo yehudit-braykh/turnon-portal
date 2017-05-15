@@ -46,7 +46,29 @@
             };
 
             $scope.onTabSelect = function(tab) {
-                catchMediaService.trackCelebrityPageEvent($stateParams.id, tab);
+
+                switch (tab) {
+
+                    case 'brands_offers':
+                        catchMediaService.trackAppEvent('navigation', {
+                            target_cm: 'media',
+                            target_type: 'offer',
+                            source_cm: 'media',
+                            source_type: 'person',
+                            source_id: $stateParams.id
+                        });
+                        break;
+
+                    case 'charity':
+                        catchMediaService.trackAppEvent('navigation', {
+                            target_cm: 'media',
+                            target_type: 'organization',
+                            source_cm: 'media',
+                            source_type: 'person',
+                            source_id: $stateParams.id
+                        });
+                        break;
+                }
             };
 
             $scope.offerMenuItems = [
@@ -121,6 +143,12 @@
                         $scope.celebrity = data;
                         $scope.active = 0;
 
+                        catchMediaService.trackAppEvent('navigation_item', {
+                            target_cm: 'media',
+                            target_type: 'person',
+                            target_id: $stateParams.id
+                        });
+
                         if (data.series && data.series.series) {
                             $scope.seriesList = data.series.series.map(function(series) {
                                 return {
@@ -144,8 +172,6 @@
                         $state.go('404');
                     }
                 );
-
-            catchMediaService.trackCelebrityPageEvent($stateParams.id);
 
             switch($stateParams.tab) {
                 case 'brands':

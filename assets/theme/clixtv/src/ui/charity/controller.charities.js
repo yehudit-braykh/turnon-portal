@@ -69,7 +69,10 @@
                     }
                 );
 
-            catchMediaService.trackCharityPageEvent();
+            catchMediaService.trackAppEvent('navigation', {
+                target_cm: 'media',
+                target_type: 'organization'
+            });
         }
     ];
 

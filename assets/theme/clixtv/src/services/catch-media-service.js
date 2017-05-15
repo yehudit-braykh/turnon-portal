@@ -88,37 +88,6 @@
                     });
                 },
 
-                trackCategoryPageEvent: function(id) {
-                    _reportAppEvent('category', { id: id });
-                },
-
-                trackBrandPageEvent: function(id, tab) {
-                    _reportAppEvent('campaign', { id: id, tab: tab });
-                },
-
-                trackCelebrityPageEvent: function(id, tab) {
-                    _reportAppEvent('person', { id: id, tab: tab });
-                },
-
-                trackCharityPageEvent: function(id, tab) {
-                    _reportAppEvent('organization', { id: id, tab: tab });
-                },
-
-                trackOfferPageEvent: function(id, tab) {
-                    _reportAppEvent('offer', { id: id, tab: tab });
-                },
-
-                trackVideoPageEvent: function(id, tab) {
-                    _reportAppEvent('episode', { id: id, tab: tab });
-                },
-
-                trackSearchEvent: function(type, entity) {
-                    _reportAppEvent('search', {
-                        type: _getEventNameForType(type),
-                        id: entity.id
-                    });
-                },
-
                 trackShareEvent: function(type, entity) {
                     _reportAppEvent('share', {
                         id: entity.id,
@@ -126,11 +95,12 @@
                     });
                 },
 
-                trackFavoriteEvent: function(type, id) {
-                    _reportAppEvent('favorite', {
-                        id: id,
-                        type: _getEventNameForType(type)
-                    });
+                trackAppEvent: function(type, data) {
+                    _reportAppEvent(type, data);
+                },
+
+                trackMediaEvent: function(contentType, eventType, data) {
+                    _reportMediaEvent(contentType, eventType, data);
                 }
             }
         }
