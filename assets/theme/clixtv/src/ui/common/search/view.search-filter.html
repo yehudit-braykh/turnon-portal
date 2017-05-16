@@ -4,7 +4,8 @@
             <div class="search-bar-container">
                 <div class="search-bar">
                     <i class="search-icon icon-search-icon-bottom-nav"></i>
-                    <input type="text" class="search-input" placeholder="{{searchPlaceholder}}" />
+                    <input type="text" class="search-input" ng-model="term" placeholder="{{searchPlaceholder}}" />
+                    <clix-search-dropdown term="term" type="type"></clix-search-dropdown>
                 </div>
             </div>
         </div>

@@ -13,39 +13,39 @@
                 },
 
                 saveOffer: function(id) {
-                    return $http.post('/api/knetik/save_offer', {
-                        id: id
-                    });
+                    // return $http.post('/api/knetik/save_offer', {
+                    //     id: id
+                    // });
                 },
 
                 viewOffer: function(id) {
-                    return $http.post('/api/knetik/view_offer', {
-                        id: id
-                    });
+                    // return $http.post('/api/knetik/view_offer', {
+                    //     id: id
+                    // });
                 },
 
                 shareCampaign: function(id) {
-                    return $http.post('/api/knetik/share', {
-                        id: id
-                    });
+                    // return $http.post('/api/knetik/share', {
+                    //     id: id
+                    // });
                 },
 
                 shareEpisode: function(id) {
-                    return $http.post('/api/knetik/video_share', {
-                        id: id
-                    });
+                    // return $http.post('/api/knetik/video_share', {
+                    //     id: id
+                    // });
                 },
 
                 viewEpisode: function(id) {
-                    return $http.post('/api/knetik/view', {
-                        id: id
-                    });
+                    // return $http.post('/api/knetik/view', {
+                    //     id: id
+                    // });
                 },
 
                 viewCampaignVideo: function(id) {
-                    return $http.post('/api/knetik/ad_video_view', {
-                        id: id
-                    });
+                    // return $http.post('/api/knetik/ad_video_view', {
+                    //     id: id
+                    // });
                 }
             }
         }

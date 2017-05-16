@@ -44,7 +44,7 @@
                                 <div class="row brand-offer-row">
                                     <div class="col-xs-6 col-sm-3 col-md-3 col-lg-12 brand-offer-column" ng-repeat="offer in brand.offers.offers | limitTo: 3">
                                         <div class="brand-offer">
-                                            <clix-offer-content-callout offer="offer"></clix-offer-content-callout>
+                                            <clix-offer-content-callout offer="offer" ng-click="onOfferPress(offer)"></clix-offer-content-callout>
                                         </div>
                                     </div>
                                 </div>

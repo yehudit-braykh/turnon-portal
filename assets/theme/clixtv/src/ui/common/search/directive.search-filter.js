@@ -12,7 +12,11 @@
                 sortPlaceholder: '@',
                 filterOptions: '=',
                 sortOptions: '=',
-                showFilters: '@?'
+                showFilters: '@?',
+                type: '@?'
+            },
+            link: function(scope) {
+                scope.term = '';
             }
         }
     };

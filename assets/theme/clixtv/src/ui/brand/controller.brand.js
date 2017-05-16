@@ -25,13 +25,15 @@
             }
 
             $scope.onOfferPress = function(offer) {
-                modalService.showModal({
-                    controller: 'OfferModalController',
-                    templateUrl: 'ui/common/modal/offer/view.offer-modal.html',
-                    data: {
-                        offerId: $stateParams.offerId
-                    }
-                });
+                if ($stateParams.offerId === offer.id) {
+                    modalService.showModal({
+                        controller: 'OfferModalController',
+                        templateUrl: 'ui/common/modal/offer/view.offer-modal.html',
+                        data: {
+                            offerId: $stateParams.offerId
+                        }
+                    });
+                }
             };
 
             function _resetIsFavorite() {

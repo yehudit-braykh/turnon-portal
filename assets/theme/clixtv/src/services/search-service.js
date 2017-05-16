@@ -13,6 +13,15 @@
                                 return new SearchResultsModel(data.data);
                             }
                         );
+                },
+
+                getBrandSearchResults: function(term, offset, limit) {
+                    return $http.get('/api/search/campaign?keyword=' + term)
+                        .then(
+                            function onSuccess(data) {
+                                return new SearchResultsModel(data.data);
+                            }
+                        );
                 }
             }
         }
