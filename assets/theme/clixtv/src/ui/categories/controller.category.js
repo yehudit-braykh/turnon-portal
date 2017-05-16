@@ -45,6 +45,12 @@
                     userService.removeFavoriteCategory($stateParams.id);
                 } else {
                     userService.addFavoriteCategory($stateParams.id);
+
+                    catchMediaService.trackAppEvent('favorite', {
+                        target_cm: 'entity',
+                        target_type: 'category',
+                        target_name: $scope.category.title
+                    });
                 }
             };
 

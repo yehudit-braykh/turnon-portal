@@ -71,7 +71,7 @@
                         controller: 'BrandController'
                     })
                     .state('charity', {
-                        url: '/charity/:id',
+                        url: '/charity/:id?starId',
                         templateUrl: 'ui/charity/view.charity.html',
                         controller: 'CharityController'
                     })

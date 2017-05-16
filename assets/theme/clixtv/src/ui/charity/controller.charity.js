@@ -63,11 +63,19 @@
                             throw new Error('Invalid data returned');
                         }
 
-                        catchMediaService.trackAppEvent('navigation_item', {
+                        var eventParams = {
                             target_cm: 'media',
                             target_type: 'organization',
                             target_id: $stateParams.id
-                        });
+                        };
+
+                        if ($stateParams.starId) {
+                            eventParams.source_cm = 'media';
+                            eventParams.source_type = 'person';
+                            eventParams.source_id = $stateParams.starId;
+                        }
+
+                        catchMediaService.trackAppEvent('navigation_item', eventParams);
 
                         $scope.charity = data;
                         $scope.active = 0;

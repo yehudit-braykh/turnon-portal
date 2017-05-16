@@ -16,13 +16,13 @@
                 instance.reportAppEvent(event, data);
             }
 
-            function _reportMediaEvent(type, event, data) {
+            function _reportMediaEvent(id, type, event, data) {
                 if (!instance) {
                     $log.warn('Catch Media service has not been initialized yet');
                     return;
                 }
                 $log.log('Tracking media event with type', '"' + type + '"', ', event', '"' + event + '"', ', and data', data);
-                instance.reportMediaEvent(new Date().getTime(), type, event, data);
+                instance.reportMediaEvent(id, type, event, data);
             }
 
             function _getEventNameForType(type) {
@@ -84,7 +84,7 @@
 
                 trackVideoPlayerEvent: function(playerInstance) {
                     instance.setupJwPlayer(playerInstance, function(mediaId) {
-                        return 'video';
+                        return 'episode';
                     });
                 },
 
@@ -99,8 +99,8 @@
                     _reportAppEvent(type, data);
                 },
 
-                trackMediaEvent: function(contentType, eventType, data) {
-                    _reportMediaEvent(contentType, eventType, data);
+                trackMediaEvent: function(id, contentType, eventType, data) {
+                    _reportMediaEvent(id, contentType, eventType, data);
                 }
             }
         }

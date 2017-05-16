@@ -53,6 +53,15 @@
                 if (!serviceMethod) {
                     return;
                 }
+
+                if (type === 'category' && !isFavorited) {
+                    catchMediaService.trackAppEvent('favorite', {
+                        target_cm: 'entity',
+                        target_type: 'category',
+                        target_name: item.title
+                    });
+                }
+
                 userService[serviceMethod](item.id);
             };
 

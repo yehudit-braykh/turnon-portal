@@ -50,10 +50,14 @@
                     knetikService.saveOffer($scope.offer.id);
                     $scope.isSavedOffer = true;
 
-                    catchMediaService.trackMediaEvent('offer', 'offer_saved', {
-                        media_kind: 'offer',
-                        media_id: $scope.offer.id
-                    })
+                    userService.getLoggedInUser()
+                        .then(
+                            function onSuccess(data) {
+                                if (data !== false) {
+                                    catchMediaService.trackMediaEvent($scope.offer.id, 'offer', 'offer_saved');
+                                }
+                            }
+                        );
                 }
             };
 

@@ -160,7 +160,8 @@
                 templateUrl: 'ui/common/container/view.charity-content-callout.html',
                 controller: 'ContentCalloutController',
                 scope: {
-                    charity: '='
+                    charity: '=',
+                    star: '=?'
                 },
                 link: function(scope) {
 
