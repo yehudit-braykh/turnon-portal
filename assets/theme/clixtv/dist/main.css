@@ -9515,8 +9515,47 @@ button.close {
     padding-left: 24px;
   }
 }
+.video-permalink-page .video-player-container {
+  overflow: hidden;
+  position: relative;
+}
+.video-permalink-page .next-video-overlay-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.63);
+  text-align: center;
+  padding: 10px 0;
+}
+.video-permalink-page .next-video-overlay-container .next-video-label {
+  font-family: 'montserratsemibold', sans-serif;
+  color: #FFF;
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+.video-permalink-page .next-video-overlay-container .next-video-container {
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  margin: 0 auto;
+  position: relative;
+  top: 50%;
+}
+.video-permalink-page .next-video-overlay-container .next-video {
+  text-align: left;
+  display: inline-block;
+  width: 215px;
+  margin: 0 auto;
+}
 .video-permalink-page .video-player {
   background-color: #aaaaaa;
+}
+.video-permalink-page .video-player.next-video-shown {
+  filter: blur(4px);
+  -webkit-filter: blur(4px);
 }
 .video-permalink-page .about-video-inner-container {
   transition: all 0.25s ease-out;

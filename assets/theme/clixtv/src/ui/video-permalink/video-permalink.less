@@ -37,8 +37,49 @@
         }
     }
 
+    .video-player-container {
+        overflow: hidden;
+        position: relative;
+    }
+
+    .next-video-overlay-container {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: @color-transparent-black;
+        text-align: center;
+        padding: 10px 0;
+
+        .next-video-label {
+            font-family: @font-primary-bold;
+            color: @color-white;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .next-video-container {
+            .transform(translateY(-50%));
+            margin: 0 auto;
+            position: relative;
+            top: 50%;
+        }
+
+        .next-video {
+            text-align: left;
+            display: inline-block;
+            width: 215px;
+            margin: 0 auto;
+        }
+    }
+
     .video-player {
         background-color: @color-gray;
+
+        &.next-video-shown {
+            .blur(4px);
+        }
     }
 
     .about-video-inner-container {

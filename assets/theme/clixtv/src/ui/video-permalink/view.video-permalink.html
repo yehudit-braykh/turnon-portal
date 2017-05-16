@@ -4,10 +4,22 @@
 <div class="video-permalink-page" ng-if="ready">
     <div class="row">
         <div class="col-md-7 col-lg-8 video-player-column-container">
-            <div class="video-player">
-                <div id="videoPlayer"></div>
-                <clix-video-player ng-if="video && !isMobile" video="video" auto-play="true" video-id="videoPlayer" on-ready="onPlayerReady"></clix-video-player>
-                <clix-video-player ng-if="video && isMobile" video="video" auto-play="false" video-id="videoPlayer" on-ready="onPlayerReady"></clix-video-player>
+            <div class="video-player-container">
+                <div class="video-player" ng-class="{'next-video-shown': videoComplete}">
+                    <div id="videoPlayer"></div>
+                    <clix-video-player ng-if="video && !isMobile" video="video" auto-play="true" video-id="videoPlayer" on-ready="onPlayerReady"></clix-video-player>
+                    <clix-video-player ng-if="video && isMobile" video="video" auto-play="false" video-id="videoPlayer" on-ready="onPlayerReady"></clix-video-player>
+                </div>
+                <div class="next-video-overlay-container" ng-show="videoComplete" ng-if="nextVideo">
+                    <div class="next-video-container">
+                        <div class="next-video-label">
+                            {{nextVideoIsRelated ? 'Click below to start another popular series!' : 'Click to watch the next video in this series'}}
+                        </div>
+                        <div class="next-video">
+                            <clix-video-content-callout video="nextVideo"></clix-video-content-callout>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="visible-sm visible-xs">
@@ -109,7 +121,7 @@
                     <clix-loader size="small"></clix-loader>
                 </div>
                 <div class="row next-video-list">
-                    <div class="col-md-6 col-lg-4 next-video" ng-repeat="nextVideo in series.seasons.seasons[0].episodes track by $index" ng-show="nextVideo.id !== video.id">
+                    <div class="col-md-6 col-lg-4 next-video" ng-repeat="nextVideo in series.seasons.seasons[0].episodes | orderBy : 'episodeNumber' track by $index" ng-show="nextVideo.id !== video.id">
                         <clix-video-content-callout video="nextVideo"></clix-video-content-callout>
                     </div>
                 </div>

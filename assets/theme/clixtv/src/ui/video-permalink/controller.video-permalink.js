@@ -17,6 +17,7 @@
 
             $scope.isMobile = ($window.innerWidth <= 800);
             $scope.expanded = false;
+            $scope.videoComplete = false;
 
             function _resetPageState() {
                 if (!$scope.video) {
@@ -24,6 +25,31 @@
                 }
                 $scope.isOnWatchlist = userService.isVideoOnWatchlist($scope.video.id);
                 $scope.isFavoriteCelebrity = userService.isFavoriteCelebrity($scope.video.celebrity.id);
+            }
+
+            function _getNextVideo() {
+
+                // Pull the next video in the series...
+                var nextVideos = $scope.series.seasons.seasons[0].episodes.filter(function(episode) {
+                    return episode.episodeNumber > $scope.video.episodeNumber;
+                });
+                if (nextVideos.length > 0) {
+                    $scope.nextVideo = nextVideos[0];
+                    return;
+                }
+
+                $scope.nextVideoIsRelated = true;
+
+                // If we're on the last video, pull the first related not from the
+                // same series...
+                $scope.nextVideo = $scope.relatedVideos.videos.filter(function(episode) {
+                    return episode.seriesTitle !== $scope.video.series.title;
+                })[0];
+
+                // Otherwise just pull the first in the related list
+                if (!$scope.nextVideo) {
+                    $scope.nextVideo = $scope.relatedVideos.videos[0];
+                }
             }
 
             $rootScope.$on('video.complete', function() {
@@ -69,7 +95,7 @@
                     function onSuccess(data) {
                         $scope.relatedVideos = data[0];
                         $scope.series = data[1];
-                        console.log($scope.series);
+                        _getNextVideo();
                     }
                 );
 

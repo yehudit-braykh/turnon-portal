@@ -80,7 +80,7 @@
                      * @todo - Prevent tooltip from extending beyond page bounds
                      */
 
-                    angular.element(element).off('mouseenter').on('mouseenter', function() {
+                    angular.element(element).off('mouseenter touchend').on('mouseenter touchend', function() {
 
                         if (hideTimeout) {
                             $timeout.cancel(hideTimeout);
