@@ -4,20 +4,48 @@ class Search_model extends Uvod_model {
 	public function __construct()
 	{
 		$this->load->helper('uvod_api');
+		$this->load->model("brands_model");
 	}
 
 	public function search($keyword, $tags = null, $page = 0 , $page_size = 2){
-		$results = new stdClass;
-		$results->celebrities = $this->celebrity_rows($this->search_celebrities($keyword, $tags, $page , $page_size )->entries);
-		// $results->series = $this->rows($this->search_series($keyword, $tags, $page , $page_size )->entries[0]);
-		// $results->videos = $this->videos_rows($this->search_videos($keyword, $tags, $page , $page_size )->entries[0]);
-		$results->brands = $this->search_brands($keyword, $tags, $page , $page_size);
-		$results->categories = $this->search_categories($keyword, $tags, $page , $page_size);
-		$results->campaigns = $this->search_campaigns($keyword, $tags, $page , $page_size );
-		// $results->offers = $this->search_offers($keyword, $tags, $page , $page_size );
-		$results->charities = $this->search_charities($keyword, $tags, $page , $page_size );
 
-		return $results;
+		if(strtolower($keyword) == 'offer' || strtolower($keyword) == 'offers' || strtolower($keyword) == 'coupon' || strtolower($keyword) == 'coupons'){
+			return $this->brands_model->get_offers_array ($page = 0, $page_size = 5);
+		} else {
+			$results = new stdClass;
+			$results->celebrities = $this->celebrity_rows($this->search_celebrities($keyword, $tags, $page , $page_size )->entries);
+			//$results->brands = $this->search_brands($keyword, $tags, $page , $page_size);
+			$results->categories = $this->search_categories($keyword, $tags, $page , $page_size);
+			$results->campaigns = $this->search_campaigns($keyword, $tags, $page , $page_size );
+			$results->charities = $this->search_charities($keyword, $tags, $page , $page_size );
+
+			if(count($results->celebrities) && !count($results->categories) && !count($results->campaigns) && !count($results->charities)){
+				$results->celebrities[0]->media_type= "celebrity";
+				return $results->celebrities[0];
+			}
+
+			if(!count($results->celebrities) && count($results->categories) && !count($results->campaigns) && !count($results->charities)){
+				$results->categories[0]->media_type= "category";
+				return $results->categories[0];
+			}
+
+			if(!count($results->celebrities) && !count($results->categories) && count($results->campaigns) && !count($results->charities)){
+				$results->campaigns[0]->media_type= "campaign";
+				return $results->campaigns[0];
+			}
+
+			if(!count($results->celebrities) && !count($results->categories) && !count($results->campaigns) && count($results->charities)){
+				$results->charities[0]->media_type= "charity";
+				return $results->charities[0];
+			}
+
+			if(!count($results->celebrities) && !count($results->categories) && !count($results->campaigns) && !count($results->charities)){
+				return null;
+			}
+
+			return $results;
+		}
+
 	}
 
 	public function search_charities($keyword, $tags, $page , $page_size ){
