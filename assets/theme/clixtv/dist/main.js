@@ -15,7 +15,8 @@
             'angularModalService',
             'LocalStorageModule',
             'ngMask',
-            'angular.filter'
+            'angular.filter',
+            'ngTouch'
         ])
         .constant('clixConfig', {
             beta: true,
@@ -493,7 +494,22 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/navigation/view.mobile-navigation.html',
-    "<div class=mobile-search-container ng-show=searchVisible><div class=mobile-search clix-site-search is-visible=searchVisible></div><div class=mobile-search-background ng-click=onMobileBackgroundPress()></div></div><div class=\"visible-sm visible-xs visible-md\"><div class=clix-mobile-navigation><div class=mobile-navigation-container><div ng-mouseup=\"go('home')\" class=mobile-navigation-item ng-class=\"{'active': selectedStateName === 'home'}\"><div class=\"navigation-icon icon-home-icon-bottom-nav\"></div>Home</div><div ng-mouseup=\"go('categories')\" class=mobile-navigation-item ng-class=\"{'active': selectedStateName === 'categories' || selectedStateName === 'category'}\"><div class=\"navigation-icon icon-categories-icon-bottom-nav\"></div>Categories</div><div ng-mouseup=\"go('stars')\" class=mobile-navigation-item ng-class=\"{'active': selectedStateName === 'stars' || selectedStateName === 'star'}\"><div class=\"navigation-icon icon-stars-icon\"></div>Stars</div><div ng-mouseup=\"go('brands')\" class=mobile-navigation-item ng-class=\"{'active': selectedStateName === 'brands' || selectedStateName === 'brand'}\"><div class=\"navigation-icon brands-navigation-icon icon-brands-icon-bottom-nav\"></div>Brands</div><div ng-mouseup=\"go('charities')\" class=mobile-navigation-item ng-class=\"{'active': selectedStateName === 'charities' || selectedStateName === 'charity'}\"><div class=\"navigation-icon icon-charities-icon-bottom-nav\"></div>Charities</div><div ng-mouseup=onSearchPress($event) class=mobile-navigation-item><div class=\"navigation-icon icon-search-icon-bottom-nav\"></div>Search</div></div></div></div>"
+    "<div class=mobile-search-container ng-show=searchVisible><div class=mobile-search clix-site-search is-visible=searchVisible></div><div class=mobile-search-background ng-click=onMobileBackgroundPress()></div></div><div class=\"visible-sm visible-xs visible-md\"><div class=clix-mobile-navigation><div class=mobile-navigation-container><div ng-mouseup=\"go('home')\" class=mobile-navigation-item ng-class=\"{'active': selectedStateName === 'home'}\"><div class=navigation-icon ng-class=\"{\n" +
+    "                    'icon-home-icon-bottom-nav': selectedStateName !== 'home',\n" +
+    "                    'icon-home-icon-active-bottom-nav': selectedStateName === 'home'\n" +
+    "                }\"></div>Home</div><div ng-mouseup=\"go('categories')\" class=mobile-navigation-item ng-class=\"{'active': selectedStateName === 'categories' || selectedStateName === 'category'}\"><div class=navigation-icon ng-class=\"{\n" +
+    "                    'icon-categories-icon-active-bottom-nav': (selectedStateName === 'categories' || selectedStateName === 'category'),\n" +
+    "                    'icon-categories-icon-bottom-nav': (selectedStateName !== 'categories' && selectedStateName !== 'category')\n" +
+    "                }\"></div>Categories</div><div ng-mouseup=\"go('stars')\" class=mobile-navigation-item ng-class=\"{'active': selectedStateName === 'stars' || selectedStateName === 'star'}\"><div class=navigation-icon ng-class=\"{\n" +
+    "                    'icon-star-icon-active-bottom-nav': (selectedStateName === 'stars' || selectedStateName === 'star'),\n" +
+    "                    'icon-stars-icon': (selectedStateName !== 'stars' && selectedStateName !== 'star')\n" +
+    "                }\"></div>Stars</div><div ng-mouseup=\"go('brands')\" class=mobile-navigation-item ng-class=\"{'active': selectedStateName === 'brands' || selectedStateName === 'brand'}\"><div class=\"navigation-icon brands-navigation-icon\" ng-class=\"{\n" +
+    "                    'icon-brands-icon-active-bottom-nav active-brand-icon': (selectedStateName === 'brands' || selectedStateName === 'brand'),\n" +
+    "                    'icon-brands-icon-bottom-nav': (selectedStateName !== 'brands' && selectedStateName !== 'brand')\n" +
+    "                }\"></div>Brands</div><div ng-mouseup=\"go('charities')\" class=mobile-navigation-item ng-class=\"{'active': selectedStateName === 'charities' || selectedStateName === 'charity'}\"><div class=navigation-icon ng-class=\"{\n" +
+    "                    'icon-charities-icon-active-bottom-nav': (selectedStateName === 'charities' || selectedStateName === 'charity'),\n" +
+    "                    'icon-charities-icon-bottom-nav': (selectedStateName !== 'charities' && selectedStateName !== 'charity')\n" +
+    "                }\"></div>Charities</div><div ng-mouseup=onSearchPress($event) class=mobile-navigation-item><div class=\"navigation-icon icon-search-icon-bottom-nav\"></div>Search</div></div></div></div>"
   );
 
 
@@ -5513,6 +5529,25 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         };
                     }
 
+                    function _hideTooltip(delay) {
+                        hideTimeout = $timeout(function() {
+                            var tooltipElement = document.getElementById(scope.tooltipId);
+
+                            angular.element(tooltipElement).removeClass('active');
+
+                            $rootScope.$broadcast('tooltip.closed');
+
+                            $timeout(function() {
+                                tooltipElement.style.top = '-999px';
+                                tooltipElement.style.left = '-999px';
+                            }, 250);
+
+                            if (showTimeout) {
+                                $timeout.cancel(showTimeout);
+                            }
+                        }, delay);
+                    }
+
                     var currentTooltipElement;
 
                     // Hide tooltip on window scroll
@@ -5534,7 +5569,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                      * @todo - Prevent tooltip from extending beyond page bounds
                      */
 
-                    angular.element(element).off('mouseenter touchend').on('mouseenter touchend', function() {
+                    angular.element(element).off('mouseenter').on('mouseenter', function(event) {
 
                         if (hideTimeout) {
                             $timeout.cancel(hideTimeout);
@@ -5548,10 +5583,17 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                                 width = trigger[0].offsetWidth,
                                 tooltipElementWidth = tooltipElement.offsetWidth;
 
-                            var position = _getPosition(trigger[0]);
+                            var position = _getPosition(trigger[0]),
+                                top = (position.y + height),
+                                left = ((position.x + (width / 2)) - (tooltipElementWidth / 2));
 
-                            tooltipElement.style.top = (position.y + height) + 'px';
-                            tooltipElement.style.left = ((position.x + (width / 2)) - (tooltipElementWidth / 2)) + 'px';
+                            if (left < 0) {
+                                left = 0;
+                            }
+
+                            tooltipElement.style.top = top + 'px';
+                            tooltipElement.style.left = left + 'px';
+
                             angular.element(tooltipElement).addClass('active');
 
                             $rootScope.$broadcast('tooltip.open');
@@ -5586,23 +5628,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     });
 
                     angular.element(element).on('mouseleave', function() {
+                        _hideTooltip(HIDE_TOOLTIP_DELAY_MS);
+                    });
 
-                        hideTimeout = $timeout(function() {
-                            var tooltipElement = document.getElementById(scope.tooltipId);
-
-                            angular.element(tooltipElement).removeClass('active');
-
-                            $rootScope.$broadcast('tooltip.closed');
-
-                            $timeout(function() {
-                                tooltipElement.style.top = '-999px';
-                                tooltipElement.style.left = '-999px';
-                            }, 250);
-
-                            if (showTimeout) {
-                                $timeout.cancel(showTimeout);
-                            }
-                        }, HIDE_TOOLTIP_DELAY_MS);
+                    $rootScope.$on('modal.open', function() {
+                        _hideTooltip(0);
                     });
                 }
             }

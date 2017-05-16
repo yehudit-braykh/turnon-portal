@@ -129,6 +129,11 @@
 .icon-instagram-logo:before { content: '\e804'; } /* '' */
 .icon-twitter-logo:before { content: '\e805'; } /* '' */
 .icon-youtube-logo:before { content: '\e806'; } /* '' */
+.icon-brands-icon-active-bottom-nav:before { content: '\e807'; } /* '' */
+.icon-charities-icon-active-bottom-nav:before { content: '\e808'; } /* '' */
+.icon-home-icon-active-bottom-nav:before { content: '\e809'; } /* '' */
+.icon-categories-icon-active-bottom-nav:before { content: '\e80a'; } /* '' */
+.icon-star-icon-active-bottom-nav:before { content: '\e80b'; } /* '' */
 .icon-down-arrow:before { content: '\e810'; } /* '' */
 .icon-edit-icon:before { content: '\e81c'; } /* '' */
 .icon-checkmark-icon:before { content: '\e825'; } /* '' */
@@ -139,6 +144,7 @@
 .icon-categories-icon-bottom-nav:before { content: '\e82a'; } /* '' */
 .icon-charities-icon-bottom-nav:before { content: '\e82b'; } /* '' */
 .icon-dateofbirth-input-icon:before { content: '\e82c'; } /* '' */
+.icon-search-icon-active-bottom-nav:before { content: '\e82d'; } /* '' */
 .icon-email-input-icon:before { content: '\e82e'; } /* '' */
 .icon-favorite-icon-filled:before { content: '\e82f'; } /* '' */
 .icon-favorite-icon:before { content: '\e830'; } /* '' */

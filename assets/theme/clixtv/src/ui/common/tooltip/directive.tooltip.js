@@ -59,6 +59,25 @@
                         };
                     }
 
+                    function _hideTooltip(delay) {
+                        hideTimeout = $timeout(function() {
+                            var tooltipElement = document.getElementById(scope.tooltipId);
+
+                            angular.element(tooltipElement).removeClass('active');
+
+                            $rootScope.$broadcast('tooltip.closed');
+
+                            $timeout(function() {
+                                tooltipElement.style.top = '-999px';
+                                tooltipElement.style.left = '-999px';
+                            }, 250);
+
+                            if (showTimeout) {
+                                $timeout.cancel(showTimeout);
+                            }
+                        }, delay);
+                    }
+
                     var currentTooltipElement;
 
                     // Hide tooltip on window scroll
@@ -80,7 +99,7 @@
                      * @todo - Prevent tooltip from extending beyond page bounds
                      */
 
-                    angular.element(element).off('mouseenter touchend').on('mouseenter touchend', function() {
+                    angular.element(element).off('mouseenter').on('mouseenter', function(event) {
 
                         if (hideTimeout) {
                             $timeout.cancel(hideTimeout);
@@ -94,10 +113,17 @@
                                 width = trigger[0].offsetWidth,
                                 tooltipElementWidth = tooltipElement.offsetWidth;
 
-                            var position = _getPosition(trigger[0]);
+                            var position = _getPosition(trigger[0]),
+                                top = (position.y + height),
+                                left = ((position.x + (width / 2)) - (tooltipElementWidth / 2));
 
-                            tooltipElement.style.top = (position.y + height) + 'px';
-                            tooltipElement.style.left = ((position.x + (width / 2)) - (tooltipElementWidth / 2)) + 'px';
+                            if (left < 0) {
+                                left = 0;
+                            }
+
+                            tooltipElement.style.top = top + 'px';
+                            tooltipElement.style.left = left + 'px';
+
                             angular.element(tooltipElement).addClass('active');
 
                             $rootScope.$broadcast('tooltip.open');
@@ -132,23 +158,11 @@
                     });
 
                     angular.element(element).on('mouseleave', function() {
+                        _hideTooltip(HIDE_TOOLTIP_DELAY_MS);
+                    });
 
-                        hideTimeout = $timeout(function() {
-                            var tooltipElement = document.getElementById(scope.tooltipId);
-
-                            angular.element(tooltipElement).removeClass('active');
-
-                            $rootScope.$broadcast('tooltip.closed');
-
-                            $timeout(function() {
-                                tooltipElement.style.top = '-999px';
-                                tooltipElement.style.left = '-999px';
-                            }, 250);
-
-                            if (showTimeout) {
-                                $timeout.cancel(showTimeout);
-                            }
-                        }, HIDE_TOOLTIP_DELAY_MS);
+                    $rootScope.$on('modal.open', function() {
+                        _hideTooltip(0);
                     });
                 }
             }

@@ -1064,6 +1064,11 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 .icon-instagram-logo:before { content: '\e804'; } /* '' */
 .icon-twitter-logo:before { content: '\e805'; } /* '' */
 .icon-youtube-logo:before { content: '\e806'; } /* '' */
+.icon-brands-icon-active-bottom-nav:before { content: '\e807'; } /* '' */
+.icon-charities-icon-active-bottom-nav:before { content: '\e808'; } /* '' */
+.icon-home-icon-active-bottom-nav:before { content: '\e809'; } /* '' */
+.icon-categories-icon-active-bottom-nav:before { content: '\e80a'; } /* '' */
+.icon-star-icon-active-bottom-nav:before { content: '\e80b'; } /* '' */
 .icon-down-arrow:before { content: '\e810'; } /* '' */
 .icon-edit-icon:before { content: '\e81c'; } /* '' */
 .icon-checkmark-icon:before { content: '\e825'; } /* '' */
@@ -1074,6 +1079,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 .icon-categories-icon-bottom-nav:before { content: '\e82a'; } /* '' */
 .icon-charities-icon-bottom-nav:before { content: '\e82b'; } /* '' */
 .icon-dateofbirth-input-icon:before { content: '\e82c'; } /* '' */
+.icon-search-icon-active-bottom-nav:before { content: '\e82d'; } /* '' */
 .icon-email-input-icon:before { content: '\e82e'; } /* '' */
 .icon-favorite-icon-filled:before { content: '\e82f'; } /* '' */
 .icon-favorite-icon:before { content: '\e830'; } /* '' */
@@ -15765,6 +15771,9 @@ button.close {
 .clix-mobile-navigation .navigation-icon.brands-navigation-icon:before {
   margin-right: 0.3em;
 }
+.clix-mobile-navigation .navigation-icon.active-brand-icon:before {
+  margin-right: 0.4em;
+}
 .clix-account-header {
   border-bottom: 1px solid #636363;
   margin-left: 9px;
@@ -15911,14 +15920,6 @@ button.close {
   z-index: 9000;
   left: -999px;
   top: -999px;
-}
-@media (max-width: 992px) {
-  .clix-tooltip {
-    filter: alpha(opacity=0);
-    -webkit-opacity: 0;
-    -moz-opacity: 0;
-    opacity: 0;
-  }
 }
 .clix-tooltip .clix-tooltip-content {
   transition: 0.25s ease;
