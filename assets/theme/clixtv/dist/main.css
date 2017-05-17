@@ -16881,6 +16881,20 @@ button.close {
     height: auto;
     padding-top: 0;
     font-size: 30px;
+    margin-left: 11px;
+  }
+}
+.clix-landing-page-banner .banner-share-button .points-violator {
+  position: absolute;
+  top: -13px;
+  right: -13px;
+}
+@media (min-width: 768px) {
+  .clix-landing-page-banner .banner-share-button .points-violator {
+    position: relative;
+    top: -3px;
+    right: 0;
+    display: inline-block;
   }
 }
 .clix-asset-logo {

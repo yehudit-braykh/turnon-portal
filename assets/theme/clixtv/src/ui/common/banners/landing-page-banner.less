@@ -142,6 +142,20 @@
             height: auto;
             padding-top: 0;
             font-size: 30px;
+            margin-left: 11px;
+        }
+
+        .points-violator {
+            position: absolute;
+            top: -13px;
+            right: -13px;
+
+            @media (min-width: @screen-sm) {
+                position: relative;
+                top: -3px;
+                right: 0;
+                display: inline-block;
+            }
         }
     }
 }
