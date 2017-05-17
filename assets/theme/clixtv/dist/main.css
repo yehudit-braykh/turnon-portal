@@ -16862,7 +16862,7 @@ button.close {
   vertical-align: middle;
 }
 .clix-landing-page-banner .banner-favorite-button {
-  width: 155px;
+  min-width: 155px;
 }
 @media (min-width: 768px) {
   .clix-landing-page-banner .banner-favorite-button {
