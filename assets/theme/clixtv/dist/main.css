@@ -16864,6 +16864,11 @@ button.close {
 .clix-landing-page-banner .banner-favorite-button {
   width: 155px;
 }
+@media (min-width: 768px) {
+  .clix-landing-page-banner .banner-favorite-button {
+    width: auto;
+  }
+}
 .clix-landing-page-banner .banner-favorite-button .clix-tertiary-button {
   display: block;
 }
