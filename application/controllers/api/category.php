@@ -1,6 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 require APPPATH.'/libraries/REST_Controller.php';
-require APPPATH.'/config.'ENVIRONMENT.'config_'.UVOD_CONFIG;
 
 class Category extends REST_Controller{
 	function __construct(){
