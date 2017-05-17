@@ -9,6 +9,7 @@ class Celebrity extends REST_Controller{
 	}
 
 	function get_all_celebrities_get(){
+		header("Cache-Control: max-age=".CACHE_TTL);
 		$page = $this->get('page');
 		$page_size = $this->get("page_size");
 		$sort_field = $this->get("sort_field");
@@ -19,6 +20,7 @@ class Celebrity extends REST_Controller{
     }
 
     function get_celebrity_get(){
+		header("Cache-Control: max-age=".CACHE_TTL);
 		$id = $this->get("id");
 		if(!$id)
 			$this->response("id field is mandatory",400);

@@ -9,6 +9,7 @@ class Video extends REST_Controller{
 	}
 
 	function get_video_by_id_get(){
+		header("Cache-Control: max-age=".CACHE_TTL);
 		$id = $this->get("id");
 		if(!$id)
 			$this->response("id field is mandatory",400);
@@ -16,6 +17,7 @@ class Video extends REST_Controller{
     }
 
 	function get_related_videos_get(){
+		header("Cache-Control: max-age=".CACHE_TTL);
 		$id = $this->get("id");
 		if(!$id)
 			$this->response("id field is mandatory",400);
@@ -38,6 +40,7 @@ class Video extends REST_Controller{
 
 
 	public function get_serie_by_id_get(){
+		header("Cache-Control: max-age=".CACHE_TTL);
 		$id= $this->get('id');
 		if(!$id)
 			$this->response("id field is mandatory",400);
@@ -45,6 +48,7 @@ class Video extends REST_Controller{
 	}
 
 	public function get_all_series_get(){
+		header("Cache-Control: max-age=".CACHE_TTL);
 		$this->response($this->video_model->get_all_series($id),200);
 	}
 

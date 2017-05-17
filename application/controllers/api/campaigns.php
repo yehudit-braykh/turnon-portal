@@ -7,6 +7,7 @@ class Campaigns extends REST_Controller{
 		$this->load->model("campaigns_model");
 	}
     function index_get(){
+		header("Cache-Control: max-age=".CACHE_TTL);
         $page = $this->get('page');
 		$page_size = $this->get("page_size");
 		$sort_field = $this->get("sort_field");
@@ -17,6 +18,7 @@ class Campaigns extends REST_Controller{
     }
 
 	function get_campaign_by_id_get(){
+		header("Cache-Control: max-age=".CACHE_TTL);
         $id = $this->get("id");
 		if(!$id)
 			$this->response("id field is mandatory",400);

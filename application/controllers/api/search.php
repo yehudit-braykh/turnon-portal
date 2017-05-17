@@ -8,6 +8,7 @@ class Search extends REST_Controller{
 	}
 
     function index_get(){
+		header("Cache-Control: max-age=".CACHE_TTL);
 
         $keyword = $this->get("keyword");
 		$tag = $this->get("tag");
@@ -22,6 +23,7 @@ class Search extends REST_Controller{
     }
 
 	function brand_get(){
+		header("Cache-Control: max-age=".CACHE_TTL);
 		$keyword = $this->get("keyword");
 		$tag = $this->get("tag");
 		if(!$keyword && !$tag)
@@ -35,6 +37,7 @@ class Search extends REST_Controller{
 	}
 
 	function campaign_get(){
+		header("Cache-Control: max-age=".CACHE_TTL);
 		$keyword = $this->get("keyword");
 		$tag = $this->get("tag");
 		if(!$keyword && !$tag)
@@ -48,6 +51,7 @@ class Search extends REST_Controller{
 	}
 
 	function offer_get(){
+		header("Cache-Control: max-age=".CACHE_TTL);
 		$keyword = $this->get("keyword");
 		$tag = $this->get("tag");
 		if(!$keyword && !$tag)
@@ -61,6 +65,7 @@ class Search extends REST_Controller{
 	}
 
 	function charity_get(){
+		header("Cache-Control: max-age=".CACHE_TTL);
 		$keyword = $this->get("keyword");
 		$tag = $this->get("tag");
 		if(!$keyword && !$tag)

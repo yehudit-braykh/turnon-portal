@@ -8,6 +8,7 @@ class Brands extends REST_Controller{
 	}
 	// funtions to get brands
     function get_brand_get(){
+		header("Cache-Control: max-age=".CACHE_TTL);
 		$id = $this->get("id");
 		if(!$id)
 			$this->response("id field is mandatory",400);
@@ -16,6 +17,7 @@ class Brands extends REST_Controller{
     }
 
 	function get_charity_get(){
+		header("Cache-Control: max-age=".CACHE_TTL);
 		$id = $this->get("id");
 		if(!$id)
 			$this->response("id field is mandatory",400);
@@ -24,6 +26,7 @@ class Brands extends REST_Controller{
     }
 
 	function get_offer_get(){
+		header("Cache-Control: max-age=".CACHE_TTL);
 		$id = $this->get("id");
 		if(!$id)
 			$this->response("id field is mandatory",400);
@@ -32,6 +35,7 @@ class Brands extends REST_Controller{
     }
 
 	function get_brands_array_get () {
+		header("Cache-Control: max-age=".CACHE_TTL);
 		$page = $this->get('page');
 		$page_size = $this->get("page_size");
 		$sort_field = $this->get("sort_field");
@@ -42,6 +46,7 @@ class Brands extends REST_Controller{
 	}
 
 	function get_offers_array_get () {
+		header("Cache-Control: max-age=".CACHE_TTL);
 		$page = $this->get('page');
 		$page_size = $this->get("page_size");
 		$sort_field = $this->get("sort_field");
@@ -52,6 +57,7 @@ class Brands extends REST_Controller{
 	}
 
 	function get_charities_array_get () {
+		header("Cache-Control: max-age=".CACHE_TTL);
 		$page = $this->get('page');
 		$page_size = $this->get("page_size");
 		$sort_field = $this->get("sort_field");
