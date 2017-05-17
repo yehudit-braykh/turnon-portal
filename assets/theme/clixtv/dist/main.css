@@ -16910,6 +16910,13 @@ button.close {
   background-image: -webkit-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
   background-image: -o-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
 }
+.clix-asset-logo.clix-charity-logo {
+  background-image: -moz-radial-gradient(0 100%, circle, #03bcf2, #f700e6 70%);
+  background-image: -ms-radial-gradient(0 100%, circle, #03bcf2, #f700e6 70%);
+  background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(#03bcf2), to(#f700e6));
+  background-image: -webkit-radial-gradient(0 100%, circle, #03bcf2, #f700e6 70%);
+  background-image: -o-radial-gradient(0 100%, circle, #03bcf2, #f700e6 70%);
+}
 .clix-asset-logo .clix-logo-content-container {
   position: absolute;
   top: 40px;

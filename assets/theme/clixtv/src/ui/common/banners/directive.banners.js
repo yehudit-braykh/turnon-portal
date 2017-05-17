@@ -17,7 +17,8 @@
             templateUrl: 'ui/common/banners/view.landing-page-banner.html',
             controller: 'LandingPageBannerController',
             scope: {
-                backgroundImage: '@'
+                backgroundImage: '@',
+                mobileBackgroundImage: '@?'
             },
             transclude: {
                 bannerType: 'bannerType',

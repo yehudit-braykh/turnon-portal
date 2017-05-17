@@ -3,28 +3,54 @@
 </div>
 
 <div class="charity-page" ng-if="charity">
-    <clix-hero-banner
-            title-text="{{charity.title}}"
-            button-text="{{'Favorites'}}"
-            subtext="{{charity.videos.videos.length}} {{charity.videos.videos.length === 1 ? 'Video' : 'Videos'}}"
-            button-icon-class="{{'icon-favorite-icon banner-favorite-icon'}}"
-            background-image="{{charity.headerImage}}"
-            background-image2x="{{charity.headerImage}}"
-            background-image3x="{{charity.headerImage}}"
-            charity="true"
-            button-tooltip-text="{{loggedInUser ? (isFavorite ? 'Remove this charity from your Favorites.' : 'Add this charity to your Favorites.') : 'After signing up, you will be able to add this charity to your Favorites.'}}"
-            share-tooltip-text="Share this page."
-            banner-type="Charity"
-    >
-        <favorite-button>
-            <clix-tertiary-button ng-click="onFavoritePress()">
-                {{isFavorite ? 'Added to Favorites' : 'Favorite'}}
-            </clix-tertiary-button>
-        </favorite-button>
-        <share-icon>
-            <clix-share-button extra-class="banner-share-icon" charity="charity"></clix-share-button>
-        </share-icon>
-    </clix-hero-banner>
+    <clix-landing-page-banner background-image="{{charity.headerImage}}" mobile-background-image="/assets/theme/clixtv/dist/images/mobile-charity-cover.jpg">
+        <banner-type>
+            Charity
+        </banner-type>
+        <banner-title>
+            {{charity.title}}
+        </banner-title>
+        <banner-sub-title>
+            {{charity.videos.videos.length}} {{charity.videos.videos.length === 1 ? 'Video' : 'Videos'}}
+        </banner-sub-title>
+        <banner-logo-container>
+            <clix-charity-asset-logo charity="charity"></clix-charity-asset-logo>
+        </banner-logo-container>
+        <banner-button-container>
+            <div clix-tooltip-trigger tooltip-id="landing-banner-favorite-{{charity.id}}">
+                <clix-tertiary-button ng-click="onFavoritePress()">
+                    {{isFavorite ? 'Added to Favorites' : 'Favorite'}}
+                </clix-tertiary-button>
+            </div>
+        </banner-button-container>
+        <banner-share-button-container>
+            <div clix-tooltip-trigger tooltip-id="landing-banner-share-{{charity.id}}">
+                <clix-share-button extra-class="banner-share-icon" brand="brand"></clix-share-button>
+            </div>
+        </banner-share-button-container>
+    </clix-landing-page-banner>
+    <!--<clix-hero-banner-->
+            <!--title-text="{{charity.title}}"-->
+            <!--button-text="{{'Favorites'}}"-->
+            <!--subtext="{{charity.videos.videos.length}} {{charity.videos.videos.length === 1 ? 'Video' : 'Videos'}}"-->
+            <!--button-icon-class="{{'icon-favorite-icon banner-favorite-icon'}}"-->
+            <!--background-image="{{charity.headerImage}}"-->
+            <!--background-image2x="{{charity.headerImage}}"-->
+            <!--background-image3x="{{charity.headerImage}}"-->
+            <!--charity="true"-->
+            <!--button-tooltip-text="{{loggedInUser ? (isFavorite ? 'Remove this charity from your Favorites.' : 'Add this charity to your Favorites.') : 'After signing up, you will be able to add this charity to your Favorites.'}}"-->
+            <!--share-tooltip-text="Share this page."-->
+            <!--banner-type="Charity"-->
+    <!--&gt;-->
+        <!--<favorite-button>-->
+            <!--<clix-tertiary-button ng-click="onFavoritePress()">-->
+                <!--{{isFavorite ? 'Added to Favorites' : 'Favorite'}}-->
+            <!--</clix-tertiary-button>-->
+        <!--</favorite-button>-->
+        <!--<share-icon>-->
+            <!--<clix-share-button extra-class="banner-share-icon" charity="charity"></clix-share-button>-->
+        <!--</share-icon>-->
+    <!--</clix-hero-banner>-->
     <div class="charity-page-content">
         <div class="clix-tabs">
             <uib-tabset active="active">
@@ -100,3 +126,11 @@
         </div>
     </div>
 </div>
+
+<clix-tooltip tooltip-id="landing-banner-favorite-{{charity.id}}">
+    {{loggedInUser ? (isFavorite ? 'Remove this charity from your Favorites.' : 'Add this charity to your Favorites.') : 'After signing up, you will be able to add this charity to your Favorites.'}}
+</clix-tooltip>
+
+<clix-tooltip tooltip-id="landing-banner-share-{{charity.id}}">
+    Share this page
+</clix-tooltip>

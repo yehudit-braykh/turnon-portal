@@ -11,6 +11,18 @@
         }
     };
 
+    var charityLogo = function() {
+        return {
+            restrict: 'AE',
+            replace: true,
+            templateUrl: 'ui/common/logos/view.charity-logo.html',
+            scope: {
+                charity: '='
+            }
+        }
+    };
+
     angular.module('clixtv')
-        .directive('clixBrandLogo', brandLogo);
+        .directive('clixBrandAssetLogo', brandLogo)
+        .directive('clixCharityAssetLogo', charityLogo);
 }());
