@@ -112,7 +112,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/banners/view.home-page-banner.html',
-    "<div class=clix-home-page-banner><div class=desktop-home-banner><video src=https://s3-us-west-2.amazonaws.com/clixtv.stage/ClixBetaCover.mp4 autoplay=\"\" loop=\"\" muted=\"\" class=home-banner-background></video></div><div class=home-banner-overlay></div><div class=home-banner-content><div class=clixtv-originals-container><span class=clixtv-title-logo>ClixTV</span> Originals</div><div class=banner-main-header>Your Stars.<br>Their Passions.</div><div class=banner-subheader>Premium content from your favorite stars.</div><a ng-click=onSignupPress() class=primary-button ng-show=!loggedInUser>Sign Up Free</a></div></div>"
+    "<div class=clix-home-page-banner><div class=\"desktop-home-banner hidden-xs\"><video src=https://s3-us-west-2.amazonaws.com/clixtv.stage/ClixBetaCover.mp4 autoplay=\"\" loop=\"\" muted=\"\" class=home-banner-background></video></div><div class=\"desktop-home-banner visible-xs\"><img ng-src=assets/theme/clixtv/dist/images/giphy-downsized-large.gif></div><div class=home-banner-overlay></div><div class=home-banner-content><div class=clixtv-originals-container><span class=clixtv-title-logo>ClixTV</span> Originals</div><div class=banner-main-header>Your Stars.<br>Their Passions.</div><div class=banner-subheader>Premium content from your favorite stars.</div><a ng-click=onSignupPress() class=primary-button ng-show=!loggedInUser>Sign Up Free</a></div></div>"
   );
 
 
