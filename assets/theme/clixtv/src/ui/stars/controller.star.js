@@ -143,6 +143,8 @@
                         $scope.celebrity = data;
                         $scope.active = 0;
 
+                        $rootScope.pageTitle = $scope.celebrity.name + ' - ClixTV';
+
                         catchMediaService.trackAppEvent('navigation_item', {
                             target_cm: 'media',
                             target_type: 'person',

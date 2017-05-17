@@ -151,12 +151,11 @@
                 catchMediaService.initialize();
                 educationModalService.initialize();
 
+                $rootScope.pageTitle = 'ClixTV - Your Stars. Their Passions.';
+
                 $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
                     $('html, body').animate({ scrollTop: 0 }, 200);
                     modalService.close();
-
-                    //clix-tooltip
-
                     $rootScope.printable = (to.data && to.data.print);
                     $rootScope.solidNavigation = (to.data && to.data.solidNavigation);
                 });
@@ -1852,6 +1851,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         $scope.brand = data;
                         $scope.active = 0;
 
+                        // Don't overwrite the title if we're showing an offer
+                        if (!$stateParams.offerId) {
+                            $rootScope.pageTitle = $scope.brand.title + ' - ClixTV';
+                        }
+
                         $scope.video = {
                             streamUrl: data.trailer,
                             thumbnail: data.trailerThumbnail
@@ -1890,10 +1894,13 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
     var BrandsController = [
         '$q',
         '$scope',
+        '$rootScope',
         '$stateParams',
         'brandsService',
         'catchMediaService',
-        function($q, $scope, $stateParams, brandsService, catchMediaService) {
+        function($q, $scope, $rootScope, $stateParams, brandsService, catchMediaService) {
+
+            $rootScope.pageTitle = 'Brands - ClixTV';
 
             var defaultFilterOptions = [
                 {
@@ -2097,9 +2104,12 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
     var CategoriesController = [
         '$q',
         '$scope',
+        '$rootScope',
         'categoryService',
         'catchMediaService',
-        function($q, $scope, categoryService, catchMediaService) {
+        function($q, $scope, $rootScope, categoryService, catchMediaService) {
+
+            $rootScope.pageTitle = 'Categories - ClixTV';
 
             $scope.filterOptions = [
                 {
@@ -2276,6 +2286,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         $scope.category = data[0];
                         $scope.categories = data[1];
 
+                        $rootScope.pageTitle = $scope.category.title + ' Videos - ClixTV';
+
                         catchMediaService.trackAppEvent('navigation_item', {
                             target_cm: 'entity',
                             target_type: 'category',
@@ -2424,10 +2436,13 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
     var CharitiesController = [
         '$q',
         '$scope',
+        '$rootScope',
         '$stateParams',
         'brandsService',
         'catchMediaService',
-        function($q, $scope, $stateParams, brandsService, catchMediaService) {
+        function($q, $scope, $rootScope, $stateParams, brandsService, catchMediaService) {
+
+            $rootScope.pageTitle = 'Charities - ClixTV';
 
             var defaultFilterOptions = [
                 {
@@ -2582,6 +2597,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
                         $scope.charity = data;
                         $scope.active = 0;
+
+                        $rootScope.pageTitle = $scope.charity.title + ' - ClixTV';
 
                         $scope.video = {
                             streamUrl: data.trailer,
@@ -4533,6 +4550,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         $scope.offer = data;
                         knetikService.viewOffer($scope.offer.id);
 
+                        $rootScope.pageTitle = $scope.offer.title + ' Offer at ' + $scope.offer.brand.title + ' - ClixTV';
+
                         catchMediaService.trackAppEvent('navigation', {
                             target_cm: 'media',
                             target_type: 'offer',
@@ -6174,6 +6193,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         'modalService',
         function($q, $scope, $rootScope, $timeout, $window, $uibModal, categoryService, modalService) {
 
+            $rootScope.pageTitle = 'ClixTV - Your Stars. Their Passions.';
+
             $scope.showMobileCarousel = false;
 
             $rootScope.$on('user.login', function(event, data) {
@@ -6546,6 +6567,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         $scope.celebrity = data;
                         $scope.active = 0;
 
+                        $rootScope.pageTitle = $scope.celebrity.name + ' - ClixTV';
+
                         catchMediaService.trackAppEvent('navigation_item', {
                             target_cm: 'media',
                             target_type: 'person',
@@ -6601,9 +6624,12 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
     var StarsController = [
         '$q',
         '$scope',
+        '$rootScope',
         'celebrityService',
         'catchMediaService',
-        function($q, $scope, celebrityService, catchMediaService) {
+        function($q, $scope, $rootScope, celebrityService, catchMediaService) {
+
+            $rootScope.pageTitle = 'Stars - ClixTV';
 
             $scope.filterOptions = [
                 {

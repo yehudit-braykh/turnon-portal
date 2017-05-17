@@ -3,9 +3,12 @@
     var CategoriesController = [
         '$q',
         '$scope',
+        '$rootScope',
         'categoryService',
         'catchMediaService',
-        function($q, $scope, categoryService, catchMediaService) {
+        function($q, $scope, $rootScope, categoryService, catchMediaService) {
+
+            $rootScope.pageTitle = 'Categories - ClixTV';
 
             $scope.filterOptions = [
                 {

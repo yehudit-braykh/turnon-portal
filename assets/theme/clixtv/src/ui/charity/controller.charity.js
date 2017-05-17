@@ -80,6 +80,8 @@
                         $scope.charity = data;
                         $scope.active = 0;
 
+                        $rootScope.pageTitle = $scope.charity.title + ' - ClixTV';
+
                         $scope.video = {
                             streamUrl: data.trailer,
                             thumbnail: data.trailerThumbnail

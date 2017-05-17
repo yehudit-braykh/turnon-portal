@@ -3,10 +3,13 @@
     var CharitiesController = [
         '$q',
         '$scope',
+        '$rootScope',
         '$stateParams',
         'brandsService',
         'catchMediaService',
-        function($q, $scope, $stateParams, brandsService, catchMediaService) {
+        function($q, $scope, $rootScope, $stateParams, brandsService, catchMediaService) {
+
+            $rootScope.pageTitle = 'Charities - ClixTV';
 
             var defaultFilterOptions = [
                 {

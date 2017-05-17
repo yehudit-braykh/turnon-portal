@@ -11,6 +11,8 @@
         'modalService',
         function($q, $scope, $rootScope, $timeout, $window, $uibModal, categoryService, modalService) {
 
+            $rootScope.pageTitle = 'ClixTV - Your Stars. Their Passions.';
+
             $scope.showMobileCarousel = false;
 
             $rootScope.$on('user.login', function(event, data) {

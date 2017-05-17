@@ -151,12 +151,11 @@
                 catchMediaService.initialize();
                 educationModalService.initialize();
 
+                $rootScope.pageTitle = 'ClixTV - Your Stars. Their Passions.';
+
                 $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
                     $('html, body').animate({ scrollTop: 0 }, 200);
                     modalService.close();
-
-                    //clix-tooltip
-
                     $rootScope.printable = (to.data && to.data.print);
                     $rootScope.solidNavigation = (to.data && to.data.solidNavigation);
                 });

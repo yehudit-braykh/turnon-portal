@@ -150,6 +150,11 @@
                         $scope.brand = data;
                         $scope.active = 0;
 
+                        // Don't overwrite the title if we're showing an offer
+                        if (!$stateParams.offerId) {
+                            $rootScope.pageTitle = $scope.brand.title + ' - ClixTV';
+                        }
+
                         $scope.video = {
                             streamUrl: data.trailer,
                             thumbnail: data.trailerThumbnail

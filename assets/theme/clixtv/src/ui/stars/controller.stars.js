@@ -3,9 +3,12 @@
     var StarsController = [
         '$q',
         '$scope',
+        '$rootScope',
         'celebrityService',
         'catchMediaService',
-        function($q, $scope, celebrityService, catchMediaService) {
+        function($q, $scope, $rootScope, celebrityService, catchMediaService) {
+
+            $rootScope.pageTitle = 'Stars - ClixTV';
 
             $scope.filterOptions = [
                 {

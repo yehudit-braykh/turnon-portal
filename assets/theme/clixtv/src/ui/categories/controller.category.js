@@ -106,6 +106,8 @@
                         $scope.category = data[0];
                         $scope.categories = data[1];
 
+                        $rootScope.pageTitle = $scope.category.title + ' Videos - ClixTV';
+
                         catchMediaService.trackAppEvent('navigation_item', {
                             target_cm: 'entity',
                             target_type: 'category',
