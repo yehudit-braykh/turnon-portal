@@ -1,0 +1,15 @@
+<div class="clix-landing-page-banner">
+    <div class="landing-banner-background" style="background-image: url('{{backgroundImage}}')"></div>
+    <div class="landing-banner-overlay"></div>
+    <div class="landing-banner-content">
+        <div class="banner-logo" ng-transclude="bannerLogoContainer"></div>
+        <div class="banner-type" ng-transclude="bannerType"></div>
+        <div class="banner-title" ng-transclude="bannerTitle"></div>
+        <div class="banner-subtitle visible-xs" ng-transclude="bannerSubTitle"></div>
+        <div class="banner-buttons-container">
+            <div class="banner-button banner-favorite-button" ng-transclude="bannerButtonContainer"></div>
+            <div class="banner-button banner-share-button" ng-transclude="bannerShareButtonContainer" ng-if="shareButtonProvided"></div>
+            <div class="banner-subtitle hidden-xs" ng-transclude="bannerSubTitle"></div>
+        </div>
+    </div>
+</div>

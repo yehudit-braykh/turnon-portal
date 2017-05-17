@@ -8,7 +8,8 @@
         'data',
         'modalService',
         'catchMediaService',
-        function($scope, $location, $uibModalInstance, $state, data, modalService, catchMediaService) {
+        'shareService',
+        function($scope, $location, $uibModalInstance, $state, data, modalService, catchMediaService, shareService) {
 
             $scope.tab = 'post';
             $scope.socialNetworks = [];
@@ -81,6 +82,8 @@
             $scope.onPostPress = function() {
                 $uibModalInstance.close();
                 catchMediaService.trackShareEvent(type, entity);
+
+                shareService.postToTwitter('Test Message', 'http://www.google.com', 'http://advncedcdn.vo.llnwd.net/clixtv_storage/storage/57cdc2665aad0b6fcf67bb3d/590ac858fbb3d633b64e3607/redfoocover1.jpg');
             };
 
             $scope.onSocialNetworkPress = function(socialNetwork) {

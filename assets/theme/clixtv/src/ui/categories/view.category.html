@@ -3,25 +3,25 @@
 </div>
 
 <div class="clix-category-page" ng-if="category">
-    <clix-hero-banner
-            title-text="{{category.title}}"
-            button-text="{{'Favorites'}}"
-            subtext="{{category.videos.videos.length}} {{category.videos.videos.length === 1 ? 'Video' : 'Videos'}}"
-            button-icon-class="{{'icon-favorite-icon banner-favorite-icon'}}"
-            background-image="{{category.headerImage}}"
-            background-image2x="{{category.headerImage}}"
-            background-image3x="{{category.headerImage}}"
-            shareable="false"
-            button-tooltip-text="{{loggedInUser ? (isFavorite ? 'Remove this category from your Favorites' : 'Add this category to your Favorites.') : 'After signing up, you will be able to add this category to your Favorites.'}}"
-            share-tooltip-text="Share this category."
-            banner-type="Category"
-    >
-        <favorite-button>
+    <clix-landing-page-banner background-image="{{category.headerImage}}">
+        <banner-type>
+            Category
+        </banner-type>
+        <banner-title>
+            {{category.title}}
+        </banner-title>
+        <banner-sub-title>
+            {{category.videos.videos.length}} {{category.videos.videos.length === 1 ? 'Video' : 'Videos'}}
+        </banner-sub-title>
+        <banner-logo-container>
+            <img ng-src="{{category.logo}}" />
+        </banner-logo-container>
+        <banner-button-container>
             <clix-tertiary-button ng-click="onFavoritePress()">
                 {{isFavorite ? 'Added to Favorites' : 'Favorite'}}
             </clix-tertiary-button>
-        </favorite-button>
-    </clix-hero-banner>
+        </banner-button-container>
+    </clix-landing-page-banner>
     <div class="category-page-container">
         <div class="category-page-content">
             <div class="category-list-container hidden-sm hidden-xs hidden-md">

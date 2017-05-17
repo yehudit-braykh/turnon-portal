@@ -3,25 +3,32 @@
 </div>
 
 <div class="clix-star-page" ng-if="celebrity">
-    <clix-hero-banner
-        title-text="{{celebrity.name}}"
-        button-text="{{isFavorite ? 'Remove from Favorites' : 'Favorite'}}"
-        button-icon-class="{{'icon-favorite-icon banner-favorite-icon'}}"
-        button-tooltip-text="{{loggedInUser ? ((isFavorite) ? 'Remove this star from your Favorites' : 'Add this star to your Favorites.') : 'After signing up, you will be able to add this star to your Favorites.'}}"
-        subtext="{{celebrity.videos.videos.length}} {{celebrity.videos.videos.length === 1 ? 'Video' : 'Videos'}}"
-        background-image="{{celebrity.headerImage}}"
-        share-tooltip-text="Share this page."
-        banner-type="Star"
-    >
-        <favorite-button>
-            <clix-tertiary-button ng-click="onFavoritePress()">
-                {{isFavorite ? 'Added to Favorites' : 'Favorite'}}
-            </clix-tertiary-button>
-        </favorite-button>
-        <share-icon>
-            <clix-share-button extra-class="banner-share-icon" celebrity="celebrity"></clix-share-button>
-        </share-icon>
-    </clix-hero-banner>
+    <clix-landing-page-banner background-image="{{celebrity.headerImage}}">
+        <banner-type>
+            Star
+        </banner-type>
+        <banner-title>
+            {{celebrity.name}}
+        </banner-title>
+        <banner-sub-title>
+            {{celebrity.videos.videos.length}} {{celebrity.videos.videos.length === 1 ? 'Video' : 'Videos'}}
+        </banner-sub-title>
+        <banner-logo-container>
+            <img ng-src="{{celebrity.thumbnail}}" />
+        </banner-logo-container>
+        <banner-button-container>
+            <div clix-tooltip-trigger tooltip-id="landing-banner-favorite-{{celebrity.id}}">
+                <clix-tertiary-button ng-click="onFavoritePress()">
+                    {{isFavorite ? 'Added to Favorites' : 'Favorite'}}
+                </clix-tertiary-button>
+            </div>
+        </banner-button-container>
+        <banner-share-button-container>
+            <div clix-tooltip-trigger tooltip-id="landing-banner-share-{{celebrity.id}}">
+                <clix-share-button extra-class="banner-share-icon" celebrity="celebrity"></clix-share-button>
+            </div>
+        </banner-share-button-container>
+    </clix-landing-page-banner>
     <div class="brand-page-content">
         <div class="clix-tabs">
             <uib-tabset active="active">
@@ -139,3 +146,11 @@
         </div>
     </div>
 </div>
+
+<clix-tooltip tooltip-id="landing-banner-favorite-{{celebrity.id}}">
+    {{loggedInUser ? ((isFavorite) ? 'Remove this star from your Favorites' : 'Add this star to your Favorites.') : 'After signing up, you will be able to add this star to your Favorites.'}}
+</clix-tooltip>
+
+<clix-tooltip tooltip-id="landing-banner-share-{{celebrity.id}}">
+    Share this page
+</clix-tooltip>

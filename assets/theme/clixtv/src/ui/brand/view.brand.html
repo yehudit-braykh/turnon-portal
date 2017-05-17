@@ -3,28 +3,57 @@
 </div>
 
 <div class="brand-page" ng-if="configs">
-    <clix-hero-banner
-            title-text="{{configs.title}}"
-            button-text="{{'Favorites'}}"
-            points="{{'50'}}"
-            subtext="{{brand.offers.offers.length}} {{brand.offers.offers.length === 1 ? 'Offer' : 'Offers'}}"
-            button-icon-class="{{'icon-favorite-icon banner-favorite-icon'}}"
-            background-image="{{configs.backgroundImage}}"
-            background-image2x="{{configs.backgroundImage2x}}"
-            background-image3x="{{configs.backgroundImage3x}}"
-            button-tooltip-text="{{loggedInUser ? (isFavorite ? 'Remove this brand from your Favorites.' : 'Add this brand to your Favorites.') : 'After signing up, you will be able to add this brand to your Favorites.'}}"
-            share-tooltip-text="Share this brand."
-            banner-type="Brand"
-    >
-        <favorite-button>
-            <clix-tertiary-button ng-click="onFavoritePress()">
-                {{isFavorite ? 'Added to Favorites' : 'Favorite'}}
-            </clix-tertiary-button>
-        </favorite-button>
-        <share-icon>
-            <clix-share-button extra-class="banner-share-icon" brand="brand"></clix-share-button>
-        </share-icon>
-    </clix-hero-banner>
+    <clix-landing-page-banner background-image="{{brand.headerImage}}">
+        <banner-type>
+            Brand
+        </banner-type>
+        <banner-title>
+            {{brand.title}}
+        </banner-title>
+        <banner-sub-title>
+            {{brand.offers.offers.length}} {{brand.offers.offers.length === 1 ? 'Offer' : 'Offers'}}
+        </banner-sub-title>
+        <banner-logo-container>
+            <clix-brand-logo brand="brand"></clix-brand-logo>
+        </banner-logo-container>
+        <banner-button-container>
+            <div clix-tooltip-trigger tooltip-id="landing-banner-favorite-{{brand.id}}">
+                <clix-tertiary-button ng-click="onFavoritePress()">
+                    {{isFavorite ? 'Added to Favorites' : 'Favorite'}}
+                </clix-tertiary-button>
+            </div>
+        </banner-button-container>
+        <banner-share-button-container>
+            <div clix-tooltip-trigger tooltip-id="landing-banner-share-{{brand.id}}">
+                <clix-share-button extra-class="banner-share-icon" brand="brand"></clix-share-button>
+                <clix-points-violator>
+                    50
+                </clix-points-violator>
+            </div>
+        </banner-share-button-container>
+    </clix-landing-page-banner>
+    <!--<clix-hero-banner-->
+            <!--title-text="{{configs.title}}"-->
+            <!--button-text="{{'Favorites'}}"-->
+            <!--points="{{'50'}}"-->
+            <!--subtext="{{brand.offers.offers.length}} {{brand.offers.offers.length === 1 ? 'Offer' : 'Offers'}}"-->
+            <!--button-icon-class="{{'icon-favorite-icon banner-favorite-icon'}}"-->
+            <!--background-image="{{configs.backgroundImage}}"-->
+            <!--background-image2x="{{configs.backgroundImage2x}}"-->
+            <!--background-image3x="{{configs.backgroundImage3x}}"-->
+            <!--button-tooltip-text="{{loggedInUser ? (isFavorite ? 'Remove this brand from your Favorites.' : 'Add this brand to your Favorites.') : 'After signing up, you will be able to add this brand to your Favorites.'}}"-->
+            <!--share-tooltip-text="Share this brand."-->
+            <!--banner-type="Brand"-->
+    <!--&gt;-->
+        <!--<favorite-button>-->
+            <!--<clix-tertiary-button ng-click="onFavoritePress()">-->
+                <!--{{isFavorite ? 'Added to Favorites' : 'Favorite'}}-->
+            <!--</clix-tertiary-button>-->
+        <!--</favorite-button>-->
+        <!--<share-icon>-->
+            <!--<clix-share-button extra-class="banner-share-icon" brand="brand"></clix-share-button>-->
+        <!--</share-icon>-->
+    <!--</clix-hero-banner>-->
     <div class="brand-page-content">
         <div class="clix-tabs">
             <uib-tabset active="active">
@@ -126,3 +155,11 @@
         </div>
     </div>
 </div>
+
+<clix-tooltip tooltip-id="landing-banner-favorite-{{brand.id}}">
+    {{loggedInUser ? ((isFavorite) ? 'Remove this brand from your Favorites' : 'Add this brand to your Favorites.') : 'After signing up, you will be able to add this brand to your Favorites.'}}
+</clix-tooltip>
+
+<clix-tooltip tooltip-id="landing-banner-share-{{brand.id}}">
+    Share this page
+</clix-tooltip>

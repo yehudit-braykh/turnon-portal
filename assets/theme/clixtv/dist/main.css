@@ -1009,6 +1009,22 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'montserratextrabold';
+    src: url('./font/montserrat-extrabold-webfont.woff2') format('woff2'),
+    url('./font/montserrat-extrabold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'montserratlight';
+    src: url('./font/montserrat-light-webfont.woff2') format('woff2'),
+    url('./font/montserrat-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 
 /* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
@@ -7992,7 +8008,6 @@ button.close {
   -webkit-justify-content: center;
   -ms-justify-content: center;
   justify-content: center;
-  padding-top: 6px;
 }
 @media (min-width: 992px) {
   .clix-header .mobile-logo {
@@ -8684,7 +8699,7 @@ button.close {
   text-align: center;
 }
 .clix-header-points-violator .coming-soon-label {
-  font-size: 10px;
+  font-size: 9px;
   display: block;
   padding: 2px 0;
 }
@@ -16610,6 +16625,286 @@ button.close {
   .hidden-xl {
     display: none !important;
   }
+}
+.clix-home-page-banner {
+  position: relative;
+}
+.clix-home-page-banner .desktop-home-banner .home-banner-background {
+  max-width: 100%;
+}
+.clix-home-page-banner .home-banner-overlay {
+  background-color: rgba(0, 0, 0, 0.7) 25%;
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.7) 25%), to(rgba(0, 0, 0, 0) 50%));
+  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.7) 25%, rgba(0, 0, 0, 0) 50%);
+  background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0.7) 25%, rgba(0, 0, 0, 0) 50%);
+  background-image: -ms-linear-gradient(left, rgba(0, 0, 0, 0.7) 25%, rgba(0, 0, 0, 0) 50%);
+  background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.7) 25%, rgba(0, 0, 0, 0) 50%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.clix-home-page-banner .home-banner-overlay:before {
+  background-color: rgba(0, 0, 0, 0) 0%;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0) 0%), to(#0e0e0e));
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, #0e0e0e);
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, #0e0e0e);
+  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, #0e0e0e);
+  background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, #0e0e0e);
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.clix-home-page-banner .home-banner-content {
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  position: absolute;
+  top: 50%;
+  left: 0;
+  padding-left: 30px;
+  color: #FFF;
+}
+@media (min-width: 768px) {
+  .clix-home-page-banner .home-banner-content {
+    margin-top: -70px;
+  }
+}
+.clix-home-page-banner .home-banner-content .clixtv-originals-container {
+  font-family: 'montserratlight', sans-serif;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+}
+@media (min-width: 768px) {
+  .clix-home-page-banner .home-banner-content .clixtv-originals-container {
+    font-size: 18px;
+  }
+}
+.clix-home-page-banner .home-banner-content .clixtv-title-logo {
+  font-family: 'montserratextrabold', sans-serif;
+}
+.clix-home-page-banner .home-banner-content .banner-main-header {
+  font-family: 'montserratextrabold', sans-serif;
+  font-size: 35px;
+  line-height: 30px;
+}
+@media (min-width: 768px) {
+  .clix-home-page-banner .home-banner-content .banner-main-header {
+    font-size: 85px;
+    line-height: 80px;
+  }
+}
+.clix-home-page-banner .home-banner-content .banner-subheader {
+  font-family: 'montserratlight', sans-serif;
+  font-size: 13px;
+  letter-spacing: 3.3px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+@media (min-width: 768px) {
+  .clix-home-page-banner .home-banner-content .banner-subheader {
+    font-size: 22px;
+  }
+}
+.clix-landing-page-banner {
+  position: relative;
+  height: 475px;
+  overflow: hidden;
+  font-family: 'montserratregular', sans-serif;
+  color: #FFF;
+}
+.clix-landing-page-banner .landing-banner-background {
+  filter: blur(27px);
+  -webkit-filter: blur(27px);
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  bottom: -50px;
+  right: -50px;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+@media (min-width: 768px) {
+  .clix-landing-page-banner .landing-banner-background {
+    filter: blur(0);
+    -webkit-filter: blur(0);
+  }
+}
+.clix-landing-page-banner .landing-banner-overlay {
+  background-color: rgba(0, 0, 0, 0);
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(#0e0e0e));
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), #0e0e0e);
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0), #0e0e0e);
+  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0), #0e0e0e);
+  background: -o-linear-gradient(top, rgba(0, 0, 0, 0), #0e0e0e);
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.clix-landing-page-banner .landing-banner-content {
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  position: absolute;
+  top: 50%;
+  text-align: center;
+  width: 100%;
+  padding: 70px 20px 0;
+}
+@media (min-width: 768px) {
+  .clix-landing-page-banner .landing-banner-content {
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    text-align: left;
+    top: auto;
+    bottom: 30px;
+    padding-top: 0;
+    padding-left: 10px;
+  }
+}
+@media (min-width: 1200px) {
+  .clix-landing-page-banner .landing-banner-content {
+    padding-left: 30px;
+  }
+}
+.clix-landing-page-banner .banner-logo {
+  -webkit-border-radius: 85px;
+  -moz-border-radius: 85px;
+  border-radius: 85px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  margin: 0 auto;
+  width: 170px;
+  height: 170px;
+  overflow: hidden;
+}
+@media (min-width: 768px) {
+  .clix-landing-page-banner .banner-logo {
+    display: none;
+  }
+}
+.clix-landing-page-banner .banner-logo img {
+  max-width: 100%;
+}
+.clix-landing-page-banner .banner-type {
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-top: 11px;
+}
+@media (min-width: 768px) {
+  .clix-landing-page-banner .banner-type {
+    font-size: 24px;
+  }
+}
+.clix-landing-page-banner .banner-title {
+  font-family: 'montserratsemibold', sans-serif;
+  font-size: 32px;
+  line-height: 33px;
+}
+@media (min-width: 768px) {
+  .clix-landing-page-banner .banner-title {
+    font-size: 100px;
+    line-height: 100px;
+  }
+}
+.clix-landing-page-banner .banner-subtitle {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #9b9b9b;
+  margin-top: 2px;
+}
+@media (min-width: 768px) {
+  .clix-landing-page-banner .banner-subtitle {
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: 0;
+    font-size: 14px;
+  }
+}
+.clix-landing-page-banner .banner-buttons-container {
+  display: inline-block;
+  position: relative;
+  margin-top: 7px;
+}
+@media (min-width: 768px) {
+  .clix-landing-page-banner .banner-buttons-container {
+    display: block;
+  }
+}
+.clix-landing-page-banner .banner-button {
+  display: inline-block;
+  vertical-align: middle;
+}
+.clix-landing-page-banner .banner-favorite-button {
+  width: 155px;
+}
+.clix-landing-page-banner .banner-favorite-button .clix-tertiary-button {
+  display: block;
+}
+.clix-landing-page-banner .banner-share-button {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid #9b9b9b;
+  font-size: 20px;
+  width: 36px;
+  height: 36px;
+  padding-top: 6px;
+  margin-left: 8px;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .clix-landing-page-banner .banner-share-button {
+    border-width: 0;
+    width: auto;
+    height: auto;
+    padding-top: 0;
+    font-size: 30px;
+  }
+}
+.clix-asset-logo {
+  width: 100%;
+  padding-bottom: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.clix-asset-logo.clix-brand-logo {
+  background-image: -moz-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
+  background-image: -ms-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
+  background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(#c60548), to(#7a0ba8));
+  background-image: -webkit-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
+  background-image: -o-radial-gradient(0 100%, circle, #c60548, #7a0ba8 100%);
+}
+.clix-asset-logo .clix-logo-content-container {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  bottom: 40px;
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 body,
 html {

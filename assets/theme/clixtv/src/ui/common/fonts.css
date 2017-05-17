@@ -74,6 +74,22 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'montserratextrabold';
+    src: url('./font/montserrat-extrabold-webfont.woff2') format('woff2'),
+    url('./font/montserrat-extrabold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'montserratlight';
+    src: url('./font/montserrat-light-webfont.woff2') format('woff2'),
+    url('./font/montserrat-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 
 /* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
