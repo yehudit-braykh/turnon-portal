@@ -780,6 +780,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         'userService',
         function($q, $scope, $rootScope, $stateParams, userService) {
 
+            $rootScope.pageTitle = 'Your Favorites - ClixTV';
+
             $scope.ready = false;
 
             $scope.filterStarsOptions = [
@@ -1037,6 +1039,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         'notificationsService',
         function($scope, $rootScope, userService, notificationsService) {
 
+            $rootScope.pageTitle = 'Your Notifications - ClixTV';
+
             notificationsService.getNotifications()
                 .then(
                     function onSuccess(data) {
@@ -1286,6 +1290,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         'userService',
         function($scope, $rootScope, userService) {
 
+            $rootScope.pageTitle = 'Your Account Overview - ClixTV';
+
             userService.getLoggedInUser()
                 .then(
                     function onSuccess(data) {
@@ -1359,6 +1365,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         'clixConfig',
         function($q, $scope, $rootScope, $uibModal, clixConfig) {
 
+            $rootScope.pageTitle = 'Your Rewards - ClixTV';
+
             $scope.active = 0;
             $scope.pointsEnabled = clixConfig.pointsEnabled;
             $scope.ready = true;
@@ -1430,6 +1438,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$rootScope',
         'userService',
         function($q, $scope, $rootScope, userService) {
+
+            $rootScope.pageTitle = 'Your Saved Offers - ClixTV';
 
             $scope.menuItems = [
                 {
@@ -1532,6 +1542,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         'userService',
         function($q, $scope, $rootScope, userService) {
 
+            $rootScope.pageTitle = 'Your Account Settings - ClixTV';
+
             $scope.ready = false;
 
             var userSaving = false;
@@ -1630,6 +1642,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$rootScope',
         'userService',
         function($scope, $rootScope, userService) {
+
+            $rootScope.pageTitle = 'Your Watchlist - ClixTV';
 
             $scope.filterOptions = [
                 {

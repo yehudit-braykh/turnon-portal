@@ -8,6 +8,8 @@
         'userService',
         function($q, $scope, $rootScope, $stateParams, userService) {
 
+            $rootScope.pageTitle = 'Your Favorites - ClixTV';
+
             $scope.ready = false;
 
             $scope.filterStarsOptions = [

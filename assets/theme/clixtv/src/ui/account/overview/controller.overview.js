@@ -6,6 +6,8 @@
         'userService',
         function($scope, $rootScope, userService) {
 
+            $rootScope.pageTitle = 'Your Account Overview - ClixTV';
+
             userService.getLoggedInUser()
                 .then(
                     function onSuccess(data) {

@@ -7,6 +7,8 @@
         'notificationsService',
         function($scope, $rootScope, userService, notificationsService) {
 
+            $rootScope.pageTitle = 'Your Notifications - ClixTV';
+
             notificationsService.getNotifications()
                 .then(
                     function onSuccess(data) {

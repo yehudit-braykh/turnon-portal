@@ -6,6 +6,8 @@
         'userService',
         function($scope, $rootScope, userService) {
 
+            $rootScope.pageTitle = 'Your Watchlist - ClixTV';
+
             $scope.filterOptions = [
                 {
                     label: 'All'

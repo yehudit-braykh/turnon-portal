@@ -8,6 +8,8 @@
         'clixConfig',
         function($q, $scope, $rootScope, $uibModal, clixConfig) {
 
+            $rootScope.pageTitle = 'Your Rewards - ClixTV';
+
             $scope.active = 0;
             $scope.pointsEnabled = clixConfig.pointsEnabled;
             $scope.ready = true;

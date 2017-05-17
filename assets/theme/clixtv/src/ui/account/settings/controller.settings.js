@@ -7,6 +7,8 @@
         'userService',
         function($q, $scope, $rootScope, userService) {
 
+            $rootScope.pageTitle = 'Your Account Settings - ClixTV';
+
             $scope.ready = false;
 
             var userSaving = false;

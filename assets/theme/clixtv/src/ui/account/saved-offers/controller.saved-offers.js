@@ -7,6 +7,8 @@
         'userService',
         function($q, $scope, $rootScope, userService) {
 
+            $rootScope.pageTitle = 'Your Saved Offers - ClixTV';
+
             $scope.menuItems = [
                 {
                     label: 'Save Offer',
