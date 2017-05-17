@@ -1,6 +1,8 @@
 <div class="clix-landing-page-banner">
-    <div class="landing-banner-background hidden-xs" style="background-image: url('{{backgroundImage}}')"></div>
-    <div class="landing-banner-background visible-xs" style="background-image: url('{{mobileBackgroundImage || backgroundImage}}')"></div>
+
+        <div class="landing-banner-background hidden-xs" clix-background-image="{{backgroundImage}}" du-parallax y="background"></div>
+
+    <div class="landing-banner-background visible-xs" clix-background-image="{{mobileBackgroundImage || backgroundImage}}"></div>
     <div class="landing-banner-overlay"></div>
     <div class="landing-banner-content">
         <div class="banner-logo" ng-transclude="bannerLogoContainer"></div>

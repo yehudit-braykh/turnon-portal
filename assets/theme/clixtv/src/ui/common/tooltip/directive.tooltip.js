@@ -27,11 +27,18 @@
                 restrict: 'A',
                 controller: 'TooltipController',
                 scope: {
-                    tooltipId: '@'
+                    tooltipId: '@',
+                    cleanup: '@'
                 },
                 link: function(scope, element) {
 
                     var showTimeout, hideTimeout;
+
+                    $rootScope.$on('$stateChangeStart', function() {
+                        if (scope.cleanup !== 'false') {
+                            angular.element(document.getElementById(scope.tooltipId)).remove();
+                        }
+                    });
 
                     function _getPosition(el) {
                         var xPos = 0;
@@ -91,8 +98,10 @@
 
                         $rootScope.$broadcast('tooltip.closed');
 
-                        currentTooltipElement.style.top = '-999px';
-                        currentTooltipElement.style.left = '-999px';
+                        if (currentTooltipElement) {
+                            currentTooltipElement.style.top = '-999px';
+                            currentTooltipElement.style.left = '-999px';
+                        }
                     });
 
                     /**

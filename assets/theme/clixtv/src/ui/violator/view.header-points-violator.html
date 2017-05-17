@@ -1,4 +1,4 @@
-<div class="clix-header-points-violator" ng-click="onRewardPointsPress()" clix-tooltip-trigger tooltip-id="rewards-points-tooltip-{{$id}}">
+<div class="clix-header-points-violator" ng-click="onRewardPointsPress()" clix-tooltip-trigger tooltip-id="rewards-points-tooltip-{{$id}}" cleanup="false">
     <clix-callout-button>
         <span ng-if="pointsEnabled">
             {{points ? points : 0}}

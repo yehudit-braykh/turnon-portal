@@ -140,11 +140,12 @@
         ])
         .run([
             '$rootScope',
+            '$window',
             'userService',
             'catchMediaService',
             'educationModalService',
             'modalService',
-            function($rootScope, userService, catchMediaService, educationModalService, modalService) {
+            function($rootScope, $window, userService, catchMediaService, educationModalService, modalService) {
 
                 userService.setLoggedInUser();
                 catchMediaService.initialize();
@@ -153,6 +154,9 @@
                 $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
                     $('html, body').animate({ scrollTop: 0 }, 200);
                     modalService.close();
+
+                    //clix-tooltip
+
                     $rootScope.printable = (to.data && to.data.print);
                     $rootScope.solidNavigation = (to.data && to.data.solidNavigation);
                 });
@@ -289,7 +293,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/banners/view.landing-page-banner.html',
-    "<div class=clix-landing-page-banner><div class=\"landing-banner-background hidden-xs\" style=\"background-image: url('{{backgroundImage}}')\"></div><div class=\"landing-banner-background visible-xs\" style=\"background-image: url('{{mobileBackgroundImage || backgroundImage}}')\"></div><div class=landing-banner-overlay></div><div class=landing-banner-content><div class=banner-logo ng-transclude=bannerLogoContainer></div><div class=banner-type ng-transclude=bannerType></div><div class=banner-title ng-transclude=bannerTitle></div><div class=\"banner-subtitle visible-xs\" ng-transclude=bannerSubTitle></div><div class=banner-buttons-container><div class=\"banner-button banner-favorite-button\" ng-transclude=bannerButtonContainer></div><div class=\"banner-button banner-share-button\" ng-transclude=bannerShareButtonContainer ng-if=shareButtonProvided></div><div class=\"banner-subtitle hidden-xs\" ng-transclude=bannerSubTitle></div></div></div></div>"
+    "<div class=clix-landing-page-banner><div class=\"landing-banner-background hidden-xs\" clix-background-image={{backgroundImage}} du-parallax y=background></div><div class=\"landing-banner-background visible-xs\" clix-background-image=\"{{mobileBackgroundImage || backgroundImage}}\"></div><div class=landing-banner-overlay></div><div class=landing-banner-content><div class=banner-logo ng-transclude=bannerLogoContainer></div><div class=banner-type ng-transclude=bannerType></div><div class=banner-title ng-transclude=bannerTitle></div><div class=\"banner-subtitle visible-xs\" ng-transclude=bannerSubTitle></div><div class=banner-buttons-container><div class=\"banner-button banner-favorite-button\" ng-transclude=bannerButtonContainer></div><div class=\"banner-button banner-share-button\" ng-transclude=bannerShareButtonContainer ng-if=shareButtonProvided></div><div class=\"banner-subtitle hidden-xs\" ng-transclude=bannerSubTitle></div></div></div></div>"
   );
 
 
@@ -699,7 +703,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/violator/view.header-points-violator.html',
-    "<div class=clix-header-points-violator ng-click=onRewardPointsPress() clix-tooltip-trigger tooltip-id=rewards-points-tooltip-{{$id}}><clix-callout-button><span ng-if=pointsEnabled>{{points ? points : 0}} </span><span ng-if=!pointsEnabled class=coming-soon-label>Coming Soon!</span></clix-callout-button>Reward Points</div><clix-tooltip tooltip-id=rewards-points-tooltip-{{$id}}>ClixTV rewards users for watching videos, engaging with brands & offers, and sharing to social networks. Wherever you see the rewards points badge, points can be earned.<br><br><a clix-learn-more-modal-trigger>Learn More</a>.</clix-tooltip>"
+    "<div class=clix-header-points-violator ng-click=onRewardPointsPress() clix-tooltip-trigger tooltip-id=rewards-points-tooltip-{{$id}} cleanup=false><clix-callout-button><span ng-if=pointsEnabled>{{points ? points : 0}} </span><span ng-if=!pointsEnabled class=coming-soon-label>Coming Soon!</span></clix-callout-button>Reward Points</div><clix-tooltip tooltip-id=rewards-points-tooltip-{{$id}}>ClixTV rewards users for watching videos, engaging with brands & offers, and sharing to social networks. Wherever you see the rewards points badge, points can be earned.<br><br><a clix-learn-more-modal-trigger>Learn More</a>.</clix-tooltip>"
   );
 
 
@@ -2706,8 +2710,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
     var LandingPageBannerController = [
         '$scope',
         '$transclude',
-        function($scope, $transclude) {
+        'parallaxHelper',
+        function($scope, $transclude, parallaxHelper) {
             $scope.shareButtonProvided = $transclude.isSlotFilled('bannerShareButtonContainer');
+            $scope.background = parallaxHelper.createAnimator(-0.3);
         }
     ];
 
@@ -5705,11 +5711,18 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 restrict: 'A',
                 controller: 'TooltipController',
                 scope: {
-                    tooltipId: '@'
+                    tooltipId: '@',
+                    cleanup: '@'
                 },
                 link: function(scope, element) {
 
                     var showTimeout, hideTimeout;
+
+                    $rootScope.$on('$stateChangeStart', function() {
+                        if (scope.cleanup !== 'false') {
+                            angular.element(document.getElementById(scope.tooltipId)).remove();
+                        }
+                    });
 
                     function _getPosition(el) {
                         var xPos = 0;
@@ -5769,8 +5782,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
                         $rootScope.$broadcast('tooltip.closed');
 
-                        currentTooltipElement.style.top = '-999px';
-                        currentTooltipElement.style.left = '-999px';
+                        if (currentTooltipElement) {
+                            currentTooltipElement.style.top = '-999px';
+                            currentTooltipElement.style.left = '-999px';
+                        }
                     });
 
                     /**
@@ -6689,6 +6704,26 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     angular.module('clixtv')
         .directive('clixTooltipMenu', tooltipMenu);
+}());
+(function() {
+    var backgroundImage = [
+        '$parse',
+        function($parse) {
+            return {
+                restrict: 'A',
+                link: function (scope, element, attrs) {
+                    attrs.$observe('clixBackgroundImage', function(value) {
+                        element.css({
+                            'background-image': 'url(' + value +')'
+                        });
+                    });
+                }
+            };
+        }
+    ];
+
+    angular.module('clixtv')
+        .directive('clixBackgroundImage', backgroundImage);
 }());
 (function() {
     var clickAnywhereElse = [

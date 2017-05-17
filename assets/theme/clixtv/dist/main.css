@@ -11152,6 +11152,14 @@ button.close {
   text-decoration: underline;
   cursor: pointer;
 }
+.clix-category-page .clix-landing-page-banner .banner-logo {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
 .clix-offer-page .main-page-content {
   position: relative;
   z-index: 2000;
