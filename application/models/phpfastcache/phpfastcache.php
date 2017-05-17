@@ -43,7 +43,7 @@ class phpFastCache {
             "path"      =>  "",
 
             "server"        =>  array(
-                array("127.0.0.1",11211,1),
+                array(MEMCACHED_SERVER,11211,1),
             ),
 
             "extensions"    =>  array(),

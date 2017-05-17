@@ -201,6 +201,7 @@ abstract class REST_Controller extends CI_Controller
 
         // Lets grab the config and get ready to party
         $this->load->config('rest');
+        $this->load->config();
 
         // This library is bundled with REST_Controller 2.5+, but will eventually be part of CodeIgniter itself
         $this->load->library('format');
@@ -369,7 +370,7 @@ abstract class REST_Controller extends CI_Controller
             if (config_item('rest_enable_logging') and $log_method) {
                 $this->_log_request();
             }
-            
+
             $this->response(array(config_item('rest_status_field_name') => false, config_item('rest_message_field_name') => 'Invalid API Key '.$this->rest->key), 403);
         }
 

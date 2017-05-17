@@ -9,6 +9,7 @@ class Category extends REST_Controller{
 	}
 
     function get_all_categories_get(){
+		header("Cache-Control: max-age=".CACHE_TTL);
 		$page = $this->get('page');
 		$page_size = $this->get("page_size");
 
@@ -18,6 +19,7 @@ class Category extends REST_Controller{
     }
 
 	function get_category_by_id_get(){
+		header("Cache-Control: max-age=".CACHE_TTL);
 		$cat = $this->get("id");
 		if(!$cat)
 			$this->response("id field is mandatory",400);

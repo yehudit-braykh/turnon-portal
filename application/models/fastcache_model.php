@@ -8,8 +8,8 @@ class fastcache_model extends CI_Model {
 
     public function __construct() {
 
-//        $config = array("storage" => 'memcache', 'server' => array(array('mc4.dev.ec2.memcachier.com',11211)), "overwrite" => "files");
-        phpFastCache::setup("storage", "files");
+        //   $config = array("storage" => 'memcache', 'server' => array(array(MEMCACHED_SERVER,11211)), "overwrite" => "files");
+        //  phpFastCache::setup("storage", "files");
 
         $this->cache = phpFastCache();
     }
@@ -17,11 +17,11 @@ class fastcache_model extends CI_Model {
     public function get_cache($id) {
 
         // get data from cache
-        $data = $this->cache->get($id);
+        $data = $this->cache->get('portal:'.$id);
         if (!$data) {
             $data = false;
         }
-    //    return null;
+        // return null;
         return $data;
     }
 
@@ -30,9 +30,9 @@ class fastcache_model extends CI_Model {
         if ($expiration) {
             $cache_expiration = $expiration;
         } else {
-            $cache_expiration = 600;
+            $cache_expiration = MEMCACHED_TTL;
         }
-        $this->cache->set($id, $data, $cache_expiration);
+        $this->cache->set('portal:'.$id, $data, $cache_expiration);
     }
 
     public function clean_cache() {
