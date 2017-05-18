@@ -78,5 +78,19 @@ class Search extends REST_Controller{
 		$this->response($results, 200);
 	}
 
+	function celebrity_get(){
+		header("Cache-Control: max-age=".CACHE_TTL);
+		$keyword = $this->get("keyword");
+		$tag = $this->get("tag");
+		if(!$keyword && !$tag)
+			$this->response("tag or keyword field is mandatory",400);
+		$page = $this->get("page")?$this->get("page"):'0';
+        $page_size = $this->get("page_size")?$this->get("page_size"):'2';
+
+        $results = $this->search_model->search_celebrities($keyword, $tag,$page, $page_size);
+
+		$this->response($results, 200);
+	}
+
 
 }

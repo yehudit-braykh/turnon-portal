@@ -209,7 +209,7 @@ class Account_model extends Uvod_model {
         $filters = array();
 		$filters[] = "byId=" . str_replace(' ', '%20', implode("|", $profile->favoriteBrands)) ;
 
-		return $this->rows($this->apiCall('brand/related', $filters)->entries);
+		return $this->rows($this->apiCall('campaign/related', $filters)->entries);
     }
 
     public function get_favorite_charities(){
@@ -400,9 +400,9 @@ class Account_model extends Uvod_model {
 
     function watchlist_rows($items){
         foreach ($items as &$item) {
-            //debug($cat);
             if($item->brands)
                 $item->brands = $this->rows($item->brands);
+            $item->campaigns = $this->rows($item->campaigns);
             if($item->celebrity){
                 $arr = array();
                 array_push($arr, $item->celebrity);

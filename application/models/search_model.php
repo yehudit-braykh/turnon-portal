@@ -8,8 +8,8 @@ class Search_model extends Uvod_model {
 	}
 
 	public function search($keyword, $tags = null, $page = 0 , $page_size = 2){
-
-		if(strtolower($keyword) == 'offer' || strtolower($keyword) == 'offers' || strtolower($keyword) == 'coupon' || strtolower($keyword) == 'coupons'){
+		$keyword = strtolower($keyword);
+		if($keyword == 'offer' || $keyword == 'offers' || $keyword == 'coupon' || $keyword == 'coupons'){
 			return $this->brands_model->get_offers_array ($page = 0, $page_size = 5);
 		} else {
 			$results = new stdClass;
@@ -49,7 +49,7 @@ class Search_model extends Uvod_model {
 	}
 
 	public function search_charities($keyword, $tags, $page , $page_size ){
-
+		$keyword = strtolower($keyword);
 		$parameters = array();
 		$parameters[] = "byTitle=".str_replace(' ',"%20",$keyword);
 		if($tags)
@@ -63,7 +63,7 @@ class Search_model extends Uvod_model {
 	}
 
 	public function search_categories($keyword, $tags, $page , $page_size ){
-
+		$keyword = strtolower($keyword);
 		$parameters = array();
 		$parameters[] = "byTitle=".str_replace(' ',"%20",$keyword);
 		if($tags)
@@ -77,7 +77,7 @@ class Search_model extends Uvod_model {
 	}
 
 	public function search_brands($keyword, $tags, $page , $page_size){
-
+		$keyword = strtolower($keyword);
 		$parameters = array();
 		$parameters[] = "byTitle=".str_replace(' ',"%20",$keyword);
 		if($tags)
@@ -89,7 +89,7 @@ class Search_model extends Uvod_model {
 	}
 
 	public function search_campaigns($keyword, $tags, $page , $page_size){
-
+		$keyword = strtolower($keyword);
 		$parameters = array();
 		$parameters[] = "byTitle=".str_replace(' ',"%20",$keyword);
 		if($tags)
@@ -100,7 +100,7 @@ class Search_model extends Uvod_model {
 	}
 
 	public function search_offers($keyword, $tags, $page , $page_size){
-
+		$keyword = strtolower($keyword);
 		$parameters = array();
 		$parameters[] = "byTitle=".str_replace(' ',"%20",$keyword);
 		if($tags)
@@ -112,7 +112,7 @@ class Search_model extends Uvod_model {
 	}
 
 	private function search_celebrities($keyword, $tags, $page , $page_size){
-
+		$keyword = strtolower($keyword);
 		$parameters = array();
 		$parameters[] = "byTitle=".str_replace(' ',"%20",$keyword);
 	//	debug($parameters);
@@ -125,7 +125,7 @@ class Search_model extends Uvod_model {
 	}
 
 	private function search_series($keyword, $tags, $page , $page_size){
-
+		$keyword = strtolower($keyword);
 		$parameters = array();
 		$parameters[] = "byTitle=".str_replace(' ',"%20",$keyword);
 		if($tags)
@@ -137,7 +137,7 @@ class Search_model extends Uvod_model {
 	}
 
 	private function search_videos($keyword, $tags, $page , $page_size){
-
+		$keyword = strtolower($keyword);
 		$parameters = array();
 		$parameters[] = "byTitle=".str_replace(' ',"%20",$keyword);
 		if($tags)

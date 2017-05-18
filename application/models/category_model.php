@@ -33,6 +33,7 @@ class category_model extends Uvod_model {
 			if($item->videos){
 				foreach ($item->videos as &$vid) {
 					$vid->brands = $this->rows($vid->brands);
+					$vid->campaigns = $this->rows($vid->campaigns);
 					$data = array();
 					array_push($data,$vid->charity);
 					$vid->charity = $this->rows($data)[0];
