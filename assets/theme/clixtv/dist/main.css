@@ -9574,11 +9574,13 @@ button.close {
   }
 }
 .video-permalink-page .next-video-overlay-container .next-video-container {
-  -webkit-transform: scale(0.4);
-  -moz-transform: scale(0.4);
-  -ms-transform: scale(0.4);
-  -o-transform: scale(0.4);
+  -webkit-transform: translateY(-50%) scale(0.4);
+  -moz-transform: translateY(-50%) scale(0.4);
+  -ms-transform: translateY(-50%) scale(0.4);
+  -o-transform: translateY(-50%) scale(0.4);
   margin: 0 auto;
+  position: relative;
+  top: 50%;
 }
 @media (min-width: 768px) {
   .video-permalink-page .next-video-overlay-container .next-video-container {
@@ -9586,8 +9588,6 @@ button.close {
     -moz-transform: translateY(-50%) scale(0.5);
     -ms-transform: translateY(-50%) scale(0.5);
     -o-transform: translateY(-50%) scale(0.5);
-    position: relative;
-    top: 50%;
   }
 }
 @media (min-width: 1200px) {
