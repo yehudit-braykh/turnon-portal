@@ -22,15 +22,14 @@
 
             service.responseError = function(response) {
                 var cacheValue;
-                console.log('Response error caught', response);
                 if (response.config.url.indexOf('ui/') !== -1) {
                     return response;
                 }
-                console.log('API response error', response);
                 cacheValue = apiCache.get(response.config.url);
                 if (cacheValue) {
-                    console.log('API cached response', cacheValue);
-                    return cacheValue;
+                    return {
+                        data: cacheValue
+                    };
                 }
                 return response;
             };
