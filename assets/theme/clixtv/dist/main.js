@@ -16,7 +16,8 @@
             'LocalStorageModule',
             'ngMask',
             'angular.filter',
-            'ngTouch'
+            'ngTouch',
+            'angular-cache'
         ])
         .constant('clixConfig', {
             beta: true,
@@ -8436,7 +8437,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                  * @todo - Cache this call
                  */
                 getAllCategories: function() {
-                    return $http.get('/api/category/get_all_categoriesss')
+                    return $http.get('/api/category/get_all_categories')
                         .then(
                             function onSuccess(data) {
                                 return new CategoryListModel(data.data);
@@ -9772,13 +9773,34 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 (function() {
 
     var apiInterceptor = [
-        function() {
-            var service = this;
-            service.request = function(config) {
-                return config;
+        'CacheFactory',
+        function(CacheFactory) {
+            var apiCache,
+                service = this;
+
+            if (!CacheFactory.get('apiCache')) {
+                apiCache = CacheFactory('apiCache', {
+                    storageMode: 'localStorage'
+                });
+            }
+
+            service.response = function(response) {
+                if (response.config.url.indexOf('ui/') !== -1) {
+                    return response;
+                }
+                apiCache.put(response.config.url, response.data);
+                return response;
             };
+
             service.responseError = function(response) {
-                console.log(response);
+                var cacheValue;
+                if (response.config.url.indexOf('ui/') !== -1) {
+                    return response;
+                }
+                cacheValue = apiCache.get(response.config.url);
+                if (cacheValue) {
+                    return cacheValue;
+                }
                 return response;
             };
         }

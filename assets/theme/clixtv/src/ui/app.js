@@ -16,7 +16,8 @@
             'LocalStorageModule',
             'ngMask',
             'angular.filter',
-            'ngTouch'
+            'ngTouch',
+            'angular-cache'
         ])
         .constant('clixConfig', {
             beta: true,

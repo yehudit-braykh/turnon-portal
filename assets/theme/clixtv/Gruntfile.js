@@ -51,7 +51,8 @@ module.exports = function(grunt) {
                     'node_modules/angular-local-storage/dist/angular-local-storage.js',
                     'bower_components/ngMask/dist/ngMask.min.js',
                     'node_modules/angular-filter/dist/angular-filter.min.js',
-                    'node_modules/angular-touch/angular-touch.js'
+                    'node_modules/angular-touch/angular-touch.js',
+                    'node_modules/angular-cache/dist/angular-cache.js'
                 ]
             }
         },
