@@ -8,8 +8,8 @@ class fastcache_model extends CI_Model {
 
     public function __construct() {
 
-        //   $config = array("storage" => 'memcache', 'server' => array(array(MEMCACHED_SERVER,11211)), "overwrite" => "files");
-        //  phpFastCache::setup("storage", "files");
+          $config = array("storage" => 'memcache', 'server' => array(array(MEMCACHED_SERVER,11211)), "overwrite" => "files");
+          phpFastCache::setup("memcached", $config);
 
         $this->cache = phpFastCache();
     }
@@ -37,6 +37,10 @@ class fastcache_model extends CI_Model {
 
     public function clean_cache() {
         $this->cache->clean();
+    }
+
+    public function get_cache_info(){
+        return $this->cache;
     }
 
 }
