@@ -7218,7 +7218,6 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
             $scope.isMobile = ($window.innerWidth <= 800);
             $scope.expanded = false;
-            $scope.videoComplete = true;
 
             function _resetPageState() {
                 if (!$scope.video) {
@@ -7234,6 +7233,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 var nextVideos = $scope.series.seasons.seasons[0].episodes.filter(function(episode) {
                     return episode.episodeNumber > $scope.video.episodeNumber;
                 });
+
                 if (nextVideos.length > 0) {
                     $scope.nextVideo = nextVideos[0];
                     return;
@@ -7255,6 +7255,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
             $rootScope.$on('video.complete', function() {
                 knetikService.viewEpisode($scope.video.id);
+                $scope.videoComplete = true;
+                $timeout(function() {
+                    $scope.$apply();
+                });
             });
 
             $rootScope.$on('user.login', function(event, data) {
@@ -9787,8 +9791,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 (function() {
 
     var apiInterceptor = [
+        '$log',
         'CacheFactory',
-        function(CacheFactory) {
+        function($log, CacheFactory) {
             var apiCache,
                 service = this;
 
@@ -9802,7 +9807,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 if (response.config.url.indexOf('ui/') !== -1) {
                     return response;
                 }
-                apiCache.put(response.config.url, response.data);
+                try {
+                    apiCache.put(response.config.url, btoa(JSON.stringify(response.data)));
+                } catch (e) {
+                    $log.warn('Error putting item in cache', e);
+                }
                 return response;
             };
 
@@ -9811,11 +9820,15 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 if (response.config.url.indexOf('ui/') !== -1) {
                     return response;
                 }
-                cacheValue = apiCache.get(response.config.url);
-                if (cacheValue) {
-                    return {
-                        data: cacheValue
-                    };
+                try {
+                    cacheValue = apiCache.get(response.config.url);
+                    if (cacheValue) {
+                        return {
+                            data: JSON.parse(atob(cacheValue))
+                        };
+                    }
+                } catch (e) {
+                    $log.warn('Error getting item from cache', e);
                 }
                 return response;
             };

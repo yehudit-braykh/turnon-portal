@@ -9551,19 +9551,52 @@ button.close {
   padding: 10px 0;
 }
 .video-permalink-page .next-video-overlay-container .next-video-label {
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
   font-family: 'montserratsemibold', sans-serif;
   color: #FFF;
-  font-size: 36px;
+  font-size: 45px;
   margin-bottom: 10px;
+  width: 150%;
+  position: relative;
+  left: 50%;
+}
+@media (min-width: 992px) {
+  .video-permalink-page .next-video-overlay-container .next-video-label {
+    font-size: 36px;
+  }
+}
+@media (min-width: 1200px) {
+  .video-permalink-page .next-video-overlay-container .next-video-label {
+    width: 100%;
+  }
 }
 .video-permalink-page .next-video-overlay-container .next-video-container {
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%) scale(0.4);
+  -moz-transform: translateY(-50%) scale(0.4);
+  -ms-transform: translateY(-50%) scale(0.4);
+  -o-transform: translateY(-50%) scale(0.4);
   margin: 0 auto;
   position: relative;
   top: 50%;
+}
+@media (min-width: 768px) {
+  .video-permalink-page .next-video-overlay-container .next-video-container {
+    -webkit-transform: translateY(-50%) scale(0.5);
+    -moz-transform: translateY(-50%) scale(0.5);
+    -ms-transform: translateY(-50%) scale(0.5);
+    -o-transform: translateY(-50%) scale(0.5);
+  }
+}
+@media (min-width: 1200px) {
+  .video-permalink-page .next-video-overlay-container .next-video-container {
+    -webkit-transform: translateY(-50%) scale(1);
+    -moz-transform: translateY(-50%) scale(1);
+    -ms-transform: translateY(-50%) scale(1);
+    -o-transform: translateY(-50%) scale(1);
+  }
 }
 .video-permalink-page .next-video-overlay-container .next-video {
   text-align: left;
@@ -9686,8 +9719,6 @@ button.close {
 .video-permalink-page .star-meta-info {
   padding-bottom: 16px;
   border-bottom: 1px solid #636363;
-  padding-left: 20px;
-  padding-right: 20px;
 }
 @media (min-width: 768px) {
   .video-permalink-page .star-meta-info {
@@ -9978,8 +10009,6 @@ button.close {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  padding-left: 20px;
-  padding-right: 20px;
 }
 @media (min-width: 992px) {
   .video-permalink-page .brands-charity-container .brands-container {

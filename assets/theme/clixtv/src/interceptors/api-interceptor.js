@@ -1,8 +1,9 @@
 (function() {
 
     var apiInterceptor = [
+        '$log',
         'CacheFactory',
-        function(CacheFactory) {
+        function($log, CacheFactory) {
             var apiCache,
                 service = this;
 
@@ -16,7 +17,11 @@
                 if (response.config.url.indexOf('ui/') !== -1) {
                     return response;
                 }
-                apiCache.put(response.config.url, response.data);
+                try {
+                    apiCache.put(response.config.url, btoa(JSON.stringify(response.data)));
+                } catch (e) {
+                    $log.warn('Error putting item in cache', e);
+                }
                 return response;
             };
 
@@ -25,11 +30,15 @@
                 if (response.config.url.indexOf('ui/') !== -1) {
                     return response;
                 }
-                cacheValue = apiCache.get(response.config.url);
-                if (cacheValue) {
-                    return {
-                        data: cacheValue
-                    };
+                try {
+                    cacheValue = apiCache.get(response.config.url);
+                    if (cacheValue) {
+                        return {
+                            data: JSON.parse(atob(cacheValue))
+                        };
+                    }
+                } catch (e) {
+                    $log.warn('Error getting item from cache', e);
                 }
                 return response;
             };

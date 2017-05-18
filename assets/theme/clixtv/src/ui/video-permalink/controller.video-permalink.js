@@ -17,7 +17,6 @@
 
             $scope.isMobile = ($window.innerWidth <= 800);
             $scope.expanded = false;
-            $scope.videoComplete = true;
 
             function _resetPageState() {
                 if (!$scope.video) {
@@ -33,6 +32,7 @@
                 var nextVideos = $scope.series.seasons.seasons[0].episodes.filter(function(episode) {
                     return episode.episodeNumber > $scope.video.episodeNumber;
                 });
+
                 if (nextVideos.length > 0) {
                     $scope.nextVideo = nextVideos[0];
                     return;
@@ -54,6 +54,10 @@
 
             $rootScope.$on('video.complete', function() {
                 knetikService.viewEpisode($scope.video.id);
+                $scope.videoComplete = true;
+                $timeout(function() {
+                    $scope.$apply();
+                });
             });
 
             $rootScope.$on('user.login', function(event, data) {
