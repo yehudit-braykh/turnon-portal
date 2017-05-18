@@ -72,16 +72,14 @@
         }
 
         .next-video-container {
-            .transform(translateY(-50%) scale(.4));
+            .transform(scale(.4));
             margin: 0 auto;
-            position: relative;
-            top: 50%;
 
             @media (min-width: @screen-sm) {
                 .transform(translateY(-50%) scale(.5));
+                position: relative;
+                top: 50%;
             }
-
-
 
             @media (min-width: @screen-lg) {
                 .transform(translateY(-50%) scale(1));
@@ -519,10 +517,10 @@
             }
 
             .logo-image {
-                top: 25px;
-                bottom: 25px;
-                left: 20px;
-                right: 20px;
+                top: 15px;
+                bottom: 15px;
+                left: 15px;
+                right: 15px;
 
                 @media (min-width: @screen-md) and (max-width: @screen-lg) {
                     top: 20px;
