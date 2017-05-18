@@ -83,7 +83,8 @@
             </div>
         </div>
         <a href="/" class="mobile-logo mobile-header-block">
-            <img src="assets/theme/clixtv/dist/images/color-logo-light.svg" class="clix-logo" />
+            <img src="assets/theme/clixtv/dist/images/color-logo-light.svg" class="clix-logo" ng-if="!isBeta" />
+            <img src="assets/theme/clixtv/dist/images/clixtv-mobile-beta-logo.svg" class="clix-logo" ng-if="isBeta" />
         </a>
         <div class="user-avatar-container mobile-header-block">
             <div class="user-avatar">
