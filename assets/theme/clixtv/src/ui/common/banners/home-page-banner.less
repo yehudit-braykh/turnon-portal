@@ -7,6 +7,14 @@
         }
     }
 
+    .mobile-home-banner {
+        .home-banner-background {
+            height: 436px;
+            position: relative;
+            left: -300px;
+        }
+    }
+
     .home-banner-overlay {
         .horizontal-gradient(fade(@color-black, 70%) 25%, @color-transparent 50%);
         position: absolute;
@@ -27,25 +35,29 @@
     }
 
     .home-banner-content {
-        .transform(translateY(-50%));
         position: absolute;
-        top: 50%;
         left: 0;
+        bottom: 50px;
         padding-left: 30px;
         color: @color-white;
 
         @media (min-width: @screen-sm) {
+            .transform(translateY(-50%));
+            top: 50%;
+            bottom: auto;
             margin-top: -70px;
         }
 
         .clixtv-originals-container {
             font-family: @font-primary-light;
-            font-size: 13px;
+            font-size: 10px;
             text-transform: uppercase;
             letter-spacing: 1.4px;
+            margin-bottom: 5px;
 
             @media (min-width: @screen-sm) {
                 font-size: 18px;
+                margin-bottom: 0;
             }
         }
 
@@ -56,23 +68,26 @@
         .banner-main-header {
             font-family: @font-primary-extra-bold;
             font-size: 35px;
-            line-height: 30px;
+            line-height: 31px;
+            margin-bottom: 5px;
 
             @media (min-width: @screen-sm) {
                 font-size: 85px;
                 line-height: 80px;
+                margin-bottom: 0;
             }
         }
 
         .banner-subheader {
             font-family: @font-primary-light;
-            font-size: 13px;
-            letter-spacing: 3.3px;
+            font-size: 10px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             margin-bottom: 20px;
 
             @media (min-width: @screen-sm) {
                 font-size: 22px;
+                letter-spacing: 3.3px;
             }
         }
     }

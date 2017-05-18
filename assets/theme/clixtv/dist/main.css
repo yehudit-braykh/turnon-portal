@@ -16640,6 +16640,11 @@ button.close {
 .clix-home-page-banner .desktop-home-banner .home-banner-background {
   max-width: 100%;
 }
+.clix-home-page-banner .mobile-home-banner .home-banner-background {
+  height: 436px;
+  position: relative;
+  left: -300px;
+}
 .clix-home-page-banner .home-banner-overlay {
   background-color: rgba(0, 0, 0, 0.7) 25%;
   background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.7) 25%), to(rgba(0, 0, 0, 0) 50%));
@@ -16668,30 +16673,34 @@ button.close {
   bottom: 0;
 }
 .clix-home-page-banner .home-banner-content {
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
   position: absolute;
-  top: 50%;
   left: 0;
+  bottom: 50px;
   padding-left: 30px;
   color: #FFF;
 }
 @media (min-width: 768px) {
   .clix-home-page-banner .home-banner-content {
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    top: 50%;
+    bottom: auto;
     margin-top: -70px;
   }
 }
 .clix-home-page-banner .home-banner-content .clixtv-originals-container {
   font-family: 'montserratlight', sans-serif;
-  font-size: 13px;
+  font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 1.4px;
+  margin-bottom: 5px;
 }
 @media (min-width: 768px) {
   .clix-home-page-banner .home-banner-content .clixtv-originals-container {
     font-size: 18px;
+    margin-bottom: 0;
   }
 }
 .clix-home-page-banner .home-banner-content .clixtv-title-logo {
@@ -16700,24 +16709,27 @@ button.close {
 .clix-home-page-banner .home-banner-content .banner-main-header {
   font-family: 'montserratextrabold', sans-serif;
   font-size: 35px;
-  line-height: 30px;
+  line-height: 31px;
+  margin-bottom: 5px;
 }
 @media (min-width: 768px) {
   .clix-home-page-banner .home-banner-content .banner-main-header {
     font-size: 85px;
     line-height: 80px;
+    margin-bottom: 0;
   }
 }
 .clix-home-page-banner .home-banner-content .banner-subheader {
   font-family: 'montserratlight', sans-serif;
-  font-size: 13px;
-  letter-spacing: 3.3px;
+  font-size: 10px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
   margin-bottom: 20px;
 }
 @media (min-width: 768px) {
   .clix-home-page-banner .home-banner-content .banner-subheader {
     font-size: 22px;
+    letter-spacing: 3.3px;
   }
 }
 .clix-landing-page-banner {
