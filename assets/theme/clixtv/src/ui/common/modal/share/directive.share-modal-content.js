@@ -63,6 +63,14 @@
         }
     };
 
+    var shareModalConnectButton = function() {
+        return {
+            restrict: 'AE',
+            templateUrl: 'ui/common/modal/share/view.share-modal-connect-button.html',
+            transclude: true
+        }
+    };
+
     angular.module('clixtv')
         .directive('clixShareModalVideoContent', shareModalVideoContent)
         .directive('clixShareModalCelebrityContent', shareModalCelebrityContent)
@@ -70,4 +78,5 @@
         .directive('clixShareModalBrandContent', shareModalBrandContent)
         .directive('clixShareModalCharityContent', shareModalCharityContent)
         .directive('clixGenericShareContent', genericModalCelebrityContent)
+        .directive('clixShareModalConnectButton', shareModalConnectButton);
 }());

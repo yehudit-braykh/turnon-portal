@@ -1,0 +1,25 @@
+.clix-share-modal-connect-button {
+    .horizontal-gradient(@color-tertiary, @color-secondary);
+    .border-radius(30px);
+    font-family: @font-primary;
+    font-size: 11px;
+    color: @color-white;
+    text-transform: uppercase;
+    letter-spacing: 0.9px;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+    padding: 1px;
+
+    &:hover {
+        .share-modal-connect-button-content {
+            background-color: @color-transparent;
+        }
+    }
+
+    .share-modal-connect-button-content {
+        .border-radius(30px);
+        padding: 10px 46px;
+        background-color: @color-gray7;
+    }
+}

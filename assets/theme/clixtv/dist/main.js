@@ -488,6 +488,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('ui/common/modal/share/view.share-modal-connect-button.html',
+    "<div class=clix-share-modal-connect-button><div class=share-modal-connect-button-content ng-transclude></div></div>"
+  );
+
+
   $templateCache.put('ui/common/modal/share/view.share-modal-offer-content.html',
     "<div class=clix-share-modal-offer-content><clix-generic-share-content><share-icon-container><div class=clix-thumbnail-logo><clix-offer-logo offer=offer></clix-offer-logo></div></share-icon-container><share-title>{{offer.title}}</share-title><share-description>{{offer.description | wordTruncate : 275}}</share-description><share-footer-title>ClixTV</share-footer-title></clix-generic-share-content></div>"
   );
@@ -499,7 +504,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/modal/share/view.share-settings.html',
-    "<clix-modal modal-title=\"Share Settings\"><div class=clix-share-settings-modal><div class=share-settings-row><div class=\"social-network-icon-container facebook-social-network\"><i class=\"icon-facebook-logo social-network-icon\"></i></div><div class=\"social-network-info-container row\"><div class=\"social-network-description col-sm-8\">Connect your Facebook account</div><div class=\"social-network-connect-button col-sm-4\"><clix-tertiary-button>Connect</clix-tertiary-button></div></div></div><div class=share-settings-row><div class=\"social-network-icon-container twitter-social-network\"><i class=\"icon-twitter-logo social-network-icon\"></i></div><div class=\"social-network-info-container row\"><div class=\"social-network-description col-sm-8\">Connect your Twitter account</div><div class=\"social-network-connect-button col-sm-4\"><clix-tertiary-button>Connect</clix-tertiary-button></div></div></div><div class=share-settings-row><div class=\"social-network-icon-container tumblr-social-network\"><i class=\"icon-tumblr-logo social-network-icon\"></i></div><div class=\"social-network-info-container row\"><div class=\"social-network-description col-sm-8\">Connect your Tumblr account</div><div class=\"social-network-connect-button col-sm-4\"><clix-tertiary-button>Connect</clix-tertiary-button></div></div></div><div class=share-settings-footer>We will never store your password.</div></div></clix-modal>"
+    "<clix-modal modal-title=\"Share Settings\"><div class=clix-share-settings-modal><div class=share-settings-row><div class=\"social-network-icon-container facebook-social-network\"><i class=\"icon-facebook-logo social-network-icon\"></i></div><div class=\"social-network-info-container row\"><div class=\"social-network-description col-sm-7\">Connect your Facebook account</div><div class=\"social-network-connect-button col-sm-5\"><clix-share-modal-connect-button>Connect</clix-share-modal-connect-button></div></div></div><div class=share-settings-row><div class=\"social-network-icon-container twitter-social-network\"><i class=\"icon-twitter-logo social-network-icon\"></i></div><div class=\"social-network-info-container row\"><div class=\"social-network-description col-sm-7\">Connect your Twitter account</div><div class=\"social-network-connect-button col-sm-5\"><clix-share-modal-connect-button>Connect</clix-share-modal-connect-button></div></div></div><div class=share-settings-row><div class=\"social-network-icon-container tumblr-social-network\"><i class=\"icon-tumblr-logo social-network-icon\"></i></div><div class=\"social-network-info-container row\"><div class=\"social-network-description col-sm-7\">Connect your Tumblr account</div><div class=\"social-network-connect-button col-sm-5\"><clix-share-modal-connect-button>Connect</clix-share-modal-connect-button></div></div></div><div class=share-settings-footer>We will never store your password.</div></div></clix-modal>"
   );
 
 
@@ -4865,6 +4870,14 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         }
     };
 
+    var shareModalConnectButton = function() {
+        return {
+            restrict: 'AE',
+            templateUrl: 'ui/common/modal/share/view.share-modal-connect-button.html',
+            transclude: true
+        }
+    };
+
     angular.module('clixtv')
         .directive('clixShareModalVideoContent', shareModalVideoContent)
         .directive('clixShareModalCelebrityContent', shareModalCelebrityContent)
@@ -4872,6 +4885,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         .directive('clixShareModalBrandContent', shareModalBrandContent)
         .directive('clixShareModalCharityContent', shareModalCharityContent)
         .directive('clixGenericShareContent', genericModalCelebrityContent)
+        .directive('clixShareModalConnectButton', shareModalConnectButton);
 }());
 (function() {
 
@@ -9794,11 +9808,14 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
             service.responseError = function(response) {
                 var cacheValue;
+                console.log('Response error caught', response);
                 if (response.config.url.indexOf('ui/') !== -1) {
                     return response;
                 }
+                console.log('API response error', response);
                 cacheValue = apiCache.get(response.config.url);
                 if (cacheValue) {
+                    console.log('API cached response', cacheValue);
                     return cacheValue;
                 }
                 return response;

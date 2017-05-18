@@ -15012,6 +15012,42 @@ button.close {
   letter-spacing: 2px;
   padding-bottom: 50px;
 }
+.clix-share-modal-connect-button {
+  background-color: #911685;
+  background-image: -webkit-gradient(linear, left top, right top, from(#911685), to(#fa0d1b));
+  background-image: -webkit-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -moz-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -ms-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -o-linear-gradient(left, #911685, #fa0d1b);
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  font-family: 'montserratregular', sans-serif;
+  font-size: 11px;
+  color: #FFF;
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+  text-align: center;
+  cursor: pointer;
+  display: inline-block;
+  padding: 1px;
+}
+.clix-share-modal-connect-button:hover .share-modal-connect-button-content {
+  background-color: rgba(0, 0, 0, 0);
+}
+.clix-share-modal-connect-button .share-modal-connect-button-content {
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  padding: 10px 46px;
+  background-color: #292929;
+}
 .clix-redeem-rewards-modal .reward-callout {
   background-color: #1f1f1f;
   padding: 22px 10px;
