@@ -32,6 +32,7 @@
                 localStorageServiceProvider.setPrefix('clix');
                 $urlRouterProvider.when('', '/');
                 $urlRouterProvider.otherwise('/404');
+                $httpProvider.interceptors.push('apiInterceptor');
 
                 $stateProvider
                     .state('404', {
@@ -7202,7 +7203,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
             $scope.isMobile = ($window.innerWidth <= 800);
             $scope.expanded = false;
-            $scope.videoComplete = false;
+            $scope.videoComplete = true;
 
             function _resetPageState() {
                 if (!$scope.video) {
@@ -8435,7 +8436,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                  * @todo - Cache this call
                  */
                 getAllCategories: function() {
-                    return $http.get('/api/category/get_all_categories')
+                    return $http.get('/api/category/get_all_categoriesss')
                         .then(
                             function onSuccess(data) {
                                 return new CategoryListModel(data.data);
@@ -9767,4 +9768,23 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
     angular
         .module('clixtv')
         .filter('wordTruncate', wordTruncateFilter);
+}());
+(function() {
+
+    var apiInterceptor = [
+        function() {
+            var service = this;
+            service.request = function(config) {
+                return config;
+            };
+            service.responseError = function(response) {
+                console.log(response);
+                return response;
+            };
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .service('apiInterceptor', apiInterceptor);
 }());

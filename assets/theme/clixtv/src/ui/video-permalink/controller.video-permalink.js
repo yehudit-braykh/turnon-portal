@@ -17,7 +17,7 @@
 
             $scope.isMobile = ($window.innerWidth <= 800);
             $scope.expanded = false;
-            $scope.videoComplete = false;
+            $scope.videoComplete = true;
 
             function _resetPageState() {
                 if (!$scope.video) {

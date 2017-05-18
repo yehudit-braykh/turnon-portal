@@ -32,6 +32,7 @@
                 localStorageServiceProvider.setPrefix('clix');
                 $urlRouterProvider.when('', '/');
                 $urlRouterProvider.otherwise('/404');
+                $httpProvider.interceptors.push('apiInterceptor');
 
                 $stateProvider
                     .state('404', {

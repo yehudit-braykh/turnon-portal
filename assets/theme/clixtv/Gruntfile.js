@@ -26,7 +26,8 @@ module.exports = function(grunt) {
                     'src/models/*.js',
                     'src/services/**/*.js',
                     'src/utils/*.js',
-                    'src/filters/*.js'
+                    'src/filters/*.js',
+                    'src/interceptors/*.js'
                 ]
             },
             libs: {
@@ -149,6 +150,7 @@ module.exports = function(grunt) {
                     'src/services/**/*.js',
                     'src/utils/*.js',
                     'src/filters/*.js',
+                    'src/interceptors/*.js',
                     'src/ui/**/*.less',
                     '!src/ui/views.js'
                 ],
