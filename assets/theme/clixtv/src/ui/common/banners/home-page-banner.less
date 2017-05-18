@@ -35,16 +35,15 @@
     }
 
     .home-banner-content {
+        .transform(translateY(-50%));
         position: absolute;
         left: 0;
-        bottom: 50px;
-        padding-left: 30px;
+        top: 50%;
+        padding-left: 10px;
         color: @color-white;
 
         @media (min-width: @screen-sm) {
-            .transform(translateY(-50%));
-            top: 50%;
-            bottom: auto;
+            padding-left: 30px;
             margin-top: -70px;
         }
 

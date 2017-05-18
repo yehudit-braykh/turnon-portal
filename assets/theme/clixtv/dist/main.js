@@ -2727,7 +2727,16 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     var HomePageBannerController = [
         '$scope',
-        function($scope) {
+        '$rootScope',
+        function($scope, $rootScope) {
+
+            $rootScope.$on('user.login', function(event, data) {
+                $scope.loggedInUser = data;
+            });
+
+            $rootScope.$on('user.logout', function(event, data) {
+                $scope.loggedInUser = undefined;
+            });
 
         }
     ];

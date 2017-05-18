@@ -16673,20 +16673,19 @@ button.close {
   bottom: 0;
 }
 .clix-home-page-banner .home-banner-content {
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
   position: absolute;
   left: 0;
-  bottom: 50px;
-  padding-left: 30px;
+  top: 50%;
+  padding-left: 10px;
   color: #FFF;
 }
 @media (min-width: 768px) {
   .clix-home-page-banner .home-banner-content {
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
-    top: 50%;
-    bottom: auto;
+    padding-left: 30px;
     margin-top: -70px;
   }
 }
