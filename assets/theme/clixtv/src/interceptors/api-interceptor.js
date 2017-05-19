@@ -3,7 +3,8 @@
     var apiInterceptor = [
         '$log',
         'CacheFactory',
-        function($log, CacheFactory) {
+        'LZString',
+        function($log, CacheFactory, LZString) {
             var apiCache,
                 service = this;
 
@@ -18,7 +19,7 @@
                     return response;
                 }
                 try {
-                    apiCache.put(response.config.url, btoa(JSON.stringify(response.data)));
+                    apiCache.put(response.config.url, LZString.compressToUTF16(JSON.stringify(response.data)));
                 } catch (e) {
                     $log.warn('Error putting item in cache', e);
                 }
@@ -34,7 +35,7 @@
                     cacheValue = apiCache.get(response.config.url);
                     if (cacheValue) {
                         return {
-                            data: JSON.parse(atob(cacheValue))
+                            data: JSON.parse(LZString.decompressFromUTF16(cacheValue))
                         };
                     }
                 } catch (e) {

@@ -17,7 +17,8 @@
             'ngMask',
             'angular.filter',
             'ngTouch',
-            'angular-cache'
+            'angular-cache',
+            'lz-string'
         ])
         .constant('clixConfig', {
             beta: true,

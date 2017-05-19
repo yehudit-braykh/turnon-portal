@@ -3,7 +3,7 @@
     <div class="mobile-search-background" ng-click="onMobileBackgroundPress()"></div>
 </div>
 <div class="visible-sm visible-xs visible-md">
-    <div class="clix-mobile-navigation">
+    <div class="clix-mobile-navigation" ng-hide="modalOpen">
         <div class="mobile-navigation-container">
             <div ng-mouseup="go('home')" class="mobile-navigation-item" ng-class="{'active': selectedStateName === 'home'}">
                 <div class="navigation-icon" ng-class="{

@@ -23,6 +23,14 @@
                 $scope.loggedInUser = data;
             });
 
+            $rootScope.$on('modal.open', function(event, data) {
+                $scope.modalOpen = true;
+            });
+
+            $rootScope.$on('modal.close', function(event, data) {
+                $scope.modalOpen = false;
+            });
+
             $scope.changeSection = function(section) {
                 $state.go('account', { section: section });
             };
