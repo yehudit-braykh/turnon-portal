@@ -11776,6 +11776,12 @@ button.close {
   color: #0dc73a;
   letter-spacing: 1.6px;
 }
+.clix-account-overview .reward-points .points-coming-soon-label,
+.clix-account-settings .reward-points .points-coming-soon-label {
+  font-family: 'montserratsemibold', sans-serif;
+  font-size: 30px;
+  color: #FFF;
+}
 .clix-account-overview .reward-points .available-balance-label,
 .clix-account-settings .reward-points .available-balance-label {
   font-family: 'montserratregular', sans-serif;
@@ -11783,6 +11789,7 @@ button.close {
   color: #FFF;
   line-height: 20px;
   margin-top: 10px;
+  margin-bottom: 20px;
 }
 .clix-account-overview .reward-points .available-balance-label a,
 .clix-account-settings .reward-points .available-balance-label a {
