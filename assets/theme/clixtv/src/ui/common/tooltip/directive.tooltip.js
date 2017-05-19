@@ -75,8 +75,10 @@
                             $rootScope.$broadcast('tooltip.closed');
 
                             $timeout(function() {
-                                tooltipElement.style.top = '-999px';
-                                tooltipElement.style.left = '-999px';
+                                if (tooltipElement) {
+                                    tooltipElement.style.top = '-999px';
+                                    tooltipElement.style.left = '-999px';
+                                }
                             }, 250);
 
                             if (showTimeout) {
@@ -130,8 +132,10 @@
                                 left = 0;
                             }
 
-                            tooltipElement.style.top = top + 'px';
-                            tooltipElement.style.left = left + 'px';
+                            if (tooltipElement) {
+                                tooltipElement.style.top = top + 'px';
+                                tooltipElement.style.left = left + 'px';
+                            }
 
                             angular.element(tooltipElement).addClass('active');
 
@@ -153,8 +157,10 @@
                                     $rootScope.$broadcast('tooltip.closed');
 
                                     $timeout(function() {
-                                        tooltipElement.style.top = '-999px';
-                                        tooltipElement.style.left = '-999px';
+                                        if (tooltipElement) {
+                                            tooltipElement.style.top = '-999px';
+                                            tooltipElement.style.left = '-999px';
+                                        }
                                     }, 250);
 
                                     if (showTimeout) {

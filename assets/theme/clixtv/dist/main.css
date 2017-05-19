@@ -14766,6 +14766,12 @@ button.close {
 .clix-share-modal .footer-modal-button:last-child {
   padding-left: 12px;
 }
+.clix-share-modal .logo-image {
+  top: 30px;
+  left: 30px;
+  right: 30px;
+  bottom: 30px;
+}
 .clix-share-modal-video-content .video-thumbnail-container {
   padding-right: 0;
 }
