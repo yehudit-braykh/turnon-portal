@@ -5,9 +5,11 @@
         '$timeout',
         '$filter',
         '$uibModalInstance',
-        function($scope, $timeout, $filter, $uibModalInstance) {
+        'clixConfig',
+        function($scope, $timeout, $filter, $uibModalInstance, clixConfig) {
 
             $scope.buyPointsModel = 0;
+            $scope.pointsEnabled = clixConfig.pointsEnabled;
 
             $scope.onBuyPointsPress = function() {
                 $scope.state = 'buy';

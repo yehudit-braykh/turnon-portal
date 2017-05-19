@@ -148,6 +148,17 @@
         font-family: @font-primary;
         width: 100%;
 
+        .video-episode-runtime {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-family: @font-primary-bold;
+            font-size: 14px;
+            color: @color-white;
+            padding: 0 5px;
+            background-color: fade(@color-dark-gray, 75%);
+        }
+
         .video-episode-number {
             font-size: 8px;
             text-transform: uppercase;
@@ -160,6 +171,8 @@
             font-size: 18px;
             line-height: 18px;
             font-family: @font-primary-bold;
+            position: relative;
+            width: 100%;
 
             @media (min-width: @screen-sm) {
                 font-size: 32px;

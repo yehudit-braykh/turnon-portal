@@ -93,11 +93,7 @@
                                 <clix-dropdown options="seriesList" placeholder-text="Sort By"></clix-dropdown>
                             </div>
                         </div>
-                        <div class="row clix-block-row">
-                            <div class="clix-block-item col-xs-6 col-sm-4 col-md-4 col-lg-2-4" ng-repeat="video in charity.videos.videos">
-                                <clix-video-content-callout video="video"></clix-video-content-callout>
-                            </div>
-                        </div>
+                        <clix-video-content-callout-list videos="charity.videos.videos" grid-classes="col-xs-6 col-sm-4 col-md-4 col-lg-2-4"></clix-video-content-callout-list>
                     </div>
                 </uib-tab>
             </uib-tabset>

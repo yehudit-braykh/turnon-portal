@@ -12,6 +12,18 @@
         }
     };
 
+    var videoContentCalloutList = function() {
+        return {
+            restrict: 'AE',
+            templateUrl: 'ui/common/container/view.video-content-callout-list.html',
+            scope: {
+                videos: '=',
+                gridClasses: '@?'
+            }
+        }
+    };
+
     angular.module('clixtv')
-        .directive('clixVideoContentCallout', videoContentCallout);
+        .directive('clixVideoContentCallout', videoContentCallout)
+        .directive('clixVideoContentCalloutList', videoContentCalloutList);
 }());

@@ -28,65 +28,77 @@
                 </div>
 
             </div>
+        </div>
         <div class="buy-more-points-container" ng-class="{'buy-more-points-credit-card': state === 'buy'}">
 
-            <div ng-show="state !== 'buy'">
-                <div class="buy-points-label">
-                    Want to buy more points?
+            <div ng-show="pointsEnabled">
+                <div ng-show="state !== 'buy'">
+                    <div class="buy-points-label">
+                        Want to buy more points?
+                    </div>
+                    <clix-secondary-button ng-click="onBuyPointsPress()">
+                        Buy Points Here
+                    </clix-secondary-button>
                 </div>
-                <clix-secondary-button ng-click="onBuyPointsPress()">
-                    Buy Points Here
-                </clix-secondary-button>
-            </div>
-            <div ng-show="state === 'buy'">
+                <div ng-show="state === 'buy'">
 
-                <div class="credit-card-form">
-                    <div class="credit-card-label">
-                        Credit Card
-                        <i class="lock-icon icon-icon-security-lock"></i>
-                    </div>
-                    <div class="input-container-row row">
-                        <div class="input-container col-sm-6">
-                            <input type="text" />
-                            <span class="input-container-label">
-                                Credit card number
-                            </span>
+                    <div class="credit-card-form">
+                        <div class="credit-card-label">
+                            Credit Card
+                            <i class="lock-icon icon-icon-security-lock"></i>
                         </div>
-                        <div class="input-container col-xs-5 col-sm-3">
-                            <input type="text" />
-                            <span class="input-container-label">
-                                CCV
-                                <i class="info-icon icon-info-icon"></i>
-                            </span>
+                        <div class="input-container-row row">
+                            <div class="input-container col-sm-6">
+                                <input type="text" />
+                                <span class="input-container-label">
+                                    Credit card number
+                                </span>
+                            </div>
+                            <div class="input-container col-xs-5 col-sm-3">
+                                <input type="text" />
+                                <span class="input-container-label">
+                                    CCV
+                                    <i class="info-icon icon-info-icon"></i>
+                                </span>
+                            </div>
+                            <div class="input-container col-xs-5 col-sm-3">
+                                <input type="text" />
+                                <span class="input-container-label">
+                                    Expiration date
+                                </span>
+                            </div>
                         </div>
-                        <div class="input-container col-xs-5 col-sm-3">
-                            <input type="text" />
-                            <span class="input-container-label">
-                                Expiration date
-                            </span>
+                        <div class="input-container-row row">
+                            <div class="input-container col-sm-8">
+                                <input type="text" />
+                                <span class="input-container-label">
+                                    Name (As shown on card)
+                                </span>
+                            </div>
+                            <div class="input-container col-xs-6 col-sm-4">
+                                <input type="text" />
+                                <span class="input-container-label">
+                                    Zip/Postal code
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="input-container-row row">
-                        <div class="input-container col-sm-8">
-                            <input type="text" />
-                            <span class="input-container-label">
-                                Name (As shown on card)
-                            </span>
-                        </div>
-                        <div class="input-container col-xs-6 col-sm-4">
-                            <input type="text" />
-                            <span class="input-container-label">
-                                Zip/Postal code
-                            </span>
-                        </div>
+
                     </div>
 
                 </div>
-
             </div>
+            <div ng-show="!pointsEnabled">
+                <div class="points-coming-soon-label">
+                    Rewards Points are coming! Please check back soon!
+                </div>
+            </div>
+
         </div>
         <div class="donate-footer">
-            <clix-checkbox label-text="I accept the Terms and Conditions"></clix-checkbox>
+
+            <div ng-if="pointsEnabled">
+                <clix-checkbox label-text="I accept the Terms and Conditions"></clix-checkbox>
+            </div>
 
             <div class="row donate-footer-buttons hidden-xs hidden-sm" ng-show="state === 'buy'">
                 <div class="col-sm-6 donate-footer-button">
@@ -120,14 +132,21 @@
 
             <div class="row donate-footer-buttons" ng-show="state !== 'buy'">
                 <div class="col-xs-6 donate-footer-button">
-                    <a ng-click="onCancelPress()" class="donate-cancel-button">
+                    <a ng-click="onCancelPress()" class="donate-cancel-button" ng-if="pointsEnabled">
                         Cancel
                     </a>
                 </div>
                 <div class="col-xs-6 donate-footer-button">
-                    <clix-primary-button ng-click="onDonatePress()">
-                        Donate Now
-                    </clix-primary-button>
+                    <div ng-if="pointsEnabled">
+                        <clix-primary-button ng-click="onDonatePress()">
+                            Donate Now
+                        </clix-primary-button>
+                    </div>
+                    <div ng-if="!pointsEnabled">
+                        <a ng-click="onCancelPress()" class="donate-cancel-button">
+                            Cancel
+                        </a>
+                    </div>
                 </div>
             </div>
 

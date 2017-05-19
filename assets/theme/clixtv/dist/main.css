@@ -13875,6 +13875,16 @@ button.close {
   font-family: 'montserratregular', sans-serif;
   width: 100%;
 }
+.clix-video-content-callout .video-info-container .video-episode-runtime {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-family: 'montserratsemibold', sans-serif;
+  font-size: 14px;
+  color: #FFF;
+  padding: 0 5px;
+  background-color: rgba(23, 23, 23, 0.75);
+}
 .clix-video-content-callout .video-info-container .video-episode-number {
   font-size: 8px;
   text-transform: uppercase;
@@ -13888,6 +13898,8 @@ button.close {
   font-size: 18px;
   line-height: 18px;
   font-family: 'montserratsemibold', sans-serif;
+  position: relative;
+  width: 100%;
 }
 @media (min-width: 768px) {
   .clix-video-content-callout .video-info-container .video-episode-title {
@@ -14006,6 +14018,15 @@ button.close {
   .clix-video-content-callout .violator {
     font-size: 6px;
   }
+}
+.clix-video-content-callout-list {
+  margin-left: -3px;
+  margin-right: -3px;
+}
+.clix-video-content-callout-list .video-content-callout-item {
+  padding-left: 3px;
+  padding-right: 3px;
+  margin-top: 16px;
 }
 .clix-empty-container {
   color: #8a8a8a;
@@ -14527,6 +14548,12 @@ button.close {
   top: 0;
   color: #cccccc;
   font-size: 16px;
+}
+.clix-donate-modal .points-coming-soon-label {
+  font-family: 'montserratregular', sans-serif;
+  font-size: 24px;
+  line-height: 36px;
+  color: #FFF;
 }
 .clix-share-modal {
   text-align: center;
