@@ -206,6 +206,12 @@
                 if ($scope.type === 'birthdate' && ($scope.ngModel instanceof Date)) {
                     $scope.birthdateLabel = moment($scope.ngModel).format('M/D/YY')
                 }
+
+                if ($scope.type === 'gender' && (typeof $scope.ngModel === 'string')) {
+                    $scope.gender = $scope.genders.filter(function(availableGender) {
+                        return availableGender.value === $scope.ngModel.toLowerCase();
+                    })[0];
+                }
             });
         }
     ];
