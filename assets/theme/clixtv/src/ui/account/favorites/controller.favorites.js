@@ -4,9 +4,10 @@
         '$q',
         '$scope',
         '$rootScope',
+        '$timeout',
         '$stateParams',
         'userService',
-        function($q, $scope, $rootScope, $stateParams, userService) {
+        function($q, $scope, $rootScope, $timeout, $stateParams, userService) {
 
             $rootScope.pageTitle = 'Your Favorites - ClixTV';
 
@@ -175,8 +176,39 @@
                         $scope.brands = data[1];
                         $scope.charities = data[2];
                         $scope.categories = data[3];
+                        _initTabScroll();
                     }
                 );
+
+            function _initTabScroll() {
+                var element = document.getElementsByClassName('nav-tabs');
+                if (!element) {
+                    return;
+                }
+                $scope.tabScrollStart = true;
+                element = element[0];
+                angular.element(element).on('scroll', function(event) {
+                    var $element = angular.element(element),
+                        width = $element.outerWidth(),
+                        scrollLeft = $element.scrollLeft(),
+                        scrollWidth = $element[0].scrollWidth;
+                    if (scrollLeft <= 0) {
+                        $scope.tabScrollStart = true;
+                    } else if ($scope.tabScrollStart) {
+                        $scope.tabScrollStart = false;
+                    }
+
+                    if (scrollWidth - width === scrollLeft) {
+                        $scope.tabScrollEnd = true;
+                    } else if ($scope.tabScrollEnd) {
+                        $scope.tabScrollEnd = false;
+                    }
+
+                    $timeout(function() {
+                        $scope.$apply();
+                    });
+                });
+            }
 
             function _onCelebrityRemoved(id) {
                 if (!$scope.celebrities || !$scope.celebrities.celebrities) {

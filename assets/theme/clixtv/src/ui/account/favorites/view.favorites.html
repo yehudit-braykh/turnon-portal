@@ -9,6 +9,7 @@
     </div>
     <div class="favorites-page-content" ng-show="ready">
         <div class="clix-tabs">
+            <div class="mobile-tab-overlay" ng-class="{'at-beginning': tabScrollStart === true, 'at-end': tabScrollEnd === true}"></div>
             <uib-tabset active="active">
                 <uib-tab index="0" heading="Stars">
                     <div class="favorites-tab-content">

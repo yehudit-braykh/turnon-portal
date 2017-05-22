@@ -11614,6 +11614,7 @@ button.close {
   flex: 1;
   padding-top: 76px;
   background-color: #313131;
+  max-width: 100%;
 }
 @media (min-width: 992px) {
   .clix-account-page .account-page {
@@ -11997,6 +11998,52 @@ button.close {
 @media (min-width: 992px) {
   .clix-account-favorites .clix-empty-container {
     border-top: 1px solid #636363;
+  }
+}
+@media (max-width: 992px) {
+  .clix-account-favorites .clix-tabs {
+    position: relative;
+  }
+  .clix-account-favorites .mobile-tab-overlay:before,
+  .clix-account-favorites .mobile-tab-overlay:after {
+    background-color: #313131;
+    background-image: -webkit-gradient(linear, left top, right top, from(#313131), to(rgba(49, 49, 49, 0)));
+    background-image: -webkit-linear-gradient(left, #313131, rgba(49, 49, 49, 0));
+    background-image: -moz-linear-gradient(left, #313131, rgba(49, 49, 49, 0));
+    background-image: -ms-linear-gradient(left, #313131, rgba(49, 49, 49, 0));
+    background-image: -o-linear-gradient(left, #313131, rgba(49, 49, 49, 0));
+    background-color: rgba(0, 0, 0, 0);
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 36px;
+    z-index: 100;
+  }
+  .clix-account-favorites .mobile-tab-overlay:after {
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    left: auto;
+    right: 0;
+  }
+  .clix-account-favorites .mobile-tab-overlay.at-beginning:before {
+    display: none;
+  }
+  .clix-account-favorites .mobile-tab-overlay.at-end:after {
+    display: none;
+  }
+  .clix-account-favorites .nav-tabs {
+    white-space: nowrap;
+    overflow-x: auto;
+  }
+  .clix-account-favorites .nav-tabs > li {
+    float: none;
+    display: inline-block;
+    margin-right: 20px !important;
   }
 }
 .clix-account-saved-offers .saved-offers-page-content {

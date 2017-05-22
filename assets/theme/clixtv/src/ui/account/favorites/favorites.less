@@ -35,4 +35,54 @@
             border-top: 1px solid @color-gray3;
         }
     }
+
+    @media (max-width: @screen-md) {
+        .clix-tabs {
+            position: relative;
+        }
+
+        .mobile-tab-overlay {
+            &:before,
+            &:after {
+                .horizontal-gradient(@color-gray9, fade(@color-gray9, 0));
+                background-color: @color-transparent;
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 20px;
+                height: 36px;
+                z-index: 100;
+            }
+
+            &:after {
+                .rotate(180deg);
+                left: auto;
+                right: 0;
+            }
+
+            &.at-beginning {
+                &:before {
+                    display: none;
+                }
+            }
+
+            &.at-end {
+                &:after {
+                    display: none;
+                }
+            }
+        }
+
+        .nav-tabs {
+            white-space: nowrap;
+            overflow-x: auto;
+
+            > li {
+                float: none;
+                display: inline-block;
+                margin-right: 20px !important;
+            }
+        }
+    }
 }
