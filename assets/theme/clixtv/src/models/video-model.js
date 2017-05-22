@@ -15,6 +15,7 @@
                     this.description = data.description;
                     this.seriesTitle = data.serie_title; // ...spelling?
                     this.episodeNumber = data.episode_number;
+                    this.runtime = data.runtime;
 
                     if (data.celebrity) {
                         this.celebrity = new CelebrityModel(data.celebrity);

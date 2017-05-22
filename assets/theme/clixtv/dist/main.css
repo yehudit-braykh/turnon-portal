@@ -10187,6 +10187,14 @@ button.close {
     border: 1px solid #777777;
   }
 }
+.video-permalink-page .related-videos-container .related-video {
+  margin-bottom: 10px;
+}
+@media (min-width: 768px) {
+  .video-permalink-page .related-videos-container .related-video {
+    margin-bottom: 0px;
+  }
+}
 .video-permalink-page .next-video-list {
   margin-top: 30px;
   margin-left: -6px;
@@ -13923,14 +13931,18 @@ button.close {
   width: 100%;
 }
 .clix-video-content-callout .video-info-container .video-episode-runtime {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  display: inline-block;
   font-family: 'montserratsemibold', sans-serif;
-  font-size: 14px;
+  font-size: 10px;
   color: #FFF;
   padding: 0 5px;
   background-color: rgba(23, 23, 23, 0.75);
+  margin-top: 5px;
+}
+@media (min-width: 768px) {
+  .clix-video-content-callout .video-info-container .video-episode-runtime {
+    font-size: 14px;
+  }
 }
 .clix-video-content-callout .video-info-container .video-episode-number {
   font-size: 8px;
@@ -13980,8 +13992,13 @@ button.close {
   display: -ms-flex;
   display: flex;
   border-top: 1px solid #4d4d4d;
-  margin-top: 20px;
+  margin-top: 10px;
   height: 45px;
+}
+@media (min-width: 768px) {
+  .clix-video-content-callout .video-info-container .brands-container {
+    margin-top: 20px;
+  }
 }
 .clix-video-content-callout .video-info-container .brands-container .brand-icon {
   -webkit-flex: 1;

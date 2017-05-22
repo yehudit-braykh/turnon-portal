@@ -20,7 +20,6 @@
             </div>
         </div>
         <div class="video-info-container">
-            <div class="video-episode-runtime">2:10</div>
             <div class="video-episode-number">
                 Episode {{video.episodeNumber}}:
             </div>
@@ -30,6 +29,7 @@
             <div class="video-series-title">
                 {{video.seriesTitle}} Series
             </div>
+            <div class="video-episode-runtime">{{video.runtime}}</div>
             <div class="brands-container">
                 <div class="brand-icon" ng-repeat="brand in video.brands.brands | limitTo: 4 track by $index" style="background-image: url({{brand.transparentThumbnail}});"></div>
                 <div class="brand-icon" style="background-image: url({{video.charity.transparentThumbnail}});"></div>
