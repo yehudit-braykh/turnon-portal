@@ -12,6 +12,10 @@ class Notifications_model extends Uvod_Model {
         $id = $this->session->userdata("profile_id");
         $token = $this->session->userdata("login_token");
 
+		if(!$id || !$token){
+			return ;
+		}
+		
 		// sets the method parameters
 		$notification_params = array();
 		$notification_params[] = 'byUserId=null{null}|' . $id;

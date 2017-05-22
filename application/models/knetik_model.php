@@ -21,7 +21,14 @@ class Knetik_model extends CI_Model {
 
 
     public function balance() {
-        $profile = $this->account_model->get_profile($this->session->userdata("login_token"), $this->session->userdata("profile_id"));
+        $id = $this->session->userdata("profile_id");
+        $token = $this->session->userdata("login_token");
+
+		if(!$id || !$token){
+			return ;
+		}
+
+        $profile = $this->account_model->get_profile($token, $id);
         $token = $this->authenticate();
 
         if(isset($profile->_id)){
