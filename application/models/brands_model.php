@@ -191,6 +191,7 @@ class Brands_model extends Uvod_model {
 						array_push($data, $video->charity);
 						$video->charity = $this->rows($data)[0];
 						$video->brands= $this->rows($video->brands);
+						$video->campaigns= $this->rows($video->campaigns);
 					}
 
 					$celeb->videos = $this->rows($celeb->videos);
@@ -202,14 +203,13 @@ class Brands_model extends Uvod_model {
 				foreach ($item->videos as &$vid) {
 
 					$vid->brands = $this->rows($vid->brands);
+					$vid->campaigns = $this->rows($vid->campaigns);
 					if($vid->brands){
 						foreach ($vid->brands as &$brand) {
 							$brand->offers = $this->rows($brand->offers);
 						}
 					}
 
-
-					$vid->campaigns = $this->rows($vid->campaigns);
 
 					$data = array();
 					array_push($data,$vid->charity);

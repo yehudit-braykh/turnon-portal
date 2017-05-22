@@ -35,6 +35,11 @@ $config =
 				"enabled" => true,
 				"keys"    => array ( "key" => getenv("tumblr_id"), "secret" => getenv("tumblr_secret") ),
 				"display" => "popup"
+			),
+			"Twitter" => array (
+				"enabled" => true,
+				"keys"    => array ( "key" => getenv("twitter_stage_id"), "secret" => getenv("twitter_stage_secret") ),
+				"display" => "popup"
 			)
 		),
 
