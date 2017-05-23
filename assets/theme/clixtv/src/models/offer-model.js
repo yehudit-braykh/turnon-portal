@@ -55,8 +55,13 @@
                     }
 
                     if (data.videos) {
-                        var VideoListModel = $injector.get('VideoListModel');
-                        this.videos = new VideoListModel(data.videos);
+                        if (typeof data.videos === 'number') {
+                            this.totalVideos = data.videos;
+                        } else {
+                            var VideoListModel = $injector.get('VideoListModel');
+                            this.videos = new VideoListModel(data.videos);
+                            this.totalVideos = this.videos.videos.length;
+                        }
                     }
                 }
             }

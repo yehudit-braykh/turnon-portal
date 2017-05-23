@@ -14,12 +14,25 @@
                     this.id = data._id;
                     this.title = data.title;
                     this.description = data.description;
-                    this.offers = new OfferListModel(data.offers);
                     this.celebrities = new CelebrityListModel(data.celebrities);
 
+                    if (data.offers) {
+                        if (typeof data.offers === 'number') {
+                            this.totalOffers = data.offers;
+                        } else {
+                            this.offers = new OfferListModel(data.offers);
+                            this.totalOffers = this.offers.offers.length;
+                        }
+                    }
+
                     if (data.videos) {
-                        var VideoListModel = $injector.get('VideoListModel');
-                        this.videos = new VideoListModel(data.videos);
+                        if (typeof data.videos === 'number') {
+                            this.totalVideos = data.videos;
+                        } else {
+                            var VideoListModel = $injector.get('VideoListModel');
+                            this.videos = new VideoListModel(data.videos);
+                            this.totalVideos = this.videos.videos.length;
+                        }
                     }
 
                     if (data.content) {

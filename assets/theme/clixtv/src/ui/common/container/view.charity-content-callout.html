@@ -6,6 +6,6 @@
         {{charity.title}}
     </title-content>
     <subtitle-content>
-        {{charity.videos.videos.length}} {{charity.videos.videos.length === 1 ? 'Video' : 'Videos'}}
+        {{charity.totalVideos || '0'}} {{charity.totalVideos === 1 ? 'Video' : 'Videos'}}
     </subtitle-content>
 </clix-content-callout>

@@ -6,6 +6,6 @@
         {{brand.title}}
     </title-content>
     <subtitle-content>
-        {{brand.offers.offers.length}} {{brand.offers.offers.length === 1 ? 'Offer' : 'Offers'}}
+        {{brand.totalOffers || '0'}} {{brand.totalOffers === 1 ? 'Offer' : 'Offers'}}
     </subtitle-content>
 </clix-content-callout>

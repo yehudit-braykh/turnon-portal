@@ -6,6 +6,6 @@
         {{star.name}}
     </title-content>
     <subtitle-content>
-        {{star.videos.videos.length}} {{star.videos.videos.length === 1 ? 'Video' : 'Videos'}}
+        {{star.totalVideos || '0'}} {{star.totalVideos === 1 ? 'Video' : 'Videos'}}
     </subtitle-content>
 </clix-content-callout>

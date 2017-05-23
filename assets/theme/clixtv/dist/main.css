@@ -12561,6 +12561,62 @@ button.close {
     display: inline;
   }
 }
+.clix-contact-page {
+  padding: 100px 10px 50px;
+  color: #FFF;
+}
+.clix-contact-page .contact-page-header {
+  font-family: 'montserratsemibold', sans-serif;
+  font-size: 32px;
+  line-height: 33px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #636363;
+}
+.clix-contact-page .contact-page-container {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+.clix-contact-page .contact-page-form-container {
+  padding: 30px 10px;
+  background-color: #1f1f1f;
+  margin-bottom: 50px;
+}
+.clix-contact-page .contact-page-form-container .contact-page-form-header {
+  font-family: 'montserratsemibold', sans-serif;
+  font-size: 20px;
+  line-height: 26px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.clix-contact-page .contact-page-form-container .contact-page-form {
+  border-top: 1px solid #979797;
+  padding-top: 30px;
+}
+.clix-contact-page .contact-page-form-container .submit-button-container {
+  text-align: center;
+  padding-top: 20px;
+}
+.clix-contact-page .contact-sidebar-container .contact-sidebar-block {
+  margin-bottom: 50px;
+}
+.clix-contact-page .contact-sidebar-container .contact-sidebar-label {
+  margin: 0 0 20px;
+  font-family: 'montserratsemibold', sans-serif;
+  font-size: 20px;
+  line-height: 18px;
+}
+@media (min-width: 768px) {
+  .clix-contact-page .contact-sidebar-container .contact-sidebar-label {
+    font-size: 30px;
+    line-height: 36px;
+  }
+}
+.clix-contact-page .contact-sidebar-container .contact-sidebar-description {
+  font-family: 'montserratregular', sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+}
 .clix-hero-banner {
   position: relative;
   z-index: 2000;
@@ -16528,6 +16584,43 @@ button.close {
 .clix-switch.checked {
   border-color: #fe0000;
   background-color: #fe0000;
+}
+.clix-form .clix-form-row {
+  margin-bottom: 30px;
+}
+.clix-form .clix-form-input-label {
+  display: block;
+  font-family: 'montserratregular', sans-serif;
+  font-size: 18px;
+  color: #FFF;
+  margin-bottom: 3px;
+}
+.clix-form .clix-form-input-label-required {
+  color: #fe0000;
+  font-size: 18px;
+  font-family: 'montserratregular', sans-serif;
+}
+.clix-form .clix-form-input-field,
+.clix-form .clix-form-textarea-field {
+  background-color: #353535;
+  border: 1px solid #686868;
+  display: block;
+  padding: 8px 5px;
+  font-family: 'montserratregular', sans-serif;
+  color: #FFF;
+  font-size: 14px;
+  width: 100%;
+}
+.clix-form .clix-form-textarea-field {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  height: 200px;
+  resize: none;
+  outline: none !important;
+}
+.clix-form .clix-form-submit-button {
+  display: inline-block;
 }
 .clix-form-error {
   position: absolute;

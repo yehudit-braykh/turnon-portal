@@ -139,6 +139,20 @@
                             solidNavigation: true
                         }
                     })
+                    .state('contact', {
+                        url: '/contact/:section',
+                        templateUrl: 'ui/contact/view.contact-page.html',
+                        controller: 'ContactPageController',
+                        params: {
+                            section: {
+                                squash: true,
+                                value: null
+                            }
+                        },
+                        data: {
+                            solidNavigation: true
+                        }
+                    });
             }
         ])
         .run([
