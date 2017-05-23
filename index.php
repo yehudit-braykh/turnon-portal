@@ -14,11 +14,11 @@
  * By default development will show errors but testing and live will hide them.
  */
 
- if (!isset($_SERVER['PHP_AUTH_USER']) || $_SERVER['PHP_AUTH_USER'] != 'clixtv' || $_SERVER['PHP_AUTH_PW'] != 'Univtec1@') {
-       header('WWW-Authenticate: Basic realm="MyProject"');
-       header('HTTP/1.0 401 Unauthorized');
-       die('Access Denied');
-     }
+ // if (!isset($_SERVER['PHP_AUTH_USER']) || $_SERVER['PHP_AUTH_USER'] != 'clixtv' || $_SERVER['PHP_AUTH_PW'] != 'Univtec1@') {
+ //       header('WWW-Authenticate: Basic realm="MyProject"');
+ //       header('HTTP/1.0 401 Unauthorized');
+ //       die('Access Denied');
+ //     }
 
 if (defined('ENVIRONMENT'))
 {
