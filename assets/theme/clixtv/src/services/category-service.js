@@ -10,8 +10,8 @@
                 /**
                  * @todo - Cache this call
                  */
-                getAllCategories: function() {
-                    return $http.get('/api/category/get_all_categories')
+                getAllCategories: function(withVideoCount) {
+                    return $http.get('/api/category/get_all_categories?video_count=' + (withVideoCount || false))
                         .then(
                             function onSuccess(data) {
                                 return new CategoryListModel(data.data);

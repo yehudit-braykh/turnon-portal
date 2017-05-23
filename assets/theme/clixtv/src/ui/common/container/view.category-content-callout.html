@@ -6,6 +6,6 @@
         {{category.title}}
     </title-content>
     <subtitle-content>
-        {{category.videos.videos.length}} {{category.videos.videos.length === 1 ? 'Video' : 'Videos'}}
+        {{category.totalVideos || '0'}} {{category.totalVideos === 1 ? 'Video' : 'Videos'}}
     </subtitle-content>
 </clix-content-callout>

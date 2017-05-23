@@ -11,7 +11,7 @@
             {{brand.title}}
         </banner-title>
         <banner-sub-title>
-            {{brand.offers.offers.length}} {{brand.offers.offers.length === 1 ? 'Offer' : 'Offers'}}
+            {{brand.totalOffers || '0'}} {{brand.totalOffers === 1 ? 'Offer' : 'Offers'}}
         </banner-sub-title>
         <banner-logo-container>
             <clix-brand-asset-logo brand="brand"></clix-brand-asset-logo>

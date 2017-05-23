@@ -11,7 +11,7 @@
             {{charity.title}}
         </banner-title>
         <banner-sub-title>
-            {{charity.videos.videos.length}} {{charity.videos.videos.length === 1 ? 'Video' : 'Videos'}}
+            {{charity.totalVideos || '0'}} {{charity.totalVideos === 1 ? 'Video' : 'Videos'}}
         </banner-sub-title>
         <banner-logo-container>
             <clix-charity-asset-logo charity="charity"></clix-charity-asset-logo>

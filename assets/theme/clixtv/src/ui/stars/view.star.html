@@ -11,7 +11,7 @@
             {{celebrity.name}}
         </banner-title>
         <banner-sub-title>
-            {{celebrity.videos.videos.length}} {{celebrity.videos.videos.length === 1 ? 'Video' : 'Videos'}}
+            {{celebrity.totalVideos || '0'}} {{celebrity.totalVideos === 1 ? 'Video' : 'Videos'}}
         </banner-sub-title>
         <banner-logo-container>
             <img ng-src="{{celebrity.thumbnail}}" />

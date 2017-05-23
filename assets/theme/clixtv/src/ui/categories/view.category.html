@@ -11,7 +11,7 @@
             {{category.title}}
         </banner-title>
         <banner-sub-title>
-            {{category.videos.videos.length}} {{category.videos.videos.length === 1 ? 'Video' : 'Videos'}}
+            {{category.totalVideos || '0'}} {{category.totalVideos === 1 ? 'Video' : 'Videos'}}
         </banner-sub-title>
         <banner-logo-container>
             <img ng-src="{{category.logo}}" />

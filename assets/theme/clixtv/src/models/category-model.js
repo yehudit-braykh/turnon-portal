@@ -9,7 +9,15 @@
                     this.id = data._id;
                     this.title = data.title;
                     this.order = data.order;
-                    this.videos = new VideoListModel(data.videos);
+
+                    if (data.videos) {
+                        if (typeof data.videos === 'number') {
+                            this.totalVideos = data.videos;
+                        } else {
+                            this.videos = new VideoListModel(data.videos);
+                            this.totalVideos = this.videos.videos.length;
+                        }
+                    }
 
                     if (data.content) {
                         if (data.content.ProfilePicture) {

@@ -59,7 +59,7 @@
                 }
             ];
 
-            categoryService.getAllCategories()
+            categoryService.getAllCategories(true)
                 .then(
                     function onSuccess(data) {
                         $scope.categories = data;
