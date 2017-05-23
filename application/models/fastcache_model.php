@@ -37,6 +37,10 @@ class fastcache_model extends CI_Model {
 
     public function clean_cache() {
         $this->cache->clean();
+        sleep(2);
+        $this->cache->clean();
+        sleep(2);
+        $this->cache->clean();
     }
 
     public function get_cache_info(){
