@@ -12,8 +12,9 @@ class Category extends REST_Controller{
 		header("Cache-Control: max-age=".CACHE_TTL);
 		$page = $this->get('page');
 		$page_size = $this->get("page_size");
+		$video_count = $this->get("video_count");
 
-		$categories = $this->category_model->get_all_categories($page, $page_size);
+		$categories = $this->category_model->get_all_categories($page, $page_size, $video_count);
 		// debug($categories);
 		$this->response($categories, 200);
     }
