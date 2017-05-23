@@ -4,7 +4,14 @@
 
         <title ng-bind="pageTitle">ClixTV - Your Stars. Their Passions.</title>
 
-        <link rel="shortcut icon" href="assets/theme/clixtv/dist/images/clixtv_favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="assets/theme/clixtv/dist/images/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="assets/theme/clixtv/dist/images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="assets/theme/clixtv/dist/images/favicon-16x16.png">
+        <link rel="manifest" href="assets/theme/clixtv/dist/images/manifest.json">
+        <link rel="mask-icon" href="assets/theme/clixtv/dist/images/safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="shortcut icon" href="assets/theme/clixtv/dist/images/favicon.ico">
+        <meta name="msapplication-config" content="assets/theme/clixtv/dist/images/browserconfig.xml">
+        <meta name="theme-color" content="#ffffff">
         <meta name="description" content="<?php echo $item_description; ?>">
         <meta name="keywords" content="website, business, store" />
         <meta name="robots" content="index, follow" />
