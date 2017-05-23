@@ -4,7 +4,7 @@
 
         <title ng-bind="pageTitle">ClixTV - Your Stars. Their Passions.</title>
 
-        <link rel="shortcut icon" type="image/png" href="assets/theme/clixtv/dist/images/clixtv-favicon.png" />
+        <link rel="shortcut icon" href="assets/theme/clixtv/dist/images/clixtv-favicon.ico" />
         <meta name="description" content="<?php echo $item_description; ?>">
         <meta name="keywords" content="website, business, store" />
         <meta name="robots" content="index, follow" />
