@@ -153,7 +153,6 @@
 
                         if (data.series && data.series.series) {
                             $scope.seriesList = data.series.series.map(function(series) {
-                                console.log(series);
                                 return {
                                     label: series.title,
                                     series: series,
