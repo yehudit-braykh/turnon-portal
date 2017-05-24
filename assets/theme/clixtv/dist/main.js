@@ -7649,7 +7649,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         androidhls: true,
                         autostart: $scope.autoPlay,
                         aspectratio: '16:9',
-                        controls: true,
+                        'controlbar.idlehide': true,
                         width: '100%',
                         //repeat: true,
                         icons: false,
