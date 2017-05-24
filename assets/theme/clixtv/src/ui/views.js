@@ -207,7 +207,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/container/view.offer-content-callout.html',
-    "<clix-content-callout sref=\"brand-offer({ id: '{{offer.campaign.id}}', offerId: '{{offer.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('offer', offer)\" is-favorited=\"isFavoriteContent('offer', offer)\" add-button=true add-favorite-tooltip=\"Add to saved offers\" remove-favorite-tooltip=\"Remove from saved offers\" type=offer entity=offer><header-element><clix-offer-logo offer=offer></clix-offer-logo></header-element><title-content>{{offer.title}}</title-content><subtitle-content>Expires {{offer.expirationDate | clixDate}}</subtitle-content></clix-content-callout>"
+    "<clix-content-callout sref=\"brand-offer({ id: '{{offer.campaign.id}}', offerId: '{{offer.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('offer', offer)\" is-favorited=\"isFavoriteContent('offer', offer)\" add-button=true add-favorite-tooltip=\"Add to saved offers\" remove-favorite-tooltip=\"Remove from saved offers\" type=offer entity=offer><header-element><clix-offer-logo offer=offer></clix-offer-logo></header-element><title-content>{{offer.title}}</title-content><subtitle-content>{{offer.campaign.title}}<br>Expires {{offer.expirationDate | clixDate}}</subtitle-content></clix-content-callout>"
   );
 
 
