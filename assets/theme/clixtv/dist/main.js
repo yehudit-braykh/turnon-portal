@@ -6919,10 +6919,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
                         if (data.series && data.series.series) {
                             $scope.seriesList = data.series.series.map(function(series) {
+                                console.log(series);
                                 return {
                                     label: series.title,
                                     series: series,
-                                    totalEpisodes: series.seasons.seasons[0].episodes.length,
+                                    totalEpisodes: (series.seasons.seasons[0]) ? series.seasons.seasons[0].episodes.length : 0,
                                     onClick: function(option) {
                                         $scope.selectedSeries = option;
                                         _setEpisodeList();
