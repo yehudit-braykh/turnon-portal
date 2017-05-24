@@ -18,7 +18,8 @@
             'angular.filter',
             'ngTouch',
             'angular-cache',
-            'lz-string'
+            'lz-string',
+            'ngSanitize'
         ])
         .constant('clixConfig', {
             beta: true,
@@ -456,6 +457,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('ui/common/logos/view.charity-logo.html',
     "<div class=\"clix-asset-logo clix-charity-logo\"><div class=clix-logo-content-container style=\"background-image: url('{{charity.transparentThumbnail}}')\"></div></div>"
+  );
+
+
+  $templateCache.put('ui/common/modal/alert/view.alert-modal.html',
+    "<clix-message-modal><modal-title>{{title}}</modal-title><modal-body><div ng-bind-html=message></div></modal-body><modal-confirm-button><clix-primary-button ng-click=onCloseButtonPress()>Done</clix-primary-button></modal-confirm-button></clix-message-modal>"
   );
 
 
@@ -4213,6 +4219,31 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 }());
 (function() {
 
+    var AlertModalController = [
+        '$scope',
+        '$uibModalInstance',
+        'data',
+        'modalService',
+        function($scope, $uibModalInstance, data, modalService) {
+            $scope.title = data.title;
+            $scope.message = data.message;
+
+            $scope.onCloseButtonPress = function() {
+                if (modalService.getNumberOfModalsInStack() >= 2) {
+                    modalService.pop();
+                } else {
+                    $uibModalInstance.close();
+                }
+            }
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .controller('AlertModalController', AlertModalController);
+}());
+(function() {
+
     var ConfirmationModalController = [
         '$scope',
         '$rootScope',
@@ -6035,12 +6066,13 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     var ContactPageController = [
         '$scope',
+        '$log',
         '$rootScope',
         '$stateParams',
         'userService',
         'notificationsService',
         'modalService',
-        function($scope, $rootScope, $stateParams, userService, notificationsService, modalService) {
+        function($scope, $log, $rootScope, $stateParams, userService, notificationsService, modalService) {
 
             $scope.helpTypes = [
                 {
@@ -6082,11 +6114,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 email: '',
                 subject: '',
                 description: ''
-            }
+            };
 
             $scope.onSubmit = function() {
-                modalService.showMessageModal('Success', 'Your message has been sent. We will respond back as soon as we can!');
-                return;
                 var error = false,
                     helpType = ($scope.selectedHelpType) ? $scope.selectedHelpType.data : '';
                 _resetErrorStates();
@@ -6114,10 +6144,23 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     return;
                 }
 
-                notificationsService.sendContactNotification(helpType, $scope.form.name, $scope.form.email, $scope.form.subject, $scope.form.description)
+                notificationsService.sendContactNotification(helpType || 'help', $scope.form.name, $scope.form.email, $scope.form.subject, $scope.form.description)
                     .then(
                         function onSuccess(data) {
-                            console.log(data);
+                            if (!data || !data.success) {
+                                throw new Error('Invalid response from API');
+                            }
+                            modalService.showAlertModal('Success', 'Your message has been sent.<br />We will respond back as soon as we can!');
+                            $scope.form = {
+                                subject: '',
+                                description: ''
+                            };
+                        }
+                    )
+                    .catch(
+                        function onError(error) {
+                            $log.error(error);
+                            modalService.showAlertModal('Error', 'There was an error sending your message.<br />Please try again later.');
                         }
                     )
             };
@@ -9280,9 +9323,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     return deferred.promise;
                 },
 
-                showMessageModal: function(title, message) {
+                showAlertModal: function(title, message) {
                     this.showModal({
-                        templateUrl: 'ui/common/modal/view.message-modal.html',
+                        controller: 'AlertModalController',
+                        templateUrl: 'ui/common/modal/alert/view.alert-modal.html',
                         data: {
                             title: title,
                             message: message

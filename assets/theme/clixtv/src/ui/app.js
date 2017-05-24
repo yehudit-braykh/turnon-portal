@@ -18,7 +18,8 @@
             'angular.filter',
             'ngTouch',
             'angular-cache',
-            'lz-string'
+            'lz-string',
+            'ngSanitize'
         ])
         .constant('clixConfig', {
             beta: true,
