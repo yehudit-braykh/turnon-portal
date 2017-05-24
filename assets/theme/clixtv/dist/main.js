@@ -22,7 +22,8 @@
         ])
         .constant('clixConfig', {
             beta: true,
-            pointsEnabled: false
+            pointsEnabled: false,
+            baseApi: '//34.209.221.167'
         })
         .config([
             '$locationProvider',
@@ -659,7 +660,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/contact/view.contact-page.html',
-    "<div class=clix-contact-page><div class=contact-page-header>Contact Us</div><div class=\"row contact-page-container\"><div class=\"col-md-4 hidden-xs hidden-sm\" ng-include src=\"'ui/contact/components/view.contact-sidebar.html'\"></div><div class=\"col-md-8 contact-page-form-container\"><div class=contact-page-form-header>If you have any questions or comments, please fill out the form below!</div><div class=contact-page-form-header>We will get back to you as soon as we can!</div><div class=\"contact-page-form clix-form\"><div class=clix-form-row><clix-form-input-error-field><form-field><label class=clix-form-input-label>Name: <span class=clix-form-input-label-required>*</span></label><input type=text class=clix-form-input-field></form-field><error-message>Name is required</error-message></clix-form-input-error-field></div><div class=clix-form-row><clix-form-input-error-field><form-field><label class=clix-form-input-label>Email Address: <span class=clix-form-input-label-required>*</span></label><input type=email class=clix-form-input-field></form-field><error-message>Email address is required</error-message></clix-form-input-error-field></div><div class=clix-form-row><clix-form-input-error-field><form-field><label class=clix-form-input-label>Subject: <span class=clix-form-input-label-required>*</span></label><input type=text class=clix-form-input-field></form-field><error-message>Subject is required</error-message></clix-form-input-error-field></div><div class=clix-form-row><clix-form-input-error-field><form-field><label class=clix-form-input-label>Description: <span class=clix-form-input-label-required>*</span></label><textarea class=clix-form-textarea-field></textarea></form-field><error-message>Description is required</error-message></clix-form-input-error-field></div><div class=\"clix-form-row submit-button-container\"><div class=clix-form-submit-button><clix-primary-button>Submit</clix-primary-button></div></div></div></div><div class=\"col-md-4 visible-xs visible-sm\" ng-include src=\"'ui/contact/components/view.contact-sidebar.html'\"></div></div></div>"
+    "<div class=clix-contact-page><div class=contact-page-header>Contact Us</div><div class=\"row contact-page-container\"><div class=\"col-md-4 hidden-xs hidden-sm\" ng-include src=\"'ui/contact/components/view.contact-sidebar.html'\"></div><div class=\"col-md-8 contact-page-form-container\"><div class=contact-page-form-header>If you have any questions or comments, please fill out the form below!</div><div class=contact-page-form-header>We will get back to you as soon as we can!</div><div class=\"contact-page-form clix-form\"><div class=clix-form-row><label class=clix-form-input-label>What can we help you with?</label><clix-dropdown options=helpTypes placeholder-text=- ng-model=selectedHelpType></clix-dropdown></div><div class=clix-form-row><label class=clix-form-input-label>Name: <span class=clix-form-input-label-required>*</span></label><clix-form-input-error-field show-error=showNameError><form-field><input type=text class=clix-form-input-field ng-model=form.name></form-field><error-message>Name is required</error-message></clix-form-input-error-field></div><div class=clix-form-row><label class=clix-form-input-label>Email Address: <span class=clix-form-input-label-required>*</span></label><clix-form-input-error-field show-error=showEmailError><form-field><input type=email class=clix-form-input-field ng-model=form.email></form-field><error-message>Email address is required</error-message></clix-form-input-error-field></div><div class=clix-form-row><label class=clix-form-input-label>Subject: <span class=clix-form-input-label-required>*</span></label><clix-form-input-error-field show-error=showSubjectError><form-field><input type=text class=clix-form-input-field ng-model=form.subject></form-field><error-message>Subject is required</error-message></clix-form-input-error-field></div><div class=clix-form-row><label class=clix-form-input-label>Description: <span class=clix-form-input-label-required>*</span></label><clix-form-input-error-field show-error=showDescriptionError><form-field><textarea class=clix-form-textarea-field ng-model=form.description></textarea></form-field><error-message>Description is required</error-message></clix-form-input-error-field></div><div class=\"clix-form-row submit-button-container\"><div class=clix-form-submit-button><clix-primary-button ng-click=onSubmit()>Submit</clix-primary-button></div></div></div></div><div class=\"col-md-4 visible-xs visible-sm\" ng-include src=\"'ui/contact/components/view.contact-sidebar.html'\"></div></div></div>"
   );
 
 
@@ -3951,7 +3952,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     var FormInputController = [
         '$scope',
-        function($scope) {
+        '$rootScope',
+        function($scope, $rootScope) {
 
             function _getErrorContainer() {
                 return angular.element(document.getElementById('clix-form-input-error-' + $scope.$id));
@@ -3999,6 +4001,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 _repositionError();
                 _hideError();
             };
+
+            $rootScope.$on('$stateChangeStart', function() {
+                angular.element(document.getElementById('clix-form-input-error-' + $scope.$id)).remove();
+            });
 
         }
     ];
@@ -6029,9 +6035,131 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     var ContactPageController = [
         '$scope',
+        '$rootScope',
         '$stateParams',
-        function($scope, $stateParams) {
-            console.log($stateParams.section);
+        'userService',
+        'notificationsService',
+        'modalService',
+        function($scope, $rootScope, $stateParams, userService, notificationsService, modalService) {
+
+            $scope.helpTypes = [
+                {
+                    label: 'Investor Relations',
+                    data: 'investor-relations'
+                },
+                {
+                    label: 'Advertisers',
+                    data: 'advertisers'
+                },
+                {
+                    label: 'Jobs',
+                    data: 'jobs'
+                },
+                {
+                    label: 'Press',
+                    data: 'press'
+                },
+                {
+                    label: 'News',
+                    data: 'news'
+                },
+                {
+                    label: 'Affiliates',
+                    data: 'affiliates'
+                },
+                {
+                    label: 'Rewards',
+                    data: 'rewards'
+                },
+                {
+                    label: 'Help',
+                    data: 'help'
+                }
+            ];
+
+            $scope.form = {
+                name: '',
+                email: '',
+                subject: '',
+                description: ''
+            }
+
+            $scope.onSubmit = function() {
+                modalService.showMessageModal('Success', 'Your message has been sent. We will respond back as soon as we can!');
+                return;
+                var error = false,
+                    helpType = ($scope.selectedHelpType) ? $scope.selectedHelpType.data : '';
+                _resetErrorStates();
+                if (!$scope.form.name) {
+                    $scope.showNameError = true;
+                    error = true;
+                }
+
+                if (!$scope.form.email) {
+                    $scope.showEmailError = true;
+                    error = true;
+                }
+
+                if (!$scope.form.subject) {
+                    $scope.showSubjectError = true;
+                    error = true;
+                }
+
+                if (!$scope.form.description) {
+                    $scope.showDescriptionError = true;
+                    error = true;
+                }
+
+                if (error) {
+                    return;
+                }
+
+                notificationsService.sendContactNotification(helpType, $scope.form.name, $scope.form.email, $scope.form.subject, $scope.form.description)
+                    .then(
+                        function onSuccess(data) {
+                            console.log(data);
+                        }
+                    )
+            };
+
+            if ($stateParams.section) {
+                var selected = $scope.helpTypes.filter(function(type) {
+                    return type.data === $stateParams.section;
+                })[0];
+                if (selected) {
+                    $scope.selectedHelpType = selected;
+                }
+            }
+
+            function _resetErrorStates() {
+                $scope.showNameError = false;
+                $scope.showEmailError = false;
+                $scope.showSubjectError = false;
+                $scope.showDescriptionError = false;
+            }
+
+            function _setDefaultInfo(user) {
+                if (!user) {
+                    return;
+                }
+                if (!$scope.form.name) {
+                    $scope.form.name = user.firstName + ' ' + user.lastName;
+                }
+                if (!$scope.form.email) {
+                    $scope.form.email = user.email;
+                }
+            }
+
+            $rootScope.$on('user.login', function(event, data) {
+                _setDefaultInfo(data);
+            });
+
+            userService.getLoggedInUser()
+                .then(
+                    function onSuccess(data) {
+                        _setDefaultInfo(data);
+                    }
+                );
         }
     ];
 
@@ -6044,7 +6172,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
     var DropdownController = [
         '$q',
         '$scope',
-        function($q, $scope) {
+        '$timeout',
+        function($q, $scope, $timeout) {
 
             $scope.bodyClicked = function(event) {
                 $scope.menuVisible = false;
@@ -6053,6 +6182,15 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             $scope.triggerClicked = function() {
                 $scope.menuVisible = !$scope.menuVisible;
             };
+
+            $scope.$watch('ngModel', function() {
+                $timeout(function() {
+                    if ($scope.ngModel) {
+                        $scope.selected = $scope.ngModel;
+                        $scope.$apply();
+                    }
+                });
+            });
 
             $scope.$watch('options', function() {
                 if (!$scope.options) {
@@ -6066,7 +6204,13 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         onClick: function() {
                             $scope.selected = option;
                             $scope.menuVisible = false;
-                            option.onClick(option);
+                            $scope.ngModel = option;
+                            $timeout(function() {
+                                $scope.$apply();
+                            });
+                            if (option.onClick) {
+                                option.onClick(option);
+                            }
                         }
                     }
                 });
@@ -6087,7 +6231,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             controller: 'DropdownController',
             scope: {
                 options: '=',
-                placeholderText: '@?'
+                placeholderText: '@?',
+                ngModel: '=?'
             }
         }
     };
@@ -8818,8 +8963,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     var notificationsService = [
         '$http',
+        'clixConfig',
         'NotificationListModel',
-        function($http, NotificationListModel) {
+        function($http, clixConfig, NotificationListModel) {
             return {
 
                 /**
@@ -8832,6 +8978,16 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                                 return new NotificationListModel(data.data);
                             }
                         );
+                },
+
+                sendContactNotification: function(type, name, email, subject, message) {
+                    return $http.post(clixConfig.baseApi + '/notifications/contact', {
+                        type: type,
+                        name: name,
+                        email: email,
+                        subject: subject,
+                        message: message
+                    });
                 }
             }
         }
@@ -9122,6 +9278,16 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     });
 
                     return deferred.promise;
+                },
+
+                showMessageModal: function(title, message) {
+                    this.showModal({
+                        templateUrl: 'ui/common/modal/view.message-modal.html',
+                        data: {
+                            title: title,
+                            message: message
+                        }
+                    });
                 },
 
                 showModal: function(options) {

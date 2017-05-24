@@ -3,7 +3,8 @@
     var DropdownController = [
         '$q',
         '$scope',
-        function($q, $scope) {
+        '$timeout',
+        function($q, $scope, $timeout) {
 
             $scope.bodyClicked = function(event) {
                 $scope.menuVisible = false;
@@ -12,6 +13,15 @@
             $scope.triggerClicked = function() {
                 $scope.menuVisible = !$scope.menuVisible;
             };
+
+            $scope.$watch('ngModel', function() {
+                $timeout(function() {
+                    if ($scope.ngModel) {
+                        $scope.selected = $scope.ngModel;
+                        $scope.$apply();
+                    }
+                });
+            });
 
             $scope.$watch('options', function() {
                 if (!$scope.options) {
@@ -25,7 +35,13 @@
                         onClick: function() {
                             $scope.selected = option;
                             $scope.menuVisible = false;
-                            option.onClick(option);
+                            $scope.ngModel = option;
+                            $timeout(function() {
+                                $scope.$apply();
+                            });
+                            if (option.onClick) {
+                                option.onClick(option);
+                            }
                         }
                     }
                 });

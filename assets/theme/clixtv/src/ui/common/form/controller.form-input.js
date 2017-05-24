@@ -2,7 +2,8 @@
 
     var FormInputController = [
         '$scope',
-        function($scope) {
+        '$rootScope',
+        function($scope, $rootScope) {
 
             function _getErrorContainer() {
                 return angular.element(document.getElementById('clix-form-input-error-' + $scope.$id));
@@ -50,6 +51,10 @@
                 _repositionError();
                 _hideError();
             };
+
+            $rootScope.$on('$stateChangeStart', function() {
+                angular.element(document.getElementById('clix-form-input-error-' + $scope.$id)).remove();
+            });
 
         }
     ];

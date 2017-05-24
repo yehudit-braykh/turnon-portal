@@ -62,6 +62,16 @@
                     return deferred.promise;
                 },
 
+                showMessageModal: function(title, message) {
+                    this.showModal({
+                        templateUrl: 'ui/common/modal/view.message-modal.html',
+                        data: {
+                            title: title,
+                            message: message
+                        }
+                    });
+                },
+
                 showModal: function(options) {
                     var deferred, modalInstance;
 

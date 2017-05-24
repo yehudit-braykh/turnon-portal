@@ -22,7 +22,8 @@
         ])
         .constant('clixConfig', {
             beta: true,
-            pointsEnabled: false
+            pointsEnabled: false,
+            baseApi: '//34.209.221.167'
         })
         .config([
             '$locationProvider',

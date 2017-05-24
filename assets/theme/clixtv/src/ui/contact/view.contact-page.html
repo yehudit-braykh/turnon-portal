@@ -13,12 +13,18 @@
             </div>
             <div class="contact-page-form clix-form">
                 <div class="clix-form-row">
-                    <clix-form-input-error-field>
+                    <label class="clix-form-input-label">
+                        What can we help you with?
+                    </label>
+                    <clix-dropdown options="helpTypes" placeholder-text="-" ng-model="selectedHelpType"></clix-dropdown>
+                </div>
+                <div class="clix-form-row">
+                    <label class="clix-form-input-label">
+                        Name: <span class="clix-form-input-label-required">*</span>
+                    </label>
+                    <clix-form-input-error-field show-error="showNameError">
                         <form-field>
-                            <label class="clix-form-input-label">
-                                Name: <span class="clix-form-input-label-required">*</span>
-                            </label>
-                            <input type="text" class="clix-form-input-field" />
+                            <input type="text" class="clix-form-input-field" ng-model="form.name" />
                         </form-field>
                         <error-message>
                             Name is required
@@ -26,12 +32,12 @@
                     </clix-form-input-error-field>
                 </div>
                 <div class="clix-form-row">
-                    <clix-form-input-error-field>
+                    <label class="clix-form-input-label">
+                        Email Address: <span class="clix-form-input-label-required">*</span>
+                    </label>
+                    <clix-form-input-error-field show-error="showEmailError">
                         <form-field>
-                            <label class="clix-form-input-label">
-                                Email Address: <span class="clix-form-input-label-required">*</span>
-                            </label>
-                            <input type="email" class="clix-form-input-field" />
+                            <input type="email" class="clix-form-input-field" ng-model="form.email" />
                         </form-field>
                         <error-message>
                             Email address is required
@@ -39,12 +45,12 @@
                     </clix-form-input-error-field>
                 </div>
                 <div class="clix-form-row">
-                    <clix-form-input-error-field>
+                    <label class="clix-form-input-label">
+                        Subject: <span class="clix-form-input-label-required">*</span>
+                    </label>
+                    <clix-form-input-error-field show-error="showSubjectError">
                         <form-field>
-                            <label class="clix-form-input-label">
-                                Subject: <span class="clix-form-input-label-required">*</span>
-                            </label>
-                            <input type="text" class="clix-form-input-field" />
+                            <input type="text" class="clix-form-input-field" ng-model="form.subject" />
                         </form-field>
                         <error-message>
                             Subject is required
@@ -52,12 +58,12 @@
                     </clix-form-input-error-field>
                 </div>
                 <div class="clix-form-row">
-                    <clix-form-input-error-field>
+                    <label class="clix-form-input-label">
+                        Description: <span class="clix-form-input-label-required">*</span>
+                    </label>
+                    <clix-form-input-error-field show-error="showDescriptionError">
                         <form-field>
-                            <label class="clix-form-input-label">
-                                Description: <span class="clix-form-input-label-required">*</span>
-                            </label>
-                            <textarea class="clix-form-textarea-field"></textarea>
+                            <textarea class="clix-form-textarea-field" ng-model="form.description"></textarea>
                         </form-field>
                         <error-message>
                             Description is required
@@ -66,7 +72,7 @@
                 </div>
                 <div class="clix-form-row submit-button-container">
                     <div class="clix-form-submit-button">
-                        <clix-primary-button>
+                        <clix-primary-button ng-click="onSubmit()">
                             Submit
                         </clix-primary-button>
                     </div>

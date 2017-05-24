@@ -2,8 +2,9 @@
 
     var notificationsService = [
         '$http',
+        'clixConfig',
         'NotificationListModel',
-        function($http, NotificationListModel) {
+        function($http, clixConfig, NotificationListModel) {
             return {
 
                 /**
@@ -16,6 +17,16 @@
                                 return new NotificationListModel(data.data);
                             }
                         );
+                },
+
+                sendContactNotification: function(type, name, email, subject, message) {
+                    return $http.post(clixConfig.baseApi + '/notifications/contact', {
+                        type: type,
+                        name: name,
+                        email: email,
+                        subject: subject,
+                        message: message
+                    });
                 }
             }
         }

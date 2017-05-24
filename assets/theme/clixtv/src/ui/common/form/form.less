@@ -1,6 +1,10 @@
 .clix-form {
     .clix-form-row {
         margin-bottom: 30px;
+
+        @media (min-width: @screen-md) {
+            margin-bottom: 50px;
+        }
     }
 
     .clix-form-input-label {
@@ -9,6 +13,10 @@
         font-size: 18px;
         color: @color-white;
         margin-bottom: 3px;
+
+        @media (min-width: @screen-md) {
+            margin-bottom: 20px;
+        }
     }
 
     .clix-form-input-label-required {

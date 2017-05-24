@@ -7,7 +7,8 @@
             controller: 'DropdownController',
             scope: {
                 options: '=',
-                placeholderText: '@?'
+                placeholderText: '@?',
+                ngModel: '=?'
             }
         }
     };
