@@ -34,6 +34,11 @@
                 });
 
                 if (nextVideos.length > 0) {
+
+                    nextVideos.sort(function(a, b) {
+                        return parseInt(a.episodeNumber) - parseInt(b.episodeNumber);
+                    });
+
                     $scope.nextVideo = nextVideos[0];
                     return;
                 }
