@@ -154,7 +154,15 @@
                         data: {
                             solidNavigation: true
                         }
-                    });
+                    })
+                    .state('about', {
+                        url: '/about',
+                        templateUrl: 'ui/about/view.about-page.html',
+                        controller: 'AboutPageController',
+                        data: {
+                            solidNavigation: true
+                        }
+                    })
             }
         ])
         .run([

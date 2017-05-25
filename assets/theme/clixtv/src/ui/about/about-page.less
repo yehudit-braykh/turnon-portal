@@ -1,0 +1,171 @@
+.clix-about-page {
+    margin-top: 116px;
+    color: @color-white;
+    text-align: center;
+
+    .about-header {
+        font-family: @font-primary-bold;
+        font-size: 27px;
+        line-height: 27px;
+        margin: 0 auto;
+
+        @media (min-width: @screen-lg) {
+            font-size: 72px;
+            line-height: 65px;
+            width: 900px;
+        }
+
+        @media (min-width: @screen-xl) {
+            font-size: 100px;
+            line-height: 85px;
+        }
+    }
+
+    .about-tagline {
+        font-family: @font-primary;
+        font-size: 14px;
+        text-transform: uppercase;
+        margin: 17px auto 21px;
+        width: 220px;
+        letter-spacing: 2px;
+
+        @media (min-width: @screen-lg) {
+            font-size: 15px;
+            letter-spacing: 3px;
+            width: auto;
+            margin-top: 10px;
+        }
+
+        @media (min-width: @screen-xl) {
+            font-size: 22px;
+            letter-spacing: 3px;
+        }
+    }
+
+    .about-signup-button {
+        display: inline-block;
+        margin-bottom: 48px;
+    }
+
+    .about-callout-separator {
+        .horizontal-gradient(darken(@color-tertiary, 5%), darken(@color-secondary, 5%));
+        height: 4px;
+        width: 70px;
+        margin: 20px auto;
+    }
+
+    .header-container {
+        .about-header {
+            @media (min-width: @screen-lg) {
+                margin-top: 50px;
+                font-size: 50px;
+            }
+        }
+    }
+
+    .about-callout-row {
+
+        margin-left: -10px;
+        margin-right: -10px;
+        padding: 0 10px;
+
+        .about-callout-block {
+            margin-top: 60px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .about-callout-icon {
+            color: @color-gray24;
+            font-size: 50px;
+
+            @media (min-width: @screen-lg) {
+                font-size: 70px;
+            }
+        }
+
+        .about-callout-title {
+            font-family: @font-primary-bold;
+            font-size: 24px;
+            line-height: 30px;
+            margin: 13px 0;
+
+            @media (min-width: @screen-sm) {
+                font-size: 20px;
+            }
+
+            @media (min-width: @screen-md) {
+                font-size: 24px;
+            }
+        }
+
+        .about-callout-desc {
+            font-family: @font-primary;
+            font-size: 14px;
+            line-height: 18px;
+            padding: 0 20px;
+
+            @media (min-width: @screen-sm) {
+                padding: 0;
+            }
+        }
+    }
+
+    .body-container {
+        margin-top: 53px;
+
+        .about-header {
+            width: 200px;
+            margin: 0 auto;
+
+            @media (min-width: @screen-lg) {
+                font-size: 50px;
+                width: auto;
+            }
+        }
+    }
+
+    .footer-container {
+        margin: 77px 0 205px;
+
+        .about-callout-separator {
+            width: 90px;
+        }
+
+        .about-header {
+            margin: 0 auto;
+
+            @media (min-width: @screen-lg) {
+                font-size: 50px;
+                line-height: 50px;
+            }
+        }
+
+        .about-callout-separator {
+            @media (min-width: @screen-lg) {
+                margin: 30px auto;
+            }
+        }
+
+        .about-footer-desc {
+            font-family: @font-primary;
+            font-size: 14px;
+            line-height: 18px;
+            padding: 0 10px;
+            margin: 0 auto 20px;
+
+            @media (min-width: @screen-lg) {
+                font-size: 18px;
+                width: 620px;
+                margin-bottom: 50px;
+            }
+
+            span {
+                @media (min-width: @screen-sm) {
+                    display: block;
+                    margin-bottom: 18px;
+                }
+            }
+        }
+    }
+}

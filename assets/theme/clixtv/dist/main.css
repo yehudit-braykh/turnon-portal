@@ -1085,6 +1085,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 .icon-home-icon-active-bottom-nav:before { content: '\e809'; } /* '' */
 .icon-categories-icon-active-bottom-nav:before { content: '\e80a'; } /* '' */
 .icon-star-icon-active-bottom-nav:before { content: '\e80b'; } /* '' */
+.icon-gradient-clix-icon:before { content: '\e80c'; } /* '' */
 .icon-down-arrow:before { content: '\e810'; } /* '' */
 .icon-edit-icon:before { content: '\e81c'; } /* '' */
 .icon-checkmark-icon:before { content: '\e825'; } /* '' */
@@ -12655,6 +12656,172 @@ button.close {
   font-family: 'montserratregular', sans-serif;
   font-size: 14px;
   line-height: 18px;
+}
+.clix-about-page {
+  margin-top: 116px;
+  color: #FFF;
+  text-align: center;
+}
+.clix-about-page .about-header {
+  font-family: 'montserratsemibold', sans-serif;
+  font-size: 27px;
+  line-height: 27px;
+  margin: 0 auto;
+}
+@media (min-width: 1200px) {
+  .clix-about-page .about-header {
+    font-size: 72px;
+    line-height: 65px;
+    width: 900px;
+  }
+}
+@media (min-width: 1600px) {
+  .clix-about-page .about-header {
+    font-size: 100px;
+    line-height: 85px;
+  }
+}
+.clix-about-page .about-tagline {
+  font-family: 'montserratregular', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin: 17px auto 21px;
+  width: 220px;
+  letter-spacing: 2px;
+}
+@media (min-width: 1200px) {
+  .clix-about-page .about-tagline {
+    font-size: 15px;
+    letter-spacing: 3px;
+    width: auto;
+    margin-top: 10px;
+  }
+}
+@media (min-width: 1600px) {
+  .clix-about-page .about-tagline {
+    font-size: 22px;
+    letter-spacing: 3px;
+  }
+}
+.clix-about-page .about-signup-button {
+  display: inline-block;
+  margin-bottom: 48px;
+}
+.clix-about-page .about-callout-separator {
+  background-color: #7b1371;
+  background-image: -webkit-gradient(linear, left top, right top, from(#7b1371), to(#e90512));
+  background-image: -webkit-linear-gradient(left, #7b1371, #e90512);
+  background-image: -moz-linear-gradient(left, #7b1371, #e90512);
+  background-image: -ms-linear-gradient(left, #7b1371, #e90512);
+  background-image: -o-linear-gradient(left, #7b1371, #e90512);
+  height: 4px;
+  width: 70px;
+  margin: 20px auto;
+}
+@media (min-width: 1200px) {
+  .clix-about-page .header-container .about-header {
+    margin-top: 50px;
+    font-size: 50px;
+  }
+}
+.clix-about-page .about-callout-row {
+  margin-left: -10px;
+  margin-right: -10px;
+  padding: 0 10px;
+}
+.clix-about-page .about-callout-row .about-callout-block {
+  margin-top: 60px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.clix-about-page .about-callout-row .about-callout-icon {
+  color: #817b80;
+  font-size: 50px;
+}
+@media (min-width: 1200px) {
+  .clix-about-page .about-callout-row .about-callout-icon {
+    font-size: 70px;
+  }
+}
+.clix-about-page .about-callout-row .about-callout-title {
+  font-family: 'montserratsemibold', sans-serif;
+  font-size: 24px;
+  line-height: 30px;
+  margin: 13px 0;
+}
+@media (min-width: 768px) {
+  .clix-about-page .about-callout-row .about-callout-title {
+    font-size: 20px;
+  }
+}
+@media (min-width: 992px) {
+  .clix-about-page .about-callout-row .about-callout-title {
+    font-size: 24px;
+  }
+}
+.clix-about-page .about-callout-row .about-callout-desc {
+  font-family: 'montserratregular', sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+  padding: 0 20px;
+}
+@media (min-width: 768px) {
+  .clix-about-page .about-callout-row .about-callout-desc {
+    padding: 0;
+  }
+}
+.clix-about-page .body-container {
+  margin-top: 53px;
+}
+.clix-about-page .body-container .about-header {
+  width: 200px;
+  margin: 0 auto;
+}
+@media (min-width: 1200px) {
+  .clix-about-page .body-container .about-header {
+    font-size: 50px;
+    width: auto;
+  }
+}
+.clix-about-page .footer-container {
+  margin: 77px 0 205px;
+}
+.clix-about-page .footer-container .about-callout-separator {
+  width: 90px;
+}
+.clix-about-page .footer-container .about-header {
+  margin: 0 auto;
+}
+@media (min-width: 1200px) {
+  .clix-about-page .footer-container .about-header {
+    font-size: 50px;
+    line-height: 50px;
+  }
+}
+@media (min-width: 1200px) {
+  .clix-about-page .footer-container .about-callout-separator {
+    margin: 30px auto;
+  }
+}
+.clix-about-page .footer-container .about-footer-desc {
+  font-family: 'montserratregular', sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+  padding: 0 10px;
+  margin: 0 auto 20px;
+}
+@media (min-width: 1200px) {
+  .clix-about-page .footer-container .about-footer-desc {
+    font-size: 18px;
+    width: 620px;
+    margin-bottom: 50px;
+  }
+}
+@media (min-width: 768px) {
+  .clix-about-page .footer-container .about-footer-desc span {
+    display: block;
+    margin-bottom: 18px;
+  }
 }
 .clix-hero-banner {
   position: relative;
