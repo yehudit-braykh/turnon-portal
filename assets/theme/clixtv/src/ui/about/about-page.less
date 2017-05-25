@@ -55,6 +55,20 @@
     }
 
     .header-container {
+
+        background-image: url('/assets/theme/clixtv/dist/images/about-us-banner.jpg');
+        background-size: cover;
+        background-position: bottom center;
+        background-repeat: no-repeat;
+
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            background-image: url('/assets/theme/clixtv/dist/images/about-us-banner@2x.jpg');
+        }
+
+        @media (min-width: @screen-sm) {
+            background-size: contain;
+        }
+
         .about-header {
             @media (min-width: @screen-lg) {
                 margin-top: 50px;
@@ -67,7 +81,7 @@
 
         margin-left: -10px;
         margin-right: -10px;
-        padding: 0 10px;
+        padding: 0 10px 70px;
 
         .about-callout-block {
             margin-top: 60px;
@@ -112,21 +126,56 @@
     }
 
     .body-container {
-        margin-top: 53px;
+        padding-top: 53px;
+        background-image: url('/assets/theme/clixtv/dist/images/about-us-devices-banner.jpg');
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            background-image: url('/assets/theme/clixtv/dist/images/about-us-devices-banner@2x.jpg');
+        }
 
         .about-header {
             width: 200px;
-            margin: 0 auto;
+            margin: 0 auto 30px;
 
             @media (min-width: @screen-lg) {
                 font-size: 50px;
                 width: auto;
             }
         }
+
+        .about-devices-image-container {
+            @media (min-width: @screen-md) {
+                padding: 0 130px;
+            }
+
+            img {
+                .transform(translateX(-50%));
+                width: 150%;
+                position: relative;
+                left: 50%;
+
+                @media (min-width: @screen-sm) {
+                    width: 100%;
+                    max-width: 100%;
+                }
+            }
+        }
     }
 
     .footer-container {
-        margin: 77px 0 205px;
+        margin-top: 77px;
+        padding-bottom: 200px;
+        background-image: url('/assets/theme/clixtv/dist/images/about-us-footer-banner.png');
+        background-size: contain;
+        background-position: bottom center;
+        background-repeat: no-repeat;
+
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            background-image: url('/assets/theme/clixtv/dist/images/about-us-footer-banner@2x.png');
+        }
 
         .about-callout-separator {
             width: 90px;

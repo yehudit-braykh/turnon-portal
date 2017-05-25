@@ -12718,6 +12718,22 @@ button.close {
   width: 70px;
   margin: 20px auto;
 }
+.clix-about-page .header-container {
+  background-image: url('/assets/theme/clixtv/dist/images/about-us-banner.jpg');
+  background-size: cover;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .clix-about-page .header-container {
+    background-image: url('/assets/theme/clixtv/dist/images/about-us-banner@2x.jpg');
+  }
+}
+@media (min-width: 768px) {
+  .clix-about-page .header-container {
+    background-size: contain;
+  }
+}
 @media (min-width: 1200px) {
   .clix-about-page .header-container .about-header {
     margin-top: 50px;
@@ -12727,7 +12743,7 @@ button.close {
 .clix-about-page .about-callout-row {
   margin-left: -10px;
   margin-right: -10px;
-  padding: 0 10px;
+  padding: 0 10px 70px;
 }
 .clix-about-page .about-callout-row .about-callout-block {
   margin-top: 60px;
@@ -12771,11 +12787,20 @@ button.close {
   }
 }
 .clix-about-page .body-container {
-  margin-top: 53px;
+  padding-top: 53px;
+  background-image: url('/assets/theme/clixtv/dist/images/about-us-devices-banner.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .clix-about-page .body-container {
+    background-image: url('/assets/theme/clixtv/dist/images/about-us-devices-banner@2x.jpg');
+  }
 }
 .clix-about-page .body-container .about-header {
   width: 200px;
-  margin: 0 auto;
+  margin: 0 auto 30px;
 }
 @media (min-width: 1200px) {
   .clix-about-page .body-container .about-header {
@@ -12783,8 +12808,38 @@ button.close {
     width: auto;
   }
 }
+@media (min-width: 992px) {
+  .clix-about-page .body-container .about-devices-image-container {
+    padding: 0 130px;
+  }
+}
+.clix-about-page .body-container .about-devices-image-container img {
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  width: 150%;
+  position: relative;
+  left: 50%;
+}
+@media (min-width: 768px) {
+  .clix-about-page .body-container .about-devices-image-container img {
+    width: 100%;
+    max-width: 100%;
+  }
+}
 .clix-about-page .footer-container {
-  margin: 77px 0 205px;
+  margin-top: 77px;
+  padding-bottom: 200px;
+  background-image: url('/assets/theme/clixtv/dist/images/about-us-footer-banner.png');
+  background-size: contain;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .clix-about-page .footer-container {
+    background-image: url('/assets/theme/clixtv/dist/images/about-us-footer-banner@2x.png');
+  }
 }
 .clix-about-page .footer-container .about-callout-separator {
   width: 90px;
