@@ -25,7 +25,7 @@ class Brands_model extends Uvod_model {
 	public function get_offer($id){
 		if ($this->fastcache_model->get_cache("get_offer".$id))
 			return $this->fastcache_model->get_cache("get_offer".$id);
-		$data =  $this->offers_rows($this->apiCall('offer/'.$id.'/related')->entries);
+		$data =  $this->offers_rows($this->apiCall('offer/'.$id.'/related')->entries)[0];
 		$this->fastcache_model->set_cache("get_offer".$id,$data);
 		return $data;
 	}

@@ -14,6 +14,7 @@ define('FACEBOOK_STAGE_SECRET', read_config_var('FACEBOOK_STAGE_SECRET'));
 define('CACHE_TTL', read_config_var('CACHE_TTL'));
 define('MEMCACHED_TTL', read_config_var('MEMCACHED_TTL'));
 define('MEMCACHED_SERVER', read_config_var('MEMCACHED_SERVER'));
+define('CATCHMEDIA_SERVER', read_config_var('CATCHMEDIA_SERVER'));
 
 function read_config_var($variable) {
 

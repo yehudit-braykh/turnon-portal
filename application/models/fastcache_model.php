@@ -21,7 +21,7 @@ class fastcache_model extends CI_Model {
         if (!$data) {
             $data = false;
         }
-        // return null;
+        return null;
         return $data;
     }
 
