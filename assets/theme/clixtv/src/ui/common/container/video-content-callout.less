@@ -23,6 +23,18 @@
         .brands-container {
             margin-top: 10px !important;
         }
+
+        .video-hidden-container {
+            .video-hidden-title,
+            .video-hidden-login {
+                font-size: 10px;
+            }
+
+            .primary-button {
+                font-size: 8px;
+                padding: 10px 20px;
+            }
+        }
     }
 
     &.active {
@@ -42,6 +54,85 @@
             }
             @media (min-width: @screen-xl) {
                 background-position: center 3% !important;
+            }
+        }
+    }
+
+    .video-hidden-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1000;
+        background-color: fade(@color-gray7, 90%);
+
+        .video-hidden-inner-container {
+            .radial-gradient(fade(@color-white, 30%), fade(@color-black, 0), center -24%);
+            border: 4px solid @color-lignt-gray2;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .video-hidden-content {
+            .transform(translateY(-50%));
+            position: absolute;
+            top: 50%;
+            text-align: center;
+            width: 100%;
+        }
+
+        .video-hidden-content-border {
+            border-top: 1px solid @color-white;
+            margin: 24px 60px;
+        }
+
+        .video-hidden-title {
+            color: @color-white;
+            font-family: @font-primary;
+            font-size: 8px;
+            line-height: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1.6px;
+            padding: 0 10px;
+
+            @media (min-width: @screen-sm) {
+                font-size: 11px;
+                line-height: 15px;
+            }
+
+            @media (min-width: @screen-md) {
+                font-size: 13px;
+                line-height: 22px;
+            }
+        }
+
+        .video-hidden-signup-button {
+            display: inline-block;
+            margin: 25px 0;
+            cursor: pointer;
+
+            .primary-button {
+                @media (max-width: @screen-sm) {
+                    font-size: 8px;
+                    padding: 10px 20px;
+                }
+            }
+        }
+
+        .video-hidden-login {
+            color: @color-white;
+            font-family: @font-primary;
+            text-transform: uppercase;
+            font-size: 8px;
+            text-decoration: underline;
+            cursor: pointer;
+
+            @media (min-width: @screen-sm) {
+                font-size: 11px;
             }
         }
     }
@@ -178,7 +269,7 @@
             position: relative;
             width: 100%;
 
-            @media (min-width: @screen-sm) {
+            @media (min-width: @screen-md) {
                 font-size: 32px;
                 line-height: 32px;
                 margin: 5px 0 8px -2px;

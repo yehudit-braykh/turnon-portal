@@ -22,9 +22,20 @@
             'ngSanitize'
         ])
         .constant('clixConfig', {
+
+            // Swaps out logos and other components that are only available on the
+            // beta version of the site
             beta: true,
+
+            // Enable or disable points, changes all violators to reflect state
             pointsEnabled: false,
-            baseApi: '//34.209.221.167'
+
+            // Base URL for API calls
+            baseApi: '//34.209.221.167',
+
+            // A non-logged in user will not be allowed to directly view any episodes
+            // that are below this number
+            lockedMinimumEpisodeNumber: 2
         })
         .config([
             '$locationProvider',

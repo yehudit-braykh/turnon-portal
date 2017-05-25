@@ -1,5 +1,5 @@
-<div class="clix-video-content-callout" ng-class="{'active': overlayActive, 'minimized': minimized === 'true'}">
-    <img ng-src="{{video.thumbnail}}" class="video-thumbnail" />
+<div class="clix-video-content-callout" ng-class="{'active': overlayActive, 'minimized': minimized === 'true'}" ng-show="ready">
+    <img ng-src="{{video.thumbnail}}" class="video-thumbnail" clix-on-image-load="onImageLoad($event)" />
     <div class="video-thumbnail-background" style="background-image: url('{{video.thumbnail}}')"></div>
     <div class="video-content-container">
         <div class="video-menu-container">
@@ -53,6 +53,27 @@
                 <clix-violator>
                     100 Reward Points
                 </clix-violator>
+            </div>
+        </div>
+    </div>
+    <div class="video-hidden-container" ng-if="videoUnavailable">
+        <div class="video-hidden-inner-container">
+            <div class="video-hidden-content">
+                <div class="video-hidden-content-border"></div>
+                <div class="video-hidden-title">
+                    Continue the series!<br />Sign up for a free ClixTV account!
+                </div>
+                <div class="video-hidden-signup-button">
+                    <a ng-click="onSignupPress()" class="primary-button">
+                        Sign Up Now
+                    </a>
+                </div>
+                <div class="video-hidden-login-container">
+                    <a ng-click="onLoginPress()" class="video-hidden-login">
+                        Log In Now
+                    </a>
+                </div>
+                <div class="video-hidden-content-border"></div>
             </div>
         </div>
     </div>

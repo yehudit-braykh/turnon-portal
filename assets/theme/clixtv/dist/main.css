@@ -14053,6 +14053,14 @@ button.close {
 .clix-video-content-callout.minimized .brands-container {
   margin-top: 10px !important;
 }
+.clix-video-content-callout.minimized .video-hidden-container .video-hidden-title,
+.clix-video-content-callout.minimized .video-hidden-container .video-hidden-login {
+  font-size: 10px;
+}
+.clix-video-content-callout.minimized .video-hidden-container .primary-button {
+  font-size: 8px;
+  padding: 10px 20px;
+}
 @media (min-width: 992px) {
   .clix-video-content-callout.active .star-info-background,
   .clix-video-content-callout.active .video-thumbnail-background {
@@ -14072,6 +14080,87 @@ button.close {
 @media (min-width: 1600px) {
   .clix-video-content-callout.active .star-info-background {
     background-position: center 3% !important;
+  }
+}
+.clix-video-content-callout .video-hidden-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  background-color: rgba(41, 41, 41, 0.9);
+}
+.clix-video-content-callout .video-hidden-container .video-hidden-inner-container {
+  background-image: -moz-radial-gradient(center -24%, circle, rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0) 100%);
+  background-image: -ms-radial-gradient(center -24%, circle, rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0) 100%);
+  background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(rgba(255, 255, 255, 0.3)), to(rgba(0, 0, 0, 0)));
+  background-image: -webkit-radial-gradient(center -24%, circle, rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0) 100%);
+  background-image: -o-radial-gradient(center -24%, circle, rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0) 100%);
+  border: 4px solid #979797;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.clix-video-content-callout .video-hidden-container .video-hidden-content {
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  position: absolute;
+  top: 50%;
+  text-align: center;
+  width: 100%;
+}
+.clix-video-content-callout .video-hidden-container .video-hidden-content-border {
+  border-top: 1px solid #FFF;
+  margin: 24px 60px;
+}
+.clix-video-content-callout .video-hidden-container .video-hidden-title {
+  color: #FFF;
+  font-family: 'montserratregular', sans-serif;
+  font-size: 8px;
+  line-height: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  padding: 0 10px;
+}
+@media (min-width: 768px) {
+  .clix-video-content-callout .video-hidden-container .video-hidden-title {
+    font-size: 11px;
+    line-height: 15px;
+  }
+}
+@media (min-width: 992px) {
+  .clix-video-content-callout .video-hidden-container .video-hidden-title {
+    font-size: 13px;
+    line-height: 22px;
+  }
+}
+.clix-video-content-callout .video-hidden-container .video-hidden-signup-button {
+  display: inline-block;
+  margin: 25px 0;
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  .clix-video-content-callout .video-hidden-container .video-hidden-signup-button .primary-button {
+    font-size: 8px;
+    padding: 10px 20px;
+  }
+}
+.clix-video-content-callout .video-hidden-container .video-hidden-login {
+  color: #FFF;
+  font-family: 'montserratregular', sans-serif;
+  text-transform: uppercase;
+  font-size: 8px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+@media (min-width: 768px) {
+  .clix-video-content-callout .video-hidden-container .video-hidden-login {
+    font-size: 11px;
   }
 }
 .clix-video-content-callout .video-thumbnail {
@@ -14222,7 +14311,7 @@ button.close {
   position: relative;
   width: 100%;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-video-content-callout .video-info-container .video-episode-title {
     font-size: 32px;
     line-height: 32px;
@@ -17115,6 +17204,14 @@ button.close {
 .clix-home-page-banner {
   position: relative;
 }
+.clix-home-page-banner .desktop-home-banner {
+  min-height: 430px;
+}
+@media (min-width: 1200px) {
+  .clix-home-page-banner .desktop-home-banner {
+    min-height: 810px;
+  }
+}
 .clix-home-page-banner .desktop-home-banner .home-banner-background {
   max-width: 100%;
 }
@@ -17161,7 +17258,7 @@ button.close {
   padding-left: 10px;
   color: #FFF;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .clix-home-page-banner .home-banner-content {
     padding-left: 30px;
     margin-top: -70px;

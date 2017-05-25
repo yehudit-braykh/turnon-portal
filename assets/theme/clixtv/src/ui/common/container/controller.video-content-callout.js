@@ -7,7 +7,9 @@
         '$state',
         'userService',
         'shareModalService',
-        function($q, $scope, $rootScope, $state, userService, shareModalService) {
+        'clixConfig',
+        'modalService',
+        function($q, $scope, $rootScope, $state, userService, shareModalService, clixConfig, modalService) {
 
             $scope.menuVisible = false;
 
@@ -44,6 +46,12 @@
             function _resetMenuItems() {
 
                 $scope.isOnWatchlist = userService.isVideoOnWatchlist($scope.video.id);
+
+                if ($scope.loggedInUser) {
+                    $scope.videoUnavailable = false;
+                } else if ($scope.video.episodeNumber && parseInt($scope.video.episodeNumber) > clixConfig.lockedMinimumEpisodeNumber) {
+                    $scope.videoUnavailable = true;
+                }
 
                 var isFavoriteStar = ($scope.video.celebrity) ? userService.isFavoriteCelebrity($scope.video.celebrity.id) : false;
 
@@ -126,7 +134,19 @@
                 if (!angular.element($event.target).hasClass('video-watchlist-button')) {
                     $state.go('video', { id: $scope.video.id });
                 }
-            }
+            };
+
+            $scope.onSignupPress = function() {
+                modalService.showSignUpModal();
+            };
+
+            $scope.onLoginPress = function() {
+                modalService.showLogInModal();
+            };
+
+            $scope.onImageLoad = function(event) {
+                $scope.ready = true;
+            };
         }
     ];
 
