@@ -2,12 +2,13 @@
 
     var ContactPageController = [
         '$scope',
+        '$log',
         '$rootScope',
         '$stateParams',
         'userService',
         'notificationsService',
         'modalService',
-        function($scope, $rootScope, $stateParams, userService, notificationsService, modalService) {
+        function($scope, $log, $rootScope, $stateParams, userService, notificationsService, modalService) {
 
             $scope.helpTypes = [
                 {
@@ -49,11 +50,9 @@
                 email: '',
                 subject: '',
                 description: ''
-            }
+            };
 
             $scope.onSubmit = function() {
-                modalService.showMessageModal('Success', 'Your message has been sent. We will respond back as soon as we can!');
-                return;
                 var error = false,
                     helpType = ($scope.selectedHelpType) ? $scope.selectedHelpType.data : '';
                 _resetErrorStates();
@@ -81,10 +80,23 @@
                     return;
                 }
 
-                notificationsService.sendContactNotification(helpType, $scope.form.name, $scope.form.email, $scope.form.subject, $scope.form.description)
+                notificationsService.sendContactNotification(helpType || 'help', $scope.form.name, $scope.form.email, $scope.form.subject, $scope.form.description)
                     .then(
                         function onSuccess(data) {
-                            console.log(data);
+                            if (!data || !data.success) {
+                                throw new Error('Invalid response from API');
+                            }
+                            modalService.showAlertModal('Success', 'Your message has been sent.<br />We will respond back as soon as we can!');
+                            $scope.form = {
+                                subject: '',
+                                description: ''
+                            };
+                        }
+                    )
+                    .catch(
+                        function onError(error) {
+                            $log.error(error);
+                            modalService.showAlertModal('Error', 'There was an error sending your message.<br />Please try again later.');
                         }
                     )
             };

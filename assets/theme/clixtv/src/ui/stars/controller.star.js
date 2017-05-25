@@ -156,7 +156,7 @@
                                 return {
                                     label: series.title,
                                     series: series,
-                                    totalEpisodes: series.seasons.seasons[0].episodes.length,
+                                    totalEpisodes: (series.seasons.seasons[0]) ? series.seasons.seasons[0].episodes.length : 0,
                                     onClick: function(option) {
                                         $scope.selectedSeries = option;
                                         _setEpisodeList();

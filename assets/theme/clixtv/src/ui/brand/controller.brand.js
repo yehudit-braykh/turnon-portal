@@ -14,18 +14,14 @@
         'knetikService',
         function($q, $log, $scope, $rootScope, $state, $stateParams, brandsService, userService, modalService, catchMediaService, knetikService) {
 
-            if ($stateParams.offerId) {
-                modalService.showModal({
-                    controller: 'OfferModalController',
-                    templateUrl: 'ui/common/modal/offer/view.offer-modal.html',
-                    data: {
-                        offerId: $stateParams.offerId
-                    }
-                });
-            }
-
             $scope.onOfferPress = function(offer) {
                 if ($stateParams.offerId === offer.id) {
+                    _showOfferModal();
+                }
+            };
+
+            function _showOfferModal() {
+                if ($scope.loggedInUser) {
                     modalService.showModal({
                         controller: 'OfferModalController',
                         templateUrl: 'ui/common/modal/offer/view.offer-modal.html',
@@ -33,8 +29,17 @@
                             offerId: $stateParams.offerId
                         }
                     });
+                } else {
+                    modalService.showModal({
+                        templateUrl: 'ui/common/modal/education/view.education-modal.html',
+                        controller: 'EducationModalController',
+                        data: {
+                            type: 'signup-offer',
+                            id: $stateParams.offerId
+                        }
+                    });
                 }
-            };
+            }
 
             function _resetIsFavorite() {
                 $scope.isFavorite = userService.isFavoriteBrand($stateParams.id);
@@ -46,7 +51,7 @@
             });
 
             $rootScope.$on('user.logout', function(event, data) {
-                delete $scope.loggedInUser;
+                $scope.loggedInUser = undefined;
                 _resetIsFavorite();
             });
 
@@ -62,6 +67,9 @@
                     function onSuccess(data) {
                         $scope.loggedInUser = data;
                         _resetIsFavorite();
+                        if ($stateParams.offerId) {
+                            _showOfferModal();
+                        }
                     }
                 );
 

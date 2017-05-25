@@ -17,7 +17,7 @@
         'catchMediaService',
         function($q, $http, $log, $rootScope, BrandListModel, OfferListModel, CharityListModel, CelebrityListModel, CategoryListModel, VideoListModel, AccountSettingListModel, UserModel, modalService, catchMediaService) {
 
-            var loggedInUser;
+            var loggedInUser, loggedInUserChecked;
 
             function _getFavoriteMethodForType(type, isDelete) {
                 switch(type) {
@@ -292,13 +292,22 @@
                 },
 
                 getLoggedInUser: function() {
-                    return $q.when(loggedInUser);
+                    var deferred = $q.defer();
+                    if (loggedInUserChecked) {
+                        return $q.when(loggedInUser);
+                    }
+                    $rootScope.$on('user.login', function() {
+                        deferred.resolve(loggedInUser);
+                    });
+                    return deferred.promise;
                 },
 
                 setLoggedInUser: function() {
                     return $http.get('/api/account/get_current')
                         .then(
                             function onSuccess(data) {
+
+                                loggedInUserChecked = true;
 
                                 loggedInUser = data.data;
 

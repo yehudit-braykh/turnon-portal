@@ -114,6 +114,11 @@
                 </p>
             </div>
 
+            <div ng-switch-when="signup-offer">
+                <div class="education-modal-icon" clix-error-indicator-icon></div>
+                You need to have an account with us to view offers! Sign up for a free account!
+            </div>
+
         </div>
         <div class="row education-modal-footer">
 
@@ -124,6 +129,9 @@
                             <div ng-switch-when="learn-more">
                                 <!-- Empty... -->
                             </div>
+                            <div ng-switch-when="signup-offer">
+                                <!-- Empty... -->
+                            </div>
                             <div ng-switch-default>
                                 <clix-checkbox ng-model="showAgainModel" on-checkbox-change="onShowAgainChange(showAgainModel)" label-text="Don't show this type again"></clix-checkbox>
                             </div>
@@ -132,6 +140,9 @@
                     <not-logged-in>
                         <div ng-switch="type">
                             <div ng-switch-when="learn-more">
+                                <!-- Empty... -->
+                            </div>
+                            <div ng-switch-when="signup-offer">
                                 <!-- Empty... -->
                             </div>
                             <div ng-switch-when="offer-view">
@@ -146,6 +157,7 @@
                     <clix-secondary-button alternate="true" ng-click="onCloseButtonPress(false)">
                         Got it!
                     </clix-secondary-button>
+
                 </div>
                 <div class="button-container right-button-container">
                     <clix-is-logged-in>

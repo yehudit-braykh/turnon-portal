@@ -18,7 +18,8 @@
             'angular.filter',
             'ngTouch',
             'angular-cache',
-            'lz-string'
+            'lz-string',
+            'ngSanitize'
         ])
         .constant('clixConfig', {
             beta: true,
@@ -400,7 +401,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/container/view.offer-content-callout.html',
-    "<clix-content-callout sref=\"brand-offer({ id: '{{offer.campaign.id}}', offerId: '{{offer.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('offer', offer)\" is-favorited=\"isFavoriteContent('offer', offer)\" add-button=true add-favorite-tooltip=\"Add to saved offers\" remove-favorite-tooltip=\"Remove from saved offers\" type=offer entity=offer><header-element><clix-offer-logo offer=offer></clix-offer-logo></header-element><title-content>{{offer.title}}</title-content><subtitle-content>Expires {{offer.expirationDate | clixDate}}</subtitle-content></clix-content-callout>"
+    "<clix-content-callout sref=\"brand-offer({ id: '{{offer.campaign.id}}', offerId: '{{offer.id}}' })\" menu-items=menuItems on-favorite=\"onFavoritePress('offer', offer)\" is-favorited=\"isFavoriteContent('offer', offer)\" add-button=true add-favorite-tooltip=\"Add to saved offers\" remove-favorite-tooltip=\"Remove from saved offers\" type=offer entity=offer><header-element><clix-offer-logo offer=offer></clix-offer-logo></header-element><title-content>{{offer.title}}</title-content><subtitle-content>{{offer.campaign.title}}<br>Expires {{offer.expirationDate | clixDate}}</subtitle-content></clix-content-callout>"
   );
 
 
@@ -459,6 +460,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('ui/common/modal/alert/view.alert-modal.html',
+    "<clix-message-modal><modal-title>{{title}}</modal-title><modal-body><div ng-bind-html=message></div></modal-body><modal-confirm-button><clix-primary-button ng-click=onCloseButtonPress()>Done</clix-primary-button></modal-confirm-button></clix-message-modal>"
+  );
+
+
   $templateCache.put('ui/common/modal/confirmation/view.confirmation-modal.html',
     "<clix-message-modal><modal-title>{{title}}</modal-title><modal-body>{{message}}</modal-body><modal-cancel-button><clix-secondary-button alternate=true ng-click=onCloseButtonPress()>Cancel</clix-secondary-button></modal-cancel-button><modal-confirm-button><clix-primary-button ng-click=onConfirmButtonPress()>Remove</clix-primary-button></modal-confirm-button></clix-message-modal>"
   );
@@ -470,7 +476,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/modal/education/view.education-modal.html',
-    "<clix-modal modal-title={{title}}><div ng-if=!ready><clix-loader size=small></clix-loader></div><div ng-if=ready class=clix-education-modal><div class=education-modal-message ng-switch=type><div ng-switch-when=watchlist><clix-is-logged-in><logged-in>This video has been saved to your watchlist, available in your \"My ClixTV\" section.</logged-in><not-logged-in>You need to sign up for a free ClixTV account to be able to save a video to your watchlist.</not-logged-in></clix-is-logged-in></div><div ng-switch-when=brand><clix-is-logged-in><logged-in>This brand has been saved to your favorites, available in your \"My ClixTV\" section.</logged-in><not-logged-in>You need to sign up for a free ClixTV account to be able to save to your favorites.</not-logged-in></clix-is-logged-in></div><div ng-switch-when=charity><clix-is-logged-in><logged-in>This charity has been saved to your favorites, available in your \"My ClixTV\" section.</logged-in><not-logged-in>You need to sign up for a free ClixTV account to be able to save to your favorites.</not-logged-in></clix-is-logged-in></div><div ng-switch-when=category><clix-is-logged-in><logged-in>This category has been saved to your favorites, available in your \"My ClixTV\" section.</logged-in><not-logged-in>You need to sign up for a free ClixTV account to be able to save to your favorites.</not-logged-in></clix-is-logged-in></div><div ng-switch-when=celebrity><clix-is-logged-in><logged-in>This star has been saved to your favorites, available in your \"My ClixTV\" section.</logged-in><not-logged-in>You need to sign up for a free ClixTV account to be able to save to your favorites.</not-logged-in></clix-is-logged-in></div><div ng-switch-when=offer><clix-is-logged-in><logged-in><div class=education-modal-icon clix-trophy-indicator-icon></div>Congratulations! You've just received 50 reward points!<br><br>This offer has been saved to your offers, available in your \"My ClixTV\" section.</logged-in><not-logged-in><div class=education-modal-icon clix-error-indicator-icon></div>You missed out on 100 reward points! To earn rewards for watching, saving, clicking and sharing, sign up for a free ClixTV account!</not-logged-in></clix-is-logged-in></div><div ng-switch-when=offer-view><clix-is-logged-in><logged-in><div class=education-modal-icon clix-trophy-indicator-icon></div>You received 50 Reward Points, just for visiting this offer. Save the offer to receive even more!</logged-in><not-logged-in><div class=education-modal-icon clix-error-indicator-icon></div>You missed out on 50 reward points! To earn rewards for watching, saving, clicking and sharing, sign up for a free ClixTV account!</not-logged-in></clix-is-logged-in></div><div ng-switch-when=learn-more><clix-is-logged-in><logged-in><div class=education-modal-icon clix-trophy-indicator-icon></div>ClixTV will reward you for watching videos, engaging with brands & offers, and sharing to social networks. Wherever you see the rewards points badges, points can be earned.</logged-in><not-logged-in><div class=education-modal-icon clix-error-indicator-icon></div>After you sign up, ClixTV will reward you for watching videos, engaging with brands & offers, and sharing to social networks. Wherever you see the rewards points badges, points can be earned.</not-logged-in></clix-is-logged-in><div class=learn-more-violators-container><div class=learn-more-violator><clix-points-violator>50</clix-points-violator></div><div class=learn-more-violator><clix-violator>100 Reward Points</clix-violator></div></div><p>ClixTV reward points have a cash value that you can use toward goods and services.</p></div></div><div class=\"row education-modal-footer\"><div class=\"col-sm-5 save-preference-checkbox-container\"><clix-is-logged-in><logged-in><div ng-switch=type><div ng-switch-when=learn-more></div><div ng-switch-default><clix-checkbox ng-model=showAgainModel on-checkbox-change=onShowAgainChange(showAgainModel) label-text=\"Don't show this type again\"></clix-checkbox></div></div></logged-in><not-logged-in><div ng-switch=type><div ng-switch-when=learn-more></div><div ng-switch-when=offer-view><clix-checkbox ng-model=showAgainModel on-checkbox-change=onShowAgainChange(showAgainModel) label-text=\"Don't show this type again\"></clix-checkbox></div></div></not-logged-in></clix-is-logged-in></div><div class=\"col-sm-7 buttons-container\"><div class=\"button-container left-button-container\"><clix-secondary-button alternate=true ng-click=onCloseButtonPress(false)>Got it!</clix-secondary-button></div><div class=\"button-container right-button-container\"><clix-is-logged-in><not-logged-in><clix-primary-button ng-click=onSignUpPress()>Sign Up Now</clix-primary-button><a class=login-button ng-click=onLoginPress()>Log In Now</a></not-logged-in><logged-in><div ng-switch=type><div ng-switch-when=watchlist><clix-primary-button ui-sref=\"account({ section: 'watchlist' })\" ng-click=onCloseButtonPress(true)>Go to my Watchlist</clix-primary-button></div><div ng-switch-when=brand><clix-primary-button ui-sref=\"account({ section: 'favorites', tab: 'brand' })\" ng-click=onCloseButtonPress(true)>Go to my Favorites</clix-primary-button></div><div ng-switch-when=charity><clix-primary-button ui-sref=\"account({ section: 'favorites', tab: 'charity' })\" ng-click=onCloseButtonPress(true)>Go to my Favorites</clix-primary-button></div><div ng-switch-when=category><clix-primary-button ui-sref=\"account({ section: 'favorites', tab: 'category' })\" ng-click=onCloseButtonPress(true)>Go to my Favorites</clix-primary-button></div><div ng-switch-when=celebrity><clix-primary-button ui-sref=\"account({ section: 'favorites', tab: 'star' })\" ng-click=onCloseButtonPress(true)>Go to my Favorites</clix-primary-button></div><div ng-switch-when=offer><clix-primary-button ui-sref=\"account({ section: 'saved-offers' })\" ng-click=onCloseButtonPress(true)>Go to my Saved Offers</clix-primary-button></div></div></logged-in></clix-is-logged-in></div></div></div></div></clix-modal>"
+    "<clix-modal modal-title={{title}}><div ng-if=!ready><clix-loader size=small></clix-loader></div><div ng-if=ready class=clix-education-modal><div class=education-modal-message ng-switch=type><div ng-switch-when=watchlist><clix-is-logged-in><logged-in>This video has been saved to your watchlist, available in your \"My ClixTV\" section.</logged-in><not-logged-in>You need to sign up for a free ClixTV account to be able to save a video to your watchlist.</not-logged-in></clix-is-logged-in></div><div ng-switch-when=brand><clix-is-logged-in><logged-in>This brand has been saved to your favorites, available in your \"My ClixTV\" section.</logged-in><not-logged-in>You need to sign up for a free ClixTV account to be able to save to your favorites.</not-logged-in></clix-is-logged-in></div><div ng-switch-when=charity><clix-is-logged-in><logged-in>This charity has been saved to your favorites, available in your \"My ClixTV\" section.</logged-in><not-logged-in>You need to sign up for a free ClixTV account to be able to save to your favorites.</not-logged-in></clix-is-logged-in></div><div ng-switch-when=category><clix-is-logged-in><logged-in>This category has been saved to your favorites, available in your \"My ClixTV\" section.</logged-in><not-logged-in>You need to sign up for a free ClixTV account to be able to save to your favorites.</not-logged-in></clix-is-logged-in></div><div ng-switch-when=celebrity><clix-is-logged-in><logged-in>This star has been saved to your favorites, available in your \"My ClixTV\" section.</logged-in><not-logged-in>You need to sign up for a free ClixTV account to be able to save to your favorites.</not-logged-in></clix-is-logged-in></div><div ng-switch-when=offer><clix-is-logged-in><logged-in><div class=education-modal-icon clix-trophy-indicator-icon></div>Congratulations! You've just received 50 reward points!<br><br>This offer has been saved to your offers, available in your \"My ClixTV\" section.</logged-in><not-logged-in><div class=education-modal-icon clix-error-indicator-icon></div>You missed out on 100 reward points! To earn rewards for watching, saving, clicking and sharing, sign up for a free ClixTV account!</not-logged-in></clix-is-logged-in></div><div ng-switch-when=offer-view><clix-is-logged-in><logged-in><div class=education-modal-icon clix-trophy-indicator-icon></div>You received 50 Reward Points, just for visiting this offer. Save the offer to receive even more!</logged-in><not-logged-in><div class=education-modal-icon clix-error-indicator-icon></div>You missed out on 50 reward points! To earn rewards for watching, saving, clicking and sharing, sign up for a free ClixTV account!</not-logged-in></clix-is-logged-in></div><div ng-switch-when=learn-more><clix-is-logged-in><logged-in><div class=education-modal-icon clix-trophy-indicator-icon></div>ClixTV will reward you for watching videos, engaging with brands & offers, and sharing to social networks. Wherever you see the rewards points badges, points can be earned.</logged-in><not-logged-in><div class=education-modal-icon clix-error-indicator-icon></div>After you sign up, ClixTV will reward you for watching videos, engaging with brands & offers, and sharing to social networks. Wherever you see the rewards points badges, points can be earned.</not-logged-in></clix-is-logged-in><div class=learn-more-violators-container><div class=learn-more-violator><clix-points-violator>50</clix-points-violator></div><div class=learn-more-violator><clix-violator>100 Reward Points</clix-violator></div></div><p>ClixTV reward points have a cash value that you can use toward goods and services.</p></div><div ng-switch-when=signup-offer><div class=education-modal-icon clix-error-indicator-icon></div>You need to have an account with us to view offers! Sign up for a free account!</div></div><div class=\"row education-modal-footer\"><div class=\"col-sm-5 save-preference-checkbox-container\"><clix-is-logged-in><logged-in><div ng-switch=type><div ng-switch-when=learn-more></div><div ng-switch-when=signup-offer></div><div ng-switch-default><clix-checkbox ng-model=showAgainModel on-checkbox-change=onShowAgainChange(showAgainModel) label-text=\"Don't show this type again\"></clix-checkbox></div></div></logged-in><not-logged-in><div ng-switch=type><div ng-switch-when=learn-more></div><div ng-switch-when=signup-offer></div><div ng-switch-when=offer-view><clix-checkbox ng-model=showAgainModel on-checkbox-change=onShowAgainChange(showAgainModel) label-text=\"Don't show this type again\"></clix-checkbox></div></div></not-logged-in></clix-is-logged-in></div><div class=\"col-sm-7 buttons-container\"><div class=\"button-container left-button-container\"><clix-secondary-button alternate=true ng-click=onCloseButtonPress(false)>Got it!</clix-secondary-button></div><div class=\"button-container right-button-container\"><clix-is-logged-in><not-logged-in><clix-primary-button ng-click=onSignUpPress()>Sign Up Now</clix-primary-button><a class=login-button ng-click=onLoginPress()>Log In Now</a></not-logged-in><logged-in><div ng-switch=type><div ng-switch-when=watchlist><clix-primary-button ui-sref=\"account({ section: 'watchlist' })\" ng-click=onCloseButtonPress(true)>Go to my Watchlist</clix-primary-button></div><div ng-switch-when=brand><clix-primary-button ui-sref=\"account({ section: 'favorites', tab: 'brand' })\" ng-click=onCloseButtonPress(true)>Go to my Favorites</clix-primary-button></div><div ng-switch-when=charity><clix-primary-button ui-sref=\"account({ section: 'favorites', tab: 'charity' })\" ng-click=onCloseButtonPress(true)>Go to my Favorites</clix-primary-button></div><div ng-switch-when=category><clix-primary-button ui-sref=\"account({ section: 'favorites', tab: 'category' })\" ng-click=onCloseButtonPress(true)>Go to my Favorites</clix-primary-button></div><div ng-switch-when=celebrity><clix-primary-button ui-sref=\"account({ section: 'favorites', tab: 'star' })\" ng-click=onCloseButtonPress(true)>Go to my Favorites</clix-primary-button></div><div ng-switch-when=offer><clix-primary-button ui-sref=\"account({ section: 'saved-offers' })\" ng-click=onCloseButtonPress(true)>Go to my Saved Offers</clix-primary-button></div></div></logged-in></clix-is-logged-in></div></div></div></div></clix-modal>"
   );
 
 
@@ -660,7 +666,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/contact/view.contact-page.html',
-    "<div class=clix-contact-page><div class=contact-page-header>Contact Us</div><div class=\"row contact-page-container\"><div class=\"col-md-4 hidden-xs hidden-sm\" ng-include src=\"'ui/contact/components/view.contact-sidebar.html'\"></div><div class=\"col-md-8 contact-page-form-container\"><div class=contact-page-form-header>If you have any questions or comments, please fill out the form below!</div><div class=contact-page-form-header>We will get back to you as soon as we can!</div><div class=\"contact-page-form clix-form\"><div class=clix-form-row><label class=clix-form-input-label>What can we help you with?</label><clix-dropdown options=helpTypes placeholder-text=- ng-model=selectedHelpType></clix-dropdown></div><div class=clix-form-row><label class=clix-form-input-label>Name: <span class=clix-form-input-label-required>*</span></label><clix-form-input-error-field show-error=showNameError><form-field><input type=text class=clix-form-input-field ng-model=form.name></form-field><error-message>Name is required</error-message></clix-form-input-error-field></div><div class=clix-form-row><label class=clix-form-input-label>Email Address: <span class=clix-form-input-label-required>*</span></label><clix-form-input-error-field show-error=showEmailError><form-field><input type=email class=clix-form-input-field ng-model=form.email></form-field><error-message>Email address is required</error-message></clix-form-input-error-field></div><div class=clix-form-row><label class=clix-form-input-label>Subject: <span class=clix-form-input-label-required>*</span></label><clix-form-input-error-field show-error=showSubjectError><form-field><input type=text class=clix-form-input-field ng-model=form.subject></form-field><error-message>Subject is required</error-message></clix-form-input-error-field></div><div class=clix-form-row><label class=clix-form-input-label>Description: <span class=clix-form-input-label-required>*</span></label><clix-form-input-error-field show-error=showDescriptionError><form-field><textarea class=clix-form-textarea-field ng-model=form.description></textarea></form-field><error-message>Description is required</error-message></clix-form-input-error-field></div><div class=\"clix-form-row submit-button-container\"><div class=clix-form-submit-button><clix-primary-button ng-click=onSubmit()>Submit</clix-primary-button></div></div></div></div><div class=\"col-md-4 visible-xs visible-sm\" ng-include src=\"'ui/contact/components/view.contact-sidebar.html'\"></div></div></div>"
+    "<div class=clix-contact-page><div class=contact-page-header>Contact Us</div><div class=\"row contact-page-container\"><div class=\"col-md-4 hidden-xs hidden-sm\" ng-include src=\"'ui/contact/components/view.contact-sidebar.html'\"></div><div class=\"col-md-8 contact-page-form-container\"><div class=contact-page-form-header>If you have any questions or comments, please fill out the form below!</div><div class=contact-page-form-header>We will get back to you as soon as we can!</div><div class=\"contact-page-form clix-form\"><div class=clix-form-row><label class=clix-form-input-label>What can we help you with?</label><clix-dropdown options=helpTypes placeholder-text=- ng-model=selectedHelpType></clix-dropdown></div><div class=clix-form-row><label class=clix-form-input-label>Name: <span class=clix-form-input-label-required>*</span></label><clix-form-input-error-field show-error=showNameError><form-field><input type=text class=clix-form-input-field ng-model=form.name></form-field><error-message>Name is required</error-message></clix-form-input-error-field></div><div class=clix-form-row><label class=clix-form-input-label>Email Address: <span class=clix-form-input-label-required>*</span></label><clix-form-input-error-field show-error=showEmailError><form-field><input type=email class=clix-form-input-field ng-model=form.email></form-field><error-message>Email address is required</error-message></clix-form-input-error-field></div><div class=clix-form-row><label class=clix-form-input-label>Subject: <span class=clix-form-input-label-required>*</span></label><clix-form-input-error-field show-error=showSubjectError><form-field><input type=text class=clix-form-input-field ng-model=form.subject></form-field><error-message>Subject is required</error-message></clix-form-input-error-field></div><div class=clix-form-row><label class=clix-form-input-label>Message: <span class=clix-form-input-label-required>*</span></label><clix-form-input-error-field show-error=showDescriptionError><form-field><textarea class=clix-form-textarea-field ng-model=form.description></textarea></form-field><error-message>Message is required</error-message></clix-form-input-error-field></div><div class=\"clix-form-row submit-button-container\"><div class=clix-form-submit-button><clix-primary-button ng-click=onSubmit()>Submit</clix-primary-button></div></div></div></div><div class=\"col-md-4 visible-xs visible-sm\" ng-include src=\"'ui/contact/components/view.contact-sidebar.html'\"></div></div></div>"
   );
 
 
@@ -1805,18 +1811,14 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         'knetikService',
         function($q, $log, $scope, $rootScope, $state, $stateParams, brandsService, userService, modalService, catchMediaService, knetikService) {
 
-            if ($stateParams.offerId) {
-                modalService.showModal({
-                    controller: 'OfferModalController',
-                    templateUrl: 'ui/common/modal/offer/view.offer-modal.html',
-                    data: {
-                        offerId: $stateParams.offerId
-                    }
-                });
-            }
-
             $scope.onOfferPress = function(offer) {
                 if ($stateParams.offerId === offer.id) {
+                    _showOfferModal();
+                }
+            };
+
+            function _showOfferModal() {
+                if ($scope.loggedInUser) {
                     modalService.showModal({
                         controller: 'OfferModalController',
                         templateUrl: 'ui/common/modal/offer/view.offer-modal.html',
@@ -1824,8 +1826,17 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                             offerId: $stateParams.offerId
                         }
                     });
+                } else {
+                    modalService.showModal({
+                        templateUrl: 'ui/common/modal/education/view.education-modal.html',
+                        controller: 'EducationModalController',
+                        data: {
+                            type: 'signup-offer',
+                            id: $stateParams.offerId
+                        }
+                    });
                 }
-            };
+            }
 
             function _resetIsFavorite() {
                 $scope.isFavorite = userService.isFavoriteBrand($stateParams.id);
@@ -1837,7 +1848,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             });
 
             $rootScope.$on('user.logout', function(event, data) {
-                delete $scope.loggedInUser;
+                $scope.loggedInUser = undefined;
                 _resetIsFavorite();
             });
 
@@ -1853,6 +1864,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     function onSuccess(data) {
                         $scope.loggedInUser = data;
                         _resetIsFavorite();
+                        if ($stateParams.offerId) {
+                            _showOfferModal();
+                        }
                     }
                 );
 
@@ -4213,6 +4227,31 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 }());
 (function() {
 
+    var AlertModalController = [
+        '$scope',
+        '$uibModalInstance',
+        'data',
+        'modalService',
+        function($scope, $uibModalInstance, data, modalService) {
+            $scope.title = data.title;
+            $scope.message = data.message;
+
+            $scope.onCloseButtonPress = function() {
+                if (modalService.getNumberOfModalsInStack() >= 2) {
+                    modalService.pop();
+                } else {
+                    $uibModalInstance.close();
+                }
+            }
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .controller('AlertModalController', AlertModalController);
+}());
+(function() {
+
     var ConfirmationModalController = [
         '$scope',
         '$rootScope',
@@ -4425,6 +4464,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     case 'learn-more':
                         title = (isLoggedIn) ? 'Earn Rewards!' : 'Earn Reward Points!';
                         break;
+
+                    case 'signup-offer':
+                        title = 'Sign Up Now';
+                        break;
                 }
 
                 return title;
@@ -4455,6 +4498,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     case 'offer-view':
                     case 'offer':
                         return offersService.getOfferById(id);
+
+                    case 'signup-offer':
+                        return $q.when();
                 }
 
                 throw new Error('Error looking up item for type ' + itemData.type);
@@ -6035,12 +6081,13 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     var ContactPageController = [
         '$scope',
+        '$log',
         '$rootScope',
         '$stateParams',
         'userService',
         'notificationsService',
         'modalService',
-        function($scope, $rootScope, $stateParams, userService, notificationsService, modalService) {
+        function($scope, $log, $rootScope, $stateParams, userService, notificationsService, modalService) {
 
             $scope.helpTypes = [
                 {
@@ -6082,11 +6129,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 email: '',
                 subject: '',
                 description: ''
-            }
+            };
 
             $scope.onSubmit = function() {
-                modalService.showMessageModal('Success', 'Your message has been sent. We will respond back as soon as we can!');
-                return;
                 var error = false,
                     helpType = ($scope.selectedHelpType) ? $scope.selectedHelpType.data : '';
                 _resetErrorStates();
@@ -6114,10 +6159,23 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     return;
                 }
 
-                notificationsService.sendContactNotification(helpType, $scope.form.name, $scope.form.email, $scope.form.subject, $scope.form.description)
+                notificationsService.sendContactNotification(helpType || 'help', $scope.form.name, $scope.form.email, $scope.form.subject, $scope.form.description)
                     .then(
                         function onSuccess(data) {
-                            console.log(data);
+                            if (!data || !data.success) {
+                                throw new Error('Invalid response from API');
+                            }
+                            modalService.showAlertModal('Success', 'Your message has been sent.<br />We will respond back as soon as we can!');
+                            $scope.form = {
+                                subject: '',
+                                description: ''
+                            };
+                        }
+                    )
+                    .catch(
+                        function onError(error) {
+                            $log.error(error);
+                            modalService.showAlertModal('Error', 'There was an error sending your message.<br />Please try again later.');
                         }
                     )
             };
@@ -6879,7 +6937,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                                 return {
                                     label: series.title,
                                     series: series,
-                                    totalEpisodes: series.seasons.seasons[0].episodes.length,
+                                    totalEpisodes: (series.seasons.seasons[0]) ? series.seasons.seasons[0].episodes.length : 0,
                                     onClick: function(option) {
                                         $scope.selectedSeries = option;
                                         _setEpisodeList();
@@ -7491,6 +7549,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 });
 
                 if (nextVideos.length > 0) {
+
+                    nextVideos.sort(function(a, b) {
+                        return parseInt(a.episodeNumber) - parseInt(b.episodeNumber);
+                    });
+
                     $scope.nextVideo = nextVideos[0];
                     return;
                 }
@@ -7649,7 +7712,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         androidhls: true,
                         autostart: $scope.autoPlay,
                         aspectratio: '16:9',
-                        controls: true,
+                        'controlbar.idlehide': true,
                         width: '100%',
                         //repeat: true,
                         icons: false,
@@ -9280,9 +9343,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     return deferred.promise;
                 },
 
-                showMessageModal: function(title, message) {
+                showAlertModal: function(title, message) {
                     this.showModal({
-                        templateUrl: 'ui/common/modal/view.message-modal.html',
+                        controller: 'AlertModalController',
+                        templateUrl: 'ui/common/modal/alert/view.alert-modal.html',
                         data: {
                             title: title,
                             message: message
@@ -9493,7 +9557,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         'catchMediaService',
         function($q, $http, $log, $rootScope, BrandListModel, OfferListModel, CharityListModel, CelebrityListModel, CategoryListModel, VideoListModel, AccountSettingListModel, UserModel, modalService, catchMediaService) {
 
-            var loggedInUser;
+            var loggedInUser, loggedInUserChecked;
 
             function _getFavoriteMethodForType(type, isDelete) {
                 switch(type) {
@@ -9768,13 +9832,22 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 },
 
                 getLoggedInUser: function() {
-                    return $q.when(loggedInUser);
+                    var deferred = $q.defer();
+                    if (loggedInUserChecked) {
+                        return $q.when(loggedInUser);
+                    }
+                    $rootScope.$on('user.login', function() {
+                        deferred.resolve(loggedInUser);
+                    });
+                    return deferred.promise;
                 },
 
                 setLoggedInUser: function() {
                     return $http.get('/api/account/get_current')
                         .then(
                             function onSuccess(data) {
+
+                                loggedInUserChecked = true;
 
                                 loggedInUser = data.data;
 

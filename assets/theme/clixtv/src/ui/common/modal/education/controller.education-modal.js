@@ -46,6 +46,10 @@
                     case 'learn-more':
                         title = (isLoggedIn) ? 'Earn Rewards!' : 'Earn Reward Points!';
                         break;
+
+                    case 'signup-offer':
+                        title = 'Sign Up Now';
+                        break;
                 }
 
                 return title;
@@ -76,6 +80,9 @@
                     case 'offer-view':
                     case 'offer':
                         return offersService.getOfferById(id);
+
+                    case 'signup-offer':
+                        return $q.when();
                 }
 
                 throw new Error('Error looking up item for type ' + itemData.type);

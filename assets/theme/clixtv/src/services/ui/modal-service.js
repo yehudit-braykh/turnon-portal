@@ -62,9 +62,10 @@
                     return deferred.promise;
                 },
 
-                showMessageModal: function(title, message) {
+                showAlertModal: function(title, message) {
                     this.showModal({
-                        templateUrl: 'ui/common/modal/view.message-modal.html',
+                        controller: 'AlertModalController',
+                        templateUrl: 'ui/common/modal/alert/view.alert-modal.html',
                         data: {
                             title: title,
                             message: message
