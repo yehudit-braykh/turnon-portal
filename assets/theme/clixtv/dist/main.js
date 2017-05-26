@@ -7918,7 +7918,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         width: '100%',
                         //repeat: true,
                         icons: false,
-                        image: $scope.video.thumbnail,
+                        image: $scope.video.endPoster || $scope.video.thumbnail,
                         mediaid: $scope.video.id
                     });
 
@@ -8719,6 +8719,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
                     if (data.content.PosterH) {
                         this.thumbnail = data.content.PosterH.downloadUrl;
+                    }
+
+                    if (data.content.EndPoster) {
+                        this.endPoster = data.content.EndPoster.downloadUrl;
                     }
 
                     if (data.content.HLSStream) {

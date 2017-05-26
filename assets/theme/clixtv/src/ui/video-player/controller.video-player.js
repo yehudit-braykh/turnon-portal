@@ -24,7 +24,7 @@
                         width: '100%',
                         //repeat: true,
                         icons: false,
-                        image: $scope.video.thumbnail,
+                        image: $scope.video.endPoster || $scope.video.thumbnail,
                         mediaid: $scope.video.id
                     });
 

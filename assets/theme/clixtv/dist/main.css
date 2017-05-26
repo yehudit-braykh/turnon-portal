@@ -17414,6 +17414,10 @@ button.close {
 @media (min-width: 992px) {
   .clix-home-page-banner .home-banner-content {
     padding-left: 30px;
+  }
+}
+@media (min-width: 1200px) {
+  .clix-home-page-banner .home-banner-content {
     margin-top: -70px;
   }
 }

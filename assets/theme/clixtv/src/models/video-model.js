@@ -46,6 +46,10 @@
                         this.thumbnail = data.content.PosterH.downloadUrl;
                     }
 
+                    if (data.content.EndPoster) {
+                        this.endPoster = data.content.EndPoster.downloadUrl;
+                    }
+
                     if (data.content.HLSStream) {
                         this.streamUrl = data.content.HLSStream.downloadUrl;
                     } else if (data.content.MezzanineVideo) {
