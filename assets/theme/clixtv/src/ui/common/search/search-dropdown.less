@@ -6,6 +6,11 @@
         .flex-display;
         .align-items(center);
         padding: 8px 20px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: @color-gray22;
+        }
 
         .search-result-image {
             width: 45px;
@@ -35,6 +40,25 @@
             font-size: 10px;
             letter-spacing: 1.5px;
             text-transform: uppercase;
+        }
+    }
+
+    .dropdown-empty-results-container {
+        padding: 40px 40px 50px;
+        text-align: center;
+        color: @color-gray2;
+
+        .dropdown-empty-results-message {
+            font-family: @font-primary-bold;
+            font-size: 18px;
+            line-height: 22px;
+        }
+
+        .dropdown-empty-results-desc {
+            font-family: @font-primary;
+            font-size: 14px;
+            line-height: 22px;
+            margin-top: 8px;
         }
     }
 }

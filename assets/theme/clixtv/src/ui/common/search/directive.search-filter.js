@@ -17,6 +17,16 @@
             },
             link: function(scope) {
                 scope.term = '';
+
+                scope.onBodyPress = function() {
+                    scope.dropdownForceHide = true;
+                    console.log('true');
+                };
+
+                scope.onInputFocus = function() {
+                    scope.dropdownForceHide = false;
+                    console.log('false');
+                }
             }
         }
     };

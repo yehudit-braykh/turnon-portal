@@ -17,15 +17,28 @@
 
             function _onSearchTermChange() {
                 var method = _getSearchMethod();
+                $scope.results = undefined;
+                $scope.empty = false;
                 if (!$scope.term || $scope.term.length < 2) {
                     return;
                 }
+                $scope.searching = true;
                 searchService[method]($scope.term, 0, 5)
                     .then(
                         function onSuccess(data) {
-                            $scope.results = data;
+                            if (!data || data.length === 0) {
+                                $scope.empty = true;
+                            } else {
+                                $scope.results = data;
+                            }
+                            console.log($scope.empty);
                         }
-                    );
+                    )
+                    .finally(
+                        function onFinally() {
+                            $scope.searching = false;
+                        }
+                    )
             }
 
             $scope.$watch('term', _onSearchTermChange)

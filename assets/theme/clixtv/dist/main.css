@@ -13713,6 +13713,10 @@ button.close {
   -ms-align-items: center;
   align-items: center;
   padding: 8px 20px;
+  cursor: pointer;
+}
+.clix-search-dropdown .clix-search-result-item:hover {
+  background-color: #363636;
 }
 .clix-search-dropdown .clix-search-result-item .search-result-image {
   width: 45px;
@@ -13745,6 +13749,22 @@ button.close {
   font-size: 10px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
+}
+.clix-search-dropdown .dropdown-empty-results-container {
+  padding: 40px 40px 50px;
+  text-align: center;
+  color: #8a8a8a;
+}
+.clix-search-dropdown .dropdown-empty-results-container .dropdown-empty-results-message {
+  font-family: 'montserratsemibold', sans-serif;
+  font-size: 18px;
+  line-height: 22px;
+}
+.clix-search-dropdown .dropdown-empty-results-container .dropdown-empty-results-desc {
+  font-family: 'montserratregular', sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+  margin-top: 8px;
 }
 .clix-filter-page {
   padding: 75px 9px 73px 9px;

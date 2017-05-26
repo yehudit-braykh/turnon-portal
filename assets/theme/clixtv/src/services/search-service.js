@@ -51,7 +51,7 @@
                     $http.get('/api/search/charity?keyword=' + term, {timeout: searchCanceler.promise})
                         .then(
                             function onSuccess(data) {
-                                if (!data.status || !data.data) {
+                                if (!data.status) {
                                     return;
                                 }
                                 deferred.resolve(new CharityListModel(data.data));

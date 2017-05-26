@@ -2,11 +2,11 @@
     <div class="row">
         <div class="col-md-7">
             <div class="search-bar-container">
-                <div class="search-bar">
+                <div class="search-bar" clix-click-anywhere-else="onBodyPress">
                     <i class="search-icon icon-search-icon-bottom-nav"></i>
-                    <input type="text" class="search-input" ng-model="term" placeholder="{{searchPlaceholder}}" />
+                    <input type="text" class="search-input" ng-model="term" placeholder="{{searchPlaceholder}}" ng-focus="onInputFocus()" />
                     <div class="search-results-dropdown-container">
-                        <clix-search-dropdown term="term" type="type"></clix-search-dropdown>
+                        <clix-search-dropdown term="term" type="type" force-hide="dropdownForceHide"></clix-search-dropdown>
                     </div>
                 </div>
             </div>

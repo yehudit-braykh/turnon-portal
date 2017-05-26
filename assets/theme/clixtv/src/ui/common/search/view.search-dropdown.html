@@ -1,4 +1,15 @@
-<div class="clix-search-dropdown" ng-if="results">
+<div class="clix-search-dropdown" ng-if="(results || searching || empty) && !forceHide">
+    <div ng-if="searching">
+        <clix-loader size="small"></clix-loader>
+    </div>
+    <div class="dropdown-empty-results-container" ng-if="empty">
+        <div class="dropdown-empty-results-message">
+            No results found for &ldquo;{{term}}&rdquo;
+        </div>
+        <div class="dropdown-empty-results-desc">
+            Please make sure you spelled everything correctly, or use different words.
+        </div>
+    </div>
     <div ng-if="results.charities">
         <div ng-repeat="charity in results.charities">
             <clix-charity-search-result-item charity="charity"></clix-charity-search-result-item>

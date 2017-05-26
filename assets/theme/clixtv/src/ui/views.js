@@ -442,22 +442,22 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/search/view.base-search-result-item.html',
-    "<div class=clix-search-result-item><div class=\"search-result-image search-result-image-circle\" ng-transclude=searchResultImageCircle ng-if=searchResultImageCircle></div><div class=search-result-image ng-transclude=searchResultImage ng-if=!searchResultImageCircle></div><div class=search-result-info><div class=search-result-title ng-transclude=searchResultTitle></div><div class=search-result-subtitle ng-transclude=searchResultSubtitle></div></div></div>"
+    "<div class=clix-search-result-item ui-sref={{sref}}><div class=\"search-result-image search-result-image-circle\" ng-transclude=searchResultImageCircle ng-if=searchResultImageCircle></div><div class=search-result-image ng-transclude=searchResultImage ng-if=!searchResultImageCircle></div><div class=search-result-info><div class=search-result-title ng-transclude=searchResultTitle></div><div class=search-result-subtitle ng-transclude=searchResultSubtitle></div></div></div>"
   );
 
 
   $templateCache.put('ui/common/search/view.charity-search-result-item.html',
-    "<clix-base-search-result-item><search-result-image-circle><clix-charity-asset-logo charity=charity minimized=true></clix-charity-asset-logo></search-result-image-circle><search-result-title>{{charity.title}}</search-result-title><search-result-subtitle>Charity</search-result-subtitle></clix-base-search-result-item>"
+    "<clix-base-search-result-item sref=\"charity({ id: '{{charity.id}}' })\"><search-result-image-circle><clix-charity-asset-logo charity=charity minimized=true></clix-charity-asset-logo></search-result-image-circle><search-result-title>{{charity.title}}</search-result-title><search-result-subtitle>Charity</search-result-subtitle></clix-base-search-result-item>"
   );
 
 
   $templateCache.put('ui/common/search/view.search-dropdown.html',
-    "<div class=clix-search-dropdown ng-if=results><div ng-if=results.charities><div ng-repeat=\"charity in results.charities\"><clix-charity-search-result-item charity=charity></clix-charity-search-result-item></div></div></div>"
+    "<div class=clix-search-dropdown ng-if=\"(results || searching || empty) && !forceHide\"><div ng-if=searching><clix-loader size=small></clix-loader></div><div class=dropdown-empty-results-container ng-if=empty><div class=dropdown-empty-results-message>No results found for &ldquo;{{term}}&rdquo;</div><div class=dropdown-empty-results-desc>Please make sure you spelled everything correctly, or use different words.</div></div><div ng-if=results.charities><div ng-repeat=\"charity in results.charities\"><clix-charity-search-result-item charity=charity></clix-charity-search-result-item></div></div></div>"
   );
 
 
   $templateCache.put('ui/common/search/view.search-filter.html',
-    "<div class=clix-search-filter><div class=row><div class=col-md-7><div class=search-bar-container><div class=search-bar><i class=\"search-icon icon-search-icon-bottom-nav\"></i> <input type=text class=search-input ng-model=term placeholder={{searchPlaceholder}}><div class=search-results-dropdown-container><clix-search-dropdown term=term type=type></clix-search-dropdown></div></div></div></div><div class=col-md-5 ng-if=\"showFilters !== 'false'\"><div class=filters-container><div class=filter-bar><clix-dropdown options=filterOptions placeholder-text={{filterPlaceholder}}></clix-dropdown></div><div class=filter-bar><clix-dropdown options=sortOptions placeholder-text={{sortPlaceholder}}></clix-dropdown></div></div></div></div></div>"
+    "<div class=clix-search-filter><div class=row><div class=col-md-7><div class=search-bar-container><div class=search-bar clix-click-anywhere-else=onBodyPress><i class=\"search-icon icon-search-icon-bottom-nav\"></i> <input type=text class=search-input ng-model=term placeholder={{searchPlaceholder}} ng-focus=onInputFocus()><div class=search-results-dropdown-container><clix-search-dropdown term=term type=type force-hide=dropdownForceHide></clix-search-dropdown></div></div></div></div><div class=col-md-5 ng-if=\"showFilters !== 'false'\"><div class=filters-container><div class=filter-bar><clix-dropdown options=filterOptions placeholder-text={{filterPlaceholder}}></clix-dropdown></div><div class=filter-bar><clix-dropdown options=sortOptions placeholder-text={{sortPlaceholder}}></clix-dropdown></div></div></div></div></div>"
   );
 
 

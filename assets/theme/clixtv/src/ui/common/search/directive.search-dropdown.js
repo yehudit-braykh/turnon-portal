@@ -7,7 +7,8 @@
             controller: 'SearchDropdownController',
             scope: {
                 term: '=',
-                type: '=?'
+                type: '=?',
+                forceHide: '=?'
             }
         }
     };
@@ -21,6 +22,9 @@
                 searchResultImageCircle: '?searchResultImageCircle',
                 searchResultTitle: 'searchResultTitle',
                 searchResultSubtitle: 'searchResultSubtitle'
+            },
+            scope: {
+                sref: '@'
             },
             link: function(scope, element, attributes, ctrl, transclude) {
                 scope.searchResultImageCircle = transclude.isSlotFilled('searchResultImageCircle');
