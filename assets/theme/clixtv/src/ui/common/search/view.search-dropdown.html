@@ -1,3 +1,7 @@
-<div class="clix-search-dropdown">
-
+<div class="clix-search-dropdown" ng-if="results">
+    <div ng-if="results.charities">
+        <div ng-repeat="charity in results.charities">
+            <clix-charity-search-result-item charity="charity"></clix-charity-search-result-item>
+        </div>
+    </div>
 </div>

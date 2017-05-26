@@ -6,7 +6,8 @@
             replace: true,
             templateUrl: 'ui/common/logos/view.brand-logo.html',
             scope: {
-                brand: '='
+                brand: '=',
+                minimized: '@?'
             }
         }
     };
@@ -17,7 +18,8 @@
             replace: true,
             templateUrl: 'ui/common/logos/view.charity-logo.html',
             scope: {
-                charity: '='
+                charity: '=',
+                minimized: '@?'
             }
         }
     };

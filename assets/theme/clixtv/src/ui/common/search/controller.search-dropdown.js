@@ -5,10 +5,11 @@
         function($scope, searchService) {
 
             function _getSearchMethod() {
-                return 'getSearchResults';
                 switch ($scope.type) {
                     case 'brand':
                         return 'getBrandSearchResults';
+                    case 'charity':
+                        return 'getCharitySearchResults';
                     default:
                         return 'getSearchResults';
                 }
@@ -22,7 +23,7 @@
                 searchService[method]($scope.term, 0, 5)
                     .then(
                         function onSuccess(data) {
-                            console.log(data);
+                            $scope.results = data;
                         }
                     );
             }

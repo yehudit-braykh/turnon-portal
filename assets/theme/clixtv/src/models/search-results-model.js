@@ -16,6 +16,12 @@
                     this.videos = new VideoListModel(data.videos);
                     this.offers = new OfferListModel(data.offers);
                     this.charities = new CharityListModel(data.charities);
+
+                    if (data._id) {
+                        this.id = data._id;
+                        this.title = data.title;
+                        this.type = data.media_type;
+                    }
                 }
             }
         ]);
