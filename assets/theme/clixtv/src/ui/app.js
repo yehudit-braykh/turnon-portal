@@ -51,6 +51,7 @@
                 $urlRouterProvider.when('', '/');
                 $urlRouterProvider.otherwise('/404');
                 $httpProvider.interceptors.push('apiInterceptor');
+                // $locationProvider.html5Mode(true);
 
                 $stateProvider
                     .state('404', {

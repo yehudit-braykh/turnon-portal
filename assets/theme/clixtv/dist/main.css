@@ -14473,13 +14473,6 @@ button.close {
     margin: 5px 0 8px -2px;
   }
 }
-@media (min-width: 1600px) {
-  .clix-video-content-callout .video-info-container .video-episode-title {
-    font-size: 45px;
-    line-height: 45px;
-    margin-left: -4px;
-  }
-}
 .clix-video-content-callout .video-info-container .video-series-title {
   font-size: 8px;
   text-transform: uppercase;

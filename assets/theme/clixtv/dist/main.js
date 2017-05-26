@@ -51,6 +51,7 @@
                 $urlRouterProvider.when('', '/');
                 $urlRouterProvider.otherwise('/404');
                 $httpProvider.interceptors.push('apiInterceptor');
+                // $locationProvider.html5Mode(true);
 
                 $stateProvider
                     .state('404', {
@@ -443,7 +444,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/container/view.video-content-callout.html',
-    "<div class=clix-video-content-callout ng-class=\"{'active': overlayActive, 'minimized': minimized === 'true'}\" ng-show=ready><img ng-src={{video.thumbnail}} class=video-thumbnail clix-on-image-load=onImageLoad($event)><div class=video-thumbnail-background style=\"background-image: url('{{video.thumbnail}}')\"></div><div class=video-content-container><div class=video-menu-container><clix-tooltip-menu items=items menuopen=menuVisible class=menu-container ng-hide=!menuVisible></clix-tooltip-menu></div><div class=star-info-container><div class=star-info-background style=\"background-image: url('{{video.thumbnail}}')\"></div><div class=star-info><a ui-sref=\"star({ id: video.celebrity.id })\" class=star-avatar style=\"background-image: url({{video.celebrity.thumbnail}})\"></a> <a ui-sref=\"star({ id: video.celebrity.id })\" class=star-name>{{video.celebrity.name}}</a><div clix-tooltip-trigger tooltip-id=actions-button-{{$id}}><a class=video-menu-icon ng-click=menuClicked() clix-click-anywhere-else=bodyClicked><i class=icon-ellipsis></i></a></div></div></div><div class=video-info-container><div class=video-episode-number>Episode {{video.episodeNumber}}:</div><div class=video-episode-title>{{video.title}}</div><div class=video-series-title>{{video.seriesTitle}} Series</div><div class=video-episode-runtime>{{video.runtime}}</div><div class=brands-container><div class=brand-icon ng-repeat=\"brand in video.brands.brands | limitTo: 4 track by $index\" style=\"background-image: url({{brand.transparentThumbnail}})\"></div><div class=brand-icon style=\"background-image: url({{video.charity.transparentThumbnail}})\"></div></div></div><div class=video-content-overlay ng-class=\"{'active': overlayActive}\" ng-click=onClick($event) ng-mousemove=onMouseover() ng-mouseleave=onMouseleave()><a class=video-watchlist-button ng-class=\"{'icon-redeem-plus-icon': !isOnWatchlist, 'icon-remove-icon remove-icon': isOnWatchlist}\" clix-tooltip-trigger tooltip-id=watchlist-button-{{$id}} ng-click=onWatchlistPress()></a><div class=video-play-button><a ui-sref=\"video({ id: video.id })\"><img src=/assets/theme/clixtv/dist/images/gradient-clix-icon.svg></a></div></div><div class=video-points-container clix-tooltip-trigger tooltip-id=signup-watch-points-{{$id}}><div ng-mouseenter=onMouseover() ng-mouseleave=onMouseleave()><clix-violator>100 Reward Points</clix-violator></div></div></div><div class=video-hidden-container ng-if=videoUnavailable><div class=video-hidden-inner-container><div class=video-hidden-content><div class=video-hidden-content-border></div><div class=video-hidden-title>Continue the series!<br>Sign up for a free ClixTV account!</div><div class=video-hidden-signup-button><a ng-click=onSignupPress() class=primary-button>Sign Up Now</a></div><div class=video-hidden-login-container><a ng-click=onLoginPress() class=video-hidden-login>Log In Now</a></div><div class=video-hidden-content-border></div></div></div></div></div><clix-tooltip tooltip-id=actions-button-{{$id}}>Actions</clix-tooltip><clix-tooltip tooltip-id=watchlist-button-{{$id}}>{{isOnWatchlist ? 'Remove from your watchlist' : 'Add to your Watchlist'}}</clix-tooltip><clix-tooltip tooltip-id=signup-watch-points-{{$id}}><clix-is-logged-in><logged-in>You will receive 100 Reward Points for watching this video!</logged-in><not-logged-in>After you sign up, you will receive 100 Reward Points for watching this video! <a clix-learn-more-modal-trigger>Learn More</a>.</not-logged-in></clix-is-logged-in></clix-tooltip>"
+    "<div class=clix-video-content-callout ng-class=\"{'active': overlayActive, 'minimized': minimized === 'true'}\" ng-show=ready><img ng-src={{video.thumbnail}} class=video-thumbnail clix-on-image-load=onImageLoad($event)><div class=video-thumbnail-background style=\"background-image: url('{{video.thumbnail}}')\"></div><div class=video-content-container><div class=video-menu-container><clix-tooltip-menu items=items menuopen=menuVisible class=menu-container ng-hide=!menuVisible></clix-tooltip-menu></div><div class=star-info-container><div class=star-info-background style=\"background-image: url('{{video.thumbnail}}')\"></div><div class=star-info><a ui-sref=\"star({ id: video.celebrity.id })\" class=star-avatar style=\"background-image: url({{video.celebrity.thumbnail}})\"></a> <a ui-sref=\"star({ id: video.celebrity.id })\" class=star-name>{{video.celebrity.name}}</a><div clix-tooltip-trigger tooltip-id=actions-button-{{$id}}><a class=video-menu-icon ng-click=menuClicked() clix-click-anywhere-else=bodyClicked><i class=icon-ellipsis></i></a></div></div></div><div class=video-info-container><div class=video-episode-number>Episode {{video.episodeNumber}}:</div><div class=video-episode-title>{{video.title}}</div><div class=video-series-title>{{video.seriesTitle}} Series</div><div class=video-episode-runtime>{{video.runtime}}</div><div class=brands-container><div class=brand-icon ng-repeat=\"brand in video.brands.brands | limitTo: 4 track by $index\" style=\"background-image: url({{brand.transparentThumbnail}})\"></div><div class=brand-icon style=\"background-image: url({{video.charity.transparentThumbnail}})\"></div></div></div><div class=video-content-overlay ng-class=\"{'active': overlayActive}\" ng-click=onClick($event) ng-mousemove=onMouseover() ng-mouseleave=onMouseleave()><a class=video-watchlist-button ng-class=\"{'icon-redeem-plus-icon': !isOnWatchlist, 'icon-remove-icon remove-icon': isOnWatchlist}\" clix-tooltip-trigger tooltip-id=watchlist-button-{{$id}} ng-click=onWatchlistPress()></a><div class=video-play-button><a ui-sref=\"video({ id: video.id })\"><img src=/assets/theme/clixtv/dist/images/gradient-clix-player-icon.svg></a></div></div><div class=video-points-container clix-tooltip-trigger tooltip-id=signup-watch-points-{{$id}}><div ng-mouseenter=onMouseover() ng-mouseleave=onMouseleave()><clix-violator>100 Reward Points</clix-violator></div></div></div><div class=video-hidden-container ng-if=videoUnavailable><div class=video-hidden-inner-container><div class=video-hidden-content><div class=video-hidden-content-border></div><div class=video-hidden-title>Continue the series!<br>Sign up for a free ClixTV account!</div><div class=video-hidden-signup-button><a ng-click=onSignupPress() class=primary-button>Sign Up Now</a></div><div class=video-hidden-login-container><a ng-click=onLoginPress() class=video-hidden-login>Log In Now</a></div><div class=video-hidden-content-border></div></div></div></div></div><clix-tooltip tooltip-id=actions-button-{{$id}}>Actions</clix-tooltip><clix-tooltip tooltip-id=watchlist-button-{{$id}}>{{isOnWatchlist ? 'Remove from your watchlist' : 'Add to your Watchlist'}}</clix-tooltip><clix-tooltip tooltip-id=signup-watch-points-{{$id}}><clix-is-logged-in><logged-in>You will receive 100 Reward Points for watching this video!</logged-in><not-logged-in>After you sign up, you will receive 100 Reward Points for watching this video! <a clix-learn-more-modal-trigger>Learn More</a>.</not-logged-in></clix-is-logged-in></clix-tooltip>"
   );
 
 
@@ -6369,10 +6370,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                                 throw new Error('Invalid response from API');
                             }
                             modalService.showAlertModal('Success', 'Your message has been sent.<br />We will respond back as soon as we can!');
-                            $scope.form = {
-                                subject: '',
-                                description: ''
-                            };
+                            $scope.form.subject = '';
+                            $scope.form.description = '';
                         }
                     )
                     .catch(
@@ -9254,12 +9253,17 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
                 sendContactNotification: function(type, name, email, subject, message) {
                     return $http.post(clixConfig.baseApi + '/notifications/contact', {
-                        type: type,
-                        name: name,
-                        email: email,
-                        subject: subject,
-                        message: message
-                    });
+                            type: type,
+                            name: name,
+                            email: email,
+                            subject: subject,
+                            message: message
+                        })
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
+                            }
+                        );
                 }
             }
         }

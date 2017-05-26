@@ -21,12 +21,17 @@
 
                 sendContactNotification: function(type, name, email, subject, message) {
                     return $http.post(clixConfig.baseApi + '/notifications/contact', {
-                        type: type,
-                        name: name,
-                        email: email,
-                        subject: subject,
-                        message: message
-                    });
+                            type: type,
+                            name: name,
+                            email: email,
+                            subject: subject,
+                            message: message
+                        })
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
+                            }
+                        );
                 }
             }
         }

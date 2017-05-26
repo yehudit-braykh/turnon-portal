@@ -87,10 +87,8 @@
                                 throw new Error('Invalid response from API');
                             }
                             modalService.showAlertModal('Success', 'Your message has been sent.<br />We will respond back as soon as we can!');
-                            $scope.form = {
-                                subject: '',
-                                description: ''
-                            };
+                            $scope.form.subject = '';
+                            $scope.form.description = '';
                         }
                     )
                     .catch(
