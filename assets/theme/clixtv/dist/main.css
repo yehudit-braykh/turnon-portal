@@ -17352,7 +17352,7 @@ button.close {
   position: relative;
   left: -300px;
 }
-@media (min-width: 768px) {
+@media (min-width: 480px) {
   .clix-home-page-banner .mobile-home-banner .home-banner-background {
     left: 0;
   }
