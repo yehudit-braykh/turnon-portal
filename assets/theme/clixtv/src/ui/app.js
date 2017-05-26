@@ -30,6 +30,9 @@
             // Enable or disable points, changes all violators to reflect state
             pointsEnabled: false,
 
+            // Enable or disable all sort and filter bars
+            filtersEnabled: false,
+
             // Base URL for API calls
             baseApi: '//34.209.221.167',
 

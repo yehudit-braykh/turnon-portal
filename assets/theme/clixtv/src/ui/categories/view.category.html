@@ -41,7 +41,7 @@
             <div class="category-content">
 
                 <div class="category-filter-bar">
-                    <div class="category-filter-container row" ng-class="{'hidden-category-filters': (!category.videos.videos || category.videos.videos.length === 0)}">
+                    <div class="category-filter-container row" ng-class="{'hidden-category-filters': (!category.videos.videos || category.videos.videos.length === 0 || filtersEnabled === false)}">
                         <div class="filter-container col-xs-6">
                             <clix-dropdown options="filterOptions" placeholder-text="Filter By"></clix-dropdown>
                         </div>

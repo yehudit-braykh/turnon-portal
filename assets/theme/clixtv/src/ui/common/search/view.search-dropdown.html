@@ -2,7 +2,7 @@
     <div ng-if="searching">
         <clix-loader size="small"></clix-loader>
     </div>
-    <div class="dropdown-empty-results-container" ng-if="empty">
+    <div class="dropdown-empty-results-container" ng-if="empty && !searching">
         <div class="dropdown-empty-results-message">
             No results found for &ldquo;{{term}}&rdquo;
         </div>
@@ -13,6 +13,17 @@
     <div ng-if="results.charities">
         <div ng-repeat="charity in results.charities">
             <clix-charity-search-result-item charity="charity"></clix-charity-search-result-item>
+        </div>
+    </div>
+    <div ng-if="results.brands">
+        <div ng-repeat="brand in results.brands">
+            <clix-brand-search-result-item brand="brand"></clix-brand-search-result-item>
+        </div>
+    </div>
+
+    <div ng-if="results.offers">
+        <div ng-repeat="offer in results.offers">
+            <clix-offer-search-result-item offer="offer"></clix-offer-search-result-item>
         </div>
     </div>
 </div>

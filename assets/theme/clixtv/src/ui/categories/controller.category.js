@@ -11,13 +11,15 @@
         'userService',
         'modalService',
         'catchMediaService',
-        function($q, $log, $scope, $rootScope, $state, $stateParams, categoryService, userService, modalService, catchMediaService) {
+        'clixConfig',
+        function($q, $log, $scope, $rootScope, $state, $stateParams, categoryService, userService, modalService, catchMediaService, clixConfig) {
 
             function _resetIsFavorite() {
                 $scope.isFavorite = userService.isFavoriteCategory($stateParams.id);
             }
 
             $scope.notify = false;
+            $scope.filtersEnabled = clixConfig.filtersEnabled;
 
             $rootScope.$on('user.login', function(event, data) {
                 $scope.loggedInUser = data;

@@ -13721,6 +13721,10 @@ button.close {
 .clix-search-dropdown .clix-search-result-item .search-result-image {
   width: 45px;
   height: 45px;
+  overflow: hidden;
+}
+.clix-search-dropdown .clix-search-result-item .search-result-image img {
+  max-width: 100%;
 }
 .clix-search-dropdown .clix-search-result-item .search-result-image.search-result-image-circle {
   -webkit-border-radius: 22.5px;
@@ -13729,7 +13733,6 @@ button.close {
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  overflow: hidden;
 }
 .clix-search-dropdown .clix-search-result-item .search-result-info {
   -webkit-flex: 1;

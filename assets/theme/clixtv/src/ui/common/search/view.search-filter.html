@@ -11,7 +11,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-5" ng-if="showFilters !== 'false'">
+        <div class="col-md-5" ng-if="showFilters !== 'false' && filtersEnabled !== false">
             <div class="filters-container">
                 <div class="filter-bar">
                     <clix-dropdown options="filterOptions" placeholder-text="{{filterPlaceholder}}"></clix-dropdown>

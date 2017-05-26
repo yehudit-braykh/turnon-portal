@@ -42,8 +42,30 @@
         }
     };
 
+    var brandSearchResultItem = function() {
+        return {
+            restrict: 'AE',
+            templateUrl: 'ui/common/search/view.brand-search-result-item.html',
+            scope: {
+                brand: '='
+            }
+        }
+    };
+
+    var offerSearchResultItem = function() {
+        return {
+            restrict: 'AE',
+            templateUrl: 'ui/common/search/view.offer-search-result-item.html',
+            scope: {
+                offer: '='
+            }
+        }
+    };
+
     angular.module('clixtv')
         .directive('clixSearchDropdown', searchDropdown)
         .directive('clixBaseSearchResultItem', baseSearchResultItem)
         .directive('clixCharitySearchResultItem', charitySearchResultItem)
+        .directive('clixBrandSearchResultItem', brandSearchResultItem)
+        .directive('clixOfferSearchResultItem', offerSearchResultItem);
 }());

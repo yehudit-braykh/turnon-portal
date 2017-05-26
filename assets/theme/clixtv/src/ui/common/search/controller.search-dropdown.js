@@ -1,8 +1,11 @@
 (function() {
     var SearchDropdownController = [
         '$scope',
+        '$timeout',
         'searchService',
-        function($scope, searchService) {
+        function($scope, $timeout, searchService) {
+
+            var searchTimeout;
 
             function _getSearchMethod() {
                 switch ($scope.type) {
@@ -10,6 +13,8 @@
                         return 'getBrandSearchResults';
                     case 'charity':
                         return 'getCharitySearchResults';
+                    case 'offer':
+                        return 'getOfferSearchResults';
                     default:
                         return 'getSearchResults';
                 }
@@ -23,25 +28,28 @@
                     return;
                 }
                 $scope.searching = true;
-                searchService[method]($scope.term, 0, 5)
-                    .then(
-                        function onSuccess(data) {
-                            if (!data || data.length === 0) {
-                                $scope.empty = true;
-                            } else {
-                                $scope.results = data;
+
+                if (searchTimeout) {
+                    $timeout.cancel(searchTimeout);
+                }
+                searchTimeout = $timeout(function() {
+                    searchService[method]($scope.term, 0, 5)
+                        .then(
+                            function onSuccess(data) {
+                                console.log(data);
+                                $scope.searching = false;
+                                if (!data || data.length === 0) {
+                                    $scope.empty = true;
+                                } else {
+                                    $scope.empty = false;
+                                    $scope.results = data;
+                                }
                             }
-                            console.log($scope.empty);
-                        }
-                    )
-                    .finally(
-                        function onFinally() {
-                            $scope.searching = false;
-                        }
-                    )
+                        );
+                }, 250);
             }
 
-            $scope.$watch('term', _onSearchTermChange)
+            $scope.$watch('term', _onSearchTermChange);
         }
     ];
 

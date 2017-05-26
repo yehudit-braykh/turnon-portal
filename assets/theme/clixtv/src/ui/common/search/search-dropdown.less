@@ -15,10 +15,14 @@
         .search-result-image {
             width: 45px;
             height: 45px;
+            overflow: hidden;
+
+            img {
+                max-width: 100%;
+            }
 
             &.search-result-image-circle {
                 .border-radius(45px / 2);
-                overflow: hidden;
             }
         }
 

@@ -11,7 +11,10 @@
         'brandsService',
         'userService',
         'catchMediaService',
-        function($q, $log, $scope, $rootScope, $uibModal, $state, $stateParams, brandsService, userService, catchMediaService) {
+        'clixConfig',
+        function($q, $log, $scope, $rootScope, $uibModal, $state, $stateParams, brandsService, userService, catchMediaService, clixConfig) {
+
+            $scope.filtersEnabled = clixConfig.filtersEnabled;
 
             function _resetIsFavorite() {
                 $scope.isFavorite = userService.isFavoriteCharity($stateParams.id);

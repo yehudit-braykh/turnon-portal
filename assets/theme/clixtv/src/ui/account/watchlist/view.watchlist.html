@@ -4,7 +4,7 @@
             Watchlist
         </header-text>
         <accessory-view>
-            <div class="filter-containers" ng-show="watchlist && watchlist.videos && watchlist.videos.length > 0">
+            <div class="filter-containers" ng-show="watchlist && watchlist.videos && watchlist.videos.length > 0 && filtersEnabled !== false">
                 <div class="filter-container">
                     <clix-dropdown options="filterOptions" placeholder-text="Filter By"></clix-dropdown>
                 </div>

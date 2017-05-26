@@ -12,7 +12,10 @@
         'modalService',
         'catchMediaService',
         'knetikService',
-        function($q, $log, $scope, $rootScope, $state, $stateParams, brandsService, userService, modalService, catchMediaService, knetikService) {
+        'clixConfig',
+        function($q, $log, $scope, $rootScope, $state, $stateParams, brandsService, userService, modalService, catchMediaService, knetikService, clixConfig) {
+
+            $scope.filtersEnabled = clixConfig.filtersEnabled;
 
             $scope.onOfferPress = function(offer) {
                 if ($stateParams.offerId === offer.id) {

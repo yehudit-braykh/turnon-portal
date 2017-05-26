@@ -4,9 +4,12 @@
         '$scope',
         '$rootScope',
         'userService',
-        function($scope, $rootScope, userService) {
+        'clixConfig',
+        function($scope, $rootScope, userService, clixConfig) {
 
             $rootScope.pageTitle = 'Your Watchlist - ClixTV';
+
+            $scope.filtersEnabled = clixConfig.filtersEnabled;
 
             $scope.filterOptions = [
                 {
