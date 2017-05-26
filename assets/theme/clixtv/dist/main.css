@@ -12662,6 +12662,11 @@ button.close {
   color: #FFF;
   text-align: center;
 }
+@media (min-width: 1200px) {
+  .clix-about-page {
+    margin-top: 250px;
+  }
+}
 .clix-about-page .about-header {
   font-family: 'montserratsemibold', sans-serif;
   font-size: 27px;
@@ -12751,7 +12756,11 @@ button.close {
   padding-right: 10px;
 }
 .clix-about-page .about-callout-row .about-callout-icon {
-  color: #817b80;
+  filter: alpha(opacity=45);
+  -webkit-opacity: 0.45;
+  -moz-opacity: 0.45;
+  opacity: 0.45;
+  color: #FFF;
   font-size: 50px;
 }
 @media (min-width: 1200px) {
@@ -12830,7 +12839,7 @@ button.close {
 }
 .clix-about-page .footer-container {
   margin-top: 77px;
-  padding-bottom: 200px;
+  padding-bottom: 100px;
   background-image: url('/assets/theme/clixtv/dist/images/about-us-footer-banner.png');
   background-size: contain;
   background-position: bottom center;
@@ -12839,6 +12848,21 @@ button.close {
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .clix-about-page .footer-container {
     background-image: url('/assets/theme/clixtv/dist/images/about-us-footer-banner@2x.png');
+  }
+}
+@media (min-width: 768px) {
+  .clix-about-page .footer-container {
+    padding-bottom: 200px;
+  }
+}
+@media (min-width: 992px) {
+  .clix-about-page .footer-container {
+    padding-bottom: 300px;
+  }
+}
+@media (min-width: 1200px) {
+  .clix-about-page .footer-container {
+    padding-bottom: 350px;
   }
 }
 .clix-about-page .footer-container .about-callout-separator {

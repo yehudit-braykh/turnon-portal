@@ -3,6 +3,10 @@
     color: @color-white;
     text-align: center;
 
+    @media (min-width: @screen-lg) {
+        margin-top: 250px;
+    }
+
     .about-header {
         font-family: @font-primary-bold;
         font-size: 27px;
@@ -90,7 +94,8 @@
         }
 
         .about-callout-icon {
-            color: @color-gray24;
+            .opacity(.45);
+            color: @color-white;
             font-size: 50px;
 
             @media (min-width: @screen-lg) {
@@ -167,7 +172,7 @@
 
     .footer-container {
         margin-top: 77px;
-        padding-bottom: 200px;
+        padding-bottom: 100px;
         background-image: url('/assets/theme/clixtv/dist/images/about-us-footer-banner.png');
         background-size: contain;
         background-position: bottom center;
@@ -175,6 +180,18 @@
 
         @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
             background-image: url('/assets/theme/clixtv/dist/images/about-us-footer-banner@2x.png');
+        }
+
+        @media (min-width: @screen-sm) {
+            padding-bottom: 200px;
+        }
+
+        @media (min-width: @screen-md) {
+            padding-bottom: 300px;
+        }
+
+        @media (min-width: @screen-lg) {
+            padding-bottom: 350px;
         }
 
         .about-callout-separator {
