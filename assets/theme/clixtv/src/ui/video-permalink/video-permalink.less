@@ -14,10 +14,13 @@
     }
 
     .video-player-column-container {
+
+        padding-left: 0;
         padding-right: 0;
 
-        @media (max-width: @screen-sm) {
-            padding-left: 0;
+        @media (min-width: @screen-md) {
+            padding-left: 15px;
+            padding-right: 0;
         }
     }
 
@@ -56,14 +59,14 @@
             .transform(translateX(-50%));
             font-family: @font-primary-bold;
             color: @color-white;
-            font-size: 45px;
+            font-size: 25px;
             margin-bottom: 10px;
             width: 150%;
             position: relative;
             left: 50%;
 
             @media (min-width: @screen-md) {
-                font-size: 36px;
+                font-size: 30px;
             }
 
             @media (min-width: @screen-lg) {
@@ -146,6 +149,10 @@
         .star-name-favorite-container {
             padding-left: 11px;
 
+            @media (min-width: @screen-sm) {
+                padding-left: 21px;
+            }
+
             .star-name {
                 font-family: @font-primary-bold;
                 font-size: 32px;
@@ -158,10 +165,6 @@
                     font-size: 25px;
                     line-height: 28px;
                 }
-            }
-
-            @media (min-width: @screen-sm) {
-                padding-left: 21px;
             }
         }
         .favorite-icon {
@@ -185,11 +188,11 @@
     .star-meta-info {
         padding-bottom: 16px;
         border-bottom: 1px solid @color-gray3;
-        //padding-left: 20px;
-        //padding-right: 20px;
 
         @media (min-width: @screen-sm) {
             padding-top: 16px;
+            padding-left: 20px;
+            padding-right: 20px;
         }
 
         @media (min-width: @screen-md) {
@@ -206,7 +209,7 @@
         .clix-favorite-icon {
             font-size: 25px;
 
-            @media (min-width: @screen-sm) {
+            @media (min-width: @screen-lg) {
                 font-size: 33px;
             }
         }
@@ -217,12 +220,12 @@
         .remove-icon {
             font-size: 25px;
 
-            @media (min-width: @screen-sm) {
+            @media (min-width: @screen-lg) {
                 font-size: 32px;
             }
         }
 
-        @media (min-width: @screen-sm) {
+        @media (min-width: @screen-lg) {
             font-size: 35px;
         }
     }
@@ -275,7 +278,7 @@
                 margin-left: 0;
             }
 
-            @media (min-width: @screen-sm) {
+            @media (min-width: @screen-lg) {
                 font-size: 36px;
             }
         }
@@ -295,7 +298,7 @@
         .share-icon {
             font-size: 23px;
 
-            @media (min-width: @screen-sm) {
+            @media (min-width: @screen-lg) {
                 font-size: 38px;
             }
         }
@@ -318,7 +321,7 @@
 
         margin-top: 27px;
 
-        @media (min-width: @screen-sm) {
+        @media (min-width: @screen-lg) {
             margin-top: 0;
         }
 
@@ -332,6 +335,9 @@
 
             @media (min-width: @screen-sm) {
                 margin-top: 0;
+            }
+
+            @media (min-width: @screen-lg) {
                 font-size: 24px;
                 line-height: 27px;
             }
@@ -348,6 +354,9 @@
 
             @media (min-width: @screen-sm) {
                 margin-top: 0;
+            }
+
+            @media (min-width: @screen-lg) {
                 font-size: 24px;
                 line-height: 24px;
             }
@@ -360,7 +369,7 @@
             color: @color-white;
             margin-top: 5px;
 
-            @media (min-width: @screen-sm) {
+            @media (min-width: @screen-lg) {
                 margin-top: 0;
                 font-size: 65px;
                 line-height: 70px;
@@ -430,9 +439,14 @@
 
         @media (min-width: @screen-sm) {
             margin-top: 20px;
-            padding: 20px 0 0;
+            padding: 20px 20px 0;
             border-top: 1px solid @color-gray3;
             border-bottom-width: 0;
+        }
+
+        @media (min-width: @screen-md) {
+            padding-left: 0;
+            padding-right: 0;
         }
 
         .brands-charity-title {
@@ -620,7 +634,7 @@
             margin-bottom: 10px;
 
             @media (min-width: @screen-sm) {
-                margin-bottom: 0px;
+                margin-bottom: 0;
             }
         }
     }

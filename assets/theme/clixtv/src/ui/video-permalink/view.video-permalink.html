@@ -241,7 +241,7 @@
             <clix-loader size="small"></clix-loader>
         </div>
         <div class="row next-video-list">
-            <div class="col-xs-6 next-video" ng-repeat="nextVideo in series.seasons.seasons[0].episodes track by $index" ng-show="nextVideo.id !== video.id">
+            <div class="col-xs-6 next-video" ng-repeat="nextVideo in series.seasons.seasons[0].episodes | orderBy : 'episodeNumber' track by $index" ng-show="nextVideo.id !== video.id">
                 <clix-video-content-callout video="nextVideo"></clix-video-content-callout>
             </div>
         </div>

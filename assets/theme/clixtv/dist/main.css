@@ -9515,11 +9515,13 @@ button.close {
   margin: 0;
 }
 .video-permalink-page .video-player-column-container {
+  padding-left: 0;
   padding-right: 0;
 }
-@media (max-width: 768px) {
+@media (min-width: 992px) {
   .video-permalink-page .video-player-column-container {
-    padding-left: 0;
+    padding-left: 15px;
+    padding-right: 0;
   }
 }
 .video-permalink-page .star-info-column-container {
@@ -9558,7 +9560,7 @@ button.close {
   -o-transform: translateX(-50%);
   font-family: 'montserratsemibold', sans-serif;
   color: #FFF;
-  font-size: 45px;
+  font-size: 25px;
   margin-bottom: 10px;
   width: 150%;
   position: relative;
@@ -9566,7 +9568,7 @@ button.close {
 }
 @media (min-width: 992px) {
   .video-permalink-page .next-video-overlay-container .next-video-label {
-    font-size: 36px;
+    font-size: 30px;
   }
 }
 @media (min-width: 1200px) {
@@ -9681,6 +9683,11 @@ button.close {
 .video-permalink-page .star-name-container .star-name-favorite-container {
   padding-left: 11px;
 }
+@media (min-width: 768px) {
+  .video-permalink-page .star-name-container .star-name-favorite-container {
+    padding-left: 21px;
+  }
+}
 .video-permalink-page .star-name-container .star-name-favorite-container .star-name {
   font-family: 'montserratsemibold', sans-serif;
   font-size: 32px;
@@ -9693,11 +9700,6 @@ button.close {
     margin-bottom: 0;
     font-size: 25px;
     line-height: 28px;
-  }
-}
-@media (min-width: 768px) {
-  .video-permalink-page .star-name-container .star-name-favorite-container {
-    padding-left: 21px;
   }
 }
 .video-permalink-page .star-name-container .favorite-icon {
@@ -9724,6 +9726,8 @@ button.close {
 @media (min-width: 768px) {
   .video-permalink-page .star-meta-info {
     padding-top: 16px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 @media (min-width: 992px) {
@@ -9739,7 +9743,7 @@ button.close {
 .video-permalink-page .favorite-button .clix-favorite-icon {
   font-size: 25px;
 }
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .video-permalink-page .favorite-button .clix-favorite-icon {
     font-size: 33px;
   }
@@ -9750,12 +9754,12 @@ button.close {
 .video-permalink-page .clix-save-button .remove-icon {
   font-size: 25px;
 }
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .video-permalink-page .clix-save-button .remove-icon {
     font-size: 32px;
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .video-permalink-page .clix-save-button {
     font-size: 35px;
   }
@@ -9823,7 +9827,7 @@ button.close {
 .video-permalink-page .social-container .social-icon:before {
   margin-left: 0;
 }
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .video-permalink-page .social-container .social-icon {
     font-size: 36px;
   }
@@ -9843,7 +9847,7 @@ button.close {
 .video-permalink-page .social-container .share-icon {
   font-size: 23px;
 }
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .video-permalink-page .social-container .share-icon {
     font-size: 38px;
   }
@@ -9864,7 +9868,7 @@ button.close {
 .video-permalink-page .video-info-container {
   margin-top: 27px;
 }
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .video-permalink-page .video-info-container {
     margin-top: 0;
   }
@@ -9880,6 +9884,10 @@ button.close {
 @media (min-width: 768px) {
   .video-permalink-page .video-info-container .episode-number {
     margin-top: 0;
+  }
+}
+@media (min-width: 1200px) {
+  .video-permalink-page .video-info-container .episode-number {
     font-size: 24px;
     line-height: 27px;
   }
@@ -9896,6 +9904,10 @@ button.close {
 @media (min-width: 768px) {
   .video-permalink-page .video-info-container .series-title {
     margin-top: 0;
+  }
+}
+@media (min-width: 1200px) {
+  .video-permalink-page .video-info-container .series-title {
     font-size: 24px;
     line-height: 24px;
   }
@@ -9907,7 +9919,7 @@ button.close {
   color: #FFF;
   margin-top: 5px;
 }
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .video-permalink-page .video-info-container .episode-title {
     margin-top: 0;
     font-size: 65px;
@@ -9982,9 +9994,15 @@ button.close {
 @media (min-width: 768px) {
   .video-permalink-page .brands-charity-container {
     margin-top: 20px;
-    padding: 20px 0 0;
+    padding: 20px 20px 0;
     border-top: 1px solid #636363;
     border-bottom-width: 0;
+  }
+}
+@media (min-width: 992px) {
+  .video-permalink-page .brands-charity-container {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 .video-permalink-page .brands-charity-container .brands-charity-title {
@@ -10193,7 +10211,7 @@ button.close {
 }
 @media (min-width: 768px) {
   .video-permalink-page .related-videos-container .related-video {
-    margin-bottom: 0px;
+    margin-bottom: 0;
   }
 }
 .video-permalink-page .next-video-list {
@@ -10611,7 +10629,7 @@ button.close {
 .charity-page .home-container .star-support-callout {
   margin-bottom: 51px;
 }
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .charity-page .home-container .star-support-callout {
     padding: 0 5px;
   }
@@ -10916,7 +10934,7 @@ button.close {
   padding: 30px 15px;
   border-top: 1px solid #777777;
   margin-bottom: 20px;
-  margin-top: 20px;
+  margin-top: 17px;
 }
 @media (min-width: 768px) {
   .clix-star-page .sidebar-container {
@@ -10929,13 +10947,16 @@ button.close {
   .clix-star-page .sidebar-container {
     padding-left: 15px;
     padding-right: 15px;
-    margin-top: 0;
   }
 }
 @media (min-width: 1200px) {
   .clix-star-page .sidebar-container {
+    margin-top: 16px;
+  }
+}
+@media (min-width: 1600px) {
+  .clix-star-page .sidebar-container {
     padding: 30px;
-    margin-top: 15px;
   }
 }
 .clix-star-page .sidebar-title {
@@ -13181,10 +13202,10 @@ button.close {
 .clix-charity-logo .logo-image,
 .clix-brand-category-logo .logo-image {
   position: absolute;
-  top: 50px;
-  left: 50px;
-  right: 50px;
-  bottom: 50px;
+  top: 25%;
+  left: 25%;
+  right: 25%;
+  bottom: 25%;
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
@@ -13977,6 +13998,11 @@ button.close {
   padding: 30px 0;
   border-top: 1px solid #777777;
   margin-top: 20px;
+}
+@media (min-width: 992px) {
+  .clix-landing-video-content .sidebar-container {
+    margin-top: 0;
+  }
 }
 @media (min-width: 1200px) {
   .clix-landing-video-content .sidebar-container {
@@ -17402,9 +17428,15 @@ button.close {
   padding-left: 10px;
   color: #FFF;
 }
+@media (min-width: 768px) {
+  .clix-home-page-banner .home-banner-content {
+    margin-top: 20px;
+  }
+}
 @media (min-width: 992px) {
   .clix-home-page-banner .home-banner-content {
     padding-left: 30px;
+    margin-top: 0;
   }
 }
 @media (min-width: 1200px) {
