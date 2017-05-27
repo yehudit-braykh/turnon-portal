@@ -18,7 +18,8 @@
             templateUrl: 'ui/common/container/view.video-content-callout-list.html',
             scope: {
                 videos: '=',
-                gridClasses: '@?'
+                gridClasses: '@?',
+                order: '@'
             }
         }
     };

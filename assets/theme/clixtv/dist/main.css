@@ -8265,7 +8265,7 @@ button.close {
 .video-category-scroll-list .clix-video-content-callout {
   margin-bottom: 30px;
 }
-@media (min-width: 480px) {
+@media (min-width: 768px) {
   .video-category-scroll-list .clix-video-content-callout {
     margin-right: 6px;
     margin-bottom: 0;
@@ -10300,12 +10300,8 @@ button.close {
   }
 }
 .brand-page .brand-offer {
+  padding: 0 5px;
   margin-bottom: 51px;
-}
-@media (max-width: 768px) {
-  .brand-page .brand-offer {
-    padding: 0 5px;
-  }
 }
 .brand-page .brand-offer-row {
   padding: 0 5px;
@@ -10848,11 +10844,6 @@ button.close {
     margin-bottom: 20px;
   }
 }
-@media (min-width: 1200px) {
-  .clix-star-page .videos-title-container {
-    margin-bottom: 41px;
-  }
-}
 .clix-star-page .video-sort-container {
   display: block;
   margin: 30px auto;
@@ -10922,30 +10913,29 @@ button.close {
 }
 .clix-star-page .sidebar-container {
   background-color: #1b1b1b;
-  padding: 30px 0;
+  padding: 30px 15px;
   border-top: 1px solid #777777;
-  margin-bottom: 44px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 @media (min-width: 768px) {
   .clix-star-page .sidebar-container {
     border: 1px solid #777777;
     margin-left: 0;
     margin-right: 0;
-    margin-top: 9px;
   }
 }
 @media (min-width: 992px) {
   .clix-star-page .sidebar-container {
     padding-left: 15px;
     padding-right: 15px;
+    margin-top: 0;
   }
 }
 @media (min-width: 1200px) {
   .clix-star-page .sidebar-container {
     padding: 30px;
-    margin-top: 8px;
+    margin-top: 15px;
   }
 }
 .clix-star-page .sidebar-title {
@@ -13986,6 +13976,7 @@ button.close {
   background-color: #1b1b1b;
   padding: 30px 0;
   border-top: 1px solid #777777;
+  margin-top: 20px;
 }
 @media (min-width: 1200px) {
   .clix-landing-video-content .sidebar-container {

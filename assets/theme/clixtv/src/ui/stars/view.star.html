@@ -48,7 +48,7 @@
                         <div class="row" ng-repeat="series in celebrity.series.series" ng-show="series.title === selectedSeries.label">
 
                             <div class="col-md-8">
-                                <clix-video-content-callout-list videos="series.seasons.seasons[0].episodes" grid-classes="col-xs-6 col-sm-4 col-md-4 col-lg-4"></clix-video-content-callout-list>
+                                <clix-video-content-callout-list videos="series.seasons.seasons[0].episodes" order="episodeNumber" grid-classes="col-xs-6 col-sm-4 col-md-4 col-lg-4"></clix-video-content-callout-list>
                             </div>
                             <div class="col-md-4 star-sidebar-container">
 
