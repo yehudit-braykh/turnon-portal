@@ -42,10 +42,10 @@ class Uvod_model extends CI_Model {
 
         // decode service response
         $json_obj = json_decode($json);
-            //  debug($json_obj);
+            // debug($json_obj);
         // checks service response
         if (isset($json_obj->isException) && ($json_obj->isException == true || $json_obj->isException === "true")) {
-            if($json_obj->responseCode == 403 && $json_obj->title == "Invalid Access Token"){
+            if($json_obj->responseCode == 403){
                 $this->login_admin(true);
                 unset($parameters[array_search("token=" . $token,$parameters)]);
                 return $this->apiCall($path, $parameters, $login, $token);
@@ -87,7 +87,7 @@ class Uvod_model extends CI_Model {
 
         // checks service response
         if (isset($json_obj->isException) && ($json_obj->isException == true || $json_obj->isException === "true")) {
-            if($json_obj->responseCode == 403 && $json_obj->title == "Invalid Access Token"){
+            if($json_obj->responseCode == 403){
                 $this->login_admin(true);
                 unset($parameters[array_search("token=" . $token,$parameters)]);
                 return $this->apiPost($url, $payload, $custom_method);

@@ -76,8 +76,8 @@ class Knetik_model extends CI_Model {
     // ************ Points Fullfillement Methods *********************
 
     function save_offer($id){
-        $offer = $this->brands_model->get_offer($id);
-        // debug($offer);
+        $offer = $this->brands_model->get_offer($id)[0];
+
         if ($offer){
             if($offer["save_offer_id"] && $offer["save_offer_points"] && $offer["campaign"] && $offer["campaign"]["knetikId"]){
                 $entitlement_id = $offer["save_offer_id"];
@@ -103,21 +103,13 @@ class Knetik_model extends CI_Model {
                             $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
                         }
 
-                        // debug($response);
-                    } else {
-                        return array("code" => "1", "message" => "insufficient Balance");
+                        return ($response==null);
                     }
-                } else {
-                    return array("code" => "1", "message" => "User not Logged in");
                 }
-            } else {
-                return array("code" => "1", "message" => "points/campain not configured");
             }
-        } else {
-            return array("code" => "1", "message" => "Offer not Found");
         }
 
-
+        return false;
     }
 
 	function view_offer($id){
