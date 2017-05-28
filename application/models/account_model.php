@@ -105,6 +105,8 @@ class Account_model extends Uvod_model {
         $payload = new stdClass();
         $payload->userName = $email;
         $payload->password = $password;
+        $payload->firsName = $first_name;
+        $payload->lastName = $last_name;
         $payload->fullName = $first_name . " " . $last_name;
         $payload->email = $email;
         $payload->accountId = $this->config->item('account_id');
