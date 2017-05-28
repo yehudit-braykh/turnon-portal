@@ -40,7 +40,7 @@ class Search_model extends Uvod_model {
 			}
 
 			if(!count($results->celebrities) && !count($results->categories) && !count($results->campaigns) && !count($results->charities)){
-				return null;
+				return array("error" => 1 , "message" => "No Results Found");
 			}
 
 			return $results;
