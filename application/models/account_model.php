@@ -27,12 +27,26 @@ class Account_model extends Uvod_model {
         $fbLogin = $this->login_by_fb($profile->identifier);
         //  debug($fbLogin);
         if(!$fbLogin){// Facbook Id not in DB try Registering with Email, RandPass and FBID
-            return $this->link_facebook($profile);
+            return $this->link_facebook($profile, $provider);
         }
         return $fbLogin;
     }
 
-    public function link_facebook($fb_data) {
+    public function link_social_account($profile, $provider){
+        $id = $this->session->userdata("profile_id");
+        $token = $this->session->userdata("login_token");
+
+        if($id && $token){
+            $user_profile = $this->get_profile($token, $id);
+            $user_profile->{strtolower($provider)."Connected"} = 1;
+            //  debug($user_profile);
+            return $this->account_model->update_profile($id, (array)$user_profile);
+
+        } else
+            return array("error" => 1, "message" => "User not Logged in");
+    }
+
+    public function link_facebook($fb_data, $provider) {
         //  debug($fb_data);
         $user = $this->get_single_user($fb_data->email);
         // debug($user);
@@ -52,6 +66,7 @@ class Account_model extends Uvod_model {
         $data["avatar"] = $fb_data->photoURL;
         $data["addressLine1"] = $fb_data->phone;
         $data["city"] = $fb_data->city;
+        $user_profile[strtolower($provider)."Connected"] = 1;
         $date = date_create($fb_data->birthYear."-".$fb_data->birthMonth."-".$fb_data->birthDay);
         $data["birthDate"] = date_timestamp_get($date);
 
@@ -154,14 +169,14 @@ class Account_model extends Uvod_model {
     }
 
     public function update_profile($id ,$data) {
-        //    debug($id, $data);
+            // debug($id, count($data));
         if(count($data)>1){
             foreach($data as $field=>$value){
                 if(!$value || $value == '' || $value==null)
                     unset($data[$field]);
             }
         }
-            //   debug($this->session->userdata('login_token'),$id,(array)$data);
+            //    debug($this->session->userdata('login_token'),$id,(array)$data);
         $response = $this->update_profile_data($this->session->userdata('login_token'), $id, $data);
             //  debug($response);
         return $response;

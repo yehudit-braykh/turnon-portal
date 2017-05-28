@@ -35,8 +35,11 @@ class HAuth extends CI_Controller {
 				try{
 					$profile = $service->getUserProfile();
 
-					$this->account_model->hybrid_login($profile, $provider);
-
+					if($provider == "Facebook" || $provider == "Google"){
+						$this->account_model->hybrid_login($profile, $provider);
+					} else {
+						$this->account_model->link_social_account($profile, $provider);
+					}
 
 				}
 				catch( Exception $e ){
