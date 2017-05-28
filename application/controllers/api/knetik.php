@@ -44,6 +44,13 @@ class Knetik extends REST_Controller{
         return $this->response($this->knetik_model->campaign_share($id),200);
     }
 
+	function campaign_ad_view_post(){
+		$id = $this->post('id');
+		if(!$id)
+			$this->response("id field is mandatory", 400);
+        return $this->response($this->knetik_model->campaign_ad_view($id),200);
+    }
+
 	function video_share_post(){
 		$id = $this->post('id');
 		if(!$id)

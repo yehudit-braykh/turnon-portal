@@ -190,6 +190,47 @@ class Knetik_model extends CI_Model {
         $campaign = $this->campaigns_model->get_campaign_by_id($id);
 
         if ($campaign){
+            debug("if camaign",$campaign["share_id"] , $campaign["share_points"] , $campaign["knetikId"]);
+            if($campaign["share_id"] && $campaign["share_pts"] && $campaign["knetikId"]){
+                debug("if share_id share_points knetikId");
+                $entitlement_id = $campaign["share_id"];
+                $entitlement_points = $campaign["share_points"];
+                $campaign_wallet_id = $campaign["knetikId"];
+                $profile = $this->account_model->get_profile($this->session->userdata("login_token"), $this->session->userdata("profile_id"));
+                // debug("if profile", $profile);
+                if(isset($profile->_id)){
+                    if($this->deduct_wallet_points($campaign_wallet_id, $this->currency_codes->general, $entitlement_points )){
+                        // debug("id profile");
+                        $token = $this->authenticate();
+                        if(isset($profile->knetikId) && $profile->knetikId)
+                                $knetikId = $profile->knetikId;
+                        else
+                            $knetikId = $this->link_user($profile);
+
+                        $fields = new stdClass();
+                        $fields->entitlement_id = $entitlement_id;
+
+                        $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
+                         //debug($response);
+                        if($response["error"]){
+                            $token = $this->authenticate(true);
+                            $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
+                        }
+                        debug("1234",$response);
+
+                        return ($response==null);
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    function campaign_ad_view($id){
+        $campaign = $this->campaigns_model->get_campaign_by_id($id);
+
+        if ($campaign){
             if($campaign["share_id"] && $campaign["share_points"] && $campaign["knetikId"]){
                 $entitlement_id = $campaign["share_id"];
                 $entitlement_points = $campaign["share_points"];
