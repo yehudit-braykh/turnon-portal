@@ -1,4 +1,4 @@
-<div class="clix-search-dropdown" ng-if="(results || searching || empty) && !forceHide">
+<div class="clix-search-dropdown" ng-if="(results || searching || empty) && !forceHide && term.length >= 2">
     <div ng-if="searching">
         <clix-loader size="small"></clix-loader>
     </div>
