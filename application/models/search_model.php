@@ -9,9 +9,9 @@ class Search_model extends Uvod_model {
 
 	public function search($keyword, $tags = null, $page = 0 , $page_size = 2){
 		$keyword = strtolower($keyword);
-		if($keyword == 'offer' || $keyword == 'offers' || $keyword == 'coupon' || $keyword == 'coupons'){
-			return $this->brands_model->get_offers_array ($page = 0, $page_size = 5);
-		} else {
+		// if($keyword == 'offer' || $keyword == 'offers' || $keyword == 'coupon' || $keyword == 'coupons'){
+		// 	return $this->brands_model->get_offers_array ($page = 0, $page_size = 5);
+		// } else {
 			$results = new stdClass;
 			$results->celebrities = $this->celebrity_rows($this->search_celebrities($keyword, $tags, $page , $page_size )->entries);
 			//$results->brands = $this->search_brands($keyword, $tags, $page , $page_size);
@@ -44,7 +44,7 @@ class Search_model extends Uvod_model {
 			}
 
 			return $results;
-		}
+		// }
 
 	}
 
