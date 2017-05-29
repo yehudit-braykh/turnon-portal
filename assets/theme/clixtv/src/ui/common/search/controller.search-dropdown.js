@@ -38,7 +38,7 @@
                             function onSuccess(data) {
                                 console.log(data);
                                 $scope.searching = false;
-                                if (!data || data.length === 0) {
+                                if (!data || data.length === 0 || data.error) {
                                     $scope.empty = true;
                                 } else {
                                     $scope.empty = false;

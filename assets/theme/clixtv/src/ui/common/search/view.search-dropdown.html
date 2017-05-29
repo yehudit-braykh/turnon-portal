@@ -10,20 +10,78 @@
             Please make sure you spelled everything correctly, or use different words.
         </div>
     </div>
+
+    <div ng-if="!type && results.match" ng-switch="results.type">
+        <div ng-switch-when="charity">
+            <clix-charity-search-result-item charity="results.match"></clix-charity-search-result-item>
+        </div>
+        <div ng-switch-when="campaign">
+            <clix-brand-search-result-item brand="results.match"></clix-brand-search-result-item>
+        </div>
+
+        <div ng-switch-when="celebrity">
+            <clix-celebrity-search-result-item celebrity="results.match"></clix-celebrity-search-result-item>
+        </div>
+
+        <div ng-switch-when="category">
+            <clix-category-search-result-item category="results.match"></clix-category-search-result-item>
+        </div>
+
+        <div ng-switch-when="offer">
+            <clix-offer-search-result-item offer="results.match"></clix-offer-search-result-item>
+        </div>
+    </div>
+
     <div ng-if="results.charities">
-        <div ng-repeat="charity in results.charities">
+        <div ng-if="results.match" class="dropdown-results-title">
+            Charities Related To {{results.match.title || results.match.name}}
+        </div>
+        <div ng-repeat="charity in results.charities | limitTo: 3">
             <clix-charity-search-result-item charity="charity"></clix-charity-search-result-item>
         </div>
     </div>
     <div ng-if="results.brands">
-        <div ng-repeat="brand in results.brands">
+        <div ng-if="results.match" class="dropdown-results-title">
+            Brands Related To {{results.match.title || results.match.name}}
+        </div>
+        <div ng-repeat="brand in results.brands | limitTo: 3">
             <clix-brand-search-result-item brand="brand"></clix-brand-search-result-item>
         </div>
     </div>
 
     <div ng-if="results.offers">
-        <div ng-repeat="offer in results.offers">
+        <div ng-if="results.match" class="dropdown-results-title">
+            Offers Related To {{results.match.title || results.match.name}}
+        </div>
+        <div ng-repeat="offer in results.offers | limitTo: 3">
             <clix-offer-search-result-item offer="offer"></clix-offer-search-result-item>
+        </div>
+    </div>
+
+    <div ng-if="results.celebrities">
+        <div ng-if="results.match" class="dropdown-results-title">
+            Stars Related To {{results.match.title || results.match.name}}
+        </div>
+        <div ng-repeat="celebrity in results.celebrities | limitTo: 3">
+            <clix-celebrity-search-result-item celebrity="celebrity"></clix-celebrity-search-result-item>
+        </div>
+    </div>
+
+    <div ng-if="results.categories">
+        <div ng-if="results.match" class="dropdown-results-title">
+            Categories Related To {{results.match.title || results.match.name}}
+        </div>
+        <div ng-repeat="category in results.categories | limitTo: 3">
+            <clix-category-search-result-item category="category"></clix-category-search-result-item>
+        </div>
+    </div>
+
+    <div ng-if="results.videos">
+        <div ng-if="results.match" class="dropdown-results-title">
+            Videos Related To {{results.match.title || results.match.name}}
+        </div>
+        <div ng-repeat="video in results.videos | limitTo: 3">
+            <clix-video-search-result-item video="video"></clix-video-search-result-item>
         </div>
     </div>
 </div>

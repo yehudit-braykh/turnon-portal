@@ -62,10 +62,43 @@
         }
     };
 
+    var celebritySearchResultItem = function() {
+        return {
+            restrict: 'AE',
+            templateUrl: 'ui/common/search/view.celebrity-search-result-item.html',
+            scope: {
+                celebrity: '='
+            }
+        }
+    };
+
+    var categorySearchResultItem = function() {
+        return {
+            restrict: 'AE',
+            templateUrl: 'ui/common/search/view.category-search-result-item.html',
+            scope: {
+                category: '='
+            }
+        }
+    };
+
+    var videoSearchResultItem = function() {
+        return {
+            restrict: 'AE',
+            templateUrl: 'ui/common/search/view.video-search-result-item.html',
+            scope: {
+                video: '='
+            }
+        }
+    };
+
     angular.module('clixtv')
         .directive('clixSearchDropdown', searchDropdown)
         .directive('clixBaseSearchResultItem', baseSearchResultItem)
         .directive('clixCharitySearchResultItem', charitySearchResultItem)
         .directive('clixBrandSearchResultItem', brandSearchResultItem)
-        .directive('clixOfferSearchResultItem', offerSearchResultItem);
+        .directive('clixOfferSearchResultItem', offerSearchResultItem)
+        .directive('clixCelebritySearchResultItem', celebritySearchResultItem)
+        .directive('clixCategorySearchResultItem', categorySearchResultItem)
+        .directive('clixVideoSearchResultItem', videoSearchResultItem);
 }());
