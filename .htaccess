@@ -7,7 +7,7 @@ RewriteEngine on
 #RewriteCond %{HTTP_HOST} !^www\. [NC]
 #RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=302,L]
 
-<filesMatch "\.(htaccess|htpasswd|ini|phps|fla|psd|log|sh|json|lock)$">
+<filesMatch "\.(htaccess|htpasswd|ini|pem|phps|fla|psd|log|sh|json|lock)$">
  Order Allow,Deny
  Deny from all
 </filesMatch>
