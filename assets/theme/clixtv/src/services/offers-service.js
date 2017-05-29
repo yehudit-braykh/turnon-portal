@@ -13,7 +13,7 @@
                     return $http.get('api/brands/get_offer?id=' + id)
                         .then(
                             function(data) {
-                                return new OfferModel(data.data[0]);
+                                return new OfferModel(data.data);
                             }
                         );
                 }

@@ -22,10 +22,13 @@
             offersService.getOfferById(data.offerId)
                 .then(
                     function onSuccess(data) {
+                        var brand = data.brand || data.campaign;
                         $scope.offer = data;
                         knetikService.viewOffer($scope.offer.id);
 
-                        $rootScope.pageTitle = $scope.offer.title + ' Offer at ' + $scope.offer.brand.title + ' - ClixTV';
+                        console.log($scope.offer);
+
+                        $rootScope.pageTitle = $scope.offer.title + ' Offer at ' + (brand ? brand.title : '') + ' - ClixTV';
 
                         catchMediaService.trackAppEvent('navigation', {
                             target_cm: 'media',

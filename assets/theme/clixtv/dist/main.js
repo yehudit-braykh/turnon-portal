@@ -514,7 +514,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/modal/offer/view.offer-modal.html',
-    "<div class=clix-offer-modal><a ng-click=onClosePress() class=close-modal-icon><div class=icon-remove-icon></div></a><div ng-if=!offer><clix-loader size=small></clix-loader></div><div ng-if=offer><div class=offer-title>{{offer.title}}</div><div class=\"offer-image-info-container row\"><div class=col-xs-6><img ng-if=offer.carouselPic1 ng-src={{offer.carouselPic1}} class=offer-image><div class=offer-expiration-date>Expires {{offer.expirationDate | clixDate : 'long'}}</div></div><div class=col-xs-6><div class=instructions-title>Instructions</div><div class=instructions-container><div class=instruction-row><div class=instruction-step-container><div class=instruction-step>1</div></div><div class=instruction-info>Click the button below to shop online at {{offer.brand.title}}. Your Coupon code will be copied to your clipboard automatically.</div></div><div class=instruction-row><div class=instruction-step-container><div class=instruction-step>2</div></div><div class=instruction-info>Paste your code during checkout.</div></div><div class=instruction-row><div class=instruction-step-container><div class=instruction-step>3</div></div><div class=instruction-info>Enjoy!</div></div></div></div></div><div class=\"offer-buttons-container row\"><div class=col-xs-4><div class=offer-button><clix-tertiary-button ng-click=onSaveOfferPress()>{{isSavedOffer ? 'Offer Saved' : 'Save Offer'}}</clix-tertiary-button><div class=violator-container><clix-points-violator>50</clix-points-violator></div></div></div><div class=col-xs-4><div class=offer-button><clix-tertiary-button>Redeem Offer</clix-tertiary-button><div class=violator-container><clix-points-violator>50</clix-points-violator></div></div></div><div class=col-xs-4><div class=offer-share><clix-share-button offer=offer></clix-share-button><clix-points-violator>50</clix-points-violator></div></div></div><div class=offer-description-container><div class=offer-description-header>The Revolution Never Ends</div><div class=offer-description ng-bind-html=\"offer.longDescription || offer.description | clixNewLineBreak\"></div></div></div></div>"
+    "<clix-modal modal-title=&nbsp;><div class=clix-offer-modal><a ng-click=onClosePress() class=close-modal-icon><div class=icon-remove-icon></div></a><div ng-if=!offer><clix-loader size=small></clix-loader></div><div ng-if=offer><div class=\"offer-image-info-container row\"><div class=offer-background-image style=\"background-image: url('{{offer.carouselPic1}}')\"></div><div class=col-sm-6><slick dots=true prev-arrow=#main-carousel-previous next-arrow=#main-carousel-next><div class=offer-image-container><img ng-if=offer.carouselPic1 ng-src={{offer.carouselPic1}} class=offer-image></div><div class=offer-image-container><img ng-if=offer.carouselPic2 ng-src={{offer.carouselPic2}} class=offer-image></div><div class=offer-image-container><img ng-if=offer.carouselPic3 ng-src={{offer.carouselPic3}} class=offer-image></div></slick><div id=main-carousel-previous><div class=\"main-carousel-button hidden-sm hidden-xs hidden-md\"><i class=\"arrow-icon icon-left-tall-arrow\"></i></div></div><div id=main-carousel-next><div class=\"main-carousel-button hidden-sm hidden-xs hidden-md\"><i class=\"arrow-icon icon-right-tall-arrow\"></i></div></div></div><div class=col-sm-6><div class=offer-expiration-date>Offer Expires {{offer.expirationDate | clixDate : 'long'}}</div><div class=offer-title>{{offer.title}}</div><div class=instructions-title>Instructions</div><div class=instructions-container>Click the Redeem Now button below. Your Coupon code will be copied to your clipboard automatically.</div><div class=instructions-container>Paste your code during checkout.</div><div class=instructions-container>Enjoy!</div></div></div><div class=\"offer-buttons-container row\"><div class=col-sm-4><div class=offer-button><clix-tertiary-button ng-click=onSaveOfferPress()>{{isSavedOffer ? 'Offer Saved' : 'Save Offer'}}</clix-tertiary-button><div class=violator-container><clix-points-violator>50</clix-points-violator></div></div></div><div class=col-sm-4><div class=offer-button><clix-tertiary-button>Redeem Offer</clix-tertiary-button><div class=violator-container><clix-points-violator>50</clix-points-violator></div></div></div><div class=col-sm-4><div class=offer-share><clix-share-button offer=offer></clix-share-button><clix-points-violator>50</clix-points-violator></div></div></div><div class=offer-description-container><div class=offer-description-header>The Revolution Never Ends</div><div class=offer-description ng-bind-html=\"offer.longDescription || offer.description | clixNewLineBreak\"></div></div></div></div></clix-modal>"
   );
 
 
@@ -4848,10 +4848,13 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             offersService.getOfferById(data.offerId)
                 .then(
                     function onSuccess(data) {
+                        var brand = data.brand || data.campaign;
                         $scope.offer = data;
                         knetikService.viewOffer($scope.offer.id);
 
-                        $rootScope.pageTitle = $scope.offer.title + ' Offer at ' + $scope.offer.brand.title + ' - ClixTV';
+                        console.log($scope.offer);
+
+                        $rootScope.pageTitle = $scope.offer.title + ' Offer at ' + (brand ? brand.title : '') + ' - ClixTV';
 
                         catchMediaService.trackAppEvent('navigation', {
                             target_cm: 'media',
@@ -9398,7 +9401,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     return $http.get('api/brands/get_offer?id=' + id)
                         .then(
                             function(data) {
-                                return new OfferModel(data.data[0]);
+                                return new OfferModel(data.data);
                             }
                         );
                 }

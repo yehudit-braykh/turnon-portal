@@ -15898,6 +15898,56 @@ button.close {
   color: #FFF;
   padding: 30px;
 }
+.clix-offer-modal .slick-dots {
+  position: absolute;
+  left: 0;
+  bottom: 20px;
+  list-style-type: none;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+  padding: 0;
+}
+.clix-offer-modal .slick-dots li {
+  display: inline-block;
+  margin: 0 7px;
+}
+.clix-offer-modal .slick-dots button {
+  -webkit-border-radius: 2.5px;
+  -moz-border-radius: 2.5px;
+  border-radius: 2.5px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border-width: 0;
+  background-color: #777777;
+  font-size: 0;
+  line-height: 0;
+  width: 5px;
+  height: 5px;
+  padding: 0;
+  margin: 0;
+}
+.clix-offer-modal .slick-dots .slick-active button {
+  background-color: #FFF;
+}
+.clix-offer-modal .slick-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 3000;
+  margin-top: -20px;
+}
+.clix-offer-modal #main-carousel-next {
+  right: 10px;
+}
+.clix-offer-modal .main-carousel-button {
+  font-size: 36px;
+  color: #FFF;
+  cursor: pointer;
+}
+.clix-offer-modal .arrow-icon {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
 .clix-offer-modal .close-modal-icon {
   position: absolute;
   top: 30px;
@@ -15910,11 +15960,44 @@ button.close {
   color: #FFF;
 }
 .clix-offer-modal .offer-title {
-  font-size: 36px;
+  font-size: 18px;
   font-family: 'montserratsemibold', sans-serif;
 }
 .clix-offer-modal .offer-image-info-container {
-  margin-top: 15px;
+  position: relative;
+  padding: 40px 20px;
+}
+.clix-offer-modal .offer-image-info-container .offer-background-image {
+  filter: blur(30px);
+  -webkit-filter: blur(30px);
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-position: center center;
+  background-size: cover;
+}
+.clix-offer-modal .offer-image-info-container .offer-background-image:before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: '';
+  background-color: rgba(119, 119, 119, 0.8);
+}
+.clix-offer-modal .offer-image-info-container .offer-image-container {
+  -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.22);
+  -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.22);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.22);
 }
 .clix-offer-modal .offer-image-info-container .offer-image {
   max-width: 100%;
@@ -15922,15 +16005,28 @@ button.close {
 .clix-offer-modal .offer-image-info-container .offer-expiration-date {
   font-family: 'montserratregular', sans-serif;
   font-size: 10px;
-  color: #8a8a8a;
+  color: #FFF;
   text-transform: uppercase;
-  margin-top: 15px;
+  margin-top: 10px;
+}
+@media (min-width: 768px) {
+  .clix-offer-modal .offer-image-info-container .offer-expiration-date {
+    margin-top: 0;
+  }
 }
 .clix-offer-modal .offer-image-info-container .instructions-title {
-  font-size: 30px;
-  font-family: 'montserratsemibold', sans-serif;
-  color: #8a8a8a;
+  font-size: 16px;
+  font-family: 'montserratregular', sans-serif;
+  color: #FFF;
   text-transform: uppercase;
+  margin-top: 10px;
+}
+.clix-offer-modal .offer-image-info-container .instructions-container {
+  font-family: 'montserratregular', sans-serif;
+  font-size: 11px;
+  color: #FFF;
+  line-height: 14px;
+  margin-top: 10px;
 }
 .clix-offer-modal .offer-image-info-container .instruction-row {
   display: -webkit-flex;
@@ -15972,6 +16068,12 @@ button.close {
 }
 .clix-offer-modal .offer-buttons-container .offer-button {
   position: relative;
+  margin-bottom: 10px;
+}
+@media (min-width: 768px) {
+  .clix-offer-modal .offer-buttons-container .offer-button {
+    margin-bottom: 0;
+  }
 }
 .clix-offer-modal .offer-buttons-container .offer-button .clix-tertiary-button {
   display: block;
@@ -15979,8 +16081,14 @@ button.close {
 .clix-offer-modal .offer-buttons-container .offer-button .violator-container {
   position: absolute;
   top: 50%;
-  margin-top: -15px;
-  right: 3px;
+  margin-top: -13px;
+  right: 6px;
+}
+@media (min-width: 768px) {
+  .clix-offer-modal .offer-buttons-container .offer-button .violator-container {
+    margin-top: -15px;
+    right: 3px;
+  }
 }
 .clix-offer-modal .offer-buttons-container .offer-share {
   display: -webkit-flex;
