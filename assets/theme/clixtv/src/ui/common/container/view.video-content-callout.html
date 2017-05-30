@@ -60,7 +60,7 @@
             <div class="video-hidden-content">
                 <div class="video-hidden-content-border"></div>
                 <div class="video-hidden-title">
-                    {{isVideoPage ? 'Continue the series!' : 'This video is part of a series'}}
+                    <span ng-bind-html="isVideoPage ? 'Continue the series!' : 'This video is<br />part of a series'"></span>
                     <br />Sign up for a free ClixTV account!
                 </div>
                 <div class="video-hidden-signup-button">
