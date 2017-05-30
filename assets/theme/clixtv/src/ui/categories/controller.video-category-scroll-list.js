@@ -11,6 +11,14 @@
 
             $scope.left = 0;
 
+            if ($scope.viewAllSref) {
+                $scope.sref = $scope.viewAllSref;
+            } else if ($scope.category) {
+                $scope.sref = 'category({ id: \'' + $scope.category.id + '\' })';
+            } else {
+                $scope.sref = 'home';
+            }
+
             function _resetArrowStates() {
                 var minWidth = ((angular.element($scope.scrollListElement).innerWidth() - $window.innerWidth) * -1);
                 $scope.leftArrowVisible = $scope.left <= minWidth;

@@ -10845,6 +10845,8 @@ button.close {
 .clix-star-page .videos-title-container {
   padding-top: 30px;
   text-align: center;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 @media (min-width: 768px) {
   .clix-star-page .videos-title-container {
@@ -10855,11 +10857,10 @@ button.close {
     -webkit-flex: 1;
     -ms-flex: 1;
     flex: 1;
-    padding-top: 50px;
     text-align: left;
     border-bottom: 1px solid #636363;
-    padding-bottom: 16px;
     margin-bottom: 20px;
+    padding: 50px 0 16px;
   }
 }
 .clix-star-page .video-sort-container {

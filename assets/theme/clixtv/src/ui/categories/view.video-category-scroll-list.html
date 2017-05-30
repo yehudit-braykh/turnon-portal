@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="more-videos-button-container">
-                <clix-secondary-button ui-sref="category({ slug: '{{category.title | slug}}' })" ng-show="enableShowMore !== 'false'">
+                <clix-secondary-button ui-sref="{{sref}}" ng-show="enableShowMore !== 'false'">
                     View All {{category.title}}
                 </clix-secondary-button>
             </div>
