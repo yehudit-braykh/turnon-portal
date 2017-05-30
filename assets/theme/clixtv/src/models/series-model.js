@@ -21,6 +21,7 @@
                     }
 
                     if (data.charity) {
+                        console.log('>>>>', data.charity);
                         var CharityModel = $injector.get('CharityModel');
                         this.charity = new CharityModel(data.charity);
                     }

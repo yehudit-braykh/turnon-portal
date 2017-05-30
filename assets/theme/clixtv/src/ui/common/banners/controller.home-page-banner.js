@@ -4,7 +4,8 @@
         '$scope',
         '$rootScope',
         'modalService',
-        function($scope, $rootScope, modalService) {
+        'userService',
+        function($scope, $rootScope, modalService, userService) {
 
             $rootScope.$on('user.login', function(event, data) {
                 $scope.loggedInUser = data;
@@ -17,6 +18,13 @@
             $scope.onSignupPress = function() {
                 modalService.showSignUpModal();
             };
+
+            userService.getLoggedInUser()
+                .then(
+                    function onSuccess(data) {
+                        $scope.loggedInUser = data;
+                    }
+                );
 
             var backgroundVideo = jwplayer('videoPlayer').setup({
                 file: 'https://s3-us-west-2.amazonaws.com/clixtv.prod/ClixBetaCover.m3u8',

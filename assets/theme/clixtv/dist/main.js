@@ -2959,7 +2959,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$scope',
         '$rootScope',
         'modalService',
-        function($scope, $rootScope, modalService) {
+        'userService',
+        function($scope, $rootScope, modalService, userService) {
 
             $rootScope.$on('user.login', function(event, data) {
                 $scope.loggedInUser = data;
@@ -2972,6 +2973,13 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             $scope.onSignupPress = function() {
                 modalService.showSignUpModal();
             };
+
+            userService.getLoggedInUser()
+                .then(
+                    function onSuccess(data) {
+                        $scope.loggedInUser = data;
+                    }
+                );
 
             var backgroundVideo = jwplayer('videoPlayer').setup({
                 file: 'https://s3-us-west-2.amazonaws.com/clixtv.prod/ClixBetaCover.m3u8',
@@ -8895,6 +8903,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     }
 
                     if (data.charity) {
+                        console.log('>>>>', data.charity);
                         var CharityModel = $injector.get('CharityModel');
                         this.charity = new CharityModel(data.charity);
                     }
