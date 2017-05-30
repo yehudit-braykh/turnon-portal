@@ -18,9 +18,7 @@
             };
 
             $scope.onImageLoad = function() {
-                $timeout(function() {
-                    $scope.imageLoaded = true;
-                }, 250);
+                $scope.imageLoaded = true;
             };
         }
     ];

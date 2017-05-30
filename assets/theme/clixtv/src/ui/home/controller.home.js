@@ -15,7 +15,7 @@
 
             $rootScope.pageTitle = 'ClixTV - Your Stars. Their Passions.';
 
-            $scope.PAGE_LIMIT = 3;
+            $scope.PAGE_LIMIT = 2;
             $scope.currentPage = 0;
 
             $scope.showMobileCarousel = false;

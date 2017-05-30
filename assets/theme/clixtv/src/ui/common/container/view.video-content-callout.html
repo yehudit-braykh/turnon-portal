@@ -1,13 +1,13 @@
-<div class="clix-video-content-callout" ng-class="{'active': overlayActive, 'minimized': minimized === 'true'}" style="height: {{containerHeight}}">
-    <div class="video-thumbnail-background" clix-lazy-loader image-source="{{video.thumbnail}}"></div>
+<div class="clix-video-content-callout" ng-class="{'active': overlayActive, 'minimized': minimized === 'true'}">
+    <div class="video-thumbnail-background" style="background-image: url('{{video.thumbnail}}')"></div>
     <div class="video-content-container">
         <div class="video-menu-container">
             <clix-tooltip-menu items="items" menuopen="menuVisible" class="menu-container" ng-hide="!menuVisible"></clix-tooltip-menu>
         </div>
         <div class="star-info-container">
-            <div class="star-info-background" clix-lazy-loader image-source="{{video.thumbnail}}" show-placeholder="false"></div>
+            <div class="star-info-background" style="background-image: url('{{video.thumbnail}}')"></div>
             <div class="star-info">
-                <a ui-sref="star({ id: video.celebrity.id })" class="star-avatar" clix-lazy-loader image-source="{{video.celebrity.thumbnail}}" show-placeholder="false"></a>
+                <a ui-sref="star({ id: video.celebrity.id })" class="star-avatar" style="background-image: url('{{video.celebrity.thumbnail}}')"></a>
                 <a ui-sref="star({ id: video.celebrity.id })" class="star-name">
                     {{video.celebrity.name}}
                 </a>
@@ -30,8 +30,8 @@
             </div>
             <div class="video-episode-runtime">{{video.runtime}}</div>
             <div class="brands-container">
-                <div class="brand-icon" ng-repeat="brand in video.brands.brands | limitTo: 4 track by $index" clix-lazy-loader image-source="{{brand.transparentThumbnail}}" show-placeholder="false"></div>
-                <div class="brand-icon" clix-lazy-loader image-source="{{video.charity.transparentThumbnail}}" show-placeholder="false"></div>
+                <div class="brand-icon" ng-repeat="brand in video.brands.brands | limitTo: 4 track by $index" style="background-image: url('{{brand.transparentThumbnail}}')"></div>
+                <div class="brand-icon" style="background-image: url('{{video.charity.transparentThumbnail}}')"></div>
             </div>
         </div>
         <div class="video-content-overlay" ng-class="{'active': overlayActive}" ng-click="onClick($event)" ng-mousemove="onMouseover()" ng-mouseleave="onMouseleave()">

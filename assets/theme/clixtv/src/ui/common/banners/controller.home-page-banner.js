@@ -18,6 +18,25 @@
                 modalService.showSignUpModal();
             };
 
+            var backgroundVideo = jwplayer('videoPlayer').setup({
+                file: 'https://s3-us-west-2.amazonaws.com/clixtv.prod/ClixBetaCover.m3u8',
+                autostart: true,
+                controls: false,
+                mute: true,
+                repeat: true,
+                width: '100%',
+                aspectratio: '16:9'
+            });
+
+            // For whatever reason, JWPlayer doesn't honor the 'repeat: true' param
+            // with an HLS file, so we'll force it here.
+            backgroundVideo.on('time', function(e) {
+                if (e.position >= (e.duration - 0.25)) {
+                    backgroundVideo.seek(0);
+                }
+            });
+
+
         }
     ];
 
