@@ -39,7 +39,10 @@
 
             // A non-logged in user will not be allowed to directly view any episodes
             // that are below this number
-            lockedMinimumEpisodeNumber: 2
+            lockedMinimumEpisodeNumber: 2,
+
+            // API key for segment tracking
+            segmentApiKey: 'YV8pmcoBPm8xF2ocBVwq6AxxoZXTn8rG'
         })
         .config([
             '$locationProvider',
@@ -188,11 +191,14 @@
             'catchMediaService',
             'educationModalService',
             'modalService',
-            function($rootScope, $window, userService, catchMediaService, educationModalService, modalService) {
+            'analyticsService',
+            'clixConfig',
+            function($rootScope, $window, userService, catchMediaService, educationModalService, modalService, analyticsService, clixConfig) {
 
                 userService.setLoggedInUser();
                 catchMediaService.initialize();
                 educationModalService.initialize();
+                analyticsService.initialize(clixConfig.segmentApiKey);
 
                 $rootScope.pageTitle = 'ClixTV - Your Stars. Their Passions.';
 
@@ -201,11 +207,28 @@
                     modalService.close();
                     $rootScope.printable = (to.data && to.data.print);
                     $rootScope.solidNavigation = (to.data && to.data.solidNavigation);
+                    analyticsService.trackPageView();
                 });
 
                 $rootScope.$on('user.login', function(event, data) {
                     if (data && (data.id || data._id)) {
                         catchMediaService.setUser(data.email, 'default', data);
+                        analyticsService.identify((data.id || data._id), {
+                            email: data.email,
+                            avatar: data.avatar,
+                            birthdate: data.birthdate,
+                            firstName: data.firstName,
+                            lastName: data.lastName,
+                            phone: data.phone,
+                            gender: data.gender,
+                            googleConnected: data.googleConnected,
+                            tumblrConnected: data.tumblrConnected,
+                            twitterConnected: data.twitterConnected,
+                            facebookConnected: data.facebookConnected,
+                            enableEmailNotifications: data.enableEmailNotifications,
+                            enablePushNotifications: data.enablePushNotifications,
+                            enableTextNotifications: data.enableTextNotifications
+                        });
                     }
                 });
 

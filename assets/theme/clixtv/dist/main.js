@@ -39,7 +39,10 @@
 
             // A non-logged in user will not be allowed to directly view any episodes
             // that are below this number
-            lockedMinimumEpisodeNumber: 2
+            lockedMinimumEpisodeNumber: 2,
+
+            // API key for segment tracking
+            segmentApiKey: 'YV8pmcoBPm8xF2ocBVwq6AxxoZXTn8rG'
         })
         .config([
             '$locationProvider',
@@ -188,11 +191,14 @@
             'catchMediaService',
             'educationModalService',
             'modalService',
-            function($rootScope, $window, userService, catchMediaService, educationModalService, modalService) {
+            'analyticsService',
+            'clixConfig',
+            function($rootScope, $window, userService, catchMediaService, educationModalService, modalService, analyticsService, clixConfig) {
 
                 userService.setLoggedInUser();
                 catchMediaService.initialize();
                 educationModalService.initialize();
+                analyticsService.initialize(clixConfig.segmentApiKey);
 
                 $rootScope.pageTitle = 'ClixTV - Your Stars. Their Passions.';
 
@@ -201,11 +207,28 @@
                     modalService.close();
                     $rootScope.printable = (to.data && to.data.print);
                     $rootScope.solidNavigation = (to.data && to.data.solidNavigation);
+                    analyticsService.trackPageView();
                 });
 
                 $rootScope.$on('user.login', function(event, data) {
                     if (data && (data.id || data._id)) {
                         catchMediaService.setUser(data.email, 'default', data);
+                        analyticsService.identify((data.id || data._id), {
+                            email: data.email,
+                            avatar: data.avatar,
+                            birthdate: data.birthdate,
+                            firstName: data.firstName,
+                            lastName: data.lastName,
+                            phone: data.phone,
+                            gender: data.gender,
+                            googleConnected: data.googleConnected,
+                            tumblrConnected: data.tumblrConnected,
+                            twitterConnected: data.twitterConnected,
+                            facebookConnected: data.facebookConnected,
+                            enableEmailNotifications: data.enableEmailNotifications,
+                            enablePushNotifications: data.enablePushNotifications,
+                            enableTextNotifications: data.enableTextNotifications
+                        });
                     }
                 });
 
@@ -7314,6 +7337,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 .then(
                     function onSuccess(data) {
 
+                        if (!data || !data.id) {
+                            throw new Error('No celebrity found');
+                        }
+
                         $scope.celebrity = data;
                         $scope.active = 0;
 
@@ -8981,6 +9008,38 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 }
             }
         ]);
+}());
+(function() {
+
+    var analyticsService = [
+        '$window',
+        '$location',
+        function($window, $location) {
+            return {
+                initialize: function(apiKey) {
+                    var script = document.createElement('script');
+                    script.type = 'text/javascript';
+                    script.text = '!function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";\
+                 analytics.load("' + apiKey + '");\
+            }}();';
+
+                    var firstScript = document.getElementsByTagName('script')[0];
+                    firstScript.parentNode.insertBefore(script, firstScript);
+                },
+                trackPageView: function() {
+                    $window.analytics.page($location.path());
+                },
+
+                identify: function(identityId, params) {
+                    $window.analytics.identify(identityId, params);
+                }
+            }
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .factory('analyticsService', analyticsService);
 }());
 (function() {
 

@@ -140,6 +140,10 @@
                 .then(
                     function onSuccess(data) {
 
+                        if (!data || !data.id) {
+                            throw new Error('No celebrity found');
+                        }
+
                         $scope.celebrity = data;
                         $scope.active = 0;
 
