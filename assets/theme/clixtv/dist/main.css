@@ -7881,7 +7881,7 @@ button.close {
   position: relative;
   margin-right: 9px;
 }
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .clix-header .header-user-container .header-avatar-container {
     margin-left: 20px;
     margin-right: 0;
