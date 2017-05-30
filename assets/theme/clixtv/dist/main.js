@@ -5127,7 +5127,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         'modalService',
         'catchMediaService',
         'shareService',
-        function($scope, $location, $uibModalInstance, $state, data, modalService, catchMediaService, shareService) {
+        'userService',
+        function($scope, $location, $uibModalInstance, $state, data, modalService, catchMediaService, shareService, userService) {
 
             $scope.tab = 'post';
             $scope.socialNetworks = [];
@@ -5201,16 +5202,44 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 $uibModalInstance.close();
                 catchMediaService.trackShareEvent(type, entity);
 
-                shareService.postToTwitter('Test Message', 'http://www.google.com', 'http://advncedcdn.vo.llnwd.net/clixtv_storage/storage/57cdc2665aad0b6fcf67bb3d/590ac858fbb3d633b64e3607/redfoocover1.jpg');
+                // shareService.postToTwitter('Test Message', 'http://www.google.com', 'http://advncedcdn.vo.llnwd.net/clixtv_storage/storage/57cdc2665aad0b6fcf67bb3d/590ac858fbb3d633b64e3607/redfoocover1.jpg');
             };
 
             $scope.onSocialNetworkPress = function(socialNetwork) {
-                var index = $scope.socialNetworks.indexOf(socialNetwork);
-                if (index !== -1) {
-                    $scope.socialNetworks.splice(index, 1);
-                } else {
-                    $scope.socialNetworks.push(socialNetwork);
-                }
+
+                $scope.socialNetworks = [socialNetwork];
+
+                userService.getLoggedInUser()
+                    .then(
+                        function onSuccess(data) {
+                            switch (socialNetwork) {
+                                case 'facebook':
+                                    if (!data.facebookConnected) {
+
+                                    }
+                                    break;
+                                case 'twitter':
+                                    if (!data.twitterConnected) {
+                                        window.open('/hauth/login/Twitter', 'tw', 'left=20,top=20,width=600,height=500,toolbar=1,resizable=0');
+                                    }
+                                    break;
+                                case 'tumblr':
+                                    if (!data.tumblrConnected) {
+
+                                    }
+                                    break;
+                            }
+                            console.log(data);
+                        }
+                    );
+
+                // Only one social network is allowed to be posted at a time...
+                // var index = $scope.socialNetworks.indexOf(socialNetwork);
+                // if (index !== -1) {
+                //     $scope.socialNetworks.splice(index, 1);
+                // } else {
+                //     $scope.socialNetworks.push(socialNetwork);
+                // }
             };
 
             $scope.onSettingsPress = function() {
