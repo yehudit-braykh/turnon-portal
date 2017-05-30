@@ -11621,7 +11621,12 @@ button.close {
   display: -ms-flex;
   display: flex;
 }
-@media (min-width: 992px) {
+@media (min-width: 768px) {
+  .clix-account-page {
+    padding-top: 63px;
+  }
+}
+@media (min-width: 1200px) {
   .clix-account-page {
     padding-top: 94px;
   }
