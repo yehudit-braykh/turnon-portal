@@ -37,7 +37,7 @@
                 $scope.arrowScrollWidth = $scope.videoContainerWidth + VIDEO_MARGIN_LEFT;
 
                 $timeout(function() {
-                    // $scope.$apply();
+                    $scope.$apply();
                     $rootScope.$broadcast('thumbnail.resize');
                 });
             }
