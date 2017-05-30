@@ -33,6 +33,7 @@
   "dependencies": {
     "angular-cache": "^4.6.0",
     "angular-filter": "^0.5.16",
+    "angular-inview": "^2.1.0",
     "angular-local-storage": "^0.5.2",
     "angular-lz-string": "^1.0.5",
     "angular-sanitize": "^1.6.4",

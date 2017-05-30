@@ -19,7 +19,8 @@
             'ngTouch',
             'angular-cache',
             'lz-string',
-            'ngSanitize'
+            'ngSanitize',
+            'angular-inview'
         ])
         .constant('clixConfig', {
 
@@ -334,7 +335,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/banners/view.home-page-banner.html',
-    "<div class=clix-home-page-banner><div class=\"desktop-home-banner hidden-xs\"><video src=https://s3-us-west-2.amazonaws.com/clixtv.stage/ClixBetaCover.mp4 autoplay=\"\" loop=\"\" muted=\"\" class=home-banner-background></video></div><div class=\"mobile-home-banner visible-xs\"><img ng-src=assets/theme/clixtv/dist/images/giphy-downsized-large.gif class=home-banner-background></div><div class=home-banner-overlay></div><div class=home-banner-content><div class=clixtv-originals-container><span class=clixtv-title-logo>ClixTV</span> Originals</div><div class=banner-main-header>Your Stars.<br>Their Passions.</div><div class=banner-subheader>Premium content from your favorite stars.</div><a ng-click=onSignupPress() class=primary-button ng-show=!loggedInUser>Sign Up Free</a></div></div>"
+    "<div class=clix-home-page-banner><div class=\"desktop-home-banner hidden-xs\"></div><div class=\"mobile-home-banner visible-xs\"><img ng-src=assets/theme/clixtv/dist/images/giphy-downsized-large.gif class=home-banner-background></div><div class=home-banner-overlay></div><div class=home-banner-content><div class=clixtv-originals-container><span class=clixtv-title-logo>ClixTV</span> Originals</div><div class=banner-main-header>Your Stars.<br>Their Passions.</div><div class=banner-subheader>Premium content from your favorite stars.</div><a ng-click=onSignupPress() class=primary-button ng-show=!loggedInUser>Sign Up Free</a></div></div>"
   );
 
 
@@ -444,7 +445,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/container/view.video-content-callout.html',
-    "<div class=clix-video-content-callout ng-class=\"{'active': overlayActive, 'minimized': minimized === 'true'}\" ng-show=ready><img ng-src={{video.thumbnail}} class=video-thumbnail clix-on-image-load=onImageLoad($event)><div class=video-thumbnail-background style=\"background-image: url('{{video.thumbnail}}')\"></div><div class=video-content-container><div class=video-menu-container><clix-tooltip-menu items=items menuopen=menuVisible class=menu-container ng-hide=!menuVisible></clix-tooltip-menu></div><div class=star-info-container><div class=star-info-background style=\"background-image: url('{{video.thumbnail}}')\"></div><div class=star-info><a ui-sref=\"star({ id: video.celebrity.id })\" class=star-avatar style=\"background-image: url({{video.celebrity.thumbnail}})\"></a> <a ui-sref=\"star({ id: video.celebrity.id })\" class=star-name>{{video.celebrity.name}}</a><div clix-tooltip-trigger tooltip-id=actions-button-{{$id}}><a class=video-menu-icon ng-click=menuClicked() clix-click-anywhere-else=bodyClicked><i class=icon-ellipsis></i></a></div></div></div><div class=video-info-container><div class=video-episode-number>Episode {{video.episodeNumber}}:</div><div class=video-episode-title>{{video.title}}</div><div class=video-series-title>{{video.seriesTitle}} Series</div><div class=video-episode-runtime>{{video.runtime}}</div><div class=brands-container><div class=brand-icon ng-repeat=\"brand in video.brands.brands | limitTo: 4 track by $index\" style=\"background-image: url({{brand.transparentThumbnail}})\"></div><div class=brand-icon style=\"background-image: url({{video.charity.transparentThumbnail}})\"></div></div></div><div class=video-content-overlay ng-class=\"{'active': overlayActive}\" ng-click=onClick($event) ng-mousemove=onMouseover() ng-mouseleave=onMouseleave()><a class=video-watchlist-button ng-class=\"{'icon-redeem-plus-icon': !isOnWatchlist, 'icon-remove-icon remove-icon': isOnWatchlist}\" clix-tooltip-trigger tooltip-id=watchlist-button-{{$id}} ng-click=onWatchlistPress()></a><div class=video-play-button><a ui-sref=\"video({ id: video.id })\"><img src=/assets/theme/clixtv/dist/images/gradient-clix-player-icon.svg></a></div></div><div class=video-points-container clix-tooltip-trigger tooltip-id=signup-watch-points-{{$id}}><div ng-mouseenter=onMouseover() ng-mouseleave=onMouseleave()><clix-violator>100 Reward Points</clix-violator></div></div></div><div class=video-hidden-container ng-if=videoUnavailable><div class=video-hidden-inner-container><div class=video-hidden-content><div class=video-hidden-content-border></div><div class=video-hidden-title>Continue the series!<br>Sign up for a free ClixTV account!</div><div class=video-hidden-signup-button><a ng-click=onSignupPress() class=primary-button>Sign Up Now</a></div><div class=video-hidden-login-container><a ng-click=onLoginPress() class=video-hidden-login>Log In Now</a></div><div class=video-hidden-content-border></div></div></div></div></div><clix-tooltip tooltip-id=actions-button-{{$id}}>Actions</clix-tooltip><clix-tooltip tooltip-id=watchlist-button-{{$id}}>{{isOnWatchlist ? 'Remove from your watchlist' : 'Add to your Watchlist'}}</clix-tooltip><clix-tooltip tooltip-id=signup-watch-points-{{$id}}><clix-is-logged-in><logged-in>You will receive 100 Reward Points for watching this video!</logged-in><not-logged-in>After you sign up, you will receive 100 Reward Points for watching this video! <a clix-learn-more-modal-trigger>Learn More</a>.</not-logged-in></clix-is-logged-in></clix-tooltip>"
+    "<div class=clix-video-content-callout ng-class=\"{'active': overlayActive, 'minimized': minimized === 'true'}\" style=\"height: {{containerHeight}}\"><div class=video-thumbnail-background clix-lazy-loader image-source={{video.thumbnail}}></div><div class=video-content-container><div class=video-menu-container><clix-tooltip-menu items=items menuopen=menuVisible class=menu-container ng-hide=!menuVisible></clix-tooltip-menu></div><div class=star-info-container><div class=star-info-background clix-lazy-loader image-source={{video.thumbnail}} show-placeholder=false></div><div class=star-info><a ui-sref=\"star({ id: video.celebrity.id })\" class=star-avatar clix-lazy-loader image-source={{video.celebrity.thumbnail}} show-placeholder=false></a> <a ui-sref=\"star({ id: video.celebrity.id })\" class=star-name>{{video.celebrity.name}}</a><div clix-tooltip-trigger tooltip-id=actions-button-{{$id}}><a class=video-menu-icon ng-click=menuClicked() clix-click-anywhere-else=bodyClicked><i class=icon-ellipsis></i></a></div></div></div><div class=video-info-container><div class=video-episode-number>Episode {{video.episodeNumber}}:</div><div class=video-episode-title>{{video.title}}</div><div class=video-series-title>{{video.seriesTitle}} Series</div><div class=video-episode-runtime>{{video.runtime}}</div><div class=brands-container><div class=brand-icon ng-repeat=\"brand in video.brands.brands | limitTo: 4 track by $index\" clix-lazy-loader image-source={{brand.transparentThumbnail}} show-placeholder=false></div><div class=brand-icon clix-lazy-loader image-source={{video.charity.transparentThumbnail}} show-placeholder=false></div></div></div><div class=video-content-overlay ng-class=\"{'active': overlayActive}\" ng-click=onClick($event) ng-mousemove=onMouseover() ng-mouseleave=onMouseleave()><a class=video-watchlist-button ng-class=\"{'icon-redeem-plus-icon': !isOnWatchlist, 'icon-remove-icon remove-icon': isOnWatchlist}\" clix-tooltip-trigger tooltip-id=watchlist-button-{{$id}} ng-click=onWatchlistPress()></a><div class=video-play-button><a ui-sref=\"video({ id: video.id })\"><img src=/assets/theme/clixtv/dist/images/gradient-clix-player-icon.svg></a></div></div><div class=video-points-container clix-tooltip-trigger tooltip-id=signup-watch-points-{{$id}}><div ng-mouseenter=onMouseover() ng-mouseleave=onMouseleave()><clix-violator>100 Reward Points</clix-violator></div></div></div><div class=video-hidden-container ng-if=videoUnavailable><div class=video-hidden-inner-container><div class=video-hidden-content><div class=video-hidden-content-border></div><div class=video-hidden-title>Continue the series!<br>Sign up for a free ClixTV account!</div><div class=video-hidden-signup-button><a ng-click=onSignupPress() class=primary-button>Sign Up Now</a></div><div class=video-hidden-login-container><a ng-click=onLoginPress() class=video-hidden-login>Log In Now</a></div><div class=video-hidden-content-border></div></div></div></div></div><clix-tooltip tooltip-id=actions-button-{{$id}}>Actions</clix-tooltip><clix-tooltip tooltip-id=watchlist-button-{{$id}}>{{isOnWatchlist ? 'Remove from your watchlist' : 'Add to your Watchlist'}}</clix-tooltip><clix-tooltip tooltip-id=signup-watch-points-{{$id}}><clix-is-logged-in><logged-in>You will receive 100 Reward Points for watching this video!</logged-in><not-logged-in>After you sign up, you will receive 100 Reward Points for watching this video! <a clix-learn-more-modal-trigger>Learn More</a>.</not-logged-in></clix-is-logged-in></clix-tooltip>"
   );
 
 
@@ -470,6 +471,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('ui/common/hero-banner/view.hero-banner.html',
     "<div class=clix-hero-banner><img class=hero-background-image id=hero-background-image ng-src={{backgroundImage}} ng-srcset=\"{{backgroundImage2x}} 2x, {{backgroundImage3x}} 3x\" alt=\"\" draggable=false du-parallax y=background clix-on-image-load=onImageLoad()><div class=hero-banner-content-container><div class=hero-banner-content><div class=banner-logo-container ng-class=\"{'charity-logo': charity}\" ng-show=logoProvided><div ng-transclude=logo></div></div><div class=banner-title-content ng-class=\"{'with-logo': logoProvided}\"><div class=banner-type>{{bannerType}}</div><div class=banner-title>{{titleText}}</div><div class=banner-button><div clix-tooltip-trigger tooltip-id=hero-banner-button-{{$id}} ng-transclude=favoriteButton></div><div clix-tooltip-trigger tooltip-id=hero-banner-share-{{$id}} ng-transclude=shareIcon></div><div class=header-points-violator ng-if=points><clix-points-violator>{{points}}</clix-points-violator></div><div class=\"banner-subtext-container hidden-sm hidden-xs\">{{subtext}}</div></div><div class=\"banner-subtext-container visible-sm visible-xs\">{{subtext}}</div></div></div></div></div><clix-tooltip tooltip-id=hero-banner-button-{{$id}}>{{buttonTooltipText}}</clix-tooltip><clix-tooltip tooltip-id=hero-banner-share-{{$id}}>{{shareTooltipText}}</clix-tooltip>"
+  );
+
+
+  $templateCache.put('ui/common/image/lazy-loader/view.lazy-loader.html',
+    "<div class=clix-lazy-loader in-view=\"containerInView($inview, $inviewInfo)\"><div class=lazy-loader-container><img src=/assets/theme/clixtv/dist/images/clixtv-loader-logo.svg class=lazy-loader-placeholder ng-if=\"showPlaceholder !== 'false'\"> <img ng-src={{imageToLoad}} class=lazy-loader-hidden-image clix-on-image-load=onImageLoad()><div class=lazy-loader-image style=\"background-image: url('{{imageToLoad}}')\" ng-class=\"{'image-loaded': imageLoaded}\"></div></div></div>"
   );
 
 
@@ -759,7 +765,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/home/view.home.html',
-    "<div class=home-page><clix-home-page-banner></clix-home-page-banner><div class=home-page-content><div ng-if=!ready><clix-loader size=large></clix-loader></div><div ng-show=ready><div ng-repeat=\"category in categories.categories | orderBy: 'order'\" ng-if=\"category && category.videos && category.videos.videos && category.videos.videos.length > 0\"><clix-video-category-scroll-list category=category></clix-video-category-scroll-list></div></div></div></div>"
+    "<div class=home-page><clix-home-page-banner></clix-home-page-banner><div class=home-page-content><div ng-if=!ready><clix-loader size=large></clix-loader></div><div ng-if=ready><div ng-repeat=\"category in categories.categories | orderBy: 'order'\" ng-if=\"category && category.videos && category.videos.videos && category.videos.videos.length > 0\"><clix-video-category-scroll-list category=category></clix-video-category-scroll-list></div></div><div in-view=\"onLoadMore($inview, $inviewInfo)\"></div></div></div>"
   );
 
 
@@ -2524,9 +2530,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     var VideoCategoryScrollList = [
         '$scope',
+        '$rootScope',
         '$window',
         '$timeout',
-        function($scope, $window, $timeout) {
+        function($scope, $rootScope, $window, $timeout) {
 
             $scope.left = 0;
 
@@ -2558,6 +2565,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
                 $timeout(function() {
                     $scope.$apply();
+                    $rootScope.$broadcast('thumbnail.resize');
                 });
             }
 
@@ -2591,6 +2599,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 event: {
                     afterChange: function (event, slick, currentSlide, nextSlide) {
                         $scope.leftArrowVisible = currentSlide !== 0;
+                        angular.element(window).trigger("checkInView");
                         // $scope.rightArrowVisible = (currentSlide );
                         // console.log('slick afterChange', 'currentSlide:', currentSlide, 'nextSlide:', nextSlide);
                     }
@@ -3432,6 +3441,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             $rootScope.$on('user.login', function(event, data) {
                 $scope.loggedInUser = data;
             });
+
+
         }
     ];
 
@@ -3445,12 +3456,15 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$q',
         '$scope',
         '$rootScope',
+        '$element',
+        '$window',
+        '$timeout',
         '$state',
         'userService',
         'shareModalService',
         'clixConfig',
         'modalService',
-        function($q, $scope, $rootScope, $state, userService, shareModalService, clixConfig, modalService) {
+        function($q, $scope, $rootScope, $element, $window, $timeout, $state, userService, shareModalService, clixConfig, modalService) {
 
             $scope.menuVisible = false;
 
@@ -3472,6 +3486,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 $scope.tooltipOpen = false;
                 $scope.overlayActive = false;
             });
+
+            // $rootScope.$on('thumbnail.resize', function() {
+            //     _recalculateAspectRatio();
+            // });
 
             $rootScope.$on('favorite.added', _resetMenuItems);
             $rootScope.$on('favorite.removed', _resetMenuItems);
@@ -3540,6 +3558,17 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 ];
             }
 
+            function _recalculateAspectRatio() {
+                var ASPECT_RATIO = 1.78,
+                    width = $element.find('.clix-video-content-callout').outerWidth();
+
+                $scope.containerHeight = (width * ASPECT_RATIO) + 'px';
+
+                // $timeout(function() {
+                //     $scope.$apply();
+                // });
+            }
+
             $scope.menuClicked = function() {
                 $scope.menuVisible = !$scope.menuVisible;
             };
@@ -3588,6 +3617,22 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             $scope.onImageLoad = function(event) {
                 $scope.ready = true;
             };
+
+            angular.element($window).on('resize.doResize', function () {
+                _recalculateAspectRatio();
+            });
+
+            // $scope.$watch(function() {
+            //     _recalculateAspectRatio();
+            // });
+
+            $timeout(function() {
+                _recalculateAspectRatio();
+            });
+
+
+
+            // console.log($element.outerWidth())
         }
     ];
 
@@ -4309,6 +4354,55 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
     angular.module('clixtv')
         .directive('clixTrophyIndicatorIcon', trophyIndicatorIcon)
         .directive('clixErrorIndicatorIcon', errorIndicatorIcon);
+}());
+(function() {
+
+    var LazyLoaderController = [
+        '$scope',
+        '$timeout',
+        function($scope, $timeout) {
+            $scope.containerInView = function($inview, $inviewInfo) {
+                if (!$inview) {
+                    return;
+                }
+
+                // Weird bug where sometimes it fires right as the page content loads...
+                if ($inviewInfo && $inviewInfo.elementRect && $inviewInfo.elementRect.left === 0 && $inviewInfo.elementRect.top === 0) {
+                    return;
+                }
+
+                $scope.imageToLoad = $scope.imageSource;
+            };
+
+            $scope.onImageLoad = function() {
+                $timeout(function() {
+                    $scope.imageLoaded = true;
+                }, 250);
+            };
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .controller('LazyLoaderController', LazyLoaderController);
+}());
+(function() {
+    var lazyLoader = [
+        function() {
+            return {
+                restrict: 'AE',
+                controller: 'LazyLoaderController',
+                templateUrl: 'ui/common/image/lazy-loader/view.lazy-loader.html',
+                scope: {
+                    imageSource: '@?',
+                    showPlaceholder: '@?'
+                }
+            }
+        }
+    ];
+
+    angular.module('clixtv')
+        .directive('clixLazyLoader', lazyLoader);
 }());
 (function() {
     var loader = [
@@ -6806,6 +6900,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
             $rootScope.pageTitle = 'ClixTV - Your Stars. Their Passions.';
 
+            $scope.PAGE_LIMIT = 3;
+            $scope.currentPage = 0;
+
             $scope.showMobileCarousel = false;
 
             $rootScope.$on('user.login', function(event, data) {
@@ -6818,6 +6915,13 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
             $scope.onSignupPress = function() {
                 modalService.showSignUpModal();
+            };
+
+            $scope.onLoadMore = function($inview) {
+                if (!$scope.ready || !$inview) {
+                    return;
+                }
+                _loadCategories();
             };
 
             function _recalculateHeight() {
@@ -6837,20 +6941,38 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 _recalculateHeight();
             }
 
-
-            categoryService.getAllCategories()
-                .then(
-                    function onSuccess(data) {
-                        $scope.categories = data;
-                        $scope.ready = true;
-                    }
-                );
+            function _loadCategories() {
+                if ($scope.loading) {
+                    return;
+                }
+                $scope.loading = true;
+                categoryService.getAllCategories(false, $scope.currentPage, $scope.PAGE_LIMIT)
+                    .then(
+                        function onSuccess(data) {
+                            var busy = false,
+                                processor = setInterval(function() {
+                                    
+                                });
+                            if ($scope.categories) {
+                                $scope.categories.categories = $scope.categories.categories.concat(data.categories);
+                            } else {
+                                $scope.categories = data;
+                            }
+                            $scope.ready = true;
+                            $scope.currentPage += 1;
+                            $timeout(function() {
+                                angular.element(window).trigger('resize.doResize');
+                                $scope.loading = false;
+                            });
+                        }
+                    );
+            }
 
 
             angular.element($window).on('resize.doResize', function () {
                 _recalculateWidth();
             });
-            _recalculateWidth();
+            _loadCategories();
         }
     ];
 
@@ -9133,8 +9255,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 /**
                  * @todo - Cache this call
                  */
-                getAllCategories: function(withVideoCount) {
-                    return $http.get('/api/category/get_all_categories?video_count=' + (withVideoCount || false))
+                getAllCategories: function(withVideoCount, page, size) {
+                    return $http.get('/api/category/get_all_categories?video_count=' + (withVideoCount || false) + '&page=' + page + '&page_size=' + size)
                         .then(
                             function onSuccess(data) {
                                 return new CategoryListModel(data.data);

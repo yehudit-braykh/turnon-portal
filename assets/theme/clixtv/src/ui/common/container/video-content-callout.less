@@ -40,20 +40,25 @@
     &.active {
         .star-info-background,
         .video-thumbnail-background {
-            @media (min-width: @screen-md) {
-                background-size: 110% !important;
+
+            .lazy-loader-image {
+                @media (min-width: @screen-md) {
+                    background-size: 110% !important;
+                }
             }
         }
 
         .star-info-background {
-            @media (min-width: @screen-md) {
-                background-position: center 5% !important;
-            }
-            @media (min-width: @screen-lg) {
-                background-position: center 5% !important;
-            }
-            @media (min-width: @screen-xl) {
-                background-position: center 3% !important;
+            .lazy-loader-image {
+                @media (min-width: @screen-md) {
+                    background-position: center 5% !important;
+                }
+                @media (min-width: @screen-lg) {
+                    background-position: center 5% !important;
+                }
+                @media (min-width: @screen-xl) {
+                    background-position: center 3% !important;
+                }
             }
         }
     }
@@ -152,6 +157,11 @@
         left: 0;
         right: 0;
         bottom: 0;
+
+        .lazy-loader-image {
+            .transition(0.5s ease);
+            background-size: 100%;
+        }
     }
 
     .video-content-container {
@@ -181,6 +191,12 @@
             background-position: center top;
             background-size: 100%;
             background-repeat: no-repeat;
+
+            .lazy-loader-image {
+                .transition(0.5s ease);
+                background-size: 100%;
+                background-position: center top;
+            }
         }
 
         .star-info {
@@ -202,6 +218,7 @@
             height: 30px;
             background-size: cover;
             display: none;
+            overflow: hidden;
 
             @media (min-width: @screen-sm) {
                 display: block;
@@ -300,10 +317,13 @@
             .brand-icon {
                 .flex(1);
                 .opacity(.5);
-                background-size: contain;
-                background-position: center center;
-                background-repeat: no-repeat;
                 margin: 12px 5px;
+
+                .lazy-loader-image {
+                    background-size: contain;
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                }
             }
         }
     }

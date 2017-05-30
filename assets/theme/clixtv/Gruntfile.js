@@ -54,7 +54,8 @@ module.exports = function(grunt) {
                     'node_modules/angular-touch/angular-touch.js',
                     'node_modules/angular-cache/dist/angular-cache.js',
                     'node_modules/angular-lz-string/angular-lz-string.js',
-                    'node_modules/angular-sanitize/angular-sanitize.js'
+                    'node_modules/angular-sanitize/angular-sanitize.js',
+                    'node_modules/angular-inview/angular-inview.js'
                 ]
             }
         },

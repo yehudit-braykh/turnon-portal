@@ -4,9 +4,10 @@
 
     var VideoCategoryScrollList = [
         '$scope',
+        '$rootScope',
         '$window',
         '$timeout',
-        function($scope, $window, $timeout) {
+        function($scope, $rootScope, $window, $timeout) {
 
             $scope.left = 0;
 
@@ -38,6 +39,7 @@
 
                 $timeout(function() {
                     $scope.$apply();
+                    $rootScope.$broadcast('thumbnail.resize');
                 });
             }
 
@@ -71,6 +73,7 @@
                 event: {
                     afterChange: function (event, slick, currentSlide, nextSlide) {
                         $scope.leftArrowVisible = currentSlide !== 0;
+                        angular.element(window).trigger("checkInView");
                         // $scope.rightArrowVisible = (currentSlide );
                         // console.log('slick afterChange', 'currentSlide:', currentSlide, 'nextSlide:', nextSlide);
                     }

@@ -13,6 +13,9 @@
 
             $rootScope.pageTitle = 'ClixTV - Your Stars. Their Passions.';
 
+            $scope.PAGE_LIMIT = 3;
+            $scope.currentPage = 0;
+
             $scope.showMobileCarousel = false;
 
             $rootScope.$on('user.login', function(event, data) {
@@ -25,6 +28,13 @@
 
             $scope.onSignupPress = function() {
                 modalService.showSignUpModal();
+            };
+
+            $scope.onLoadMore = function($inview) {
+                if (!$scope.ready || !$inview) {
+                    return;
+                }
+                _loadCategories();
             };
 
             function _recalculateHeight() {
@@ -44,20 +54,34 @@
                 _recalculateHeight();
             }
 
-
-            categoryService.getAllCategories()
-                .then(
-                    function onSuccess(data) {
-                        $scope.categories = data;
-                        $scope.ready = true;
-                    }
-                );
+            function _loadCategories() {
+                if ($scope.loading) {
+                    return;
+                }
+                $scope.loading = true;
+                categoryService.getAllCategories(false, $scope.currentPage, $scope.PAGE_LIMIT)
+                    .then(
+                        function onSuccess(data) {
+                            if ($scope.categories) {
+                                $scope.categories.categories = $scope.categories.categories.concat(data.categories);
+                            } else {
+                                $scope.categories = data;
+                            }
+                            $scope.ready = true;
+                            $scope.currentPage += 1;
+                            $timeout(function() {
+                                angular.element(window).trigger('resize.doResize');
+                                $scope.loading = false;
+                            });
+                        }
+                    );
+            }
 
 
             angular.element($window).on('resize.doResize', function () {
                 _recalculateWidth();
             });
-            _recalculateWidth();
+            _loadCategories();
         }
     ];
 

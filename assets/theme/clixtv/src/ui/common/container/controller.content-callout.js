@@ -92,6 +92,8 @@
             $rootScope.$on('user.login', function(event, data) {
                 $scope.loggedInUser = data;
             });
+
+
         }
     ];
 

@@ -19,7 +19,8 @@
             'ngTouch',
             'angular-cache',
             'lz-string',
-            'ngSanitize'
+            'ngSanitize',
+            'angular-inview'
         ])
         .constant('clixConfig', {
 

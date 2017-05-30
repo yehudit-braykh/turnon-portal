@@ -1,0 +1,35 @@
+.clix-lazy-loader {
+    height: 100%;
+    width: 100%;
+
+    .lazy-loader-container {
+        .flex-display;
+        .flex(1);
+        .align-items(center);
+        .justify-content(center);
+        position: relative;
+        height: 100%;
+        width: 100%;
+    }
+
+    .lazy-loader-hidden-image {
+        display: none;
+    }
+
+    .lazy-loader-image {
+        .opacity(0);
+        .transition(0.5s ease);
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+
+        &.image-loaded {
+            .opacity(1);
+        }
+    }
+}

@@ -4,12 +4,15 @@
         '$q',
         '$scope',
         '$rootScope',
+        '$element',
+        '$window',
+        '$timeout',
         '$state',
         'userService',
         'shareModalService',
         'clixConfig',
         'modalService',
-        function($q, $scope, $rootScope, $state, userService, shareModalService, clixConfig, modalService) {
+        function($q, $scope, $rootScope, $element, $window, $timeout, $state, userService, shareModalService, clixConfig, modalService) {
 
             $scope.menuVisible = false;
 
@@ -31,6 +34,10 @@
                 $scope.tooltipOpen = false;
                 $scope.overlayActive = false;
             });
+
+            // $rootScope.$on('thumbnail.resize', function() {
+            //     _recalculateAspectRatio();
+            // });
 
             $rootScope.$on('favorite.added', _resetMenuItems);
             $rootScope.$on('favorite.removed', _resetMenuItems);
@@ -99,6 +106,17 @@
                 ];
             }
 
+            function _recalculateAspectRatio() {
+                var ASPECT_RATIO = 1.78,
+                    width = $element.find('.clix-video-content-callout').outerWidth();
+
+                $scope.containerHeight = (width * ASPECT_RATIO) + 'px';
+
+                // $timeout(function() {
+                //     $scope.$apply();
+                // });
+            }
+
             $scope.menuClicked = function() {
                 $scope.menuVisible = !$scope.menuVisible;
             };
@@ -147,6 +165,22 @@
             $scope.onImageLoad = function(event) {
                 $scope.ready = true;
             };
+
+            angular.element($window).on('resize.doResize', function () {
+                _recalculateAspectRatio();
+            });
+
+            // $scope.$watch(function() {
+            //     _recalculateAspectRatio();
+            // });
+
+            $timeout(function() {
+                _recalculateAspectRatio();
+            });
+
+
+
+            // console.log($element.outerWidth())
         }
     ];
 

@@ -1,0 +1,7 @@
+<div class="clix-lazy-loader" in-view="containerInView($inview, $inviewInfo)">
+    <div class="lazy-loader-container">
+        <img src="/assets/theme/clixtv/dist/images/clixtv-loader-logo.svg" class="lazy-loader-placeholder" ng-if="showPlaceholder !== 'false'" />
+        <img ng-src="{{imageToLoad}}" class="lazy-loader-hidden-image" clix-on-image-load="onImageLoad()" />
+        <div class="lazy-loader-image" style="background-image: url('{{imageToLoad}}')" ng-class="{'image-loaded': imageLoaded}"></div>
+    </div>
+</div>
