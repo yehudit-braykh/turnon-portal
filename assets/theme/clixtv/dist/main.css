@@ -14212,6 +14212,7 @@ button.close {
 }
 .clix-video-content-callout {
   position: relative;
+  padding-top: 178%;
 }
 .clix-video-content-callout.minimized .star-avatar {
   display: none !important;

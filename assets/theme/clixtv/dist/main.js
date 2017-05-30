@@ -3557,16 +3557,16 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 ];
             }
 
-            function _recalculateAspectRatio() {
-                var ASPECT_RATIO = 1.78,
-                    width = $element.find('.clix-video-content-callout').outerWidth();
-
-                $scope.containerHeight = (width * ASPECT_RATIO) + 'px';
-
-                // $timeout(function() {
-                //     $scope.$apply();
-                // });
-            }
+            // function _recalculateAspectRatio() {
+            //     var ASPECT_RATIO = 1.78,
+            //         width = $element.find('.clix-video-content-callout').outerWidth();
+            //
+            //     $scope.containerHeight = (width * ASPECT_RATIO) + 'px';
+            //
+            //     // $timeout(function() {
+            //     //     $scope.$apply();
+            //     // });
+            // }
 
             $scope.menuClicked = function() {
                 $scope.menuVisible = !$scope.menuVisible;
@@ -3617,17 +3617,17 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 $scope.ready = true;
             };
 
-            angular.element($window).on('resize.doResize', function () {
-                _recalculateAspectRatio();
-            });
+            // angular.element($window).on('resize.doResize', function () {
+            //     _recalculateAspectRatio();
+            // });
 
             // $scope.$watch(function() {
             //     _recalculateAspectRatio();
             // });
 
-            $timeout(function() {
-                _recalculateAspectRatio();
-            });
+            // $timeout(function() {
+            //     _recalculateAspectRatio();
+            // });
 
 
 
@@ -6897,6 +6897,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         'modalService',
         function($q, $scope, $rootScope, $timeout, $window, $uibModal, categoryService, modalService) {
 
+            var moreToLoad = true;
+
             $rootScope.pageTitle = 'ClixTV - Your Stars. Their Passions.';
 
             $scope.PAGE_LIMIT = 3;
@@ -6941,7 +6943,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             }
 
             function _loadCategories() {
-                if ($scope.loading) {
+                if ($scope.loading || !moreToLoad) {
                     return;
                 }
                 $scope.loading = true;
@@ -6952,6 +6954,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                                 $scope.categories.categories = $scope.categories.categories.concat(data.categories);
                             } else {
                                 $scope.categories = data;
+                            }
+                            if (!data || data.categories.length === 0) {
+                                moreToLoad = false;
                             }
                             $scope.ready = true;
                             $scope.currentPage += 1;

@@ -106,16 +106,16 @@
                 ];
             }
 
-            function _recalculateAspectRatio() {
-                var ASPECT_RATIO = 1.78,
-                    width = $element.find('.clix-video-content-callout').outerWidth();
-
-                $scope.containerHeight = (width * ASPECT_RATIO) + 'px';
-
-                // $timeout(function() {
-                //     $scope.$apply();
-                // });
-            }
+            // function _recalculateAspectRatio() {
+            //     var ASPECT_RATIO = 1.78,
+            //         width = $element.find('.clix-video-content-callout').outerWidth();
+            //
+            //     $scope.containerHeight = (width * ASPECT_RATIO) + 'px';
+            //
+            //     // $timeout(function() {
+            //     //     $scope.$apply();
+            //     // });
+            // }
 
             $scope.menuClicked = function() {
                 $scope.menuVisible = !$scope.menuVisible;
@@ -166,17 +166,17 @@
                 $scope.ready = true;
             };
 
-            angular.element($window).on('resize.doResize', function () {
-                _recalculateAspectRatio();
-            });
+            // angular.element($window).on('resize.doResize', function () {
+            //     _recalculateAspectRatio();
+            // });
 
             // $scope.$watch(function() {
             //     _recalculateAspectRatio();
             // });
 
-            $timeout(function() {
-                _recalculateAspectRatio();
-            });
+            // $timeout(function() {
+            //     _recalculateAspectRatio();
+            // });
 
 
 

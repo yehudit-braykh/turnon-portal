@@ -11,6 +11,8 @@
         'modalService',
         function($q, $scope, $rootScope, $timeout, $window, $uibModal, categoryService, modalService) {
 
+            var moreToLoad = true;
+
             $rootScope.pageTitle = 'ClixTV - Your Stars. Their Passions.';
 
             $scope.PAGE_LIMIT = 3;
@@ -55,7 +57,7 @@
             }
 
             function _loadCategories() {
-                if ($scope.loading) {
+                if ($scope.loading || !moreToLoad) {
                     return;
                 }
                 $scope.loading = true;
@@ -66,6 +68,9 @@
                                 $scope.categories.categories = $scope.categories.categories.concat(data.categories);
                             } else {
                                 $scope.categories = data;
+                            }
+                            if (!data || data.categories.length === 0) {
+                                moreToLoad = false;
                             }
                             $scope.ready = true;
                             $scope.currentPage += 1;
