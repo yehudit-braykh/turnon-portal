@@ -16,6 +16,10 @@
 
             $scope.menuVisible = false;
 
+            // Not a fan of state aware components, but the site is riddled with this view
+            // and it's a quicker path this way
+            $scope.isVideoPage = ($state.current.name === 'video');
+
             $rootScope.$on('user.login', function(event, data) {
                 $scope.loggedInUser = data;
                 _resetMenuItems();
