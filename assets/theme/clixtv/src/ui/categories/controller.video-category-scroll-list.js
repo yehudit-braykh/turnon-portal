@@ -33,12 +33,11 @@
                     splitWidth = 5.7;
                 }
 
-
                 $scope.videoContainerWidth = ($window.innerWidth - VIDEO_MARGIN_LEFT) / splitWidth;
                 $scope.arrowScrollWidth = $scope.videoContainerWidth + VIDEO_MARGIN_LEFT;
 
                 $timeout(function() {
-                    $scope.$apply();
+                    // $scope.$apply();
                     $rootScope.$broadcast('thumbnail.resize');
                 });
             }

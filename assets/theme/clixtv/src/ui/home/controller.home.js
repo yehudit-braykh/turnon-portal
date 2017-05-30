@@ -44,9 +44,9 @@
                     return;
                 }
                 $scope.videoContainerHeight = carouselElement.innerHeight();
-                $timeout(function() {
-                    $scope.$apply();
-                });
+                // $timeout(function() {
+                //     $scope.$apply();
+                // });
             }
 
             function _recalculateWidth() {

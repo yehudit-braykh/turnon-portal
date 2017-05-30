@@ -10,14 +10,14 @@
     <div class="category-container">
         <div class="visible-sm visible-md visible-lg">
             <slick slides-to-scroll="3" infinite="false" variable-width="true" prev-arrow="#carousel-previous-{{$id}}" next-arrow="#carousel-next-{{$id}}" settings="carouselConfig">
-                <div ng-repeat="video in category.videos.videos" class="video-content-container" style="width: {{videoContainerWidth}}px;">
+                <div ng-repeat="video in category.videos.videos track by video.id" class="video-content-container" style="width: {{videoContainerWidth}}px;">
                     <clix-video-content-callout video="video"></clix-video-content-callout>
                 </div>
             </slick>
         </div>
         <div class="hidden-sm hidden-md hidden-lg">
             <div class="row video-list-content-container">
-                <div ng-repeat="video in category.videos.videos | limitTo: 4" class="video-thumbnail-container col-xs-6 col-sm-4 col-md-4">
+                <div ng-repeat="video in category.videos.videos | limitTo: 4 track by video.id" class="video-thumbnail-container col-xs-6 col-sm-4 col-md-4">
                     <clix-video-content-callout video="video"></clix-video-content-callout>
                 </div>
             </div>

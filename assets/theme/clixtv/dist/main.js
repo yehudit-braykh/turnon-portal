@@ -310,7 +310,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/categories/view.video-category-scroll-list.html',
-    "<div class=video-category-scroll-list><h2><a ui-sref=\"category({ id: '{{category.id}}' })\" ng-show=\"category.headerLink !== false\">{{category.title}} <i class=icon-right-arrow></i> </a><span ng-show=\"category.headerLink === false\">{{category.title}} <i class=icon-right-arrow></i></span></h2><div class=category-container><div class=\"visible-sm visible-md visible-lg\"><slick slides-to-scroll=3 infinite=false variable-width=true prev-arrow=#carousel-previous-{{$id}} next-arrow=#carousel-next-{{$id}} settings=carouselConfig><div ng-repeat=\"video in category.videos.videos\" class=video-content-container style=\"width: {{videoContainerWidth}}px\"><clix-video-content-callout video=video></clix-video-content-callout></div></slick></div><div class=\"hidden-sm hidden-md hidden-lg\"><div class=\"row video-list-content-container\"><div ng-repeat=\"video in category.videos.videos | limitTo: 4\" class=\"video-thumbnail-container col-xs-6 col-sm-4 col-md-4\"><clix-video-content-callout video=video></clix-video-content-callout></div></div><div class=more-videos-button-container><clix-secondary-button ui-sref=\"category({ slug: '{{category.title | slug}}' })\" ng-show=\"enableShowMore !== 'false'\">View All {{category.title}}</clix-secondary-button></div></div><div class=\"arrow-container left-arrow-container\" id=carousel-previous-{{$id}} ng-show=leftArrowVisible><div class=arrow-inner-container><i class=\"arrow-icon icon-left-tall-arrow\"></i></div></div><div class=\"arrow-container right-arrow-container\" id=carousel-next-{{$id}}><div class=arrow-inner-container><i class=\"arrow-icon icon-right-tall-arrow\"></i></div></div></div></div>"
+    "<div class=video-category-scroll-list><h2><a ui-sref=\"category({ id: '{{category.id}}' })\" ng-show=\"category.headerLink !== false\">{{category.title}} <i class=icon-right-arrow></i> </a><span ng-show=\"category.headerLink === false\">{{category.title}} <i class=icon-right-arrow></i></span></h2><div class=category-container><div class=\"visible-sm visible-md visible-lg\"><slick slides-to-scroll=3 infinite=false variable-width=true prev-arrow=#carousel-previous-{{$id}} next-arrow=#carousel-next-{{$id}} settings=carouselConfig><div ng-repeat=\"video in category.videos.videos track by video.id\" class=video-content-container style=\"width: {{videoContainerWidth}}px\"><clix-video-content-callout video=video></clix-video-content-callout></div></slick></div><div class=\"hidden-sm hidden-md hidden-lg\"><div class=\"row video-list-content-container\"><div ng-repeat=\"video in category.videos.videos | limitTo: 4 track by video.id\" class=\"video-thumbnail-container col-xs-6 col-sm-4 col-md-4\"><clix-video-content-callout video=video></clix-video-content-callout></div></div><div class=more-videos-button-container><clix-secondary-button ui-sref=\"category({ slug: '{{category.title | slug}}' })\" ng-show=\"enableShowMore !== 'false'\">View All {{category.title}}</clix-secondary-button></div></div><div class=\"arrow-container left-arrow-container\" id=carousel-previous-{{$id}} ng-show=leftArrowVisible><div class=arrow-inner-container><i class=\"arrow-icon icon-left-tall-arrow\"></i></div></div><div class=\"arrow-container right-arrow-container\" id=carousel-next-{{$id}}><div class=arrow-inner-container><i class=\"arrow-icon icon-right-tall-arrow\"></i></div></div></div></div>"
   );
 
 
@@ -335,7 +335,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/banners/view.home-page-banner.html',
-    "<div class=clix-home-page-banner><div class=\"desktop-home-banner hidden-xs\"></div><div class=\"mobile-home-banner visible-xs\"><img ng-src=assets/theme/clixtv/dist/images/giphy-downsized-large.gif class=home-banner-background></div><div class=home-banner-overlay></div><div class=home-banner-content><div class=clixtv-originals-container><span class=clixtv-title-logo>ClixTV</span> Originals</div><div class=banner-main-header>Your Stars.<br>Their Passions.</div><div class=banner-subheader>Premium content from your favorite stars.</div><a ng-click=onSignupPress() class=primary-button ng-show=!loggedInUser>Sign Up Free</a></div></div>"
+    "<div class=clix-home-page-banner><div class=\"desktop-home-banner hidden-xs\"><video src=https://s3-us-west-2.amazonaws.com/clixtv.stage/ClixBetaCover.mp4 autoplay=\"\" loop=\"\" muted=\"\" class=home-banner-background></video></div><div class=\"mobile-home-banner visible-xs\"><img ng-src=assets/theme/clixtv/dist/images/giphy-downsized-large.gif class=home-banner-background></div><div class=home-banner-overlay></div><div class=home-banner-content><div class=clixtv-originals-container><span class=clixtv-title-logo>ClixTV</span> Originals</div><div class=banner-main-header>Your Stars.<br>Their Passions.</div><div class=banner-subheader>Premium content from your favorite stars.</div><a ng-click=onSignupPress() class=primary-button ng-show=!loggedInUser>Sign Up Free</a></div></div>"
   );
 
 
@@ -765,7 +765,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/home/view.home.html',
-    "<div class=home-page><clix-home-page-banner></clix-home-page-banner><div class=home-page-content><div ng-if=!ready><clix-loader size=large></clix-loader></div><div ng-if=ready><div ng-repeat=\"category in categories.categories | orderBy: 'order'\" ng-if=\"category && category.videos && category.videos.videos && category.videos.videos.length > 0\"><clix-video-category-scroll-list category=category></clix-video-category-scroll-list></div></div><div in-view=\"onLoadMore($inview, $inviewInfo)\"></div></div></div>"
+    "<div class=home-page><clix-home-page-banner></clix-home-page-banner><div class=home-page-content><div ng-if=!ready><clix-loader size=large></clix-loader></div><div ng-if=ready><div ng-repeat=\"category in categories.categories | orderBy: 'order' track by category.id\" ng-if=\"category && category.videos && category.videos.videos && category.videos.videos.length > 0\"><clix-video-category-scroll-list category=category></clix-video-category-scroll-list></div></div><div in-view=\"onLoadMore($inview, $inviewInfo)\"></div></div></div>"
   );
 
 
@@ -2559,12 +2559,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     splitWidth = 5.7;
                 }
 
-
                 $scope.videoContainerWidth = ($window.innerWidth - VIDEO_MARGIN_LEFT) / splitWidth;
                 $scope.arrowScrollWidth = $scope.videoContainerWidth + VIDEO_MARGIN_LEFT;
 
                 $timeout(function() {
-                    $scope.$apply();
+                    // $scope.$apply();
                     $rootScope.$broadcast('thumbnail.resize');
                 });
             }
@@ -6931,9 +6930,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     return;
                 }
                 $scope.videoContainerHeight = carouselElement.innerHeight();
-                $timeout(function() {
-                    $scope.$apply();
-                });
+                // $timeout(function() {
+                //     $scope.$apply();
+                // });
             }
 
             function _recalculateWidth() {
@@ -6949,10 +6948,6 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 categoryService.getAllCategories(false, $scope.currentPage, $scope.PAGE_LIMIT)
                     .then(
                         function onSuccess(data) {
-                            var busy = false,
-                                processor = setInterval(function() {
-                                    
-                                });
                             if ($scope.categories) {
                                 $scope.categories.categories = $scope.categories.categories.concat(data.categories);
                             } else {
