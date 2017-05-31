@@ -9305,9 +9305,21 @@ button.close {
     margin-bottom: 100px;
   }
 }
+.home-page .home-page-content {
+  position: relative;
+}
+@media (min-width: 768px) {
+  .home-page .home-page-content {
+    top: -100px;
+  }
+}
+@media (min-width: 992px) {
+  .home-page .home-page-content {
+    top: -50px;
+  }
+}
 @media (min-width: 1200px) {
   .home-page .home-page-content {
-    position: relative;
     top: -235px;
   }
 }
@@ -17588,15 +17600,10 @@ button.close {
   padding-left: 10px;
   color: #FFF;
 }
-@media (min-width: 768px) {
-  .clix-home-page-banner .home-banner-content {
-    margin-top: 20px;
-  }
-}
 @media (min-width: 992px) {
   .clix-home-page-banner .home-banner-content {
     padding-left: 30px;
-    margin-top: 0;
+    margin-top: -20px;
   }
 }
 @media (min-width: 1200px) {
@@ -17611,7 +17618,7 @@ button.close {
   letter-spacing: 1.4px;
   margin-bottom: 5px;
 }
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .clix-home-page-banner .home-banner-content .clixtv-originals-container {
     font-size: 18px;
     margin-bottom: 0;
@@ -17626,7 +17633,7 @@ button.close {
   line-height: 31px;
   margin-bottom: 5px;
 }
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .clix-home-page-banner .home-banner-content .banner-main-header {
     font-size: 85px;
     line-height: 80px;
@@ -17640,7 +17647,7 @@ button.close {
   text-transform: uppercase;
   margin-bottom: 20px;
 }
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .clix-home-page-banner .home-banner-content .banner-subheader {
     font-size: 22px;
     letter-spacing: 3.3px;

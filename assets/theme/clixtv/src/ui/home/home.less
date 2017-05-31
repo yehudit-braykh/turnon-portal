@@ -10,8 +10,17 @@
     }
 
     .home-page-content {
+        position: relative;
+
+        @media (min-width: @screen-sm) {
+            top: -100px;
+        }
+
+        @media (min-width: @screen-md) {
+            top: -50px;
+        }
+
         @media (min-width: @screen-lg) {
-            position: relative;
             top: -235px;
         }
     }
