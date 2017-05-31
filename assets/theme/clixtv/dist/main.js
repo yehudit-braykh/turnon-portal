@@ -5245,7 +5245,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         shareService.postToTwitter(message, title, description, link, picture);
                         break;
                     case 'tumblr':
-
+                        shareService.postToTumblr(message, title, description, link, picture);
                         break;
                     default:
                         missingNetwork = true;
@@ -9899,7 +9899,15 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 },
 
                 postToTumblr: function(message, title, description, link, picture) {
-
+                    Socialshare.share({
+                        provider: 'tumblr',
+                        attrs: {
+                            socialshareUrl: link,
+                            socialshareText: message,
+                            socialsharePopupHeight: 500,
+                            socialsharePopupWidth : 600
+                        }
+                    });
                 }
             }
         }

@@ -35,7 +35,15 @@
                 },
 
                 postToTumblr: function(message, title, description, link, picture) {
-
+                    Socialshare.share({
+                        provider: 'tumblr',
+                        attrs: {
+                            socialshareUrl: link,
+                            socialshareText: message,
+                            socialsharePopupHeight: 500,
+                            socialsharePopupWidth : 600
+                        }
+                    });
                 }
             }
         }

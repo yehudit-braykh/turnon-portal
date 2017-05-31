@@ -116,7 +116,7 @@
                         shareService.postToTwitter(message, title, description, link, picture);
                         break;
                     case 'tumblr':
-
+                        shareService.postToTumblr(message, title, description, link, picture);
                         break;
                     default:
                         missingNetwork = true;
