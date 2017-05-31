@@ -26,8 +26,6 @@
                         $scope.offer = data;
                         knetikService.viewOffer($scope.offer.id);
 
-                        console.log($scope.offer);
-
                         $rootScope.pageTitle = $scope.offer.title + ' Offer at ' + (brand ? brand.title : '') + ' - ClixTV';
 
                         catchMediaService.trackAppEvent('navigation', {

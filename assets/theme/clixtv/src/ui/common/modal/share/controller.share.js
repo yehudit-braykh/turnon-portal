@@ -111,7 +111,6 @@
                                     }
                                     break;
                             }
-                            console.log(data);
                         }
                     );
 

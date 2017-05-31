@@ -11,7 +11,7 @@
             offersService.getOfferById($stateParams.id)
                 .then(
                     function onSuccess(data) {
-                        console.log(data);
+
                     }
                 );
 

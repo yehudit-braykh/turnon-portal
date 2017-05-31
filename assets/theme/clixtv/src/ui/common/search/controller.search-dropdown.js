@@ -36,7 +36,6 @@
                     searchService[method]($scope.term, 0, 5)
                         .then(
                             function onSuccess(data) {
-                                console.log(data);
                                 $scope.searching = false;
                                 if (!data || data.length === 0 || data.error) {
                                     $scope.empty = true;
