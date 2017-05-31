@@ -46,6 +46,10 @@
     }
 
     .next-video-overlay-container {
+        .flex-display;
+        .flex(1);
+        .align-items(center);
+        .justify-content(center);
         position: absolute;
         top: 0;
         bottom: 0;
@@ -75,19 +79,14 @@
         }
 
         .next-video-container {
-            .transform(translateY(-50%) scale(.4));
-            margin: 0 auto;
-            position: relative;
-            top: 50%;
+            .transform(scale(.4));
 
             @media (min-width: @screen-sm) {
-                .transform(translateY(-50%) scale(.5));
+                .transform(scale(.5));
             }
-
-
-
+            
             @media (min-width: @screen-lg) {
-                .transform(translateY(-50%) scale(1));
+                .transform(scale(1));
             }
         }
 
