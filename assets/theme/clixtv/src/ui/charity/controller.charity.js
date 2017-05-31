@@ -5,6 +5,7 @@
         '$log',
         '$scope',
         '$rootScope',
+        '$filter',
         '$uibModal',
         '$state',
         '$stateParams',
@@ -12,7 +13,7 @@
         'userService',
         'catchMediaService',
         'clixConfig',
-        function($q, $log, $scope, $rootScope, $uibModal, $state, $stateParams, brandsService, userService, catchMediaService, clixConfig) {
+        function($q, $log, $scope, $rootScope, $filter, $uibModal, $state, $stateParams, brandsService, userService, catchMediaService, clixConfig) {
 
             $scope.filtersEnabled = clixConfig.filtersEnabled;
 
@@ -81,6 +82,9 @@
                         catchMediaService.trackAppEvent('navigation_item', eventParams);
 
                         $scope.charity = data;
+
+                        $filter('orderBy')($scope.charity.videos.videos, ['episodeNumber']);
+
                         $scope.active = 0;
 
                         $rootScope.pageTitle = $scope.charity.title + ' - ClixTV';

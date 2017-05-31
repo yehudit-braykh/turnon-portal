@@ -78,7 +78,7 @@
                                 </div>
                                 <div class="brand-celebrity-videos">
                                     <div ng-repeat="celebrity in brand.celebrities.celebrities | limitTo: 3">
-                                        <clix-video-category-scroll-list category-title="{{celebrity.name}} and {{brand.title}}" category-videos="celebrity.videos.videos" enable-show-more="false"></clix-video-category-scroll-list>
+                                        <clix-video-category-scroll-list category-title="{{celebrity.name}} and {{brand.title}}" category-videos="celebrity.videos.videos" enable-show-more="false" order="episodeNumber"></clix-video-category-scroll-list>
                                     </div>
                                 </div>
                             </footer-content>
@@ -106,7 +106,7 @@
                 <uib-tab index="2" heading="Stars" select="onTabSelect('stars')">
                     <div class="stars-container">
                         <div ng-repeat="celebrity in brand.celebrities.celebrities">
-                            <clix-video-category-scroll-list category-title="{{celebrity.name}} and {{brand.title}}" category-videos="celebrity.videos.videos" enable-show-more="false"></clix-video-category-scroll-list>
+                            <clix-video-category-scroll-list category-title="{{celebrity.name}} and {{brand.title}}" category-videos="celebrity.videos.videos" enable-show-more="false" order="episodeNumber"></clix-video-category-scroll-list>
                         </div>
                     </div>
                 </uib-tab>

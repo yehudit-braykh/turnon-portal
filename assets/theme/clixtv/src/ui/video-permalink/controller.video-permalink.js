@@ -148,7 +148,7 @@
                 userService.addFavoriteCelebrity($scope.video.celebrity.id)
                     .then(
                         function onSuccess(data) {
-                            
+
                         }
                     );
             };
