@@ -4,7 +4,17 @@
             Notifications
         </header-text>
     </clix-account-header>
-    <div class="notifications-container">
+    <div ng-if="!notificationEnabled" class="disabled-notifications-container">
+        <clix-empty-container>
+            <header-text>
+                Notifications are coming soon!
+            </header-text>
+            <body-text>
+                Soon you will receive notifications on your<br />favorites and saved offers!
+            </body-text>
+        </clix-empty-container>
+    </div>
+    <div class="notifications-container" ng-if="notificationEnabled">
         <div class="notifications-header">
             My Notifications
         </div>

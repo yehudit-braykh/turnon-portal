@@ -34,6 +34,9 @@
             // Enable or disable all sort and filter bars
             filtersEnabled: false,
 
+            // Enable or disable all notifications
+            notificationEnabled: false,
+
             // Base URL for API calls
             baseApi: '//34.209.221.167',
 
@@ -253,7 +256,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/account/notifications/view.notifications.html',
-    "<div class=clix-account-notifications><clix-account-header><header-text>Notifications</header-text></clix-account-header><div class=notifications-container><div class=notifications-header>My Notifications</div><clix-notifications notifications=notifications></clix-notifications></div></div>"
+    "<div class=clix-account-notifications><clix-account-header><header-text>Notifications</header-text></clix-account-header><div ng-if=!notificationEnabled class=disabled-notifications-container><clix-empty-container><header-text>Notifications are coming soon!</header-text><body-text>Soon you will receive notifications on your<br>favorites and saved offers!</body-text></clix-empty-container></div><div class=notifications-container ng-if=notificationEnabled><div class=notifications-header>My Notifications</div><clix-notifications notifications=notifications></clix-notifications></div></div>"
   );
 
 
@@ -278,7 +281,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/account/settings/view.settings.html',
-    "<div class=clix-account-settings><clix-account-header><header-text>Settings</header-text></clix-account-header><div class=settings-page-content><div ng-if=!ready><clix-loader size=large></clix-loader></div><div ng-id=ready><div class=setting-row ng-repeat=\"setting in generalSettings | orderBy: 'order'\"><div class=setting-row-info><div class=setting-row-title>{{setting.title}}</div><div class=setting-row-description>{{setting.description}}</div></div><div class=setting-row-trigger><switch ng-model=setting.enabled class=setting-switch ng-change=settingChange(setting)></switch></div></div><div class=settings-subtitle><clix-account-header><header-text>Your ClixTV</header-text></clix-account-header></div><div class=setting-row ng-repeat=\"setting in accountSettings | orderBy: 'order'\"><div class=setting-row-info><div class=setting-row-title>{{setting.title}}</div><div class=setting-row-description>{{setting.description}}</div></div><div class=setting-row-trigger><switch ng-model=setting.enabled class=setting-switch ng-change=settingChange(setting)></switch></div></div><div class=settings-subtitle><clix-account-header><header-text>Notifications</header-text></clix-account-header></div><div class=\"setting-row notifications-setting-row\"><div class=setting-row-info><div class=setting-row-title>Send Notifications</div><div class=setting-row-description>How we will keep you Up-To-Date</div></div><div class=\"row setting-notification-container\"><div class=\"col-sm-6 setting-email-container\"><div class=notification-label>Email</div><clix-checkbox ng-model=enableEmailNotifications></clix-checkbox><div class=setting-notification-profile-container><div class=setting-notification-profile-label><clix-account-overview-input ng-model=loggedInUser.email on-save=onSaveField type=email><input-label>Email</input-label></clix-account-overview-input></div><div class=setting-notification-profile-desc>Modifying your email address here will change the email address for your account.</div></div></div><div class=\"col-sm-6 setting-text-push-container\"><div class=row><div class=\"col-xs-6 setting-text-container\"><div class=notification-label>Text</div><clix-checkbox ng-model=enableTextNotifications></clix-checkbox></div><div class=\"col-xs-6 setting-push-container\"><div class=notification-label>Push</div><clix-checkbox ng-model=enablePushNotifications></clix-checkbox></div></div><div class=setting-notification-profile-container><div class=setting-notification-profile-label><clix-account-overview-input ng-model=loggedInUser.phone on-save=onSaveField type=phone><input-label>Phone</input-label></clix-account-overview-input></div></div><div class=setting-notification-profile-desc>Modifying your phone number here will change the phone number for your account.</div></div></div></div></div></div></div>"
+    "<div class=clix-account-settings ng-class=\"{'disabled-notifications': !notificationEnabled}\"><div ng-if=!notificationEnabled class=disabled-notifications-container><clix-empty-container><header-text>Notifications are coming soon!</header-text><body-text>Go ahead and set things up, that way you’ll be ready once we have notifications up and running!</body-text></clix-empty-container></div><clix-account-header><header-text>Settings</header-text></clix-account-header><div class=settings-page-content><div ng-if=!ready><clix-loader size=large></clix-loader></div><div ng-if=ready><div class=setting-row ng-repeat=\"setting in generalSettings | orderBy: 'order'\"><div class=setting-row-info><div class=setting-row-title>{{setting.title}}</div><div class=setting-row-description>{{setting.description}}</div></div><div class=setting-row-trigger><switch ng-model=setting.enabled class=setting-switch ng-change=settingChange(setting)></switch></div></div><div class=settings-subtitle><clix-account-header><header-text>Your ClixTV</header-text></clix-account-header></div><div class=setting-row ng-repeat=\"setting in accountSettings | orderBy: 'order'\"><div class=setting-row-info><div class=setting-row-title>{{setting.title}}</div><div class=setting-row-description>{{setting.description}}</div></div><div class=setting-row-trigger><switch ng-model=setting.enabled class=setting-switch ng-change=settingChange(setting)></switch></div></div><div class=settings-subtitle><clix-account-header><header-text>Notifications</header-text></clix-account-header></div><div class=\"setting-row notifications-setting-row\"><div class=setting-row-info><div class=setting-row-title>Send Notifications</div><div class=setting-row-description>How we will keep you Up-To-Date</div></div><div class=\"row setting-notification-container\"><div class=\"col-sm-6 setting-email-container\"><div class=notification-label>Email</div><clix-checkbox ng-model=enableEmailNotifications></clix-checkbox><div class=setting-notification-profile-container><div class=setting-notification-profile-label><clix-account-overview-input ng-model=loggedInUser.email on-save=onSaveField type=email><input-label>Email</input-label></clix-account-overview-input></div><div class=setting-notification-profile-desc>Modifying your email address here will change the email address for your account.</div></div></div><div class=\"col-sm-6 setting-text-push-container\"><div class=row><div class=\"col-xs-6 setting-text-container\"><div class=notification-label>Text</div><clix-checkbox ng-model=enableTextNotifications></clix-checkbox></div><div class=\"col-xs-6 setting-push-container\"><div class=notification-label>Push</div><clix-checkbox ng-model=enablePushNotifications></clix-checkbox></div></div><div class=setting-notification-profile-container><div class=setting-notification-profile-label><clix-account-overview-input ng-model=loggedInUser.phone on-save=onSaveField type=phone><input-label>Phone</input-label></clix-account-overview-input></div></div><div class=setting-notification-profile-desc>Modifying your phone number here will change the phone number for your account.</div></div></div></div></div></div></div>"
   );
 
 
@@ -643,7 +646,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/notifications/view.notification-tooltip.html',
-    "<div class=clix-notification-tooltip><div class=notification-tooltip-header>Notifications</div><clix-notifications notifications=notifications minify=true></clix-notifications></div>"
+    "<div class=clix-notification-tooltip><div class=notification-tooltip-header>Notifications</div><div class=disabled-notifications-container ng-if=!notificationEnabled><div class=disabled-notifications-header>Notifications are<br>coming soon!</div><div class=disabled-notifications-body>Soon you will receive notifications on your favorites and saved offers!</div></div><div ng-if=notificationEnabled><clix-notifications notifications=notifications minify=true></clix-notifications></div></div>"
   );
 
 
@@ -1240,9 +1243,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$rootScope',
         'userService',
         'notificationsService',
-        function($scope, $rootScope, userService, notificationsService) {
+        'clixConfig',
+        function($scope, $rootScope, userService, notificationsService, clixConfig) {
 
             $rootScope.pageTitle = 'Your Notifications - ClixTV';
+            $scope.notificationEnabled = clixConfig.notificationEnabled;
 
             notificationsService.getNotifications()
                 .then(
@@ -1749,9 +1754,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$scope',
         '$rootScope',
         'userService',
-        function($q, $scope, $rootScope, userService) {
+        'clixConfig',
+        function($q, $scope, $rootScope, userService, clixConfig) {
 
             $rootScope.pageTitle = 'Your Account Settings - ClixTV';
+            $scope.notificationEnabled = clixConfig.notificationEnabled;
 
             $scope.ready = false;
 
@@ -5527,7 +5534,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$timeout',
         '$state',
         'userService',
-        function($scope, $rootScope, $timeout, $state, userService) {
+        'clixConfig',
+        function($scope, $rootScope, $timeout, $state, userService, clixConfig) {
+
+            $scope.notificationEnabled = clixConfig.notificationEnabled;
 
             $scope.items = [
                 {

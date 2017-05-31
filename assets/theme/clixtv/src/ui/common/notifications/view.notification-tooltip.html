@@ -2,5 +2,15 @@
     <div class="notification-tooltip-header">
         Notifications
     </div>
-    <clix-notifications notifications="notifications" minify="true"></clix-notifications>
+    <div class="disabled-notifications-container" ng-if="!notificationEnabled">
+        <div class="disabled-notifications-header">
+            Notifications are<br />coming soon!
+        </div>
+        <div class="disabled-notifications-body">
+            Soon you will receive notifications on your favorites and saved offers!
+        </div>
+    </div>
+    <div ng-if="notificationEnabled">
+        <clix-notifications notifications="notifications" minify="true"></clix-notifications>
+    </div>
 </div>

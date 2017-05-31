@@ -12480,6 +12480,9 @@ button.close {
     padding-left: 0;
   }
 }
+.clix-account-settings.disabled-notifications {
+  margin-top: -80px;
+}
 .clix-account-settings .settings-page-content {
   padding: 46px 9px 46px 9px;
 }
@@ -12487,6 +12490,22 @@ button.close {
   .clix-account-settings .settings-page-content {
     padding: 46px 29px 46px 48px;
   }
+}
+.clix-account-settings .disabled-notifications-container {
+  max-width: 500px;
+  padding: 80px 9px 20px;
+}
+@media (min-width: 768px) {
+  .clix-account-settings .disabled-notifications-container {
+    padding: 0 0 0 50px;
+  }
+}
+.clix-account-settings .disabled-notifications-container .clix-empty-container {
+  padding: 0;
+  margin-bottom: 20px;
+}
+.clix-account-settings .disabled-notifications-container .clix-empty-container .body-text {
+  text-align: left;
 }
 .clix-account-settings .setting-row {
   display: -webkit-flex;
@@ -14687,17 +14706,27 @@ button.close {
   font-family: 'montserratsemibold', sans-serif;
 }
 .clix-empty-container .header-text {
-  font-size: 24px;
+  font-size: 20px;
   font-family: 'montserratsemibold', sans-serif;
   line-height: 30px;
 }
+@media (min-width: 768px) {
+  .clix-empty-container .header-text {
+    font-size: 24px;
+  }
+}
 .clix-empty-container .body-text {
-  font-size: 14px;
+  font-size: 10px;
   font-family: 'montserratregular', sans-serif;
   line-height: 22px;
   letter-spacing: 1.6px;
   text-transform: uppercase;
   margin-top: 15px;
+}
+@media (min-width: 768px) {
+  .clix-empty-container .body-text {
+    font-size: 14px;
+  }
 }
 .clix-empty-container .call-to-action-container {
   display: inline-block;
@@ -17076,6 +17105,22 @@ button.close {
   font-size: 16px;
   border-bottom: 1px solid #494949;
   padding: 10px 23px;
+}
+.clix-notification-tooltip .disabled-notifications-container {
+  padding: 40px 60px 70px;
+  text-align: center;
+  color: #8a8a8a;
+}
+.clix-notification-tooltip .disabled-notifications-container .disabled-notifications-header {
+  font-family: 'montserratsemibold', sans-serif;
+  font-size: 18px;
+  line-height: 22px;
+}
+.clix-notification-tooltip .disabled-notifications-container .disabled-notifications-body {
+  font-family: 'montserratregular', sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+  margin-top: 10px;
 }
 .clix-site-notification-bar {
   transition: 0.25s ease;

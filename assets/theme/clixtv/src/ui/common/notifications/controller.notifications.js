@@ -6,7 +6,10 @@
         '$timeout',
         '$state',
         'userService',
-        function($scope, $rootScope, $timeout, $state, userService) {
+        'clixConfig',
+        function($scope, $rootScope, $timeout, $state, userService, clixConfig) {
+
+            $scope.notificationEnabled = clixConfig.notificationEnabled;
 
             $scope.items = [
                 {

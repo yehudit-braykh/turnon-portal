@@ -1,10 +1,31 @@
 .clix-account-settings {
 
+    &.disabled-notifications {
+        margin-top: -80px;
+    }
+
     .settings-page-content {
         padding: 46px @common-mobile-padding 46px @common-mobile-padding;
 
         @media (min-width: @screen-md) {
             padding: 46px 29px 46px 48px;
+        }
+    }
+
+    .disabled-notifications-container {
+        max-width: 500px;
+        padding: 80px @common-mobile-padding 20px;
+
+        @media (min-width: @screen-sm) {
+            padding: 0 0 0 50px;
+        }
+
+        .clix-empty-container {
+            padding: 0;
+            margin-bottom: 20px;
+            .body-text {
+                text-align: left;
+            }
         }
     }
 

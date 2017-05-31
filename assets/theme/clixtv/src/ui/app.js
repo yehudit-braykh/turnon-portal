@@ -34,6 +34,9 @@
             // Enable or disable all sort and filter bars
             filtersEnabled: false,
 
+            // Enable or disable all notifications
+            notificationEnabled: false,
+
             // Base URL for API calls
             baseApi: '//34.209.221.167',
 

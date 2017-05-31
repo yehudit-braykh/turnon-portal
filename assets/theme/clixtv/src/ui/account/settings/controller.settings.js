@@ -5,9 +5,11 @@
         '$scope',
         '$rootScope',
         'userService',
-        function($q, $scope, $rootScope, userService) {
+        'clixConfig',
+        function($q, $scope, $rootScope, userService, clixConfig) {
 
             $rootScope.pageTitle = 'Your Account Settings - ClixTV';
+            $scope.notificationEnabled = clixConfig.notificationEnabled;
 
             $scope.ready = false;
 

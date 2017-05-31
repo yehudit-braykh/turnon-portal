@@ -13,18 +13,26 @@
     }
 
     .header-text {
-        font-size: 24px;
+        font-size: 20px;
         font-family: @font-primary-bold;
         line-height: 30px;
+
+        @media (min-width: @screen-sm) {
+            font-size: 24px;
+        }
     }
 
     .body-text {
-        font-size: 14px;
+        font-size: 10px;
         font-family: @font-secondary;
         line-height: 22px;
         letter-spacing: 1.6px;
         text-transform: uppercase;
         margin-top: 15px;
+
+        @media (min-width: @screen-sm) {
+            font-size: 14px;
+        }
     }
 
     .call-to-action-container {

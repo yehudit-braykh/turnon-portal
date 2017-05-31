@@ -1,4 +1,14 @@
-<div class="clix-account-settings">
+<div class="clix-account-settings" ng-class="{'disabled-notifications': !notificationEnabled}">
+    <div ng-if="!notificationEnabled" class="disabled-notifications-container">
+        <clix-empty-container>
+            <header-text>
+                Notifications are coming soon!
+            </header-text>
+            <body-text>
+                Go ahead and set things up, that way you’ll be ready once we have notifications up and running!
+            </body-text>
+        </clix-empty-container>
+    </div>
     <clix-account-header>
         <header-text>
             Settings
@@ -9,7 +19,7 @@
             <clix-loader size="large"></clix-loader>
         </div>
 
-        <div ng-id="ready">
+        <div ng-if="ready">
             <div class="setting-row" ng-repeat="setting in generalSettings | orderBy: 'order'">
                 <div class="setting-row-info">
                     <div class="setting-row-title">

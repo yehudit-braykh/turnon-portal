@@ -5,9 +5,11 @@
         '$rootScope',
         'userService',
         'notificationsService',
-        function($scope, $rootScope, userService, notificationsService) {
+        'clixConfig',
+        function($scope, $rootScope, userService, notificationsService, clixConfig) {
 
             $rootScope.pageTitle = 'Your Notifications - ClixTV';
+            $scope.notificationEnabled = clixConfig.notificationEnabled;
 
             notificationsService.getNotifications()
                 .then(
