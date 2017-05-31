@@ -20,7 +20,8 @@
             'angular-cache',
             'lz-string',
             'ngSanitize',
-            'angular-inview'
+            'angular-inview',
+            '720kb.socialshare'
         ])
         .constant('clixConfig', {
 

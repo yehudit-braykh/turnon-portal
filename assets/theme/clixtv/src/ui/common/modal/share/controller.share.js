@@ -22,43 +22,68 @@
             $scope.charity = data.shareModalCharity;
             $scope.category = data.shareModalCategory;
 
-            var type, entity,
+            var type, entity, link, picture, description, title, message,
                 currentUrl = $location.absUrl(),
                 shareContent = '';
 
             if (data.shareModalVideo) {
-                shareContent = 'Here\'s a video I thought you\'d enjoy from #ClixTV - ';
-                shareContent += data.shareModalVideo.title + ' ' + $state.href('video', { id: data.shareModalVideo.id }, {absolute: true});
+                message = 'Here\'s a video I thought you\'d enjoy from #ClixTV';
+                link = $state.href('video', { id: data.shareModalVideo.id }, {absolute: true});
+                shareContent = message + ' - ';
+                shareContent += data.shareModalVideo.title + ' ' + link;
                 type = 'video';
                 entity = data.shareModalVideo;
+                picture = $scope.video.thumbnail;
+                description = $scope.video.description;
+                title = 'Episode ' + $scope.video.episodeNumber + ': ' + $scope.video.title + ' on ClixTV';
             }
 
             if (data.shareModalOffer) {
-                shareContent = 'Here\'s an offer I thought you\'d enjoy from #ClixTV - ';
-                shareContent += data.shareModalOffer.title + ' ' + $state.href('brand-offer', { id: data.shareModalOffer.campaign.id, offerId: data.shareModalOffer.id }, {absolute: true});
+                message = 'Here\'s an offer I thought you\'d enjoy from #ClixTV';
+                link = $state.href('brand-offer', { id: data.shareModalOffer.campaign.id, offerId: data.shareModalOffer.id }, {absolute: true});
+                shareContent = message + ' - ';
+                shareContent += data.shareModalOffer.title + ' ' + link;
                 type = 'offer';
                 entity = data.shareModalOffer;
+                picture = $scope.offer.thumbnail;
+                description = $scope.offer.description;
+                title = $scope.offer.title + ' on ClixTV';
             }
 
             if (data.shareModalCelebrity) {
-                shareContent = 'I thought you\'d like to check out ' + data.shareModalCelebrity.name + ' on #ClixTV - ';
-                shareContent += $state.href('star', { id: data.shareModalCelebrity.id }, {absolute: true});
+                message = 'I thought you\'d like to check out ' + data.shareModalCelebrity.name + ' on #ClixTV';
+                link = $state.href('star', { id: data.shareModalCelebrity.id }, {absolute: true});
+                shareContent = message + ' - ';
+                shareContent += link;
                 type = 'star';
                 entity = data.shareModalCelebrity;
+                picture = $scope.celebrity.thumbnail;
+                description = $scope.celebrity.description;
+                title = $scope.celebrity.name + ' on ClixTV';
             }
 
             if (data.shareModalBrand) {
-                shareContent = 'I thought you\'d enjoy visiting ' + data.shareModalBrand.title + ' on #ClixTV - ';
-                shareContent += $state.href('brand', { id: data.shareModalBrand.id }, {absolute: true});
+                message = 'I thought you\'d enjoy visiting ' + data.shareModalBrand.title + ' on #ClixTV';
+                link = $state.href('brand', { id: data.shareModalBrand.id }, {absolute: true});
+                shareContent = message + ' - ';
+                shareContent += link;
                 type = 'brand';
                 entity = data.shareModalBrand;
+                picture = $scope.brand.headerImage;
+                description = $scope.brand.description;
+                title = $scope.brand.title + ' on ClixTV';
             }
 
             if (data.shareModalCharity) {
-                shareContent = 'I thought you\'d enjoy visiting the charity page for ' + data.shareModalCharity.title + ' on #ClixTV - ';
-                shareContent += $state.href('charity', { id: data.shareModalCharity.id }, {absolute: true});
+                message = 'I thought you\'d enjoy visiting the charity page for ' + data.shareModalCharity.title + ' on #ClixTV';
+                link = $state.href('charity', { id: data.shareModalCharity.id }, {absolute: true});
+                shareContent = ' - ';
+                shareContent += link;
                 type = 'charity';
                 entity = data.shareModalCharity;
+                picture = $scope.charity.headerImage;
+                description = $scope.charity.description;
+                title = $scope.charity.title + ' on ClixTV';
             }
 
             $scope.shareContent = shareContent;
@@ -81,10 +106,30 @@
             };
 
             $scope.onPostPress = function() {
-                $uibModalInstance.close();
-                catchMediaService.trackShareEvent(type, entity);
 
-                // shareService.postToTwitter('Test Message', 'http://www.google.com', 'http://advncedcdn.vo.llnwd.net/clixtv_storage/storage/57cdc2665aad0b6fcf67bb3d/590ac858fbb3d633b64e3607/redfoocover1.jpg');
+                var missingNetwork = false;
+                switch($scope.socialNetworks[0]) {
+                    case 'facebook':
+                        shareService.postToFacebook(shareContent, title, description, link, picture);
+                        break;
+                    case 'twitter':
+                        shareService.postToTwitter(message, title, description, link, picture);
+                        break;
+                    case 'tumblr':
+
+                        break;
+                    default:
+                        missingNetwork = true;
+                        break;
+                }
+                if (!missingNetwork) {
+                    if ($scope.showBackButton) {
+                        modalService.pop();
+                    } else {
+                        $uibModalInstance.close();
+                    }
+                    catchMediaService.trackShareEvent(type, entity);
+                }
             };
 
             $scope.onSocialNetworkPress = function(socialNetwork) {
@@ -102,7 +147,7 @@
                                     break;
                                 case 'twitter':
                                     if (!data.twitterConnected) {
-                                        window.open('/hauth/login/Twitter', 'tw', 'left=20,top=20,width=600,height=500,toolbar=1,resizable=0');
+                                        // window.open('/hauth/login/Twitter', 'tw', 'left=20,top=20,width=600,height=500,toolbar=1,resizable=0');
                                     }
                                     break;
                                 case 'tumblr':

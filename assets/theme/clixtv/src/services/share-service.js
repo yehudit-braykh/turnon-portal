@@ -1,16 +1,41 @@
 (function() {
 
     var shareService = [
-        '$http',
-        function($http) {
+        'Socialshare',
+        function(Socialshare) {
             return {
 
-                postToTwitter: function(message, link, picture) {
-                    return $http.post('/api/social/Twitter', {
-                        message: message,
-                        link: link,
-                        picture: picture
+                postToFacebook: function(message, title, description, link, picture) {
+                    Socialshare.share({
+                        provider: 'facebook',
+                        attrs: {
+                            socialshareType: 'share',
+                            socialshareVia: '1818150935069308',
+                            socialshareUrl: link,
+                            socialshareTitle: title,
+                            socialshareDescription: description,
+                            socialshareMedia: picture,
+                            socialsharePopupHeight: 500,
+                            socialsharePopupWidth : 600,
+                            socialshareHashtags: '#ClixTV'
+                        }
                     });
+                },
+
+                postToTwitter: function(message, title, description, link, picture) {
+                    Socialshare.share({
+                        provider: 'twitter',
+                        attrs: {
+                            socialshareVia: 'clixtvofficial',
+                            socialshareText: message,
+                            socialsharePopupHeight: 500,
+                            socialsharePopupWidth : 600
+                        }
+                    });
+                },
+
+                postToTumblr: function(message, title, description, link, picture) {
+
                 }
             }
         }
