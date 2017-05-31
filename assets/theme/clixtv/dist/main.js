@@ -5245,7 +5245,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         shareService.postToTwitter(message, title, description, link, picture);
                         break;
                     case 'tumblr':
-                        shareService.postToTumblr(message, title, description, link, picture);
+                        shareService.postToTumblr(shareContent, title, description, link, picture);
                         break;
                     default:
                         missingNetwork = true;
