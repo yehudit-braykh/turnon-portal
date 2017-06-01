@@ -3004,7 +3004,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 );
 
             var backgroundVideo = jwplayer('videoPlayer').setup({
-                file: 'https://s3-us-west-2.amazonaws.com/clixtv.prod/ClixBetaCover.m3u8',
+                file: 'https://s3-us-west-2.amazonaws.com/clixtv.prod/clix-home-video2.m3u8',
                 autostart: true,
                 controls: false,
                 mute: true,
