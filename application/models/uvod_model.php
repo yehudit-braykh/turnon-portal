@@ -45,7 +45,7 @@ class Uvod_model extends CI_Model {
             // debug($json_obj);
         // checks service response
         if (isset($json_obj->isException) && ($json_obj->isException == true || $json_obj->isException === "true")) {
-            if($json_obj->responseCode == 403){
+            if($json_obj->responseCode == 403 && $json_obj->title == "Invalid Access Token"){
                 $this->login_admin(true);
                 unset($parameters[array_search("token=" . $token,$parameters)]);
                 return $this->apiCall($path, $parameters, $login, $token);
@@ -84,10 +84,10 @@ class Uvod_model extends CI_Model {
         }
 
         $json_obj = json_decode($curl_response);
-
+        // debug($json_obj);
         // checks service response
         if (isset($json_obj->isException) && ($json_obj->isException == true || $json_obj->isException === "true")) {
-            if($json_obj->responseCode == 403){
+            if($json_obj->responseCode == 403 && $json_obj->title == "Invalid Access Token"){
                 $this->login_admin(true);
                 unset($parameters[array_search("token=" . $token,$parameters)]);
                 return $this->apiPost($url, $payload, $custom_method);
@@ -131,7 +131,7 @@ class Uvod_model extends CI_Model {
         // debug($json_obj);
         // checks service response
         if (isset($json_obj->isException) && ($json_obj->isException == true || $json_obj->isException === "true" || $json_obj->isException === "1")) {
-            if($json_obj->responseCode == 403){
+            if($json_obj->responseCode == 403 && $json_obj->title == "Invalid Access Token"){
                 $this->login_admin(true);
                 unset($parameters[array_search("token=" . $token,$parameters)]);
                 return $this->apiPut($url, $payload);
@@ -397,7 +397,7 @@ class Uvod_model extends CI_Model {
         // debug($json_obj);
                 // checks service response
         if (isset($json_obj->isException) && $json_obj->isException == "true") {
-            if($json_obj->responseCode == 403){
+            if($json_obj->responseCode == 403  && $json_obj->title == "Invalid Access Token"){
                 $this->login_admin(true);
                 unset($parameters[array_search("token=" . $token,$parameters)]);
                 return $this->update_profile_data($token, $id, $data);
