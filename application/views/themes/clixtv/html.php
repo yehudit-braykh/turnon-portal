@@ -18,7 +18,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" href="/assets/theme/clixtv/dist/main.min.css" />
-
+        <base href="/" />
     </head>
 
     <body ng-class="{'printable': printable}">
