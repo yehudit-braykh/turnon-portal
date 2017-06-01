@@ -17792,6 +17792,11 @@ button.close {
 }
 @media (min-width: 768px) {
   .clix-landing-page-banner .banner-type {
+    font-size: 20px;
+  }
+}
+@media (min-width: 992px) {
+  .clix-landing-page-banner .banner-type {
     font-size: 24px;
   }
 }
@@ -17801,6 +17806,12 @@ button.close {
   line-height: 33px;
 }
 @media (min-width: 768px) {
+  .clix-landing-page-banner .banner-title {
+    font-size: 60px;
+    line-height: 60px;
+  }
+}
+@media (min-width: 992px) {
   .clix-landing-page-banner .banner-title {
     font-size: 100px;
     line-height: 100px;
