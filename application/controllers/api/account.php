@@ -9,9 +9,17 @@ class Account extends REST_Controller{
 	}
 
     function register_post(){
-        $data = $this->post();
-		if (!isset($data['country'])) $data['country'] = '';
-		 $this->response($this->account_model->register($data['email'], $data['password'], $data['first_name'],$data['last_name'], $data['country']),200);
+
+		$email = $this->post("email");
+		$firstName = $this->post("first_name");
+		$lastName = $this->post("last_name");
+		$password = $this->post("password");
+		$country = $this->post("country");
+		if(!$email || !$firstName || !$lastName || !$password){
+				$this->response("email, first_name, last_name,password fields are mandatory",400);
+		}
+		if (!$country) $country = '';
+	 	$this->response($this->account_model->register($email, $password, $firstName, $lastName, $country),200);
     }
 
 	function get_current_get(){

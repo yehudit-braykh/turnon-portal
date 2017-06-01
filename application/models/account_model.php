@@ -105,13 +105,15 @@ class Account_model extends Uvod_model {
         $payload = new stdClass();
         $payload->userName = $email;
         $payload->password = $password;
+        $payload->firstName = $first_name;
+        $payload->lastName = $last_name;
         $payload->fullName = $first_name . " " . $last_name;
         $payload->email = $email;
         $payload->accountId = $this->config->item('account_id');
         if($fb_id)
             $payload->fbId = $fb_id;
         $payload_str = json_encode($payload);
-
+        // debug($payload);
         $url = 'end/user/signup';
 
         try {
