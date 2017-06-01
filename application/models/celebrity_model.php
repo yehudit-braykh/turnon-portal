@@ -76,8 +76,15 @@ class Celebrity_model extends Uvod_Model {
 						}
 				}
 			}
-			if($item->offers)
+			if($item->offers){
+				foreach ($item->offers as &$offer) {
+					$arr = array();
+					array_push($arr, $offer->campaign);
+					$offer->campaign = $this->rows($arr)[0];
+				}
 				$item->offers = $this->rows($item->offers);
+			}
+
 			if($item->charities)
 			if($item->brands){
 				foreach ($item->brands as &$brand) {
