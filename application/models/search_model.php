@@ -13,7 +13,7 @@ class Search_model extends Uvod_model {
 		// 	return $this->brands_model->get_offers_array ($page = 0, $page_size = 5);
 		// } else {
 			$results = new stdClass;
-			$results->celebrities = $this->celebrity_rows($this->search_celebrities($keyword, $tags, $page , $page_size )->entries);
+			$results->celebrities = $this->search_celebrities($keyword, $tags, $page , $page_size );
 			//$results->brands = $this->search_brands($keyword, $tags, $page , $page_size);
 			$results->categories = $this->search_categories($keyword, $tags, $page , $page_size);
 			$results->campaigns = $this->search_campaigns($keyword, $tags, $page , $page_size );
@@ -73,7 +73,7 @@ class Search_model extends Uvod_model {
 		$parameters[] = 'sort=title:1';
 
 
-		return $this->rows($this->apiCall('category/search/related', $parameters)->entries);
+		return $this->category_rows($this->apiCall('category/search/related', $parameters)->entries);
 	}
 
 	public function search_brands($keyword, $tags, $page , $page_size){
@@ -96,7 +96,7 @@ class Search_model extends Uvod_model {
 			$parameters[] = "byKeyword=".str_replace(' ',"|",$tags);
 		$parameters[] = "page=".$page;
 		$parameters[]= "size=".$page_size;
-		return $this->rows($this->apiCall('campaign/search/related', $parameters)->entries);
+		return $this->brands_rows($this->apiCall('campaign/search/related', $parameters)->entries);
 	}
 
 	public function search_offers($keyword, $tags, $page , $page_size){
@@ -121,7 +121,7 @@ class Search_model extends Uvod_model {
 		$parameters[] = "page=".$page;
 		$parameters[]= "size=".$page_size;
 
-		return $this->apiCall('celebrity/search/related', $parameters);
+		return $this->celebrity_rows($this->apiCall('celebrity/search/related', $parameters)->entries);
 	}
 
 	private function search_series($keyword, $tags, $page , $page_size){
@@ -240,6 +240,10 @@ class Search_model extends Uvod_model {
 			}
 			if($item->brands)
 				$item->brands = $this->rows($item->brands);
+			if($item->campaigns)
+				$item->campaigns = $this->rows($item->campaigns);
+			if($item->offers)
+				$item->offers = $this->rows($item->offers);
 			if($item->charities)
 				$item->charities = $this->rows($item->charities);
 			if($item->videos)
@@ -369,6 +373,13 @@ class Search_model extends Uvod_model {
 		}
 
 		return $this->rows($items);
+	}
+
+	function category_rows($items){
+		foreach ($items as &$cat) {
+            $cat->videos = $this->rows($cat->videos);
+        }
+        return $this->rows($items);
 	}
 
 	function rows($rows){
