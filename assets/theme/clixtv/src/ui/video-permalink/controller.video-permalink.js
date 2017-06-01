@@ -168,6 +168,10 @@
                     userService.addFavoriteCelebrity($scope.video.celebrity.id);
                 }
             };
+
+            $scope.onLikeVideoPress = function() {
+                videosService.addVideoLike($scope.video.id);
+            };
         }
     ];
 

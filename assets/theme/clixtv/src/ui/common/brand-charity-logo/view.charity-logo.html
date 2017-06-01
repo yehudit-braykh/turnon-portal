@@ -1,5 +1,6 @@
-<div class="clix-charity-logo">
+<div class="clix-charity-logo" ng-show="ready">
     <clix-tooltip-menu items="items" menuopen="menuVisible" class="logo-menu-container" ng-hide="!menuVisible"></clix-tooltip-menu>
+    <img ng-src="{{charity.transparentThumbnail}}" class="reference-image" clix-on-image-load="onImageLoad($event)" />
     <div class="logo-image" style="background-image: url('{{charity.transparentThumbnail}}')"></div>
     <div class="logo-overlay">
         <a ui-sref="charity({ id: charity.id })" class="hit-area"></a>

@@ -11,14 +11,14 @@
                 <div class="offer-background-image" style="background-image: url('{{offer.carouselPic1}}');"></div>
                 <div class="col-sm-6">
                     <slick dots="true" prev-arrow="#main-carousel-previous" next-arrow="#main-carousel-next">
-                        <div class="offer-image-container">
-                            <img ng-if="offer.carouselPic1" ng-src="{{offer.carouselPic1}}" class="offer-image" />
+                        <div class="offer-image-container" ng-if="offer.carouselPic1">
+                            <img ng-src="{{offer.carouselPic1}}" class="offer-image" />
                         </div>
-                        <div class="offer-image-container">
-                            <img ng-if="offer.carouselPic2" ng-src="{{offer.carouselPic2}}" class="offer-image" />
+                        <div class="offer-image-container" ng-if="offer.carouselPic2">
+                            <img ng-src="{{offer.carouselPic2}}" class="offer-image" />
                         </div>
-                        <div class="offer-image-container">
-                            <img ng-if="offer.carouselPic3" ng-src="{{offer.carouselPic3}}" class="offer-image" />
+                        <div class="offer-image-container" ng-if="offer.carouselPic3">
+                            <img ng-src="{{offer.carouselPic3}}" class="offer-image" />
                         </div>
                     </slick>
                     <div id="main-carousel-previous">
@@ -88,9 +88,6 @@
                 </div>
             </div>
             <div class="offer-description-container">
-                <div class="offer-description-header">
-                    The Revolution Never Ends
-                </div>
                 <div class="offer-description" ng-bind-html="offer.longDescription || offer.description | clixNewLineBreak">
                 </div>
             </div>

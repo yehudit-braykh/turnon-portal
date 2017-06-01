@@ -49,6 +49,10 @@
                 }
                 $scope.menuVisible = false;
             };
+
+            $scope.onImageLoad = function() {
+                $scope.ready = true;
+            };
         }
     ];
 

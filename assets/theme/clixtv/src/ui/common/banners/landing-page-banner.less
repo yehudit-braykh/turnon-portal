@@ -5,6 +5,22 @@
     font-family: @font-primary;
     color: @color-white;
 
+    .placeholder-container {
+        .flex-display;
+        .align-items(center);
+        .justify-content(center);
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+
+        .placeholder {
+            width: 60%;
+            max-width: 300px;
+        }
+    }
+
     .landing-banner-background {
         .blur(27px);
         position: absolute;

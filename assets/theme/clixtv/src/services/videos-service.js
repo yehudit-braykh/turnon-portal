@@ -20,6 +20,12 @@
                         );
                 },
 
+                addVideoLike: function(id) {
+                    return $http.post('/api/video/add_like', {
+                        id: id
+                    });
+                },
+
                 getRelatedVideos: function(id) {
                     return $http.get('/api/video/get_related_videos?id=' + id)
                         .then(

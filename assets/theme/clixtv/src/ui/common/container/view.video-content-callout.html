@@ -1,4 +1,9 @@
 <div class="clix-video-content-callout" ng-class="{'active': overlayActive, 'minimized': minimized === 'true'}">
+    <div class="placeholder-container">
+        <div class="placeholder">
+            <clix-placeholder></clix-placeholder>
+        </div>
+    </div>
     <div class="video-thumbnail-background" style="background-image: url('{{video.thumbnail}}')"></div>
     <div class="video-content-container">
         <div class="video-menu-container">
@@ -60,7 +65,7 @@
             <div class="video-hidden-content">
                 <div class="video-hidden-content-border"></div>
                 <div class="video-hidden-title">
-                    <span ng-bind-html="isVideoPage ? 'Unlock this episode' : 'This video is<br />part of a series'"></span>
+                    <span ng-bind-html="'Unlock this episode'"></span>
                     <br />Sign up for a free ClixTV account!
                 </div>
                 <div class="video-hidden-signup-button">

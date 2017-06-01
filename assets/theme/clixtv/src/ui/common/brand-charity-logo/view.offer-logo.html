@@ -1,4 +1,5 @@
-<div class="clix-offer-logo">
+<div class="clix-offer-logo" ng-show="ready">
+    <img ng-src="{{offer.thumbnail}}" class="reference-image" clix-on-image-load="onImageLoad($event)" />
     <div class="offer-background-image" style="background-image: url('{{offer.thumbnail}}')"></div>
     <clix-tooltip-menu items="items" menuopen="menuVisible" class="logo-menu-container" ng-hide="!menuVisible"></clix-tooltip-menu>
     <div class="logo-overlay-image"></div>

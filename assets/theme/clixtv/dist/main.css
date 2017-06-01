@@ -13234,6 +13234,12 @@ button.close {
   flex: 1;
   position: relative;
 }
+.clix-brand-charity-logo .reference-image,
+.clix-offer-logo .reference-image,
+.clix-charity-logo .reference-image,
+.clix-brand-category-logo .reference-image {
+  display: none;
+}
 .clix-brand-charity-logo .logo-save,
 .clix-offer-logo .logo-save,
 .clix-charity-logo .logo-save,
@@ -14111,6 +14117,27 @@ button.close {
     -o-transform: scale(1.1);
   }
 }
+.clix-content-callout .header-callout-container .placeholder-container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.clix-content-callout .header-callout-container .placeholder-container .placeholder {
+  width: 60%;
+  max-width: 300px;
+}
 .clix-content-callout .header-container {
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -14260,6 +14287,27 @@ button.close {
 .clix-video-content-callout {
   position: relative;
   padding-top: 178%;
+}
+.clix-video-content-callout .placeholder-container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.clix-video-content-callout .placeholder-container .placeholder {
+  width: 60%;
+  max-width: 300px;
 }
 .clix-video-content-callout.minimized .star-avatar {
   display: none !important;
@@ -17705,6 +17753,27 @@ button.close {
   font-family: 'montserratregular', sans-serif;
   color: #FFF;
 }
+.clix-landing-page-banner .placeholder-container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.clix-landing-page-banner .placeholder-container .placeholder {
+  width: 60%;
+  max-width: 300px;
+}
 .clix-landing-page-banner .landing-banner-background {
   filter: blur(27px);
   -webkit-filter: blur(27px);
@@ -17984,6 +18053,9 @@ button.close {
   -webkit-opacity: 1;
   -moz-opacity: 1;
   opacity: 1;
+}
+.clix-placeholder {
+  width: 100%;
 }
 body,
 html {
