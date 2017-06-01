@@ -38,7 +38,7 @@
 |
 */
 
-$route['404_override'] = 'Not_found';
+$route['404_override'] = 'not_found';
 
 $route['default_controller'] = 'vod';
 //$route['(:any)'] = 'pages/view/$1';
