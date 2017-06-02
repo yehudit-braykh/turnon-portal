@@ -9,7 +9,6 @@
 
             function _reportAppEvent(event, data) {
                 if (!instance) {
-                    $log.warn('Catch Media service has not been initialized yet');
                     return;
                 }
                 $log.log('Tracking', '"' + event + '"', 'app event with data', data);
@@ -18,7 +17,6 @@
 
             function _reportMediaEvent(id, type, event, data) {
                 if (!instance) {
-                    $log.warn('Catch Media service has not been initialized yet');
                     return;
                 }
                 $log.log('Tracking media event with type', '"' + type + '"', ', event', '"' + event + '"', ', and data', data);
@@ -55,6 +53,10 @@
             return {
 
                 initialize: function() {
+                    if (!window.CMSDK) {
+                        $log.info('The Catch Media service has not been initialized. No data will be tracked.');
+                        return;
+                    }
                     if (!instance) {
 
                         $log.debug('Initializing Catch Media service');
@@ -75,14 +77,23 @@
                 },
 
                 setUser: function(email, type, extra) {
+                    if (!instance) {
+                        return;
+                    }
                     instance.setUser(email, type, extra);
                 },
 
                 deleteUser: function() {
+                    if (!instance) {
+                        return;
+                    }
                     instance.unsetUser();
                 },
 
                 trackVideoPlayerEvent: function(playerInstance) {
+                    if (!instance) {
+                        return;
+                    }
                     instance.setupJwPlayer(playerInstance, function(mediaId) {
                         return 'episode';
                     });

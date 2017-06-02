@@ -40,10 +40,13 @@
 
         <!-- CatchMedia -->
         <?php
-        if (ENVIRONMENT === "staging") {
-            echo "<script type=\"text/javascript\" src=\"https://1115282512.rsc.cdn77.org/plinks/jssdk/CMSDK-qa-latest.min.js\"></script>";
-        } else {
-            echo "<script type=\"text/javascript\" src=\"//1115282512.rsc.cdn77.org/plinks/jssdk/CMSDK-atl-latest.min.js\"></script>";
+        $DNT = 'HTTP_DNT';
+        if (!isset($_SERVER[$DNT]) || $_SERVER[$DNT] != 1) {
+            if (ENVIRONMENT === "staging") {
+                echo "<script type=\"text/javascript\" src=\"https://1115282512.rsc.cdn77.org/plinks/jssdk/CMSDK-qa-latest.min.js\"></script>";
+            } else {
+                echo "<script type=\"text/javascript\" src=\"//1115282512.rsc.cdn77.org/plinks/jssdk/CMSDK-atl-latest.min.js\"></script>";
+            }
         }
         ?>
 
