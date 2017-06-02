@@ -13766,7 +13766,12 @@ button.close {
 }
 .clix-search-dropdown {
   background-color: #202020;
-  width: 307px;
+  width: 100%;
+}
+@media (min-width: 1200px) {
+  .clix-search-dropdown {
+    width: 300px;
+  }
 }
 .clix-search-dropdown .dropdown-results-title {
   font-family: 'montserratregular', sans-serif;

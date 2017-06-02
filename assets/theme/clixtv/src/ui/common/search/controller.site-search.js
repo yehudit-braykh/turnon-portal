@@ -45,10 +45,11 @@
 
             $scope.onTermChange = function() {
                 $scope.searchVisible = true;
-                if ($scope.term.length < 2) {
-                    return _hideSearchResults();
-                }
-                _performSearch();
+                console.log($scope.term);
+                // if ($scope.term.length < 2) {
+                //     return _hideSearchResults();
+                // }
+                // _performSearch();
             };
 
             $scope.bodyClicked = function(event) {

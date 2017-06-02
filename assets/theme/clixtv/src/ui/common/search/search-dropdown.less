@@ -1,6 +1,10 @@
 .clix-search-dropdown {
     background-color: @color-gray21;
-    width: 307px;
+    width: 100%;
+
+    @media (min-width: @screen-lg) {
+        width: 300px;
+    }
 
     .dropdown-results-title {
         font-family: @font-primary;
