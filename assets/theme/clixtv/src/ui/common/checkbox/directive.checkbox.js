@@ -14,6 +14,7 @@
                 '$scope',
                 '$timeout',
                 function($scope, $timeout) {
+
                     $scope.onToggle = function() {
 
                         $scope.ngModel = !$scope.ngModel;

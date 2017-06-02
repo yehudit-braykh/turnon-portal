@@ -3,9 +3,11 @@
     var OfferLogoController = [
         '$q',
         '$scope',
-        function($q, $scope) {
+        'clixConfig',
+        function($q, $scope, clixConfig) {
 
             $scope.menuVisible = false;
+            $scope.pointsEnabled = clixConfig.pointsEnabled;
 
             $scope.items = [
                 {

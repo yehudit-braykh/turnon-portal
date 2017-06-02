@@ -16,6 +16,7 @@
         function($q, $scope, $rootScope, $element, $filter, $window, $timeout, $state, userService, shareModalService, clixConfig, modalService) {
 
             $scope.menuVisible = false;
+            $scope.pointsEnabled = clixConfig.pointsEnabled;
 
             // Not a fan of state aware components, but the site is riddled with this view
             // and it's a quicker path this way

@@ -13,10 +13,12 @@
         'userService',
         'catchMediaService',
         'knetikService',
-        function($q, $scope, $rootScope, $timeout, $window, $filter, $stateParams, videosService, celebrityService, userService, catchMediaService, knetikService) {
+        'clixConfig',
+        function($q, $scope, $rootScope, $timeout, $window, $filter, $stateParams, videosService, celebrityService, userService, catchMediaService, knetikService, clixConfig) {
 
             $scope.isMobile = ($window.innerWidth <= 800);
             $scope.expanded = false;
+            $scope.pointsEnabled = clixConfig.pointsEnabled;
 
             function _resetPageState() {
                 if (!$scope.video) {

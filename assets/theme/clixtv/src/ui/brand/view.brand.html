@@ -83,11 +83,16 @@
                                 </div>
                             </footer-content>
                             <share-tooltip-content>
-                                <div ng-if="loggedInUser">
-                                    You will receive 50 Reward Points for sharing!
+                                <div ng-if="pointsEnabled">
+                                    <div ng-if="loggedInUser">
+                                        You will receive 50 Reward Points for sharing!
+                                    </div>
+                                    <div ng-if="!loggedInUser">
+                                        After signing up, you will receive 50 Reward Points for sharing! <a clix-learn-more-modal-trigger>Learn More</a>.
+                                    </div>
                                 </div>
-                                <div ng-if="!loggedInUser">
-                                    After signing up, you will receive 50 Reward Points for sharing! <a ng-click="">Learn more</a>.
+                                <div ng-if="!pointsEnabled">
+                                    Coming Soon! You will receive Reward Points for sharing. <a clix-learn-more-modal-trigger>Learn More</a>.
                                 </div>
                             </share-tooltip-content>
                             <share-icon>

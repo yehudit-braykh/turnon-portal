@@ -17,6 +17,7 @@
         function($q, $log, $scope, $rootScope, $filter, $state, $stateParams, brandsService, userService, modalService, catchMediaService, knetikService, clixConfig) {
 
             $scope.filtersEnabled = clixConfig.filtersEnabled;
+            $scope.pointsEnabled = clixConfig.pointsEnabled;
 
             $scope.onOfferPress = function(offer) {
                 if ($stateParams.offerSlug === $filter('slug')(offer.title)) {

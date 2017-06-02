@@ -93,12 +93,17 @@
 </clix-tooltip>
 
 <clix-tooltip tooltip-id="signup-watch-points-{{$id}}">
-    <clix-is-logged-in>
-        <logged-in>
-            You will receive 100 Reward Points for watching this video!
-        </logged-in>
-        <not-logged-in>
-            After you sign up, you will receive 100 Reward Points for watching this video! <a clix-learn-more-modal-trigger>Learn More</a>.
-        </not-logged-in>
-    </clix-is-logged-in>
+    <div ng-if="pointsEnabled">
+        <clix-is-logged-in>
+            <logged-in>
+                You will receive 100 Reward Points for watching this video!
+            </logged-in>
+            <not-logged-in>
+                After you sign up, you will receive 100 Reward Points for watching this video! <a clix-learn-more-modal-trigger>Learn More</a>.
+            </not-logged-in>
+        </clix-is-logged-in>
+    </div>
+    <div ng-if="!pointsEnabled">
+        Coming Soon! You will receive Reward Points for watching this video. <a clix-learn-more-modal-trigger>Learn More</a>.
+    </div>
 </clix-tooltip>

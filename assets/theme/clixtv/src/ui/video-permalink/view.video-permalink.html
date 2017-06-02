@@ -64,14 +64,19 @@
                         <clix-violator size="large">100 Reward Points</clix-violator>
                     </div>
                     <clix-tooltip tooltip-id="reward-points-button-{{$id}}">
-                        <clix-is-logged-in>
-                            <logged-in>
-                                You will receive 100 Reward Points for watching this video!
-                            </logged-in>
-                            <not-logged-in>
-                                After you sign up, you will receive 100 Reward Points for watching this video! <a ng-click="">Learn more</a>.
-                            </not-logged-in>
-                        </clix-is-logged-in>
+                        <div ng-if="pointsEnabled">
+                            <clix-is-logged-in>
+                                <logged-in>
+                                    You will receive 100 Reward Points for watching this video!
+                                </logged-in>
+                                <not-logged-in>
+                                    After you sign up, you will receive 100 Reward Points for watching this video! <a clix-learn-more-modal-trigger>Learn More</a>.
+                                </not-logged-in>
+                            </clix-is-logged-in>
+                        </div>
+                        <div ng-if="!pointsEnabled">
+                            Coming Soon! You will receive Reward Points for watching this video. <a clix-learn-more-modal-trigger>Learn More</a>.
+                        </div>
                     </clix-tooltip>
 
                     <div class="social-icon-container">
@@ -94,14 +99,17 @@
                             <clix-share-button extra-class="social-icon share-icon" video="video"></clix-share-button>
                         </div>
                         <clix-tooltip tooltip-id="share-button-{{$id}}">
-                            <clix-is-logged-in>
-                                <logged-in>
+                            <div ng-if="pointsEnabled">
+                                <div ng-if="loggedInUser">
                                     You will receive 50 Reward Points for sharing!
-                                </logged-in>
-                                <not-logged-in>
-                                    After signing up, you will receive 50 Reward Points for sharing! <a ng-click="">Learn more</a>.
-                                </not-logged-in>
-                            </clix-is-logged-in>
+                                </div>
+                                <div ng-if="!loggedInUser">
+                                    After signing up, you will receive 50 Reward Points for sharing! <a clix-learn-more-modal-trigger>Learn More</a>.
+                                </div>
+                            </div>
+                            <div ng-if="!pointsEnabled">
+                                Coming Soon! You will receive Reward Points for sharing. <a clix-learn-more-modal-trigger>Learn More</a>.
+                            </div>
                         </clix-tooltip>
                         <clix-points-violator>
                             50
