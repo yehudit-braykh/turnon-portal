@@ -58,7 +58,9 @@ module.exports = function(grunt) {
                     'node_modules/angular-inview/angular-inview.js',
                     'node_modules/angular-socialshare/dist/angular-socialshare.js',
                     'node_modules/ng-infinite-scroll/build/ng-infinite-scroll.js',
-                    'node_modules/slug/slug.js'
+                    'node_modules/slug/slug.js',
+                    'node_modules/clipboard/dist/clipboard.js',
+                    'node_modules/ngclipboard/dist/ngclipboard.js'
                 ]
             }
         },

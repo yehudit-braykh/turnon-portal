@@ -28,7 +28,8 @@
                 controller: 'TooltipController',
                 scope: {
                     tooltipId: '@',
-                    cleanup: '@'
+                    cleanup: '@',
+                    clickTrigger: '@?'
                 },
                 link: function(scope, element) {
 
@@ -87,10 +88,11 @@
                         }, delay);
                     }
 
-                    var currentTooltipElement;
+                    var currentTooltipElement,
+                        events = (scope.clickTrigger) ? 'scroll' : 'scroll click';
 
                     // Hide tooltip on window scroll
-                    angular.element($window).on('scroll click', function() {
+                    angular.element($window).on(events, function() {
 
                         if (!currentTooltipElement) {
                             currentTooltipElement = document.getElementById(scope.tooltipId);
@@ -110,7 +112,8 @@
                      * @todo - Prevent tooltip from extending beyond page bounds
                      */
 
-                    angular.element(element).off('mouseenter').on('mouseenter', function(event) {
+                    var event = (scope.clickTrigger) ? 'click' : 'mouseenter';
+                    angular.element(element).off(event).on(event, function(event) {
 
                         if (hideTimeout) {
                             $timeout.cancel(hideTimeout);
@@ -169,7 +172,7 @@
 
                                 }, HIDE_TOOLTIP_DELAY_MS);
                             });
-                        }, SHOW_TOOLTIP_DELAY_MS);
+                        }, (scope.clickTrigger) ? 0 : SHOW_TOOLTIP_DELAY_MS);
                     });
 
                     angular.element(element).on('mouseleave', function() {

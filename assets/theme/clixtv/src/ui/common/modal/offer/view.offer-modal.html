@@ -39,8 +39,10 @@
                     <div class="offer-title">
                         {{offer.title}}
                     </div>
-                    <div ng-if="offer.couponCode" class="offer-coupon-code">
-                        {{offer.couponCode}}
+                    <div ng-if="offer.couponCode" class="offer-coupon-code" ngclipboard data-clipboard-text="{{offer.couponCode}}" ngclipboard-success="onCopyToClipboardSuccess(e);">
+                        <div clix-tooltip-trigger tooltip-id="code-copied" click-trigger="true">
+                            {{offer.couponCode}}
+                        </div>
                     </div>
                     <div class="instructions-title">
                         Instructions
@@ -96,4 +98,7 @@
             </div>
         </div>
     </div>
+    <clix-tooltip tooltip-id="code-copied">
+        Copied to your clipboard
+    </clix-tooltip>
 </clix-modal>

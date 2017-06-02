@@ -22,7 +22,8 @@
             'ngSanitize',
             'angular-inview',
             '720kb.socialshare',
-            'infinite-scroll'
+            'infinite-scroll',
+            'ngclipboard'
         ])
         .constant('clixConfig', {
 
