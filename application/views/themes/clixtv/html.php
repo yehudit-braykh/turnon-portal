@@ -39,8 +39,13 @@
         <clix-mobile-navigation></clix-mobile-navigation>
 
         <!-- CatchMedia -->
-        <!-- <script type="text/javascript" src="https://1115282512.rsc.cdn77.org/plinks/jssdk/CMSDK-qa-latest.min.js"></script> -->
-        <script type="text/javascript" src="//1115282512.rsc.cdn77.org/plinks/jssdk/CMSDK-atl-latest.min.js"></script>
+        <?php
+        if (ENVIRONMENT === "staging") {
+            echo "<script type=\"text/javascript\" src=\"https://1115282512.rsc.cdn77.org/plinks/jssdk/CMSDK-qa-latest.min.js\"></script>";
+        } else {
+            echo "<script type=\"text/javascript\" src=\"//1115282512.rsc.cdn77.org/plinks/jssdk/CMSDK-atl-latest.min.js\"></script>";
+        }
+        ?>
 
         <!-- JWPlayer -->
         <script type="text/javascript" src="/assets/common/js/jwplayer-7.9.0/jwplayer.js" ></script>
