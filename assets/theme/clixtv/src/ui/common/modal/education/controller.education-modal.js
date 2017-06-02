@@ -15,9 +15,11 @@
         'offersService',
         'modalService',
         'preferencesService',
-        function($q, $scope, $rootScope, $timeout, $uibModalInstance, data, userService, videosService, brandsService, celebrityService, categoryService, offersService, modalService, preferencesService) {
+        'clixConfig',
+        function($q, $scope, $rootScope, $timeout, $uibModalInstance, data, userService, videosService, brandsService, celebrityService, categoryService, offersService, modalService, preferencesService, clixConfig) {
 
             $scope.showAgainModel = false;
+            $scope.pointsEnabled = clixConfig.pointsEnabled;
 
             var itemData = data;
 
