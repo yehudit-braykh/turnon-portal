@@ -16098,6 +16098,15 @@ button.close {
 .clix-offer-modal .close-modal-icon:hover {
   color: #FFF;
 }
+.clix-offer-modal .offer-coupon-code {
+  background-color: #353535;
+  font-family: 'montserratregular', sans-serif;
+  color: #0dc73a;
+  display: inline-block;
+  font-size: 20px;
+  padding: 3px 10px;
+  margin: 5px 0;
+}
 .clix-offer-modal .offer-title {
   font-size: 18px;
   font-family: 'montserratsemibold', sans-serif;

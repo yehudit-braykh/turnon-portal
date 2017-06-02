@@ -12,6 +12,10 @@
                     this.description = data.description;
                     this.longDescription = data.long_description;
 
+                    if (data.coupon_code) {
+                        this.couponCode = data.coupon_code;
+                    }
+
                     if (typeof data.campaign === 'string') {
                         this.campaign = data.campaign;
                     } else {
