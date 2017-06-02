@@ -1722,6 +1722,17 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 }
             ];
 
+            $rootScope.$on('favorite.removed', function(event, data) {
+                if (!$scope.offers || !$scope.offers.offers) {
+                    $scope.offers = {
+                        offers: []
+                    }
+                }
+                $scope.offers.offers = $scope.offers.offers.filter(function(item) {
+                    return item.id !== data.id;
+                });
+            });
+
             userService.getSavedOffers()
                 .then(
                     function onSuccess(data) {
@@ -1907,6 +1918,17 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     label: 'Most Viewed'
                 }
             ];
+
+            $rootScope.$on('favorite.removed', function(event, data) {
+                if (!$scope.watchlist || !$scope.watchlist.videos) {
+                    $scope.watchlist = {
+                        videos: []
+                    }
+                }
+                $scope.watchlist.videos = $scope.watchlist.videos.filter(function(item) {
+                    return item.id !== data.id;
+                });
+            });
 
             userService.getWatchlist()
                 .then(
@@ -5525,6 +5547,13 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 $scope.loggedInUser = data;
             });
 
+            $rootScope.$on('user.update', function(event, data) {
+                $scope.loggedInUser = data;
+                if ($scope.loggedInUser) {
+                    $scope.loggedInUser.displayName = $scope.loggedInUser.firstName + ' ' + $scope.loggedInUser.lastName;
+                }
+            });
+
             $rootScope.$on('modal.open', function(event, data) {
                 $scope.modalOpen = true;
             });
@@ -5592,6 +5621,13 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             $rootScope.$on('rightnav.open', _openNavigation);
 
             $rootScope.$on('user.login', function(event, data) {
+                $scope.loggedInUser = data;
+                if ($scope.loggedInUser) {
+                    $scope.loggedInUser.displayName = $scope.loggedInUser.firstName + ' ' + $scope.loggedInUser.lastName;
+                }
+            });
+
+            $rootScope.$on('user.update', function(event, data) {
                 $scope.loggedInUser = data;
                 if ($scope.loggedInUser) {
                     $scope.loggedInUser.displayName = $scope.loggedInUser.firstName + ' ' + $scope.loggedInUser.lastName;
@@ -7043,6 +7079,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             $rootScope.$on('user.login', function(event, data) {
                 $scope.loggedInUser = data;
                 _populateHeaderData();
+            });
+
+            $rootScope.$on('user.update', function(event, data) {
+                $scope.loggedInUser = data;
             });
 
             $rootScope.$on('user.logout', function(event, data) {
@@ -10660,8 +10700,15 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
                 updateUser: function(user) {
                     return $http.post('/api/account/update_profile', {
-                        data: user
-                    });
+                            data: user
+                        })
+                        .then(
+                            function onSuccess(data) {
+                                loggedInUser = data.data;
+                                $rootScope.$broadcast('user.update', loggedInUser);
+                                return data.data;
+                            }
+                        )
                 },
 
                 logout: function() {

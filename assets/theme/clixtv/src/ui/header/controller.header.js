@@ -38,6 +38,10 @@
                 _populateHeaderData();
             });
 
+            $rootScope.$on('user.update', function(event, data) {
+                $scope.loggedInUser = data;
+            });
+
             $rootScope.$on('user.logout', function(event, data) {
                 delete $scope.loggedInUser;
             });

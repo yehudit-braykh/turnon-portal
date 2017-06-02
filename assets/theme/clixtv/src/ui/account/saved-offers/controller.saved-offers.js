@@ -74,6 +74,17 @@
                 }
             ];
 
+            $rootScope.$on('favorite.removed', function(event, data) {
+                if (!$scope.offers || !$scope.offers.offers) {
+                    $scope.offers = {
+                        offers: []
+                    }
+                }
+                $scope.offers.offers = $scope.offers.offers.filter(function(item) {
+                    return item.id !== data.id;
+                });
+            });
+
             userService.getSavedOffers()
                 .then(
                     function onSuccess(data) {

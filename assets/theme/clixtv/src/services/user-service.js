@@ -274,8 +274,15 @@
 
                 updateUser: function(user) {
                     return $http.post('/api/account/update_profile', {
-                        data: user
-                    });
+                            data: user
+                        })
+                        .then(
+                            function onSuccess(data) {
+                                loggedInUser = data.data;
+                                $rootScope.$broadcast('user.update', loggedInUser);
+                                return data.data;
+                            }
+                        )
                 },
 
                 logout: function() {

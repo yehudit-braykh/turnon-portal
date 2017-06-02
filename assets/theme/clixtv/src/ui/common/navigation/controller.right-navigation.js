@@ -20,6 +20,13 @@
                 }
             });
 
+            $rootScope.$on('user.update', function(event, data) {
+                $scope.loggedInUser = data;
+                if ($scope.loggedInUser) {
+                    $scope.loggedInUser.displayName = $scope.loggedInUser.firstName + ' ' + $scope.loggedInUser.lastName;
+                }
+            });
+
             $scope.onBackgroundPress = _closeNavigation;
             $scope.onClosePress = _closeNavigation;
 

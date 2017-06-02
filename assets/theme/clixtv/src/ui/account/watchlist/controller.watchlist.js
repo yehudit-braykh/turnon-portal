@@ -53,6 +53,17 @@
                 }
             ];
 
+            $rootScope.$on('favorite.removed', function(event, data) {
+                if (!$scope.watchlist || !$scope.watchlist.videos) {
+                    $scope.watchlist = {
+                        videos: []
+                    }
+                }
+                $scope.watchlist.videos = $scope.watchlist.videos.filter(function(item) {
+                    return item.id !== data.id;
+                });
+            });
+
             userService.getWatchlist()
                 .then(
                     function onSuccess(data) {

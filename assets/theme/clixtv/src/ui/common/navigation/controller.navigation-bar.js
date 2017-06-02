@@ -23,6 +23,13 @@
                 $scope.loggedInUser = data;
             });
 
+            $rootScope.$on('user.update', function(event, data) {
+                $scope.loggedInUser = data;
+                if ($scope.loggedInUser) {
+                    $scope.loggedInUser.displayName = $scope.loggedInUser.firstName + ' ' + $scope.loggedInUser.lastName;
+                }
+            });
+
             $rootScope.$on('modal.open', function(event, data) {
                 $scope.modalOpen = true;
             });
