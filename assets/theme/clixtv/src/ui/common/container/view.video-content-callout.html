@@ -12,8 +12,8 @@
         <div class="star-info-container">
             <div class="star-info-background" style="background-image: url('{{video.thumbnail}}')"></div>
             <div class="star-info">
-                <a ui-sref="star({ id: video.celebrity.id })" class="star-avatar" style="background-image: url('{{video.celebrity.thumbnail}}')"></a>
-                <a ui-sref="star({ id: video.celebrity.id })" class="star-name">
+                <a ui-sref="star({ slug: '{{video.celebrity.name | slug}}' })" class="star-avatar" style="background-image: url('{{video.celebrity.thumbnail}}')"></a>
+                <a ui-sref="star({ slug: '{{video.celebrity.name | slug}}' })" class="star-name">
                     {{video.celebrity.name}}
                 </a>
                 <div clix-tooltip-trigger tooltip-id="actions-button-{{$id}}">
@@ -47,7 +47,7 @@
                  ng-click="onWatchlistPress()"
             ></a>
             <div class="video-play-button">
-                <a ui-sref="video({ id: video.id })">
+                <a ui-sref="video({ slug: '{{video.seriesTitle + ' ' + video.title | slug}}' })">
                     <img src="/assets/theme/clixtv/dist/images/gradient-clix-player-icon.svg" />
                 </a>
             </div>

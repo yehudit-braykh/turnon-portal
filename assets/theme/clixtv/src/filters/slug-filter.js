@@ -1,5 +1,7 @@
 (function() {
 
+    window.slug.charmap['%'] = 'percent';
+
     var slugFilter = [
         'stringUtils',
         function(stringUtils) {
@@ -7,7 +9,9 @@
                 if (!input) {
                     return input;
                 }
-                return stringUtils.getSlugForString(input);
+                return window.slug(input, {
+                    lower: true
+                });
             }
         }
     ];

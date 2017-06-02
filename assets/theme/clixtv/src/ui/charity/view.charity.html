@@ -65,7 +65,7 @@
                                 <div class="home-footer-content">
                                     <div class="brand-celebrity-videos">
                                         <div ng-repeat="celebrity in charity.celebrities.celebrities | limitTo: 3">
-                                            <clix-video-category-scroll-list category-title="{{celebrity.name}} and {{charity.title}}" category-videos="celebrity.videos.videos" view-all-sref="star({ id: '{{celebrity.id}}' })" order="episodeNumber"></clix-video-category-scroll-list>
+                                            <clix-video-category-scroll-list category-title="{{celebrity.name}} and {{charity.title}}" category-videos="celebrity.videos.videos" view-all-sref="star({ slug: '{{celebrity.name | slug}}' })" order="episodeNumber"></clix-video-category-scroll-list>
                                         </div>
                                     </div>
                                 </div>
@@ -77,7 +77,7 @@
                 <uib-tab index="2" heading="Stars" select="onTabSelect('stars')">
                     <div class="stars-container">
                         <div ng-repeat="celebrity in charity.celebrities.celebrities">
-                            <clix-video-category-scroll-list category-title="{{celebrity.name}} and {{charity.title}}" category-videos="celebrity.videos.videos" view-all-sref="star({ id: '{{celebrity.id}}' })" order="episodeNumber"></clix-video-category-scroll-list>
+                            <clix-video-category-scroll-list category-title="{{celebrity.name}} and {{charity.title}}" category-videos="celebrity.videos.videos" view-all-sref="star({ slug: '{{celebrity.name | slug}}' })" order="episodeNumber"></clix-video-category-scroll-list>
                         </div>
                     </div>
                 </uib-tab>

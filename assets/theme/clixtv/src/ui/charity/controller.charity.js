@@ -18,7 +18,9 @@
             $scope.filtersEnabled = clixConfig.filtersEnabled;
 
             function _resetIsFavorite() {
-                $scope.isFavorite = userService.isFavoriteCharity($stateParams.id);
+                if ($scope.charity) {
+                    $scope.isFavorite = userService.isFavoriteCharity($scope.charity.id);
+                }
             }
 
             $rootScope.$on('user.login', function(event, data) {
@@ -44,9 +46,9 @@
 
             $scope.onFavoritePress = function() {
                 if ($scope.isFavorite) {
-                    userService.removeFavoriteCharity($stateParams.id);
+                    userService.removeFavoriteCharity($scope.charity.id);
                 } else {
-                    userService.addFavoriteCharity($stateParams.id);
+                    userService.addFavoriteCharity($scope.charity.id);
                 }
             };
 
@@ -59,7 +61,7 @@
                 }
             ];
 
-            brandsService.getCharityById($stateParams.id)
+            brandsService.getCharityBySlug($stateParams.slug)
                 .then(
                     function onSuccess(data) {
 
@@ -67,10 +69,13 @@
                             throw new Error('Invalid data returned');
                         }
 
+                        $scope.charity = data;
+
+
                         var eventParams = {
                             target_cm: 'media',
                             target_type: 'organization',
-                            target_id: $stateParams.id
+                            target_id: $scope.charity.id
                         };
 
                         if ($stateParams.starId) {
@@ -80,8 +85,6 @@
                         }
 
                         catchMediaService.trackAppEvent('navigation_item', eventParams);
-
-                        $scope.charity = data;
 
                         $filter('orderBy')($scope.charity.videos.videos, ['episodeNumber']);
 
@@ -112,7 +115,7 @@
                             target_type: 'person',
                             source_cm: 'media',
                             source_type: 'organization',
-                            source_id: $stateParams.id
+                            source_id: $scope.charity.id
                         });
                         break;
 
@@ -122,7 +125,7 @@
                             target_type: 'episode',
                             source_cm: 'media',
                             source_type: 'organization',
-                            source_id: $stateParams.id
+                            source_id: $scope.charity.id
                         });
                         break;
                 }

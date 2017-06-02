@@ -5,6 +5,7 @@
         '$log',
         '$scope',
         '$rootScope',
+        '$filter',
         '$state',
         '$stateParams',
         'brandsService',
@@ -13,12 +14,12 @@
         'catchMediaService',
         'knetikService',
         'clixConfig',
-        function($q, $log, $scope, $rootScope, $state, $stateParams, brandsService, userService, modalService, catchMediaService, knetikService, clixConfig) {
+        function($q, $log, $scope, $rootScope, $filter, $state, $stateParams, brandsService, userService, modalService, catchMediaService, knetikService, clixConfig) {
 
             $scope.filtersEnabled = clixConfig.filtersEnabled;
 
             $scope.onOfferPress = function(offer) {
-                if ($stateParams.offerId === offer.id) {
+                if ($stateParams.offerSlug === $filter('slug')(offer.title)) {
                     _showOfferModal();
                 }
             };
@@ -29,7 +30,7 @@
                         controller: 'OfferModalController',
                         templateUrl: 'ui/common/modal/offer/view.offer-modal.html',
                         data: {
-                            offerId: $stateParams.offerId
+                            offerSlug: $stateParams.offerSlug
                         }
                     });
                 } else {
@@ -38,14 +39,16 @@
                         controller: 'EducationModalController',
                         data: {
                             type: 'signup-offer',
-                            id: $stateParams.offerId
+                            slug: $stateParams.offerSlug
                         }
                     });
                 }
             }
 
             function _resetIsFavorite() {
-                $scope.isFavorite = userService.isFavoriteBrand($stateParams.id);
+                if ($scope.brand) {
+                    $scope.isFavorite = userService.isFavoriteBrand($scope.brand.id);
+                }
             }
 
             $rootScope.$on('user.login', function(event, data) {
@@ -62,7 +65,7 @@
             $rootScope.$on('favorite.removed', _resetIsFavorite);
 
             $rootScope.$on('video.complete', function() {
-                knetikService.viewCampaignVideo($stateParams.id);
+                knetikService.viewCampaignVideo($scope.brand.id);
             });
 
             userService.getLoggedInUser()
@@ -70,7 +73,7 @@
                     function onSuccess(data) {
                         $scope.loggedInUser = data;
                         _resetIsFavorite();
-                        if ($stateParams.offerId) {
+                        if ($stateParams.offerSlug) {
                             _showOfferModal();
                         }
                     }
@@ -78,9 +81,9 @@
 
             $scope.onFavoritePress = function() {
                 if ($scope.isFavorite) {
-                    userService.removeFavoriteBrand($stateParams.id);
+                    userService.removeFavoriteBrand($scope.brand.id);
                 } else {
-                    userService.addFavoriteBrand($stateParams.id);
+                    userService.addFavoriteBrand($scope.brand.id);
                 }
             };
 
@@ -128,7 +131,7 @@
                             target_type: 'offer',
                             source_cm: 'media',
                             source_type: 'campaign',
-                            source_id: $stateParams.id
+                            source_id: $scope.brand.id
                         });
                         break;
 
@@ -138,7 +141,7 @@
                             target_type: 'person',
                             source_cm: 'media',
                             source_type: 'campaign',
-                            source_id: $stateParams.id
+                            source_id: $scope.brand.id
                         });
                         break;
 
@@ -148,13 +151,13 @@
                             target_type: 'episode',
                             source_cm: 'media',
                             source_type: 'campaign',
-                            source_id: $stateParams.id
+                            source_id: $scope.brand.id
                         });
                         break;
                 }
             };
 
-            brandsService.getBrandById($stateParams.id)
+            brandsService.getBrandBySlug($stateParams.slug)
                 .then(
                     function onSuccess(data) {
 
@@ -162,7 +165,7 @@
                         $scope.active = 0;
 
                         // Don't overwrite the title if we're showing an offer
-                        if (!$stateParams.offerId) {
+                        if (!$stateParams.offerSlug) {
                             $rootScope.pageTitle = $scope.brand.title + ' - ClixTV';
                         }
 
@@ -182,7 +185,7 @@
                         catchMediaService.trackAppEvent('navigation_item', {
                             target_cm: 'media',
                             target_type: 'campaign',
-                            target_id: $stateParams.id
+                            target_id: $scope.brand.id
                         });
                     }
                 )

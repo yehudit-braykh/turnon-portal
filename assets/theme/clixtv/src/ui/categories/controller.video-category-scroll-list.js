@@ -14,7 +14,7 @@
             if ($scope.viewAllSref) {
                 $scope.sref = $scope.viewAllSref;
             } else if ($scope.category) {
-                $scope.sref = 'category({ id: \'' + $scope.category.id + '\' })';
+                $scope.sref = 'category({ slug: \'{{' + $scope.category.title + ' | slug}}\' })';
             } else {
                 $scope.sref = 'home';
             }

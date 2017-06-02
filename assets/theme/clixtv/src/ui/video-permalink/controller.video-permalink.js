@@ -81,7 +81,7 @@
             $q.all(
                     [
                         userService.getLoggedInUser(),
-                        videosService.getVideoById($stateParams.id)
+                        videosService.getVideoBySlug($stateParams.slug)
                     ]
                 )
                 .then(
@@ -94,7 +94,7 @@
 
                         return $q.all(
                             [
-                                videosService.getRelatedVideos($stateParams.id),
+                                videosService.getRelatedVideos($scope.video.id),
                                 videosService.getSeriesById($scope.video.series.id)
                             ]
                         );
@@ -102,6 +102,9 @@
                 )
                 .then(
                     function onSuccess(data) {
+
+                        console.log(data);
+
                         $scope.relatedVideos = data[0];
                         $scope.series = data[1];
                         _getNextVideo();
@@ -139,7 +142,7 @@
                         click_action: 'show_more',
                         target_cm: 'media',
                         target_type: 'episode',
-                        target_id: $stateParams.id
+                        target_id: $scope.video.id
                     });
                 }
             };

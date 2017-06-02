@@ -5,7 +5,8 @@
         'VideoModel',
         'VideoListModel',
         'SeriesModel',
-        function($http, VideoModel, VideoListModel, SeriesModel) {
+        'clixConfig',
+        function($http, VideoModel, VideoListModel, SeriesModel, clixConfig) {
             return {
 
                 /**
@@ -15,6 +16,16 @@
                     return $http.get('/api/video/get_video_by_id/?id=' + id)
                         .then(
                             function onSuccess(data) {
+                                return new VideoModel(data.data);
+                            }
+                        );
+                },
+
+                getVideoBySlug: function(slug) {
+                    return $http.get(clixConfig.baseApi + '/episodes/slug/' + slug)
+                        .then(
+                            function onSuccess(data) {
+                                console.log(data);
                                 return new VideoModel(data.data);
                             }
                         );

@@ -1,4 +1,4 @@
-<clix-content-callout sref="brand({ id: '{{brand.id}}' })" menu-items="menuItems" on-favorite="onFavoritePress('brand', brand)" is-favorited="isFavoriteContent('brand', brand)" type="brand" entity="brand">
+<clix-content-callout sref="brand({ slug: '{{brand.title | slug}}' })" menu-items="menuItems" on-favorite="onFavoritePress('brand', brand)" is-favorited="isFavoriteContent('brand', brand)" type="brand" entity="brand">
     <header-element>
         <clix-brand-charity-logo brand="brand"></clix-brand-charity-logo>
     </header-element>

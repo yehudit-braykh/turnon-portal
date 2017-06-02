@@ -38,7 +38,7 @@
                             <a ng-repeat="brand in video.brands.brands | limitTo: 4" ui-sref="brand({ id: '{{brand.id}}' })" class="brand-logo-link">
                                 <clix-brand-charity-logo brand="brand"></clix-brand-charity-logo>
                             </a>
-                            <div class="brand-logo-link" ng-if="video.charity" ui-sref="charity({ id: video.charity.id })">
+                            <div class="brand-logo-link" ng-if="video.charity" ui-sref="charity({ slug: '{{video.charity.title | slug}}' })">
                                 <clix-charity-logo charity="video.charity"></clix-charity-logo>
                             </div>
                         </div>
@@ -159,28 +159,28 @@
                                     Category:
                                 </span>
                                 <span ng-repeat="category in video.categories.categories">
-                                    <a ui-sref="category({ id: '{{category.id}}' })">{{category.title}}</a><span ng-if="!$last">,&nbsp;</span>
+                                    <a ui-sref="category({ slug: '{{category.title | slug}}' })">{{category.title}}</a><span ng-if="!$last">,&nbsp;</span>
                                 </span>
                             </div>
                             <div class="meta-data-row" ng-if="video.celebrity">
                                 <span class="meta-data-label">
                                     Stars:
                                 </span>
-                                <a ui-sref="star({ id: '{{video.celebrity.id}}' })">{{video.celebrity.name}}</a>
+                                <a ui-sref="star({ slug: '{{video.celebrity.name | slug}}' })">{{video.celebrity.name}}</a>
                             </div>
                             <div class="meta-data-row" ng-if="video.brands">
                                 <span class="meta-data-label">
                                     Brands:
                                 </span>
                                 <span ng-repeat="brand in video.brands.brands">
-                                    <a ui-sref="brand({ id: '{{brand.id}}' })">{{brand.title}}</a><span ng-if="!$last">,&nbsp;</span>
+                                    <a ui-sref="brand({ slug: '{{brand.title | slug}}' })">{{brand.title}}</a><span ng-if="!$last">,&nbsp;</span>
                                 </span>
                             </div>
                             <div class="meta-data-row" ng-if="video.charity">
                                 <span class="meta-data-label">
                                     Charity:
                                 </span>
-                                <a ui-sref="charity({ id: video.charity.id })">{{video.charity.title}}</a>
+                                <a ui-sref="charity({ slug: '{{video.charity.title | slug}}' })">{{video.charity.title}}</a>
                             </div>
                         </div>
                     </div>
@@ -203,7 +203,7 @@
                             </div>
 
                             <div class="logo-list-container">
-                                <a ng-repeat="brand in video.brands.brands | limitTo: 4" ui-sref="brand({ id: '{{brand.id}}' })" class="brand-logo-link">
+                                <a ng-repeat="brand in video.brands.brands | limitTo: 4" ui-sref="brand({ slug: '{{brand.title | slug}}' })" class="brand-logo-link">
                                     <clix-brand-charity-logo brand="brand" hover-enabled="true"></clix-brand-charity-logo>
                                 </a>
                                 <div class="brand-logo-link" ng-if="video.charity">

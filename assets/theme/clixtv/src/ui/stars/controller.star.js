@@ -13,7 +13,9 @@
         function($q, $log, $scope, $rootScope, $state, $stateParams, celebrityService, userService, catchMediaService) {
 
             function _resetIsFavorite() {
-                $scope.isFavorite = userService.isFavoriteCelebrity($stateParams.id);
+                if ($scope.celebrity) {
+                    $scope.isFavorite = userService.isFavoriteCelebrity($scope.celebrity.id);
+                }
             }
 
             $rootScope.$on('user.login', function(event, data) {
@@ -39,9 +41,9 @@
 
             $scope.onFavoritePress = function() {
                 if ($scope.isFavorite) {
-                    userService.removeFavoriteCelebrity($stateParams.id);
+                    userService.removeFavoriteCelebrity($scope.celebrity.id);
                 } else {
-                    userService.addFavoriteCelebrity($stateParams.id);
+                    userService.addFavoriteCelebrity($scope.celebrity.id);
                 }
             };
 
@@ -55,7 +57,7 @@
                             target_type: 'offer',
                             source_cm: 'media',
                             source_type: 'person',
-                            source_id: $stateParams.id
+                            source_id: $scope.celebrity.id
                         });
                         break;
 
@@ -65,7 +67,7 @@
                             target_type: 'organization',
                             source_cm: 'media',
                             source_type: 'person',
-                            source_id: $stateParams.id
+                            source_id: $scope.celebrity.id
                         });
                         break;
                 }
@@ -136,7 +138,7 @@
 
             }
 
-            celebrityService.getCelebrityById($stateParams.id)
+            celebrityService.getCelebrityBySlug($stateParams.slug)
                 .then(
                     function onSuccess(data) {
 
@@ -152,7 +154,7 @@
                         catchMediaService.trackAppEvent('navigation_item', {
                             target_cm: 'media',
                             target_type: 'person',
-                            target_id: $stateParams.id
+                            target_id: $scope.celebrity.id
                         });
 
                         if (data.series && data.series.series) {

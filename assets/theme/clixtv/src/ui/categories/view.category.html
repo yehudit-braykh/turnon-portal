@@ -31,7 +31,7 @@
                     </div>
                     <ul class="category-list">
                         <li ng-repeat="relatedCategory in categories.categories | orderBy: 'order'" class="category-list-item" ng-class="{'active-category': relatedCategory.title === category.title}">
-                            <a ui-sref="category({ id: '{{relatedCategory.id}}' })">
+                            <a ui-sref="category({ slug: '{{relatedCategory.title | slug}}' })">
                                 {{relatedCategory.title}}
                             </a>
                         </li>

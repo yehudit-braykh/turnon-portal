@@ -14,12 +14,14 @@
         function($q, $scope, $rootScope, modalService, educationModalService, offersService, userService, data, knetikService, catchMediaService) {
 
             function _setIsSaved() {
-                $scope.isSavedOffer = userService.isSavedOffer(data.offerId);
+                if ($scope.offer) {
+                    $scope.isSavedOffer = userService.isSavedOffer($scope.offer.id);
+                }
             }
 
             $rootScope.$on('user.login', _setIsSaved);
 
-            offersService.getOfferById(data.offerId)
+            offersService.getOfferBySlug(data.offerSlug)
                 .then(
                     function onSuccess(data) {
                         var brand = data.brand || data.campaign;

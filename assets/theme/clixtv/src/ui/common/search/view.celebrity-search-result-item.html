@@ -1,4 +1,4 @@
-<clix-base-search-result-item sref="star({ id: '{{celebrity.id}}' })">
+<clix-base-search-result-item sref="star({ slug: '{{celebrity.name | slug}}' })">
     <search-result-image-circle>
         <img ng-src="{{celebrity.thumbnail}}" />
     </search-result-image-circle>

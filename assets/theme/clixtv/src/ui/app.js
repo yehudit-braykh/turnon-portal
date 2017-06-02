@@ -21,7 +21,8 @@
             'lz-string',
             'ngSanitize',
             'angular-inview',
-            '720kb.socialshare'
+            '720kb.socialshare',
+            'infinite-scroll'
         ])
         .constant('clixConfig', {
 
@@ -39,7 +40,7 @@
             notificationEnabled: false,
 
             // Base URL for API calls
-            baseApi: '//34.209.221.167',
+            baseApi: (window.ENVIRONMENT === 'stage') ? '//52.43.246.138' : '//api.clixtv.com',
 
             // A non-logged in user will not be allowed to directly view any episodes
             // that are below this number
@@ -73,7 +74,7 @@
                         controller: 'HomeController'
                     })
                     .state('video', {
-                        url: '/video/:id',
+                        url: '/video/:slug',
                         templateUrl: 'ui/video-permalink/view.video-permalink.html',
                         controller: 'VideoPermalinkController',
                         data: {
@@ -89,17 +90,17 @@
                         }
                     })
                     .state('brand', {
-                        url: '/brand/:id',
+                        url: '/brand/:slug',
                         templateUrl: 'ui/brand/view.brand.html',
                         controller: 'BrandController'
                     })
                     .state('brand-offer', {
-                        url: '/brand/:id/offer/:offerId',
+                        url: '/brand/:slug/offer/:offerSlug',
                         templateUrl: 'ui/brand/view.brand.html',
                         controller: 'BrandController'
                     })
                     .state('charity', {
-                        url: '/charity/:id?starId',
+                        url: '/charity/:slug?starId',
                         templateUrl: 'ui/charity/view.charity.html',
                         controller: 'CharityController'
                     })
@@ -120,7 +121,7 @@
                         }
                     })
                     .state('star', {
-                        url: '/star/:id',
+                        url: '/star/:slug',
                         templateUrl: 'ui/stars/view.star.html',
                         controller: 'StarController',
                         params: {
@@ -136,7 +137,7 @@
                         }
                     })
                     .state('category', {
-                        url: '/category/:id',
+                        url: '/category/:slug',
                         templateUrl: 'ui/categories/view.category.html',
                         controller: 'CategoryController'
                     })

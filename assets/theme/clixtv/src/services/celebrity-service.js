@@ -4,7 +4,8 @@
         '$http',
         'CelebrityListModel',
         'CelebrityModel',
-        function($http, CelebrityListModel, CelebrityModel) {
+        'clixConfig',
+        function($http, CelebrityListModel, CelebrityModel, clixConfig) {
             return {
 
                 /**
@@ -24,6 +25,15 @@
                  */
                 getCelebrityById: function(id) {
                     return $http.get('/api/celebrity/get_celebrity?id=' + id)
+                        .then(
+                            function onSuccess(data) {
+                                return new CelebrityModel(data.data);
+                            }
+                        );
+                },
+
+                getCelebrityBySlug: function(slug) {
+                    return $http.get(clixConfig.baseApi + '/stars/slug/' + slug)
                         .then(
                             function onSuccess(data) {
                                 return new CelebrityModel(data.data);

@@ -3,8 +3,8 @@
     <img ng-src="{{charity.transparentThumbnail}}" class="reference-image" clix-on-image-load="onImageLoad($event)" />
     <div class="logo-image" style="background-image: url('{{charity.transparentThumbnail}}')"></div>
     <div class="logo-overlay">
-        <a ui-sref="charity({ id: charity.id })" class="hit-area"></a>
-        <a ui-sref="charity({ id: charity.id })" class="view-button-container">
+        <a ui-sref="charity({ slug: '{{charity.title | slug}}' })" class="hit-area"></a>
+        <a ui-sref="charity({ slug: '{{charity.title | slug}}' })" class="view-button-container">
             <div class="view-button">
                 <clix-view-button></clix-view-button>
             </div>

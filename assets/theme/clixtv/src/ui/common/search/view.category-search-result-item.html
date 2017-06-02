@@ -1,4 +1,4 @@
-<clix-base-search-result-item sref="category({ id: '{{category.id}}' })">
+<clix-base-search-result-item sref="category({ slug: '{{category.title | slug}}' })">
     <search-result-image>
         <img ng-src="{{category.logo}}" />
     </search-result-image>

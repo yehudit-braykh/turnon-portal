@@ -10,6 +10,16 @@
         function($q, $scope, $rootScope, $stateParams, brandsService, catchMediaService) {
 
             $rootScope.pageTitle = 'Brands - ClixTV';
+            $scope.activeTab = 'brands';
+
+            var offersLoading = false,
+                canLoadMoreOffers = true,
+                offerPage = 0,
+                OFFER_LIMIT = 24,
+                brandsLoading = false,
+                canLoadMoreBrands = true,
+                brandPage = 0,
+                BRAND_LIMIT = 24;
 
             var defaultFilterOptions = [
                 {
@@ -115,8 +125,12 @@
             ];
 
             $scope.onTabSelect = function(tab) {
+                $scope.activeTab = tab;
                 switch (tab) {
                     case 'offers':
+                        if (!$scope.offers) {
+                            _loadOffers();
+                        }
                         catchMediaService.trackAppEvent('navigation', {
                             target_cm: 'media',
                             target_type: 'offer'
@@ -125,23 +139,61 @@
                 }
             };
 
-            // Don't wire these 2 calls together in a $q.all(...) because we don't want to have to wait for
-            // the order response to come back if the brands are all ready since it's a tabbed interface.
-            brandsService.getAllBrands()
-                .then(
-                    function onSuccess(data) {
-                        $scope.ready = true;
-                        $scope.active = 0;
-                        $scope.brands = data;
-                    }
-                );
+            $scope.loadMoreOffers = function() {
+                _loadOffers();
+            };
 
-            brandsService.getAllOffers()
-                .then(
-                    function onSuccess(data) {
-                        $scope.offers = data;
-                    }
-                );
+            $scope.loadMoreBrands = function() {
+                _loadBrands();
+            };
+
+            function _loadOffers() {
+                if (offersLoading || $scope.activeTab !== 'offers' || !canLoadMoreOffers) {
+                    return;
+                }
+                offersLoading = true;
+                return brandsService.getAllOffers(offerPage, OFFER_LIMIT)
+                    .then(
+                        function onSuccess(data) {
+                            if ($scope.offers) {
+                                $scope.offers.offers = $scope.offers.offers.concat(data.offers);
+                            } else {
+                                $scope.offers = data;
+                            }
+                            offersLoading = false;
+                            offerPage += 1;
+                            if (!data.offers || !data.offers || data.offers.length === 0) {
+                                canLoadMoreOffers = false;
+                            }
+                        }
+                    );
+            }
+
+            function _loadBrands() {
+                if (brandsLoading || $scope.activeTab !== 'brands' || !canLoadMoreBrands) {
+                    return;
+                }
+                brandsLoading = true;
+                $scope.active = 0;
+                return brandsService.getAllBrands(brandPage, BRAND_LIMIT)
+                    .then(
+                        function onSuccess(data) {
+                            $scope.ready = true;
+                            if ($scope.brands) {
+                                $scope.brands.brands = $scope.brands.brands.concat(data.brands);
+                            } else {
+                                $scope.brands = data;
+                            }
+                            brandsLoading = false;
+                            brandPage += 1;
+                            if (!data.brands || !data.brands || data.brands.length === 0) {
+                                canLoadMoreBrands = false;
+                            }
+                        }
+                    );
+            }
+
+            _loadBrands();
 
             catchMediaService.trackAppEvent('navigation', {
                 target_cm: 'media',

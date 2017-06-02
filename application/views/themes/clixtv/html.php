@@ -47,7 +47,11 @@
         <script>jwplayer.key="wldzyhAXC/pV8hrmoKJJUJQUQU7UwoOXl6rN1w==";</script>
 
         <!-- Application -->
+        <script>
+            var ENVIRONMENT = "<?php echo (ENVIRONMENT === "staging") ? "stage" : "prod" ?>";
+        </script>
         <script src="/assets/theme/clixtv/dist/libs.min.js"></script>
         <script src="/assets/theme/clixtv/dist/main.min.js"></script>
+
     </body>
 </html>

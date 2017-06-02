@@ -1,5 +1,5 @@
 <clix-content-callout
-        sref="brand-offer({ id: '{{offer.campaign.id}}', offerId: '{{offer.id}}' })"
+        sref="brand-offer({ slug: '{{offer.campaign.title | slug}}', offerSlug: '{{offer.title | slug}}' })"
         menu-items="menuItems"
         on-favorite="onFavoritePress('offer', offer)"
         is-favorited="isFavoriteContent('offer', offer)"

@@ -2,11 +2,11 @@
     <div class="header-container">
         <clix-tooltip-menu items="items" menuopen="menuVisible" class="menu-container" ng-hide="!menuVisible"></clix-tooltip-menu>
         <div class="header-inner-content">
-            <a ui-sref="star({ id: video.celebrity.id })">
+            <a ui-sref="star({ slug: '{{video.celebrity.name | slug}}' })">
                 <div class="artist-avatar" style="background-image: url({{video.celebrity.thumbnail}})"></div>
             </a>
             <div class="artist-name">
-                <a ui-sref="star({ id: video.celebrity.id })">
+                <a ui-sref="star({ slug: '{{video.celebrity.name | slug}}' })">
                     {{video.celebrity.name}}
                 </a>
             </div>

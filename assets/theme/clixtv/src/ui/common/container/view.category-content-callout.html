@@ -1,4 +1,4 @@
-<clix-content-callout sref="category({ id: '{{category.id}}' })" menu-items="menuItems" on-favorite="onFavoritePress('category', category)" is-favorited="isFavoriteContent('category', category)" type="category" entity="category">
+<clix-content-callout sref="category({ slug: '{{category.title | slug}}' })" menu-items="menuItems" on-favorite="onFavoritePress('category', category)" is-favorited="isFavoriteContent('category', category)" type="category" entity="category">
     <header-element>
         <div class="category-logo" style="background-image: url('{{category.logo}}')"></div>
     </header-element>

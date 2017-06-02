@@ -4,7 +4,8 @@
         '$http',
         'CategoryListModel',
         'CategoryModel',
-        function($http, CategoryListModel, CategoryModel) {
+        'clixConfig',
+        function($http, CategoryListModel, CategoryModel, clixConfig) {
             return {
 
                 /**
@@ -36,6 +37,15 @@
                  */
                 getCategoryById: function(id) {
                     return $http.get('/api/category/get_category_by_id?id=' + id)
+                        .then(
+                            function onSuccess(data) {
+                                return new CategoryModel(data.data);
+                            }
+                        );
+                },
+
+                getCategoryBySlug: function(slug) {
+                    return $http.get(clixConfig.baseApi + '/categories/slug/' + slug)
                         .then(
                             function onSuccess(data) {
                                 return new CategoryModel(data.data);

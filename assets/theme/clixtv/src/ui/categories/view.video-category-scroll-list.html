@@ -1,6 +1,6 @@
 <div class="video-category-scroll-list">
     <h2>
-        <a ui-sref="category({ id: '{{category.id}}' })" ng-show="category.headerLink !== false">
+        <a ui-sref="category({ slug: '{{category.title | slug}}' })" ng-show="category.headerLink !== false">
             {{category.title}} <i class="icon-right-arrow"></i>
         </a>
         <span ng-show="category.headerLink === false">

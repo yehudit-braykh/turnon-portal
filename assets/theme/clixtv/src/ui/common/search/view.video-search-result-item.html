@@ -1,4 +1,4 @@
-<clix-base-search-result-item sref="video({ id: '{{video.id}}' })">
+<clix-base-search-result-item sref="video({ slug: '{{video.seriesTitle + ' ' + video.title | slug}}' })">
     <search-result-image>
         <img ng-src="{{video.thumbnail}}" />
     </search-result-image>

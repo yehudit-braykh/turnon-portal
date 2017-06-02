@@ -1,4 +1,4 @@
-<clix-base-search-result-item sref="brand-offer({ id: '{{offer.campaign.id}}', offerId: '{{offer.id}}' })">
+<clix-base-search-result-item sref="brand-offer({ slug: '{{offer.campaign.title | slug}}', offerSlug: '{{offer.title | slug}}' })">
     <search-result-image>
         <img ng-src="{{offer.thumbnail}}" />
     </search-result-image>

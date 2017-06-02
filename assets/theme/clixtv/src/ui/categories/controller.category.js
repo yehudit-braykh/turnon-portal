@@ -15,7 +15,9 @@
         function($q, $log, $scope, $rootScope, $state, $stateParams, categoryService, userService, modalService, catchMediaService, clixConfig) {
 
             function _resetIsFavorite() {
-                $scope.isFavorite = userService.isFavoriteCategory($stateParams.id);
+                if ($scope.category) {
+                    $scope.isFavorite = userService.isFavoriteCategory($scope.category.id);
+                }
             }
 
             $scope.notify = false;
@@ -44,9 +46,9 @@
 
             $scope.onFavoritePress = function() {
                 if ($scope.isFavorite) {
-                    userService.removeFavoriteCategory($stateParams.id);
+                    userService.removeFavoriteCategory($scope.category.id);
                 } else {
-                    userService.addFavoriteCategory($stateParams.id);
+                    userService.addFavoriteCategory($scope.category.id);
 
                     catchMediaService.trackAppEvent('favorite', {
                         target_cm: 'entity',
@@ -99,7 +101,7 @@
 
             $q.all(
                     [
-                        categoryService.getCategoryById($stateParams.id),
+                        categoryService.getCategoryBySlug($stateParams.slug),
                         categoryService.getAllCategories()
                     ]
                 )

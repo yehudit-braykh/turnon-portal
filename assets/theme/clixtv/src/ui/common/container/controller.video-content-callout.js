@@ -5,6 +5,7 @@
         '$scope',
         '$rootScope',
         '$element',
+        '$filter',
         '$window',
         '$timeout',
         '$state',
@@ -12,7 +13,7 @@
         'shareModalService',
         'clixConfig',
         'modalService',
-        function($q, $scope, $rootScope, $element, $window, $timeout, $state, userService, shareModalService, clixConfig, modalService) {
+        function($q, $scope, $rootScope, $element, $filter, $window, $timeout, $state, userService, shareModalService, clixConfig, modalService) {
 
             $scope.menuVisible = false;
 
@@ -154,7 +155,7 @@
 
             $scope.onClick = function($event) {
                 if (!angular.element($event.target).hasClass('video-watchlist-button')) {
-                    $state.go('video', { id: $scope.video.id });
+                    $state.go('video', { slug: $filter('slug')($scope.video.seriesTitle + ' ' + $scope.video.title)});
                 }
             };
 
