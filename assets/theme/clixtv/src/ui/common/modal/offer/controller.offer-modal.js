@@ -67,7 +67,7 @@
             };
 
             $scope.onCopyToClipboardSuccess = function(e) {
-                
+
             };
 
             _setIsSaved();
