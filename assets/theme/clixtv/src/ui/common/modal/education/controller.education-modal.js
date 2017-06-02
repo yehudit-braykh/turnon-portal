@@ -42,7 +42,11 @@
 
                     case 'offer-view':
                     case 'offer':
-                        title = (isLoggedIn) ? 'Reward Points Earned' : 'Reward Points Missed!';
+                        if ($scope.pointsEnabled) {
+                            title = (isLoggedIn) ? 'Reward Points Earned' : 'Reward Points Missed!';
+                        } else {
+                            title = 'Reward points coming soon';
+                        }
                         break;
 
                     case 'learn-more':
