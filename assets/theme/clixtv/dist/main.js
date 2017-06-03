@@ -213,7 +213,7 @@
                     modalService.close();
                     $rootScope.printable = (to.data && to.data.print);
                     $rootScope.solidNavigation = (to.data && to.data.solidNavigation);
-                    analyticsService.trackPageView();
+                    analyticsService.trackPageView(event, to, toParams, from, fromParams);
                 });
 
                 $rootScope.$on('user.login', function(event, data) {
@@ -9304,12 +9304,14 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
     var analyticsService = [
         '$window',
         '$location',
+        '$rootScope',
         '$log',
-        function($window, $location, $log) {
+        '$state',
+        function($window, $location, $rootScope, $log, $state) {
             return {
                 initialize: function(apiKey) {
                     if (navigator.doNotTrack == 1) {
-                        $log.info('Google Analytics has not been initialized. No data will be tracked.');
+                        $log.info('Segment has not been initialized. No data will be tracked.');
                         return;
                     }
                     var script = document.createElement('script');
@@ -9321,11 +9323,30 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     var firstScript = document.getElementsByTagName('script')[0];
                     firstScript.parentNode.insertBefore(script, firstScript);
                 },
-                trackPageView: function() {
+                trackPageView: function(event, to, toParams, from, fromParams) {
                     if (!$window.analytics) {
                         return;
                     }
-                    $window.analytics.page($location.path());
+
+                    var path = $location.path(),
+                        querystring = '',
+                        referrer = '';
+
+                    if (path.indexOf('?') !== -1) {
+                        querystring = path.substring(path.indexOf('?'), path.length);
+                    }
+
+                    if (from.name) {
+                        referrer = $state.href(from.name, fromParams, {absolute: true});
+                    }
+
+                    $window.analytics.page({
+                        path: path,
+                        referrer: referrer,
+                        search: querystring,
+                        url: $location.absUrl(),
+                        title: 'ClixTV - Your Stars. Their Passions.'
+                    });
                 },
 
                 identify: function(identityId, params) {

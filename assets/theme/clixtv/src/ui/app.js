@@ -213,7 +213,7 @@
                     modalService.close();
                     $rootScope.printable = (to.data && to.data.print);
                     $rootScope.solidNavigation = (to.data && to.data.solidNavigation);
-                    analyticsService.trackPageView();
+                    analyticsService.trackPageView(event, to, toParams, from, fromParams);
                 });
 
                 $rootScope.$on('user.login', function(event, data) {
