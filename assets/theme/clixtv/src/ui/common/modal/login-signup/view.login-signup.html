@@ -74,6 +74,9 @@
                 -->
             </div>
         </form>
+        <div class="error-message" ng-if="error">
+            {{error}}
+        </div>
         <div class="signup-modal-submit">
             <div class="submit-button">
                 <clix-primary-button type="normal" ng-click="onSignupSubmit()">
@@ -130,6 +133,9 @@
             </div>
             <input type="submit" />
         </form>
+        <div class="error-message" ng-if="error">
+            {{error}}
+        </div>
         <div class="signup-modal-submit">
             <div class="submit-button">
                 <clix-primary-button type="normal" ng-click="onLoginSubmit()">

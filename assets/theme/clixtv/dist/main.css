@@ -14979,6 +14979,13 @@ button.close {
 .signup-modal .form-icon.large {
   font-size: 16px;
 }
+.signup-modal .error-message {
+  font-family: 'montserratregular', sans-serif;
+  text-align: center;
+  font-size: 12px;
+  color: #fe0000;
+  margin-top: 20px;
+}
 .signup-modal .signup-modal-submit {
   padding: 24px 38px;
   border-bottom: 1px solid #636363;

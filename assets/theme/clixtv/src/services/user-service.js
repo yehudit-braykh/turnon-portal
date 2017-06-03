@@ -15,7 +15,8 @@
         'UserModel',
         'modalService',
         'catchMediaService',
-        function($q, $http, $log, $rootScope, BrandListModel, OfferListModel, CharityListModel, CelebrityListModel, CategoryListModel, VideoListModel, AccountSettingListModel, UserModel, modalService, catchMediaService) {
+        'clixConfig',
+        function($q, $http, $log, $rootScope, BrandListModel, OfferListModel, CharityListModel, CelebrityListModel, CategoryListModel, VideoListModel, AccountSettingListModel, UserModel, modalService, catchMediaService, clixConfig) {
 
             var loggedInUser, loggedInUserChecked;
 
@@ -260,7 +261,7 @@
                         })
                         .then(
                             function onSuccess(data) {
-                                if (!data || !data.data || data.data.error) {
+                                if (!data || !data.data || !data.data._id) {
                                     throw new Error(data.data);
                                 }
 
@@ -470,6 +471,12 @@
 
                 removeVideoFromWatchlist: function(id) {
                     _removeFavorite(id, 'watchlist');
+                },
+
+                addUserToNewsletter: function(email, firstName, lastName) {
+                    return $http.post(clixConfig.baseApi + '/users/newsletter', {
+                        email: email
+                    });
                 }
             };
 

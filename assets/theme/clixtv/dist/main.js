@@ -544,7 +544,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/modal/login-signup/view.login-signup.html',
-    "<clix-modal><a ng-click=onCloseIconPress() class=\"icon-remove-icon clix-modal-close\"></a><div class=signup-modal ng-show=signup><div class=signup-modal-header><div class=\"header-logo-icon icon-colorful-clix-logo\" ng-if=!isBeta></div><img src=assets/theme/clixtv/dist/images/clixtv-logo-horizontal-beta.svg class=header-logo-icon ng-if=isBeta></div><div class=signup-modal-social><div class=social-modal-row><clix-primary-button type=facebook ng-click=onFacebookLoginPress()>Sign Up With Facebook</clix-primary-button></div><div class=social-modal-row><clix-primary-button type=google ng-click=onGoogleLoginPress()>Sign Up With Google</clix-primary-button></div><div class=or-email-container><span>or with email</span></div></div><form ng-submit=onSignupSubmit()><div class=signup-modal-form><div class=signup-modal-form-row><i class=\"form-icon icon-email-input-icon\"></i><div class=signup-modal-input><input type=email placeholder=Email name=email ng-model=signupModel.email></div></div><div class=signup-modal-form-row><i class=\"form-icon icon-email-input-icon\"></i><div class=signup-modal-input><input type=email placeholder=\"Re-Enter Email\" name=email-confirm ng-model=signupModel.emailConfirm></div></div><div class=signup-modal-form-row><i class=\"form-icon icon-password-input-icon\"></i><div class=signup-modal-input><input type=password placeholder=\"Choose Password\" name=password ng-model=signupModel.password></div></div><div class=signup-modal-form-row><i class=\"form-icon icon-password-input-icon\"></i><div class=signup-modal-input><input type=password placeholder=\"Re-Enter Password\" name=password-confirm ng-model=signupModel.passwordConfirm></div></div><div class=signup-modal-form-row><i class=\"form-icon large icon-full-name-input-icon\"></i><div class=signup-modal-input><input type=text placeholder=\"First Name\" name=first-name ng-model=signupModel.firstName></div></div><div class=signup-modal-form-row><i class=\"form-icon large icon-full-name-input-icon\"></i><div class=signup-modal-input><input type=text placeholder=\"Last Name\" name=last-name ng-model=signupModel.lastName></div></div></div></form><div class=signup-modal-submit><div class=submit-button><clix-primary-button type=normal ng-click=onSignupSubmit()>Sign Up</clix-primary-button></div><div class=login-container>Have an account? <a ng-click=onLoginPress()>Log in</a></div></div><div class=signup-modal-footer>By signing in, you agree to our <a ng-click=onTermsPress()>Terms of Service</a> and <a ng-click=onPrivacyPress()>Privacy Policy</a></div></div><div class=signup-modal ng-hide=signup><div class=signup-modal-header><div class=\"header-logo-icon icon-colorful-clix-logo\" ng-if=!isBeta></div><img src=assets/theme/clixtv/dist/images/clixtv-logo-horizontal-beta.svg class=header-logo-icon ng-if=isBeta></div><div class=signup-modal-social><div class=social-modal-row><clix-primary-button type=facebook ng-click=onFacebookLoginPress()>Log In With Facebook</clix-primary-button></div><div class=social-modal-row><clix-primary-button type=google ng-click=onGoogleLoginPress()>Log In With Google</clix-primary-button></div><div class=or-email-container><span>or with email</span></div></div><form ng-submit=onLoginSubmit() class=signup-modal-form><div class=signup-modal-form-row><i class=\"form-icon icon-email-input-icon\"></i><div class=signup-modal-input><input type=email placeholder=Email ng-model=loginModel.email></div></div><div class=signup-modal-form-row><i class=\"form-icon icon-password-input-icon\"></i><div class=signup-modal-input><input type=password placeholder=Password ng-model=loginModel.password></div></div><input type=submit></form><div class=signup-modal-submit><div class=submit-button><clix-primary-button type=normal ng-click=onLoginSubmit()>Log In</clix-primary-button></div><div class=login-container><a ng-click=onForgotPasswordPress() class=forgot-password>Forgot Password?</a><br>Don't have an account? <a ng-click=onSignupPress()>Sign up</a></div></div><div class=signup-modal-footer>By signing in, you agree to our <a ng-click=onTermsPress()>Terms of Service</a> and <a ng-click=onPrivacyPress()>Privacy Policy</a></div></div></clix-modal>"
+    "<clix-modal><a ng-click=onCloseIconPress() class=\"icon-remove-icon clix-modal-close\"></a><div class=signup-modal ng-show=signup><div class=signup-modal-header><div class=\"header-logo-icon icon-colorful-clix-logo\" ng-if=!isBeta></div><img src=assets/theme/clixtv/dist/images/clixtv-logo-horizontal-beta.svg class=header-logo-icon ng-if=isBeta></div><div class=signup-modal-social><div class=social-modal-row><clix-primary-button type=facebook ng-click=onFacebookLoginPress()>Sign Up With Facebook</clix-primary-button></div><div class=social-modal-row><clix-primary-button type=google ng-click=onGoogleLoginPress()>Sign Up With Google</clix-primary-button></div><div class=or-email-container><span>or with email</span></div></div><form ng-submit=onSignupSubmit()><div class=signup-modal-form><div class=signup-modal-form-row><i class=\"form-icon icon-email-input-icon\"></i><div class=signup-modal-input><input type=email placeholder=Email name=email ng-model=signupModel.email></div></div><div class=signup-modal-form-row><i class=\"form-icon icon-email-input-icon\"></i><div class=signup-modal-input><input type=email placeholder=\"Re-Enter Email\" name=email-confirm ng-model=signupModel.emailConfirm></div></div><div class=signup-modal-form-row><i class=\"form-icon icon-password-input-icon\"></i><div class=signup-modal-input><input type=password placeholder=\"Choose Password\" name=password ng-model=signupModel.password></div></div><div class=signup-modal-form-row><i class=\"form-icon icon-password-input-icon\"></i><div class=signup-modal-input><input type=password placeholder=\"Re-Enter Password\" name=password-confirm ng-model=signupModel.passwordConfirm></div></div><div class=signup-modal-form-row><i class=\"form-icon large icon-full-name-input-icon\"></i><div class=signup-modal-input><input type=text placeholder=\"First Name\" name=first-name ng-model=signupModel.firstName></div></div><div class=signup-modal-form-row><i class=\"form-icon large icon-full-name-input-icon\"></i><div class=signup-modal-input><input type=text placeholder=\"Last Name\" name=last-name ng-model=signupModel.lastName></div></div></div></form><div class=error-message ng-if=error>{{error}}</div><div class=signup-modal-submit><div class=submit-button><clix-primary-button type=normal ng-click=onSignupSubmit()>Sign Up</clix-primary-button></div><div class=login-container>Have an account? <a ng-click=onLoginPress()>Log in</a></div></div><div class=signup-modal-footer>By signing in, you agree to our <a ng-click=onTermsPress()>Terms of Service</a> and <a ng-click=onPrivacyPress()>Privacy Policy</a></div></div><div class=signup-modal ng-hide=signup><div class=signup-modal-header><div class=\"header-logo-icon icon-colorful-clix-logo\" ng-if=!isBeta></div><img src=assets/theme/clixtv/dist/images/clixtv-logo-horizontal-beta.svg class=header-logo-icon ng-if=isBeta></div><div class=signup-modal-social><div class=social-modal-row><clix-primary-button type=facebook ng-click=onFacebookLoginPress()>Log In With Facebook</clix-primary-button></div><div class=social-modal-row><clix-primary-button type=google ng-click=onGoogleLoginPress()>Log In With Google</clix-primary-button></div><div class=or-email-container><span>or with email</span></div></div><form ng-submit=onLoginSubmit() class=signup-modal-form><div class=signup-modal-form-row><i class=\"form-icon icon-email-input-icon\"></i><div class=signup-modal-input><input type=email placeholder=Email ng-model=loginModel.email></div></div><div class=signup-modal-form-row><i class=\"form-icon icon-password-input-icon\"></i><div class=signup-modal-input><input type=password placeholder=Password ng-model=loginModel.password></div></div><input type=submit></form><div class=error-message ng-if=error>{{error}}</div><div class=signup-modal-submit><div class=submit-button><clix-primary-button type=normal ng-click=onLoginSubmit()>Log In</clix-primary-button></div><div class=login-container><a ng-click=onForgotPasswordPress() class=forgot-password>Forgot Password?</a><br>Don't have an account? <a ng-click=onSignupPress()>Sign up</a></div></div><div class=signup-modal-footer>By signing in, you agree to our <a ng-click=onTermsPress()>Terms of Service</a> and <a ng-click=onPrivacyPress()>Privacy Policy</a></div></div></clix-modal>"
   );
 
 
@@ -5044,8 +5044,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             };
 
             $scope.onLoginSubmit = function() {
+                $scope.error = undefined;
                 if (!$scope.loginModel.email || !$scope.loginModel.password) {
-                    // todo - Error state for validation...
+                    $scope.error = 'All fields are required';
                     return;
                 }
                 userService.loginWithEmailPassword($scope.loginModel.email, $scope.loginModel.password)
@@ -5056,13 +5057,15 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     )
                     .catch(
                         function onError(error) {
-                            // todo - Error state...
+                            $scope.error = 'Incorrect login information';
                             console.log(error);
                         }
                     );
             };
 
             $scope.onSignupSubmit = function() {
+
+                $scope.error = undefined;
 
                 if (
                     !$scope.signupModel.email ||
@@ -5072,29 +5075,32 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     !$scope.signupModel.birthdate ||
                     !$scope.signupModel.gender*/
                 ) {
-                    // todo - Error state for validation...
+                    $scope.error = 'All fields are required';
                     return;
                 }
 
                 if ($scope.signupModel.email !== $scope.signupModel.emailConfirm) {
-                    // todo - Error state for validation...
+                    $scope.error = 'Email and confirmation do not match';
                     return;
                 }
 
                 if ($scope.signupModel.password !== $scope.signupModel.passwordConfirm) {
-                    // todo - Error state for validation...
+                    $scope.error = 'Password and confirmation do not match';
                     return;
                 }
+
+
 
                 userService.signupUser($scope.signupModel.email, $scope.signupModel.password, $scope.signupModel.firstName, $scope.signupModel.lastName)
                     .then(
                         function onSuccess(data) {
                             $uibModalInstance.close();
+                            userService.addUserToNewsletter($scope.signupModel.email, $scope.signupModel.firstName, $scope.signupModel.lastName);
                         }
                     )
                     .catch(
                         function onError(error) {
-                            // todo - Error state...
+                            $scope.error = 'Account already exists with this email address';
                             console.log(error);
                         }
                     );
@@ -5121,6 +5127,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     .then(
                         function onSuccess(data) {
                             $uibModalInstance.close();
+                            userService.addUserToNewsletter(data.email, data.firstName, data.lastName);
                         }
                     );
             };
@@ -10512,7 +10519,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         'UserModel',
         'modalService',
         'catchMediaService',
-        function($q, $http, $log, $rootScope, BrandListModel, OfferListModel, CharityListModel, CelebrityListModel, CategoryListModel, VideoListModel, AccountSettingListModel, UserModel, modalService, catchMediaService) {
+        'clixConfig',
+        function($q, $http, $log, $rootScope, BrandListModel, OfferListModel, CharityListModel, CelebrityListModel, CategoryListModel, VideoListModel, AccountSettingListModel, UserModel, modalService, catchMediaService, clixConfig) {
 
             var loggedInUser, loggedInUserChecked;
 
@@ -10757,7 +10765,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         })
                         .then(
                             function onSuccess(data) {
-                                if (!data || !data.data || data.data.error) {
+                                if (!data || !data.data || !data.data._id) {
                                     throw new Error(data.data);
                                 }
 
@@ -10967,6 +10975,12 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
                 removeVideoFromWatchlist: function(id) {
                     _removeFavorite(id, 'watchlist');
+                },
+
+                addUserToNewsletter: function(email, firstName, lastName) {
+                    return $http.post(clixConfig.baseApi + '/users/newsletter', {
+                        email: email
+                    });
                 }
             };
 

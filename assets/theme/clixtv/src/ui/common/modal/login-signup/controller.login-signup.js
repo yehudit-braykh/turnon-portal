@@ -38,8 +38,9 @@
             };
 
             $scope.onLoginSubmit = function() {
+                $scope.error = undefined;
                 if (!$scope.loginModel.email || !$scope.loginModel.password) {
-                    // todo - Error state for validation...
+                    $scope.error = 'All fields are required';
                     return;
                 }
                 userService.loginWithEmailPassword($scope.loginModel.email, $scope.loginModel.password)
@@ -50,13 +51,15 @@
                     )
                     .catch(
                         function onError(error) {
-                            // todo - Error state...
+                            $scope.error = 'Incorrect login information';
                             console.log(error);
                         }
                     );
             };
 
             $scope.onSignupSubmit = function() {
+
+                $scope.error = undefined;
 
                 if (
                     !$scope.signupModel.email ||
@@ -66,29 +69,32 @@
                     !$scope.signupModel.birthdate ||
                     !$scope.signupModel.gender*/
                 ) {
-                    // todo - Error state for validation...
+                    $scope.error = 'All fields are required';
                     return;
                 }
 
                 if ($scope.signupModel.email !== $scope.signupModel.emailConfirm) {
-                    // todo - Error state for validation...
+                    $scope.error = 'Email and confirmation do not match';
                     return;
                 }
 
                 if ($scope.signupModel.password !== $scope.signupModel.passwordConfirm) {
-                    // todo - Error state for validation...
+                    $scope.error = 'Password and confirmation do not match';
                     return;
                 }
+
+
 
                 userService.signupUser($scope.signupModel.email, $scope.signupModel.password, $scope.signupModel.firstName, $scope.signupModel.lastName)
                     .then(
                         function onSuccess(data) {
                             $uibModalInstance.close();
+                            userService.addUserToNewsletter($scope.signupModel.email, $scope.signupModel.firstName, $scope.signupModel.lastName);
                         }
                     )
                     .catch(
                         function onError(error) {
-                            // todo - Error state...
+                            $scope.error = 'Account already exists with this email address';
                             console.log(error);
                         }
                     );
@@ -115,6 +121,7 @@
                     .then(
                         function onSuccess(data) {
                             $uibModalInstance.close();
+                            userService.addUserToNewsletter(data.email, data.firstName, data.lastName);
                         }
                     );
             };
