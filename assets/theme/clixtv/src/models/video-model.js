@@ -17,6 +17,12 @@
                     this.episodeNumber = data.episode_number;
                     this.runtime = data.runtime;
 
+                    if (data.views) {
+                        this.views = parseInt(data.views);
+                    } else {
+                        this.views = 0;
+                    }
+
                     if (data.celebrity) {
                         this.celebrity = new CelebrityModel(data.celebrity);
                     }
