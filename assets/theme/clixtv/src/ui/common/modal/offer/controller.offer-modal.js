@@ -3,6 +3,7 @@
     var OfferModalController = [
         '$q',
         '$scope',
+        '$window',
         '$rootScope',
         'modalService',
         'educationModalService',
@@ -11,7 +12,7 @@
         'data',
         'knetikService',
         'catchMediaService',
-        function($q, $scope, $rootScope, modalService, educationModalService, offersService, userService, data, knetikService, catchMediaService) {
+        function($q, $scope, $window, $rootScope, modalService, educationModalService, offersService, userService, data, knetikService, catchMediaService) {
 
             function _setIsSaved() {
                 if ($scope.offer) {
@@ -64,6 +65,10 @@
                             }
                         );
                 }
+            };
+
+            $scope.onOfferRedeemPress = function() {
+                $window.open($scope.offer.rfiLink, '_blank');
             };
 
             $scope.onCopyToClipboardSuccess = function(e) {

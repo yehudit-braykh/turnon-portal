@@ -16,6 +16,10 @@
                         this.couponCode = data.coupon_code;
                     }
 
+                    if (data.rfi_link) {
+                        this.rfiLink = data.rfi_link;
+                    }
+
                     if (typeof data.campaign === 'string') {
                         this.campaign = data.campaign;
                     } else {

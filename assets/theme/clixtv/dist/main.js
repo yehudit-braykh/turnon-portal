@@ -549,7 +549,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/modal/offer/view.offer-modal.html',
-    "<clix-modal modal-title=&nbsp;><div class=clix-offer-modal><a ng-click=onClosePress() class=close-modal-icon><div class=icon-remove-icon></div></a><div ng-if=!offer><clix-loader size=small></clix-loader></div><div ng-if=offer><div class=\"offer-image-info-container row\"><div class=offer-background-image style=\"background-image: url('{{offer.carouselPic1}}')\"></div><div class=col-sm-6><slick dots=true prev-arrow=#main-carousel-previous next-arrow=#main-carousel-next><div class=offer-image-container ng-if=offer.carouselPic1><img ng-src={{offer.carouselPic1}} class=offer-image></div><div class=offer-image-container ng-if=offer.carouselPic2><img ng-src={{offer.carouselPic2}} class=offer-image></div><div class=offer-image-container ng-if=offer.carouselPic3><img ng-src={{offer.carouselPic3}} class=offer-image></div></slick><div id=main-carousel-previous><div class=\"main-carousel-button hidden-sm hidden-xs hidden-md\"><i class=\"arrow-icon icon-left-tall-arrow\"></i></div></div><div id=main-carousel-next><div class=\"main-carousel-button hidden-sm hidden-xs hidden-md\"><i class=\"arrow-icon icon-right-tall-arrow\"></i></div></div></div><div class=col-sm-6><div class=offer-expiration-date>Offer Expires {{offer.expirationDate | clixDate : 'long'}}</div><div class=offer-title>{{offer.title}}</div><div ng-if=offer.couponCode class=offer-coupon-code ngclipboard data-clipboard-text={{offer.couponCode}} ngclipboard-success=onCopyToClipboardSuccess(e);><div clix-tooltip-trigger tooltip-id=code-copied click-trigger=true>{{offer.couponCode}}</div></div><div class=instructions-title>Instructions</div><div class=instructions-container>Click the Redeem Now button below. Your Coupon code will be copied to your clipboard automatically.</div><div class=instructions-container>Paste your code during checkout.</div><div class=instructions-container>Enjoy!</div></div></div><div class=\"offer-buttons-container row\"><div class=col-sm-4><div class=offer-button><clix-tertiary-button ng-click=onSaveOfferPress()>{{isSavedOffer ? 'Offer Saved' : 'Save Offer'}}</clix-tertiary-button><div class=violator-container><clix-points-violator>50</clix-points-violator></div></div></div><div class=col-sm-4><div class=offer-button><clix-tertiary-button>Redeem Offer</clix-tertiary-button><div class=violator-container><clix-points-violator>50</clix-points-violator></div></div></div><div class=col-sm-4><div class=offer-share><clix-share-button offer=offer></clix-share-button><clix-points-violator>50</clix-points-violator></div></div></div><div class=offer-description-container><div class=offer-description ng-bind-html=\"offer.longDescription || offer.description | clixNewLineBreak\"></div></div></div></div><clix-tooltip tooltip-id=code-copied>Copied to your clipboard</clix-tooltip></clix-modal>"
+    "<clix-modal modal-title=&nbsp;><div class=clix-offer-modal><a ng-click=onClosePress() class=close-modal-icon><div class=icon-remove-icon></div></a><div ng-if=!offer><clix-loader size=small></clix-loader></div><div ng-if=offer><div class=\"offer-image-info-container row\"><div class=offer-background-image style=\"background-image: url('{{offer.carouselPic1}}')\"></div><div class=col-sm-6><slick dots=true prev-arrow=#main-carousel-previous next-arrow=#main-carousel-next><div class=offer-image-container ng-if=offer.carouselPic1><img ng-src={{offer.carouselPic1}} class=offer-image></div><div class=offer-image-container ng-if=offer.carouselPic2><img ng-src={{offer.carouselPic2}} class=offer-image></div><div class=offer-image-container ng-if=offer.carouselPic3><img ng-src={{offer.carouselPic3}} class=offer-image></div></slick><div id=main-carousel-previous><div class=\"main-carousel-button hidden-sm hidden-xs hidden-md\"><i class=\"arrow-icon icon-left-tall-arrow\"></i></div></div><div id=main-carousel-next><div class=\"main-carousel-button hidden-sm hidden-xs hidden-md\"><i class=\"arrow-icon icon-right-tall-arrow\"></i></div></div></div><div class=col-sm-6><div class=offer-expiration-date>Offer Expires {{offer.expirationDate | clixDate : 'long'}}</div><div class=offer-title>{{offer.title}}</div><div ng-if=offer.couponCode class=offer-coupon-code ngclipboard data-clipboard-text={{offer.couponCode}} ngclipboard-success=onCopyToClipboardSuccess(e);><div clix-tooltip-trigger tooltip-id=code-copied click-trigger=true>{{offer.couponCode}}</div></div><div class=instructions-title>Instructions</div><div class=instructions-container>Click the Redeem Now button below. Your Coupon code will be copied to your clipboard automatically.</div><div class=instructions-container>Paste your code during checkout.</div><div class=instructions-container>Enjoy!</div></div></div><div class=\"offer-buttons-container row\"><div class=col-sm-4><div class=offer-button><clix-tertiary-button ng-click=onSaveOfferPress()>{{isSavedOffer ? 'Offer Saved' : 'Save Offer'}}</clix-tertiary-button><div class=violator-container><clix-points-violator>50</clix-points-violator></div></div></div><div class=col-sm-4><div class=offer-button><clix-tertiary-button ng-click=onOfferRedeemPress()>Redeem Offer</clix-tertiary-button><div class=violator-container><clix-points-violator>50</clix-points-violator></div></div></div><div class=col-sm-4><div class=offer-share><clix-share-button offer=offer></clix-share-button><clix-points-violator>50</clix-points-violator></div></div></div><div class=offer-description-container><div class=offer-description ng-bind-html=\"offer.longDescription || offer.description | clixNewLineBreak\"></div></div></div></div><clix-tooltip tooltip-id=code-copied>Copied to your clipboard</clix-tooltip></clix-modal>"
   );
 
 
@@ -5143,6 +5143,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
     var OfferModalController = [
         '$q',
         '$scope',
+        '$window',
         '$rootScope',
         'modalService',
         'educationModalService',
@@ -5151,7 +5152,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         'data',
         'knetikService',
         'catchMediaService',
-        function($q, $scope, $rootScope, modalService, educationModalService, offersService, userService, data, knetikService, catchMediaService) {
+        function($q, $scope, $window, $rootScope, modalService, educationModalService, offersService, userService, data, knetikService, catchMediaService) {
 
             function _setIsSaved() {
                 if ($scope.offer) {
@@ -5204,6 +5205,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                             }
                         );
                 }
+            };
+
+            $scope.onOfferRedeemPress = function() {
+                $window.open($scope.offer.rfiLink, '_blank');
             };
 
             $scope.onCopyToClipboardSuccess = function(e) {
@@ -8968,6 +8973,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
                     if (data.coupon_code) {
                         this.couponCode = data.coupon_code;
+                    }
+
+                    if (data.rfi_link) {
+                        this.rfiLink = data.rfi_link;
                     }
 
                     if (typeof data.campaign === 'string') {
