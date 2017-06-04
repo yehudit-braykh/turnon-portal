@@ -175,7 +175,13 @@
             };
 
             $scope.onLikeVideoPress = function() {
-                videosService.addVideoLike($scope.video.id);
+                catchMediaService.trackAppEvent('like', {
+                    target_cm: 'media',
+                    target_type: 'episode',
+                    target_id: $scope.video.id
+                });
+
+                // videosService.addVideoLike($scope.video.id);
             };
         }
     ];
