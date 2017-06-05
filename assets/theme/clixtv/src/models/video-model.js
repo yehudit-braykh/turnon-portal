@@ -15,14 +15,14 @@
                     this.title = data.title;
                     this.description = data.description;
                     this.seriesTitle = data.serie_title; // ...spelling?
+
+                    if (!this.seriesTitle && data.serie) {
+                        this.seriesTitle = data.serie.title;
+                    }
+
                     this.episodeNumber = data.episode_number;
                     this.runtime = data.runtime;
-
-                    if (data.slug) {
-                        this.slug = data.slug;
-                    } else {
-                        this.slug = $filter('slug')(this.seriesTitle + ' ' + this.title);
-                    }
+                    this.slug = $filter('slug')(this.seriesTitle + ' ' + this.title);
 
                     if (data.views) {
                         this.views = parseInt(data.views);

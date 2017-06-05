@@ -13002,6 +13002,42 @@ button.close {
   font-size: 14px;
   line-height: 20px;
 }
+.clix-terms-and-conditions-page .clix-terms-and-conditions-content a {
+  text-decoration: underline;
+}
+.clix-terms-and-conditions-page .clix-terms-and-conditions-content > ol li {
+  font-family: 'montserratsemibold', sans-serif;
+}
+.clix-terms-and-conditions-page .clix-terms-and-conditions-content > ol li ul,
+.clix-terms-and-conditions-page .clix-terms-and-conditions-content > ol li p,
+.clix-terms-and-conditions-page .clix-terms-and-conditions-content > ol li ol,
+.clix-terms-and-conditions-page .clix-terms-and-conditions-content > ol li li {
+  font-family: 'montserratregular', sans-serif;
+}
+.clix-privacy-policy-page {
+  padding: 110px 10px 20px 10px;
+  color: #FFF;
+}
+@media (min-width: 768px) {
+  .clix-privacy-policy-page {
+    padding: 110px 30px 20px 30px;
+  }
+}
+.clix-privacy-policy-page .clix-privacy-policy-content {
+  margin-top: 15px;
+  padding-top: 25px;
+  border-top: 1px solid #636363;
+  font-family: 'montserratregular', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+}
+.clix-privacy-policy-page .clix-privacy-policy-content a {
+  text-decoration: underline;
+}
+.clix-privacy-policy-page .clix-privacy-policy-content h2 {
+  font-size: 14px;
+  font-family: 'montserratsemibold', sans-serif;
+}
 .clix-hero-banner {
   position: relative;
   z-index: 2000;

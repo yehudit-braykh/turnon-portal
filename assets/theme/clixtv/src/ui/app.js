@@ -193,10 +193,16 @@
                             solidNavigation: true
                         }
                     })
-                    .state('legal', {
-                        url: '/legal',
+                    .state('terms-of-use', {
+                        url: '/terms-of-use',
                         templateUrl: 'ui/terms-and-conditions/view.terms-and-conditions.html',
-                        controller: 'TermsConditionsController',
+                        data: {
+                            solidNavigation: true
+                        }
+                    })
+                    .state('privacy-policy', {
+                        url: '/privacy-policy',
+                        templateUrl: 'ui/privacy-policy/view.privacy-policy.html',
                         data: {
                             solidNavigation: true
                         }
