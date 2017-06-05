@@ -90,6 +90,7 @@
 
             $scope.shareContent = shareContent;
             $scope.link = link;
+            $scope.type = type;
 
             $scope.onTabPress = function(tab) {
                 $scope.tab = tab;

@@ -21,7 +21,7 @@
                     if (data.slug) {
                         this.slug = data.slug;
                     } else {
-                        this.slug = $filter('slug')(this.title);
+                        this.slug = $filter('slug')(this.seriesTitle + ' ' + this.title);
                     }
 
                     if (data.views) {
