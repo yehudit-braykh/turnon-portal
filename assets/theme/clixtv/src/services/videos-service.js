@@ -25,7 +25,6 @@
                     return $http.get(clixConfig.baseApi + '/episodes/slug/' + slug)
                         .then(
                             function onSuccess(data) {
-                                console.log(data);
                                 return new VideoModel(data.data);
                             }
                         );

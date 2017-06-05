@@ -104,9 +104,6 @@
                 )
                 .then(
                     function onSuccess(data) {
-
-                        console.log(data);
-
                         $scope.relatedVideos = data[0];
                         $scope.series = data[1];
                         _getNextVideo();

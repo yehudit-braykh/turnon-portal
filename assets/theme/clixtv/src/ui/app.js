@@ -27,6 +27,11 @@
         ])
         .constant('clixConfig', {
 
+            // Different environments trigger different functionality through the
+            // site. For example, no analytics will be sent unless we're in a
+            // production environment.
+            environment: window.ENVIRONMENT,
+
             // Swaps out logos and other components that are only available on the
             // beta version of the site
             beta: true,
