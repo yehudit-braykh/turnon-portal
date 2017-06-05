@@ -32,6 +32,21 @@
                                 return data.data;
                             }
                         );
+                },
+
+                sendShareEmail: function(fromEmail, fromName, toEmails, message) {
+                    return $http.post(clixConfig.baseApi + '/notifications/share', {
+                            type: 'email',
+                            emailList: toEmails,
+                            fromEmail: fromEmail,
+                            fromName: fromName,
+                            message: message
+                        })
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
+                            }
+                        );
                 }
             }
         }

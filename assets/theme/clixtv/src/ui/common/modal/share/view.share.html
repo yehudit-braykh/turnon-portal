@@ -71,22 +71,25 @@
                                 <i class="icon-tumblr-logo social-network-icon"></i>
                             </a>
                         </div>
+                        <!--
+                        No need for settings yet...
                         <a ng-click="onSettingsPress()" class="share-modal-settings">
                             Settings
                         </a>
+                        -->
                     </div>
                 </div>
                 <div ng-show="tab === 'send'">
                     <div class="clix-share-modal-input">
-                        <input placeholder="Enter email address" />
+                        <input placeholder="example@example.com, example@example.com, ..." ng-model="form.emails" />
                     </div>
                     <div class="clix-share-modal-textbox send-textbox">
-                        <textarea>{{shareContent}}</textarea>
+                        <textarea ng-model="form.message"></textarea>
                     </div>
-                    <div class="share-modal-post-container share-modal-copy-link-container">
-                        <a href="#" class="share-modal-copy-link">
+                    <div class="share-modal-post-container share-modal-copy-link-container" class="share-modal-copy-link" ngclipboard data-clipboard-text="{{link}}">
+                        <div class="share-modal-copy-link" clix-tooltip-trigger tooltip-id="link-copied" click-trigger="true">
                             Copy Video Link
-                        </a>
+                        </div>
                     </div>
                 </div>
                 <div class="row footer-modal-buttons-container">
@@ -96,10 +99,10 @@
                         </a>
                     </div>
                     <div class="col-xs-6 footer-modal-button">
-                        <clix-primary-button ng-show="tab === 'send'" ng-click="onSendPress()">
+                        <clix-primary-button ng-show="tab === 'send'" ng-click="onSendPress()" loading="sending">
                             Send
                         </clix-primary-button>
-                        <clix-primary-button ng-show="tab === 'post'" ng-click="onPostPress()">
+                        <clix-primary-button ng-show="tab === 'post'" ng-click="onPostPress()" loading="sending">
                             Post
                         </clix-primary-button>
                     </div>
@@ -107,4 +110,7 @@
             </div>
         </div>
     </div>
+    <clix-tooltip tooltip-id="link-copied">
+        Copied to your clipboard
+    </clix-tooltip>
 </clix-modal>

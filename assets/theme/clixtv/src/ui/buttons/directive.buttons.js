@@ -4,10 +4,12 @@
         return {
             restrict: 'AE',
             transclude: true,
+            controller: 'PrimaryButtonController',
             templateUrl: 'ui/buttons/view.primary-button.html',
             scope: {
                 type: '@?',
-                circle: '@?'
+                circle: '@?',
+                loading: '=?'
             }
         }
     };

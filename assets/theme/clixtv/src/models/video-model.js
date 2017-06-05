@@ -7,7 +7,8 @@
             'CelebrityModel',
             'BrandListModel',
             'CharityModel',
-            function($injector, CelebrityModel, BrandListModel, CharityModel) {
+            '$filter',
+            function($injector, CelebrityModel, BrandListModel, CharityModel, $filter) {
                 return function(data) {
 
                     this.id = data._id;
@@ -16,6 +17,12 @@
                     this.seriesTitle = data.serie_title; // ...spelling?
                     this.episodeNumber = data.episode_number;
                     this.runtime = data.runtime;
+
+                    if (data.slug) {
+                        this.slug = data.slug;
+                    } else {
+                        this.slug = $filter('slug')(this.title);
+                    }
 
                     if (data.views) {
                         this.views = parseInt(data.views);

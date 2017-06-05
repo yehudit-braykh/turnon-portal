@@ -26,6 +26,7 @@
     padding: 11px 35px;
     text-align: center;
     cursor: pointer;
+    position: relative;
 
     &:hover {
         .horizontal-gradient(darken(@color-tertiary, 5%), darken(@color-secondary, 5%));
@@ -69,6 +70,29 @@
         background-color: @color-gray16;
         background-image: none;
         cursor: default;
+    }
+
+    &.hidden-button-content {
+        .horizontal-gradient(@color-transparent, @color-transparent);
+        cursor: default;
+        background-color: transparent;
+
+        .primary-button-content {
+            visibility: hidden;
+        }
+    }
+
+    .primary-button-loader {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: none;
+
+        &.active-button-loader {
+            display: block;
+        }
     }
 }
 

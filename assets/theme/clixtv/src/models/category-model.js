@@ -4,11 +4,18 @@
         .module('clixtv')
         .factory('CategoryModel', [
             'VideoListModel',
-            function(VideoListModel) {
+            '$filter',
+            function(VideoListModel, $filter) {
                 return function(data) {
                     this.id = data._id;
                     this.title = data.title;
                     this.order = data.order;
+
+                    if (data.slug) {
+                        this.slug = data.slug;
+                    } else {
+                        this.slug = $filter('slug')(this.title);
+                    }
 
                     if (data.videos) {
                         if (typeof data.videos === 'number') {

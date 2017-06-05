@@ -8757,6 +8757,7 @@ button.close {
   padding: 11px 35px;
   text-align: center;
   cursor: pointer;
+  position: relative;
 }
 .clix-primary-button:hover {
   background-color: #7b1371;
@@ -8835,6 +8836,30 @@ button.close {
   background-color: #9b9b9b;
   background-image: none;
   cursor: default;
+}
+.clix-primary-button.hidden-button-content {
+  background-color: rgba(0, 0, 0, 0);
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0)));
+  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
+  background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
+  background-image: -ms-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
+  background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
+  cursor: default;
+  background-color: transparent;
+}
+.clix-primary-button.hidden-button-content .primary-button-content {
+  visibility: hidden;
+}
+.clix-primary-button .primary-button-loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+}
+.clix-primary-button .primary-button-loader.active-button-loader {
+  display: block;
 }
 .clix-secondary-button {
   -webkit-border-radius: 100px;
@@ -12960,6 +12985,23 @@ button.close {
     margin-bottom: 18px;
   }
 }
+.clix-terms-and-conditions-page {
+  padding: 110px 10px 20px 10px;
+  color: #FFF;
+}
+@media (min-width: 768px) {
+  .clix-terms-and-conditions-page {
+    padding: 110px 30px 20px 30px;
+  }
+}
+.clix-terms-and-conditions-page .clix-terms-and-conditions-content {
+  margin-top: 15px;
+  padding-top: 25px;
+  border-top: 1px solid #636363;
+  font-family: 'montserratregular', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+}
 .clix-hero-banner {
   position: relative;
   z-index: 2000;
@@ -15486,6 +15528,10 @@ button.close {
   text-transform: uppercase;
   letter-spacing: 2px;
   color: #bababa;
+  cursor: pointer;
+}
+.clix-share-modal .share-modal-copy-link:hover {
+  text-decoration: underline;
 }
 .clix-share-modal .cancel-button {
   -webkit-border-radius: 100px;
@@ -16991,6 +17037,10 @@ button.close {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+}
+.clix-loader .loader-icon.loader-extra-small {
+  width: 30px;
+  height: 30px;
 }
 .clix-loader .loader-icon.loader-small {
   width: 75px;

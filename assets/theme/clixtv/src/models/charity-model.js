@@ -4,7 +4,8 @@
         .module('clixtv')
         .factory('CharityModel', [
             '$injector',
-            function($injector) {
+            '$filter',
+            function($injector, $filter) {
                 return function(data) {
 
                     if (typeof data === 'string') {
@@ -14,6 +15,12 @@
                     this.id = data._id;
                     this.title = data.title;
                     this.description = data.description;
+
+                    if (data.slug) {
+                        this.slug = data.slug;
+                    } else {
+                        this.slug = $filter('slug')(this.title);
+                    }
 
                     if (data.content) {
                         if (data.content.ProfilePicture) {

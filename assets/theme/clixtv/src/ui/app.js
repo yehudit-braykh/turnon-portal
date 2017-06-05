@@ -188,6 +188,14 @@
                             solidNavigation: true
                         }
                     })
+                    .state('legal', {
+                        url: '/legal',
+                        templateUrl: 'ui/terms-and-conditions/view.terms-and-conditions.html',
+                        controller: 'TermsConditionsController',
+                        data: {
+                            solidNavigation: true
+                        }
+                    })
             }
         ])
         .run([

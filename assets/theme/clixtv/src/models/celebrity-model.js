@@ -4,11 +4,18 @@
         .module('clixtv')
         .factory('CelebrityModel', [
             '$injector',
-            function($injector) {
+            '$filter',
+            function($injector, $filter) {
                 return function(data) {
                     this.id = data._id;
                     this.name = data.title;
                     this.description = data.description;
+
+                    if (data.slug) {
+                        this.slug = data.slug;
+                    } else {
+                        this.slug = $filter('slug')(this.name);
+                    }
 
                     if (data.content) {
                         if (data.content.ProfilePicture) {

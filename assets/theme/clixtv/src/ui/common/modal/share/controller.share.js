@@ -5,12 +5,14 @@
         '$location',
         '$uibModalInstance',
         '$state',
+        '$window',
         'data',
         'modalService',
         'catchMediaService',
         'shareService',
         'userService',
-        function($scope, $location, $uibModalInstance, $state, data, modalService, catchMediaService, shareService, userService) {
+        'notificationsService',
+        function($scope, $location, $uibModalInstance, $state, $window, data, modalService, catchMediaService, shareService, userService, notificationsService) {
 
             $scope.tab = 'post';
             $scope.socialNetworks = [];
@@ -28,7 +30,7 @@
 
             if (data.shareModalVideo) {
                 message = 'Here\'s a video I thought you\'d enjoy from #ClixTV';
-                link = $state.href('video', { id: data.shareModalVideo.id }, {absolute: true});
+                link = $state.href('video', { slug: data.shareModalVideo.slug }, {absolute: true});
                 shareContent = message + ' - ';
                 shareContent += data.shareModalVideo.title + ' ' + link;
                 type = 'video';
@@ -40,7 +42,7 @@
 
             if (data.shareModalOffer) {
                 message = 'Here\'s an offer I thought you\'d enjoy from #ClixTV';
-                link = $state.href('brand-offer', { id: data.shareModalOffer.campaign.id, offerId: data.shareModalOffer.id }, {absolute: true});
+                link = $state.href('brand-offer', { slug: data.shareModalOffer.campaign.slug, offerSlug: data.shareModalOffer.slug }, {absolute: true});
                 shareContent = message + ' - ';
                 shareContent += data.shareModalOffer.title + ' ' + link;
                 type = 'offer';
@@ -52,7 +54,7 @@
 
             if (data.shareModalCelebrity) {
                 message = 'I thought you\'d like to check out ' + data.shareModalCelebrity.name + ' on #ClixTV';
-                link = $state.href('star', { id: data.shareModalCelebrity.id }, {absolute: true});
+                link = $state.href('star', { slug: data.shareModalCelebrity.slug }, {absolute: true});
                 shareContent = message + ' - ';
                 shareContent += link;
                 type = 'star';
@@ -64,7 +66,7 @@
 
             if (data.shareModalBrand) {
                 message = 'I thought you\'d enjoy visiting ' + data.shareModalBrand.title + ' on #ClixTV';
-                link = $state.href('brand', { id: data.shareModalBrand.id }, {absolute: true});
+                link = $state.href('brand', { slug: data.shareModalBrand.slug }, {absolute: true});
                 shareContent = message + ' - ';
                 shareContent += link;
                 type = 'brand';
@@ -76,7 +78,7 @@
 
             if (data.shareModalCharity) {
                 message = 'I thought you\'d enjoy visiting the charity page for ' + data.shareModalCharity.title + ' on #ClixTV';
-                link = $state.href('charity', { id: data.shareModalCharity.id }, {absolute: true});
+                link = $state.href('charity', { slug: data.shareModalCharity.slug }, {absolute: true});
                 shareContent = ' - ';
                 shareContent += link;
                 type = 'charity';
@@ -87,6 +89,7 @@
             }
 
             $scope.shareContent = shareContent;
+            $scope.link = link;
 
             $scope.onTabPress = function(tab) {
                 $scope.tab = tab;
@@ -100,9 +103,40 @@
                 }
             };
 
+            $scope.form = {
+                emails: '',
+                message: shareContent
+            };
+
             $scope.onSendPress = function() {
-                $uibModalInstance.close();
+                if (!$scope.form.emails) {
+                    return;
+                }
+                var emails = $scope.form.emails.split(',').map(function(email) {
+                    return email.trim();
+                });
+
                 catchMediaService.trackShareEvent(type, entity);
+
+                if (!$scope.loggedInUser) {
+                    $window.open('mailto:' + emails.join(',') + '?subject=I Thought You\'d Like This!&body=' + $scope.form.message, '_self');
+                    $uibModalInstance.close();
+                    return;
+                }
+
+                $scope.sending = true;
+                notificationsService.sendShareEmail($scope.loggedInUser.email, $scope.loggedInUser.firstName + ' ' + $scope.loggedInUser.lastName, emails, $scope.form.message)
+                    .then(
+                        function onSuccess(data) {
+                            $scope.form.emails = '';
+                            modalService.showAlertModal('Success!', 'This ' + type + ' has been successfully sent!');
+                        }
+                    )
+                    .finally(
+                        function onFinally() {
+                            $scope.sending = false;
+                        }
+                    );
             };
 
             $scope.onPostPress = function() {
@@ -176,6 +210,13 @@
             };
 
             $scope.showBackButton = modalService.getNumberOfModalsInStack() >= 2;
+
+            userService.getLoggedInUser()
+                .then(
+                    function onSuccess(data) {
+                        $scope.loggedInUser = data;
+                    }
+                )
         }
     ];
 

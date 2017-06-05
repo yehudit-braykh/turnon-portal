@@ -6,7 +6,8 @@
             '$injector',
             'OfferListModel',
             'CelebrityListModel',
-            function($injector, OfferListModel, CelebrityListModel) {
+            '$filter',
+            function($injector, OfferListModel, CelebrityListModel, $filter) {
                 return function(data) {
                     if (!data) {
                         return;
@@ -15,6 +16,12 @@
                     this.title = data.title;
                     this.description = data.description;
                     this.celebrities = new CelebrityListModel(data.celebrities);
+
+                    if (data.slug) {
+                        this.slug = data.slug;
+                    } else {
+                        this.slug = $filter('slug')(this.title);
+                    }
 
                     if (data.offers) {
                         if (typeof data.offers === 'number') {
