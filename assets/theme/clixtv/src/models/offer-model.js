@@ -3,7 +3,8 @@
         .module('clixtv')
         .factory('OfferModel', [
             '$injector',
-            function($injector) {
+            '$filter',
+            function($injector, $filter) {
                 return function(data) {
                     var BrandModel;
                     this.id = data._id;
@@ -11,6 +12,12 @@
                     this.expirationDate = data.expiration_date;
                     this.description = data.description;
                     this.longDescription = data.long_description;
+
+                    if (data.slug) {
+                        this.slug = data.slug;
+                    } else {
+                        this.slug = $filter('slug')(this.title);
+                    }
 
                     if (data.coupon_code) {
                         this.couponCode = data.coupon_code;

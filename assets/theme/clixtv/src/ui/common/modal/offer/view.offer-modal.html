@@ -34,7 +34,12 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="offer-expiration-date">
-                        Offer Expires {{offer.expirationDate | clixDate : 'long'}}
+                        <span ng-if="offer.expirationDate">
+                            Offer Expires {{offer.expirationDate | clixDate : 'long'}}
+                        </span>
+                        <span ng-if="!offer.expirationDate">
+                            Limited Time Offer
+                        </span>
                     </div>
                     <div class="offer-title">
                         {{offer.title}}
