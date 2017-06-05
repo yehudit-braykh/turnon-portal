@@ -60,6 +60,10 @@
 
                 showLearnMoreModal: function() {
                     _launchEducationModal('learn-more');
+                },
+
+                showNotificationsComingSoonModal: function() {
+                    _launchEducationModal('notifications-coming-soon');
                 }
             }
         }

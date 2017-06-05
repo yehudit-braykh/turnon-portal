@@ -16,7 +16,12 @@
         {{offer.title}}
     </title-content>
     <subtitle-content>
-        {{offer.campaign.title}}<br />
-        Expires {{offer.expirationDate | clixDate}}
+        <div class="offer-campaign-title">{{offer.campaign.title}}</div>
+        <div ng-if="offer.expirationDate">
+            Expires {{offer.expirationDate | clixDate}}
+        </div>
+        <div ng-if="!offer.expirationDate">
+            Limited Time Offer
+        </div>
     </subtitle-content>
 </clix-content-callout>

@@ -13809,6 +13809,8 @@ button.close {
 .clix-search-dropdown {
   background-color: #202020;
   width: 100%;
+  max-height: 50vh;
+  overflow: scroll;
 }
 @media (min-width: 1200px) {
   .clix-search-dropdown {
@@ -14144,6 +14146,12 @@ button.close {
   -ms-transform: scale(1);
   -o-transform: scale(1);
 }
+.clix-content-callout .offer-campaign-title {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .clix-content-callout .header-callout-container {
   position: relative;
   padding-bottom: 100%;
@@ -14321,7 +14329,7 @@ button.close {
   letter-spacing: 0.8px;
   line-height: 14px;
   margin-top: 5px;
-  display: inline-block;
+  display: block;
 }
 .clix-content-callout .star-logo,
 .clix-content-callout .category-logo {
@@ -16030,7 +16038,7 @@ button.close {
   }
 }
 .clix-education-modal .education-modal-message {
-  padding: 37px 116px;
+  padding: 37px 85px;
   background-color: #1f1f1f;
   font-size: 14px;
   color: #FFF;
@@ -16085,6 +16093,12 @@ button.close {
 }
 .clix-education-modal .learn-more-violator .points-violator {
   margin: 0 auto;
+}
+.clix-education-modal .notification-coming-soon-header {
+  font-family: 'montserratsemibold', sans-serif;
+  font-size: 30px;
+  text-transform: none;
+  margin-bottom: 15px;
 }
 .clix-offer-modal {
   color: #FFF;

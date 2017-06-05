@@ -56,6 +56,10 @@
                     case 'signup-offer':
                         title = 'Sign Up Now';
                         break;
+
+                    case 'notifications-coming-soon':
+                        title = 'Notifications Coming Soon';
+                        break;
                 }
 
                 return title;

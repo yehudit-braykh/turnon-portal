@@ -6,10 +6,15 @@
         '$rootScope',
         'userService',
         'clixConfig',
-        function($q, $scope, $rootScope, userService, clixConfig) {
+        'educationModalService',
+        function($q, $scope, $rootScope, userService, clixConfig, educationModalService) {
 
             $rootScope.pageTitle = 'Your Account Settings - ClixTV';
             $scope.notificationEnabled = clixConfig.notificationEnabled;
+
+            if (!clixConfig.notificationEnabled) {
+                educationModalService.showNotificationsComingSoonModal();
+            }
 
             $scope.ready = false;
 

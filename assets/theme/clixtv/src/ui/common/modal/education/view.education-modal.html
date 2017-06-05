@@ -131,6 +131,13 @@
                 You need to have an account with us to view offers! Sign up for a free account!
             </div>
 
+            <div ng-switch-when="notifications-coming-soon">
+                <div class="notification-coming-soon-header">
+                    Notifications are coming soon!
+                </div>
+                Go ahead and set things up, that way you’ll be ready once we have notifications up and running!
+            </div>
+
         </div>
         <div class="row education-modal-footer">
 
@@ -145,7 +152,7 @@
                                 <!-- Empty... -->
                             </div>
                             <div ng-switch-default>
-                                <clix-checkbox ng-model="showAgainModel" on-checkbox-change="onShowAgainChange(showAgainModel)" label-text="Don't show this type again"></clix-checkbox>
+                                <clix-checkbox ng-model="showAgainModel" on-checkbox-change="onShowAgainChange(showAgainModel)" label-text="{{type === 'notifications-coming-soon' ? 'Don\'t show this again' : 'Don\'t show this type again'}}"></clix-checkbox>
                             </div>
                         </div>
                     </logged-in>
