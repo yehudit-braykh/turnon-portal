@@ -76,77 +76,100 @@ class Knetik_model extends CI_Model {
     // ************ Points Fullfillement Methods *********************
 
     function save_offer($id){
-        $offer = $this->brands_model->get_offer($id)[0];
+        $offer = $this->brands_model->get_offer($id);
 
         if ($offer){
+
             if($offer["save_offer_id"] && $offer["save_offer_points"] && $offer["campaign"] && $offer["campaign"]["knetikId"]){
                 $entitlement_id = $offer["save_offer_id"];
                 $entitlement_points = $offer["save_offer_points"];
                 $campaign_wallet_id = $offer["campaign"]["knetikId"];
-            //    debug($offer["reward_points"],$entitlement_points);
-                $profile = $this->account_model->get_profile($this->session->userdata("login_token"), $this->session->userdata("profile_id"));
-                if(isset($profile->_id)){
-                    if($this->deduct_wallet_points($campaign_wallet_id, $this->currency_codes->general, $entitlement_points )){
-                        $token = $this->authenticate();
-                        if(isset($profile->knetikId) && $profile->knetikId)
-                                $knetikId = $profile->knetikId;
-                        else
-                            $knetikId = $this->link_user($profile);
 
-                        $fields = new stdClass();
-                        $fields->entitlement_id = $entitlement_id;
+                if($this->session->userdata("login_token") && $this->session->userdata("profile_id")){
+                    $profile = $this->account_model->get_profile($this->session->userdata("login_token"), $this->session->userdata("profile_id"));
+                    if(isset($profile->_id)){
+                        if($this->deduct_wallet_points($campaign_wallet_id, $this->currency_codes->general, $entitlement_points )){
+                            $token = $this->authenticate();
+                            if(isset($profile->knetikId) && $profile->knetikId)
+                                    $knetikId = $profile->knetikId;
+                            else
+                                $knetikId = $this->link_user($profile);
 
-                        $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
-                        // debug($response);
-                        if($response["error"]){
-                            $token = $this->authenticate(true);
+                            $fields = new stdClass();
+                            $fields->entitlement_id = $entitlement_id;
+
                             $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
-                        }
 
-                        return ($response==null);
+                            if($response["error"]){
+                                $token = $this->authenticate(true);
+                                $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
+                            }
+
+                            return $response==null?array("code" => 0, "message" => "successful"):array("code" => 1, "message" => "cant get points", "response"=>$response);
+                        } else {
+                            return array("code" => 1, "message" => "campaign has no points");
+                        }
+                    } else {
+                        return array("code" => 1, "message" => "can't retrieve user profile");
                     }
+                } else {
+                    return array("code" => 1, "message" => "not logged in");
                 }
+            } else {
+                return array("code" => 1, "message" => "this offer has no points");
             }
+        } else {
+            return array("code" => 1, "message" => "offer not found");
         }
 
         return false;
     }
 
 	function view_offer($id){
-        $offer = $this->brands_model->get_offer($id)[0];
+        $offer = $this->brands_model->get_offer($id);
 
         if ($offer){
             if($offer["reward_id"] && $offer["reward_points"] && $offer["campaign"] && $offer["campaign"]["knetikId"]){
                 $entitlement_id = $offer["reward_id"];
                 $entitlement_points = $offer["reward_points"];
                 $campaign_wallet_id = $offer["campaign"]["knetikId"];
-                //debug($offer["reward_points"],$entitlement_points);
-                $profile = $this->account_model->get_profile($this->session->userdata("login_token"), $this->session->userdata("profile_id"));
-                if(isset($profile->_id)){
-                    if($this->deduct_wallet_points($campaign_wallet_id, $this->currency_codes->general, $entitlement_points )){
-                        $token = $this->authenticate();
 
-                        if(isset($profile->knetikId) && $profile->knetikId)
-                                $knetikId = $profile->knetikId;
-                        else
-                            $knetikId = $this->link_user($profile);
+                if($this->session->userdata("login_token") && $this->session->userdata("profile_id")){
+                    $profile = $this->account_model->get_profile($this->session->userdata("login_token"), $this->session->userdata("profile_id"));
+                    if(isset($profile->_id)){
+                        if($this->deduct_wallet_points($campaign_wallet_id, $this->currency_codes->general, $entitlement_points )){
+                            $token = $this->authenticate();
 
-                        $fields = new stdClass();
-                        $fields->entitlement_id = $entitlement_id;
+                            if(isset($profile->knetikId) && $profile->knetikId)
+                                    $knetikId = $profile->knetikId;
+                            else
+                                $knetikId = $this->link_user($profile);
 
-                        $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
-                        if($response["error"]){
-                            $token = $this->authenticate(true);
+                            $fields = new stdClass();
+                            $fields->entitlement_id = $entitlement_id;
+
                             $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
+                            if($response["error"]){
+                                $token = $this->authenticate(true);
+                                $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
+                            }
+
+                            return $response==null?array("code" => 0, "message" => "successful"):array("code" => 1, "message" => "cant get points", "response"=>$response);
+                        } else {
+                            return array("code" => 1, "message" => "campaign has no points");
                         }
-
-                        return ($response==null);
+                    } else {
+                        return array("code" => 1, "message" => "cannot retrieve user profile");
                     }
+                } else {
+                    return array("code" => 1, "message" => "user not logged in");
                 }
+            } else {
+                return array("code" => 1, "message" => "offer has no points");
             }
+        } else {
+            return array("code" => 1, "message" => "offer not found");
         }
-
-        return false;
     }
 
 	function redeem_offer($id){
@@ -157,74 +180,91 @@ class Knetik_model extends CI_Model {
                 $entitlement_id = $offer["redeem_offer_id"];
                 $entitlement_points = $offer["redeem_offer_points"];
                 $campaign_wallet_id = $offer["campaign"]["knetikId"];
-            //    debug($offer["reward_points"],$entitlement_points);
-                $profile = $this->account_model->get_profile($this->session->userdata("login_token"), $this->session->userdata("profile_id"));
-                if(isset($profile->_id)){
-                    if($this->deduct_wallet_points($campaign_wallet_id, $this->currency_codes->general, $entitlement_points )){
-                        $token = $this->authenticate();
-                        if(isset($profile->knetikId) && $profile->knetikId)
-                                $knetikId = $profile->knetikId;
-                        else
-                            $knetikId = $this->link_user($profile);
 
-                        $fields = new stdClass();
-                        $fields->entitlement_id = $entitlement_id;
+                if ($this->session->userdata("login_token") && $this->session->userdata("profile_id")){
+                    $profile = $this->account_model->get_profile($this->session->userdata("login_token"), $this->session->userdata("profile_id"));
+                    if(isset($profile->_id)){
+                        if($this->deduct_wallet_points($campaign_wallet_id, $this->currency_codes->general, $entitlement_points )){
+                            $token = $this->authenticate();
+                            if(isset($profile->knetikId) && $profile->knetikId)
+                                    $knetikId = $profile->knetikId;
+                            else
+                                $knetikId = $this->link_user($profile);
 
-                        $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
-                        // debug($response);
-                        if($response["error"]){
-                            $token = $this->authenticate(true);
+                            $fields = new stdClass();
+                            $fields->entitlement_id = $entitlement_id;
+
                             $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
+
+                            if($response["error"]){
+                                $token = $this->authenticate(true);
+                                $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
+                            }
+
+                            return $response==null?array("code" => 0, "message" => "successful"):array("code" => 1, "message" => "cant get points", "response"=>$response);
+                        } else {
+                            return array("code" => 1, "message" => "campaign has no points");
                         }
-
-                        return ($response==null);
+                    } else {
+                        return array("code" => 1, "message" => "cannot retrieve user profile");
                     }
+                } else {
+                    return array("code" => 1, "message" => "user not logged in");
                 }
+            } else {
+                return array("code" => 1, "message" => "offer has no points");
             }
+        } else {
+            return array("code" => 1, "message" => "offer not found");
         }
-
-        return false;
     }
 
 	function campaign_share($id){
         $campaign = $this->campaigns_model->get_campaign_by_id($id);
 
         if ($campaign){
-            debug("if camaign",$campaign["share_id"] , $campaign["share_points"] , $campaign["knetikId"]);
+
             if($campaign["share_id"] && $campaign["share_pts"] && $campaign["knetikId"]){
-                debug("if share_id share_points knetikId");
+
                 $entitlement_id = $campaign["share_id"];
                 $entitlement_points = $campaign["share_points"];
                 $campaign_wallet_id = $campaign["knetikId"];
-                $profile = $this->account_model->get_profile($this->session->userdata("login_token"), $this->session->userdata("profile_id"));
-                // debug("if profile", $profile);
-                if(isset($profile->_id)){
-                    if($this->deduct_wallet_points($campaign_wallet_id, $this->currency_codes->general, $entitlement_points )){
-                        // debug("id profile");
-                        $token = $this->authenticate();
-                        if(isset($profile->knetikId) && $profile->knetikId)
-                                $knetikId = $profile->knetikId;
-                        else
-                            $knetikId = $this->link_user($profile);
+                if($this->session->userdata("login_token") && $this->session->userdata("profile_id")){
+                    $profile = $this->account_model->get_profile($this->session->userdata("login_token"), $this->session->userdata("profile_id"));
 
-                        $fields = new stdClass();
-                        $fields->entitlement_id = $entitlement_id;
+                    if(isset($profile->_id)){
+                        if($this->deduct_wallet_points($campaign_wallet_id, $this->currency_codes->general, $entitlement_points )){
 
-                        $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
-                         //debug($response);
-                        if($response["error"]){
-                            $token = $this->authenticate(true);
+                            $token = $this->authenticate();
+                            if(isset($profile->knetikId) && $profile->knetikId)
+                                    $knetikId = $profile->knetikId;
+                            else
+                                $knetikId = $this->link_user($profile);
+
+                            $fields = new stdClass();
+                            $fields->entitlement_id = $entitlement_id;
+
                             $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
+                            if($response["error"]){
+                                $token = $this->authenticate(true);
+                                $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
+                            }
+                            return $response==null?array("code" => 0, "message" => "successful"):array("code" => 1, "message" => "cant get points", "response"=>$response);
+                        } else {
+                            return array("code" => 1, "message" => "campaign has no points");
                         }
-                        debug("1234",$response);
-
-                        return ($response==null);
+                    } else {
+                        return array("code" => 1, "message" => "cannot retrieve user profile");
                     }
+                } else {
+                    return array("code" => 1, "message" => "user not logged in");
                 }
+            } else {
+                return array("code" => 1, "message" => "offer has no points");
             }
+        } else {
+            return array("code" => 1, "message" => "offer not found");
         }
-
-        return false;
     }
 
     function campaign_ad_view($id){
@@ -235,32 +275,42 @@ class Knetik_model extends CI_Model {
                 $entitlement_id = $campaign["share_id"];
                 $entitlement_points = $campaign["share_points"];
                 $campaign_wallet_id = $campaign["knetikId"];
-                $profile = $this->account_model->get_profile($this->session->userdata("login_token"), $this->session->userdata("profile_id"));
-                if(isset($profile->_id)){
-                    if($this->deduct_wallet_points($campaign_wallet_id, $this->currency_codes->general, $entitlement_points )){
-                        $token = $this->authenticate();
-                        if(isset($profile->knetikId) && $profile->knetikId)
-                                $knetikId = $profile->knetikId;
-                        else
-                            $knetikId = $this->link_user($profile);
+                if ($this->session->userdata("login_token") && $this->session->userdata("profile_id")){
+                    $profile = $this->account_model->get_profile($this->session->userdata("login_token"), $this->session->userdata("profile_id"));
+                    if(isset($profile->_id)){
+                        if($this->deduct_wallet_points($campaign_wallet_id, $this->currency_codes->general, $entitlement_points )){
+                            $token = $this->authenticate();
+                            if(isset($profile->knetikId) && $profile->knetikId)
+                                    $knetikId = $profile->knetikId;
+                            else
+                                $knetikId = $this->link_user($profile);
 
-                        $fields = new stdClass();
-                        $fields->entitlement_id = $entitlement_id;
+                            $fields = new stdClass();
+                            $fields->entitlement_id = $entitlement_id;
 
-                        $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
-                         //debug($response);
-                        if($response["error"]){
-                            $token = $this->authenticate(true);
                             $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
+
+                            if($response["error"]){
+                                $token = $this->authenticate(true);
+                                $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
+                            }
+
+                            return $response==null?array("code" => 0, "message" => "successful"):array("code" => 1, "message" => "cant get points", "response"=>$response);
+                        } else {
+                            return array("code" => 1, "message" => "campaign has no points");
                         }
-
-                        return ($response==null);
+                    } else {
+                        return array("code" => 1, "message" => "cannot retrieve user profile");
                     }
+                } else {
+                    return array("code" => 1, "message" => "user not logged in");
                 }
+            } else {
+                return array("code" => 1, "message" => "offer has no points");
             }
+        } else {
+            return array("code" => 1, "message" => "offer not found");
         }
-
-        return false;
     }
 
 	function video_share($id){
@@ -283,13 +333,13 @@ class Knetik_model extends CI_Model {
                     $fields->entitlement_id = $entitlement_id;
 
                     $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
-                     //debug($response);
+
                     if($response["error"]){
                         $token = $this->authenticate(true);
                         $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
                     }
 
-                    return ($response==null);
+                    return $response==null?array("code" => 0, "message" => "successful"):array("code" => 1, "message" => "cant get points", "response"=>$response);
                 }
             }
         }
@@ -301,12 +351,11 @@ class Knetik_model extends CI_Model {
         $video = $this->video_model->get_video_by_id($id);
 
         if ($video){
-            if($offer["view_id"] && $offer["view_id"] && $offer["campaigns"] && $offer["serie"] && $offer["serie"]["points_per_episode_view"]){
+            if($video["view_id"] && $video["view_id"] && $video["campaigns"] && $video["serie"] && $video["serie"]["points_per_episode_view"]){
                 $entitlement_id = $offer["save_offer_id"];
                 $entitlement_points = $offer["serie"]["points_per_episode_view"];
                 $campaigns = $offer["campaigns"];
 
-            //    debug($offer["reward_points"],$entitlement_points);
                 $profile = $this->account_model->get_profile($this->session->userdata("login_token"), $this->session->userdata("profile_id"));
                 if(isset($profile->_id)){
                     $wallets = array();
@@ -332,7 +381,7 @@ class Knetik_model extends CI_Model {
                             $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
                         }
 
-                        return ($response==null);
+                        return $response==null?array("code" => 0, "message" => "successful"):array("code" => 1, "message" => "cant get points", "response"=>$response);
                     }
                 }
             }
@@ -349,32 +398,43 @@ class Knetik_model extends CI_Model {
                 $entitlement_id = $campaign["ad_view_id"];
                 $entitlement_points = $campaign["ad_view_points"];
                 $campaign_wallet_id = $campaign["knetikId"];
-                $profile = $this->account_model->get_profile($this->session->userdata("login_token"), $this->session->userdata("profile_id"));
-                if(isset($profile->_id)){
-                    if($this->deduct_wallet_points($campaign_wallet_id, $this->currency_codes->general, $entitlement_points )){
-                        $token = $this->authenticate();
-                        if(isset($profile->knetikId) && $profile->knetikId)
-                                $knetikId = $profile->knetikId;
-                        else
-                            $knetikId = $this->link_user($profile);
+                if(!$this->session->userdata("login_token") || !$this->session->userdata("profile_id")){
+                    $profile = $this->account_model->get_profile($this->session->userdata("login_token"), $this->session->userdata("profile_id"));
+                    if(isset($profile->_id)){
+                        if($this->deduct_wallet_points($campaign_wallet_id, $this->currency_codes->general, $entitlement_points )){
+                            $token = $this->authenticate();
+                            if(isset($profile->knetikId) && $profile->knetikId)
+                                    $knetikId = $profile->knetikId;
+                            else
+                                $knetikId = $this->link_user($profile);
 
-                        $fields = new stdClass();
-                        $fields->entitlement_id = $entitlement_id;
+                            $fields = new stdClass();
+                            $fields->entitlement_id = $entitlement_id;
 
-                        $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
-                         //debug($response);
-                        if($response["error"]){
-                            $token = $this->authenticate(true);
                             $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
-                        }
+                             //debug($response);
+                            if($response["error"]){
+                                $token = $this->authenticate(true);
+                                $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
+                            }
 
-                        return ($response==null);
+                            return $response==null?array("code" => 0, "message" => "successful"):array("code" => 1, "message" => "cant get points", "response"=>$response);
+                        } else {
+                            return array("code" => 1, "message" => "campaing has no points");
+                        }
+                    } else {
+                        return array("code" => 1, "message" => "cant retrieve user profile");
                     }
+                } else {
+                    return array("code" => 1, "message" => "user not logged in");
                 }
+            } else {
+                return array("code" => 1, "message" => "video has no points");
             }
+        } else {
+            return array("code" => 1, "message" => "video not found");
         }
 
-        return false;
     }
 
     // ************ Private Methods ***********************
