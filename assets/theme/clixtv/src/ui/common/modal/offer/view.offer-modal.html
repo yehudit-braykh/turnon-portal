@@ -52,14 +52,8 @@
                     <div class="instructions-title">
                         Instructions
                     </div>
-                    <div class="instructions-container">
-                        Click the Redeem Now button below. Your Coupon code will be copied to your clipboard automatically.
-                    </div>
-                    <div class="instructions-container">
-                        Paste your code during checkout.
-                    </div>
-                    <div class="instructions-container">
-                        Enjoy!
+                    <div class="instructions-container" ng-bind-html="offer.instructions | clixNewLineBreak">
+                        
                     </div>
                 </div>
             </div>

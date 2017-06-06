@@ -12,6 +12,7 @@
                     this.expirationDate = data.expiration_date;
                     this.description = data.description;
                     this.longDescription = data.long_description;
+                    this.instructions = data.instructions_description;
 
                     if (data.slug) {
                         this.slug = data.slug;
