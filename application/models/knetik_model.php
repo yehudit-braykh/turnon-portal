@@ -65,7 +65,7 @@ class Knetik_model extends CI_Model {
                 $token = $this->authenticate(true);
                 $response = $this->get('users/'.$knetikId.'/wallets/PTS', $token);
             }
-            debug($response);
+            // debug($response);
 
             return $balance["balance"];
         }
