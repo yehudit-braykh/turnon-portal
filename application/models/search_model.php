@@ -18,7 +18,7 @@ class Search_model extends Uvod_model {
 			$results->categories = $this->search_categories($keyword, $tags, $page , $page_size);
 			$results->campaigns = $this->search_campaigns($keyword, $tags, $page , $page_size );
 			$results->charities = $this->search_charities($keyword, $tags, $page , $page_size );
-			
+
 			if(count($results->celebrities) && !count($results->categories) && !count($results->campaigns) && !count($results->charities)){
 				$results->celebrities[0]->media_type= "celebrity";
 				return $results->celebrities[0];

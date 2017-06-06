@@ -41,9 +41,8 @@ class Brands extends REST_Controller{
 		$sort_field = $this->get("sort_field");
 		$descending = $this->get("descending");
 		$keyword = $this->get("keyword");
-		$filters = $this->get("filters");
 
-		$this->response($this->brands_model->get_brands_array($page, $page_size, $sort_field, $descending, $keyword, $filters), 200);
+		$this->response($this->brands_model->get_brands_array($page, $page_size, $sort_field, $descending, $keyword), 200);
 	}
 
 	function get_offers_array_get () {
@@ -53,9 +52,8 @@ class Brands extends REST_Controller{
 		$sort_field = $this->get("sort_field");
 		$descending = $this->get("descending");
 		$keyword = $this->get("keyword");
-		$filters = $this->get("filters");
 
-		$this->response($this->brands_model->get_offers_array($page, $page_size, $sort_field, $descending , $keyword, $filters), 200);
+		$this->response($this->brands_model->get_offers_array($page, $page_size, $sort_field, $descending , $keyword), 200);
 	}
 
 	function get_charities_array_get () {
@@ -65,9 +63,8 @@ class Brands extends REST_Controller{
 		$sort_field = $this->get("sort_field");
 		$descending = $this->get("descending");
 		$keyword = $this->get("keyword");
-		$filters = $this->get("filters");
 
-		$this->response( $this->brands_model->get_charities_array($page, $page_size, $sort_field, $descending , $keyword, $filters), 200);
+		$this->response( $this->brands_model->get_charities_array($page, $page_size, $sort_field, $descending , $keyword), 200);
 	}
 
 

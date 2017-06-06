@@ -30,7 +30,7 @@ class Brands_model extends Uvod_model {
 		return $data;
 	}
 
-	function get_brands_array ($page = 0, $page_size = 20, $sort_field = null, $descending = false, $keyword = null, $filters = false) {
+	function get_brands_array ($page = 0, $page_size = 20, $sort_field = null, $descending = false, $keyword = null) {
 		$parameters = array();
 		$parameters[] = "page=".$page;
 		$parameters[] = "size=".$page_size;
@@ -41,31 +41,14 @@ class Brands_model extends Uvod_model {
 		if($keyword)
 			$parameters[] = 'byKeywords='.$keyword;
 
-		if ($this->fastcache_model->get_cache("get_brands_array".$page."size".$page_size."order".$descending."keyword".$keyword."filters".$filters))
-			return $this->fastcache_model->get_cache("get_brands_array".$page."size".$page_size."order".$descending."keyword".$keyword."filters".$filters);
-		if($filters){
-			$data  = new stdClass;
-			$data->entries =  $this->rows($this->apiCall('brand/related', $parameters)->entries);
-			$data->filters = array();
-			if($data->entries){
-				foreach ($data->entries as $entry) {
-					if($entry["keywords"]){
-						foreach ($entry["keywords"] as $keyword) {
-							if(!in_array($keyword, $data->filters)) array_push($data->filters,$keyword);
-						}
-					}
-				}
-			}
-
-		} else {
-			$data =  $this->rows($this->apiCall('brand/related', $parameters)->entries);
-		}
-
-		$this->fastcache_model->set_cache("get_brands_array".$page."size".$page_size."order".$descending."keyword".$keyword."filters".$filters,$data);
+		if ($this->fastcache_model->get_cache("get_brands_array".$page."size".$page_size."order".$descending."keyword".$keyword))
+			return $this->fastcache_model->get_cache("get_brands_array".$page."size".$page_size."order".$descending."keyword".$keyword);
+		$data =  $this->rows($this->apiCall('brand/related', $parameters)->entries);
+		$this->fastcache_model->set_cache("get_brands_array".$page."size".$page_size."order".$descending."keyword".$keyword,$data);
 		return $data;
 	}
 
-	function get_offers_array ($page = 0, $page_size = 20, $sort_field = null, $descending = false, $keyword = null, $filters = false) {
+	function get_offers_array ($page = 0, $page_size = 20, $sort_field = null, $descending = false, $keyword = null) {
 		$parameters = array();
 		$parameters[] = "page=".$page;
 		$parameters[] = "size=".$page_size;
@@ -78,32 +61,12 @@ class Brands_model extends Uvod_model {
 
 		if ($this->fastcache_model->get_cache("get_offers_array".$page."size".$page_size."order".$descending."keyword".$keyword))
 			return $this->fastcache_model->get_cache("get_offers_array".$page."size".$page_size."order".$descending."keyword".$keyword);
-
-		if($filters){
-			$data  = new stdClass;
-			$data->entries =  $this->offers_rows($this->apiCall('offer/related', $parameters)->entries);
-			$data->filters = array();
-
-			if($data->entries){
-				foreach ($data->entries as $entry) {
-					if($entry["keywords"]){
-						foreach ($entry["keywords"] as $keyword) {
-							if(!in_array($keyword, $data->filters)) array_push($data->filters,$keyword);
-						}
-					}
-				}
-			}
-
-		} else {
-			$data =  $this->offers_rows($this->apiCall('offer/related', $parameters)->entries);
-		}
-
-
+		$data =  $this->offers_rows($this->apiCall('offer/related', $parameters)->entries);
 		$this->fastcache_model->set_cache("get_offers_array".$page."size".$page_size."order".$descending."keyword".$keyword,$data);
 		return $data;
 	}
 
-	function get_charities_array ($page = 0, $page_size = 20, $sort_field = null, $descending = false, $keyword = null, $filters = false) {
+	function get_charities_array ($page = 0, $page_size = 20, $sort_field = null, $descending = false, $keyword = null) {
 		$parameters = array();
 		$parameters[] = "page=".$page;
 		$parameters[] = "size=".$page_size;
@@ -117,25 +80,7 @@ class Brands_model extends Uvod_model {
 
 		if ($this->fastcache_model->get_cache("get_charities_array".$page."size".$page_size."order".$descending."keyword".$keyword))
 			return $this->fastcache_model->get_cache("get_charities_array".$page."size".$page_size."order".$descending."keyword".$keyword);
-
-		if($filters){
-			$data  = new stdClass;
-			$data->entries =  $this->rows($this->apiCall('charity/related', $parameters)->entries);
-			$data->filters = array();
-			if($data->entries){
-				foreach ($data->entries as $entry) {
-					if($entry["keywords"]){
-						foreach ($entry["keywords"] as $keyword) {
-							if(!in_array($keyword, $data->filters)) array_push($data->filters,$keyword);
-						}
-					}
-				}
-			}
-
-		} else {
-			$data =  $this->rows($this->apiCall('charity/related', $parameters)->entries);
-		}
-
+		$data =  $this->rows($this->apiCall('charity/related', $parameters)->entries);
 		$this->fastcache_model->set_cache("get_charities_array".$page."size".$page_size."order".$descending."keyword".$keyword,$data);
 		return $data;
 	}
