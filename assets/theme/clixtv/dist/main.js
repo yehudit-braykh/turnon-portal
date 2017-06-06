@@ -9577,7 +9577,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         $log.info('Segment has not been initialized. No data will be tracked.');
                         return;
                     }
-                    if (clixConfig.environment !== 'production') {
+                    if (clixConfig.environment !== 'prod') {
                         $log.info('Analytics not sent unless production environment is set. No data will be tracked.');
                         return;
                     }
