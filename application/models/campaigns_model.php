@@ -18,7 +18,7 @@ class Campaigns_model extends Uvod_model {
 		return $data;
 	}
 
-	function get_campaigns($page = 0, $page_size = 20, $sort_field = null, $descending = false, $keyword = null) {
+	function get_campaigns($page = 0, $page_size = 20, $sort_field = null, $descending = false, $keyword = null, $filters = false) {
 		$parameters = array();
 		$parameters[] = "page=".$page;
 		$parameters[] = "size=".$page_size;
@@ -31,7 +31,24 @@ class Campaigns_model extends Uvod_model {
 			$parameters[] = 'byKeywords='.$keyword;
 		if ($this->fastcache_model->get_cache("get_campaigns".$page."size".$page_size."order".$descending."keyword".$keyword))
 			return $this->fastcache_model->get_cache("get_campaigns".$page."size".$page_size."order".$descending."keyword".$keyword);
-		$data =  $this->campaings_rows($this->apiCall('campaign/related', $parameters)->entries);
+
+		if($filters){
+			$data  = new stdClass;
+			$data->entries =  $this->campaings_rows($this->apiCall('campaign/related', $parameters)->entries);
+			$data->filters = array();
+			if($data->entries){
+				foreach ($data->entries as $entry) {
+					if($entry["keywords"]){
+						foreach ($entry["keywords"] as $keyword) {
+							if(!in_array($keyword, $data->filters)) array_push($data->filters,$keyword);
+						}
+					}
+				}
+			}
+
+		} else {
+			$data =  $this->campaings_rows($this->apiCall('campaign/related', $parameters)->entries);
+		}
 		$this->fastcache_model->set_cache("get_campaigns".$page."size".$page_size."order".$descending."keyword".$keyword,$data);
 		return $data;
 	}
