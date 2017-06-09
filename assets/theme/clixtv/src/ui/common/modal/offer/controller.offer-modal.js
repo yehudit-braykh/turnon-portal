@@ -71,6 +71,11 @@
             $scope.onOfferRedeemPress = function() {
                 var rfiLink, slug = $scope.offer.slug;
 
+                if ($scope.offer.rfiLink) {
+                    $window.open($scope.offer.rfiLink, '_blank');
+                    return;
+                }
+
                 /**
                  * @todo - Remove this once the CMS works correctly...
                  */
