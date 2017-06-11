@@ -28,7 +28,7 @@
                  * @todo - Cache this call
                  */
                 getBrandById: function(id) {
-                    return $http.get('/api/campaigns/get_campaign_by_id?id=' + id)
+                    return $http.get('/api/campaigns/get_campaign?id=' + id)
                         .then(
                             function onSuccess(data) {
                                 return new BrandModel(data.data);

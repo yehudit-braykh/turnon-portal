@@ -6,27 +6,42 @@ class Brands_model extends Uvod_model {
 		$this->load->model('fastcache_model');
 	}
 
-	public function get_brand($id){
-		if ($this->fastcache_model->get_cache("get_brand".$id))
-			return $this->fastcache_model->get_cache("get_brand".$id);
-		$data =  $this->brands_rows($this->apiCall('brand/'.$id.'/related')->entries);
-		$this->fastcache_model->set_cache("get_brand".$id,$data);
+	public function get_brand($id, $slug){
+		if ($this->fastcache_model->get_cache("get_brand".$id.'slug'.$slug))
+			return $this->fastcache_model->get_cache("get_brand".$id.'slug'.$slug);
+		if($id){
+			$data =  $this->brands_rows($this->apiCall('brand/'.$id.'/related')->entries);
+		} else {
+			$data =  $this->brands_rows($this->apiCall('brand/'.$slug.'/related/slug')->entries);
+		}
+
+		$this->fastcache_model->set_cache("get_brand".$id.'slug'.$slug,$data);
 		return $data;
 	}
 
-	public function get_charity($id){
-		if ($this->fastcache_model->get_cache("get_charity".$id))
-			return $this->fastcache_model->get_cache("get_charity".$id);
-		$data =  $this->charities_rows($this->apiCall('charity/'.$id.'/related')->entries);
-		$this->fastcache_model->set_cache("get_charity".$id,$data);
+	public function get_charity($id, $slug){
+		if ($this->fastcache_model->get_cache("get_charity".$id.'slug'.$slug))
+			return $this->fastcache_model->get_cache("get_charity".$id.'slug'.$slug);
+		if($id){
+			$data =  $this->charities_rows($this->apiCall('charity/'.$id.'/related')->entries);
+		} else {
+			$data =  $this->charities_rows($this->apiCall('charity/'.$slug.'/related/slug')->entries);
+		}
+
+		$this->fastcache_model->set_cache("get_charity".$id.'slug'.$slug,$data);
 		return $data;
 	}
 
-	public function get_offer($id){
-		if ($this->fastcache_model->get_cache("get_offer".$id))
-			return $this->fastcache_model->get_cache("get_offer".$id);
-		$data =  $this->offers_rows($this->apiCall('offer/'.$id.'/related')->entries)[0];
-		$this->fastcache_model->set_cache("get_offer".$id,$data);
+	public function get_offer($id, $slug){
+		if ($this->fastcache_model->get_cache("get_offer".$id.'slug'.$slug))
+			return $this->fastcache_model->get_cache("get_offer".$id.'slug'.$slug);
+		if($id){
+			$data =  $this->offers_rows($this->apiCall('offer/'.$id.'/related')->entries)[0];
+		} else {
+			$data =  $this->offers_rows($this->apiCall('offer/'.$slug.'/related/slug')->entries)[0];
+		}
+
+		$this->fastcache_model->set_cache("get_offer".$id.'slug'.$slug,$data);
 		return $data;
 	}
 
