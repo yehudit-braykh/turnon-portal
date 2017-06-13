@@ -62,10 +62,12 @@
             categoryService.getAllCategories(true)
                 .then(
                     function onSuccess(data) {
-                        data.categories = data.categories.filter(function(category) {
-                            return category.totalVideos !== 0;
+                        var categories = data;
+                        categories.categories = categories.categories.filter(function(category) {
+                            return category.totalVideos && category.totalVideos !== 0;
                         });
-                        $scope.categories = data;
+
+                        $scope.categories = categories;
                     }
                 );
 
