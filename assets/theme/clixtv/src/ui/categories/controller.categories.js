@@ -62,6 +62,9 @@
             categoryService.getAllCategories(true)
                 .then(
                     function onSuccess(data) {
+                        data.categories = data.categories.filter(function(category) {
+                            return category.totalVideos !== 0;
+                        });
                         $scope.categories = data;
                     }
                 );
