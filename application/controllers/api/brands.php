@@ -10,28 +10,31 @@ class Brands extends REST_Controller{
     function get_brand_get(){
 		header("Cache-Control: max-age=".CACHE_TTL);
 		$id = $this->get("id");
-		if(!$id)
-			$this->response("id field is mandatory",400);
+		$slug = $this->get("slug");
+		if(!$id && !$slug)
+			$this->response("id or slug field is mandatory",400);
 
-		return $this->response($this->brands_model->get_brand($id),200);
+		return $this->response($this->brands_model->get_brand($id, $slug),200);
     }
 
 	function get_charity_get(){
 		header("Cache-Control: max-age=".CACHE_TTL);
 		$id = $this->get("id");
-		if(!$id)
-			$this->response("id field is mandatory",400);
+		$slug = $this->get("slug");
+		if(!$id && !$slug)
+			$this->response("id or slug field is mandatory",400);
 
-		return $this->response($this->brands_model->get_charity($id),200);
+		return $this->response($this->brands_model->get_charity($id, $slug),200);
     }
 
 	function get_offer_get(){
 		header("Cache-Control: max-age=".CACHE_TTL);
 		$id = $this->get("id");
-		if(!$id)
-			$this->response("id field is mandatory",400);
+		$slug = $this->get("slug");
+		if(!$id && !$slug)
+			$this->response("id or slug field is mandatory",400);
 
-		return $this->response($this->brands_model->get_offer($id),200);
+		return $this->response($this->brands_model->get_offer($id, $slug),200);
     }
 
 	function get_brands_array_get () {

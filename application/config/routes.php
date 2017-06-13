@@ -38,9 +38,14 @@
 |
 */
 
+$route['sitemap\.xml'] = "api/sitemap";
+
 $route['404_override'] = 'not_found';
 
 $route['default_controller'] = 'vod';
+
+
+
 //$route['(:any)'] = 'pages/view/$1';
 
 /* End of file routes.php */

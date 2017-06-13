@@ -21,10 +21,11 @@ class Campaigns extends REST_Controller{
 	function get_campaign_by_id_get(){
 		header("Cache-Control: max-age=".CACHE_TTL);
         $id = $this->get("id");
-		if(!$id)
-			$this->response("id field is mandatory",400);
+		$slug = $this->get("slug");
+		if(!$id && !$slug)
+			$this->response("id or slug field is mandatory",400);
 
-		return $this->response($this->campaigns_model->get_campaign_by_id($id),200);
+		return $this->response($this->campaigns_model->get_campaign($id, $slug),200);
     }
 
 }

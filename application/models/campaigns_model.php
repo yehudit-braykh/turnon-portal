@@ -6,15 +6,19 @@ class Campaigns_model extends Uvod_model {
 		$this->load->model('fastcache_model');
 	}
 
-	public function get_campaign_by_id($id){
-		if ($this->fastcache_model->get_cache("get_campaign_by_id".$id))
-			return $this->fastcache_model->get_cache("get_campaign_by_id".$id);
-		$data =  $this->campaing_rows($this->apiCall('campaign/'.$id.'/related')->entries)[0];
+	public function get_campaign($id, $slug){
+		if ($this->fastcache_model->get_cache("get_campaign".$id.'slug'.$slug))
+			return $this->fastcache_model->get_cache("get_campaign".$id.'slug'.$slug);
+		if($id){
+			$data =  $this->campaing_rows($this->apiCall('campaign/'.$id.'/related')->entries)[0];
+		} else {
+			$data =  $this->campaing_rows($this->apiCall('campaign/'.$slug.'/related/slug')->entries)[0];
+		}
 		$tmpCampaign = $data;
 		foreach ($data["offers"] as &$offer) {
 			$offer["campaign"] = $tmpCampaign;
 		}
-		$this->fastcache_model->set_cache("get_campaign_by_id".$id,$data);
+		$this->fastcache_model->set_cache("get_campaign".$id.'slug'.$slug,$data);
 		return $data;
 	}
 
