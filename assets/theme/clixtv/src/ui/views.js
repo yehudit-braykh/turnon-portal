@@ -117,7 +117,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/banners/view.home-page-banner.html',
-    "<div class=clix-home-page-banner><div class=\"desktop-home-banner hidden-xs\"><div id=videoPlayer></div></div><div class=\"mobile-home-banner visible-xs\"><img ng-src=assets/theme/clixtv/dist/images/giphy-downsized-large.gif class=home-banner-background></div><div class=home-banner-overlay></div><div class=home-banner-content><div class=clixtv-originals-container><span class=clixtv-title-logo>ClixTV</span> Originals</div><div class=banner-main-header>Your Stars.<br>Their Passions.</div><div class=banner-subheader>Premium content from your favorite stars.</div><a ng-click=onSignupPress() class=primary-button ng-show=!loggedInUser>Sign Up Free</a></div></div>"
+    "<div class=clix-home-page-banner><div class=\"desktop-home-banner hidden-xs\"><div id=videoPlayer></div></div><div class=\"mobile-home-banner visible-xs\"><img ng-src=assets/theme/clixtv/dist/images/giphy-downsized-large.gif class=home-banner-background></div><div class=home-banner-overlay></div><div class=home-banner-content><div class=clixtv-originals-container><span class=clixtv-title-logo>ClixTV</span> Originals</div><div class=banner-main-header>Your Stars!<br>Their Passions.</div><div class=banner-subheader>Premium content from your favorite stars.</div><a ng-click=onSignupPress() class=primary-button ng-show=!loggedInUser>Sign Up Free</a></div></div>"
   );
 
 

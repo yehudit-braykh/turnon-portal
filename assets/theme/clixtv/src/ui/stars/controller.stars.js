@@ -46,7 +46,11 @@
             celebrityService.getAllCelebrities()
                 .then(
                     function onSuccess(data) {
-                        $scope.stars = data;
+                        var stars = data;
+                        stars.celebrities = stars.celebrities.filter(function(star) {
+                            return star.totalVideos && star.totalVideos > 0;
+                        });
+                        $scope.stars = stars;
                     }
                 );
 
