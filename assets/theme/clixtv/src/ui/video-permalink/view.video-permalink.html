@@ -35,7 +35,7 @@
                         </div>
 
                         <div class="logo-list-container">
-                            <a ng-repeat="brand in video.brands.brands | limitTo: 4" ui-sref="brand({ id: '{{brand.id}}' })" class="brand-logo-link">
+                            <a ng-repeat="brand in video.brands.brands | limitTo: 4" ui-sref="brand({ slug: '{{brand.title | slug}}' })" class="brand-logo-link">
                                 <clix-brand-charity-logo brand="brand"></clix-brand-charity-logo>
                             </a>
                             <div class="brand-logo-link" ng-if="video.charity" ui-sref="charity({ slug: '{{video.charity.title | slug}}' })">

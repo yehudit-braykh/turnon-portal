@@ -159,6 +159,9 @@
 
                         if (data.series && data.series.series) {
                             $scope.seriesList = data.series.series.map(function(series) {
+                                if (!series.seasons) {
+                                    return {}
+                                }
                                 return {
                                     label: series.title,
                                     series: series,
