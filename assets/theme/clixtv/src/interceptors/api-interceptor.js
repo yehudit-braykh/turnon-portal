@@ -2,20 +2,46 @@
 
     var apiInterceptor = [
         '$log',
-        'cacheService',
-        function($log, cacheService) {
+        'CacheFactory',
+        'LZString',
+        function($log, CacheFactory, LZString) {
+            var apiCache,
+                service = this;
 
-            this.request = function(config) {
-                if (config.url.startsWith('ui/')) {
-                    return config;
+            if (!CacheFactory.get('apiCache')) {
+                apiCache = CacheFactory('apiCache', {
+                    storageMode: 'localStorage'
+                });
+            }
+
+            service.response = function(response) {
+                if (response.config.url.indexOf('ui/') !== -1) {
+                    return response;
                 }
+                try {
+                    apiCache.put(response.config.url, LZString.compressToUTF16(JSON.stringify(response.data)));
+                } catch (e) {
+                    $log.warn('Error putting item in cache', e);
+                }
+                return response;
+            };
 
-                // The cache factory retires data if the TTL has expired, so we'll
-                // "ping" the cache key to trigger a fresh batch in the background
-                // if the endpoint calls for it.
-                var cache = cacheService.getCache();
-                cache.get(config.url);
-                return config;
+            service.responseError = function(response) {
+                var cacheValue;
+                if (response.config.url.indexOf('ui/') !== -1) {
+                    return response;
+                }
+                try {
+                    cacheValue = apiCache.get(response.config.url);
+                    if (cacheValue) {
+                        return {
+                            data: JSON.parse(LZString.decompressFromUTF16(cacheValue))
+                        };
+                    }
+                } catch (e) {
+                    $log.warn('Error getting item from cache', e);
+                }
+                return response;
             };
         }
     ];

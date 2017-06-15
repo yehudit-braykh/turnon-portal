@@ -17845,7 +17845,7 @@ button.close {
 .clix-home-page-banner .home-banner-content .banner-main-header {
   font-family: 'montserratextrabold', sans-serif;
   font-size: 35px;
-  line-height: 35px;
+  line-height: 31px;
   margin-bottom: 5px;
 }
 @media (min-width: 768px) {
@@ -17858,7 +17858,7 @@ button.close {
 @media (min-width: 992px) {
   .clix-home-page-banner .home-banner-content .banner-main-header {
     font-size: 85px;
-    line-height: 90px;
+    line-height: 80px;
     margin-bottom: 0;
   }
 }

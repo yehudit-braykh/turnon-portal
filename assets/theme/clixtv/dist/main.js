@@ -225,7 +225,7 @@
                 educationModalService.initialize();
                 analyticsService.initialize(clixConfig.segmentApiKey);
 
-                $rootScope.pageTitle = 'ClixTV - Your Stars! Their Passions.';
+                $rootScope.pageTitle = 'ClixTV - Your Stars. Their Passions.';
 
                 $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
                     $('html, body').animate({ scrollTop: 0 }, 200);
@@ -383,7 +383,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/common/banners/view.home-page-banner.html',
-    "<div class=clix-home-page-banner><div class=\"desktop-home-banner hidden-xs\"><div id=videoPlayer></div></div><div class=\"mobile-home-banner visible-xs\"><img ng-src=assets/theme/clixtv/dist/images/giphy-downsized-large.gif class=home-banner-background></div><div class=home-banner-overlay></div><div class=home-banner-content><div class=clixtv-originals-container><span class=clixtv-title-logo>ClixTV</span> Originals</div><div class=banner-main-header>Your Stars!<br>Their Passions.</div><div class=banner-subheader>Premium content from your favorite stars.</div><a ng-click=onSignupPress() class=primary-button ng-show=!loggedInUser>Sign Up Free</a></div></div>"
+    "<div class=clix-home-page-banner><div class=\"desktop-home-banner hidden-xs\"><div id=videoPlayer></div></div><div class=\"mobile-home-banner visible-xs\"><img ng-src=assets/theme/clixtv/dist/images/giphy-downsized-large.gif class=home-banner-background></div><div class=home-banner-overlay></div><div class=home-banner-content><div class=clixtv-originals-container><span class=clixtv-title-logo>ClixTV</span> Originals</div><div class=banner-main-header>Your Stars.<br>Their Passions.</div><div class=banner-subheader>Premium content from your favorite stars.</div><a ng-click=onSignupPress() class=primary-button ng-show=!loggedInUser>Sign Up Free</a></div></div>"
   );
 
 
@@ -7930,11 +7930,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             celebrityService.getAllCelebrities()
                 .then(
                     function onSuccess(data) {
-                        var stars = data;
-                        stars.celebrities = stars.celebrities.filter(function(star) {
-                            return star.totalVideos && star.totalVideos > 0;
-                        });
-                        $scope.stars = stars;
+                        $scope.stars = data;
                     }
                 );
 
@@ -9657,12 +9653,15 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         'CharityListModel',
         'BrandModel',
         'CharityModel',
-        'cacheService',
         'clixConfig',
-        function($http, stringUtils, BrandListModel, OfferListModel, CharityListModel, BrandModel, CharityModel, cacheService, clixConfig) {
+        function($http, stringUtils, BrandListModel, OfferListModel, CharityListModel, BrandModel, CharityModel, clixConfig) {
             return {
+
+                /**
+                 * @todo - Cache this call
+                 */
                 getAllBrands: function(page, size) {
-                    return $http.get(clixConfig.baseApi + '/campaigns?page=' + page + '&page_size=' + size, { cache: cacheService.getCache() })
+                    return $http.get('/api/campaigns?page=' + page + '&page_size=' + size)
                         .then(
                             function(data) {
                                 return new BrandListModel(data.data);
@@ -9683,7 +9682,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 },
 
                 getBrandBySlug: function(slug) {
-                    return $http.get(clixConfig.baseApi + '/brands/slug/' + slug, { cache: cacheService.getCache() })
+                    return $http.get(clixConfig.baseApi + '/brands/slug/' + slug)
                         .then(
                             function onSuccess(data) {
                                 return new BrandModel(data.data);
@@ -9691,8 +9690,11 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         );
                 },
 
+                /**
+                 * @todo - Cache this call
+                 */
                 getAllCharities: function() {
-                    return $http.get('/api/brands/get_charities_array', { cache: cacheService.getCache() })
+                    return $http.get('/api/brands/get_charities_array')
                         .then(
                             function(data) {
                                 return new CharityListModel(data.data);
@@ -9702,7 +9704,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
                 getCharityBySlug: function(slug) {
 
-                    return $http.get(clixConfig.baseApi + '/charities/slug/' + slug, { cache: cacheService.getCache() })
+                    return $http.get(clixConfig.baseApi + '/charities/slug/' + slug)
                         .then(
                             function onSuccess(data) {
                                 return new CharityModel(data.data[0]);
@@ -9726,10 +9728,46 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                  * @todo - Cache this call
                  */
                 getAllOffers: function(page, size) {
-                    return $http.get('/api/brands/get_offers_array?page=' + page + '&page_size=' + size, { cache: cacheService.getCache() })
+                    return $http.get('/api/brands/get_offers_array?page=' + page + '&page_size=' + size)
                         .then(
                             function(data) {
                                 return new OfferListModel(data.data);
+                            }
+                        );
+                },
+
+                /**
+                 * @todo - Cache this call
+                 */
+                getOffersByBrandId: function(id) {
+                    return $http.get('/api/brands/get_brand_offers/?id=' + id)
+                        .then(
+                            function(data) {
+                                return data.data;
+                            }
+                        );
+                },
+
+                /**
+                 * @todo - Cache this call
+                 */
+                getVideosByBrandId: function(id) {
+                    return $http.get('/api/brands/get_brand_videos/?id=' + id)
+                        .then(
+                            function(data) {
+                                return data.data;
+                            }
+                        );
+                },
+
+                /**
+                 * @todo - Cache this call
+                 */
+                getCelebritiesByBrandId: function(id) {
+                    return $http.get('/api/brands/get_brand_celebs/?id=' + id)
+                        .then(
+                            function(data) {
+                                return data.data;
                             }
                         );
                 }
@@ -9742,74 +9780,6 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         .factory('brandsService', brandsService);
 }());
 
-(function() {
-
-    var cacheService = [
-        '$log',
-        'CacheFactory',
-        'LZString',
-        function($log, CacheFactory, LZString) {
-
-            var apiCache;
-
-            return {
-                getCache: function() {
-                    if (!CacheFactory) {
-                        return;
-                    }
-                    if (!CacheFactory.get('apiCache')) {
-                        CacheFactory.createCache('apiCache', {
-                            maxAge: 5 * 60 * 1000, // 5 minutes
-                            storageMode: 'localStorage',
-                            deleteOnExpire: 'passive',
-                            onExpire: function(key, value) {
-                                $log.info('Cache key ' + key + ' expired, using stale data while fetching fresh data in the background');
-                                apiCache.put(key, value);
-                                angular.injector(['ng']).get('$http').get(key)
-                                    .then(
-                                        function onSuccess(data) {
-                                            if (data.data) {
-                                                $log.info('Received fresh data for key ' + key + '. Updating cache value.');
-                                                apiCache.put(key);
-                                            }
-                                        }
-                                    )
-                                    .catch(
-                                        function onError(error) {
-                                            $log.warn('Error getting fresh data for cache for key ' + key + ': ' + JSON.stringify(error));
-                                        }
-                                    );
-                            },
-                            storageImpl: {
-                                getItem: function (key) {
-                                    return LZString.decompressFromUTF16(localStorage.getItem(key));
-                                },
-                                setItem: function (key, value) {
-                                    try {
-                                        localStorage.setItem(key, LZString.compressToUTF16(value));
-                                    } catch (e) {
-                                        $log.warn('Error setting new cache item: ' + JSON.stringify(e));
-                                    }
-                                },
-                                removeItem: function (key) {
-                                    localStorage.removeItem(key);
-                                }
-                            }
-                        });
-                    }
-                    if (!apiCache) {
-                        apiCache = CacheFactory.get('apiCache');
-                    }
-                    return apiCache;
-                }
-            }
-        }
-    ];
-
-    angular
-        .module('clixtv')
-        .factory('cacheService', cacheService);
-}());
 (function() {
 
     var catchMediaService = [
@@ -9939,16 +9909,30 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$http',
         'CategoryListModel',
         'CategoryModel',
-        'cacheService',
         'clixConfig',
-        function($http, CategoryListModel, CategoryModel, cacheService, clixConfig) {
+        function($http, CategoryListModel, CategoryModel, clixConfig) {
             return {
 
+                /**
+                 * @todo - Cache this call
+                 */
                 getAllCategories: function(withVideoCount, page, size) {
-                    return $http.get('/api/category/get_all_categories?video_count=' + (withVideoCount || false) + '&page=' + page + '&page_size=' + size, { cache: cacheService.getCache() })
+                    return $http.get('/api/category/get_all_categories?video_count=' + (withVideoCount || false) + '&page=' + page + '&page_size=' + size)
                         .then(
                             function onSuccess(data) {
                                 return new CategoryListModel(data.data);
+                            }
+                        );
+                },
+
+                /**
+                 * @todo - Cache this call
+                 */
+                getCategoryByName: function(name) {
+                    return $http.get('/api/category/get_category_by_name/?category=' + name)
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
                             }
                         );
                 },
@@ -9966,10 +9950,22 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 },
 
                 getCategoryBySlug: function(slug) {
-                    return $http.get(clixConfig.baseApi + '/categories/slug/' + slug, { cache: cacheService.getCache() })
+                    return $http.get(clixConfig.baseApi + '/categories/slug/' + slug)
                         .then(
                             function onSuccess(data) {
                                 return new CategoryModel(data.data);
+                            }
+                        );
+                },
+
+                /**
+                 * @todo - Cache this call
+                 */
+                getCategoryVideosByName: function(name) {
+                    return $http.get('/api/category/get_category_videos?category=' + name)
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
                             }
                         );
                 }
@@ -9984,22 +9980,18 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 (function() {
 
     var celebrityService = [
-        '$q',
         '$http',
-        'CacheFactory',
         'CelebrityListModel',
         'CelebrityModel',
-        'cacheService',
         'clixConfig',
-        function($q, $http, CacheFactory, CelebrityListModel, CelebrityModel, cacheService, clixConfig) {
-
+        function($http, CelebrityListModel, CelebrityModel, clixConfig) {
             return {
 
                 /**
                  * @todo - Cache this call
                  */
                 getAllCelebrities: function() {
-                    return $http.get(clixConfig.baseApi + '/celebrity/get_all_celebrities', { cache: cacheService.getCache() })
+                    return $http.get('/api/celebrity/get_all_celebrities')
                         .then(
                             function onSuccess(data) {
                                 return new CelebrityListModel(data.data);
@@ -10020,10 +10012,70 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 },
 
                 getCelebrityBySlug: function(slug) {
-                    return $http.get(clixConfig.baseApi + '/stars/slug/' + slug, { cache: cacheService.getCache() })
+                    return $http.get(clixConfig.baseApi + '/stars/slug/' + slug)
                         .then(
                             function onSuccess(data) {
                                 return new CelebrityModel(data.data);
+                            }
+                        );
+                },
+
+                /**
+                 * @todo - Cache this call
+                 */
+                getBrandsByCelebrityId: function(id) {
+                    return $http.get('/api/celebrity/get_celeb_brands?id=' + id)
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
+                            }
+                        );
+                },
+
+                /**
+                 * @todo - Cache this call
+                 */
+                getCharitiesByCelebrityId: function(id) {
+                    return $http.get('/api/celebrity/get_celeb_charities?id=' + id)
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
+                            }
+                        );
+                },
+
+                /**
+                 * @todo - Cache this call
+                 */
+                getOffersByCelebrityId: function(id) {
+                    return $http.get('/api/celebrity/get_celeb_offers?id=' + id)
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
+                            }
+                        );
+                },
+
+                /**
+                 * @todo - Cache this call
+                 */
+                getSeriesByCelebrityId: function(id) {
+                    return $http.get('/api/celebrity/get_celeb_series?id=' + id)
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
+                            }
+                        );
+                },
+
+                /**
+                 * @todo - Cache this call
+                 */
+                getVideosByCelebrityId: function(id) {
+                    return $http.get('/api/celebrity/get_celeb_videos?id=' + id)
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
                             }
                         );
                 }
@@ -11420,20 +11472,46 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
     var apiInterceptor = [
         '$log',
-        'cacheService',
-        function($log, cacheService) {
+        'CacheFactory',
+        'LZString',
+        function($log, CacheFactory, LZString) {
+            var apiCache,
+                service = this;
 
-            this.request = function(config) {
-                if (config.url.startsWith('ui/')) {
-                    return config;
+            if (!CacheFactory.get('apiCache')) {
+                apiCache = CacheFactory('apiCache', {
+                    storageMode: 'localStorage'
+                });
+            }
+
+            service.response = function(response) {
+                if (response.config.url.indexOf('ui/') !== -1) {
+                    return response;
                 }
+                try {
+                    apiCache.put(response.config.url, LZString.compressToUTF16(JSON.stringify(response.data)));
+                } catch (e) {
+                    $log.warn('Error putting item in cache', e);
+                }
+                return response;
+            };
 
-                // The cache factory retires data if the TTL has expired, so we'll
-                // "ping" the cache key to trigger a fresh batch in the background
-                // if the endpoint calls for it.
-                var cache = cacheService.getCache();
-                cache.get(config.url);
-                return config;
+            service.responseError = function(response) {
+                var cacheValue;
+                if (response.config.url.indexOf('ui/') !== -1) {
+                    return response;
+                }
+                try {
+                    cacheValue = apiCache.get(response.config.url);
+                    if (cacheValue) {
+                        return {
+                            data: JSON.parse(LZString.decompressFromUTF16(cacheValue))
+                        };
+                    }
+                } catch (e) {
+                    $log.warn('Error getting item from cache', e);
+                }
+                return response;
             };
         }
     ];

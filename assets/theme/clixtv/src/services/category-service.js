@@ -4,16 +4,30 @@
         '$http',
         'CategoryListModel',
         'CategoryModel',
-        'cacheService',
         'clixConfig',
-        function($http, CategoryListModel, CategoryModel, cacheService, clixConfig) {
+        function($http, CategoryListModel, CategoryModel, clixConfig) {
             return {
 
+                /**
+                 * @todo - Cache this call
+                 */
                 getAllCategories: function(withVideoCount, page, size) {
-                    return $http.get('/api/category/get_all_categories?video_count=' + (withVideoCount || false) + '&page=' + page + '&page_size=' + size, { cache: cacheService.getCache() })
+                    return $http.get('/api/category/get_all_categories?video_count=' + (withVideoCount || false) + '&page=' + page + '&page_size=' + size)
                         .then(
                             function onSuccess(data) {
                                 return new CategoryListModel(data.data);
+                            }
+                        );
+                },
+
+                /**
+                 * @todo - Cache this call
+                 */
+                getCategoryByName: function(name) {
+                    return $http.get('/api/category/get_category_by_name/?category=' + name)
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
                             }
                         );
                 },
@@ -31,10 +45,22 @@
                 },
 
                 getCategoryBySlug: function(slug) {
-                    return $http.get(clixConfig.baseApi + '/categories/slug/' + slug, { cache: cacheService.getCache() })
+                    return $http.get(clixConfig.baseApi + '/categories/slug/' + slug)
                         .then(
                             function onSuccess(data) {
                                 return new CategoryModel(data.data);
+                            }
+                        );
+                },
+
+                /**
+                 * @todo - Cache this call
+                 */
+                getCategoryVideosByName: function(name) {
+                    return $http.get('/api/category/get_category_videos?category=' + name)
+                        .then(
+                            function onSuccess(data) {
+                                return data.data;
                             }
                         );
                 }

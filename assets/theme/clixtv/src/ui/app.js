@@ -225,7 +225,7 @@
                 educationModalService.initialize();
                 analyticsService.initialize(clixConfig.segmentApiKey);
 
-                $rootScope.pageTitle = 'ClixTV - Your Stars! Their Passions.';
+                $rootScope.pageTitle = 'ClixTV - Your Stars. Their Passions.';
 
                 $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
                     $('html, body').animate({ scrollTop: 0 }, 200);
