@@ -46,7 +46,7 @@
             notificationEnabled: false,
 
             // Base URL for API calls
-            baseApi: (window.ENVIRONMENT === 'stage') ? 'http://52.43.246.138' : 'https://api.clixtv.com',
+            baseApi: /*(window.ENVIRONMENT === 'stage') ? 'http://52.43.246.138' : */'https://api.clixtv.com',
 
             // A non-logged in user will not be allowed to directly view any episodes
             // that are below this number
