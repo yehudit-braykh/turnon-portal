@@ -6,7 +6,7 @@ class Campaigns_model extends Uvod_model {
 		$this->load->model('fastcache_model');
 	}
 
-	public function get_campaign($id, $slug){
+	public function get_campaign($id, $slug = null){
 		if ($this->fastcache_model->get_cache("get_campaign".$id.'slug'.$slug))
 			return $this->fastcache_model->get_cache("get_campaign".$id.'slug'.$slug);
 		if($id){
