@@ -6,7 +6,7 @@ class Brands_model extends Uvod_model {
 		$this->load->model('fastcache_model');
 	}
 
-	public function get_brand($id, $slug){
+	public function get_brand($id, $slug = null){
 		if ($this->fastcache_model->get_cache("get_brand".$id.'slug'.$slug))
 			return $this->fastcache_model->get_cache("get_brand".$id.'slug'.$slug);
 		if($id){
@@ -19,7 +19,7 @@ class Brands_model extends Uvod_model {
 		return $data;
 	}
 
-	public function get_charity($id, $slug){
+	public function get_charity($id, $slug = null){
 		if ($this->fastcache_model->get_cache("get_charity".$id.'slug'.$slug))
 			return $this->fastcache_model->get_cache("get_charity".$id.'slug'.$slug);
 		if($id){
@@ -32,7 +32,7 @@ class Brands_model extends Uvod_model {
 		return $data;
 	}
 
-	public function get_offer($id, $slug){
+	public function get_offer($id, $slug = null){
 		if ($this->fastcache_model->get_cache("get_offer".$id.'slug'.$slug))
 			return $this->fastcache_model->get_cache("get_offer".$id.'slug'.$slug);
 		if($id){
