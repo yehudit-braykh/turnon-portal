@@ -36,7 +36,7 @@ mod_gzip_item_exclude rspheader ^Content-Encoding:.*gzip.*
 </ifModule>
 
 <FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|svg|gif|js|css|swf)$">
-Header set Cache-Control "max-age=864000, public"
+Header set Cache-Control "max-age=31536000, public"
 </FilesMatch>
 
 <FilesMatch "\.(html|htm)$">
