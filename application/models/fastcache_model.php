@@ -15,13 +15,13 @@ class fastcache_model extends CI_Model {
     }
 
     public function get_cache($id) {
-
+        if(ENVIRONMENT === "local" || ENVIRONMENT === "development")
+            return false;
         try{
             $data = $this->cache->get('portal:'.$id);
             if (!$data) {
                 $data = false;
             }
-            // return null;
             return $data;
         } catch (Exception $e){
             return null;
