@@ -38,7 +38,12 @@
                             },
                             storageImpl: {
                                 getItem: function (key) {
-                                    return LZString.decompressFromUTF16(localStorage.getItem(key));
+                                    try {
+                                        return LZString.decompressFromUTF16(localStorage.getItem(key));
+                                    } catch (e) {
+                                        $log.warn('Error getting cache item: ' + JSON.stringify(e));
+                                    }
+                                    return undefined;
                                 },
                                 setItem: function (key, value) {
                                     try {

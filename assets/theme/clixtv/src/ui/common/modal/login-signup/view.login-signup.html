@@ -49,7 +49,8 @@
                 <div class="signup-modal-form-row">
                     <i class="form-icon large icon-full-name-input-icon"></i>
                     <div class="signup-modal-input">
-                        <input type="text" placeholder="First Name" name="first-name" ng-model="signupModel.firstName" />
+                        <input id="first-name" type="text" placeholder="First Name" name="first-name" ng-model="signupModel.firstName" />
+                        <input type="text" placeholder="First Name" name="real-first-name" ng-model="signupModel.realFirstName" />
                     </div>
                 </div>
                 <div class="signup-modal-form-row">
@@ -91,7 +92,7 @@
             </div>
         </div>
         <div class="signup-modal-footer">
-            By signing in, you agree to our <a ng-click="onTermsPress()">Terms of Service</a> and <a ng-click="onPrivacyPress()">Privacy Policy</a>
+            By signing in, you agree to our <a ui-sref="terms-of-use">Terms of Use</a> and <a ui-sref="privacy-policy">Privacy Policy</a>
         </div>
     </div>
 
@@ -143,9 +144,9 @@
                 </clix-primary-button>
             </div>
             <div class="login-container">
-                <a ng-click="onForgotPasswordPress()" class="forgot-password">
-                    Forgot Password?
-                </a><br />
+                <!--<a ng-click="onForgotPasswordPress()" class="forgot-password">-->
+                    <!--Forgot Password?-->
+                <!--</a><br />-->
                 Don't have an account?
                 <a ng-click="onSignupPress()">
                     Sign up
@@ -153,7 +154,7 @@
             </div>
         </div>
         <div class="signup-modal-footer">
-            By signing in, you agree to our <a ng-click="onTermsPress()">Terms of Service</a> and <a ng-click="onPrivacyPress()">Privacy Policy</a>
+            By signing in, you agree to our <a ui-sref="terms-of-use">Terms of Use</a> and <a ui-sref="privacy-policy">Privacy Policy</a>
         </div>
     </div>
 </clix-modal>

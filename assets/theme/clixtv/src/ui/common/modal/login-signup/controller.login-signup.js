@@ -24,6 +24,7 @@
                 password: '',
                 passwordConfirm: '',
                 firstName: '',
+                realFirstName: '',
                 lastName: '',
                 birthdate: '',
                 gender: ''
@@ -59,12 +60,17 @@
 
             $scope.onSignupSubmit = function() {
 
+                // Honeypot field...
+                if ($scope.signupModel.firstName) {
+                    return;
+                }
+
                 $scope.error = undefined;
 
                 if (
                     !$scope.signupModel.email ||
                     !$scope.signupModel.password ||
-                    !$scope.signupModel.firstName ||
+                    !$scope.signupModel.realFirstName ||
                     !$scope.signupModel.lastName/* ||
                     !$scope.signupModel.birthdate ||
                     !$scope.signupModel.gender*/
@@ -85,11 +91,11 @@
 
 
 
-                userService.signupUser($scope.signupModel.email, $scope.signupModel.password, $scope.signupModel.firstName, $scope.signupModel.lastName)
+                userService.signupUser($scope.signupModel.email, $scope.signupModel.password, $scope.signupModel.realFirstName, $scope.signupModel.lastName)
                     .then(
                         function onSuccess(data) {
                             $uibModalInstance.close();
-                            userService.addUserToNewsletter($scope.signupModel.email, $scope.signupModel.firstName, $scope.signupModel.lastName);
+                            userService.addUserToNewsletter($scope.signupModel.email, $scope.signupModel.realFirstName, $scope.signupModel.lastName);
                         }
                     )
                     .catch(

@@ -15107,6 +15107,9 @@ button.close {
   visibility: hidden;
   position: absolute;
 }
+.signup-modal #first-name {
+  display: none;
+}
 .clix-donate-modal {
   background-color: #292929;
 }
