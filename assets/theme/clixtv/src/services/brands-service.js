@@ -8,15 +8,12 @@
         'CharityListModel',
         'BrandModel',
         'CharityModel',
+        'cacheService',
         'clixConfig',
-        function($http, stringUtils, BrandListModel, OfferListModel, CharityListModel, BrandModel, CharityModel, clixConfig) {
+        function($http, stringUtils, BrandListModel, OfferListModel, CharityListModel, BrandModel, CharityModel, cacheService, clixConfig) {
             return {
-
-                /**
-                 * @todo - Cache this call
-                 */
                 getAllBrands: function(page, size) {
-                    return $http.get('/api/campaigns?page=' + page + '&page_size=' + size)
+                    return $http.get(clixConfig.baseApi + '/campaigns?page=' + page + '&page_size=' + size, { cache: cacheService.getCache() })
                         .then(
                             function(data) {
                                 return new BrandListModel(data.data);
@@ -37,7 +34,7 @@
                 },
 
                 getBrandBySlug: function(slug) {
-                    return $http.get(clixConfig.baseApi + '/brands/slug/' + slug)
+                    return $http.get(clixConfig.baseApi + '/brands/slug/' + slug, { cache: cacheService.getCache() })
                         .then(
                             function onSuccess(data) {
                                 return new BrandModel(data.data);
@@ -45,11 +42,8 @@
                         );
                 },
 
-                /**
-                 * @todo - Cache this call
-                 */
                 getAllCharities: function() {
-                    return $http.get('/api/brands/get_charities_array')
+                    return $http.get('/api/brands/get_charities_array', { cache: cacheService.getCache() })
                         .then(
                             function(data) {
                                 return new CharityListModel(data.data);
@@ -59,7 +53,7 @@
 
                 getCharityBySlug: function(slug) {
 
-                    return $http.get(clixConfig.baseApi + '/charities/slug/' + slug)
+                    return $http.get(clixConfig.baseApi + '/charities/slug/' + slug, { cache: cacheService.getCache() })
                         .then(
                             function onSuccess(data) {
                                 return new CharityModel(data.data[0]);
@@ -83,46 +77,10 @@
                  * @todo - Cache this call
                  */
                 getAllOffers: function(page, size) {
-                    return $http.get('/api/brands/get_offers_array?page=' + page + '&page_size=' + size)
+                    return $http.get('/api/brands/get_offers_array?page=' + page + '&page_size=' + size, { cache: cacheService.getCache() })
                         .then(
                             function(data) {
                                 return new OfferListModel(data.data);
-                            }
-                        );
-                },
-
-                /**
-                 * @todo - Cache this call
-                 */
-                getOffersByBrandId: function(id) {
-                    return $http.get('/api/brands/get_brand_offers/?id=' + id)
-                        .then(
-                            function(data) {
-                                return data.data;
-                            }
-                        );
-                },
-
-                /**
-                 * @todo - Cache this call
-                 */
-                getVideosByBrandId: function(id) {
-                    return $http.get('/api/brands/get_brand_videos/?id=' + id)
-                        .then(
-                            function(data) {
-                                return data.data;
-                            }
-                        );
-                },
-
-                /**
-                 * @todo - Cache this call
-                 */
-                getCelebritiesByBrandId: function(id) {
-                    return $http.get('/api/brands/get_brand_celebs/?id=' + id)
-                        .then(
-                            function(data) {
-                                return data.data;
                             }
                         );
                 }
