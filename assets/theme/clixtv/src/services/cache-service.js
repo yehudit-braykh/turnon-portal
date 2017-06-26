@@ -4,13 +4,17 @@
         '$log',
         'CacheFactory',
         'LZString',
-        function($log, CacheFactory, LZString) {
+        'clixConfig',
+        function($log, CacheFactory, LZString, clixConfig) {
 
             var apiCache;
 
             return {
                 getCache: function() {
                     if (!CacheFactory) {
+                        return;
+                    }
+                    if (!clixConfig.cacheEnabled) {
                         return;
                     }
                     if (!CacheFactory.get('apiCache')) {

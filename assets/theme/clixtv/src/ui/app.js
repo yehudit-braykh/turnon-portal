@@ -56,7 +56,9 @@
             segmentApiKey: 'YV8pmcoBPm8xF2ocBVwq6AxxoZXTn8rG',
 
             // Base URL for images
-            baseImageUrl: 'https://advncedcdn.vo.llnwd.net/clixtv_prod_storage/static'
+            baseImageUrl: 'https://advncedcdn.vo.llnwd.net/clixtv_prod_storage/static',
+
+            cacheEnabled: (window.ENVIRONMENT === 'prod')
         })
         .config([
             '$locationProvider',

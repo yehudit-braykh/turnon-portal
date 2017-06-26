@@ -14,7 +14,9 @@
                 // "ping" the cache key to trigger a fresh batch in the background
                 // if the endpoint calls for it.
                 var cache = cacheService.getCache();
-                cache.get(config.url);
+                if (cache) {
+                    cache.get(config.url);
+                }
                 return config;
             };
         }

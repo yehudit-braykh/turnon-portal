@@ -56,7 +56,9 @@
             segmentApiKey: 'YV8pmcoBPm8xF2ocBVwq6AxxoZXTn8rG',
 
             // Base URL for images
-            baseImageUrl: 'https://advncedcdn.vo.llnwd.net/clixtv_prod_storage/static'
+            baseImageUrl: 'https://advncedcdn.vo.llnwd.net/clixtv_prod_storage/static',
+
+            cacheEnabled: (window.ENVIRONMENT === 'prod')
         })
         .config([
             '$locationProvider',
@@ -9759,13 +9761,17 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$log',
         'CacheFactory',
         'LZString',
-        function($log, CacheFactory, LZString) {
+        'clixConfig',
+        function($log, CacheFactory, LZString, clixConfig) {
 
             var apiCache;
 
             return {
                 getCache: function() {
                     if (!CacheFactory) {
+                        return;
+                    }
+                    if (!clixConfig.cacheEnabled) {
                         return;
                     }
                     if (!CacheFactory.get('apiCache')) {
@@ -11448,7 +11454,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 // "ping" the cache key to trigger a fresh batch in the background
                 // if the endpoint calls for it.
                 var cache = cacheService.getCache();
-                cache.get(config.url);
+                if (cache) {
+                    cache.get(config.url);
+                }
                 return config;
             };
         }
