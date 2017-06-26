@@ -53,7 +53,10 @@
             lockedMinimumEpisodeNumber: 2,
 
             // API key for segment tracking
-            segmentApiKey: 'YV8pmcoBPm8xF2ocBVwq6AxxoZXTn8rG'
+            segmentApiKey: 'YV8pmcoBPm8xF2ocBVwq6AxxoZXTn8rG',
+
+            // Base URL for images
+            baseImageUrl: 'https://advncedcdn.vo.llnwd.net/clixtv_prod_storage/static'
         })
         .config([
             '$locationProvider',
@@ -226,6 +229,8 @@
                 analyticsService.initialize(clixConfig.segmentApiKey);
 
                 $rootScope.pageTitle = 'ClixTV - Your Stars! Their Passions.';
+
+                $rootScope.clixConfig = clixConfig;
 
                 $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
                     $('html, body').animate({ scrollTop: 0 }, 200);
