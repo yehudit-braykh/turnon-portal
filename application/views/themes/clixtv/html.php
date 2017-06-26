@@ -57,7 +57,7 @@
         <?php
         $DNT = 'HTTP_DNT';
         if (!isset($_SERVER[$DNT]) || $_SERVER[$DNT] != 1) {
-            if (ENVIRONMENT === "staging") {
+            if (ENVIRONMENT === "staging" || ENVIRONMENT === "development") {
                 echo "<script type=\"text/javascript\" src=\"https://1115282512.rsc.cdn77.org/plinks/jssdk/CMSDK-qa-latest.min.js\"></script>";
             } else {
                 echo "<script type=\"text/javascript\" src=\"//1115282512.rsc.cdn77.org/plinks/jssdk/CMSDK-atl-latest.min.js\"></script>";
@@ -71,7 +71,7 @@
 
         <!-- Application -->
         <script>
-            var ENVIRONMENT = "<?php echo (ENVIRONMENT === "staging") ? "stage" : "prod" ?>";
+            var ENVIRONMENT = "<?php echo (ENVIRONMENT === "staging" || ENVIRONMENT === "development") ? "stage" : "prod" ?>";
         </script>
         <script src="/assets/theme/clixtv/dist/libs.min.js"></script>
         <script src="/assets/theme/clixtv/dist/main.min.js"></script>
