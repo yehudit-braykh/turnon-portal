@@ -14,10 +14,13 @@ class Campaigns_model extends Uvod_model {
 		} else {
 			$data =  $this->campaing_rows($this->apiCall('campaign/'.$slug.'/related/slug')->entries)[0];
 		}
-		$tmpCampaign = $data;
-		foreach ($data["offers"] as &$offer) {
-			$offer["campaign"] = $tmpCampaign;
+		if($data){
+			$tmpCampaign = $data;
+			foreach ($data["offers"] as &$offer) {
+				$offer["campaign"] = $tmpCampaign;
+			}
 		}
+
 		$this->fastcache_model->set_cache("get_campaign".$id.'slug'.$slug,$data);
 		return $data;
 	}

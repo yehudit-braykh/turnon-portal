@@ -62,8 +62,9 @@ class Video_model extends Uvod_model {
 					if($brand->offers)
 						$brand->offers = $this->rows($brand->offers);
 				}
-			}
 				$item->brands = $this->rows($item->brands);
+			}
+
 
 			if($item->campaigns)
 				$item->campaigns = $this->rows($item->campaigns);
