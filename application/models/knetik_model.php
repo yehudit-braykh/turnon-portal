@@ -483,14 +483,6 @@ class Knetik_model extends CI_Model {
         return $catalog["content"];
     }
 
-    public function redeem_card($card, $points){
-        if($cart_id = $this->get_cart()){
-            $this->add_item_to_cart($cart_id, $card);
-            $invoice = $this->create_invoice($cart_id);
-            $this->complete_invoice($invoice);
-        }
-    }
-
     private function get_wallet_balance($id, $wallet_code) {
         $token = $this->authenticate();
         // debug("get_wallet_balance |", $id, $wallet_code);
@@ -535,14 +527,56 @@ class Knetik_model extends CI_Model {
         return false;
     }
 
+    // ************ Redeem Functions ***********************
+
+    public function redeem_card($card, $points){
+        if($cart_id = $this->get_cart()){
+            // debug("123",$cart_id);
+            if(!($card = $this->get_card($card))["code"]){
+                // debug($card);
+                if(!($cart_item = $this->add_item_to_cart($cart_id, $card))["code"]){
+                    // debug($cart_item);
+                    if(!($invoice = $this->create_invoice($cart_id))["code"]){
+                        // debug($invoice);
+                        if(!($finish_invoice = $this->complete_invoice($invoice))["code"]){
+                            // debug($finish_invoice);
+                        } else {
+                            return array("code" => 1, "message" => "cannot complete invoice", "respone" => $finish_invoice);
+                        }
+                    } else{
+                        return array("code" => 1, "message" => "cannot create invoice", "respone" => $invoice);
+                    }
+                } else {
+                    return array("code" => 1, "message" => "cannot add Card to cart", "respone" => $cart_item);
+                }
+            } else {
+                return array("code" => 1, "message" => "cannot get Card", "respone" => $card);
+            }
+        } else {
+            return array("code" => 1, "message" => "cannot create Cart", "respone" => $cart_id);
+        }
+    }
+
     private function get_cart(){
 
         $token = $this->authenticate();
         $profile = $this->account_model->get_profile($this->session->userdata("login_token"), $this->session->userdata("profile_id"))->content;
 
-
         $cart = $this->post('carts?owner='.$profile->knetikId.'&currency_code=PTS', null, $token);
+
         return $cart;
+    }
+
+    private function get_card($id){
+
+        $token = $this->authenticate();
+        $card = $this->get('store/items/'.$id, $token);
+
+        if($card["error"] == "invalid_token"){
+            $token = $this->authenticate(true);
+            $card=$this->get('store/items/'.$id, $token);
+        }
+        return $card["content"][0];
     }
 
     private function add_item_to_cart($cart_id, $item){
@@ -578,6 +612,8 @@ class Knetik_model extends CI_Model {
         $invoice = $this->put('invoices/'.$invoice_id.'/payment-status',json_encode($data), $token);
         return $item;
     }
+
+    // ************ END - Redeem Functions ***********************
 
     private function get_user_by_email($email){
 
@@ -640,7 +676,6 @@ class Knetik_model extends CI_Model {
         return $result["access_token"];
 
     }
-
 
 
     // *************  Restfull methods **********************
