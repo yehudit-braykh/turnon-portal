@@ -13,19 +13,15 @@ class Tango extends REST_Controller{
          return $this->response($this->tango_model->getCatalog(),200);
     }
 
-	function customers_get(){
-         return $this->response($this->tango_model->getCustomers(),200);
-    }
-
-	function order_post(){
-		$item = $this->post("item");
+	function redeem_post(){
+		$item = $this->post("cardId");
 		$points = $this->post("points");
 
-		if(!$item || !$points)
-			$this->response("item and points fields is mandatory",400);
+		if(!$cardId || !$points)
+			$this->response("cardId and points fields is mandatory",400);
 		if($points <=0)
-			$this->response("invaled points value is mandatory, must be number greater than zero",400);
-         return $this->response($this->tango_model->createOrder($item, $points),200);
+			$this->response("invalid points value is mandatory, must be number greater than zero",400);
+         return $this->response($this->tango_model->createOrder($cardId, $points),200);
     }
 
 
