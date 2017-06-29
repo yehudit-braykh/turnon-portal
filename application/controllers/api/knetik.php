@@ -16,21 +16,21 @@ class Knetik extends REST_Controller{
          return $this->response($this->knetik_model->activity(),200);
     }
 
-	function save_offer_post(){
+	function offer_save_post(){
 		$id = $this->post('id');
 		if(!$id)
 			$this->response("id field is mandatory", 400);
         return $this->response($this->knetik_model->save_offer($id),200);
     }
 
-	function view_offer_post(){
+	function offer_view_post(){
 		$id = $this->post('id');
 		if(!$id)
 			$this->response("id field is mandatory", 400);
         return $this->response($this->knetik_model->view_offer($id),200);
     }
 
-	function redeem_offer_post(){
+	function offer_redeem_post(){
 		$id = $this->post('id');
 		if(!$id)
 			$this->response("id field is mandatory", 400);
@@ -58,11 +58,11 @@ class Knetik extends REST_Controller{
         return $this->response($this->knetik_model->video_share($id),200);
     }
 
-	function view_post(){
+	function video_view_post(){
 		$id = $this->post('id');
 		if(!$id)
 			$this->response("id field is mandatory", 400);
-        return $this->response($this->knetik_model->view($id),200);
+        return $this->response($this->knetik_model->video_view($id),200);
     }
 
 	function ad_video_view_post(){

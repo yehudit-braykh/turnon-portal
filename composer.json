@@ -1,6 +1,7 @@
 {
     "require": {
-        "php": "~5.5.0",
-        "ext-mbstring": "*" 
+        "php": "~7.0.0",
+        "ext-mbstring": "*",
+        "tangocard/raas": "^1.1"
     }
 }
