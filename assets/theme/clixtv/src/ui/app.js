@@ -58,6 +58,7 @@
             // Base URL for images
             baseImageUrl: 'https://advncedcdn.vo.llnwd.net/clixtv_prod_storage/static',
 
+            // Only enable browser cache for API calls in production
             cacheEnabled: (window.ENVIRONMENT === 'prod')
         })
         .config([

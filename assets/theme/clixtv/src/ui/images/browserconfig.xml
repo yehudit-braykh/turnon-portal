@@ -2,7 +2,7 @@
 <browserconfig>
     <msapplication>
         <tile>
-            <square150x150logo src="assets/theme/clixtv/dist/images/mstile-150x150.png"/>
+            <square150x150logo src="https://advncedcdn.vo.llnwd.net/clixtv_prod_storage/static/mstile-150x150.png"/>
             <TileColor>#da532c</TileColor>
         </tile>
     </msapplication>

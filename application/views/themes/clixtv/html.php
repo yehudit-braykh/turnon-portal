@@ -7,13 +7,13 @@
         <meta http-equiv="Expires" content="31536000" />
         <meta http-equiv="Cache-Control" content="max-age=31536000" />
 
-        <link rel="apple-touch-icon" sizes="180x180" href="assets/theme/clixtv/dist/images/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="assets/theme/clixtv/dist/images/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="assets/theme/clixtv/dist/images/favicon-16x16.png">
-        <link rel="manifest" href="assets/theme/clixtv/dist/images/manifest.json">
-        <link rel="mask-icon" href="assets/theme/clixtv/dist/images/safari-pinned-tab.svg" color="#5bbad5">
-        <link rel="shortcut icon" href="assets/theme/clixtv/dist/images/favicon.ico">
-        <meta name="msapplication-config" content="assets/theme/clixtv/dist/images/browserconfig.xml">
+        <link rel="apple-touch-icon" sizes="180x180" href="https://advncedcdn.vo.llnwd.net/clixtv_prod_storage/static/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="https://advncedcdn.vo.llnwd.net/clixtv_prod_storage/static/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="https://advncedcdn.vo.llnwd.net/clixtv_prod_storage/static/favicon-16x16.png">
+        <link rel="manifest" href="https://advncedcdn.vo.llnwd.net/clixtv_prod_storage/static/manifest.json">
+        <link rel="mask-icon" href="https://advncedcdn.vo.llnwd.net/clixtv_prod_storage/static/safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="shortcut icon" href="https://advncedcdn.vo.llnwd.net/clixtv_prod_storage/static/favicon.ico">
+        <meta name="msapplication-config" content="https://advncedcdn.vo.llnwd.net/clixtv_prod_storage/static/browserconfig.xml">
         <meta name="theme-color" content="#ffffff">
         <meta name="description" content="<?php echo $item_description; ?>">
         <meta name="keywords" content="website, business, store" />

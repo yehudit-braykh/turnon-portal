@@ -12802,14 +12802,14 @@ button.close {
   margin: 20px auto;
 }
 .clix-about-page .header-container {
-  background-image: url('/assets/theme/clixtv/dist/images/about-us-banner.jpg');
+  background-image: url('https://advncedcdn.vo.llnwd.net/clixtv_prod_storage/static/about-us-banner.jpg');
   background-size: cover;
   background-position: bottom center;
   background-repeat: no-repeat;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .clix-about-page .header-container {
-    background-image: url('/assets/theme/clixtv/dist/images/about-us-banner@2x.jpg');
+    background-image: url('https://advncedcdn.vo.llnwd.net/clixtv_prod_storage/static/about-us-banner@2x.jpg');
   }
 }
 @media (min-width: 768px) {
@@ -12875,14 +12875,14 @@ button.close {
 }
 .clix-about-page .body-container {
   padding-top: 53px;
-  background-image: url('/assets/theme/clixtv/dist/images/about-us-devices-banner.jpg');
+  background-image: url('https://advncedcdn.vo.llnwd.net/clixtv_prod_storage/static/about-us-devices-banner.jpg');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .clix-about-page .body-container {
-    background-image: url('/assets/theme/clixtv/dist/images/about-us-devices-banner@2x.jpg');
+    background-image: url('https://advncedcdn.vo.llnwd.net/clixtv_prod_storage/static/about-us-devices-banner@2x.jpg');
   }
 }
 .clix-about-page .body-container .about-header {
@@ -12918,14 +12918,14 @@ button.close {
 .clix-about-page .footer-container {
   margin-top: 77px;
   padding-bottom: 100px;
-  background-image: url('/assets/theme/clixtv/dist/images/about-us-footer-banner.png');
+  background-image: url('https://advncedcdn.vo.llnwd.net/clixtv_prod_storage/static/about-us-footer-banner.png');
   background-size: contain;
   background-position: bottom center;
   background-repeat: no-repeat;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .clix-about-page .footer-container {
-    background-image: url('/assets/theme/clixtv/dist/images/about-us-footer-banner@2x.png');
+    background-image: url('https://advncedcdn.vo.llnwd.net/clixtv_prod_storage/static/about-us-footer-banner@2x.png');
   }
 }
 @media (min-width: 768px) {
@@ -17081,7 +17081,7 @@ button.close {
   -moz-animation: infinite-spinning 1s infinite linear;
   -ms-animation: infinite-spinning 1s infinite linear;
   margin: 0 auto;
-  background-image: url('/assets/theme/clixtv/dist/images/clix-spinner.png');
+  background-image: url('https://advncedcdn.vo.llnwd.net/clixtv_prod_storage/static/clix-spinner.png');
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;

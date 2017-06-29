@@ -48,7 +48,7 @@
             ></a>
             <div class="video-play-button">
                 <a ui-sref="video({ slug: '{{video.seriesTitle + ' ' + video.title | slug}}' })">
-                    <img src="/assets/theme/clixtv/dist/images/gradient-clix-player-icon.svg" />
+                    <img ng-src="{{$root.clixConfig.baseImageUrl}}/gradient-clix-player-icon.svg" />
                 </a>
             </div>
         </div>

@@ -4,7 +4,7 @@
             return {
                 restrict: 'AE',
                 replace: true,
-                template: '<img class="clix-placeholder" src="/assets/theme/clixtv/dist/images/clixtv-loader-logo.svg" />'
+                template: '<img class="clix-placeholder" ng-src="{{$root.clixConfig.baseImageUrl}}/clixtv-loader-logo.svg" />'
             }
         }
     ];
