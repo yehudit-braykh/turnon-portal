@@ -111,6 +111,6 @@ $autoload['language'] = array();
 
 $autoload['model'] = array('uvod_model');
 
-
+require_once "./vendor/autoload.php";
 /* End of file autoload.php */
 /* Location: ./application/config/autoload.php */

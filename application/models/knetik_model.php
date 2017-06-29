@@ -502,7 +502,7 @@ class Knetik_model extends CI_Model {
 
     }
 
-    private function deduct_wallet_points($id, $wallet_code, $points){
+    public function deduct_wallet_points($id, $wallet_code, $points){
 
         $balance = $this->get_wallet_balance($id,$wallet_code);
         // debug($id, $wallet_code, $points, $balance);
