@@ -38,7 +38,8 @@ class Tango_model extends CI_Model {
             if($customer && $account){
                 if($catalogItem = $this->getCatalogItem($item)){
                     $value = $points * $this->conversionRate;
-                    $balance = $this->knetik_model->balance();
+
+                    $balance = $this->knetik_model->balance()["balance"];
 
                     if($points > $balance)
                         return array("code" => 2, "message" => "no Sufficient Points Balance, current balance is:".$balance." points");

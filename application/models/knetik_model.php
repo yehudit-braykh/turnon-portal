@@ -1,7 +1,5 @@
 <?php
 
-
-
 class Knetik_model extends CI_Model {
 
     public function __construct() {
@@ -25,7 +23,7 @@ class Knetik_model extends CI_Model {
         $token = $this->session->userdata("login_token");
 
 		if(!$id || !$token){
-			return ;
+			return array("code" => 1, "message" => "no Logged in User");
 		}
 
         $profile = $this->account_model->get_profile($token, $id);
@@ -36,17 +34,22 @@ class Knetik_model extends CI_Model {
                 $knetikId = $profile->knetikId;
             else
                 $knetikId = $this->link_user($profile);
-
-            $balance = $this->get('users/'.$knetikId.'/wallets/PTS', $token);
-            //debug($balance);
-            if($balance["error"] == "invalid_token"){
-                $token = $this->authenticate(true);
+            try {
                 $balance = $this->get('users/'.$knetikId.'/wallets/PTS', $token);
+                //debug($balance);
+                if($balance["error"] == "invalid_token"){
+                    $token = $this->authenticate(true);
+                    $balance = $this->get('users/'.$knetikId.'/wallets/PTS', $token);
+                }
+
+                return array( "code" => 0 , "balance" => $balance["balance"]);
+            } catch (Exeption $e){
+                return array("code" => 1, "message" => "cannot get balance", "response" => $e);
             }
 
-            return $balance["balance"];
+        } else {
+            return array("code" => 1, "message" => "cannot get user Profile");
         }
-        return false;
     }
 
     public function activity(){
