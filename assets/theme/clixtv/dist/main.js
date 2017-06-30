@@ -245,8 +245,7 @@
 
                 $rootScope.$on('user.login', function(event, data) {
                     if (data && (data.id || data._id)) {
-                        catchMediaService.setUser(data.email, 'default', data);
-                        analyticsService.identify((data.id || data._id), {
+                        var user = {
                             email: data.email,
                             avatar: data.avatar,
                             birthdate: data.birthdate,
@@ -261,7 +260,9 @@
                             enableEmailNotifications: data.enableEmailNotifications,
                             enablePushNotifications: data.enablePushNotifications,
                             enableTextNotifications: data.enableTextNotifications
-                        });
+                        };
+                        catchMediaService.setUser(data.email, 'default', user);
+                        analyticsService.identify((data.id || data._id), user);
                     }
                 });
 
