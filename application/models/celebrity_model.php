@@ -11,7 +11,7 @@ class Celebrity_model extends Uvod_Model {
 		$parameters[] = "page=".$page;
 		$parameters[] = "size=".$page_size;
 		if($sort_field)
-			$parameters[] = 'sort='.$sort_field.':'.($descending?"-1":"1");
+			$parameters[] = 'sort='.$sort_field.':'.($descending=='true'?"-1":"1");
 		else
 			$parameters[] = 'sort=title:1';
 

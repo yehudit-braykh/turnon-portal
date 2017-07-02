@@ -50,7 +50,7 @@ class Brands_model extends Uvod_model {
 		$parameters[] = "page=".$page;
 		$parameters[] = "size=".$page_size;
 		if($sort_field)
-			$parameters[] = 'sort='.$sort_field.':'.($descending?"-1":"1");
+			$parameters[] = 'sort='.$sort_field.':'.($descending=='true'?"-1":"1");
 		else
 			$parameters[] = 'sort=title:1';
 		if($keyword)
@@ -85,7 +85,7 @@ class Brands_model extends Uvod_model {
 		$parameters[] = "page=".$page;
 		$parameters[] = "size=".$page_size;
 		if($sort_field)
-			$parameters[] = 'sort='.$sort_field.':'.($descending?"-1":"1");
+			$parameters[] = 'sort='.$sort_field.':'.($descending=='true'?"-1":"1");
 		else
 			$parameters[] = 'sort=expirationDate:-1';
 		if($keyword)
@@ -123,7 +123,7 @@ class Brands_model extends Uvod_model {
 		$parameters[] = "page=".$page;
 		$parameters[] = "size=".$page_size;
 		if($sort_field)
-			$parameters[] = 'sort='.$sort_field.':'.($descending?"-1":"1");
+			$parameters[] = 'sort='.$sort_field.':'.($descending=='true'?"-1":"1");
 		else
 			$parameters[] = 'sort=title:1';
 

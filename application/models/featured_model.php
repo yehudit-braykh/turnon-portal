@@ -71,8 +71,8 @@ class Featured_model extends Uvod_model {
 		$parameters[] = "fields=_id,title,description,content.downloadUrl,content.assetTypes";
 
 		if($sort_field)
-			$parameters[] = 'sort='.$sort_field.':'.($descending?"-1":"1");
-		
+			$parameters[] = 'sort='.$sort_field.':'.($descending=='true'?"-1":"1");
+
 
 		if($keyword)
 			$parameters[] = 'byKeywords='.$keyword;
