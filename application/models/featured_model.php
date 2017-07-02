@@ -67,17 +67,17 @@ class Featured_model extends Uvod_model {
 		$parameters[] = "page=".$page;
 		$parameters[] = "size=".$page_size;
 
-		$parameters = array();
+
 		$parameters[] = "fields=_id,title,description,content.downloadUrl,content.assetTypes";
 
 		if($sort_field)
 			$parameters[] = 'sort='.$sort_field.':'.($descending?"-1":"1");
+		
 
 		if($keyword)
 			$parameters[] = 'byKeywords='.$keyword;
 		if ($this->fastcache_model->get_cache("get_videos".$page."size".$page_size."order".$descending."keyword".$keyword))
 			return $this->fastcache_model->get_cache("get_videos".$page."size".$page_size."order".$descending."keyword".$keyword);
-
 		$data =  $this->rows($this->apiCall('featuredVideo', $parameters, $parameters)->entries);
 
 		$this->fastcache_model->set_cache("get_videos".$page."size".$page_size."order".$descending."keyword".$keyword,$data);
