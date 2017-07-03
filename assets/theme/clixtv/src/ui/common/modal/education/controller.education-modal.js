@@ -53,6 +53,7 @@
                         title = (isLoggedIn) ? 'Earn Rewards!' : 'Earn Reward Points!';
                         break;
 
+                    case 'anonymous-liked-video':
                     case 'signup-offer':
                         title = 'Sign Up Now';
                         break;
@@ -91,6 +92,7 @@
                     case 'offer':
                         return offersService.getOfferById(id);
 
+                    case 'anonymous-liked-video':
                     case 'signup-offer':
                         return $q.when();
                 }

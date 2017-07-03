@@ -64,6 +64,10 @@
 
                 showNotificationsComingSoonModal: function() {
                     _launchEducationModal('notifications-coming-soon');
+                },
+
+                showAnonymousLikedVideo: function() {
+                    _launchEducationModal('anonymous-liked-video');
                 }
             }
         }

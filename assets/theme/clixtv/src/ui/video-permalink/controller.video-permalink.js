@@ -13,8 +13,9 @@
         'userService',
         'catchMediaService',
         'knetikService',
+        'educationModalService',
         'clixConfig',
-        function($q, $scope, $rootScope, $timeout, $window, $filter, $stateParams, videosService, celebrityService, userService, catchMediaService, knetikService, clixConfig) {
+        function($q, $scope, $rootScope, $timeout, $window, $filter, $stateParams, videosService, celebrityService, userService, catchMediaService, knetikService, educationModalService, clixConfig) {
 
             $scope.isMobile = ($window.innerWidth <= 800);
             $scope.expanded = false;
@@ -70,10 +71,19 @@
             $rootScope.$on('user.login', function(event, data) {
                 $scope.loggedInUser = data;
                 _resetPageState();
+                if ($scope.video) {
+                    catchMediaService.getMediaTags($scope.video.id, 'episode')
+                        .then(
+                            function onSuccess(data) {
+                                $scope.episodeLiked = data[0].tags.like.value || false;
+                            }
+                        )
+                }
             });
 
             $rootScope.$on('user.logout', function(event, data) {
                 $scope.loggedInUser = undefined;
+                $scope.episodeLiked = false;
                 _resetPageState();
             });
 
@@ -108,8 +118,12 @@
                     function onSuccess(data) {
                         $scope.relatedVideos = data[0];
                         $scope.series = data[1];
-                        $scope.episodeLiked = data[2][0].tags.like.value;
-                        $scope.totalEpisodeLikes = parseInt(data[2][0].tags.like.totals[0].count);
+                        $scope.episodeLiked = data[2][0].tags.like.value || false;
+                        if (data[2][0].tags.like.totals.length === 0) {
+                            $scope.totalEpisodeLikes = 0;
+                        } else {
+                            $scope.totalEpisodeLikes = parseInt(data[2][0].tags.like.totals[0].count);
+                        }
                         _getNextVideo();
                     }
                 );
@@ -176,6 +190,10 @@
             };
 
             $scope.onLikeVideoPress = function() {
+                if (!$scope.loggedInUser) {
+                    educationModalService.showAnonymousLikedVideo();
+                    return;
+                }
                 // catchMediaService.trackAppEvent('like', {
                 //     target_cm: 'media',
                 //     target_type: 'episode',

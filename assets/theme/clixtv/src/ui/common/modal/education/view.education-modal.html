@@ -138,6 +138,11 @@
                 Go ahead and set things up, that way you’ll be ready once we have notifications up and running!
             </div>
 
+            <div ng-switch-when="anonymous-liked-video">
+                <div class="education-modal-icon" clix-error-indicator-icon></div>
+                You need to have an account with us to like episodes! Sign up for a free account!
+            </div>
+
         </div>
         <div class="row education-modal-footer">
 
@@ -151,6 +156,9 @@
                             <div ng-switch-when="signup-offer">
                                 <!-- Empty... -->
                             </div>
+                            <div ng-switch-when="anonymous-liked-video">
+                                <!-- Empty... -->
+                            </div>
                             <div ng-switch-default>
                                 <clix-checkbox ng-model="showAgainModel" on-checkbox-change="onShowAgainChange(showAgainModel)" label-text="{{type === 'notifications-coming-soon' ? 'Don\'t show this again' : 'Don\'t show this type again'}}"></clix-checkbox>
                             </div>
@@ -162,6 +170,9 @@
                                 <!-- Empty... -->
                             </div>
                             <div ng-switch-when="signup-offer">
+                                <!-- Empty... -->
+                            </div>
+                            <div ng-switch-when="anonymous-liked-video">
                                 <!-- Empty... -->
                             </div>
                             <div ng-switch-when="offer-view">
