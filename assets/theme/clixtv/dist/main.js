@@ -877,7 +877,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/video-permalink/view.video-permalink.html',
-    "<div ng-if=!ready><clix-loader size=large></clix-loader></div><div class=video-permalink-page ng-if=ready><div class=row><div class=\"col-md-7 col-lg-8 video-player-column-container\"><div class=video-player-container><div class=video-player ng-class=\"{'next-video-shown': videoComplete}\"><div id=videoPlayer></div><clix-video-player ng-if=\"video && !isMobile\" video=video auto-play=true video-id=videoPlayer on-ready=onPlayerReady></clix-video-player><clix-video-player ng-if=\"video && isMobile\" video=video auto-play=false video-id=videoPlayer on-ready=onPlayerReady></clix-video-player></div><div class=next-video-overlay-container ng-show=videoComplete ng-if=nextVideo><div class=next-video-container><div class=next-video-label>{{nextVideoIsRelated ? 'Click below to start another popular series!' : 'Click to watch the next video in this series'}}</div><div class=next-video><clix-video-content-callout video=nextVideo></clix-video-content-callout></div></div></div></div><div class=\"visible-sm visible-xs\"><div class=brands-charity-container><div class=brands-container><div class=brands-charity-title><div class=brands-title>Brands in this Series</div><div class=charity-title ng-if=video.charity>Charity</div></div><div class=logo-list-container><a ng-repeat=\"brand in video.brands.brands | limitTo: 4\" ui-sref=\"brand({ slug: '{{brand.title | slug}}' })\" class=brand-logo-link><clix-brand-charity-logo brand=brand></clix-brand-charity-logo></a><div class=brand-logo-link ng-if=video.charity ui-sref=\"charity({ slug: '{{video.charity.title | slug}}' })\"><clix-charity-logo charity=video.charity></clix-charity-logo></div></div></div></div></div><div class=\"star-meta-info row\"><div class=\"col-lg-4 star-name-container\"><div class=star-avatar style=\"background-image: url({{video.celebrity.thumbnail}})\"></div><div class=star-name-favorite-container><div class=star-name>{{video.celebrity.name}}</div></div><div class=favorite-button clix-tooltip-trigger tooltip-id=favorite-button-{{$id}}><clix-favorite-button ng-click=onFavoriteCelebrityPress() is-favorite=isFavoriteCelebrity></clix-favorite-button></div><clix-tooltip tooltip-id=favorite-button-{{$id}}>{{isFavoriteCelebrity ? 'Remove this Star from your Favorites.' : 'Add this Star to your Favorites.'}}</clix-tooltip></div><div class=\"col-lg-8 social-container\"><div class=violator-container clix-tooltip-trigger tooltip-id=reward-points-button-{{$id}}><clix-violator size=large>100 Reward Points</clix-violator></div><clix-tooltip tooltip-id=reward-points-button-{{$id}}><div ng-if=pointsEnabled><clix-is-logged-in><logged-in>You will receive 100 Reward Points for watching this video!</logged-in><not-logged-in>After you sign up, you will receive 100 Reward Points for watching this video! <a clix-learn-more-modal-trigger>Learn More</a>.</not-logged-in></clix-is-logged-in></div><div ng-if=!pointsEnabled>Coming Soon! You will receive Reward Points for watching this video. <a clix-learn-more-modal-trigger>Learn More</a>.</div></clix-tooltip><div class=social-icon-container></div><div class=social-icon-container clix-tooltip-trigger tooltip-id=watchlist-button-{{$id}}><clix-save-button ng-click=onWatchlistPress() is-saved=isOnWatchlist></clix-save-button></div><clix-tooltip tooltip-id=watchlist-button-{{$id}}>{{isOnWatchlist ? 'Remove this video from your Watchlist.' : 'Add this video to your Watchlist.'}}</clix-tooltip><div class=social-icon-container><div clix-tooltip-trigger tooltip-id=share-button-{{$id}}><clix-share-button extra-class=\"social-icon share-icon\" video=video></clix-share-button></div><clix-tooltip tooltip-id=share-button-{{$id}}><div ng-if=pointsEnabled><div ng-if=loggedInUser>You will receive 50 Reward Points for sharing!</div><div ng-if=!loggedInUser>After signing up, you will receive 50 Reward Points for sharing! <a clix-learn-more-modal-trigger>Learn More</a>.</div></div><div ng-if=!pointsEnabled>Coming Soon! You will receive Reward Points for sharing. <a clix-learn-more-modal-trigger>Learn More</a>.</div></clix-tooltip><clix-points-violator>50</clix-points-violator></div></div></div><div class=\"hidden-xs hidden-sm\"><div class=up-next-container><div class=up-next-label>Up Next in This Series</div></div><div ng-if=!series><clix-loader size=small></clix-loader></div><div class=\"row next-video-list\"><div class=\"col-md-6 col-lg-4 next-video\" ng-repeat=\"nextVideo in series.seasons.seasons[0].episodes | orderBy : 'episodeNumber' track by $index\" ng-show=\"nextVideo.id !== video.id\"><clix-video-content-callout video=nextVideo></clix-video-content-callout></div></div></div></div><div class=\"col-md-5 col-lg-4 star-info-column-container\"><div class=about-video-container id=about-video-container><div class=about-video-inner-container id=about-video-inner-container><div class=\"about-video-overlay hidden-xs hidden-sm\" ng-if=!expanded></div><div class=video-info-container><div class=episode-number>Episode {{video.episodeNumber}}:</div><div class=episode-title>{{video.title}}</div><div class=series-title>{{video.series.title}}</div><div class=\"row total-views-available-container\"><div class=\"col-sm-6 total-views\">{{video.views | number}} views</div><div class=\"col-sm-6 available-until\" ng-if=video.expirationDate>Available Until {{video.expirationDate | clixDate: 'long'}}</div></div><div class=description>{{video.description}}</div><div class=meta-data><div class=meta-data-row ng-if=video.categories><span class=meta-data-label>Category: </span><span ng-repeat=\"category in video.categories.categories\"><a ui-sref=\"category({ slug: '{{category.title | slug}}' })\">{{category.title}}</a><span ng-if=!$last>,&nbsp;</span></span></div><div class=meta-data-row ng-if=video.celebrity><span class=meta-data-label>Stars: </span><a ui-sref=\"star({ slug: '{{video.celebrity.name | slug}}' })\">{{video.celebrity.name}}</a></div><div class=meta-data-row ng-if=video.brands><span class=meta-data-label>Brands: </span><span ng-repeat=\"brand in video.brands.brands\"><a ui-sref=\"brand({ slug: '{{brand.title | slug}}' })\">{{brand.title}}</a><span ng-if=!$last>,&nbsp;</span></span></div><div class=meta-data-row ng-if=video.charity><span class=meta-data-label>Charity: </span><a ui-sref=\"charity({ slug: '{{video.charity.title | slug}}' })\">{{video.charity.title}}</a></div></div></div></div><div id=toggle-button-container><div class=\"visibility-toggle-button hidden-xs hidden-sm\" id=toggle-button ng-show=!forceFullHeight><clix-secondary-button ng-click=onExpandToggle()>{{expanded ? 'Show Less' : 'Show More'}}</clix-secondary-button></div><div class=\"brands-charity-container hidden-sm hidden-xs\"><div class=brands-container><div class=brands-charity-title><div class=brands-title>Brands in this Series</div><div class=charity-title ng-if=video.charity>Charity</div></div><div class=logo-list-container><a ng-repeat=\"brand in video.brands.brands | limitTo: 4\" ui-sref=\"brand({ slug: '{{brand.title | slug}}' })\" class=brand-logo-link><clix-brand-charity-logo brand=brand hover-enabled=true></clix-brand-charity-logo></a><div class=brand-logo-link ng-if=video.charity><clix-charity-logo charity=video.charity></clix-charity-logo></div></div></div></div></div></div><div class=\"related-videos-container hidden-sm hidden-xs\"><div class=related-videos-header>Related Videos</div><div class=\"row related-videos-list\"><div ng-if=!relatedVideos><clix-loader size=small></clix-loader></div><div class=\"col-md-6 col-lg-6 related-video\" ng-repeat=\"relatedVideo in relatedVideos.videos | limitTo: 6 track by $index\"><clix-video-content-callout video=relatedVideo minimized=true></clix-video-content-callout></div></div></div></div></div><div class=\"visible-xs visible-sm\"><div class=up-next-container><div class=up-next-label>Up Next in This Series</div></div><div ng-if=!series><clix-loader size=small></clix-loader></div><div class=\"row next-video-list\"><div class=\"col-xs-6 next-video\" ng-repeat=\"nextVideo in series.seasons.seasons[0].episodes | orderBy : 'episodeNumber' track by $index\" ng-show=\"nextVideo.id !== video.id\"><clix-video-content-callout video=nextVideo></clix-video-content-callout></div></div></div><div class=\"related-videos-container visible-sm visible-xs\"><div class=related-videos-header>Related Videos</div><div class=\"row related-videos-list\"><div ng-if=!relatedVideos><clix-loader size=small></clix-loader></div><div class=\"col-xs-6 related-video\" ng-repeat=\"relatedVideo in relatedVideos.videos | limitTo: 6 track by $index\"><clix-video-content-callout video=relatedVideo></clix-video-content-callout></div></div></div></div>"
+    "<div ng-if=!ready><clix-loader size=large></clix-loader></div><div class=video-permalink-page ng-if=ready><div class=row><div class=\"col-md-7 col-lg-8 video-player-column-container\"><div class=video-player-container><div class=video-player ng-class=\"{'next-video-shown': videoComplete}\"><div id=videoPlayer></div><clix-video-player ng-if=\"video && !isMobile\" video=video auto-play=true video-id=videoPlayer on-ready=onPlayerReady></clix-video-player><clix-video-player ng-if=\"video && isMobile\" video=video auto-play=false video-id=videoPlayer on-ready=onPlayerReady></clix-video-player></div><div class=next-video-overlay-container ng-show=videoComplete ng-if=nextVideo><div class=next-video-container><div class=next-video-label>{{nextVideoIsRelated ? 'Click below to start another popular series!' : 'Click to watch the next video in this series'}}</div><div class=next-video><clix-video-content-callout video=nextVideo></clix-video-content-callout></div></div></div></div><div class=\"visible-sm visible-xs\"><div class=brands-charity-container><div class=brands-container><div class=brands-charity-title><div class=brands-title>Brands in this Series</div><div class=charity-title ng-if=video.charity>Charity</div></div><div class=logo-list-container><a ng-repeat=\"brand in video.brands.brands | limitTo: 4\" ui-sref=\"brand({ slug: '{{brand.title | slug}}' })\" class=brand-logo-link><clix-brand-charity-logo brand=brand></clix-brand-charity-logo></a><div class=brand-logo-link ng-if=video.charity ui-sref=\"charity({ slug: '{{video.charity.title | slug}}' })\"><clix-charity-logo charity=video.charity></clix-charity-logo></div></div></div></div></div><div class=\"star-meta-info row\"><div class=\"col-lg-4 star-name-container\"><div class=star-avatar style=\"background-image: url({{video.celebrity.thumbnail}})\"></div><div class=star-name-favorite-container><div class=star-name>{{video.celebrity.name}}</div></div><div class=favorite-button clix-tooltip-trigger tooltip-id=favorite-button-{{$id}}><clix-favorite-button ng-click=onFavoriteCelebrityPress() is-favorite=isFavoriteCelebrity></clix-favorite-button></div><clix-tooltip tooltip-id=favorite-button-{{$id}}>{{isFavoriteCelebrity ? 'Remove this Star from your Favorites.' : 'Add this Star to your Favorites.'}}</clix-tooltip></div><div class=\"col-lg-8 social-container\"><div class=violator-container clix-tooltip-trigger tooltip-id=reward-points-button-{{$id}}><clix-violator size=large>100 Reward Points</clix-violator></div><clix-tooltip tooltip-id=reward-points-button-{{$id}}><div ng-if=pointsEnabled><clix-is-logged-in><logged-in>You will receive 100 Reward Points for watching this video!</logged-in><not-logged-in>After you sign up, you will receive 100 Reward Points for watching this video! <a clix-learn-more-modal-trigger>Learn More</a>.</not-logged-in></clix-is-logged-in></div><div ng-if=!pointsEnabled>Coming Soon! You will receive Reward Points for watching this video. <a clix-learn-more-modal-trigger>Learn More</a>.</div></clix-tooltip><div class=social-icon-container><a class=social-icon ng-class=\"{'icon-icon-favorite-heart-filled' : episodeLiked, 'icon-heart-icon' : !episodeLiked}\" clix-tooltip-trigger tooltip-id=heart-button-{{$id}} ng-click=onLikeVideoPress()></a><clix-tooltip tooltip-id=heart-button-{{$id}}>{{episodeLiked ? 'Video liked!' : 'Like this video!'}}</clix-tooltip><div class=social-icon-label>{{totalEpisodeLikes || '0' | shortNumber}}</div></div><div class=social-icon-container clix-tooltip-trigger tooltip-id=watchlist-button-{{$id}}><clix-save-button ng-click=onWatchlistPress() is-saved=isOnWatchlist></clix-save-button></div><clix-tooltip tooltip-id=watchlist-button-{{$id}}>{{isOnWatchlist ? 'Remove this video from your Watchlist.' : 'Add this video to your Watchlist.'}}</clix-tooltip><div class=social-icon-container><div clix-tooltip-trigger tooltip-id=share-button-{{$id}}><clix-share-button extra-class=\"social-icon share-icon\" video=video></clix-share-button></div><clix-tooltip tooltip-id=share-button-{{$id}}><div ng-if=pointsEnabled><div ng-if=loggedInUser>You will receive 50 Reward Points for sharing!</div><div ng-if=!loggedInUser>After signing up, you will receive 50 Reward Points for sharing! <a clix-learn-more-modal-trigger>Learn More</a>.</div></div><div ng-if=!pointsEnabled>Coming Soon! You will receive Reward Points for sharing. <a clix-learn-more-modal-trigger>Learn More</a>.</div></clix-tooltip><clix-points-violator>50</clix-points-violator></div></div></div><div class=\"hidden-xs hidden-sm\"><div class=up-next-container><div class=up-next-label>Up Next in This Series</div></div><div ng-if=!series><clix-loader size=small></clix-loader></div><div class=\"row next-video-list\"><div class=\"col-md-6 col-lg-4 next-video\" ng-repeat=\"nextVideo in series.seasons.seasons[0].episodes | orderBy : 'episodeNumber' track by $index\" ng-show=\"nextVideo.id !== video.id\"><clix-video-content-callout video=nextVideo></clix-video-content-callout></div></div></div></div><div class=\"col-md-5 col-lg-4 star-info-column-container\"><div class=about-video-container id=about-video-container><div class=about-video-inner-container id=about-video-inner-container><div class=\"about-video-overlay hidden-xs hidden-sm\" ng-if=!expanded></div><div class=video-info-container><div class=episode-number>Episode {{video.episodeNumber}}:</div><div class=episode-title>{{video.title}}</div><div class=series-title>{{video.series.title}}</div><div class=\"row total-views-available-container\"><div class=\"col-sm-6 total-views\">{{video.views | number}} views</div><div class=\"col-sm-6 available-until\" ng-if=video.expirationDate>Available Until {{video.expirationDate | clixDate: 'long'}}</div></div><div class=description>{{video.description}}</div><div class=meta-data><div class=meta-data-row ng-if=video.categories><span class=meta-data-label>Category: </span><span ng-repeat=\"category in video.categories.categories\"><a ui-sref=\"category({ slug: '{{category.title | slug}}' })\">{{category.title}}</a><span ng-if=!$last>,&nbsp;</span></span></div><div class=meta-data-row ng-if=video.celebrity><span class=meta-data-label>Stars: </span><a ui-sref=\"star({ slug: '{{video.celebrity.name | slug}}' })\">{{video.celebrity.name}}</a></div><div class=meta-data-row ng-if=video.brands><span class=meta-data-label>Brands: </span><span ng-repeat=\"brand in video.brands.brands\"><a ui-sref=\"brand({ slug: '{{brand.title | slug}}' })\">{{brand.title}}</a><span ng-if=!$last>,&nbsp;</span></span></div><div class=meta-data-row ng-if=video.charity><span class=meta-data-label>Charity: </span><a ui-sref=\"charity({ slug: '{{video.charity.title | slug}}' })\">{{video.charity.title}}</a></div></div></div></div><div id=toggle-button-container><div class=\"visibility-toggle-button hidden-xs hidden-sm\" id=toggle-button ng-show=!forceFullHeight><clix-secondary-button ng-click=onExpandToggle()>{{expanded ? 'Show Less' : 'Show More'}}</clix-secondary-button></div><div class=\"brands-charity-container hidden-sm hidden-xs\"><div class=brands-container><div class=brands-charity-title><div class=brands-title>Brands in this Series</div><div class=charity-title ng-if=video.charity>Charity</div></div><div class=logo-list-container><a ng-repeat=\"brand in video.brands.brands | limitTo: 4\" ui-sref=\"brand({ slug: '{{brand.title | slug}}' })\" class=brand-logo-link><clix-brand-charity-logo brand=brand hover-enabled=true></clix-brand-charity-logo></a><div class=brand-logo-link ng-if=video.charity><clix-charity-logo charity=video.charity></clix-charity-logo></div></div></div></div></div></div><div class=\"related-videos-container hidden-sm hidden-xs\"><div class=related-videos-header>Related Videos</div><div class=\"row related-videos-list\"><div ng-if=!relatedVideos><clix-loader size=small></clix-loader></div><div class=\"col-md-6 col-lg-6 related-video\" ng-repeat=\"relatedVideo in relatedVideos.videos | limitTo: 6 track by $index\"><clix-video-content-callout video=relatedVideo minimized=true></clix-video-content-callout></div></div></div></div></div><div class=\"visible-xs visible-sm\"><div class=up-next-container><div class=up-next-label>Up Next in This Series</div></div><div ng-if=!series><clix-loader size=small></clix-loader></div><div class=\"row next-video-list\"><div class=\"col-xs-6 next-video\" ng-repeat=\"nextVideo in series.seasons.seasons[0].episodes | orderBy : 'episodeNumber' track by $index\" ng-show=\"nextVideo.id !== video.id\"><clix-video-content-callout video=nextVideo></clix-video-content-callout></div></div></div><div class=\"related-videos-container visible-sm visible-xs\"><div class=related-videos-header>Related Videos</div><div class=\"row related-videos-list\"><div ng-if=!relatedVideos><clix-loader size=small></clix-loader></div><div class=\"col-xs-6 related-video\" ng-repeat=\"relatedVideo in relatedVideos.videos | limitTo: 6 track by $index\"><clix-video-content-callout video=relatedVideo></clix-video-content-callout></div></div></div></div>"
   );
 
 
@@ -8543,12 +8543,14 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                         $scope.loggedInUser = data[0];
                         $scope.video = data[1];
                         $scope.ready = true;
+
                         _resetPageState();
 
                         return $q.all(
                             [
                                 videosService.getRelatedVideos($scope.video.id),
-                                videosService.getSeriesById($scope.video.series.id)
+                                videosService.getSeriesById($scope.video.series.id),
+                                catchMediaService.getMediaTags($scope.video.id, 'episode')
                             ]
                         );
                     }
@@ -8557,6 +8559,8 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     function onSuccess(data) {
                         $scope.relatedVideos = data[0];
                         $scope.series = data[1];
+                        $scope.episodeLiked = data[2][0].tags.like.value;
+                        $scope.totalEpisodeLikes = parseInt(data[2][0].tags.like.totals[0].count);
                         _getNextVideo();
                     }
                 );
@@ -8623,13 +8627,20 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
             };
 
             $scope.onLikeVideoPress = function() {
-                catchMediaService.trackAppEvent('like', {
-                    target_cm: 'media',
-                    target_type: 'episode',
-                    target_id: $scope.video.id
-                });
-
-                // videosService.addVideoLike($scope.video.id);
+                // catchMediaService.trackAppEvent('like', {
+                //     target_cm: 'media',
+                //     target_type: 'episode',
+                //     target_id: $scope.video.id
+                // });
+                if ($scope.episodeLiked) {
+                    catchMediaService.removeEpisodeLike($scope.video.id);
+                    $scope.totalEpisodeLikes -= 1;
+                    $scope.episodeLiked = false;
+                } else {
+                    catchMediaService.addEpisodeLike($scope.video.id);
+                    $scope.totalEpisodeLikes += 1;
+                    $scope.episodeLiked = true;
+                }
             };
         }
     ];
@@ -9838,9 +9849,10 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 (function() {
 
     var catchMediaService = [
+        '$q',
         '$http',
         '$log',
-        function($http, $log) {
+        function($q, $http, $log) {
 
             var instance;
 
@@ -9949,6 +9961,30 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
                 trackMediaEvent: function(id, contentType, eventType, data) {
                     _reportMediaEvent(id, contentType, eventType, data);
+                },
+
+                getMediaTags: function(id, type) {
+                    var deferred = $q.defer();
+                    if (instance) {
+                        instance.readAllMediaTags(id, type, function (result) {
+                            deferred.resolve(result);
+                        });
+                    } else {
+                        deferred.reject('CatchMedia service unavailable');
+                    }
+                    return deferred.promise;
+                },
+
+                addEpisodeLike: function(id) {
+                    if (instance) {
+                        instance.createMediaTag(id, 'episode', 'like', 1);
+                    }
+                },
+
+                removeEpisodeLike: function(id) {
+                    if (instance) {
+                        instance.deleteMediaTag(id, 'episode', 'like');
+                    }
                 }
             }
         }
@@ -11384,6 +11420,51 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
     angular
         .module('clixtv')
         .filter('clixNewLineBreak', newLineBreakFilter);
+}());
+(function() {
+
+    var shortNumberFilter = [
+        function() {
+            return function (number, fractionSize) {
+                if(number === null) return null;
+                if(number === 0) return "0";
+
+                if(!fractionSize || fractionSize < 0)
+                    fractionSize = 1;
+
+                var abs = Math.abs(number);
+                var rounder = Math.pow(10,fractionSize);
+                var isNegative = number < 0;
+                var key = '';
+                var powers = [
+                    {key: "Q", value: Math.pow(10,15)},
+                    {key: "T", value: Math.pow(10,12)},
+                    {key: "B", value: Math.pow(10,9)},
+                    {key: "M", value: Math.pow(10,6)},
+                    {key: "K", value: 1000}
+                ];
+
+                for(var i = 0; i < powers.length; i++) {
+
+                    var reduced = abs / powers[i].value;
+
+                    reduced = Math.round(reduced * rounder) / rounder;
+
+                    if(reduced >= 1){
+                        abs = reduced;
+                        key = powers[i].key;
+                        break;
+                    }
+                }
+
+                return (isNegative ? '-' : '') + abs + key;
+            }
+        }
+    ];
+
+    angular
+        .module('clixtv')
+        .filter('shortNumber', shortNumberFilter);
 }());
 (function() {
 

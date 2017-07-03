@@ -92,12 +92,14 @@
                         $scope.loggedInUser = data[0];
                         $scope.video = data[1];
                         $scope.ready = true;
+
                         _resetPageState();
 
                         return $q.all(
                             [
                                 videosService.getRelatedVideos($scope.video.id),
-                                videosService.getSeriesById($scope.video.series.id)
+                                videosService.getSeriesById($scope.video.series.id),
+                                catchMediaService.getMediaTags($scope.video.id, 'episode')
                             ]
                         );
                     }
@@ -106,6 +108,8 @@
                     function onSuccess(data) {
                         $scope.relatedVideos = data[0];
                         $scope.series = data[1];
+                        $scope.episodeLiked = data[2][0].tags.like.value;
+                        $scope.totalEpisodeLikes = parseInt(data[2][0].tags.like.totals[0].count);
                         _getNextVideo();
                     }
                 );
@@ -172,13 +176,20 @@
             };
 
             $scope.onLikeVideoPress = function() {
-                catchMediaService.trackAppEvent('like', {
-                    target_cm: 'media',
-                    target_type: 'episode',
-                    target_id: $scope.video.id
-                });
-
-                // videosService.addVideoLike($scope.video.id);
+                // catchMediaService.trackAppEvent('like', {
+                //     target_cm: 'media',
+                //     target_type: 'episode',
+                //     target_id: $scope.video.id
+                // });
+                if ($scope.episodeLiked) {
+                    catchMediaService.removeEpisodeLike($scope.video.id);
+                    $scope.totalEpisodeLikes -= 1;
+                    $scope.episodeLiked = false;
+                } else {
+                    catchMediaService.addEpisodeLike($scope.video.id);
+                    $scope.totalEpisodeLikes += 1;
+                    $scope.episodeLiked = true;
+                }
             };
         }
     ];

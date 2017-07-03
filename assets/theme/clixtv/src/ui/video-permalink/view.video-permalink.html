@@ -80,15 +80,13 @@
                     </clix-tooltip>
 
                     <div class="social-icon-container">
-                        <!--
-                        <a class="social-icon icon-heart-icon" clix-tooltip-trigger tooltip-id="heart-button-{{$id}}" ng-click="onLikeVideoPress()"></a>
+                        <a class="social-icon" ng-class="{'icon-icon-favorite-heart-filled' : episodeLiked, 'icon-heart-icon' : !episodeLiked}" clix-tooltip-trigger tooltip-id="heart-button-{{$id}}" ng-click="onLikeVideoPress()"></a>
                         <clix-tooltip tooltip-id="heart-button-{{$id}}">
-                            Like this video!
+                            {{episodeLiked ? 'Video liked!' : 'Like this video!'}}
                         </clix-tooltip>
                         <div class="social-icon-label">
-                            256K
+                            {{totalEpisodeLikes || '0' | shortNumber}}
                         </div>
-                        -->
                     </div>
                     <div class="social-icon-container" clix-tooltip-trigger tooltip-id="watchlist-button-{{$id}}">
                         <clix-save-button ng-click="onWatchlistPress()" is-saved="isOnWatchlist"></clix-save-button>

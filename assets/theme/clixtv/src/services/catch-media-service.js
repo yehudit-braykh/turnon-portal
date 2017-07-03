@@ -1,9 +1,10 @@
 (function() {
 
     var catchMediaService = [
+        '$q',
         '$http',
         '$log',
-        function($http, $log) {
+        function($q, $http, $log) {
 
             var instance;
 
@@ -112,6 +113,30 @@
 
                 trackMediaEvent: function(id, contentType, eventType, data) {
                     _reportMediaEvent(id, contentType, eventType, data);
+                },
+
+                getMediaTags: function(id, type) {
+                    var deferred = $q.defer();
+                    if (instance) {
+                        instance.readAllMediaTags(id, type, function (result) {
+                            deferred.resolve(result);
+                        });
+                    } else {
+                        deferred.reject('CatchMedia service unavailable');
+                    }
+                    return deferred.promise;
+                },
+
+                addEpisodeLike: function(id) {
+                    if (instance) {
+                        instance.createMediaTag(id, 'episode', 'like', 1);
+                    }
+                },
+
+                removeEpisodeLike: function(id) {
+                    if (instance) {
+                        instance.deleteMediaTag(id, 'episode', 'like');
+                    }
                 }
             }
         }
