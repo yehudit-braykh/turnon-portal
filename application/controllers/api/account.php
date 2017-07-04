@@ -24,9 +24,12 @@ class Account extends REST_Controller{
 
 	function get_current_get(){
 		$profile_id = $this->session->userdata('profile_id');
-		$token= $this->session->userdata('login_token');
+		$token = $this->session->userdata('login_token');
+		$loginType= $this->session->userdata('login_type');
 		if($profile_id && $token)
 			$profile = $this->account_model->get_profile($token, $profile_id);
+		if($profile)
+			$profile->loginType = $loginType?$loginType:null;
 		// debug($token, $profile_id);
 		$this->response($profile, 200);
 	}

@@ -18,6 +18,10 @@ class Account_model extends Uvod_model {
 			$this->session->set_userdata('login_token', $data->token);
             $user_profile = $this->get_profile($data->token, $data->_id);
             $this->session->set_userdata('profile_id', $user_profile->_id);
+            $this->session->set_userdata('login_type', "Email");
+
+            if($user_profile)
+                $user_profile->loginType = "Email";
             return $user_profile;
         }
         return $data;
@@ -29,6 +33,8 @@ class Account_model extends Uvod_model {
         if(!$fbLogin){// Facbook Id not in DB try Registering with Email, RandPass and FBID
             return $this->link_facebook($profile, $provider);
         }
+        $this->session->set_userdata('login_type', $provider);
+        $user_profile->loginType = $provider;
         return $fbLogin;
     }
 
