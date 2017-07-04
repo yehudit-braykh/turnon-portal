@@ -15,8 +15,10 @@
         <!-- ANGULAR FILES -->
         <script src="assets/js/frameworks/angular.min.js"></script>
         <script src="assets/js/frameworks/angular-route.min.js"></script>
-
         <script src="assets/js/main.js"></script>
+        <script src="assets/js/frameworks/angular-animate.min.js"></script>
+
+
 
        <!-- ANGULAR CONTOLLERS -->
        <script src="assets/js/controllers/pages/home.js"></script>
@@ -57,6 +59,11 @@
         <!-- ANGULAR DIRECTIVES -->
         <script src="assets/js/directives/vtt-carousel.js"></script>
         <script src="assets/js/directives/jwplayer.js"></script>
+        <script src="assets/js/directives/Carousel.js"></script>
+        <script src="assets/js/directives/videosdir.js"></script>
+        <script src="assets/js/directives/moviedir.js"></script>
+        <script src="assets/js/directives/featurdir.js"></script>
+        <script src="assets/js/directives/karaokedir.js"></script>
 
         <!-- END ANGULAR -->
         <link rel="stylesheet" type="text/css" href="assets/css/less.php" />

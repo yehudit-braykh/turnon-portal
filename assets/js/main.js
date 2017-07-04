@@ -1,5 +1,5 @@
 'use strict';
-var vttApp = angular.module('vtt', ['ngRoute'])
+var vttApp = angular.module('vtt', ['ngRoute','ngAnimate'])
 .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
 }]);

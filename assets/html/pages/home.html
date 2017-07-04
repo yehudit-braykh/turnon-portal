@@ -1,133 +1,59 @@
-<div class="home-page">
-    <div class="home-header">
-        <div id="myCarousel" class="homeCarousel carousel slide " data-ride="carousel">
 
-            <ol class="carousel-indicators hidden-xs">
-                <li data-target="#myCarousel" data-slide-to="{{$index}}" class="{{$first?'active':''}}" ng-repeat="slide in slider track by $index"></li>
-            </ol>
-            <div class="carousel-inner" role="listbox">
-                <div class="item {{$index==0?'active':''}}" ng-repeat="slide in slider track by $index">
-                    <div class="item-content left-slide pr"  style="background-image:url('{{slide.PosterH.url}}')">
-                        <div class="info pa">
-                            <div class="header-text">
-                                {{slide.title}}
-                            </div>
-                            <div class="span-text hidden-xs">
-                                {{slide.description}}
-                            </div>
-                            <div class="span-text">
-                                <button type="button" class="btn btn-primary"><h2>VIVE Ahora</h2></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-      </div>
-    </div>
-    <div class="home-content">
-        <div class="row section-title">
-            <div class="col-xs-10">
-                <h1>Mi Lista</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="row-content carousel-videos my-list">
-                <vtt-carousel data-model="featuredVideos" data-subscription="true" mylist="true"></vtt-carousel>
-            </div>
-        </div>
-        <div class="row section-title">
-            <div class="col-sm-2 col-xs-4">
-                <h1>Videos</h1>
-            </div>
-            <div class="watch-more col-sm-4 col-xs-8">
-                <a ng-click="go('Videos')"><h2>Ver Mas Categorías</h2></a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="row-title container">Trending </div>
-            <div class="row-content carousel-videos">
-                <vtt-carousel data-model="videos" data-subscription="true"></vtt-carousel>
-            </div>
-        </div>
-        <div class="row">
-            <div class="row-title container">Notocias</div>
-            <div class="row-content carousel-videos">
-                <vtt-carousel data-model="featuredVideos" data-subscription="true"></vtt-carousel>
-            </div>
-        </div>
-        <div class="row">
-            <div class="row-title container">Salud</div>
-            <div class="row-content carousel-videos">
-                <vtt-Carousel data-model="videos" data-subscription="true"></vtt-carousel>
-            </div>
-        </div>
-        <div class="row">
-            <div class="row-title container">Mujer</div>
-            <div class="row-content carousel-videos">
-                <vtt-carousel data-model="featuredVideos" data-subscription="true"></vtt-carousel>
-            </div>
-        </div>
-        <div class="row">
-            <div class="row-title container">Deporters</div>
-            <div class="row-content carousel-videos">
-                <vtt-carousel data-model="videos" data-subscription="true"></vtt-carousel>
-            </div>
-        </div>
+<div class="home-page ">
+    <div class="backgroundImage">
+        <mycarousel  images="images">
+       </mycarousel>
+</div>
 
-        <div class="row section-title">
-            <div class="col-sm-6 col-xs-8">
-                <h1>Canales Envivo</h1>
-            </div>
-        </div>
 
-        <div class="row live-channels {{moreChannels?'move-down':''}}" >
-            <div class="channels-top">
-                <div class="channels" ng-repeat="channel in channels | limitTo:canalsToShow" ng-click="go('')">
-                    <div class="channel" style="background-image:url({{channel.PosterH.url}})">
+    <div class="container-vive">
+        <div class="main-video">
+            <div class="left-tabs" >
+                 <ul class="nav">
+<!-- {{mystring='video' ? 'available' : 'oh no, you don't have classit'} -->
+                    <li ng-click="limit('videos',9)"  class="{{changeclass=='videos'?'changeliclass': ''}}" ><a class="{{changeclass=='videos'?'changeaclass': ''}}" data-toggle="tab"> Videos </a></li>
+                    <li ng-click="limit('movies',10)"  class="{{changeclass=='movies'?'changeliclass': ''}}"><a class="{{changeclass=='movies'?'changeaclass': ''}}"  data-toggle="tab" >Peliculas</a></li>
+                    <li ng-click="limit('featuredVideos',10)"  class="{{changeclass=='featuredVideos'?'changeliclass': ''}}"><a class="{{changeclass=='featuredVideos'?'changeaclass': ''}}" data-toggle="tab">Programas</a></li>
+                    <li ng-click="limit('karaoke',10)"  class="{{changeclass=='karaoke'?'changeliclass': ''}}"><a class="{{changeclass=='karaoke'?'changeaclass': ''}}"  data-toggle="tab">Karaoke</a></li>
+                </ul>
+            </div>
+         <div class="right-tabs tab-pane active  ">
+
+                <div class=" images">
+                    <div class="showAllVideos">
+                        <a  class="showAllVideosa" href ng-click="incrementLimit()"> Show All</a>
                     </div>
+                    <div ng-repeat="obj in collection | limitTo:videosToShow  track by $index" class="{{changeclass=='videos'?'col-xs-12 col-sm-6 col-md-4 video-box':changeclass=='movies'?' col-xs-12 col-sm-4 col-md-15   movies-box':changeclass=='featuredVideos'?'col-xs-12 col-sm-4 col-md-15  feature-box':'col-xs-12 col-sm-4 col-md-15 karaoke-box'}}  ">
+                        <videosdir ng-if="changeclass=='videos'" video="obj" >
+
+                        </videosdir>
+
+                        <moviedir ng-if="changeclass=='movies'" movie="obj" >
+
+                        </moviedir>
+
+                        <featurdir ng-if="changeclass=='featuredVideos'" featured-video="obj" >
+
+                        </featurdir>
+
+                        <karaokedir ng-if="changeclass=='karaoke'" karaoke="obj" >
+
+                        </karaokedir>
+
+                    </div>
+                </div>
+
+
+         </div>
+        </div>
+        <div class="channels row">
+            <div class="channelsHeadline">
+                <p>Canales populares Envivo</p>
+            </div>
+            <div class="col-xs-12 col-md-2 channels-box " ng-repeat="logo in logos ">
+                <div class="channels-style" ng-style="{'background-image':'url({{logo.PosterH.url}})'}">
                 </div>
             </div>
-            <div class="more-channels">
-                <div class="select-channels">
-                    <h1>Selecciona 10 Canales por $4.99 al mes o 24 Canales por $9.99 al mes</h1>
-                </div>
-                <div class="arrow-right hidden-xs {{channelPosition==1?'opacity0':''}}" ng-click="moveChannelRight()">
-                    <div class="icon icon-right-channel"  >
-                    </div>
-                </div>
-                <div class="arrow-left  hidden-xs {{channelPosition==0?'opacity0':''}}" ng-click="moveChannelLeft()">
-                    <div class="icon icon-left-channel" >
-                    </div>
-                </div>
-                <div class="channels-bottom">
-                    <div class="all-channels {{channelPosition==1?'move-left':''}}">
-                        <div class="channels" ng-repeat="channel in channels" ng-click="go('')">
-                            <div class="channel" style="background-image:url({{channel.PosterH.url}})">
-                            </div>
-                            <div class="name">{{channel.title}}</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="arrow-up" ng-click="lessCanals()" ng-show="moreChannels">
-                    <span class="icon icon-arrow-up-white" ></span>
-                </div>
-            </div>
-        </div>
-        <div class="arrow" ng-click="moreCanals()" ng-hide="moreChannels">
-            <span class="icon icon-arrow-down-white" ></span>
-        </div>
-        <div class="row section-title">
-            <h1>Peliculas<h1>
-        </div>
-        <div class="peliculas row">
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-repeat="video in movies | limitTo:peliculasToShow">
-                <div class="video hand" style="background-image:url({{video.PosterH.url}})" ng-click="go('/Pelicula/'+video._id)">
-                    <div class="pa {{video.isFree?'free':'member'}}">{{video.isFree?'FREE':'MEMBER'}}</div>
-                </div>
-            </div>
-        </div>
-        <div class="arrow" ng-click="morePeliculas()">
-            <span class="icon icon-arrow-down-white" ></span>
         </div>
     </div>
 

@@ -1,0 +1,10 @@
+
+    <div class="image-style " ng-style="{'background-image':'url({{featuredVideo.PosterH.url}})'}">
+        <div class="feature-grdiant ">
+            <h3 class="featueh3">{{featuredVideo.Title}}</h3>
+            <p class="featuep">{{featuredVideo.description}}</p>
+        </div>
+        <div class="feature-status {{featuredVideo.categories[0].name}} ">
+        {{featuredVideo.categories[0].name|uppercase}}
+        </div>
+    </div>

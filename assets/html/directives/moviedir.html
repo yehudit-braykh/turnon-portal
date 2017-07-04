@@ -1,0 +1,10 @@
+
+    <div class="image-style " ng-style="{'background-image':'url({{movie.PosterH.url}})'}">
+        <div class="movies-grdiant ">
+            <h3 class="movieh3">{{movie.Title}}</h3>
+            <p class="moviep">{{movie.description}}</p>
+        </div>
+        <div class="movies-status {{movie.categories[0].name}} ">
+        {{movie.categories[0].name|uppercase}}
+        </div>
+    </div>
