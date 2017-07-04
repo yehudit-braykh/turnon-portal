@@ -19,7 +19,7 @@
                 },
 
                 viewOffer: function(id) {
-                    return $http.post('/api/knetik/view_offer', {
+                    return $http.post('/api/knetik/offer_view', {
                         id: id
                     });
                 },
