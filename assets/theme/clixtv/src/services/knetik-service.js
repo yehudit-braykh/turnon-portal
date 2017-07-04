@@ -19,9 +19,9 @@
                 },
 
                 viewOffer: function(id) {
-                    // return $http.post('/api/knetik/view_offer', {
-                    //     id: id
-                    // });
+                    return $http.post('/api/knetik/view_offer', {
+                        id: id
+                    });
                 },
 
                 shareCampaign: function(id) {

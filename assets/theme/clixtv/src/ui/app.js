@@ -37,7 +37,7 @@
             beta: true,
 
             // Enable or disable points, changes all violators to reflect state
-            pointsEnabled: false,
+            pointsEnabled: (window.ENVIRONMENT !== 'prod'),
 
             // Enable or disable all sort and filter bars
             filtersEnabled: false,

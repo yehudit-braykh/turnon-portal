@@ -27,8 +27,13 @@
                     )
                     .then(
                         function onSuccess(data) {
+                            var points = data[1];
                             $scope.notifications = data[0];
-                            $scope.points = isNaN(data[1]) ? 0 : data[1];
+                            if (points && !isNaN(points.balance)) {
+                                $scope.points = parseInt(points.balance);
+                            } else {
+                                $scope.points = 0;
+                            }
                         }
                     );
             }

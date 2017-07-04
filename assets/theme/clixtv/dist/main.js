@@ -37,7 +37,7 @@
             beta: true,
 
             // Enable or disable points, changes all violators to reflect state
-            pointsEnabled: false,
+            pointsEnabled: (window.ENVIRONMENT !== 'prod'),
 
             // Enable or disable all sort and filter bars
             filtersEnabled: false,
@@ -7315,8 +7315,13 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                     )
                     .then(
                         function onSuccess(data) {
+                            var points = data[1];
                             $scope.notifications = data[0];
-                            $scope.points = isNaN(data[1]) ? 0 : data[1];
+                            if (points && !isNaN(points.balance)) {
+                                $scope.points = parseInt(points.balance);
+                            } else {
+                                $scope.points = 0;
+                            }
                         }
                     );
             }
@@ -10137,9 +10142,9 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
                 },
 
                 viewOffer: function(id) {
-                    // return $http.post('/api/knetik/view_offer', {
-                    //     id: id
-                    // });
+                    return $http.post('/api/knetik/view_offer', {
+                        id: id
+                    });
                 },
 
                 shareCampaign: function(id) {
