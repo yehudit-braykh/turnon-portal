@@ -13,9 +13,9 @@
                 },
 
                 saveOffer: function(id) {
-                    // return $http.post('/api/knetik/save_offer', {
-                    //     id: id
-                    // });
+                    return $http.post('/api/knetik/offer_save', {
+                        id: id
+                    });
                 },
 
                 viewOffer: function(id) {
