@@ -108,7 +108,26 @@ class Knetik_model extends CI_Model {
                                 $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
                             }
 
-                            return $response==null?array("code" => 0, "message" => "successful"):array("code" => 1, "message" => "cant get points", "response"=>$response);
+                            if($response==null){
+                                return array("code" => 0, "message" => "successful");
+                            } else {
+                                switch ($response["code"]) {
+                                    case '10':
+                                    case '903':
+                                    case '702':
+                                    case '703':
+                                    case '704':
+                                    case '705':
+                                    case '706':
+                                    case '707':
+                                        return array("code" => 1, "message" => "You already Earned Save Points for this Offer", "response"=>$response);
+                                        break;
+
+                                    default:
+                                        return array("code" => 1, "message" => "cant get points", "response"=>$response);
+                                        break;
+                                }
+                            }
                         } else {
                             return array("code" => 1, "message" => "campaign has no points");
                         }
@@ -140,7 +159,7 @@ class Knetik_model extends CI_Model {
                 if($this->session->userdata("login_token") && $this->session->userdata("profile_id")){
                     $profile = $this->account_model->get_profile($this->session->userdata("login_token"), $this->session->userdata("profile_id"));
                     if(isset($profile->_id)){
-                        if($this->deduct_wallet_points($campaign_wallet_id, $this->currency_codes->general, $entitlement_points )){
+                        if($wallet = $this->deduct_wallet_points($campaign_wallet_id, $this->currency_codes->general, $entitlement_points )){
                             $token = $this->authenticate();
 
                             if(isset($profile->knetikId) && $profile->knetikId)
@@ -157,7 +176,27 @@ class Knetik_model extends CI_Model {
                                 $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
                             }
 
-                            return $response==null?array("code" => 0, "message" => "successful"):array("code" => 1, "message" => "cant get points", "response"=>$response);
+                            if($response==null){
+                                return array("code" => 0, "message" => "successful");
+                            } else {
+                                switch ($response["code"]) {
+                                    case '10':
+                                    case '903':
+                                    case '702':
+                                    case '703':
+                                    case '704':
+                                    case '705':
+                                    case '706':
+                                    case '707':
+                                        return array("code" => 1, "message" => "You already Earned View Points for this Offer", "response"=>$response);
+                                        break;
+
+                                    default:
+                                        return array("code" => 1, "message" => "cant get points", "response"=>$response);
+                                        break;
+                                }
+                            }
+
                         } else {
                             return array("code" => 1, "message" => "campaign has no points");
                         }
@@ -204,7 +243,26 @@ class Knetik_model extends CI_Model {
                                 $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
                             }
 
-                            return $response==null?array("code" => 0, "message" => "successful"):array("code" => 1, "message" => "cant get points", "response"=>$response);
+                            if($response==null){
+                                return array("code" => 0, "message" => "successful");
+                            } else {
+                                switch ($response["code"]) {
+                                    case '10':
+                                    case '903':
+                                    case '702':
+                                    case '703':
+                                    case '704':
+                                    case '705':
+                                    case '706':
+                                    case '707':
+                                        return array("code" => 1, "message" => "You already Earned Redeem Points for this Offer", "response"=>$response);
+                                        break;
+
+                                    default:
+                                        return array("code" => 1, "message" => "cant get points", "response"=>$response);
+                                        break;
+                                }
+                            }
                         } else {
                             return array("code" => 1, "message" => "campaign has no points");
                         }
@@ -252,7 +310,27 @@ class Knetik_model extends CI_Model {
                                 $token = $this->authenticate(true);
                                 $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
                             }
-                            return $response==null?array("code" => 0, "message" => "successful"):array("code" => 1, "message" => "cant get points", "response"=>$response);
+
+                            if($response==null){
+                                return array("code" => 0, "message" => "successful");
+                            } else {
+                                switch ($response["code"]) {
+                                    case '10':
+                                    case '903':
+                                    case '702':
+                                    case '703':
+                                    case '704':
+                                    case '705':
+                                    case '706':
+                                    case '707':
+                                        return array("code" => 1, "message" => "You already Earned Share Points for this Campaign", "response"=>$response);
+                                        break;
+
+                                    default:
+                                        return array("code" => 1, "message" => "cant get points", "response"=>$response);
+                                        break;
+                                }
+                            }
                         } else {
                             return array("code" => 1, "message" => "campaign has no points");
                         }
@@ -298,7 +376,26 @@ class Knetik_model extends CI_Model {
                                 $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
                             }
 
-                            return $response==null?array("code" => 0, "message" => "successful"):array("code" => 1, "message" => "cant get points", "response"=>$response);
+                            if($response==null){
+                                return array("code" => 0, "message" => "successful");
+                            } else {
+                                switch ($response["code"]) {
+                                    case '10':
+                                    case '903':
+                                    case '702':
+                                    case '703':
+                                    case '704':
+                                    case '705':
+                                    case '706':
+                                    case '707':
+                                        return array("code" => 1, "message" => "You already Earned Ad View Points for this Campaign", "response"=>$response);
+                                        break;
+
+                                    default:
+                                        return array("code" => 1, "message" => "cant get points", "response"=>$response);
+                                        break;
+                                }
+                            }
                         } else {
                             return array("code" => 1, "message" => "campaign has no points in wallet");
                         }
@@ -315,7 +412,6 @@ class Knetik_model extends CI_Model {
             return array("code" => 1, "message" => "campaign not found");
         }
     }
-
 
     function video_view($id){
         $video = $this->video_model->get_video_by_id($id);
@@ -352,7 +448,27 @@ class Knetik_model extends CI_Model {
                                 $token = $this->authenticate(true);
                                 $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
                             }
-                            return $response==null?array("code" => 0, "message" => "successful"):array("code" => 1, "message" => "cant get points", "response"=>$response);
+
+                            if($response==null){
+                                return array("code" => 0, "message" => "successful");
+                            } else {
+                                switch ($response["code"]) {
+                                    case '10':
+                                    case '903':
+                                    case '702':
+                                    case '703':
+                                    case '704':
+                                    case '705':
+                                    case '706':
+                                    case '707':
+                                        return array("code" => 1, "message" => "You already Earned View Points for this Video", "response"=>$response);
+                                        break;
+
+                                    default:
+                                        return array("code" => 1, "message" => "cant get points", "response"=>$response);
+                                        break;
+                                }
+                            }
 
                         } else {
                             return array("code" => 1, "message" => "cannot retrieve user profile");
@@ -406,7 +522,27 @@ class Knetik_model extends CI_Model {
                                 $token = $this->authenticate(true);
                                 $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
                             }
-                            return $response==null?array("code" => 0, "message" => "successful"):array("code" => 1, "message" => "cant get points", "response"=>$response);
+
+                            if($response==null){
+                                return array("code" => 0, "message" => "successful");
+                            } else {
+                                switch ($response["code"]) {
+                                    case '10':
+                                    case '903':
+                                    case '702':
+                                    case '703':
+                                    case '704':
+                                    case '705':
+                                    case '706':
+                                    case '707':
+                                        return array("code" => 1, "message" => "You already Earned Share Points for this Video", "response"=>$response);
+                                        break;
+
+                                    default:
+                                        return array("code" => 1, "message" => "cant get points", "response"=>$response);
+                                        break;
+                                }
+                            }
 
                         } else {
                             return array("code" => 1, "message" => "cannot retrieve user profile");
@@ -453,7 +589,26 @@ class Knetik_model extends CI_Model {
                                 $response = $this->post('users/'.$knetikId.'/entitlements/', json_encode($fields), $token);
                             }
 
-                            return $response==null?array("code" => 0, "message" => "successful"):array("code" => 1, "message" => "cant get points", "response"=>$response);
+                            if($response==null){
+                                return array("code" => 0, "message" => "successful");
+                            } else {
+                                switch ($response["code"]) {
+                                    case '10':
+                                    case '903':
+                                    case '702':
+                                    case '703':
+                                    case '704':
+                                    case '705':
+                                    case '706':
+                                    case '707':
+                                        return array("code" => 1, "message" => "You already Earned View Points for this AD", "response"=>$response);
+                                        break;
+
+                                    default:
+                                        return array("code" => 1, "message" => "cant get points", "response"=>$response);
+                                        break;
+                                }
+                            }
                         } else {
                             return array("code" => 1, "message" => "campaing has no points");
                         }
