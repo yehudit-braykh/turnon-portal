@@ -150,8 +150,8 @@ class Uvod_model extends CI_Model {
 
     private function login_admin($relogin = false) {
 
-        if(!$relogin && $this->fastcache_model->get_cache("admin_login_token"))
-            return $this->fastcache_model->get_cache("admin_login_token");
+        if(!$relogin && $this->fastcache_model->get_cache("admin_login_token", true))
+            return $this->fastcache_model->get_cache("admin_login_token", true);
 
 
         // logs admin user in tdp and uses his token

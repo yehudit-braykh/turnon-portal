@@ -14,8 +14,8 @@ class fastcache_model extends CI_Model {
         $this->cache = phpFastCache();
     }
 
-    public function get_cache($id) {
-        if(ENVIRONMENT === "local" || ENVIRONMENT === "development")
+    public function get_cache($id, $forceCache = false) {
+        if(!$forceCache && (ENVIRONMENT === "local" || ENVIRONMENT === "development"))
             return false;
         try{
             $data = $this->cache->get('portal:'.$id);

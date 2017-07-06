@@ -21,7 +21,7 @@ class Cache extends REST_Controller{
 		$key = $this->get("key");
 		$data = $this->get("data");
 
-		if($this->fastcache_model->get_cache($key)){
+		if($this->fastcache_model->get_cache($key, true)){
 			$this->response( 'Item found in cache' , 200);
 		} else {
 			$this->fastcache_model->set_cache($key, $data);
