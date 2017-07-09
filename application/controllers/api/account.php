@@ -39,18 +39,26 @@ class Account extends REST_Controller{
 	}
 
 	function login_user_post(){
-		$data = $this->post();
-		$this->response($this->account_model->login($data['email'], $data['password']), 200);
+		$email = $this->post("email");
+		$password = $this->post("password");
+		if(!$email || !$password)
+				$this->response("email & password fields are Mandatory", 400);
+		$this->response($this->account_model->login($email, $password), 200);
     }
 	// for testing purboses .. shouldn't be user by the portal
 	function login_with_fb_post(){
-		$data = $this->post();
-		$this->response($this->account_model->login_by_fb($data['fbid']), 200);
+		$fbId = $this->post("fbid");
+		if(!$fbId)
+				$this->response("fbid fields is Mandatory", 400);
+		$this->response($this->account_model->login_by_fb($fbId), 200);
     }
 
 	function link_facebook_post(){
-		$data = $this->post();
-		$this->response($this->account_model->link_facebook($data['email'], $data['password']), 200);
+		$email = $this->post("email");
+		$password = $this->post("password");
+		if(!$email || !$password)
+				$this->response("email & password fields are Mandatory", 400);
+		$this->response($this->account_model->link_facebook($email, $password), 200);
     }
 
 	function update_profile_post(){

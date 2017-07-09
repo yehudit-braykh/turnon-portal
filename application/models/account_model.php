@@ -13,15 +13,18 @@ class Account_model extends Uvod_model {
     public function login($user, $pass, $disabled = false) {
 
         $data = $this->login_portal($user, $pass);
-        //debug($data);
+        // debug($data);
 		if($data){
 			$this->session->set_userdata('login_token', $data->token);
             $user_profile = $this->get_profile($data->token, $data->_id);
             $this->session->set_userdata('profile_id', $user_profile->_id);
             $this->session->set_userdata('login_type', "Email");
 
-            if($user_profile)
+            if($user_profile){
                 $user_profile->loginType = "Email";
+                $user_profile->tokenData = array('token' => $data->token, 'duration' => $data->duration, "idleTimeout" => $data->idle_timeout);
+            }
+            // debug($user_profile);
             return $user_profile;
         }
         return $data;
@@ -90,6 +93,8 @@ class Account_model extends Uvod_model {
         $this->session->set_userdata('login_token', $token);
         $this->session->set_userdata('profile_id', $fbLogin->_id);
         $user_data = $this->account_model->get_profile($fbLogin->token, $fbLogin->_id);
+        if($user_data)
+            $user_data->tokenData = array('token' => $fbLogin->token, 'duration' => $fbLogin->duration, "idleTimeout" => $fbLogin->idle_timeout);
         return $user_data;
 
     }
@@ -129,6 +134,8 @@ class Account_model extends Uvod_model {
             $this->session->set_userdata('profile_id', $user_signup->userId);
 
             $user_data = $this->account_model->get_profile($user_signup->token, $user_signup->userId);
+            if($user_data)
+                $user_data->tokenData = array('token' => $user_signup->token, 'duration' => $user_signup->duration, "idleTimeout" => $user_signup->idle_timeout);
 
             return $user_data;
 
