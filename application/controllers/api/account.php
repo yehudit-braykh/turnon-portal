@@ -35,10 +35,10 @@ class Account extends REST_Controller{
 	}
 
 	function get_user_profile_get(){
-		$profile_id = $this->session->userdata('id');
-		$token = $this-get('token');
+		$profile_id = $this->get('id');
+		$token = $this->get('token');
 
-		if(!$profile_id && !$token)
+		if(!$profile_id || !$token)
 			$this->response("id and token fields are mandatory",400);
 		if($profile_id && $token)
 			$profile = $this->account_model->get_profile($token, $profile_id);
