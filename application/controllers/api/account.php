@@ -34,6 +34,18 @@ class Account extends REST_Controller{
 		$this->response($profile, 200);
 	}
 
+	function get_user_profile_get(){
+		$profile_id = $this->session->userdata('id');
+		$token = $this-get('token');
+
+		if(!$profile_id && !$token)
+			$this->response("id and token fields are mandatory",400);
+		if($profile_id && $token)
+			$profile = $this->account_model->get_profile($token, $profile_id);
+		// debug($token, $profile_id);
+		$this->response($profile, 200);
+	}
+
 	function logout_post(){
 		$this->response($this->account_model->logout(),200);
 	}
