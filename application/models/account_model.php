@@ -37,7 +37,7 @@ class Account_model extends Uvod_model {
             return $this->link_facebook($profile, $provider);
         }
         $this->session->set_userdata('login_type', $provider);
-        $user_profile->loginType = $provider;
+        $fbLogin->loginType = $provider;
         return $fbLogin;
     }
 
