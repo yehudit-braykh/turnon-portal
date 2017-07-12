@@ -57,11 +57,19 @@ class Account extends REST_Controller{
 				$this->response("email & password fields are Mandatory", 400);
 		$this->response($this->account_model->login($email, $password), 200);
     }
+
+	function social_login_post(){
+		$profile = $this->post("profile");
+		$network = $this->post("network");
+		if(!$profile || !$network)
+				$this->response("profile and network fields are Mandatory", 400);
+		$this->response($this->account_model->hybrid_login($profile, $network), 200);
+	}
 	// for testing purboses .. shouldn't be user by the portal
 	function login_with_fb_post(){
 		$fbId = $this->post("fbid");
 		if(!$fbId)
-				$this->response("fbid fields is Mandatory", 400);
+				$this->response("fbid field is Mandatory", 400);
 		$this->response($this->account_model->login_by_fb($fbId), 200);
     }
 
