@@ -1,4 +1,4 @@
-vttApp.factory('cacheFactory', function ($q) {
+turnOnApp.factory('cacheFactory', function ($q) {
     var scope = {};
     var cache = {};
     var ttl = {};

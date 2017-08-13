@@ -1,4 +1,4 @@
-vttApp.directive('jwplayer', function() {
+turnOnApp.directive('jwplayer', function() {
     return {
       restrict: 'E',
       transclude: true,

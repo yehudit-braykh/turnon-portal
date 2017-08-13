@@ -1,4 +1,4 @@
-vttApp.filter
+turnOnApp.filter
   ( 'range'
   , function() {
       var filter =

@@ -1,4 +1,4 @@
-vttApp.factory("celebritiesFactory", function($http, $q) {
+turnOnApp.factory("celebritiesFactory", function($http, $q) {
     return {
         getAllCelebrities: function(){
             return $http({method: 'GET', url: 'api/celebrity/get_all_celebrities'}).

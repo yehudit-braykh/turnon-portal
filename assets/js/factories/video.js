@@ -1,4 +1,4 @@
-vttApp.factory("videoFactory", function($http, $q) {
+turnOnApp.factory("videoFactory", function($http, $q) {
     return {
         getVideoById: function(videoId) {
             return $http({method: 'GET', url: '/api/video/get_video_by_id/?id='+ videoId}).

@@ -1,4 +1,4 @@
-vttApp.factory("categoriesFactory", function($http, $q) {
+turnOnApp.factory("categoriesFactory", function($http, $q) {
     var allCategories=[{name:'Politica',
                          desc:'In the history of modern astronomy, there is probably no one greater leap forward than the building and launch of the space telescope known as the Hubble.\
                          While NASA has had many ups and downs, the launch and continued operation of the Hubble space telescope probably ranks next to the moon.',

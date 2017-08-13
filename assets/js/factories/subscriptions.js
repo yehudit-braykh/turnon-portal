@@ -1,4 +1,4 @@
-vttApp.factory("subscriptionsFactory", function($http, $q) {
+turnOnApp.factory("subscriptionsFactory", function($http, $q) {
     return {
         getAllPlans: function(){
             return $http({method: 'GET', url: '/api/account/get_subscriptions'}).
