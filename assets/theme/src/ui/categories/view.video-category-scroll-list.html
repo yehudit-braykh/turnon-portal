@@ -1,0 +1,42 @@
+<!-- <div class="video-category-scroll-list">
+    <h2>
+        <a ui-sref="category({ slug: '{{category.title | slug}}' })" ng-show="category.headerLink !== false">
+            {{category.title}} <i class="icon-right-arrow"></i>
+        </a>
+        <span ng-show="category.headerLink === false">
+            {{category.title}} <i class="icon-right-arrow"></i>
+        </span>
+    </h2>
+    <div class="category-container">
+        <div class="visible-sm visible-md visible-lg">
+            <slick slides-to-scroll="3" infinite="false" variable-width="true" prev-arrow="#carousel-previous-{{$id}}" next-arrow="#carousel-next-{{$id}}" settings="carouselConfig">
+                <div ng-repeat="video in category.videos.videos | orderBy: order track by video.id" class="video-content-container" style="width: {{videoContainerWidth}}px;">
+                    <clix-video-content-callout video="video"></clix-video-content-callout>
+                </div>
+            </slick>
+        </div>
+        <div class="hidden-sm hidden-md hidden-lg">
+            <div class="row video-list-content-container">
+                <div ng-repeat="video in category.videos.videos | orderBy: order | limitTo: 4 track by video.id" class="video-thumbnail-container col-xs-6 col-sm-4 col-md-4">
+                    <clix-video-content-callout video="video"></clix-video-content-callout>
+                </div>
+            </div>
+            <div class="more-videos-button-container">
+                <clix-secondary-button ui-sref="{{sref}}" ng-show="enableShowMore !== 'false'">
+                    View All {{category.title}}
+                </clix-secondary-button>
+            </div>
+        </div>
+        <div class="arrow-container left-arrow-container" id="carousel-previous-{{$id}}" ng-show="leftArrowVisible">
+            <div class="arrow-inner-container">
+                <i class="arrow-icon icon-left-tall-arrow"></i>
+            </div>
+        </div>
+
+        <div class="arrow-container right-arrow-container" id="carousel-next-{{$id}}">
+            <div class="arrow-inner-container">
+                <i class="arrow-icon icon-right-tall-arrow"></i>
+            </div>
+        </div>
+    </div>
+</div> -->

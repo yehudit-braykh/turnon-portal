@@ -1,0 +1,370 @@
+<!-- <div class="clix-account-rewards">
+    <clix-account-header>
+        <header-text>
+            Rewards
+        </header-text>
+    </clix-account-header>
+    <div class="rewards-page-content" ng-show="ready">
+        <div class="clix-tabs">
+            <uib-tabset active="active">
+                <uib-tab index="0" heading="Summary">
+                    <div class="rewards-tab-content">
+                        <div class="row rewards-summary-row">
+                            <div class="col-md-6 rewards-summary-column">
+                                <div class="rewards-summary-block">
+                                    <div class="rewards-summary-header">
+                                        Rewards Summary
+                                    </div>
+                                    <div class="reward-points">
+                                        <div class="reward-points-block first-block" ng-show="pointsEnabled">
+                                            <div class="points-label">
+                                                1760
+                                            </div>
+                                            <div class="available-balance-label">
+                                                Available Points Balance<br />
+                                                $17.60 Cash Balance
+                                            </div>
+                                            <div class="rewards-button">
+                                                <clix-primary-button ng-click="onRedeemPress()">
+                                                    Redeem
+                                                </clix-primary-button>
+                                            </div>
+                                        </div>
+                                        <div ng-show="!pointsEnabled">
+                                            <div class="points-coming-soon-label">
+                                                Rewards Points are Coming! Please check back soon!
+                                            </div>
+                                            <div class="available-balance-label">
+                                                Available Points Balance<br />
+                                                $0.00 Cash Balance
+                                            </div>
+                                            <div class="rewards-button">
+                                                <clix-primary-button type="disabled">
+                                                    Redeem
+                                                </clix-primary-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 rewards-summary-column">
+                                <div class="rewards-summary-block" ng-if="pointsEnabled">
+                                    <div class="rewards-summary-header">
+                                        Rewards Activity
+                                    </div>
+                                    <div class="rewards-activity-container">
+
+                                        <!-- ROW -->
+                                        <div class="reward-activity-row">
+                                            <div class="reward-activity-row-icon">
+                                                <div class="reward-activity-row-icon-logo" style="background-image: url('http://advncedcdn.vo.llnwd.net/turnon_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d1e7a7889d000337f0e2/Nike-Logo-PNG21.png')"></div>
+                                            </div>
+                                            <div class="reward-activity-row-info">
+                                                <div class="reward-activity-row-title">
+                                                    Nike
+                                                </div>
+                                                <div class="reward-activity-row-desc">
+                                                    Coupon Redeemed
+                                                </div>
+                                                <div class="reward-activity-row-timestamp">
+                                                    2 hours ago
+                                                </div>
+                                            </div>
+                                            <div class="reward-activity-row-points">
+                                                + 50
+                                            </div>
+                                        </div>
+
+                                        <!-- ROW -->
+                                        <div class="reward-activity-row">
+                                            <div class="reward-activity-row-icon">
+                                                <div class="reward-activity-row-icon-logo" style="background-image: url('http://advncedcdn.vo.llnwd.net/turnon_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d1e7a7889d000337f0e2/Nike-Logo-PNG21.png')"></div>
+                                            </div>
+                                            <div class="reward-activity-row-info">
+                                                <div class="reward-activity-row-title">
+                                                    Nike
+                                                </div>
+                                                <div class="reward-activity-row-desc">
+                                                    Coupon Redeemed
+                                                </div>
+                                                <div class="reward-activity-row-timestamp">
+                                                    2 hours ago
+                                                </div>
+                                            </div>
+                                            <div class="reward-activity-row-points">
+                                                + 50
+                                            </div>
+                                        </div>
+
+                                        <!-- ROW -->
+                                        <div class="reward-activity-row">
+                                            <div class="reward-activity-row-icon">
+                                                <div class="reward-activity-row-icon-logo" style="background-image: url('http://advncedcdn.vo.llnwd.net/turnon_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d1e7a7889d000337f0e2/Nike-Logo-PNG21.png')"></div>
+                                            </div>
+                                            <div class="reward-activity-row-info">
+                                                <div class="reward-activity-row-title">
+                                                    Nike
+                                                </div>
+                                                <div class="reward-activity-row-desc">
+                                                    Coupon Redeemed
+                                                </div>
+                                                <div class="reward-activity-row-timestamp">
+                                                    2 hours ago
+                                                </div>
+                                            </div>
+                                            <div class="reward-activity-row-points">
+                                                + 50
+                                            </div>
+                                        </div>
+
+                                        <!-- ROW -->
+                                        <div class="reward-activity-row">
+                                            <div class="reward-activity-row-icon">
+                                                <div class="reward-activity-row-icon-logo" style="background-image: url('http://advncedcdn.vo.llnwd.net/turnon_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d1e7a7889d000337f0e2/Nike-Logo-PNG21.png')"></div>
+                                            </div>
+                                            <div class="reward-activity-row-info">
+                                                <div class="reward-activity-row-title">
+                                                    Nike
+                                                </div>
+                                                <div class="reward-activity-row-desc">
+                                                    Coupon Redeemed
+                                                </div>
+                                                <div class="reward-activity-row-timestamp">
+                                                    2 hours ago
+                                                </div>
+                                            </div>
+                                            <div class="reward-activity-row-points">
+                                                + 50
+                                            </div>
+                                        </div>
+
+                                        <!-- ROW -->
+                                        <div class="reward-activity-row">
+                                            <div class="reward-activity-row-icon">
+                                                <div class="reward-activity-row-icon-logo" style="background-image: url('http://advncedcdn.vo.llnwd.net/turnon_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d1e7a7889d000337f0e2/Nike-Logo-PNG21.png')"></div>
+                                            </div>
+                                            <div class="reward-activity-row-info">
+                                                <div class="reward-activity-row-title">
+                                                    Nike
+                                                </div>
+                                                <div class="reward-activity-row-desc">
+                                                    Coupon Redeemed
+                                                </div>
+                                                <div class="reward-activity-row-timestamp">
+                                                    2 hours ago
+                                                </div>
+                                            </div>
+                                            <div class="reward-activity-row-points">
+                                                + 50
+                                            </div>
+                                        </div>
+
+                                        <!-- ROW -->
+                                        <div class="reward-activity-row">
+                                            <div class="reward-activity-row-icon">
+                                                <div class="reward-activity-row-icon-logo" style="background-image: url('http://advncedcdn.vo.llnwd.net/turnon_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d1e7a7889d000337f0e2/Nike-Logo-PNG21.png')"></div>
+                                            </div>
+                                            <div class="reward-activity-row-info">
+                                                <div class="reward-activity-row-title">
+                                                    Nike
+                                                </div>
+                                                <div class="reward-activity-row-desc">
+                                                    Coupon Redeemed
+                                                </div>
+                                                <div class="reward-activity-row-timestamp">
+                                                    2 hours ago
+                                                </div>
+                                            </div>
+                                            <div class="reward-activity-row-points">
+                                                + 50
+                                            </div>
+                                        </div>
+
+                                        <!-- ROW -->
+                                        <div class="reward-activity-row">
+                                            <div class="reward-activity-row-icon">
+                                                <div class="reward-activity-row-icon-logo" style="background-image: url('http://advncedcdn.vo.llnwd.net/turnon_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d1e7a7889d000337f0e2/Nike-Logo-PNG21.png')"></div>
+                                            </div>
+                                            <div class="reward-activity-row-info">
+                                                <div class="reward-activity-row-title">
+                                                    Nike
+                                                </div>
+                                                <div class="reward-activity-row-desc">
+                                                    Coupon Redeemed
+                                                </div>
+                                                <div class="reward-activity-row-timestamp">
+                                                    2 hours ago
+                                                </div>
+                                            </div>
+                                            <div class="reward-activity-row-points">
+                                                + 50
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="rewards-activity-footer">
+                                        <clix-tertiary-button>
+                                            See All Activity
+                                        </clix-tertiary-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </uib-tab>
+                <uib-tab index="1" heading="Activity">
+                    <div class="rewards-tab-content">
+                        <div class="row rewards-summary-row">
+                            <div class="col-md-6 rewards-summary-column">
+                                <div class="rewards-summary-block">
+                                    <div class="rewards-summary-header">
+                                        Rewards Summary
+                                    </div>
+                                    <div class="reward-points">
+                                        <div class="reward-points-block first-block" ng-show="pointsEnabled">
+                                            <div class="points-label">
+                                                1760
+                                            </div>
+                                            <div class="available-balance-label">
+                                                Available Points Balance<br />
+                                                $17.60 Cash Balance
+                                            </div>
+                                            <div class="rewards-button">
+                                                <clix-primary-button ng-click="onRedeemPress()">
+                                                    Redeem
+                                                </clix-primary-button>
+                                            </div>
+                                        </div>
+                                        <div ng-show="!pointsEnabled">
+                                            <div class="points-coming-soon-label">
+                                                Rewards Points are Coming! Please check back soon!
+                                            </div>
+                                            <div class="available-balance-label">
+                                                Available Points Balance<br />
+                                                $0.00 Cash Balance
+                                            </div>
+                                            <div class="rewards-button">
+                                                <clix-primary-button type="disabled">
+                                                    Redeem
+                                                </clix-primary-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </uib-tab>
+                <uib-tab index="2" heading="Redeem">
+                    <div class="rewards-tab-content">
+                        <div ng-if="pointsEnabled">
+                            <p class="redeem-intro">
+                                Select your preferred method of redemption and you will be taken to the next page where you will choose your amount and redeem your reward points!
+                            </p>
+                            <div class="row redeem-companies-container">
+                                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2-4 redeem-company-callout" ng-click="onRedeemRewardsPress('paypal')">
+                                    <div class="redeem-logo-container">
+                                        <img ng-src="{{$root.clixConfig.baseImageUrl}}/paypal.png" ng-srcset="{{$root.clixConfig.baseImageUrl}}/paypal@2x.png 2x" />
+                                        <div class="redeem-action-state">
+                                            <div class="view-button-container">
+                                                <div class="view-button">
+                                                    <clix-view-button></clix-view-button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="redeem-callout-footer">
+                                        <div class="redeem-callout-company">
+                                            PayPal<br />&nbsp;
+                                        </div>
+                                        <a class="redeem-now-link" ng-click="onRedeemRewardsPress('paypal')">
+                                            Redeem Now
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2-4 redeem-company-callout" ng-click="onRedeemRewardsPress('visa')">
+                                    <div class="redeem-logo-container">
+                                        <img ng-src="{{$root.clixConfig.baseImageUrl}}/visa.png" ng-srcset="{{$root.clixConfig.baseImageUrl}}/visa@2x.png 2x" />
+                                        <div class="redeem-action-state">
+                                            <div class="view-button-container">
+                                                <div class="view-button">
+                                                    <clix-view-button></clix-view-button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="redeem-callout-footer">
+                                        <div class="redeem-callout-company">
+                                            Visa® Prepaid<br />Card USD^
+                                        </div>
+                                        <a class="redeem-now-link" ng-click="onRedeemRewardsPress('visa')">
+                                            Redeem Now
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2-4 redeem-company-callout" ng-click="onRedeemRewardsPress('amazon')">
+                                    <div class="redeem-logo-container">
+                                        <img ng-src="{{$root.clixConfig.baseImageUrl}}/amazon.png" ng-srcset="{{$root.clixConfig.baseImageUrl}}/amazon@2x.png 2x" />
+                                        <div class="redeem-action-state">
+                                            <div class="view-button-container">
+                                                <div class="view-button">
+                                                    <clix-view-button></clix-view-button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="redeem-callout-footer">
+                                        <div class="redeem-callout-company">
+                                            Amazon.com<br />Gift Card∞
+                                        </div>
+                                        <a class="redeem-now-link" ng-click="onRedeemRewardsPress('amazon')">
+                                            Redeem Now
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="redeem-legal">
+                                *PayPal is not a sponsor of the rewards or promotion or otherwise affiliated with this company. The logos and other identifying marks attached are trademarks of and owned by each represented company and/or its affiliates.  Please visit each company's website for additional terms and conditions.
+                            </p>
+                            <p class="redeem-legal">
+                                ^Card is issued by The Bancorp Bank, Member FDIC, pursuant to a license from Visa U.S.A. Inc.
+                            </p>
+                            <p class="redeem-legal">
+                                This reward is non-refundable. The full terms and conditions are available on the Promocode claim site. Click on "Product Terms" prior to selecting a Virtual Visa Card or a Plastic Visa Card.  Swift Prepaid Solutions is the Service Provider for your Redemption Account and associated Card Accounts. Your Program Sponsor is the entity that marketed and/or distributed the reward, and is either a direct or indirect Client of Swift Prepaid.
+                            </p>
+                            <p class="redeem-legal">
+                                ∞Amazon.com is not a sponsor of this promotion. Except as required by law, Amazon.com Gift Cards ("GCs") cannot be transferred for value or redeemed for cash. GCs may be used only for purchases of eligible goods on Amazon.com or certain of its affiliated websites. GCs cannot be redeemed for purchases of gift cards. Purchases are deducted from the GC balance. To redeem or view a GC balance, visit "Your Account" on Amazon.com. Amazon is not responsible if a GC is lost, stolen, destroyed or used without permission. For complete terms and conditions, see www.amazon.com/gc-legal. GCs are issued by ACI Gift Cards, Inc., a Washington corporation. All Amazon ®, ™ & © are IP of Amazon.com, Inc. or its affiliates. No expiration date or service fees.
+                            </p>
+                        </div>
+                        <div ng-if="!pointsEnabled">
+                            <div class="row rewards-summary-row">
+                                <div class="col-md-6 rewards-summary-column">
+                                    <div class="rewards-summary-block">
+                                        <div class="rewards-summary-header">
+                                            Rewards Summary
+                                        </div>
+                                        <div class="reward-points">
+                                            <div class="points-coming-soon-label">
+                                                Rewards Points are Coming! Please check back soon!
+                                            </div>
+                                            <div class="available-balance-label">
+                                                Available Points Balance<br />
+                                                $0.00 Cash Balance
+                                            </div>
+                                            <div class="rewards-button">
+                                                <clix-primary-button type="disabled">
+                                                    Redeem
+                                                </clix-primary-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </uib-tab>
+            </uib-tabset>
+        </div>
+    </div>
+</div> -->

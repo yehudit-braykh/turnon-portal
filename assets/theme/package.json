@@ -1,0 +1,52 @@
+{
+  "name": "turnon",
+  "version": "1.0.0",
+  "description": "Assets for turnon website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Arielmatz/clixtv.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Arielmatz/clixtv/issues"
+  },
+  "homepage": "https://github.com/Arielmatz/clixtv#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-angular-templates": "^1.1.0",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "^2.0.0",
+    "grunt-contrib-imagemin": "^1.0.1",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-less": "^1.4.1",
+    "grunt-contrib-uglify": "^2.2.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-spritesmith": "^6.4.0"
+  },
+  "dependencies": {
+    "angular-cache": "^4.6.0",
+    "angular-filter": "^0.5.16",
+    "angular-inview": "^2.1.0",
+    "angular-local-storage": "^0.5.2",
+    "angular-lz-string": "^1.0.5",
+    "angular-sanitize": "^1.6.4",
+    "angular-socialshare": "^2.3.8",
+    "angular-touch": "^1.6.4",
+    "angular-ui-router": "^0.4.2",
+    "angular-ui-switch": "^0.1.1",
+    "bootstrap-less": "^3.3.8",
+    "moment": "^2.18.1",
+    "ng-infinite-scroll": "^1.3.0",
+    "ng-parallax": "^1.1.3",
+    "ngclipboard": "^1.1.1",
+    "normalize.css": "^5.0.0",
+    "slug": "^0.9.1"
+  }
+}

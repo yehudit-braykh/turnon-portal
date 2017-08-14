@@ -1,0 +1,53 @@
+<!-- <div ng-if="!ready">
+    <clix-loader size="large"></clix-loader>
+</div>
+
+<div class="brands-page" ng-if="ready">
+    <div class="main-header">
+        <clix-main-header>
+            Brands &amp; Offers
+        </clix-main-header>
+    </div>
+    <div class="clix-tabs">
+        <uib-tabset active="active">
+            <uib-tab index="0" heading="Brands" select="onTabSelect('brands')">
+
+                <div class="search-filter-container">
+                    <clix-search-filter
+                            search-placeholder="Search Brands"
+                            filter-placeholder="Filter By"
+                            sort-placeholder="Sort By"
+                            filter-options="filterBrandsOptions"
+                            sort-options="sortBrandsOptions"
+                            type="brand"
+                    ></clix-search-filter>
+                </div>
+
+                <div class="row brands-list" infinite-scroll='loadMoreBrands()' infinite-scroll-disabled='brandsloading' infinite-scroll-distance='1'>
+                    <div class="brand-outer-container col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="brand in brands.brands">
+                        <clix-brand-content-callout brand="brand"></clix-brand-content-callout>
+                    </div>
+                </div>
+            </uib-tab>
+            <uib-tab index="1" heading="Offers" select="onTabSelect('offers')">
+
+                <div class="search-filter-container">
+                    <clix-search-filter
+                        search-placeholder="Search Offers"
+                        filter-placeholder="Filter By"
+                        sort-placeholder="Sort By"
+                        filter-options="filterOffersOptions"
+                        sort-options="sortOffersOptions"
+                        type="offer"
+                    ></clix-search-filter>
+                </div>
+
+                <div class="row brands-list" infinite-scroll='loadMoreOffers()' infinite-scroll-disabled='offersloading' infinite-scroll-distance='1'>
+                    <div class="brand-outer-container col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="offer in offers.offers">
+                        <clix-offer-content-callout offer="offer"></clix-offer-content-callout>
+                    </div>
+                </div>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+</div> -->

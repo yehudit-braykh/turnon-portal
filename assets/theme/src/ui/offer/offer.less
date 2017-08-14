@@ -1,0 +1,354 @@
+// .clix-offer-page {
+//     .main-page-content {
+//         position: relative;
+//         z-index: 2000;
+//         background-color: @color-darker-gray;
+//         padding: 13px 0 62px;
+//
+//         @media (min-width: @screen-sm) {
+//             padding: 13px 30px 62px;
+//         }
+//     }
+//     .nav-tabs {
+//         border-bottom: 1px solid @color-gray3 !important;
+//         margin-left: @common-mobile-padding;
+//         margin-right: @common-mobile-padding;
+//
+//         @media (min-width: @screen-sm) {
+//             margin-left: 0;
+//             margin-right: 0;
+//         }
+//     }
+//
+//     .home-header {
+//         font-family: @font-primary;
+//         font-size: 24px;
+//         color: @color-gray2;
+//
+//         @media (min-width: @screen-sm) {
+//             font-size: 30px;
+//             font-family: @font-primary-bold;
+//         }
+//     }
+//
+//     .home-instructions {
+//         margin-top: 18px;
+//
+//         .instructions-row {
+//             .flex-display;
+//             .align-items(center);
+//             margin-bottom: 16px;
+//         }
+//
+//         .instructions-number {
+//             .border-radius(12px);
+//             width: 25px;
+//             height: 25px;
+//             border: 1px solid @color-primary;
+//             line-height: 23px;
+//             text-align: center;
+//             color: @color-white;
+//             font-size: 14px;
+//             font-family: @font-secondary;
+//         }
+//
+//         .instructions-label {
+//             .flex(1);
+//             font-family: @font-primary;
+//             font-size: 14px;
+//             color: @color-white;
+//             padding-left: 12px;
+//
+//             @media (max-width: @screen-sm) {
+//                 line-height: 14px;
+//             }
+//         }
+//     }
+//
+//     .offer-buttons {
+//         margin-top: 27px;
+//
+//         @media (min-width: @screen-sm) {
+//             margin-top: 9px;
+//
+//         }
+//
+//         &:after {
+//             content: '';
+//             clear: both;
+//             display: table;
+//         }
+//     }
+//
+//     .offer-button {
+//         margin-bottom: 10px;
+//
+//         @media (max-width: @screen-sm) {
+//             float: left;
+//             width: 50%;
+//
+//             &:first-child {
+//                 padding-right: 10px;
+//             }
+//             &:last-child {
+//                 padding-left: 10px;
+//             }
+//         }
+//     }
+//
+//     .save-offer-button {
+//         position: relative;
+//
+//         @media (min-width: @screen-sm) {
+//             display: inline-block;
+//             .clix-tertiary-button {
+//                 //width: 160px;
+//             }
+//         }
+//
+//         .save-offer-points {
+//             position: absolute;
+//             top: 50%;
+//             right: 3px;
+//             margin-top: -15px;
+//         }
+//
+//         @media (max-width: @screen-sm) {
+//             .clix-tertiary-button {
+//                 display: block;
+//             }
+//             .save-offer-points {
+//                 right: 5px;
+//                 margin-top: -13px;
+//             }
+//         }
+//     }
+//
+//     .home-container {
+//         .share-container {
+//             margin-top: 30px;
+//         }
+//
+//         .main-carousel-button {
+//             @media (max-width: @screen-sm) {
+//                 display: none;
+//             }
+//         }
+//
+//         .slick-dots {
+//             position: absolute;
+//             left: 0;
+//             bottom: 20px;
+//             list-style-type: none;
+//             margin: 0 auto;
+//             width: 100%;
+//             text-align: center;
+//             padding: 0;
+//
+//             li {
+//                 display: inline-block;
+//                 margin: 0 7px;
+//
+//                 @media (min-width: @screen-sm) {
+//                     margin: 0 18px;
+//                 }
+//             }
+//
+//             button {
+//                 .border-radius(2.5px);
+//                 border-width: 0;
+//                 background-color: @color-gray4;
+//                 font-size: 0;
+//                 line-height: 0;
+//                 width: 5px;
+//                 height: 5px;
+//                 padding: 0;
+//                 margin: 0;
+//
+//                 @media (min-width: @screen-sm) {
+//                     .border-radius(7px);
+//                     width: 13px;
+//                     height: 13px;
+//                 }
+//             }
+//
+//             .slick-active {
+//                 button {
+//                     background-color: @color-white;
+//                 }
+//             }
+//         }
+//         .offer-slide {
+//             img {
+//                 max-width: 100%;
+//             }
+//         }
+//
+//         .slick-arrow {
+//             position: absolute;
+//             top: 50%;
+//             z-index: 3000;
+//             margin-top: -33px;
+//         }
+//
+//         #main-carousel-next {
+//             right: 0;
+//         }
+//
+//         .main-carousel-button {
+//             font-size: 56px;
+//             color: @color-white;
+//             cursor: pointer;
+//         }
+//
+//         .arrow-icon {
+//             .text-shadow;
+//         }
+//     }
+//
+//     .offer-footer-info {
+//         margin-top: 31px;
+//         padding-left: @common-mobile-padding;
+//         padding-right: @common-mobile-padding;
+//
+//         @media (min-width: @screen-sm) {
+//             margin-top: 90px;
+//             padding-left: 0;
+//             padding-right: 0;
+//         }
+//
+//         .footer-header {
+//             margin-bottom: 18px;
+//         }
+//
+//         p {
+//             color: @color-white;
+//             font-size: 14px;
+//             font-family: @font-primary;
+//             line-height: 20px;
+//         }
+//     }
+//
+//     .offer-footer-column {
+//         margin-bottom: 58px;
+//
+//         @media (min-width: @screen-sm) {
+//             margin-bottom: 0;
+//         }
+//     }
+//
+//     .videos-title-container {
+//         padding-top: 30px;
+//         text-align: center;
+//
+//         @media (min-width: @screen-sm) {
+//             .flex-display;
+//             .flex(1);
+//             padding-top: 50px;
+//             text-align: left;
+//             border-bottom: 1px solid @color-gray3;
+//             margin-bottom: 41px;
+//             padding-bottom: 16px;
+//         }
+//     }
+//
+//     .videos-title {
+//         .flex(1);
+//     }
+//
+//     .offer-carousel {
+//         @media (max-width: @screen-sm) {
+//             padding-left: @common-mobile-padding;
+//             padding-right: @common-mobile-padding;
+//         }
+//     }
+//
+//     .brand-offer {
+//         margin-bottom: 51px;
+//
+//         @media (max-width: @screen-sm) {
+//             padding: 0 5px;
+//         }
+//     }
+//
+//     .brand-offer-row {
+//         padding: 0 5px;
+//         margin: 0;
+//     }
+//
+//     .brand-offer-column {
+//         margin: 0;
+//         padding: 0;
+//     }
+//
+//     .related-offers-title {
+//         @media (max-width: @screen-sm) {
+//             border-bottom-width: 0;
+//             text-align: center;
+//             padding-top: 34px;
+//             margin-bottom: 18px;
+//         }
+//     }
+//
+//     .videos-container {
+//         @media (max-width: @screen-sm) {
+//             margin-left: -(@common-mobile-padding);
+//             margin-right: -(@common-mobile-padding);
+//         }
+//
+//         .videos-title-container {
+//
+//             padding-top: 30px;
+//             text-align: center;
+//
+//             @media (min-width: @screen-sm) {
+//                 .flex-display;
+//                 .flex(1);
+//                 padding-top: 50px;
+//                 text-align: left;
+//                 border-bottom: 1px solid @color-gray3;
+//                 margin-bottom: 41px;
+//                 padding-bottom: 16px;
+//             }
+//         }
+//
+//         .video-sort-container {
+//             display: inline-block;
+//             margin: 30px auto;
+//             @media (min-width: @screen-sm) {
+//                 display: block;
+//                 margin: 0;
+//             }
+//         }
+//
+//         .videos-title {
+//             .flex(1);
+//             text-align: center;
+//             @media (min-width: @screen-sm) {
+//                 text-align: left;
+//             }
+//         }
+//     }
+//
+//
+//     // Banner overrides
+//     @media (max-width: @screen-sm) {
+//         .clix-hero-banner {
+//             .banner-logo-container {
+//                 float: left;
+//             }
+//             .banner-title-content {
+//                 display: block;
+//                 //padding-left: 68px;
+//             }
+//             .hero-banner-content {
+//                 display: block;
+//             }
+//
+//             .banner-subtext-container {
+//                 text-align: left;
+//                 margin-top: 10px;
+//             }
+//         }
+//     }
+// }

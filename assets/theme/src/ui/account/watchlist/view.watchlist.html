@@ -1,0 +1,40 @@
+<!-- <div class="clix-account-watchlist">
+    <clix-account-header>
+        <header-text>
+            Watchlist
+        </header-text>
+        <accessory-view>
+            <div class="filter-containers" ng-show="watchlist && watchlist.videos && watchlist.videos.length > 0 && filtersEnabled !== false">
+                <div class="filter-container">
+                    <clix-dropdown options="filterOptions" placeholder-text="Filter By"></clix-dropdown>
+                </div>
+                <div class="filter-container">
+                    <clix-dropdown options="sortOptions" placeholder-text="Sort By"></clix-dropdown>
+                </div>
+            </div>
+        </accessory-view>
+    </clix-account-header>
+    <div ng-if="!ready">
+        <clix-loader size="large"></clix-loader>
+    </div>
+    <div class="watchlist-container" ng-show="ready">
+        <div ng-if="!watchlist || !watchlist.videos || watchlist.videos.length === 0">
+            <clix-empty-container>
+                <header-text>
+                    Videos that you would like to watch later will appear here.
+                </header-text>
+                <body-text>
+                    Browse through videos and hit the <i class="empty-watchlist-icon icon-redeem-plus-icon"></i> to add them to this list.<br />
+                </body-text>
+                <call-to-action-button>
+                    <clix-primary-button ui-sref="home">
+                        Go to Home Page
+                    </clix-primary-button>
+                </call-to-action-button>
+            </clix-empty-container>
+        </div>
+        <div ng-if="watchlist && watchlist.videos && watchlist.videos.length > 0">
+            <clix-video-content-callout-list videos="watchlist.videos" grid-classes="col-xs-6 col-sm-4 col-md-4 col-lg-3"></clix-video-content-callout-list>
+        </div>
+    </div>
+</div> -->

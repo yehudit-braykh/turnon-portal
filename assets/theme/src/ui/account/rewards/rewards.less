@@ -1,0 +1,361 @@
+// .clix-account-rewards {
+//     .rewards-page-content {
+//         padding: 30px 0 46px 0;
+//
+//         @media (min-width: @screen-md) {
+//             padding: 46px 29px 46px 48px;
+//         }
+//     }
+//
+//     .clix-account-header {
+//         @media (max-width: @screen-sm) {
+//             border-bottom-width: 0;
+//         }
+//
+//         .accesory-view {
+//             @media (max-width: @screen-sm) {
+//                 padding: 0;
+//             }
+//         }
+//     }
+//
+//     .clix-tabs {
+//         margin-left: @common-mobile-padding;
+//         margin-right: @common-mobile-padding;
+//
+//         @media (min-width: @screen-md) {
+//             margin-left: 0;
+//             margin-right: 0;
+//         }
+//     }
+//
+//     .rewards-tab-content {
+//         border-top: 1px solid @color-gray3;
+//         padding-top: 37px;
+//     }
+//
+//     .rewards-summary-row {
+//         margin-left: -25px;
+//         margin-right: -25px;
+//     }
+//
+//     .rewards-summary-column {
+//         &:first-child {
+//
+//             padding-left: 0;
+//             padding-right: 0;
+//             margin-bottom: 40px;
+//
+//             @media (min-width: @screen-md) {
+//                 padding-left: 25px;
+//                 padding-right: 25px;
+//                 margin-bottom: 0;
+//             }
+//         }
+//         &:last-child {
+//
+//             padding-left: 0;
+//             padding-right: 0;
+//
+//             @media (min-width: @screen-md) {
+//                 padding-right: 25px;
+//                 padding-left: 25px;
+//             }
+//         }
+//     }
+//
+//     .rewards-summary-block {
+//         background-color: @color-dark-gray;
+//         padding: 40px 26px;
+//
+//         @media (min-width: @screen-md) {
+//             padding: 40px 45px;
+//         }
+//     }
+//
+//     .reward-points {
+//         text-align: center;
+//
+//         @media (min-width: @screen-md) {
+//             padding-top: 28px;
+//         }
+//
+//         .points-label {
+//             font-family: @font-primary;
+//             font-size: 45px;
+//             color: @color-reward-primary;
+//             letter-spacing: 1.6px;
+//         }
+//
+//         .points-coming-soon-label {
+//             font-family: @font-primary-bold;
+//             font-size: 30px;
+//             color: @color-white;
+//         }
+//
+//         .available-balance-label {
+//             font-family: @font-primary;
+//             font-size: 14px;
+//             color: @color-white;
+//             line-height: 20px;
+//             margin-top: 20px;
+//             margin-bottom: 20px;
+//
+//             a {
+//                 color: @color-primary;
+//             }
+//         }
+//
+//         .rewards-button {
+//             width: 220px;
+//             margin: 0 auto;
+//         }
+//     }
+//
+//     .reward-points-container {
+//         @media (min-width: @screen-md) {
+//             padding-left: 25px;
+//             padding-right: 53px;
+//         }
+//     }
+//
+//     .reward-points-block {
+//         padding-bottom: 5px;
+//         margin-bottom: 37px;
+//         display: none;
+//         @media (min-width: @screen-md) {
+//             display: block;
+//         }
+//
+//         &.first-block {
+//             display: block;
+//         }
+//
+//         &.last-block {
+//             padding-bottom: 50px;
+//             border-bottom-width: 0 !important;
+//         }
+//     }
+//
+//     .rewards-summary-header {
+//         font-family: @font-secondary;
+//         font-size: 14px;
+//         letter-spacing: 1.6px;
+//         color: @color-gray2;
+//         text-transform: uppercase;
+//         text-align: center;
+//         margin-bottom: 15px;
+//
+//         @media (min-width: @screen-md) {
+//             text-align: left;
+//             margin-bottom: 0;
+//         }
+//     }
+//
+//     .rewards-activity-container {
+//         margin-top: 34px;
+//         border-top: 1px solid @color-gray3;
+//         border-bottom: 1px solid @color-gray3;
+//         overflow: auto;
+//         @media (min-width: @screen-md) {
+//             max-height: 500px;
+//         }
+//     }
+//
+//     .reward-activity-row {
+//         .flex-display;
+//         .align-items(center);
+//         padding-top: 18px;
+//         padding-bottom: 18px;
+//         border-bottom: 1px solid @color-gray15;
+//
+//         @media (min-width: @screen-md) {
+//             margin-right: 21px;
+//         }
+//
+//         &:last-child {
+//             border-bottom-width: 0;
+//         }
+//
+//         .reward-activity-row-icon {
+//             .border-radius(30px);
+//             .radial-gradient(@color-brand-start, @color-brand-end, 0 100%);
+//             position: relative;
+//             width: 60px;
+//             height: 60px;
+//         }
+//
+//         .reward-activity-row-icon-logo {
+//             position: absolute;
+//             top: 0;
+//             left: 0;
+//             right: 0;
+//             bottom: 0;
+//             background-position: center;
+//             background-size: contain;
+//             background-repeat: no-repeat;
+//         }
+//
+//         .reward-activity-row-info {
+//             .flex(1);
+//             padding-left: 22px;
+//         }
+//
+//         .reward-activity-row-desc {
+//             font-family: @font-primary;
+//             font-size: 16px;
+//             color: @color-white;
+//             line-height: 18px;
+//         }
+//
+//         .reward-activity-row-timestamp {
+//             font-family: @font-primary;
+//             font-size: 13px;
+//             color: @color-light-gray;
+//             text-transform: uppercase;
+//             letter-spacing: 2px;
+//             margin-top: 2px;
+//         }
+//
+//         .reward-activity-row-title {
+//             font-family: @font-primary-bold;
+//             font-size: 24px;
+//             text-transform: uppercase;
+//             letter-spacing: 3.5px;
+//             line-height: 30px;
+//             color: @color-gray;
+//         }
+//
+//         .reward-activity-row-points {
+//             font-family: @font-primary;
+//             font-size: 24px;
+//             color: @color-white;
+//         }
+//     }
+//
+//     .rewards-activity-footer {
+//         margin: 52px auto 0;
+//         text-align: center;
+//     }
+//
+//     .redeem-intro {
+//         font-family: @font-primary;
+//         font-size: 14px;
+//         color: @color-white;
+//         line-height: 20px;
+//     }
+//
+//     .redeem-legal {
+//         font-family: @font-primary;
+//         font-size: 14px;
+//         color: @color-gray2;
+//         line-height: 20px;
+//     }
+//
+//     .redeem-companies-container {
+//         margin: 20px 0 34px;
+//
+//         @media (min-width: @screen-md) {
+//             margin-top: 30px;
+//             margin-bottom: 54px;
+//         }
+//
+//         @media (max-width: @screen-md) {
+//             margin-left: -(@common-mobile-padding);
+//             margin-right: -(@common-mobile-padding);
+//         }
+//     }
+//
+//     .redeem-company-callout {
+//         padding: 0 12px 0 0;
+//         margin-bottom: 40px;
+//
+//         @media (min-width: @screen-md) {
+//             margin-bottom: 0;
+//         }
+//
+//         @media (max-width: @screen-md) {
+//             padding-left: @common-mobile-padding;
+//             padding-right: @common-mobile-padding;
+//         }
+//
+//         img {
+//             width: 100%;
+//         }
+//     }
+//
+//     .redeem-callout-footer {
+//         padding: 20px 0;
+//         text-align: center;
+//         background-color: @color-gray6;
+//         @media (min-width: @screen-md) {
+//             padding: 29px 0;
+//         }
+//     }
+//
+//     .redeem-callout-company {
+//         font-family: @font-primary-bold;
+//         font-size: 14px;
+//         color: @color-white;
+//         letter-spacing: -0.5px;
+//         line-height: 20px;
+//         display: block;
+//         @media (min-width: @screen-md) {
+//             font-size: 16px;
+//         }
+//     }
+//
+//     .redeem-now-link {
+//         font-family: @font-primary;
+//         font-size: 11px;
+//         color: @color-gray2;
+//         text-transform: uppercase;
+//         letter-spacing: 0.8px;
+//         line-height: 11px;
+//         margin-top: 5px;
+//         display: block;
+//         cursor: pointer;
+//     }
+//
+//     .redeem-logo-container {
+//         position: relative;
+//         cursor: pointer;
+//
+//         @media (min-width: @screen-md) {
+//             &:hover {
+//                 .redeem-action-state {
+//                     visibility: visible;
+//                 }
+//             }
+//         }
+//     }
+//
+//     .redeem-action-state {
+//         position: absolute;
+//         top: 0;
+//         left: 0;
+//         right: 0;
+//         bottom: 0;
+//         background-color: @color-transparent-dark-black;
+//         visibility: hidden;
+//     }
+//
+//     .view-button-container {
+//         width: 30%;
+//         padding-bottom: 30%;
+//         position: relative;
+//         z-index: 20;
+//         top: 50%;
+//         left: 50%;
+//         margin-top: -15%;
+//         margin-left: -15%;
+//
+//         .view-button {
+//             position: absolute;
+//             top: 0;
+//             left: 0;
+//             bottom: 0;
+//             right: 0;
+//         }
+//     }
+// }
