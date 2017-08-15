@@ -2,19 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:tp="http://player.theplatform.com/" xml:lang="en" lang="en">
     <head>
 
-        <title ng-bind="pageTitle">ClixTV - Your Stars. Their Passions.</title>
+        <title ng-bind="pageTitle">Turn-on</title>
 
         <meta http-equiv="Expires" content="31536000" />
         <meta http-equiv="Cache-Control" content="max-age=31536000" />
 
-        <link rel="apple-touch-icon" sizes="180x180" href="https://advncedcdn.vo.llnwd.net/clixtv_prod_storage/static/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="https://advncedcdn.vo.llnwd.net/clixtv_prod_storage/static/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="https://advncedcdn.vo.llnwd.net/clixtv_prod_storage/static/favicon-16x16.png">
-        <link rel="manifest" href="https://advncedcdn.vo.llnwd.net/clixtv_prod_storage/static/manifest.json">
-        <link rel="mask-icon" href="https://advncedcdn.vo.llnwd.net/clixtv_prod_storage/static/safari-pinned-tab.svg" color="#5bbad5">
-        <link rel="shortcut icon" href="https://advncedcdn.vo.llnwd.net/clixtv_prod_storage/static/favicon.ico">
-        <meta name="msapplication-config" content="https://advncedcdn.vo.llnwd.net/clixtv_prod_storage/static/browserconfig.xml">
-        <meta name="theme-color" content="#ffffff">
+
+
         <meta name="description" content="<?php echo $item_description; ?>">
         <meta name="keywords" content="website, business, store" />
         <meta name="robots" content="index, follow" />
@@ -22,57 +16,21 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" href="/assets/theme/dist/main.css" />
         <base href="/" />
-        <script>
-            var _comscore = _comscore || [];
-            _comscore.push({ c1: "2", c2: "25077233" });
-            (function() {
-                var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
-                s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
-                el.parentNode.insertBefore(s, el);
-            })();
-        </script>
-        <noscript>
-            <img src="http://b.scorecardresearch.com/p?c1=2&c2=25077233&cv=2.0&cj=1" />
-        </noscript>
+
     </head>
 
     <body ng-class="{'printable': printable}">
-<ui-view autoscroll="true"></ui-view>
-        <clix-blurrable-container>
-            <clix-site-notification-bar></clix-site-notification-bar>
-            <clix-header-bar></clix-header-bar>
-            <div class="clix-page-container">
-
-            </div>
-        </clix-blurrable-container>
-
-        <clix-right-navigation></clix-right-navigation>
-
-        <clix-blurrable-container>
-            <clix-footer></clix-footer>
-        </clix-blurrable-container>
-        <clix-mobile-navigation></clix-mobile-navigation>
+        <ui-view autoscroll="true"></ui-view>
 
         <!-- CatchMedia -->
-        <?php
-        $DNT = 'HTTP_DNT';
-        if (!isset($_SERVER[$DNT]) || $_SERVER[$DNT] != 1) {
-            if (ENVIRONMENT === "staging" || ENVIRONMENT === "development") {
-                echo "<script type=\"text/javascript\" src=\"https://1115282512.rsc.cdn77.org/plinks/jssdk/CMSDK-qa-latest.min.js\"></script>";
-            } else {
-                echo "<script type=\"text/javascript\" src=\"//1115282512.rsc.cdn77.org/plinks/jssdk/CMSDK-atl-latest.min.js\"></script>";
-            }
-        }
-        ?>
+
 
         <!-- JWPlayer -->
-        <script type="text/javascript" src="/assets/common/js/jwplayer-7.9.0/jwplayer.js" ></script>
-        <script>jwplayer.key="wldzyhAXC/pV8hrmoKJJUJQUQU7UwoOXl6rN1w==";</script>
+        <!-- <script type="text/javascript" src="/assets/common/js/jwplayer-7.9.0/jwplayer.js" ></script> -->
+        <!-- <script>jwplayer.key="wldzyhAXC/pV8hrmoKJJUJQUQU7UwoOXl6rN1w==";</script> -->
 
         <!-- Application -->
-        <script>
-            var ENVIRONMENT = "<?php echo (ENVIRONMENT === "staging" || ENVIRONMENT === "development") ? "stage" : "prod" ?>";
-        </script>
+
         <script src="/assets/theme/dist/libs.js"></script>
         <script src="/assets/theme/dist/main.js"></script>
 
