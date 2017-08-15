@@ -15,7 +15,7 @@
             'angularModalService',
             'LocalStorageModule',
             'ngMask',
-            'angular.filter',s
+            'angular.filter',
             'ngTouch',
             'angular-cache',
             'lz-string',

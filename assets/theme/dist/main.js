@@ -15,7 +15,7 @@
             'angularModalService',
             'LocalStorageModule',
             'ngMask',
-            'angular.filter',s
+            'angular.filter',
             'ngTouch',
             'angular-cache',
             'lz-string',
@@ -3028,7 +3028,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         '$rootScope',
         'userService',
         function($scope, $rootScope, userService) {
-        // 
+        //
         //     $rootScope.pageTitle = 'Your Account Overview - turnon';
         //
         //     userService.getLoggedInUser()
@@ -3056,7 +3056,7 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
         //             phone: ($scope.form.phone) ? $scope.form.phone.replace(/[^0-9]/g, '') : null
         //         });
         //     }
-        // }
+        }
     ];
 
     angular

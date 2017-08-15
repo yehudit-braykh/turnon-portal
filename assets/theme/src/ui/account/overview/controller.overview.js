@@ -5,7 +5,7 @@
         '$rootScope',
         'userService',
         function($scope, $rootScope, userService) {
-        // 
+        //
         //     $rootScope.pageTitle = 'Your Account Overview - turnon';
         //
         //     userService.getLoggedInUser()
@@ -33,7 +33,7 @@
         //             phone: ($scope.form.phone) ? $scope.form.phone.replace(/[^0-9]/g, '') : null
         //         });
         //     }
-        // }
+        }
     ];
 
     angular
