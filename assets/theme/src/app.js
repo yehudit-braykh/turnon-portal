@@ -15,13 +15,3 @@ var module = angular.module('turnon', ['ngRoute','ngAnimate','ngAria','ngMateria
         redirectTo: '/'
     });;
 });
-
-angular.module('turnon').run(['$templateCache', function($templateCache) {
-  'use strict';
-
-  $templateCache.put('models/home/home.html',
-    ""
-  );
-
-}]);
-

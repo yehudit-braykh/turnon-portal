@@ -5,63 +5,35 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         uglify: {
-            // production: {
-            //     // files: {
-            //     //     // 'dist/main.min.js': ['dist/main.js']
-            //     // }
-            // },
-            // libs: {
-            //     // files: {
-            //     //     // 'dist/libs.min.js': ['dist/libs.js']
-            //     // }
-            // }
+            production: {
+                files: {
+                    // 'dist/main.min.js': ['dist/main.js']
+                }
+            },
+            libs: {
+                files: {
+                    // 'dist/libs.min.js': ['dist/libs.js']
+                }
+            }
         },
         concat: {
             js: {
                 dest: 'dist/main.js',
                 src: [
-                    'src/ui/app.js',
-                    'src/ui/views.js',
+                    'src/app.js',
+                    'src/views.js',
                     'src/directives/**/*.js',
-                    'src/ui/**/*.js',
-                    'src/models/*.js',
+                    'src/models/**/*.js',
                     'src/services/**/*.js',
-                    'src/utils/*.js',
                     'src/filters/*.js',
-                    'src/interceptors/*.js'
                 ]
             },
             libs: {
                 dest: 'dist/libs.js',
                 src: [
-                    'bower_components/jquery/dist/jquery.js',
-                    'bower_components/angular/angular.js',
-                    'bower_components/angular-route/angular-route.js',
-                    'bower_components/slick-carousel/slick/slick.js',
-                    'bower_components/angular-slick-carousel/dist/angular-slick.min.js',
-                    'node_modules/angular-ui-router/release/angular-ui-router.js',
-                    'bower_components/angular-scroll/angular-scroll.js',
-                    'bower_components/ng-parallax/angular-parallax.js',
-                    'node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js',
-                    'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
-                    'bower_components/angular-elastic-input/dist/angular-elastic-input.js',
-                    'node_modules/angular-ui-switch/angular-ui-switch.js',
-                    'node_modules/moment/min/moment.min.js',
-                    'bower_components/ngFitText/dist/ng-FitText.min.js',
-                    'bower_components/angular-modal-service/dst/angular-modal-service.min.js',
-                    'node_modules/angular-local-storage/dist/angular-local-storage.js',
-                    'bower_components/ngMask/dist/ngMask.min.js',
-                    'node_modules/angular-filter/dist/angular-filter.min.js',
-                    'node_modules/angular-touch/angular-touch.js',
-                    'node_modules/angular-cache/dist/angular-cache.js',
-                    'node_modules/angular-lz-string/angular-lz-string.js',
-                    'node_modules/angular-sanitize/angular-sanitize.js',
-                    'node_modules/angular-inview/angular-inview.js',
-                    'node_modules/angular-socialshare/dist/angular-socialshare.js',
-                    'node_modules/ng-infinite-scroll/build/ng-infinite-scroll.js',
-                    'node_modules/slug/slug.js',
-                    'node_modules/clipboard/dist/clipboard.js',
-                    'node_modules/ngclipboard/dist/ngclipboard.js'
+                    'node_modules/jquery/dist/jquery.js',
+                    'node_modules/angular/angular.js',
+                    'node_modules/bootstrap/dist/js/bootstrap.js',
                 ]
             }
         },
@@ -82,29 +54,29 @@ module.exports = function(grunt) {
             dist: {
                 cwd: 'src/',
                 src: path.join('**/*.html'),
-                dest: path.join('src/ui/views.js')
+                dest: path.join('src/views.js')
             }
         },
         sprite:{
             layout: {
-                src: 'src/ui/sprites/layout/*.png',
-                retinaSrcFilter: 'src/ui/sprites/layout/*@2x.png',
-                dest: 'src/ui/sprites/compiled/images/layout-sprite.png',
-                retinaDest: 'src/ui/sprites/compiled/images/layout-sprite@2x.png',
-                destCss: 'src/ui/sprites/compiled/layout-sprite.css'
+                src: 'src/sprites/layout/*.png',
+                retinaSrcFilter: 'src/sprites/layout/*@2x.png',
+                dest: 'src/sprites/compiled/images/layout-sprite.png',
+                retinaDest: 'src/sprites/compiled/images/layout-sprite@2x.png',
+                destCss: 'src/sprites/compiled/layout-sprite.css'
             },
             category: {
-                src: 'src/ui/sprites/category/*.png',
-                retinaSrcFilter: 'src/ui/sprites/category/*@2x.png',
-                dest: 'src/ui/sprites/compiled/images/category-sprite.png',
-                retinaDest: 'src/ui/sprites/compiled/images/category-sprite@2x.png',
-                destCss: 'src/ui/sprites/compiled/category-sprite.css'
+                src: 'src/sprites/category/*.png',
+                retinaSrcFilter: 'src/sprites/category/*@2x.png',
+                dest: 'src/sprites/compiled/images/category-sprite.png',
+                retinaDest: 'src/sprites/compiled/images/category-sprite@2x.png',
+                destCss: 'src/sprites/compiled/category-sprite.css'
             }
         },
         less: {
             production: {
                 files: {
-                    'dist/main.css': 'src/ui/app.less'
+                    'dist/main.css': 'src/app.less'
                 }
             }
         },
@@ -113,7 +85,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     flatten: true,
-                    cwd: 'src/ui/',
+                    cwd: 'src/',
                     src: [
                         'sprites/compiled/images/*.png',
                         'images/*'
@@ -128,7 +100,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     flatten: true,
-                    cwd: 'src/ui/',
+                    cwd: 'src/',
                     src: [
                         'sprites/compiled/images/*.png',
                         'images/*'
@@ -142,27 +114,27 @@ module.exports = function(grunt) {
                 src: ['dist/font', 'dist/images', 'dist/main*.css', 'dist/main*.js']
             }
         },
-        // cssmin: {
-        //     production: {
-        // //         files: {
-        // //             'dist/main.min.css': [
-        // //                 'dist/main.css'
-        // //             ]
-        // //         }
-        //     }
-        // },
+        cssmin: {
+            production: {
+        //         files: {
+        //             'dist/main.min.css': [
+        //                 'dist/main.css'
+        //             ]
+        //         }
+            }
+        },
         watch: {
             all: {
                 files: [
-                    'src/ui/**/*.html',
-                    'src/ui/**/*.js',
+                    'src/**/*.html',
+                    'src/**/*.js',
                     'src/models/*.js',
                     'src/services/**/*.js',
                     'src/utils/*.js',
                     'src/filters/*.js',
                     'src/interceptors/*.js',
-                    'src/ui/**/*.less',
-                    '!src/ui/views.js'
+                    'src/**/*.less',
+                    '!src/views.js'
                 ],
                 tasks: ['default'],
                 options: {
@@ -177,13 +149,13 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         flatten: true,
-                        src: ['src/ui/fonts/*'],
+                        src: ['src/fonts/*'],
                         dest: 'dist/font/'
                     },
                     {
                         expand: true,
                         flatten: true,
-                        src: ['src/ui/videos/*'],
+                        src: ['src/videos/*'],
                         dest: 'dist/videos/'
                     }
                 ]

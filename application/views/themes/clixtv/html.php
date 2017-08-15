@@ -37,12 +37,12 @@
     </head>
 
     <body ng-class="{'printable': printable}">
-
+<ui-view autoscroll="true"></ui-view>
         <clix-blurrable-container>
             <clix-site-notification-bar></clix-site-notification-bar>
             <clix-header-bar></clix-header-bar>
             <div class="clix-page-container">
-                <ui-view autoscroll="true"></ui-view>
+
             </div>
         </clix-blurrable-container>
 
