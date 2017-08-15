@@ -7842,7 +7842,7 @@ button.close {
   font-size: 14px;
 }
 .signup-modal .login-container a {
-  color: #fe0000;
+  color: #18d676;
   cursor: pointer;
 }
 .signup-modal .login-container .forgot-password {
@@ -8665,11 +8665,11 @@ button.close {
 }
 .clix-share-modal-connect-button {
   background-color: #911685;
-  background-image: -webkit-gradient(linear, left top, right top, from(#911685), to(#fa0d1b));
-  background-image: -webkit-linear-gradient(left, #911685, #fa0d1b);
-  background-image: -moz-linear-gradient(left, #911685, #fa0d1b);
-  background-image: -ms-linear-gradient(left, #911685, #fa0d1b);
-  background-image: -o-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -webkit-gradient(linear, left top, right top, from(#911685), to(#f2f2f2));
+  background-image: -webkit-linear-gradient(left, #911685, #f2f2f2);
+  background-image: -moz-linear-gradient(left, #911685, #f2f2f2);
+  background-image: -ms-linear-gradient(left, #911685, #f2f2f2);
+  background-image: -o-linear-gradient(left, #911685, #f2f2f2);
   -webkit-border-radius: 30px;
   -moz-border-radius: 30px;
   border-radius: 30px;
@@ -9055,7 +9055,7 @@ button.close {
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  border: 1px solid #fe0000;
+  border: 1px solid #18d676;
   width: 25px;
   height: 25px;
   line-height: 25px;
@@ -9311,11 +9311,11 @@ button.close {
   -ms-transition: 0.25s ease;
   -o-transition: 0.25s ease;
   background-color: #911685;
-  background-image: -webkit-gradient(linear, left top, right top, from(#911685), to(#fa0d1b));
-  background-image: -webkit-linear-gradient(left, #911685, #fa0d1b);
-  background-image: -moz-linear-gradient(left, #911685, #fa0d1b);
-  background-image: -ms-linear-gradient(left, #911685, #fa0d1b);
-  background-image: -o-linear-gradient(left, #911685, #fa0d1b);
+  background-image: -webkit-gradient(linear, left top, right top, from(#911685), to(#f2f2f2));
+  background-image: -webkit-linear-gradient(left, #911685, #f2f2f2);
+  background-image: -moz-linear-gradient(left, #911685, #f2f2f2);
+  background-image: -ms-linear-gradient(left, #911685, #f2f2f2);
+  background-image: -o-linear-gradient(left, #911685, #f2f2f2);
   -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
@@ -9414,6 +9414,9 @@ body,
 html {
   max-width: 100%;
   overflow-x: hidden;
+}
+body {
+  background-color: #f2f2f2;
 }
 body.printable {
   background-color: #FFF;
