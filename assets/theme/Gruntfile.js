@@ -7,12 +7,12 @@ module.exports = function(grunt) {
         uglify: {
             production: {
                 files: {
-                    'dist/main.min.js': ['dist/main.js']
+                    // 'dist/main.min.js': ['dist/main.js']
                 }
             },
             libs: {
                 files: {
-                    'dist/libs.min.js': ['dist/libs.js']
+                    // 'dist/libs.min.js': ['dist/libs.js']
                 }
             }
         },
@@ -144,11 +144,11 @@ module.exports = function(grunt) {
         },
         cssmin: {
             production: {
-                files: {
-                    'dist/main.min.css': [
-                        'dist/main.css'
-                    ]
-                }
+        //         files: {
+        //             'dist/main.min.css': [
+        //                 'dist/main.css'
+        //             ]
+        //         }
             }
         },
         watch: {

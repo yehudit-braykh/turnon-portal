@@ -20,7 +20,7 @@
         <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link rel="stylesheet" href="/assets/theme/dist/main.min.css" />
+        <link rel="stylesheet" href="/assets/theme/dist/main.css" />
         <base href="/" />
         <script>
             var _comscore = _comscore || [];
@@ -73,8 +73,8 @@
         <script>
             var ENVIRONMENT = "<?php echo (ENVIRONMENT === "staging" || ENVIRONMENT === "development") ? "stage" : "prod" ?>";
         </script>
-        <script src="/assets/theme/dist/libs.min.js"></script>
-        <script src="/assets/theme/dist/main.min.js"></script>
+        <script src="/assets/theme/dist/libs.js"></script>
+        <script src="/assets/theme/dist/main.js"></script>
 
     </body>
 </html>
