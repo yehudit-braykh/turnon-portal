@@ -55,9 +55,9 @@ ExpiresByType application/javascript "access plus 1 month"
 </IfModule>
 
 <FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|svg|gif|js|css|swf)$">
-Header set Cache-Control "max-age=864000, public"
+#Header set Cache-Control "max-age=864000, public"
 </FilesMatch>
 
 <FilesMatch "\.(html|htm)$">
-Header set Cache-Control "max-age=7200, must-revalidate"
+#Header set Cache-Control "max-age=7200, must-revalidate"
 </FilesMatch>
