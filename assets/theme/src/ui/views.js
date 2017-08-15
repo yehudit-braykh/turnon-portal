@@ -1,4 +1,4 @@
-angular.module('clixtv').run(['$templateCache', function($templateCache) {
+angular.module('turnon').run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('directives/buttons/view.callout-button.html',

@@ -67,7 +67,7 @@ module.exports = function(grunt) {
         },
         ngtemplates: {
             options: {
-                module: 'clixtv',
+                module: 'turnon',
                 htmlmin: {
                     collapseBooleanAttributes: false,
                     collapseWhitespace: true,
