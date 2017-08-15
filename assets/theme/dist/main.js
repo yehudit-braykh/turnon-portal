@@ -584,6 +584,1834 @@ angular.module('clixtv').run(['$templateCache', function($templateCache) {
 
 (function() {
 
+    var PrimaryButtonController = [
+        '$scope',
+        function($scope) {
+
+        }
+    ];
+
+    angular
+        .module('turnon')
+        .controller('PrimaryButtonController', PrimaryButtonController);
+}());
+
+(function() {
+
+    var primaryButton = function() {
+        return {
+            restrict: 'AE',
+            transclude: true,
+            controller: 'PrimaryButtonController',
+            templateUrl: 'ui/buttons/view.primary-button.html',
+            scope: {
+                type: '@?',
+                circle: '@?',
+                loading: '=?'
+            }
+        }
+    };
+
+    var secondaryButton = function() {
+        return {
+            restrict: 'AE',
+            transclude: true,
+            templateUrl: 'ui/buttons/view.secondary-button.html',
+            scope: {
+                alternate: '@?'
+            }
+        }
+    };
+
+    var tertiaryButton = function() {
+        return {
+            restrict: 'AE',
+            transclude: true,
+            templateUrl: 'ui/buttons/view.tertiary-button.html',
+            scope: {
+                isActive: '=?'
+            }
+        }
+    };
+
+    var calloutButton = function() {
+        return {
+            restrict: 'AE',
+            transclude: true,
+            templateUrl: 'ui/buttons/view.callout-button.html',
+            scope: {
+                colorType: '@?'
+            }
+        }
+    };
+
+    angular.module('turnon')
+        .directive('clixPrimaryButton', primaryButton)
+        .directive('clixSecondaryButton', secondaryButton)
+        .directive('clixTertiaryButton', tertiaryButton)
+        .directive('clixCalloutButton', calloutButton);
+}());
+
+(function() {
+
+    var DatepickerDropdowns = [
+        '$scope',
+        function($scope) {
+            //
+            // function _getMonthOptions() {
+            //     return moment.monthsShort().map(function(month, i) {
+            //         return {
+            //             label: month,
+            //             value: (i + 1),
+            //             onClick: function() {
+            //                 $scope.selectedMonth = (i + 1);
+            //                 $scope.days = _getDayOptions();
+            //                 _updateModelDate();
+            //             }
+            //         }
+            //     });
+            // }
+            //
+            // function _getDayOptions() {
+            //     var numberOfDays,
+            //         options = [];
+            //     if (!$scope.selectedMonth) {
+            //         $scope.selectedMonth = 1;
+            //     }
+            //
+            //     // Set the current selected day back to undefined since changing the
+            //     // month will update the possible number of days to choose from
+            //     $scope.selectedDay = undefined;
+            //
+            //     // Force set the year to a leap year to give Feb the max possible
+            //     // amount of days to choose from
+            //     numberOfDays = moment('2016-' + $scope.selectedMonth, 'YYYY-M').daysInMonth();
+            //     for (var i = 1, length = numberOfDays; i <= length; i++) {
+            //         (function(day) {
+            //             options.push({
+            //                 label: i,
+            //                 value: i,
+            //                 onClick: function () {
+            //                     $scope.selectedDay = day;
+            //                     _updateModelDate();
+            //                 }
+            //             })
+            //         }(i));
+            //     }
+            //     return options;
+            // }
+            //
+            // function _getYearOptions() {
+            //     var options = [],
+            //         currentYear = new Date().getFullYear(),
+            //         minimumYear = currentYear - 100;
+            //     for (var i = minimumYear, length = currentYear; i <= length; i++) {
+            //         (function(year) {
+            //             options.push({
+            //                 label: i,
+            //                 value: i,
+            //                 onClick: function() {
+            //                     $scope.selectedYear = year;
+            //                     _updateModelDate();
+            //                 }
+            //             })
+            //         }(i));
+            //     }
+            //     return options.reverse();
+            // }
+            //
+            // function _updateModelDate() {
+            //     var month = $scope.selectedMonth,
+            //         day = $scope.selectedDay,
+            //         year = $scope.selectedYear;
+            //
+            //     if (!month || !day || !year) {
+            //         $scope.ngModel = undefined;
+            //         return;
+            //     }
+            //
+            //     $scope.ngModel = moment(month + '-' + day + '-' + year, 'M-D-YYYY').toDate();
+            // }
+            //
+            // $scope.months = _getMonthOptions();
+            // $scope.days = _getDayOptions();
+            // $scope.years = _getYearOptions();
+
+        }
+    ];
+
+    angular
+        .module('turnon')
+        .controller('DatepickerDropdowns', DatepickerDropdowns);
+}());
+
+(function() {
+
+    var datepickerDropdowns = [
+        function() {
+            return {
+                restrict: 'AE',
+                templateUrl: 'ui/common/datepicker/view.datepicker-dropdowns.html',
+                controller: 'DatepickerDropdowns',
+                scope: {
+                    ngModel: '='
+                }
+            }
+        }
+    ];
+
+    angular.module('turnon')
+        .directive('clixDatepickerDropdowns', datepickerDropdowns);
+}());
+(function() {
+
+    var DropdownController = [
+        '$q',
+        '$scope',
+        '$timeout',
+        function($q, $scope, $timeout) {
+
+            // $scope.bodyClicked = function(event) {
+            //     $scope.menuVisible = false;
+            // };
+            //
+            // $scope.triggerClicked = function() {
+            //     $scope.menuVisible = !$scope.menuVisible;
+            // };
+            //
+            // $scope.$watch('ngModel', function() {
+            //     $timeout(function() {
+            //         if ($scope.ngModel) {
+            //             $scope.selected = $scope.ngModel;
+            //             $scope.$apply();
+            //         }
+            //     });
+            // });
+            //
+            // $scope.$watch('options', function() {
+            //     if (!$scope.options) {
+            //         return;
+            //     }
+            //     $scope.selected = $scope.placeholderText ? { label: $scope.placeholderText } : $scope.options[0];
+            //     $scope.dropdownOptions = $scope.options.map(function(option) {
+            //         return {
+            //             label: option.label,
+            //             // onClickDefault: option.onClick,
+            //             onClick: function() {
+            //                 $scope.selected = option;
+            //                 $scope.menuVisible = false;
+            //                 $scope.ngModel = option;
+            //                 $timeout(function() {
+            //                     $scope.$apply();
+            //                 });
+            //                 if (option.onClick) {
+            //                     option.onClick(option);
+            //                 }
+            //             }
+            //         }
+            //     });
+            // });
+        }
+    ];
+
+    angular
+        .module('turnon')
+        .controller('DropdownController', DropdownController);
+}());
+
+(function() {
+
+    var dropdown = function() {
+        return {
+            restrict: 'AE',
+            templateUrl: 'ui/dropdown/view.dropdown.html',
+            controller: 'DropdownController',
+            scope: {
+                options: '=',
+                placeholderText: '@?',
+                ngModel: '=?'
+            }
+        }
+    };
+
+    angular.module('turnon')
+        .directive('clixDropdown', dropdown);
+}());
+(function() {
+    var loader = [
+        function() {
+            return {
+                restrict: 'AE',
+                replace: true,
+                templateUrl: 'ui/common/loader/view.loader.html',
+                scope: {
+                    size: '@?'
+                }
+            }
+        }
+    ];
+
+    angular.module('turnon')
+        .directive('clixLoader', loader);
+}());
+(function() {
+
+    var AlertModalController = [
+        '$scope',
+        '$uibModalInstance',
+        'data',
+        'modalService',
+        function($scope, $uibModalInstance, data, modalService) {
+            $scope.title = data.title;
+            $scope.message = data.message;
+
+            $scope.onCloseButtonPress = function() {
+                if (modalService.getNumberOfModalsInStack() >= 2) {
+                    modalService.pop();
+                } else {
+                    $uibModalInstance.close();
+                }
+            }
+        }
+    ];
+
+    angular
+        .module('turnon')
+        .controller('AlertModalController', AlertModalController);
+}());
+(function() {
+
+    var ConfirmationModalController = [
+        '$scope',
+        '$rootScope',
+        'data',
+        '$uibModalInstance',
+        'modalService',
+        function($scope, $rootScope, data, $uibModalInstance, modalService) {
+            $scope.key = data.key;
+            $scope.title = data.title;
+            $scope.message = data.message;
+
+            $scope.onCloseButtonPress = function() {
+                if (modalService.getNumberOfModalsInStack() >= 2) {
+                    modalService.pop();
+                } else {
+                    $uibModalInstance.close();
+                }
+            };
+
+            $scope.onConfirmButtonPress = function() {
+                if (modalService.getNumberOfModalsInStack() >= 2) {
+                    modalService.pop();
+                } else {
+                    $uibModalInstance.close();
+                }
+                $rootScope.$broadcast('modal.confirm', {
+                    key: data.key
+                })
+            };
+        }
+    ];
+
+    angular
+        .module('turnon')
+        .controller('ConfirmationModalController', ConfirmationModalController);
+}());
+(function() {
+
+    var ModalController = [
+        '$q',
+        '$log',
+        '$scope',
+        'modalService',
+        function($q, $log, $scope, modalService) {
+            if (modalService.getNumberOfModalsInStack() >= 2) {
+                $scope.showBackButton = true;
+            }
+
+            $scope.onBackButtonPress = function() {
+                modalService.pop();
+            }
+        }
+    ];
+
+    angular
+        .module('turnon')
+        .controller('ModalController', ModalController);
+}());
+(function() {
+    var modal = [
+        function() {
+            return {
+                restrict: 'AE',
+                transclude: true,
+                controller: 'ModalController',
+                templateUrl: 'ui/common/modal/view.modal.html',
+                scope: {
+                    modalTitle: '@?',
+                    extraModalClass: '@?'
+                }
+            }
+        }
+    ];
+
+    var messageModal = [
+        function() {
+            return {
+                restrict: 'AE',
+                templateUrl: 'ui/common/modal/view.message-modal.html',
+                transclude: {
+                    modalTitle: 'modalTitle',
+                    modalBody: 'modalBody',
+                    modalConfirmButton: '?modalConfirmButton',
+                    modalCancelButton: '?modalCancelButton'
+                }
+            }
+        }
+    ];
+
+    var learnMoreModalTrigger = [
+        'educationModalService',
+        function(educationModalService) {
+            return {
+                restrict: 'AE',
+                link: function(scope, element) {
+                    element.bind('click', function(e) {
+                        e.preventDefault();
+                        educationModalService.showLearnMoreModal();
+                    })
+                }
+            }
+        }
+    ];
+
+    angular.module('turnon')
+        .directive('clixModal', modal)
+        .directive('clixMessageModal', messageModal)
+        .directive('clixLearnMoreModalTrigger', learnMoreModalTrigger);
+}());
+(function() {
+
+    var DonateController = [
+        '$scope',
+        '$timeout',
+        '$filter',
+        '$uibModalInstance',
+        'clixConfig',
+        function($scope, $timeout, $filter, $uibModalInstance, clixConfig) {
+
+            $scope.buyPointsModel = 0;
+            $scope.pointsEnabled = clixConfig.pointsEnabled;
+
+            $scope.onBuyPointsPress = function() {
+                $scope.state = 'buy';
+            };
+
+            $scope.onCancelPress = function() {
+                $uibModalInstance.close();
+            };
+
+            $scope.onDonatePress = function() {
+                // todo - API call...
+                $uibModalInstance.close();
+            };
+
+            $scope.onBackPress = function() {
+                $scope.state = 'donate';
+            };
+
+            $scope.onBuyPointsContainerPress = function() {
+                var element = document.getElementById('buyPointsInput');
+                element.focus();
+                element.select();
+            };
+
+            $scope.onBuyPointsChange = function() {
+
+            };
+
+            $scope.onBuyPointsBlur = function(value) {
+                $timeout(function() {
+                    var input = value || '';
+                    input = input.replace(/[0-9]/g, '');
+                    $scope.buyPointsModel = $filter('number')(input);
+                });
+            };
+
+        }
+    ];
+
+    angular
+        .module('turnon')
+        .controller('DonateController', DonateController);
+}());
+(function() {
+
+    var EducationModalController = [
+        '$q',
+        '$scope',
+        '$rootScope',
+        '$timeout',
+        '$uibModalInstance',
+        'data',
+        'userService',
+        'videosService',
+        'brandsService',
+        'celebrityService',
+        'categoryService',
+        'offersService',
+        'modalService',
+        'preferencesService',
+        'clixConfig',
+        function($q, $scope, $rootScope, $timeout, $uibModalInstance, data, userService, videosService, brandsService, celebrityService, categoryService, offersService, modalService, preferencesService, clixConfig) {
+
+            $scope.showAgainModel = false;
+            $scope.pointsEnabled = clixConfig.pointsEnabled;
+
+            var itemData = data;
+
+            function _getModalTitle() {
+                var title,
+                    isLoggedIn = ($scope.loggedInUser !== undefined && $scope.loggedInUser);
+
+                switch(itemData.type) {
+
+                    case 'watchlist':
+                        title = (isLoggedIn) ? 'Success!' : 'Saving to Watchlist';
+                        break;
+
+                    case 'brand':
+                    case 'celebrity':
+                    case 'category':
+                    case 'charity':
+                        title = (isLoggedIn) ? 'Success!' : 'Saving to Favorites';
+                        break;
+
+                    case 'offer-view':
+                    case 'offer':
+                        if ($scope.pointsEnabled) {
+                            title = (isLoggedIn) ? 'Reward Points Earned' : 'Reward Points Missed!';
+                        } else {
+                            title = 'Reward points coming soon';
+                        }
+                        break;
+
+                    case 'learn-more':
+                        title = (isLoggedIn) ? 'Earn Rewards!' : 'Earn Reward Points!';
+                        break;
+
+                    case 'anonymous-liked-video':
+                    case 'signup-offer':
+                        title = 'Sign Up Now';
+                        break;
+
+                    case 'notifications-coming-soon':
+                        title = 'Notifications Coming Soon';
+                        break;
+                }
+
+                return title;
+            }
+
+            function _getItem() {
+                var id = itemData.id;
+                if (!itemData.id) {
+                    return $q.when();
+                }
+                switch(itemData.type) {
+
+                    case 'watchlist':
+                        return videosService.getVideoById(id);
+
+                    case 'brand':
+                        return brandsService.getBrandById(id);
+
+                    case 'celebrity':
+                        return celebrityService.getCelebrityById(id);
+
+                    case 'category':
+                        return categoryService.getCategoryById(id);
+
+                    case 'charity':
+                        return brandsService.getCharityById(id);
+
+                    case 'offer-view':
+                    case 'offer':
+                        return offersService.getOfferById(id);
+
+                    case 'anonymous-liked-video':
+                    case 'signup-offer':
+                        return $q.when();
+                }
+
+                throw new Error('Error looking up item for type ' + itemData.type);
+            }
+
+            $scope.loggedInUser = itemData.loggedInUser;
+            $scope.title = _getModalTitle();
+            $scope.type = itemData.type;
+
+            $scope.onCloseButtonPress = function(navigation) {
+                if (modalService.getNumberOfModalsInStack() >= 2 && !navigation) {
+                    modalService.pop();
+                } else {
+                    $uibModalInstance.close({
+                        navigation: navigation
+                    });
+                    modalService.close();
+                }
+            };
+
+            $scope.onSignUpPress = function() {
+                if (modalService.getNumberOfModalsInStack() >= 2) {
+                    modalService.showSignUpModal();
+                } else {
+                    $uibModalInstance.close();
+                    $timeout(function() {
+                        modalService.showSignUpModal();
+                    }, 100);
+                }
+            };
+
+            $scope.onLoginPress = function() {
+                if (modalService.getNumberOfModalsInStack() >= 2) {
+                    modalService.showLogInModal();
+                } else {
+                    $uibModalInstance.close();
+                    $timeout(function() {
+                        modalService.showLogInModal();
+                    }, 100);
+                }
+            };
+
+            $scope.onShowAgainChange = function(model) {
+                preferencesService.setShowEducationModalPreference(itemData.type, model);
+            };
+
+            $q.all(
+                    [
+                        _getItem()
+                    ]
+                )
+                .then(
+                    function onSuccess(data) {
+                        $scope.item = data[0];
+                        $scope.ready = true;
+                    }
+                );
+        }
+    ];
+
+    angular
+        .module('turnon')
+        .controller('EducationModalController', EducationModalController);
+}());
+(function() {
+
+    var LoginSignupController = [
+        '$scope',
+        '$rootScope',
+        '$uibModalInstance',
+        'userService',
+        'data',
+        'clixConfig',
+        function($scope, $rootScope, $uibModalInstance, userService, data, clixConfig) {
+
+            $scope.signup = data.signup;
+
+            $scope.isBeta = (clixConfig.beta === true);
+
+            $scope.loginModel = {
+                email: '',
+                password: ''
+            };
+
+            $scope.signupModel = {
+                email: '',
+                emailConfirm: '',
+                password: '',
+                passwordConfirm: '',
+                firstName: '',
+                realFirstName: '',
+                lastName: '',
+                birthdate: '',
+                gender: ''
+            };
+
+            $scope.onLoginPress = function() {
+                $scope.signup = false;
+            };
+
+            $scope.onSignupPress = function() {
+                $scope.signup = true;
+            };
+
+            $scope.onLoginSubmit = function() {
+                $scope.error = undefined;
+                if (!$scope.loginModel.email || !$scope.loginModel.password) {
+                    $scope.error = 'All fields are required';
+                    return;
+                }
+                userService.loginWithEmailPassword($scope.loginModel.email, $scope.loginModel.password)
+                    .then(
+                        function onSuccess(data) {
+                            $uibModalInstance.close();
+                        }
+                    )
+                    .catch(
+                        function onError(error) {
+                            $scope.error = 'Incorrect login information';
+                            console.log(error);
+                        }
+                    );
+            };
+
+            $scope.onSignupSubmit = function() {
+
+                // Honeypot field...
+                if ($scope.signupModel.firstName) {
+                    return;
+                }
+
+                $scope.error = undefined;
+
+                if (
+                    !$scope.signupModel.email ||
+                    !$scope.signupModel.password ||
+                    !$scope.signupModel.realFirstName ||
+                    !$scope.signupModel.lastName/* ||
+                    !$scope.signupModel.birthdate ||
+                    !$scope.signupModel.gender*/
+                ) {
+                    $scope.error = 'All fields are required';
+                    return;
+                }
+
+                if ($scope.signupModel.email !== $scope.signupModel.emailConfirm) {
+                    $scope.error = 'Email and confirmation do not match';
+                    return;
+                }
+
+                if ($scope.signupModel.password !== $scope.signupModel.passwordConfirm) {
+                    $scope.error = 'Password and confirmation do not match';
+                    return;
+                }
+
+
+
+                userService.signupUser($scope.signupModel.email, $scope.signupModel.password, $scope.signupModel.realFirstName, $scope.signupModel.lastName)
+                    .then(
+                        function onSuccess(data) {
+                            $uibModalInstance.close();
+                            userService.addUserToNewsletter($scope.signupModel.email, $scope.signupModel.realFirstName, $scope.signupModel.lastName);
+                        }
+                    )
+                    .catch(
+                        function onError(error) {
+                            $scope.error = 'Account already exists with this email address';
+                            console.log(error);
+                        }
+                    );
+            };
+
+            $scope.onCloseIconPress = function() {
+                $uibModalInstance.close();
+            };
+
+            $scope.onFacebookLoginPress = function() {
+                window.open('/hauth/login/Facebook', 'fb', 'left=20,top=20,width=600,height=500,toolbar=1,resizable=0');
+            };
+
+            $scope.onGoogleLoginPress = function() {
+                window.open('/hauth/login/Google', 'google', 'left=20,top=20,width=600,height=500,toolbar=1,resizable=0');
+            };
+
+            /**
+             * @fixme - This is legacy "login with social network" code that'll take a much larger effort to refactor
+             */
+            // gross...
+            window.finished_login = function() {
+                userService.setLoggedInUser()
+                    .then(
+                        function onSuccess(data) {
+                            $uibModalInstance.close();
+                            userService.addUserToNewsletter(data.email, data.firstName, data.lastName);
+                        }
+                    );
+            };
+        }
+    ];
+
+    angular
+        .module('turnon')
+        .controller('LoginSignupController', LoginSignupController);
+}());
+(function() {
+
+    var OfferModalController = [
+        '$q',
+        '$scope',
+        '$window',
+        '$rootScope',
+        'modalService',
+        'educationModalService',
+        'offersService',
+        'userService',
+        'data',
+        'knetikService',
+        'catchMediaService',
+        function($q, $scope, $window, $rootScope, modalService, educationModalService, offersService, userService, data, knetikService, catchMediaService) {
+
+            function _setIsSaved() {
+                if ($scope.offer) {
+                    $scope.isSavedOffer = userService.isSavedOffer($scope.offer.id);
+                }
+            }
+
+            $rootScope.$on('user.login', _setIsSaved);
+
+            offersService.getOfferBySlug(data.offerSlug)
+                .then(
+                    function onSuccess(data) {
+                        var brand = data.brand || data.campaign;
+                        $scope.offer = data;
+
+                        knetikService.viewOffer($scope.offer.id);
+
+                        $rootScope.pageTitle = $scope.offer.title + ' Offer at ' + (brand ? brand.title : '') + ' - turnon';
+
+                        catchMediaService.trackAppEvent('navigation', {
+                            target_cm: 'media',
+                            target_type: 'offer',
+                            target_id: $scope.offer.id
+                        });
+                    }
+                );
+
+            $scope.onClosePress = function() {
+                modalService.close();
+            };
+
+            $scope.onSaveOfferPress = function() {
+                if ($scope.isSavedOffer) {
+                    userService.removeSavedOffer($scope.offer.id)
+                        .then(
+                            function onSuccess() {
+                                $scope.isSavedOffer = false;
+                            }
+                        );
+                } else {
+                    userService.addSavedOffer($scope.offer.id);
+                    knetikService.saveOffer($scope.offer.id);
+                    $scope.isSavedOffer = true;
+
+                    userService.getLoggedInUser()
+                        .then(
+                            function onSuccess(data) {
+                                if (data !== false) {
+                                    catchMediaService.trackMediaEvent($scope.offer.id, 'offer', 'offer_saved');
+                                }
+                            }
+                        );
+                }
+            };
+
+            $scope.onOfferRedeemPress = function() {
+                var rfiLink, slug = $scope.offer.slug;
+
+                if ($scope.offer.rfiLink) {
+                    $window.open($scope.offer.rfiLink, '_blank');
+                    return;
+                }
+
+                /**
+                 * @todo - Remove this once the CMS works correctly...
+                 */
+                switch (slug) {
+                    case 'up-to-50percent-off-mens-sneakers':
+                        rfiLink = 'http://store.nike.com/us/en_us/pw/mens-clearance-shoes/47Z7puZoi3?mid=38660&mid=38660&cp=usns_aff_nike_080113_FPWseZFEpyY&site=FPWseZFEpyY-0vukNjv0tIeI5INdBP9IdQ';
+                        break;
+                    case 'up-to-50percent-off-hoodies-and-pullovers':
+                        rfiLink = 'http://store.nike.com/us/en_us/pw/mens-clearance-sweatshirts-hoodies/47Z7puZobq?ipp=63&mid=38660&cp=usns_aff_nike_080113_FPWseZFEpyY&site=FPWseZFEpyY-ecYOD_SFVLx2TReCgcdgAA';
+                        break;
+                    case 'save-on-items-for-girls':
+                        rfiLink = 'http://store.nike.com/us/en_us/pw/girls-clearance/47Z7pw?ipp=120';
+                        break;
+                    case '50percent-off-scuderia-ferrari-tincan-carbon-sunglasses':
+                        rfiLink = 'https://www.groupon.com/deals/gg-oakley-scuderia-ferrari-tincan-carbon-sunglasses';
+                        break;
+                    case '57percent-off-sunglasses-for-men-and-women':
+                        rfiLink = 'https://www.groupon.com/deals/gg-oakley-sunglasses-for-men-and-women-5';
+                        break;
+                    case '30percent-off-patio-furniture':
+                        rfiLink = 'http://www.target.com/p/7pc-sling-folding-patio-dining-set-turquoise-room-essentials-153/-/A-51611881';
+                        break;
+                    case 'dollar30-off-kitchenaidr-mixer':
+                        rfiLink = 'https://www.target.com/p/kitchenaid-174-ultra-power-plus-4-5-qt-tilt-head-stand-mixer-ksm96/-/A-51575208';
+                        break;
+                    case '70percent-off-schwinn-mens-trailway-28':
+                        rfiLink = 'http://www.target.com/p/schwinn-men-s-trailway-28-700c-hybrid-bike-bronze/-/A-15547829';
+                        break;
+                    case 'pandora-trial-subscriptions':
+                        rfiLink = 'https://www.pandora.com/account/register';
+                        break;
+                    case 'dollar20-lyft-credit':
+                        rfiLink = 'https://www.lyft.com/promo-coupon-code-free-rides';
+                        break;
+                    case 'dollar10-lyft-credit':
+                        rfiLink = 'https://www.lyft.com/promo-coupon-code-free-rides';
+                        break;
+                    case 'dollar9-lyft-credit':
+                        rfiLink = 'https://www.lyft.com/promo-coupon-code-free-rides';
+                        break;
+                    case 'up-to-55percent-off-dentalife':
+                        rfiLink = 'https://www.groupon.com/deals/gs-purina-dentalife-daily-oral-care-small-medium-dog-treats';
+                        break;
+                    case '60percent-off-dentalife-cat-treats':
+                        rfiLink = 'https://www.groupon.com/deals/gs-purina-dentalife-flavored-cat-treats-1-8-oz-pouch-pack-of-10';
+                        break;
+                    case '10percent-below-msrp-on-select-2017-corvettes':
+                        rfiLink = 'http://www.chevrolet.com/current-deals?ppc=GOOGLE_700000001294388_71700000018229594_58700002071064306_p16389339423&gclid=CjwKEAjw3pTJBRChgZ3e7s_YhAkSJAASG9VrrN1r6Q0jEWZNtwT78okGE1hHmJ-o3YsbRBcobrkSNBoCPozw_wcB&gclsrc=aw.ds';
+                        break;
+                    case 'dollar1500-purchase-bonus-cash-on-select-2017-camaros':
+                        rfiLink = 'http://www.chevrolet.com/current-deals?ppc=GOOGLE_700000001294388_71700000018229594_58700002071064306_p16389339423&gclid=CjwKEAjw3pTJBRChgZ3e7s_YhAkSJAASG9VrrN1r6Q0jEWZNtwT78okGE1hHmJ-o3YsbRBcobrkSNBoCPozw_wcB&gclsrc=aw.ds';
+                        break;
+                    case '39percent-apr-for-60-months-plus-dollar4500-purchase-bonus-cash':
+                        rfiLink = 'http://www.chevrolet.com/current-deals?ppc=GOOGLE_700000001294388_71700000018229594_58700002071064306_p16389339423&gclid=CjwKEAjw3pTJBRChgZ3e7s_YhAkSJAASG9VrrN1r6Q0jEWZNtwT78okGE1hHmJ-o3YsbRBcobrkSNBoCPozw_wcB&gclsrc=aw.ds';
+                        break;
+                    case 'dollar5-thin-crust-spinach-and-mushroom':
+                        rfiLink = 'http://www.target.com/p/digiorno-thin-crust-spinach-and-mushroom-pizza-18-oz/-/A-41982816';
+                        break;
+                    case 'dollar5-thin-crust-pepperoni':
+                        rfiLink = 'http://www.target.com/p/digiorno-pizzeria-thin-crust-primo-pepperoni-pizza-17-2-oz/-/A-17092815';
+                        break;
+                    case 'dollar5-thin-crust-supreme-special':
+                    case 'dollar5-thin-crust-supreme-speciale':
+                        rfiLink = 'http://www.target.com/p/pizza-digiorno/-/A-17092814';
+                        break;
+                    case 'dollar20-off-select-polos':
+                        rfiLink = 'http://store.partyrock.com/sport/tennis-polos/tennis-polo-lime-black.html';
+                        break;
+                    case '33percent-off-mens-select-tennis-shorts':
+                        rfiLink = 'http://store.partyrock.com/sport/tennis-shorts/tennis-shorts-black-zebra.html';
+                        break;
+                    case '58percent-off-livingston-sweater':
+                        rfiLink = 'http://www.6pm.com/p/vans-livingston-cement-heather-black/product/8601289/color/308643';
+                        break;
+                    case '57percent-off-satellite-tank-top':
+                        rfiLink = 'http://www.6pm.com/p/vans-satellite-tank-top-black/product/8736416/color/3';
+                        break;
+                    case '38percent-off-classic-slip-ontm-shoes':
+                        rfiLink = 'http://www.6pm.com/p/vans-kids-classic-slip-on-little-kid-big-kid-prism-pink-perf-leather/product/8689692/color/618221';
+                        break;
+                    case '20percent-off-party-socks':
+                        rfiLink = 'http://store.partyrock.com/';
+                        break;
+                }
+
+                $window.open(rfiLink, '_blank');
+            };
+
+            $scope.onCopyToClipboardSuccess = function(e) {
+
+            };
+
+            _setIsSaved();
+        }
+    ];
+
+
+
+    angular
+        .module('turnon')
+        .controller('OfferModalController', OfferModalController);
+}());
+(function() {
+
+    var RedeemRewardsController = [
+        '$scope',
+        '$uibModalInstance',
+        'type',
+        'clixConfig',
+        function($scope, $uibModalInstance, type, clixConfig) {
+
+            switch (type) {
+                case 'visa':
+                    $scope.image = clixConfig.baseImageUrl + '/visa.png';
+                    $scope.imageHighRes = clixConfig.baseImageUrl + '/visa@2x.png';
+                    $scope.title = 'Visa® Prepaid Card USD';
+                    $scope.disclaimer = 'Visa® Prepaid Card USD works just like cash. Your turnon reward points have a cash value. Just transfer the balance to a Visa® Prepaid Card USD! Click "Redeem Now" below and you will receive an email with your redemption instructions.';
+                    break;
+                case 'paypal':
+                    $scope.image = clixConfig.baseImageUrl + '/paypal.png';
+                    $scope.imageHighRes = clixConfig.baseImageUrl + '/paypal@2x.png';
+                    $scope.title = 'PayPal';
+                    $scope.disclaimer = 'PayPal works just like cash. Your turnon reward points have a cash value. Just transfer the balance to your PayPal Account! Click "Redeem Now" below and you will receive an email with your redemption instructions.';
+                    break;
+                case 'amazon':
+                    $scope.image = clixConfig.baseImageUrl + '/amazon.png';
+                    $scope.imageHighRes = clixConfig.baseImageUrl + '/amazon@2x.png';
+                    $scope.title = 'Amazon.com Gift Card';
+                    $scope.disclaimer = 'Your turnon reward points have a cash value. Just transfer the balance to a Amazon.com Gift Card! Click "Redeem Now" below and you will receive an email with your redemption instructions.';
+                    break;
+            }
+
+            $scope.onRedeemPress = function() {
+
+                // todo - API call...
+                $uibModalInstance.close();
+            };
+
+            $scope.onCancelPress = function() {
+                $uibModalInstance.close();
+            }
+
+        }
+    ];
+
+    angular
+        .module('turnon')
+        .controller('RedeemRewardsController', RedeemRewardsController);
+}());
+(function() {
+
+    var ShareSettingsController = [
+        '$scope',
+        'modalService',
+        function($scope, modalService) {
+
+        }
+    ];
+
+    angular
+        .module('turnon')
+        .controller('ShareSettingsController', ShareSettingsController);
+}());
+(function() {
+
+    var ShareController = [
+        '$scope',
+        '$location',
+        '$uibModalInstance',
+        '$state',
+        '$window',
+        'data',
+        'modalService',
+        'catchMediaService',
+        'shareService',
+        'userService',
+        'notificationsService',
+        function($scope, $location, $uibModalInstance, $state, $window, data, modalService, catchMediaService, shareService, userService, notificationsService) {
+
+            $scope.tab = 'post';
+            $scope.socialNetworks = [];
+
+            $scope.video = data.shareModalVideo;
+            $scope.offer = data.shareModalOffer;
+            $scope.celebrity = data.shareModalCelebrity;
+            $scope.brand = data.shareModalBrand;
+            $scope.charity = data.shareModalCharity;
+            $scope.category = data.shareModalCategory;
+
+            var type, entity, link, picture, description, title, message,
+                currentUrl = $location.absUrl(),
+                shareContent = '';
+
+            if (data.shareModalVideo) {
+                message = 'Here\'s a video I thought you\'d enjoy from #turnon';
+                link = $state.href('video', { slug: data.shareModalVideo.slug }, {absolute: true});
+                shareContent = message + ' - ';
+                shareContent += data.shareModalVideo.title + ' ' + link;
+                type = 'video';
+                entity = data.shareModalVideo;
+                picture = $scope.video.thumbnail;
+                description = $scope.video.description;
+                title = 'Episode ' + $scope.video.episodeNumber + ': ' + $scope.video.title + ' on turnon';
+            }
+
+            if (data.shareModalOffer) {
+                message = 'Here\'s an offer I thought you\'d enjoy from #turnon';
+                link = $state.href('brand-offer', { slug: data.shareModalOffer.campaign.slug, offerSlug: data.shareModalOffer.slug }, {absolute: true});
+                shareContent = message + ' - ';
+                shareContent += data.shareModalOffer.title + ' ' + link;
+                type = 'offer';
+                entity = data.shareModalOffer;
+                picture = $scope.offer.thumbnail;
+                description = $scope.offer.description;
+                title = $scope.offer.title + ' on turnon';
+            }
+
+            if (data.shareModalCelebrity) {
+                message = 'I thought you\'d like to check out ' + data.shareModalCelebrity.name + ' on #turnon';
+                link = $state.href('star', { slug: data.shareModalCelebrity.slug }, {absolute: true});
+                shareContent = message + ' - ';
+                shareContent += link;
+                type = 'star';
+                entity = data.shareModalCelebrity;
+                picture = $scope.celebrity.thumbnail;
+                description = $scope.celebrity.description;
+                title = $scope.celebrity.name + ' on turnon';
+            }
+
+            if (data.shareModalBrand) {
+                message = 'I thought you\'d enjoy visiting ' + data.shareModalBrand.title + ' on #turnon';
+                link = $state.href('brand', { slug: data.shareModalBrand.slug }, {absolute: true});
+                shareContent = message + ' - ';
+                shareContent += link;
+                type = 'brand';
+                entity = data.shareModalBrand;
+                picture = $scope.brand.headerImage;
+                description = $scope.brand.description;
+                title = $scope.brand.title + ' on turnon';
+            }
+
+            if (data.shareModalCharity) {
+                message = 'I thought you\'d enjoy visiting the charity page for ' + data.shareModalCharity.title + ' on #turnon';
+                link = $state.href('charity', { slug: data.shareModalCharity.slug }, {absolute: true});
+                shareContent = ' - ';
+                shareContent += link;
+                type = 'charity';
+                entity = data.shareModalCharity;
+                picture = $scope.charity.headerImage;
+                description = $scope.charity.description;
+                title = $scope.charity.title + ' on turnon';
+            }
+
+            $scope.shareContent = shareContent;
+            $scope.link = link;
+            $scope.type = type;
+
+            $scope.onTabPress = function(tab) {
+                $scope.tab = tab;
+            };
+
+            $scope.onCancelPress = function() {
+                if ($scope.showBackButton) {
+                    modalService.pop();
+                } else {
+                    $uibModalInstance.close();
+                }
+            };
+
+            $scope.form = {
+                emails: '',
+                message: shareContent
+            };
+
+            $scope.onSendPress = function() {
+                if (!$scope.form.emails) {
+                    return;
+                }
+                var emails = $scope.form.emails.split(',').map(function(email) {
+                    return email.trim();
+                });
+
+                catchMediaService.trackShareEvent(type, entity);
+
+                if (!$scope.loggedInUser) {
+                    $window.open('mailto:' + emails.join(',') + '?subject=I Thought You\'d Like This!&body=' + $scope.form.message, '_self');
+                    $uibModalInstance.close();
+                    return;
+                }
+
+                $scope.sending = true;
+                notificationsService.sendShareEmail($scope.loggedInUser.email, $scope.loggedInUser.firstName + ' ' + $scope.loggedInUser.lastName, emails, $scope.form.message)
+                    .then(
+                        function onSuccess(data) {
+                            $scope.form.emails = '';
+                            modalService.showAlertModal('Success!', 'This ' + type + ' has been successfully sent!');
+                        }
+                    )
+                    .finally(
+                        function onFinally() {
+                            $scope.sending = false;
+                        }
+                    );
+            };
+
+            $scope.onPostPress = function() {
+
+                var missingNetwork = false;
+                switch($scope.socialNetworks[0]) {
+                    case 'facebook':
+                        shareService.postToFacebook(shareContent, title, description, link, picture);
+                        break;
+                    case 'twitter':
+                        shareService.postToTwitter(message, title, description, link, picture);
+                        break;
+                    case 'tumblr':
+                        shareService.postToTumblr(shareContent, title, description, link, picture);
+                        break;
+                    default:
+                        missingNetwork = true;
+                        break;
+                }
+                if (!missingNetwork) {
+                    if ($scope.showBackButton) {
+                        modalService.pop();
+                    } else {
+                        $uibModalInstance.close();
+                    }
+                    catchMediaService.trackShareEvent(type, entity);
+                }
+            };
+
+            $scope.onSocialNetworkPress = function(socialNetwork) {
+
+                $scope.socialNetworks = [socialNetwork];
+
+                userService.getLoggedInUser()
+                    .then(
+                        function onSuccess(data) {
+                            switch (socialNetwork) {
+                                case 'facebook':
+                                    if (!data.facebookConnected) {
+
+                                    }
+                                    break;
+                                case 'twitter':
+                                    if (!data.twitterConnected) {
+                                        // window.open('/hauth/login/Twitter', 'tw', 'left=20,top=20,width=600,height=500,toolbar=1,resizable=0');
+                                    }
+                                    break;
+                                case 'tumblr':
+                                    if (!data.tumblrConnected) {
+
+                                    }
+                                    break;
+                            }
+                        }
+                    );
+
+                // Only one social network is allowed to be posted at a time...
+                // var index = $scope.socialNetworks.indexOf(socialNetwork);
+                // if (index !== -1) {
+                //     $scope.socialNetworks.splice(index, 1);
+                // } else {
+                //     $scope.socialNetworks.push(socialNetwork);
+                // }
+            };
+
+            $scope.onSettingsPress = function() {
+                modalService.showModal({
+                    templateUrl: 'ui/common/modal/share/view.share-settings.html',
+                    controller: 'ShareSettingsController'
+                })
+            };
+
+            $scope.showBackButton = modalService.getNumberOfModalsInStack() >= 2;
+
+            userService.getLoggedInUser()
+                .then(
+                    function onSuccess(data) {
+                        $scope.loggedInUser = data;
+                    }
+                )
+        }
+    ];
+
+    angular
+        .module('turnon')
+        .controller('ShareController', ShareController);
+}());
+(function() {
+
+    var shareModalVideoContent = function() {
+        return {
+            restrict: 'AE',
+            templateUrl: 'ui/common/modal/share/view.share-modal-video-content.html',
+            scope: {
+                video: '='
+            }
+        }
+    };
+
+    var shareModalCelebrityContent = function() {
+        return {
+            restrict: 'AE',
+            templateUrl: 'ui/common/modal/share/view.share-modal-celebrity-content.html',
+            scope: {
+                celebrity: '='
+            }
+        }
+    };
+
+    var shareModalOfferContent = function() {
+        return {
+            restrict: 'AE',
+            templateUrl: 'ui/common/modal/share/view.share-modal-offer-content.html',
+            scope: {
+                offer: '='
+            }
+        }
+    };
+
+    var shareModalBrandContent = function() {
+        return {
+            restrict: 'AE',
+            templateUrl: 'ui/common/modal/share/view.share-modal-brand-content.html',
+            scope: {
+                brand: '='
+            }
+        }
+    };
+
+    var shareModalCharityContent = function() {
+        return {
+            restrict: 'AE',
+            templateUrl: 'ui/common/modal/share/view.share-modal-charity-content.html',
+            scope: {
+                charity: '='
+            }
+        }
+    };
+
+    var genericModalCelebrityContent = function() {
+        return {
+            restrict: 'AE',
+            templateUrl: 'ui/common/modal/share/view.generic-share-content.html',
+            transclude: {
+                shareTitle: 'shareTitle',
+                shareDescription: '?shareDescription',
+                shareIconContainer: 'shareIconContainer',
+                shareFooterTitle: 'shareFooterTitle'
+            }
+        }
+    };
+
+    var shareModalConnectButton = function() {
+        return {
+            restrict: 'AE',
+            templateUrl: 'ui/common/modal/share/view.share-modal-connect-button.html',
+            transclude: true
+        }
+    };
+
+    angular.module('turnon')
+        .directive('clixShareModalVideoContent', shareModalVideoContent)
+        .directive('clixShareModalCelebrityContent', shareModalCelebrityContent)
+        .directive('clixShareModalOfferContent', shareModalOfferContent)
+        .directive('clixShareModalBrandContent', shareModalBrandContent)
+        .directive('clixShareModalCharityContent', shareModalCharityContent)
+        .directive('clixGenericShareContent', genericModalCelebrityContent)
+        .directive('clixShareModalConnectButton', shareModalConnectButton);
+}());
+(function() {
+
+    var NotificationsController = [
+        '$scope',
+        '$rootScope',
+        '$timeout',
+        '$state',
+        'userService',
+        'clixConfig',
+        function($scope, $rootScope, $timeout, $state, userService, clixConfig) {
+
+            $scope.notificationEnabled = clixConfig.notificationEnabled;
+
+            $scope.items = [
+                {
+                    label: 'Share',
+                    icon: 'icon-share-icon',
+                    points: '50',
+                    onClick: function() {
+                        console.log('SHARE');
+                    }
+                },
+                {
+                    label: 'Go to Star Page',
+                    icon: 'icon-stars-icon',
+                    onClick: function() {
+                        console.log('SHARE');
+                    }
+                }
+            ];
+
+            $scope.onNotificationMenuPress = function(notification) {
+                $scope.menuVisible = !$scope.menuVisible;
+            };
+
+            $scope.bodyClicked = function(event) {
+                if (angular.element(event.target).hasClass('menu-item')) {
+                    return;
+                }
+                $scope.menuVisible = false;
+            };
+
+        }
+    ];
+
+    angular
+        .module('turnon')
+        .controller('NotificationsController', NotificationsController);
+}());
+(function() {
+
+    var HIDE_NOTIFICATION_BAR_DELAY = 3000;
+
+    var SiteNotificationBarController = [
+        '$scope',
+        '$rootScope',
+        '$timeout',
+        function($scope, $rootScope, $timeout) {
+
+            var displayTimeout,
+                modalIsOpen = false,
+                waitUntilModalCloses = false;
+
+            function _showNotificationBar() {
+
+                $scope.active = true;
+                displayTimeout = $timeout(_hideNotificationBar, HIDE_NOTIFICATION_BAR_DELAY);
+            }
+
+            function _hideNotificationBar() {
+                $scope.active = false;
+            }
+
+            function _onFavoriteUpdateNotification(isFavorite, data) {
+                $scope.type = data.type;
+                $scope.favorite = isFavorite;
+                $scope.data = data;
+                $scope.receivedPoints = false;
+
+                switch (data.type) {
+                    case 'celebrity':
+                        $scope.type = 'favorite';
+                        $scope.tab = 'star';
+                        break;
+                    case 'brand':
+                        $scope.type = 'favorite';
+                        $scope.tab = 'brand';
+                        break;
+                    case 'category':
+                        $scope.type = 'favorite';
+                        $scope.tab = 'category';
+                        break;
+                    case 'charity':
+                        $scope.type = 'favorite';
+                        $scope.tab = 'charity';
+                        break;
+                    case 'watchlist':
+                        $scope.type = 'watchlist';
+                        break;
+                    case 'offer':
+                        $scope.type = 'offer';
+                        if (isFavorite) {
+                            $scope.receivedPoints = true;
+                        }
+                        break;
+                }
+
+
+                $timeout(function() {
+                    if (modalIsOpen) {
+                        waitUntilModalCloses = true;
+                        return;
+                    }
+                    waitUntilModalCloses = false;
+                    _showNotificationBar();
+                }, 250);
+            }
+
+            $scope.onMouseover = function() {
+                if (displayTimeout) {
+                    $timeout.cancel(displayTimeout);
+                }
+            };
+
+            $scope.onMouseleave = function() {
+                displayTimeout = $timeout(_hideNotificationBar, HIDE_NOTIFICATION_BAR_DELAY);
+            };
+
+            $rootScope.$on('favorite.added', function(event, data) {
+                _onFavoriteUpdateNotification(true, data);
+            });
+
+            $rootScope.$on('favorite.removed', function(event, data) {
+                _onFavoriteUpdateNotification(false, data);
+            });
+
+            $rootScope.$on('modal.open', function() {
+                modalIsOpen = true;
+            });
+
+            $rootScope.$on('modal.close', function(event, data) {
+                modalIsOpen = false;
+                if (waitUntilModalCloses) {
+                    waitUntilModalCloses = false;
+                    _showNotificationBar();
+                }
+            });
+
+            $rootScope.$on('$stateChangeSuccess', function() {
+                modalIsOpen = false;
+                waitUntilModalCloses = false;
+                _hideNotificationBar();
+            });
+
+        }
+    ];
+
+    angular
+        .module('turnon')
+        .controller('SiteNotificationBarController', SiteNotificationBarController);
+}());
+(function() {
+    var notifications = function() {
+        return {
+            restrict: 'AE',
+            templateUrl: 'ui/common/notifications/view.notifications.html',
+            scope: {
+                notifications: '=',
+                minify: '@?'
+            }
+        }
+    };
+
+    var notificationItem = function() {
+        return {
+            restrict: 'AE',
+            templateUrl: 'ui/common/notifications/view.notification-item.html',
+            controller: 'NotificationsController',
+            scope: {
+                notification: '=',
+                minify: '@?'
+            }
+        }
+    };
+
+    var notificationTooltip = function() {
+        return {
+            restrict: 'AE',
+            templateUrl: 'ui/common/notifications/view.notification-tooltip.html',
+            scope: {
+                notifications: '='
+            }
+        }
+    };
+
+    angular.module('turnon')
+        .directive('clixNotifications', notifications)
+        .directive('clixNotificationItem', notificationItem)
+        .directive('clixNotificationTooltip', notificationTooltip);
+}());
+(function() {
+    var siteNotificationBar = function() {
+        return {
+            restrict: 'AE',
+            templateUrl: 'ui/common/notifications/view.site-notification-bar.html',
+            controller: 'SiteNotificationBarController'
+        }
+    };
+
+    angular.module('turnon')
+        .directive('clixSiteNotificationBar', siteNotificationBar);
+}());
+(function() {
+
+    var TooltipController = [
+        '$q',
+        '$scope',
+        function($q, $scope) {
+
+        }
+    ];
+
+    angular
+        .module('turnon')
+        .controller('TooltipController', TooltipController);
+}());
+(function() {
+
+    var SHOW_TOOLTIP_DELAY_MS = 500,
+        HIDE_TOOLTIP_DELAY_MS = 200;
+
+    var tooltip = function() {
+        return {
+            restrict: 'E',
+            replace: true,
+            transclude: true,
+            templateUrl: 'ui/common/tooltip/view.tooltip.html',
+            scope: {
+                tooltipId: '@'
+            },
+            link: function(scope, element) {
+                angular.element(document.body).append(element);
+            }
+        }
+    };
+
+    var tooltipTrigger = [
+        '$timeout',
+        '$window',
+        '$rootScope',
+        function($timeout, $window, $rootScope) {
+            return {
+                restrict: 'A',
+                controller: 'TooltipController',
+                scope: {
+                    tooltipId: '@',
+                    cleanup: '@',
+                    clickTrigger: '@?'
+                },
+                link: function(scope, element) {
+
+                    var showTimeout, hideTimeout;
+
+                    $rootScope.$on('$stateChangeStart', function() {
+                        if (scope.cleanup !== 'false') {
+                            angular.element(document.getElementById(scope.tooltipId)).remove();
+                        }
+                    });
+
+                    function _getPosition(el) {
+                        var xPos = 0;
+                        var yPos = 0;
+
+                        while (el) {
+                            if (el.tagName == "BODY") {
+                                // deal with browser quirks with body/window/document and page scroll
+                                var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
+                                var yScroll = el.scrollTop || document.documentElement.scrollTop;
+
+                                xPos += (el.offsetLeft - xScroll + el.clientLeft);
+                                yPos += (el.offsetTop - yScroll + el.clientTop);
+                            } else {
+                                // for all other non-BODY elements
+                                xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft);
+                                yPos += (el.offsetTop - el.scrollTop + el.clientTop);
+                            }
+
+                            el = el.offsetParent;
+                        }
+                        return {
+                            x: xPos,
+                            y: yPos
+                        };
+                    }
+
+                    function _hideTooltip(delay) {
+                        hideTimeout = $timeout(function() {
+                            var tooltipElement = document.getElementById(scope.tooltipId);
+
+                            angular.element(tooltipElement).removeClass('active');
+
+                            $rootScope.$broadcast('tooltip.closed');
+
+                            $timeout(function() {
+                                if (tooltipElement) {
+                                    tooltipElement.style.top = '-999px';
+                                    tooltipElement.style.left = '-999px';
+                                }
+                            }, 250);
+
+                            if (showTimeout) {
+                                $timeout.cancel(showTimeout);
+                            }
+                        }, delay);
+                    }
+
+                    var currentTooltipElement,
+                        events = (scope.clickTrigger) ? 'scroll' : 'scroll click';
+
+                    // Hide tooltip on window scroll
+                    angular.element($window).on(events, function() {
+
+                        if (!currentTooltipElement) {
+                            currentTooltipElement = document.getElementById(scope.tooltipId);
+                        }
+
+                        angular.element(currentTooltipElement).removeClass('active');
+
+                        $rootScope.$broadcast('tooltip.closed');
+
+                        if (currentTooltipElement) {
+                            currentTooltipElement.style.top = '-999px';
+                            currentTooltipElement.style.left = '-999px';
+                        }
+                    });
+
+                    /**
+                     * @todo - Prevent tooltip from extending beyond page bounds
+                     */
+
+                    var event = (scope.clickTrigger) ? 'click' : 'mouseenter';
+                    angular.element(element).off(event).on(event, function(event) {
+
+                        if (hideTimeout) {
+                            $timeout.cancel(hideTimeout);
+                        }
+
+                        showTimeout = $timeout(function() {
+
+                            var trigger = angular.element(element),
+                                tooltipElement = document.getElementById(scope.tooltipId),
+                                height = trigger[0].offsetHeight,
+                                width = trigger[0].offsetWidth,
+                                tooltipElementWidth = tooltipElement.offsetWidth;
+
+                            var position = _getPosition(trigger[0]),
+                                top = (position.y + height),
+                                left = ((position.x + (width / 2)) - (tooltipElementWidth / 2));
+
+                            if (left < 0) {
+                                left = 0;
+                            }
+
+                            if (tooltipElement) {
+                                tooltipElement.style.top = top + 'px';
+                                tooltipElement.style.left = left + 'px';
+                            }
+
+                            angular.element(tooltipElement).addClass('active');
+
+                            $rootScope.$broadcast('tooltip.open');
+
+                            // Don't hide the tooltip if the user hovers over it (since we're mousing off the trigger element)
+                            angular.element(document.getElementById(scope.tooltipId)).off('mouseenter').on('mouseenter', function() {
+                                if (hideTimeout) {
+                                    $timeout.cancel(hideTimeout);
+                                }
+                            });
+
+                            // Hide the tooltip if the user mouses off of it
+                            angular.element(document.getElementById(scope.tooltipId)).off('mouseleave').on('mouseleave', function() {
+                                hideTimeout = $timeout(function() {
+
+                                    angular.element(tooltipElement).removeClass('active');
+
+                                    $rootScope.$broadcast('tooltip.closed');
+
+                                    $timeout(function() {
+                                        if (tooltipElement) {
+                                            tooltipElement.style.top = '-999px';
+                                            tooltipElement.style.left = '-999px';
+                                        }
+                                    }, 250);
+
+                                    if (showTimeout) {
+                                        $timeout.cancel(showTimeout);
+                                    }
+
+                                }, HIDE_TOOLTIP_DELAY_MS);
+                            });
+                        }, (scope.clickTrigger) ? 0 : SHOW_TOOLTIP_DELAY_MS);
+                    });
+
+                    angular.element(element).on('mouseleave', function() {
+                        _hideTooltip(HIDE_TOOLTIP_DELAY_MS);
+                    });
+
+                    $rootScope.$on('modal.open', function() {
+                        _hideTooltip(0);
+                    });
+                }
+            }
+        }
+    ];
+
+    angular.module('turnon')
+        .directive('clixTooltip', tooltip)
+        .directive('clixTooltipTrigger', tooltipTrigger);
+}());
+(function() {
+
+    var VideoPlayerController = [
+        '$q',
+        '$scope',
+        '$rootScope',
+        '$timeout',
+        'knetikService',
+        'catchMediaService',
+        function($q, $scope, $rootScope, $timeout, knetikService, catchMediaService) {
+
+            $timeout(function() {
+                var playerInstance;
+
+                if ($scope.video) {
+
+                    playerInstance = jwplayer($scope.videoId).setup({
+                        file: $scope.video.streamUrl,
+                        // primary: 'html5',
+                        androidhls: true,
+                        autostart: $scope.autoPlay,
+                        aspectratio: '16:9',
+                        'controlbar.idlehide': true,
+                        width: '100%',
+                        //repeat: true,
+                        icons: false,
+                        image: $scope.video.endPoster || $scope.video.thumbnail,
+                        mediaid: $scope.video.id
+                    });
+
+                    if (playerInstance) {
+                        jwplayer().on('ready', function() {
+                            if ($scope.onReady) {
+                                $scope.onReady({
+                                    height: jwplayer().getHeight()
+                                });
+                            }
+                        });
+
+                        jwplayer().on('error', function() {
+                            $rootScope.$broadcast('video.error');
+                            if ($scope.onError) {
+                                $scope.onError();
+                            }
+                        });
+
+                        jwplayer().on('setupError', function() {
+                            $rootScope.$broadcast('video.setupError');
+                        });
+
+                        jwplayer().on('play', function() {
+                            $rootScope.$broadcast('video.play');
+                        });
+
+                        jwplayer().on('pause', function() {
+                            $rootScope.$broadcast('video.pause');
+                        });
+
+                        jwplayer().on('complete', function() {
+                            $rootScope.$broadcast('video.complete');
+                            if ($scope.onComplete) {
+                                $scope.onComplete();
+                            }
+                        });
+
+                        catchMediaService.trackVideoPlayerEvent(playerInstance);
+                    }
+                }
+            });
+        }
+    ];
+
+    angular
+        .module('turnon')
+        .controller('VideoPlayerController', VideoPlayerController);
+}());
+(function() {
+    var videoPlayer = function() {
+        return {
+            restrict: 'AE',
+            controller: 'VideoPlayerController',
+            scope: {
+                video: '=',
+                autoPlay: '=',
+                videoId: '@',
+                onReady: '=?',
+                onError: '=?',
+                onComplete: '=?'
+            }
+        }
+    };
+
+    angular.module('turnon')
+        .directive('clixVideoPlayer', videoPlayer);
+}());
+(function() {
+
     var AccountController = [
         '$q',
         '$scope',

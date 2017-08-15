@@ -3,7 +3,7 @@
   "description": "Assets for ClixTV website",
   "main": "index.js",
   "license": "ISC",
-  "homepage": "https://github.com/Arielmatz/clixtv",
+  "homepage": "https://github.com/yehudit-braykh/turnon-portal",
   "private": true,
   "ignore": [
     "**/.*",

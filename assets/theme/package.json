@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Arielmatz/clixtv.git"
+    "url": "git+https://github.com/yehudit-braykh/turnon-portal.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Arielmatz/clixtv/issues"
+    "url": "https://github.com/yehudit-braykh/turnon-portal/issues"
   },
-  "homepage": "https://github.com/Arielmatz/clixtv#readme",
+  "homepage": "https://github.com/yehudit-braykh/turnon-portal#readme",
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-angular-templates": "^1.1.0",
