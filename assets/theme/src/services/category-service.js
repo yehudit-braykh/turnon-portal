@@ -5,8 +5,8 @@
         'CategoryListModel',
         'CategoryModel',
         'cacheService',
-        'clixConfig',
-        function($http, CategoryListModel, CategoryModel, cacheService, clixConfig) {
+        'turnonConfig',
+        function($http, CategoryListModel, CategoryModel, cacheService, turnonConfig) {
             return {
 
                 getAllCategories: function(withVideoCount, page, size) {
@@ -31,7 +31,7 @@
                 },
 
                 getCategoryBySlug: function(slug) {
-                    return $http.get(clixConfig.baseApi + '/categories/slug/' + slug, { cache: cacheService.getCache() })
+                    return $http.get(turnonConfig.baseApi + '/categories/slug/' + slug, { cache: cacheService.getCache() })
                         .then(
                             function onSuccess(data) {
                                 return new CategoryModel(data.data);

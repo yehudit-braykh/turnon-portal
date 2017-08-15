@@ -6,25 +6,25 @@
             '$injector',
             'SeasonListModel',
             function($injector, SeasonListModel) {
-                // return function(data) {
-                //     this.id = data._id;
-                //     this.title = data.title;
-                //     this.description = data.description;
-                //
-                //     if (data.seasons) {
-                //         this.seasons = new SeasonListModel(data.seasons);
-                //     }
-                //
-                //     if (data.campaigns) {
-                //         var BrandListModel = $injector.get('BrandListModel');
-                //         this.brands = new BrandListModel(data.campaigns);
-                //     }
-                //
-                //     if (data.charity) {
-                //         var CharityModel = $injector.get('CharityModel');
-                //         this.charity = new CharityModel(data.charity);
-                //     }
-                // }
+                return function(data) {
+                    this.id = data._id;
+                    this.title = data.title;
+                    this.description = data.description;
+
+                    if (data.seasons) {
+                        this.seasons = new SeasonListModel(data.seasons);
+                    }
+
+                    if (data.campaigns) {
+                        var BrandListModel = $injector.get('BrandListModel');
+                        this.brands = new BrandListModel(data.campaigns);
+                    }
+
+                    if (data.charity) {
+                        var CharityModel = $injector.get('CharityModel');
+                        this.charity = new CharityModel(data.charity);
+                    }
+                }
             }
         ]);
 }());

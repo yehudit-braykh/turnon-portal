@@ -25,7 +25,7 @@
             'infinite-scroll',
             'ngclipboard'
         ])
-        .constant('clixConfig', {
+        .constant('turnonConfig', {
 
             // Different environments trigger different functionality through the
             // site. For example, no analytics will be sent unless we're in a
@@ -68,7 +68,7 @@
             '$urlRouterProvider',
             'localStorageServiceProvider',
             function($locationProvider, $httpProvider, $stateProvider, $urlRouterProvider, localStorageServiceProvider) {
-                localStorageServiceProvider.setPrefix('clix');
+                localStorageServiceProvider.setPrefix('turnon');
                 $urlRouterProvider.when('', '/');
                 $urlRouterProvider.otherwise('/404');
                 $httpProvider.interceptors.push('apiInterceptor');
@@ -223,17 +223,17 @@
             'educationModalService',
             'modalService',
             'analyticsService',
-            'clixConfig',
-            function($rootScope, $window, userService, catchMediaService, educationModalService, modalService, analyticsService, clixConfig) {
+            'turnonConfig',
+            function($rootScope, $window, userService, catchMediaService, educationModalService, modalService, analyticsService, turnonConfig) {
 
                 userService.setLoggedInUser();
                 catchMediaService.initialize();
                 educationModalService.initialize();
-                analyticsService.initialize(clixConfig.segmentApiKey);
+                analyticsService.initialize(turnonConfig.segmentApiKey);
 
                 $rootScope.pageTitle = 'turnon - Your Stars! Their Passions.';
 
-                $rootScope.clixConfig = clixConfig;
+                $rootScope.turnonConfig = turnonConfig;
 
                 $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
                     $('html, body').animate({ scrollTop: 0 }, 200);

@@ -6,12 +6,12 @@
         '$uibModalInstance',
         'userService',
         'data',
-        'clixConfig',
-        function($scope, $rootScope, $uibModalInstance, userService, data, clixConfig) {
+        'turnonConfig',
+        function($scope, $rootScope, $uibModalInstance, userService, data, turnonConfig) {
 
             $scope.signup = data.signup;
 
-            $scope.isBeta = (clixConfig.beta === true);
+            $scope.isBeta = (turnonConfig.beta === true);
 
             $scope.loginModel = {
                 email: '',

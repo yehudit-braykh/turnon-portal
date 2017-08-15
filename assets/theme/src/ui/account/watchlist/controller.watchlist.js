@@ -4,12 +4,12 @@
         '$scope',
         '$rootScope',
         'userService',
-        'clixConfig',
-        function($scope, $rootScope, userService, clixConfig) {
+        'turnonConfig',
+        function($scope, $rootScope, userService, turnonConfig) {
 
             // $rootScope.pageTitle = 'Your Watchlist - turnon';
             //
-            // $scope.filtersEnabled = clixConfig.filtersEnabled;
+            // $scope.filtersEnabled = turnonConfig.filtersEnabled;
             //
             // $scope.filterOptions = [
             //     {

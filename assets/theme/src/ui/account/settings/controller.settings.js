@@ -5,14 +5,14 @@
         '$scope',
         '$rootScope',
         'userService',
-        'clixConfig',
+        'turnonConfig',
         'educationModalService',
-        function($q, $scope, $rootScope, userService, clixConfig, educationModalService) {
+        function($q, $scope, $rootScope, userService, turnonConfig, educationModalService) {
 
             // $rootScope.pageTitle = 'Your Account Settings - turnon';
-            // $scope.notificationEnabled = clixConfig.notificationEnabled;
+            // $scope.notificationEnabled = turnonConfig.notificationEnabled;
             //
-            // if (!clixConfig.notificationEnabled) {
+            // if (!turnonConfig.notificationEnabled) {
             //     educationModalService.showNotificationsComingSoonModal();
             // }
             //

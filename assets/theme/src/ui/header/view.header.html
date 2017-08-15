@@ -4,8 +4,8 @@
     <div class="clix-header-container hidden-xs hidden-sm hidden-md">
         <h1 class="logo-container">
             <a href="/">
-                <img ng-src="{{$root.clixConfig.baseImageUrl}}/gradient-logo.svg" class="clix-logo" ng-if="!isBeta" />
-                <img ng-src="{{$root.clixConfig.baseImageUrl}}/turnon-logo-horizontal-beta.svg" class="clix-logo" ng-if="isBeta" />
+                <img ng-src="{{$root.turnonConfig.baseImageUrl}}/gradient-logo.svg" class="clix-logo" ng-if="!isBeta" />
+                <img ng-src="{{$root.turnonConfig.baseImageUrl}}/turnon-logo-horizontal-beta.svg" class="clix-logo" ng-if="isBeta" />
             </a>
         </h1>
         <nav class="clix-navigation">
@@ -42,7 +42,7 @@
                             <a ng-click="onNamePress()" class="header-avatar" style="background-image: url('{{loggedInUser.avatar}}')"></a>
                         </div>
                         <div ng-if="!loggedInUser.avatar">
-                            <a ng-click="onNamePress()" class="header-avatar" style="background-image: url('{{$root.clixConfig.baseImageUrl}}/empty-profile-picture.png')"></a>
+                            <a ng-click="onNamePress()" class="header-avatar" style="background-image: url('{{$root.turnonConfig.baseImageUrl}}/empty-profile-picture.png')"></a>
                         </div>
 
                     </div>
@@ -83,8 +83,8 @@
             </div>
         </div>
         <a href="/" class="mobile-logo mobile-header-block">
-            <img ng-src="{{$root.clixConfig.baseImageUrl}}/color-logo-light.svg" class="clix-logo" ng-if="!isBeta" />
-            <img ng-src="{{$root.clixConfig.baseImageUrl}}/turnon-mobile-beta-logo.svg" class="clix-logo" ng-if="isBeta" />
+            <img ng-src="{{$root.turnonConfig.baseImageUrl}}/color-logo-light.svg" class="clix-logo" ng-if="!isBeta" />
+            <img ng-src="{{$root.turnonConfig.baseImageUrl}}/turnon-mobile-beta-logo.svg" class="clix-logo" ng-if="isBeta" />
         </a>
         <div class="user-avatar-container mobile-header-block">
             <div class="user-avatar">
@@ -99,7 +99,7 @@
                             <a ng-click="onArrowPress()" class="header-avatar" style="background-image: url('{{loggedInUser.avatar}}')"></a>
                         </div>
                         <div ng-if="!loggedInUser.avatar">
-                            <a ng-click="onArrowPress()" class="header-avatar" style="background-image: url('{{$root.clixConfig.baseImageUrl}}/empty-profile-picture.png')"></a>
+                            <a ng-click="onArrowPress()" class="header-avatar" style="background-image: url('{{$root.turnonConfig.baseImageUrl}}/empty-profile-picture.png')"></a>
                         </div>
 
                     </div>

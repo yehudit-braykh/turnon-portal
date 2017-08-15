@@ -2,9 +2,9 @@
 
     var notificationsService = [
         '$http',
-        'clixConfig',
+        'turnonConfig',
         'NotificationListModel',
-        function($http, clixConfig, NotificationListModel) {
+        function($http, turnonConfig, NotificationListModel) {
             return {
 
                 /**
@@ -20,7 +20,7 @@
                 },
 
                 sendContactNotification: function(type, name, email, subject, message) {
-                    return $http.post(clixConfig.baseApi + '/notifications/contact', {
+                    return $http.post(turnonConfig.baseApi + '/notifications/contact', {
                             type: type,
                             name: name,
                             email: email,
@@ -35,7 +35,7 @@
                 },
 
                 sendShareEmail: function(fromEmail, fromName, toEmails, message) {
-                    return $http.post(clixConfig.baseApi + '/notifications/share', {
+                    return $http.post(turnonConfig.baseApi + '/notifications/share', {
                             type: 'email',
                             emailList: toEmails,
                             fromEmail: fromEmail,

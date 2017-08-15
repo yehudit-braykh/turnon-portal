@@ -11,12 +11,12 @@
         'knetikService',
         'modalService',
         'catchMediaService',
-        'clixConfig',
-        function($q, $scope, $rootScope, $window, $timeout, $uibModal, notificationsService, knetikService, modalService, catchMediaService, clixConfig) {
+        'turnonConfig',
+        function($q, $scope, $rootScope, $window, $timeout, $uibModal, notificationsService, knetikService, modalService, catchMediaService, turnonConfig) {
 
             // var latestOffset = 0;
             //
-            // $scope.isBeta = (clixConfig.beta === true);
+            // $scope.isBeta = (turnonConfig.beta === true);
             //
             // function _populateHeaderData() {
             //     $q.all(

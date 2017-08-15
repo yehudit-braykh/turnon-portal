@@ -13,11 +13,11 @@
         'modalService',
         'catchMediaService',
         'knetikService',
-        'clixConfig',
-        function($q, $log, $scope, $rootScope, $filter, $state, $stateParams, brandsService, userService, modalService, catchMediaService, knetikService, clixConfig) {
+        'turnonConfig',
+        function($q, $log, $scope, $rootScope, $filter, $state, $stateParams, brandsService, userService, modalService, catchMediaService, knetikService, turnonConfig) {
 
-            // $scope.filtersEnabled = clixConfig.filtersEnabled;
-            // $scope.pointsEnabled = clixConfig.pointsEnabled;
+            // $scope.filtersEnabled = turnonConfig.filtersEnabled;
+            // $scope.pointsEnabled = turnonConfig.pointsEnabled;
             //
             // $scope.onOfferPress = function(offer) {
             //     if ($stateParams.offerSlug === $filter('slug')(offer.title)) {

@@ -2,9 +2,9 @@
 
     var FooterController = [
         '$scope',
-        'clixConfig',
-        function($scope, clixConfig) {
-            $scope.isBeta = (clixConfig.beta === true);
+        'turnonConfig',
+        function($scope, turnonConfig) {
+            $scope.isBeta = (turnonConfig.beta === true);
         }
     ];
 

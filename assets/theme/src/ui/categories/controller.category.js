@@ -11,8 +11,8 @@
         'userService',
         'modalService',
         'catchMediaService',
-        'clixConfig',
-        function($q, $log, $scope, $rootScope, $state, $stateParams, categoryService, userService, modalService, catchMediaService, clixConfig) {
+        'turnonConfig',
+        function($q, $log, $scope, $rootScope, $state, $stateParams, categoryService, userService, modalService, catchMediaService, turnonConfig) {
             //
             // function _resetIsFavorite() {
             //     if ($scope.category) {
@@ -21,7 +21,7 @@
             // }
             //
             // $scope.notify = false;
-            // $scope.filtersEnabled = clixConfig.filtersEnabled;
+            // $scope.filtersEnabled = turnonConfig.filtersEnabled;
             //
             // $rootScope.$on('user.login', function(event, data) {
             //     $scope.loggedInUser = data;

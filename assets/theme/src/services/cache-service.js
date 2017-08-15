@@ -4,8 +4,8 @@
         '$log',
         'CacheFactory',
         'LZString',
-        'clixConfig',
-        function($log, CacheFactory, LZString, clixConfig) {
+        'turnonConfig',
+        function($log, CacheFactory, LZString, turnonConfig) {
 
             var apiCache;
 
@@ -14,7 +14,7 @@
                     if (!CacheFactory) {
                         return;
                     }
-                    if (!clixConfig.cacheEnabled) {
+                    if (!turnonConfig.cacheEnabled) {
                         return;
                     }
                     if (!CacheFactory.get('apiCache')) {

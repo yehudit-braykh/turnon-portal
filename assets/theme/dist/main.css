@@ -7566,6 +7566,27 @@ button.close {
     display: none !important;
   }
 }
+.home_page {
+  padding: 0;
+}
+.home_page .sport_list_container {
+  background-color: #18d676;
+  padding-right: 14%;
+  padding-left: 14%;
+  height: 120px;
+}
+.home_page .sport_list_container .kinds_of_sports {
+  width: 6.25%;
+  height: 100%;
+  float: left;
+  padding: 1.5%;
+}
+.home_page .sport_list_container .kinds_of_sports .sport_logo {
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
 @-webkit-keyframes infinite-spinning {
   from {
     -webkit-transform: rotate(0deg);

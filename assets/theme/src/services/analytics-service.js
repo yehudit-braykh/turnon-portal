@@ -6,15 +6,15 @@
         '$rootScope',
         '$log',
         '$state',
-        'clixConfig',
-        function($window, $location, $rootScope, $log, $state, clixConfig) {
+        'turnonConfig',
+        function($window, $location, $rootScope, $log, $state, turnonConfig) {
             return {
                 initialize: function(apiKey) {
                     if (navigator.doNotTrack == 1) {
                         $log.info('Segment has not been initialized. No data will be tracked.');
                         return;
                     }
-                    if (clixConfig.environment !== 'prod') {
+                    if (turnonConfig.environment !== 'prod') {
                         $log.info('Analytics not sent unless production environment is set. No data will be tracked.');
                         return;
                     }

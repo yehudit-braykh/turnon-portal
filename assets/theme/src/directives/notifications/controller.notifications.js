@@ -6,10 +6,10 @@
         '$timeout',
         '$state',
         'userService',
-        'clixConfig',
-        function($scope, $rootScope, $timeout, $state, userService, clixConfig) {
+        'turnonConfig',
+        function($scope, $rootScope, $timeout, $state, userService, turnonConfig) {
 
-            $scope.notificationEnabled = clixConfig.notificationEnabled;
+            $scope.notificationEnabled = turnonConfig.notificationEnabled;
 
             $scope.items = [
                 {

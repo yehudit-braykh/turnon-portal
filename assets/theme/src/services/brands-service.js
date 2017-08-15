@@ -9,11 +9,11 @@
         'BrandModel',
         'CharityModel',
         'cacheService',
-        'clixConfig',
-        function($http, stringUtils, BrandListModel, OfferListModel, CharityListModel, BrandModel, CharityModel, cacheService, clixConfig) {
+        'turnonConfig',
+        function($http, stringUtils, BrandListModel, OfferListModel, CharityListModel, BrandModel, CharityModel, cacheService, turnonConfig) {
             return {
                 getAllBrands: function(page, size) {
-                    return $http.get(clixConfig.baseApi + '/campaigns?page=' + page + '&page_size=' + size, { cache: cacheService.getCache() })
+                    return $http.get(turnonConfig.baseApi + '/campaigns?page=' + page + '&page_size=' + size, { cache: cacheService.getCache() })
                         .then(
                             function(data) {
                                 return new BrandListModel(data.data);
@@ -34,7 +34,7 @@
                 },
 
                 getBrandBySlug: function(slug) {
-                    return $http.get(clixConfig.baseApi + '/brands/slug/' + slug, { cache: cacheService.getCache() })
+                    return $http.get(turnonConfig.baseApi + '/brands/slug/' + slug, { cache: cacheService.getCache() })
                         .then(
                             function onSuccess(data) {
                                 return new BrandModel(data.data);
@@ -53,7 +53,7 @@
 
                 getCharityBySlug: function(slug) {
 
-                    return $http.get(clixConfig.baseApi + '/charities/slug/' + slug, { cache: cacheService.getCache() })
+                    return $http.get(turnonConfig.baseApi + '/charities/slug/' + slug, { cache: cacheService.getCache() })
                         .then(
                             function onSuccess(data) {
                                 return new CharityModel(data.data[0]);

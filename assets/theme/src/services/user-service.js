@@ -15,8 +15,8 @@
         'UserModel',
         'modalService',
         'catchMediaService',
-        'clixConfig',
-        function($q, $http, $log, $rootScope, BrandListModel, OfferListModel, CharityListModel, CelebrityListModel, CategoryListModel, VideoListModel, AccountSettingListModel, UserModel, modalService, catchMediaService, clixConfig) {
+        'turnonConfig',
+        function($q, $http, $log, $rootScope, BrandListModel, OfferListModel, CharityListModel, CelebrityListModel, CategoryListModel, VideoListModel, AccountSettingListModel, UserModel, modalService, catchMediaService, turnonConfig) {
 
             var loggedInUser, loggedInUserChecked;
 
@@ -474,7 +474,7 @@
                 },
 
                 addUserToNewsletter: function(email, firstName, lastName) {
-                    return $http.post(clixConfig.baseApi + '/users/newsletter', {
+                    return $http.post(turnonConfig.baseApi + '/users/newsletter', {
                         email: email
                     });
                 }

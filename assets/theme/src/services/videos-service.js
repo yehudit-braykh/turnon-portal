@@ -5,8 +5,8 @@
         'VideoModel',
         'VideoListModel',
         'SeriesModel',
-        'clixConfig',
-        function($http, VideoModel, VideoListModel, SeriesModel, clixConfig) {
+        'turnonConfig',
+        function($http, VideoModel, VideoListModel, SeriesModel, turnonConfig) {
             return {
 
                 /**
@@ -22,7 +22,7 @@
                 },
 
                 getVideoBySlug: function(slug) {
-                    return $http.get(clixConfig.baseApi + '/episodes/slug/' + slug)
+                    return $http.get(turnonConfig.baseApi + '/episodes/slug/' + slug)
                         .then(
                             function onSuccess(data) {
                                 return new VideoModel(data.data);

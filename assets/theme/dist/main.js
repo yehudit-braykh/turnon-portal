@@ -25,7 +25,7 @@
             'infinite-scroll',
             'ngclipboard'
         ])
-        .constant('clixConfig', {
+        .constant('turnonConfig', {
 
             // Different environments trigger different functionality through the
             // site. For example, no analytics will be sent unless we're in a
@@ -68,7 +68,7 @@
             '$urlRouterProvider',
             'localStorageServiceProvider',
             function($locationProvider, $httpProvider, $stateProvider, $urlRouterProvider, localStorageServiceProvider) {
-                localStorageServiceProvider.setPrefix('clix');
+                localStorageServiceProvider.setPrefix('turnon');
                 $urlRouterProvider.when('', '/');
                 $urlRouterProvider.otherwise('/404');
                 $httpProvider.interceptors.push('apiInterceptor');
@@ -223,17 +223,17 @@
             'educationModalService',
             'modalService',
             'analyticsService',
-            'clixConfig',
-            function($rootScope, $window, userService, catchMediaService, educationModalService, modalService, analyticsService, clixConfig) {
+            'turnonConfig',
+            function($rootScope, $window, userService, catchMediaService, educationModalService, modalService, analyticsService, turnonConfig) {
 
                 userService.setLoggedInUser();
                 catchMediaService.initialize();
                 educationModalService.initialize();
-                analyticsService.initialize(clixConfig.segmentApiKey);
+                analyticsService.initialize(turnonConfig.segmentApiKey);
 
                 $rootScope.pageTitle = 'turnon - Your Stars! Their Passions.';
 
-                $rootScope.clixConfig = clixConfig;
+                $rootScope.turnonConfig = turnonConfig;
 
                 $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
                     $('html, body').animate({ scrollTop: 0 }, 200);
@@ -332,7 +332,7 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('directives/modal/login-signup/view.login-signup.html',
-    "<clix-modal><a ng-click=onCloseIconPress() class=\"icon-remove-icon clix-modal-close\"></a><div class=signup-modal ng-show=signup><div class=signup-modal-header><div class=\"header-logo-icon icon-colorful-clix-logo\" ng-if=!isBeta></div><img ng-src={{$root.clixConfig.baseImageUrl}}/turnon-logo-horizontal-beta.svg class=header-logo-icon ng-if=isBeta></div><div class=signup-modal-social><div class=social-modal-row><clix-primary-button type=facebook ng-click=onFacebookLoginPress()>Sign Up With Facebook</clix-primary-button></div><div class=social-modal-row><clix-primary-button type=google ng-click=onGoogleLoginPress()>Sign Up With Google</clix-primary-button></div><div class=or-email-container><span>or with email</span></div></div><form ng-submit=onSignupSubmit()><div class=signup-modal-form><div class=signup-modal-form-row><i class=\"form-icon icon-email-input-icon\"></i><div class=signup-modal-input><input type=email placeholder=Email name=email ng-model=signupModel.email></div></div><div class=signup-modal-form-row><i class=\"form-icon icon-email-input-icon\"></i><div class=signup-modal-input><input type=email placeholder=\"Re-Enter Email\" name=email-confirm ng-model=signupModel.emailConfirm></div></div><div class=signup-modal-form-row><i class=\"form-icon icon-password-input-icon\"></i><div class=signup-modal-input><input type=password placeholder=\"Choose Password\" name=password ng-model=signupModel.password></div></div><div class=signup-modal-form-row><i class=\"form-icon icon-password-input-icon\"></i><div class=signup-modal-input><input type=password placeholder=\"Re-Enter Password\" name=password-confirm ng-model=signupModel.passwordConfirm></div></div><div class=signup-modal-form-row><i class=\"form-icon large icon-full-name-input-icon\"></i><div class=signup-modal-input><input id=first-name type=text placeholder=\"First Name\" name=first-name ng-model=signupModel.firstName> <input type=text placeholder=\"First Name\" name=real-first-name ng-model=signupModel.realFirstName></div></div><div class=signup-modal-form-row><i class=\"form-icon large icon-full-name-input-icon\"></i><div class=signup-modal-input><input type=text placeholder=\"Last Name\" name=last-name ng-model=signupModel.lastName></div></div></div></form><div class=error-message ng-if=error>{{error}}</div><div class=signup-modal-submit><div class=submit-button><clix-primary-button type=normal ng-click=onSignupSubmit()>Sign Up</clix-primary-button></div><div class=login-container>Have an account? <a ng-click=onLoginPress()>Log in</a></div></div><div class=signup-modal-footer>By signing in, you agree to our <a ui-sref=terms-of-use>Terms of Use</a> and <a ui-sref=privacy-policy>Privacy Policy</a></div></div><div class=signup-modal ng-hide=signup><div class=signup-modal-header><div class=\"header-logo-icon icon-colorful-clix-logo\" ng-if=!isBeta></div><img ng-src={{$root.clixConfig.baseImageUrl}}/turnon-logo-horizontal-beta.svg class=header-logo-icon ng-if=isBeta></div><div class=signup-modal-social><div class=social-modal-row><clix-primary-button type=facebook ng-click=onFacebookLoginPress()>Log In With Facebook</clix-primary-button></div><div class=social-modal-row><clix-primary-button type=google ng-click=onGoogleLoginPress()>Log In With Google</clix-primary-button></div><div class=or-email-container><span>or with email</span></div></div><form ng-submit=onLoginSubmit() class=signup-modal-form><div class=signup-modal-form-row><i class=\"form-icon icon-email-input-icon\"></i><div class=signup-modal-input><input type=email placeholder=Email ng-model=loginModel.email></div></div><div class=signup-modal-form-row><i class=\"form-icon icon-password-input-icon\"></i><div class=signup-modal-input><input type=password placeholder=Password ng-model=loginModel.password></div></div><input type=submit></form><div class=error-message ng-if=error>{{error}}</div><div class=signup-modal-submit><div class=submit-button><clix-primary-button type=normal ng-click=onLoginSubmit()>Log In</clix-primary-button></div><div class=login-container>Don't have an account? <a ng-click=onSignupPress()>Sign up</a></div></div><div class=signup-modal-footer>By signing in, you agree to our <a ui-sref=terms-of-use>Terms of Use</a> and <a ui-sref=privacy-policy>Privacy Policy</a></div></div></clix-modal>"
+    "<clix-modal><a ng-click=onCloseIconPress() class=\"icon-remove-icon clix-modal-close\"></a><div class=signup-modal ng-show=signup><div class=signup-modal-header><div class=\"header-logo-icon icon-colorful-clix-logo\" ng-if=!isBeta></div><img ng-src={{$root.turnonConfig.baseImageUrl}}/turnon-logo-horizontal-beta.svg class=header-logo-icon ng-if=isBeta></div><div class=signup-modal-social><div class=social-modal-row><clix-primary-button type=facebook ng-click=onFacebookLoginPress()>Sign Up With Facebook</clix-primary-button></div><div class=social-modal-row><clix-primary-button type=google ng-click=onGoogleLoginPress()>Sign Up With Google</clix-primary-button></div><div class=or-email-container><span>or with email</span></div></div><form ng-submit=onSignupSubmit()><div class=signup-modal-form><div class=signup-modal-form-row><i class=\"form-icon icon-email-input-icon\"></i><div class=signup-modal-input><input type=email placeholder=Email name=email ng-model=signupModel.email></div></div><div class=signup-modal-form-row><i class=\"form-icon icon-email-input-icon\"></i><div class=signup-modal-input><input type=email placeholder=\"Re-Enter Email\" name=email-confirm ng-model=signupModel.emailConfirm></div></div><div class=signup-modal-form-row><i class=\"form-icon icon-password-input-icon\"></i><div class=signup-modal-input><input type=password placeholder=\"Choose Password\" name=password ng-model=signupModel.password></div></div><div class=signup-modal-form-row><i class=\"form-icon icon-password-input-icon\"></i><div class=signup-modal-input><input type=password placeholder=\"Re-Enter Password\" name=password-confirm ng-model=signupModel.passwordConfirm></div></div><div class=signup-modal-form-row><i class=\"form-icon large icon-full-name-input-icon\"></i><div class=signup-modal-input><input id=first-name type=text placeholder=\"First Name\" name=first-name ng-model=signupModel.firstName> <input type=text placeholder=\"First Name\" name=real-first-name ng-model=signupModel.realFirstName></div></div><div class=signup-modal-form-row><i class=\"form-icon large icon-full-name-input-icon\"></i><div class=signup-modal-input><input type=text placeholder=\"Last Name\" name=last-name ng-model=signupModel.lastName></div></div></div></form><div class=error-message ng-if=error>{{error}}</div><div class=signup-modal-submit><div class=submit-button><clix-primary-button type=normal ng-click=onSignupSubmit()>Sign Up</clix-primary-button></div><div class=login-container>Have an account? <a ng-click=onLoginPress()>Log in</a></div></div><div class=signup-modal-footer>By signing in, you agree to our <a ui-sref=terms-of-use>Terms of Use</a> and <a ui-sref=privacy-policy>Privacy Policy</a></div></div><div class=signup-modal ng-hide=signup><div class=signup-modal-header><div class=\"header-logo-icon icon-colorful-clix-logo\" ng-if=!isBeta></div><img ng-src={{$root.turnonConfig.baseImageUrl}}/turnon-logo-horizontal-beta.svg class=header-logo-icon ng-if=isBeta></div><div class=signup-modal-social><div class=social-modal-row><clix-primary-button type=facebook ng-click=onFacebookLoginPress()>Log In With Facebook</clix-primary-button></div><div class=social-modal-row><clix-primary-button type=google ng-click=onGoogleLoginPress()>Log In With Google</clix-primary-button></div><div class=or-email-container><span>or with email</span></div></div><form ng-submit=onLoginSubmit() class=signup-modal-form><div class=signup-modal-form-row><i class=\"form-icon icon-email-input-icon\"></i><div class=signup-modal-input><input type=email placeholder=Email ng-model=loginModel.email></div></div><div class=signup-modal-form-row><i class=\"form-icon icon-password-input-icon\"></i><div class=signup-modal-input><input type=password placeholder=Password ng-model=loginModel.password></div></div><input type=submit></form><div class=error-message ng-if=error>{{error}}</div><div class=signup-modal-submit><div class=submit-button><clix-primary-button type=normal ng-click=onLoginSubmit()>Log In</clix-primary-button></div><div class=login-container>Don't have an account? <a ng-click=onSignupPress()>Sign up</a></div></div><div class=signup-modal-footer>By signing in, you agree to our <a ui-sref=terms-of-use>Terms of Use</a> and <a ui-sref=privacy-policy>Privacy Policy</a></div></div></clix-modal>"
   );
 
 
@@ -452,7 +452,7 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/account/rewards/view.rewards.html',
-    "<div class=reward-activity-row><div class=reward-activity-row-icon><div class=reward-activity-row-icon-logo style=\"background-image: url('http://advncedcdn.vo.llnwd.net/turnon_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d1e7a7889d000337f0e2/Nike-Logo-PNG21.png')\"></div></div><div class=reward-activity-row-info><div class=reward-activity-row-title>Nike</div><div class=reward-activity-row-desc>Coupon Redeemed</div><div class=reward-activity-row-timestamp>2 hours ago</div></div><div class=reward-activity-row-points>+ 50</div></div><div class=reward-activity-row><div class=reward-activity-row-icon><div class=reward-activity-row-icon-logo style=\"background-image: url('http://advncedcdn.vo.llnwd.net/turnon_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d1e7a7889d000337f0e2/Nike-Logo-PNG21.png')\"></div></div><div class=reward-activity-row-info><div class=reward-activity-row-title>Nike</div><div class=reward-activity-row-desc>Coupon Redeemed</div><div class=reward-activity-row-timestamp>2 hours ago</div></div><div class=reward-activity-row-points>+ 50</div></div><div class=reward-activity-row><div class=reward-activity-row-icon><div class=reward-activity-row-icon-logo style=\"background-image: url('http://advncedcdn.vo.llnwd.net/turnon_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d1e7a7889d000337f0e2/Nike-Logo-PNG21.png')\"></div></div><div class=reward-activity-row-info><div class=reward-activity-row-title>Nike</div><div class=reward-activity-row-desc>Coupon Redeemed</div><div class=reward-activity-row-timestamp>2 hours ago</div></div><div class=reward-activity-row-points>+ 50</div></div><div class=reward-activity-row><div class=reward-activity-row-icon><div class=reward-activity-row-icon-logo style=\"background-image: url('http://advncedcdn.vo.llnwd.net/turnon_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d1e7a7889d000337f0e2/Nike-Logo-PNG21.png')\"></div></div><div class=reward-activity-row-info><div class=reward-activity-row-title>Nike</div><div class=reward-activity-row-desc>Coupon Redeemed</div><div class=reward-activity-row-timestamp>2 hours ago</div></div><div class=reward-activity-row-points>+ 50</div></div><div class=reward-activity-row><div class=reward-activity-row-icon><div class=reward-activity-row-icon-logo style=\"background-image: url('http://advncedcdn.vo.llnwd.net/turnon_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d1e7a7889d000337f0e2/Nike-Logo-PNG21.png')\"></div></div><div class=reward-activity-row-info><div class=reward-activity-row-title>Nike</div><div class=reward-activity-row-desc>Coupon Redeemed</div><div class=reward-activity-row-timestamp>2 hours ago</div></div><div class=reward-activity-row-points>+ 50</div></div><div class=reward-activity-row><div class=reward-activity-row-icon><div class=reward-activity-row-icon-logo style=\"background-image: url('http://advncedcdn.vo.llnwd.net/turnon_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d1e7a7889d000337f0e2/Nike-Logo-PNG21.png')\"></div></div><div class=reward-activity-row-info><div class=reward-activity-row-title>Nike</div><div class=reward-activity-row-desc>Coupon Redeemed</div><div class=reward-activity-row-timestamp>2 hours ago</div></div><div class=reward-activity-row-points>+ 50</div></div><div class=reward-activity-row><div class=reward-activity-row-icon><div class=reward-activity-row-icon-logo style=\"background-image: url('http://advncedcdn.vo.llnwd.net/turnon_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d1e7a7889d000337f0e2/Nike-Logo-PNG21.png')\"></div></div><div class=reward-activity-row-info><div class=reward-activity-row-title>Nike</div><div class=reward-activity-row-desc>Coupon Redeemed</div><div class=reward-activity-row-timestamp>2 hours ago</div></div><div class=reward-activity-row-points>+ 50</div></div><div class=rewards-activity-footer><clix-tertiary-button>See All Activity</clix-tertiary-button></div><uib-tab index=1 heading=Activity><div class=rewards-tab-content><div class=\"row rewards-summary-row\"><div class=\"col-md-6 rewards-summary-column\"><div class=rewards-summary-block><div class=rewards-summary-header>Rewards Summary</div><div class=reward-points><div class=\"reward-points-block first-block\" ng-show=pointsEnabled><div class=points-label>1760</div><div class=available-balance-label>Available Points Balance<br>$17.60 Cash Balance</div><div class=rewards-button><clix-primary-button ng-click=onRedeemPress()>Redeem</clix-primary-button></div></div><div ng-show=!pointsEnabled><div class=points-coming-soon-label>Rewards Points are Coming! Please check back soon!</div><div class=available-balance-label>Available Points Balance<br>$0.00 Cash Balance</div><div class=rewards-button><clix-primary-button type=disabled>Redeem</clix-primary-button></div></div></div></div></div></div></div></uib-tab><uib-tab index=2 heading=Redeem><div class=rewards-tab-content><div ng-if=pointsEnabled><p class=redeem-intro>Select your preferred method of redemption and you will be taken to the next page where you will choose your amount and redeem your reward points!</p><div class=\"row redeem-companies-container\"><div class=\"col-xs-6 col-sm-4 col-md-4 col-lg-2-4 redeem-company-callout\" ng-click=\"onRedeemRewardsPress('paypal')\"><div class=redeem-logo-container><img ng-src={{$root.clixConfig.baseImageUrl}}/paypal.png ng-srcset=\"{{$root.clixConfig.baseImageUrl}}/paypal@2x.png 2x\"><div class=redeem-action-state><div class=view-button-container><div class=view-button><clix-view-button></clix-view-button></div></div></div></div><div class=redeem-callout-footer><div class=redeem-callout-company>PayPal<br>&nbsp;</div><a class=redeem-now-link ng-click=\"onRedeemRewardsPress('paypal')\">Redeem Now</a></div></div><div class=\"col-xs-6 col-sm-4 col-md-4 col-lg-2-4 redeem-company-callout\" ng-click=\"onRedeemRewardsPress('visa')\"><div class=redeem-logo-container><img ng-src={{$root.clixConfig.baseImageUrl}}/visa.png ng-srcset=\"{{$root.clixConfig.baseImageUrl}}/visa@2x.png 2x\"><div class=redeem-action-state><div class=view-button-container><div class=view-button><clix-view-button></clix-view-button></div></div></div></div><div class=redeem-callout-footer><div class=redeem-callout-company>Visa® Prepaid<br>Card USD^</div><a class=redeem-now-link ng-click=\"onRedeemRewardsPress('visa')\">Redeem Now</a></div></div><div class=\"col-xs-6 col-sm-4 col-md-4 col-lg-2-4 redeem-company-callout\" ng-click=\"onRedeemRewardsPress('amazon')\"><div class=redeem-logo-container><img ng-src={{$root.clixConfig.baseImageUrl}}/amazon.png ng-srcset=\"{{$root.clixConfig.baseImageUrl}}/amazon@2x.png 2x\"><div class=redeem-action-state><div class=view-button-container><div class=view-button><clix-view-button></clix-view-button></div></div></div></div><div class=redeem-callout-footer><div class=redeem-callout-company>Amazon.com<br>Gift Card∞</div><a class=redeem-now-link ng-click=\"onRedeemRewardsPress('amazon')\">Redeem Now</a></div></div></div><p class=redeem-legal>*PayPal is not a sponsor of the rewards or promotion or otherwise affiliated with this company. The logos and other identifying marks attached are trademarks of and owned by each represented company and/or its affiliates.  Please visit each company's website for additional terms and conditions.</p><p class=redeem-legal>^Card is issued by The Bancorp Bank, Member FDIC, pursuant to a license from Visa U.S.A. Inc.</p><p class=redeem-legal>This reward is non-refundable. The full terms and conditions are available on the Promocode claim site. Click on \"Product Terms\" prior to selecting a Virtual Visa Card or a Plastic Visa Card.  Swift Prepaid Solutions is the Service Provider for your Redemption Account and associated Card Accounts. Your Program Sponsor is the entity that marketed and/or distributed the reward, and is either a direct or indirect Client of Swift Prepaid.</p><p class=redeem-legal>∞Amazon.com is not a sponsor of this promotion. Except as required by law, Amazon.com Gift Cards (\"GCs\") cannot be transferred for value or redeemed for cash. GCs may be used only for purchases of eligible goods on Amazon.com or certain of its affiliated websites. GCs cannot be redeemed for purchases of gift cards. Purchases are deducted from the GC balance. To redeem or view a GC balance, visit \"Your Account\" on Amazon.com. Amazon is not responsible if a GC is lost, stolen, destroyed or used without permission. For complete terms and conditions, see www.amazon.com/gc-legal. GCs are issued by ACI Gift Cards, Inc., a Washington corporation. All Amazon ®, ™ & © are IP of Amazon.com, Inc. or its affiliates. No expiration date or service fees.</p></div><div ng-if=!pointsEnabled><div class=\"row rewards-summary-row\"><div class=\"col-md-6 rewards-summary-column\"><div class=rewards-summary-block><div class=rewards-summary-header>Rewards Summary</div><div class=reward-points><div class=points-coming-soon-label>Rewards Points are Coming! Please check back soon!</div><div class=available-balance-label>Available Points Balance<br>$0.00 Cash Balance</div><div class=rewards-button><clix-primary-button type=disabled>Redeem</clix-primary-button></div></div></div></div></div></div></div></uib-tab>-->"
+    "<div class=reward-activity-row><div class=reward-activity-row-icon><div class=reward-activity-row-icon-logo style=\"background-image: url('http://advncedcdn.vo.llnwd.net/turnon_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d1e7a7889d000337f0e2/Nike-Logo-PNG21.png')\"></div></div><div class=reward-activity-row-info><div class=reward-activity-row-title>Nike</div><div class=reward-activity-row-desc>Coupon Redeemed</div><div class=reward-activity-row-timestamp>2 hours ago</div></div><div class=reward-activity-row-points>+ 50</div></div><div class=reward-activity-row><div class=reward-activity-row-icon><div class=reward-activity-row-icon-logo style=\"background-image: url('http://advncedcdn.vo.llnwd.net/turnon_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d1e7a7889d000337f0e2/Nike-Logo-PNG21.png')\"></div></div><div class=reward-activity-row-info><div class=reward-activity-row-title>Nike</div><div class=reward-activity-row-desc>Coupon Redeemed</div><div class=reward-activity-row-timestamp>2 hours ago</div></div><div class=reward-activity-row-points>+ 50</div></div><div class=reward-activity-row><div class=reward-activity-row-icon><div class=reward-activity-row-icon-logo style=\"background-image: url('http://advncedcdn.vo.llnwd.net/turnon_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d1e7a7889d000337f0e2/Nike-Logo-PNG21.png')\"></div></div><div class=reward-activity-row-info><div class=reward-activity-row-title>Nike</div><div class=reward-activity-row-desc>Coupon Redeemed</div><div class=reward-activity-row-timestamp>2 hours ago</div></div><div class=reward-activity-row-points>+ 50</div></div><div class=reward-activity-row><div class=reward-activity-row-icon><div class=reward-activity-row-icon-logo style=\"background-image: url('http://advncedcdn.vo.llnwd.net/turnon_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d1e7a7889d000337f0e2/Nike-Logo-PNG21.png')\"></div></div><div class=reward-activity-row-info><div class=reward-activity-row-title>Nike</div><div class=reward-activity-row-desc>Coupon Redeemed</div><div class=reward-activity-row-timestamp>2 hours ago</div></div><div class=reward-activity-row-points>+ 50</div></div><div class=reward-activity-row><div class=reward-activity-row-icon><div class=reward-activity-row-icon-logo style=\"background-image: url('http://advncedcdn.vo.llnwd.net/turnon_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d1e7a7889d000337f0e2/Nike-Logo-PNG21.png')\"></div></div><div class=reward-activity-row-info><div class=reward-activity-row-title>Nike</div><div class=reward-activity-row-desc>Coupon Redeemed</div><div class=reward-activity-row-timestamp>2 hours ago</div></div><div class=reward-activity-row-points>+ 50</div></div><div class=reward-activity-row><div class=reward-activity-row-icon><div class=reward-activity-row-icon-logo style=\"background-image: url('http://advncedcdn.vo.llnwd.net/turnon_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d1e7a7889d000337f0e2/Nike-Logo-PNG21.png')\"></div></div><div class=reward-activity-row-info><div class=reward-activity-row-title>Nike</div><div class=reward-activity-row-desc>Coupon Redeemed</div><div class=reward-activity-row-timestamp>2 hours ago</div></div><div class=reward-activity-row-points>+ 50</div></div><div class=reward-activity-row><div class=reward-activity-row-icon><div class=reward-activity-row-icon-logo style=\"background-image: url('http://advncedcdn.vo.llnwd.net/turnon_storage/storage/57cdc2665aad0b6fcf67bb3d/5804d1e7a7889d000337f0e2/Nike-Logo-PNG21.png')\"></div></div><div class=reward-activity-row-info><div class=reward-activity-row-title>Nike</div><div class=reward-activity-row-desc>Coupon Redeemed</div><div class=reward-activity-row-timestamp>2 hours ago</div></div><div class=reward-activity-row-points>+ 50</div></div><div class=rewards-activity-footer><clix-tertiary-button>See All Activity</clix-tertiary-button></div><uib-tab index=1 heading=Activity><div class=rewards-tab-content><div class=\"row rewards-summary-row\"><div class=\"col-md-6 rewards-summary-column\"><div class=rewards-summary-block><div class=rewards-summary-header>Rewards Summary</div><div class=reward-points><div class=\"reward-points-block first-block\" ng-show=pointsEnabled><div class=points-label>1760</div><div class=available-balance-label>Available Points Balance<br>$17.60 Cash Balance</div><div class=rewards-button><clix-primary-button ng-click=onRedeemPress()>Redeem</clix-primary-button></div></div><div ng-show=!pointsEnabled><div class=points-coming-soon-label>Rewards Points are Coming! Please check back soon!</div><div class=available-balance-label>Available Points Balance<br>$0.00 Cash Balance</div><div class=rewards-button><clix-primary-button type=disabled>Redeem</clix-primary-button></div></div></div></div></div></div></div></uib-tab><uib-tab index=2 heading=Redeem><div class=rewards-tab-content><div ng-if=pointsEnabled><p class=redeem-intro>Select your preferred method of redemption and you will be taken to the next page where you will choose your amount and redeem your reward points!</p><div class=\"row redeem-companies-container\"><div class=\"col-xs-6 col-sm-4 col-md-4 col-lg-2-4 redeem-company-callout\" ng-click=\"onRedeemRewardsPress('paypal')\"><div class=redeem-logo-container><img ng-src={{$root.turnonConfig.baseImageUrl}}/paypal.png ng-srcset=\"{{$root.turnonConfig.baseImageUrl}}/paypal@2x.png 2x\"><div class=redeem-action-state><div class=view-button-container><div class=view-button><clix-view-button></clix-view-button></div></div></div></div><div class=redeem-callout-footer><div class=redeem-callout-company>PayPal<br>&nbsp;</div><a class=redeem-now-link ng-click=\"onRedeemRewardsPress('paypal')\">Redeem Now</a></div></div><div class=\"col-xs-6 col-sm-4 col-md-4 col-lg-2-4 redeem-company-callout\" ng-click=\"onRedeemRewardsPress('visa')\"><div class=redeem-logo-container><img ng-src={{$root.turnonConfig.baseImageUrl}}/visa.png ng-srcset=\"{{$root.turnonConfig.baseImageUrl}}/visa@2x.png 2x\"><div class=redeem-action-state><div class=view-button-container><div class=view-button><clix-view-button></clix-view-button></div></div></div></div><div class=redeem-callout-footer><div class=redeem-callout-company>Visa® Prepaid<br>Card USD^</div><a class=redeem-now-link ng-click=\"onRedeemRewardsPress('visa')\">Redeem Now</a></div></div><div class=\"col-xs-6 col-sm-4 col-md-4 col-lg-2-4 redeem-company-callout\" ng-click=\"onRedeemRewardsPress('amazon')\"><div class=redeem-logo-container><img ng-src={{$root.turnonConfig.baseImageUrl}}/amazon.png ng-srcset=\"{{$root.turnonConfig.baseImageUrl}}/amazon@2x.png 2x\"><div class=redeem-action-state><div class=view-button-container><div class=view-button><clix-view-button></clix-view-button></div></div></div></div><div class=redeem-callout-footer><div class=redeem-callout-company>Amazon.com<br>Gift Card∞</div><a class=redeem-now-link ng-click=\"onRedeemRewardsPress('amazon')\">Redeem Now</a></div></div></div><p class=redeem-legal>*PayPal is not a sponsor of the rewards or promotion or otherwise affiliated with this company. The logos and other identifying marks attached are trademarks of and owned by each represented company and/or its affiliates.  Please visit each company's website for additional terms and conditions.</p><p class=redeem-legal>^Card is issued by The Bancorp Bank, Member FDIC, pursuant to a license from Visa U.S.A. Inc.</p><p class=redeem-legal>This reward is non-refundable. The full terms and conditions are available on the Promocode claim site. Click on \"Product Terms\" prior to selecting a Virtual Visa Card or a Plastic Visa Card.  Swift Prepaid Solutions is the Service Provider for your Redemption Account and associated Card Accounts. Your Program Sponsor is the entity that marketed and/or distributed the reward, and is either a direct or indirect Client of Swift Prepaid.</p><p class=redeem-legal>∞Amazon.com is not a sponsor of this promotion. Except as required by law, Amazon.com Gift Cards (\"GCs\") cannot be transferred for value or redeemed for cash. GCs may be used only for purchases of eligible goods on Amazon.com or certain of its affiliated websites. GCs cannot be redeemed for purchases of gift cards. Purchases are deducted from the GC balance. To redeem or view a GC balance, visit \"Your Account\" on Amazon.com. Amazon is not responsible if a GC is lost, stolen, destroyed or used without permission. For complete terms and conditions, see www.amazon.com/gc-legal. GCs are issued by ACI Gift Cards, Inc., a Washington corporation. All Amazon ®, ™ & © are IP of Amazon.com, Inc. or its affiliates. No expiration date or service fees.</p></div><div ng-if=!pointsEnabled><div class=\"row rewards-summary-row\"><div class=\"col-md-6 rewards-summary-column\"><div class=rewards-summary-block><div class=rewards-summary-header>Rewards Summary</div><div class=reward-points><div class=points-coming-soon-label>Rewards Points are Coming! Please check back soon!</div><div class=available-balance-label>Available Points Balance<br>$0.00 Cash Balance</div><div class=rewards-button><clix-primary-button type=disabled>Redeem</clix-primary-button></div></div></div></div></div></div></div></uib-tab>-->"
   );
 
 
@@ -542,7 +542,7 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui/home/view.home.html',
-    ""
+    "<div class=\"container-fluid home_page\"><div class=\"col-xs-12 sport_list_container\"><div class=kinds_of_sports ng-repeat=\"sl in sportLogos\"><div class=sport_logo style=\"background-image: url('{{sl.url}}')\"></div><div class=sport_title></div></div></div></div>"
   );
 
 
@@ -997,11 +997,11 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         '$timeout',
         '$filter',
         '$uibModalInstance',
-        'clixConfig',
-        function($scope, $timeout, $filter, $uibModalInstance, clixConfig) {
+        'turnonConfig',
+        function($scope, $timeout, $filter, $uibModalInstance, turnonConfig) {
 
             $scope.buyPointsModel = 0;
-            $scope.pointsEnabled = clixConfig.pointsEnabled;
+            $scope.pointsEnabled = turnonConfig.pointsEnabled;
 
             $scope.onBuyPointsPress = function() {
                 $scope.state = 'buy';
@@ -1062,11 +1062,11 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         'offersService',
         'modalService',
         'preferencesService',
-        'clixConfig',
-        function($q, $scope, $rootScope, $timeout, $uibModalInstance, data, userService, videosService, brandsService, celebrityService, categoryService, offersService, modalService, preferencesService, clixConfig) {
+        'turnonConfig',
+        function($q, $scope, $rootScope, $timeout, $uibModalInstance, data, userService, videosService, brandsService, celebrityService, categoryService, offersService, modalService, preferencesService, turnonConfig) {
 
             $scope.showAgainModel = false;
-            $scope.pointsEnabled = clixConfig.pointsEnabled;
+            $scope.pointsEnabled = turnonConfig.pointsEnabled;
 
             var itemData = data;
 
@@ -1214,12 +1214,12 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         '$uibModalInstance',
         'userService',
         'data',
-        'clixConfig',
-        function($scope, $rootScope, $uibModalInstance, userService, data, clixConfig) {
+        'turnonConfig',
+        function($scope, $rootScope, $uibModalInstance, userService, data, turnonConfig) {
 
             $scope.signup = data.signup;
 
-            $scope.isBeta = (clixConfig.beta === true);
+            $scope.isBeta = (turnonConfig.beta === true);
 
             $scope.loginModel = {
                 email: '',
@@ -1532,25 +1532,25 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         '$scope',
         '$uibModalInstance',
         'type',
-        'clixConfig',
-        function($scope, $uibModalInstance, type, clixConfig) {
+        'turnonConfig',
+        function($scope, $uibModalInstance, type, turnonConfig) {
 
             switch (type) {
                 case 'visa':
-                    $scope.image = clixConfig.baseImageUrl + '/visa.png';
-                    $scope.imageHighRes = clixConfig.baseImageUrl + '/visa@2x.png';
+                    $scope.image = turnonConfig.baseImageUrl + '/visa.png';
+                    $scope.imageHighRes = turnonConfig.baseImageUrl + '/visa@2x.png';
                     $scope.title = 'Visa® Prepaid Card USD';
                     $scope.disclaimer = 'Visa® Prepaid Card USD works just like cash. Your turnon reward points have a cash value. Just transfer the balance to a Visa® Prepaid Card USD! Click "Redeem Now" below and you will receive an email with your redemption instructions.';
                     break;
                 case 'paypal':
-                    $scope.image = clixConfig.baseImageUrl + '/paypal.png';
-                    $scope.imageHighRes = clixConfig.baseImageUrl + '/paypal@2x.png';
+                    $scope.image = turnonConfig.baseImageUrl + '/paypal.png';
+                    $scope.imageHighRes = turnonConfig.baseImageUrl + '/paypal@2x.png';
                     $scope.title = 'PayPal';
                     $scope.disclaimer = 'PayPal works just like cash. Your turnon reward points have a cash value. Just transfer the balance to your PayPal Account! Click "Redeem Now" below and you will receive an email with your redemption instructions.';
                     break;
                 case 'amazon':
-                    $scope.image = clixConfig.baseImageUrl + '/amazon.png';
-                    $scope.imageHighRes = clixConfig.baseImageUrl + '/amazon@2x.png';
+                    $scope.image = turnonConfig.baseImageUrl + '/amazon.png';
+                    $scope.imageHighRes = turnonConfig.baseImageUrl + '/amazon@2x.png';
                     $scope.title = 'Amazon.com Gift Card';
                     $scope.disclaimer = 'Your turnon reward points have a cash value. Just transfer the balance to a Amazon.com Gift Card! Click "Redeem Now" below and you will receive an email with your redemption instructions.';
                     break;
@@ -1904,10 +1904,10 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         '$timeout',
         '$state',
         'userService',
-        'clixConfig',
-        function($scope, $rootScope, $timeout, $state, userService, clixConfig) {
+        'turnonConfig',
+        function($scope, $rootScope, $timeout, $state, userService, turnonConfig) {
 
-            $scope.notificationEnabled = clixConfig.notificationEnabled;
+            $scope.notificationEnabled = turnonConfig.notificationEnabled;
 
             $scope.items = [
                 {
@@ -2765,11 +2765,11 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         '$rootScope',
         'userService',
         'notificationsService',
-        'clixConfig',
-        function($scope, $rootScope, userService, notificationsService, clixConfig) {
+        'turnonConfig',
+        function($scope, $rootScope, userService, notificationsService, turnonConfig) {
 
             // $rootScope.pageTitle = 'Your Notifications - turnon';
-            // $scope.notificationEnabled = clixConfig.notificationEnabled;
+            // $scope.notificationEnabled = turnonConfig.notificationEnabled;
             //
             // notificationsService.getNotifications()
             //     .then(
@@ -3103,13 +3103,13 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         '$scope',
         '$rootScope',
         '$uibModal',
-        'clixConfig',
-        function($q, $scope, $rootScope, $uibModal, clixConfig) {
+        'turnonConfig',
+        function($q, $scope, $rootScope, $uibModal, turnonConfig) {
             // 
             // $rootScope.pageTitle = 'Your Rewards - turnon';
             //
             // $scope.active = 0;
-            // $scope.pointsEnabled = clixConfig.pointsEnabled;
+            // $scope.pointsEnabled = turnonConfig.pointsEnabled;
             // $scope.ready = true;
             //
             // $scope.onRedeemRewardsPress = function(type) {
@@ -3296,14 +3296,14 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         '$scope',
         '$rootScope',
         'userService',
-        'clixConfig',
+        'turnonConfig',
         'educationModalService',
-        function($q, $scope, $rootScope, userService, clixConfig, educationModalService) {
+        function($q, $scope, $rootScope, userService, turnonConfig, educationModalService) {
 
             // $rootScope.pageTitle = 'Your Account Settings - turnon';
-            // $scope.notificationEnabled = clixConfig.notificationEnabled;
+            // $scope.notificationEnabled = turnonConfig.notificationEnabled;
             //
-            // if (!clixConfig.notificationEnabled) {
+            // if (!turnonConfig.notificationEnabled) {
             //     educationModalService.showNotificationsComingSoonModal();
             // }
             //
@@ -3406,12 +3406,12 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         '$scope',
         '$rootScope',
         'userService',
-        'clixConfig',
-        function($scope, $rootScope, userService, clixConfig) {
+        'turnonConfig',
+        function($scope, $rootScope, userService, turnonConfig) {
 
             // $rootScope.pageTitle = 'Your Watchlist - turnon';
             //
-            // $scope.filtersEnabled = clixConfig.filtersEnabled;
+            // $scope.filtersEnabled = turnonConfig.filtersEnabled;
             //
             // $scope.filterOptions = [
             //     {
@@ -3509,11 +3509,11 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         'modalService',
         'catchMediaService',
         'knetikService',
-        'clixConfig',
-        function($q, $log, $scope, $rootScope, $filter, $state, $stateParams, brandsService, userService, modalService, catchMediaService, knetikService, clixConfig) {
+        'turnonConfig',
+        function($q, $log, $scope, $rootScope, $filter, $state, $stateParams, brandsService, userService, modalService, catchMediaService, knetikService, turnonConfig) {
 
-            // $scope.filtersEnabled = clixConfig.filtersEnabled;
-            // $scope.pointsEnabled = clixConfig.pointsEnabled;
+            // $scope.filtersEnabled = turnonConfig.filtersEnabled;
+            // $scope.pointsEnabled = turnonConfig.pointsEnabled;
             //
             // $scope.onOfferPress = function(offer) {
             //     if ($stateParams.offerSlug === $filter('slug')(offer.title)) {
@@ -4008,8 +4008,8 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         'userService',
         'modalService',
         'catchMediaService',
-        'clixConfig',
-        function($q, $log, $scope, $rootScope, $state, $stateParams, categoryService, userService, modalService, catchMediaService, clixConfig) {
+        'turnonConfig',
+        function($q, $log, $scope, $rootScope, $state, $stateParams, categoryService, userService, modalService, catchMediaService, turnonConfig) {
             //
             // function _resetIsFavorite() {
             //     if ($scope.category) {
@@ -4018,7 +4018,7 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
             // }
             //
             // $scope.notify = false;
-            // $scope.filtersEnabled = clixConfig.filtersEnabled;
+            // $scope.filtersEnabled = turnonConfig.filtersEnabled;
             //
             // $rootScope.$on('user.login', function(event, data) {
             //     $scope.loggedInUser = data;
@@ -4366,10 +4366,10 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         'brandsService',
         'userService',
         'catchMediaService',
-        'clixConfig',
-        function($q, $log, $scope, $rootScope, $filter, $uibModal, $state, $stateParams, brandsService, userService, catchMediaService, clixConfig) {
+        'turnonConfig',
+        function($q, $log, $scope, $rootScope, $filter, $uibModal, $state, $stateParams, brandsService, userService, catchMediaService, turnonConfig) {
 
-            // $scope.filtersEnabled = clixConfig.filtersEnabled;
+            // $scope.filtersEnabled = turnonConfig.filtersEnabled;
             //
             // function _resetIsFavorite() {
             //     if ($scope.charity) {
@@ -4675,9 +4675,9 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
 
     var FooterController = [
         '$scope',
-        'clixConfig',
-        function($scope, clixConfig) {
-            $scope.isBeta = (clixConfig.beta === true);
+        'turnonConfig',
+        function($scope, turnonConfig) {
+            $scope.isBeta = (turnonConfig.beta === true);
         }
     ];
 
@@ -4792,12 +4792,12 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         'knetikService',
         'modalService',
         'catchMediaService',
-        'clixConfig',
-        function($q, $scope, $rootScope, $window, $timeout, $uibModal, notificationsService, knetikService, modalService, catchMediaService, clixConfig) {
+        'turnonConfig',
+        function($q, $scope, $rootScope, $window, $timeout, $uibModal, notificationsService, knetikService, modalService, catchMediaService, turnonConfig) {
 
             // var latestOffset = 0;
             //
-            // $scope.isBeta = (clixConfig.beta === true);
+            // $scope.isBeta = (turnonConfig.beta === true);
             //
             // function _populateHeaderData() {
             //     $q.all(
@@ -4921,18 +4921,56 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         .directive('clixHeaderSearchIcon', headerSearchIcon)
         .directive('clixHeaderSearchRow', headerSearchRow);
 }());
-(function() {
+var he = null;
+angular.module('turnon').controller('HomeController', function HomeController ($scope) {
+      he = $scope;
+      // $scope.sportLogos = [{title:'Soccer',
+      //                   url:'assets/images/categories/soccer_gray.png'},
+      //                   {title:'American football',
+      //                   url:'assets/images/categories/american_football_gray.png'},
+      //                   {title:'American football_3',
+      //                   url:'assets/images/categories/3_gray.png'},
+      //                   {title:'American football_4',
+      //                   url:'assets/images/categories/4_gray.png'},
+      //                   {title:'American football_5',
+      //                   url:'assets/images/categories/5_gray.png'},
+      //                   {title:'American football_6',
+      //                   url:'assets/images/categories/6_gray.png'},
+      //                   {title:'American football_7',
+      //                   url:'assets/images/categories/7_gray.png'},
+      //                   {title:'American football_8',
+      //                   url:'assets/images/categories/8_gray.png'},
+      //                   {title:'American footbal_9',
+      //                   url:'assets/images/categories/9_gray.png'},
+      //                   {title:'Golf',
+      //                   url:'assets/images/categories/golf_gray.png'},
+      //                   {title:'American football_11',
+      //                   url:'assets/images/categories/11_gray.png'},
+      //                   {title:'American footbal_12',
+      //                   url:'assets/images/categories/boxing_gray.png'},
+      //                   {title:'American football_13',
+      //                   url:'assets/images/categories/bike_gray.png'},
+      //                   {title:'American football_14',
+      //                   url:'assets/images/categories/horse_gray.png'},
+      //                   {title:'American football_15',
+      //                   url:'assets/images/categories/15_gray.png'},
+      //                   {title:'American football_16',
+      //                    url:'assets/images/categories/ski_gray.png'}];
 
-    var HomeController = [
-        '$q',
-        '$scope',
-        '$rootScope',
-        '$timeout',
-        '$window',
-        '$uibModal',
-        'categoryService',
-        'modalService',
-        function($q, $scope, $rootScope, $timeout, $window, $uibModal, categoryService, modalService) {
+});
+
+// (function() {
+//
+//     var HomeController = [
+//         '$q',
+//         '$scope',
+//         '$rootScope',
+//         '$timeout',
+//         '$window',
+//         '$uibModal',
+//         'categoryService',
+//         'modalService',
+//         function($q, $scope, $rootScope, $timeout, $window, $uibModal, categoryService, modalService) {
 
             // var moreToLoad = true;
             //
@@ -5010,13 +5048,13 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
             //     _recalculateWidth();
             // });
             // _loadCategories();
-        }
-    ];
+      //  }
+  //  ];
 
-    angular
-        .module('turnon')
-        .controller('HomeController', HomeController);
-}());
+//     angular
+//         .module('turnon')
+//         .controller('HomeController', HomeController);
+// }());
 
 (function() {
     var NotFoundController = [
@@ -5475,12 +5513,12 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
             'AccountSettingModel',
             function(AccountSettingModel) {
                 return function(data) {
-                    // if (!(data instanceof Array)) {
-                    //     return [];
-                    // }
-                    // this.settings = data.map(function(setting) {
-                    //     return new AccountSettingModel(setting);
-                    // });
+                    if (!(data instanceof Array)) {
+                        return [];
+                    }
+                    this.settings = data.map(function(setting) {
+                        return new AccountSettingModel(setting);
+                    });
                 }
             }
         ]);
@@ -5492,17 +5530,17 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         .module('turnon')
         .factory('AccountSettingModel', [
             function() {
-                // return function(data) {
-                //     if (!data) {
-                //         return;
-                //     }
-                //     this.id = data._id;
-                //     this.type = data.type;
-                //     this.enabled = data.enabled;
-                //     this.description = data.description;
-                //     this.title = data.title;
-                //     this.order = data.order;
-                // }
+                return function(data) {
+                    if (!data) {
+                        return;
+                    }
+                    this.id = data._id;
+                    this.type = data.type;
+                    this.enabled = data.enabled;
+                    this.description = data.description;
+                    this.title = data.title;
+                    this.order = data.order;
+                }
             }
         ]);
 }());
@@ -5514,19 +5552,19 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         .factory('BrandListModel', [
             'BrandModel',
             function(BrandModel) {
-                // return function(data) {
-                //     if (!(data instanceof Array)) {
-                //         return [];
-                //     }
-                //     this.brands = data.map(function(brand) {
-                //         if (typeof brand === 'string') {
-                //             return {
-                //                 id: brand
-                //             };
-                //         }
-                //         return new BrandModel(brand);
-                //     });
-                // }
+                return function(data) {
+                    if (!(data instanceof Array)) {
+                        return [];
+                    }
+                    this.brands = data.map(function(brand) {
+                        if (typeof brand === 'string') {
+                            return {
+                                id: brand
+                            };
+                        }
+                        return new BrandModel(brand);
+                    });
+                }
             }
         ]);
 }());
@@ -5541,62 +5579,62 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
             'CelebrityListModel',
             '$filter',
             function($injector, OfferListModel, CelebrityListModel, $filter) {
-                // return function(data) {
-                //     if (!data) {
-                //         return;
-                //     }
-                //     this.id = data._id;
-                //     this.title = data.title;
-                //     this.description = data.description;
-                //     this.celebrities = new CelebrityListModel(data.celebrities);
-                //
-                //     if (data.slug) {
-                //         this.slug = data.slug;
-                //     } else {
-                //         this.slug = $filter('slug')(this.title);
-                //     }
-                //
-                //     if (data.offers) {
-                //         if (typeof data.offers === 'number') {
-                //             this.totalOffers = data.offers;
-                //         } else {
-                //             this.offers = new OfferListModel(data.offers);
-                //             this.totalOffers = this.offers.offers.length;
-                //         }
-                //     }
-                //
-                //     if (data.videos) {
-                //         if (typeof data.videos === 'number') {
-                //             this.totalVideos = data.videos;
-                //         } else {
-                //             var VideoListModel = $injector.get('VideoListModel');
-                //             this.videos = new VideoListModel(data.videos);
-                //             this.totalVideos = this.videos.videos.length;
-                //         }
-                //     }
-                //
-                //     if (data.content) {
-                //         if (data.content.BrandTransparentLogo) {
-                //             this.transparentThumbnail = data.content.BrandTransparentLogo.downloadUrl;
-                //         }
-                //
-                //         if (data.content.BackgroundImage) {
-                //             this.headerImage = data.content.BackgroundImage.downloadUrl;
-                //         }
-                //
-                //         if (data.content.ProfilePicture) {
-                //             this.logo = data.content.ProfilePicture.downloadUrl;
-                //         }
-                //
-                //         if (data.content.Video) {
-                //             this.trailer = data.content.Video.downloadUrl;
-                //         }
-                //
-                //         if (data.content.PosterH) {
-                //             this.trailerThumbnail = data.content.PosterH.downloadUrl;
-                //         }
-                //     }
-                // }
+                return function(data) {
+                    if (!data) {
+                        return;
+                    }
+                    this.id = data._id;
+                    this.title = data.title;
+                    this.description = data.description;
+                    this.celebrities = new CelebrityListModel(data.celebrities);
+
+                    if (data.slug) {
+                        this.slug = data.slug;
+                    } else {
+                        this.slug = $filter('slug')(this.title);
+                    }
+
+                    if (data.offers) {
+                        if (typeof data.offers === 'number') {
+                            this.totalOffers = data.offers;
+                        } else {
+                            this.offers = new OfferListModel(data.offers);
+                            this.totalOffers = this.offers.offers.length;
+                        }
+                    }
+
+                    if (data.videos) {
+                        if (typeof data.videos === 'number') {
+                            this.totalVideos = data.videos;
+                        } else {
+                            var VideoListModel = $injector.get('VideoListModel');
+                            this.videos = new VideoListModel(data.videos);
+                            this.totalVideos = this.videos.videos.length;
+                        }
+                    }
+
+                    if (data.content) {
+                        if (data.content.BrandTransparentLogo) {
+                            this.transparentThumbnail = data.content.BrandTransparentLogo.downloadUrl;
+                        }
+
+                        if (data.content.BackgroundImage) {
+                            this.headerImage = data.content.BackgroundImage.downloadUrl;
+                        }
+
+                        if (data.content.ProfilePicture) {
+                            this.logo = data.content.ProfilePicture.downloadUrl;
+                        }
+
+                        if (data.content.Video) {
+                            this.trailer = data.content.Video.downloadUrl;
+                        }
+
+                        if (data.content.PosterH) {
+                            this.trailerThumbnail = data.content.PosterH.downloadUrl;
+                        }
+                    }
+                }
             }
         ]);
 }());
@@ -5608,14 +5646,14 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         .factory('CategoryListModel', [
             'CategoryModel',
             function(CategoryModel) {
-                // return function(data) {
-                //     if (!(data instanceof Array)) {
-                //         return [];
-                //     }
-                //     this.categories = data.map(function(category) {
-                //         return new CategoryModel(category);
-                //     });
-                // }
+                return function(data) {
+                    if (!(data instanceof Array)) {
+                        return [];
+                    }
+                    this.categories = data.map(function(category) {
+                        return new CategoryModel(category);
+                    });
+                }
             }
         ]);
 }());
@@ -5628,36 +5666,36 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
             'VideoListModel',
             '$filter',
             function(VideoListModel, $filter) {
-                // return function(data) {
-                //     this.id = data._id;
-                //     this.title = data.title;
-                //     this.order = data.order;
-                //
-                //     if (data.slug) {
-                //         this.slug = data.slug;
-                //     } else {
-                //         this.slug = $filter('slug')(this.title);
-                //     }
-                //
-                //     if (data.videos) {
-                //         if (typeof data.videos === 'number') {
-                //             this.totalVideos = data.videos;
-                //         } else {
-                //             this.videos = new VideoListModel(data.videos);
-                //             this.totalVideos = this.videos.videos.length;
-                //         }
-                //     }
-                //
-                //     if (data.content) {
-                //         if (data.content.ProfilePicture) {
-                //             this.logo = data.content.ProfilePicture.downloadUrl;
-                //         }
-                //
-                //         if (data.content.BackgroundImage) {
-                //             this.headerImage = data.content.BackgroundImage.downloadUrl;
-                //         }
-                //     }
-                // }
+                return function(data) {
+                    this.id = data._id;
+                    this.title = data.title;
+                    this.order = data.order;
+
+                    if (data.slug) {
+                        this.slug = data.slug;
+                    } else {
+                        this.slug = $filter('slug')(this.title);
+                    }
+
+                    if (data.videos) {
+                        if (typeof data.videos === 'number') {
+                            this.totalVideos = data.videos;
+                        } else {
+                            this.videos = new VideoListModel(data.videos);
+                            this.totalVideos = this.videos.videos.length;
+                        }
+                    }
+
+                    if (data.content) {
+                        if (data.content.ProfilePicture) {
+                            this.logo = data.content.ProfilePicture.downloadUrl;
+                        }
+
+                        if (data.content.BackgroundImage) {
+                            this.headerImage = data.content.BackgroundImage.downloadUrl;
+                        }
+                    }
+                }
             }
         ]);
 }());
@@ -5668,14 +5706,14 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         .factory('CelebrityListModel', [
             'CelebrityModel',
             function(CelebrityModel) {
-                // return function(data) {
-                //     if (!(data instanceof Array)) {
-                //         return [];
-                //     }
-                //     this.celebrities = data.map(function(celebrity) {
-                //         return new CelebrityModel(celebrity);
-                //     });
-                // }
+                return function(data) {
+                    if (!(data instanceof Array)) {
+                        return [];
+                    }
+                    this.celebrities = data.map(function(celebrity) {
+                        return new CelebrityModel(celebrity);
+                    });
+                }
             }
         ]);
 }());
@@ -5688,58 +5726,58 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
             '$injector',
             '$filter',
             function($injector, $filter) {
-                // return function(data) {
-                //     this.id = data._id;
-                //     this.name = data.title;
-                //     this.description = data.description;
-                //
-                //     if (data.slug) {
-                //         this.slug = data.slug;
-                //     } else {
-                //         this.slug = $filter('slug')(this.name);
-                //     }
-                //
-                //     if (data.content) {
-                //         if (data.content.ProfilePicture) {
-                //             this.thumbnail = data.content.ProfilePicture.downloadUrl;
-                //         }
-                //
-                //         if (data.content.BackgroundImage) {
-                //             this.headerImage = data.content.BackgroundImage.downloadUrl;
-                //         }
-                //     }
-                //
-                //     if (data.videos) {
-                //         if (typeof data.videos === 'number') {
-                //             this.totalVideos = data.videos;
-                //         } else {
-                //             var VideoListModel = $injector.get('VideoListModel');
-                //             this.videos = new VideoListModel(data.videos);
-                //             this.totalVideos = this.videos.videos.length;
-                //         }
-                //     }
-                //
-                //     if (data.charities) {
-                //         var CharityListModel = $injector.get('CharityListModel');
-                //         this.charities = new CharityListModel(data.charities);
-                //     }
-                //
-                //     if (data.campaigns) {
-                //         var BrandListModel = $injector.get('BrandListModel');
-                //         this.brands = new BrandListModel(data.campaigns);
-                //     }
-                //
-                //     if (data.series) {
-                //         var SeriesListModel = $injector.get('SeriesListModel');
-                //         this.series = new SeriesListModel(data.series);
-                //     }
-                //
-                //     if (data.offers) {
-                //         var OfferListModel = $injector.get('OfferListModel');
-                //         this.offers = new OfferListModel(data.offers);
-                //     }
-                //
-                // }
+                return function(data) {
+                    this.id = data._id;
+                    this.name = data.title;
+                    this.description = data.description;
+
+                    if (data.slug) {
+                        this.slug = data.slug;
+                    } else {
+                        this.slug = $filter('slug')(this.name);
+                    }
+
+                    if (data.content) {
+                        if (data.content.ProfilePicture) {
+                            this.thumbnail = data.content.ProfilePicture.downloadUrl;
+                        }
+
+                        if (data.content.BackgroundImage) {
+                            this.headerImage = data.content.BackgroundImage.downloadUrl;
+                        }
+                    }
+
+                    if (data.videos) {
+                        if (typeof data.videos === 'number') {
+                            this.totalVideos = data.videos;
+                        } else {
+                            var VideoListModel = $injector.get('VideoListModel');
+                            this.videos = new VideoListModel(data.videos);
+                            this.totalVideos = this.videos.videos.length;
+                        }
+                    }
+
+                    if (data.charities) {
+                        var CharityListModel = $injector.get('CharityListModel');
+                        this.charities = new CharityListModel(data.charities);
+                    }
+
+                    if (data.campaigns) {
+                        var BrandListModel = $injector.get('BrandListModel');
+                        this.brands = new BrandListModel(data.campaigns);
+                    }
+
+                    if (data.series) {
+                        var SeriesListModel = $injector.get('SeriesListModel');
+                        this.series = new SeriesListModel(data.series);
+                    }
+
+                    if (data.offers) {
+                        var OfferListModel = $injector.get('OfferListModel');
+                        this.offers = new OfferListModel(data.offers);
+                    }
+
+                }
             }
         ]);
 }());
@@ -5751,19 +5789,19 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         .factory('CharityListModel', [
             'CharityModel',
             function(CharityModel) {
-                // return function(data) {
-                //     if (!(data instanceof Array)) {
-                //         return [];
-                //     }
-                //     this.charities = data.map(function(charity) {
-                //         if (typeof charity === 'string') {
-                //             return {
-                //                 id: charity
-                //             };
-                //         }
-                //         return new CharityModel(charity);
-                //     });
-                // }
+                return function(data) {
+                    if (!(data instanceof Array)) {
+                        return [];
+                    }
+                    this.charities = data.map(function(charity) {
+                        if (typeof charity === 'string') {
+                            return {
+                                id: charity
+                            };
+                        }
+                        return new CharityModel(charity);
+                    });
+                }
             }
         ]);
 }());
@@ -5776,56 +5814,56 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
             '$injector',
             '$filter',
             function($injector, $filter) {
-                // return function(data) {
-                //
-                //     if (typeof data === 'string') {
-                //         return;
-                //     }
-                //
-                //     this.id = data._id;
-                //     this.title = data.title;
-                //     this.description = data.description;
-                //
-                //     if (data.slug) {
-                //         this.slug = data.slug;
-                //     } else {
-                //         this.slug = $filter('slug')(this.title);
-                //     }
-                //
-                //     if (data.content) {
-                //         if (data.content.ProfilePicture) {
-                //             this.transparentThumbnail = data.content.ProfilePicture.downloadUrl;
-                //             this.logo = data.content.ProfilePicture.downloadUrl;
-                //         }
-                //
-                //         if (data.content.BackgroundImage) {
-                //             this.headerImage = data.content.BackgroundImage.downloadUrl;
-                //         }
-                //
-                //         if (data.content.Video) {
-                //             this.trailer = data.content.Video.downloadUrl;
-                //         }
-                //
-                //         if (data.content.PosterH) {
-                //             this.trailerThumbnail = data.content.PosterH.downloadUrl;
-                //         }
-                //     }
-                //
-                //     if (data.celebrities) {
-                //         var CelebrityListModel = $injector.get('CelebrityListModel');
-                //         this.celebrities = new CelebrityListModel(data.celebrities);
-                //     }
-                //
-                //     if (data.videos) {
-                //         if (typeof data.videos === 'number') {
-                //             this.totalVideos = data.videos;
-                //         } else {
-                //             var VideoListModel = $injector.get('VideoListModel');
-                //             this.videos = new VideoListModel(data.videos);
-                //             this.totalVideos = this.videos.videos.length;
-                //         }
-                //     }
-                // }
+                return function(data) {
+
+                    if (typeof data === 'string') {
+                        return;
+                    }
+
+                    this.id = data._id;
+                    this.title = data.title;
+                    this.description = data.description;
+
+                    if (data.slug) {
+                        this.slug = data.slug;
+                    } else {
+                        this.slug = $filter('slug')(this.title);
+                    }
+
+                    if (data.content) {
+                        if (data.content.ProfilePicture) {
+                            this.transparentThumbnail = data.content.ProfilePicture.downloadUrl;
+                            this.logo = data.content.ProfilePicture.downloadUrl;
+                        }
+
+                        if (data.content.BackgroundImage) {
+                            this.headerImage = data.content.BackgroundImage.downloadUrl;
+                        }
+
+                        if (data.content.Video) {
+                            this.trailer = data.content.Video.downloadUrl;
+                        }
+
+                        if (data.content.PosterH) {
+                            this.trailerThumbnail = data.content.PosterH.downloadUrl;
+                        }
+                    }
+
+                    if (data.celebrities) {
+                        var CelebrityListModel = $injector.get('CelebrityListModel');
+                        this.celebrities = new CelebrityListModel(data.celebrities);
+                    }
+
+                    if (data.videos) {
+                        if (typeof data.videos === 'number') {
+                            this.totalVideos = data.videos;
+                        } else {
+                            var VideoListModel = $injector.get('VideoListModel');
+                            this.videos = new VideoListModel(data.videos);
+                            this.totalVideos = this.videos.videos.length;
+                        }
+                    }
+                }
             }
         ]);
 }());
@@ -5836,14 +5874,14 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         .factory('NotificationListModel', [
             'NotificationModel',
             function(NotificationModel) {
-                // return function(data) {
-                //     if (!(data instanceof Array)) {
-                //         return [];
-                //     }
-                //     this.notifications = data.map(function(notification) {
-                //         return new NotificationModel(notification);
-                //     });
-                // }
+                return function(data) {
+                    if (!(data instanceof Array)) {
+                        return [];
+                    }
+                    this.notifications = data.map(function(notification) {
+                        return new NotificationModel(notification);
+                    });
+                }
             }
         ]);
 }());
@@ -5853,13 +5891,13 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         .module('turnon')
         .factory('NotificationModel', [
             function() {
-                // return function(data) {
-                //     this.id = data._id;
-                //     this.message = data.message;
-                //     this.subject = data.subject;
-                //     this.addedDate = data.added;
-                //     this.updatedDate = data.updated;
-                // }
+                return function(data) {
+                    this.id = data._id;
+                    this.message = data.message;
+                    this.subject = data.subject;
+                    this.addedDate = data.added;
+                    this.updatedDate = data.updated;
+                }
             }
         ]);
 }());
@@ -5870,14 +5908,14 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         .factory('OfferListModel', [
             'OfferModel',
             function(OfferModel) {
-                // return function(data) {
-                //     if (!(data instanceof Array)) {
-                //         return [];
-                //     }
-                //     this.offers = data.map(function(offer) {
-                //         return new OfferModel(offer);
-                //     });
-                // }
+                return function(data) {
+                    if (!(data instanceof Array)) {
+                        return [];
+                    }
+                    this.offers = data.map(function(offer) {
+                        return new OfferModel(offer);
+                    });
+                }
             }
         ]);
 }());
@@ -5889,81 +5927,81 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
             '$injector',
             '$filter',
             function($injector, $filter) {
-                // return function(data) {
-                //     var BrandModel;
-                //     this.id = data._id;
-                //     this.title = data.title;
-                //     this.expirationDate = data.expiration_date;
-                //     this.description = data.description;
-                //     this.longDescription = data.long_description;
-                //     this.instructions = data.instructions_description;
-                //
-                //     if (data.slug) {
-                //         this.slug = data.slug;
-                //     } else {
-                //         this.slug = $filter('slug')(this.title);
-                //     }
-                //
-                //     if (data.coupon_code) {
-                //         this.couponCode = data.coupon_code;
-                //     }
-                //
-                //     if (data.rfi_link) {
-                //         this.rfiLink = data.rfi_link;
-                //     }
-                //
-                //     if (typeof data.campaign === 'string') {
-                //         this.campaign = data.campaign;
-                //     } else {
-                //         BrandModel = $injector.get('BrandModel');
-                //         this.campaign = new BrandModel(data.campaign);
-                //     }
-                //
-                //     if (data.content) {
-                //         if (data.content.BrandTransparentLogo) {
-                //             this.transparentThumbnail = data.content.BrandTransparentLogo.downloadUrl;
-                //         }
-                //
-                //         if (data.content.OfferImage) {
-                //             this.thumbnail = data.content.OfferImage.downloadUrl;
-                //         }
-                //
-                //         if (data.content.BackgroundImage) {
-                //             this.headerImage = data.content.BackgroundImage.downloadUrl;
-                //         }
-                //
-                //         if (data.content.CouponImage) {
-                //             this.couponImage = data.content.CouponImage.downloadUrl;
-                //         }
-                //
-                //         if (data.content.CarouselPic1) {
-                //             this.carouselPic1 = data.content.CarouselPic1.downloadUrl;
-                //         }
-                //
-                //         if (data.content.CarouselPic2) {
-                //             this.carouselPic2 = data.content.CarouselPic2.downloadUrl;
-                //         }
-                //
-                //         if (data.content.CarouselPic3) {
-                //             this.carouselPic3 = data.content.CarouselPic3.downloadUrl;
-                //         }
-                //     }
-                //
-                //     if (data.brand) {
-                //         BrandModel = $injector.get('BrandModel');
-                //         this.brand = new BrandModel(data.brand);
-                //     }
-                //
-                //     if (data.videos) {
-                //         if (typeof data.videos === 'number') {
-                //             this.totalVideos = data.videos;
-                //         } else {
-                //             var VideoListModel = $injector.get('VideoListModel');
-                //             this.videos = new VideoListModel(data.videos);
-                //             this.totalVideos = this.videos.videos.length;
-                //         }
-                //     }
-                // }
+                return function(data) {
+                    var BrandModel;
+                    this.id = data._id;
+                    this.title = data.title;
+                    this.expirationDate = data.expiration_date;
+                    this.description = data.description;
+                    this.longDescription = data.long_description;
+                    this.instructions = data.instructions_description;
+
+                    if (data.slug) {
+                        this.slug = data.slug;
+                    } else {
+                        this.slug = $filter('slug')(this.title);
+                    }
+
+                    if (data.coupon_code) {
+                        this.couponCode = data.coupon_code;
+                    }
+
+                    if (data.rfi_link) {
+                        this.rfiLink = data.rfi_link;
+                    }
+
+                    if (typeof data.campaign === 'string') {
+                        this.campaign = data.campaign;
+                    } else {
+                        BrandModel = $injector.get('BrandModel');
+                        this.campaign = new BrandModel(data.campaign);
+                    }
+
+                    if (data.content) {
+                        if (data.content.BrandTransparentLogo) {
+                            this.transparentThumbnail = data.content.BrandTransparentLogo.downloadUrl;
+                        }
+
+                        if (data.content.OfferImage) {
+                            this.thumbnail = data.content.OfferImage.downloadUrl;
+                        }
+
+                        if (data.content.BackgroundImage) {
+                            this.headerImage = data.content.BackgroundImage.downloadUrl;
+                        }
+
+                        if (data.content.CouponImage) {
+                            this.couponImage = data.content.CouponImage.downloadUrl;
+                        }
+
+                        if (data.content.CarouselPic1) {
+                            this.carouselPic1 = data.content.CarouselPic1.downloadUrl;
+                        }
+
+                        if (data.content.CarouselPic2) {
+                            this.carouselPic2 = data.content.CarouselPic2.downloadUrl;
+                        }
+
+                        if (data.content.CarouselPic3) {
+                            this.carouselPic3 = data.content.CarouselPic3.downloadUrl;
+                        }
+                    }
+
+                    if (data.brand) {
+                        BrandModel = $injector.get('BrandModel');
+                        this.brand = new BrandModel(data.brand);
+                    }
+
+                    if (data.videos) {
+                        if (typeof data.videos === 'number') {
+                            this.totalVideos = data.videos;
+                        } else {
+                            var VideoListModel = $injector.get('VideoListModel');
+                            this.videos = new VideoListModel(data.videos);
+                            this.totalVideos = this.videos.videos.length;
+                        }
+                    }
+                }
             }
         ]);
 }());
@@ -5980,76 +6018,76 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
             'CharityModel',
             'CategoryModel',
             function(BrandModel, CelebrityModel, SeriesModel, VideoModel, OfferModel, CharityModel, CategoryModel) {
-                // return function(data) {
-                //
-                //     if (data.campaigns && data.campaigns.length > 0) {
-                //         this.brands = data.campaigns.map(function(campaign) {
-                //             return new BrandModel(campaign);
-                //         })
-                //     }
-                //
-                //     if (data.celebrities && data.celebrities.length > 0) {
-                //         this.celebrities = data.celebrities.map(function(celebrity) {
-                //             return new CelebrityModel(celebrity);
-                //         })
-                //     }
-                //
-                //     if (data.charities && data.charities.length > 0) {
-                //         this.charities = data.charities.map(function(charity) {
-                //             return new CharityModel(charity);
-                //         })
-                //     }
-                //
-                //     if (data.offers && data.offers.length > 0) {
-                //         this.offers = data.offers.map(function(offer) {
-                //             return new OfferModel(offer);
-                //         })
-                //     }
-                //
-                //     if (data.categories && data.categories.length > 0) {
-                //         this.categories = data.categories.map(function(category) {
-                //             return new CategoryModel(category);
-                //         })
-                //     }
-                //
-                //     if (data.videos && data.videos.length > 0) {
-                //         this.videos = data.videos.map(function(video) {
-                //             return new VideoModel(video);
-                //         })
-                //     }
-                //
-                //     if (data.series && data.series.length > 0) {
-                //         this.series = data.series.map(function(series) {
-                //             return new SeriesModel(series);
-                //         })
-                //     }
-                //
-                //     this.error = data.error;
-                //
-                //     if (data._id) {
-                //         var match;
-                //         switch(data.media_type) {
-                //             case 'campaign':
-                //             case 'brand':
-                //                 match = new BrandModel(data);
-                //                 break;
-                //             case 'category':
-                //                 match = new CategoryModel(data);
-                //                 break;
-                //             case 'offer':
-                //                 match = new OfferModel(data);
-                //                 break;
-                //             case 'charity':
-                //                 match = new CharityModel(data);
-                //                 break;
-                //             case 'celebrity':
-                //                 match = new CelebrityModel(data);
-                //                 break;
-                //         }
-                //         this.type = data.media_type;
-                //         this.match = match;
-                //     }
-                // }
+                return function(data) {
+
+                    if (data.campaigns && data.campaigns.length > 0) {
+                        this.brands = data.campaigns.map(function(campaign) {
+                            return new BrandModel(campaign);
+                        })
+                    }
+
+                    if (data.celebrities && data.celebrities.length > 0) {
+                        this.celebrities = data.celebrities.map(function(celebrity) {
+                            return new CelebrityModel(celebrity);
+                        })
+                    }
+
+                    if (data.charities && data.charities.length > 0) {
+                        this.charities = data.charities.map(function(charity) {
+                            return new CharityModel(charity);
+                        })
+                    }
+
+                    if (data.offers && data.offers.length > 0) {
+                        this.offers = data.offers.map(function(offer) {
+                            return new OfferModel(offer);
+                        })
+                    }
+
+                    if (data.categories && data.categories.length > 0) {
+                        this.categories = data.categories.map(function(category) {
+                            return new CategoryModel(category);
+                        })
+                    }
+
+                    if (data.videos && data.videos.length > 0) {
+                        this.videos = data.videos.map(function(video) {
+                            return new VideoModel(video);
+                        })
+                    }
+
+                    if (data.series && data.series.length > 0) {
+                        this.series = data.series.map(function(series) {
+                            return new SeriesModel(series);
+                        })
+                    }
+
+                    this.error = data.error;
+
+                    if (data._id) {
+                        var match;
+                        switch(data.media_type) {
+                            case 'campaign':
+                            case 'brand':
+                                match = new BrandModel(data);
+                                break;
+                            case 'category':
+                                match = new CategoryModel(data);
+                                break;
+                            case 'offer':
+                                match = new OfferModel(data);
+                                break;
+                            case 'charity':
+                                match = new CharityModel(data);
+                                break;
+                            case 'celebrity':
+                                match = new CelebrityModel(data);
+                                break;
+                        }
+                        this.type = data.media_type;
+                        this.match = match;
+                    }
+                }
             }
         ]);
 }());
@@ -6061,14 +6099,14 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         .factory('SeasonListModel', [
             'SeasonModel',
             function(SeasonModel) {
-                // return function(data) {
-                //     if (!(data instanceof Array)) {
-                //         return [];
-                //     }
-                //     this.seasons = data.map(function(season) {
-                //         return new SeasonModel(season);
-                //     });
-                // }
+                return function(data) {
+                    if (!(data instanceof Array)) {
+                        return [];
+                    }
+                    this.seasons = data.map(function(season) {
+                        return new SeasonModel(season);
+                    });
+                }
             }
         ]);
 }());
@@ -6080,18 +6118,18 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         .factory('SeasonModel', [
             'VideoModel',
             function(VideoModel) {
-                // return function(data) {
-                //     this.id = data._id;
-                //     this.title = data.title;
-                //     this.description = data.description;
-                //     this.seasonNumber = parseInt(data.season_number);
-                //
-                //     if (data.episodes) {
-                //         this.episodes = data.episodes.map(function(episode) {
-                //             return new VideoModel(episode);
-                //         });
-                //     }
-                // }
+                return function(data) {
+                    this.id = data._id;
+                    this.title = data.title;
+                    this.description = data.description;
+                    this.seasonNumber = parseInt(data.season_number);
+
+                    if (data.episodes) {
+                        this.episodes = data.episodes.map(function(episode) {
+                            return new VideoModel(episode);
+                        });
+                    }
+                }
             }
         ]);
 }());
@@ -6103,14 +6141,14 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         .factory('SeriesListModel', [
             'SeriesModel',
             function(SeriesModel) {
-                // return function(data) {
-                //     if (!(data instanceof Array)) {
-                //         return [];
-                //     }
-                //     this.series = data.map(function(series) {
-                //         return new SeriesModel(series);
-                //     });
-                // }
+                return function(data) {
+                    if (!(data instanceof Array)) {
+                        return [];
+                    }
+                    this.series = data.map(function(series) {
+                        return new SeriesModel(series);
+                    });
+                }
             }
         ]);
 }());
@@ -6123,25 +6161,25 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
             '$injector',
             'SeasonListModel',
             function($injector, SeasonListModel) {
-                // return function(data) {
-                //     this.id = data._id;
-                //     this.title = data.title;
-                //     this.description = data.description;
-                //
-                //     if (data.seasons) {
-                //         this.seasons = new SeasonListModel(data.seasons);
-                //     }
-                //
-                //     if (data.campaigns) {
-                //         var BrandListModel = $injector.get('BrandListModel');
-                //         this.brands = new BrandListModel(data.campaigns);
-                //     }
-                //
-                //     if (data.charity) {
-                //         var CharityModel = $injector.get('CharityModel');
-                //         this.charity = new CharityModel(data.charity);
-                //     }
-                // }
+                return function(data) {
+                    this.id = data._id;
+                    this.title = data.title;
+                    this.description = data.description;
+
+                    if (data.seasons) {
+                        this.seasons = new SeasonListModel(data.seasons);
+                    }
+
+                    if (data.campaigns) {
+                        var BrandListModel = $injector.get('BrandListModel');
+                        this.brands = new BrandListModel(data.campaigns);
+                    }
+
+                    if (data.charity) {
+                        var CharityModel = $injector.get('CharityModel');
+                        this.charity = new CharityModel(data.charity);
+                    }
+                }
             }
         ]);
 }());
@@ -6152,24 +6190,24 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         .module('turnon')
         .factory('UserModel', [
             function() {
-                // return function(data) {
-                //
-                //     if (!data) {
-                //         return;
-                //     }
-                //
-                //     this.id = data._id;
-                //     this.email = data.email;
-                //     this.displayName = data.displayName;
-                //
-                //     this.watchlist = data.watchlist;
-                //     this.offersSaved = data.offersSaved;
-                //     this.favoriteCharities = data.favoriteCharities;
-                //     this.favoriteCelebs = data.favoriteCelebs;
-                //     this.favoriteCategories = data.favoriteCategories;
-                //     this.favoriteBrands = data.favoriteBrands;
-                //
-                // }
+                return function(data) {
+
+                    if (!data) {
+                        return;
+                    }
+
+                    this.id = data._id;
+                    this.email = data.email;
+                    this.displayName = data.displayName;
+
+                    this.watchlist = data.watchlist;
+                    this.offersSaved = data.offersSaved;
+                    this.favoriteCharities = data.favoriteCharities;
+                    this.favoriteCelebs = data.favoriteCelebs;
+                    this.favoriteCategories = data.favoriteCategories;
+                    this.favoriteBrands = data.favoriteBrands;
+
+                }
             }
         ]);
 }());
@@ -6181,15 +6219,15 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         .factory('VideoListModel', [
             'VideoModel',
             function(VideoModel) {
-                // return function(data) {
-                //     if (!(data instanceof Array)) {
-                //         this.videos = [];
-                //         return;
-                //     }
-                //     this.videos = data.map(function(video) {
-                //         return new VideoModel(video);
-                //     });
-                // }
+                return function(data) {
+                    if (!(data instanceof Array)) {
+                        this.videos = [];
+                        return;
+                    }
+                    this.videos = data.map(function(video) {
+                        return new VideoModel(video);
+                    });
+                }
             }
         ]);
 }());
@@ -6205,66 +6243,66 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
             'CharityModel',
             '$filter',
             function($injector, CelebrityModel, BrandListModel, CharityModel, $filter) {
-                // return function(data) {
-                //
-                //     this.id = data._id;
-                //     this.title = data.title;
-                //     this.description = data.description;
-                //     this.seriesTitle = data.serie_title; // ...spelling?
-                //
-                //     if (!this.seriesTitle && data.serie) {
-                //         this.seriesTitle = data.serie.title;
-                //     }
-                //
-                //     this.episodeNumber = data.episode_number;
-                //     this.runtime = data.runtime;
-                //     this.slug = $filter('slug')(this.seriesTitle + ' ' + this.title);
-                //
-                //     if (data.views) {
-                //         this.views = parseInt(data.views);
-                //     } else {
-                //         this.views = 0;
-                //     }
-                //
-                //     if (data.celebrity) {
-                //         this.celebrity = new CelebrityModel(data.celebrity);
-                //     }
-                //
-                //     if (data.campaigns) {
-                //         this.brands = new BrandListModel(data.campaigns);
-                //     }
-                //
-                //     if (data.charity) {
-                //         this.charity = new CharityModel(data.charity);
-                //     }
-                //
-                //     if (data.categories) {
-                //         var CategoryListModel = $injector.get('CategoryListModel');
-                //         this.categories = new CategoryListModel(data.categories);
-                //     }
-                //
-                //     if (data.serie) { // ...spelling?
-                //
-                //         // Preventing circular dependencies since a list of videos can
-                //         // exist in nested models too (series, seasons, etc)
-                //         var SeriesModel = $injector.get('SeriesModel');
-                //         this.series = new SeriesModel(data.serie);
-                //     }
-                //
-                //     if (data.content.PosterH) {
-                //         this.thumbnail = data.content.PosterH.downloadUrl;
-                //     }
-                //
-                //     if (data.content.EndPoster) {
-                //         this.endPoster = data.content.EndPoster.downloadUrl;
-                //     }
-                //
-                //     if (data.content.HLSStream) {
-                //         this.streamUrl = data.content.HLSStream.downloadUrl;
-                //     } else if (data.content.MezzanineVideo) {
-                //         this.streamUrl = data.content.MezzanineVideo.downloadUrl;
-                //     }
-                // }
+                return function(data) {
+
+                    this.id = data._id;
+                    this.title = data.title;
+                    this.description = data.description;
+                    this.seriesTitle = data.serie_title; // ...spelling?
+
+                    if (!this.seriesTitle && data.serie) {
+                        this.seriesTitle = data.serie.title;
+                    }
+
+                    this.episodeNumber = data.episode_number;
+                    this.runtime = data.runtime;
+                    this.slug = $filter('slug')(this.seriesTitle + ' ' + this.title);
+
+                    if (data.views) {
+                        this.views = parseInt(data.views);
+                    } else {
+                        this.views = 0;
+                    }
+
+                    if (data.celebrity) {
+                        this.celebrity = new CelebrityModel(data.celebrity);
+                    }
+
+                    if (data.campaigns) {
+                        this.brands = new BrandListModel(data.campaigns);
+                    }
+
+                    if (data.charity) {
+                        this.charity = new CharityModel(data.charity);
+                    }
+
+                    if (data.categories) {
+                        var CategoryListModel = $injector.get('CategoryListModel');
+                        this.categories = new CategoryListModel(data.categories);
+                    }
+
+                    if (data.serie) { // ...spelling?
+
+                        // Preventing circular dependencies since a list of videos can
+                        // exist in nested models too (series, seasons, etc)
+                        var SeriesModel = $injector.get('SeriesModel');
+                        this.series = new SeriesModel(data.serie);
+                    }
+
+                    if (data.content.PosterH) {
+                        this.thumbnail = data.content.PosterH.downloadUrl;
+                    }
+
+                    if (data.content.EndPoster) {
+                        this.endPoster = data.content.EndPoster.downloadUrl;
+                    }
+
+                    if (data.content.HLSStream) {
+                        this.streamUrl = data.content.HLSStream.downloadUrl;
+                    } else if (data.content.MezzanineVideo) {
+                        this.streamUrl = data.content.MezzanineVideo.downloadUrl;
+                    }
+                }
             }
         ]);
 }());
@@ -6277,15 +6315,15 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         '$rootScope',
         '$log',
         '$state',
-        'clixConfig',
-        function($window, $location, $rootScope, $log, $state, clixConfig) {
+        'turnonConfig',
+        function($window, $location, $rootScope, $log, $state, turnonConfig) {
             return {
                 initialize: function(apiKey) {
                     if (navigator.doNotTrack == 1) {
                         $log.info('Segment has not been initialized. No data will be tracked.');
                         return;
                     }
-                    if (clixConfig.environment !== 'prod') {
+                    if (turnonConfig.environment !== 'prod') {
                         $log.info('Analytics not sent unless production environment is set. No data will be tracked.');
                         return;
                     }
@@ -6349,11 +6387,11 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         'BrandModel',
         'CharityModel',
         'cacheService',
-        'clixConfig',
-        function($http, stringUtils, BrandListModel, OfferListModel, CharityListModel, BrandModel, CharityModel, cacheService, clixConfig) {
+        'turnonConfig',
+        function($http, stringUtils, BrandListModel, OfferListModel, CharityListModel, BrandModel, CharityModel, cacheService, turnonConfig) {
             return {
                 getAllBrands: function(page, size) {
-                    return $http.get(clixConfig.baseApi + '/campaigns?page=' + page + '&page_size=' + size, { cache: cacheService.getCache() })
+                    return $http.get(turnonConfig.baseApi + '/campaigns?page=' + page + '&page_size=' + size, { cache: cacheService.getCache() })
                         .then(
                             function(data) {
                                 return new BrandListModel(data.data);
@@ -6374,7 +6412,7 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
                 },
 
                 getBrandBySlug: function(slug) {
-                    return $http.get(clixConfig.baseApi + '/brands/slug/' + slug, { cache: cacheService.getCache() })
+                    return $http.get(turnonConfig.baseApi + '/brands/slug/' + slug, { cache: cacheService.getCache() })
                         .then(
                             function onSuccess(data) {
                                 return new BrandModel(data.data);
@@ -6393,7 +6431,7 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
 
                 getCharityBySlug: function(slug) {
 
-                    return $http.get(clixConfig.baseApi + '/charities/slug/' + slug, { cache: cacheService.getCache() })
+                    return $http.get(turnonConfig.baseApi + '/charities/slug/' + slug, { cache: cacheService.getCache() })
                         .then(
                             function onSuccess(data) {
                                 return new CharityModel(data.data[0]);
@@ -6439,8 +6477,8 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         '$log',
         'CacheFactory',
         'LZString',
-        'clixConfig',
-        function($log, CacheFactory, LZString, clixConfig) {
+        'turnonConfig',
+        function($log, CacheFactory, LZString, turnonConfig) {
 
             var apiCache;
 
@@ -6449,7 +6487,7 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
                     if (!CacheFactory) {
                         return;
                     }
-                    if (!clixConfig.cacheEnabled) {
+                    if (!turnonConfig.cacheEnabled) {
                         return;
                     }
                     if (!CacheFactory.get('apiCache')) {
@@ -6665,8 +6703,8 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         'CategoryListModel',
         'CategoryModel',
         'cacheService',
-        'clixConfig',
-        function($http, CategoryListModel, CategoryModel, cacheService, clixConfig) {
+        'turnonConfig',
+        function($http, CategoryListModel, CategoryModel, cacheService, turnonConfig) {
             return {
 
                 getAllCategories: function(withVideoCount, page, size) {
@@ -6691,7 +6729,7 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
                 },
 
                 getCategoryBySlug: function(slug) {
-                    return $http.get(clixConfig.baseApi + '/categories/slug/' + slug, { cache: cacheService.getCache() })
+                    return $http.get(turnonConfig.baseApi + '/categories/slug/' + slug, { cache: cacheService.getCache() })
                         .then(
                             function onSuccess(data) {
                                 return new CategoryModel(data.data);
@@ -6715,8 +6753,8 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         'CelebrityListModel',
         'CelebrityModel',
         'cacheService',
-        'clixConfig',
-        function($q, $http, CacheFactory, CelebrityListModel, CelebrityModel, cacheService, clixConfig) {
+        'turnonConfig',
+        function($q, $http, CacheFactory, CelebrityListModel, CelebrityModel, cacheService, turnonConfig) {
 
             return {
 
@@ -6724,7 +6762,7 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
                  * @todo - Cache this call
                  */
                 getAllCelebrities: function() {
-                    return $http.get(clixConfig.baseApi + '/celebrity/get_all_celebrities', { cache: cacheService.getCache() })
+                    return $http.get(turnonConfig.baseApi + '/celebrity/get_all_celebrities', { cache: cacheService.getCache() })
                         .then(
                             function onSuccess(data) {
                                 return new CelebrityListModel(data.data);
@@ -6745,7 +6783,7 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
                 },
 
                 getCelebrityBySlug: function(slug) {
-                    return $http.get(clixConfig.baseApi + '/stars/slug/' + slug, { cache: cacheService.getCache() })
+                    return $http.get(turnonConfig.baseApi + '/stars/slug/' + slug, { cache: cacheService.getCache() })
                         .then(
                             function onSuccess(data) {
                                 return new CelebrityModel(data.data);
@@ -6822,9 +6860,9 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
 
     var notificationsService = [
         '$http',
-        'clixConfig',
+        'turnonConfig',
         'NotificationListModel',
-        function($http, clixConfig, NotificationListModel) {
+        function($http, turnonConfig, NotificationListModel) {
             return {
 
                 /**
@@ -6840,7 +6878,7 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
                 },
 
                 sendContactNotification: function(type, name, email, subject, message) {
-                    return $http.post(clixConfig.baseApi + '/notifications/contact', {
+                    return $http.post(turnonConfig.baseApi + '/notifications/contact', {
                             type: type,
                             name: name,
                             email: email,
@@ -6855,7 +6893,7 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
                 },
 
                 sendShareEmail: function(fromEmail, fromName, toEmails, message) {
-                    return $http.post(clixConfig.baseApi + '/notifications/share', {
+                    return $http.post(turnonConfig.baseApi + '/notifications/share', {
                             type: 'email',
                             emailList: toEmails,
                             fromEmail: fromEmail,
@@ -6881,8 +6919,8 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
     var offersService = [
         '$http',
         'OfferModel',
-        'clixConfig',
-        function($http, OfferModel, clixConfig) {
+        'turnonConfig',
+        function($http, OfferModel, turnonConfig) {
             return {
 
                 /**
@@ -6898,7 +6936,7 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
                 },
 
                 getOfferBySlug: function(slug) {
-                    return $http.get(clixConfig.baseApi + '/offers/slug/' + slug)
+                    return $http.get(turnonConfig.baseApi + '/offers/slug/' + slug)
                         .then(
                             function(data) {
                                 return new OfferModel(data.data);
@@ -7489,8 +7527,8 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         'UserModel',
         'modalService',
         'catchMediaService',
-        'clixConfig',
-        function($q, $http, $log, $rootScope, BrandListModel, OfferListModel, CharityListModel, CelebrityListModel, CategoryListModel, VideoListModel, AccountSettingListModel, UserModel, modalService, catchMediaService, clixConfig) {
+        'turnonConfig',
+        function($q, $http, $log, $rootScope, BrandListModel, OfferListModel, CharityListModel, CelebrityListModel, CategoryListModel, VideoListModel, AccountSettingListModel, UserModel, modalService, catchMediaService, turnonConfig) {
 
             var loggedInUser, loggedInUserChecked;
 
@@ -7948,7 +7986,7 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
                 },
 
                 addUserToNewsletter: function(email, firstName, lastName) {
-                    return $http.post(clixConfig.baseApi + '/users/newsletter', {
+                    return $http.post(turnonConfig.baseApi + '/users/newsletter', {
                         email: email
                     });
                 }
@@ -7969,8 +8007,8 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
         'VideoModel',
         'VideoListModel',
         'SeriesModel',
-        'clixConfig',
-        function($http, VideoModel, VideoListModel, SeriesModel, clixConfig) {
+        'turnonConfig',
+        function($http, VideoModel, VideoListModel, SeriesModel, turnonConfig) {
             return {
 
                 /**
@@ -7986,7 +8024,7 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
                 },
 
                 getVideoBySlug: function(slug) {
-                    return $http.get(clixConfig.baseApi + '/episodes/slug/' + slug)
+                    return $http.get(turnonConfig.baseApi + '/episodes/slug/' + slug)
                         .then(
                             function onSuccess(data) {
                                 return new VideoModel(data.data);

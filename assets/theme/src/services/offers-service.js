@@ -3,8 +3,8 @@
     var offersService = [
         '$http',
         'OfferModel',
-        'clixConfig',
-        function($http, OfferModel, clixConfig) {
+        'turnonConfig',
+        function($http, OfferModel, turnonConfig) {
             return {
 
                 /**
@@ -20,7 +20,7 @@
                 },
 
                 getOfferBySlug: function(slug) {
-                    return $http.get(clixConfig.baseApi + '/offers/slug/' + slug)
+                    return $http.get(turnonConfig.baseApi + '/offers/slug/' + slug)
                         .then(
                             function(data) {
                                 return new OfferModel(data.data);

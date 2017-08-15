@@ -12,10 +12,10 @@
         'brandsService',
         'userService',
         'catchMediaService',
-        'clixConfig',
-        function($q, $log, $scope, $rootScope, $filter, $uibModal, $state, $stateParams, brandsService, userService, catchMediaService, clixConfig) {
+        'turnonConfig',
+        function($q, $log, $scope, $rootScope, $filter, $uibModal, $state, $stateParams, brandsService, userService, catchMediaService, turnonConfig) {
 
-            // $scope.filtersEnabled = clixConfig.filtersEnabled;
+            // $scope.filtersEnabled = turnonConfig.filtersEnabled;
             //
             // function _resetIsFavorite() {
             //     if ($scope.charity) {

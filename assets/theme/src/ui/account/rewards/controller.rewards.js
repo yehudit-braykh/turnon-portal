@@ -5,13 +5,13 @@
         '$scope',
         '$rootScope',
         '$uibModal',
-        'clixConfig',
-        function($q, $scope, $rootScope, $uibModal, clixConfig) {
+        'turnonConfig',
+        function($q, $scope, $rootScope, $uibModal, turnonConfig) {
             // 
             // $rootScope.pageTitle = 'Your Rewards - turnon';
             //
             // $scope.active = 0;
-            // $scope.pointsEnabled = clixConfig.pointsEnabled;
+            // $scope.pointsEnabled = turnonConfig.pointsEnabled;
             // $scope.ready = true;
             //
             // $scope.onRedeemRewardsPress = function(type) {

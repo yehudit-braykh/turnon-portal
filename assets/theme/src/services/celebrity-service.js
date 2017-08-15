@@ -7,8 +7,8 @@
         'CelebrityListModel',
         'CelebrityModel',
         'cacheService',
-        'clixConfig',
-        function($q, $http, CacheFactory, CelebrityListModel, CelebrityModel, cacheService, clixConfig) {
+        'turnonConfig',
+        function($q, $http, CacheFactory, CelebrityListModel, CelebrityModel, cacheService, turnonConfig) {
 
             return {
 
@@ -16,7 +16,7 @@
                  * @todo - Cache this call
                  */
                 getAllCelebrities: function() {
-                    return $http.get(clixConfig.baseApi + '/celebrity/get_all_celebrities', { cache: cacheService.getCache() })
+                    return $http.get(turnonConfig.baseApi + '/celebrity/get_all_celebrities', { cache: cacheService.getCache() })
                         .then(
                             function onSuccess(data) {
                                 return new CelebrityListModel(data.data);
@@ -37,7 +37,7 @@
                 },
 
                 getCelebrityBySlug: function(slug) {
-                    return $http.get(clixConfig.baseApi + '/stars/slug/' + slug, { cache: cacheService.getCache() })
+                    return $http.get(turnonConfig.baseApi + '/stars/slug/' + slug, { cache: cacheService.getCache() })
                         .then(
                             function onSuccess(data) {
                                 return new CelebrityModel(data.data);

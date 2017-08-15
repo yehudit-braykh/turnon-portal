@@ -5,11 +5,11 @@
         '$rootScope',
         'userService',
         'notificationsService',
-        'clixConfig',
-        function($scope, $rootScope, userService, notificationsService, clixConfig) {
+        'turnonConfig',
+        function($scope, $rootScope, userService, notificationsService, turnonConfig) {
 
             // $rootScope.pageTitle = 'Your Notifications - turnon';
-            // $scope.notificationEnabled = clixConfig.notificationEnabled;
+            // $scope.notificationEnabled = turnonConfig.notificationEnabled;
             //
             // notificationsService.getNotifications()
             //     .then(
