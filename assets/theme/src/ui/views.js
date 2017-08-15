@@ -251,18 +251,8 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('ui/header/view.header-search-icon-row.html',
-    ""
-  );
-
-
-  $templateCache.put('ui/header/view.header-search-icon.html',
-    ""
-  );
-
-
   $templateCache.put('ui/header/view.header.html',
-    ""
+    "<div ng-controller=headerController><div class=sd>sfsdf</div></div><div ng-controller=headerController></div>"
   );
 
 

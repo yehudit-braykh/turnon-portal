@@ -5,16 +5,16 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         uglify: {
-            production: {
-                files: {
-                    // 'dist/main.min.js': ['dist/main.js']
-                }
-            },
-            libs: {
-                files: {
-                    // 'dist/libs.min.js': ['dist/libs.js']
-                }
-            }
+            // production: {
+            //     // files: {
+            //     //     // 'dist/main.min.js': ['dist/main.js']
+            //     // }
+            // },
+            // libs: {
+            //     // files: {
+            //     //     // 'dist/libs.min.js': ['dist/libs.js']
+            //     // }
+            // }
         },
         concat: {
             js: {
@@ -142,15 +142,15 @@ module.exports = function(grunt) {
                 src: ['dist/font', 'dist/images', 'dist/main*.css', 'dist/main*.js']
             }
         },
-        cssmin: {
-            production: {
-        //         files: {
-        //             'dist/main.min.css': [
-        //                 'dist/main.css'
-        //             ]
-        //         }
-            }
-        },
+        // cssmin: {
+        //     production: {
+        // //         files: {
+        // //             'dist/main.min.css': [
+        // //                 'dist/main.css'
+        // //             ]
+        // //         }
+        //     }
+        // },
         watch: {
             all: {
                 files: [
@@ -202,14 +202,14 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
 
-    grunt.registerTask('script', ['ngtemplates', 'concat:js', 'uglify:production']);
+    grunt.registerTask('script', ['ngtemplates', 'concat:js'/*, 'uglify:production'*/]);
     grunt.registerTask('libs', ['concat:libs', 'uglify:libs']);
 
     grunt.registerTask('media:development', ['sprite', 'imagemin:development']);
     grunt.registerTask('media:production', ['sprite', 'imagemin:production']);
 
-    grunt.registerTask('style:development', [/*'media:development',*/ 'less', 'cssmin']);
-    grunt.registerTask('style:production', ['media:production', 'less', 'cssmin']);
+    grunt.registerTask('style:development', [/*'media:development',*/ 'less'/*, 'cssmin'*/]);
+    grunt.registerTask('style:production', ['media:production', 'less'/*, 'cssmin' */]);
 
     grunt.registerTask('default', [/*'clean', */'script', 'style:development', 'copy', 'watch:all']);
     grunt.registerTask('production', ['clean', 'script', 'style:production', 'copy']);

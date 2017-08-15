@@ -25,7 +25,7 @@
             'infinite-scroll',
             'ngclipboard'
         ])
-        .constant('turnonConfig', {
+        .constant('clixConfig', {
 
             // Different environments trigger different functionality through the
             // site. For example, no analytics will be sent unless we're in a
@@ -526,18 +526,8 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('ui/header/view.header-search-icon-row.html',
-    ""
-  );
-
-
-  $templateCache.put('ui/header/view.header-search-icon.html',
-    ""
-  );
-
-
   $templateCache.put('ui/header/view.header.html',
-    ""
+    "<div ng-controller=headerController><div class=sd>sfsdf</div></div><div ng-controller=headerController></div>"
   );
 
 
@@ -4700,100 +4690,11 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
     angular.module('turnon')
         .directive('clixFooter', footer);
 }());
-(function() {
+var he = null;
+angular.module('turnon').controller('headerController', function headerController ($scope) {
+      he = $scope;
 
-    var HeaderSearchIconController = [
-        '$scope',
-        '$window',
-        '$timeout',
-        'searchService',
-        function($scope, $window, $timeout, searchService) {
-
-            // var searchTimeout;
-            //
-            // $scope.term = '';
-            //
-            // $scope.searchVisible = false;
-            //
-            // function _hideSearchResults() {
-            //     $scope.loading = false;
-            //     $scope.results = undefined;
-            // }
-            //
-            // function _performSearch() {
-            //     $scope.loading = true;
-            //     $scope.results = undefined;
-            //
-            //     if (searchTimeout) {
-            //         $timeout.cancel(searchTimeout);
-            //     }
-            //
-            //     searchTimeout = $timeout(function() {
-            //         searchService.getSearchResults($scope.term, 0, 10)
-            //             .then(
-            //                 function onSuccess(data) {
-            //                     $scope.results = data;
-            //                 }
-            //             )
-            //             .finally(
-            //                 function onFinally() {
-            //                     $scope.loading = false;
-            //                 }
-            //             )
-            //     }, 250);
-            // }
-            //
-            // $scope.onTermChange = function() {
-            //     $scope.searchVisible = true;
-            //     if ($scope.term.length < 2) {
-            //         return _hideSearchResults();
-            //     }
-            //     _performSearch();
-            // };
-            //
-            // $scope.bodyClicked = function(event) {
-            //     if (angular.element(event.target).hasClass('search-input-field')) {
-            //         return;
-            //     }
-            //     $scope.term = '';
-            //     $scope.searchVisible = false;
-            //     _hideSearchResults();
-            //     $timeout(function() {
-            //         $scope.$apply();
-            //     });
-            // };
-            //
-            // $scope.onSearchIconPress = function() {
-            //     $scope.searchVisible = !$scope.searchVisible;
-            //     if ($scope.searchVisible) {
-            //         $timeout(function() {
-            //             $window.document.getElementById('search-input-field').focus();
-            //         });
-            //     }
-            // };
-        }
-    ];
-
-    angular
-        .module('turnon')
-        .controller('HeaderSearchIconController', HeaderSearchIconController);
-}());
-
-(function() {
-
-    var HeaderController = [
-        '$q',
-        '$scope',
-        '$rootScope',
-        '$window',
-        '$timeout',
-        '$uibModal',
-        'notificationsService',
-        'knetikService',
-        'modalService',
-        'catchMediaService',
-        'turnonConfig',
-        function($q, $scope, $rootScope, $window, $timeout, $uibModal, notificationsService, knetikService, modalService, catchMediaService, turnonConfig) {
+});
 
             // var latestOffset = 0;
             //
@@ -4826,101 +4727,111 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
             //
             // $rootScope.$on('user.update', function(event, data) {
             //     $scope.loggedInUser = data;
-            // });
-            //
-            // $rootScope.$on('user.logout', function(event, data) {
-            //     delete $scope.loggedInUser;
-            // });
-            //
-            // $scope.onArrowPress = function() {
-            //     $rootScope.$broadcast('rightnav.open');
-            // };
-            //
-            // $scope.onNamePress = function() {
-            //     if ($scope.notifications.notifications.length === 0) {
-            //         return;
-            //     }
-            //     $scope.tooltipsShown = !$scope.tooltipsShown;
-            // };
-            //
-            // $scope.hideNotificationMenu = function(event) {
-            //     $scope.tooltipsShown = false;
-            // };
-            //
-            // $scope.onLoginSignupPress = function(signup) {
-            //     if (signup) {
-            //         modalService.showSignUpModal();
-            //     } else {
-            //         modalService.showLogInModal();
-            //     }
-            // };
-            //
-            // angular.element($window).on('scroll', function() {
-            //     var direction;
-            //     if (latestOffset > this.pageYOffset) {
-            //         direction = 'down';
-            //     } else if (latestOffset < this.pageYOffset && this.pageYOffset > 250) {
-            //         direction = 'up';
-            //     }
-            //     latestOffset = this.pageYOffset;
-            //     if ($scope.scrollDirection !== direction) {
-            //         $scope.scrollDirection = direction;
-            //         $timeout(function() {
-            //             $scope.$apply();
-            //         });
-            //     }
-            // });
-            //
-            // $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
-            //     if (toState) {
-            //         $scope.selectedStateName = toState.name;
-            //     }
-            // });
-        }
-    ];
+// (function() {
+//
+//     var HeaderController = [
+//         '$q',
+//         '$scope',
+//         '$rootScope',
+//         '$window',
+//         '$timeout',
+//         '$uibModal',
+//         'notificationsService',
+//         'knetikService',
+//         'modalService',
+//         'catchMediaService',
+//         'clixConfig',
+//         function($q, $scope, $rootScope, $window, $timeout, $uibModal, notificationsService, knetikService, modalService, catchMediaService, clixConfig) {
+//
+//             // var latestOffset = 0;
+//             //
+//             // $scope.isBeta = (clixConfig.beta === true);
+//             //
+//             // function _populateHeaderData() {
+//             //     $q.all(
+//             //             [
+//             //                 notificationsService.getNotifications(),
+//             //                 knetikService.getPoints()
+//             //             ]
+//             //         )
+//             //         .then(
+//             //             function onSuccess(data) {
+//             //                 var points = data[1];
+//             //                 $scope.notifications = data[0];
+//             //                 if (points && !isNaN(points.balance)) {
+//             //                     $scope.points = parseInt(points.balance);
+//             //                 } else {
+//             //                     $scope.points = 0;
+//             //                 }
+//             //             }
+//             //         );
+//             // }
+//             //
+//             // $rootScope.$on('user.login', function(event, data) {
+//             //     $scope.loggedInUser = data;
+//             //     _populateHeaderData();
+//             // });
+//             //
+//             // $rootScope.$on('user.update', function(event, data) {
+//             //     $scope.loggedInUser = data;
+//             // });
+//             //
+//             // $rootScope.$on('user.logout', function(event, data) {
+//             //     delete $scope.loggedInUser;
+//             // });
+//             //
+//             // $scope.onArrowPress = function() {
+//             //     $rootScope.$broadcast('rightnav.open');
+//             // };
+//             //
+//             // $scope.onNamePress = function() {
+//             //     if ($scope.notifications.notifications.length === 0) {
+//             //         return;
+//             //     }
+//             //     $scope.tooltipsShown = !$scope.tooltipsShown;
+//             // };
+//             //
+//             // $scope.hideNotificationMenu = function(event) {
+//             //     $scope.tooltipsShown = false;
+//             // };
+//             //
+//             // $scope.onLoginSignupPress = function(signup) {
+//             //     if (signup) {
+//             //         modalService.showSignUpModal();
+//             //     } else {
+//             //         modalService.showLogInModal();
+//             //     }
+//             // };
+//             //
+//             // angular.element($window).on('scroll', function() {
+//             //     var direction;
+//             //     if (latestOffset > this.pageYOffset) {
+//             //         direction = 'down';
+//             //     } else if (latestOffset < this.pageYOffset && this.pageYOffset > 250) {
+//             //         direction = 'up';
+//             //     }
+//             //     latestOffset = this.pageYOffset;
+//             //     if ($scope.scrollDirection !== direction) {
+//             //         $scope.scrollDirection = direction;
+//             //         $timeout(function() {
+//             //             $scope.$apply();
+//             //         });
+//             //     }
+//             // });
+//             //
+//             // $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+//             //     if (toState) {
+//             //         $scope.selectedStateName = toState.name;
+//             //     }
+//             // });
+//         }
+//     ];
+//
+//     angular
+//         .module('turnon')
+//         .controller('HeaderController', HeaderController);
+// }());
 
-    angular
-        .module('turnon')
-        .controller('HeaderController', HeaderController);
-}());
-
-(function() {
-    var header = function() {
-        return {
-            restrict: 'E',
-            templateUrl: 'ui/header/view.header.html',
-            controller: 'HeaderController',
-            scope: {
-
-            }
-        }
-    };
-
-    var headerSearchIcon = function() {
-        return {
-            restrict: 'AE',
-            templateUrl: 'ui/header/view.header-search-icon.html',
-            controller: 'HeaderSearchIconController'
-        }
-    };
-
-    var headerSearchRow = function() {
-        return {
-            restrict: 'AE',
-            transclude: {
-                logoContainer: 'logoContainer',
-                titleText: 'titleText',
-                subtitleText: 'subtitleText'
-            },
-            templateUrl: 'ui/header/view.header-search-icon-row.html'
-        }
-    };
-
-    angular.module('turnon')
-        .directive('clixHeaderBar', header)
-        .directive('clixHeaderSearchIcon', headerSearchIcon)
-        .directive('clixHeaderSearchRow', headerSearchRow);
-}());
 var he = null;
 angular.module('turnon').controller('HomeController', function HomeController ($scope) {
       he = $scope;
