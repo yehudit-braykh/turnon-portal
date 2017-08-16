@@ -1,0 +1,172 @@
+/*
+Icon classes can be used entirely standalone. They are named after their original file names.
+
+Example usage in HTML:
+
+`display: block` sprite:
+<div class="icon-home"></div>
+
+To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+
+// CSS
+.icon {
+  display: inline-block;
+}
+
+// HTML
+<i class="icon icon-home"></i>
+*/
+.icon-combined-shape {
+  background-image: url(images/layout-sprite.png);
+  background-position: -117px 0px;
+  width: 87px;
+  height: 83px;
+}
+.icon-dollar-qoute {
+  background-image: url(images/layout-sprite.png);
+  background-position: -204px 0px;
+  width: 86px;
+  height: 83px;
+}
+.icon-facebook-1 {
+  background-image: url(images/layout-sprite.png);
+  background-position: -251px -144px;
+  width: 30px;
+  height: 30px;
+}
+.icon-flaticon {
+  background-image: url(images/layout-sprite.png);
+  background-position: -200px -144px;
+  width: 51px;
+  height: 82px;
+}
+.icon-hamburger-icon {
+  background-image: url(images/layout-sprite.png);
+  background-position: -166px -83px;
+  width: 37px;
+  height: 27px;
+}
+.icon-instagram {
+  background-image: url(images/layout-sprite.png);
+  background-position: -254px -83px;
+  width: 30px;
+  height: 30px;
+}
+.icon-pin-icon-yellow {
+  background-image: url(images/layout-sprite.png);
+  background-position: -204px -83px;
+  width: 50px;
+  height: 49px;
+}
+.icon-pin-icon {
+  background-image: url(images/layout-sprite.png);
+  background-position: -117px -83px;
+  width: 49px;
+  height: 49px;
+}
+.icon-play-shadow {
+  background-image: url(images/layout-sprite.png);
+  background-position: 0px 0px;
+  width: 117px;
+  height: 144px;
+}
+.icon-play {
+  background-image: url(images/layout-sprite.png);
+  background-position: -139px -144px;
+  width: 61px;
+  height: 82px;
+}
+.icon-share-green {
+  background-image: url(images/layout-sprite.png);
+  background-position: -166px -110px;
+  width: 18px;
+  height: 21px;
+}
+.icon-share {
+  background-image: url(images/layout-sprite.png);
+  background-position: 0px -144px;
+  width: 70px;
+  height: 83px;
+}
+.icon-survey {
+  background-image: url(images/layout-sprite.png);
+  background-position: -70px -144px;
+  width: 69px;
+  height: 82px;
+}
+.icon-twitter {
+  background-image: url(images/layout-sprite.png);
+  background-position: 0px -227px;
+  width: 30px;
+  height: 29px;
+}
+.icon-x-red {
+  background-image: url(images/layout-sprite.png);
+  background-position: -251px -174px;
+  width: 30px;
+  height: 30px;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+       (min-resolution: 192dpi) {
+  .icon-combined-shape {
+    background-image: url(images/layout-sprite@2x.png);
+    background-size: 290px 256px;
+  }
+  .icon-dollar-qoute {
+    background-image: url(images/layout-sprite@2x.png);
+    background-size: 290px 256px;
+  }
+  .icon-facebook-1 {
+    background-image: url(images/layout-sprite@2x.png);
+    background-size: 290px 256px;
+  }
+  .icon-flaticon {
+    background-image: url(images/layout-sprite@2x.png);
+    background-size: 290px 256px;
+  }
+  .icon-hamburger-icon {
+    background-image: url(images/layout-sprite@2x.png);
+    background-size: 290px 256px;
+  }
+  .icon-instagram {
+    background-image: url(images/layout-sprite@2x.png);
+    background-size: 290px 256px;
+  }
+  .icon-pin-icon-yellow {
+    background-image: url(images/layout-sprite@2x.png);
+    background-size: 290px 256px;
+  }
+  .icon-pin-icon {
+    background-image: url(images/layout-sprite@2x.png);
+    background-size: 290px 256px;
+  }
+  .icon-play-shadow {
+    background-image: url(images/layout-sprite@2x.png);
+    background-size: 290px 256px;
+  }
+  .icon-play {
+    background-image: url(images/layout-sprite@2x.png);
+    background-size: 290px 256px;
+  }
+  .icon-share-green {
+    background-image: url(images/layout-sprite@2x.png);
+    background-size: 290px 256px;
+  }
+  .icon-share {
+    background-image: url(images/layout-sprite@2x.png);
+    background-size: 290px 256px;
+  }
+  .icon-survey {
+    background-image: url(images/layout-sprite@2x.png);
+    background-size: 290px 256px;
+  }
+  .icon-twitter {
+    background-image: url(images/layout-sprite@2x.png);
+    background-size: 290px 256px;
+  }
+  .icon-x-red {
+    background-image: url(images/layout-sprite@2x.png);
+    background-size: 290px 256px;
+  }
+}
