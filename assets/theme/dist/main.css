@@ -5,6 +5,7 @@
  */
 /* FONT PATH
  * -------------------------- */
+@import '../src/sprites/compiled/images/layout-sprite.css';
 @font-face {
   font-family: 'FontAwesome';
   src: url('../fonts/fontawesome-webfont.eot?v=4.7.0');
@@ -2392,6 +2393,7 @@
 }
 .home_page .content_container .content_title {
   height: 4vw;
+  line-height: 4vw;
   background-color: #fc5f3d;
   margin-top: 2vw;
 }

@@ -31,12 +31,14 @@
 
     <!-- POINTS -->
     <div class="col-xs-12 points_container">
-      <div class="col-xs-15 point">
-        <div class="point_logo"></div>
+
+      <div class="col-xs-15 point" ng-repeat="point in points">
+        <div class="point_logo {{point.class}}"></div>
       </div>
+
+      <!-- <div class="col-xs-15 point"></div>
       <div class="col-xs-15 point"></div>
-      <div class="col-xs-15 point"></div>
-      <div class="col-xs-15 point"></div>
+      <div class="col-xs-15 point"></div> -->
     </div>
     <!-- END POINTS -->
 

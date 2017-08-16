@@ -51,19 +51,19 @@ turnOnApp.controller('homeController', function homeController ($scope, $locatio
                    url:'assets/theme/src/images/logo/nfl.png'}];
 
    $scope.points = [{title:'Share with friends',
-                   url:'assets/theme/src/images/icon/espn_network.png',
+                   class:'icon-share',
                    points: '150'},
                    {title:'Watch advertising',
-                   url:'assets/theme/src/images/icon/espn_2.png',
+                   class:'icon-combined-shape',
                    points: '300'},
                    {title:'Participate in a survey',
-                   url:'assets/theme/src/images/icon/nfl.png',
+                   class:'icon-twitter',
                    points: '500'},
                    {title:'Download application',
-                   url:'assets/theme/src/images/icon/fox_sport.png',
+                   class:'icon-flaticon',
                    points: '250'},
                    {title:'Visit a sponsor page',
-                   url:'assets/theme/src/images/icon/fox_sport.png',
+                   class:'icon-dollar-qoute',
                    points: '200'}];
 
 
