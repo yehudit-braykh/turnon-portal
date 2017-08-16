@@ -11,14 +11,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" href="/assets/theme/dist/main.css" />
+
+
         <base href="/" />
 
     </head>
-
     <body>
+        <header ng-include="'/assets/theme/src/models/header_page/header.html'"></header>
 
         <div ng-view autoscroll="true"></div>
 
+        <!-- <footer ng-include="'/assets/html/pages/footer.html'"></footer> -->
         <!-- JWPlayer -->
         <!-- <script type="text/javascript" src="/assets/common/js/jwplayer-7.9.0/jwplayer.js" ></script> -->
         <!-- <script>jwplayer.key="wldzyhAXC/pV8hrmoKJJUJQUQU7UwoOXl6rN1w==";</script> -->
@@ -26,6 +29,5 @@
         <!-- Application -->
         <script src="/assets/theme/dist/libs.js"></script>
         <script src="/assets/theme/dist/main.js"></script>
-
     </body>
 </html>
