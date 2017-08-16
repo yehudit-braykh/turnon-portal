@@ -20,7 +20,7 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('models/home/home.html',
-    "<div class=\"container-fluid home_page\"><div class=\"col-xs-12 sport_list_container\"><div class=kinds_of_sports ng-repeat=\"sl in sportLogos\"><div class=sport_logo style=\"background-image: url('{{sl.url}}')\"></div><div class=sport_title></div></div></div><div class=\"col-xs-12 center_container\"><div class=\"col-xs-12 center_image\" style=\"background-image: url('assets/theme/src/images/bg/football-manch.png')\"></div></div><div class=\"col-xs-12 channels_container\"></div></div>"
+    "<div class=\"container-fluid home_page\"><div class=\"col-xs-12 sport_list_container\"><div class=kinds_of_sports ng-repeat=\"sl in sportLogos\"><div class=sport_logo style=\"background-image: url('{{sl.url}}')\"></div><div class=sport_title></div></div></div><div class=\"col-xs-12 center_container\"><div class=\"col-xs-12 center_image\" style=\"background-image: url('assets/theme/src/images/bg/football-manch.png')\"></div></div><div class=\"col-xs-12 channels_container\"><div class=channel ng-repeat=\"channel in channels\"><div class=channel_logo style=\"background-image: url('{{channel.url}}')\"></div></div></div><div class=\"col-xs-12 content_container\"><div class=\"col-xs-12 content_title title1\">GAIN POINTS!</div><div class=\"col-xs-12 points_container\"><div class=\"col-xs-15 point\"><div class=point_logo></div></div><div class=\"col-xs-15 point\"></div><div class=\"col-xs-15 point\"></div><div class=\"col-xs-15 point\"></div></div></div></div>"
   );
 
 }]);
@@ -61,6 +61,37 @@ turnOnApp.controller('homeController', function homeController ($scope, $locatio
                   url:'assets/theme/src/images/sport/15_gray.png'},
                   {title:'American football_16',
                    url:'assets/theme/src/images/sport/16_gray.png'}];
+
+   $scope.channels = [{title:'1',
+                   url:'assets/theme/src/images/logo/espn_network.png'},
+                   {title:'2',
+                   url:'assets/theme/src/images/logo/espn_2.png'},
+                   {title:'3',
+                   url:'assets/theme/src/images/logo/nfl.png'},
+                   {title:'4',
+                   url:'assets/theme/src/images/logo/fox_sport.png'},
+                   {title:'5',
+                   url:'assets/theme/src/images/logo/euro_sport.png'},
+                   {title:'6',
+                   url:'assets/theme/src/images/logo/espn_network.png'},
+                   {title:'7',
+                   url:'assets/theme/src/images/logo/nfl.png'}];
+
+   $scope.points = [{title:'Share with friends',
+                   url:'assets/theme/src/images/icon/espn_network.png',
+                   points: '150'},
+                   {title:'Watch advertising',
+                   url:'assets/theme/src/images/icon/espn_2.png',
+                   points: '300'},
+                   {title:'Participate in a survey',
+                   url:'assets/theme/src/images/icon/nfl.png',
+                   points: '500'},
+                   {title:'Download application',
+                   url:'assets/theme/src/images/icon/fox_sport.png',
+                   points: '250'},
+                   {title:'Visit a sponsor page',
+                   url:'assets/theme/src/images/icon/fox_sport.png',
+                   points: '200'}];
 
 
 });

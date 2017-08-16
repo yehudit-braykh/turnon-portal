@@ -18,8 +18,29 @@
 
   <!-- CHANNELS -->
   <div class="col-xs-12 channels_container">
-
+    <div class="channel" ng-repeat="channel in channels">
+      <div class="channel_logo" style="background-image: url('{{channel.url}}');"></div>
+    </div>
   </div>
   <!-- END CHANNELS -->
+
+
+  <!-- CONTENT -->
+  <div class="col-xs-12 content_container">
+    <div class="col-xs-12 content_title title1">GAIN POINTS!</div>
+
+    <!-- POINTS -->
+    <div class="col-xs-12 points_container">
+      <div class="col-xs-15 point">
+        <div class="point_logo"></div>
+      </div>
+      <div class="col-xs-15 point"></div>
+      <div class="col-xs-15 point"></div>
+      <div class="col-xs-15 point"></div>
+    </div>
+    <!-- END POINTS -->
+
+  </div>
+  <!-- END CONTENT -->
 
 </div>

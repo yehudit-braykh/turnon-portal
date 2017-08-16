@@ -35,5 +35,36 @@ turnOnApp.controller('homeController', function homeController ($scope, $locatio
                   {title:'American football_16',
                    url:'assets/theme/src/images/sport/16_gray.png'}];
 
+   $scope.channels = [{title:'1',
+                   url:'assets/theme/src/images/logo/espn_network.png'},
+                   {title:'2',
+                   url:'assets/theme/src/images/logo/espn_2.png'},
+                   {title:'3',
+                   url:'assets/theme/src/images/logo/nfl.png'},
+                   {title:'4',
+                   url:'assets/theme/src/images/logo/fox_sport.png'},
+                   {title:'5',
+                   url:'assets/theme/src/images/logo/euro_sport.png'},
+                   {title:'6',
+                   url:'assets/theme/src/images/logo/espn_network.png'},
+                   {title:'7',
+                   url:'assets/theme/src/images/logo/nfl.png'}];
+
+   $scope.points = [{title:'Share with friends',
+                   url:'assets/theme/src/images/icon/espn_network.png',
+                   points: '150'},
+                   {title:'Watch advertising',
+                   url:'assets/theme/src/images/icon/espn_2.png',
+                   points: '300'},
+                   {title:'Participate in a survey',
+                   url:'assets/theme/src/images/icon/nfl.png',
+                   points: '500'},
+                   {title:'Download application',
+                   url:'assets/theme/src/images/icon/fox_sport.png',
+                   points: '250'},
+                   {title:'Visit a sponsor page',
+                   url:'assets/theme/src/images/icon/fox_sport.png',
+                   points: '200'}];
+
 
 });
