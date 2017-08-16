@@ -1,16 +1,16 @@
 'use strict';
-var module = angular.module('turnon', ['ngRoute','ngAnimate','ngAria','ngMaterial'])
+var turnOnApp = angular.module('turnon', ['ngRoute'])
 .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
 }])
 
-.config(function($routeProvider, $locationProvider){
+turnOnApp.config(function($routeProvider, $locationProvider){
     $routeProvider
     .when('/', {
-        templateUrl: '/assets/html/pages/home.html',
+        templateUrl: '/assets/theme/src/models/home/home.html',
         controller: 'homeController'
     })
-    
+
     .otherwise({
         redirectTo: '/'
     });;

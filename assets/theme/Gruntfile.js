@@ -34,6 +34,7 @@ module.exports = function(grunt) {
                     'node_modules/jquery/dist/jquery.js',
                     'node_modules/angular/angular.js',
                     'node_modules/bootstrap/dist/js/bootstrap.js',
+                    'node_modules/angular-route/angular-route.js',
                 ]
             }
         },
