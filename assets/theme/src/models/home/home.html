@@ -27,20 +27,42 @@
 
   <!-- CONTENT -->
   <div class="col-xs-12 content_container">
-    <div class="col-xs-12 content_title title1">GAIN POINTS!</div>
+    <div class="col-xs-12" style="padding-right: 0.8vw; padding-left: 0.8vw;"><div class="col-xs-12 content_title orange title1">GAIN POINTS!</div></div>
 
     <!-- POINTS -->
-    <div class="col-xs-12 points_container">
+    <div class="col-xs-12" style="padding-right: 0.8vw; padding-left: 0.8vw;">
+      <div class="col-xs-12 points_container">
 
       <div class="col-xs-15 point" ng-repeat="point in points">
-        <div class="point_logo {{point.class}}"></div>
+        <div class="point_logo" style="background-image: url('{{point.url}}');"></div>
+        <div class="point_logo_hover" style="background-image: url('{{point.url_hover}}');"></div>
+        <div class="point_title">{{point.title}}</div>
+        <div class="point_num">{{point.points}}</div>
+        <div class="point_desc">{{point.description}}</div>
+        <div class="point_button"><button type="button" class="btn get_points_button">GET POINTS</button></div>
       </div>
 
-      <!-- <div class="col-xs-15 point"></div>
-      <div class="col-xs-15 point"></div>
-      <div class="col-xs-15 point"></div> -->
+    </div>
     </div>
     <!-- END POINTS -->
+    <div class="col-xs-12" style="padding-right: 0.8vw; padding-left: 0.8vw;">
+      <div class="col-xs-12 content_title green title1">NEWS FEED</div>
+    </div>
+
+    <!-- VIDEO LIST -->
+    <div class="col-xs-3 video_list_container" ng-repeat="video in videosList">
+        <div class="video_list_image" style="background-image: url('{{video.url_image}}');">
+            <div class="video_list_background"></div>
+            <div class="video_logo" style="background-image: url('{{video.url_logo}}');"></div>
+            <div class="video_play_button"></div>
+            <div class="video_points">
+              <div class="pin_icon"></div>
+              <div class="points_num">{{video.points}}</div>
+            </div>
+        </div>
+
+    </div>
+    <!-- END VIDEO LIST -->
 
   </div>
   <!-- END CONTENT -->

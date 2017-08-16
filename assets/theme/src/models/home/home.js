@@ -51,20 +51,79 @@ turnOnApp.controller('homeController', function homeController ($scope, $locatio
                    url:'assets/theme/src/images/logo/nfl.png'}];
 
    $scope.points = [{title:'Share with friends',
-                   class:'icon-share',
-                   points: '150'},
+                   url:'assets/theme/src/images/icon/share.png',
+                   url_hover:'assets/theme/src/images/icon/share-white.png',
+                   points: '150',
+                   description: 'Do you want to download free song for ipod? If so, reading this article could save you from getting in to a lot of trouble! '},
                    {title:'Watch advertising',
-                   class:'icon-combined-shape',
-                   points: '300'},
+                   url:'assets/theme/src/images/icon/combined-shape.png',
+                   url_hover:'assets/theme/src/images/icon/combined-shape-white.png',
+                   points: '300',
+                   description: 'Do you want to download free song for ipod? If so, reading this article could save you from getting in to a lot of trouble! '},
                    {title:'Participate in a survey',
-                   class:'icon-twitter',
-                   points: '500'},
+                   url:'assets/theme/src/images/icon/survey.png',
+                   url_hover:'assets/theme/src/images/icon/survey-white.png',
+                   points: '500',
+                   description: 'Do you want to download free song for ipod? If so, reading this article could save you from getting in to a lot of trouble! '},
                    {title:'Download application',
-                   class:'icon-flaticon',
-                   points: '250'},
+                   url:'assets/theme/src/images/icon/phone.png',
+                   url_hover:'assets/theme/src/images/icon/phone-white.png',
+                   points: '250',
+                   description: 'Do you want to download free song for ipod? If so, reading this article could save you from getting in to a lot of trouble! '},
                    {title:'Visit a sponsor page',
-                   class:'icon-dollar-qoute',
-                   points: '200'}];
+                   url:'assets/theme/src/images/icon/dollar-qoute.png',
+                   url_hover:'assets/theme/src/images/icon/dollar-qoute-white.png',
+                   points: '200',
+                   description: 'Do you want to download free song for ipod? If so, reading this article could save you from getting in to a lot of trouble! '}];
+
+
+ $scope.videosList = [{title:'Top Story 3',
+                 url_image:'assets/theme/src/images/news/1.png',
+                 url_logo:'assets/theme/src/images/logo/nfl-logo.png',
+                 points: '150',
+                 description: 'After ten minutes with Ed Tettemer in the offices of the agency he founded with partner, Steve Red, you begin to'},
+
+                 {title:'Top Story 3',
+                 url_image:'assets/theme/src/images/news/2.png',
+                 url_logo:'assets/theme/src/images/logo/nfl-logo.png',
+                 points: '300',
+                 description: 'After ten minutes with Ed Tettemer in the offices of the agency he founded with partner, Steve Red, you begin to'},
+
+                 {title:'Top Story 3',
+                 url_image:'assets/theme/src/images/news/3.png',
+                 url_logo:'assets/theme/src/images/logo/nfl-logo.png',
+                 points: '500',
+                 description: 'After ten minutes with Ed Tettemer in the offices of the agency he founded with partner, Steve Red, you begin to'},
+
+                 {title:'Top Story 3',
+                 url_image:'assets/theme/src/images/news/4.png',
+                 url_logo:'assets/theme/src/images/logo/nfl-logo.png',
+                 points: '250',
+                 description: 'After ten minutes with Ed Tettemer in the offices of the agency he founded with partner, Steve Red, you begin to'},
+
+                 {title:'Top Story 3',
+                 url_image:'assets/theme/src/images/news/1.png',
+                 url_logo:'assets/theme/src/images/logo/nfl-logo.png',
+                 points: '200',
+                 description: 'After ten minutes with Ed Tettemer in the offices of the agency he founded with partner, Steve Red, you begin to'},
+
+                 {title:'Top Story 3',
+                 url_image:'assets/theme/src/images/news/2.png',
+                 url_logo:'assets/theme/src/images/logo/nfl-logo.png',
+                 points: '500',
+                 description: 'After ten minutes with Ed Tettemer in the offices of the agency he founded with partner, Steve Red, you begin to'},
+
+                 {title:'Download application',
+                 url_image:'assets/theme/src/images/news/3.png',
+                 url_logo:'assets/theme/src/images/logo/nfl-logo.png',
+                 points: '250',
+                 description: 'After ten minutes with Ed Tettemer in the offices of the agency he founded with partner, Steve Red, you begin to'},
+
+                 {title:'Visit a sponsor page',
+                 url_image:'assets/theme/src/images/news/4.png',
+                 url_logo:'assets/theme/src/images/logo/nfl-logo.png',
+                 points: '200',
+                 description: 'After ten minutes with Ed Tettemer in the offices of the agency he founded with partner, Steve Red, you begin to'}];
 
 
 });
