@@ -1,7 +1,7 @@
 var he = null;
-turnOnApp.controller('headersController', function headerController ($scope, $location, $http, $log,$interval) {
-
-
+turnOnApp.controller('headerController', function headerController ($scope, $location, $http, $log,$interval) {
+    he=$scope;
+    $scope.login = false;
 
 
 });

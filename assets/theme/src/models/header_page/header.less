@@ -1,0 +1,98 @@
+.header_page {
+    font-family: SourceSansPro;
+    .navbar {
+        background-color: #e2e2e2;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+        margin: 0;
+        .container-fluid {
+            height: 6vw;
+            padding-right: 15vw;
+            padding-left: 5vw;
+            .navbar-header {
+                .drop-hamburger {
+                    float: left;
+                    height: 3.5vw;
+                    padding: 1vw 1vw;
+                    margin-top: 1vw;
+                    margin-bottom: 1vw;
+                    width: 3.5vw;
+                    font-size: 1.5vw;
+                    line-height: 20px;
+                    // border-radius: 7px;
+                    // background-color: rgba(21, 21, 21, 0.05);
+                    // box-shadow: inset 0 1px 5px 3px rgba(0, 0, 0, 0.5);
+                    // border: solid 1px #979797;
+                    position: unset;
+                    .fa-bars {
+                        color: rgba(38, 50, 62, 0.8);
+                        opacity: 0.6;
+                    }
+                    .dropdown-menu {
+                        margin: 0;
+                        left: -2px;
+                        background-color: rgba(242, 242, 242, 0.8);
+                        box-shadow: 11px 2px 11px 0 rgba(0, 0, 0, 0.5);
+                        padding: 160px 5vw 30vh;
+                        .li-style {
+                            font-weight: bold;
+                            padding: 25px 0;
+                            font-size: 1.5vw;
+                            color: #1a2937;
+                        }
+                    }
+                }
+                .navbar-brand {
+                    background-image: url('/../../src/images/logo/group-21-copy.png');
+                    background-position: center;
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    height: 2.5vw;
+                    width: 8vw;
+                    margin-left: 6.5vw;
+                    margin-top: 1.5vw;
+                }
+            }
+            .collapse {
+                .navbar-form {
+                    position: relative;
+                    margin: 0;
+                    margin-left: 30vw;
+                    .form-group {
+                        .form-control {
+                            float: left;
+                            opacity: 0.64;
+                            border-radius: 12px;
+                            background-color: #18d676;
+                            width: 12vw;
+                            height: 2.5vw;
+                            margin-top: 1.5vw;
+                            color: #f2f2f2;
+                        }
+                        .fa-search {
+                            position: absolute;
+                            left: 11vw;
+                            top: 2.3vw;
+                            font-size: 1vw;
+                            bottom: 10px;
+                            color: #f2f2f2;
+                        }
+                    }
+                    .logout-token {
+                        background-image: url('/../../src/images/tokens/group-2.png');
+                        background-position: center;
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                        height: 2.5vw;
+                        width: 2.5vw;
+                        float: right;
+                        margin-top: 1.5vw;
+                        margin-left: 5.5vw;
+                        &.login {
+                            background-image: url('/../../src/images/tokens/group-copy-4.png');
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
