@@ -26,6 +26,194 @@
       background-repeat: no-repeat;
       background-position: top;
       background-size: 100%;
+      position: relative;
+      .center_play_button{
+        background-image: url(../src/images/icon/play-shadow.png);
+        position: absolute;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        width: 5vw;
+        height: 6vw;
+        top: 40%;
+        margin-left: auto;
+        margin-right: auto;
+        right: 0;
+        left: 0;
+        cursor: pointer;
+      }
+      .center_points{
+        position: absolute;
+        width: 10.5vw;
+        height: 4.3vw;
+        border-radius: 100px;
+        background-color: #1a2937;
+        border: solid 0.25vw #18d676;
+        top: 52%;
+        left: 45%;
+        .points_icon{
+          background-image: url(../src/images/icon/pin-icon-yellow.png);
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-position: center;
+          width: 2.5vw;
+          height: 2.5vw;
+          margin: 0.6vw 0 0.6vw 1vw;
+          float: left;
+        }
+        .points_number{
+          float: left;
+          font-family: SourceSansPro;
+          font-size: 2.3vw;
+          font-weight: 900;
+          text-align: center;
+          color: #ffffff;
+          line-height: 3.7vw;
+          margin-left: 1vw;
+        }
+      }
+      .center_epg_container{
+        position: absolute;
+        height: 100%;
+        width: 27%;
+        right: 14%;
+        background-color: rgba(92, 82, 82, 0.75);
+        .epg_type{
+          width: 100%;
+          height: 6.5%;
+          .type_title{
+            font-family: SourceSansPro;
+            font-size: 1.3vw;
+            color: #ffffff;
+            padding: 0.8vw;
+            width: 50%;
+            float: left;
+            text-transform: uppercase;
+          }
+          .close_epg_button{
+            width: 50%;
+            padding: 0.8vw;
+            float: left;
+            .epg_button{
+              background-repeat: no-repeat;
+              background-size: contain;
+              background-position: center;
+              background-image: url('../src/images/icon/x-red.png');
+              width: 1.6vw;
+              height: 1.6vw;
+              float: right;
+              cursor: pointer;
+            }
+          }
+        }
+        .epg_now_container{
+          width: 100%;
+          height: 19.5%;
+          background-color: rgba(38, 125, 202, .2);
+          padding: 0.8vw;
+          .epg_now{
+            font-family: SourceSansPro;
+            font-size: 2.5vw;
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 2.5vw;
+          }
+          .epg_now_image{
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            width: 4.5vw;
+            height: 2.8vw;
+          }
+          .epg_now_title{
+            font-family: SourceSansPro;
+            font-size: 1.75vw;
+            font-weight: bold;
+            color: #ffffff;
+            line-height: 2vw;
+          }
+          .epg_now_description{
+            font-family: SourceSansPro;
+            font-style: italic;
+            font-size: 1.6vw;
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 2vw;
+            width: 70%;
+            float: left;
+          }
+          .epg_now_time{
+            width: 30%;
+            float: left;
+            font-family: SourceSansPro;
+            font-size: 1.25vw;
+            color: #ffffff;
+            text-align: center;
+            line-height: 2vw;
+          }
+        }
+        .epg_events_title{
+          width: 100%;
+          height: 6%;
+          font-family: SourceSansPro;
+          font-size: 1.6vw;
+          font-weight: bold;
+          text-align: left;
+          color: #ffffff;
+          text-transform: uppercase;
+          padding: 0.8vw;
+        }
+        .epg_container{
+          width: 100%;
+          height: 68%;
+          overflow-y: scroll;
+          &::-webkit-scrollbar-track{
+            background-color: #b3b3b3;
+            width: 0.75vw;
+            border-radius: 100px;
+          }
+          &::-webkit-scrollbar{
+            width: 0.75vw;
+          }
+          &::-webkit-scrollbar-thumb{
+            border-radius: 100px;
+            background-color: #fc5f3d;
+          }
+          .epg_list{
+            .epg_item{
+              padding: 0.8vw;
+              height: 5vw;
+              .epg_info{
+                width: 75%;
+                float: left;
+                .epg_title{
+                  font-family: SourceSansPro;
+                  font-style: italic;
+                  font-size: 1.3vw;
+                  font-weight: 600;
+                  color: #ffffff;
+                }
+                .epg_desc{
+                  font-family: SourceSansPro;
+                  font-size: 1.05vw;
+                  color: #ffffff;
+                }
+              }
+              .epg_logo{
+                float: left;
+                width: 25%;
+                .epg_logo_image{
+                  background-repeat: no-repeat;
+                  background-size: contain;
+                  background-position: center;
+                  width: 4.6vw;
+                  height: 3.3vw;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
   .channels_container{
@@ -374,8 +562,15 @@
           bottom: 0;
           height: 25%;
           width: 100%;
-          .social_user_image{
+          .user_image{
             padding: 0;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            height: 1.6vw;
+            width: 1.6vw;
+            margin-top: 0.6vw;
+            border-radius: 50%;
           }
           .social_title{
             padding: 0;
@@ -391,7 +586,7 @@
             background-size: contain;
             background-position: right;
             height: 1.6vw;
-            margin-top: 0.5vw;
+            margin-top: 0.6vw;
           }
           .social_time{
             padding: 0;
