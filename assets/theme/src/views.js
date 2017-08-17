@@ -1,6 +1,11 @@
 angular.module('turnon').run(['$templateCache', function($templateCache) {
   'use strict';
 
+  $templateCache.put('directives/video_block/video_block.html',
+    "<div class=video_block_page><div class=\"col-xs-3 video_list_container\" ng-repeat=\"video in model\"><div class=video_list_image style=\"background-image: url('{{video.url_image}}')\"><div class=video_list_background></div><div class=video_logo style=\"background-image: url('{{video.url_logo}}')\"></div><div class=video_play_button></div><div class=video_points><div class=pin_icon></div><div class=points_num>{{video.points}}</div></div><div class=video_desc_hover><div class=\"col-xs-6 video_desc_title\">{{video.title}}</div><div class=\"col-xs-6 video_desc_share\"><div class=video_add_to_my_list></div><div class=video_share_button></div></div><div class=\"col-xs-12 video_desc_info\">{{video.description | limitTo: 100}}<span ng-if=\"video.description.length > 100\">[...]</span></div><div class=\"col-xs-12 video_desc_arrow\"></div></div></div></div></div>"
+  );
+
+
   $templateCache.put('models/footer/footer.html',
     ""
   );
@@ -17,7 +22,7 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('models/newsfeed/newsfeed.html',
-    "<div class=newsfeed-page></div>"
+    "<div class=newsfeed_page><div class=\"col-xs-12 news_feed_container\"></div><div class=newsfeed_contant_container><video-block data-model=videosList></video-block></div></div>"
   );
 
 }]);

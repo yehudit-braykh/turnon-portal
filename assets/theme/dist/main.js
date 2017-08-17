@@ -23,6 +23,11 @@ turnOnApp.config(function($routeProvider, $locationProvider){
 angular.module('turnon').run(['$templateCache', function($templateCache) {
   'use strict';
 
+  $templateCache.put('directives/video_block/video_block.html',
+    "<div class=video_block_page><div class=\"col-xs-3 video_list_container\" ng-repeat=\"video in model\"><div class=video_list_image style=\"background-image: url('{{video.url_image}}')\"><div class=video_list_background></div><div class=video_logo style=\"background-image: url('{{video.url_logo}}')\"></div><div class=video_play_button></div><div class=video_points><div class=pin_icon></div><div class=points_num>{{video.points}}</div></div><div class=video_desc_hover><div class=\"col-xs-6 video_desc_title\">{{video.title}}</div><div class=\"col-xs-6 video_desc_share\"><div class=video_add_to_my_list></div><div class=video_share_button></div></div><div class=\"col-xs-12 video_desc_info\">{{video.description | limitTo: 100}}<span ng-if=\"video.description.length > 100\">[...]</span></div><div class=\"col-xs-12 video_desc_arrow\"></div></div></div></div></div>"
+  );
+
+
   $templateCache.put('models/footer/footer.html',
     ""
   );
@@ -39,10 +44,34 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('models/newsfeed/newsfeed.html',
-    "<div class=newsfeed-page></div>"
+    "<div class=newsfeed_page><div class=\"col-xs-12 news_feed_container\"></div><div class=newsfeed_contant_container><video-block data-model=videosList></video-block></div></div>"
   );
 
 }]);
+
+var ba=null
+turnOnApp.directive('videoBlock', function() {
+    return {
+      restrict: 'E',
+      transclude: true,
+      scope: {
+          model: '=',
+          limit: "=",
+          order: "@",
+          reverse: "=",
+          link: "=",
+          search: '='
+      },
+      controller: ['$scope', '$location', function videoBlockController($scope, $location) {
+          ba = $scope;
+          $scope.go = function (path) {
+              $location.path(path);
+          };
+
+      }],
+      templateUrl: '/assets/theme/src/directives/video_block/video_block.html',
+    };
+  })
 
 var he = null;
 turnOnApp.controller('headerController', function headerController ($scope, $location, $http, $log,$interval) {
@@ -245,79 +274,7 @@ var nf = null;
 turnOnApp.controller('newsfeedControler', function newsfeedControler ($scope, $location, $http, $log,$interval) {
   nf = $scope;
 
-  $scope.sportLogos = [{title:'Soccer',
-                  url:'assets/theme/src/images/sport/1_gray.png'},
-                  {title:'American football',
-                  url:'assets/theme/src/images/sport/2_gray.png'},
-                  {title:'American football_3',
-                  url:'assets/theme/src/images/sport/3_gray.png'},
-                  {title:'American football_4',
-                  url:'assets/theme/src/images/sport/4_gray.png'},
-                  {title:'American football_5',
-                  url:'assets/theme/src/images/sport/5_gray.png'},
-                  {title:'American football_6',
-                  url:'assets/theme/src/images/sport/6_gray.png'},
-                  {title:'American football_7',
-                  url:'assets/theme/src/images/sport/7_gray.png'},
-                  {title:'American football_8',
-                  url:'assets/theme/src/images/sport/8_gray.png'},
-                  {title:'American footbal_9',
-                  url:'assets/theme/src/images/sport/9_gray.png'},
-                  {title:'Golf',
-                  url:'assets/theme/src/images/sport/10_gray.png'},
-                  {title:'American football_11',
-                  url:'assets/theme/src/images/sport/11_gray.png'},
-                  {title:'American footbal_12',
-                  url:'assets/theme/src/images/sport/12_gray.png'},
-                  {title:'American football_13',
-                  url:'assets/theme/src/images/sport/13_gray.png'},
-                  {title:'American football_14',
-                  url:'assets/theme/src/images/sport/14_gray.png'},
-                  {title:'American football_15',
-                  url:'assets/theme/src/images/sport/15_gray.png'},
-                  {title:'American football_16',
-                   url:'assets/theme/src/images/sport/16_gray.png'}];
 
-   $scope.channels = [{title:'1',
-                   url:'assets/theme/src/images/logo/espn_network.png'},
-                   {title:'2',
-                   url:'assets/theme/src/images/logo/espn_2.png'},
-                   {title:'3',
-                   url:'assets/theme/src/images/logo/nfl.png'},
-                   {title:'4',
-                   url:'assets/theme/src/images/logo/fox_sport.png'},
-                   {title:'5',
-                   url:'assets/theme/src/images/logo/euro_sport.png'},
-                   {title:'6',
-                   url:'assets/theme/src/images/logo/espn_network.png'},
-                   {title:'7',
-                   url:'assets/theme/src/images/logo/nfl.png'}];
-
-   $scope.points = [{title:'Share with friends',
-                   url:'assets/theme/src/images/icon/share.png',
-                   url_hover:'assets/theme/src/images/icon/share-white.png',
-                   points: '150',
-                   description: 'Do you want to download free song for ipod? If so, reading this article could save you from getting in to a lot of trouble! '},
-                   {title:'Watch advertising',
-                   url:'assets/theme/src/images/icon/combined-shape.png',
-                   url_hover:'assets/theme/src/images/icon/combined-shape-white.png',
-                   points: '300',
-                   description: 'Do you want to download free song for ipod? If so, reading this article could save you from getting in to a lot of trouble! '},
-                   {title:'Participate in a survey',
-                   url:'assets/theme/src/images/icon/survey.png',
-                   url_hover:'assets/theme/src/images/icon/survey-white.png',
-                   points: '500',
-                   description: 'Do you want to download free song for ipod? If so, reading this article could save you from getting in to a lot of trouble! '},
-                   {title:'Download application',
-                   url:'assets/theme/src/images/icon/phone.png',
-                   url_hover:'assets/theme/src/images/icon/phone-white.png',
-                   points: '250',
-                   description: 'Do you want to download free song for ipod? If so, reading this article could save you from getting in to a lot of trouble! '},
-                   {title:'Visit a sponsor page',
-                   url:'assets/theme/src/images/icon/dollar-qoute.png',
-                   url_hover:'assets/theme/src/images/icon/dollar-qoute-white.png',
-                   points: '200',
-                   description: 'Do you want to download free song for ipod? If so, reading this article could save you from getting in to a lot of trouble! '}];
 
 
  $scope.videosList = [{title:'Top Story 3',
