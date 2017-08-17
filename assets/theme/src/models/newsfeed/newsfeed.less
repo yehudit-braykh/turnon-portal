@@ -1,13 +1,64 @@
 .newsfeed_page {
-    .news_feed_container {
-        background-color: #fc5f3d;
-        padding-right: 14%;
-        padding-left: 14%;
-        height: 6vw;
+    .page_container {
+        .news_feed_container {
+            background-color: #fc5f3d;
+            padding-right: 14%;
+            padding-left: 14%;
+            height: 6vw;
+            .newsfeed-brand{
+                background-image: url('/../../src/images/headers/group-8-copy.png');
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
+                height: 3.5vw;
+                width: 20vw;
+                margin-top: 1.2vw;
+            }
 
+        }
+        .carousel {
+            padding-right: 14%;
+            padding-left: 14%;
+            .carousel-indicators {
+            }
+            .carousel-inner {
+                height: 26vw;
+                .item {
+                    position: relative;
+                    .right_div {
+                        float: right;
+                        width: 61%;
+                        .carousel-image {
+                            background-image: url('/../../src/images/news/rectangle-12-copy-13.png');
+                            background-position: center;
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                            height: 26vw;
+                        }
+                        .gradient {
+                            top: 0;
+                            width: 50vw;
+                            position: absolute;
+                            height: 26vw;
+                            background-image: linear-gradient(to left, rgba(242, 242, 242, 0), #f2f2f2);
+                            // margin-right: -14vw;
+                        }
+                    }
+                    .left_div {
+                        float: left;
+                        width: 39%;
+                        height: 26vw;
+                    }
+                }
+
+            }
+
+        }
+
+        .newsfeed_contant_container {
+            padding-right: 14%;
+            padding-left: 14%;
+        }
     }
-    .newsfeed_contant_container {
-        padding-right: 14%;
-        padding-left: 14%;
-    }
+
 }

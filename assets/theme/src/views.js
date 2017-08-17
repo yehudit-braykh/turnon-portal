@@ -22,7 +22,7 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('models/newsfeed/newsfeed.html',
-    "<div class=newsfeed_page><div class=\"col-xs-12 news_feed_container\"></div><div class=newsfeed_contant_container><video-block data-model=videosList></video-block></div></div>"
+    "<div class=newsfeed_page><div class=\"page_container row\"><div class=\"col-xs-12 news_feed_container\"><div class=newsfeed-brand></div></div><div id=myCarousel class=\"col-xs-12 carousel slide\" data-ride=carousel><ol class=carousel-indicators><li data-target=#myCarousel data-slide-to=0 class=active></li><li data-target=#myCarousel data-slide-to=1></li><li data-target=#myCarousel data-slide-to=2></li></ol><div class=carousel-inner><div class=\"item active\"><div class=right_div><div class=carousel-image></div><div class=gradient></div></div><div class=left_div></div></div><div class=item><div class=right_div><div class=carousel-image></div><div class=gradient></div></div><div class=left_div></div></div><div class=item><div class=right_div><div class=carousel-image></div><div class=gradient></div></div><div class=left_div></div></div></div></div><div class=newsfeed_contant_container><video-block data-model=videosList></video-block></div></div></div>"
   );
 
 }]);
