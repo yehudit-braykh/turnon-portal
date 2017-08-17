@@ -10,6 +10,10 @@ turnOnApp.config(function($routeProvider, $locationProvider){
         templateUrl: '/assets/theme/src/models/home/home.html',
         controller: 'homeController'
     })
+    .when('/newsfeed', {
+        templateUrl: '/assets/theme/src/models/newsfeed/newsfeed.html',
+        controller: 'newsfeedControler'
+    })
 
     .otherwise({
         redirectTo: '/'

@@ -412,10 +412,18 @@
 .header_page {
   font-family: SourceSansPro;
 }
+.header_page .fade-div {
+  height: 100vh;
+  width: 100%;
+  z-index: 1;
+  background-color: rgba(21, 21, 21, 0.6);
+  position: absolute;
+}
 .header_page .navbar {
   background-color: #e2e2e2;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
   margin: 0;
+  z-index: 1;
 }
 .header_page .navbar .container-fluid {
   height: 6vw;
@@ -514,6 +522,30 @@
   color: #f2f2f2;
   padding-top: 0.4vw;
   font-weight: 600;
+}
+.header_page .navbar .container-fluid .collapse .profile-cover {
+  float: right;
+  padding-top: 1.5vw;
+}
+.header_page .navbar .container-fluid .collapse .profile-cover .profile-image {
+  display: inline-block;
+  margin-right: 1vw;
+  width: 2.5vw;
+  height: 2.5vw;
+  border-radius: 1.25vw;
+  -webkit-border-radius: 1.25vw;
+  -moz-border-radius: 1.25vw;
+  background: url('../src/images/icon/profile.png') no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+.header_page .navbar .container-fluid .collapse .profile-cover .profile-name {
+  float: right;
+  margin-top: 0.4vw;
+  font-size: 1.2vw;
+  font-weight: 600;
+  color: #5c5252;
 }
 @font-face {
   font-family: 'SourceSansPro';

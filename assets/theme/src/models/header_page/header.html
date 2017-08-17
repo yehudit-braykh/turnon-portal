@@ -1,4 +1,7 @@
 <div class="header_page" ng-controller="headerController">
+    <!-- <div ng-hide="showfade==true" class="fade-div">
+
+    </div> -->
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -10,7 +13,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <div class="dropdown drop-hamburger" href="#">
+          <div class="dropdown drop-hamburger" ng-click="open-manu()"href="#">
              <i class="fa fa-bars "  id="dropdownMenu1" aria-hidden="true"  data-toggle="dropdown"></i>
                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                    <li class="li-style"><span >News Feed</span></li>
@@ -33,9 +36,14 @@
             </div>
             <div class="logout-token {{login==true ? 'loged-in':''}}"></div>
           </form>
-          <div class="sign-in">
+          <div ng-show="login==false" ng-click="Signin()" class="sign-in">
               sign in
           </div>
+          <div  ng-show="login==true" class="profile-cover">
+              <div class="profile-name">sds</div>
+              <div  class="profile-image"></div>
+          </div>
+
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>

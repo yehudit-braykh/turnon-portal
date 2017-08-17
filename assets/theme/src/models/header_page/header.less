@@ -1,9 +1,17 @@
 .header_page {
     font-family: SourceSansPro;
+    .fade-div {
+        height: 100vh;
+        width: 100%;
+        z-index: 1;
+        background-color: rgba(21, 21, 21, 0.6);
+        position: absolute;
+    }
     .navbar {
         background-color: #e2e2e2;
         box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
         margin: 0;
+        z-index: 1;
         .container-fluid {
             height: 6vw;
             padding-right: 15vw;
@@ -108,7 +116,33 @@
                     padding-top: 0.4vw;
                     font-weight: 600;
                 }
+                .profile-cover {
+                    float: right;
+                    padding-top: 1.5vw;
+
+                    .profile-image {
+                        display:inline-block;
+                        margin-right: 1vw;
+                        width: 2.5vw;
+                        height: 2.5vw;
+                        border-radius: 1.25vw;
+                        -webkit-border-radius: 1.25vw;
+                        -moz-border-radius: 1.25vw;
+                        background: url('/../../src/images/icon/profile.png') no-repeat;
+                        background-position: center;
+                        background-size: cover;
+                        position: relative;
+                    }
+                    .profile-name {
+                        float: right;
+                        margin-top: 0.4vw;
+                        font-size: 1.2vw;
+                        font-weight: 600;
+                        color: #5c5252;
+                    }
+                }
             }
+
         }
     }
 }
