@@ -122,7 +122,7 @@
           margin-left: 1vw;
         }
       }
-      .channel_logo{
+      .epg_channel_logo{
         position: absolute;
         background-repeat: no-repeat;
         background-size: contain;
@@ -282,16 +282,36 @@
     padding-right: 14%;
     padding-left: 14%;
     .channel{
-      width: 14%;
-      height: 6vw;
+      position: relative;
+      width: 14.2%;
+      height: 10vw;
       float: left;
-      margin-top: 2vw;
+      cursor: pointer;
       .channel_logo{
-        height: 100%;
+        position: absolute;
+        height: 40%;
+        width: 40%;
+        margin: 30%;
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
-        cursor: pointer;
+      }
+      .channel_background{
+        position: absolute;
+        width: 70%;
+        height: 70%;
+        margin: 15%;
+        background: rgba(250, 244, 244, 0.5);
+        border-radius: 50%;
+        transition: all 0.25s;
+      }
+      &:hover{
+        .channel_logo{
+          z-index: 1;
+        }
+        .channel_background{
+          background: #fc5f3e;
+        }
       }
     }
   }
@@ -409,6 +429,119 @@
               border-radius: 2px;
               border: solid 0.1vw #ffffff;
               background-color: #fc5f3d;
+            }
+          }
+        }
+      }
+    }
+    #carousel_home_page{
+      height: 24vw;
+      .carousel-indicators{
+        bottom: 0;
+        margin-bottom: 0;
+        li{
+          width: 0.9vw;
+          height: 0.9vw;
+          margin: 0.5vw;
+          opacity: 0.6;
+          border: solid 2px #fc5f3d;
+        }
+        li.active{
+          margin: 0.5vw;
+          opacity: 1;
+          background-color: #18d676;
+        }
+      }
+      .carousel-inner{
+        height: 100%;
+        .item{
+          height: 100%;
+          .item_content{
+            position: relative;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            position: relative;
+            .item_background{
+              position: absolute;
+              background-image: linear-gradient(to bottom, rgba(242, 242, 242, 0), #f2f2f2);
+              height: 100%;
+              width: 100%;
+              .carousel_point_title{
+                font-family: SourceSansPro;
+                font-size: 2.2vw;
+                font-weight: bold;
+                line-height: 0.71;
+                letter-spacing: 1.6px;
+                text-align: center;
+                color: #f2f2f2;
+                text-shadow: 0 4px 6px rgba(0, 0, 0, 0.8);
+                text-transform: uppercase;
+                margin-top: 2vw;
+                margin-bottom: 0.5vw;
+              }
+              .carousel_point_num{
+                width: 9.1vw;
+                height: 3.8vw;
+                border-radius: 100px;
+                background-color: #1a2937;
+                border: solid 0.2vw #18d676;
+                margin: auto;
+                margin-top: 2vw;
+                margin-bottom: 0.5vw;
+                .pin_icon{
+                  background-image: url('../src/images/icon/pin-icon-yellow.png');
+                  background-repeat: no-repeat;
+                  background-size: contain;
+                  background-position: center;
+                  width: 2.5vw;
+                  height: 2.5vw;
+                  margin: 0.4vw 0 0.4vw 0.8vw;
+                  float: left;
+                }
+                .points_num{
+                  float: left;
+                  font-family: SourceSansPro;
+                  font-size: 2.5vw;
+                  font-weight: 900;
+                  text-align: center;
+                  color: #ffffff;
+                  line-height: 3.2vw;
+                  margin-left: 0.4vw;
+                }
+              }
+              .carousel_point_desc{
+                font-family: Roboto;
+                font-size: 1.6vw;
+                font-weight: 300;
+                line-height: 1.13;
+                letter-spacing: 0.9px;
+                text-align: center;
+                color: #1a2937;
+                padding-left: 22%;
+                padding-right: 22%;
+              }
+              .carousel_point_button{
+                text-align: center;
+                margin-top: 2vw;
+                .points_button{
+                  border-radius: 15px;
+                  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+                  border: solid 0.2vw #fc5f3d;
+                  font-family: SourceSansPro;
+                  font-style: italic;
+                  font-size: 2vw;
+                  font-weight: bold;
+                  //line-height: 0.79;
+                  padding: 0px 12px;
+                  letter-spacing: 1.9px;
+                  text-align: center;
+                  color: #fc5f3d;
+                  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+                  background-color: transparent;
+                }
+              }
             }
           }
         }

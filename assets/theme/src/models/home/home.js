@@ -78,7 +78,7 @@ turnOnApp.controller('homeController', function homeController ($scope, $locatio
    $scope.channels = [{title:'1',
                    url:'assets/theme/src/images/logo/espn_network-logo@2x.png'},
                    {title:'2',
-                   url:'assets/theme/src/images/logo/espn@2x.png'},
+                   url:'assets/theme/src/images/logo/espn-2-logo@2x.png'},
                    {title:'3',
                    url:'assets/theme/src/images/logo/nfl-logo@2x.png'},
                    {title:'4',
