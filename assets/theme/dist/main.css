@@ -954,6 +954,9 @@
   font-weight: 600;
   color: #5c5252;
 }
+.newsfeed_page {
+  font-family: SourceSansPro;
+}
 .newsfeed_page .page_container .news_feed_container {
   background-color: #fc5f3d;
   padding-right: 14%;
@@ -961,7 +964,6 @@
   height: 6vw;
 }
 .newsfeed_page .page_container .news_feed_container .newsfeed-brand {
-  background-image: url('../src/images/headers/group-8-copy.png');
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -969,42 +971,141 @@
   width: 20vw;
   margin-top: 1.2vw;
 }
-.newsfeed_page .page_container .carousel {
+.newsfeed_page .page_container .contant_container {
   padding-right: 14%;
   padding-left: 14%;
 }
-.newsfeed_page .page_container .carousel .carousel-inner {
-  height: 26vw;
+.newsfeed_page .page_container .contant_container .carousel {
+  padding: 0;
 }
-.newsfeed_page .page_container .carousel .carousel-inner .item {
-  position: relative;
+.newsfeed_page .page_container .contant_container .carousel .carousel-indicators li {
+  height: 13px;
+  width: 13px;
+  border-radius: 13px;
+  border: solid 2px #fe6443;
+  margin-left: 20px;
 }
-.newsfeed_page .page_container .carousel .carousel-inner .item .right_div {
+.newsfeed_page .page_container .contant_container .carousel .carousel-indicators li.active {
+  height: 15px;
+  width: 15px;
+  background-color: #fe6443;
+}
+.newsfeed_page .page_container .contant_container .carousel .carousel-inner {
+  margin-top: 1vw;
+  height: 27vw;
+}
+.newsfeed_page .page_container .contant_container .carousel .carousel-inner .item .right_div {
   float: right;
   width: 61%;
 }
-.newsfeed_page .page_container .carousel .carousel-inner .item .right_div .carousel-image {
-  background-image: url('../src/images/news/rectangle-12-copy-13.png');
+.newsfeed_page .page_container .contant_container .carousel .carousel-inner .item .right_div .carousel-image {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 26vw;
+  height: 27vw;
 }
-.newsfeed_page .page_container .carousel .carousel-inner .item .right_div .gradient {
-  top: 0;
-  width: 50vw;
+.newsfeed_page .page_container .contant_container .carousel .carousel-inner .item .right_div .carousel-image .logo {
   position: absolute;
-  height: 26vw;
-  background-image: linear-gradient(to left, rgba(242, 242, 242, 0), #f2f2f2);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right;
+  height: 6vw;
+  width: 4.5vw;
+  top: 3%;
+  right: 3%;
 }
-.newsfeed_page .page_container .carousel .carousel-inner .item .left_div {
+.newsfeed_page .page_container .contant_container .carousel .carousel-inner .item .right_div .carousel-image .play_button {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 3vw;
+  height: 4vw;
+  margin-left: auto;
+  right: 0;
+  margin-top: 11vw;
+  margin-right: 22vw;
+  left: 0;
+  cursor: pointer;
+  z-index: 1;
+}
+.newsfeed_page .page_container .contant_container .carousel .carousel-inner .item .right_div .gradient {
+  top: 0;
+  width: 45vw;
+  position: absolute;
+  height: 27vw;
+  background-image: linear-gradient(to left, rgba(242, 242, 242, 0) 15%, #f2f2f2);
+}
+.newsfeed_page .page_container .contant_container .carousel .carousel-inner .item .left_div {
   float: left;
   width: 39%;
-  height: 26vw;
+  height: 27vw;
 }
-.newsfeed_page .page_container .newsfeed_contant_container {
-  padding-right: 14%;
-  padding-left: 14%;
+.newsfeed_page .page_container .contant_container .carousel .carousel-inner .item .left_div .headline {
+  margin-top: 4vw;
+  font-style: italic;
+  position: relative;
+  font-size: 1.8vw;
+  font-weight: bold;
+  color: #fe6443;
+  width: 27vw;
+}
+.newsfeed_page .page_container .contant_container .carousel .carousel-inner .item .left_div .description {
+  width: 29vw;
+  font-family: Roboto;
+  font-size: 1.1vw;
+  color: #1a2937;
+  margin-top: 0.8vw;
+}
+.newsfeed_page .page_container .contant_container .carousel .carousel-inner .item .left_div .full_desc_share {
+  padding: 0;
+  margin-top: 1.5vw;
+}
+.newsfeed_page .page_container .contant_container .carousel .carousel-inner .item .left_div .full_desc_share .full_desc_share_button {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 2.3vw;
+  height: 2.3vw;
+  float: right;
+  cursor: pointer;
+}
+.newsfeed_page .page_container .contant_container .carousel .carousel-inner .item .left_div .full_desc_share .full_desc_add_to_my_list {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 2.3vw;
+  height: 2.3vw;
+  margin-left: 1vw;
+  float: right;
+  cursor: pointer;
+}
+.newsfeed_page .page_container .contant_container .newsfeed_header {
+  padding: 0;
+  height: 4vw;
+  background-color: #18d676;
+  margin-top: 1vw;
+  margin-bottom: 0.5vw;
+  color: white;
+  font-weight: bold;
+  font-size: 2.5vw;
+  padding-left: 1.4vw;
+  text-transform: uppercase;
+  padding-top: 0.2vw;
+}
+.newsfeed_page .page_container .contant_container .newsfeed_header .arrow {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 1vw;
+  height: 1.6vw;
+  position: absolute;
+  top: 1.3vw;
+  left: 19.5vw;
+  cursor: pointer;
+}
+.newsfeed_page .page_container .contant_container .newsfeed_contant_container {
+  padding: 0;
 }
 .video_block_page .video_list_container {
   padding: 0.8vw;
