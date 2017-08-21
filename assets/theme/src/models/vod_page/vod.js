@@ -1,5 +1,5 @@
 var vod = null;
-turnOnApp.controller('vodControler', function vodControler ($scope, $location, $http, $log,$interval) {
+turnOnApp.controller('vodController', function vodController ($scope, $location, $http, $log,$interval) {
   vod = $scope;
 
         $scope.sports = [{id: '1',

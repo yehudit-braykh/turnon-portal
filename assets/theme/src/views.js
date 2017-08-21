@@ -27,7 +27,7 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('models/my_list/mylist.html',
-    ""
+    "<div class=mylist_page><div class=\"page_container row\"><div class=\"col-xs-12 mylist_container\"><div class=mylist_brand style=\"background-image: url('/assets/theme/src/images/headers/mylist.png')\"></div></div></div></div>"
   );
 
 

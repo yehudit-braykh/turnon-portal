@@ -1,5 +1,5 @@
 var nf = null;
-turnOnApp.controller('newsfeedControler', function newsfeedControler ($scope, $location, $http, $log,$interval) {
+turnOnApp.controller('newsfeedController', function newsfeedController ($scope, $location, $http, $log,$interval) {
   nf = $scope;
 
 

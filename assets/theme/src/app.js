@@ -12,15 +12,15 @@ turnOnApp.config(function($routeProvider, $locationProvider){
     })
     .when('/newsfeed', {
         templateUrl: '/assets/theme/src/models/newsfeed/newsfeed.html',
-        controller: 'newsfeedControler'
+        controller: 'newsfeedController'
     })
     .when('/vod', {
         templateUrl: '/assets/theme/src/models/vod_page/vod.html',
-        controller: 'vodControler'
+        controller: 'vodController'
     })
     .when('/mylist', {
         templateUrl: '/assets/theme/src/models/my_list/mylist.html',
-        controller: 'mylistControler'
+        controller: 'mylistController'
     })
 
     .otherwise({

@@ -12,15 +12,15 @@ turnOnApp.config(function($routeProvider, $locationProvider){
     })
     .when('/newsfeed', {
         templateUrl: '/assets/theme/src/models/newsfeed/newsfeed.html',
-        controller: 'newsfeedControler'
+        controller: 'newsfeedController'
     })
     .when('/vod', {
         templateUrl: '/assets/theme/src/models/vod_page/vod.html',
-        controller: 'vodControler'
+        controller: 'vodController'
     })
     .when('/mylist', {
         templateUrl: '/assets/theme/src/models/my_list/mylist.html',
-        controller: 'mylistControler'
+        controller: 'mylistController'
     })
 
     .otherwise({
@@ -57,7 +57,7 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('models/my_list/mylist.html',
-    ""
+    "<div class=mylist_page><div class=\"page_container row\"><div class=\"col-xs-12 mylist_container\"><div class=mylist_brand style=\"background-image: url('/assets/theme/src/images/headers/mylist.png')\"></div></div></div></div>"
   );
 
 
@@ -415,11 +415,11 @@ $scope.epgList = [{title:'Real Madrid - M.United',
 
 var ml = null;
 turnOnApp.controller('mylistController', function mylistController ($scope, $location, $http, $log,$interval) {
-
+    ml=$scope;
 });
 
 var nf = null;
-turnOnApp.controller('newsfeedControler', function newsfeedControler ($scope, $location, $http, $log,$interval) {
+turnOnApp.controller('newsfeedController', function newsfeedController ($scope, $location, $http, $log,$interval) {
   nf = $scope;
 
 
@@ -477,7 +477,7 @@ turnOnApp.controller('newsfeedControler', function newsfeedControler ($scope, $l
 });
 
 var vod = null;
-turnOnApp.controller('vodControler', function vodControler ($scope, $location, $http, $log,$interval) {
+turnOnApp.controller('vodController', function vodController ($scope, $location, $http, $log,$interval) {
   vod = $scope;
 
         $scope.sports = [{id: '1',

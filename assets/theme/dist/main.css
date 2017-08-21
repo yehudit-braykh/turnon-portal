@@ -1520,6 +1520,20 @@
   font-size: 2vw;
   color: #1a2530;
 }
+.mylist_page .page_container .mylist_container {
+  background-color: #18d676;
+  padding-right: 14%;
+  padding-left: 14%;
+  height: 6vw;
+}
+.mylist_page .page_container .mylist_container .mylist_brand {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 3.5vw;
+  width: 20vw;
+  margin-top: 1.2vw;
+}
 .video_block_page .video_list_container {
   padding: 0.8vw;
   position: relative;
