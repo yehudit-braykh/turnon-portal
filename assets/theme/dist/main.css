@@ -1515,12 +1515,12 @@
 .video_block_page .video_list_container:hover .video_desc_hover {
   top: 53%;
 }
-.video_block_page .video_list_container {
+.vod_block_page .vod_list_container {
   padding: 0.8vw;
   position: relative;
   transition: all 0.5s;
 }
-.video_block_page .video_list_container .video_list_image {
+.vod_block_page .vod_list_container .vod_list_image {
   padding-bottom: 58%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1528,14 +1528,14 @@
   position: relative;
   overflow: hidden;
 }
-.video_block_page .video_list_container .video_list_image .video_list_background {
+.vod_block_page .vod_list_container .vod_list_image .video_list_background {
   position: absolute;
   width: 100%;
   height: 100%;
   background-color: rgba(32, 32, 32, 0.5);
   transition: all 0.25s;
 }
-.video_block_page .video_list_container .video_list_image .video_logo {
+.vod_block_page .vod_list_container .vod_list_image .video_logo {
   position: absolute;
   background-repeat: no-repeat;
   background-size: contain;
@@ -1545,7 +1545,7 @@
   top: 3%;
   right: 3%;
 }
-.video_block_page .video_list_container .video_list_image .video_play_button {
+.vod_block_page .vod_list_container .vod_list_image .video_play_button {
   background-image: url('../src/images/icon/play.png');
   position: absolute;
   background-repeat: no-repeat;
@@ -1561,7 +1561,7 @@
   transition: all 0.25s;
   cursor: pointer;
 }
-.video_block_page .video_list_container .video_list_image .video_points {
+.vod_block_page .vod_list_container .vod_list_image .video_points {
   position: absolute;
   width: 4.5vw;
   height: 1.8vw;
@@ -1572,7 +1572,7 @@
   left: 34%;
   transition: all 0.25s;
 }
-.video_block_page .video_list_container .video_list_image .video_points .pin_icon {
+.vod_block_page .vod_list_container .vod_list_image .video_points .pin_icon {
   background-image: url('../src/images/icon/pin-icon-yellow.png');
   background-repeat: no-repeat;
   background-size: contain;
@@ -1582,7 +1582,7 @@
   margin: 0.2vw 0 0.2vw 0.5vw;
   float: left;
 }
-.video_block_page .video_list_container .video_list_image .video_points .points_num {
+.vod_block_page .vod_list_container .vod_list_image .video_points .points_num {
   float: left;
   font-family: SourceSansPro;
   font-size: 1.25vw;
@@ -1592,28 +1592,24 @@
   line-height: 1.6vw;
   margin-left: 0.2vw;
 }
-.video_block_page .video_list_container .video_list_image .video_desc_hover {
-  position: absolute;
-  top: 100%;
-  height: 47%;
-  width: 100%;
-  padding: 0.75vw;
-  background-color: rgba(26, 37, 48, 0.72);
-  transition: all 0.25s;
+.vod_block_page .vod_list_container .vod_info_section {
+  padding-left: 0.8vw;
+  padding-right: 0.8vw;
 }
-.video_block_page .video_list_container .video_list_image .video_desc_hover .video_desc_title {
+.vod_block_page .vod_list_container .vod_info_section .vod_header {
+  margin-top: 0.3vw;
   font-family: SourceSansPro;
   font-style: italic;
-  font-size: 0.82vw;
+  font-size: 1vw;
   font-weight: 600;
   color: #fc5f3d;
   padding: 0;
 }
-.video_block_page .video_list_container .video_list_image .video_desc_hover .video_desc_share {
+.vod_block_page .vod_list_container .vod_info_section .vod_icons {
   padding: 0;
+  margin-top: 0.5vw;
 }
-.video_block_page .video_list_container .video_list_image .video_desc_hover .video_desc_share .video_share_button {
-  background-image: url(../src/images/icon/share-green.png);
+.vod_block_page .vod_list_container .vod_info_section .vod_icons .share {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -1622,8 +1618,7 @@
   float: right;
   cursor: pointer;
 }
-.video_block_page .video_list_container .video_list_image .video_desc_hover .video_desc_share .video_add_to_my_list {
-  background-image: url(../src/images/icon/add_to_list.png);
+.vod_block_page .vod_list_container .vod_info_section .vod_icons .add_to_list {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -1633,50 +1628,16 @@
   float: right;
   cursor: pointer;
 }
-.video_block_page .video_list_container .video_list_image .video_desc_hover .video_desc_info {
+.vod_block_page .vod_list_container .vod_info_section .vod_desc {
+  margin-top: 0.6vw;
   padding: 0;
   font-family: Roboto;
-  font-size: 0.5vw;
+  font-size: 0.8vw;
   font-weight: 300;
   line-height: 1.21;
   letter-spacing: 0.4px;
   text-align: left;
-  color: #ffffff;
-}
-.video_block_page .video_list_container .video_list_image .video_desc_hover .video_desc_arrow {
-  background-image: url(../src/images/icon/down.png);
-  position: absolute;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  width: 1.6vw;
-  height: 1.2vw;
-  top: 70%;
-  margin-left: auto;
-  margin-right: auto;
-  right: 0;
-  left: 0;
-  cursor: pointer;
-}
-.video_block_page .video_list_container:hover {
-  z-index: 1;
-  -webkit-transform: scale(1.4);
-  -moz-transform: scale(1.4);
-  -o-transform: scale(1.4);
-  transform: scale(1.4);
-}
-.video_block_page .video_list_container:hover .video_list_background {
-  opacity: 0;
-}
-.video_block_page .video_list_container:hover .video_play_button {
-  top: 25%;
-}
-.video_block_page .video_list_container:hover .video_points {
-  top: 3%;
-  left: 3%;
-}
-.video_block_page .video_list_container:hover .video_desc_hover {
-  top: 53%;
+  color: #1a2530;
 }
 @font-face {
   font-family: 'SourceSansPro';

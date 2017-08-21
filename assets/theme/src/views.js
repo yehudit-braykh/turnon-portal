@@ -7,7 +7,7 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('directives/vod_block/vod_block.html',
-    "<div class=video_block_page><div class=\"col-xs-15 video_list_container\" ng-repeat=\"video in model\"><div class=video_list_image style=\"background-image: url('{{video.url_image}}')\"><div class=video_list_background></div><div class=video_logo style=\"background-image: url('{{video.url_logo}}')\"></div><div class=video_play_button></div><div class=video_points><div class=pin_icon></div><div class=points_num>{{video.points}}</div></div><div class=video_desc_hover><div class=\"col-xs-6 video_desc_title\">{{video.title}}</div><div class=\"col-xs-6 video_desc_share\"><div class=video_add_to_my_list></div><div class=video_share_button></div></div><div class=\"col-xs-12 video_desc_info\">{{video.description | limitTo: 100}}<span ng-if=\"video.description.length > 100\">[...]</span></div><div class=\"col-xs-12 video_desc_arrow\"></div></div></div></div></div>"
+    "<div class=vod_block_page><div class=\"col-xs-15 vod_list_container\" ng-repeat=\"video in model\"><div class=vod_list_image style=\"background-image: url('{{video.url_image}}')\"><div class=video_list_background></div><div class=video_logo style=\"background-image: url('{{video.url_logo}}')\"></div><div class=video_play_button></div><div class=video_points><div class=pin_icon></div><div class=points_num>{{video.points}}</div></div></div><div class=vod_info_section><div class=\"vod_header col-xs-6\">{{video.title}}</div><div class=\"vod_icons col-xs-6\"><div class=add_to_list style=\"background-image: url('/assets/theme/src/images/icon/add_to_list@2x.png')\"></div><div class=share style=\"background-image: url('/assets/theme/src/images/icon/shape.png')\"></div></div><div class=\"vod_desc col-xs-12\">{{video.description | limitTo: 100}}</div></div></div></div>"
   );
 
 
@@ -32,7 +32,7 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('models/vod_page/vod.html',
-    "<div class=\"vod_page row\"><div class=\"col-xs-12 sport_list_container\"><div class=\"kinds_of_sports {{activeSport.id == sl.id?'active':''}}\" ng-repeat=\"sl in sports\" ng-click=getActiveSport(sl);><div class=sport_logo style=\"background-image: url('{{sl.url}}')\"></div><div class=sport_logo_hover style=\"background-image: url('{{sl.url_hover}}')\"></div><div class=sport_title>{{sl.title}}</div></div></div><div class=\"inner_container col-xs-12\"><div class=\"sport_kind_header col-xs-12\">Soccer</div><vod-block class=col-xs-12 data-model=videosList></vod-block><div class=\"sport_kind_header col-xs-12\">Basketball</div></div></div>"
+    "<div class=\"vod_page row\"><div class=\"col-xs-12 sport_list_container\"><div class=\"kinds_of_sports {{activeSport.id == sl.id?'active':''}}\" ng-repeat=\"sl in sports\" ng-click=getActiveSport(sl);><div class=sport_logo style=\"background-image: url('{{sl.url}}')\"></div><div class=sport_logo_hover style=\"background-image: url('{{sl.url_hover}}')\"></div><div class=sport_title>{{sl.title}}</div></div></div><div class=\"inner_container col-xs-12\"><div class=\"sport_kind_header col-xs-12\">Soccer</div><vod-block class=col-xs-12 data-model=videosList></vod-block><div class=\"sport_kind_header col-xs-12\">Basketball</div><vod-block class=col-xs-12 data-model=videosList></vod-block></div></div>"
   );
 
 }]);
