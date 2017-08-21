@@ -4,6 +4,7 @@ turnOnApp.controller('homeController', function homeController ($scope, $locatio
 
   $scope.currentVideo = [];
   $scope.activeSport = [];
+  $scope.purchaseEvent = [];
   $scope.sports = [{id: '1',
                   title:'Soccer',
                   url:'assets/theme/src/images/sport/1_gray.png',
@@ -266,6 +267,10 @@ $scope.epgList = [{title:'Real Madrid - M.United',
     $scope.currentVideo = video;
   }
 
-  $('#home_modal').modal('show');
+  $scope.getPurchaseEvent = function(event){
+    $scope.purchaseEvent = event;
+    $('#home_modal').modal('show');
+  }
+
 
 });

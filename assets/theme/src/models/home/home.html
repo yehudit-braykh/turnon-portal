@@ -46,7 +46,7 @@
         <!-- EPG SCROLL -->
         <div class="epg_container">
           <div class="epg_list" style="height:{{epgList.length * 5}}vw;">
-            <div class="epg_item" ng-repeat="epg in epgList">
+            <div class="epg_item" ng-repeat="epg in epgList" ng-click="getPurchaseEvent(epg);">
 
               <div class="epg_info">
                 <div class="epg_title">{{epg.title}}</div>
@@ -229,7 +229,7 @@
         </div>
 
         <div class="modal_header_section">
-          <div class="modal_logo" style="background-image: url('assets/theme/src/images/logo/eurosport-logo.png');"></div>
+          <div class="modal_logo" style="background-image: url('{{purchaseEvent.url}}');"></div>
           <div class="modal_time_info">
             <div class="modal_organization" style="background-image: url('assets/theme/src/images/logo/uefa.png');"></div>
             <div class="modal_date">22 March 2017</div>
@@ -238,6 +238,31 @@
             <div class="points_logo"></div>
             <div class="points_num">150</div>
           </div>
+        </div>
+        <div class="modal_center_section">
+          <div class="modal_title">{{purchaseEvent.title}}</div>
+          <div class="modal_description">With easy access to Broadband and DSL the number of people</div>
+          <div class="modal_time">
+            <div class="time_block">
+                <div class="time_item">
+                  <div class="time_num">00</div>
+                  <div class="time_desc">days</div>
+                </div>
+                <div class="time_item">
+                  <div class="time_num">18</div>
+                  <div class="time_desc">hours</div>
+                </div>
+                <div class="time_item">
+                  <div class="time_num">23</div>
+                  <div class="time_desc">mins</div>
+                </div>
+                <div class="time_item">
+                  <div class="time_num">49</div>
+                  <div class="time_desc">sec</div>
+                </div>
+            </div>
+          </div>
+          <div class="modal_button"><button type="button" class="btn purchase_button">purchase</button></div>
         </div>
 
       </div>
