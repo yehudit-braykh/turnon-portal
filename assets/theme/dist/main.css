@@ -1447,6 +1447,14 @@
   font-weight: bold;
   padding-top: 0.2vw;
 }
+.vod_page .inner_container .see_all {
+  text-align: center;
+  text-transform: uppercase;
+  margin-top: 2vw;
+  margin-bottom: 1.5vw;
+  font-size: 2vw;
+  color: #1a2530;
+}
 .video_block_page .video_list_container {
   padding: 0.8vw;
   position: relative;
