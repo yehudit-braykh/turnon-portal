@@ -1,0 +1,15 @@
+<div class="vod_page row">
+    <div class="col-xs-12 sport_list_container">
+        <div class="kinds_of_sports {{activeSport.id == sl.id?'active':''}}" ng-repeat="sl in sports" ng-click="getActiveSport(sl);">
+          <div class="sport_logo" style="background-image: url('{{sl.url}}');"></div>
+          <div class="sport_logo_hover" style="background-image: url('{{sl.url_hover}}');"></div>
+          <div class="sport_title">{{sl.title}}</div>
+        </div>
+    </div>
+    <div class="inner_container col-xs-12">
+        <div class="sport_kind_header col-xs-12">Soccer</div>
+            <vod-block class="col-xs-12"data-model="videosList" ></vod-block>
+        <div class="sport_kind_header col-xs-12">Basketball</div>
+
+    </div>
+</div>

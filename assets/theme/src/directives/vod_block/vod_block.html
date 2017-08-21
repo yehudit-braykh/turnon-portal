@@ -1,0 +1,23 @@
+<div class="video_block_page">
+    <div class="col-xs-15 video_list_container" ng-repeat="video in model">
+
+        <div class="video_list_image" style="background-image: url('{{video.url_image}}');">
+            <div class="video_list_background"></div>
+            <div class="video_logo" style="background-image: url('{{video.url_logo}}');"></div>
+            <div class="video_play_button"></div>
+            <div class="video_points">
+              <div class="pin_icon"></div>
+              <div class="points_num">{{video.points}}</div>
+            </div>
+            <div class="video_desc_hover">
+              <div class="col-xs-6 video_desc_title">{{video.title}}</div>
+              <div class="col-xs-6 video_desc_share">
+                <div class="video_add_to_my_list"></div>
+                <div class="video_share_button"></div>
+              </div>
+              <div class="col-xs-12 video_desc_info">{{video.description | limitTo: 100}}<span ng-if="video.description.length > 100">[...]</span></div>
+              <div class="col-xs-12 video_desc_arrow"></div>
+            </div>
+        </div>
+    </div>
+</div>
