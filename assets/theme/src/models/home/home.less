@@ -961,7 +961,7 @@
   }
 }
 
-#home_modal{
+#home_epg_modal{
   .modal-dialog{
     @media (min-width: 768px){
       width: 500px;
@@ -1108,6 +1108,177 @@
               font-weight: 900;
               padding: 0px 12px;
               text-align: center;
+              color: #18d676;
+              background-color: transparent;
+              text-transform: uppercase;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#home_points_modal{
+  .modal-dialog{
+    @media (min-width: 768px){
+      width: 500px;
+      margin: 26vh auto;
+    }
+    .modal-content{
+      border-radius: 10px;
+      background-color: rgba(26, 37, 48, 0.9);
+      border: solid 12px #fe532f;
+      .modal-body{
+        padding: 10px;
+        .close_section{
+          width: 100%;
+          height: 20px;
+          .close_button{
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            background-image: url(../src/images/icon/x-red.png);
+            width: 20px;
+            height: 20px;
+            float: right;
+            cursor: pointer;
+          }
+        }
+        .modal_center_section{
+          margin: 0 20px 20px 20px;
+          .modal_title{
+            font-family: SourceSansPro;
+            font-size: 45px;
+            font-weight: bold;
+            text-align: center;
+            color: #f2f2f2;
+            text-transform: uppercase;
+          }
+          .modal_description{
+            font-family: SourceSansPro;
+            font-style: italic;
+            font-size: 30px;
+            line-height: 1;
+            letter-spacing: 1.2px;
+            text-align: center;
+            color: #ffffff;
+            text-transform: uppercase;
+          }
+          .modal_social{
+            width: 100%;
+            .social_block{
+              width: 50%;
+              margin: 24px auto;
+              height: 45px;
+              .social_item{
+                width: 33.3%;
+                float: left;
+                height: 100%;
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: center;
+                cursor: pointer;
+                &.facebook{
+                  background-image: url('../src/images/icon/facebook@2x.png');
+                }
+                &.instagram{
+                  background-image: url('../src/images/icon/instagram@2x.png');
+                }
+                &.twitter{
+                  background-image: url('../src/images/icon/twitter@2x.png');
+                }
+              }
+            }
+          }
+          .modal_video_content{
+            width: 100%;
+            margin-bottom: 20px;
+            .modal_video_image{
+              width: 77%;
+              margin: 0 auto;
+              height: 185px;
+              background-repeat: no-repeat;
+              background-size: cover;
+              background-position: center;
+              position: relative;
+              .video_background{
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(32, 32, 32, 0.5);
+              }
+              .video_title{
+                position: absolute;
+                font-family: SourceSansPro;
+                font-style: italic;
+                font-size: 20px;
+                font-weight: 600;
+                line-height: 1.5;
+                letter-spacing: 0.5px;
+                text-align: center;
+                color: #ffffff;
+                left: 0;
+                right: 0;
+              }
+              .video_play_button{
+                background-image: url('../src/images/icon/play.png');
+                position: absolute;
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: center;
+                width: 30px;
+                height: 40px;
+                top: 40%;
+                margin-left: auto;
+                margin-right: auto;
+                right: 0;
+                left: 0;
+              }
+              .video_points{
+                position: absolute;
+                width: 87px;
+                height: 35px;
+                border-radius: 100px;
+                background-color: #1a2937;
+                border: solid 2px #18d676;
+                top: 70%;
+                left: 34%;
+                .pin_icon{
+                  background-image: url('../src/images/icon/pin-icon-yellow.png');
+                  background-repeat: no-repeat;
+                  background-size: contain;
+                  background-position: center;
+                  width: 22px;
+                  height: 21px;
+                  margin: 5px 5px 5px 8px;
+                  float: left;
+                }
+                .points_num{
+                  float: left;
+                  font-family: SourceSansPro;
+                  font-size: 24px;
+                  font-weight: 900;
+                  text-align: center;
+                  color: #ffffff;
+                  line-height: 30px;
+                }
+              }
+            }
+          }
+          .modal_button{
+            text-align: center;
+            .points_button{
+              border-radius: 2px;
+              border: solid 2px #18d676;
+              font-family: SourceSansPro;
+              font-style: italic;
+              font-size: 22px;
+              font-weight: bold;
+              padding: 3px 12px;
+              text-align: center;
+              line-height: 1.36;
+              letter-spacing: 1.1px;
               color: #18d676;
               background-color: transparent;
               text-transform: uppercase;

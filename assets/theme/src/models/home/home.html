@@ -125,7 +125,7 @@
                   <div class="points_num">{{point.points}}</div>
                 </div>
                 <div class="carousel_point_desc">{{point.description}}</div>
-                <div class="carousel_point_button"><button type="button" class="btn points_button">GET POINTS</button></div>
+                <div class="carousel_point_button"><button type="button" class="btn points_button" ng-click="getPointsModal(point);">GET POINTS</button></div>
               </div>
             </div>
           </div>
@@ -215,14 +215,11 @@
 
 </div>
 
-<!-- HOME MODAL -->
-<div class="modal fade" id="home_modal" tabindex="-1" role="dialog">
+<!-- HOME EPG MODAL -->
+<div class="modal fade" id="home_epg_modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <!-- <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Modal title</h4>
-      </div> -->
+
       <div class="modal-body">
         <div class="close_section">
             <div class="close_button" data-dismiss="modal" aria-label="Close"></div>
@@ -266,11 +263,59 @@
         </div>
 
       </div>
-      <!-- <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div> -->
+
     </div>
   </div>
 </div>
-<!-- END HOME MODAL -->
+<!-- END HOME EPG MODAL -->
+
+
+<!-- HOME POINTS MODAL -->
+<div class="modal fade" id="home_points_modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <div class="close_section">
+            <div class="close_button" data-dismiss="modal" aria-label="Close"></div>
+        </div>
+
+        <div class="modal_center_section">
+          <div class="modal_title">earn more points!</div>
+          <div class="modal_description">Share with friends</div>
+
+          <div class="modal_social">
+            <div class="social_block">
+                <div class="social_item facebook">
+                  <!-- <div class="social_facebook"></div> -->
+                </div>
+                <div class="social_item instagram">
+                  <!-- <div class="social_instagram"></div> -->
+                </div>
+                <div class="social_item twitter">
+                  <!-- <div class="social_twitter"></div> -->
+                </div>
+            </div>
+          </div>
+
+          <div class="modal_video_content">
+            <div class="modal_video_image" style="background-image: url('assets/theme/src/images/news/3.png');">
+              <div class="video_background"></div>
+              <div class="video_title">The Benefits And Drawbacks</div>
+              <div class="video_play_button"></div>
+              <div class="video_points">
+                <div class="pin_icon"></div>
+                <div class="points_num">300</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal_button"><button type="button" class="btn points_button">share now</button></div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- END HOME POINTS MODAL -->
