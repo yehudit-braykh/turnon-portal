@@ -18,6 +18,10 @@ turnOnApp.config(function($routeProvider, $locationProvider){
         templateUrl: '/assets/theme/src/models/vod_page/vod.html',
         controller: 'vodControler'
     })
+    .when('/mylist', {
+        templateUrl: '/assets/theme/src/models/my_list/mylist.html',
+        controller: 'mylistControler'
+    })
 
     .otherwise({
         redirectTo: '/'
