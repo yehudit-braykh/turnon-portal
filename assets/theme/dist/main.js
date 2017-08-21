@@ -31,6 +31,11 @@ turnOnApp.config(function($routeProvider, $locationProvider){
 angular.module('turnon').run(['$templateCache', function($templateCache) {
   'use strict';
 
+  $templateCache.put('directives/mylist_video_block_page/mylist_video_block.html',
+    "<div class=mylist_video_block_page><div class=\"col-xs-3 mylist_video_container\" ng-repeat=\"video in model\"><div class=mylist_video_image style=\"background-image: url('{{video.url_image}}')\"><div class=mylist_video_background></div><div class=video_close style=\"background-image: url('/assets/theme/src/images/icon/x-red.png')\"></div><div class=video_logo style=\"background-image: url('{{video.url_logo}}')\"></div><div class=video_play_button></div><div ng-if=\"video.status=='buy'\" class=video_points><div class=pin_icon></div><div class=points_num>{{video.points}}</div></div><div class=\"status {{video.status=='purchased' ? 'purchased' :''}}\" ng-if=\"video.status !='buy'\">{{video.status}}</div><div class=video_desc_hover><div class=\"col-xs-12 video_desc_title\">{{video.title}}</div><div class=\"col-xs-12 video_desc_info\">{{video.description | limitTo: 100}}<span ng-if=\"video.description.length > 100\">[...]</span></div><div class=\"col-xs-12 video_desc_arrow\"></div></div></div></div></div>"
+  );
+
+
   $templateCache.put('directives/video_block/video_block.html',
     "<div class=\"col-xs-3 video_list_container {{currentVideo.id == video.id?'active':''}}\" ng-repeat=\"video in model\"><div class=video_list_image style=\"background-image: url('{{video.url_image}}')\"><div class=video_list_background></div><div class=video_logo style=\"background-image: url('{{video.url_logo}}')\"></div><div class=video_play_button></div><div class=video_points><div class=pin_icon></div><div class=points_num>{{video.points}}</div></div><div class=video_desc_hover><div class=\"col-xs-6 video_desc_title\">{{video.title}}</div><div class=\"col-xs-6 video_desc_share\"><div class=video_add_to_my_list></div><div class=video_share_button></div></div><div class=\"col-xs-12 video_desc_info\">{{video.description | limitTo: 100}}<span ng-if=\"video.description.length > 100\">[...]</span></div><div class=\"col-xs-12 video_desc_arrow\" ng-click=getFullDescription(video);></div></div></div><div class=video_aroow_green></div></div><div ng-if=currentVideo.id class=\"col-xs-12 video_full_desc_container\"><div class=\"col-xs-4 full_desc_info\"><div class=\"col-xs-12 full_desc_title\">{{currentVideo.title}}</div><div class=\"col-xs-12 full_desc_text\">{{currentVideo.description}}</div><div class=\"col-xs-12 full_desc_desc_share\"><div class=full_desc_add_to_my_list></div><div class=full_desc_share_button></div></div></div><div class=\"col-xs-8 full_desc_image\" style=\"background-image: url('{{currentVideo.url_image}}')\"><div class=full_desc_background></div><div class=full_desc_logo style=\"background-image: url('{{currentVideo.url_logo}}')\"></div><div class=full_desc_play_button></div><div class=full_desc_points><div class=pin_icon></div><div class=points_num>{{currentVideo.points}}</div></div></div></div>"
   );
@@ -57,7 +62,7 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('models/my_list/mylist.html',
-    "<div class=mylist_page><div class=\"page_container row\"><div class=\"col-xs-12 mylist_container\"><div class=mylist_brand style=\"background-image: url('/assets/theme/src/images/headers/mylist.png')\"></div></div></div></div>"
+    "<div class=mylist_page><div class=\"page_container row\"><div class=\"col-xs-12 mylist_header\"><div class=mylist_brand style=\"background-image: url('/assets/theme/src/images/headers/mylist.png')\"></div></div><div class=\"mylist_content col-xs-12\"><mylistvideo-block data-model=videosList></mylistvideo-block></div></div></div>"
   );
 
 
@@ -71,6 +76,30 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
   );
 
 }]);
+
+var mlb=null
+turnOnApp.directive('mylistvideoBlock', function() {
+    return {
+      restrict: 'E',
+      transclude: true,
+      scope: {
+          model: '=',
+          limit: "=",
+          order: "@",
+          reverse: "=",
+          link: "=",
+          search: '='
+      },
+      controller: ['$scope', '$location', function videoBlockController($scope, $location) {
+          mlb = $scope;
+          $scope.go = function (path) {
+              $location.path(path);
+          };
+
+      }],
+      templateUrl: '/assets/theme/src/directives/mylist_video_block_page/mylist_video_block.html',
+    };
+  })
 
 var ba=null
 turnOnApp.directive('videoBlock', function() {
@@ -429,6 +458,71 @@ $scope.epgList = [{title:'Real Madrid - M.United',
 var ml = null;
 turnOnApp.controller('mylistController', function mylistController ($scope, $location, $http, $log,$interval) {
     ml=$scope;
+
+    $scope.videosList = [{id: '1',
+          title:'Real Madrid Vs. Arsenal ',
+          url_image:'assets/theme/src/images/news/1.png',
+          url_logo:'assets/theme/src/images/logo/nfl-logo@2x.png',
+          status: 'purchased',
+          points: '150',
+          description: 'After ten minutes with Ed Tettemer in the offices of the agency he founded with partner, Steve Red, you begin to […]'},
+
+          {id: '2',
+          title:'Real Madrid Vs. Arsenal ',
+          url_image:'assets/theme/src/images/news/2.png',
+          url_logo:'assets/theme/src/images/logo/nfl-logo@2x.png',
+          status: 'buy',
+          points: '300',
+          description: 'The cast brass and cast stainless steel burners have the smallest burrs by far. This will mean less chaos in the gas flow, fewer trapped particulate matter in the burner and a cleaner burning grill. The following comparison shows how the ports are formed. Why is port formation important? Several reasons. If the hole is punched into a sheet metal.'},
+
+          {id: '3',
+          title:'Real Madrid Vs. Arsenal ',
+          url_image:'assets/theme/src/images/news/3.png',
+          url_logo:'assets/theme/src/images/logo/nfl-logo@2x.png',
+           status: 'buy',
+          points: '500',
+          description: 'The cast brass and cast stainless steel burners have the smallest burrs by far. This will mean less chaos in the gas flow, fewer trapped particulate matter in the burner and a cleaner burning grill. The following comparison shows how the ports are formed. Why is port formation important? Several reasons. If the hole is punched into a sheet metal.'},
+
+          {id: '4',
+          title:'Real Madrid Vs. Arsenal ',
+          url_image:'assets/theme/src/images/news/4.png',
+          url_logo:'assets/theme/src/images/logo/nfl-logo@2x.png',
+           status: 'live',
+          points: '250',
+          description: 'The cast brass and cast stainless steel burners have the smallest burrs by far. This will mean less chaos in the gas flow, fewer trapped particulate matter in the burner and a cleaner burning grill. The following comparison shows how the ports are formed. Why is port formation important? Several reasons. If the hole is punched into a sheet metal.'},
+
+          {id: '5',
+          title:'Real Madrid Vs. Arsenal ',
+          url_image:'assets/theme/src/images/news/1.png',
+          url_logo:'assets/theme/src/images/logo/nfl-logo@2x.png',
+           status: 'purchased',
+          points: '200',
+          description: 'The cast brass and cast stainless steel burners have the smallest burrs by far. This will mean less chaos in the gas flow, fewer trapped particulate matter in the burner and a cleaner burning grill. The following comparison shows how the ports are formed. Why is port formation important? Several reasons. If the hole is punched into a sheet metal.'},
+
+          {id: '6',
+           title:'Real Madrid Vs. Arsenal ',
+          url_image:'assets/theme/src/images/news/2.png',
+          url_logo:'assets/theme/src/images/logo/nfl-logo@2x.png',
+           status: 'live',
+          points: '500',
+          description: 'The cast brass and cast stainless steel burners have the smallest burrs by far. This will mean less chaos in the gas flow, fewer trapped particulate matter in the burner and a cleaner burning grill. The following comparison shows how the ports are formed. Why is port formation important? Several reasons. If the hole is punched into a sheet metal.'},
+
+          {id: '7',
+          title:'Real Madrid Vs. Arsenal ',
+          url_image:'assets/theme/src/images/news/3.png',
+          url_logo:'assets/theme/src/images/logo/nfl-logo@2x.png',
+           status: 'purchased',
+          points: '250',
+          description: 'The cast brass and cast stainless steel burners have the smallest burrs by far. This will mean less chaos in the gas flow, fewer trapped particulate matter in the burner and a cleaner burning grill. The following comparison shows how the ports are formed. Why is port formation important? Several reasons. If the hole is punched into a sheet metal.'},
+
+          {id: '8',
+          title:'Real Madrid Vs. Arsenal ',
+          url_image:'assets/theme/src/images/news/4.png',
+          url_logo:'assets/theme/src/images/logo/nfl-logo@2x.png',
+           status: 'live',
+          points: '200',
+          description: 'The cast brass and cast stainless steel burners have the smallest burrs by far. This will mean less chaos in the gas flow, fewer trapped particulate matter in the burner and a cleaner burning grill. The following comparison shows how the ports are formed. Why is port formation important? Several reasons. If the hole is punched into a sheet metal.'}];
+
 });
 
 var nf = null;

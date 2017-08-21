@@ -1688,19 +1688,22 @@
   font-size: 2vw;
   color: #1a2530;
 }
-.mylist_page .page_container .mylist_container {
+.mylist_page .page_container .mylist_header {
   background-color: #18d676;
   padding-right: 14%;
   padding-left: 14%;
   height: 6vw;
 }
-.mylist_page .page_container .mylist_container .mylist_brand {
+.mylist_page .page_container .mylist_header .mylist_brand {
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
   height: 3.5vw;
   width: 20vw;
   margin-top: 1.2vw;
+}
+.mylist_page .page_container .mylist_content {
+  padding: 2vw 13.5vw 3.5vw;
 }
 .video_list_container {
   padding: 0.8vw;
@@ -2144,6 +2147,191 @@
   letter-spacing: 0.4px;
   text-align: left;
   color: #1a2530;
+}
+.mylist_video_block_page {
+  font-family: SourceSansPro;
+}
+.mylist_video_block_page .mylist_video_container {
+  padding: 0.8vw;
+  position: relative;
+  transition: all 0.5s;
+}
+.mylist_video_block_page .mylist_video_container .mylist_video_image {
+  padding-bottom: 58%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+.mylist_video_block_page .mylist_video_container .mylist_video_image .mylist_video_background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(32, 32, 32, 0.5);
+  transition: all 0.25s;
+}
+.mylist_video_block_page .mylist_video_container .mylist_video_image .video_logo {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right;
+  height: 2vw;
+  width: 2vw;
+  top: 3%;
+  right: 3%;
+}
+.mylist_video_block_page .mylist_video_container .mylist_video_image .video_close {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right;
+  height: 2vw;
+  width: 2vw;
+  top: 3%;
+  right: 3%;
+  display: none;
+}
+.mylist_video_block_page .mylist_video_container .mylist_video_image .video_play_button {
+  background-image: url('../src/images/icon/play.png');
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 1.6vw;
+  height: 2.2vw;
+  top: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  right: 0;
+  left: 0;
+  transition: all 0.25s;
+  cursor: pointer;
+}
+.mylist_video_block_page .mylist_video_container .mylist_video_image .video_points {
+  position: absolute;
+  width: 4.5vw;
+  height: 1.8vw;
+  border-radius: 100px;
+  background-color: #1a2937;
+  border: solid 0.1vw #18d676;
+  top: 70%;
+  left: 34%;
+  transition: all 0.25s;
+}
+.mylist_video_block_page .mylist_video_container .mylist_video_image .video_points .pin_icon {
+  background-image: url('../src/images/icon/pin-icon-yellow.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 1.15vw;
+  height: 1.15vw;
+  margin: 0.2vw 0 0.2vw 0.5vw;
+  float: left;
+}
+.mylist_video_block_page .mylist_video_container .mylist_video_image .video_points .points_num {
+  float: left;
+  font-family: SourceSansPro;
+  font-size: 1.25vw;
+  font-weight: 900;
+  text-align: center;
+  color: #ffffff;
+  line-height: 1.6vw;
+  margin-left: 0.2vw;
+}
+.mylist_video_block_page .mylist_video_container .mylist_video_image .status {
+  padding-top: 0.1vw;
+  width: 5vw;
+  height: 1.3vw;
+  border-radius: 6px;
+  background-color: #fc5f3d;
+  font-size: 0.8vw;
+  text-align: center;
+  font-weight: 900;
+  color: white;
+  position: absolute;
+  top: 70%;
+  left: 34%;
+  text-transform: uppercase;
+  transition: all 0.25s;
+}
+.mylist_video_block_page .mylist_video_container .mylist_video_image .status.purchased {
+  padding-top: 0;
+  background-color: #18d676;
+  border: solid 0.1vw #33414f;
+}
+.mylist_video_block_page .mylist_video_container .mylist_video_image .video_desc_hover {
+  position: absolute;
+  top: 100%;
+  height: 47%;
+  width: 100%;
+  padding: 0.75vw;
+  background-color: rgba(26, 37, 48, 0.72);
+  transition: all 0.25s;
+}
+.mylist_video_block_page .mylist_video_container .mylist_video_image .video_desc_hover .video_desc_title {
+  font-family: SourceSansPro;
+  font-style: italic;
+  font-size: 1vw;
+  font-weight: 600;
+  color: #18d676;
+  padding: 0;
+}
+.mylist_video_block_page .mylist_video_container .mylist_video_image .video_desc_hover .video_desc_info {
+  padding: 0;
+  font-family: Roboto;
+  font-size: 0.5vw;
+  font-weight: 300;
+  line-height: 1.21;
+  letter-spacing: 0.4px;
+  text-align: left;
+  color: #ffffff;
+}
+.mylist_video_block_page .mylist_video_container .mylist_video_image .video_desc_hover .video_desc_arrow {
+  background-image: url(../src/images/icon/down.png);
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 1.6vw;
+  height: 1.2vw;
+  top: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  right: 0;
+  left: 0;
+  cursor: pointer;
+}
+.mylist_video_block_page .mylist_video_container:hover {
+  z-index: 1;
+  -webkit-transform: scale(1.4);
+  -moz-transform: scale(1.4);
+  -o-transform: scale(1.4);
+  transform: scale(1.4);
+}
+.mylist_video_block_page .mylist_video_container:hover .video_list_background {
+  opacity: 0;
+}
+.mylist_video_block_page .mylist_video_container:hover .video_play_button {
+  top: 25%;
+}
+.mylist_video_block_page .mylist_video_container:hover .video_points {
+  top: 3%;
+  left: 3%;
+}
+.mylist_video_block_page .mylist_video_container:hover .status {
+  top: 3%;
+  left: 3%;
+}
+.mylist_video_block_page .mylist_video_container:hover .video_desc_hover {
+  top: 53%;
+}
+.mylist_video_block_page .mylist_video_container:hover .video_close {
+  display: unset;
+  cursor: pointer;
+}
+.mylist_video_block_page .mylist_video_container:hover .video_logo {
+  display: none;
 }
 @font-face {
   font-family: 'SourceSansPro';
