@@ -243,6 +243,8 @@
             .epg_item{
               padding: 0.8vw;
               height: 5vw;
+              cursor: pointer;
+              transition: all 0.25s;
               .epg_info{
                 width: 75%;
                 float: left;
@@ -269,6 +271,9 @@
                   width: 4.6vw;
                   height: 3.3vw;
                 }
+              }
+              &:hover{
+                background-color: #18d676;
               }
             }
           }
@@ -777,7 +782,7 @@
           padding: 0;
           margin-top: 1vw;
           .full_desc_share_button{
-            background-image: url(../src/images/icon/share-green@2x.png);
+            background-image: url(../src/images/icon/shape@2x.png);
             background-repeat: no-repeat;
             background-size: contain;
             background-position: center;
@@ -949,6 +954,99 @@
             color: #ffffff;
             line-height: 2.8vw;
             text-align: center;
+          }
+        }
+      }
+    }
+  }
+}
+
+#home_modal{
+  .modal-dialog{
+    @media (min-width: 768px){
+      width: 500px;
+      margin: 35vh auto;
+    }
+    .modal-content{
+      border-radius: 10px;
+      background-color: rgba(26, 37, 48, 0.9);
+      border: solid 12px #18d676;
+      .modal-body{
+        padding: 10px;
+        .close_section{
+          width: 100%;
+          height: 20px;
+          .close_button{
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            background-image: url(../src/images/icon/x-red.png);
+            width: 20px;
+            height: 20px;
+            float: right;
+            cursor: pointer;
+          }
+        }
+        .modal_header_section{
+          width: 100%;
+          height: 72px;
+          .modal_logo{
+            float: left;
+            margin-left: 20px;
+            width: 110px;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+          }
+          .modal_time_info{
+            width: 190px;
+            height: 100%;
+            float:left;
+            margin-left: 20px;
+            .modal_organization{
+              width: 45px;
+              height: 45px;
+              background-repeat: no-repeat;
+              background-size: contain;
+              background-position: center;
+            }
+            .modal_date{
+              font-family: SourceSansPro;
+              font-style: italic;
+               font-size: 20px;
+               font-weight: 600;
+               color: #f2f2f2;
+               line-height: 25px;
+            }
+          }
+          .modal_points{
+            width: 108px;
+            height: 52px;
+            margin-top: 20px;
+            background-image: url('../src/images/icon/points.png');
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            float: right;
+            .points_logo{
+              background-image: url(../src/images/icon/pin-icon-yellow.png);
+              background-repeat: no-repeat;
+              background-size: contain;
+              background-position: center;
+              width: 25px;
+              height: 25px;
+              margin: 17px 0 9px 10px;
+              float: left;
+            }
+            .points_num{
+              float: left;
+              font-family: SourceSansPro;
+              font-size: 26px;
+              font-weight: 900;
+              color: #ffffff;
+              margin: 11px 0 0 5px;
+            }
           }
         }
       }

@@ -266,4 +266,6 @@ $scope.epgList = [{title:'Real Madrid - M.United',
     $scope.currentVideo = video;
   }
 
+  $('#home_modal').modal('show');
+
 });

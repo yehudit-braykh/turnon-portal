@@ -248,6 +248,8 @@
 .home_page .center_container .center_image .center_epg_container .epg_container .epg_list .epg_item {
   padding: 0.8vw;
   height: 5vw;
+  cursor: pointer;
+  transition: all 0.25s;
 }
 .home_page .center_container .center_image .center_epg_container .epg_container .epg_list .epg_item .epg_info {
   width: 75%;
@@ -275,6 +277,9 @@
   background-position: center;
   width: 4.6vw;
   height: 3.3vw;
+}
+.home_page .center_container .center_image .center_epg_container .epg_container .epg_list .epg_item:hover {
+  background-color: #18d676;
 }
 .home_page .channels_container {
   background-color: #18d676;
@@ -772,7 +777,7 @@
   margin-top: 1vw;
 }
 .home_page .content_container .video_full_desc_container .full_desc_info .full_desc_desc_share .full_desc_share_button {
-  background-image: url(../src/images/icon/share-green@2x.png);
+  background-image: url(../src/images/icon/shape@2x.png);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -944,6 +949,96 @@
   color: #ffffff;
   line-height: 2.8vw;
   text-align: center;
+}
+@media (min-width: 768px) {
+  #home_modal .modal-dialog {
+    width: 500px;
+    margin: 35vh auto;
+  }
+}
+#home_modal .modal-dialog .modal-content {
+  border-radius: 10px;
+  background-color: rgba(26, 37, 48, 0.9);
+  border: solid 12px #18d676;
+}
+#home_modal .modal-dialog .modal-content .modal-body {
+  padding: 10px;
+}
+#home_modal .modal-dialog .modal-content .modal-body .close_section {
+  width: 100%;
+  height: 20px;
+}
+#home_modal .modal-dialog .modal-content .modal-body .close_section .close_button {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url(../src/images/icon/x-red.png);
+  width: 20px;
+  height: 20px;
+  float: right;
+  cursor: pointer;
+}
+#home_modal .modal-dialog .modal-content .modal-body .modal_header_section {
+  width: 100%;
+  height: 72px;
+}
+#home_modal .modal-dialog .modal-content .modal-body .modal_header_section .modal_logo {
+  float: left;
+  margin-left: 20px;
+  width: 110px;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+#home_modal .modal-dialog .modal-content .modal-body .modal_header_section .modal_time_info {
+  width: 190px;
+  height: 100%;
+  float: left;
+  margin-left: 20px;
+}
+#home_modal .modal-dialog .modal-content .modal-body .modal_header_section .modal_time_info .modal_organization {
+  width: 45px;
+  height: 45px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+#home_modal .modal-dialog .modal-content .modal-body .modal_header_section .modal_time_info .modal_date {
+  font-family: SourceSansPro;
+  font-style: italic;
+  font-size: 20px;
+  font-weight: 600;
+  color: #f2f2f2;
+  line-height: 25px;
+}
+#home_modal .modal-dialog .modal-content .modal-body .modal_header_section .modal_points {
+  width: 108px;
+  height: 52px;
+  margin-top: 20px;
+  background-image: url('../src/images/icon/points.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  float: right;
+}
+#home_modal .modal-dialog .modal-content .modal-body .modal_header_section .modal_points .points_logo {
+  background-image: url(../src/images/icon/pin-icon-yellow.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 25px;
+  height: 25px;
+  margin: 17px 0 9px 10px;
+  float: left;
+}
+#home_modal .modal-dialog .modal-content .modal-body .modal_header_section .modal_points .points_num {
+  float: left;
+  font-family: SourceSansPro;
+  font-size: 26px;
+  font-weight: 900;
+  color: #ffffff;
+  margin: 11px 0 0 5px;
 }
 .header_page {
   font-family: SourceSansPro;
