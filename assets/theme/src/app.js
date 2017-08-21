@@ -14,6 +14,10 @@ turnOnApp.config(function($routeProvider, $locationProvider){
         templateUrl: '/assets/theme/src/models/newsfeed/newsfeed.html',
         controller: 'newsfeedControler'
     })
+    .when('/vod', {
+        templateUrl: '/assets/theme/src/models/vod_page/vod.html',
+        controller: 'vodControler'
+    })
 
     .otherwise({
         redirectTo: '/'

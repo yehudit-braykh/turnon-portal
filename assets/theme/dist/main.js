@@ -14,6 +14,10 @@ turnOnApp.config(function($routeProvider, $locationProvider){
         templateUrl: '/assets/theme/src/models/newsfeed/newsfeed.html',
         controller: 'newsfeedControler'
     })
+    .when('/vod', {
+        templateUrl: '/assets/theme/src/models/vod_page/vod.html',
+        controller: 'vodControler'
+    })
 
     .otherwise({
         redirectTo: '/'
@@ -25,6 +29,11 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('directives/video_block/video_block.html',
     "<div class=video_block_page><div class=\"col-xs-3 video_list_container\" ng-repeat=\"video in model\"><div class=video_list_image style=\"background-image: url('{{video.url_image}}')\"><div class=video_list_background></div><div class=video_logo style=\"background-image: url('{{video.url_logo}}')\"></div><div class=video_play_button></div><div class=video_points><div class=pin_icon></div><div class=points_num>{{video.points}}</div></div><div class=video_desc_hover><div class=\"col-xs-6 video_desc_title\">{{video.title}}</div><div class=\"col-xs-6 video_desc_share\"><div class=video_add_to_my_list></div><div class=video_share_button></div></div><div class=\"col-xs-12 video_desc_info\">{{video.description | limitTo: 100}}<span ng-if=\"video.description.length > 100\">[...]</span></div><div class=\"col-xs-12 video_desc_arrow\"></div></div></div></div></div>"
+  );
+
+
+  $templateCache.put('directives/vod_block/vod_block.html',
+    "<div class=video_block_page><div class=\"col-xs-15 video_list_container\" ng-repeat=\"video in model\"><div class=video_list_image style=\"background-image: url('{{video.url_image}}')\"><div class=video_list_background></div><div class=video_logo style=\"background-image: url('{{video.url_logo}}')\"></div><div class=video_play_button></div><div class=video_points><div class=pin_icon></div><div class=points_num>{{video.points}}</div></div><div class=video_desc_hover><div class=\"col-xs-6 video_desc_title\">{{video.title}}</div><div class=\"col-xs-6 video_desc_share\"><div class=video_add_to_my_list></div><div class=video_share_button></div></div><div class=\"col-xs-12 video_desc_info\">{{video.description | limitTo: 100}}<span ng-if=\"video.description.length > 100\">[...]</span></div><div class=\"col-xs-12 video_desc_arrow\"></div></div></div></div></div>"
   );
 
 
@@ -44,7 +53,12 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('models/newsfeed/newsfeed.html',
-    "<div class=newsfeed_page><div class=\"page_container row\"><div class=\"col-xs-12 news_feed_container\"><div class=newsfeed-brand style=\"background-image: url('/assets/theme/src/images/headers/group-8-copy.png')\"></div></div><div class=contant_container><div id=myCarousel class=\"col-xs-12 carousel slide\" data-ride=carousel><ol class=carousel-indicators><li data-target=#myCarousel data-slide-to=0 class=active></li><li data-target=#myCarousel data-slide-to=1></li><li data-target=#myCarousel data-slide-to=2></li></ol><div class=carousel-inner><div class=\"item active\"><div class=right_div><div class=carousel-image style=\"background-image: url('/assets/theme/src/images/news/rectangle-12-copy-13.png')\"><div class=logo style=\"background-image: url('/assets/theme/src/images/logo/nfl-logo@2x.png')\"></div><div class=play_button style=\"background-image: url('/assets/theme/src/images/icon/play.png')\"></div></div><div class=gradient></div></div><div class=left_div><div class=headline>RAFAEL NADAL MAKING THE RIGHT MOVE</div><div class=description>The cast brass and cast stainless steel burners have the smallest burrs by far. This will mean less chaos in the gas flow, fewer trapped particulate matter in the burner and a cleaner burning grill. The following comparison shows how the ports are formed. Why is port formation important? Several reasons. If the hole is punched into a sheet metal.</div><div class=full_desc_share><div class=full_desc_add_to_my_list style=\"background-image: url('/assets/theme/src/images/icon/add_to_list@2x.png')\"></div><div class=full_desc_share_button style=\"background-image: url('/assets/theme/src/images/icon/shape.png')\"></div></div></div></div><div class=item><div class=right_div><div class=carousel-image style=\"background-image: url('/assets/theme/src/images/news/rectangle-12-copy-13.png')\"><div class=logo style=\"background-image: url('/assets/theme/src/images/logo/nfl-logo@2x.png')\"></div><div class=play_button style=\"background-image: url('/assets/theme/src/images/icon/play.png')\"></div></div><div class=gradient></div></div><div class=left_div><div class=headline>RAFAEL NADAL MAKING THE RIGHT MOVE</div><div class=description>The cast brass and cast stainless steel burners have the smallest burrs by far. This will mean less chaos in the gas flow, fewer trapped particulate matter in the burner and a cleaner burning grill. The following comparison shows how the ports are formed. Why is port formation important? Several reasons. If the hole is punched into a sheet metal.</div><div class=full_desc_share><div class=full_desc_add_to_my_list style=\"background-image: url('/assets/theme/src/images/icon/add_to_list@2x.png')\"></div><div class=full_desc_share_button style=\"background-image: url('/assets/theme/src/images/icon/shape.png')\"></div></div></div></div><div class=item><div class=right_div><div class=carousel-image style=\"background-image: url('/assets/theme/src/images/news/rectangle-12-copy-13.png')\"><div class=logo style=\"background-image: url('/assets/theme/src/images/logo/nfl-logo@2x.png')\"></div><div class=play_button style=\"background-image: url('/assets/theme/src/images/icon/play.png')\"></div></div><div class=gradient></div></div><div class=left_div><div class=headline>RAFAEL NADAL MAKING THE RIGHT MOVE</div><div class=description>The cast brass and cast stainless steel burners have the smallest burrs by far. This will mean less chaos in the gas flow, fewer trapped particulate matter in the burner and a cleaner burning grill. The following comparison shows how the ports are formed. Why is port formation important? Several reasons. If the hole is punched into a sheet metal.</div><div class=full_desc_share><div class=full_desc_add_to_my_list style=\"background-image: url('/assets/theme/src/images/icon/add_to_list@2x.png')\"></div><div class=full_desc_share_button style=\"background-image: url('/assets/theme/src/images/icon/shape.png')\"></div></div></div></div></div></div><div class=\"newsfeed_header col-xs-12\">today’s top stories</div><div class=\"newsfeed_contant_container col-xs-12\"><video-block data-model=videosList></video-block></div><div class=\"newsfeed_header col-xs-12\">yesterday’s top stories</div><div class=\"newsfeed_contant_container col-xs-12\"><video-block data-model=videosList></video-block></div><div class=\"newsfeed_header col-xs-12\">older stories<div class=arrow style=\"background-image: url('/assets/theme/src/images/icon/triangle.png')\"></div></div></div></div></div>"
+    "<div class=newsfeed_page><div class=\"page_container row\"><div class=\"col-xs-12 news_feed_container\"><div class=newsfeed-brand style=\"background-image: url('/assets/theme/src/images/headers/group-8-copy.png')\"></div></div><div class=contant_container><div id=myCarousel class=\"col-xs-12 carousel slide\" data-ride=carousel><ol class=carousel-indicators><li data-target=#myCarousel data-slide-to=0 class=active></li><li data-target=#myCarousel data-slide-to=1></li><li data-target=#myCarousel data-slide-to=2></li></ol><div class=carousel-inner><div class=\"item active\"><div class=right_div><div class=carousel-image style=\"background-image: url('/assets/theme/src/images/news/rectangle-12-copy-13.png')\"><div class=logo style=\"background-image: url('/assets/theme/src/images/logo/nfl-logo@2x.png')\"></div><div class=play_button style=\"background-image: url('/assets/theme/src/images/icon/play.png')\"></div><div class=full_desc_points><div class=pin_icon></div><div class=points_num>200</div></div></div><div class=gradient></div></div><div class=left_div><div class=headline>RAFAEL NADAL MAKING THE RIGHT MOVE</div><div class=description>The cast brass and cast stainless steel burners have the smallest burrs by far. This will mean less chaos in the gas flow, fewer trapped particulate matter in the burner and a cleaner burning grill. The following comparison shows how the ports are formed. Why is port formation important? Several reasons. If the hole is punched into a sheet metal.</div><div class=full_desc_share><div class=full_desc_add_to_my_list style=\"background-image: url('/assets/theme/src/images/icon/add_to_list@2x.png')\"></div><div class=full_desc_share_button style=\"background-image: url('/assets/theme/src/images/icon/shape.png')\"></div></div></div></div><div class=item><div class=right_div><div class=carousel-image style=\"background-image: url('/assets/theme/src/images/news/rectangle-12-copy-13.png')\"><div class=logo style=\"background-image: url('/assets/theme/src/images/logo/nfl-logo@2x.png')\"></div><div class=play_button style=\"background-image: url('/assets/theme/src/images/icon/play.png')\"></div></div><div class=gradient></div></div><div class=left_div><div class=headline>RAFAEL NADAL MAKING THE RIGHT MOVE</div><div class=description>The cast brass and cast stainless steel burners have the smallest burrs by far. This will mean less chaos in the gas flow, fewer trapped particulate matter in the burner and a cleaner burning grill. The following comparison shows how the ports are formed. Why is port formation important? Several reasons. If the hole is punched into a sheet metal.</div><div class=full_desc_share><div class=full_desc_add_to_my_list style=\"background-image: url('/assets/theme/src/images/icon/add_to_list@2x.png')\"></div><div class=full_desc_share_button style=\"background-image: url('/assets/theme/src/images/icon/shape.png')\"></div></div></div></div><div class=item><div class=right_div><div class=carousel-image style=\"background-image: url('/assets/theme/src/images/news/rectangle-12-copy-13.png')\"><div class=logo style=\"background-image: url('/assets/theme/src/images/logo/nfl-logo@2x.png')\"></div><div class=play_button style=\"background-image: url('/assets/theme/src/images/icon/play.png')\"></div></div><div class=gradient></div></div><div class=left_div><div class=headline>RAFAEL NADAL MAKING THE RIGHT MOVE</div><div class=description>The cast brass and cast stainless steel burners have the smallest burrs by far. This will mean less chaos in the gas flow, fewer trapped particulate matter in the burner and a cleaner burning grill. The following comparison shows how the ports are formed. Why is port formation important? Several reasons. If the hole is punched into a sheet metal.</div><div class=full_desc_share><div class=full_desc_add_to_my_list style=\"background-image: url('/assets/theme/src/images/icon/add_to_list@2x.png')\"></div><div class=full_desc_share_button style=\"background-image: url('/assets/theme/src/images/icon/shape.png')\"></div></div></div></div></div></div><div class=\"newsfeed_header col-xs-12\">today’s top stories</div><div class=\"newsfeed_contant_container col-xs-12\"><video-block data-model=videosList></video-block></div><div class=\"newsfeed_header col-xs-12\">yesterday’s top stories</div><div class=\"newsfeed_contant_container col-xs-12\"><video-block data-model=videosList></video-block></div><div class=\"newsfeed_header col-xs-12\">older stories<div class=arrow style=\"background-image: url('/assets/theme/src/images/icon/triangle.png')\"></div></div></div></div></div>"
+  );
+
+
+  $templateCache.put('models/vod_page/vod.html',
+    "<div class=\"vod_page row\"><div class=\"col-xs-12 sport_list_container\"><div class=\"kinds_of_sports {{activeSport.id == sl.id?'active':''}}\" ng-repeat=\"sl in sports\" ng-click=getActiveSport(sl);><div class=sport_logo style=\"background-image: url('{{sl.url}}')\"></div><div class=sport_logo_hover style=\"background-image: url('{{sl.url_hover}}')\"></div><div class=sport_title>{{sl.title}}</div></div></div><div class=\"inner_container col-xs-12\"><div class=\"sport_kind_header col-xs-12\">Soccer</div><vod-block class=col-xs-12 data-model=videosList></vod-block><div class=\"sport_kind_header col-xs-12\">Basketball</div></div></div>"
   );
 
 }]);
@@ -70,6 +84,30 @@ turnOnApp.directive('videoBlock', function() {
 
       }],
       templateUrl: '/assets/theme/src/directives/video_block/video_block.html',
+    };
+  })
+
+var va = null
+turnOnApp.directive('vodBlock', function() {
+    return {
+      restrict: 'E',
+      transclude: true,
+      scope: {
+          model: '=',
+          limit: "=",
+          order: "@",
+          reverse: "=",
+          link: "=",
+          search: '='
+      },
+      controller: ['$scope', '$location', function vodBlockController($scope, $location) {
+          va = $scope;
+          $scope.go = function (path) {
+              $location.path(path);
+          };
+
+      }],
+      templateUrl: '/assets/theme/src/directives/vod_block/vod_block.html',
     };
   })
 
@@ -413,6 +451,134 @@ turnOnApp.controller('newsfeedControler', function newsfeedControler ($scope, $l
                  url_logo:'assets/theme/src/images/logo/nfl-logo.png',
                  points: '200',
                  description: 'After ten minutes with Ed Tettemer in the offices of the agency he founded with partner, Steve Red, you begin to'}];
+
+
+});
+
+var vod = null;
+turnOnApp.controller('vodControler', function vodControler ($scope, $location, $http, $log,$interval) {
+  vod = $scope;
+
+        $scope.sports = [{id: '1',
+                  title:'Soccer',
+                  url:'assets/theme/src/images/sport/1_gray.png',
+                  url_hover:'assets/theme/src/images/sport/1_white.png'},
+                  {id: '2',
+                  title:'Football',
+                  url:'assets/theme/src/images/sport/2_gray.png',
+                  url_hover:'assets/theme/src/images/sport/2_white.png'},
+                  {id: '3',
+                  title:'Basketball',
+                  url:'assets/theme/src/images/sport/3_gray.png',
+                  url_hover:'assets/theme/src/images/sport/3_white.png'},
+                  {id: '4',
+                  title:'Hokey',
+                  url:'assets/theme/src/images/sport/4_gray.png',
+                  url_hover:'assets/theme/src/images/sport/4_white.png'},
+                  {id: '5',
+                  title:'Tennis',
+                  url:'assets/theme/src/images/sport/5_gray.png',
+                  url_hover:'assets/theme/src/images/sport/5_white.png'},
+                  {id: '6',
+                  title:'Pingpong',
+                  url:'assets/theme/src/images/sport/6_gray.png',
+                  url_hover:'assets/theme/src/images/sport/6_white.png'},
+                  {id: '7',
+                  title:'Volleyball',
+                  url:'assets/theme/src/images/sport/7_gray.png',
+                  url_hover:'assets/theme/src/images/sport/7_white.png'},
+                  {id: '8',
+                  title:'Baseball',
+                  url:'assets/theme/src/images/sport/8_gray.png',
+                  url_hover:'assets/theme/src/images/sport/8_white.png'},
+                  {id: '9',
+                  title:'Cricket',
+                  url:'assets/theme/src/images/sport/9_gray.png',
+                  url_hover:'assets/theme/src/images/sport/9_white.png'},
+                  {id: '10',
+                  title:'Golf',
+                  url:'assets/theme/src/images/sport/10_gray.png',
+                  url_hover:'assets/theme/src/images/sport/10_white.png'},
+                  {id: '11',
+                  title:'Water polo',
+                  url:'assets/theme/src/images/sport/11_gray.png',
+                  url_hover:'assets/theme/src/images/sport/11_white.png'},
+                  {id: '12',
+                  title:'Boxing',
+                  url:'assets/theme/src/images/sport/12_gray.png',
+                  url_hover:'assets/theme/src/images/sport/12_white.png'},
+                  {id: '13',
+                  title:'Bicycle',
+                  url:'assets/theme/src/images/sport/13_gray.png',
+                  url_hover:'assets/theme/src/images/sport/13_white.png'},
+                  {id: '14',
+                  title:'Horse racing',
+                  url:'assets/theme/src/images/sport/14_gray.png',
+                  url_hover:'assets/theme/src/images/sport/14_white.png'},
+                  {id: '15',
+                  title:'Archery',
+                  url:'assets/theme/src/images/sport/15_gray.png',
+                  url_hover:'assets/theme/src/images/sport/15_white.png'},
+                  {id: '16',
+                  title:'Ski',
+                  url:'assets/theme/src/images/sport/16_gray.png',
+                  url_hover:'assets/theme/src/images/sport/16_white.png'}];
+
+        $scope.videosList = [{id: '1',
+              title:'Top Story 3',
+              url_image:'assets/theme/src/images/news/1.png',
+              url_logo:'assets/theme/src/images/logo/nfl-logo@2x.png',
+              points: '150',
+              description: 'The cast brass and cast stainless steel burners have the smallest burrs by far. This will mean less chaos in the gas flow, fewer trapped particulate matter in the burner and a cleaner burning grill. The following comparison shows how the ports are formed. Why is port formation important? Several reasons. If the hole is punched into a sheet metal.'},
+
+              {id: '2',
+              title:'Top Story 3',
+              url_image:'assets/theme/src/images/news/2.png',
+              url_logo:'assets/theme/src/images/logo/nfl-logo@2x.png',
+              points: '300',
+              description: 'The cast brass and cast stainless steel burners have the smallest burrs by far. This will mean less chaos in the gas flow, fewer trapped particulate matter in the burner and a cleaner burning grill. The following comparison shows how the ports are formed. Why is port formation important? Several reasons. If the hole is punched into a sheet metal.'},
+
+              {id: '3',
+              title:'Top Story 3',
+              url_image:'assets/theme/src/images/news/3.png',
+              url_logo:'assets/theme/src/images/logo/nfl-logo@2x.png',
+              points: '500',
+              description: 'The cast brass and cast stainless steel burners have the smallest burrs by far. This will mean less chaos in the gas flow, fewer trapped particulate matter in the burner and a cleaner burning grill. The following comparison shows how the ports are formed. Why is port formation important? Several reasons. If the hole is punched into a sheet metal.'},
+
+              {id: '4',
+              title:'Top Story 3',
+              url_image:'assets/theme/src/images/news/4.png',
+              url_logo:'assets/theme/src/images/logo/nfl-logo@2x.png',
+              points: '250',
+              description: 'The cast brass and cast stainless steel burners have the smallest burrs by far. This will mean less chaos in the gas flow, fewer trapped particulate matter in the burner and a cleaner burning grill. The following comparison shows how the ports are formed. Why is port formation important? Several reasons. If the hole is punched into a sheet metal.'},
+
+              {id: '5',
+              title:'Top Story 3',
+              url_image:'assets/theme/src/images/news/1.png',
+              url_logo:'assets/theme/src/images/logo/nfl-logo@2x.png',
+              points: '200',
+              description: 'The cast brass and cast stainless steel burners have the smallest burrs by far. This will mean less chaos in the gas flow, fewer trapped particulate matter in the burner and a cleaner burning grill. The following comparison shows how the ports are formed. Why is port formation important? Several reasons. If the hole is punched into a sheet metal.'},
+
+              {id: '6',
+              title:'Top Story 3',
+              url_image:'assets/theme/src/images/news/2.png',
+              url_logo:'assets/theme/src/images/logo/nfl-logo@2x.png',
+              points: '500',
+              description: 'The cast brass and cast stainless steel burners have the smallest burrs by far. This will mean less chaos in the gas flow, fewer trapped particulate matter in the burner and a cleaner burning grill. The following comparison shows how the ports are formed. Why is port formation important? Several reasons. If the hole is punched into a sheet metal.'},
+
+              {id: '7',
+              title:'Top Story 3',
+              url_image:'assets/theme/src/images/news/3.png',
+              url_logo:'assets/theme/src/images/logo/nfl-logo@2x.png',
+              points: '250',
+              description: 'The cast brass and cast stainless steel burners have the smallest burrs by far. This will mean less chaos in the gas flow, fewer trapped particulate matter in the burner and a cleaner burning grill. The following comparison shows how the ports are formed. Why is port formation important? Several reasons. If the hole is punched into a sheet metal.'},
+
+              {id: '8',
+              title:'Top Story 3',
+              url_image:'assets/theme/src/images/news/4.png',
+              url_logo:'assets/theme/src/images/logo/nfl-logo@2x.png',
+              points: '200',
+              description: 'The cast brass and cast stainless steel burners have the smallest burrs by far. This will mean less chaos in the gas flow, fewer trapped particulate matter in the burner and a cleaner burning grill. The following comparison shows how the ports are formed. Why is port formation important? Several reasons. If the hole is punched into a sheet metal.'}];
 
 
 });
