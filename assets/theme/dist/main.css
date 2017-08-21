@@ -1172,7 +1172,6 @@
   transition: all 0.25s;
 }
 .newsfeed_page .page_container .contant_container .carousel .carousel-inner .item .right_div .carousel-image .full_desc_points .pin_icon {
-  background-image: url('../src/images/icon/pin-icon-yellow.png');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
