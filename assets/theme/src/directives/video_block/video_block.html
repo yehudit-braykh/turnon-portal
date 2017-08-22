@@ -1,5 +1,6 @@
+<div class="" ng-repeat="video in model track by $index">
 <!-- VIDEO LIST -->
-<div class="col-xs-3 video_list_container {{currentVideo.id == video.id?'active':''}}" ng-repeat="video in model">
+<div class="col-xs-3 video_list_container {{currentVideo.id == video.id?'active':''}}" >
 
     <div class="video_list_image" style="background-image: url('{{video.url_image}}');">
         <div class="video_list_background"></div>
@@ -16,16 +17,15 @@
             <div class="video_share_button"></div>
           </div>
           <div class="col-xs-12 video_desc_info">{{video.description | limitTo: 100}}<span ng-if="video.description.length > 100">[...]</span></div>
-          <div class="col-xs-12 video_desc_arrow" ng-click="getFullDescription(video);"></div>
+          <div class="col-xs-12 video_desc_arrow" ng-click="getFullDescription(video, $index);"></div>
         </div>
     </div>
     <div class="video_aroow_green"></div>
-
 </div>
 <!-- END VIDEO LIST -->
 
 <!-- VIDEO FULL DISCRIPTION -->
-<div ng-if="currentVideo.id" class="col-xs-12 video_full_desc_container">
+<div ng-if="currentVideo.id && ($index + 1) % 4 == 0 && getLine($index) == currentVideo.line" class="col-xs-12 video_full_desc_container">
   <div class="col-xs-4 full_desc_info">
     <div class="col-xs-12 full_desc_title">{{currentVideo.title}}</div>
     <div class="col-xs-12 full_desc_text">{{currentVideo.description}}</div>
@@ -45,3 +45,4 @@
   </div>
 </div>
 <!-- END VIDEO FULL DISCRIPTION -->
+</div>

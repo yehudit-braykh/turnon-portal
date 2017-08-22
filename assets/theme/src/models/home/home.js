@@ -2,7 +2,7 @@ var h = null;
 turnOnApp.controller('homeController', function homeController ($scope, $location, $http, $log,$interval) {
   h = $scope;
 
-  $scope.currentVideo = [];
+  //$scope.currentVideo = [];
   $scope.activeSport = [];
   $scope.purchaseEvent = [];
   $scope.currentPoint = [];
@@ -265,9 +265,9 @@ $scope.epgList = [{title:'Real Madrid - M.United',
                 url:'assets/theme/src/images/logo/espn.png'}];
 
 
-  $scope.getFullDescription = function(video){
-    $scope.currentVideo = video;
-  }
+  // $scope.getFullDescription = function(video){
+  //   $scope.currentVideo = video;
+  // }
 
   $scope.getPurchaseEvent = function(event){
     $scope.purchaseEvent = event;

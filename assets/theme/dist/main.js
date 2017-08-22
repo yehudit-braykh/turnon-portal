@@ -37,7 +37,7 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('directives/video_block/video_block.html',
-    "<div class=\"col-xs-3 video_list_container {{currentVideo.id == video.id?'active':''}}\" ng-repeat=\"video in model\"><div class=video_list_image style=\"background-image: url('{{video.url_image}}')\"><div class=video_list_background></div><div class=video_logo style=\"background-image: url('{{video.url_logo}}')\"></div><div class=video_play_button></div><div class=video_points><div class=pin_icon></div><div class=points_num>{{video.points}}</div></div><div class=video_desc_hover><div class=\"col-xs-6 video_desc_title\">{{video.title}}</div><div class=\"col-xs-6 video_desc_share\"><div class=video_add_to_my_list></div><div class=video_share_button></div></div><div class=\"col-xs-12 video_desc_info\">{{video.description | limitTo: 100}}<span ng-if=\"video.description.length > 100\">[...]</span></div><div class=\"col-xs-12 video_desc_arrow\" ng-click=getFullDescription(video);></div></div></div><div class=video_aroow_green></div></div><div ng-if=currentVideo.id class=\"col-xs-12 video_full_desc_container\"><div class=\"col-xs-4 full_desc_info\"><div class=\"col-xs-12 full_desc_title\">{{currentVideo.title}}</div><div class=\"col-xs-12 full_desc_text\">{{currentVideo.description}}</div><div class=\"col-xs-12 full_desc_desc_share\"><div class=full_desc_add_to_my_list></div><div class=full_desc_share_button></div></div></div><div class=\"col-xs-8 full_desc_image\" style=\"background-image: url('{{currentVideo.url_image}}')\"><div class=full_desc_background></div><div class=full_desc_logo style=\"background-image: url('{{currentVideo.url_logo}}')\"></div><div class=full_desc_play_button></div><div class=full_desc_points><div class=pin_icon></div><div class=points_num>{{currentVideo.points}}</div></div></div></div>"
+    "<div ng-repeat=\"video in model track by $index\"><div class=\"col-xs-3 video_list_container {{currentVideo.id == video.id?'active':''}}\"><div class=video_list_image style=\"background-image: url('{{video.url_image}}')\"><div class=video_list_background></div><div class=video_logo style=\"background-image: url('{{video.url_logo}}')\"></div><div class=video_play_button></div><div class=video_points><div class=pin_icon></div><div class=points_num>{{video.points}}</div></div><div class=video_desc_hover><div class=\"col-xs-6 video_desc_title\">{{video.title}}</div><div class=\"col-xs-6 video_desc_share\"><div class=video_add_to_my_list></div><div class=video_share_button></div></div><div class=\"col-xs-12 video_desc_info\">{{video.description | limitTo: 100}}<span ng-if=\"video.description.length > 100\">[...]</span></div><div class=\"col-xs-12 video_desc_arrow\" ng-click=\"getFullDescription(video, $index);\"></div></div></div><div class=video_aroow_green></div></div><div ng-if=\"currentVideo.id && ($index + 1) % 4 == 0 && getLine($index) == currentVideo.line\" class=\"col-xs-12 video_full_desc_container\"><div class=\"col-xs-4 full_desc_info\"><div class=\"col-xs-12 full_desc_title\">{{currentVideo.title}}</div><div class=\"col-xs-12 full_desc_text\">{{currentVideo.description}}</div><div class=\"col-xs-12 full_desc_desc_share\"><div class=full_desc_add_to_my_list></div><div class=full_desc_share_button></div></div></div><div class=\"col-xs-8 full_desc_image\" style=\"background-image: url('{{currentVideo.url_image}}')\"><div class=full_desc_background></div><div class=full_desc_logo style=\"background-image: url('{{currentVideo.url_logo}}')\"></div><div class=full_desc_play_button></div><div class=full_desc_points><div class=pin_icon></div><div class=points_num>{{currentVideo.points}}</div></div></div></div></div>"
   );
 
 
@@ -122,9 +122,18 @@ turnOnApp.directive('videoBlock', function() {
               $location.path(path);
           };
 
-          $scope.getFullDescription = function(video){
+          $scope.getLine = function (i) {
+              var line = parseInt(i / 4);
+              return line;
+          };
+
+          $scope.getFullDescription = function(video, i){
             $scope.currentVideo = video;
+            var line = parseInt(i / 4);
+            $scope.currentVideo.line = line;
+            //console.log($scope.currentVideo);
           }
+
 
       }],
       templateUrl: '/assets/theme/src/directives/video_block/video_block.html',
@@ -175,7 +184,7 @@ var h = null;
 turnOnApp.controller('homeController', function homeController ($scope, $location, $http, $log,$interval) {
   h = $scope;
 
-  $scope.currentVideo = [];
+  //$scope.currentVideo = [];
   $scope.activeSport = [];
   $scope.purchaseEvent = [];
   $scope.currentPoint = [];
@@ -438,9 +447,9 @@ $scope.epgList = [{title:'Real Madrid - M.United',
                 url:'assets/theme/src/images/logo/espn.png'}];
 
 
-  $scope.getFullDescription = function(video){
-    $scope.currentVideo = video;
-  }
+  // $scope.getFullDescription = function(video){
+  //   $scope.currentVideo = video;
+  // }
 
   $scope.getPurchaseEvent = function(event){
     $scope.purchaseEvent = event;

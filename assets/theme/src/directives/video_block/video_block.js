@@ -19,9 +19,18 @@ turnOnApp.directive('videoBlock', function() {
               $location.path(path);
           };
 
-          $scope.getFullDescription = function(video){
+          $scope.getLine = function (i) {
+              var line = parseInt(i / 4);
+              return line;
+          };
+
+          $scope.getFullDescription = function(video, i){
             $scope.currentVideo = video;
+            var line = parseInt(i / 4);
+            $scope.currentVideo.line = line;
+            //console.log($scope.currentVideo);
           }
+
 
       }],
       templateUrl: '/assets/theme/src/directives/video_block/video_block.html',
