@@ -915,9 +915,13 @@
   bottom: 0;
   height: 25%;
   width: 100%;
+  transition: all 0.25s;
 }
-.home_page .content_container .social_list_container .social_list_image .social_desc .user_image {
-  padding: 0;
+.home_page .content_container .social_list_container .social_list_image .social_desc .social_user_image {
+  padding-left: 0.75vw;
+  padding-right: 0.75vw;
+}
+.home_page .content_container .social_list_container .social_list_image .social_desc .social_user_image .user_image {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -948,8 +952,94 @@
   font-size: 0.5vw;
   text-align: left;
   color: #ffffff;
-  line-height: 2.8vw;
+  line-height: 2.7vw;
   text-align: center;
+}
+.home_page .content_container .social_list_container .social_list_image .social_desc .social_info {
+  padding-left: 0.75vw;
+  padding-right: 0.75vw;
+}
+.home_page .content_container .social_list_container .social_list_image .social_desc .social_info .social_likes {
+  width: 100%;
+  height: 1.2vw;
+  font-family: Roboto;
+  font-size: 0.75vw;
+  text-align: left;
+  color: #ffffff;
+}
+.home_page .content_container .social_list_container .social_list_image .social_desc .social_info .social_likes .social_heart {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 0.9vw;
+  width: 0.9vw;
+  margin-right: 0.5vw;
+  float: left;
+}
+.home_page .content_container .social_list_container .social_list_image .social_desc .social_info .social_likes .social_heart.facebook {
+  display: none;
+}
+.home_page .content_container .social_list_container .social_list_image .social_desc .social_info .social_likes .social_heart.twitter {
+  background-image: url(../src/images/icon/twitter_heart.png);
+}
+.home_page .content_container .social_list_container .social_list_image .social_desc .social_info .social_likes .social_heart.instagram {
+  background-image: url(../src/images/icon/instagram_heart.png);
+}
+.home_page .content_container .social_list_container .social_list_image .social_desc .social_info .social_likes .social_like_num {
+  float: left;
+  margin-right: 0.5vw;
+}
+.home_page .content_container .social_list_container .social_list_image .social_desc .social_info .social_likes .social_comments {
+  float: left;
+  margin-left: 0.5vw;
+}
+.home_page .content_container .social_list_container .social_list_image .social_desc .social_info .social_text {
+  font-family: Roboto;
+  font-size: 0.75vw;
+  line-height: 1.13;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+}
+.home_page .content_container .social_list_container .social_list_image .social_desc .social_info .social_share {
+  float: right;
+  background-image: url(../src/images/icon/share_arrow@2x.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 1.6vw;
+  height: 1.6vw;
+  cursor: pointer;
+  margin-right: 0.2vw;
+}
+.home_page .content_container .social_list_container .social_list_image .social_desc .social_info .social_points {
+  float: right;
+  width: 3.4vw;
+  height: 1.5vw;
+  border-radius: 100px;
+  background-color: #1a2937;
+  border: solid 0.1vw #18d676;
+}
+.home_page .content_container .social_list_container .social_list_image .social_desc .social_info .social_points .pin_icon {
+  background-image: url(../src/images/icon/pin-icon-yellow.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 0.9vw;
+  height: 0.9vw;
+  margin: 0.15vw 0.15vw 0.15vw 0.2vw;
+  float: left;
+}
+.home_page .content_container .social_list_container .social_list_image .social_desc .social_info .social_points .points_num {
+  float: left;
+  font-family: SourceSansPro;
+  font-size: 0.9vw;
+  font-weight: 900;
+  text-align: center;
+  color: #ffffff;
+  line-height: 1.3vw;
+}
+.home_page .content_container .social_list_container .social_list_image:hover .social_desc {
+  height: 100%;
 }
 @media (min-width: 768px) {
   #home_epg_modal .modal-dialog {

@@ -206,6 +206,20 @@
               <div class="col-xs-3 social_title">{{social.title}}</div>
               <div class="col-xs-3 social_icon"></div>
               <div class="col-xs-3 social_time">{{social.time}}</div>
+              <div class="col-xs-12 social_info">
+                <div class="social_likes">
+                  <div class="social_heart {{social.social}}"></div>
+                  <div class="social_like_num">89</div>
+                  <div ng-if="social.social == 'facebook'" class="social_like_num">likes</div>
+                  <div ng-if="social.social == 'facebook'" class="social_comments">13 comments</div>
+                </div>
+                <div class="social_text">HSo you’re trying to surf a site like myspace, hotmail or yahoo mail from work or school and its blocked by your school, work government.</div>          
+                <div class="social_points">
+                  <div class="pin_icon"></div>
+                  <div class="points_num">150</div>
+                </div>
+                <div class="social_share"></div>
+              </div>
             </div>
           </div>
       </div>
