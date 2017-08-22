@@ -1,0 +1,106 @@
+.discover_page {
+    .page_container {
+        .discover_header {
+            background-color: #fc5f3d;;
+            padding-right: 14%;
+            padding-left: 14%;
+            height: 6vw;
+            .discover_brand {
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
+                height: 3.5vw;
+                width: 20vw;
+                margin-top: 1.2vw;
+            }
+        }
+
+        .sport_list_container{
+          background-color: #18d676;
+          padding-right: 14%;
+          padding-left: 14%;
+          height: 6vw;
+          .kinds_of_sports{
+            width: 6.25%;
+            height: 2vw;
+            float: left;
+            margin-top: 2vw;
+            transition: all 0.25s;
+            .sport_logo{
+              height: 100%;
+              background-repeat: no-repeat;
+              background-position: center;
+              background-size: contain;
+              cursor: pointer;
+            }
+            .sport_logo_hover{
+              height: 100%;
+              background-repeat: no-repeat;
+              background-position: center;
+              background-size: contain;
+              cursor: pointer;
+              display: none;
+            }
+            .sport_title{
+              display: none;
+              color: #ffffff;
+              text-align: center;
+              font-family: SourceSansPro;
+              font-style: italic;
+              font-size: 0.9vw;
+              font-weight: 600;
+              line-height: 1.5;
+            }
+            &.active{
+              height: 3vw;
+              margin-top: 1vw;
+              .sport_logo{
+                display: none;
+              }
+              .sport_logo_hover{
+                display: block;
+              }
+              .sport_title{
+                display: block;
+              }
+            }
+            &:hover{
+              height: 3vw;
+              margin-top: 1vw;
+              .sport_logo{
+                display: none;
+              }
+              .sport_logo_hover{
+                display: block;
+              }
+              .sport_title{
+                display: block;
+              }
+            }
+            &:nth-child(14){
+              .sport_title{
+                font-size: 0.75vw;
+              }
+            }
+          }
+        }
+        .inner_container {
+            padding: 0 7vw;
+            .sport_kind_header {
+                margin-top: 1.5vw;
+                background-color: #fe532f;
+                height: 3vw;
+                text-transform: uppercase;
+                color: #f2f2f2;
+                padding-left: 8vw;
+                font-size: 1.8vw;
+                font-weight: bold;
+                padding-top: 0.2vw;
+            }
+        }
+        .mylist_content {
+            padding: 2vw 13.5vw 3.5vw;
+
+        }
+    }
+}

@@ -1,0 +1,20 @@
+<div class="discover_page">
+    <div class="page_container row">
+        <div class="col-xs-12 discover_header">
+             <div class="discover_brand"  style="background-image: url('/assets/theme/src/images/headers/discover.png');"></div>
+        </div>
+        <div class="col-xs-12 sport_list_container">
+            <div class="kinds_of_sports {{activeSport.id == sl.id?'active':''}}" ng-repeat="sl in sports" ng-click="getActiveSport(sl);">
+              <div class="sport_logo" style="background-image: url('{{sl.url}}');"></div>
+              <div class="sport_logo_hover" style="background-image: url('{{sl.url_hover}}');"></div>
+              <div class="sport_title">{{sl.title}}</div>
+            </div>
+        </div>
+        <div class="inner_container col-xs-12">
+            <div class="sport_kind_header col-xs-12">Soccer</div>
+        </div>
+        <!-- <div class="mylist_content col-xs-12">
+            <mylistvideo-Block data-model="videosList"> </mylistvideo-Block>
+        </div> -->
+    </div>
+</div>
