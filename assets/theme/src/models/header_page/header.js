@@ -6,10 +6,14 @@ turnOnApp.controller('headerController', function headerController ($scope, $loc
 
 
     $scope.Signin = function(){
-
         $scope.login = true;
     }
+
     $scope.openmanu =  function () {
         $scope.showfade = true;
     }
+
+    $scope.go = function (path) {
+      $location.path(path);
+    };
 });

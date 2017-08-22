@@ -26,6 +26,10 @@ turnOnApp.config(function($routeProvider, $locationProvider){
         templateUrl: '/assets/theme/src/models/discover/discover.html',
         controller: 'discoverController'
     })
+    .when('/social', {
+        templateUrl: '/assets/theme/src/models/social/social.html',
+        controller: 'socialController'
+    })
     .otherwise({
         redirectTo: '/'
     });;
