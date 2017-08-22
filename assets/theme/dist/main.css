@@ -1900,6 +1900,20 @@
   left: 0;
   cursor: pointer;
 }
+.mylist_video_block_page .mylist_video_container .video_arrow_orange {
+  background-image: url(../src/images/icon/arrow_green.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: top;
+  position: absolute;
+  width: 2.4vw;
+  height: 0.8vw;
+  margin-left: auto;
+  margin-right: auto;
+  right: 0;
+  left: 0;
+  display: none;
+}
 .mylist_video_block_page .mylist_video_container:hover {
   z-index: 1;
   -webkit-transform: scale(1.4);
@@ -1931,11 +1945,8 @@
 .mylist_video_block_page .mylist_video_container:hover .video_logo {
   display: none;
 }
-.social_list_container {
-  padding-right: 0.3vw!important;
-  padding-left: 0.3vw!important;
-  padding: 0.3vw;
-  position: relative;
+.mylist_video_block_page .mylist_video_container:hover .video_arrow_orange {
+  display: none!important;
   transition: all 0.5s;
 }
 .social_list_container .social_list_image {

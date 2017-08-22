@@ -154,6 +154,20 @@
           }
         }
       }
+      .video_arrow_orange{
+        background-image: url(../src/images/icon/arrow_green.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: top;
+        position: absolute;
+        width: 2.4vw;
+        height: 0.8vw;
+        margin-left: auto;
+        margin-right: auto;
+        right: 0;
+        left: 0;
+        display: none;
+      }
       &:hover{
         z-index: 1;
         -webkit-transform: scale(1.4);
@@ -183,6 +197,179 @@
         }
         .video_logo {
             display: none;
+        }
+        .video_arrow_orange{
+          display: none!important;
+        }
+      }
+      &.active{
+        .mylist_video_image{
+          .mylist_video_background{
+            border: solid 0.2vw #fc5f3d;
+            background-color: rgba(32, 32, 32, 0);
+          }
+          .video_play_button{
+            display: none;
+          }
+          .video_points{
+            display: none;
+          }
+        }
+        .video_desc_arrow{
+          display: none;
+        }
+        .status {
+            display: none;
+        }
+        .video_arrow_orange{
+          display: block;
+        }
+      }
+    }
+    .video_full_desc_container {
+      height: 26.5vw;
+      overflow: hidden;
+      padding-right: 0.8vw;
+      padding-left: 0.8vw;
+      .full_desc_info {
+        padding: 0;
+        .full_desc_title {
+          font-family: SourceSansPro;
+          font-style: italic;
+          font-size: 1.9vw;
+          font-weight: bold;
+          line-height: 0.94;
+          letter-spacing: 1.5px;
+          color: #fe6443;
+          text-transform: uppercase;
+          padding: 0;
+          margin-top: 3vw;
+          margin-bottom: 1vw;
+        }
+        .full_desc_text {
+          padding: 0;
+          font-family: Roboto;
+          font-size: 1.25vw;
+          line-height: 1.17;
+          letter-spacing: 1px;
+          color: #1a2937;
+        }
+        .full_desc_desc_share {
+          padding: 0;
+          margin-top: 1vw;
+          .full_desc_share_button {
+            background-image: url(../src/images/icon/shape@2x.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            width: 2.3vw;
+            height: 2.3vw;
+            float: right;
+            cursor: pointer;
+          }
+          .full_desc_add_to_my_list {
+            background-image: url(../src/images/icon/add_to_list@2x.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            width: 2.3vw;
+            height: 2.3vw;
+            margin-left: 1vw;
+            float: right;
+            cursor: pointer;
+          }
+        }
+      }
+      .full_desc_image {
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+        position: relative;
+        padding-bottom: 38%;
+        padding-left: 0;
+        padding-right: 0;
+        .full_desc_background {
+            background-image: linear-gradient(to left, rgba(242, 242, 242, 0), #f2f2f2);
+            position: absolute;
+            width: 74%;
+            height: 100%;
+        }
+        .full_desc_logo {
+          position: absolute;
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-position: right;
+          height: 6vw;
+          width: 4.5vw;
+          top: 3%;
+          right: 3%;
+        }
+        .full_desc_play_button {
+          background-image: url('../src/images/icon/play.png');
+          position: absolute;
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-position: center;
+          width: 3vw;
+          height: 4vw;
+          top: 40%;
+          margin-left: auto;
+          margin-right: auto;
+          right: 0;
+          left: 0;
+          cursor: pointer;
+        }
+        .full_desc_points {
+          position: absolute;
+          width: 9.1vw;
+          height: 3.8vw;
+          border-radius: 100px;
+          background-color: #1a2937;
+          border: solid 0.2vw #18d676;
+          top: 60%;
+          left: 40%;
+          transition: all 0.25s;
+          .pin_icon {
+            background-image: url('../src/images/icon/pin-icon-yellow.png');
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            width: 2.5vw;
+            height: 2.5vw;
+            margin: 0.4vw 0 0.4vw 0.8vw;
+            float: left;
+          }
+          .points_num {
+            float: left;
+            font-family: SourceSansPro;
+            font-size: 2.5vw;
+            font-weight: 900;
+            text-align: center;
+            color: #ffffff;
+            line-height: 3.2vw;
+            margin-left: 0.4vw;
+          }
+        }
+        .full_desc_status {
+            padding-top: 0.1vw;
+            width: 5vw;
+            height: 1.3vw;
+            border-radius: 6px;
+            background-color: #fc5f3d;
+            font-size: 0.8vw;
+            text-align: center;
+            font-weight: 900;
+            color: white;
+            position: absolute;
+            top: 70%;
+            left: 34%;
+            text-transform: uppercase;
+            transition: all 0.25s;
+            &.purchased {
+                padding-top: 0;
+                background-color: #18d676;
+                border: solid 0.1vw #33414f;
+            }
         }
       }
     }

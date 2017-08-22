@@ -32,7 +32,7 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('directives/mylist_video_block_page/mylist_video_block.html',
-    "<div class=mylist_video_block_page><div class=\"col-xs-3 mylist_video_container\" ng-repeat=\"video in model\"><div class=mylist_video_image style=\"background-image: url('{{video.url_image}}')\"><div class=mylist_video_background></div><div class=video_close style=\"background-image: url('/assets/theme/src/images/icon/x-red.png')\"></div><div class=video_logo style=\"background-image: url('{{video.url_logo}}')\"></div><div class=video_play_button></div><div ng-if=\"video.status=='buy'\" class=video_points><div class=pin_icon></div><div class=points_num>{{video.points}}</div></div><div class=\"status {{video.status=='purchased' ? 'purchased' :''}}\" ng-if=\"video.status !='buy'\">{{video.status}}</div><div class=video_desc_hover><div class=\"col-xs-12 video_desc_title\">{{video.title}}</div><div class=\"col-xs-12 video_desc_info\">{{video.description | limitTo: 100}}<span ng-if=\"video.description.length > 100\">[...]</span></div><div class=\"col-xs-12 video_desc_arrow\"></div></div></div></div></div>"
+    "<div class=mylist_video_block_page ng-repeat=\"video in model track by $index\"><div class=\"col-xs-3 mylist_video_container {{currentVideo.id == video.id?'active':''}}\"><div class=mylist_video_image style=\"background-image: url('{{video.url_image}}')\"><div class=mylist_video_background></div><div class=video_close style=\"background-image: url('/assets/theme/src/images/icon/x-red.png')\"></div><div class=video_logo style=\"background-image: url('{{video.url_logo}}')\"></div><div class=video_play_button></div><div ng-if=\"video.status=='buy'\" class=video_points><div class=pin_icon></div><div class=points_num>{{video.points}}</div></div><div class=\"status {{video.status=='purchased' ? 'purchased' :''}}\" ng-if=\"video.status !='buy'\">{{video.status}}</div><div class=video_desc_hover><div class=\"col-xs-12 video_desc_title\">{{video.title}}</div><div class=\"col-xs-12 video_desc_info\">{{video.description | limitTo: 100}}<span ng-if=\"video.description.length > 100\">[...]</span></div><div class=\"col-xs-12 video_desc_arrow\" ng-click=\"getFullDescription(video, $index);\"></div></div></div><div class=video_arrow_orange></div></div><div ng-if=\"currentVideo.id && ($index + 1) % 4 == 0 && getLine($index) == currentVideo.line\" class=\"col-xs-12 video_full_desc_container\"><div class=\"col-xs-4 full_desc_info\"><div class=\"col-xs-12 full_desc_title\">{{currentVideo.title}}</div><div class=\"col-xs-12 full_desc_text\">{{currentVideo.description}}</div><div class=\"col-xs-12 full_desc_desc_share\"><div class=full_desc_share_button></div></div></div><div class=\"col-xs-8 full_desc_image\" style=\"background-image: url('{{currentVideo.url_image}}')\"><div class=full_desc_background></div><div class=full_desc_logo style=\"background-image: url('{{currentVideo.url_logo}}')\"></div><div class=full_desc_play_button></div><div class=full_desc_points ng-if=\"currentVideo.status=='buy'\"><div class=pin_icon></div><div class=points_num>{{currentVideo.points}}</div></div><div class=\"full_desc_status {{currentVideo.status=='purchased' ? 'purchased' :''}}\" ng-if=\"currentVideo.status !='buy'\">{{currentVideo.status}}</div></div></div></div>"
   );
 
 
@@ -97,10 +97,22 @@ turnOnApp.directive('mylistvideoBlock', function() {
       },
       controller: ['$scope', '$location', function videoBlockController($scope, $location) {
           mlb = $scope;
+          $scope.currentVideo = [];
           $scope.go = function (path) {
               $location.path(path);
           };
 
+          $scope.getLine = function (i) {
+              var line = parseInt(i / 4);
+              return line;
+          };
+
+          $scope.getFullDescription = function(video, i){
+            $scope.currentVideo = video;
+            var line = parseInt(i / 4);
+            $scope.currentVideo.line = line;
+            //console.log($scope.currentVideo);
+          }
       }],
       templateUrl: '/assets/theme/src/directives/mylist_video_block_page/mylist_video_block.html',
     };
