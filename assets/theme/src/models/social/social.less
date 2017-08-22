@@ -1,0 +1,63 @@
+.social_page{
+  padding: 0;
+  .social_header_container{
+    padding-right: 14%;
+    padding-left: 14%;
+    height: 6vw;
+    background-color: #fc5f3d;
+    z-index: 1;
+    .social_header_title{
+      background-image: url('../src/images/headers/social@2x.png');
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      height: 3.5vw;
+      width: 27vw;
+      margin-top: 1.2vw;
+    }
+  }
+  .social_content{
+    padding: 0;
+    aside{
+      width: 18%;
+      min-height: 76vh;
+      background-color: rgba(0, 0, 0, 0);
+      box-shadow: 1px 0 5px 5px rgba(0, 0, 0, 0.39);
+      border: solid 1px #979797;
+      padding: 2.2vw 2vw 1.05vw 2vw;
+      float: left;
+      .social_container{
+        width: 100%;
+        .social_block{
+          width: 100%;
+          margin: 0 auto;
+          height: 3.5vw;
+          .social_item{
+            width: 33.3%;
+            float: left;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            cursor: pointer;
+            &.facebook{
+              background-image: url('../src/images/icon/facebook_blue@2x.png');
+            }
+            &.instagram{
+              background-image: url('../src/images/icon/instagram_pink@2x.png');
+            }
+            &.twitter{
+              background-image: url('../src/images/icon/twitter_aqua@2x.png');
+            }
+          }
+        }
+      }
+    }
+    article{
+      width: 68%;
+      padding: 2.2vw 0.75vw 1.05vw 0.75vw;
+      float: left;
+      min-height: 76vh;
+    }
+  }
+}

@@ -9,7 +9,8 @@ turnOnApp.directive('socialBlock', function() {
           order: "@",
           reverse: "=",
           link: "=",
-          search: '='
+          search: '=',
+          col: "@"
       },
       controller: ['$scope', '$location', function socialBlockController($scope, $location) {
           so = $scope;
