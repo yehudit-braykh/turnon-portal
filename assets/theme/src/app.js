@@ -22,7 +22,10 @@ turnOnApp.config(function($routeProvider, $locationProvider){
         templateUrl: '/assets/theme/src/models/my_list/mylist.html',
         controller: 'mylistController'
     })
-
+    .when('/discover', {
+        templateUrl: '/assets/theme/src/models/discover/discover.html',
+        controller: 'discoverController'
+    })
     .otherwise({
         redirectTo: '/'
     });;
