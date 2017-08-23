@@ -14,7 +14,7 @@
                         </div>
                     </div>
                     <div class="right_body col-xs-5">
-                        <div class="points_cover">
+                        <div class="points_cover" ng-if="video.status!= 'purchased'">
                             <div class="points_logo"></div>
                             <div class="points_num">150</div>
                         </div>
@@ -53,12 +53,13 @@
                     {{video.title}}
                 </div>
                 <div class="hover_button">
-                    <div class="text">
+                    <div class="text" ng-if="video.status == 'purchased'">
                         go live
                     </div>
-                    <div class="triangle">
-                        
+                    <div class="text" ng-if="video.status != 'purchased'">
+                        purchased
                     </div>
+                    <div class="triangle"></div>
                 </div>
             </div>
 
