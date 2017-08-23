@@ -1,6 +1,7 @@
 <div class="event_block_page">
     <div class="col-xs-3 event_list_container" ng-repeat="video in model">
-        <div class="event_container col-xs-12">
+        <div class="event_container col-xs-12 {{video.live_now ? 'live' : ''}}">
+
             <div class="media upper_container">
                 <div class="media-left ">
                     <img class="organiztion_image" src="{{video.organiztion_image}}" alt="">
@@ -20,8 +21,46 @@
                     </div>
 
                 </div>
+                <div class="line"></div>
+                <div class="header">{{video.title}}</div>
+                <div class="description">{{video.description}}</div>
+                <div class="live_now" ng-if="video.live_now">
+                    live now
+                </div>
+                <div class="modal_time">
+                  <div class="time_block">
+                      <div class="time_item">
+                        <div class="time_num">00</div>
+                        <div class="time_desc">days</div>
+                      </div>
+                      <div class="time_item">
+                        <div class="time_num">18</div>
+                        <div class="time_desc">hours</div>
+                      </div>
+                      <div class="time_item">
+                        <div class="time_num">23</div>
+                        <div class="time_desc">mins</div>
+                      </div>
+                      <div class="time_item">
+                        <div class="time_num">49</div>
+                        <div class="time_desc">sec</div>
+                      </div>
+                  </div>
+                </div>
             </div>
-
+            <div class="event_hover">
+                <div class="hover_header">
+                    {{video.title}}
+                </div>
+                <div class="hover_button">
+                    <div class="text">
+                        go live
+                    </div>
+                    <div class="triangle">
+                        
+                    </div>
+                </div>
+            </div>
 
             <!-- <div class="organiztion_image col-xs-2" style="background-image: url({{video.organiztion_image}});"></div>
             <div class="middle_container col-xs-5">
@@ -30,6 +69,7 @@
             </div> -->
 
         </div>
+
 
 <!--
         <div class="vod_list_image" style="background-image: url('{{video.url_image}}');">

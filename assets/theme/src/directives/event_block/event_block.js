@@ -13,6 +13,7 @@ turnOnApp.directive('eventBlock', function() {
       },
       controller: ['$scope', '$location', function eventController($scope, $location) {
           eb = $scope;
+          $scope.date = new Date();
           $scope.currentVideo = [];
           $scope.go = function (path) {
               $location.path(path);
