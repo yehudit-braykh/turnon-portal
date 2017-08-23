@@ -16,47 +16,23 @@
     </aside>
 
     <article>
-      <div class="col-xs-4 market_item">
+      <market-block data-model="products" ></market-block>
+      <!-- <div class="col-xs-4 market_item" ng-repeat="product in products">
         <div class="market_background">
           <div class="market_item_points">
             <div class="market_points_image">
               <div class="points_logo"></div>
-              <div class="points_num">50 000</div>
+              <div class="points_num">{{product.points}}</div>
             </div>
           </div>
-          <div class="market_item_image" style="background-image: url('assets/theme/src/images/market/shoes_1@2x.png');"></div>
+          <div class="market_item_image" style="background-image: url('{{product.url}}');"></div>
           <div class="market_item_info">
-            <div class="market_item_title">2016 BRAZIL CBF MATCH HOME</div>
-            <div class="market_item_desc">MEN'S FOOTBALL SHIRT</div>
+            <div class="market_item_title">{{product.title}}</div>
+            <div class="market_item_desc">{{product.description}}</div>
           </div>
         </div>
-      </div>
+      </div> -->
 
-      <div class="col-xs-4 market_item">
-        <div class="market_background">
-          <div class="market_item_points">
-
-          </div>
-          <div class="market_item_image" style="background-image: url('assets/theme/src/images/market/bag_1@2x.png');"></div>
-          <div class="market_item_info">
-            <div class="market_item_title">2016 BRAZIL CBF MATCH HOME</div>
-            <div class="market_item_desc">MEN'S FOOTBALL SHIRT</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-xs-4 market_item">
-        <div class="market_background">
-          <div class="market_item_points">
-
-          </div>
-          <div class="market_item_image" style="background-image: url('assets/theme/src/images/market/t_shirt_1@2x.png');"></div>
-          <div class="market_item_info">
-            <div class="market_item_title">2016 BRAZIL CBF MATCH HOME</div>
-            <div class="market_item_desc">MEN'S FOOTBALL SHIRT</div>
-          </div>
-        </div>
-      </div>
     </article>
 
   </div>

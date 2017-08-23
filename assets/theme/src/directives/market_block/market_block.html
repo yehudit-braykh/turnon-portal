@@ -1,0 +1,15 @@
+<div class="col-xs-4 market_item" ng-repeat="product in model">
+  <div class="market_background">
+    <div class="market_item_points">
+      <div class="market_points_image">
+        <div class="points_logo"></div>
+        <div class="points_num">{{product.points}}</div>
+      </div>
+    </div>
+    <div class="market_item_image" style="background-image: url('{{product.url}}');"></div>
+    <div class="market_item_info">
+      <div class="market_item_title">{{product.title}}</div>
+      <div class="market_item_desc">{{product.description}}</div>
+    </div>
+  </div>
+</div>
