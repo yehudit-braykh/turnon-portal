@@ -1,0 +1,122 @@
+.market_page{
+  padding: 0;
+  background: #ffffff;
+  .market_header_container{
+    padding-right: 14%;
+    padding-left: 14%;
+    height: 6vw;
+    background-color: #fc5f3d;
+    .market_header_title{
+      background-image: url('../src/images/headers/market@2x.png');
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      height: 3.5vw;
+      width: 25vw;
+      margin-top: 1.2vw;
+    }
+  }
+  .market_content{
+    background: #ffffff;
+    padding: 0;
+    padding-right: 14%;
+    padding-left: 14%;
+    .market_sub_header_1{
+      padding-right: 0.8vw;
+      padding-left: 0.8vw;
+      height: 4vw;
+    }
+    .market_sub_header_2{
+      padding-right: 0.75vw;
+      padding-left: 0.75vw;
+      height: 4vw;
+    }
+    aside{
+      width: 18%;
+      float: left;
+      padding-left: 0.8vw;
+      min-height: 100px;
+    }
+    article{
+      width: 82%;
+      float: left;
+      padding-left: 4vw;
+      .market_item{
+        padding: 0.8vw;
+        height: 21.5vw;
+        .market_background{
+          width: 100%;
+          height: 100%;
+          background-color: #f0f0f0;
+          box-shadow: 5px 5px 10px 0 rgba(138, 138, 138, 0.5);
+          cursor: pointer;
+          .market_item_points{
+            height: 4.7vw;
+            .market_points_image{
+              width: 108px;
+              height: 52px;
+              margin-top: 1vw;
+              background-image: url(../src/images/icon/points.png);
+              background-repeat: no-repeat;
+              background-size: contain;
+              background-position: center;
+              float: right;
+              .points_logo{
+                background-image: url(../src/images/icon/pin-icon-yellow.png);
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: center;
+                width: 0.9vw;
+                height: 0.9vw;
+                margin: 17px 0 9px 10px;
+                float: left;
+              }
+              .points_num{
+                float: left;
+                font-family: SourceSansPro;
+                font-size: 0.82vw;
+                font-weight: 900;
+                color: #ffffff;
+                margin: 11px 0 0 5px;
+              }
+            }
+          }
+          .market_item_image{
+            padding-left: 60px;
+            padding-right: 60px;
+            height: 170px;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+          }
+          .market_item_info{
+            padding: 1.6vw;
+            .market_item_title{
+              font-family: SourceSansPro;
+              font-style: italic;
+              font-size: 1.05vw;
+              font-weight: 600;
+              text-align: center;
+              color: #1a2937;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+            .market_item_desc{
+              font-family: Roboto;
+              font-size: 0.75vw;
+              font-weight: 300;
+              line-height: 1.29;
+              letter-spacing: 0.4px;
+              text-align: center;
+              color: #fe6443;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+          }
+        }
+      }
+    }
+  }
+}
