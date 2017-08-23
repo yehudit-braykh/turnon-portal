@@ -1,4 +1,5 @@
 .event_block_page {
+    font-family: SourceSansPro;
     .event_list_container {
       padding: 0.8vw;
       position: relative;
@@ -9,21 +10,65 @@
           border-radius: 4px;
           background-color: rgba(26, 41, 55, 0.1);
           .upper_container {
+              overflow: unset;
               .media-left {
+                  padding-right: 1vw;
                   .organiztion_image {
                       width: 2vw;
                       height: 2vw;
                   }
               }
               .media-body {
-                  .channel_image {
+                  overflow: unset;
+                  .left_body {
                       padding: 0;
-                     width: 2vw;
-                      max-height:1.2vw;
-                      background-repeat: no-repeat;
-                      background-size: contain;
-                      background-position: right;
+                      .channel_image {
+                          padding: 0;
+                          height: 0.6vw;
+                          width: 3.2vw;
+                          margin-top: 0.2vw;
+                          background-repeat: no-repeat;
+                          background-size: contain;
+                          background-position: right;
+                      }
+                      .date {
+                          font-size: 1vw;
+                          font-style: italic;
+                          font-weight: 600;
+                          color: #1a2937;
+                          padding-top: 0.3vw;
+                      }
                   }
+                  .right_body {
+                      padding: 0;
+                      .points_cover {
+                        width: 4.8vw;
+                        height: 2vw;
+                        background-image: url('../src/images/icon/points-discover.png');
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        background-position: center;
+                        margin-left: 2.3vw;
+                        margin-top: 0.5vw;
+                        .points_logo {
+                          background-image: url(../src/images/icon/pin-icon-yellow.png);
+                          background-repeat: no-repeat;
+                          background-size: contain;
+                          background-position: center;
+                          width: 0.9vw;
+                          height: 0.9vw;
+                          margin: 0.7vw 0 0 1vw;
+                          float: left;
+                        }
+                        .points_num {
+                          float: left;
+                          font-size: 1vw;
+                          font-weight: 900;
+                          color: #ffffff;
+                          margin: 0.5vw 0 0 0.2vw;
+                      }
+                  }
+
               }
           }
           .organiztion_image {
@@ -46,5 +91,6 @@
               }
           }
       }
+    }
     }
   }
