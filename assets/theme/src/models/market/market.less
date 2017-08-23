@@ -8,7 +8,7 @@
     background-color: #fc5f3d;
     .market_header_title{
       background-image: url('../src/images/headers/market@2x.png');
-      background-position: center;
+      background-position: left;
       background-size: contain;
       background-repeat: no-repeat;
       height: 3.5vw;
@@ -25,6 +25,17 @@
       padding-right: 0.8vw;
       padding-left: 0.8vw;
       height: 4vw;
+      .market_merchandise{
+        background-image: url(../src/images/headers/merchandise.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: left;
+        height: 4vw;
+        cursor: pointer;
+      }
+      .market_header_info{
+        
+      }
     }
     .market_sub_header_2{
       padding-right: 0.75vw;
@@ -36,6 +47,94 @@
       float: left;
       padding-left: 0.8vw;
       min-height: 100px;
+      .market_filters{
+        font-family: SourceSansPro;
+        font-size: 1.45vw;
+        font-weight: 600;
+        letter-spacing: 1.2px;
+        text-align: center;
+        color: #1a2937;
+        margin-top: 1vw;
+        margin-bottom: 1vw;
+      }
+      .filter_item{
+        border-top: 1px solid #1a2937;
+        margin-bottom: 1.5vw;
+        clear: both;
+        .filter_title{
+          font-family: SourceSansPro;
+          font-size: 1.15vw;
+          font-weight: 600;
+          letter-spacing: 0.9px;
+          color: #1a2937;
+          margin-top: 1.5vw;
+          margin-bottom: 0.5vw;
+        }
+        .checkbox{
+          padding: 0;
+          margin-top: 0px;
+          //width: 50%;
+          //float: left;
+          label{
+            font-family: SourceSansPro;
+            font-size: 0.9vw;
+            letter-spacing: 0.8px;
+            color: #1a2937;
+            input[type="checkbox"]{
+              margin-top: 0.3vw;
+              &:checked + span {
+                font-size: 0.9vw;
+                font-weight: bold;
+                color: #fe6443;
+              }
+            }
+          }
+        }
+        .range_filter_image{
+          background-image: url(../src/images/icon/pin-icon-yellow.png);
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-position: center;
+          width: 0.75vw;
+          height: 1.25vw;
+          float: left;
+        }
+        .range_filter_points{
+          float: left;
+          font-family: SourceSansPro;
+          font-size: 0.9vw;
+          font-weight: 600;
+          letter-spacing: 0.8px;
+          color: #1a2937;
+          padding-left: 0.2vw;
+        }
+        .market_slider.rzslider{
+          .rz-bar{
+            background: rgba(26, 41, 55, 0.4);
+            height: 2px;
+          }
+          .rz-selection{
+            background: #1a2937;
+          }
+          .rz-pointer{
+            background-image: url(../src/images/icon/pointer@2x.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            background-color: transparent;
+            width: 8px;
+            height: 0.9vw;
+            top: -0.4vw;;
+            //bottom: 0;
+            &:after{
+              display: none;
+            }
+          }
+          .rz-bubble.rz-limit{
+            display: none;
+          }
+        }
+      }
     }
     article{
       width: 82%;

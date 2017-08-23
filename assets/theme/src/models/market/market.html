@@ -5,13 +5,90 @@
 
   <div class="col-xs-12 market_content">
     <div class="col-xs-12 market_sub_header_1">
-
+      <div class="row">
+        <div class="col-xs-6 market_merchandise"></div>
+        <div class="col-xs-6 market_header_info">
+          <div class="market_likes_container">
+            <div class="market_likes_title"></div>
+            <div class="market_likes_image"></div>
+          </div>
+          <div class="market_bag_container">
+            <div class="market_bag_title"></div>
+            <div class="market_likes_image"></div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="col-xs-12 market_sub_header_2">
 
     </div>
 
     <aside>
+      <div class="market_filters">FILTERS</div>
+
+      <div class="filter_item">
+        <div class="filter_title">BRAND</div>
+        <div class="checkbox" ng-repeat="brand in brands">
+          <label>
+            <input type="checkbox" name="brand" id="brand_{{brand.value}}" value="{{brand.value}}">
+            <span>{{brand.title}}</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="filter_item">
+        <div class="filter_title">TYPE</div>
+        <div class="checkbox" ng-repeat="type in types">
+          <label>
+            <input type="checkbox" name="brand" id="type_{{type.value}}" value="{{type.value}}">
+              <span>{{type.title}}</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="filter_item">
+        <div class="filter_title">SIZE</div>
+        <div class="checkbox" ng-repeat="size in sizes">
+          <label>
+            <input type="checkbox" name="size" id="size_{{size.value}}" value="{{size.value}}">
+              <span>{{size.title}}  </span>
+          </label>
+        </div>
+      </div>
+
+      <div class="filter_item">
+        <div class="filter_title">COLOR</div>
+
+        <div class="row">
+          <div class="col-xs-6" ng-repeat="color in colors">
+            <div class="checkbox" >
+              <label>
+                <input type="checkbox" name="color" id="color_{{color.value}}" value="{{color.value}}">
+                  <span>{{color.title}}  </span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="filter_item">
+        <div class="filter_title">PRICE RANGE</div>
+        <div class="row">
+          <div class="col-xs-6">
+            <div class="range_filter_image"></div>
+            <div class="range_filter_points">10</div>
+          </div>
+          <div class="col-xs-6">
+            <div class="range_filter_image"></div>
+            <div class="range_filter_points">50 000</div>
+          </div>
+        </div>
+        <rzslider class="market_slider" rz-slider-model="slider.minValue"
+                  rz-slider-high="slider.maxValue"
+                  rz-slider-options="slider.options">
+        </rzslider>
+      </div>
 
     </aside>
 

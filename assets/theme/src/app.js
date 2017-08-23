@@ -1,5 +1,5 @@
 'use strict';
-var turnOnApp = angular.module('turnon', ['ngRoute'])
+var turnOnApp = angular.module('turnon', ['ngRoute', 'rzModule'])
 .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
 }])
