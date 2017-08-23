@@ -30,6 +30,10 @@ turnOnApp.config(function($routeProvider, $locationProvider){
         templateUrl: '/assets/theme/src/models/social/social.html',
         controller: 'socialController'
     })
+    .when('/market', {
+        templateUrl: '/assets/theme/src/models/market/market.html',
+        controller: 'marketController'
+    })
     .otherwise({
         redirectTo: '/'
     });;
