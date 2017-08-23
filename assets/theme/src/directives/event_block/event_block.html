@@ -18,6 +18,9 @@
                             <div class="points_logo"></div>
                             <div class="points_num">150</div>
                         </div>
+                        <div class="status" ng-if="video.status == 'purchased'">
+                            {{video.status}}
+                        </div>
                     </div>
 
                 </div>
@@ -48,7 +51,7 @@
                   </div>
                 </div>
             </div>
-            <div class="event_hover">
+            <div class="event_hover" ng-hide = "{{video.status =='purchased' && !video.live_now  }}">
                 <div class="hover_header">
                     {{video.title}}
                 </div>
@@ -56,10 +59,13 @@
                     <div class="text" ng-if="video.status == 'purchased'">
                         go live
                     </div>
-                    <div class="text" ng-if="video.status != 'purchased'">
-                        purchased
+                    <div class="text purchased" ng-if="video.status != 'purchased'">
+                        purchase
                     </div>
-                    <div class="triangle"></div>
+                    <div class="triangle" ng-if="video.status == 'purchased'"></div>
+                </div>
+                <div class="reminder_button" ng-if="!video.live_now">
+                    set a reminder
                 </div>
             </div>
 
