@@ -22,8 +22,7 @@
     padding-right: 14%;
     padding-left: 14%;
     .market_sub_header_1{
-      padding-right: 0.8vw;
-      padding-left: 0.8vw;
+      padding: 0;
       height: 4vw;
       .market_merchandise{
         background-image: url(../src/images/headers/merchandise.png);
@@ -49,7 +48,7 @@
               color: #ffffff;
             }
             .market_likes_image{
-              background-image: url(../src/images/icon/heart_white.png);
+              background-image: url(../src/images/icon/white_heart.png);
             }
           }
           .market_likes_title{
@@ -90,6 +89,9 @@
             .market_likes_image{
               background-image: url(../src/images/icon/bag_white.png);
             }
+            .market_bag_title{
+              color: #ffffff;
+            }
           }
           .market_bag_title{
             font-family: SourceSansPro;
@@ -115,14 +117,87 @@
       }
     }
     .market_sub_header_2{
-      padding-right: 0.75vw;
-      padding-left: 0.75vw;
+      padding: 0;
       height: 4vw;
+      padding-top: 1.5vw;
+      padding-right: 0.8vw;
+      .search_input_cover {
+          float: left;
+          width: 12vw;
+          position: relative;
+          .search_input {
+              height: 1.8vw;
+              width: 12vw;
+              border: solid 1px #1a2937;
+          }
+          .fa-search {
+              position: absolute;
+              top: 0.3vw;
+              right: 1vw;
+              opacity: 0.8;
+              font-size: 1vw;
+          }
+      }
+      .search_menu{
+        width: 12vw;
+        float: right;
+        button{
+          height: 1.8vw;
+          padding: 0.1vw 0.5vw;
+          border-radius: 0;
+          background-color: white;
+          border: solid 0.5px #33414f;
+          width: 12vw;
+          font-size: 1vw;
+          text-align: left;
+          color: #33414f;
+          &:active {
+              background-color: white;
+          }
+          &:hover {
+              background-color: white;
+          }
+          .caret{
+            float: right;
+            background-image: url(../src/images/icon/triangle_down.png);
+            background-repeat: no-repeat;
+            width: 0.8vw;
+            height: 0.4vw;
+            background-size: contain;
+            background-position: center;
+            margin-top: 0.5vw;
+          }
+        }
+        .dropdown-menu{
+          min-width: 100%;
+          border-radius: 0px;
+          background-color: #ffffff;
+          box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.5);
+          border: 0px solid #ccc;
+          li{
+            a{
+              padding: 0.2vw 0.5vw;
+              font-size: 0.8vw;
+              text-align: left;
+              color: #33414f;
+              cursor: pointer;
+            }
+            &:hover{
+              background-color: #fe6443;
+              a{
+                color: #ffffff;
+                &:hover {
+                    background-color: #fe6443;
+                 }
+              }
+            }
+          }
+        }
+      }
     }
     aside{
       width: 18%;
       float: left;
-      padding-left: 0.8vw;
       min-height: 100px;
       .market_filters{
         font-family: SourceSansPro;
