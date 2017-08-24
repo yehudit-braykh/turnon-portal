@@ -18,7 +18,7 @@
                             <div class="points_logo"></div>
                             <div class="points_num">150</div>
                         </div>
-                        <div class="status" ng-if="video.status == 'purchased'">
+                        <div class="status {{!video.live_now? 'not_live' : ''}}" ng-if="video.status == 'purchased'">
                             {{video.status}}
                         </div>
                     </div>
