@@ -11,14 +11,15 @@ turnOnApp.directive('eventBlock', function() {
           link: "=",
           search: '='
       },
-      controller: ['$scope', '$location', function eventController($scope, $location) {
+      controller: ['$scope', '$location','$rootScope', function eventController($scope, $location, $rootScope) {
           eb = $scope;
           $scope.date = new Date();
           $scope.currentVideo = [];
           $scope.go = function (path) {
               $location.path(path);
           };
-          $scope.getPurchaseEvent = function(){
+          $scope.getPurchaseEvent = function(choosenevent){
+             $rootScope.$broadcast("choose_event",choosenevent);
             // $scope.purchaseEvent = event;
             $('#discover_modal').modal('show');
           }

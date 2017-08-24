@@ -30,19 +30,19 @@
             </div>
 
             <div class="modal_header_section">
-              <div class="modal_logo" style="background-image: url('{{purchaseEvent.url}}');"></div>
+              <div class="modal_logo" style="background-image: url('{{purchasedevent.channel_image}}');"></div>
               <div class="modal_time_info">
-                <div class="modal_organization" style="background-image: url('assets/theme/src/images/logo/uefa.png');"></div>
-                <div class="modal_date">22 March 2017</div>
+                <div class="modal_organization" style="background-image:  url('{{purchasedevent.organiztion_image}}');"></div>
+                <div class="modal_date">{{purchasedevent.date}}</div>
               </div>
               <div class="modal_points">
                 <div class="points_logo"></div>
-                <div class="points_num">150</div>
+                <div class="points_num">{{purchasedevent.points}}</div>
               </div>
             </div>
             <div class="modal_center_section">
-              <div class="modal_title">{{purchaseEvent.title}}</div>
-              <div class="modal_description">With easy access to Broadband and DSL the number of people</div>
+              <div class="modal_title">{{purchasedevent.title}}</div>
+              <div class="modal_description">{{purchasedevent.description}}</div>
               <div class="modal_time">
                 <div class="time_block">
                     <div class="time_item">
