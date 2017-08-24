@@ -18,6 +18,10 @@ turnOnApp.directive('eventBlock', function() {
           $scope.go = function (path) {
               $location.path(path);
           };
+          $scope.getPurchaseEvent = function(){
+            // $scope.purchaseEvent = event;
+            $('#discover_modal').modal('show');
+          }
 
       }],
       templateUrl: '/assets/theme/src/directives/event_block/event_block.html',

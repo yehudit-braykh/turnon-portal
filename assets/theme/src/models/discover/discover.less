@@ -107,4 +107,161 @@
 
         }
     }
+    #discover_modal{
+      .modal-dialog{
+        @media (min-width: 768px){
+          width: 500px;
+          margin: 26vh auto;
+        }
+        .modal-content{
+          border-radius: 10px;
+          background-color: rgba(26, 37, 48, 0.9);
+          border: solid 8px #18d676;
+          .modal-body{
+            padding: 10px;
+            .close_section{
+              width: 100%;
+              height: 20px;
+              .close_button{
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: center;
+                background-image: url(../src/images/icon/x-red.png);
+                width: 20px;
+                height: 20px;
+                float: right;
+                cursor: pointer;
+              }
+            }
+            .modal_header_section{
+              width: 100%;
+              height: 72px;
+              .modal_logo{
+                float: left;
+                margin-left: 20px;
+                width: 110px;
+                height: 100%;
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: center;
+              }
+              .modal_time_info{
+                width: 190px;
+                height: 100%;
+                float:left;
+                margin-left: 20px;
+                .modal_organization{
+                  width: 45px;
+                  height: 45px;
+                  background-repeat: no-repeat;
+                  background-size: contain;
+                  background-position: center;
+                }
+                .modal_date{
+                  font-family: SourceSansPro;
+                  font-style: italic;
+                   font-size: 20px;
+                   font-weight: 600;
+                   color: #f2f2f2;
+                   line-height: 25px;
+                }
+              }
+              .modal_points{
+                width: 108px;
+                height: 52px;
+                margin-top: 20px;
+                background-image: url('../src/images/icon/points.png');
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: center;
+                float: right;
+                .points_logo{
+                  background-image: url(../src/images/icon/pin-icon-yellow.png);
+                  background-repeat: no-repeat;
+                  background-size: contain;
+                  background-position: center;
+                  width: 25px;
+                  height: 25px;
+                  margin: 17px 0 9px 10px;
+                  float: left;
+                }
+                .points_num{
+                  float: left;
+                  font-family: SourceSansPro;
+                  font-size: 26px;
+                  font-weight: 900;
+                  color: #ffffff;
+                  margin: 11px 0 0 5px;
+                }
+              }
+            }
+            .modal_center_section{
+              margin: 10px 20px 20px 20px;
+              border-top: solid 2px rgba(242, 242, 242, 0.9);
+              .modal_title{
+                font-family: SourceSansPro;
+                font-style: italic;
+                font-size: 36px;
+                font-weight: bold;
+                line-height: 1.19;
+                color: #fc5f3e;
+              }
+              .modal_description{
+                font-family: Roboto;
+                font-size: 22px;
+                line-height: 1.36;
+                letter-spacing: 0.6px;
+                color: #f2f2f2;
+              }
+              .modal_time{
+                height: 60px;
+                margin-top: 10px;
+                .time_block{
+                  width: 50%;
+                  height: 100%;
+                  float: right;
+                  .time_item{
+                    width: 25%;
+                    height: 100%;
+                    float: left;
+                    .time_num{
+                      font-family: Roboto;
+                      font-size: 24px;
+                      font-weight: 500;
+                      line-height: 1;
+                      letter-spacing: 1.7px;
+                      text-align: center;
+                      color: #fe532f;
+                    }
+                    .time_desc{
+                      font-family: Roboto;
+                      font-size: 16px;
+                      font-weight: 500;
+                      text-align: center;
+                      color: #f2f2f2;
+                    }
+                  }
+                }
+              }
+              .modal_button{
+                text-align: center;
+                .purchase_button{
+                  border-radius: 6px;
+                  border: solid 3px #f2f2f2;
+                  font-family: SourceSansPro;
+                  font-style: italic;
+                  font-size: 28px;
+                  font-weight: 900;
+                  padding: 0px 12px;
+                  text-align: center;
+                  color: #18d676;
+                  background-color: transparent;
+                  text-transform: uppercase;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
 }

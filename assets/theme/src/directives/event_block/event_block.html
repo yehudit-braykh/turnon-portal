@@ -59,7 +59,7 @@
                     <div class="text" ng-if="video.status == 'purchased'">
                         go live
                     </div>
-                    <div class="text purchased" ng-if="video.status != 'purchased'">
+                    <div class="text purchased" ng-click ="getPurchaseEvent()"ng-if="video.status != 'purchased'">
                         purchase
                     </div>
                     <div class="triangle" ng-if="video.status == 'purchased'"></div>
