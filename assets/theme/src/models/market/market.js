@@ -84,14 +84,14 @@ turnOnApp.controller('marketController', function marketController ($scope, $loc
                   value: "pink"},
                   {title:'Gray',
                   value: "gray"}];
-                  $scope.slider = {
-                      minValue: 10000,
-                      maxValue: 25000,
-                      options: {
-                          floor: 10,
-                          ceil: 50000,
-                          step: 10
-                      }
-                  };
+  $scope.slider = {
+      minValue: 10000,
+      maxValue: 25000,
+      options: {
+          floor: 10,
+          ceil: 50000,
+          step: 10
+      }
+  };
 
 });

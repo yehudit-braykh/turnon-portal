@@ -34,7 +34,84 @@
         cursor: pointer;
       }
       .market_header_info{
-        
+        height: 4vw;
+        .market_likes_container{
+          float: right;
+          width: 18%;
+          height: 2.4vw;
+          margin-top: 1.6vw;
+          cursor: pointer;
+          &:hover{
+            border-radius: 10px;
+            background-color: #fe6443;
+            border: solid 1px #fe6443;
+            .market_likes_title{
+              color: #ffffff;
+            }
+            .market_likes_image{
+              background-image: url(../src/images/icon/heart_white.png);
+            }
+          }
+          .market_likes_title{
+            font-family: SourceSansPro;
+            font-size: 1.15vw;
+            font-weight: 600;
+            letter-spacing: 0.9px;
+            color: #fe6443;
+            float: left;
+            line-height: 2.4vw;
+            margin-left: 0.4vw;
+          }
+          .market_likes_image{
+            background-image: url(../src/images/icon/heart_orange.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            width: 1.2vw;
+            height: 2.4vw;
+            float: right;
+            margin-right: 0.4vw;
+          }
+        }
+        .market_bag_container{
+          float: right;
+          width: 18%;
+          height: 2.4vw;
+          margin-left: 1vw;
+          margin-top: 1.6vw;
+          cursor: pointer;
+          &:hover{
+            border-radius: 10px;
+            background-color: #fe6443;
+            border: solid 1px #fe6443;
+            .market_likes_title{
+              color: #ffffff;
+            }
+            .market_likes_image{
+              background-image: url(../src/images/icon/bag_white.png);
+            }
+          }
+          .market_bag_title{
+            font-family: SourceSansPro;
+            font-size: 1.15vw;
+            font-weight: 600;
+            letter-spacing: 0.9px;
+            color: #fe6443;
+            float: left;
+            line-height: 2.4vw;
+            margin-left: 0.4vw;
+          }
+          .market_likes_image{
+            background-image: url(../src/images/icon/bag_orange.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            width: 0.8vw;
+            height: 2.4vw;
+            float: right;
+            margin-right: 0.4vw;
+          }
+        }
       }
     }
     .market_sub_header_2{
