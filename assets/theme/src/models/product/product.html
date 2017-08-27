@@ -3,8 +3,10 @@
          <div class="product_brand"  style="background-image: url('/assets/theme/src/images/headers/market.png');"></div>
     </div>
     <div class="page_container col-xs-12">
-        <div class="product_merchandise col-xs-12"></div>
-        <div class="sub_header col-xs-12">
+        <div class="fix_padding">
+            <div class="product_merchandise col-xs-12"></div>
+        </div>
+        <div class="sub_header col-xs-12 fix_padding">
             <div class="search_input_cover col-xs-6">
                 <input type="text" class = "search_input" >
                 <i class="fa fa-search"></i>
@@ -23,25 +25,44 @@
 
             </div>
         </div>
-        <div class="choosed_product_container col-xs-12">
-            <div class="left_div  col-xs-4" >
-                <div class="proudct_image" style="background-image: url({{product.url}});">
+        <div class="fix_padding">
+            <div class="choosed_product_container col-xs-12">
+                <div class="left_div  col-xs-4" >
+                    <div class="proudct_image" style="background-image: url({{product.url}});">
+                    </div>
                 </div>
-            </div>
-            <div class="right_div col-xs-8">
-                <div class="product_title">
-                    {{product.title}}
-                </div>
-                <div class="product_desc">
-                    {{product.description}}
-                </div>
-                <div class="product_coins">
-                    <div class="image"></div>
-                    <div class="cost">
-                        {{product.points}}
+                <div class="right_div col-xs-8">
+                    <div class="product_title">
+                        {{product.title}}
+                    </div>
+                    <div class="product_type">
+                        {{product.type}}
+                    </div>
+                    <div class="product_coins col-xs-12">
+                        <div class="image"></div>
+                        <div class="cost">
+                            {{product.points}}
+                        </div>
+                    </div>
+                    <div class="product_desc col-xs-12">
+                        {{product.description}}
+                    </div>
+                    <div class="choosed_product_buttons col-xs-12">
+                        <div class="add_button">
+                            Add to bag
+                        </div>
+                        <div class="button_image" style="background-image: url('/assets/theme/src/images/icon/red_heart.png');"></div>
+                        <div class="button_image" style="background-image: url('/assets/theme/src/images/icon/share_red.png');"></div>
+
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="you_might_like col-xs-12 fix_padding">
+            you might also like
+        </div>
+        <div class="products_container col-xs-12">
+            <market-block data-model="products" data-limit = "4" data-col = "3"></market-block>
         </div>
     </div>
 </div>

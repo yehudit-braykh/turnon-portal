@@ -52,7 +52,7 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('directives/market_block/market_block.html',
-    "<div class=\"col-xs-4 market_item\" ng-repeat=\"product in model\"><div class=market_background ng-click=\"go('product/' + product.id)\"><div class=market_item_points><div class=market_points_image><div class=points_logo></div><div class=points_num>{{product.points}}</div></div></div><div class=market_item_image style=\"background-image: url('{{product.url}}')\"></div><div class=market_item_info><div class=market_item_title>{{product.title}}</div><div class=market_item_desc>{{product.description}}</div></div></div></div>"
+    "<div class=\"col-xs-{{col}} market_item\" ng-repeat=\"product in model | limitTo : limit\"><div class=market_background ng-click=\"go('product/' + product.id)\"><div class=market_item_points><div class=market_points_image><div class=points_logo></div><div class=points_num>{{product.points}}</div></div></div><div class=market_item_image style=\"background-image: url('{{product.url}}')\"></div><div class=market_item_info><div class=market_item_title>{{product.title}}</div><div class=market_item_desc>{{product.type}}</div></div></div></div>"
   );
 
 
@@ -97,7 +97,7 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('models/market/market.html',
-    "<div class=\"container-fluid market_page\"><div class=\"col-xs-12 market_header_container\"><div class=market_header_title></div></div><div class=\"col-xs-12 market_content\"><div class=\"col-xs-12 market_sub_header_1\"><div><div class=\"col-xs-6 market_merchandise\"></div><div class=\"col-xs-6 market_header_info\"><div class=market_bag_container><div class=market_likes_image></div><div class=market_bag_title>MY BAG</div></div><div class=market_likes_container><div class=market_likes_image></div><div class=market_likes_title>LIKED</div></div></div></div></div><div class=\"col-xs-12 market_sub_header_2\"><div class=search_input_cover><input type=text class=search_input> <i class=\"fa fa-search\"></i></div><div class=\"btn-group search_menu\"><button type=button class=\"btn btn-default dropdown-toggle btn-block\" data-toggle=dropdown aria-haspopup=true aria-expanded=false>SORT BY <span class=caret></span></button><ul class=dropdown-menu><li><a>Newest</a></li><li><a>Highest-Rated</a></li><li><a>Price-High-Low</a></li><li><a>Price-Low-High</a></li></ul></div></div><aside><div class=market_filters>FILTERS</div><div class=filter_item><div class=filter_title>BRAND</div><div class=checkbox ng-repeat=\"brand in brands\"><label><input type=checkbox name=brand id=brand_{{brand.value}} value={{brand.value}}> <span>{{brand.title}}</span></label></div></div><div class=filter_item><div class=filter_title>TYPE</div><div class=checkbox ng-repeat=\"type in types\"><label><input type=checkbox name=brand id=type_{{type.value}} value={{type.value}}> <span>{{type.title}}</span></label></div></div><div class=filter_item><div class=filter_title>SIZE</div><div class=checkbox ng-repeat=\"size in sizes\"><label><input type=checkbox name=size id=size_{{size.value}} value={{size.value}}> <span>{{size.title}}</span></label></div></div><div class=filter_item><div class=filter_title>COLOR</div><div class=row><div class=col-xs-6 ng-repeat=\"color in colors\"><div class=checkbox><label><input type=checkbox name=color id=color_{{color.value}} value={{color.value}}> <span>{{color.title}}</span></label></div></div></div></div><div class=filter_item><div class=filter_title>PRICE RANGE</div><div class=row><div class=col-xs-6><div class=range_filter_image></div><div class=range_filter_points>10</div></div><div class=col-xs-6><div class=range_filter_image></div><div class=range_filter_points>50 000</div></div></div><rzslider class=market_slider rz-slider-model=slider.minValue rz-slider-high=slider.maxValue rz-slider-options=slider.options></rzslider></div></aside><article><market-block data-model=products></market-block></article></div></div>"
+    "<div class=\"container-fluid market_page\"><div class=\"col-xs-12 market_header_container\"><div class=market_header_title></div></div><div class=\"col-xs-12 market_content\"><div class=\"col-xs-12 market_sub_header_1\"><div><div class=\"col-xs-6 market_merchandise\"></div><div class=\"col-xs-6 market_header_info\"><div class=market_bag_container><div class=market_likes_image></div><div class=market_bag_title>MY BAG</div></div><div class=market_likes_container><div class=market_likes_image></div><div class=market_likes_title>LIKED</div></div></div></div></div><div class=\"col-xs-12 market_sub_header_2\"><div class=search_input_cover><input type=text class=search_input> <i class=\"fa fa-search\"></i></div><div class=\"btn-group search_menu\"><button type=button class=\"btn btn-default dropdown-toggle btn-block\" data-toggle=dropdown aria-haspopup=true aria-expanded=false>SORT BY <span class=caret></span></button><ul class=dropdown-menu><li><a>Newest</a></li><li><a>Highest-Rated</a></li><li><a>Price-High-Low</a></li><li><a>Price-Low-High</a></li></ul></div></div><aside><div class=market_filters>FILTERS</div><div class=filter_item><div class=filter_title>BRAND</div><div class=checkbox ng-repeat=\"brand in brands\"><label><input type=checkbox name=brand id=brand_{{brand.value}} value={{brand.value}}> <span>{{brand.title}}</span></label></div></div><div class=filter_item><div class=filter_title>TYPE</div><div class=checkbox ng-repeat=\"type in types\"><label><input type=checkbox name=brand id=type_{{type.value}} value={{type.value}}> <span>{{type.title}}</span></label></div></div><div class=filter_item><div class=filter_title>SIZE</div><div class=checkbox ng-repeat=\"size in sizes\"><label><input type=checkbox name=size id=size_{{size.value}} value={{size.value}}> <span>{{size.title}}</span></label></div></div><div class=filter_item><div class=filter_title>COLOR</div><div class=row><div class=col-xs-6 ng-repeat=\"color in colors\"><div class=checkbox><label><input type=checkbox name=color id=color_{{color.value}} value={{color.value}}> <span>{{color.title}}</span></label></div></div></div></div><div class=filter_item><div class=filter_title>PRICE RANGE</div><div class=row><div class=col-xs-6><div class=range_filter_image></div><div class=range_filter_points>10</div></div><div class=col-xs-6><div class=range_filter_image></div><div class=range_filter_points>50 000</div></div></div><rzslider class=market_slider rz-slider-model=slider.minValue rz-slider-high=slider.maxValue rz-slider-options=slider.options></rzslider></div></aside><article><market-block data-model=products data-limit=20 data-col=4></market-block></article></div></div>"
   );
 
 
@@ -112,7 +112,7 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('models/product/product.html',
-    "<div class=\"product_page container-fluid\"><div class=\"col-xs-12 product_header\"><div class=product_brand style=\"background-image: url('/assets/theme/src/images/headers/market.png')\"></div></div><div class=\"page_container col-xs-12\"><div class=\"product_merchandise col-xs-12\"></div><div class=\"sub_header col-xs-12\"><div class=\"search_input_cover col-xs-6\"><input type=text class=search_input> <i class=\"fa fa-search\"></i></div><div class=\"col-xs-6 product_buttons\"><div class=product_bag_container><div class=product_likes_image></div><div class=product_bag_title>MY BAG</div></div><div class=product_likes_container><div class=product_likes_image></div><div class=product_likes_title>LIKED</div></div></div></div><div class=\"choosed_product_container col-xs-12\"><div class=\"left_div col-xs-4\"><div class=proudct_image style=\"background-image: url({{product.url}})\"></div></div><div class=\"right_div col-xs-8\"><div class=product_title>{{product.title}}</div><div class=product_desc>{{product.description}}</div><div class=product_coins><div class=image></div><div class=cost>{{product.points}}</div></div></div></div></div></div>"
+    "<div class=\"product_page container-fluid\"><div class=\"col-xs-12 product_header\"><div class=product_brand style=\"background-image: url('/assets/theme/src/images/headers/market.png')\"></div></div><div class=\"page_container col-xs-12\"><div class=fix_padding><div class=\"product_merchandise col-xs-12\"></div></div><div class=\"sub_header col-xs-12 fix_padding\"><div class=\"search_input_cover col-xs-6\"><input type=text class=search_input> <i class=\"fa fa-search\"></i></div><div class=\"col-xs-6 product_buttons\"><div class=product_bag_container><div class=product_likes_image></div><div class=product_bag_title>MY BAG</div></div><div class=product_likes_container><div class=product_likes_image></div><div class=product_likes_title>LIKED</div></div></div></div><div class=fix_padding><div class=\"choosed_product_container col-xs-12\"><div class=\"left_div col-xs-4\"><div class=proudct_image style=\"background-image: url({{product.url}})\"></div></div><div class=\"right_div col-xs-8\"><div class=product_title>{{product.title}}</div><div class=product_type>{{product.type}}</div><div class=\"product_coins col-xs-12\"><div class=image></div><div class=cost>{{product.points}}</div></div><div class=\"product_desc col-xs-12\">{{product.description}}</div><div class=\"choosed_product_buttons col-xs-12\"><div class=add_button>Add to bag</div><div class=button_image style=\"background-image: url('/assets/theme/src/images/icon/red_heart.png')\"></div><div class=button_image style=\"background-image: url('/assets/theme/src/images/icon/share_red.png')\"></div></div></div></div></div><div class=\"you_might_like col-xs-12 fix_padding\">you might also like</div><div class=\"products_container col-xs-12\"><market-block data-model=products data-limit=4 data-col=3></market-block></div></div></div>"
   );
 
 
@@ -165,7 +165,7 @@ turnOnApp.directive('marketBlock', function() {
       transclude: true,
       scope: {
           model: '=',
-          limit: "=",
+          limit: "@",
           order: "@",
           reverse: "=",
           link: "=",
@@ -1041,38 +1041,45 @@ turnOnApp.controller('productController', function productController ($scope, $l
   $scope.products = [{ id:'1',
                   title:'2016 BRAZIL CBF MATCH HOME',
                   url:'assets/theme/src/images/market/shoes_1@2x.png',
-                  points: '15 000',
-                  description: "MEN'S FOOTBALL SHIRT"},
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                  points: '15 000'},
                   { id: '2',
                   title:'2016 BRAZIL CBF MATCH HOME',
                   url:'assets/theme/src/images/market/bag_1@2x.png',
-                  points: '50 000',
-                  description: "MEN'S FOOTBALL SHIRT"},
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                  points: '50 000'},
                   {id: '3',
                   title:'2016 BRAZIL CBF MATCH HOME',
                   url:'assets/theme/src/images/market/shoes_2@2x.png',
-                  points: '10 000',
-                  description: "MEN'S FOOTBALL SHIRT"},
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                  points: '10 000'},
                   {id: '4',
                   title:'2016 BRAZIL CBF MATCH HOME',
                   url:'assets/theme/src/images/market/t_shirt_1@2x.png',
-                  points: '10 000',
-                  description: "MEN'S FOOTBALL SHIRT"},
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                  points: '10 000'},
                   {id: '5',
                   title:'2016 BRAZIL CBF MATCH HOME',
                   url:'assets/theme/src/images/market/shoes_1@2x.png',
-                  points: '15 000',
-                  description: "MEN'S FOOTBALL SHIRT"},
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                  points: '15 000'},
                   {id: '6',
                   title:'2016 BRAZIL CBF MATCH HOME',
                   url:'assets/theme/src/images/market/bag_1@2x.png',
-                  points: '50 000',
-                  description: "MEN'S FOOTBALL SHIRT"},
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                   points: '50 000'},
                   {id: '7',
                   title:'2016 BRAZIL CBF MATCH HOME',
                   url:'assets/theme/src/images/market/t_shirt_2@2x.png',
-                  points: '10 000',
-                  description: "MEN'S FOOTBALL SHIRT"}];
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                  points: '10 000',}];
 
 
 //this function give me the selectd proudct
@@ -1084,7 +1091,7 @@ turnOnApp.controller('productController', function productController ($scope, $l
 
   },this);
 
- 
+
 
   $scope.brands = [{title:'Nike',
                   value: "nike"},

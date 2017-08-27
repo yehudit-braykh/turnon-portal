@@ -5,7 +5,7 @@ turnOnApp.directive('marketBlock', function() {
       transclude: true,
       scope: {
           model: '=',
-          limit: "=",
+          limit: "@",
           order: "@",
           reverse: "=",
           link: "=",

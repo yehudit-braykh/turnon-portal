@@ -1,4 +1,4 @@
-<div class="col-xs-4 market_item" ng-repeat="product in model">
+<div class="col-xs-{{col}} market_item" ng-repeat="product in model | limitTo : limit">
   <div class="market_background" ng-click="go('product/' + product.id)">
     <div class="market_item_points">
       <div class="market_points_image">
@@ -9,7 +9,7 @@
     <div class="market_item_image" style="background-image: url('{{product.url}}');"></div>
     <div class="market_item_info">
       <div class="market_item_title">{{product.title}}</div>
-      <div class="market_item_desc">{{product.description}}</div>
+      <div class="market_item_desc">{{product.type}}</div>
     </div>
   </div>
 </div>
