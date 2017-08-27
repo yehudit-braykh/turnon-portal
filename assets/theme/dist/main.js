@@ -38,6 +38,10 @@ turnOnApp.config(function($routeProvider, $locationProvider){
         templateUrl: '/assets/theme/src/models/product/product.html',
         controller: 'productController'
     })
+    .when('/mybag', {
+        templateUrl: '/assets/theme/src/models/mybag/mybag.html',
+        controller: 'mybagController'
+    })
     .otherwise({
         redirectTo: '/'
     });;
@@ -53,6 +57,11 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('directives/market_block/market_block.html',
     "<div class=\"col-xs-{{col}} market_item\" ng-repeat=\"product in model | limitTo : limit\"><div class=market_background ng-click=\"go('product/' + product.id)\"><div class=market_item_points><div class=market_points_image><div class=points_logo></div><div class=points_num>{{product.points}}</div></div></div><div class=market_item_image style=\"background-image: url('{{product.url}}')\"></div><div class=market_item_info><div class=market_item_title>{{product.title}}</div><div class=market_item_desc>{{product.type}}</div></div></div></div>"
+  );
+
+
+  $templateCache.put('directives/mybag_block/mybag_block.html',
+    "<div class=\"col-xs-12 mybag_block_item\" ng-repeat=\"product in model\"><div class=\"image_section col-xs-3\"><div class=proudct_image style=\"background-image: url({{product.url}})\"></div></div><div class=\"detailes_section col-xs-9\"><div class=header>asdsad</div></div><div class=\"line col-xs-12\"></div></div>"
   );
 
 
@@ -103,6 +112,11 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('models/my_list/mylist.html',
     "<div class=mylist_page><div class=\"page_container row\"><div class=\"col-xs-12 mylist_header\"><div class=mylist_brand style=\"background-image: url('/assets/theme/src/images/headers/mylist.png')\"></div></div><div class=\"mylist_content col-xs-12\"><mylistvideo-block data-model=videosList></mylistvideo-block></div></div></div>"
+  );
+
+
+  $templateCache.put('models/mybag/mybag.html',
+    "<div class=mybag_page><div class=\"col-xs-12 mybag_header\"><div class=mybag_brand style=\"background-image: url('/assets/theme/src/images/headers/market.png')\"></div></div><div class=\"page_container col-xs-12\"><div class=fix_padding><div class=\"mybag_merchandise col-xs-12\"></div></div><div class=\"sub_header col-xs-12 fix_padding\"><div class=\"search_input_cover col-xs-6\"><input type=text class=search_input> <i class=\"fa fa-search\"></i></div><div class=\"col-xs-6 mybag_buttons\"><div class=mybag_bag_container><div class=mybag_likes_image></div><div class=mybag_bag_title>MY BAG</div></div><div class=mybag_likes_container><div class=mybag_likes_image></div><div class=mybag_likes_title>LIKED</div></div></div></div><div class=fix_padding><div class=\"content_section col-xs-12\"><div class=left_div><mybag-block data-model=products></mybag-block></div><div class=right_div></div></div></div></div></div>"
   );
 
 
@@ -180,6 +194,31 @@ turnOnApp.directive('marketBlock', function() {
 
       }],
       templateUrl: '/assets/theme/src/directives/market_block/market_block.html',
+    };
+  })
+
+var mbb = null
+turnOnApp.directive('mybagBlock', function() {
+    return {
+      restrict: 'E',
+      transclude: true,
+      scope: {
+          model: '=',
+          limit: "=",
+          order: "@",
+          reverse: "=",
+          link: "=",
+          search: '=',
+          col: "@"
+      },
+      controller: ['$scope', '$location', function mybagBlockController($scope, $location) {
+          mbb = $scope;
+          $scope.go = function (path) {
+              $location.path(path);
+          };
+
+      }],
+      templateUrl: '/assets/theme/src/directives/mybag_block/mybag_block.html',
     };
   })
 
@@ -960,6 +999,55 @@ turnOnApp.controller('mylistController', function mylistController ($scope, $loc
 
 });
 
+var mb = null;
+turnOnApp.controller('mybagController', function mybagController ($scope, $location, $http, $log,$interval,$routeParams) {
+  mb = $scope;
+  $scope.products = [{ id:'1',
+                  title:'2016 BRAZIL CBF MATCH HOME',
+                  url:'assets/theme/src/images/market/shoes_1@2x.png',
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                  points: '15 000'},
+                  { id: '2',
+                  title:'2016 BRAZIL CBF MATCH HOME',
+                  url:'assets/theme/src/images/market/bag_1@2x.png',
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                  points: '50 000'},
+                  {id: '3',
+                  title:'2016 BRAZIL CBF MATCH HOME',
+                  url:'assets/theme/src/images/market/shoes_2@2x.png',
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                  points: '10 000'},
+                  {id: '4',
+                  title:'2016 BRAZIL CBF MATCH HOME',
+                  url:'assets/theme/src/images/market/t_shirt_1@2x.png',
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                  points: '10 000'},
+                  {id: '5',
+                  title:'2016 BRAZIL CBF MATCH HOME',
+                  url:'assets/theme/src/images/market/shoes_1@2x.png',
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                  points: '15 000'},
+                  {id: '6',
+                  title:'2016 BRAZIL CBF MATCH HOME',
+                  url:'assets/theme/src/images/market/bag_1@2x.png',
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                   points: '50 000'},
+                  {id: '7',
+                  title:'2016 BRAZIL CBF MATCH HOME',
+                  url:'assets/theme/src/images/market/t_shirt_2@2x.png',
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                  points: '10 000'}];
+
+
+});
+
 var nf = null;
 turnOnApp.controller('newsfeedController', function newsfeedController ($scope, $location, $http, $log,$interval) {
   nf = $scope;
@@ -1079,8 +1167,7 @@ turnOnApp.controller('productController', function productController ($scope, $l
                   url:'assets/theme/src/images/market/t_shirt_2@2x.png',
                   type : "MEN'S FOOTBALL SHIRT",
                   description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
-                  points: '10 000',}];
-
+                  points: '10 000'}];
 
 //this function give me the selectd proudct
   $scope.products.forEach (function(item){
@@ -1090,62 +1177,6 @@ turnOnApp.controller('productController', function productController ($scope, $l
       }
 
   },this);
-
-
-
-  $scope.brands = [{title:'Nike',
-                  value: "nike"},
-                  {title:'Adidas',
-                  value: "adidas"},
-                  {title:'Puma',
-                  value: "puma"},
-                  {title:'Reebok',
-                  value: "reebok"},
-                  {title:'New Balance',
-                  value: "new_balance"}];
-
-  $scope.types = [{title:'Trainers',
-                  value: "trainers"},
-                  {title:'Shirt',
-                  value: "shirt"},
-                  {title:'Sweatshirt',
-                  value: "sweatshirt"},
-                  {title:'Pants',
-                  value: "pants"},
-                  {title:'Shorts',
-                  value: "shorts"}];
-
-  $scope.sizes = [{title:'S',
-                  value: "s"},
-                  {title:'M',
-                  value: "m"},
-                  {title:'L',
-                  value: "l"},
-                  {title:'XL',
-                  value: "xl"},
-                  {title:'XXL',
-                  value: "xxl"}];
-
-  $scope.colors = [{title:'Blue',
-                  value: "blue"},
-                  {title:'Gold',
-                  value: "gold"},
-                  {title:'White',
-                  value: "white"},
-                  {title:'Black',
-                  value: "black"},
-                  {title:'Green',
-                  value: "green"},
-                  {title:'Brown',
-                  value: "brown"},
-                  {title:'Yellow',
-                  value: "yellow"},
-                  {title:'Purple',
-                  value: "purple"},
-                  {title:'Pink',
-                  value: "pink"},
-                  {title:'Gray',
-                  value: "gray"}];
 
   });
 

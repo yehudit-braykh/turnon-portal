@@ -11509,6 +11509,157 @@ button.close {
 .product_page .page_container .products_container {
   padding: 1vw 0 2vw;
 }
+.mybag_page .mybag_header {
+  padding-right: 14%;
+  padding-left: 14%;
+  height: 6vw;
+  background-color: #fc5f3d;
+}
+.mybag_page .mybag_header .mybag_brand {
+  background-position: left;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 3.5vw;
+  width: 25vw;
+  margin-top: 1.2vw;
+}
+.mybag_page .page_container {
+  padding-right: 14%;
+  padding-left: 14%;
+  background: #ffffff;
+}
+.mybag_page .page_container .mybag_merchandise {
+  padding: 0;
+  background-image: url(../src/images/headers/merchandise.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: left;
+  height: 4vw;
+  cursor: pointer;
+}
+.mybag_page .page_container .sub_header {
+  padding-top: 1.5vw;
+  padding-bottom: 1.5vw;
+}
+.mybag_page .page_container .sub_header .search_input_cover {
+  padding: 0;
+  float: left;
+  width: 12vw;
+  position: relative;
+}
+.mybag_page .page_container .sub_header .search_input_cover .search_input {
+  height: 1.8vw;
+  width: 12vw;
+  border: solid 1px #1a2937;
+}
+.mybag_page .page_container .sub_header .search_input_cover .fa-search {
+  position: absolute;
+  top: 0.3vw;
+  right: 1vw;
+  opacity: 0.8;
+  font-size: 1vw;
+}
+.mybag_page .page_container .sub_header .mybag_buttons {
+  float: right;
+  padding: 0;
+  bottom: 0.5vw;
+}
+.mybag_page .page_container .sub_header .mybag_buttons .mybag_likes_container {
+  float: right;
+  width: 18%;
+  height: 2.4vw;
+  cursor: pointer;
+}
+.mybag_page .page_container .sub_header .mybag_buttons .mybag_likes_container:hover {
+  border-radius: 10px;
+  background-color: #fe6443;
+  border: solid 1px #fe6443;
+}
+.mybag_page .page_container .sub_header .mybag_buttons .mybag_likes_container:hover .product_likes_title {
+  color: #ffffff;
+}
+.mybag_page .page_container .sub_header .mybag_buttons .mybag_likes_container:hover .mybag_likes_image {
+  background-image: url(../src/images/icon/white_heart.png);
+}
+.mybag_page .page_container .sub_header .mybag_buttons .mybag_likes_container .mybag_likes_title {
+  font-family: SourceSansPro;
+  font-size: 1.15vw;
+  font-weight: 600;
+  letter-spacing: 0.9px;
+  color: #fe6443;
+  float: left;
+  line-height: 2.4vw;
+  margin-left: 0.4vw;
+}
+.mybag_page .page_container .sub_header .mybag_buttons .mybag_likes_container .mybag_likes_image {
+  background-image: url(../src/images/icon/heart_orange.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 1.2vw;
+  height: 2.4vw;
+  float: right;
+  margin-right: 0.4vw;
+}
+.mybag_page .page_container .sub_header .mybag_buttons .mybag_bag_container {
+  float: right;
+  width: 18%;
+  height: 2.4vw;
+  margin-left: 1vw;
+  cursor: pointer;
+}
+.mybag_page .page_container .sub_header .mybag_buttons .mybag_bag_container:hover {
+  border-radius: 10px;
+  background-color: #fe6443;
+  border: solid 1px #fe6443;
+}
+.mybag_page .page_container .sub_header .mybag_buttons .mybag_bag_container:hover .mybag_likes_title {
+  color: #ffffff;
+}
+.mybag_page .page_container .sub_header .mybag_buttons .mybag_bag_container:hover .mybag_likes_image {
+  background-image: url(../src/images/icon/bag_white.png);
+}
+.mybag_page .page_container .sub_header .mybag_buttons .mybag_bag_container:hover .product_bag_title {
+  color: #ffffff;
+}
+.mybag_page .page_container .sub_header .mybag_buttons .mybag_bag_container .mybag_bag_title {
+  font-family: SourceSansPro;
+  font-size: 1.15vw;
+  font-weight: 600;
+  letter-spacing: 0.9px;
+  color: #fe6443;
+  float: left;
+  line-height: 2.4vw;
+  margin-left: 0.4vw;
+}
+.mybag_page .page_container .sub_header .mybag_buttons .mybag_bag_container .mybag_likes_image {
+  background-image: url(../src/images/icon/bag_orange.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 0.8vw;
+  height: 2.4vw;
+  float: right;
+  margin-right: 0.4vw;
+}
+.mybag_page .page_container .content_section {
+  padding: 0;
+}
+.mybag_page .page_container .content_section .left_div {
+  padding: 0 2.5vw;
+  overflow-y: scroll;
+  height: 29vw;
+  width: 64%;
+  float: left;
+  background-color: #f0f0f0;
+}
+.mybag_page .page_container .content_section .right_div {
+  float: left;
+  height: 29vw;
+  width: 34%;
+  margin-left: 1.5%;
+  background-color: #f0f0f0;
+}
 .video_list_container {
   padding: 0.8vw;
   position: relative;
@@ -12832,6 +12983,30 @@ button.close {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.mybag_block_item {
+  height: 9.4vw;
+  padding: 0;
+}
+.mybag_block_item .image_section {
+  padding: 1.5vw 0 0;
+  height: 80%;
+}
+.mybag_block_item .image_section .proudct_image {
+  width: 4vw;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 5vw;
+  position: relative;
+}
+.mybag_block_item .detailes_section {
+  height: 80%;
+  padding: 1.5vw 0 0;
+}
+.mybag_block_item .line {
+  background-color: rgba(26, 41, 55, 0.5);
+  height: 1px;
+  padding: 0;
 }
 @font-face {
   font-family: 'SourceSansPro';
