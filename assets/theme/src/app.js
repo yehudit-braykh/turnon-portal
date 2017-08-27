@@ -34,6 +34,10 @@ turnOnApp.config(function($routeProvider, $locationProvider){
         templateUrl: '/assets/theme/src/models/market/market.html',
         controller: 'marketController'
     })
+    .when('/product/:productId', {
+        templateUrl: '/assets/theme/src/models/product/product.html',
+        controller: 'productController'
+    })
     .otherwise({
         redirectTo: '/'
     });;

@@ -1,11 +1,7 @@
-var ma = null;
-turnOnApp.controller('marketController', function marketController ($scope, $location, $http, $log,$interval) {
-  ma = $scope;
-
-  $scope.go = function (path) {
-    $location.path(path);
-  };
-  
+var pr = null;
+turnOnApp.controller('productController', function productController ($scope, $location, $http, $log,$interval,$routeParams) {
+  pr = $scope;
+  $scope.productId = $routeParams.productId;
   $scope.products = [{ id:'1',
                   title:'2016 BRAZIL CBF MATCH HOME',
                   url:'assets/theme/src/images/market/shoes_1@2x.png',
@@ -41,6 +37,18 @@ turnOnApp.controller('marketController', function marketController ($scope, $loc
                   url:'assets/theme/src/images/market/t_shirt_2@2x.png',
                   points: '10 000',
                   description: "MEN'S FOOTBALL SHIRT"}];
+
+
+//this function give me the selectd proudct
+  $scope.products.forEach (function(item){
+      if (item.id == $scope.productId )
+      {
+          $scope.product = item;
+      }
+
+  },this);
+
+ 
 
   $scope.brands = [{title:'Nike',
                   value: "nike"},
@@ -95,14 +103,5 @@ turnOnApp.controller('marketController', function marketController ($scope, $loc
                   value: "pink"},
                   {title:'Gray',
                   value: "gray"}];
-  $scope.slider = {
-      minValue: 10000,
-      maxValue: 25000,
-      options: {
-          floor: 10,
-          ceil: 50000,
-          step: 10
-      }
-  };
 
-});
+  });
