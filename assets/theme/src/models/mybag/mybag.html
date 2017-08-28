@@ -53,9 +53,7 @@
                         </div>
                     </div>
                     <div class="buy_button_cover col-xs-12">
-                        <div class="button">
-                            buy
-                        </div>
+                        <div class="button" ng-click = "open_modal()">buy</div>
                     </div>
                 </div>
 
@@ -67,5 +65,33 @@
         <div class="products_container col-xs-12">
             <market-block data-model="products" data-limit = "4" data-col = "3"></market-block>
         </div>
+    </div>
+    <div class="modal fade" id="mybag_modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="close_section">
+                <div class="close_button" data-dismiss="modal" aria-label="Close"></div>
+            </div>
+            <div class="modal_header_section">
+             Approve your payment
+            </div>
+            <div class="modal_center_section">
+                <div class="modal_subtotal_cover  col-xs-12">
+                    <div class="header_subtotal ">total</div>
+                    <div class="mybag_coins">
+                        <div class="image"></div>
+                        <div class="cost">{{pointscount}}</div>
+                    </div>
+                </div>
+              <div class="line col-xs-12"></div>
+              <input type="text" class="input_style" value="Enter Your Password">
+              <div class="modal_button">
+                  <div class=" purchase_button">purchase</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 </div>
