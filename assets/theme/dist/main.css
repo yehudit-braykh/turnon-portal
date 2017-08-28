@@ -11815,6 +11815,30 @@ button.close {
   color: #ffffff;
   text-align: center;
 }
+.mybag_page #mybag_modal .modal-dialog .modal-content .modal-body .modal_button {
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+}
+.mybag_page #mybag_modal .modal-dialog .modal-content .modal-body .modal_button .purchase_button {
+  border-radius: 6px;
+  border: solid 2px rgba(24, 214, 118, 0.4);
+  margin: 30px auto;
+  font-style: italic;
+  font-size: 22px;
+  padding: 0px 12px;
+  width: 200px;
+  height: 40px;
+  text-align: center;
+  color: rgba(24, 214, 118, 0.4);
+  background-color: transparent;
+  text-transform: uppercase;
+  padding-top: 2px;
+}
+.mybag_page #mybag_modal .modal-dialog .modal-content .modal-body .modal_button .purchase_button.continue {
+  width: 240px;
+  margin-top: 50px;
+}
 .mybag_page #mybag_modal .modal-dialog .modal-content .modal-body .modal_center_section {
   padding: 41px 43px 0;
 }
@@ -11867,25 +11891,20 @@ button.close {
   border: solid 1px rgba(255, 255, 255, 0.7);
   padding-left: 15px;
 }
-.mybag_page #mybag_modal .modal-dialog .modal-content .modal-body .modal_center_section .modal_button {
-  text-align: center;
-  width: 100%;
-  margin: 0 auto;
-}
-.mybag_page #mybag_modal .modal-dialog .modal-content .modal-body .modal_center_section .modal_button .purchase_button {
-  border-radius: 6px;
-  border: solid 2px rgba(24, 214, 118, 0.4);
-  margin: 30px auto;
-  font-style: italic;
-  font-size: 22px;
-  padding: 0px 12px;
-  width: 200px;
-  height: 40px;
-  text-align: center;
-  color: rgba(24, 214, 118, 0.4);
-  background-color: transparent;
+.mybag_page #mybag_modal .modal-dialog .modal-content .modal-body .detailes {
   text-transform: uppercase;
-  padding-top: 2px;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  color: #ffffff;
+  margin-top: 30px;
+}
+.mybag_page #mybag_modal .modal-dialog .modal-content .modal-body .detailes.view {
+  margin-top: 5px;
+  color: #fe6443;
+}
+.mybag_page #mybag_modal .modal-dialog .modal-content .modal-body .detailes.view .border {
+  border-bottom: solid 1px #fe6443;
 }
 .video_list_container {
   padding: 0.8vw;

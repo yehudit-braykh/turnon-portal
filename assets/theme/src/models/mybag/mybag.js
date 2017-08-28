@@ -1,6 +1,7 @@
 var mb = null;
 turnOnApp.controller('mybagController', function mybagController ($scope, $location, $http, $log,$interval,$routeParams) {
   mb = $scope;
+  $scope.purchase = false;
   $scope.pointscount = 0;
   $scope.products = [{ id:'1',
                   title:'2016 BRAZIL CBF MATCH HOME',
@@ -52,5 +53,8 @@ turnOnApp.controller('mybagController', function mybagController ($scope, $locat
   },this);
   $scope.open_modal = function(){
     $('#mybag_modal').modal('show');
+  }
+  $scope.confirm_purchase = function(){
+    $scope.purchase = true;
   }
 });

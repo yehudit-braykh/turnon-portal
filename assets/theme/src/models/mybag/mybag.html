@@ -69,7 +69,7 @@
     <div class="modal fade" id="mybag_modal" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-body">
+          <div class="modal-body" ng-if = "!purchase">
             <div class="close_section">
                 <div class="close_button" data-dismiss="modal" aria-label="Close"></div>
             </div>
@@ -85,10 +85,20 @@
                     </div>
                 </div>
               <div class="line col-xs-12"></div>
-              <input type="text" class="input_style" value="Enter Your Password">
+              <input ngModel="newListItem" type="text" class="input_style" value="">
               <div class="modal_button">
-                  <div class=" purchase_button">purchase</div>
+                  <button  ng.disabled="newListItem.length < 3" class=" purchase_button" ng-click = "confirm_purchase()">purchase</button>
               </div>
+            </div>
+          </div>
+          <div class="modal-body" ng-if = "purchase">
+            <div class="modal_header_section">
+             THANK YOU
+            </div>
+            <div class="detailes">YOUR ORDER IS BEING PROCESSED</div>
+            <div class="detailes view"><span class="border">view order detailes</span></div>
+            <div class="modal_button">
+                <button class=" purchase_button continue" ng-click = "confirm_purchase()">continue shopping</button>
             </div>
           </div>
         </div>
