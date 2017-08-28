@@ -116,7 +116,7 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('models/mybag/mybag.html',
-    "<div class=mybag_page><div class=\"col-xs-12 mybag_header\"><div class=mybag_brand style=\"background-image: url('/assets/theme/src/images/headers/market.png')\"></div></div><div class=\"page_container col-xs-12\"><div class=fix_padding><div class=\"mybag_merchandise col-xs-12\"></div></div><div class=\"sub_header col-xs-12 fix_padding\"><div class=\"search_input_cover col-xs-6\"><input type=text class=search_input> <i class=\"fa fa-search\"></i></div><div class=\"col-xs-6 mybag_buttons\"><div class=mybag_bag_container><div class=mybag_likes_image></div><div class=mybag_bag_title>MY BAG</div></div><div class=mybag_likes_container><div class=mybag_likes_image></div><div class=mybag_likes_title>LIKED</div></div></div></div><div class=fix_padding><div class=\"content_section col-xs-12\"><div class=left_div><mybag-block data-model=products></mybag-block></div><div class=right_div></div></div></div></div></div>"
+    "<div class=mybag_page><div class=\"col-xs-12 mybag_header\"><div class=mybag_brand style=\"background-image: url('/assets/theme/src/images/headers/market.png')\"></div></div><div class=\"page_container col-xs-12\"><div class=fix_padding><div class=\"mybag_merchandise col-xs-12\"></div></div><div class=\"sub_header col-xs-12 fix_padding\"><div class=\"search_input_cover col-xs-6\"><input type=text class=search_input> <i class=\"fa fa-search\"></i></div><div class=\"col-xs-6 mybag_buttons\"><div class=mybag_bag_container><div class=mybag_likes_image></div><div class=mybag_bag_title>MY BAG</div></div><div class=mybag_likes_container><div class=mybag_likes_image></div><div class=mybag_likes_title>LIKED</div></div></div></div><div class=fix_padding><div class=\"content_section col-xs-12\"><div class=left_div><mybag-block data-model=products></mybag-block></div><div class=right_div><div class=summary>summary</div><div class=line></div><div class=\"subtotal_cover col-xs-12\"><div class=header_subtotal>subtotal</div><div class=mybag_coins><div class=image></div><div class=cost>{{pointscount}}</div></div></div><div class=\"delivery_cover col-xs-12\"><div class=delivery_header>DELIVERY</div><div class=delivery_cost>free</div></div><div class=\"line col-xs-12\"></div><div class=\"subtotal_cover total col-xs-12\"><div class=header_subtotal>total</div><div class=mybag_coins><div class=image></div><div class=cost>{{pointscount}}</div></div></div><div class=\"buy_button_cover col-xs-12\"><div class=button>buy</div></div></div></div></div><div class=\"you_might_like col-xs-12 fix_padding\">you might also like</div><div class=\"products_container col-xs-12\"><market-block data-model=products data-limit=4 data-col=3></market-block></div></div></div>"
   );
 
 
@@ -1002,50 +1002,55 @@ turnOnApp.controller('mylistController', function mylistController ($scope, $loc
 var mb = null;
 turnOnApp.controller('mybagController', function mybagController ($scope, $location, $http, $log,$interval,$routeParams) {
   mb = $scope;
+ $scope.pointscount=0
   $scope.products = [{ id:'1',
                   title:'2016 BRAZIL CBF MATCH HOME',
                   url:'assets/theme/src/images/market/shoes_1@2x.png',
                   type : "MEN'S FOOTBALL SHIRT",
                   description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
-                  points: '15 000'},
+                  points: '15000'},
                   { id: '2',
                   title:'2016 BRAZIL CBF MATCH HOME',
                   url:'assets/theme/src/images/market/bag_1@2x.png',
                   type : "MEN'S FOOTBALL SHIRT",
                   description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
-                  points: '50 000'},
+                  points: '50000'},
                   {id: '3',
                   title:'2016 BRAZIL CBF MATCH HOME',
                   url:'assets/theme/src/images/market/shoes_2@2x.png',
                   type : "MEN'S FOOTBALL SHIRT",
                   description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
-                  points: '10 000'},
+                  points: '10000'},
                   {id: '4',
                   title:'2016 BRAZIL CBF MATCH HOME',
                   url:'assets/theme/src/images/market/t_shirt_1@2x.png',
                   type : "MEN'S FOOTBALL SHIRT",
                   description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
-                  points: '10 000'},
+                  points: '10000'},
                   {id: '5',
                   title:'2016 BRAZIL CBF MATCH HOME',
                   url:'assets/theme/src/images/market/shoes_1@2x.png',
                   type : "MEN'S FOOTBALL SHIRT",
                   description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
-                  points: '15 000'},
+                  points: '15000'},
                   {id: '6',
                   title:'2016 BRAZIL CBF MATCH HOME',
                   url:'assets/theme/src/images/market/bag_1@2x.png',
                   type : "MEN'S FOOTBALL SHIRT",
                   description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
-                   points: '50 000'},
+                   points: '50000'},
                   {id: '7',
                   title:'2016 BRAZIL CBF MATCH HOME',
                   url:'assets/theme/src/images/market/t_shirt_2@2x.png',
                   type : "MEN'S FOOTBALL SHIRT",
                   description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
-                  points: '10 000'}];
+                  points: '10000'}];
 
 
+      $scope.products.forEach (function(item){
+              $scope.itempoint = parseInt(item.points)
+              $scope.pointscount +=  $scope.itempoint;
+      },this);
 });
 
 var nf = null;

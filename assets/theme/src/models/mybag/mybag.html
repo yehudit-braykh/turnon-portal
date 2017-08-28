@@ -31,9 +31,41 @@
                     <mybag-block data-model="products"></mybag-block>
                 </div>
                 <div class="right_div">
-
+                    <div class="summary">summary</div>
+                    <div class="line"></div>
+                    <div class="subtotal_cover  col-xs-12">
+                        <div class="header_subtotal ">subtotal</div>
+                        <div class="mybag_coins">
+                            <div class="image"></div>
+                            <div class="cost">{{pointscount}}</div>
+                        </div>
+                    </div>
+                    <div class="delivery_cover col-xs-12">
+                        <div class="delivery_header"> DELIVERY</div>
+                        <div class="delivery_cost"> free</div>
+                    </div>
+                    <div class="line col-xs-12"></div>
+                    <div class="subtotal_cover total col-xs-12">
+                        <div class="header_subtotal ">total</div>
+                        <div class="mybag_coins">
+                            <div class="image"></div>
+                            <div class="cost">{{pointscount}}</div>
+                        </div>
+                    </div>
+                    <div class="buy_button_cover col-xs-12">
+                        <div class="button">
+                            buy
+                        </div>
+                    </div>
                 </div>
+
             </div>
+        </div>
+        <div class="you_might_like col-xs-12 fix_padding">
+            you might also like
+        </div>
+        <div class="products_container col-xs-12">
+            <market-block data-model="products" data-limit = "4" data-col = "3"></market-block>
         </div>
     </div>
 </div>
