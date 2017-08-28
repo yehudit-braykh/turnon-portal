@@ -60,7 +60,7 @@
                   border-radius: 10px;
                   background-color: #fe6443;
                   border: solid 1px #fe6443;
-                  .product_likes_title{
+                  .mybag_likes_title{
                     color: #ffffff;
                   }
                   .mybag_likes_image{
@@ -104,7 +104,7 @@
                   .mybag_likes_image{
                     background-image: url(../src/images/icon/bag_white.png);
                   }
-                  .product_bag_title{
+                  .mybag_bag_title{
                     color: #ffffff;
                   }
                 }
@@ -140,6 +140,18 @@
                 width: 64%;
                 float: left;
                 background-color: #f0f0f0;
+                &::-webkit-scrollbar-track{
+                  background-color: #b3b3b3;
+                  width: 0.75vw;
+                  border-radius: 100px;
+                }
+                &::-webkit-scrollbar{
+                  width: 0.75vw;
+                }
+                &::-webkit-scrollbar-thumb{
+                  border-radius: 100px;
+                  background-color: #fc5f3d;
+                }
             }
             .right_div {
                 float: left;

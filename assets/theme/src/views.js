@@ -12,7 +12,7 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('directives/mybag_block/mybag_block.html',
-    "<div class=\"col-xs-12 mybag_block_item\" ng-repeat=\"product in model\"><div class=\"image_section col-xs-3\"><div class=proudct_image style=\"background-image: url({{product.url}})\"></div></div><div class=\"detailes_section col-xs-9\"><div class=header>asdsad</div></div><div class=\"line col-xs-12\"></div></div>"
+    "<div class=\"col-xs-12 mybag_block_item\" ng-repeat=\"product in model\"><div class=\"image_section col-xs-3\"><div class=proudct_image style=\"background-image: url({{product.url}})\"></div></div><div class=\"detailes_section col-xs-9\"><div class=header>{{product.title}}</div><div class=type>{{product.type}}</div><div class=mybag_coins><div class=image></div><div class=cost>{{product.points}}</div></div></div><div class=\"line col-xs-12\"></div><div class=close_button></div></div>"
   );
 
 

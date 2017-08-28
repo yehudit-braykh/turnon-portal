@@ -11575,7 +11575,7 @@ button.close {
   background-color: #fe6443;
   border: solid 1px #fe6443;
 }
-.mybag_page .page_container .sub_header .mybag_buttons .mybag_likes_container:hover .product_likes_title {
+.mybag_page .page_container .sub_header .mybag_buttons .mybag_likes_container:hover .mybag_likes_title {
   color: #ffffff;
 }
 .mybag_page .page_container .sub_header .mybag_buttons .mybag_likes_container:hover .mybag_likes_image {
@@ -11619,7 +11619,7 @@ button.close {
 .mybag_page .page_container .sub_header .mybag_buttons .mybag_bag_container:hover .mybag_likes_image {
   background-image: url(../src/images/icon/bag_white.png);
 }
-.mybag_page .page_container .sub_header .mybag_buttons .mybag_bag_container:hover .product_bag_title {
+.mybag_page .page_container .sub_header .mybag_buttons .mybag_bag_container:hover .mybag_bag_title {
   color: #ffffff;
 }
 .mybag_page .page_container .sub_header .mybag_buttons .mybag_bag_container .mybag_bag_title {
@@ -11652,6 +11652,18 @@ button.close {
   width: 64%;
   float: left;
   background-color: #f0f0f0;
+}
+.mybag_page .page_container .content_section .left_div::-webkit-scrollbar-track {
+  background-color: #b3b3b3;
+  width: 0.75vw;
+  border-radius: 100px;
+}
+.mybag_page .page_container .content_section .left_div::-webkit-scrollbar {
+  width: 0.75vw;
+}
+.mybag_page .page_container .content_section .left_div::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  background-color: #fc5f3d;
 }
 .mybag_page .page_container .content_section .right_div {
   float: left;
@@ -12985,28 +12997,74 @@ button.close {
   text-overflow: ellipsis;
 }
 .mybag_block_item {
+  font-family: SourceSansPro;
   height: 9.4vw;
   padding: 0;
 }
 .mybag_block_item .image_section {
   padding: 1.5vw 0 0;
-  height: 80%;
+  height: 100%;
 }
 .mybag_block_item .image_section .proudct_image {
-  width: 4vw;
+  width: 4.3vw;
   background-repeat: no-repeat;
   background-size: contain;
-  height: 5vw;
+  height: 5.5vw;
   position: relative;
 }
 .mybag_block_item .detailes_section {
-  height: 80%;
+  height: 100%;
   padding: 1.5vw 0 0;
+}
+.mybag_block_item .detailes_section .header {
+  font-size: 1vw;
+  color: #1a2937;
+  font-style: italic;
+  font-weight: 600;
+}
+.mybag_block_item .detailes_section .type {
+  font-size: 0.7vw;
+  font-family: Roboto;
+  font-weight: 300;
+  color: #fe6443;
+  margin-top: 0.5vw;
+}
+.mybag_block_item .detailes_section .mybag_coins {
+  margin-top: 1vw;
+  padding: 0;
+}
+.mybag_block_item .detailes_section .mybag_coins .image {
+  background-image: url(../src/images/icon/pin-icon-yellow.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: left;
+  width: 1.5vw;
+  float: left;
+  height: 1.5vw;
+}
+.mybag_block_item .detailes_section .mybag_coins .cost {
+  float: left;
+  margin-left: 0.8vw;
+  font-size: 1.3vw;
+  font-weight: 900;
+  color: #1a2937;
+  position: relative;
+  bottom: 0.2vw;
 }
 .mybag_block_item .line {
   background-color: rgba(26, 41, 55, 0.5);
   height: 1px;
   padding: 0;
+}
+.mybag_block_item .close_button {
+  background-image: url(../src/images/icon/x-red.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 1.5vw;
+  height: 1.5vw;
+  top: 1.5vw;
+  right: 0;
+  position: absolute;
 }
 @font-face {
   font-family: 'SourceSansPro';

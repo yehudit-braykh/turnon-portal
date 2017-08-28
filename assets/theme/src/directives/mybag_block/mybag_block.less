@@ -1,26 +1,72 @@
 .mybag_block_item {
+    font-family: SourceSansPro;
     height: 9.4vw;
     padding: 0;
     .image_section {
         padding: 1.5vw 0 0;
-        height: 80%;
+        height: 100%;
         .proudct_image {
-            width: 4vw;
+            width: 4.3vw;
             background-repeat: no-repeat;
             background-size: contain;
-            height: 5vw;
+            height: 5.5vw;
             position: relative;
 
         }
     }
     .detailes_section {
-        height: 80%;
+        height: 100%;
         padding: 1.5vw 0 0;
+
+        .header {
+            font-size: 1vw;
+            color: #1a2937;
+            font-style: italic;
+            font-weight: 600;
+        }
+        .type {
+            font-size: 0.7vw;
+            font-family: Roboto;
+            font-weight: 300;
+            color: #fe6443;
+            margin-top: 0.5vw;
+        }
+        .mybag_coins {
+            margin-top: 1vw;
+            padding: 0;
+            .image {
+                background-image: url(../src/images/icon/pin-icon-yellow.png);
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: left;
+                width: 1.5vw;
+                float: left;
+                height: 1.5vw;
+            }
+            .cost {
+                float: left;
+                margin-left: 0.8vw;
+                font-size: 1.3vw;
+                font-weight: 900;
+                color: #1a2937;
+                position: relative;
+                bottom: 0.2vw;
+            }
+        }
     }
     .line {
         background-color: rgba(26, 41, 55, 0.5);
         height: 1px;
         padding: 0;
-        
+    }
+    .close_button {
+        background-image: url(../src/images/icon/x-red.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 1.5vw;
+        height: 1.5vw;
+        top: 1.5vw;
+        right: 0;
+        position: absolute;
     }
 }
