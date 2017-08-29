@@ -1,0 +1,18 @@
+<div class="gainpoints_page">
+    <div class="col-xs-12 gainpoints_header">
+         <div class="gainpoints_brand"  style="background-image: url('/assets/theme/src/images/headers/gainpoints.png');"></div>
+    </div>
+    <div class="page_container col-xs-12">
+
+        <div class="center_image" style="background-image: url('/assets/theme/src/images/bg/cover_image_basketball.png');">
+            <div class="grdainet"></div>
+        </div>
+        <div class="barnds_container">
+            <div class="col-xs-12 barnd_item" ng-repeat="brand in brands ">
+                <div class="brand_background" ng-click="go()" style="background-image: url({{brand.cover_image}})">
+                    <div class="barnd_logo" style="background-image: url({{brand.logo}})"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

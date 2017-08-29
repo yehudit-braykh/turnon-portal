@@ -46,6 +46,10 @@ turnOnApp.config(function($routeProvider, $locationProvider){
         templateUrl: '/assets/theme/src/models/liked/liked.html',
         controller: 'likedController'
     })
+    .when('/gainpoints', {
+        templateUrl: '/assets/theme/src/models/gainpoints/gainpoints.html',
+        controller: 'gainpointsController'
+    })
     .otherwise({
         redirectTo: '/'
     });;

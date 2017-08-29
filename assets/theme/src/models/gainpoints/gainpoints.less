@@ -1,0 +1,71 @@
+.gainpoints_page {
+
+    .gainpoints_header {
+        padding-right: 14%;
+        padding-left: 14%;
+        height: 6vw;
+        background-color: #fc5f3d;
+        .gainpoints_brand {
+            background-position: left;
+            background-size: contain;
+            background-repeat: no-repeat;
+            height: 3.5vw;
+            width: 25vw;
+            margin-top: 1.2vw;
+        }
+    }
+    .page_container {
+         background-color: #1a2937;
+        padding: 0;
+        .center_image {
+            margin-bottom: 10vw;
+            height: 59vw;
+            background-repeat: no-repeat;
+            background-position: top;
+            background-size: 100%;
+            position: relative;
+            .grdainet {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                width: 100%;
+                background-image:  linear-gradient(to bottom, rgba(26, 41, 55, 0), #1a2937);
+            }
+        }
+        .barnds_container {
+            width: 60vw;
+            height: 61vw;
+            top: 1.5vw;
+            position: absolute;
+            margin-left: 20vw;
+            overflow-y: scroll;
+            &::-webkit-scrollbar-track{
+              width: 0;
+            }
+            &::-webkit-scrollbar{
+              width:0;
+            }
+            .barnd_item {
+                padding: 2vw 0;
+                .brand_background {
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    background-position: center;
+                    position: relative;
+                    height: 16vw;
+                    .barnd_logo {
+                        position: absolute;
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        background-position: center;
+                        height: 8vw;
+                        width: 15vw;
+                        top: 4vw;
+                        left: 22.6vw;
+                    }
+                }
+
+            }
+        }
+    }
+}

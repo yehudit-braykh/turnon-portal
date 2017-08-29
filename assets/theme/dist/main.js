@@ -46,6 +46,10 @@ turnOnApp.config(function($routeProvider, $locationProvider){
         templateUrl: '/assets/theme/src/models/liked/liked.html',
         controller: 'likedController'
     })
+    .when('/gainpoints', {
+        templateUrl: '/assets/theme/src/models/gainpoints/gainpoints.html',
+        controller: 'gainpointsController'
+    })
     .otherwise({
         redirectTo: '/'
     });;
@@ -96,6 +100,11 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('models/footer/footer.html',
     ""
+  );
+
+
+  $templateCache.put('models/gainpoints/gainpoints.html',
+    "<div class=gainpoints_page><div class=\"col-xs-12 gainpoints_header\"><div class=gainpoints_brand style=\"background-image: url('/assets/theme/src/images/headers/gainpoints.png')\"></div></div><div class=\"page_container col-xs-12\"><div class=center_image style=\"background-image: url('/assets/theme/src/images/bg/cover_image_basketball.png')\"><div class=grdainet></div></div><div class=barnds_container><div class=\"col-xs-12 barnd_item\" ng-repeat=\"brand in brands \"><div class=brand_background ng-click=go() style=\"background-image: url({{brand.cover_image}})\"><div class=barnd_logo style=\"background-image: url({{brand.logo}})\"></div></div></div></div></div></div>"
   );
 
 
@@ -523,6 +532,82 @@ turnOnApp.controller('discoverController', function discoverController ($scope, 
           live_now :false,
           points: '200',
           description: 'With easy access to Broadband and DSL the number of people'},];
+
+});
+
+var gp = null;
+turnOnApp.controller('gainpointsController', function gainpointsController ($scope, $location, $http, $log,$interval,$routeParams) {
+  gp = $scope;
+  $scope.brands = [{id:'1',
+                    cover_image: 'assets/theme/src/images/bg/nike_cover.png',
+                    logo : 'assets/theme/src/images/logo/nike_logo.png',
+                    name: 'nike'},
+                    {id:'2',
+                    cover_image: 'assets/theme/src/images/bg/adidas_cover.png',
+                    logo : 'assets/theme/src/images/logo/adidas_logo.png',
+                    name: 'adidas'},
+                    {id:'3',
+                    cover_image: 'assets/theme/src/images/bg/nb_cover.png',
+                    logo : 'assets/theme/src/images/logo/nb_logo.png',
+                    name: 'new balance'},
+                    {id:'4',
+                     cover_image: 'assets/theme/src/images/bg/nike_cover.png',
+                     logo : 'assets/theme/src/images/logo/nike_logo.png',
+                     name: 'nike'},
+                     {id:'5',
+                     cover_image: 'assets/theme/src/images/bg/adidas_cover.png',
+                     logo : 'assets/theme/src/images/logo/adidas_logo.png',
+                     name: 'adidas'},
+                     {id:'6',
+                     cover_image: 'assets/theme/src/images/bg/nb_cover.png',
+                    logo : 'assets/theme/src/images/logo/nb_logo.png',
+                    name: 'new balance'
+
+    }];
+  $scope.products = [{ id:'1',
+                  title:'2016 BRAZIL CBF MATCH HOME',
+                  url:'assets/theme/src/images/market/shoes_1@2x.png',
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                  points: '15000'},
+                  { id: '2',
+                  title:'2016 BRAZIL CBF MATCH HOME',
+                  url:'assets/theme/src/images/market/bag_1@2x.png',
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                  points: '50000'},
+                  {id: '3',
+                  title:'2016 BRAZIL CBF MATCH HOME',
+                  url:'assets/theme/src/images/market/shoes_2@2x.png',
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                  points: '10000'},
+                  {id: '4',
+                  title:'2016 BRAZIL CBF MATCH HOME',
+                  url:'assets/theme/src/images/market/t_shirt_1@2x.png',
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                  points: '10000'},
+                  {id: '5',
+                  title:'2016 BRAZIL CBF MATCH HOME',
+                  url:'assets/theme/src/images/market/shoes_1@2x.png',
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                  points: '15000'},
+                  {id: '6',
+                  title:'2016 BRAZIL CBF MATCH HOME',
+                  url:'assets/theme/src/images/market/bag_1@2x.png',
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                   points: '50000'},
+                  {id: '7',
+                  title:'2016 BRAZIL CBF MATCH HOME',
+                  url:'assets/theme/src/images/market/t_shirt_2@2x.png',
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                  points: '10000'
+
+              }];
 
 });
 
