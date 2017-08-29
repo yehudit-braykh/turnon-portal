@@ -1,6 +1,9 @@
 var mb = null;
+var l = null;
 turnOnApp.controller('mybagController', function mybagController ($scope, $location, $http, $log,$interval,$routeParams) {
   mb = $scope;
+  l=$location;
+  $scope.password = '';
   $scope.purchase = false;
   $scope.pointscount = 0;
   $scope.products = [{ id:'1',
@@ -57,4 +60,18 @@ turnOnApp.controller('mybagController', function mybagController ($scope, $locat
   $scope.confirm_purchase = function(){
     $scope.purchase = true;
   }
+
+  $scope.continue_purchase = function () {
+      $('#mybag_modal').modal('toggle');
+      $('#mybag_modal').on("hidden.bs.modal", function(){
+          $scope.go('/market');
+      });
+  };
+  $scope.go = function (path) {
+      if (path== '/market') {
+          $location.path(path);
+          $scope.$apply();
+      }
+  };
+
 });

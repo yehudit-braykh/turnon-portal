@@ -85,9 +85,9 @@
                     </div>
                 </div>
               <div class="line col-xs-12"></div>
-              <input ngModel="newListItem" type="text" class="input_style" value="">
+              <input ng-model="password" type="text" class="input_style" value="">
               <div class="modal_button">
-                  <button  ng.disabled="newListItem.length < 3" class=" purchase_button" ng-click = "confirm_purchase()">purchase</button>
+                  <button  ng-disabled="password.length < 6" class=" purchase_button {{password.length > 5 ?'active':''}}" ng-click = "confirm_purchase()">Approve payment</button>
               </div>
             </div>
           </div>
@@ -98,7 +98,7 @@
             <div class="detailes">YOUR ORDER IS BEING PROCESSED</div>
             <div class="detailes view"><span class="border">view order detailes</span></div>
             <div class="modal_button">
-                <button class=" purchase_button continue" ng-click = "confirm_purchase()">continue shopping</button>
+                <button class=" purchase_button continue" ng-click = "continue_purchase()">continue shopping</button>
             </div>
           </div>
         </div>

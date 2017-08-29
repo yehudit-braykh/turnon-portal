@@ -11835,9 +11835,15 @@ button.close {
   text-transform: uppercase;
   padding-top: 2px;
 }
+.mybag_page #mybag_modal .modal-dialog .modal-content .modal-body .modal_button .purchase_button.active {
+  border: solid 2px #18d676;
+  color: #18d676;
+}
 .mybag_page #mybag_modal .modal-dialog .modal-content .modal-body .modal_button .purchase_button.continue {
   width: 240px;
   margin-top: 50px;
+  border: solid 2px #18d676;
+  color: #18d676;
 }
 .mybag_page #mybag_modal .modal-dialog .modal-content .modal-body .modal_center_section {
   padding: 41px 43px 0;
