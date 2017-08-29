@@ -1,4 +1,4 @@
-var so = null
+var mar = null
 turnOnApp.directive('marketBlock', function() {
     return {
       restrict: 'E',
@@ -7,13 +7,14 @@ turnOnApp.directive('marketBlock', function() {
           model: '=',
           limit: "@",
           order: "@",
+          page : "@" ,
           reverse: "=",
           link: "=",
           search: '=',
           col: "@"
       },
       controller: ['$scope', '$location', function marketBlockController($scope, $location) {
-          so = $scope;
+          mar = $scope;
           $scope.go = function (path) {
               $location.path(path);
           };

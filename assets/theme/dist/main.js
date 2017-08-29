@@ -42,6 +42,10 @@ turnOnApp.config(function($routeProvider, $locationProvider){
         templateUrl: '/assets/theme/src/models/mybag/mybag.html',
         controller: 'mybagController'
     })
+    .when('/liked', {
+        templateUrl: '/assets/theme/src/models/liked/liked.html',
+        controller: 'likedController'
+    })
     .otherwise({
         redirectTo: '/'
     });;
@@ -56,7 +60,7 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('directives/market_block/market_block.html',
-    "<div class=\"col-xs-{{col}} market_item\" ng-repeat=\"product in model | limitTo : limit\"><div class=market_background ng-click=\"go('product/' + product.id)\"><div class=market_item_points><div class=market_points_image><div class=points_logo></div><div class=points_num>{{product.points}}</div></div></div><div class=market_item_image style=\"background-image: url('{{product.url}}')\"></div><div class=market_item_info><div class=market_item_title>{{product.title}}</div><div class=market_item_desc>{{product.type}}</div></div></div></div>"
+    "<div class=\"col-xs-{{col}} market_item\" ng-repeat=\"product in model | limitTo : limit\"><div class=market_background ng-click=\"go('product/' + product.id)\"><div class=market_item_points><div class=market_points_image><div class=points_logo></div><div class=points_num>{{product.points}}</div></div></div><div class=market_item_image style=\"background-image: url('{{product.url}}')\"></div><div class=market_item_info><div class=market_item_title>{{product.title}}</div><div class=market_item_desc>{{product.type}}</div></div></div><div class=buy_button_cover ng-if=\"page=='likepage'\"><div class=button ng-click=open_modal()>Add to bag</div></div></div>"
   );
 
 
@@ -102,6 +106,11 @@ angular.module('turnon').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('models/home/home.html',
     "<div class=\"container-fluid home_page\"><div class=\"col-xs-12 sport_list_container\"><div class=\"kinds_of_sports {{activeSport.id == sl.id?'active':''}}\" ng-repeat=\"sl in sports\" ng-click=getActiveSport(sl);><div class=sport_logo style=\"background-image: url('{{sl.url}}')\"></div><div class=sport_logo_hover style=\"background-image: url('{{sl.url_hover}}')\"></div><div class=sport_title>{{sl.title}}</div></div></div><div class=\"col-xs-12 center_container\"><div class=\"col-xs-12 center_image\" style=\"background-image: url('assets/theme/src/images/bg/football-manch.png')\"><div class=center_play_button></div><div class=center_points><div class=points_icon></div><div class=points_number>500</div></div><div class=epg_channel_logo style=\"background-image: url('assets/theme/src/images/logo/espn.png')\"></div><div class=center_epg_container><div class=epg_type><div class=type_title>Soccer</div><div class=close_epg_button><div class=epg_button></div></div></div><div class=epg_now_container><div class=epg_now>NOW!</div><div class=epg_now_image style=\"background-image: url('assets/theme/src/images/logo/espn.png')\"></div><div class=epg_now_title>Champions League</div><div class=epg_now_description>Real Madrid - M.United</div><div class=epg_now_time>(49’ min)</div></div><div class=epg_events_title>Next Events</div><div class=epg_container><div class=epg_list style=\"height:{{epgList.length * 5}}vw\"><div class=epg_item ng-repeat=\"epg in epgList\" ng-click=getPurchaseEvent(epg);><div class=epg_info><div class=epg_title>{{epg.title}}</div><div class=epg_desc>{{epg.desc}}</div></div><div class=epg_logo><div class=epg_logo_image style=\"background-image: url('{{epg.url}}')\"></div></div></div></div></div></div></div></div><div class=\"col-xs-12 channels_container\"><div class=channel ng-repeat=\"channel in channels\"><div class=channel_logo style=\"background-image: url('{{channel.url}}')\"></div><div class=channel_background></div></div></div><div class=\"col-xs-12 content_container\"><div class=col-xs-12 style=\"padding-right: 0.8vw; padding-left: 0.8vw\"><div class=\"col-xs-12 content_title orange title1\">GAIN POINTS!</div></div><div class=col-xs-12 style=\"padding-right: 0.8vw; padding-left: 0.8vw\"><div class=\"col-xs-12 points_container\"><div class=\"col-xs-15 point\" ng-repeat=\"point in points\"><div class=point_logo style=\"background-image: url('{{point.url}}')\"></div><div class=point_logo_hover style=\"background-image: url('{{point.url_hover}}')\"></div><div class=point_title>{{point.title}}</div><div class=point_num>{{point.points}}</div><div class=point_desc>{{point.description}}</div><div class=point_button><button type=button class=\"btn get_points_button\">GET POINTS</button></div></div></div></div><div class=col-xs-12 style=\"padding-right: 0.8vw; padding-left: 0.8vw\"><div id=carousel_home_page class=\"carousel slide\" data-ride=carousel><ol class=carousel-indicators><li data-target=#carousel_home_page data-slide-to=0 class=active></li><li data-target=#carousel_home_page data-slide-to=1></li><li data-target=#carousel_home_page data-slide-to=2></li><li data-target=#carousel_home_page data-slide-to=3></li><li data-target=#carousel_home_page data-slide-to=4></li></ol><div class=carousel-inner role=listbox><div class=\"item {{$index == 0?'active':''}}\" ng-repeat=\"point in points track by $index\"><div class=item_content style=\"background-image: url('assets/theme/src/images/bg/points_bg@2x.png')\"><div class=item_background><div class=carousel_point_title>{{point.title}}</div><div class=carousel_point_num><div class=pin_icon></div><div class=points_num>{{point.points}}</div></div><div class=carousel_point_desc>{{point.description}}</div><div class=carousel_point_button><button type=button class=\"btn points_button\" ng-click=getPointsModal(point);>GET POINTS</button></div></div></div></div></div></div></div><div class=col-xs-12 style=\"padding-right: 0.8vw; padding-left: 0.8vw\"><div class=\"col-xs-12 content_title green title1\">NEWS FEED</div></div><video-block data-model=videosList></video-block><div class=col-xs-12 style=\"padding-right: 0.8vw; padding-left: 0.8vw\"><div class=\"col-xs-12 content_title green title1\">TOSocial</div></div><div class=col-xs-12 style=\"padding: 0.5vw\"><social-block data-model=socials data-col=15></social-block></div></div></div><div class=\"modal fade\" id=home_epg_modal tabindex=-1 role=dialog><div class=modal-dialog role=document><div class=modal-content><div class=modal-body><div class=close_section><div class=close_button data-dismiss=modal aria-label=Close></div></div><div class=modal_header_section><div class=modal_logo style=\"background-image: url('{{purchaseEvent.url}}')\"></div><div class=modal_time_info><div class=modal_organization style=\"background-image: url('assets/theme/src/images/logo/uefa.png')\"></div><div class=modal_date>22 March 2017</div></div><div class=modal_points><div class=points_logo></div><div class=points_num>150</div></div></div><div class=modal_center_section><div class=modal_title>{{purchaseEvent.title}}</div><div class=modal_description>With easy access to Broadband and DSL the number of people</div><div class=modal_time><div class=time_block><div class=time_item><div class=time_num>00</div><div class=time_desc>days</div></div><div class=time_item><div class=time_num>18</div><div class=time_desc>hours</div></div><div class=time_item><div class=time_num>23</div><div class=time_desc>mins</div></div><div class=time_item><div class=time_num>49</div><div class=time_desc>sec</div></div></div></div><div class=modal_button><button type=button class=\"btn purchase_button\">purchase</button></div></div></div></div></div></div><div class=\"modal fade\" id=home_points_modal tabindex=-1 role=dialog><div class=modal-dialog role=document><div class=modal-content><div class=modal-body><div class=close_section><div class=close_button data-dismiss=modal aria-label=Close></div></div><div class=modal_center_section><div class=modal_title>earn more points!</div><div class=modal_description>Share with friends</div><div class=modal_social><div class=social_block><div class=\"social_item facebook\"></div><div class=\"social_item instagram\"></div><div class=\"social_item twitter\"></div></div></div><div class=modal_video_content><div class=modal_video_image style=\"background-image: url('assets/theme/src/images/news/3.png')\"><div class=video_background></div><div class=video_title>The Benefits And Drawbacks</div><div class=video_play_button></div><div class=video_points><div class=pin_icon></div><div class=points_num>300</div></div></div></div><div class=modal_button><button type=button class=\"btn points_button\">share now</button></div></div></div></div></div></div>"
+  );
+
+
+  $templateCache.put('models/liked/liked.html',
+    "<div class=liked_page><div class=\"col-xs-12 liked_header\"><div class=liked_brand style=\"background-image: url('/assets/theme/src/images/headers/market.png')\"></div></div><div class=\"page_container col-xs-12\"><div class=fix_padding><div class=\"liked_merchandise col-xs-12\"></div></div><div class=\"sub_header col-xs-12 fix_padding\"><div class=\"search_input_cover col-xs-6\"><input type=text class=search_input> <i class=\"fa fa-search\"></i></div><div class=\"col-xs-6 liked_buttons\"><div class=liked_bag_container><div class=liked_bag_image></div><div class=liked_bag_title>MY BAG</div></div><div class=liked_likes_container><div class=liked_likes_image></div><div class=liked_likes_title>LIKED</div></div></div></div><div class=\"products_container col-xs-12\"><market-block data-model=products data-limit=20 data-col=3 data-page=likepage></market-block></div></div></div>"
   );
 
 
@@ -172,7 +181,7 @@ turnOnApp.directive('eventBlock', function() {
     };
   })
 
-var so = null
+var mar = null
 turnOnApp.directive('marketBlock', function() {
     return {
       restrict: 'E',
@@ -181,13 +190,14 @@ turnOnApp.directive('marketBlock', function() {
           model: '=',
           limit: "@",
           order: "@",
+          page : "@" ,
           reverse: "=",
           link: "=",
           search: '=',
           col: "@"
       },
       controller: ['$scope', '$location', function marketBlockController($scope, $location) {
-          so = $scope;
+          mar = $scope;
           $scope.go = function (path) {
               $location.path(path);
           };
@@ -820,6 +830,55 @@ $scope.epgList = [{title:'Real Madrid - M.United',
 
 });
 
+var like = null;
+turnOnApp.controller('likedController', function likedController ($scope, $location, $http, $log,$interval,$routeParams) {
+  like = $scope;
+  $scope.products = [{ id:'1',
+                  title:'2016 BRAZIL CBF MATCH HOME',
+                  url:'assets/theme/src/images/market/shoes_1@2x.png',
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                  points: '15000'},
+                  { id: '2',
+                  title:'2016 BRAZIL CBF MATCH HOME',
+                  url:'assets/theme/src/images/market/bag_1@2x.png',
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                  points: '50000'},
+                  {id: '3',
+                  title:'2016 BRAZIL CBF MATCH HOME',
+                  url:'assets/theme/src/images/market/shoes_2@2x.png',
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                  points: '10000'},
+                  {id: '4',
+                  title:'2016 BRAZIL CBF MATCH HOME',
+                  url:'assets/theme/src/images/market/t_shirt_1@2x.png',
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                  points: '10000'},
+                  {id: '5',
+                  title:'2016 BRAZIL CBF MATCH HOME',
+                  url:'assets/theme/src/images/market/shoes_1@2x.png',
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                  points: '15000'},
+                  {id: '6',
+                  title:'2016 BRAZIL CBF MATCH HOME',
+                  url:'assets/theme/src/images/market/bag_1@2x.png',
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                   points: '50000'},
+                  {id: '7',
+                  title:'2016 BRAZIL CBF MATCH HOME',
+                  url:'assets/theme/src/images/market/t_shirt_2@2x.png',
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                  points: '10000'
+
+              }];
+});
+
 var ma = null;
 turnOnApp.controller('marketController', function marketController ($scope, $location, $http, $log,$interval) {
   ma = $scope;
@@ -827,42 +886,51 @@ turnOnApp.controller('marketController', function marketController ($scope, $loc
   $scope.go = function (path) {
     $location.path(path);
   };
-  
+
   $scope.products = [{ id:'1',
                   title:'2016 BRAZIL CBF MATCH HOME',
                   url:'assets/theme/src/images/market/shoes_1@2x.png',
-                  points: '15 000',
-                  description: "MEN'S FOOTBALL SHIRT"},
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                  points: '15000'},
                   { id: '2',
                   title:'2016 BRAZIL CBF MATCH HOME',
                   url:'assets/theme/src/images/market/bag_1@2x.png',
-                  points: '50 000',
-                  description: "MEN'S FOOTBALL SHIRT"},
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                  points: '50000'},
                   {id: '3',
                   title:'2016 BRAZIL CBF MATCH HOME',
                   url:'assets/theme/src/images/market/shoes_2@2x.png',
-                  points: '10 000',
-                  description: "MEN'S FOOTBALL SHIRT"},
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                  points: '10000'},
                   {id: '4',
                   title:'2016 BRAZIL CBF MATCH HOME',
                   url:'assets/theme/src/images/market/t_shirt_1@2x.png',
-                  points: '10 000',
-                  description: "MEN'S FOOTBALL SHIRT"},
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                  points: '10000'},
                   {id: '5',
                   title:'2016 BRAZIL CBF MATCH HOME',
                   url:'assets/theme/src/images/market/shoes_1@2x.png',
-                  points: '15 000',
-                  description: "MEN'S FOOTBALL SHIRT"},
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                  points: '15000'},
                   {id: '6',
                   title:'2016 BRAZIL CBF MATCH HOME',
                   url:'assets/theme/src/images/market/bag_1@2x.png',
-                  points: '50 000',
-                  description: "MEN'S FOOTBALL SHIRT"},
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                   points: '50000'},
                   {id: '7',
                   title:'2016 BRAZIL CBF MATCH HOME',
                   url:'assets/theme/src/images/market/t_shirt_2@2x.png',
-                  points: '10 000',
-                  description: "MEN'S FOOTBALL SHIRT"}];
+                  type : "MEN'S FOOTBALL SHIRT",
+                  description: "A T-shirt (or tee shirt, or tee) is a style of unisex fabric shirt, named after the T shape of the body and sleeves. It is normally associated with short sleeves, a round neck line known as a crew neck, with no collar. T-shirts are generally made of a light, inexpensive fabric, and are easy to clean.",
+                  points: '10000'
+
+              }];
 
   $scope.brands = [{title:'Nike',
                   value: "nike"},
@@ -1000,10 +1068,8 @@ turnOnApp.controller('mylistController', function mylistController ($scope, $loc
 });
 
 var mb = null;
-var l = null;
 turnOnApp.controller('mybagController', function mybagController ($scope, $location, $http, $log,$interval,$routeParams) {
   mb = $scope;
-  l=$location;
   $scope.password = '';
   $scope.purchase = false;
   $scope.pointscount = 0;

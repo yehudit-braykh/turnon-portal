@@ -42,6 +42,10 @@ turnOnApp.config(function($routeProvider, $locationProvider){
         templateUrl: '/assets/theme/src/models/mybag/mybag.html',
         controller: 'mybagController'
     })
+    .when('/liked', {
+        templateUrl: '/assets/theme/src/models/liked/liked.html',
+        controller: 'likedController'
+    })
     .otherwise({
         redirectTo: '/'
     });;

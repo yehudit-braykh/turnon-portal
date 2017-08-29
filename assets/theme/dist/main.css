@@ -11912,6 +11912,142 @@ button.close {
 .mybag_page #mybag_modal .modal-dialog .modal-content .modal-body .detailes.view .border {
   border-bottom: solid 1px #fe6443;
 }
+.liked_page .liked_header {
+  padding-right: 14%;
+  padding-left: 14%;
+  height: 6vw;
+  background-color: #fc5f3d;
+}
+.liked_page .liked_header .liked_brand {
+  background-position: left;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 3.5vw;
+  width: 25vw;
+  margin-top: 1.2vw;
+}
+.liked_page .page_container {
+  padding-right: 14%;
+  padding-left: 14%;
+  background: #ffffff;
+}
+.liked_page .page_container .liked_merchandise {
+  padding: 0;
+  background-image: url(../src/images/headers/merchandise.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: left;
+  height: 4vw;
+  cursor: pointer;
+}
+.liked_page .page_container .sub_header {
+  padding-top: 1.5vw;
+  padding-bottom: 1.5vw;
+}
+.liked_page .page_container .sub_header .search_input_cover {
+  padding: 0;
+  float: left;
+  width: 12vw;
+  position: relative;
+}
+.liked_page .page_container .sub_header .search_input_cover .search_input {
+  height: 1.8vw;
+  width: 12vw;
+  border: solid 1px #1a2937;
+}
+.liked_page .page_container .sub_header .search_input_cover .fa-search {
+  position: absolute;
+  top: 0.3vw;
+  right: 1vw;
+  opacity: 0.8;
+  font-size: 1vw;
+}
+.liked_page .page_container .sub_header .liked_buttons {
+  float: right;
+  padding: 0;
+  bottom: 0.5vw;
+}
+.liked_page .page_container .sub_header .liked_buttons .liked_likes_container {
+  float: right;
+  width: 18%;
+  height: 2.4vw;
+  cursor: pointer;
+}
+.liked_page .page_container .sub_header .liked_buttons .liked_likes_container:hover {
+  border-radius: 10px;
+  background-color: #fe6443;
+  border: solid 1px #fe6443;
+}
+.liked_page .page_container .sub_header .liked_buttons .liked_likes_container:hover .liked_likes_title {
+  color: #ffffff;
+}
+.liked_page .page_container .sub_header .liked_buttons .liked_likes_container:hover .liked_likes_image {
+  background-image: url(../src/images/icon/white_heart.png);
+}
+.liked_page .page_container .sub_header .liked_buttons .liked_likes_container .liked_likes_title {
+  font-family: SourceSansPro;
+  font-size: 1.15vw;
+  font-weight: 600;
+  letter-spacing: 0.9px;
+  color: #fe6443;
+  float: left;
+  line-height: 2.4vw;
+  margin-left: 0.4vw;
+}
+.liked_page .page_container .sub_header .liked_buttons .liked_likes_container .liked_likes_image {
+  background-image: url(../src/images/icon/heart_orange.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 1.2vw;
+  height: 2.4vw;
+  float: right;
+  margin-right: 0.4vw;
+}
+.liked_page .page_container .sub_header .liked_buttons .liked_bag_container {
+  float: right;
+  width: 18%;
+  height: 2.4vw;
+  margin-left: 1vw;
+  cursor: pointer;
+}
+.liked_page .page_container .sub_header .liked_buttons .liked_bag_container:hover {
+  border-radius: 10px;
+  background-color: #fe6443;
+  border: solid 1px #fe6443;
+}
+.liked_page .page_container .sub_header .liked_buttons .liked_bag_container:hover .mybag_likes_title {
+  color: #ffffff;
+}
+.liked_page .page_container .sub_header .liked_buttons .liked_bag_container:hover .liked_bag_image {
+  background-image: url(../src/images/icon/bag_white.png);
+}
+.liked_page .page_container .sub_header .liked_buttons .liked_bag_container:hover .liked_bag_title {
+  color: #ffffff;
+}
+.liked_page .page_container .sub_header .liked_buttons .liked_bag_container .liked_bag_title {
+  font-family: SourceSansPro;
+  font-size: 1.15vw;
+  font-weight: 600;
+  letter-spacing: 0.9px;
+  color: #fe6443;
+  float: left;
+  line-height: 2.4vw;
+  margin-left: 0.4vw;
+}
+.liked_page .page_container .sub_header .liked_buttons .liked_bag_container .liked_bag_image {
+  background-image: url(../src/images/icon/bag_orange.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 0.8vw;
+  height: 2.4vw;
+  float: right;
+  margin-right: 0.4vw;
+}
+.liked_page .page_container .products_container {
+  padding: 0;
+}
 .video_list_container {
   padding: 0.8vw;
   position: relative;
@@ -13158,11 +13294,10 @@ button.close {
 }
 .market_item {
   padding: 0.8vw;
-  height: 21.5vw;
 }
 .market_item .market_background {
   width: 100%;
-  height: 100%;
+  height: 20vw;
   background-color: #f0f0f0;
   cursor: pointer;
   transition: all 0.25s;
@@ -13227,6 +13362,7 @@ button.close {
 .market_item .market_background .market_item_info .market_item_desc {
   font-family: Roboto;
   font-size: 0.75vw;
+  margin-top: 0.5vw;
   font-weight: 300;
   line-height: 1.29;
   letter-spacing: 0.4px;
@@ -13235,6 +13371,27 @@ button.close {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.market_item .buy_button_cover {
+  padding: 0;
+}
+.market_item .buy_button_cover .button {
+  margin: 1vw auto;
+  border-radius: 6px;
+  border: solid 2px #18d676;
+  text-transform: uppercase;
+  width: 10vw;
+  height: 2vw;
+  font-weight: bold;
+  font-style: italic;
+  color: #18d676;
+  text-align: center;
+  font-size: 1.2vw;
+  cursor: pointer;
+}
+.market_item .buy_button_cover .button:hover {
+  color: white;
+  background-color: #18d676;
 }
 .mybag_block_item {
   font-family: SourceSansPro;

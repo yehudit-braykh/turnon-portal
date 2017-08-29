@@ -1,7 +1,6 @@
 <div class="event_block_page">
     <div class="col-xs-3 event_list_container" ng-repeat="video in model">
         <div class="event_container col-xs-12 {{video.live_now ? 'live' : ''}}">
-
             <div class="media upper_container">
                 <div class="media-left ">
                     <img class="organiztion_image" src="{{video.organiztion_image}}" alt="">
@@ -22,7 +21,6 @@
                             {{video.status}}
                         </div>
                     </div>
-
                 </div>
                 <div class="line"></div>
                 <div class="header">{{video.title}}</div>
@@ -68,36 +66,6 @@
                     set a reminder
                 </div>
             </div>
-
-            <!-- <div class="organiztion_image col-xs-2" style="background-image: url({{video.organiztion_image}});"></div>
-            <div class="middle_container col-xs-5">
-                <div class="channel_image col-xs-12" style="background-image: url({{video.channel_image}});" ></div>
-                <div class="date col-xs-12" >12.5.5</div>
-            </div> -->
-
         </div>
-
-
-<!--
-        <div class="vod_list_image" style="background-image: url('{{video.url_image}}');">
-            <div class="video_list_background"></div>
-            <div class="video_logo" style="background-image: url('{{video.url_logo}}');"></div>
-            <div class="video_play_button"></div>
-            <div class="video_points">
-              <div class="pin_icon"></div>
-              <div class="points_num">{{video.points}}</div>
-            </div>
-
-        </div>
-        <div class="vod_info_section">
-            <div class="vod_header col-xs-6">{{video.title}}</div>
-            <div class="vod_icons col-xs-6">
-                <div class="add_to_list" style="background-image: url('/assets/theme/src/images/icon/add_to_list@2x.png');"></div>
-                <div class="share" style="background-image: url('/assets/theme/src/images/icon/shape.png');"></div>
-            </div>
-            <div class="vod_desc col-xs-12">
-                {{video.description | limitTo: 100}}
-            </div>
-        </div> -->
     </div>
 </div>

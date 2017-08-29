@@ -1,9 +1,6 @@
-var mb = null;
-turnOnApp.controller('mybagController', function mybagController ($scope, $location, $http, $log,$interval,$routeParams) {
-  mb = $scope;
-  $scope.password = '';
-  $scope.purchase = false;
-  $scope.pointscount = 0;
+var like = null;
+turnOnApp.controller('likedController', function likedController ($scope, $location, $http, $log,$interval,$routeParams) {
+  like = $scope;
   $scope.products = [{ id:'1',
                   title:'2016 BRAZIL CBF MATCH HOME',
                   url:'assets/theme/src/images/market/shoes_1@2x.png',
@@ -48,28 +45,4 @@ turnOnApp.controller('mybagController', function mybagController ($scope, $locat
                   points: '10000'
 
               }];
-  $scope.products.forEach (function(item){
-          $scope.itempoint = parseInt(item.points)
-          $scope.pointscount +=  $scope.itempoint;
-  },this);
-  $scope.open_modal = function(){
-    $('#mybag_modal').modal('show');
-  }
-  $scope.confirm_purchase = function(){
-    $scope.purchase = true;
-  }
-
-  $scope.continue_purchase = function () {
-      $('#mybag_modal').modal('toggle');
-      $('#mybag_modal').on("hidden.bs.modal", function(){
-          $scope.go('/market');
-      });
-  };
-  $scope.go = function (path) {
-      if (path== '/market') {
-          $location.path(path);
-          $scope.$apply();
-      }
-  };
-
 });
