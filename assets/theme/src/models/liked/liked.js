@@ -1,6 +1,10 @@
 var like = null;
 turnOnApp.controller('likedController', function likedController ($scope, $location, $http, $log,$interval,$routeParams) {
   like = $scope;
+  $scope.go = function (path) {
+    $location.path(path);
+  };
+
   $scope.products = [{ id:'1',
                   title:'2016 BRAZIL CBF MATCH HOME',
                   url:'assets/theme/src/images/market/shoes_1@2x.png',

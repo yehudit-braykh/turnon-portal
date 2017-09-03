@@ -70,6 +70,9 @@ turnOnApp.controller('mybagController', function mybagController ($scope, $locat
           $location.path(path);
           $scope.$apply();
       }
+      else {
+           $location.path(path);
+      }
   };
 
 });
